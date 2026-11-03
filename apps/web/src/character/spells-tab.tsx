@@ -2,7 +2,7 @@ import type { CharacterDerived, CharacterSheet } from '@ltw/contracts';
 import { readableLabel, useT } from '@ltw/ui';
 
 import { Glyph } from '../visual/glyph.tsx';
-import { catalogUrl } from '../visual/ui-kit.ts';
+import { catalogUrl, schoolArtUrl } from '../visual/ui-kit.ts';
 import {
   ABILITY_NAMES,
   sliceSpellText,
@@ -79,7 +79,7 @@ export function SpellsTab({
         <h3 id="hero-spell-list">{t('Spells')}</h3>
         <ul className="spell-cards">
           {derived.spells.map((spell) => {
-            const art = catalogUrl('spells', spell.spellId);
+            const art = catalogUrl('spells', spell.spellId) ?? schoolArtUrl(spell.school);
             return (
               <li key={spell.spellId} className="spell-card">
                 <div className="spell-art">
@@ -106,7 +106,7 @@ export function SpellsTab({
                     <p className="spell-text">{t(sliceSpellText(spell.spellId) ?? '')}</p>
                   )}
                   {spell.text?.split('\n').map((paragraph) => (
-                    <p key={paragraph} className="spell-text" lang="en">
+                    <p key={paragraph} className="spell-text" lang={spell.textLanguage ?? 'en'}>
                       {paragraph}
                     </p>
                   ))}

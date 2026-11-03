@@ -20,6 +20,8 @@ export const UI_ITEM_CAMPAIGNS = {
   split: 'ui-items-split',
   /** The DM gives items from the catalog (docs/adr/0054-items-as-data.md §4). */
   catalog: 'ui-items-catalog',
+  /** The same in Russian: the SRD's names and words, and an item's look (ADR 0055 §5–6). */
+  catalogRu: 'ui-items-catalog-ru',
   /** A player attunes in a Short Rest (docs/adr/0054-items-as-data.md §5). */
   attune: 'ui-items-attune',
   /** Charges, dawn, and a potion known by a taste (§5). */
@@ -72,6 +74,7 @@ export async function seedUiItemCampaigns(engine: WorldEngine): Promise<void> {
     [UI_ITEM_CAMPAIGNS.axe, 'en'],
     [UI_ITEM_CAMPAIGNS.split, 'en'],
     [UI_ITEM_CAMPAIGNS.catalog, 'en'],
+    [UI_ITEM_CAMPAIGNS.catalogRu, 'ru'],
     [UI_ITEM_CAMPAIGNS.attune, 'en'],
     [UI_ITEM_CAMPAIGNS.charges, 'en'],
   ] as const) {

@@ -8,6 +8,7 @@ import {
   type ItemCategory,
   type ItemMagic,
   type ItemRarity,
+  type ItemLook,
 } from './schema.ts';
 
 /**
@@ -23,6 +24,8 @@ export interface ItemCatalogListing {
   readonly weightLb: number;
   readonly stackable: boolean;
   readonly source: 'srd' | null;
+  /** What it looks like, for its kind's picture (docs/adr/0055-…md §6). */
+  readonly look: ItemLook | null;
   readonly untranslated: boolean;
   /** A magic item's rarity; null for a mundane one (docs/adr/0054-items-as-data.md §5). */
   readonly rarity: ItemRarity | null;

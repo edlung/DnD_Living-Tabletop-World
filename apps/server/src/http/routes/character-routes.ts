@@ -31,7 +31,12 @@ export function registerCharacterRoutes(app: FastifyInstance, deps: RouteDepende
           : [[kind, stacks.reduce((sum, stack) => sum + stack.quantity, 0)]];
       }),
     );
-    return reply.send({ ...body, derived: deriveCharacter(body.sheet, wielded, ammunition) });
+    // An SRD spell's words in the campaign's language (docs/adr/0055-rules-reference-and-toolbox.md §5).
+    const language = context.state.campaign?.language === 'ru' ? 'ru' : 'en';
+    return reply.send({
+      ...body,
+      derived: deriveCharacter(body.sheet, wielded, ammunition, language),
+    });
   });
 
   app.get('/campaigns/:campaignId/entities/:entityId/inventory', async (request, reply) => {
@@ -41,7 +46,7 @@ export function registerCharacterRoutes(app: FastifyInstance, deps: RouteDepende
     const viewed = inventoryView(context.state, context.perspective, path.entityId);
     if (!viewed) return sendError(reply, request, 'NOT_FOUND');
     // An SRD entry's words beside it (docs/adr/0054-items-as-data.md §4).
-    const body = withSrdWords(viewed);
+    const body = withSrdWords(viewed, context.state.campaign?.language === 'ru' ? 'ru' : 'en');
     // With a sheet, what Strength carries and each carried weapon's attack (Stage 520).
     const sheet = context.state.characterSheets.get(path.entityId);
     if (!sheet) return reply.send(body);

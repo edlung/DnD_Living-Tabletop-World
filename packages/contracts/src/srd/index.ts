@@ -59,9 +59,12 @@ export {
 export {
   addFromBestiaryRequestSchema,
   bestiaryMonsterIdSchema,
+  SRD_CREATURE_TYPES,
+  srdCreatureTypeOf,
   type AddFromBestiaryRequest,
   type AddedFromBestiaryResponse,
   type BestiaryEntry,
   type BestiaryEntryResponse,
   type BestiaryResponse,
+  type SrdCreatureType,
 } from './bestiary.ts';

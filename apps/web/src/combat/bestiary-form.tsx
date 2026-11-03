@@ -14,6 +14,7 @@ import { useResource } from '../api/resource.ts';
 import { rejectionMessage } from '../exploration/outcome-messages.ts';
 import { Field } from '../session/account-forms.tsx';
 import { Glyph } from '../visual/glyph.tsx';
+import { creatureTypeArtUrl } from '../visual/ui-kit.ts';
 import { BestiaryEntry } from './bestiary-entry.tsx';
 import { SquareFields, useSquare } from './join-forms.tsx';
 
@@ -143,6 +144,7 @@ export function BestiaryForm({
       {picked && <BestiaryEntry key={picked.monsterId} api={api} monsterId={picked.monsterId} />}
       {picked && (
         <p className="fine-print bestiary-stats">
+          <CreatureTypePicture creatureType={picked.creatureType} />
           {t('{size} {type} · AC {ac} · {hp} HP · {xp} XP', {
             size: t(picked.size),
             type: t(picked.type),
@@ -185,4 +187,10 @@ export function BestiaryForm({
       )}
     </form>
   );
+}
+
+/** The creature type's picture beside a stat block's line (docs/adr/0055-…md §6). */
+function CreatureTypePicture({ creatureType }: { readonly creatureType: string | null }) {
+  const url = creatureTypeArtUrl(creatureType);
+  return url ? <img className="bestiary-type-art" src={url} alt="" /> : null;
 }

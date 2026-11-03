@@ -481,6 +481,375 @@
       "originalSha256": "1c1951c9dc0e279354b762492d79cd92ae32305762924f7ad185048b8fb76181",
       "recipe": "resized to 384 px wide; WebP q82"
     },
+    "catalog/kinds/kind-ammunition.webp": {
+      "source": "kind-ammunition",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a bundle of fletched arrows and short crossbow bolts tied with twine.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "e5113fe3575a3e41af8cbd61ba9623f737b2c8937e444f986d43df24cb46c428",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/kind-armor.webp": {
+      "source": "kind-armor",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a steel breastplate with leather straps and antique gold trim.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "aa09bf25a4121b93d474cc91fd834f288e74673c16b65c651751ed5cb2bd824a",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/kind-coins.webp": {
+      "source": "kind-coins",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a small pile of gold, silver and copper coins with blank faces.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "0d28c1b29ce5872b8690c7f7a87892d5993bc80da077e70441531f928f88d24a",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/kind-focus.webp": {
+      "source": "kind-focus",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a glowing crystal orb in a small bronze stand.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "35610e6095230e06734e1d1810633b593e8e8b99eeed361d8bd1ee5d1092844b",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/kind-food.webp": {
+      "source": "kind-food",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a loaf of dark bread, a wedge of cheese and a leather waterskin.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "dfa52602b61ec868d0152e47f712d2355c8c42696f5d91902bbc945d1513ab9a",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/kind-gear.webp": {
+      "source": "kind-gear",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: an adventurer's gear: a coil of rope, a lantern and a bedroll.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "149719c161d7db0e81de75a2cc3f21f8d7d04a4fcc506cbef5de21388881451c",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/kind-melee-weapon.webp": {
+      "source": "kind-melee-weapon",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a steel longsword in a worn leather scabbard beside a hand axe.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "d2693ff5a90371dccc577bfea79e5b27b122fb4d5213852a1ce668075c1cae2c",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/kind-pack.webp": {
+      "source": "kind-pack",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a stuffed traveller's backpack with a bedroll strapped on top.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "ad3c4a9e571094c03029a8a4c9fc82762b56560d21defe5e477eb61c0eab378a",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/kind-potion.webp": {
+      "source": "kind-potion",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a round glass potion flask of glowing red liquid with a cork stopper.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "6fa0e6cf00359fe7dc69df128db91460a35187ae5631366335ae068e0c510d18",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/kind-ranged-weapon.webp": {
+      "source": "kind-ranged-weapon",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a yew longbow with a quiver of fletched arrows.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "9b058728fc3107f2f0f2995df37bdb0ee0238f2c0c90726357aaa463cf749a74",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/kind-ring.webp": {
+      "source": "kind-ring",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a gold ring set with a glowing blue gem.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "784a2d402b03c7aaa80ac86eba0a0ffc56f48b6a4a7f6e88d14595de5f44e2ff",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/kind-rod.webp": {
+      "source": "kind-rod",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: an ornate short metal rod with a jewelled head and gold bands.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "6a7e68bfd6511e88bf9aaf7800dd1c7af2a2190fa8483f7442dc3fd3a3489446",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/kind-scroll.webp": {
+      "source": "kind-scroll",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a rolled parchment scroll tied with a ribbon and sealed with blank red wax.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "4bd79492dfba54a763eb53280bc923431f483eb8360a99591b46b39adf48997f",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/kind-shield.webp": {
+      "source": "kind-shield",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a round wooden shield with an iron rim and a central iron boss.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "8e00a5ef92c37965536cbad38527c5adeaf1729ce96565efd60af2f9a9a7e500",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/kind-staff.webp": {
+      "source": "kind-staff",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a tall gnarled wooden staff topped by a glowing teal crystal in silver claws.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "9db5ac7aa38ee751821efb14b64c2a6c6f0ab9d41924705fa8bef68dfa2e3a87",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/kind-tack.webp": {
+      "source": "kind-tack",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a leather riding saddle with stirrups and a bridle.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "a1fba77e297125005e9b1612ab3bfd916f29681cd4712813a6f4f6ed69343eb8",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/kind-tool.webp": {
+      "source": "kind-tool",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a leather tool roll open to show a smith's hammer, tongs and fine chisels.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "35e817278243599d6f472a1f8b195bcfc596c1d81e4c3d3ca5cfa0feaa4189c0",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/kind-wand.webp": {
+      "source": "kind-wand",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a slender carved wooden wand with a glowing crystal tip.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "59b0011de390d98691992e40ec348538dfceaa8792f230e178eedeb838e3a0b8",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/kind-wondrous.webp": {
+      "source": "kind-wondrous",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a small heap of wondrous trinkets — an amulet, a cloak clasp and a little drawstring bag — faintly glowing.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "5451be4bc3c541eeeb942e1ff5b498238d59d6504594541b2f23f808c71251f3",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/school-abjuration.webp": {
+      "source": "school-abjuration",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted spell icon for a fantasy RPG spellbook: a single bold magical motif filling a square, rich glowing colour on a dark background, painterly and readable at small size, inside no frame. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The spell: a translucent teal ward of interlocking hexagonal plates of light shielding a small candle flame.",
+      "references": ["docs/design/stage-320/owner-concepts/01-overview.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "02215de3b195e164c29cd6ca96ebface81c256c3c6613fa1b6076dc6adaf1998",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/school-conjuration.webp": {
+      "source": "school-conjuration",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted spell icon for a fantasy RPG spellbook: a single bold magical motif filling a square, rich glowing colour on a dark background, painterly and readable at small size, inside no frame. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The spell: a swirling violet ring portal with a shadowy shape stepping out of silver mist.",
+      "references": ["docs/design/stage-320/owner-concepts/01-overview.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "81bf8e9e4be4ea5c3f97a93165564b1e568798b1208ad4b162a18e1f4ee7cd20",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/school-divination.webp": {
+      "source": "school-divination",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted spell icon for a fantasy RPG spellbook: a single bold magical motif filling a square, rich glowing colour on a dark background, painterly and readable at small size, inside no frame. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The spell: a crystal eye floating above an open palm, radiating soft golden rays.",
+      "references": ["docs/design/stage-320/owner-concepts/01-overview.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "3672697d8749e72fd4974daced45e8614218a56864dd3975dbbdab017d28c9c6",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/school-enchantment.webp": {
+      "source": "school-enchantment",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted spell icon for a fantasy RPG spellbook: a single bold magical motif filling a square, rich glowing colour on a dark background, painterly and readable at small size, inside no frame. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The spell: a heart-shaped wisp of rose-violet light trailing glittering motes, wound with a ribbon of light.",
+      "references": ["docs/design/stage-320/owner-concepts/01-overview.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "c1479b44729bff61f11ea78cec0863dfa36716b7f6b0167ffb76b287e5f4cb0d",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/school-evocation.webp": {
+      "source": "school-evocation",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted spell icon for a fantasy RPG spellbook: a single bold magical motif filling a square, rich glowing colour on a dark background, painterly and readable at small size, inside no frame. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The spell: a crackling burst of flame and blue lightning exploding outward from one bright point.",
+      "references": ["docs/design/stage-320/owner-concepts/01-overview.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "aaf25d309178ae9bc71a8491747398205ac148dbc8167612fe12d55d0f63f9f1",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/school-illusion.webp": {
+      "source": "school-illusion",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted spell icon for a fantasy RPG spellbook: a single bold magical motif filling a square, rich glowing colour on a dark background, painterly and readable at small size, inside no frame. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The spell: a theatre mask half-dissolving into shimmering mirror fragments and drifting mist.",
+      "references": ["docs/design/stage-320/owner-concepts/01-overview.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "cc880327a47ec755e95ad09e73ad1c1c724783772ee637d693d30ae1b159fe65",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/school-necromancy.webp": {
+      "source": "school-necromancy",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted spell icon for a fantasy RPG spellbook: a single bold magical motif filling a square, rich glowing colour on a dark background, painterly and readable at small size, inside no frame. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The spell: a cold green flame rising from the empty eye sockets of a cracked skull.",
+      "references": ["docs/design/stage-320/owner-concepts/01-overview.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "2bf5bac565ccad89340ed92c9afe4628fd76b890220ce1ac881a12f991245eef",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/school-transmutation.webp": {
+      "source": "school-transmutation",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted spell icon for a fantasy RPG spellbook: a single bold magical motif filling a square, rich glowing colour on a dark background, painterly and readable at small size, inside no frame. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The spell: a grey stone feather turning into a gleaming golden feather, sparks between them.",
+      "references": ["docs/design/stage-320/owner-concepts/01-overview.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "ee3824c6fbd9a883f81513758ea38ccecbb369fcc6c5c758b51a61771bd33814",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/type-aberration.webp": {
+      "source": "type-aberration",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted bestiary portrait for a fantasy RPG: one original creature, head and shoulders or whole, centred, three-quarter view, dramatic rim light on a dark smoky background with a soft vignette, readable at small size. Original design, not any known franchise creature. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The creature: an eldritch horror of coiled tentacles and many small glowing eyes emerging from violet mist.",
+      "references": ["docs/design/stage-320/owner-concepts/05-combat-bridge.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "85f5106ff0f68fc86114685239ce6dfaa0c2e0e65fdcc90c5836a37b2a6353b9",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/type-beast.webp": {
+      "source": "type-beast",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted bestiary portrait for a fantasy RPG: one original creature, head and shoulders or whole, centred, three-quarter view, dramatic rim light on a dark smoky background with a soft vignette, readable at small size. Original design, not any known franchise creature. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The creature: a snarling grey wolf, fur bristling, amber eyes.",
+      "references": ["docs/design/stage-320/owner-concepts/05-combat-bridge.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "9da3d4c3fc2998aaa4d32f99df6ba31cec77c03c8f58fc44338894afef8456a0",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/type-celestial.webp": {
+      "source": "type-celestial",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted bestiary portrait for a fantasy RPG: one original creature, head and shoulders or whole, centred, three-quarter view, dramatic rim light on a dark smoky background with a soft vignette, readable at small size. Original design, not any known franchise creature. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The creature: a radiant winged figure whose face is hidden in white-gold light, a halo behind.",
+      "references": ["docs/design/stage-320/owner-concepts/05-combat-bridge.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "88e79ed8ef7b73badd05d2ed35503f242fe991a3e765c3cee533f71f35e7d788",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/type-construct.webp": {
+      "source": "type-construct",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted bestiary portrait for a fantasy RPG: one original creature, head and shoulders or whole, centred, three-quarter view, dramatic rim light on a dark smoky background with a soft vignette, readable at small size. Original design, not any known franchise creature. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The creature: a hulking iron golem with glowing seams between its plates and steam venting from its shoulders.",
+      "references": ["docs/design/stage-320/owner-concepts/05-combat-bridge.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "14b601c1fd7d2cc8c6f392a8b49b16d98fa57f9c288e5a42a3b59e25d52383c3",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/type-dragon.webp": {
+      "source": "type-dragon",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted bestiary portrait for a fantasy RPG: one original creature, head and shoulders or whole, centred, three-quarter view, dramatic rim light on a dark smoky background with a soft vignette, readable at small size. Original design, not any known franchise creature. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The creature: a horned dragon head with glowing amber eyes and smoke curling from its nostrils, dark red scales.",
+      "references": ["docs/design/stage-320/owner-concepts/05-combat-bridge.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "ec2315cd0d2e9cd89beff6afc68d8199bf185971ebb44769e4d789f01365bcf7",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/type-elemental.webp": {
+      "source": "type-elemental",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted bestiary portrait for a fantasy RPG: one original creature, head and shoulders or whole, centred, three-quarter view, dramatic rim light on a dark smoky background with a soft vignette, readable at small size. Original design, not any known franchise creature. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The creature: a towering figure made of swirling fire, stone and wind woven together.",
+      "references": ["docs/design/stage-320/owner-concepts/05-combat-bridge.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "29709c04588bdbb2f17dabb89e9c533abf06574c21b00b471fdacf7e6caa9542",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/type-fey.webp": {
+      "source": "type-fey",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted bestiary portrait for a fantasy RPG: one original creature, head and shoulders or whole, centred, three-quarter view, dramatic rim light on a dark smoky background with a soft vignette, readable at small size. Original design, not any known franchise creature. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The creature: a slender horned forest spirit with glowing green eyes among leaves and fireflies.",
+      "references": ["docs/design/stage-320/owner-concepts/05-combat-bridge.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "fbb40e2bfd4cebd8ab40852333b266548b04edafb588180d4c6485ab1899f871",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/type-fiend.webp": {
+      "source": "type-fiend",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted bestiary portrait for a fantasy RPG: one original creature, head and shoulders or whole, centred, three-quarter view, dramatic rim light on a dark smoky background with a soft vignette, readable at small size. Original design, not any known franchise creature. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The creature: a horned demonic figure with ember-red eyes in smoke and drifting embers.",
+      "references": ["docs/design/stage-320/owner-concepts/05-combat-bridge.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "29a9d76177832433dcefa5e6ddaf1127bf6d3dc45a451f938e921440108bfac3",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/type-giant.webp": {
+      "source": "type-giant",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted bestiary portrait for a fantasy RPG: one original creature, head and shoulders or whole, centred, three-quarter view, dramatic rim light on a dark smoky background with a soft vignette, readable at small size. Original design, not any known franchise creature. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The creature: a towering bearded giant's head and shoulders rising above low clouds.",
+      "references": ["docs/design/stage-320/owner-concepts/05-combat-bridge.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "69c1b470875eac027251505c14fa52efd40611c36f585b521569eb57b30deb28",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/type-humanoid.webp": {
+      "source": "type-humanoid",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted bestiary portrait for a fantasy RPG: one original creature, head and shoulders or whole, centred, three-quarter view, dramatic rim light on a dark smoky background with a soft vignette, readable at small size. Original design, not any known franchise creature. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The creature: a hooded traveller's head and shoulders, half in shadow, warm lantern light on the face.",
+      "references": ["docs/design/stage-320/owner-concepts/05-combat-bridge.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "e93d36d9fca5b2fed60cf862a90eccd9f7ac46a7109fa72196bec7735be1575a",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/type-monstrosity.webp": {
+      "source": "type-monstrosity",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted bestiary portrait for a fantasy RPG: one original creature, head and shoulders or whole, centred, three-quarter view, dramatic rim light on a dark smoky background with a soft vignette, readable at small size. Original design, not any known franchise creature. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The creature: a chimera beast with a lion head, a goat head and a serpent tail, snarling.",
+      "references": ["docs/design/stage-320/owner-concepts/05-combat-bridge.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "545164de2397892f78614691d0a553c38a7261a4a45b4f0f4222b79635076863",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/type-ooze.webp": {
+      "source": "type-ooze",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted bestiary portrait for a fantasy RPG: one original creature, head and shoulders or whole, centred, three-quarter view, dramatic rim light on a dark smoky background with a soft vignette, readable at small size. Original design, not any known franchise creature. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The creature: a glistening translucent green ooze with half-dissolved bones and a rusted dagger inside it.",
+      "references": ["docs/design/stage-320/owner-concepts/05-combat-bridge.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "c3ff1dfd20bcda1e107296c6b566d35c4873c0dc84c2e0bf193bc758329b7df8",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/type-plant.webp": {
+      "source": "type-plant",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted bestiary portrait for a fantasy RPG: one original creature, head and shoulders or whole, centred, three-quarter view, dramatic rim light on a dark smoky background with a soft vignette, readable at small size. Original design, not any known franchise creature. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The creature: a gnarled walking tree creature with a face in its bark and glowing eyes.",
+      "references": ["docs/design/stage-320/owner-concepts/05-combat-bridge.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "0210370b74b0c6f5a4faf76e6a1fc5b566dca66c73b00c3f9c5c57963eb61fae",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/type-undead.webp": {
+      "source": "type-undead",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted bestiary portrait for a fantasy RPG: one original creature, head and shoulders or whole, centred, three-quarter view, dramatic rim light on a dark smoky background with a soft vignette, readable at small size. Original design, not any known franchise creature. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The creature: a skeletal warrior skull in a rusted helm with cold blue light in its eye sockets.",
+      "references": ["docs/design/stage-320/owner-concepts/05-combat-bridge.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "9b3d7d13e20802402097f7fa69846b0f31646e1257450568beb87fa189597ffd",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
     "catalog/spells/ashen-bolt.webp": {
       "source": "spell-ashen-bolt",
       "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted spell icon for a fantasy RPG spellbook: a single bold magical motif filling a square, rich glowing colour on a dark background, painterly and readable at small size, inside no frame. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The spell: a bolt of grey ash and dying embers streaking forward.",

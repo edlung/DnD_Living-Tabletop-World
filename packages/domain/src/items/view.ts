@@ -61,6 +61,7 @@ export function inventoryView(
             shieldBonus: seen.shieldBonus ?? null,
             weapon: seen.weapon ?? null,
             source: seen.source ?? null,
+            look: seen.look ?? null,
             untranslated: seen.untranslated === true,
             // The SRD's words come from the server (`@ltw/rules`), which the domain cannot read.
             text: null,
@@ -102,4 +103,6 @@ const unknownMagic = (entry: ItemEntry): ItemEntry => ({
   valueCp: 0,
   stackable: entry.stackable,
   slots: entry.slots,
+  // A ring still looks like a ring, a wand like a wand (docs/adr/0055-…md §6).
+  ...(entry.look ? { look: entry.look } : {}),
 });

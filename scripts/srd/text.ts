@@ -167,15 +167,19 @@ export function joinLines(lines: readonly string[]): string {
     // A number's compound keeps its hyphens ("40-foot-" + "high").
     else if (/\d-[a-z]+-$/.test(text)) text += line;
     else if (/[A-Za-z]-$/.test(text) && /^[a-z]/.test(line)) text = text.slice(0, -1) + line;
-    else if (/-$/.test(text)) text += line;
+    // A dash closes up to the words on either side ("a wall—" + "is between"); a dash for none
+    // stands alone ("—" + "Utilize:").
+    else if (/-$|[^\s—]—$/.test(text)) text += line;
     else text += ` ${line}`;
   }
   return SPLIT_WORDS.reduce((joined, [split, word]) => joined.replaceAll(split, word), text);
 }
 
-/** Words the PDF breaks across a line with no hyphen to see (Rope Trick's). */
+/** Words the PDF breaks with no hyphen to see (Rope Trick's, Metamagic's, Grappler's). */
 const SPLIT_WORDS: readonly (readonly [string, string])[] = [
   ['extra dimensional', 'extradimensional'],
+  ['Meta magic', 'Metamagic'],
+  ['Dexterit y', 'Dexterity'],
 ];
 
 /** A name set in small capitals reads back in mixed case ("Acid SplASh"): put it right. */

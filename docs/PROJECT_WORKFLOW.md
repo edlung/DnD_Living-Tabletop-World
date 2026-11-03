@@ -30,7 +30,7 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   and falling — and its third — Feather Fall, the reaction to a fall, and underwater combat —
   done, and its fourth, mounted combat, done: Stage 640f is complete. 640g, the world around
   (ADR 0050), done: light and sight, rests by the full rules, hazards, poison and armor. Stage
-  640 is complete. Stage 650, the SRD data (ADR 0051, `work-orders/STAGE_650.md`), in progress:
+  640 is complete. Stage 650, the SRD data (ADR 0051, `work-orders/STAGE_650.md`), complete:
   650a, the import and the text catalogs (339 spells, 330 stat blocks) and the About page, done;
   650b, spells as data (ADR 0052: the mechanics layer, any SRD spell cast through the World
   Engine, the tray's spells with their slot), done; 650c, monsters as data (ADR 0053: the stat
@@ -38,10 +38,11 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   Resistance, legendary attacks, the fight's difficulty), done; 650d, items as data (ADR 0054),
   done: part 1, the SRD's equipment in the catalog and the DM's catalog in the open pack; part 2,
   magic items in the catalog (made on a base, +N bonuses, healing potions); part 3, attunement and
-  the protection items; part 4, charges at the dawn, identifying and curses. 650e (ADR 0055) in
-  progress: part 1, the rules reference (the glossary and the toolbox as data, the Rules sheet,
-  terms in place), done; part 2, the Toolbox at the table (traps, mental stress, contagions),
-  done; next the Russian rules text and the catalogs' art.
+  the protection items; part 4, charges at the dawn, identifying and curses. 650e (ADR 0055),
+  done: part 1, the rules reference (the glossary and the toolbox as data, the Rules sheet, terms
+  in place); part 2, the Toolbox at the table (traps, mental stress, contagions); parts 3 and 4,
+  the Russian rules text (the reference, spells, stat blocks, magic items and equipment, held
+  complete by a test) and the catalogs' art by kind (schools, creature types, item looks).
 
 ## Current request — AI campaigns, 2026-10-30
 

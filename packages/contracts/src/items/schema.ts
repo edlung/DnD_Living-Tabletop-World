@@ -65,6 +65,30 @@ export const ITEM_RARITIES = [
   'artifact',
   'varies',
 ] as const;
+
+/** The looks an item's kind picture shows (docs/adr/0055-rules-reference-and-toolbox.md §6). */
+export const ITEM_LOOKS = [
+  'melee-weapon',
+  'ranged-weapon',
+  'armor',
+  'shield',
+  'ammunition',
+  'potion',
+  'scroll',
+  'wand',
+  'staff',
+  'rod',
+  'ring',
+  'wondrous',
+  'tool',
+  'gear',
+  'pack',
+  'coins',
+  'focus',
+  'food',
+  'tack',
+] as const;
+export type ItemLook = (typeof ITEM_LOOKS)[number];
 export type ItemRarity = (typeof ITEM_RARITIES)[number];
 
 /**
@@ -168,6 +192,11 @@ export const itemEntrySchema = z
     magic: itemMagicSchema.optional(),
     /** Its Russian words are still the English ones (the translation comes with Stage 650e). */
     untranslated: z.literal(true).optional(),
+    /**
+     * What it looks like, for its kind's picture until it has its own (docs/adr/0055-rules-reference-
+     * and-toolbox.md §6); an SRD entry's.
+     */
+    look: z.enum(ITEM_LOOKS).optional(),
   })
   .strict()
   .superRefine((entry, context) => {

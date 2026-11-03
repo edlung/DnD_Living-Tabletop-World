@@ -439,6 +439,7 @@ export {
   ITEM_CATEGORIES,
   armorWeight,
   itemCatalogIdSchema,
+  ITEM_LOOKS,
   ITEM_RARITIES,
   itemEffectSchema,
   itemEntrySchema,
@@ -447,6 +448,7 @@ export {
   type ItemCategory,
   type ItemEffect,
   type ItemEntry,
+  type ItemLook,
   type ItemMagic,
   type ItemRarity,
 } from './items/schema.ts';

@@ -16,6 +16,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "armor",
     "magic": {
       "rarity": "uncommon",
       "attunement": null,
@@ -52,6 +53,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "ammunition",
     "magic": {
       "rarity": "uncommon",
       "attunement": null,
@@ -89,6 +91,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "ammunition",
     "magic": {
       "rarity": "rare",
       "attunement": null,
@@ -126,6 +129,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "ammunition",
     "magic": {
       "rarity": "very-rare",
       "attunement": null,
@@ -163,6 +167,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "ammunition",
     "magic": {
       "rarity": "very-rare",
       "attunement": null,
@@ -198,6 +203,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "rare",
       "attunement": "",
@@ -223,6 +229,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": "",
@@ -248,6 +255,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "very-rare",
       "attunement": "",
@@ -271,6 +279,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "shield",
     "magic": {
       "rarity": "very-rare",
       "attunement": "",
@@ -300,6 +309,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "legendary",
       "attunement": null,
@@ -323,6 +333,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "armor",
     "magic": {
       "rarity": "rare",
       "attunement": null,
@@ -366,6 +377,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "armor",
     "magic": {
       "rarity": "very-rare",
       "attunement": null,
@@ -409,6 +421,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "armor",
     "magic": {
       "rarity": "legendary",
       "attunement": null,
@@ -452,6 +465,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "armor",
     "magic": {
       "rarity": "legendary",
       "attunement": "",
@@ -481,6 +495,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "armor",
     "magic": {
       "rarity": "rare",
       "attunement": "",
@@ -521,6 +536,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "armor",
     "magic": {
       "rarity": "rare",
       "attunement": "",
@@ -562,6 +578,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "shield",
     "magic": {
       "rarity": "rare",
       "attunement": "",
@@ -591,6 +608,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "rare",
       "attunement": null,
@@ -614,6 +632,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "very-rare",
       "attunement": null,
@@ -637,6 +656,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": null,
@@ -660,6 +680,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": null,
@@ -683,6 +704,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "rare",
       "attunement": null,
@@ -706,6 +728,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "common",
       "attunement": null,
@@ -729,6 +752,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "rare",
       "attunement": "",
@@ -752,6 +776,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "varies",
       "attunement": "",
@@ -775,6 +800,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "melee-weapon",
     "magic": {
       "rarity": "rare",
       "attunement": "",
@@ -813,6 +839,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": null,
@@ -838,6 +865,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "rare",
       "attunement": "",
@@ -863,6 +891,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "rare",
       "attunement": "",
@@ -888,6 +917,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": "",
@@ -913,6 +943,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": "",
@@ -936,6 +967,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "rare",
       "attunement": null,
@@ -961,6 +993,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": "",
@@ -986,6 +1019,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "rare",
       "attunement": "",
@@ -1009,6 +1043,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "rare",
       "attunement": null,
@@ -1034,6 +1069,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": "",
@@ -1057,6 +1093,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": "",
@@ -1080,6 +1117,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "very-rare",
       "attunement": "",
@@ -1105,6 +1143,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "rare",
       "attunement": null,
@@ -1128,6 +1167,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "very-rare",
       "attunement": null,
@@ -1151,6 +1191,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "rare",
       "attunement": null,
@@ -1174,6 +1215,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "rare",
       "attunement": null,
@@ -1199,6 +1241,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": null,
@@ -1224,6 +1267,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "very-rare",
       "attunement": "",
@@ -1249,6 +1293,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "rare",
       "attunement": "",
@@ -1274,6 +1319,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": "",
@@ -1299,6 +1345,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "legendary",
       "attunement": "",
@@ -1332,6 +1379,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": "",
@@ -1361,6 +1409,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "rare",
       "attunement": "",
@@ -1386,6 +1435,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": "",
@@ -1409,6 +1459,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "very-rare",
       "attunement": "",
@@ -1432,6 +1483,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "legendary",
       "attunement": "",
@@ -1455,6 +1507,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "legendary",
       "attunement": "",
@@ -1478,6 +1531,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "legendary",
       "attunement": "",
@@ -1501,6 +1555,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "rare",
       "attunement": "",
@@ -1524,6 +1579,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "legendary",
       "attunement": null,
@@ -1555,6 +1611,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "melee-weapon",
     "magic": {
       "rarity": "rare",
       "attunement": null,
@@ -1588,6 +1645,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "melee-weapon",
     "magic": {
       "rarity": "very-rare",
       "attunement": "",
@@ -1621,6 +1679,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": null,
@@ -1644,6 +1703,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": null,
@@ -1667,6 +1727,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "melee-weapon",
     "magic": {
       "rarity": "legendary",
       "attunement": "",
@@ -1727,6 +1788,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "armor",
     "magic": {
       "rarity": "very-rare",
       "attunement": "",
@@ -1771,6 +1833,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "rare",
       "attunement": null,
@@ -1794,6 +1857,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "artifact",
       "attunement": "",
@@ -1825,6 +1889,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "armor",
     "magic": {
       "rarity": "very-rare",
       "attunement": "",
@@ -1854,6 +1919,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "melee-weapon",
     "magic": {
       "rarity": "rare",
       "attunement": null,
@@ -1924,6 +1990,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": null,
@@ -1947,6 +2014,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": null,
@@ -1970,6 +2038,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": null,
@@ -1993,6 +2062,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "armor",
     "magic": {
       "rarity": "very-rare",
       "attunement": null,
@@ -2026,6 +2096,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "melee-weapon",
     "magic": {
       "rarity": "very-rare",
       "attunement": "by a Dwarf or a Creature Attuned to a Belt of Dwarvenkind",
@@ -2059,6 +2130,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": null,
@@ -2082,6 +2154,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "very-rare",
       "attunement": null,
@@ -2105,6 +2178,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": null,
@@ -2131,6 +2205,7 @@
     },
     "source": "srd",
     "untranslated": true,
+    "look": "potion",
     "magic": {
       "rarity": "rare",
       "attunement": null,
@@ -2154,6 +2229,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "armor",
     "magic": {
       "rarity": "rare",
       "attunement": null,
@@ -2187,6 +2263,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "melee-weapon",
     "magic": {
       "rarity": "very-rare",
       "attunement": "",
@@ -2221,6 +2298,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": null,
@@ -2244,6 +2322,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": "",
@@ -2267,6 +2346,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": null,
@@ -2290,6 +2370,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": null,
@@ -2313,6 +2394,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "varies",
       "attunement": null,
@@ -2336,6 +2418,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "varies",
       "attunement": null,
@@ -2363,6 +2446,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "melee-weapon",
     "magic": {
       "rarity": "rare",
       "attunement": "",
@@ -2419,6 +2503,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "rare",
       "attunement": null,
@@ -2442,6 +2527,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "melee-weapon",
     "magic": {
       "rarity": "very-rare",
       "attunement": "",
@@ -2478,6 +2564,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": "",
@@ -2501,6 +2588,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": null,
@@ -2528,6 +2616,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "rare",
       "attunement": "",
@@ -2559,6 +2648,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "melee-weapon",
     "magic": {
       "rarity": "rare",
       "attunement": null,
@@ -2629,6 +2719,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "armor",
     "magic": {
       "rarity": "rare",
       "attunement": null,
@@ -2663,6 +2754,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": "",
@@ -2688,6 +2780,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": "",
@@ -2713,6 +2806,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": null,
@@ -2736,6 +2830,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": null,
@@ -2759,6 +2854,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "melee-weapon",
     "magic": {
       "rarity": "legendary",
       "attunement": "",
@@ -2801,6 +2897,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "rare",
       "attunement": null,
@@ -2826,6 +2923,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": "",
@@ -2851,6 +2949,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "very-rare",
       "attunement": "by a Wizard",
@@ -2876,6 +2975,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": "",
@@ -2901,6 +3001,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "very-rare",
       "attunement": "",
@@ -2926,6 +3027,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": null,
@@ -2951,6 +3053,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": "",
@@ -2976,6 +3079,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "rare",
       "attunement": "",
@@ -3007,6 +3111,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "melee-weapon",
     "magic": {
       "rarity": "legendary",
       "attunement": "by a Paladin",
@@ -3077,6 +3182,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "rare",
       "attunement": null,
@@ -3100,6 +3206,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "varies",
       "attunement": null,
@@ -3123,6 +3230,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "very-rare",
       "attunement": null,
@@ -3146,6 +3254,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "rare",
       "attunement": null,
@@ -3169,6 +3278,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "rod",
     "magic": {
       "rarity": "uncommon",
       "attunement": null,
@@ -3192,6 +3302,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "rare",
       "attunement": "",
@@ -3215,6 +3326,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "varies",
       "attunement": "",
@@ -3238,6 +3350,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "rare",
       "attunement": null,
@@ -3261,6 +3374,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "legendary",
       "attunement": null,
@@ -3284,6 +3398,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "melee-weapon",
     "magic": {
       "rarity": "uncommon",
       "attunement": null,
@@ -3313,6 +3428,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": null,
@@ -3336,6 +3452,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "melee-weapon",
     "magic": {
       "rarity": "legendary",
       "attunement": "",
@@ -3375,6 +3492,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "melee-weapon",
     "magic": {
       "rarity": "rare",
       "attunement": "",
@@ -3404,6 +3522,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "melee-weapon",
     "magic": {
       "rarity": "rare",
       "attunement": null,
@@ -3437,6 +3556,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "melee-weapon",
     "magic": {
       "rarity": "rare",
       "attunement": "",
@@ -3476,6 +3596,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "rare",
       "attunement": "",
@@ -3499,6 +3620,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "very-rare",
       "attunement": null,
@@ -3522,6 +3644,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "very-rare",
       "attunement": null,
@@ -3545,6 +3668,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "very-rare",
       "attunement": null,
@@ -3568,6 +3692,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "very-rare",
       "attunement": null,
@@ -3591,6 +3716,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "very-rare",
       "attunement": null,
@@ -3616,6 +3742,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": "",
@@ -3647,6 +3774,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "very-rare",
       "attunement": null,
@@ -3670,6 +3798,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "armor",
     "magic": {
       "rarity": "uncommon",
       "attunement": null,
@@ -3706,6 +3835,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "legendary",
       "attunement": null,
@@ -3731,6 +3861,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": "",
@@ -3756,6 +3887,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "rare",
       "attunement": null,
@@ -3781,6 +3913,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "rare",
       "attunement": "by a Cleric, Druid, or Paladin",
@@ -3804,6 +3937,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "melee-weapon",
     "magic": {
       "rarity": "very-rare",
       "attunement": "",
@@ -3874,6 +4008,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "melee-weapon",
     "magic": {
       "rarity": "very-rare",
       "attunement": "",
@@ -3907,6 +4042,7 @@
     },
     "source": "srd",
     "untranslated": true,
+    "look": "potion",
     "magic": {
       "rarity": "rare",
       "attunement": null,
@@ -3933,6 +4069,7 @@
     },
     "source": "srd",
     "untranslated": true,
+    "look": "potion",
     "magic": {
       "rarity": "very-rare",
       "attunement": null,
@@ -3959,6 +4096,7 @@
     },
     "source": "srd",
     "untranslated": true,
+    "look": "potion",
     "magic": {
       "rarity": "uncommon",
       "attunement": null,
@@ -3982,6 +4120,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": "by a Spellcaster",
@@ -4007,6 +4146,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": "",
@@ -4032,6 +4172,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "rare",
       "attunement": "",
@@ -4057,6 +4198,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": "",
@@ -4083,6 +4225,7 @@
     },
     "source": "srd",
     "untranslated": true,
+    "look": "potion",
     "magic": {
       "rarity": "uncommon",
       "attunement": null,
@@ -4106,6 +4249,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": null,
@@ -4129,6 +4273,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": "",
@@ -4152,6 +4297,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "armor",
     "magic": {
       "rarity": "legendary",
       "attunement": "",
@@ -4182,6 +4328,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "rare",
       "attunement": null,
@@ -4208,6 +4355,7 @@
     },
     "source": "srd",
     "untranslated": true,
+    "look": "potion",
     "magic": {
       "rarity": "uncommon",
       "attunement": null,
@@ -4234,6 +4382,7 @@
     },
     "source": "srd",
     "untranslated": true,
+    "look": "potion",
     "magic": {
       "rarity": "rare",
       "attunement": null,
@@ -4260,6 +4409,7 @@
     },
     "source": "srd",
     "untranslated": true,
+    "look": "potion",
     "magic": {
       "rarity": "common",
       "attunement": null,
@@ -4286,6 +4436,7 @@
     },
     "source": "srd",
     "untranslated": true,
+    "look": "potion",
     "magic": {
       "rarity": "rare",
       "attunement": null,
@@ -4312,6 +4463,7 @@
     },
     "source": "srd",
     "untranslated": true,
+    "look": "potion",
     "magic": {
       "rarity": "very-rare",
       "attunement": null,
@@ -4338,6 +4490,7 @@
     },
     "source": "srd",
     "untranslated": true,
+    "look": "potion",
     "magic": {
       "rarity": "rare",
       "attunement": null,
@@ -4364,6 +4517,7 @@
     },
     "source": "srd",
     "untranslated": true,
+    "look": "potion",
     "magic": {
       "rarity": "varies",
       "attunement": null,
@@ -4390,6 +4544,7 @@
     },
     "source": "srd",
     "untranslated": true,
+    "look": "potion",
     "magic": {
       "rarity": "uncommon",
       "attunement": null,
@@ -4416,6 +4571,7 @@
     },
     "source": "srd",
     "untranslated": true,
+    "look": "potion",
     "magic": {
       "rarity": "rare",
       "attunement": null,
@@ -4442,6 +4598,7 @@
     },
     "source": "srd",
     "untranslated": true,
+    "look": "potion",
     "magic": {
       "rarity": "rare",
       "attunement": null,
@@ -4468,6 +4625,7 @@
     },
     "source": "srd",
     "untranslated": true,
+    "look": "potion",
     "magic": {
       "rarity": "rare",
       "attunement": null,
@@ -4494,6 +4652,7 @@
     },
     "source": "srd",
     "untranslated": true,
+    "look": "potion",
     "magic": {
       "rarity": "very-rare",
       "attunement": null,
@@ -4520,6 +4679,7 @@
     },
     "source": "srd",
     "untranslated": true,
+    "look": "potion",
     "magic": {
       "rarity": "rare",
       "attunement": null,
@@ -4546,6 +4706,7 @@
     },
     "source": "srd",
     "untranslated": true,
+    "look": "potion",
     "magic": {
       "rarity": "uncommon",
       "attunement": null,
@@ -4572,6 +4733,7 @@
     },
     "source": "srd",
     "untranslated": true,
+    "look": "potion",
     "magic": {
       "rarity": "uncommon",
       "attunement": null,
@@ -4598,6 +4760,7 @@
     },
     "source": "srd",
     "untranslated": true,
+    "look": "potion",
     "magic": {
       "rarity": "very-rare",
       "attunement": null,
@@ -4624,6 +4787,7 @@
     },
     "source": "srd",
     "untranslated": true,
+    "look": "potion",
     "magic": {
       "rarity": "very-rare",
       "attunement": null,
@@ -4650,6 +4814,7 @@
     },
     "source": "srd",
     "untranslated": true,
+    "look": "potion",
     "magic": {
       "rarity": "uncommon",
       "attunement": null,
@@ -4659,6 +4824,7 @@
   {
     "itemId": "srd-potion-of-healing-greater",
     "category": "consumable",
+    "look": "potion",
     "name": {
       "en": "Potion of Healing (Greater)",
       "ru": "Potion of Healing (Greater)"
@@ -4688,6 +4854,7 @@
   {
     "itemId": "srd-potion-of-healing-superior",
     "category": "consumable",
+    "look": "potion",
     "name": {
       "en": "Potion of Healing (Superior)",
       "ru": "Potion of Healing (Superior)"
@@ -4717,6 +4884,7 @@
   {
     "itemId": "srd-potion-of-healing-supreme",
     "category": "consumable",
+    "look": "potion",
     "name": {
       "en": "Potion of Healing (Supreme)",
       "ru": "Potion of Healing (Supreme)"
@@ -4760,6 +4928,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "melee-weapon",
     "magic": {
       "rarity": "very-rare",
       "attunement": "",
@@ -4795,6 +4964,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "ring",
     "magic": {
       "rarity": "rare",
       "attunement": null,
@@ -4828,6 +4998,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "ring",
     "magic": {
       "rarity": "legendary",
       "attunement": "",
@@ -4853,6 +5024,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "ring",
     "magic": {
       "rarity": "legendary",
       "attunement": "",
@@ -4886,6 +5058,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "ring",
     "magic": {
       "rarity": "rare",
       "attunement": "",
@@ -4919,6 +5092,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "ring",
     "magic": {
       "rarity": "rare",
       "attunement": "",
@@ -4944,6 +5118,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "ring",
     "magic": {
       "rarity": "rare",
       "attunement": "",
@@ -4969,6 +5144,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "ring",
     "magic": {
       "rarity": "legendary",
       "attunement": "",
@@ -4994,6 +5170,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "ring",
     "magic": {
       "rarity": "uncommon",
       "attunement": "",
@@ -5019,6 +5196,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "ring",
     "magic": {
       "rarity": "uncommon",
       "attunement": "",
@@ -5044,6 +5222,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "ring",
     "magic": {
       "rarity": "rare",
       "attunement": "",
@@ -5073,6 +5252,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "ring",
     "magic": {
       "rarity": "very-rare",
       "attunement": "",
@@ -5098,6 +5278,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "ring",
     "magic": {
       "rarity": "rare",
       "attunement": null,
@@ -5123,6 +5304,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "ring",
     "magic": {
       "rarity": "very-rare",
       "attunement": "",
@@ -5156,6 +5338,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "ring",
     "magic": {
       "rarity": "rare",
       "attunement": "",
@@ -5181,6 +5364,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "ring",
     "magic": {
       "rarity": "legendary",
       "attunement": "",
@@ -5206,6 +5390,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "ring",
     "magic": {
       "rarity": "uncommon",
       "attunement": null,
@@ -5231,6 +5416,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "ring",
     "magic": {
       "rarity": "very-rare",
       "attunement": "",
@@ -5256,6 +5442,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "ring",
     "magic": {
       "rarity": "rare",
       "attunement": "",
@@ -5289,6 +5476,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "ring",
     "magic": {
       "rarity": "legendary",
       "attunement": null,
@@ -5314,6 +5502,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "ring",
     "magic": {
       "rarity": "uncommon",
       "attunement": "",
@@ -5339,6 +5528,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "ring",
     "magic": {
       "rarity": "uncommon",
       "attunement": null,
@@ -5364,6 +5554,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "ring",
     "magic": {
       "rarity": "rare",
       "attunement": "",
@@ -5387,6 +5578,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "rare",
       "attunement": "",
@@ -5410,6 +5602,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "very-rare",
       "attunement": "",
@@ -5441,6 +5634,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "very-rare",
       "attunement": "",
@@ -5467,6 +5661,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "legendary",
       "attunement": "by a Sorcerer, Warlock, or Wizard",
@@ -5490,6 +5685,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": null,
@@ -5513,6 +5709,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "rod",
     "magic": {
       "rarity": "very-rare",
       "attunement": "",
@@ -5536,6 +5733,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "rod",
     "magic": {
       "rarity": "very-rare",
       "attunement": "",
@@ -5559,6 +5757,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "rod",
     "magic": {
       "rarity": "legendary",
       "attunement": "",
@@ -5582,6 +5781,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "rod",
     "magic": {
       "rarity": "legendary",
       "attunement": "",
@@ -5613,6 +5813,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "rod",
     "magic": {
       "rarity": "rare",
       "attunement": "",
@@ -5636,6 +5837,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "rod",
     "magic": {
       "rarity": "very-rare",
       "attunement": null,
@@ -5659,6 +5861,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": null,
@@ -5682,6 +5885,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "rare",
       "attunement": null,
@@ -5707,6 +5911,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "legendary",
       "attunement": "",
@@ -5734,6 +5939,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "melee-weapon",
     "magic": {
       "rarity": "very-rare",
       "attunement": "",
@@ -5767,6 +5973,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": null,
@@ -5790,6 +5997,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "shield",
     "magic": {
       "rarity": "uncommon",
       "attunement": null,
@@ -5819,6 +6027,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "shield",
     "magic": {
       "rarity": "uncommon",
       "attunement": null,
@@ -5851,6 +6060,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "shield",
     "magic": {
       "rarity": "rare",
       "attunement": null,
@@ -5883,6 +6093,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "shield",
     "magic": {
       "rarity": "very-rare",
       "attunement": null,
@@ -5915,6 +6126,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "shield",
     "magic": {
       "rarity": "rare",
       "attunement": "",
@@ -5945,6 +6157,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "shield",
     "magic": {
       "rarity": "very-rare",
       "attunement": "",
@@ -5979,6 +6192,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": "",
@@ -6002,6 +6216,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "legendary",
       "attunement": null,
@@ -6028,6 +6243,7 @@
     },
     "source": "srd",
     "untranslated": true,
+    "look": "scroll",
     "magic": {
       "rarity": "varies",
       "attunement": null,
@@ -6051,6 +6267,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "shield",
     "magic": {
       "rarity": "very-rare",
       "attunement": "",
@@ -6080,6 +6297,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "legendary",
       "attunement": null,
@@ -6103,6 +6321,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "staff",
     "magic": {
       "rarity": "rare",
       "attunement": "by a Bard, Cleric, Druid, Sorcerer, Warlock, or Wizard",
@@ -6134,6 +6353,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "staff",
     "magic": {
       "rarity": "very-rare",
       "attunement": "by a Druid, Sorcerer, Warlock, or Wizard",
@@ -6165,6 +6385,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "staff",
     "magic": {
       "rarity": "very-rare",
       "attunement": "by a Druid, Sorcerer, Warlock, or Wizard",
@@ -6196,6 +6417,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "staff",
     "magic": {
       "rarity": "rare",
       "attunement": "by a Bard, Cleric, or Druid",
@@ -6227,6 +6449,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "staff",
     "magic": {
       "rarity": "very-rare",
       "attunement": "by a Sorcerer, Warlock, or Wizard",
@@ -6258,6 +6481,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "staff",
     "magic": {
       "rarity": "very-rare",
       "attunement": "",
@@ -6289,6 +6513,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "staff",
     "magic": {
       "rarity": "rare",
       "attunement": "by a Bard, Cleric, Druid, Sorcerer, Warlock, or Wizard",
@@ -6320,6 +6545,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "staff",
     "magic": {
       "rarity": "legendary",
       "attunement": "by a Sorcerer, Warlock, or Wizard",
@@ -6351,6 +6577,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "staff",
     "magic": {
       "rarity": "uncommon",
       "attunement": "",
@@ -6374,6 +6601,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "staff",
     "magic": {
       "rarity": "rare",
       "attunement": "by a Druid",
@@ -6405,6 +6633,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "staff",
     "magic": {
       "rarity": "very-rare",
       "attunement": "",
@@ -6428,6 +6657,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "staff",
     "magic": {
       "rarity": "rare",
       "attunement": "",
@@ -6459,6 +6689,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "rare",
       "attunement": null,
@@ -6482,6 +6713,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": "",
@@ -6505,6 +6737,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "melee-weapon",
     "magic": {
       "rarity": "rare",
       "attunement": "",
@@ -6538,6 +6771,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "melee-weapon",
     "magic": {
       "rarity": "rare",
       "attunement": "",
@@ -6572,6 +6806,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "melee-weapon",
     "magic": {
       "rarity": "very-rare",
       "attunement": "",
@@ -6604,6 +6839,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "melee-weapon",
     "magic": {
       "rarity": "rare",
       "attunement": "",
@@ -6640,6 +6876,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "legendary",
       "attunement": "by a Cleric or Paladin",
@@ -6669,6 +6906,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "legendary",
       "attunement": "",
@@ -6694,6 +6932,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "legendary",
       "attunement": "",
@@ -6721,6 +6960,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "melee-weapon",
     "magic": {
       "rarity": "very-rare",
       "attunement": "",
@@ -6750,6 +6990,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "very-rare",
       "attunement": null,
@@ -6773,6 +7014,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "very-rare",
       "attunement": null,
@@ -6796,6 +7038,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "very-rare",
       "attunement": null,
@@ -6819,6 +7062,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "melee-weapon",
     "magic": {
       "rarity": "uncommon",
       "attunement": "",
@@ -6856,6 +7100,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "legendary",
       "attunement": null,
@@ -6879,6 +7124,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "melee-weapon",
     "magic": {
       "rarity": "rare",
       "attunement": null,
@@ -6945,6 +7191,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "melee-weapon",
     "magic": {
       "rarity": "legendary",
       "attunement": "",
@@ -6981,6 +7228,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wand",
     "magic": {
       "rarity": "rare",
       "attunement": "",
@@ -7012,6 +7260,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wand",
     "magic": {
       "rarity": "rare",
       "attunement": "",
@@ -7043,6 +7292,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wand",
     "magic": {
       "rarity": "rare",
       "attunement": "",
@@ -7074,6 +7324,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wand",
     "magic": {
       "rarity": "rare",
       "attunement": "by a Spellcaster",
@@ -7105,6 +7356,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wand",
     "magic": {
       "rarity": "rare",
       "attunement": "by a Spellcaster",
@@ -7136,6 +7388,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wand",
     "magic": {
       "rarity": "uncommon",
       "attunement": null,
@@ -7167,6 +7420,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wand",
     "magic": {
       "rarity": "uncommon",
       "attunement": null,
@@ -7198,6 +7452,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wand",
     "magic": {
       "rarity": "rare",
       "attunement": "by a Spellcaster",
@@ -7229,6 +7484,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wand",
     "magic": {
       "rarity": "very-rare",
       "attunement": "by a Spellcaster",
@@ -7260,6 +7516,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wand",
     "magic": {
       "rarity": "uncommon",
       "attunement": null,
@@ -7291,6 +7548,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wand",
     "magic": {
       "rarity": "uncommon",
       "attunement": "by a Spellcaster",
@@ -7314,6 +7572,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wand",
     "magic": {
       "rarity": "rare",
       "attunement": "by a Spellcaster",
@@ -7337,6 +7596,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wand",
     "magic": {
       "rarity": "very-rare",
       "attunement": "by a Spellcaster",
@@ -7360,6 +7620,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wand",
     "magic": {
       "rarity": "uncommon",
       "attunement": "by a Spellcaster",
@@ -7391,6 +7652,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wand",
     "magic": {
       "rarity": "rare",
       "attunement": "",
@@ -7422,6 +7684,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "melee-weapon",
     "magic": {
       "rarity": "uncommon",
       "attunement": null,
@@ -7492,6 +7755,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "melee-weapon",
     "magic": {
       "rarity": "rare",
       "attunement": null,
@@ -7562,6 +7826,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "melee-weapon",
     "magic": {
       "rarity": "very-rare",
       "attunement": null,
@@ -7632,6 +7897,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "melee-weapon",
     "magic": {
       "rarity": "uncommon",
       "attunement": "",
@@ -7698,6 +7964,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "legendary",
       "attunement": null,
@@ -7721,6 +7988,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": null,
@@ -7746,6 +8014,7 @@
     ],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "uncommon",
       "attunement": "",
@@ -7769,6 +8038,7 @@
     "slots": [],
     "source": "srd",
     "untranslated": true,
+    "look": "wondrous",
     "magic": {
       "rarity": "rare",
       "attunement": "",

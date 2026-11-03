@@ -43,6 +43,7 @@ describe('the bestiary', () => {
       name: 'Wolf',
       size: 'Medium',
       type: 'Beast',
+      creatureType: 'beast',
       challenge: '1/4',
       xp: 50,
       armorClass: 12,

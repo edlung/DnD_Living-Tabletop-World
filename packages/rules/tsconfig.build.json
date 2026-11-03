@@ -7,7 +7,7 @@
     "tsBuildInfoFile": "dist/.tsbuildinfo",
     "resolveJsonModule": true
   },
-  "include": ["src/**/*.ts", "src/srd/*.json"],
+  "include": ["src/**/*.ts", "src/srd/*.json", "src/srd/ru/*.json"],
   "exclude": ["src/**/*.test.ts", "src/**/testing/**"],
   "references": [
     {

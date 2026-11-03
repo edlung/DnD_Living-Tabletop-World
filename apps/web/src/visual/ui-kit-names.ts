@@ -197,3 +197,52 @@ export const CATALOG_NAMES = {
   weapons: ['dagger', 'longbow', 'scimitar', 'shortbow'],
 } as const;
 export type CatalogKind = keyof typeof CATALOG_NAMES;
+
+/**
+ * Pictures by kind (docs/adr/0055-rules-reference-and-toolbox.md §6): a school of magic, a creature
+ * type, an item's look. An SRD entry shows its kind's picture until it has its own.
+ */
+export const KIND_NAMES = [
+  'kind-ammunition',
+  'kind-armor',
+  'kind-coins',
+  'kind-focus',
+  'kind-food',
+  'kind-gear',
+  'kind-melee-weapon',
+  'kind-pack',
+  'kind-potion',
+  'kind-ranged-weapon',
+  'kind-ring',
+  'kind-rod',
+  'kind-scroll',
+  'kind-shield',
+  'kind-staff',
+  'kind-tack',
+  'kind-tool',
+  'kind-wand',
+  'kind-wondrous',
+  'school-abjuration',
+  'school-conjuration',
+  'school-divination',
+  'school-enchantment',
+  'school-evocation',
+  'school-illusion',
+  'school-necromancy',
+  'school-transmutation',
+  'type-aberration',
+  'type-beast',
+  'type-celestial',
+  'type-construct',
+  'type-dragon',
+  'type-elemental',
+  'type-fey',
+  'type-fiend',
+  'type-giant',
+  'type-humanoid',
+  'type-monstrosity',
+  'type-ooze',
+  'type-plant',
+  'type-undead',
+] as const;
+export type KindName = (typeof KIND_NAMES)[number];

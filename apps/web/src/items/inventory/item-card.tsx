@@ -4,7 +4,7 @@ import { useId, useState } from 'react';
 
 import { diceWords, signed } from '../../character/words.ts';
 import { Glyph } from '../../visual/glyph.tsx';
-import { itemArtUrl } from '../../visual/ui-kit.ts';
+import { itemPictureUrl } from '../../visual/ui-kit.ts';
 import type { ItemCommandBody } from '../item-command.ts';
 import type { Recipient } from '../inventory-panel.tsx';
 import {
@@ -63,7 +63,7 @@ export function ItemCard({
   const howMany = Math.min(amount ?? item.quantity, item.quantity);
   const part = howMany < item.quantity ? { quantity: howMany } : {};
   const catalog = item.catalog;
-  const art = catalog ? itemArtUrl(catalog.itemId) : null;
+  const art = catalog ? itemPictureUrl(catalog) : null;
   const kind = kindName(item, language);
   // The SRD's words still in English in a Russian campaign (Stage 650e translates them).
   const english = language === 'ru' && catalog?.untranslated === true;

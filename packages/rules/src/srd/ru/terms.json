@@ -1,0 +1,550 @@
+[
+  {
+    "en": "Armor Class (AC)",
+    "ru": "Класс доспеха (КД)"
+  },
+  {
+    "en": "AC",
+    "ru": "КД"
+  },
+  {
+    "en": "Hit Points (HP)",
+    "ru": "хиты"
+  },
+  {
+    "en": "Hit Point maximum",
+    "ru": "максимум хитов"
+  },
+  {
+    "en": "Temporary Hit Points",
+    "ru": "временные хиты"
+  },
+  {
+    "en": "Hit Point Dice",
+    "ru": "кости хитов"
+  },
+  {
+    "en": "Difficulty Class (DC)",
+    "ru": "Сложность (Сл); «DC 15» пишется «Сл 15»"
+  },
+  {
+    "en": "saving throw / save",
+    "ru": "спасбросок"
+  },
+  {
+    "en": "ability check",
+    "ru": "проверка характеристики"
+  },
+  {
+    "en": "attack roll",
+    "ru": "бросок атаки"
+  },
+  {
+    "en": "damage roll",
+    "ru": "бросок урона"
+  },
+  {
+    "en": "D20 Test",
+    "ru": "проверка d20"
+  },
+  {
+    "en": "Advantage",
+    "ru": "преимущество"
+  },
+  {
+    "en": "Disadvantage",
+    "ru": "помеха"
+  },
+  {
+    "en": "Proficiency Bonus (PB)",
+    "ru": "бонус мастерства (БМ)"
+  },
+  {
+    "en": "proficiency",
+    "ru": "владение"
+  },
+  {
+    "en": "Expertise",
+    "ru": "компетентность"
+  },
+  {
+    "en": "Heroic Inspiration",
+    "ru": "героическое вдохновение"
+  },
+  {
+    "en": "Initiative",
+    "ru": "инициатива"
+  },
+  {
+    "en": "Speed",
+    "ru": "скорость"
+  },
+  {
+    "en": "Climb Speed / Fly Speed / Swim Speed / Burrow Speed",
+    "ru": "скорость лазания / полёта / плавания / копания"
+  },
+  {
+    "en": "Action",
+    "ru": "действие"
+  },
+  {
+    "en": "Bonus Action",
+    "ru": "бонусное действие"
+  },
+  {
+    "en": "Reaction",
+    "ru": "реакция"
+  },
+  {
+    "en": "Opportunity Attack",
+    "ru": "атака по возможности"
+  },
+  {
+    "en": "Attack [Action]",
+    "ru": "Атака"
+  },
+  {
+    "en": "Dash",
+    "ru": "Рывок"
+  },
+  {
+    "en": "Disengage",
+    "ru": "Отход"
+  },
+  {
+    "en": "Dodge",
+    "ru": "Уклонение"
+  },
+  {
+    "en": "Help",
+    "ru": "Помощь"
+  },
+  {
+    "en": "Hide",
+    "ru": "Засада"
+  },
+  {
+    "en": "Influence",
+    "ru": "Влияние"
+  },
+  {
+    "en": "Magic [Action]",
+    "ru": "Магия"
+  },
+  {
+    "en": "Ready",
+    "ru": "Подготовка"
+  },
+  {
+    "en": "Search",
+    "ru": "Поиск"
+  },
+  {
+    "en": "Study",
+    "ru": "Изучение"
+  },
+  {
+    "en": "Utilize",
+    "ru": "Использование"
+  },
+  {
+    "en": "Unarmed Strike",
+    "ru": "безоружный удар"
+  },
+  {
+    "en": "Grappled / grapple",
+    "ru": "Схвачен / захват"
+  },
+  {
+    "en": "Short Rest",
+    "ru": "короткий отдых"
+  },
+  {
+    "en": "Long Rest",
+    "ru": "долгий отдых"
+  },
+  {
+    "en": "Concentration",
+    "ru": "концентрация"
+  },
+  {
+    "en": "cantrip",
+    "ru": "заговор"
+  },
+  {
+    "en": "spell slot",
+    "ru": "ячейка заклинания"
+  },
+  {
+    "en": "Ritual",
+    "ru": "ритуал"
+  },
+  {
+    "en": "Spellcasting Focus",
+    "ru": "заклинательная фокусировка"
+  },
+  {
+    "en": "Verbal / Somatic / Material component",
+    "ru": "вербальный / соматический / материальный компонент"
+  },
+  {
+    "en": "Strength",
+    "ru": "Сила"
+  },
+  {
+    "en": "Dexterity",
+    "ru": "Ловкость"
+  },
+  {
+    "en": "Constitution",
+    "ru": "Телосложение"
+  },
+  {
+    "en": "Intelligence",
+    "ru": "Интеллект"
+  },
+  {
+    "en": "Wisdom",
+    "ru": "Мудрость"
+  },
+  {
+    "en": "Charisma",
+    "ru": "Харизма"
+  },
+  {
+    "en": "Strength (Athletics) check",
+    "ru": "проверка Силы (Атлетика)"
+  },
+  {
+    "en": "Acrobatics",
+    "ru": "Акробатика"
+  },
+  {
+    "en": "Animal Handling",
+    "ru": "Уход за животными"
+  },
+  {
+    "en": "Arcana",
+    "ru": "Магия"
+  },
+  {
+    "en": "Athletics",
+    "ru": "Атлетика"
+  },
+  {
+    "en": "Deception",
+    "ru": "Обман"
+  },
+  {
+    "en": "History",
+    "ru": "История"
+  },
+  {
+    "en": "Insight",
+    "ru": "Проницательность"
+  },
+  {
+    "en": "Intimidation",
+    "ru": "Запугивание"
+  },
+  {
+    "en": "Investigation",
+    "ru": "Анализ"
+  },
+  {
+    "en": "Medicine",
+    "ru": "Медицина"
+  },
+  {
+    "en": "Nature",
+    "ru": "Природа"
+  },
+  {
+    "en": "Perception",
+    "ru": "Внимательность"
+  },
+  {
+    "en": "Performance",
+    "ru": "Выступление"
+  },
+  {
+    "en": "Persuasion",
+    "ru": "Убеждение"
+  },
+  {
+    "en": "Religion",
+    "ru": "Религия"
+  },
+  {
+    "en": "Sleight of Hand",
+    "ru": "Ловкость рук"
+  },
+  {
+    "en": "Stealth",
+    "ru": "Скрытность"
+  },
+  {
+    "en": "Survival",
+    "ru": "Выживание"
+  },
+  {
+    "en": "Passive Perception",
+    "ru": "пассивная Внимательность"
+  },
+  {
+    "en": "the X condition (Blinded, Prone…)",
+    "ru": "состояние «…» с названием из списка ниже"
+  },
+  {
+    "en": "Blinded",
+    "ru": "Ослеплён"
+  },
+  {
+    "en": "Charmed",
+    "ru": "Очарован"
+  },
+  {
+    "en": "Deafened",
+    "ru": "Оглох"
+  },
+  {
+    "en": "Exhaustion",
+    "ru": "Истощение (уровень истощения)"
+  },
+  {
+    "en": "Frightened",
+    "ru": "Испуган"
+  },
+  {
+    "en": "Grappled",
+    "ru": "Схвачен"
+  },
+  {
+    "en": "Incapacitated",
+    "ru": "Недееспособен"
+  },
+  {
+    "en": "Invisible",
+    "ru": "Невидим"
+  },
+  {
+    "en": "Paralyzed",
+    "ru": "Парализован"
+  },
+  {
+    "en": "Petrified",
+    "ru": "Окаменел"
+  },
+  {
+    "en": "Poisoned",
+    "ru": "Отравлен"
+  },
+  {
+    "en": "Prone",
+    "ru": "Сбит с ног"
+  },
+  {
+    "en": "Restrained",
+    "ru": "Опутан"
+  },
+  {
+    "en": "Stunned",
+    "ru": "Ошеломлён"
+  },
+  {
+    "en": "Unconscious",
+    "ru": "Без сознания"
+  },
+  {
+    "en": "Bloodied",
+    "ru": "окровавлен"
+  },
+  {
+    "en": "Acid damage",
+    "ru": "урон кислотой"
+  },
+  {
+    "en": "Bludgeoning damage",
+    "ru": "дробящий урон"
+  },
+  {
+    "en": "Cold damage",
+    "ru": "урон холодом"
+  },
+  {
+    "en": "Fire damage",
+    "ru": "урон огнём"
+  },
+  {
+    "en": "Force damage",
+    "ru": "урон силовым полем"
+  },
+  {
+    "en": "Lightning damage",
+    "ru": "урон молнией"
+  },
+  {
+    "en": "Necrotic damage",
+    "ru": "некротический урон"
+  },
+  {
+    "en": "Piercing damage",
+    "ru": "колющий урон"
+  },
+  {
+    "en": "Poison damage",
+    "ru": "урон ядом"
+  },
+  {
+    "en": "Psychic damage",
+    "ru": "психический урон"
+  },
+  {
+    "en": "Radiant damage",
+    "ru": "урон излучением"
+  },
+  {
+    "en": "Slashing damage",
+    "ru": "рубящий урон"
+  },
+  {
+    "en": "Thunder damage",
+    "ru": "урон звуком"
+  },
+  {
+    "en": "Resistance / Vulnerability / Immunity",
+    "ru": "сопротивление / уязвимость / иммунитет"
+  },
+  {
+    "en": "Tiny / Small / Medium / Large / Huge / Gargantuan",
+    "ru": "Крошечный / Маленький / Средний / Большой / Огромный / Громадный"
+  },
+  {
+    "en": "Aberration / Beast / Celestial / Construct / Dragon / Elemental / Fey / Fiend / Giant / Humanoid / Monstrosity / Ooze / Plant / Undead",
+    "ru": "Аберрация / Зверь / Небожитель / Конструкт / Дракон / Элементаль / Фея / Исчадие / Великан / Гуманоид / Чудовище / Слизь / Растение / Нежить"
+  },
+  {
+    "en": "Difficult Terrain",
+    "ru": "трудная местность"
+  },
+  {
+    "en": "Bright Light / Dim Light / Darkness",
+    "ru": "яркий свет / тусклый свет / темнота"
+  },
+  {
+    "en": "Lightly Obscured / Heavily Obscured",
+    "ru": "слабая заслонённость / сильная заслонённость"
+  },
+  {
+    "en": "Half Cover / Three-Quarters Cover / Total Cover",
+    "ru": "укрытие на половину / на три четверти / полное укрытие"
+  },
+  {
+    "en": "Darkvision / Blindsight / Tremorsense / Truesight",
+    "ru": "тёмное зрение / слепое зрение / чувство вибраций / истинное зрение"
+  },
+  {
+    "en": "Emanation / Cone / Cube / Cylinder / Line / Sphere",
+    "ru": "эманация / конус / куб / цилиндр / линия / сфера"
+  },
+  {
+    "en": "Area of Effect",
+    "ru": "область действия"
+  },
+  {
+    "en": "Challenge Rating (CR)",
+    "ru": "показатель опасности (ПО)"
+  },
+  {
+    "en": "Experience Points (XP)",
+    "ru": "опыт (XP)"
+  },
+  {
+    "en": "Game Master (GM)",
+    "ru": "Мастер"
+  },
+  {
+    "en": "Nonplayer Character (NPC)",
+    "ru": "неигровой персонаж (НИП)"
+  },
+  {
+    "en": "Player Character",
+    "ru": "игровой персонаж"
+  },
+  {
+    "en": "stat block",
+    "ru": "блок характеристик"
+  },
+  {
+    "en": "magic item / Attunement",
+    "ru": "магический предмет / настройка"
+  },
+  {
+    "en": "Common / Uncommon / Rare / Very Rare / Legendary / Artifact",
+    "ru": "обычный / необычный / редкий / очень редкий / легендарный / артефакт"
+  },
+  {
+    "en": "Wondrous Item / Potion / Ring / Rod / Scroll / Staff / Wand / Weapon / Armor",
+    "ru": "чудесный предмет / зелье / кольцо / жезл / свиток / посох / волшебная палочка / оружие / доспех"
+  },
+  {
+    "en": "GP / SP / CP / EP / PP",
+    "ru": "зм / см / мм / эм / пм"
+  },
+  {
+    "en": "feet (30 feet)",
+    "ru": "футы (30 футов)"
+  },
+  {
+    "en": "Friendly / Indifferent / Hostile [Attitude]",
+    "ru": "Дружелюбный / Безразличный / Враждебный"
+  },
+  {
+    "en": "Burning / Dehydration / Falling / Malnutrition / Suffocation [Hazard]",
+    "ru": "Горение / Обезвоживание / Падение / Недоедание / Удушье"
+  },
+  {
+    "en": "Gameplay Toolbox",
+    "ru": "Инструменты мастера"
+  },
+  {
+    "en": "Magical Contagion",
+    "ru": "магическая болезнь"
+  },
+  {
+    "en": "Cackle Fever / Sewer Plague / Sight Rot",
+    "ru": "Хохочущая лихорадка / Чума сточных канав / Гниение глаз"
+  },
+  {
+    "en": "Deadly Trap / Nuisance Trap",
+    "ru": "смертельная ловушка / досадная ловушка"
+  },
+  {
+    "en": "Trigger / Duration",
+    "ru": "Срабатывание / Длительность"
+  },
+  {
+    "en": "“Playing the Game” (a chapter)",
+    "ru": "«Процесс игры»"
+  },
+  {
+    "en": "“Character Creation” (a chapter)",
+    "ru": "«Создание персонажа»"
+  },
+  {
+    "en": "“Character Origins” (a chapter)",
+    "ru": "«Происхождение персонажа»"
+  },
+  {
+    "en": "“Classes” / “Feats” / “Equipment” / “Spells” (chapters)",
+    "ru": "«Классы» / «Черты» / «Снаряжение» / «Заклинания»"
+  },
+  {
+    "en": "“Rules Glossary” / “Magic Items” / “Monsters” / “Animals” (chapters)",
+    "ru": "«Глоссарий правил» / «Магические предметы» / «Монстры» / «Животные»"
+  },
+  {
+    "en": "“Gameplay Toolbox” (a chapter)",
+    "ru": "«Инструменты мастера»"
+  }
+]

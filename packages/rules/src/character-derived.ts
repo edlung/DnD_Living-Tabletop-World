@@ -4,6 +4,7 @@ import {
   type Ability,
   type CharacterDerived,
   type CharacterSheet,
+  type SrdSchool,
   type Skill,
   type WeaponId,
   type AmmunitionKind,
@@ -23,6 +24,8 @@ import {
 import { masteryOf } from './masteries.ts';
 import { spellRules, type SpellRules } from './spell-rules.ts';
 import { srdSpell } from './srd/catalog.ts';
+import { spellIn } from './srd/catalogs-ru.ts';
+import type { ReferenceLanguage } from './srd/reference-ru.ts';
 import { hitDice } from './rest.ts';
 import { effectiveSpeedFt } from './turn.ts';
 
@@ -64,6 +67,8 @@ export function deriveCharacter(
   wielded: readonly WeaponId[] = [],
   /** The ammunition it carries, by kind, where it is counted (docs/adr/0047-weapons.md §5). */
   ammunition: Readonly<Partial<Record<AmmunitionKind, number>>> = {},
+  /** The campaign's language: an SRD spell's words in Russian once they exist (ADR 0055 §5). */
+  language: ReferenceLanguage = 'en',
 ): CharacterDerived {
   const level = totalLevel(sheet);
   const abilities = Object.fromEntries(
@@ -111,15 +116,16 @@ export function deriveCharacter(
       .sort((a, b) => a.level - b.level || a.spellId.localeCompare(b.spellId))
       .map((spell: SpellRules) => ({
         spellId: spell.spellId,
-        // The SRD's English name; the client's dictionary names the slice's spells.
-        name: srdSpell(spell.spellId)?.name ?? spell.spellId,
+        // The SRD's name in the campaign's language; the client's dictionary names the slice's.
+        name: spellWordsIn(spell.spellId, language)?.value.name ?? spell.spellId,
+        ...schoolOf(spell.spellId),
         level: spell.level,
         castingTime: spell.castingTime,
         range: spell.range,
         components: [...spell.components],
         concentration: spell.concentration,
         ritual: spell.ritual,
-        ...(spell.mechanics ? srdWords(spell) : {}),
+        ...(spell.mechanics ? srdWords(spell, language) : {}),
       })),
     attacks: [...new Set([...sheet.weapons, ...wielded])].map((weaponId) => {
       const attack = weaponAttack(sheet, weaponId);
@@ -143,14 +149,30 @@ export function deriveCharacter(
   };
 }
 
+/** An SRD spell's school, for its school's picture (docs/adr/0055-…md §6). */
+const schoolOf = (spellId: string): { school?: SrdSchool } => {
+  const school = srdSpell(spellId)?.school;
+  return school === undefined ? {} : { school };
+};
+
+const spellWordsIn = (spellId: string, language: ReferenceLanguage) => {
+  const entry = srdSpell(spellId);
+  return entry ? spellIn(entry, language) : null;
+};
+
 /** An SRD spell's text, with what the server leaves to the DM (docs/adr/0052-spells-as-data.md). */
-function srdWords(spell: SpellRules): { text?: string; forDm?: 'effect' | 'rest' } {
-  const entry = srdSpell(spell.spellId);
-  const higher = entry?.higherLevels ? `\n${entry.higherLevels}` : '';
+function srdWords(
+  spell: SpellRules,
+  language: ReferenceLanguage,
+): { text?: string; textLanguage?: 'en' | 'ru'; forDm?: 'effect' | 'rest' } {
+  const words = spellWordsIn(spell.spellId, language);
+  const higher = words?.value.higherLevels ? `\n${words.value.higherLevels}` : '';
   const forDm =
     spell.mechanics?.effect.kind === 'dm' ? 'effect' : spell.mechanics?.complete ? null : 'rest';
   return {
-    ...(entry ? { text: `${entry.description}${higher}` } : {}),
+    ...(words
+      ? { text: `${words.value.description}${higher}`, textLanguage: words.language }
+      : {}),
     ...(forDm ? { forDm } : {}),
   };
 }

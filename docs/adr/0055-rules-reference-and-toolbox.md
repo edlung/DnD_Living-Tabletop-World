@@ -89,6 +89,39 @@
   hand tools (a condition with a save, Exhaustion, damage). The toolbox's changes enter the DM's
   history as changes by hand, undone like any other.
 
+### Notes from the implementation (Stage 650e part 3, 2026-11-03)
+
+- A unit is a whole entry's strings (a glossary entry, a section, a spell, a stat block's lines,
+  traits and actions, a magic item's or a piece of equipment's name and words); numbers that are
+  data never enter one. The pass sends batches of about 8,000 characters to `codex exec` (the
+  configured model at low reasoning effort, read-only, ephemeral), three at a time; a batch that
+  fails is asked again unit by unit. A Russian is kept only with its English's shape, numbers and
+  dice (`translationProblem`), and the hash of the English it was made from.
+- The terms glossary (`packages/rules/src/srd/ru/terms.json`) holds the app's own Russian for
+  conditions, abilities, skills, damage and actions; dice keep the Latin "d" as the app writes them,
+  and "DC 15" reads "Сл 15".
+- A Russian campaign reads in Russian the rules reference, an SRD spell's name and words on the
+  spells tab, the bestiary's names, types and stat block words (a creature added from it takes its
+  Russian name), and an SRD item's name, line and words in the DM's catalog, the inventory and a
+  given item's name ("Длинный меч, +1"). What stays English: a stat block's numbers line as written.
+
+### Notes from the implementation (Stage 650e part 4, 2026-11-03)
+
+- Forty-one pictures by the OpenAI image model through the Codex CLI on the owner's ChatGPT
+  subscription, in the Stage 320 kit's style: the eight schools as spell icons, the fourteen
+  creature types as bestiary portraits (original designs, no franchise creature), nineteen item
+  looks as inventory illustrations. Originals stay outside the repository; the UI kit's recipes make
+  the 384 px WebP files and the manifest records each original's SHA-256 and prompt.
+- An SRD item catalog entry carries its `look` (the import writes it); an unidentified item keeps
+  the look of what it is — a ring still looks like a ring. A derived SRD spell carries its school;
+  a bestiary entry its creature type in English, one of the SRD's fourteen (a swarm is of its
+  members' type: "Swarm of Tiny Beasts" is a beast). Each shows its own picture where it has one,
+  else its kind's; a creature in the world never takes one (the asset rules of ADR 0034 hold). A
+  test holds every school, creature type and look to a picture.
+- The translation pass also caught the import joining a line that ends in a dash with a space ("a
+  wall— is"): a dash now closes up to the next line's words, and the five entries it changed were
+  translated again.
+
 ## Consequences
 
 - Stage 650e runs in parts: the rules reference and the terms in place; the toolbox's mechanics;

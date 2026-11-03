@@ -2,6 +2,7 @@ import type {
   AmmunitionKind,
   EquipSlot,
   ItemEntry,
+  ItemLook,
   WeaponId,
 } from '../../packages/contracts/src/index.ts';
 
@@ -48,6 +49,7 @@ export function catalogEntryOf(item: SrdEquipmentText): ItemEntry {
     valueCp: round(item.costCp ?? 0, 100),
     source: 'srd' as const,
     untranslated: true as const,
+    look: lookOf(item),
   };
   const plain = (category: ItemEntry['category'], slots: EquipSlot[] = []): ItemEntry => ({
     ...base,
@@ -156,3 +158,22 @@ const KIND_WORDS: Readonly<Record<SrdEquipmentText['kind'], string>> = {
 };
 
 const capital = (text: string) => text.charAt(0).toUpperCase() + text.slice(1);
+
+/** What a piece of equipment looks like, for its kind's picture (docs/adr/0055-…md §6). */
+function lookOf(item: SrdEquipmentText): ItemLook {
+  if (item.weapon) return item.weapon.melee ? 'melee-weapon' : 'ranged-weapon';
+  return LOOK_OF_KIND[item.kind];
+}
+const LOOK_OF_KIND: Readonly<Record<SrdEquipmentText['kind'], ItemLook>> = {
+  coin: 'coins',
+  weapon: 'melee-weapon',
+  armor: 'armor',
+  shield: 'shield',
+  tool: 'tool',
+  gear: 'gear',
+  ammunition: 'ammunition',
+  focus: 'focus',
+  pack: 'pack',
+  tack: 'tack',
+  food: 'food',
+};

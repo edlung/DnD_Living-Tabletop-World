@@ -1,6 +1,13 @@
 import type { EntityRef } from '../knowledge/views.ts';
 import type { WeaponId } from '../rules/character-sheet.ts';
-import type { EquipSlot, ItemCategory, ItemEffect, ItemMagic, ItemRarity } from './schema.ts';
+import type {
+  EquipSlot,
+  ItemCategory,
+  ItemEffect,
+  ItemLook,
+  ItemMagic,
+  ItemRarity,
+} from './schema.ts';
 
 /** One carried item as its carrier sees it (docs/adr/0039-item-possession.md). */
 export interface InventoryItem {
@@ -34,6 +41,8 @@ export interface InventoryItem {
     readonly weapon: WeaponId | null;
     /** The SRD's entry, or Ravenford's own (null) (docs/adr/0054-items-as-data.md §3). */
     readonly source: 'srd' | null;
+    /** What it looks like, for its kind's picture (docs/adr/0055-…md §6); null for Ravenford's own. */
+    readonly look: ItemLook | null;
     /** Its Russian words are still the English ones (Stage 650e translates them). */
     readonly untranslated: boolean;
     /** The SRD's words about it, English, for an SRD entry; null for Ravenford's own. */

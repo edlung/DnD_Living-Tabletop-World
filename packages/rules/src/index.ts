@@ -196,3 +196,23 @@ export {
 } from './difficulty.ts';
 export { TRAPS, trapRules, type TrapDice, type TrapRules, type TrapTier } from './toolbox/traps.ts';
 export { CONTAGIONS, contagionRules, type ContagionRules } from './toolbox/contagions.ts';
+export {
+  abbreviationStrings,
+  englishHash,
+  glossaryEntryStrings,
+  rulesSectionStrings,
+  russianAbbreviations,
+  russianGlossaryEntry,
+  russianRulesSection,
+  translationProblem,
+  type KeptRussian,
+  type Strings,
+} from './srd/russian.ts';
+export {
+  abbreviationsIn,
+  glossaryEntryIn,
+  rulesSectionIn,
+  type InLanguage,
+  type ReferenceLanguage,
+} from './srd/reference-ru.ts';
+export { equipmentIn, magicItemIn, monsterIn, spellIn } from './srd/catalogs-ru.ts';

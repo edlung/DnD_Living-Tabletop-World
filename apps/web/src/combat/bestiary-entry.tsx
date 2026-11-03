@@ -63,17 +63,29 @@ function EntryText({ api, monsterId }: { readonly api: WorldApi; readonly monste
       data-more-before={edges.before ? '' : undefined}
       data-more-after={edges.after ? '' : undefined}
     >
-      <p className="fine-print" lang="en">
+      <p className="fine-print" lang={resource.value.language}>
         {`${monster.size} ${monster.type}, ${monster.alignment} · AC ${String(monster.armorClass)} · HP ${String(monster.hitPoints.average)} (${monster.hitPoints.dice}) · ${monster.speed}`}
       </p>
-      <p className="fine-print" lang="en">
+      <p className="fine-print" lang={resource.value.language}>
         {monster.senses}
       </p>
-      <Section title={t('Traits')} entries={monster.traits} />
-      <Section title={t('Actions')} entries={monster.actions} />
-      <Section title={t('Bonus actions')} entries={monster.bonusActions} />
-      <Section title={t('Reactions')} entries={monster.reactions} />
-      <Section title={t('Legendary actions')} entries={monster.legendary?.entries ?? []} />
+      <Section title={t('Traits')} entries={monster.traits} language={resource.value.language} />
+      <Section title={t('Actions')} entries={monster.actions} language={resource.value.language} />
+      <Section
+        title={t('Bonus actions')}
+        entries={monster.bonusActions}
+        language={resource.value.language}
+      />
+      <Section
+        title={t('Reactions')}
+        entries={monster.reactions}
+        language={resource.value.language}
+      />
+      <Section
+        title={t('Legendary actions')}
+        entries={monster.legendary?.entries ?? []}
+        language={resource.value.language}
+      />
     </div>
   );
 }
@@ -81,16 +93,18 @@ function EntryText({ api, monsterId }: { readonly api: WorldApi; readonly monste
 function Section({
   title,
   entries,
+  language,
 }: {
   readonly title: string;
   readonly entries: readonly SrdEntry[];
+  readonly language: 'en' | 'ru';
 }) {
   if (entries.length === 0) return null;
   return (
     <section>
       <h6>{title}</h6>
       {entries.map((entry) => (
-        <p key={entry.name} lang="en">
+        <p key={entry.name} lang={language}>
           <strong>{entry.name}.</strong> {entry.text}
         </p>
       ))}

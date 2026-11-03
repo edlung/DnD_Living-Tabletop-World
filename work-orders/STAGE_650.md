@@ -58,7 +58,8 @@ chat (2026-11-02); it stays outside the repository.
   title opening their entry in place) — done; the Toolbox at the table (the eight traps, mental
   stress, the three contagions and their course; fear, poisons and the environment stay the hand
   tools' with the reference's words) — done; the Russian rules text (the terms glossary, the Codex
-  pass, the completeness test); the catalogs' art by kind.
+  pass over the reference, spells, stat blocks, magic items and equipment, the completeness test) —
+  done; the catalogs' art by kind (schools, creature types, item looks) — done.
 
 ## Checks at each sub-stage
 

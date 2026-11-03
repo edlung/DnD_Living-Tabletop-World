@@ -3,7 +3,7 @@ import { useT } from '@ltw/ui';
 import { useState } from 'react';
 
 import { Glyph } from '../../visual/glyph.tsx';
-import { itemArtUrl } from '../../visual/ui-kit.ts';
+import { itemPictureUrl } from '../../visual/ui-kit.ts';
 import { categoryName, roundWeight } from '../item-text.ts';
 import { DRAG_TYPE, draggedItem } from './drag.ts';
 
@@ -88,7 +88,7 @@ export function Bag({
       ) : (
         <ul className="bag-grid">
           {shown.map((item) => {
-            const art = item.catalog ? itemArtUrl(item.catalog.itemId) : null;
+            const art = item.catalog ? itemPictureUrl(item.catalog) : null;
             const weight = item.catalog ? item.catalog.weightLb * item.quantity : null;
             return (
               <li key={item.itemId}>

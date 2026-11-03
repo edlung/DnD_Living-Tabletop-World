@@ -1,3 +1,4 @@
+import type { SrdSchool } from '../srd/catalog.ts';
 import type {
   Ability,
   HitDieSides,
@@ -56,7 +57,7 @@ export interface CharacterDerived {
   readonly spells: readonly {
     /** A slice spell or any SRD spell (docs/adr/0052-spells-as-data.md §1). */
     readonly spellId: string;
-    /** The SRD's English name. */
+    /** The SRD's name, in the campaign's language where its translation exists. */
     readonly name: string;
     readonly level: number;
     /** `long`: minutes or hours, outside a fight only. */
@@ -69,6 +70,10 @@ export interface CharacterDerived {
     readonly ritual: boolean;
     /** The SRD's text of a spell outside the slice (whose own words are the client's). */
     readonly text?: string;
+    /** The language its name and text are in: Russian once its Russian exists (ADR 0055 §5). */
+    readonly textLanguage?: 'en' | 'ru';
+    /** Its school of magic, for its school's picture until it has its own (ADR 0055 §6). */
+    readonly school?: SrdSchool;
     /** What is the DM's to apply (docs/adr/0052-spells-as-data.md §2): its effect, or the rest. */
     readonly forDm?: 'effect' | 'rest';
   }[];

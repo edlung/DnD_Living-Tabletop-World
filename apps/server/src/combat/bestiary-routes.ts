@@ -4,6 +4,7 @@ import {
   addFromBestiaryRequestSchema,
   bestiaryMonsterIdSchema,
   campaignIdSchema,
+  srdCreatureTypeOf,
   type AddedFromBestiaryResponse,
   type BestiaryEntryResponse,
   type BestiaryResponse,
@@ -11,7 +12,13 @@ import {
 } from '@ltw/contracts';
 import { JOIN_REFUSALS, joinRefusal } from '@ltw/combat';
 import type { WorldState } from '@ltw/domain';
-import { SRD_MONSTERS, srdMonster, srdMonsterBlock } from '@ltw/rules';
+import {
+  SRD_MONSTERS,
+  monsterIn,
+  srdMonster,
+  srdMonsterBlock,
+  type ReferenceLanguage,
+} from '@ltw/rules';
 import type { FastifyInstance } from 'fastify';
 import { z } from 'zod';
 
@@ -31,18 +38,26 @@ const entryParams = z
   .object({ campaignId: campaignIdSchema, monsterId: bestiaryMonsterIdSchema })
   .strict();
 
-const LIST: BestiaryResponse = {
-  monsters: SRD_MONSTERS.map((monster) => ({
-    monsterId: monster.monsterId,
-    name: monster.name,
-    size: monster.size,
-    type: monster.type,
-    challenge: monster.challenge.rating,
-    xp: monster.challenge.xp,
-    armorClass: monster.armorClass,
-    hitPoints: monster.hitPoints.average,
-  })),
-};
+/** The bestiary in a language: a stat block's name and type in Russian once they exist. */
+const listIn = (language: ReferenceLanguage): BestiaryResponse => ({
+  monsters: SRD_MONSTERS.map((english) => {
+    const monster = monsterIn(english, language).value;
+    return {
+      creatureType: srdCreatureTypeOf(english.type),
+      monsterId: monster.monsterId,
+      name: monster.name,
+      size: monster.size,
+      type: monster.type,
+      challenge: monster.challenge.rating,
+      xp: monster.challenge.xp,
+      armorClass: monster.armorClass,
+      hitPoints: monster.hitPoints.average,
+    };
+  }),
+});
+const LISTS = { en: listIn('en'), ru: listIn('ru') };
+const languageOf = (state: WorldState): ReferenceLanguage =>
+  state.campaign?.language === 'ru' ? 'ru' : 'en';
 
 function placeOf(state: WorldState): string | null {
   if (state.encounter) return state.encounter.locationId;
@@ -59,8 +74,9 @@ export function registerBestiaryRoutes(app: FastifyInstance, deps: RouteDependen
     if (!actor) return reply;
     const path = parseInput(params, request.params, request, reply);
     if (!path) return reply;
-    if (!(await dmCampaignState(request, reply, deps, actor, path.campaignId))) return reply;
-    return reply.send(LIST);
+    const state = await dmCampaignState(request, reply, deps, actor, path.campaignId);
+    if (!state) return reply;
+    return reply.send(LISTS[languageOf(state)]);
   });
 
   app.get('/campaigns/:campaignId/bestiary/:monsterId', async (request, reply) => {
@@ -68,10 +84,12 @@ export function registerBestiaryRoutes(app: FastifyInstance, deps: RouteDependen
     if (!actor) return reply;
     const path = parseInput(entryParams, request.params, request, reply);
     if (!path) return reply;
-    if (!(await dmCampaignState(request, reply, deps, actor, path.campaignId))) return reply;
+    const state = await dmCampaignState(request, reply, deps, actor, path.campaignId);
+    if (!state) return reply;
     const monster = srdMonster(path.monsterId);
     if (!monster) return sendError(reply, request, 'NOT_FOUND');
-    const body: BestiaryEntryResponse = { monster };
+    const shown = monsterIn(monster, languageOf(state));
+    const body: BestiaryEntryResponse = { monster: shown.value, language: shown.language };
     return reply.send(body);
   });
 
@@ -98,7 +116,8 @@ export function registerBestiaryRoutes(app: FastifyInstance, deps: RouteDependen
           type: 'CreateEntity' as const,
           entityId,
           kind: 'creature' as const,
-          name: body.name ?? monster.name,
+          // Named in the campaign's language (docs/adr/0055-rules-reference-and-toolbox.md §5).
+          name: body.name ?? monsterIn(monster, languageOf(state)).value.name,
           existsSince: null,
           placement: { locationId, since: null },
         },

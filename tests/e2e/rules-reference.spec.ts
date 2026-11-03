@@ -9,7 +9,7 @@ import { openCharacter, openSheet } from './support/shell.ts';
  * The rules reference (docs/adr/0055-rules-reference-and-toolbox.md §2–3): a player finds a rule
  * by tag and by name and follows what it names; a condition on the character's card opens its
  * words in place and gives focus back on Escape; the DM reads the Gameplay Toolbox's traps, which
- * a player's sheet does not offer; a Russian table finds the same rules, their words still English.
+ * a player's sheet does not offer; a Russian table reads the rules in Russian.
  */
 test('a player finds a rule, and a condition’s words open where it is shown', async ({ page }) => {
   await enterWorld(page, TOKENS.player, UI_RULES_CAMPAIGNS.en);
@@ -62,12 +62,13 @@ test('the DM reads the Gameplay Toolbox: a trap, its trigger and its tiers', asy
   await expectAccessible(page, 'the toolbox');
 });
 
-test('a Russian table finds the same rules, their words in English for now', async ({ page }) => {
+test('a Russian table reads the rules in Russian', async ({ page }) => {
   await enterWorld(page, TOKENS.player, UI_RULES_CAMPAIGNS.ru);
   await openSheet(page, 'Правила');
   const sheet = page.locator('#sheet-rules');
-  await sheet.getByRole('searchbox', { name: 'Найти правило' }).fill('Prone');
-  await sheet.getByRole('button', { name: /^Prone/ }).click();
-  await expect(sheet.getByRole('heading', { name: /^Prone/ })).toBeFocused();
-  await expect(sheet.locator('.rules-entry .srd-blocks')).toHaveAttribute('lang', 'en');
+  await sheet.getByRole('searchbox', { name: 'Найти правило' }).fill('сбит');
+  await sheet.getByRole('button', { name: /^Сбит с ног/ }).click();
+  await expect(sheet.getByRole('heading', { name: /^Сбит с ног/ })).toBeFocused();
+  await expect(sheet.locator('.rules-entry .srd-blocks')).toHaveAttribute('lang', 'ru');
+  await expect(sheet.locator('.rules-entry')).toContainText('Ограниченное передвижение.');
 });

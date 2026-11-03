@@ -37,6 +37,7 @@ describe('the item catalog', () => {
       weightLb: 55,
       stackable: false,
       source: 'srd',
+      look: 'armor',
       untranslated: true,
       rarity: null,
       attunement: null,

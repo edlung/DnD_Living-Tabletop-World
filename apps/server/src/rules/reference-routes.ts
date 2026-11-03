@@ -8,11 +8,14 @@ import {
 } from '@ltw/contracts';
 import { campaignRole, type Actor } from '@ltw/domain';
 import {
-  SRD_ABBREVIATIONS,
   SRD_GLOSSARY,
   SRD_RULES_SECTIONS,
+  abbreviationsIn,
+  glossaryEntryIn,
+  rulesSectionIn,
   srdGlossaryEntry,
   srdRulesSection,
+  type ReferenceLanguage,
 } from '@ltw/rules';
 import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod';
@@ -29,14 +32,27 @@ const params = z.object({ campaignId: campaignIdSchema }).strict();
 const entryParams = z.object({ campaignId: campaignIdSchema, entryId: srdIdSchema }).strict();
 const sectionParams = z.object({ campaignId: campaignIdSchema, sectionId: srdIdSchema }).strict();
 
-const ENTRIES = SRD_GLOSSARY.map(({ entryId, name, tag }) => ({ entryId, name, tag }));
-const SECTIONS = SRD_RULES_SECTIONS.map(({ sectionId, part, title, level, subtitle }) => ({
-  sectionId,
-  part,
-  title,
-  level,
-  subtitle,
-}));
+/** The index in a language: Russian names where their Russian is current. */
+function indexIn(language: ReferenceLanguage) {
+  const entries = SRD_GLOSSARY.map((entry) => glossaryEntryIn(entry, language));
+  const sections = SRD_RULES_SECTIONS.map((section) => rulesSectionIn(section, language));
+  const abbreviations = abbreviationsIn(language);
+  const whole = [...entries, ...sections, abbreviations].every((one) => one.language === language);
+  return {
+    entries: entries.map(({ value: { entryId, name, tag } }) => ({ entryId, name, tag })),
+    sections: sections.map(({ value: { sectionId, part, title, level, subtitle } }) => ({
+      sectionId,
+      part,
+      title,
+      level,
+      subtitle,
+    })),
+    abbreviations: abbreviations.value,
+    language: whole ? language : ('en' as const),
+  };
+}
+/** Made once for each language. */
+const INDEX = { en: indexIn('en'), ru: indexIn('ru') };
 
 /**
  * A section and the sections under it, down to the next of its own rank; a chapter is read by its
@@ -57,10 +73,10 @@ async function tableRole(
   deps: RouteDependencies,
   actor: Actor,
   campaignId: string,
-): Promise<'DM' | 'PLAYER' | null> {
+): Promise<{ readonly role: 'DM' | 'PLAYER'; readonly language: ReferenceLanguage } | null> {
   const state = (await deps.engine.load(campaignId))?.state ?? null;
   const role = campaignRole(state, actor);
-  if (role === null) {
+  if (role === null || state?.campaign === null || state === null) {
     await sendError(reply, request, 'NOT_FOUND');
     return null;
   }
@@ -68,7 +84,7 @@ async function tableRole(
     await sendError(reply, request, 'FORBIDDEN');
     return null;
   }
-  return role;
+  return { role, language: state.campaign.language === 'ru' ? 'ru' : 'en' };
 }
 
 export function registerRulesReferenceRoutes(app: FastifyInstance, deps: RouteDependencies): void {
@@ -78,13 +94,12 @@ export function registerRulesReferenceRoutes(app: FastifyInstance, deps: RouteDe
     if (!actor) return reply;
     const path = parseInput(params, request.params, request, reply);
     if (!path) return reply;
-    const role = await tableRole(request, reply, deps, actor, path.campaignId);
-    if (!role) return reply;
+    const asking = await tableRole(request, reply, deps, actor, path.campaignId);
+    if (!asking) return reply;
+    const index = INDEX[asking.language];
     const body: RulesIndexResponse = {
-      abbreviations: SRD_ABBREVIATIONS,
-      entries: ENTRIES,
-      sections: role === 'DM' ? SECTIONS : null,
-      language: 'en',
+      ...index,
+      sections: asking.role === 'DM' ? index.sections : null,
     };
     return reply.send(body);
   });
@@ -94,10 +109,12 @@ export function registerRulesReferenceRoutes(app: FastifyInstance, deps: RouteDe
     if (!actor) return reply;
     const path = parseInput(entryParams, request.params, request, reply);
     if (!path) return reply;
-    if (!(await tableRole(request, reply, deps, actor, path.campaignId))) return reply;
+    const asking = await tableRole(request, reply, deps, actor, path.campaignId);
+    if (!asking) return reply;
     const entry = srdGlossaryEntry(path.entryId);
     if (!entry) return sendError(reply, request, 'NOT_FOUND');
-    const body: RulesEntryResponse = { entry, language: 'en' };
+    const shown = glossaryEntryIn(entry, asking.language);
+    const body: RulesEntryResponse = { entry: shown.value, language: shown.language };
     return reply.send(body);
   });
 
@@ -106,12 +123,16 @@ export function registerRulesReferenceRoutes(app: FastifyInstance, deps: RouteDe
     if (!actor) return reply;
     const path = parseInput(sectionParams, request.params, request, reply);
     if (!path) return reply;
-    const role = await tableRole(request, reply, deps, actor, path.campaignId);
-    if (!role) return reply;
-    if (role !== 'DM') return sendError(reply, request, 'FORBIDDEN');
+    const asking = await tableRole(request, reply, deps, actor, path.campaignId);
+    if (!asking) return reply;
+    if (asking.role !== 'DM') return sendError(reply, request, 'FORBIDDEN');
     const section = srdRulesSection(path.sectionId);
     if (!section) return sendError(reply, request, 'NOT_FOUND');
-    const body: RulesSectionResponse = { sections: withUnder(section), language: 'en' };
+    const shown = withUnder(section).map((one) => rulesSectionIn(one, asking.language));
+    const body: RulesSectionResponse = {
+      sections: shown.map((one) => one.value),
+      language: shown.every((one) => one.language === 'ru') ? asking.language : 'en',
+    };
     return reply.send(body);
   });
 }

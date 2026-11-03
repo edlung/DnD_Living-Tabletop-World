@@ -384,3 +384,17 @@
   justify-content: space-between;
   gap: 0.5rem;
 }
+/* A creature type's picture beside its stat block's line (docs/adr/0055-…md §6). */
+.bestiary-stats {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.bestiary-type-art {
+  flex: none;
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--gold-deep);
+  border-radius: 8px;
+  object-fit: cover;
+}

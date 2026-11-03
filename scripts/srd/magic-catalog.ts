@@ -1,6 +1,7 @@
 import type {
   EquipSlot,
   ItemEntry,
+  ItemLook,
   ItemMagic,
   ItemRarity,
   SrdEquipment,
@@ -107,9 +108,29 @@ function entryOf(
     ...(consumable ? { effect: { kind: 'narrative' as const } } : {}),
     source: 'srd',
     untranslated: true,
+    look: base ? LOOK_OF_BASE[base.kind] : LOOK_OF_CATEGORY[item.category],
     magic,
   };
 }
+
+/** What a magic item looks like, for its kind's picture (docs/adr/0055-…md §6). */
+const LOOK_OF_BASE = {
+  weapon: 'melee-weapon',
+  armor: 'armor',
+  shield: 'shield',
+  ammunition: 'ammunition',
+} as const satisfies Record<string, ItemLook>;
+const LOOK_OF_CATEGORY: Readonly<Record<SrdMagicItem['category'], ItemLook>> = {
+  Armor: 'armor',
+  Potion: 'potion',
+  Ring: 'ring',
+  Rod: 'rod',
+  Scroll: 'scroll',
+  Staff: 'staff',
+  Wand: 'wand',
+  Weapon: 'melee-weapon',
+  'Wondrous Item': 'wondrous',
+};
 
 const CATEGORY_OF_BASE = {
   weapon: 'weapon',
@@ -233,6 +254,7 @@ function healingPotions(item: SrdMagicItem): ItemEntry[] {
     return {
       itemId: `${SRD_ID_PREFIX}potion-of-healing-${strength}`,
       category: 'consumable',
+      look: 'potion',
       name: { en: name, ru: name },
       description: { en: firstSentence(item.text), ru: firstSentence(item.text) },
       weightLb: 0.5,

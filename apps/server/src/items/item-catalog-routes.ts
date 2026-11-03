@@ -21,7 +21,7 @@ import { statusOf } from '../http/command-status.ts';
 import { dmCampaignState } from '../http/dm-campaign.ts';
 import { sendError } from '../http/errors.ts';
 import { authenticate, parseInput, type RouteDependencies } from '../http/request-context.ts';
-import { srdMagicOf, srdWordsOf } from './srd-words.ts';
+import { entryIn, srdMagicOf, srdWordsOf } from './srd-words.ts';
 
 /**
  * The DM's item catalog (docs/adr/0054-items-as-data.md §4): Ravenford's own entries and the
@@ -42,13 +42,20 @@ const listing = (entry: ItemEntry): ItemCatalogListing => ({
   weightLb: entry.weightLb,
   stackable: entry.stackable,
   source: entry.source ?? null,
+  look: entry.look ?? null,
   untranslated: entry.untranslated === true,
   rarity: entry.magic?.rarity ?? null,
   attunement: entry.magic?.attunement ?? null,
   base: entry.magic?.base ?? null,
 });
 
-const LIST: ItemCatalogResponse = { items: [...ITEM_CATALOG, ...SRD_ITEM_CATALOG].map(listing) };
+/** The catalog in each language: an SRD entry's Russian name once it exists (ADR 0055 §5). */
+const LISTS = {
+  en: { items: [...ITEM_CATALOG, ...SRD_ITEM_CATALOG].map(listing) },
+  ru: {
+    items: [...ITEM_CATALOG, ...SRD_ITEM_CATALOG].map((entry) => listing(entryIn(entry, 'ru'))),
+  },
+} satisfies Record<'en' | 'ru', ItemCatalogResponse>;
 
 /** An unidentified magic item made on nothing, by name. */
 const UNKNOWN = { en: 'An unknown magic item', ru: 'Неизвестный магический предмет' } as const;
@@ -76,8 +83,9 @@ export function registerItemCatalogRoutes(app: FastifyInstance, deps: RouteDepen
     if (!actor) return reply;
     const path = parseInput(params, request.params, request, reply);
     if (!path) return reply;
-    if (!(await dmCampaignState(request, reply, deps, actor, path.campaignId))) return reply;
-    return reply.send(LIST);
+    const state = await dmCampaignState(request, reply, deps, actor, path.campaignId);
+    if (!state) return reply;
+    return reply.send(LISTS[state.campaign?.language === 'ru' ? 'ru' : 'en']);
   });
 
   app.get('/campaigns/:campaignId/items/catalog/:itemId', async (request, reply) => {
@@ -85,16 +93,19 @@ export function registerItemCatalogRoutes(app: FastifyInstance, deps: RouteDepen
     if (!actor) return reply;
     const path = parseInput(entryParams, request.params, request, reply);
     if (!path) return reply;
-    if (!(await dmCampaignState(request, reply, deps, actor, path.campaignId))) return reply;
-    const entry = itemEntry(path.itemId);
-    if (!entry) return sendError(reply, request, 'NOT_FOUND');
+    const state = await dmCampaignState(request, reply, deps, actor, path.campaignId);
+    if (!state) return reply;
+    const found = itemEntry(path.itemId);
+    if (!found) return sendError(reply, request, 'NOT_FOUND');
+    const language = state.campaign?.language === 'ru' ? 'ru' : 'en';
+    const entry = entryIn(found, language);
     const body: ItemCatalogEntryResponse = {
       item: {
         ...listing(entry),
         description: { ru: entry.description.ru, en: entry.description.en },
       },
-      srd: srdWordsOf(entry.itemId),
-      magic: srdMagicOf(entry.itemId),
+      srd: srdWordsOf(entry.itemId, language),
+      magic: srdMagicOf(entry.itemId, language),
     };
     return reply.send(body);
   });
@@ -127,14 +138,17 @@ export function registerItemCatalogRoutes(app: FastifyInstance, deps: RouteDepen
       };
       return reply.code(statusOf(rejected)).send(rejected);
     }
-    const language = state.campaign?.language ?? 'en';
-    const base = baseOfGrant(entry, baseId);
+    const language = state.campaign?.language === 'ru' ? 'ru' : 'en';
+    // Named in the campaign's language, an SRD entry's Russian once it exists (ADR 0055 §5).
+    const named = (one: ItemEntry) => entryIn(one, language);
+    const made = baseOfGrant(entry, baseId);
+    const base = made !== null && typeof made !== 'string' ? named(made) : made;
     // Unidentified, it is named for what it looks like (docs/adr/0054-items-as-data.md §5).
     const name = body.unidentified
       ? base !== null && typeof base !== 'string'
         ? base.name[language]
         : UNKNOWN[language]
-      : madeName(entry, base, language);
+      : madeName(named(entry), base, language);
     const commands = [
       {
         commandId: `${prefix}.create`,
