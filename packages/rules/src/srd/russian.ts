@@ -29,7 +29,7 @@ export function englishHash(english: Strings): string {
   return `${fnv(0x811c9dc5)}${fnv(0x01000193)}`;
 }
 
-const blockStrings = (block: SrdBlock): Strings => {
+export const blockStrings = (block: SrdBlock): Strings => {
   switch (block.kind) {
     case 'paragraph':
     case 'item':
@@ -54,7 +54,7 @@ const field = (value: Strings | undefined, key: string): Strings | undefined =>
     ? (value as { readonly [key: string]: Strings })[key]
     : undefined;
 
-function russianBlock(block: SrdBlock, ru: Strings | undefined): SrdBlock {
+export function russianBlock(block: SrdBlock, ru: Strings | undefined): SrdBlock {
   switch (block.kind) {
     case 'paragraph':
     case 'item': {

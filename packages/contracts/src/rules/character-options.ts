@@ -40,6 +40,8 @@ export interface OptionTools {
 
 export interface ClassOptions {
   readonly classId: ClassId;
+  /** Its words' language: Russian once its translation exists. */
+  readonly language: 'en' | 'ru';
   readonly name: string;
   readonly primaryAbility: string;
   readonly hitDie: number;
@@ -67,12 +69,13 @@ export interface ClassOptions {
 
 export interface SpeciesOptions {
   readonly speciesId: string;
+  readonly language: 'en' | 'ru';
   readonly name: string;
   readonly size: string;
   readonly choosesSize: boolean;
   readonly speedFt: number;
-  /** A lineage, an ancestor or an ancestry to choose; empty for none. */
-  readonly options: readonly string[];
+  /** A lineage, an ancestor or an ancestry to choose, by its value and its words; empty for none. */
+  readonly options: readonly { readonly value: string; readonly label: string }[];
   readonly skillChoice: { readonly count: number; readonly from: readonly Skill[] } | null;
   readonly originFeat: boolean;
   /** Its option gives spells, whose ability the player chooses. */
@@ -82,6 +85,7 @@ export interface SpeciesOptions {
 
 export interface BackgroundOptions {
   readonly backgroundId: string;
+  readonly language: 'en' | 'ru';
   readonly name: string;
   readonly abilityScores: readonly Ability[];
   readonly feat: string;

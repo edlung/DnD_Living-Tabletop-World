@@ -67,8 +67,12 @@ backgrounds,species,feats}.json`, held to the SRD by tests (a features table's p
   (an invitation then seats a player); a seated player makes one of their own from the character
   dialog. A player's actor never leaves the server. Each problem the builder finds is a sentence
   with its parameters, worded by the client; a test holds every one to its Russian.
-- The classes', species', backgrounds' and feats' words are English in a Russian campaign until
-  their translation pass; items and spells already read in Russian.
+- The classes', species', backgrounds' and feats' words are Russian in a Russian campaign: the
+  translation pass (ADR 0055 §5) takes a class in parts small enough for one batch — its head (name,
+  core traits, the features table's names, the subclass's line), each feature, sidebar and option —
+  and a species, a background or a feat whole (`russian-characters.ts`, 314 parts); a part whose
+  English changed reads in English until made again. A species' options keep their English values
+  in the choices and show their words from the table in the campaign's language.
 
 ## Consequences
 

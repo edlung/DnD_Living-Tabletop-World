@@ -21,6 +21,7 @@ import {
   monsterStrings,
   spellStrings,
 } from '../../packages/rules/src/srd/russian-catalogs.ts';
+import { characterUnits } from '../../packages/rules/src/srd/russian-characters.ts';
 
 /**
  * What the translation pass asks of each dataset (docs/adr/0055-rules-reference-and-toolbox.md §5):
@@ -47,4 +48,6 @@ export const DATASETS: Readonly<Record<string, () => Unit[]>> = {
   spells: () => SRD_SPELLS.map((spell) => ({ key: spell.spellId, english: spellStrings(spell) })),
   monsters: () =>
     SRD_MONSTERS.map((monster) => ({ key: monster.monsterId, english: monsterStrings(monster) })),
+  // The classes in parts (a head, each feature, sidebar and option), species, backgrounds, feats.
+  characters: characterUnits,
 };

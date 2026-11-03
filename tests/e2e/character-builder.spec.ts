@@ -89,11 +89,11 @@ test('a step whose choices do not hold is marked, and a Russian table reads it i
   const dialog = dm.getByRole('dialog', { name: 'Создать персонажа' });
   await dialog.getByRole('radio', { name: /^Волшебник/ }).click();
   await dialog.getByRole('button', { name: 'Далее', exact: true }).click();
-  await dialog.getByRole('radio', { name: /^Elf/ }).click();
-  await dialog.getByRole('radio', { name: /^Sage/ }).click();
+  await dialog.getByRole('radio', { name: /^Эльф/ }).click();
+  await dialog.getByRole('radio', { name: /^Мудрец/ }).click();
   // The Elf's lineage is not chosen yet: the Origin step is marked, with the problem in Russian.
   await expect(dialog.locator('.builder-nav-open').first()).toBeVisible();
-  await expect(dialog).toContainText('Выберите одно из: drow, high elf, wood elf');
+  await expect(dialog).toContainText('Выберите одно из: Дроу, Высший эльф, Лесной эльф');
   await expectAccessible(dm, 'the Russian builder');
 });
 

@@ -56,7 +56,12 @@ function Cards<T extends string>({
   onChoose,
 }: {
   readonly label: string;
-  readonly items: readonly { readonly id: T; readonly name: string; readonly line: string }[];
+  readonly items: readonly {
+    readonly id: T;
+    readonly name: string;
+    readonly line: string;
+    readonly lang?: string | undefined;
+  }[];
   readonly chosen: T | null;
   readonly onChoose: (id: T) => void;
 }) {
@@ -68,6 +73,7 @@ function Cards<T extends string>({
           type="button"
           role="radio"
           aria-checked={chosen === item.id}
+          lang={item.lang}
           className="builder-card"
           onClick={() => {
             onChoose(item.id);
@@ -125,11 +131,17 @@ export function ClassStep({
           <dt>{t('Saving throws')}</dt>
           <dd>{chosen.savingThrows.map((ability) => t(ABILITY_NAMES[ability])).join(', ')}</dd>
           <dt>{t('Armor')}</dt>
-          <dd lang={options.language === 'ru' ? 'en' : undefined}>{chosen.armor}</dd>
+          <dd lang={chosen.language === options.language ? undefined : chosen.language}>
+            {chosen.armor}
+          </dd>
           <dt>{t('Weapons')}</dt>
-          <dd lang={options.language === 'ru' ? 'en' : undefined}>{chosen.weapons}</dd>
+          <dd lang={chosen.language === options.language ? undefined : chosen.language}>
+            {chosen.weapons}
+          </dd>
           <dt>{t('At level 1')}</dt>
-          <dd lang={options.language === 'ru' ? 'en' : undefined}>{chosen.features.join(', ')}</dd>
+          <dd lang={chosen.language === options.language ? undefined : chosen.language}>
+            {chosen.features.join(', ')}
+          </dd>
         </dl>
       )}
       <Problems problems={builder.problemsOf('classId')} />
@@ -149,7 +161,6 @@ export function OriginStep({
   const { draft, update } = builder;
   const species = options.species.find((one) => one.speciesId === draft.speciesId);
   const background = options.backgrounds.find((one) => one.backgroundId === draft.backgroundId);
-  const english = options.language === 'ru' ? 'en' : undefined;
   return (
     <div className="builder-step">
       <h3>{t('Species')}</h3>
@@ -157,6 +168,7 @@ export function OriginStep({
         label={t('Species')}
         items={options.species.map((one) => ({
           id: one.speciesId,
+          lang: one.language === options.language ? undefined : one.language,
           name: one.name,
           line: t('{speed} ft · {traits}', { speed: one.speedFt, traits: one.traits.join(', ') }),
         }))}
@@ -185,8 +197,12 @@ export function OriginStep({
             >
               <option value="">{t('Choose…')}</option>
               {species.options.map((option) => (
-                <option key={option} value={option} lang={english}>
-                  {option}
+                <option
+                  key={option.value}
+                  value={option.value}
+                  lang={species.language === options.language ? undefined : species.language}
+                >
+                  {option.label}
                 </option>
               ))}
             </select>
@@ -233,7 +249,7 @@ export function OriginStep({
             >
               <option value="">{t('Choose…')}</option>
               {options.originFeats.map((feat) => (
-                <option key={feat.featId} value={feat.featId} lang={english}>
+                <option key={feat.featId} value={feat.featId}>
                   {feat.name}
                 </option>
               ))}
@@ -244,7 +260,15 @@ export function OriginStep({
       <Problems
         problems={[
           ...builder.problemsOf('speciesId'),
-          ...builder.problemsOf('speciesOption'),
+          // The options by their words in the table's language.
+          ...builder.problemsOf('speciesOption').map((problem) =>
+            species && problem.params?.['options'] !== undefined
+              ? {
+                  ...problem,
+                  params: { options: species.options.map((option) => option.label).join(', ') },
+                }
+              : problem,
+          ),
           ...builder.problemsOf('size'),
           ...builder.problemsOf('speciesAbility'),
           ...builder.problemsOf('originFeat'),
@@ -255,6 +279,7 @@ export function OriginStep({
         label={t('Background')}
         items={options.backgrounds.map((one) => ({
           id: one.backgroundId,
+          lang: one.language === options.language ? undefined : one.language,
           name: one.name,
           line: `${one.abilityScores.map((ability) => t(ABILITY_NAMES[ability])).join(', ')} · ${one.feat}`,
         }))}

@@ -60,24 +60,28 @@ const resistancesIn = (words: string): DamageType[] =>
     .map((match) => (match[1] ?? '').toLowerCase())
     .filter((type): type is DamageType => (DAMAGE_TYPES as readonly string[]).includes(type));
 
-/** A species' options: the rows of its option table, or its option paragraphs' heads. */
-export function speciesOptions(species: SrdSpecies): string[] {
+/** A species' options as written: the rows of its option table, or its option paragraphs' heads. */
+export function speciesOptionWords(species: SrdSpecies): string[] {
   for (const trait of species.traits) {
     const table = trait.blocks.find((block) => block.kind === 'table');
-    if (table?.kind === 'table') return table.rows.map((row) => (row[0] ?? '').toLowerCase());
+    if (table?.kind === 'table') return table.rows.map((row) => row[0] ?? '');
     const heads = trait.blocks.flatMap((block) =>
-      block.kind === 'paragraph' && block.head !== null ? [block.head.toLowerCase()] : [],
+      block.kind === 'paragraph' && block.head !== null ? [block.head] : [],
     );
     if (heads.length > 1) return heads;
     // A Goliath's ancestries: "Cloud's Jaunt (Cloud Giant). …".
     const giants = trait.blocks.flatMap((block) => {
-      const giant = block.kind === 'paragraph' ? /\((\w+) Giant\)\./.exec(block.text) : null;
-      return giant ? [(giant[1] ?? '').toLowerCase()] : [];
+      const giant = block.kind === 'paragraph' ? /\(([^)]+?) \S+\)\./.exec(block.text) : null;
+      return giant ? [giant[1] ?? ''] : [];
     });
     if (giants.length > 1) return giants;
   }
   return [];
 }
+
+/** A species' options as the choices name them: its option words in lower case. */
+export const speciesOptions = (species: SrdSpecies): string[] =>
+  speciesOptionWords(species).map((words) => words.toLowerCase());
 
 /** The words of the chosen option: its table row or its paragraph. */
 function optionWords(species: SrdSpecies, option: string | undefined): string {

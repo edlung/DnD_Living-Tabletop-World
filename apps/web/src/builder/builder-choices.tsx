@@ -86,7 +86,8 @@ export function SkillsStep({
   const skilled = feats.filter((feat) => feat === 'skilled').length * 3;
   const speciesCount = species?.skillChoice?.count ?? 0;
   const toolPicks = [cls.tools.pick, background.tools.pick].filter((pick) => pick !== null);
-  const english = options.language === 'ru' ? 'en' : undefined;
+  // The class's words are English until their translation exists.
+  const english = cls.language === options.language ? undefined : cls.language;
   const proficient = [...fixed, ...draft.skills, ...draft.moreSkills];
   return (
     <div className="builder-step">

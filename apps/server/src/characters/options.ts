@@ -17,8 +17,13 @@ import {
   SRD_FEATS,
   SRD_SPECIES,
   SRD_SPELLS,
+  backgroundIn,
   classCasting,
+  classIn,
+  featIn,
   speciesGains,
+  speciesIn,
+  speciesOptionWords,
   speciesOptions,
   spellIn,
   srdClass,
@@ -68,21 +73,24 @@ function optionsIn(language: ReferenceLanguage): CharacterOptionsResponse {
   return {
     language,
     classes: CLASS_IDS.flatMap((classId) => {
-      const cls = srdClass(classId);
-      if (!cls) return [];
-      const casting = classCasting(cls, classId, 1);
+      const english = srdClass(classId);
+      if (!english) return [];
+      const casting = classCasting(english, classId, 1);
+      const shown = classIn(english, language);
+      const cls = shown.value;
       return [
         {
           classId,
+          language: shown.language,
           name: cls.name,
           primaryAbility: cls.core['Primary Ability'] ?? '',
-          hitDie: cls.creation.hitDie,
-          savingThrows: cls.creation.savingThrows,
-          skills: cls.creation.skills,
-          tools: tools(cls.creation.tools),
+          hitDie: english.creation.hitDie,
+          savingThrows: english.creation.savingThrows,
+          skills: english.creation.skills,
+          tools: tools(english.creation.tools),
           armor: cls.core['Armor Training'] ?? '',
           weapons: cls.core['Weapon Proficiencies'] ?? '',
-          equipment: equipment(cls.creation.equipment),
+          equipment: equipment(english.creation.equipment),
           casting: casting
             ? {
                 ability: casting.ability,
@@ -106,36 +114,43 @@ function optionsIn(language: ReferenceLanguage): CharacterOptionsResponse {
     }),
     species: SRD_SPECIES.map((species) => {
       const options = speciesOptions(species);
+      const shown = speciesIn(species, language);
+      const labels = speciesOptionWords(shown.value);
       const gains = (options.length > 0 ? options : [undefined]).map((option) =>
         speciesGains(species, option, undefined, []),
       );
       const first = gains[0];
       return {
         speciesId: species.speciesId,
-        name: species.name,
-        size: species.size,
+        language: shown.language,
+        name: shown.value.name,
+        size: shown.value.size,
         choosesSize: /or Small .*chosen/.test(species.size),
         speedFt: species.speed,
-        options,
+        options: options.map((value, index) => ({ value, label: labels[index] ?? value })),
         skillChoice: first?.skillChoice ?? null,
         originFeat: first?.originFeat ?? false,
         givesSpells: gains.some((one) => one.cantrips.length + one.spells.length > 0),
-        traits: species.traits.map((trait) => trait.name),
+        traits: shown.value.traits.map((trait) => trait.name),
       };
     }),
-    backgrounds: SRD_BACKGROUNDS.map((background) => ({
-      backgroundId: background.backgroundId,
-      name: background.name,
-      abilityScores: background.abilityScores,
-      feat: background.feat,
-      featId: background.featId,
-      skills: background.skills,
-      tools: tools(background.creation.tools),
-      equipment: equipment(background.creation.equipment),
-    })),
+    backgrounds: SRD_BACKGROUNDS.map((background) => {
+      const shown = backgroundIn(background, language);
+      return {
+        backgroundId: background.backgroundId,
+        language: shown.language,
+        name: shown.value.name,
+        abilityScores: background.abilityScores,
+        feat: shown.value.feat,
+        featId: background.featId,
+        skills: background.skills,
+        tools: tools(background.creation.tools),
+        equipment: equipment(background.creation.equipment),
+      };
+    }),
     originFeats: SRD_FEATS.filter((one) => one.category === 'Origin').map((one) => ({
       featId: one.featId,
-      name: one.name,
+      name: featIn(one, language).value.name,
       repeatable: one.repeatable,
     })),
     fightingStyles: FIGHTING_STYLES.map((featId) => ({

@@ -227,7 +227,12 @@ export {
 } from './srd/origins.ts';
 export { buildCharacter, type BuildResult } from './builder/build.ts';
 export { rolledScores } from './builder/abilities.ts';
-export { speciesGains, speciesOptions, type SpeciesGains } from './builder/species.ts';
+export {
+  speciesGains,
+  speciesOptionWords,
+  speciesOptions,
+  type SpeciesGains,
+} from './builder/species.ts';
 export {
   CASTING_ABILITY,
   classCasting,
@@ -235,3 +240,10 @@ export {
   type ClassCasting,
 } from './builder/spells.ts';
 export { startingEquipment, type StartingItem } from './builder/equipment.ts';
+export {
+  backgroundIn,
+  characterUnits,
+  classIn,
+  featIn,
+  speciesIn,
+} from './srd/russian-characters.ts';

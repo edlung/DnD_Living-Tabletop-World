@@ -8,6 +8,10 @@ import {
 } from './reference.ts';
 import { SRD_EQUIPMENT, SRD_MAGIC_ITEMS, SRD_MONSTERS, SRD_SPELLS } from './catalog.ts';
 import { equipmentIn, magicItemIn, monsterIn, spellIn } from './catalogs-ru.ts';
+import { srdClass } from './classes.ts';
+import { srdSpecies } from './origins.ts';
+import charactersRu from './ru/characters.json' with { type: 'json' };
+import { characterUnits, classIn, speciesIn } from './russian-characters.ts';
 import { abbreviationsIn, glossaryEntryIn, rulesSectionIn } from './reference-ru.ts';
 import abbreviationsRu from './ru/abbreviations.json' with { type: 'json' };
 import gearRu from './ru/equipment.json' with { type: 'json' };
@@ -26,6 +30,7 @@ import {
   abbreviationStrings,
   glossaryEntryStrings,
   rulesSectionStrings,
+  englishHash,
   translationProblem,
   type KeptRussian,
   type Strings,
@@ -75,6 +80,20 @@ describe('the Russian rules reference', () => {
     allInRussian(SRD_MONSTERS, (one) => one.monsterId, monsterIn, monsterStrings, monstersRu);
     allInRussian(SRD_MAGIC_ITEMS, (one) => one.itemId, magicItemIn, magicItemStrings, itemsRu);
     allInRussian(SRD_EQUIPMENT, (one) => one.itemId, equipmentIn, equipmentStrings, gearRu);
+  });
+
+  it('has every class part, species, background and feat in Russian, current', () => {
+    const kept = charactersRu as Readonly<Record<string, KeptRussian | undefined>>;
+    for (const unit of characterUnits()) {
+      expect(kept[unit.key]?.hash, unit.key).toBe(englishHash(unit.english));
+      expect(translationProblem(unit.english, kept[unit.key]?.ru), unit.key).toBeNull();
+    }
+    const wizard = srdClass('wizard');
+    const elf = srdSpecies('elf');
+    if (!wizard || !elf) throw new Error('no Wizard or Elf');
+    expect(classIn(wizard, 'ru').value.name).toBe('Волшебник');
+    expect(speciesIn(elf, 'ru').value.name).toBe('Эльф');
+    expect(classIn(wizard, 'en').value).toBe(wizard);
   });
 
   it('reads Prone in the app’s own words, and English where its Russian is stale', () => {
