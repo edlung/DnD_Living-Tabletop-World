@@ -77,6 +77,7 @@ import {
   useReactionCommandSchema,
 } from '../combat/reactions.ts';
 import { addObjectCommandSchema } from '../combat/objects.ts';
+import { useFeatureCommandSchema } from '../combat/features.ts';
 import {
   contagionCourseCommandSchema,
   infectWithContagionCommandSchema,
@@ -184,6 +185,7 @@ export const kernelCommandSchema = z
     useCreatureActionCommandSchema,
     makeReadiedAttackCommandSchema,
     spendInspirationCommandSchema,
+    useFeatureCommandSchema,
     endCombatCommandSchema,
     useReactionCommandSchema,
     declineReactionCommandSchema,
@@ -273,6 +275,7 @@ export const KERNEL_COMMAND_TYPES = [
   'TakeAction',
   'MakeReadiedAttack',
   'SpendInspiration',
+  'UseFeature',
   'EndCombat',
   'UseReaction',
   'DeclineReaction',

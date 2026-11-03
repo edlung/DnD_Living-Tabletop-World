@@ -16,7 +16,7 @@ import {
 import { abilityModifier, spellSlotsFor, totalLevel } from '../character-math.ts';
 import { CLASS_HIT_DIE, attacksFor } from '../rest.ts';
 import advancement from '../srd/advancement.json' with { type: 'json' };
-import { srdClass } from '../srd/classes.ts';
+import { classColumn, srdClass } from '../srd/classes.ts';
 import { srdFeat } from '../srd/origins.ts';
 import { CASTING_ABILITY, classCasting, classSpellList } from './spells.ts';
 
@@ -55,12 +55,7 @@ export interface LevelAsks {
   readonly multiclassSkill: readonly Skill[] | null;
 }
 
-const count = (value: string | undefined): number =>
-  value === undefined || value === '—' ? 0 : Number(/\d+/.exec(value)?.[0] ?? 0);
-const column = (cls: SrdClass, name: string, level: number): number => {
-  const index = cls.columns.indexOf(name);
-  return index < 0 || level < 1 ? 0 : count(cls.levels[level - 1]?.values[index]);
-};
+const column = classColumn;
 const delta = (cls: SrdClass, name: string, level: number) =>
   column(cls, name, level) - column(cls, name, level - 1);
 

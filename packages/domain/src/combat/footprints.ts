@@ -15,6 +15,7 @@ type CombatEvent = Extract<
       | 'LightSet'
       | 'StatBlockSet'
       | 'ActionTaken'
+      | 'FeatureUsed'
       | 'AttackPerformed'
       | 'WeaponMasteryApplied'
       | 'SpellCast'
@@ -82,6 +83,7 @@ export function combatFootprint(event: CombatEvent): Footprint {
         writes: [facts.statBlock(event.payload.entityId)],
       };
     case 'ActionTaken':
+    case 'FeatureUsed':
     case 'AttackPerformed':
     case 'WeaponMasteryApplied':
     case 'SpellCast':

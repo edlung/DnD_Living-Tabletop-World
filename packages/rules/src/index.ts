@@ -55,6 +55,25 @@ export {
   type HitDicePool,
   type HitDieRefusal,
 } from './rest.ts';
+export {
+  RAGE_RESISTANCES,
+  rageAdvantage,
+  rageDamage,
+  resistancesOf,
+  usesStrength,
+} from './features/numbers.ts';
+export {
+  RESOURCE_RULES,
+  afterLongRest,
+  afterShortRest,
+  classResources,
+  pactSlots,
+  regainResource,
+  regainSlots,
+  resourceOf,
+  spendResource,
+  type SpendRefusal,
+} from './features/resources.ts';
 export { OBJECT_ARMOR_CLASS, OBJECT_HIT_POINTS, objectStatBlock } from './objects.ts';
 export { lightSeen, obscurementSeen, perceivesWithin, type Obscurement } from './sight.ts';
 export { ARMOR_SLOW_FT, armorHampersStealth, armorSlowFt } from './armor.ts';
@@ -214,7 +233,7 @@ export {
   type ReferenceLanguage,
 } from './srd/reference-ru.ts';
 export { equipmentIn, magicItemIn, monsterIn, spellIn } from './srd/catalogs-ru.ts';
-export { SRD_CLASSES, srdClass } from './srd/classes.ts';
+export { SRD_CLASSES, classColumn, srdClass } from './srd/classes.ts';
 export {
   SRD_BACKGROUNDS,
   SRD_FEATS,

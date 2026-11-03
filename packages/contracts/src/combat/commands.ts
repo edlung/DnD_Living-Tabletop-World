@@ -474,6 +474,8 @@ export const COMBAT_COMMAND_TYPES = [
   'TakeAction',
   'MakeReadiedAttack',
   'SpendInspiration',
+  /** A class feature, in a fight or not (docs/adr/0056-characters-from-the-srd.md §4). */
+  'UseFeature',
   'EndTurn',
   'EndCombat',
   'UseReaction',

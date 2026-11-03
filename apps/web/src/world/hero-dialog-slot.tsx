@@ -5,9 +5,11 @@ import type { ReactNode } from 'react';
 import type { WorldApi } from '../api/client.ts';
 import { LevelSection } from '../builder/level-section.tsx';
 import { MakeCharacter } from '../builder/make-character.tsx';
+import { FeatureSection } from '../character/feature-section.tsx';
 import { HeroDialog } from '../character/hero-dialog.tsx';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
 import { InventoryPanel, type Recipient } from '../items/inventory-panel.tsx';
+import { useDiceTable } from '../dice/table.tsx';
 import { HitDice } from '../rest/sheet-rest.tsx';
 import type { Shell } from '../shell/use-shell.ts';
 
@@ -42,7 +44,9 @@ export function WorldHeroDialog({
   readonly notice: ReactNode;
 }) {
   const t = useT();
+  const isDm = useDiceTable()?.isDm ?? false;
   const shown = directory.find((entity) => entity.entityId === shell.hero);
+  const party = directory.filter((entity) => entity.kind === 'character');
   return (
     <HeroDialog
       api={api}
@@ -57,6 +61,17 @@ export function WorldHeroDialog({
       overview={(shown) => (
         <>
           <HitDice {...shown} locked={locked} onRun={onRun} />
+          {/* The class features in play (docs/adr/0056-…md §4). */}
+          <FeatureSection
+            api={api}
+            entityId={shown.entityId}
+            sheet={shown.sheet}
+            derived={shown.derived}
+            party={party}
+            canUse={isDm || shown.entityId === actorId}
+            locked={locked}
+            onRun={onRun}
+          />
           {/* Experience and the levels to take (docs/adr/0056-…md §3). */}
           <LevelSection
             api={api}

@@ -1,5 +1,6 @@
 import { z } from 'zod';
 
+import type { FeatureAct } from '../combat/features.ts';
 import type { ReactionId } from '../combat/reactions.ts';
 import { entityIdSchema, knowledgeIdSchema } from '../kernel/identifiers.ts';
 import { ITEM_PLAYER_COMMAND_TYPES } from '../items/commands.ts';
@@ -121,6 +122,7 @@ export const PLAYER_COMMAND_TYPES = [
   'TakeAction',
   'MakeReadiedAttack',
   'SpendInspiration',
+  'UseFeature',
   'EndTurn',
   'UseReaction',
   'DeclineReaction',
@@ -240,6 +242,17 @@ export type PlayerOutcome =
       readonly healed?: number;
       /** A magic item's charges left after one was spent (§5). */
       readonly chargesLeft?: number;
+    }
+  | {
+      /** A class feature used (docs/adr/0056-characters-from-the-srd.md §4). */
+      readonly kind: 'UseFeature';
+      readonly feature: FeatureAct;
+      /** The dice it rolled: Second Wind's d10, a Bardic Inspiration die. */
+      readonly rolls: readonly number[];
+      /** The hit points it gave (Second Wind, Lay on Hands). */
+      readonly healed?: number;
+      /** What is left of the resource after it. */
+      readonly left?: number;
     };
 
 /** What an accepted item command did (docs/adr/0039-item-possession.md). */

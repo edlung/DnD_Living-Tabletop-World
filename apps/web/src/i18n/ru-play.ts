@@ -345,6 +345,7 @@ registerRussian({
   'Made the readied attack': 'Подготовленная атака',
   'make the readied attack': 'совершить подготовленную атаку',
   'spend heroic inspiration': 'потратить героическое вдохновение',
+  'use a class feature': 'использовать умение класса',
   'Rolled a check again with Heroic Inspiration': 'Переброс проверки за героическое вдохновение',
   'Went to {place}': 'Переход: {place}',
   'Asked {npc} about {topic}': 'Вопрос ({npc}): {topic}',

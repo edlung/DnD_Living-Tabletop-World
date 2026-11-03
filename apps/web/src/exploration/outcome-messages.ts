@@ -1,6 +1,7 @@
 import type { KnowledgeView, PlayerOutcome } from '@ltw/contracts';
 import { readableLabel, type Translate } from '@ltw/ui';
 
+import { RESOURCE_NAMES } from '../character/feature-words.ts';
 import { isSliceSpellId } from '../character/words.ts';
 
 /**
@@ -145,6 +146,21 @@ export function outcomeMessage(t: Translate, outcome: PlayerOutcome | undefined)
           count: outcome.chargesLeft,
         });
       return t(ITEM_DONE[outcome.action]);
+    case 'UseFeature': {
+      // A class feature (docs/adr/0056-characters-from-the-srd.md §4).
+      if (outcome.feature === 'end-rage') return t('The Rage ends.');
+      if (outcome.feature === 'inspiration-die')
+        return t(
+          'Your Bardic Inspiration die shows {roll}: add it to the failed d20 test; the DM applies it.',
+          { roll: outcome.rolls[0] ?? 0 },
+        );
+      const feature = t(RESOURCE_NAMES[outcome.feature]);
+      if (outcome.healed !== undefined)
+        return t('{feature}: {count} hit points back.', { feature, count: outcome.healed });
+      return outcome.left === undefined
+        ? t('{feature} used.', { feature })
+        : t('{feature} used: {count} left.', { feature, count: outcome.left });
+    }
     case 'MoveCombatant': {
       // Its height, a landing's check and a fall (docs/adr/0049-space-and-movement.md §6–8).
       const moved = t('You moved to {x}, {y}.', { x: outcome.position.x, y: outcome.position.y });

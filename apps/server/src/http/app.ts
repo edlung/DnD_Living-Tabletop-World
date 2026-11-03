@@ -50,6 +50,7 @@ import { registerAttuneRoutes } from '../items/attune-routes.ts';
 import { registerItemCatalogRoutes } from '../items/item-catalog-routes.ts';
 import { registerRulesReferenceRoutes } from '../rules/reference-routes.ts';
 import { registerAdvancementRoutes } from '../characters/advancement-routes.ts';
+import { registerFeatureRoutes } from '../characters/feature-routes.ts';
 import { registerCharacterCreationRoutes } from '../characters/creation-routes.ts';
 import { registerEncounterRoutes } from './routes/encounter-routes.ts';
 import { registerKnowledgeRoutes } from './routes/knowledge-routes.ts';
@@ -225,6 +226,7 @@ export function buildApp(input: AppDependencies): FastifyInstance {
   registerRollRoutes(app, { ...deps, table });
   registerRestRoutes(app, { ...deps, table });
   registerAdvancementRoutes(app, { ...deps, table });
+  registerFeatureRoutes(app, deps);
   registerAttuneRoutes(app, { ...deps, table });
   if (deps.signIn) {
     const signIn = { ...deps, signIn: deps.signIn };

@@ -21,6 +21,7 @@ import {
   armorHampersStealth,
   checkEffects,
   d20Test,
+  rageAdvantage,
   skillModifier,
 } from '@ltw/rules';
 
@@ -183,6 +184,8 @@ export function needsAid(v: Vitals): boolean {
  */
 export function rollSkill(dice: Dice, vitals: Vitals, skill: Skill, dc = HIDE_DC) {
   const effects = checkEffects(conditionsOf(vitals), exhaustionOf(vitals));
+  // A Rage's Advantage on Strength checks: Athletics (docs/adr/0056-…md §4).
+  const raging = vitals.kind === 'character' && rageAdvantage(vitals.sheet, SKILLS[skill]);
   const rustles =
     skill === 'stealth' && vitals.kind === 'character' && armorHampersStealth(vitals.sheet);
   const base =
@@ -193,7 +196,7 @@ export function rollSkill(dice: Dice, vitals: Vitals, skill: Skill, dc = HIDE_DC
   const roll = d20Test(dice, {
     modifier,
     target: dc,
-    advantage: effects.advantage,
+    advantage: effects.advantage || raging,
     disadvantage: effects.disadvantage || rustles,
   });
   return { ...roll, modifier };

@@ -18,6 +18,7 @@ import {
 } from './order.ts';
 import { decideUseCreatureAction } from './creature-actions.ts';
 import { decideExposeToHazard } from './hazards.ts';
+import { decideUseFeature } from './features.ts';
 import { decideInflictMentalStress, decideSpringTrap } from './toolbox.ts';
 import { decideContagionCourse, decideInfectWithContagion } from './contagions.ts';
 import { decideSetLight } from './light.ts';
@@ -83,6 +84,8 @@ function decideCommand(context: DecisionContext, command: CombatCommand, dice: D
       return decideSetInspiration(context, command);
     case 'SpendInspiration':
       return decideSpendInspiration(context, command);
+    case 'UseFeature':
+      return decideUseFeature(context, command, dice);
     case 'AddCombatant':
       return decideAddCombatant(context, command, dice);
     case 'RemoveCombatant':

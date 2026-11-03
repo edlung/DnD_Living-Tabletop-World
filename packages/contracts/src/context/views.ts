@@ -129,6 +129,23 @@ export const CONTEXT_ILLEGAL_REASONS = [
   'MOUNT_TAKEN',
   'MOUNTED_THIS_TURN',
   'CONTROLLED_MOUNT',
+  /** Class features (docs/adr/0056-characters-from-the-srd.md §4). */
+  'NOT_A_FEATURE',
+  'ALREADY_RAGING',
+  'NOT_RAGING',
+  'HEAVY_ARMOR',
+  'ACTION_UNUSED',
+  'ALREADY_SURGED',
+  'SURGE_NOT_MAGIC',
+  'NO_INSPIRATION_DIE',
+  'ALREADY_INSPIRED',
+  'OUT_OF_FIGHT_ONLY',
+  'TOO_MANY_SLOTS',
+  'NO_SLOT_EXPENDED',
+  'SLOT_TOO_HIGH',
+  'POINTS_FULL',
+  'NOT_POISONED',
+  'NEEDS_NO_HEALING',
   /** The slice does not carry this action out (Trade: no economy; docs/adr/0020-npc-intelligence.md §1). */
   'NOT_AVAILABLE',
 ] as const;

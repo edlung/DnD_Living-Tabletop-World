@@ -1,6 +1,6 @@
 import type { Ability } from '@ltw/contracts';
 import type { Dice, DraftEvent } from '@ltw/domain';
-import { COVER_BONUS, d20Test, saveEffects } from '@ltw/rules';
+import { COVER_BONUS, d20Test, rageAdvantage, saveEffects } from '@ltw/rules';
 
 import { isObject } from './objects.ts';
 import { conditionsOf, exhaustionOf, saveModifier, type Vitals } from './vitals.ts';
@@ -48,6 +48,8 @@ export function spellSave(
           advantage:
             effects.advantage ||
             (dodging && ability === 'dex') ||
+            // A Rage's Advantage on Strength saves (docs/adr/0056-characters-from-the-srd.md §4).
+            (target.kind === 'character' && rageAdvantage(target.sheet, ability)) ||
             ((purpose === 'spell' || purpose === 'counterspell') &&
               target.kind === 'creature' &&
               target.block.traits?.magicResistance === true),

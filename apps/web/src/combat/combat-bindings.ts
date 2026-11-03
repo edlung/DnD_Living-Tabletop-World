@@ -18,6 +18,7 @@ export type CombatUiCommand = KernelCommandOf<
   | 'CloseReactionWindow'
   | 'TakeAction'
   | 'MakeReadiedAttack'
+  | 'UseFeature'
 >;
 
 /**

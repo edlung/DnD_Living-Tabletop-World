@@ -26,6 +26,9 @@ export const UI_ITEM_CAMPAIGNS = {
   builder: 'ui-builder-player',
   /** The DM grants a level and a player takes it (docs/adr/0056-…md §3). */
   levels: 'ui-builder-levels',
+  /** The class features in play, in English and in Russian (docs/adr/0056-…md §4). */
+  features: 'ui-class-features',
+  featuresRu: 'ui-class-features-ru',
   /** A player attunes in a Short Rest (docs/adr/0054-items-as-data.md §5). */
   attune: 'ui-items-attune',
   /** Charges, dawn, and a potion known by a taste (§5). */
@@ -81,6 +84,8 @@ export async function seedUiItemCampaigns(engine: WorldEngine): Promise<void> {
     [UI_ITEM_CAMPAIGNS.catalogRu, 'ru'],
     [UI_ITEM_CAMPAIGNS.builder, 'en'],
     [UI_ITEM_CAMPAIGNS.levels, 'en'],
+    [UI_ITEM_CAMPAIGNS.features, 'en'],
+    [UI_ITEM_CAMPAIGNS.featuresRu, 'ru'],
     [UI_ITEM_CAMPAIGNS.attune, 'en'],
     [UI_ITEM_CAMPAIGNS.charges, 'en'],
   ] as const) {

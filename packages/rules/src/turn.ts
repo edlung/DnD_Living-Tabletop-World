@@ -18,6 +18,11 @@ export interface TurnState {
   readonly slotExpendedThisTurn: boolean;
   /** Attacks left from the current Attack action (Extra Attack). */
   readonly attacksRemaining: number;
+  /**
+   * Action Surge's action is the one left this turn: no Magic action with it
+   * (docs/adr/0056-characters-from-the-srd.md §4).
+   */
+  readonly surged?: boolean | undefined;
 }
 
 export type IllegalReason =
@@ -94,7 +99,29 @@ export type IllegalReason =
   | 'MOUNT_TOO_SMALL'
   | 'MOUNT_TAKEN'
   | 'MOUNTED_THIS_TURN'
-  | 'CONTROLLED_MOUNT';
+  | 'CONTROLLED_MOUNT'
+  /**
+   * Class features (docs/adr/0056-characters-from-the-srd.md §4): one the character has not; a Rage
+   * begun already, none to end, or one in heavy armor; Action Surge before the action is spent,
+   * twice in a turn, or its action for magic; no Bardic Inspiration die held, or one held already; a
+   * feature used out of a fight only; more slots than it regains, or none of them expended.
+   */
+  | 'NOT_A_FEATURE'
+  | 'ALREADY_RAGING'
+  | 'NOT_RAGING'
+  | 'HEAVY_ARMOR'
+  | 'ACTION_UNUSED'
+  | 'ALREADY_SURGED'
+  | 'SURGE_NOT_MAGIC'
+  | 'NO_INSPIRATION_DIE'
+  | 'ALREADY_INSPIRED'
+  | 'OUT_OF_FIGHT_ONLY'
+  | 'TOO_MANY_SLOTS'
+  | 'NO_SLOT_EXPENDED'
+  | 'SLOT_TOO_HIGH'
+  | 'POINTS_FULL'
+  | 'NOT_POISONED'
+  | 'NEEDS_NO_HEALING';
 
 export interface Illegal {
   readonly legal: false;

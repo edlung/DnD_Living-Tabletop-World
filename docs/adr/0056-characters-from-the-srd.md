@@ -95,6 +95,33 @@ backgrounds,species,feats}.json`, held to the SRD by tests (a features table's p
   slots and left the level's choices to the DM — gives way to this: one way to a level, with its
   choices made and checked.
 
+## Notes from the implementation (Stage 660d, part 1, 2026-11-03)
+
+- The class resources are counted by the rules (`packages/rules/src/features/resources.ts`) from
+  the features table's columns (Rages, Channel Divinity, Wild Shape, Second Wind, Focus Points,
+  Sorcery Points) or the feature's words (Action Surge, Indomitable, Lay on Hands' 5 × level,
+  Bardic Inspiration's Charisma modifier, Innate Sorcery, Arcane Recovery, Magical Cunning). The
+  sheet keeps what is spent (`featureUses`), a Rage while it lasts and a Bardic Inspiration die
+  held; the derived view shows each resource with what is left.
+- `UseFeature` is a player command the combat engine decides in a fight or out of one
+  (`packages/combat/src/features.ts`): in a fight on the character's turn its Bonus Action or
+  action is paid. The engine applies Second Wind's and Lay on Hands' hit points, Lay on Hands'
+  end of Poisoned, a Rage (resistance to bludgeoning, piercing and slashing, the Rage Damage
+  bonus with Strength attacks, Advantage on Strength checks and saves; refused in heavy armor;
+  ended by its player, unconsciousness or a long rest — its extension by attacks is the DM's),
+  Action Surge's action (after the action is spent, once a turn, no Magic action with it), a
+  Bardic Inspiration die given and rolled by its holder (its addition to the failed test is the
+  DM's), Patient Defense and Step of the Wind, Arcane Recovery's and Magical Cunning's slots and
+  Font of Magic. Channel Divinity, Wild Shape, Flurry of Blows, Innate Sorcery and Indomitable are
+  spent with their words for the DM.
+- A Short Rest's end gives back one use of Rage, Channel Divinity, Wild Shape and Second Wind and
+  all of Action Surge, Focus and (from Bard 5) Bardic Inspiration, and a Warlock's Pact Magic
+  slots; a Long Rest gives back all. Font of Magic's slot refills one of that level the character
+  expended (a created slot past the table's is the DM's).
+- The Overview's Class features section lists each resource with its use and every feature the
+  character's levels give in the campaign's language, with its chosen Metamagic and invocations
+  (`GET …/characters/:id/features`).
+
 ## Consequences
 
 - Stage 660 runs in parts: the data; creation; advancement; features in play; the table's life.

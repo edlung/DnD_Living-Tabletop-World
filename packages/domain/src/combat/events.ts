@@ -3,6 +3,7 @@ import {
   ABILITIES,
   COMBAT_ACTIONS,
   CONDITIONS,
+  FEATURE_ACTS,
   MAX_COMBATANTS,
   SIDES,
   SKILL_IDS,
@@ -76,6 +77,8 @@ export const turnRecordSchema = z
     loadingFired: z.literal(true).optional(),
     /** It mounted or dismounted this turn: once a move (docs/adr/0049-space-and-movement.md §10). */
     mounting: z.literal(true).optional(),
+    /** Action Surge's action taken this turn: once a turn (docs/adr/0056-…md §4). */
+    surged: z.literal(true).optional(),
   })
   .strict();
 
@@ -221,6 +224,23 @@ export const combatEventPayloadSchemas = {
         })
         .strict()
         .optional(),
+    })
+    .strict(),
+  /**
+   * A class feature used (docs/adr/0056-characters-from-the-srd.md §4): what it spent, the dice it
+   * rolled, the creature it touched; its effect follows in its own records (healing, the sheet).
+   */
+  FeatureUsed: z
+    .object({
+      characterId: entityIdSchema,
+      feature: z.enum(FEATURE_ACTS),
+      targetId: entityIdSchema.optional(),
+      amount: z.number().int().min(1).max(100).optional(),
+      option: slug.optional(),
+      slots: z.array(z.number().int().min(1).max(9)).max(9).optional(),
+      rolls,
+      /** The uses or points of its resource left after it. */
+      left: z.number().int().min(0).max(100).optional(),
     })
     .strict(),
   AttackPerformed: z

@@ -14,6 +14,7 @@ import {
   abilityModifier,
   incapacitatedBy,
   initiativeEffects,
+  resistancesOf,
   savingThrowModifier,
   speedAfterConditions,
 } from '@ltw/rules';
@@ -43,7 +44,13 @@ export const hitPoints = (v: Vitals): HitPoints =>
 /** Its hit point maximum as an effect may have lowered it (docs/adr/0048-hit-points.md §2). */
 export const ceilingOf = (v: Vitals): number => effectiveMaximum(hitPoints(v));
 /** Its Resistances, Vulnerabilities and Immunities by damage type (ADR 0048 §3). */
-export const defensesOf = (v: Vitals) => (v.kind === 'character' ? v.sheet : v.block);
+/** Its damage defenses: a raging character's resistances among them (docs/adr/0056-…md §4). */
+export const defensesOf = (v: Vitals) =>
+  v.kind === 'character'
+    ? v.sheet.raging
+      ? { ...v.sheet, resistances: [...resistancesOf(v.sheet)] }
+      : v.sheet
+    : v.block;
 /** Its size (docs/adr/0049-space-and-movement.md §1): Medium when its sheet or block names none. */
 export const sizeOf = (v: Vitals): CreatureSize =>
   (v.kind === 'character' ? v.sheet.size : v.block.size) ?? 'medium';

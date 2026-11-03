@@ -29,7 +29,8 @@ Authority: owner approval 2026-11-02 (`reviews/OWNER_FULL_GAME_2026-11-02.json`)
   Stage 530's milestone level gives way to it.
 - 660d — Features in play: resources counted and restored at rests, the features that change
   numbers, the options chosen (Metamagic, invocations); what the engine cannot apply shows its words
-  and is the DM's.
+  and is the DM's. Part 1 done: the resources, `UseFeature`, a Rage's numbers, the rests, the
+  Overview's Class features and every feature's words.
 - 660e — The table's life: death and the spells that return the dead, a character joining
   mid-campaign, a character copied into another campaign as a sheet (decision 15), a printable
   sheet, a portrait by GPT, the four summons a spell's level scales and Wild Shape's forms.

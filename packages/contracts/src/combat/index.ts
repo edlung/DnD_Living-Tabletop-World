@@ -107,3 +107,9 @@ export {
   type ContagionStep,
   type TrapId,
 } from './toolbox.ts';
+export {
+  FEATURE_ACTS,
+  useFeatureCommandSchema,
+  type FeatureAct,
+  type UseFeatureCommand,
+} from './features.ts';

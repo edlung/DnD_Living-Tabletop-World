@@ -6,6 +6,7 @@ import {
 } from '@ltw/contracts';
 
 import { abilityModifier } from './character-math.ts';
+import { afterLongRest } from './features/resources.ts';
 
 /**
  * Rest (SRD 5.2.1; Stage 530, docs/PRODUCT_COMPLETION_PLAN.md decision 9): Hit Point Dice,
@@ -125,13 +126,14 @@ export function spendHitDie(
  * fewer (docs/adr/0045-conditions-and-actions.md §3). The rules let a creature at 0 hit
  * points start no long rest; a stable one regains 1 after 1d4 hours, which the product counts
  * inside the eight, so the whole party wakes rested (owner-delegated decision, Stage 530). One
- * begun at `startedAt` (world time) is the one of these 24 hours (docs/adr/0050 §5).
+ * begun at `startedAt` (world time) is the one of these 24 hours (docs/adr/0050 §5). The class
+ * features' uses come back, a Rage ends (docs/adr/0056-characters-from-the-srd.md §4).
  */
 export function longRest(sheet: CharacterSheet, startedAt?: number): CharacterSheet {
   const exhaustion = (sheet.exhaustion ?? 0) - 1;
   return {
     ...without(
-      without(without(without(sheet, 'deathSaves'), 'hitDiceSpent'), 'exhaustion'),
+      without(without(without(afterLongRest(sheet), 'deathSaves'), 'hitDiceSpent'), 'exhaustion'),
       'knockedOut',
     ),
     ...(exhaustion > 0 ? { exhaustion } : {}),

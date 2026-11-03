@@ -19,6 +19,10 @@ const canonical = characterSheetSchema.parse({
   exhaustion: 2,
   heroicInspiration: true,
   contagions: [{ contagionId: 'sewer-plague', takenHold: true, successes: 0 }],
+  // The class features' state (docs/adr/0056-characters-from-the-srd.md §4).
+  featureUses: { 'second-wind': 1 },
+  raging: { since: 0 },
+  inspirationDie: { sides: 8, fromId: 'other', until: 3600 },
 });
 let state: WorldState;
 

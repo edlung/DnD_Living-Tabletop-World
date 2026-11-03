@@ -56,6 +56,8 @@ export function checkCast(
   if (spell.castingTime === 'action' && (!turn.ownTurn || turn.actionUsed)) {
     return illegal(turn.ownTurn ? 'NO_ACTION' : 'NOT_YOUR_TURN');
   }
+  // Action Surge's action is no Magic action (SRD 5.2.1).
+  if (spell.castingTime === 'action' && turn.surged === true) return illegal('SURGE_NOT_MAGIC');
   if (spell.castingTime === 'bonus' && (!turn.ownTurn || turn.bonusActionUsed)) {
     return illegal(turn.ownTurn ? 'NO_BONUS_ACTION' : 'NOT_YOUR_TURN');
   }

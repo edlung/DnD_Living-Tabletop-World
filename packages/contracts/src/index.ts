@@ -209,6 +209,19 @@ export {
   type ContagionState,
 } from './rules/contagions.ts';
 export {
+  CLASS_RESOURCES,
+  featureUsesSchema,
+  inspirationDieSchema,
+  type CharacterFeatureView,
+  type CharacterFeaturesResponse,
+  type ClassResource,
+  type FeatureUses,
+  type InspirationDie,
+  type ResourceCost,
+  type ResourceRecharge,
+  type ResourceView,
+} from './rules/class-features.ts';
+export {
   hitDieRequestSchema,
   restEndRequestSchema,
   restRequestSchema,

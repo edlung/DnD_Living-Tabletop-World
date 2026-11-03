@@ -12,6 +12,7 @@ import {
 import type { Translate } from '@ltw/ui';
 
 import { nameFor } from '../authoring/command-text.ts';
+import { RESOURCE_NAMES } from '../character/feature-words.ts';
 import { spellName } from '../exploration/outcome-messages.ts';
 import { describeHand } from './hand-words.ts';
 import { formatWorldTime } from './world-time.ts';
@@ -74,6 +75,7 @@ export const STEP_TEXT: Readonly<Record<KernelCommandType, string>> = {
   TakeAction: 'take an action',
   MakeReadiedAttack: 'make the readied attack',
   SpendInspiration: 'spend heroic inspiration',
+  UseFeature: 'use a class feature',
   EndTurn: 'end turn',
   EndCombat: 'end combat',
   UseReaction: 'use reaction',
@@ -199,6 +201,16 @@ export function describePlayerAction(
       return t('Made the readied attack');
     case 'SpendInspiration':
       return t('Rolled a check again with Heroic Inspiration');
+    case 'UseFeature':
+      // A class feature (docs/adr/0056-characters-from-the-srd.md §4), and whom it reached.
+      if (command.feature === 'end-rage') return t('Ended the Rage');
+      if (command.feature === 'inspiration-die') return t('Rolled a Bardic Inspiration die');
+      return command.targetId === undefined || command.targetId === command.characterId
+        ? t('Used {feature}', { feature: t(RESOURCE_NAMES[command.feature]) })
+        : t('Used {feature} on {target}', {
+            feature: t(RESOURCE_NAMES[command.feature]),
+            target: name(command.targetId),
+          });
     case 'EnterLocation':
       return t('Went to {place}', { place: name(command.locationId) });
     case 'AskAbout':

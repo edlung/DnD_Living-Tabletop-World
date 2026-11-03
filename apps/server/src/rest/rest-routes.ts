@@ -11,6 +11,7 @@ import {
 } from '@ltw/contracts';
 import type { Actor, WorldState } from '@ltw/domain';
 import {
+  afterShortRest,
   hitDieRefusal,
   longRest,
   longRestRefusal,
@@ -174,15 +175,18 @@ export function registerRestRoutes(
     if (!open || !(await rests.endRest(campaignId, open.restId, deps.table.now()))) {
       return sendError(reply, request, 'CONFLICT');
     }
-    // The knocked out come round (docs/adr/0048-hit-points.md §4; ADR 0050 §7).
+    // The knocked out come round (docs/adr/0048-hit-points.md §4; ADR 0050 §7); the class features
+    // a Short Rest gives back come back, and a Warlock's Pact Magic slots (ADR 0056 §4).
     const woke: string[] = [];
     for (const character of restingCharacters(state)) {
       const id = commandIdOf('rest', requestId, `wake-${character.entityId}`);
       const sheet = state.characterSheets.get(character.entityId);
-      const awake = sheet ? wakeAfterShortRest(sheet) : null;
-      if (!awake || state.commands.has(id)) continue;
-      const command = { type: 'SetCharacterSheet', entityId: character.entityId, sheet: awake };
-      if (await record(campaignId, id, command)) woke.push(character.name);
+      if (!sheet || state.commands.has(id)) continue;
+      const awake = wakeAfterShortRest(sheet);
+      const rested = afterShortRest(awake ?? sheet);
+      if (rested === sheet) continue;
+      const command = { type: 'SetCharacterSheet', entityId: character.entityId, sheet: rested };
+      if ((await record(campaignId, id, command)) && awake) woke.push(character.name);
     }
     const body: RestResult = { status: 'ended', ...(woke.length > 0 ? { woke } : {}) };
     return reply.send(body);

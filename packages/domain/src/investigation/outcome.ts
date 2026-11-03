@@ -202,6 +202,19 @@ function combatOutcome(
         ...(cast.payload.forDm ? { forDm: cast.payload.forDm } : {}),
       };
     }
+    case 'UseFeature': {
+      // A class feature (docs/adr/0056-characters-from-the-srd.md §4): its dice and hit points.
+      const used = events.find((event) => event.type === 'FeatureUsed');
+      if (used?.type !== 'FeatureUsed') return undefined;
+      const healing = events.find((event) => event.type === 'HealingApplied');
+      return {
+        kind: 'UseFeature',
+        feature: used.payload.feature,
+        rolls: [...used.payload.rolls],
+        ...(healing?.type === 'HealingApplied' ? { healed: healing.payload.amount } : {}),
+        ...(used.payload.left === undefined ? {} : { left: used.payload.left }),
+      };
+    }
     case 'EndTurn': {
       const started = events.find((event) => event.type === 'TurnStarted');
       return started?.type === 'TurnStarted'

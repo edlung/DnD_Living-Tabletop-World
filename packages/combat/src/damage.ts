@@ -1,3 +1,4 @@
+import type { CharacterSheet } from '@ltw/contracts';
 import { combatantOf, type Dice, type DraftEvent, type WorldState } from '@ltw/domain';
 import {
   concentrationSaveDc,
@@ -152,7 +153,7 @@ export function applyDamage(
   if (knockedOut) {
     let vitals = withConditions(withHitPoints(spent, 1), ['unconscious', 'prone'], []);
     vitals = withKnockedOut(vitals, true);
-    vitals = withSheet(vitals, (sheet) => ({ ...sheet, concentration: null }));
+    vitals = withSheet(vitals, (sheet) => ({ ...calm(sheet), concentration: null }));
     return {
       vitals,
       events: [
@@ -193,7 +194,7 @@ export function applyDamage(
   }
   vitals = withConditions(vitals, ['unconscious', 'prone'], []);
   vitals = withSheet(vitals, (sheet) => ({
-    ...sheet,
+    ...calm(sheet),
     concentration: null,
     deathSaves: { successes: 0, failures: 0 },
   }));
@@ -202,6 +203,14 @@ export function applyDamage(
     ...(has(target, 'prone') ? [] : [condition(target.entityId, 'prone', true, 'zero-hit-points')]),
   ];
   return { vitals, events: [record, ...fell, vitalsEvent(vitals)] };
+}
+
+/** Unconscious, a creature's Rage ends (docs/adr/0056-characters-from-the-srd.md §4). */
+function calm(sheet: CharacterSheet): CharacterSheet {
+  if (!sheet.raging) return sheet;
+  const next = { ...sheet };
+  delete next.raging;
+  return next;
 }
 
 /** Healing up to the maximum; a character at 0 HP regains consciousness but stays Prone. */

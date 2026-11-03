@@ -229,6 +229,7 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
     case 'StatBlockSet':
       return applyStatBlockSet(state, event);
     case 'ActionTaken':
+    case 'FeatureUsed':
     case 'AttackPerformed':
     case 'WeaponMasteryApplied':
     case 'SpellCast':

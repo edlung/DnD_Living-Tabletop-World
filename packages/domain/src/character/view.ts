@@ -1,4 +1,9 @@
-import type { CharacterSheet, CharacterSheetResponse } from '@ltw/contracts';
+import {
+  CLASS_RESOURCES,
+  type CharacterSheet,
+  type CharacterSheetResponse,
+  type FeatureUses,
+} from '@ltw/contracts';
 
 import { perceivedEntityIds } from '../investigation/perception.ts';
 import type { WorldState } from '../kernel/state.ts';
@@ -121,6 +126,18 @@ function copySheet(
         }),
     ...(sheet.hitDiceSpent === undefined ? {} : { hitDiceSpent: spentDice(sheet.hitDiceSpent) }),
     ...(sheet.heroicInspiration === true ? { heroicInspiration: true } : {}),
+    // The class features spent, a Rage, a Bardic Inspiration die held (docs/adr/0056-…md §4).
+    ...(sheet.featureUses === undefined ? {} : { featureUses: usesOf(sheet.featureUses) }),
+    ...(sheet.raging === undefined ? {} : { raging: { since: sheet.raging.since } }),
+    ...(sheet.inspirationDie === undefined
+      ? {}
+      : {
+          inspirationDie: {
+            sides: sheet.inspirationDie.sides,
+            fromId: sheet.inspirationDie.fromId,
+            until: sheet.inspirationDie.until,
+          },
+        }),
     ...contagionsSeen(sheet, dm),
   };
 }
@@ -147,4 +164,14 @@ function spentDice(
     ...(spent.d10 === undefined ? {} : { d10: spent.d10 }),
     ...(spent.d12 === undefined ? {} : { d12: spent.d12 }),
   };
+}
+
+/** The class features spent, resource by resource. */
+function usesOf(uses: NonNullable<CharacterSheet['featureUses']>): FeatureUses {
+  return Object.fromEntries(
+    CLASS_RESOURCES.flatMap((resource) => {
+      const used = uses[resource];
+      return used === undefined ? [] : [[resource, used]];
+    }),
+  );
 }

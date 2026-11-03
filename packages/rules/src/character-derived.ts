@@ -21,6 +21,8 @@ import {
   spellSaveDc,
   totalLevel,
 } from './character-math.ts';
+import { rageDamage, usesStrength } from './features/numbers.ts';
+import { classResources } from './features/resources.ts';
 import { masteryOf } from './masteries.ts';
 import { spellRules, type SpellRules } from './spell-rules.ts';
 import { srdSpell } from './srd/catalog.ts';
@@ -48,7 +50,12 @@ export function weaponAttack(sheet: CharacterSheet, weaponId: WeaponId) {
   return {
     weaponId,
     attackBonus: weaponAttackBonus(sheet, weaponId),
-    damage: { ...weapon.damageDice, bonus: weaponModifier(sheet, weaponId) },
+    // A Rage's damage with a Strength attack (docs/adr/0056-characters-from-the-srd.md §4).
+    damage: {
+      ...weapon.damageDice,
+      bonus:
+        weaponModifier(sheet, weaponId) + (usesStrength(sheet, weaponId) ? rageDamage(sheet) : 0),
+    },
     damageType: weapon.damageType,
     ranged: weapon.ranged,
     normalRangeFt: weapon.normalRangeFt,
@@ -127,6 +134,7 @@ export function deriveCharacter(
         ritual: spell.ritual,
         ...(spell.mechanics ? srdWords(spell, language) : {}),
       })),
+    resources: classResources(sheet),
     attacks: [...new Set([...sheet.weapons, ...wielded])].map((weaponId) => {
       const attack = weaponAttack(sheet, weaponId);
       const mastery = masteryOf(sheet, weaponId);

@@ -5,7 +5,9 @@ import {
   abilityModifier,
   masteryOf,
   proficiencyBonus,
+  rageDamage,
   totalLevel,
+  usesStrength,
   weaponAttackBonus,
   weaponModifier,
 } from '@ltw/rules';
@@ -90,7 +92,12 @@ export function weaponOf(
       normalRangeFt: 0,
       longRangeFt: 0,
       bonus: strength + proficiencyBonus(totalLevel(v.sheet)),
-      damage: { count: 0, sides: 4, bonus: 1 + strength, type: 'bludgeoning' },
+      damage: {
+        count: 0,
+        sides: 4,
+        bonus: 1 + strength + rageDamage(v.sheet),
+        type: 'bludgeoning',
+      },
       abilityModifier: strength,
     };
   }
@@ -104,7 +111,7 @@ export function weaponOf(
       normalRangeFt: thrown ? 20 : 0,
       longRangeFt: thrown ? 60 : 0,
       bonus: strength,
-      damage: { count: 1, sides: 4, bonus: strength, type: 'bludgeoning' },
+      damage: { count: 1, sides: 4, bonus: strength + rageDamage(v.sheet), type: 'bludgeoning' },
       abilityModifier: strength,
       thrown,
     };
@@ -142,7 +149,12 @@ export function weaponOf(
         sides: (twoHands
           ? definition.versatileSides
           : definition.damageDice.sides) as Damage['sides'],
-        bonus: modifier + (definition.flatDamage ?? 0) + magic.damage,
+        // A Rage's damage with a Strength attack (docs/adr/0056-characters-from-the-srd.md §4).
+        bonus:
+          modifier +
+          (definition.flatDamage ?? 0) +
+          magic.damage +
+          (usesStrength(v.sheet, weapon) ? rageDamage(v.sheet) : 0),
         type: definition.damageType,
       },
       advantageDamage: null,

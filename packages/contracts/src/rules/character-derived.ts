@@ -1,4 +1,5 @@
 import type { SrdSchool } from '../srd/catalog.ts';
+import type { ResourceView } from './class-features.ts';
 import type {
   Ability,
   HitDieSides,
@@ -93,6 +94,11 @@ export interface CharacterDerived {
   }[];
   /** Strength × 15 lb; shown, never enforced (ADR 0039). */
   readonly carryingCapacityLb: number;
+  /**
+   * The class features spent and restored by rests, with what is left (docs/adr/0056-characters-
+   * from-the-srd.md §4).
+   */
+  readonly resources: readonly ResourceView[];
   /** Hit Point Dice by size, largest first: one per class level, spent in short rests. */
   readonly hitDice: readonly {
     readonly sides: HitDieSides;
