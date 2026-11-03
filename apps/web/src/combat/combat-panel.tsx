@@ -17,6 +17,8 @@ import { BoardLegend, CombatantCard, MoveDetails } from './hud/side-panel.tsx';
 import { CommandedTurn } from './commanded-turn.tsx';
 import { DmSquareCard } from './dm-hand.tsx';
 import { PaintCard, type Brush, type BrushHand } from './paint-card.tsx';
+import { DEFAULT_AREA, templateSquares, ToolCard, type Tool } from './board-tools.tsx';
+import { footprint } from './board/footprint.ts';
 import { TurnTray, type TrayChoice } from './hud/turn-tray.tsx';
 import { occupantAt, squareMoves } from './move-options.ts';
 import { useCombatantLabels } from './labels.ts';
@@ -150,7 +152,26 @@ export function CombatPanel({
       ?.focus({ preventScroll: true });
     // Only as the board mounts: later strokes keep focus where the DM put it.
   }, []);
+  // The viewer's own ruler and spell's area (ADR 0057 §5): a press on the board serves the tool.
+  const [tool, setTool] = useState<Tool>(null);
+  const casterView = dm
+    ? encounter.combatants.find((entry) => entry.entity.entityId === held)
+    : self;
+  const caster = casterView ? footprint(casterView) : [];
+  const template = templateSquares(tool, caster, encounter.battlefield);
   const pick = (square: Square) => {
+    if (tool?.kind === 'measure') {
+      setTool(
+        tool.from === null || tool.to !== null
+          ? { kind: 'measure', from: square, to: null }
+          : { ...tool, to: square },
+      );
+      return;
+    }
+    if (tool?.kind === 'area') {
+      setTool({ ...tool, toward: square });
+      return;
+    }
     const occupant = occupantAt(encounter, square);
     if (dm && occupant) setHeld(occupant.entity.entityId);
     setFocus(
@@ -180,8 +201,22 @@ export function CombatPanel({
     setBrushState((state) => ({ ...state, painting: false }));
     section.current?.querySelector<HTMLElement>('.board-controls [aria-pressed="true"]')?.focus();
   };
+  const toolOff = () => {
+    setTool(null);
+    section.current?.querySelector<HTMLElement>('.board-controls [aria-pressed="true"]')?.focus();
+  };
+  const toggle = (next: Exclude<Tool, null>) => {
+    setFocus(null);
+    setBrushState((state) => ({ ...state, painting: false }));
+    setTool((current) => (current?.kind === next.kind ? null : next));
+  };
   const onKeyDown = (event: KeyboardEvent) => {
     if (event.key !== 'Escape' || event.defaultPrevented) return;
+    if (tool !== null) {
+      event.preventDefault();
+      toolOff();
+      return;
+    }
     if (painting) {
       event.preventDefault();
       brushOff();
@@ -198,7 +233,16 @@ export function CombatPanel({
         ? { kind: 'combatant', target: picked, actions: options }
         : { kind: 'none' };
   const side =
-    dm && painting ? (
+    tool !== null ? (
+      <ToolCard
+        tool={tool}
+        covered={template?.size ?? 0}
+        hasCaster={caster.length > 0}
+        panel={panel}
+        onTool={setTool}
+        onClose={toolOff}
+      />
+    ) : dm && painting ? (
       <PaintCard
         brush={brush}
         locked={locked}
@@ -276,13 +320,27 @@ export function CombatPanel({
         view={view}
         onPick={pick}
         fogView={dm ? 'veil' : 'hidden'}
+        ruler={tool?.kind === 'measure' && tool.from ? { from: tool.from, to: tool.to } : null}
+        {...(template ? { template } : {})}
+        tools={{
+          measuring: tool?.kind === 'measure',
+          laying: tool?.kind === 'area',
+          onMeasure: () => {
+            toggle({ kind: 'measure', from: null, to: null });
+          },
+          onArea: () => {
+            toggle({ kind: 'area', spec: DEFAULT_AREA, toward: null });
+          },
+        }}
         {...(dm
           ? {
-              onDropToken: place,
+              // A tool in hand: a drag on the board measures or lays, never moves a token.
+              ...(tool === null ? { onDropToken: place } : {}),
               paint: {
                 on: painting,
                 onToggle: () => {
                   setFocus(null);
+                  setTool(null);
                   setBrushState((state) => ({ ...state, painting: !state.painting }));
                 },
                 onStroke: stroke,

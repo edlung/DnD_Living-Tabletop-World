@@ -1,8 +1,13 @@
-import type { EncounterView, PlayerAssetView, Square } from '@ltw/contracts';
+import {
+  squareDistanceFt,
+  type EncounterView,
+  type PlayerAssetView,
+  type Square,
+} from '@ltw/contracts';
 import { useT } from '@ltw/ui';
 import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from 'react';
 
-import { BoardControls, type BoardPaint } from './board-controls.tsx';
+import { BoardControls, type BoardPaint, type BoardTools } from './board-controls.tsx';
 import type { BoardView } from './board-view.ts';
 import {
   boardLayout,
@@ -88,6 +93,9 @@ export function Board({
   onDropToken,
   paint,
   fogView = 'hidden',
+  ruler = null,
+  template,
+  tools,
   centreOn = null,
   moverId = selfId,
 }: {
@@ -122,6 +130,15 @@ export function Board({
    * players' and the display's, whose view leaves out what lies under it.
    */
   readonly fogView?: 'veil' | 'hidden';
+  /**
+   * The viewer's ruler (docs/adr/0057-encounters-maps-loot.md §5): from its start to its end, or
+   * to the square the pointer or the keyboard is on while no end is set.
+   */
+  readonly ruler?: { readonly from: Square; readonly to: Square | null } | null;
+  /** The squares a spell's area laid on the board covers, as `x,y` (ADR 0057 §5). */
+  readonly template?: ReadonlySet<string>;
+  /** The viewer's ruler and area toggles (ADR 0057 §5). */
+  readonly tools?: BoardTools;
   /** A square to keep in view when the board scrolls (the table's screen follows the fight). */
   readonly centreOn?: Square | null;
 }) {
@@ -246,6 +263,8 @@ export function Board({
         walk.has(id) ? 'on-path' : '',
         destination && key(destination) === id ? 'is-destination' : '',
         inArea ? 'in-area' : '',
+        template?.has(id) ? 'in-template' : '',
+        ruler && key(ruler.from) === id ? 'is-ruler-start' : '',
         isSelected ? 'is-selected' : '',
         // Lit as under the pointer while the pointer is on its combatant's plate, too.
         pointed !== null && key(pointed) === id ? 'is-pointed' : '',
@@ -283,6 +302,7 @@ export function Board({
             light: lit.get(id) ?? ambient,
             obscured: fog.has(id) ? (fog.get(id) ? 'heavy' : 'light') : 'none',
             fogged: warFog.has(id),
+            rulerFt: ruler ? squareDistanceFt(ruler.from, square) : null,
             cover: level,
             inArea,
           })}
@@ -360,9 +380,11 @@ export function Board({
   }
   const route = mover && path.length > 0 ? [mover.position, ...path] : [];
   const looked = pointed ?? focused ?? selected;
+  // The ruler's far end: where it was set, else where the pointer or the keyboard is.
+  const rulerEnd = ruler ? (ruler.to ?? pointed ?? focused) : null;
   return (
     <div className={`board board--${view.mode}`} ref={area}>
-      <BoardControls view={view} {...(paint ? { paint } : {})} />
+      <BoardControls view={view} {...(paint ? { paint } : {})} {...(tools ? { tools } : {})} />
       {looked && (
         <TerrainCard
           square={looked}
@@ -406,6 +428,25 @@ export function Board({
                       return `${String(point.x)},${String(point.y)}`;
                     })
                     .join(' ')}
+                />
+              </svg>
+            )}
+            {rulerEnd && ruler && (
+              <svg
+                className="board-ruler"
+                aria-hidden="true"
+                viewBox={`0 0 ${String(layout.plane.width)} ${String(layout.plane.height)}`}
+              >
+                <line
+                  x1={squareCenter(ruler.from, cell).x}
+                  y1={squareCenter(ruler.from, cell).y}
+                  x2={squareCenter(rulerEnd, cell).x}
+                  y2={squareCenter(rulerEnd, cell).y}
+                />
+                <circle
+                  cx={squareCenter(rulerEnd, cell).x}
+                  cy={squareCenter(rulerEnd, cell).y}
+                  r={cell * 0.16}
                 />
               </svg>
             )}

@@ -23,7 +23,8 @@ Authority: owner approval 2026-11-02 (`reviews/OWNER_FULL_GAME_2026-11-02.json`)
   fight taking its grid. 670b done.
 - 670c — Fog of war and shared marks: `SetFog` hides and reveals squares; the players' and the
   display's views leave out what lies hidden; the DM sees a veil. Part 1 done: `SetFog`, the views and
-  perception that leave out what it hides, the veil and the darkness on the board. A ruler and spell-area templates
+  perception that leave out what it hides, the veil and the darkness on the board. Part 2 done: the ruler
+  and a spell's area on every board, the geometry shared through contracts. A ruler and spell-area templates
   on every board (the geometry moved into contracts, shared with the rules); pings, the DM's
   pointer, strokes and placed templates kept beside the world for the live session (migration
   0035), players marking when the DM allows.

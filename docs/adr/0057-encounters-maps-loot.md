@@ -182,6 +182,17 @@
   is not refused by a later inspection of the revealed creature at the same place (an accepted
   limit: inspections during a fight are rare, and the DM sees the history).
 
+## Notes from the implementation (Stage 670c, part 2, 2026-11-03)
+
+- The board's geometry is shared through contracts (`packages/contracts/src/combat/geometry.ts`:
+  `squareDistanceFt`, `inSpellArea`, `squaresInArea`); the rules re-export it unchanged.
+- Every viewer's board has a ruler and a spell's area (`apps/web/src/combat/board-tools.tsx`),
+  on that screen only: the ruler's start and end are pressed, the line follows the pointer or the
+  keyboard until its end is set, and every square's name says how far it lies from the start; the
+  area — a sphere or cube at a point, a cone, line or emanation from the viewer's own character (the
+  DM's: the combatant chosen last) — marks the squares the rules count in it, and the card says how
+  many. While a tool is in hand a press serves it and no token is dragged.
+
 ## Consequences
 
 - Stage 670 runs in parts (`work-orders/STAGE_670.md`): the builder and the DM's hand; terrain and

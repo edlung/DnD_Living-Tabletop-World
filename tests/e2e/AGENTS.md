@@ -228,6 +228,8 @@ application on 4313.
   `battle-map.spec.ts` (owns `ui-battle-map`: a party campaign with the curated pictures, and the
   test asset worker runs on it) uploads a map drawn on a canvas, lines its grid up and starts a fight
   on the road; the map's place on the flat board is measured against the plane.
+  `board-tools.spec.ts` (owns `ui-board-tools`) measures and lays areas as a player; nothing of it
+  may reach the DM's board.
 - Native apps (ADR 0070, `native-shell.spec.ts`): a stand-in shell installed with `addInitScript`
   records what the page posts, and the journey speaks for the shell with `ltw-native` events; it owns
   the `native` sign-in campaign. The apps themselves are checked on the simulator and the emulator.

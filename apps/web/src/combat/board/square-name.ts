@@ -31,6 +31,8 @@ export interface SquareFacts {
   readonly obscured?: 'none' | 'light' | 'heavy';
   /** Hidden in the DM's fog of war (docs/adr/0057-encounters-maps-loot.md §4). */
   readonly fogged?: boolean;
+  /** Feet from the viewer's ruler's start, while it measures (ADR 0057 §5). */
+  readonly rulerFt?: number | null;
   readonly cover: CoverLevel | null;
   /** The occupant is among those a previewed area spell would affect (the server's list). */
   readonly inArea: boolean;
@@ -95,6 +97,8 @@ export function squareName(t: Translate, square: Square, facts: SquareFacts): st
   if (facts.obscured === 'light') notes.push(t('lightly obscured'));
   if (facts.obscured === 'heavy') notes.push(t('heavily obscured'));
   if (facts.fogged) notes.push(t('in the fog of war'));
+  if (facts.rulerFt !== undefined && facts.rulerFt !== null)
+    notes.push(t('{feet} ft from the ruler’s start', { feet: facts.rulerFt }));
   if (facts.difficult) notes.push(t('difficult terrain'));
   if (facts.cover) notes.push(t(COVER[facts.cover]));
   if (occupant && facts.inArea) notes.push(t('in the area'));

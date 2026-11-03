@@ -80,3 +80,37 @@
     color-mix(in srgb, var(--ink-950) 30%, transparent) 5px 10px
   );
 }
+
+/* The viewer's own tools (combat/board-tools.tsx; ADR 0057 §5): the squares a laid area covers, the
+   ruler's start, and the ruler drawn to its end over the plane. */
+.board-square.in-template::before {
+  background: color-mix(in srgb, var(--warning, var(--gold-bright)) 28%, transparent);
+  box-shadow: inset 0 0 0 1px
+    color-mix(in srgb, var(--warning, var(--gold-bright)) 75%, transparent);
+}
+.board-square.is-ruler-start::before {
+  box-shadow: inset 0 0 0 2px var(--teal);
+}
+.board-ruler {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+.board-ruler line {
+  stroke: var(--teal);
+  stroke-width: calc(var(--cell) * 0.07);
+  stroke-linecap: round;
+}
+.board-ruler circle {
+  fill: var(--teal);
+}
+.tool-reading {
+  margin: 0;
+  color: var(--gold-bright);
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+}
