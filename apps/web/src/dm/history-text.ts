@@ -114,6 +114,7 @@ export const STEP_TEXT: Readonly<Record<KernelCommandType, string>> = {
   RemoveCombatant: 'remove a combatant',
   DelayTurn: 'delay a turn',
   SetInitiative: 'set initiative',
+  PlaceCombatant: 'set a combatant down',
   AddObject: 'bring an object into the fight',
   SetLight: 'set the light of the fight',
   ExposeToHazard: 'expose the party to a hazard',

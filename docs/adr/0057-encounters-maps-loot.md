@@ -75,6 +75,40 @@
     a day asks each traveller a Constitution save (DC 10 + 1 per hour past 8) or a level of
     Exhaustion. The pace's effects on checks show in its words.
 
+## Notes from the implementation (Stage 670a, 2026-11-03)
+
+- Saved encounters (`apps/server/src/combat/saved-encounters.ts`; the store beside the world
+  `saved-encounter-store.ts`, `postgres-saved-encounter-store.ts`, migration 0034): up to 60 a
+  campaign, the DM's alone in the ADR 0009 order. A foe is a bestiary entry or one of the campaign's
+  creatures at a square; an unknown place, foe or a square off the field is refused with its reason.
+  The list gives each its foes (name, Challenge Rating, XP, size), its difficulty for the party at
+  its place now, and what keeps it from starting: a fight running, a creature that can no longer
+  fight, nobody of the party there, or its place or a creature gone from the campaign (an undone
+  creation): such a one stays listed — it holds one of the 60 places — to be changed or deleted.
+  The workshop's prepared encounters stay listed above them.
+- The builder (`apps/web/src/combat/encounter-builder.tsx`, `encounter-layout.ts`): foes found by
+  name or type and counted, or taken from the campaign; their squares laid out from the right edge
+  by size, a square apart, never past the middle; the party on the left edge every other row; a
+  field of 8 to 40 squares a side. The server weighs the foes as they change
+  (`POST …/encounters/difficulty`). A new encounter keeps one id while the builder is open, so a
+  save retried after a lost answer changes the same one.
+- Starting one (`POST …/encounters/saved/:id/start` with a request id): each bestiary foe made
+  (`CreateEntity`, `SetStatBlock`), numbered when several share a name ("Goblin Warrior 1"), the
+  campaign's creatures brought to the place, and the fight begun with the saved field and squares
+  and the party there. The command ids follow from the encounter and the request: a retry starts it
+  once; a second start while the fight runs is refused.
+- `PlaceCombatant` (`packages/combat/src/board-hand.ts`) is the DM's: any combatant set down on a
+  free square of the field, its turn untouched; a mount carries its rider, a rider alone is refused
+  (`MOUNTED`), its own square changes nothing; set down out of its grappler's reach, a creature is
+  held no longer, as a shove ends it. The DM's history says it was set down.
+- The DM's hand (`apps/web/src/combat/dm-hand.tsx`, `board/token-drag.ts`): a combatant chosen by
+  its square, figure or name plate, then a free square, offers "Set it down here" and, on a
+  creature's own turn, the ways there by its Speed (`MoveCombatant`). A press on a token or its
+  plate that moves 8 px is a drag and its drop the same command; the mouse's click after a drop is
+  swallowed wherever it lands, and a drop on the token's own space sends nothing.
+- The turn order keeps a numbered combatant's number beside its Initiative total: two Goblin
+  Warriors are told apart by the DM too.
+
 ## Consequences
 
 - Stage 670 runs in parts (`work-orders/STAGE_670.md`): the builder and the DM's hand; terrain and

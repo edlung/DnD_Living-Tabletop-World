@@ -61,7 +61,7 @@ function encountersOf(books: PreparedEncounterBooks | undefined, state: WorldSta
 }
 
 /** A foe who can still fight: a creature or person that exists, is not destroyed, has hit points. */
-function canFight(state: WorldState, entityId: string): boolean {
+export function canFight(state: WorldState, entityId: string): boolean {
   const entity = state.entities.get(entityId);
   const block = state.statBlocks.get(entityId);
   return (
@@ -74,7 +74,7 @@ function canFight(state: WorldState, entityId: string): boolean {
 }
 
 /** The party's characters at a place, by name: who joins, in that order. */
-function partyAt(state: WorldState, locationId: string, room: number) {
+export function partyAt(state: WorldState, locationId: string, room: number) {
   return [...state.entities.values()]
     .filter(
       (entity) =>
@@ -117,7 +117,7 @@ export function preparedView(
 }
 
 /** The campaign as its DM holds it (404 for a non-member, 403 for anyone else); null once answered. */
-async function dmState(
+export async function dmState(
   request: FastifyRequest,
   reply: FastifyReply,
   deps: PreparedEncounterDependencies,

@@ -207,17 +207,22 @@ export function decideMounting(
   return accept(...events);
 }
 
-/** The rider goes where its mount went: the mount's record after its move. */
-export function carryRider(encounter: EncounterState, mount: CombatantRecord): DraftEvent[] {
+/** The rider's record where its mount went, or null when it carries none. */
+export function carriedRider(
+  encounter: EncounterState,
+  mount: CombatantRecord,
+): CombatantRecord | null {
   const rider = riderOf(encounter, mount.entityId);
-  if (!rider) return [];
+  if (!rider) return null;
   const carried: CombatantRecord = { ...rider, position: { ...mount.position } };
   delete carried.altitudeFt;
-  return [
-    combatantEvent(
-      mount.altitudeFt === undefined ? carried : { ...carried, altitudeFt: mount.altitudeFt },
-    ),
-  ];
+  return mount.altitudeFt === undefined ? carried : { ...carried, altitudeFt: mount.altitudeFt };
+}
+
+/** The rider goes where its mount went: the mount's record after its move. */
+export function carryRider(encounter: EncounterState, mount: CombatantRecord): DraftEvent[] {
+  const carried = carriedRider(encounter, mount);
+  return carried ? [combatantEvent(carried)] : [];
 }
 
 /** Off the mount, landing within 5 ft of it: Prone, or on its feet with its Reaction spent. */

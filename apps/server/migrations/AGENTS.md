@@ -53,3 +53,7 @@ draft identity registry hold `quests` and `quest-stages` (local key `<quest>/<st
 owners whose latest text preparation grant was enabled. Both are additive, but once a revision is
 saved with quest identities an older build cannot read it (its identity schema is strict), and an
 older build checks no picture grant: recovery needs a Gate 07-aware build (`deploy/RUNBOOK.md` §8).
+
+Stage 670a (ADR 0057 §1): `0034_saved_encounters.sql` keeps the DM's saved encounters beside the
+world, one row an encounter (its body at most 64 KB), replaced on save and deleted on the DM's word:
+DM data, not canonical state. Additive: an older build leaves the table alone.

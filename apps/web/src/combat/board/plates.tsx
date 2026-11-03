@@ -1,6 +1,6 @@
 import type { EncounterView, Square } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
-import type { CSSProperties } from 'react';
+import type { CSSProperties, PointerEvent as ReactPointerEvent } from 'react';
 
 import type { LabelOf } from '../labels.ts';
 import { spanOf } from './footprint.ts';
@@ -31,6 +31,7 @@ export function BoardPlates({
   labelOf,
   onPick,
   onPoint,
+  onPress,
 }: {
   readonly encounter: Pick<EncounterView, 'combatants'>;
   readonly layout: BoardLayout;
@@ -39,6 +40,8 @@ export function BoardPlates({
   readonly onPick: (square: Square) => void;
   /** The pointer came over (`true`) or left (`false`) the plate of the combatant on a square. */
   readonly onPoint: (square: Square, over: boolean) => void;
+  /** A press on a plate that may become a drag of its combatant (the DM's hand, ADR 0057 §2). */
+  readonly onPress?: (entityId: string, event: ReactPointerEvent) => void;
 }) {
   const t = useT();
   const occupied = encounter.combatants.map((entry) => entry.position);
@@ -59,10 +62,13 @@ export function BoardPlates({
           return (
             <span
               key={combatant.entity.entityId}
-              className={`board-plate board-plate--${anchor.edge} token--${combatant.side}`}
+              className={`board-plate board-plate--${anchor.edge} token--${combatant.side}${onPress ? ' is-draggable' : ''}`}
               style={style}
               onClick={() => {
                 onPick(combatant.position);
+              }}
+              onPointerDown={(event) => {
+                onPress?.(combatant.entity.entityId, event);
               }}
               onPointerEnter={() => {
                 onPoint(combatant.position, true);

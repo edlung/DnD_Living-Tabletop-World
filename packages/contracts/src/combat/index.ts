@@ -97,6 +97,21 @@ export {
   type StartedPreparedEncounterResponse,
 } from './prepared.ts';
 export {
+  MAX_SAVED_ENCOUNTERS,
+  encounterDifficultyRequestSchema,
+  savedEncounterRequestSchema,
+  savedFoeSchema,
+  type EncounterDifficultyResponse,
+  type EncounterDifficultyView,
+  type SavedEncounterRequest,
+  type SavedEncounterView,
+  type SavedEncountersResponse,
+  type SavedEncounterBlock,
+  type SavedFoe,
+  type SavedFoeView,
+} from './saved-encounters.ts';
+export { placeCombatantCommandSchema } from './board-commands.ts';
+export {
   CONTAGION_STEPS,
   TOOLBOX_COMMAND_TYPES,
   TRAP_IDS,

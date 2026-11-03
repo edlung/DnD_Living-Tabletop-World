@@ -163,9 +163,12 @@ export interface DmHandEntry extends DmHistoryCommon {
         readonly characters: readonly EntityRef[];
       }
     | {
-        /** A running fight changed (ADR 0043 §2); the total for an initiative set. */
+        /**
+         * A running fight changed (ADR 0043 §2); the total for an initiative set. `placed`: the
+         * DM set a combatant down on another square (docs/adr/0057-…md §2).
+         */
         readonly kind: 'fight';
-        readonly change: 'joined' | 'left' | 'delayed' | 'initiative';
+        readonly change: 'joined' | 'left' | 'delayed' | 'initiative' | 'placed';
         readonly combatant: EntityRef;
         readonly total: number | null;
       }

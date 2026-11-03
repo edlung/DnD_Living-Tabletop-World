@@ -22,6 +22,7 @@ import { squareName } from './square-name.ts';
 import { TerrainCard } from './terrain-card.tsx';
 import { footprint, spanOf } from './footprint.ts';
 import { CoverPiece, Token } from './token.tsx';
+import { useTokenDrag } from './token-drag.ts';
 
 const key = (square: { readonly x: number; readonly y: number }) =>
   `${String(square.x)},${String(square.y)}`;
@@ -83,6 +84,7 @@ export function Board({
   battleMap,
   view,
   onPick,
+  onDropToken,
   centreOn = null,
   moverId = selfId,
 }: {
@@ -108,6 +110,8 @@ export function Board({
   readonly battleMap: PlayerAssetView | null;
   readonly view: BoardView;
   readonly onPick: (square: Square) => void;
+  /** A combatant's token dragged to a square: the DM's hand (docs/adr/0057-…md §2). */
+  readonly onDropToken?: (entityId: string, square: Square) => void;
   /** A square to keep in view when the board scrolls (the table's screen follows the fight). */
   readonly centreOn?: Square | null;
 }) {
@@ -117,6 +121,7 @@ export function Board({
   // The square the pointer is over and the one keyboard focus is on: the terrain card reads it.
   const [pointed, setPointed] = useState<Square | null>(null);
   const [focused, setFocused] = useState<Square | null>(null);
+  const drag = useTokenDrag(onDropToken);
   const { width, height, difficult, cover } = encounter.battlefield;
   const grid = { width, height };
   const tilt = view.mode === 'tilted' ? TILT : null;
@@ -224,6 +229,9 @@ export function Board({
         isSelected ? 'is-selected' : '',
         // Lit as under the pointer while the pointer is on its combatant's plate, too.
         pointed !== null && key(pointed) === id ? 'is-pointed' : '',
+        // The DM drags tokens: a square with one is grabbed, the square under the drag lit.
+        drag.enabled && occupant ? 'is-draggable' : '',
+        drag.target !== null && key(drag.target) === id ? 'is-drop-target' : '',
       ];
       squares.push(
         <button
@@ -231,6 +239,8 @@ export function Board({
           type="button"
           className={classes.filter(Boolean).join(' ')}
           style={{ '--x': x, '--y': y } as CSSProperties}
+          data-x={x}
+          data-y={y}
           data-height={heightMark(heights.get(id) ?? 0)}
           aria-label={squareName(t, square, {
             occupant,
@@ -255,6 +265,10 @@ export function Board({
           aria-pressed={isSelected}
           onClick={() => {
             onPick(square);
+          }}
+          onPointerDown={(event) => {
+            // A mount's square drags the mount, its rider carried (ADR 0049 §10).
+            if (occupant) drag.start(occupant.entity.entityId, event);
           }}
           onPointerEnter={() => {
             point(square, true);
@@ -374,6 +388,7 @@ export function Board({
             labelOf={labelOf}
             onPick={onPick}
             onPoint={point}
+            {...(drag.enabled ? { onPress: drag.start } : {})}
           />
         </div>
       </div>

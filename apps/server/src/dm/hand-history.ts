@@ -133,6 +133,17 @@ export function handChange(
         },
         reason: null,
       };
+    // The DM's hand on the board (docs/adr/0057-encounters-maps-loot.md §2).
+    case 'PlaceCombatant':
+      return {
+        change: {
+          kind: 'fight',
+          change: 'placed',
+          combatant: ref(command.combatantId),
+          total: null,
+        },
+        reason: null,
+      };
     case 'AddCombatant':
     case 'AddObject':
     case 'RemoveCombatant':

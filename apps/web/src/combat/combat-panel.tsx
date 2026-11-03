@@ -10,6 +10,7 @@ import { ActiveCard } from './hud/active-card.tsx';
 import { InitiativeStrip } from './hud/initiative-strip.tsx';
 import { BoardLegend, CombatantCard, MoveDetails } from './hud/side-panel.tsx';
 import { CommandedTurn } from './commanded-turn.tsx';
+import { DmSquareCard } from './dm-hand.tsx';
 import { TurnTray, type TrayChoice } from './hud/turn-tray.tsx';
 import { occupantAt, squareMoves } from './move-options.ts';
 import { useCombatantLabels } from './labels.ts';
@@ -61,6 +62,9 @@ export function CombatPanel({
 }) {
   const t = useT();
   const [focus, setFocus] = useState<Focus | null>(null);
+  // The DM's hand (docs/adr/0057-…md §2): the combatant chosen last, set down on a square next.
+  const dm = actorId === null;
+  const [held, setHeld] = useState<string | null>(null);
   const section = useRef<HTMLElement>(null);
   const panel = useRef<HTMLElement>(null);
   const ids = useId();
@@ -76,7 +80,16 @@ export function CombatPanel({
     encounter.reactionWindow === null &&
     encounter.combatants.find((entry) => entry.entity.entityId === encounter.currentCombatantId)
       ?.commandedBy?.entityId === actorId;
-  const moverId = commanding ? encounter.currentCombatantId : actorId;
+  // On a creature's own turn the DM moves it as its rules allow (a character is its player's).
+  const dmMover =
+    dm &&
+    held !== null &&
+    held === encounter.currentCombatantId &&
+    encounter.combatants.find((entry) => entry.entity.entityId === held)?.entity.kind !==
+      'character'
+      ? held
+      : null;
+  const moverId = commanding ? encounter.currentCombatantId : (dmMover ?? actorId);
   const picked =
     focus?.kind === 'combatant'
       ? (encounter.combatants.find((entry) => entry.entity.entityId === focus.id) ?? null)
@@ -86,6 +99,14 @@ export function CombatPanel({
     focus?.kind === 'square' && moverId !== null
       ? squareMoves(encounter, moverId, focus.square)
       : [];
+  const place = (entityId: string, square: Square) => {
+    // A token let go over its own space stays where it is.
+    if (occupantAt(encounter, square)?.entity.entityId === entityId) return;
+    onRun({
+      kind: 'command',
+      command: { type: 'PlaceCombatant', combatantId: entityId, position: { ...square } },
+    });
+  };
   const { resource, retry } = useTargetContext(
     api,
     picked && actorId !== null ? picked.entity.entityId : null,
@@ -105,6 +126,7 @@ export function CombatPanel({
   }, [chosen]);
   const pick = (square: Square) => {
     const occupant = occupantAt(encounter, square);
+    if (dm && occupant) setHeld(occupant.entity.entityId);
     setFocus(
       occupant ? { kind: 'combatant', id: occupant.entity.entityId } : { kind: 'square', square },
     );
@@ -128,7 +150,19 @@ export function CombatPanel({
         ? { kind: 'combatant', target: picked, actions: options }
         : { kind: 'none' };
   const side =
-    focus?.kind === 'square' && actorId !== null ? (
+    focus?.kind === 'square' && dm ? (
+      <DmSquareCard
+        encounter={encounter}
+        square={focus.square}
+        held={held}
+        moves={moves}
+        labelOf={labelOf}
+        locked={locked}
+        panel={panel}
+        onRun={onRun}
+        onClose={close}
+      />
+    ) : focus?.kind === 'square' && actorId !== null ? (
       <MoveDetails
         square={focus.square}
         moves={moves}
@@ -185,6 +219,7 @@ export function CombatPanel({
         battleMap={battleMap}
         view={view}
         onPick={pick}
+        {...(dm ? { onDropToken: place } : {})}
       />
       <div className="combat-side">{side}</div>
       {mayAct && (

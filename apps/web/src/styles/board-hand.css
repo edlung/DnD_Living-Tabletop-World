@@ -1,0 +1,12 @@
+/* The DM's hand on the board (combat/board/token-drag.ts; docs/adr/0057-encounters-maps-loot.md
+   §2): a square holding a token, or its name plate, is grabbed, and the square under a drag is lit
+   as a destination. */
+.board-square.is-draggable,
+.board-plate.is-draggable .token-plate {
+  cursor: grab;
+  touch-action: none;
+}
+.board-square.is-drop-target::before {
+  background: color-mix(in srgb, var(--gold) 30%, transparent);
+  box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--gold) 80%, transparent);
+}

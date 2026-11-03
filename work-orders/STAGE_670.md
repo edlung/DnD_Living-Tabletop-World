@@ -11,7 +11,8 @@ Authority: owner approval 2026-11-02 (`reviews/OWNER_FULL_GAME_2026-11-02.json`)
   party's difficulty shown as they are built, started through the World Engine in one step; the
   workshop's encounters listed beside them. On a creature's turn the DM picks its square and the
   ways to it on the board; `PlaceCombatant` sets any combatant down on a free square, by choosing
-  it and its square or by dragging its token.
+  it and its square or by dragging its token. Done: saved encounters with their difficulty and a
+  one-step start, `PlaceCombatant`, the DM's hand by choosing and by dragging (ADR 0057 notes).
 - 670b — Terrain and battle maps: `PaintTerrain` on the running battlefield and in the builder
   (walls, difficult ground, cover, water, heights, obscured squares, clear); a battle map uploaded
   by the DM, re-encoded and approved as the location's; `AlignBattleMap` (a cell's size and the

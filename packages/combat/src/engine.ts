@@ -1,6 +1,7 @@
 import type { CombatCommand, CombatPort, Decision, DecisionContext, Dice } from '@ltw/domain';
 
 import { decideTakeAction } from './actions.ts';
+import { decidePlaceCombatant } from './board-hand.ts';
 import { decideAttack } from './attack.ts';
 import { decideCommandCreature } from './commanded.ts';
 import {
@@ -103,6 +104,8 @@ function decideCommand(context: DecisionContext, command: CombatCommand, dice: D
       return decideDelayTurn(context, command, dice);
     case 'SetInitiative':
       return decideSetInitiative(context, command);
+    case 'PlaceCombatant':
+      return decidePlaceCombatant(context, command);
     case 'CommandCreature':
       return decideCommandCreature(context, command);
     case 'AddObject':

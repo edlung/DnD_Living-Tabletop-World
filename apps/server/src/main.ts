@@ -45,6 +45,7 @@ import { PostgresProposalStore } from './authoring/postgres-proposal-store.ts';
 import { PostgresChatStore } from './chat/postgres-chat-store.ts';
 import { PostgresHandoutStore } from './handouts/postgres-handout-store.ts';
 import { PostgresDmNoteStore } from './dm/postgres-note-store.ts';
+import { PostgresSavedEncounterStore } from './combat/postgres-saved-encounter-store.ts';
 import { PostgresTableStateStore } from './table/postgres-table-state-store.ts';
 import { ReadyRegistry } from './table/table-state.ts';
 import { PostgresSubstitutionStore } from './dm/postgres-substitution-store.ts';
@@ -201,6 +202,7 @@ async function main(): Promise<void> {
     dm: {
       substitutions: new PostgresSubstitutionStore(pool),
       notes: new PostgresDmNoteStore(pool),
+      encounters: new PostgresSavedEncounterStore(pool),
       clock: systemClock,
     },
     // The table's rolls, the DM's check requests and short rests (Stages 510, 530; 0025, 0026).

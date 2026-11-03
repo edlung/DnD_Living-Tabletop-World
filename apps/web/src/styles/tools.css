@@ -296,7 +296,8 @@
 .prepared-encounters {
   display: grid;
   gap: 0.5rem;
-  margin: 0 0 1rem;
+  max-width: 56rem;
+  margin: 0 0 1.5rem;
 }
 .prepared-encounters h4 {
   margin: 0;
@@ -349,6 +350,11 @@
 }
 .encounter-start .surprise-choice {
   margin-bottom: 0.75rem;
+}
+/* The third way to a fight, named as the prepared and the saved ones are. */
+.encounter-start > h4 {
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
 }
 /* A move's window: the creatures the DM answers for, each with its attacks (ADR 0046 §2) */
 .reaction-answers {

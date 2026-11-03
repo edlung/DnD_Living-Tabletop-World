@@ -34,6 +34,7 @@ import { InMemoryAssetContentStore, type AssetContentStore } from '../assets/con
 import { InMemoryProposalStore } from '../authoring/proposal-store.ts';
 import type { AuthoringDependencies } from '../authoring/service.ts';
 import type { DmDependencies } from '../dm/dm-routes.ts';
+import { InMemorySavedEncounterStore } from '../combat/saved-encounter-store.ts';
 import { InMemoryDmNoteStore } from '../dm/note-store.ts';
 import { InMemorySubstitutionStore } from '../dm/substitution-store.ts';
 import type { TableDependencies } from '../dice/roll-access.ts';
@@ -177,6 +178,7 @@ export function testDm(): DmDependencies & { readonly substitutions: InMemorySub
   return {
     substitutions: new InMemorySubstitutionStore(),
     notes: new InMemoryDmNoteStore(),
+    encounters: new InMemorySavedEncounterStore(),
     clock: { now: () => clock.now() },
   };
 }

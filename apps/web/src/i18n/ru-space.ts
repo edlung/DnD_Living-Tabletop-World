@@ -115,6 +115,8 @@ registerRussian({
   'The light of the fight: dim': 'Освещение боя: тусклый свет',
   'The light of the fight: darkness': 'Освещение боя: темнота',
   'set the light of the fight': 'изменить освещение боя',
+  // The DM's hand (docs/adr/0057-encounters-maps-loot.md §2), named beside the light in the history
+  'set a combatant down': 'переставить участника боя',
 
   // Breath under water (docs/adr/0050-the-world-around.md §8)
   'holding its breath, {rounds} rounds left': 'задерживает дыхание, осталось раундов: {rounds}',

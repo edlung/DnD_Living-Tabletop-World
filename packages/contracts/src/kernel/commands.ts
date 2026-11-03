@@ -50,6 +50,7 @@ import {
   formHypothesisCommandSchema,
   setDisclosureCommandSchema,
 } from '../investigation/commands.ts';
+import { placeCombatantCommandSchema } from '../combat/board-commands.ts';
 import {
   addCombatantCommandSchema,
   adjustHitPointsCommandSchema,
@@ -222,6 +223,7 @@ export const kernelCommandSchema = z
     removeCombatantCommandSchema,
     delayTurnCommandSchema,
     setInitiativeCommandSchema,
+    placeCombatantCommandSchema,
     commandCreatureCommandSchema,
     addObjectCommandSchema,
     setLightCommandSchema,
@@ -313,6 +315,7 @@ export const KERNEL_COMMAND_TYPES = [
   'RemoveCombatant',
   'DelayTurn',
   'SetInitiative',
+  'PlaceCombatant',
   'CommandCreature',
   'AddObject',
   'SetLight',

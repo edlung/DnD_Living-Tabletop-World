@@ -46,6 +46,7 @@ import {
   type PreparedEncounterBooks,
 } from '../combat/prepared-encounters.ts';
 import { registerBestiaryRoutes } from '../combat/bestiary-routes.ts';
+import { registerSavedEncounterRoutes } from '../combat/saved-encounters.ts';
 import { registerAttuneRoutes } from '../items/attune-routes.ts';
 import { registerItemCatalogRoutes } from '../items/item-catalog-routes.ts';
 import { registerRulesReferenceRoutes } from '../rules/reference-routes.ts';
@@ -199,6 +200,7 @@ export function buildApp(input: AppDependencies): FastifyInstance {
   registerSurroundingsRoutes(app, deps);
   registerEncounterRoutes(app, deps);
   registerPreparedEncounterRoutes(app, deps);
+  registerSavedEncounterRoutes(app, deps);
   registerBestiaryRoutes(app, deps);
   registerItemCatalogRoutes(app, deps);
   registerRulesReferenceRoutes(app, deps);

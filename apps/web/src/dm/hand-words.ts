@@ -141,6 +141,8 @@ export function describeHand(t: Translate, change: DmHandEntry['change']): strin
           return t('{name} delayed the turn', { name });
         case 'initiative':
           return t('{name}: initiative {total}', { name, total: change.total ?? '' });
+        case 'placed':
+          return t('{name} set down on another square', { name });
       }
     }
   }

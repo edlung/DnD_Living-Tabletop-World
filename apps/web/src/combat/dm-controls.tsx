@@ -21,6 +21,7 @@ import type { CombatUiCommand } from './combat-bindings.ts';
 import { DmReactionWindow, DmReadiedList } from './dm-reaction-window.tsx';
 import type { StandIn } from './stand-in.ts';
 import { PreparedEncounters } from './prepared-encounters.tsx';
+import { SavedEncounters } from './saved-encounters.tsx';
 import { StandInControls } from './stand-in-controls.tsx';
 import { SurpriseChoice, type SurpriseValue } from './surprise-choice.tsx';
 import { TurnOrderControls } from './turn-order-controls.tsx';
@@ -109,6 +110,13 @@ export function DmCombatControls({
       ) : (
         <>
           <PreparedEncounters api={api} locked={locked} onStarted={onWorldChanged} />
+          <SavedEncounters
+            api={api}
+            locationId={locationId}
+            directory={directory}
+            locked={locked}
+            onStarted={onWorldChanged}
+          />
           <StartControls
             api={api}
             locationId={locationId}
@@ -166,6 +174,7 @@ function StartControls({
   const nameOf = (id: string) => directory.find((entity) => entity.entityId === id)?.name ?? id;
   return (
     <div className="encounter-start">
+      <h4>{t('A fight with who is here')}</h4>
       <p className="muted">
         {t(
           'Characters join the party and creatures are hostile, on open ground. Initiative is rolled by the rules.',

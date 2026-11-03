@@ -90,8 +90,12 @@ export function InitiativeStrip({
                       {combatant.initiative.total}
                     </span>
                   )}
-                  {number && !combatant.initiative && (
-                    <span className="initiative-number" aria-hidden="true">
+                  {/* Two Goblin Warriors are told apart even beside their Initiative totals. */}
+                  {number && (
+                    <span
+                      className={`initiative-number${combatant.initiative ? ' beside-total' : ''}`}
+                      aria-hidden="true"
+                    >
                       {number}
                     </span>
                   )}
