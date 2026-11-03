@@ -160,6 +160,31 @@ effects.ts`): `CastSpell` names the options (one, or with Empowered or Seeking b
 - The turn tray asks a Sorcerer's Metamagic with the spell's slot; the Spells tab marks a spell
   cast at will.
 
+## Notes from the implementation (Stage 660e, part 1, 2026-11-03)
+
+- The campaign's options (decision 16; `packages/contracts/src/campaign/options.ts`,
+  `packages/domain/src/campaign/options.ts`) are a world fact the DM sets with
+  `SetCampaignOptions` on the Session sheet — `CampaignOptionsSet {from, to}`, undone from the
+  DM's history like time and weather, the defaults (the player's choice of hit points, levels by
+  experience, carrying shown, level 1) in every history that never set them. AI authoring cannot
+  set them.
+- A level's hit points: the player's choice, or the campaign's one way — the level dialog then
+  shows only that way, and the advancement route refuses the other. Levels by milestone count no
+  experience: the experience route answers 409, a level is ready only once the DM grants it, the
+  Party sheet grants a level to each character ticked instead of awarding experience, and a
+  character's sheet shows no experience.
+- Carrying (SRD 5.2.1, Carrying Capacity): what Strength carries is now by size — × 7.5 lb Tiny,
+  × 15 Small or Medium, doubled each size past it. Where the campaign enforces carrying, a load
+  past it is dragged at a Speed of 5 ft at most, and one past what the carrier can drag, lift or
+  push (twice it) leaves it a Speed of 0 — the SRD names the most weight, and the World Engine reads
+  a heavier load as one its carrier cannot move. Combat's speed, Dash and every way of moving take
+  the cap from the character's possessions (`vitalsOf`); the sheet's derived speed and the
+  inventory say so ("5 ft (load)").
+- Joining at the party's level (SRD 5.2.1, Starting at Higher Levels): a new character starts at
+  the campaign's starting level — made at level 1 with that level's experience and the levels to
+  take one by one with their choices (`startingAt`). The builder says so, with the SRD's Starting
+  Equipment at Higher Levels as the DM's guide; more equipment stays the DM's to give.
+
 ## Consequences
 
 - Stage 660 runs in parts: the data; creation; advancement; features in play; the table's life.

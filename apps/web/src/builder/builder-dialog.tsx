@@ -199,6 +199,16 @@ function Step({
   }
 }
 
+/** SRD 5.2.1's Starting Equipment at Higher Levels, a guide for the DM. */
+const higherLevelGear = (level: number): string =>
+  level <= 4
+    ? 'one Common magic item'
+    : level <= 10
+      ? '500 GP plus 1d10 × 25 GP, one Common and one Uncommon magic item'
+      : level <= 16
+        ? '5,000 GP plus 1d10 × 250 GP, two Common, three Uncommon and one Rare magic item'
+        : '20,000 GP plus 1d10 × 250 GP, two Common, four Uncommon, three Rare and one Very Rare magic item';
+
 /** The last step: what the choices make, a name, and the character made. */
 function Review({
   options,
@@ -292,6 +302,17 @@ function Review({
         </dl>
       ) : (
         <p className="muted">{t('Finish the marked steps to see the character.')}</p>
+      )}
+      {options.startingLevel > 1 && (
+        <p className="muted builder-note">
+          {t(
+            'Characters here start at level {level}: once made, take the levels one by one on the sheet.',
+            { level: options.startingLevel },
+          )}{' '}
+          {t('More equipment is the DM’s to give; the SRD suggests {gear}.', {
+            gear: t(higherLevelGear(options.startingLevel)),
+          })}
+        </p>
       )}
       <Problems problems={problems} />
       {refused !== null && (

@@ -23,6 +23,7 @@ const KIND_GLYPH = {
   substitution: 'perform',
   time: 'time',
   weather: 'weather',
+  options: 'settings',
   'hit-points': 'hit-points',
   condition: 'incapacitated',
   exhaustion: 'exhaustion',

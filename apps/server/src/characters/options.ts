@@ -51,7 +51,7 @@ const MASTERIES: Partial<Record<ClassId, number>> = {
   rogue: 2,
 };
 
-function optionsIn(language: ReferenceLanguage): CharacterOptionsResponse {
+function optionsIn(language: ReferenceLanguage): Omit<CharacterOptionsResponse, 'startingLevel'> {
   const named = (catalogId: string): NamedItem => {
     const entry = itemEntry(catalogId);
     return { catalogId, name: entry ? entryIn(entry, language).name[language] : catalogId };
@@ -194,5 +194,6 @@ function optionsIn(language: ReferenceLanguage): CharacterOptionsResponse {
 }
 
 const OPTIONS = { en: optionsIn('en'), ru: optionsIn('ru') };
-export const characterOptions = (language: ReferenceLanguage): CharacterOptionsResponse =>
-  OPTIONS[language];
+export const characterOptions = (
+  language: ReferenceLanguage,
+): Omit<CharacterOptionsResponse, 'startingLevel'> => OPTIONS[language];

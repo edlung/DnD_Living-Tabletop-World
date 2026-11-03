@@ -223,4 +223,28 @@ registerRussian({
   '{class} has no order': 'У класса «{class}» нет порядка',
   'Choose {count} kinds of weapon': 'Выберите видов оружия: {count}',
   'Your background’s feat is {feat}': 'Черта вашей предыстории — {feat}',
+  // Levels under the campaign's options (docs/adr/0056-characters-from-the-srd.md §3)
+  'Levels by milestone: the DM grants each level.':
+    'Уровни по вехам: каждый уровень выдаёт мастер.',
+  '{way} — this campaign’s rule.': '{way} — правило этой кампании.',
+  'This campaign takes the fixed hit points': 'В этой кампании хиты фиксированные',
+  'This campaign rolls the hit points': 'В этой кампании хиты бросаются',
+  Milestone: 'Веха',
+  'A level for each who reached it, to take with their choices.':
+    'Уровень каждому, кто дошёл до вехи; его берут со своими выборами.',
+  'Who reached it': 'Кто дошёл',
+  'Grant a level to each': 'Выдать уровень каждому',
+  'A level is granted to each to take.': 'Уровень выдан каждому — его можно взять.',
+  'The level could not be granted to {names}.': 'Не удалось выдать уровень: {names}.',
+  'Characters here start at level {level}: once made, take the levels one by one on the sheet.':
+    'Персонажи здесь начинают с уровня {level}: после создания возьмите уровни по одному в листе.',
+  'More equipment is the DM’s to give; the SRD suggests {gear}.':
+    'Дополнительное снаряжение выдаёт мастер; SRD советует: {gear}.',
+  'one Common magic item': 'один обычный магический предмет',
+  '500 GP plus 1d10 × 25 GP, one Common and one Uncommon magic item':
+    '500 зм плюс 1к10 × 25 зм, один обычный и один необычный магический предмет',
+  '5,000 GP plus 1d10 × 250 GP, two Common, three Uncommon and one Rare magic item':
+    '5 000 зм плюс 1к10 × 250 зм, два обычных, три необычных и один редкий магический предмет',
+  '20,000 GP plus 1d10 × 250 GP, two Common, four Uncommon, three Rare and one Very Rare magic item':
+    '20 000 зм плюс 1к10 × 250 зм, два обычных, четыре необычных, три редких и один очень редкий магический предмет',
 });

@@ -41,8 +41,13 @@ export interface CharacterDerived {
     >
   >;
   readonly initiative: number;
-  /** Speed after the character's conditions and Exhaustion (ADR 0045 §1, §3). */
+  /** Speed after the character's conditions and Exhaustion (ADR 0045 §1, §3), and its load. */
   readonly speedFt: number;
+  /**
+   * Where the campaign enforces carrying and the load is too heavy (docs/adr/0056-characters-from-
+   * the-srd.md §3): the most it lets the character move — 5 ft dragging it, 0 past that.
+   */
+  readonly loadSpeedFt?: number;
   readonly passive: {
     readonly perception: number;
     readonly investigation: number;
@@ -94,7 +99,7 @@ export interface CharacterDerived {
     /** The pieces of its ammunition the character carries, when they are counted (§5). */
     readonly ammunition?: { readonly kind: AmmunitionKind; readonly count: number };
   }[];
-  /** Strength × 15 lb; shown, never enforced (ADR 0039). */
+  /** Strength × 15 lb by size; shown, and enforced where the campaign says (ADR 0056 §3). */
   readonly carryingCapacityLb: number;
   /**
    * The class features spent and restored by rests, with what is left (docs/adr/0056-characters-

@@ -1,3 +1,4 @@
+import type { CampaignOptions } from '../campaign/options.ts';
 import type { SrdPickKind } from '../srd/creation.ts';
 import type { ChoiceProblem } from './character-choices.ts';
 import type {
@@ -130,6 +131,8 @@ export interface CharacterOptionsResponse {
   /** Every spell of every list, by level. */
   readonly spells: readonly SpellOption[];
   readonly weapons: readonly { readonly weaponId: WeaponId; readonly name: string }[];
+  /** The level a new character starts at, the campaign's (docs/adr/0056-…md §3). */
+  readonly startingLevel: number;
 }
 
 /** POST …/characters/preview: what the choices make, or what does not hold. */
@@ -176,6 +179,8 @@ export interface LevelOptionsResponse {
   /** The experience the next level needs. */
   readonly nextAt: number;
   readonly pendingLevels: number;
+  /** The campaign's options for levels: whose hit points, and by experience or milestone. */
+  readonly options: Pick<CampaignOptions, 'hitPointsAtLevel' | 'levelsBy'>;
   readonly classes: readonly (
     | { readonly classId: ClassId; readonly asks: LevelAsksView }
     | { readonly classId: ClassId; readonly refused: string }

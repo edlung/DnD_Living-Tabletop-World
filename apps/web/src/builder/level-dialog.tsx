@@ -3,12 +3,13 @@ import {
   type CharacterOptionsResponse,
   type CharacterSheet,
   type ChoiceProblem,
+  type HitPointsAtLevel,
   type LevelAsksView,
   type LevelOptionsResponse,
   type LevelUpChoices,
   type LevelUpResponse,
 } from '@ltw/contracts';
-import { readableLabel, useT } from '@ltw/ui';
+import { readableLabel, useT, type Translate } from '@ltw/ui';
 import { useId, useLayoutEffect, useRef, useState } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
@@ -20,7 +21,8 @@ import { Field, Problems } from './builder-steps.tsx';
 /**
  * A level taken (docs/adr/0056-characters-from-the-srd.md §3): the class it goes to — a new one only
  * where the character meets its prerequisites — its hit points, fixed or rolled by the World
- * Engine, and what the level asks of its player; the rules check every choice when it is taken.
+ * Engine as the player chooses or the campaign says, and what the level asks of its player; the
+ * rules check every choice when it is taken.
  */
 const EMPTY = {
   hitPoints: 'fixed',
@@ -55,8 +57,14 @@ export function LevelDialog({
   const t = useT();
   const ids = useId();
   const ref = useRef<HTMLDialogElement>(null);
-  const [choices, setChoices] = useState<LevelUpChoices>({
+  const hitPointsAtLevel = levels.options.hitPointsAtLevel;
+  // The campaign's way, where it has one.
+  const empty = {
     ...EMPTY,
+    hitPoints: hitPointsAtLevel === 'rolled' ? 'rolled' : 'fixed',
+  } as const;
+  const [choices, setChoices] = useState<LevelUpChoices>({
+    ...empty,
     classId: sheet.classes[0]?.classId ?? 'fighter',
   });
   const [problems, setProblems] = useState<readonly ChoiceProblem[]>([]);
@@ -120,7 +128,7 @@ export function LevelDialog({
                 id={id}
                 value={choices.classId}
                 onChange={(event) => {
-                  update({ ...EMPTY, classId: event.target.value as LevelUpChoices['classId'] });
+                  update({ ...empty, classId: event.target.value as LevelUpChoices['classId'] });
                 }}
               >
                 {levels.classes.map((one) => (
@@ -140,6 +148,7 @@ export function LevelDialog({
               asks={asks}
               sheet={sheet}
               options={options}
+              hitPointsAtLevel={hitPointsAtLevel}
               choices={choices}
               update={update}
             />
@@ -170,12 +179,14 @@ function LevelChoices({
   asks,
   sheet,
   options,
+  hitPointsAtLevel,
   choices,
   update,
 }: {
   readonly asks: LevelAsksView;
   readonly sheet: CharacterSheet;
   readonly options: CharacterOptionsResponse;
+  readonly hitPointsAtLevel: HitPointsAtLevel;
   readonly choices: LevelUpChoices;
   readonly update: (change: Partial<LevelUpChoices>) => void;
 }) {
@@ -212,21 +223,27 @@ function LevelChoices({
       </p>
       <fieldset className="builder-inline" aria-describedby={`${ids}-hp-note`}>
         <legend>{t('Hit points')}</legend>
-        {(['fixed', 'rolled'] as const).map((way) => (
-          <label key={way}>
-            <input
-              type="radio"
-              name={`${ids}-hp`}
-              checked={choices.hitPoints === way}
-              onChange={() => {
-                update({ hitPoints: way });
-              }}
-            />
-            {way === 'fixed'
-              ? t('The fixed value: {value}', { value: Math.floor(hitDie / 2) + 1 })
-              : t('A d{sides} rolled by the World Engine', { sides: hitDie })}
-          </label>
-        ))}
+        {hitPointsAtLevel === 'choice' ? (
+          (['fixed', 'rolled'] as const).map((way) => (
+            <label key={way}>
+              <input
+                type="radio"
+                name={`${ids}-hp`}
+                checked={choices.hitPoints === way}
+                onChange={() => {
+                  update({ hitPoints: way });
+                }}
+              />
+              {hitPointsWay(t, way, hitDie)}
+            </label>
+          ))
+        ) : (
+          <p>
+            {t('{way} — this campaign’s rule.', {
+              way: hitPointsWay(t, hitPointsAtLevel, hitDie),
+            })}
+          </p>
+        )}
         <p id={`${ids}-hp-note`} className="muted builder-note">
           {t('Either way your Constitution modifier is added ({modifier}); at least 1.', {
             modifier: signed(Math.floor((sheet.abilities.con - 10) / 2)),
@@ -433,3 +450,8 @@ function LevelChoices({
     </>
   );
 }
+
+const hitPointsWay = (t: Translate, way: 'fixed' | 'rolled', hitDie: number) =>
+  way === 'fixed'
+    ? t('The fixed value: {value}', { value: Math.floor(hitDie / 2) + 1 })
+    : t('A d{sides} rolled by the World Engine', { sides: hitDie });

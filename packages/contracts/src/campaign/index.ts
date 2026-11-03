@@ -147,3 +147,14 @@ export {
   type CampaignBootstrapAsset,
   type BootstrapCampaignCommand,
 } from './bootstrap.ts';
+export {
+  CARRYING,
+  DEFAULT_CAMPAIGN_OPTIONS,
+  HIT_POINTS_AT_LEVEL,
+  LEVELS_BY,
+  campaignOptionsSchema,
+  setCampaignOptionsCommandSchema,
+  type CampaignOptions,
+  type HitPointsAtLevel,
+  type LevelsBy,
+} from './options.ts';

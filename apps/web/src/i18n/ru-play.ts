@@ -405,6 +405,7 @@ registerRussian({
   'retract asset': 'отзыв изображения',
   'approve asset': 'одобрение изображения',
   'set weather': 'погода',
+  'set campaign options': 'параметры кампании',
   'generate chronicle': 'глава хроники',
   'grant item': 'выдача предмета',
   'equip item': 'надеть предмет',

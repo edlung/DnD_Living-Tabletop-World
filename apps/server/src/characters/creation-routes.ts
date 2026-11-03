@@ -3,9 +3,10 @@ import {
   characterChoicesSchema,
   entityIdSchema,
   type CharacterCreatedResponse,
+  type CharacterOptionsResponse,
   type CharacterPreviewResponse,
 } from '@ltw/contracts';
-import { campaignRole } from '@ltw/domain';
+import { campaignOptions, campaignRole } from '@ltw/domain';
 import type { FastifyInstance } from 'fastify';
 import { z } from 'zod';
 
@@ -54,8 +55,13 @@ export function registerCharacterCreationRoutes(
     if (!path) return reply;
     const table = await atTable(path.campaignId, actor);
     if (!table) return sendError(reply, request, 'NOT_FOUND');
-    const language = table.snapshot.state.campaign?.language === 'ru' ? 'ru' : 'en';
-    return reply.send(characterOptions(language));
+    const { state } = table.snapshot;
+    const language = state.campaign?.language === 'ru' ? 'ru' : 'en';
+    const body: CharacterOptionsResponse = {
+      ...characterOptions(language),
+      startingLevel: campaignOptions(state).startingLevel,
+    };
+    return reply.send(body);
   });
 
   app.post('/campaigns/:campaignId/characters/preview', async (request, reply) => {

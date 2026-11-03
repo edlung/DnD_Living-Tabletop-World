@@ -33,6 +33,12 @@ export const UI_ITEM_CAMPAIGNS = {
   attune: 'ui-items-attune',
   /** Charges, dawn, and a potion known by a taste (§5). */
   charges: 'ui-items-charges',
+  /**
+   * The DM's campaign options (docs/adr/0056-…md §3), in English and in Russian: Elowen also
+   * carries four mail shirts, more than her Strength carries.
+   */
+  options: 'ui-campaign-options',
+  optionsRu: 'ui-campaign-options-ru',
 } as const;
 
 const DM = { actorId: 'dm-ravenford', kind: 'user' } as const;
@@ -47,6 +53,7 @@ const NAMES = {
     lantern: 'Dented lantern',
     blade: 'Practice blade',
     crowns: 'Purse of crowns',
+    mail: 'Spare mail shirt',
   },
   ru: {
     brigandine: 'Равенфордский бригандин',
@@ -56,6 +63,7 @@ const NAMES = {
     lantern: 'Помятый фонарь',
     blade: 'Учебный клинок',
     crowns: 'Кошель крон',
+    mail: 'Запасная кольчуга',
   },
 } as const;
 
@@ -88,6 +96,8 @@ export async function seedUiItemCampaigns(engine: WorldEngine): Promise<void> {
     [UI_ITEM_CAMPAIGNS.featuresRu, 'ru'],
     [UI_ITEM_CAMPAIGNS.attune, 'en'],
     [UI_ITEM_CAMPAIGNS.charges, 'en'],
+    [UI_ITEM_CAMPAIGNS.options, 'en'],
+    [UI_ITEM_CAMPAIGNS.optionsRu, 'ru'],
   ] as const) {
     const seed = await loadRavenfordSeed(language === 'ru' ? RAVENFORD_RU_FIXTURES_DIR : undefined);
     for (const input of seed.submissions) {
@@ -100,6 +110,26 @@ export async function seedUiItemCampaigns(engine: WorldEngine): Promise<void> {
       if (result.status !== 'accepted') throw new Error(`UI items ${campaignId} seed failed`);
     }
     await seedItems(engine, campaignId, NAMES[language], campaignId !== UI_ITEM_CAMPAIGNS.take);
+    if (campaignId === UI_ITEM_CAMPAIGNS.options || campaignId === UI_ITEM_CAMPAIGNS.optionsRu)
+      await seedLoad(engine, campaignId, NAMES[language].mail);
+  }
+}
+
+/** Four 40 lb mail shirts beside her gear: about 190 lb against the 150 her Strength carries. */
+async function seedLoad(engine: WorldEngine, campaignId: string, name: string): Promise<void> {
+  for (const itemId of ['item-2b8e41d7', 'item-7c05f9a3', 'item-e41a6c28', 'item-93d7b05e']) {
+    for (const command of [
+      { type: 'CreateEntity', entityId: itemId, kind: 'item', name, existsSince: null },
+      { type: 'GrantItem', itemId, holderId: ELOWEN, catalogId: 'watchman-mail', quantity: 1 },
+    ]) {
+      const result = await engine.execute({
+        campaignId,
+        commandId: `${campaignId}.load.${command.type}.${itemId}`,
+        actor: DM,
+        command,
+      });
+      if (result.status !== 'accepted') throw new Error(`UI options ${campaignId}: load failed`);
+    }
   }
 }
 

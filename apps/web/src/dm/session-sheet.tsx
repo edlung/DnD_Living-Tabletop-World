@@ -14,6 +14,7 @@ import { Field } from '../session/account-forms.tsx';
 import { useSignInKind } from '../session/sign-in-kind.ts';
 import { Glyph } from '../visual/glyph.tsx';
 import { useRereadOn } from '../world/use-world-data.ts';
+import { CampaignOptionsForm } from './campaign-options.tsx';
 import type { DmTableCommand } from './table-commands.ts';
 
 /**
@@ -175,6 +176,13 @@ export function SessionSheet({
           {t('The table could not be changed. Try again.')}
         </p>
       )}
+      {/* Mounted again for each set read back: a saved change becomes the form's start. */}
+      <CampaignOptionsForm
+        key={JSON.stringify(table.options)}
+        options={table.options}
+        locked={locked}
+        onRun={onRun}
+      />
     </div>
   );
 }

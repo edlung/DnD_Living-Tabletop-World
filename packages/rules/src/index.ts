@@ -25,7 +25,13 @@ export {
   spellSlotsFor,
   totalLevel,
 } from './character-math.ts';
-export { carryingCapacityLb, deriveCharacter, weaponAttack } from './character-derived.ts';
+export {
+  carryingCapacityLb,
+  deriveCharacter,
+  loadSpeedFt,
+  weaponAttack,
+} from './character-derived.ts';
+export { hitPointsAllowed, levelReady, startingAt } from './builder/campaign-levels.ts';
 export {
   attackerTilt,
   checkEffects,

@@ -365,6 +365,9 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
       case 'ChronicleGenerated':
         restores.push({ fact: 'chronicle', chronicleId: event.payload.chronicleId, value: null });
         break;
+      case 'CampaignOptionsSet':
+        restores.push({ fact: 'campaignOptions', value: event.payload.from });
+        break;
       case 'WeatherSet':
         restores.push({
           fact: 'weather',

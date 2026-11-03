@@ -21,14 +21,12 @@ export function inventoryView(
   const holder = state.entities.get(entityId);
   if (holder?.kind !== 'character' && holder?.kind !== 'npc') return null;
   const items: InventoryItem[] = [];
-  let totalWeightLb = 0;
   for (const itemId of carriedBy(state, entityId)) {
     const possession = possessionOf(state, itemId);
     const entity = state.entities.get(itemId);
     if (!possession || entity?.status !== 'active') continue;
     // A magic one made on a base, with the base's numbers (docs/adr/0054-items-as-data.md §5).
     const entry = entryOf(possession);
-    totalWeightLb += (entry?.weightLb ?? 0) * possession.quantity;
     // Unidentified, its carrier sees what it looks like (§5): a base's look, or an unknown thing.
     const unknown = !dm && possession.unidentified === true;
     const base =
@@ -82,8 +80,19 @@ export function inventoryView(
     perspective: perspective.label,
     entity: entityRef(state, entityId),
     items,
-    totalWeightLb: Math.round(totalWeightLb * 10) / 10,
+    totalWeightLb: carriedWeightLb(state, entityId),
   };
+}
+
+/** What a holder carries weighs, in pounds to a tenth: each item's entry by its quantity. */
+export function carriedWeightLb(state: WorldState, holderId: string): number {
+  let total = 0;
+  for (const itemId of carriedBy(state, holderId)) {
+    const possession = possessionOf(state, itemId);
+    if (!possession || state.entities.get(itemId)?.status !== 'active') continue;
+    total += (entryOf(possession)?.weightLb ?? 0) * possession.quantity;
+  }
+  return Math.round(total * 10) / 10;
 }
 
 /**

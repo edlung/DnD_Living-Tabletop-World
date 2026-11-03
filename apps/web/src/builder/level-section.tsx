@@ -1,7 +1,6 @@
 import type {
   CharacterOptionsResponse,
   CharacterSheet,
-  EntityRef,
   LevelOptionsResponse,
 } from '@ltw/contracts';
 import { useLanguage, useT } from '@ltw/ui';
@@ -9,8 +8,6 @@ import { useEffect, useId, useState } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { useDiceTable } from '../dice/table.tsx';
-import { Field } from '../session/account-forms.tsx';
-import { Glyph } from '../visual/glyph.tsx';
 import { LevelDialog } from './level-dialog.tsx';
 
 /**
@@ -81,11 +78,14 @@ export function LevelSection({
     <section className="hero-section" aria-labelledby={`${ids}-title`}>
       <h3 id={`${ids}-title`}>{t('Experience and levels')}</h3>
       <p className="muted">
-        {t('{experience} XP; level {next} at {needed} XP.', {
-          experience: number.format(levels.experience),
-          next,
-          needed: number.format(levels.nextAt),
-        })}
+        {/* Levels by milestone count no experience (docs/adr/0056-characters-from-the-srd.md §3). */}
+        {levels.options.levelsBy === 'milestone'
+          ? t('Levels by milestone: the DM grants each level.')
+          : t('{experience} XP; level {next} at {needed} XP.', {
+              experience: number.format(levels.experience),
+              next,
+              needed: number.format(levels.nextAt),
+            })}
         {levels.pendingLevels > 0
           ? ` ${t('Levels granted by the DM to take: {count}.', { count: levels.pendingLevels })}`
           : ''}
@@ -142,97 +142,6 @@ export function LevelSection({
           }}
         />
       )}
-    </section>
-  );
-}
-
-/** The DM's experience for the party: an amount divided evenly among the characters ticked. */
-export function AwardExperience({
-  api,
-  characters,
-}: {
-  readonly api: WorldApi;
-  readonly characters: readonly EntityRef[];
-}) {
-  const t = useT();
-  const ids = useId();
-  const number = new Intl.NumberFormat(useLanguage());
-  const [amount, setAmount] = useState('');
-  // Those left out: a character who joins later is ticked.
-  const [left, setLeft] = useState<readonly string[]>([]);
-  const [note, setNote] = useState<string | null>(null);
-  const chosen = characters.map((one) => one.entityId).filter((id) => !left.includes(id));
-  const value = Number(amount);
-  return (
-    <section className="sheet-section" aria-labelledby={`${ids}-title`}>
-      <h3 id={`${ids}-title`}>{t('Experience')}</h3>
-      <p className="muted">
-        {t('What the party earned, divided evenly among those who earned it.')}
-      </p>
-      <form
-        className="hand-form"
-        noValidate
-        onSubmit={(event) => {
-          event.preventDefault();
-          void api
-            .post<{ share: number }>(
-              'experience',
-              { requestId: crypto.randomUUID(), amount: value, characterIds: chosen },
-              new AbortController().signal,
-              true,
-            )
-            .then((answer) => {
-              setNote(t('{share} XP to each.', { share: number.format(answer.share) }));
-              setAmount('');
-            })
-            .catch(() => {
-              setNote(t('The experience could not be awarded.'));
-            });
-        }}
-      >
-        <Field label={t('Experience points')}>
-          {(control) => (
-            <input
-              {...control}
-              inputMode="numeric"
-              value={amount}
-              onChange={(event) => {
-                setAmount(event.target.value.replace(/\D/g, '').slice(0, 7));
-              }}
-            />
-          )}
-        </Field>
-        <fieldset className="hand-choice">
-          <legend>{t('Who earned it')}</legend>
-          {characters.map((one) => (
-            <label key={one.entityId}>
-              <input
-                type="checkbox"
-                checked={!left.includes(one.entityId)}
-                onChange={(event) => {
-                  setLeft((before) =>
-                    event.target.checked
-                      ? before.filter((id) => id !== one.entityId)
-                      : [...before, one.entityId],
-                  );
-                }}
-              />
-              {one.name}
-            </label>
-          ))}
-        </fieldset>
-        <div className="action-row">
-          <button
-            type="submit"
-            className="primary-button"
-            disabled={!(value > 0) || value > 1_000_000 || chosen.length === 0}
-          >
-            <Glyph name="party" />
-            {t('Award, divided evenly')}
-          </button>
-        </div>
-        {note && <p role="status">{note}</p>}
-      </form>
     </section>
   );
 }

@@ -365,6 +365,9 @@ export function footprintOf(event: KernelEvent): Footprint {
     case 'ChronicleGenerated':
       // A chapter rests on everything it tells (ADR 0024 §4).
       return chronicleFootprint(event.payload);
+    case 'CampaignOptionsSet':
+      // The campaign's options (docs/adr/0056-characters-from-the-srd.md §3).
+      return { reads: [facts.campaign()], writes: [facts.campaignOptions()] };
     case 'WeatherSet':
       // A location's own weather, from now on (ADR 0023 §1).
       return {
@@ -468,6 +471,8 @@ export function restoredFacts(restore: Restore): FactKey[] {
       return assetRestoredFacts(restore);
     case 'weather':
       return [facts.weather(restore.locationId)];
+    case 'campaignOptions':
+      return [facts.campaignOptions()];
     case 'chronicle':
       return [facts.chronicle(restore.chronicleId)];
     case 'possession':

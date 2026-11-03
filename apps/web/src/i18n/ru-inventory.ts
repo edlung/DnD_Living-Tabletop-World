@@ -68,4 +68,9 @@ registerRussian({
   Thrown: 'Метательное',
   Loading: 'Перезарядка',
   Ammunition: 'Боеприпасы',
+  // An enforced load (docs/adr/0056-characters-from-the-srd.md §3)
+  'More than you can drag: you cannot move until you drop something.':
+    'Больше, чем вы можете тащить: вы не сдвинетесь, пока не бросите что-нибудь.',
+  'More than you can carry: you drag it, at a Speed of 5 ft.':
+    'Больше, чем вы можете нести: вы тащите груз со Скоростью 5 фт.',
 });

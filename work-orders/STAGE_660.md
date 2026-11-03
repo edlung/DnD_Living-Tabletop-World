@@ -35,7 +35,9 @@ Authority: owner approval 2026-11-02 (`reviews/OWNER_FULL_GAME_2026-11-02.json`)
   play.
 - 660e — The table's life: death and the spells that return the dead, a character joining
   mid-campaign, a character copied into another campaign as a sheet (decision 15), a printable
-  sheet, a portrait by GPT, the four summons a spell's level scales and Wild Shape's forms.
+  sheet, a portrait by GPT, the four summons a spell's level scales and Wild Shape's forms. Part 1
+  done: the campaign's options of decision 16 (a level's hit points, levels by experience or
+  milestone, carrying shown or enforced) and a new character at the campaign's starting level.
 
 ## Checks at each sub-stage
 

@@ -8,11 +8,14 @@ import {
   type LevelOptionsResponse,
   type LevelUpResponse,
 } from '@ltw/contracts';
+import { campaignOptions } from '@ltw/domain';
 import {
   classIn,
   experienceFor,
+  hitPointsAllowed,
   levelAsks,
   levelFeatures,
+  levelReady,
   levelUpCharacter,
   srdClass,
   totalLevel,
@@ -30,7 +33,8 @@ import { TABLE_ACTOR } from '../rest/rest-routes.ts';
  * evenly among the characters named, or grants a level (a milestone); a character with the
  * experience for its next level, or a level granted, takes it with its player's choices — the
  * rules build the next sheet, the server rolls a rolled level's hit points, and the World Engine
- * records the sheet. The DM may take a level for any character.
+ * records the sheet. The DM may take a level for any character. The campaign's options decide
+ * whether experience counts (levels by milestone award none) and how a level's hit points come.
  */
 const params = z.object({ campaignId: campaignIdSchema }).strict();
 const characterParams = z
@@ -38,14 +42,6 @@ const characterParams = z
   .strict();
 const advanceBody = z.object({ requestId: z.uuid(), choices: levelUpChoicesSchema }).strict();
 const milestoneBody = z.object({ requestId: z.uuid() }).strict();
-
-/** The levels a sheet may take now: its experience's, or one the DM granted. */
-export function levelReady(sheet: CharacterSheet): boolean {
-  const next = totalLevel(sheet) + 1;
-  return (
-    next <= 20 && ((sheet.pendingLevels ?? 0) > 0 || (sheet.experience ?? 0) >= experienceFor(next))
-  );
-}
 
 export function registerAdvancementRoutes(
   app: FastifyInstance,
@@ -86,6 +82,9 @@ export function registerAdvancementRoutes(
     if (!ready) return reply;
     if (ready.context.perspective.kind !== 'DM') return sendError(reply, request, 'FORBIDDEN');
     const { state } = ready.context;
+    // Levels by milestone count no experience.
+    if (campaignOptions(state).levelsBy === 'milestone')
+      return sendError(reply, request, 'CONFLICT');
     const { amount, characterIds, requestId } = ready.body;
     const sheets = characterIds.map((id) => [id, state.characterSheets.get(id)] as const);
     if (sheets.some(([, sheet]) => !sheet)) return sendError(reply, request, 'NOT_FOUND');
@@ -137,13 +136,15 @@ export function registerAdvancementRoutes(
       if (perspective.kind !== 'DM' && !own) return sendError(reply, request, 'FORBIDDEN');
       if (!sheet) return sendError(reply, request, 'NOT_FOUND');
       const language = state.campaign?.language === 'ru' ? 'ru' : 'en';
+      const { hitPointsAtLevel, levelsBy } = campaignOptions(state);
       const body: LevelOptionsResponse = {
         perspective: perspective.label,
-        ready: levelReady(sheet) || perspective.kind === 'DM',
+        ready: levelReady(sheet, levelsBy) || perspective.kind === 'DM',
         level: totalLevel(sheet),
         experience: sheet.experience ?? 0,
         nextAt: experienceFor(totalLevel(sheet) + 1),
         pendingLevels: sheet.pendingLevels ?? 0,
+        options: { hitPointsAtLevel, levelsBy },
         classes: CLASS_IDS.map((classId) => {
           const asks = levelAsks(sheet, classId);
           if (typeof asks === 'string') return { classId, refused: asks };
@@ -167,7 +168,23 @@ export function registerAdvancementRoutes(
     const commandId = `advance.${ready.body.requestId}`;
     if (ready.context.state.commands.has(commandId))
       return reply.send({ status: 'duplicate', problems: [] } satisfies LevelUpResponse);
-    if (!dm && !levelReady(sheet)) return sendError(reply, request, 'CONFLICT');
+    const options = campaignOptions(ready.context.state);
+    if (!dm && !levelReady(sheet, options.levelsBy)) return sendError(reply, request, 'CONFLICT');
+    if (!hitPointsAllowed(options.hitPointsAtLevel, ready.body.choices.hitPoints)) {
+      const refused: LevelUpResponse = {
+        status: 'refused',
+        problems: [
+          {
+            field: 'hitPoints',
+            message:
+              options.hitPointsAtLevel === 'fixed'
+                ? 'This campaign takes the fixed hit points'
+                : 'This campaign rolls the hit points',
+          },
+        ],
+      };
+      return reply.code(422).send(refused);
+    }
     const built = levelUpCharacter(sheet, ready.body.choices, (sides) =>
       deps.table.dice.roll(sides),
     );

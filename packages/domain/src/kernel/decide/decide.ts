@@ -18,6 +18,7 @@ import {
   decideStartAssetJob,
 } from '../../assets/decide.ts';
 import { decideSetWeather } from '../../weather/weather.ts';
+import { decideSetCampaignOptions } from '../../campaign/options.ts';
 import { decideGenerateChronicle } from '../../chronicle/decide.ts';
 import { decideAddClue, decideSetDisclosure } from '../../investigation/authoring.ts';
 import { decideAskAbout } from '../../investigation/conversation.ts';
@@ -224,6 +225,8 @@ function route(context: DecisionContext, command: ResolvedCommand): Decision {
       return decideApproveAsset(state, command);
     case 'SetWeather':
       return decideSetWeather(state, command);
+    case 'SetCampaignOptions':
+      return decideSetCampaignOptions(state, command);
     case 'GenerateChronicle':
       return decideGenerateChronicle(context, command);
     case 'StartCombat':

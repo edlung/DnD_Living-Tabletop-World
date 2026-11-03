@@ -1,4 +1,5 @@
 import {
+  DEFAULT_CAMPAIGN_OPTIONS,
   KERNEL_COMMAND_TYPES,
   type DmAuthoringEntry,
   type DmSubstitutionEntry,
@@ -14,6 +15,7 @@ import '../i18n/ru-space.ts';
 import '../i18n/ru-rest.ts';
 import '../i18n/ru-play.ts';
 import '../i18n/ru-visual.ts';
+import '../i18n/ru-dm-screen.ts';
 import {
   describeSubstitution,
   entryDetails,
@@ -127,6 +129,26 @@ describe('the DM history in words', () => {
       'Погода (Market Square): не задана → дождь',
     );
     expect(entryDetails(ru, rain)).toBe('Погода · День 1 · 10:00');
+  });
+
+  it('shows a change of the campaign options as what changed', () => {
+    const options: DmWorldEntry = {
+      ...common,
+      commandId: 'http:dm-ravenford:options',
+      kind: 'world',
+      change: {
+        kind: 'options',
+        from: DEFAULT_CAMPAIGN_OPTIONS,
+        to: { ...DEFAULT_CAMPAIGN_OPTIONS, levelsBy: 'milestone', startingLevel: 5 },
+      },
+    };
+    expect(entryTitle(en, options, directory)).toBe(
+      'Campaign options: levels by milestone; new characters at level 5',
+    );
+    expect(entryDetails(en, options)).toBe('Campaign options · Day 1 · 10:00');
+    expect(entryTitle(ru, options, directory)).toBe(
+      'Параметры кампании: уровни по вехам; новые персонажи с уровня 5',
+    );
   });
 
   it('describes every player command the DM may issue for a character', () => {

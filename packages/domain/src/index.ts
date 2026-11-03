@@ -104,7 +104,7 @@ export {
 } from './knowledge/projection-party.ts';
 export { campaignSession } from './knowledge/session.ts';
 export { characterSheetView } from './character/view.ts';
-export { inventoryView } from './items/view.ts';
+export { carriedWeightLb, inventoryView } from './items/view.ts';
 export { grantRefusal } from './items/decide.ts';
 export { baseOfGrant, itemEntry, madeOn } from './items/catalog.ts';
 export {
@@ -222,6 +222,7 @@ export { memorySuggestions, type SuggestionScope } from './chronicle/suggestions
 export { flashbackFor } from './chronicle/flashback.ts';
 export { questFor, questLog } from './quest/projection.ts';
 export { buildCampaignPlan, type CampaignPlan } from './campaign/plan.ts';
+export { campaignOptions } from './campaign/options.ts';
 export { seedCampaignPackage, mergeCampaignGenerationStep } from './campaign/generation.ts';
 export {
   validateCampaignGenerationStep,

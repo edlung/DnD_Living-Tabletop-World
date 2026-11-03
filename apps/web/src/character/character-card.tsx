@@ -118,7 +118,12 @@ export function CharacterCard({
         <Vital
           glyph="speed"
           label={t('Speed')}
-          value={t('{feet} ft', { feet: derived?.speedFt ?? sheet.speedFt })}
+          value={
+            // Slowed by a load the campaign enforces (docs/adr/0056-characters-from-the-srd.md §3).
+            derived?.loadSpeedFt === undefined
+              ? t('{feet} ft', { feet: derived?.speedFt ?? sheet.speedFt })
+              : t('{feet} ft (load)', { feet: derived.speedFt })
+          }
         />
         {derived && (
           <>

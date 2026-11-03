@@ -8,6 +8,7 @@ import {
   type Skill,
   type WeaponId,
   type AmmunitionKind,
+  type CreatureSize,
 } from '@ltw/contracts';
 
 import { weaponAttackBonus, weaponModifier } from './attacks.ts';
@@ -31,11 +32,32 @@ import type { ReferenceLanguage } from './srd/reference-ru.ts';
 import { hitDice } from './rest.ts';
 import { effectiveSpeedFt } from './turn.ts';
 
-/** Strength score × 15 lb (SRD 5.2.1 carrying capacity, Medium size). */
+/** Strength score × 15 lb (SRD 5.2.1 carrying capacity, Small or Medium size). */
 const CAPACITY_PER_STRENGTH_LB = 15;
+/** The Carrying Capacity table's factor by size: half Tiny, doubled each size past Medium. */
+const SIZE_FACTOR: Readonly<Record<CreatureSize, number>> = {
+  tiny: 0.5,
+  small: 1,
+  medium: 1,
+  large: 2,
+  huge: 4,
+  gargantuan: 8,
+};
 
 export const carryingCapacityLb = (sheet: CharacterSheet): number =>
-  sheet.abilities.str * CAPACITY_PER_STRENGTH_LB;
+  sheet.abilities.str * CAPACITY_PER_STRENGTH_LB * SIZE_FACTOR[sheet.size ?? 'medium'];
+
+/**
+ * The most a load lets its carrier move where the campaign enforces carrying (SRD 5.2.1, Carrying
+ * Capacity; docs/adr/0056-characters-from-the-srd.md §3): past what it can carry it drags the rest,
+ * at 5 ft at most; past what it can drag, lift or push — twice that — it cannot move with it. Null
+ * when it carries it all.
+ */
+export function loadSpeedFt(sheet: CharacterSheet, carriedLb: number): number | null {
+  const capacity = carryingCapacityLb(sheet);
+  if (carriedLb <= capacity) return null;
+  return carriedLb <= 2 * capacity ? 5 : 0;
+}
 
 const proficiencyOf = (sheet: CharacterSheet, skill: Skill) =>
   sheet.skills.expertise.includes(skill)
@@ -76,6 +98,8 @@ export function deriveCharacter(
   ammunition: Readonly<Partial<Record<AmmunitionKind, number>>> = {},
   /** The campaign's language: an SRD spell's words in Russian once they exist (ADR 0055 §5). */
   language: ReferenceLanguage = 'en',
+  /** The most its load lets it move, where the campaign enforces carrying (`loadSpeedFt`). */
+  loadSpeed: number | null = null,
 ): CharacterDerived {
   const level = totalLevel(sheet);
   const abilities = Object.fromEntries(
@@ -104,7 +128,9 @@ export function deriveCharacter(
     skills,
     initiative: abilityModifier(sheet.abilities.dex),
     // Speed after conditions and Exhaustion (docs/adr/0045-conditions-and-actions.md §1, §3).
-    speedFt: effectiveSpeedFt(sheet),
+    speedFt:
+      loadSpeed === null ? effectiveSpeedFt(sheet) : Math.min(loadSpeed, effectiveSpeedFt(sheet)),
+    ...(loadSpeed === null ? {} : { loadSpeedFt: loadSpeed }),
     passive: {
       perception: 10 + skills.perception.total,
       investigation: 10 + skills.investigation.total,

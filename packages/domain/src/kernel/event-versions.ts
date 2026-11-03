@@ -132,6 +132,8 @@ const INTRODUCED_AT: Partial<Record<KernelEventType, number>> = {
   ItemRecovered: DEPENDENCY_CONTRACT,
   ItemTransferred: DEPENDENCY_CONTRACT,
   ItemSplit: DEPENDENCY_CONTRACT,
+  // Stage 660e (ADR 0056 §3): the campaign's options.
+  CampaignOptionsSet: DEPENDENCY_CONTRACT,
 };
 
 export const schemaVersionOf = (type: KernelEventType): number =>

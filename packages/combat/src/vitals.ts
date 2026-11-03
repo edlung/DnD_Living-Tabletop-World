@@ -8,12 +8,14 @@ import {
   type Speeds,
   type StatBlock,
 } from '@ltw/contracts';
+import { campaignOptions, carriedWeightLb } from '@ltw/domain';
 import type { Dice, DraftEvent, WorldState } from '@ltw/domain';
 import {
   abilityModifier,
   incapacitatedBy,
   initiativeAdvantage,
   initiativeEffects,
+  loadSpeedFt,
   resistancesOf,
   savingThrowModifier,
   speedAfterConditions,
@@ -23,10 +25,16 @@ import {
 /**
  * One view of a combatant's statistics and current vitals, whether a
  * character (sheet, ADR 0011) or a creature (stat block, ADR 0015). Vitals
- * change only by emitting the full new value (`vitalsEvent`).
+ * change only by emitting the full new value (`vitalsEvent`). A character's
+ * load caps its speed where the campaign enforces carrying (ADR 0056 §3).
  */
 export type Vitals =
-  | { readonly kind: 'character'; readonly entityId: string; readonly sheet: CharacterSheet }
+  | {
+      readonly kind: 'character';
+      readonly entityId: string;
+      readonly sheet: CharacterSheet;
+      readonly loadSpeedFt?: number;
+    }
   | { readonly kind: 'creature'; readonly entityId: string; readonly block: StatBlock };
 
 export function vitalsOf(state: WorldState, entityId: string): Vitals | null {
@@ -34,7 +42,12 @@ export function vitalsOf(state: WorldState, entityId: string): Vitals | null {
   if (!entity) return null;
   if (entity.kind === 'character') {
     const sheet = state.characterSheets.get(entityId);
-    return sheet ? { kind: 'character', entityId, sheet } : null;
+    if (!sheet) return null;
+    const load =
+      campaignOptions(state).carrying === 'enforced'
+        ? loadSpeedFt(sheet, carriedWeightLb(state, entityId))
+        : null;
+    return { kind: 'character', entityId, sheet, ...(load === null ? {} : { loadSpeedFt: load }) };
   }
   const block = state.statBlocks.get(entityId);
   return block ? { kind: 'creature', entityId, block } : null;
@@ -44,8 +57,10 @@ export const hitPoints = (v: Vitals): HitPoints =>
   v.kind === 'character' ? v.sheet.hitPoints : v.block.hitPoints;
 /** Its hit point maximum as an effect may have lowered it (docs/adr/0048-hit-points.md §2). */
 export const ceilingOf = (v: Vitals): number => effectiveMaximum(hitPoints(v));
-/** Its Resistances, Vulnerabilities and Immunities by damage type (ADR 0048 §3). */
-/** Its damage defenses: a raging character's resistances among them (docs/adr/0056-…md §4). */
+/**
+ * Its Resistances, Vulnerabilities and Immunities by damage type (ADR 0048 §3): a raging
+ * character's resistances among them (docs/adr/0056-characters-from-the-srd.md §4).
+ */
 export const defensesOf = (v: Vitals) =>
   v.kind === 'character'
     ? v.sheet.raging
@@ -73,7 +88,7 @@ export function wayOfSpeed(v: Vitals, way: Way): number {
   const speeds = speedsOf(v);
   const own = way === 'walk' ? baseSpeedOf(v) : speeds[way];
   if (own === undefined) return way === 'swim' || way === 'climb' ? walking : 0;
-  return Math.max(0, own - lowered);
+  return Math.min(loadOf(v), Math.max(0, own - lowered));
 }
 export const armorClass = (v: Vitals) =>
   v.kind === 'character' ? v.sheet.armorClass : v.block.armorClass;
@@ -118,17 +133,20 @@ export function rollInitiative(
 export const saveModifier = (v: Vitals, ability: Ability) =>
   v.kind === 'character' ? savingThrowModifier(v.sheet, ability) : v.block.savingThrows[ability];
 
-/**
- * Its walking Speed before conditions and Exhaustion: 10 ft less in armor too heavy for it
- * (docs/adr/0050-the-world-around.md §10).
- */
 /** Walking speed before conditions: a character's with its class's movement (ADR 0056 §4). */
 export const baseSpeedOf = (v: Vitals): number =>
   v.kind === 'character' ? walkingSpeedFt(v.sheet) : v.block.speedFt;
 
-/** Speed after conditions and Exhaustion (ADR 0015; ADR 0045 §1, §3). */
+/** The most its load lets it move (ADR 0056 §3); no limit when it carries it all. */
+const loadOf = (v: Vitals): number =>
+  v.kind === 'character' ? (v.loadSpeedFt ?? Number.POSITIVE_INFINITY) : Number.POSITIVE_INFINITY;
+
+/** Speed after conditions and Exhaustion (ADR 0015; ADR 0045 §1, §3), and its load (ADR 0056 §3). */
 export function speedOf(v: Vitals): number {
-  return speedAfterConditions(baseSpeedOf(v), conditionsOf(v), exhaustionOf(v));
+  return Math.min(
+    loadOf(v),
+    speedAfterConditions(baseSpeedOf(v), conditionsOf(v), exhaustionOf(v)),
+  );
 }
 
 export function withHitPoints(v: Vitals, current: number): Vitals {

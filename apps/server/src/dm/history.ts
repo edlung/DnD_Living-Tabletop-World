@@ -65,8 +65,12 @@ interface Undecided {
 export type HistoryLog = Pick<FastifyBaseLogger, 'warn'>;
 
 const PLAYER_TYPES: ReadonlySet<string> = new Set(PLAYER_COMMAND_TYPES);
-/** The DM's "Time and weather" commands (owner decision SI-D4, 2026-10-28). */
-const WORLD_TYPES: ReadonlySet<string> = new Set(['AdvanceWorldTime', 'SetWeather']);
+/** The DM's "Time and weather" commands (owner decision SI-D4, 2026-10-28), and the options. */
+const WORLD_TYPES: ReadonlySet<string> = new Set([
+  'AdvanceWorldTime',
+  'SetWeather',
+  'SetCampaignOptions',
+]);
 /** The listed entries and every stored command by ID (a blocker's issuer and submission). */
 interface Logged {
   readonly listed: readonly Listed[];
@@ -331,8 +335,8 @@ function decided(
 }
 
 /**
- * What the time or weather command changed, from the event the World Engine recorded; null if
- * that event is not one (never for an accepted command: the caller skips and logs it).
+ * What the time, weather or options command changed, from the event the World Engine recorded;
+ * null if that event is not one (never for an accepted command: the caller skips and logs it).
  */
 function worldChange(
   snapshot: CampaignSnapshot,
@@ -345,6 +349,9 @@ function worldChange(
   if (event?.type === 'WeatherSet') {
     const { locationId, from, to } = event.payload;
     return { kind: 'weather', location: entityRef(snapshot, locationId, 'location'), from, to };
+  }
+  if (event?.type === 'CampaignOptionsSet') {
+    return { kind: 'options', from: event.payload.from, to: event.payload.to };
   }
   return null;
 }

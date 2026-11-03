@@ -1,4 +1,9 @@
-import type { EntityRef, PresenceResponse, ScenePresentationResponse } from '@ltw/contracts';
+import type {
+  EntityRef,
+  LobbyResponse,
+  PresenceResponse,
+  ScenePresentationResponse,
+} from '@ltw/contracts';
 import { StatusPanel, useT } from '@ltw/ui';
 import { useCallback, useId, useState, type SubmitEvent } from 'react';
 
@@ -8,7 +13,7 @@ import { AskForCheck } from '../dice/check-forms.tsx';
 import { GiveHandout } from '../handouts/handouts.tsx';
 import { Field } from '../session/account-forms.tsx';
 import { Glyph } from '../visual/glyph.tsx';
-import { AwardExperience } from '../builder/level-section.tsx';
+import { PartyAdvancement } from '../builder/party-advancement.tsx';
 import { useRereadOn } from '../world/use-world-data.ts';
 import { PartyCard } from './party-card.tsx';
 import { ToolboxForms } from './toolbox-forms.tsx';
@@ -49,6 +54,14 @@ export function PartySheet({
   );
   const presence = useResource('party-presence', load);
   useRereadOn(revision, presence.reread);
+  // How the campaign counts levels: experience to award, or milestones (ADR 0056 §3).
+  const loadLobby = useCallback(
+    (signal: AbortSignal) => api.get<LobbyResponse>('lobby', signal),
+    [api],
+  );
+  const lobby = useResource('party-lobby', loadLobby);
+  useRereadOn(revision, lobby.reread);
+  const levelsBy = lobby.resource.status === 'ready' ? lobby.resource.value.options.levelsBy : null;
   if (!open) return null;
   if (presence.resource.status !== 'ready') {
     return (
@@ -89,7 +102,13 @@ export function PartySheet({
         )}
       </section>
       <div className="party-tools">
-        <AwardExperience api={api} characters={characters.map((entry) => entry.character)} />
+        {levelsBy && (
+          <PartyAdvancement
+            api={api}
+            characters={characters.map((entry) => entry.character)}
+            levelsBy={levelsBy}
+          />
+        )}
         <AskForCheck characters={characters.map((entry) => entry.character)} />
         <ToolboxForms
           characters={characters.map((entry) => entry.character)}

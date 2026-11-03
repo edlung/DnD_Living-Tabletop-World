@@ -15,6 +15,7 @@ import { nameFor } from '../authoring/command-text.ts';
 import { RESOURCE_NAMES } from '../character/feature-words.ts';
 import { spellName } from '../exploration/outcome-messages.ts';
 import { describeHand } from './hand-words.ts';
+import { optionChanges } from './option-words.ts';
 import { formatWorldTime } from './world-time.ts';
 
 /**
@@ -91,6 +92,7 @@ export const STEP_TEXT: Readonly<Record<KernelCommandType, string>> = {
   RetractAsset: 'retract asset',
   ApproveAsset: 'approve asset',
   SetWeather: 'set weather',
+  SetCampaignOptions: 'set campaign options',
   GenerateChronicle: 'generate chronicle',
   GrantItem: 'grant item',
   EquipItem: 'equip item',
@@ -258,8 +260,17 @@ const PICTURE_HOLDS: ReadonlySet<KernelCommandType> = new Set([
 export const isPictureHold = (commandType: KernelCommandType): boolean =>
   PICTURE_HOLDS.has(commandType);
 
-/** A time or weather change, from what it was to what it became. */
+const WORLD_KIND: Readonly<Record<DmWorldEntry['change']['kind'], string>> = {
+  time: 'World time',
+  weather: 'Weather',
+  options: 'Campaign options',
+};
+
+/** A time, weather or options change, from what it was to what it became. */
 export function describeWorldChange(t: Translate, change: DmWorldEntry['change']): string {
+  if (change.kind === 'options') {
+    return t('Campaign options: {changes}', { changes: optionChanges(t, change.from, change.to) });
+  }
   if (change.kind === 'time') {
     return t('Time: {from} → {to}', {
       from: formatWorldTime(change.from, t),
@@ -303,7 +314,7 @@ export function entryDetails(t: Translate, entry: DmHistoryEntry): string {
     entry.kind === 'authoring'
       ? t('Authoring')
       : entry.kind === 'world'
-        ? t(entry.change.kind === 'time' ? 'World time' : 'Weather')
+        ? t(WORLD_KIND[entry.change.kind])
         : entry.kind === 'hand'
           ? entry.reason === null
             ? t('By hand')

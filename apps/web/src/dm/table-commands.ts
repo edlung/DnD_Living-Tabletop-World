@@ -2,7 +2,8 @@ import type { KernelCommandOf } from '@ltw/contracts';
 
 /**
  * The DM's commands at the table (docs/adr/0043-dm-screen.md §1–2, §6): changes by hand, a ruling
- * (a party memory with a reason), changes of a running fight, a session's start and end —
+ * (a party memory with a reason), changes of a running fight, a session's start and end, the
+ * campaign's options (docs/adr/0056-characters-from-the-srd.md §3) —
  * submitted like any command, in the DM perspective, decided by the World Engine.
  */
 export type DmTableCommand = KernelCommandOf<
@@ -27,4 +28,5 @@ export type DmTableCommand = KernelCommandOf<
   | 'CommandCreature'
   | 'StartSession'
   | 'EndSession'
+  | 'SetCampaignOptions'
 >;

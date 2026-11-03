@@ -1,4 +1,4 @@
-import { MAX_ABS_WORLD_TIME } from '@ltw/contracts';
+import { DEFAULT_CAMPAIGN_OPTIONS, MAX_ABS_WORLD_TIME } from '@ltw/contracts';
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import {
@@ -28,6 +28,8 @@ describe('campaign creation', () => {
       startsAt: START,
       dmActorId: 'dm-1',
       language: 'en',
+      // The defaults until the DM sets any (docs/adr/0056-characters-from-the-srd.md §3).
+      options: DEFAULT_CAMPAIGN_OPTIONS,
     });
     expect(state.clock).toBe(START);
   });

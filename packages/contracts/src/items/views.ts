@@ -78,6 +78,12 @@ export interface InventoryResponse {
   readonly totalWeightLb: number;
   /** What Strength carries (× 15 lb), when the carrier has a sheet (Stage 520). */
   readonly capacityLb?: number;
+  /**
+   * Where the campaign enforces carrying (docs/adr/0056-characters-from-the-srd.md §3): the most
+   * the load lets its carrier move, 5 ft past what it carries and 0 past what it drags; absent
+   * when the load is light or the campaign only shows it.
+   */
+  readonly loadSpeedFt?: number;
   /** Each carried weapon's attack for this character, by rules weapon ID. */
   readonly weapons?: Readonly<Partial<Record<WeaponId, InventoryWeapon>>>;
 }

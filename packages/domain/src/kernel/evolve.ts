@@ -1,5 +1,5 @@
 import { applyPreparedParty, applyCampaignBootstrapped } from '../campaign/bootstrap-evolve.ts';
-import { DEFAULT_LANGUAGE } from '@ltw/contracts';
+import { DEFAULT_CAMPAIGN_OPTIONS, DEFAULT_LANGUAGE } from '@ltw/contracts';
 
 import { applyCharacterSheetSet } from '../character/character.ts';
 import {
@@ -48,6 +48,7 @@ import {
 import { applyMemoryRecorded, applySessionEnded, applySessionStarted } from '../memory/evolve.ts';
 import { applyAssetEvent, applyAssetRestore } from '../assets/evolve.ts';
 import { applyWeatherRestore, applyWeatherSet } from '../weather/weather.ts';
+import { applyCampaignOptionsRestore, applyCampaignOptionsSet } from '../campaign/options.ts';
 import { applyChronicleGenerated, applyChronicleRestore } from '../chronicle/decide.ts';
 import {
   applyItemEquipped,
@@ -118,6 +119,7 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
           startsAt,
           dmActorId,
           language: language ?? DEFAULT_LANGUAGE,
+          options: DEFAULT_CAMPAIGN_OPTIONS,
         },
         clock: startsAt,
       };
@@ -283,6 +285,8 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
       return applyItemSplit(state, event);
     case 'WeatherSet':
       return applyWeatherSet(state, event);
+    case 'CampaignOptionsSet':
+      return applyCampaignOptionsSet(state, event);
     case 'ChronicleGenerated':
       return applyChronicleGenerated(state, event);
     case 'EvidenceShown':
@@ -422,6 +426,8 @@ function applyRestore(state: WorldState, restore: Restore): WorldState {
       return applyAssetRestore(state, restore);
     case 'weather':
       return applyWeatherRestore(state, restore);
+    case 'campaignOptions':
+      return applyCampaignOptionsRestore(state, restore);
     case 'chronicle':
       return applyChronicleRestore(state, restore);
   }

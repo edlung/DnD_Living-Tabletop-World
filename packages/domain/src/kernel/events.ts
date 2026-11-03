@@ -73,6 +73,10 @@ import {
   assetRetractedPayloadSchema,
 } from '../assets/events.ts';
 import { weatherRestoreSchemas, weatherSetPayloadSchema } from '../weather/weather.ts';
+import {
+  campaignOptionsRestoreSchemas,
+  campaignOptionsSetPayloadSchema,
+} from '../campaign/options.ts';
 import { chronicleGeneratedPayloadSchema, chronicleRestoreSchemas } from '../chronicle/records.ts';
 import {
   preparedPartyEstablishedPayloadSchema,
@@ -138,6 +142,7 @@ export const restoreSchema = z.discriminatedUnion('fact', [
   ...relationshipRestoreSchemas,
   ...assetRestoreSchemas,
   ...weatherRestoreSchemas,
+  ...campaignOptionsRestoreSchemas,
   ...chronicleRestoreSchemas,
   ...itemRestoreSchemas,
 ]);
@@ -272,6 +277,7 @@ export const kernelEventSchema = z.discriminatedUnion('type', [
   event('AssetRetracted', assetRetractedPayloadSchema),
   event('AssetApproved', assetApprovedPayloadSchema),
   event('WeatherSet', weatherSetPayloadSchema),
+  event('CampaignOptionsSet', campaignOptionsSetPayloadSchema),
   event('ChronicleGenerated', chronicleGeneratedPayloadSchema),
   event('CharacterReleased', characterReleasedPayloadSchema),
   event('ItemGranted', itemGrantedPayloadSchema),

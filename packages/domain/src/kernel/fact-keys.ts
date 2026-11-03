@@ -10,6 +10,7 @@ export const facts = {
   preparedParty: (): FactKey => 'party#prepared',
   bootstrap: (): FactKey => 'campaign#bootstrap',
   campaign: (): FactKey => 'campaign',
+  campaignOptions: (): FactKey => 'campaign#options',
   clock: (): FactKey => 'world#clock',
   activeScene: (): FactKey => 'world#activeScene',
   entity: (id: string): FactKey => `entity:${id}`,

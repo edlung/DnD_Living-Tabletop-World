@@ -10,6 +10,7 @@ import { foldDraftsWithEvents } from '../kernel/provisional.ts';
 import type { WorldState } from '../kernel/state.ts';
 import { decideAssignCharacter } from '../knowledge/decide.ts';
 import { decideSetCharacterSheet } from './character.ts';
+import { campaignOptions } from '../campaign/options.ts';
 
 /**
  * A new character from the builder's choices (docs/adr/0056-characters-from-the-srd.md §2): the
@@ -22,6 +23,8 @@ export interface CharacterBuilderPort {
     choices: CharacterChoices,
     d6: () => number,
     language: 'en' | 'ru',
+    /** The campaign's starting level (docs/adr/0056-characters-from-the-srd.md §3); 1 if absent. */
+    startingLevel?: number,
   ):
     | {
         readonly ok: true;
@@ -55,7 +58,12 @@ export function decideCreateCharacter(
   if (!builder) return reject('INVALID_CHARACTER', 'No character builder');
   const dice = poolDice(command.resolution.entropy);
   const language = context.state.campaign?.language === 'ru' ? 'ru' : 'en';
-  const built = builder.build(command.choices, () => dice.roll(6), language);
+  const built = builder.build(
+    command.choices,
+    () => dice.roll(6),
+    language,
+    campaignOptions(context.state).startingLevel,
+  );
   if (!built.ok)
     return reject('INVALID_CHARACTER', 'The choices do not make a character', {
       problems: built.problems,

@@ -27,16 +27,20 @@ export function worthWords(t: Translate, pennies: number): string {
 
 /**
  * The purse and the load (Stage 520): how many of each coin the character carries, and the pack's
- * weight against what its Strength carries (shown, never enforced: ADR 0039).
+ * weight against what its Strength carries — shown, and where the campaign enforces carrying the
+ * Speed the load leaves (docs/adr/0056-characters-from-the-srd.md §3).
  */
 export function PurseAndLoad({
   items,
   totalWeightLb,
   capacityLb,
+  loadSpeedFt = null,
 }: {
   readonly items: readonly InventoryItem[];
   readonly totalWeightLb: number;
   readonly capacityLb: number | null;
+  /** The most the load lets the character move, where the campaign enforces carrying. */
+  readonly loadSpeedFt?: number | null;
 }) {
   const t = useT();
   const language = useLanguage();
@@ -105,7 +109,15 @@ export function PurseAndLoad({
             <span style={{ width: `${String(share)}%` }} />
           </span>
         )}
-        {heavy && <p className="field-hint">{t('More than your Strength carries comfortably.')}</p>}
+        {loadSpeedFt !== null ? (
+          <p className="field-hint">
+            {loadSpeedFt === 0
+              ? t('More than you can drag: you cannot move until you drop something.')
+              : t('More than you can carry: you drag it, at a Speed of 5 ft.')}
+          </p>
+        ) : (
+          heavy && <p className="field-hint">{t('More than your Strength carries comfortably.')}</p>
+        )}
       </section>
     </div>
   );

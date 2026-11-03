@@ -116,6 +116,7 @@ export function InventoryPanel({
         items={inventory.items}
         totalWeightLb={inventory.totalWeightLb}
         capacityLb={inventory.capacityLb ?? null}
+        loadSpeedFt={inventory.loadSpeedFt ?? null}
       />
       {attunedCount > 0 && (
         <p className="field-hint">{t('Attuned to {count} of 3 items.', { count: attunedCount })}</p>

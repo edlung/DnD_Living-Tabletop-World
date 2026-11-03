@@ -1,7 +1,15 @@
 import { AMMUNITION_KINDS, campaignIdSchema, entityIdSchema } from '@ltw/contracts';
-import type { InventoryResponse, WeaponId } from '@ltw/contracts';
-import { ammunitionOf, characterSheetView, inventoryView, wieldedWeapons } from '@ltw/domain';
-import { carryingCapacityLb, deriveCharacter, weaponAttack } from '@ltw/rules';
+import type { CharacterSheet, InventoryResponse, WeaponId } from '@ltw/contracts';
+import {
+  ammunitionOf,
+  campaignOptions,
+  carriedWeightLb,
+  characterSheetView,
+  inventoryView,
+  wieldedWeapons,
+  type WorldState,
+} from '@ltw/domain';
+import { carryingCapacityLb, deriveCharacter, loadSpeedFt, weaponAttack } from '@ltw/rules';
 import type { FastifyInstance } from 'fastify';
 import { z } from 'zod';
 
@@ -11,6 +19,12 @@ import { withSrdWords } from '../../items/srd-words.ts';
 
 const params = z.object({ campaignId: campaignIdSchema, entityId: entityIdSchema }).strict();
 const query = z.object({ perspective: z.string() }).strict();
+
+/** The most a character's load lets it move, where the campaign enforces carrying (ADR 0056 §3). */
+const loadOf = (state: WorldState, entityId: string, sheet: CharacterSheet): number | null =>
+  campaignOptions(state).carrying === 'enforced'
+    ? loadSpeedFt(sheet, carriedWeightLb(state, entityId))
+    : null;
 
 export function registerCharacterRoutes(app: FastifyInstance, deps: RouteDependencies): void {
   app.get('/campaigns/:campaignId/entities/:entityId/sheet', async (request, reply) => {
@@ -33,9 +47,10 @@ export function registerCharacterRoutes(app: FastifyInstance, deps: RouteDepende
     );
     // An SRD spell's words in the campaign's language (docs/adr/0055-rules-reference-and-toolbox.md §5).
     const language = context.state.campaign?.language === 'ru' ? 'ru' : 'en';
+    const load = loadOf(context.state, path.entityId, body.sheet);
     return reply.send({
       ...body,
-      derived: deriveCharacter(body.sheet, wielded, ammunition, language),
+      derived: deriveCharacter(body.sheet, wielded, ammunition, language, load),
     });
   });
 
@@ -53,9 +68,11 @@ export function registerCharacterRoutes(app: FastifyInstance, deps: RouteDepende
     const carried = [
       ...new Set(body.items.flatMap((item) => (item.catalog?.weapon ? [item.catalog.weapon] : []))),
     ];
+    const load = loadOf(context.state, path.entityId, sheet);
     const enriched: InventoryResponse = {
       ...body,
       capacityLb: carryingCapacityLb(sheet),
+      ...(load === null ? {} : { loadSpeedFt: load }),
       weapons: Object.fromEntries(
         carried.map((weaponId: WeaponId) => {
           const attack = weaponAttack(sheet, weaponId);
