@@ -20,6 +20,7 @@ import { isObject } from './objects.ts';
 import { withSummoners } from './summons.ts';
 import { firstTurn } from './turns.ts';
 import { dexterity, rollInitiative, sizeOf, vitalsOf, withConditions } from './vitals.ts';
+import { fallenBelongings } from './loot.ts';
 
 /**
  * Starting and ending an encounter (docs/adr/0015-combat-engine.md §1–2).
@@ -152,7 +153,12 @@ export function decideEndCombat(context: DecisionContext, command: EndCombat): D
     }
     events.push(work.record({ ...combatant, slowedBy: null }));
   }
-  events.push(...fightEnded(work), ...ammunitionRecovered(state, encounter.value));
+  events.push(
+    ...fightEnded(work),
+    ...ammunitionRecovered(state, encounter.value),
+    // What the fallen carried lies where the fight was (docs/adr/0057-encounters-maps-loot.md §7).
+    ...fallenBelongings(state, encounter.value),
+  );
   return accept(...events, { type: 'CombatEnded', payload: { encounterId: command.encounterId } });
 }
 

@@ -129,14 +129,18 @@ describe('the item catalog', () => {
           )
         ).statusCode,
       ).toBe(422);
-    // A place carries nothing.
+    expect((await engine.load('ravenford'))?.state.entities.size).toBe(before);
+    // A place takes treasure: the sword lies there (docs/adr/0057-encounters-maps-loot.md §7).
     const place = await post(
       app,
       `${LIST}/srd-longsword/give`,
       { requestId: randomUUID(), holderId: 'old-trade-road' },
       TOKENS.dm,
     );
-    expect(place.statusCode).toBe(422);
-    expect((await engine.load('ravenford'))?.state.entities.size).toBe(before);
+    expect(place.statusCode).toBe(200);
+    const { itemId } = place.json<{ itemId: string }>();
+    const state = (await engine.load('ravenford'))?.state;
+    expect(state?.possessions.get(itemId)?.holderId).toBeNull();
+    expect(state?.entities.get(itemId)?.placement?.locationId).toBe('old-trade-road');
   });
 });

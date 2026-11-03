@@ -484,6 +484,7 @@ export {
   unequipItemCommandSchema,
   useItemCommandSchema,
 } from './items/commands.ts';
+export { PARTY_STASH } from './items/views.ts';
 export type { InventoryItem, InventoryResponse, InventoryWeapon } from './items/views.ts';
 export * from './play/index.ts';
 export * from './srd/index.ts';

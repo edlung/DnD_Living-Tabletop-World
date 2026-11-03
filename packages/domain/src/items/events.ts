@@ -8,7 +8,8 @@ const quantity = z.number().int().min(0).max(99);
 export const itemGrantedPayloadSchema = z
   .object({
     itemId: entityIdSchema,
-    holderId: entityIdSchema,
+    /** Null: treasure granted to a place, lying there (docs/adr/0057-encounters-maps-loot.md §7). */
+    holderId: entityIdSchema.nullable(),
     catalogId: itemCatalogIdSchema.nullable(),
     quantity: quantity.min(1),
     /** What a magic weapon, armor or shield is made on (docs/adr/0054-items-as-data.md §5). */

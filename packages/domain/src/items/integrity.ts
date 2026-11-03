@@ -1,5 +1,5 @@
 import type { WorldState } from '../kernel/state.ts';
-import { entryOf } from './records.ts';
+import { PARTY_STASH, entryOf } from './records.ts';
 
 /** Structural invariants of item possession (docs/adr/0039-item-possession.md). */
 export function itemViolations(state: WorldState): string[] {
@@ -17,11 +17,13 @@ export function itemViolations(state: WorldState): string[] {
       report(`item ${itemId} stacks without a stackable entry`);
     if ((possession.quantity === 0) !== (entity?.status === 'destroyed'))
       report(`item ${itemId} quantity and status disagree`);
-    if (possession.holderId !== null) {
+    if (possession.holderId !== null && possession.holderId !== PARTY_STASH) {
       const holder = state.entities.get(possession.holderId)?.kind;
-      if (holder !== 'character' && holder !== 'npc')
+      if (holder !== 'character' && holder !== 'npc' && holder !== 'creature')
         report(`item ${itemId} has an invalid holder`);
     }
+    if (possession.holderId === PARTY_STASH && possession.slot !== null)
+      report(`item ${itemId} is worn in the stash`);
     if (possession.slot !== null) {
       if (possession.holderId === null) report(`item ${itemId} is worn by nobody`);
       if (!entry?.slots.includes(possession.slot)) report(`item ${itemId} is worn in a wrong slot`);

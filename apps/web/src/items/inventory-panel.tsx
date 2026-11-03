@@ -13,6 +13,7 @@ import { Bag } from './inventory/bag.tsx';
 import { ItemCard } from './inventory/item-card.tsx';
 import { PaperDoll } from './inventory/paper-doll.tsx';
 import { PurseAndLoad } from './inventory/purse.tsx';
+import { PartyStash } from './inventory/stash.tsx';
 import type { ItemCommandBody } from './item-command.ts';
 
 export interface Recipient {
@@ -168,6 +169,7 @@ export function InventoryPanel({
                 language={language}
                 blocked={blocked}
                 recipients={recipients}
+                stashable={inventory.stash !== undefined}
                 attuning={attuning}
                 onRun={run}
                 canTaste={!blocked}
@@ -193,6 +195,15 @@ export function InventoryPanel({
             )}
           </div>
         </>
+      )}
+      {inventory.stash && (
+        <PartyStash
+          items={inventory.stash}
+          blocked={blocked || fighting}
+          onTake={(itemId) => {
+            run({ type: 'TakeItem', itemId });
+          }}
+        />
       )}
       <GiveItemForm api={api} holderId={characterId} locked={locked} />
     </div>

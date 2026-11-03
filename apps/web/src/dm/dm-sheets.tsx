@@ -20,6 +20,7 @@ import { ScreenSheet } from './screen-sheet.tsx';
 import { DmHazardControls } from '../rest/dm-hazard-controls.tsx';
 import { DmRestControls } from '../rest/dm-rest-controls.tsx';
 import { DmWorldControls } from './world-controls.tsx';
+import { GiveItemForm } from '../items/give-item-form.tsx';
 
 /** What the DM's encounter and clock tools need from the loaded world. */
 export interface DmPlace {
@@ -153,6 +154,8 @@ export function DmSheets({
             onWorldChanged={onWorldChanged}
           />
         )}
+        {/* Treasure at the place, for the party to take (docs/adr/0057-…md §7). */}
+        {place && <GiveItemForm api={api} holderId={place.locationId} locked={locked} place />}
       </Sheet>
       <Sheet
         id="time"

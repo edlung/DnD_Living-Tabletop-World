@@ -1,4 +1,4 @@
-import type { InventoryResponse, ItemEntry } from '@ltw/contracts';
+import type { InventoryItem, InventoryResponse, ItemEntry } from '@ltw/contracts';
 import { itemEntry } from '@ltw/domain';
 import {
   equipmentIn,
@@ -129,9 +129,8 @@ export function entryIn(entry: ItemEntry, language: ReferenceLanguage): ItemEntr
 export const withSrdWords = (
   body: InventoryResponse,
   language: ReferenceLanguage = 'en',
-): InventoryResponse => ({
-  ...body,
-  items: body.items.map((item) => {
+): InventoryResponse => {
+  const worded = (item: InventoryItem): InventoryItem => {
     const catalog = item.catalog;
     if (!catalog) return item;
     const words = srdTextOf(catalog.itemId, language);
@@ -148,5 +147,11 @@ export const withSrdWords = (
           : {}),
       },
     };
-  }),
-});
+  };
+  // The party's stash too (docs/adr/0057-encounters-maps-loot.md §7).
+  return {
+    ...body,
+    items: body.items.map(worded),
+    ...(body.stash ? { stash: body.stash.map(worded) } : {}),
+  };
+};

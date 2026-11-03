@@ -238,6 +238,9 @@ application on 4313.
   that ties around a trap may pass it by, so the journey ends its move on the trap's square. Its
   second journey (owns `ui-traps-found`) has Elowen notice hidden darts as she heads for them; her
   route may come beside them diagonally, so it reads where she stopped from the fight.
+  `loot.spec.ts` owns `ui-loot` (an item campaign: treasure, the stash) and `ui-loot-fight` (a
+  party campaign: a goblin's gold after the fight). A thing lying at a place shows to the player
+  as "Unidentified item" until looked at: pick it up by that name.
 - Native apps (ADR 0070, `native-shell.spec.ts`): a stand-in shell installed with `addInitScript`
   records what the page posts, and the journey speaks for the shell with `ltw-native` events; it owns
   the `native` sign-in campaign. The apps themselves are checked on the simulator and the emulator.

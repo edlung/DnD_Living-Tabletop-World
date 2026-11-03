@@ -260,6 +260,22 @@
   what it noticed ("You notice a trap: …"), and a Search, a Study or Utilize what it found or
   disarmed.
 
+## Notes from the implementation (Stage 670e, part 1, 2026-11-03)
+
+- Creatures carry items: the DM gives one from the catalog on the creature's card in a fight (with
+  what it carries listed), as to a character. When a fight ends, what each creature or NPC that
+  fell in it carried, unworn, lies where the fight was (`ItemTransferred` to no one, then
+  `EntityPlaced`, in the `EndCombat` decision) — the place's things, taken as anything lying
+  there; nothing moves while the fight runs. A worn item stays on a fallen NPC.
+- Treasure: `GrantItem` to a place leaves the item lying there (`ItemGranted` with no holder, and
+  `EntityPlaced`); the DM leaves it from the Encounter sheet ("Leave treasure here"). The party
+  sees a thing lying there as an unknown item until they look at it or take it, as before.
+- The party's stash is a holder of its own, `PARTY_STASH` (`@ltw/contracts`), no entity and no
+  place: a member gives to it what it carries unworn (`GiveItem`, all of a stack or part, no turn),
+  and any member takes a whole stack from it (`TakeItem`), wherever they are, outside a fight.
+  Every member's inventory lists it; someone outside the party neither gives to it (refused) nor
+  takes from it (refused as for a thing not there).
+
 ## Consequences
 
 - Stage 670 runs in parts (`work-orders/STAGE_670.md`): the builder and the DM's hand; terrain and

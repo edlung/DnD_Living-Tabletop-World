@@ -6,7 +6,7 @@ import type {
   BoardTrap,
 } from '@ltw/contracts';
 import { readableLabel, useT } from '@ltw/ui';
-import type { Ref } from 'react';
+import type { ReactNode, Ref } from 'react';
 
 import { Glyph } from '../../visual/glyph.tsx';
 import { IconButton } from '../../visual/icon-button.tsx';
@@ -230,6 +230,7 @@ export function CombatantCard({
   image,
   panel,
   onClose,
+  children,
 }: {
   readonly combatant: EncounterCombatantView;
   /** Its name, or "Unidentified creature N" (`combat/labels.ts`). */
@@ -237,6 +238,8 @@ export function CombatantCard({
   readonly image: PlayerAssetView | null;
   readonly panel: Ref<HTMLElement>;
   readonly onClose: () => void;
+  /** What it carries, for the DM (docs/adr/0057-encounters-maps-loot.md §7). */
+  readonly children?: ReactNode;
 }) {
   const t = useT();
   return (
@@ -291,6 +294,7 @@ export function CombatantCard({
       <p className="muted">
         {t('The DM acts for creatures with the Encounter tools (suggested turn).')}
       </p>
+      {children}
     </section>
   );
 }

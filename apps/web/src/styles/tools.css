@@ -95,7 +95,8 @@
   border: 1px solid var(--side-neutral);
   border-radius: var(--radius-pill);
   color: var(--text);
-  font-size: 0.72rem;
+  /* 12 px at least, as all small text (ui-layout-audit `small-text`). */
+  font-size: 0.75rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }

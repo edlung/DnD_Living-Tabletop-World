@@ -44,6 +44,8 @@ export const UI_ITEM_CAMPAIGNS = {
   raisingRu: 'ui-raising-ru',
   /** A player's wish for a portrait, made by the DM (docs/adr/0056-…md §5). */
   portrait: 'ui-portrait',
+  /** Treasure the DM leaves at a place, and the party's stash (ADR 0057 §7). */
+  loot: 'ui-loot',
 } as const;
 
 const DM = { actorId: 'dm-ravenford', kind: 'user' } as const;
@@ -106,6 +108,7 @@ export async function seedUiItemCampaigns(engine: WorldEngine): Promise<void> {
     [UI_ITEM_CAMPAIGNS.raising, 'en'],
     [UI_ITEM_CAMPAIGNS.raisingRu, 'ru'],
     [UI_ITEM_CAMPAIGNS.portrait, 'en'],
+    [UI_ITEM_CAMPAIGNS.loot, 'en'],
   ] as const) {
     const seed = await loadRavenfordSeed(language === 'ru' ? RAVENFORD_RU_FIXTURES_DIR : undefined);
     for (const input of seed.submissions) {

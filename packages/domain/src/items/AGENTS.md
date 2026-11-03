@@ -15,7 +15,8 @@ Who carries an item entity, whether it is worn, and what using it does. Authorit
 | Charges, identifying, the dawn's recharge              | `charges.ts`    |
 | Footprints (reads/writes) of the item events           | `footprints.ts` |
 | Structural invariants                                  | `integrity.ts`  |
-| Carrier-only inventory view                            | `view.ts`       |
+| Carrier-only inventory view, and the party's stash     | `view.ts`       |
+| The party's stash: giving to it and taking from it     | `stash.ts`      |
 
 Rules:
 

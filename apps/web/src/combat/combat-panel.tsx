@@ -19,6 +19,7 @@ import { DmSquareCard } from './dm-hand.tsx';
 import { PaintCard, type Brush, type BrushHand } from './paint-card.tsx';
 import { DEFAULT_AREA, templateSquares, ToolCard, type Tool } from './board-tools.tsx';
 import { MarkCard } from './mark-card.tsx';
+import { CreatureGoods } from './creature-goods.tsx';
 import { dangersOf, trapState } from './board/dangers.ts';
 import type { Marks } from './use-marks.ts';
 import { footprint } from './board/footprint.ts';
@@ -363,7 +364,11 @@ export function CombatPanel({
         image={imageOf(picked.entity.entityId)}
         panel={panel}
         onClose={close}
-      />
+      >
+        {dm && picked.entity.kind !== 'character' && picked.object === undefined && (
+          <CreatureGoods api={api} entityId={picked.entity.entityId} locked={locked} />
+        )}
+      </CombatantCard>
     ) : (
       <BoardLegend encounter={encounter} isDm={actorId === null} />
     );

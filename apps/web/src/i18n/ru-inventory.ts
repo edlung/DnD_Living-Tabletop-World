@@ -73,4 +73,17 @@ registerRussian({
     'Больше, чем вы можете тащить: вы не сдвинетесь, пока не бросите что-нибудь.',
   'More than you can carry: you drag it, at a Speed of 5 ft.':
     'Больше, чем вы можете нести: вы тащите груз со Скоростью 5 фт.',
+  // Loot, treasure and the party's stash (Stage 670e)
+  'Put in the stash': 'Положить в общий тайник',
+  'The party’s stash': 'Общий тайник отряда',
+  'Nothing in the stash yet: put things in from their card.':
+    'В тайнике пока пусто: положите вещь из её карточки.',
+  'Take {item} from the stash': 'Взять {item} из тайника',
+  'Leave treasure here': 'Оставить клад здесь',
+  'Left here: {item}.': 'Оставлено здесь: {item}.',
+  'Leave it here': 'Оставить здесь',
+  'It carries nothing.': 'При нём ничего нет.',
+  'It carries: {items}.': 'При нём: {items}.',
+  'If it falls, what it carries lies here once the fight is over.':
+    'Если существо падёт, его вещи останутся здесь после боя.',
 });

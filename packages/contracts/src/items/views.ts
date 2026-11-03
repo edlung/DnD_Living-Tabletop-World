@@ -70,11 +70,19 @@ export interface InventoryWeapon {
   readonly properties: readonly string[];
 }
 
+/**
+ * The party's stash (docs/adr/0057-encounters-maps-loot.md §7): the holder of what any member put
+ * there for all — no entity and no place; `GiveItem` to it, and `TakeItem` from it.
+ */
+export const PARTY_STASH = 'party-stash';
+
 /** The items a character carries; shown to the DM or to that character's own perspective only. */
 export interface InventoryResponse {
   readonly perspective: string;
   readonly entity: EntityRef;
   readonly items: readonly InventoryItem[];
+  /** The party's stash, for a member of the party (docs/adr/0057-encounters-maps-loot.md §7). */
+  readonly stash?: readonly InventoryItem[];
   readonly totalWeightLb: number;
   /** What Strength carries (× 15 lb), when the carrier has a sheet (Stage 520). */
   readonly capacityLb?: number;

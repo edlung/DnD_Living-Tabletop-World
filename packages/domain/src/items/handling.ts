@@ -7,14 +7,15 @@ import { accept, reject, type Decision } from '../kernel/decision.ts';
 import type { KernelEvent } from '../kernel/events.ts';
 import type { EntityState, WorldState } from '../kernel/state.ts';
 import { spendTurn, type ItemCost } from './economy.ts';
-import { possessionOf, type Possession } from './records.ts';
+import { entryOf, possessionOf, type Possession } from './records.ts';
 
 /**
  * What every item decision checks and records (docs/adr/0039-item-possession.md): who may carry,
  * what an item is, the acting character's own item, the premises a player's command relied on,
  * and a sheet change beside the item's event.
  */
-const CARRIER_KINDS = new Set(['character', 'npc']);
+// Creatures carry what the DM gives them, for the party to take once they fall (ADR 0057 §7).
+const CARRIER_KINDS = new Set(['character', 'npc', 'creature']);
 
 export function carrier(state: WorldState, id: string): Lookup<EntityState> {
   const found = findEntity(state, id);
@@ -102,4 +103,65 @@ export function withSaveBonus(sheet: CharacterSheet, change: number): CharacterS
   const next: CharacterSheet = { ...sheet, saveBonus: value };
   if (value === 0) delete next.saveBonus;
   return next;
+}
+
+/**
+ * How much of a stack moves, and the events that make it a thing of its own when it is part:
+ * a new item entity (its ID drawn by the engine) takes that quantity from the stack.
+ */
+export function portion(
+  state: WorldState,
+  command: {
+    readonly itemId: string;
+    readonly quantity?: number | undefined;
+    readonly characterId: string;
+    readonly resolution: { readonly ids: readonly string[] };
+  },
+  possession: Possession,
+):
+  | {
+      readonly ok: true;
+      readonly itemId: string;
+      readonly quantity: number;
+      readonly events: KernelEvent[];
+    }
+  | (Decision & { ok: false }) {
+  const wanted = command.quantity ?? possession.quantity;
+  if (wanted > possession.quantity)
+    return reject('INVALID_ITEM', 'Not that many are carried', { itemId: command.itemId });
+  if (wanted === possession.quantity)
+    return { ok: true, itemId: command.itemId, quantity: wanted, events: [] };
+  if (!entryOf(possession)?.stackable)
+    return reject('INVALID_ITEM', 'Only a stack can be divided', { itemId: command.itemId });
+  const newItemId = command.resolution.ids[0];
+  const source = state.entities.get(command.itemId);
+  if (newItemId === undefined || !source)
+    return reject('INVALID_ITEM', 'The stack cannot be divided now', { itemId: command.itemId });
+  return {
+    ok: true,
+    itemId: newItemId,
+    quantity: wanted,
+    events: [
+      {
+        type: 'EntityCreated',
+        payload: {
+          entityId: newItemId,
+          kind: 'item',
+          name: source.name,
+          description: source.description,
+          existsSince: source.existsSince,
+          location: null,
+        },
+      },
+      {
+        type: 'ItemSplit',
+        payload: {
+          itemId: command.itemId,
+          newItemId,
+          holderId: command.characterId,
+          quantity: wanted,
+        },
+      },
+    ],
+  };
 }

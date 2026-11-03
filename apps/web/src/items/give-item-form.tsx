@@ -21,7 +21,8 @@ import { categoryName, rarityName, roundWeight } from './item-text.ts';
 /**
  * The DM gives an item from the campaign's catalog (docs/adr/0054-items-as-data.md §4): Ravenford's
  * own entries and the SRD's, found by name and category; the server makes the item and grants it
- * to the character whose pack is open, in a quantity when it stacks. Read only when opened.
+ * to the character whose pack is open, in a quantity when it stacks — or to a creature, or leaves
+ * it as treasure at a place (docs/adr/0057-encounters-maps-loot.md §7). Read only when opened.
  */
 const SHOWN = 40;
 
@@ -29,10 +30,13 @@ export function GiveItemForm({
   api,
   holderId,
   locked,
+  place = false,
 }: {
   readonly api: WorldApi;
   readonly holderId: string;
   readonly locked: boolean;
+  /** `holderId` is a place: the item is treasure lying there. */
+  readonly place?: boolean;
 }) {
   const t = useT();
   const isDm = useDiceTable()?.isDm ?? false;
@@ -45,8 +49,8 @@ export function GiveItemForm({
         setOpen(event.currentTarget.open);
       }}
     >
-      <summary>{t('Give an item from the catalog')}</summary>
-      {open && <GiveItemFields api={api} holderId={holderId} locked={locked} />}
+      <summary>{place ? t('Leave treasure here') : t('Give an item from the catalog')}</summary>
+      {open && <GiveItemFields api={api} holderId={holderId} locked={locked} place={place} />}
     </details>
   );
 }
@@ -55,9 +59,11 @@ function GiveItemFields({
   api,
   holderId,
   locked,
+  place,
 }: {
   readonly api: WorldApi;
   readonly holderId: string;
+  readonly place: boolean;
   readonly locked: boolean;
 }) {
   const t = useT();
@@ -119,7 +125,9 @@ function GiveItemFields({
       setNote(
         given.status === 'rejected'
           ? rejectionMessage(t, given.code, given.message, 'GrantItem')
-          : t('{item} is in the pack.', { item: given.name }),
+          : place
+            ? t('Left here: {item}.', { item: given.name })
+            : t('{item} is in the pack.', { item: given.name }),
       );
     } catch {
       setNote(t('It could not be given. Try again.'));
@@ -135,7 +143,7 @@ function GiveItemFields({
       aria-labelledby={`${ids}-title`}
     >
       <h4 id={`${ids}-title`} className="visually-hidden">
-        {t('Give an item from the catalog')}
+        {place ? t('Leave treasure here') : t('Give an item from the catalog')}
       </h4>
       <div className="hand-row">
         <Field label={t('Find by name')}>
@@ -256,7 +264,7 @@ function GiveItemFields({
           disabled={locked || busy || !picked || quantityError !== null}
         >
           <Glyph name="use-item" />
-          {t('Give it')}
+          {place ? t('Leave it here') : t('Give it')}
         </button>
       </div>
       {note && (

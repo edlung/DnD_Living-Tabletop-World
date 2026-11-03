@@ -33,7 +33,8 @@ export function itemFootprint(event: ItemEvent): Footprint {
         reads: [
           clock,
           ...entityChecked(event.payload.itemId),
-          ...entityChecked(event.payload.holderId),
+          // Treasure lying at a place has no holder: its place is the `EntityPlaced` beside it.
+          ...(event.payload.holderId === null ? [] : entityChecked(event.payload.holderId)),
           facts.possession(event.payload.itemId),
         ],
         writes: [facts.possession(event.payload.itemId)],

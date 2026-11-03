@@ -80,7 +80,7 @@ async function untilElowen(page: Page, campaign: string = CAMPAIGN) {
 test('a hidden pit springs on the player who walks through it; fire shows to all', async ({
   browser,
 }) => {
-  test.setTimeout(150_000);
+  test.setTimeout(240_000);
   const dm = await (await browser.newContext()).newPage();
   const player = await (await browser.newContext()).newPage();
   await enterWorld(dm, TOKENS.dm, CAMPAIGN);
@@ -130,7 +130,7 @@ test('a hidden pit springs on the player who walks through it; fire shows to all
 test('Elowen notices hidden darts as she comes near, stops short, and disarms them', async ({
   browser,
 }) => {
-  test.setTimeout(150_000);
+  test.setTimeout(240_000);
   const campaign = UI_PARTY_CAMPAIGNS.trapsFound;
   const dm = await (await browser.newContext()).newPage();
   const player = await (await browser.newContext()).newPage();

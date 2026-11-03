@@ -38,7 +38,9 @@ Authority: owner approval 2026-11-02 (`reviews/OWNER_FULL_GAME_2026-11-02.json`)
   Perception on the way (the move stops short), found by a Search or a Study, disarmed with Utilize
   from the square's card; routes kept clear of known traps. 670d done.
 - 670e — Loot, the stash and coins: creatures carry items; the party takes a fallen foe's; the DM
-  leaves treasure at a place; the party's stash; coins split with change.
+  leaves treasure at a place; the party's stash; coins split with change. Part 1 done: creatures
+  carry, the fallen's things lie where the fight was once it ends, treasure left at a place, and
+  the party's stash.
 - 670f — Merchants and crafting: an NPC's stock and prices, buying and selling at the SRD's rates
   with change made; crafting by the SRD (tools, half cost in materials, cost ÷ 10 days, helpers),
   Potions of Healing and Spell Scrolls, projects advanced by days of downtime.

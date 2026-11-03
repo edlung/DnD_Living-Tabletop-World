@@ -47,6 +47,9 @@ export function entryOf(possession: Possession): ItemEntry | undefined {
   return entry && base ? madeOn(entry, base) : entry;
 }
 
+/** The party's stash's holder (docs/adr/0057-encounters-maps-loot.md §7), from the contracts. */
+export { PARTY_STASH } from '@ltw/contracts';
+
 /** Item IDs a holder carries (worn or not), in ID order. */
 export function carriedBy(state: WorldState, holderId: string): string[] {
   const ids: string[] = [];
