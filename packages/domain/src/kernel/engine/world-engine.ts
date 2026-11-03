@@ -17,7 +17,7 @@ import { RESOLVED_ID_POOL } from '../../investigation/records.ts';
 import { MAX_RESOLVED_IDS } from '../../combat/reactions.ts';
 import type { SkillCheckPort } from '../../investigation/skill-checks.ts';
 import type { CharacterBuilderPort } from '../../character/create.ts';
-import { CREATE_CHARACTER_IDS } from '../../character/limits.ts';
+import { CREATE_CHARACTER_IDS, DOWNTIME_IDS, SPLIT_COINS_IDS } from './drawn-ids.ts';
 
 import { authorize } from '../authorization.ts';
 import { decide } from '../decide/decide.ts';
@@ -36,7 +36,6 @@ import {
 } from './event-store.ts';
 import { KeyedMutex } from './keyed-mutex.ts';
 import { commandSubmissionSchema, fingerprintOf, type CommandSubmission } from './submission.ts';
-import { SPLIT_COINS_IDS } from '../../items/coins.ts';
 
 /**
  * The World Engine: the only path to canonical mutation (invariant 1).
@@ -303,10 +302,12 @@ export class WorldEngine {
       // flyer made Prone falls (docs/adr/0049-space-and-movement.md §6).
       return { ...command, resolution: { ids: [], d20: null, entropy: this.#entropyPool() } };
     }
-    if (command.type === 'CreateCharacter') {
-      // Its records' IDs and the dice of rolled scores (docs/adr/0056-…md §2).
-      const ids = Array.from({ length: CREATE_CHARACTER_IDS }, () => this.#ids.next());
-      return { ...command, resolution: { ids, d20: null, entropy: this.#entropyPool() } };
+    if (command.type === 'CreateCharacter' || command.type === 'WorkDowntime') {
+      // A character's records and rolled scores (ADR 0056 §2); what downtime makes (0057 §9).
+      const count = command.type === 'CreateCharacter' ? CREATE_CHARACTER_IDS : DOWNTIME_IDS;
+      const ids = Array.from({ length: count }, () => this.#ids.next());
+      const entropy = command.type === 'CreateCharacter' ? this.#entropyPool() : [];
+      return { ...command, resolution: { ids, d20: null, entropy } };
     }
     if (command.type === 'CloseReactionWindow') {
       // Closing may resolve the suspended spell (ADR 0016) — its records and dice — or let a

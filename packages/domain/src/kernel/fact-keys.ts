@@ -54,6 +54,8 @@ export const facts = {
   chronicle: (chronicleId: string): FactKey => `chronicle:${chronicleId}`,
   /** An NPC's shop (docs/adr/0057-encounters-maps-loot.md §8). */
   merchant: (npcId: string): FactKey => `merchant:${npcId}`,
+  /** A crafting project (docs/adr/0057-encounters-maps-loot.md §9). */
+  crafting: (projectId: string): FactKey => `crafting:${projectId}`,
   possession: (itemId: string): FactKey => `possession:${itemId}`,
   /** A holder's worn set: slot occupancy is a premise of every equip (ADR 0039). */
   equipment: (holderId: string): FactKey => `equipment:${holderId}`,

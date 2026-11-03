@@ -69,6 +69,11 @@ import {
 } from './world.ts';
 import { decideSplitCoins } from '../../items/coins.ts';
 import { decideBuyItem, decideSellItem, decideSetMerchant } from '../../items/trade.ts';
+import {
+  decideAbandonCrafting,
+  decideStartCrafting,
+  decideWorkDowntime,
+} from '../../items/crafting-decide.ts';
 
 /**
  * Routes a resolved, authorized command to its pure decision function, then
@@ -217,6 +222,12 @@ function route(context: DecisionContext, command: ResolvedCommand): Decision {
       return decideBuyItem(state, command);
     case 'SellItem':
       return decideSellItem(state, command);
+    case 'StartCrafting':
+      return decideStartCrafting(context, command);
+    case 'AbandonCrafting':
+      return decideAbandonCrafting(state, command);
+    case 'WorkDowntime':
+      return decideWorkDowntime(context, command);
     case 'DropItem':
       return decideDropItem(state, command);
     case 'TakeItem':

@@ -89,6 +89,7 @@ export type ResolvedCommand =
           | 'DelayTurn'
           | 'ApplyAuthoring'
           | 'CreateCharacter'
+          | 'WorkDowntime'
           | PlayerCommandType;
       }
     >
@@ -114,6 +115,7 @@ export type ResolvedCommand =
       | 'UseCreatureAction'
       | 'DawnRecharge'
       | 'CreateCharacter'
+      | 'WorkDowntime'
     > & {
       readonly resolution: Resolution;
     })

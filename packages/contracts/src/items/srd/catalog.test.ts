@@ -32,4 +32,27 @@ describe('the SRD’s item catalog', () => {
     for (const entry of SRD_ITEM_CATALOG)
       if (entry.name.ru === entry.name.en) expect(entry.untranslated, entry.itemId).toBe(true);
   });
+  it('says which tools make what, as the SRD’s tools’ Craft lines do', () => {
+    const made = (itemId: string) => srdItemEntry(itemId)?.craft;
+    for (const entry of [...SRD_ITEM_CATALOG, ...ITEM_CATALOG]) {
+      for (const toolId of entry.craft?.tools ?? []) {
+        const tool = srdItemEntry(toolId) ?? catalogEntry(toolId);
+        expect(tool?.category, `${entry.itemId} by ${toolId}`).toBe('tool');
+      }
+    }
+    expect(made('srd-longsword')?.tools).toEqual(['srd-smiths-tools']);
+    expect(made('srd-club')?.tools).toEqual(['srd-carpenters-tools', 'srd-woodcarvers-tools']);
+    expect(made('srd-arrow')?.tools).toEqual(['srd-woodcarvers-tools']);
+    // Hide is the leatherworker's, not the smith's (Medium armor except Hide).
+    expect(made('srd-hide-armor')?.tools).toEqual(['srd-leatherworkers-tools']);
+    expect(made('srd-plate-armor')?.tools).toEqual(['srd-smiths-tools']);
+    // A Potion of Healing is brewed in a day from 25 GP of materials.
+    expect(made('srd-potion-of-healing')).toEqual({
+      tools: ['srd-herbalism-kit'],
+      days: 1,
+      materialsCp: 2_500,
+    });
+    // A Spell Scroll is scribed, not crafted.
+    expect(made('srd-spell-scroll-level-1')).toBeUndefined();
+  });
 });

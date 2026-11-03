@@ -23,6 +23,7 @@ import { EMPTY_INVESTIGATION, type InvestigationState } from '../investigation/r
 import type { KnowledgeRecord } from '../knowledge/records.ts';
 import type { MemoryRecord, SessionRecord } from '../memory/records.ts';
 import type { MerchantRecord } from '../items/trade.ts';
+import type { CraftProject } from '../items/crafting.ts';
 
 /**
  * Canonical World Kernel state: the fold of a campaign's event stream
@@ -142,6 +143,8 @@ export interface WorldState {
   readonly portraitWishes: ReadonlyMap<string, string>;
   /** An NPC's ID → its shop (docs/adr/0057-encounters-maps-loot.md §8); absent: no merchant. */
   readonly merchants: ReadonlyMap<string, MerchantRecord>;
+  /** A project's ID → the crafting under way (docs/adr/0057-encounters-maps-loot.md §9). */
+  readonly crafting: ReadonlyMap<string, CraftProject>;
 }
 
 export const EMPTY_WORLD_STATE: WorldState = {
@@ -173,6 +176,7 @@ export const EMPTY_WORLD_STATE: WorldState = {
   deaths: new Map(),
   portraitWishes: new Map(),
   merchants: new Map(),
+  crafting: new Map(),
 };
 
 /** Kinds that occupy a location. Locations nest via `parentId`; factions are abstract. */

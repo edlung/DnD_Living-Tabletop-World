@@ -11,8 +11,9 @@ import type { SrdEquipmentText } from './equipment.ts';
 /**
  * The catalog entries the World Engine applies, from the SRD's equipment text
  * (docs/adr/0054-items-as-data.md §2): category, slots, stack, weight, worth, and the armor, shield,
- * weapon or ammunition an entry is. Ids are `srd-` and the text's slug. The Russian words are the
- * English ones, marked untranslated, until the translation pipeline (Stage 650e) supplies them.
+ * weapon or ammunition an entry is, and the tools that make it (`craft-tools.ts`). Ids are `srd-` and
+ * the text's slug. The Russian words are the English ones, marked untranslated, until the
+ * translation pipeline (Stage 650e) supplies them.
  */
 export const SRD_ID_PREFIX = 'srd-';
 
@@ -40,7 +41,15 @@ const AMMUNITION: Readonly<Record<string, AmmunitionKind>> = {
 };
 const LIGHT = /^Light$/;
 
-export function catalogEntryOf(item: SrdEquipmentText): ItemEntry {
+export function catalogEntryOf(item: SrdEquipmentText, tools?: readonly string[]): ItemEntry {
+  const entry = entryOf(item);
+  if (tools === undefined) return entry;
+  // A Potion of Healing is brewed in a day from 25 GP of materials (SRD 5.2.1).
+  const potion = item.itemId === 'potion-of-healing' ? { days: 1, materialsCp: 2_500 } : {};
+  return { ...entry, craft: { tools: [...tools], ...potion } };
+}
+
+function entryOf(item: SrdEquipmentText): ItemEntry {
   const base = {
     itemId: `${SRD_ID_PREFIX}${item.itemId}`,
     name: { en: item.name, ru: item.name },

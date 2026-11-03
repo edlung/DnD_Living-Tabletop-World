@@ -11,6 +11,8 @@ export type ItemCommand = KernelCommandOf<
   | 'SplitCoins'
   | 'BuyItem'
   | 'SellItem'
+  | 'StartCrafting'
+  | 'AbandonCrafting'
 >;
 
 /** An item command before the acting character is named. */

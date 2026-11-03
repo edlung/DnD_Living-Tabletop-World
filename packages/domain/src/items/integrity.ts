@@ -43,5 +43,16 @@ export function itemViolations(state: WorldState): string[] {
   }
   for (const [holder, count] of attunedBy)
     if (count > 3) report(`${holder} is attuned to ${String(count)} items`);
+  // Crafting (docs/adr/0057-encounters-maps-loot.md §9): characters at work, the hours in range.
+  const working = new Set<string>();
+  for (const [projectId, project] of state.crafting) {
+    for (const workerId of [project.crafterId, ...project.helperIds]) {
+      if (state.entities.get(workerId)?.kind !== 'character')
+        report(`project ${projectId} has a worker who is no character`);
+      if (working.has(workerId)) report(`${workerId} works on two projects`);
+      working.add(workerId);
+    }
+    if (project.hoursDone >= project.hoursNeeded) report(`project ${projectId} is done but runs`);
+  }
   return violations;
 }

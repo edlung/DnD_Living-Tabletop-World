@@ -72,3 +72,12 @@
 Preserves 1, 8 and 9: the catalog describes; the server decides and records every change of hands,
 attunement and charge; a carrier sees an unidentified item as its carrier would, and only the DM
 sees a curse before it shows.
+
+## Amendment 2026-11-03 (Stage 670f, ADR 0057 §9; owner approval `reviews/OWNER_FULL_GAME_2026-11-02.json`)
+
+A catalog entry may say how it is made (`craft`): the tools that make it, any one of them, and its
+own days and materials apiece where they are not the SRD's rule (a Potion of Healing: 1 day, 25
+GP). The SRD's entries take it from each tool's "Craft:" line at import (`scripts/srd/craft-tools.ts`,
+an unread line stops the import); Ravenford's own name their tools by hand, and a Ravenford weapon
+is made with those of the SRD weapon it fights as (`craftOf`). A Spell Scroll is scribed, not
+crafted: no entry names its tool (docs/adr/0057-encounters-maps-loot.md, 670f notes).

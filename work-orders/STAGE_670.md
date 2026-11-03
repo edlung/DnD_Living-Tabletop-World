@@ -45,7 +45,10 @@ Authority: owner approval 2026-11-02 (`reviews/OWNER_FULL_GAME_2026-11-02.json`)
   with change made; crafting by the SRD (tools, half cost in materials, cost ÷ 10 days, helpers),
   Potions of Healing and Spell Scrolls, projects advanced by days of downtime. Part 1 done:
   merchants — the DM's shop on an NPC (price factor, wares from the catalog), buying with the
-  change made and selling at half the worth under Trade, the shop live for every viewer.
+  change made and selling at half the worth under Trade, the shop live for every viewer. Part 2
+  done: crafting — the tools that make each thing as catalog data, projects begun from the pack
+  (helpers, materials, days), Potions of Healing and Spell Scrolls, the DM's downtime from the Party
+  sheet putting the made thing in the pack. 670f done.
 - 670g — The world map and travel: a region's map with pins, routes with miles, terrain and roads,
   the party travelling at a pace, the clock advancing, extended travel's Constitution saves.
 

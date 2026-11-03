@@ -32,6 +32,11 @@ import {
   unequipItemCommandSchema,
   useItemCommandSchema,
 } from '../items/commands.ts';
+import {
+  abandonCraftingCommandSchema,
+  startCraftingCommandSchema,
+  workDowntimeCommandSchema,
+} from '../items/crafting.ts';
 import { setWeatherCommandSchema } from '../visual/commands.ts';
 import { generateChronicleCommandSchema } from '../chronicle/commands.ts';
 import { applyAuthoringCommandSchema } from '../authoring/commands.ts';
@@ -226,6 +231,9 @@ export const kernelCommandSchema = z
     setMerchantCommandSchema,
     buyItemCommandSchema,
     sellItemCommandSchema,
+    startCraftingCommandSchema,
+    abandonCraftingCommandSchema,
+    workDowntimeCommandSchema,
     attuneItemCommandSchema,
     identifyItemCommandSchema,
     dawnRechargeCommandSchema,
@@ -325,6 +333,9 @@ export const KERNEL_COMMAND_TYPES = [
   'SetMerchant',
   'BuyItem',
   'SellItem',
+  'StartCrafting',
+  'AbandonCrafting',
+  'WorkDowntime',
   'AttuneItem',
   'IdentifyItem',
   'DawnRecharge',

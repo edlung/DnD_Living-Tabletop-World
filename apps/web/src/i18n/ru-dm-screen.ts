@@ -208,4 +208,10 @@ registerRussian({
   'carrying shown': 'вес показывается',
   'carrying enforced': 'вес учитывается',
   'new characters at level {level}': 'новые персонажи с уровня {level}',
+  // How many may help on a crafting project (Stage 670f)
+  'Helpers on a crafting project': 'Помощников в ремесле',
+  'One, as the SRD has it, unless you allow more.': 'Один, как в SRD, если вы не разрешите больше.',
+  One: 'Один',
+  'Up to {count}': 'До {count}',
+  'up to {count} helpers on a crafting project': 'до {count} помощников в ремесле',
 });

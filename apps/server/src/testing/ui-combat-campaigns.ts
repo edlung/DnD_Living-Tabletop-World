@@ -348,15 +348,29 @@ async function seedSpellsStart(engine: WorldEngine, campaignId: string): Promise
     (command) => command.type === 'SetCharacterSheet' && command.entityId === 'elowen-starwhisper',
   );
   if (!sheet || !('sheet' in sheet)) throw new Error('UI combat: Elowen has no sheet to seed');
+  // Her wizard's spells joined by these: one source of a kind, as a sheet has.
+  const known = sheet.sheet.spellcasting.find((source) => source.source === 'wizard');
   const wizard = {
+    ...known,
     source: 'wizard',
     ability: 'int',
-    spells: ['fire-bolt', 'magic-missile', 'shatter', 'cure-wounds'],
+    spells: [
+      ...new Set([
+        ...(known?.spells ?? []),
+        'fire-bolt',
+        'magic-missile',
+        'shatter',
+        'cure-wounds',
+      ]),
+    ],
   };
   const studied = {
     ...sheet.sheet,
     abilities: { ...sheet.sheet.abilities, int: 16 },
-    spellcasting: [...sheet.sheet.spellcasting, wizard],
+    spellcasting: [
+      ...sheet.sheet.spellcasting.filter((source) => source.source !== 'wizard'),
+      wizard,
+    ],
   };
   for (const submission of submissionsFromScript({
     campaignId,

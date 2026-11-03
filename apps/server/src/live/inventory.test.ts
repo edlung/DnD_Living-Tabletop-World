@@ -55,7 +55,8 @@ describe('the coverage inventory', () => {
       // Table talk (ADR 0044 §1) and handouts (§5).
       '/campaigns/ravenford/chat',
       '/campaigns/ravenford/handouts',
-      // The table's shared marks on the board (ADR 0057 §5).
+      // Crafting (ADR 0057 §9) and the table's shared marks on the board (§5).
+      '/campaigns/ravenford/crafting',
       '/campaigns/ravenford/marks',
       '/campaigns/ravenford/surroundings',
       '/campaigns/ravenford/undone-actions',
@@ -86,6 +87,7 @@ describe('the coverage inventory', () => {
       '/campaigns/ravenford/rest',
       '/campaigns/ravenford/chat',
       '/campaigns/ravenford/handouts',
+      '/campaigns/ravenford/crafting',
       '/campaigns/ravenford/marks',
       '/campaigns/ravenford/chronicle/suggestions',
       '/campaigns/ravenford/dm/history',

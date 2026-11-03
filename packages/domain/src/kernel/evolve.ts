@@ -56,7 +56,7 @@ import {
   withoutAnsweredWish,
 } from '../assets/portrait-wishes.ts';
 import { applyChronicleGenerated, applyChronicleRestore } from '../chronicle/decide.ts';
-import { applyItemEvent, applyItemRestore } from '../items/evolve.ts';
+import { applyItemEvent, applyItemRestore, isItemEvent } from '../items/evolve.ts';
 import { applyMerchantRestore, applyMerchantSet } from '../items/trade.ts';
 import { applyRelationshipChanged, applyRelationshipRestore } from '../relationships/evolve.ts';
 import { CorruptHistoryError } from './corrupt-history.ts';
@@ -100,6 +100,8 @@ export function evolve(state: WorldState, event: RecordedEvent): WorldState {
 }
 
 function apply(state: WorldState, event: RecordedEvent): WorldState {
+  // Possession and crafting (docs/adr/0039-item-possession.md, 0057 §9).
+  if (isItemEvent(event)) return applyItemEvent(state, event);
   switch (event.type) {
     case 'CampaignCreated': {
       if (state.campaign !== null) throw new CorruptHistoryError('campaign created twice');
@@ -262,19 +264,6 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
       return applyReactionWindowResumed(state, event);
     case 'RelationshipChanged':
       return applyRelationshipChanged(state, event);
-    case 'ItemGranted':
-    case 'ItemEquipped':
-    case 'ItemUnequipped':
-    case 'ItemUsed':
-    case 'ItemStackChanged':
-    case 'ItemAttuned':
-    case 'ItemChargesSpent':
-    case 'ItemChargesRegained':
-    case 'ItemIdentified':
-    case 'ItemRecovered':
-    case 'ItemTransferred':
-    case 'ItemSplit':
-      return applyItemEvent(state, event);
     case 'WeatherSet':
       return applyWeatherSet(state, event);
     case 'CampaignOptionsSet':
@@ -417,6 +406,7 @@ function applyRestore(state: WorldState, restore: Restore): WorldState {
     case 'relationship':
       return applyRelationshipRestore(state, restore);
     case 'possession':
+    case 'crafting':
       return applyItemRestore(state, restore);
     case 'assetRequest':
     case 'asset':

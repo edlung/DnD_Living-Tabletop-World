@@ -9,18 +9,14 @@ import {
 import { z } from 'zod';
 
 import { actorSchema } from '../actor.ts';
-import { CREATE_CHARACTER_IDS } from '../../character/limits.ts';
 import { ENTROPY_POOL } from '../../combat/port.ts';
-import { MAX_RESOLVED_IDS } from '../../combat/reactions.ts';
-import { SPLIT_COINS_IDS } from '../../items/coins.ts';
 import type { ResolvedCommand } from '../decision.ts';
+import { MAX_DRAWN_IDS } from './drawn-ids.ts';
 import type { StoredCommand } from './event-store.ts';
 
 const resolutionSchema = z
   .object({
-    ids: z
-      .array(z.string().regex(OBJECT_ID_PATTERN))
-      .max(Math.max(MAX_RESOLVED_IDS, CREATE_CHARACTER_IDS, SPLIT_COINS_IDS)),
+    ids: z.array(z.string().regex(OBJECT_ID_PATTERN)).max(MAX_DRAWN_IDS),
     d20: z.number().int().min(1).max(20).nullable(),
     /** Absent in commands stored before combat existed (Stage 60). */
     entropy: z

@@ -48,6 +48,9 @@ export const UI_ITEM_CAMPAIGNS = {
   loot: 'ui-loot',
   /** A merchant at Market Square (ADR 0057 §8). */
   trade: 'ui-trade',
+  /** Elowen crafts with a Herbalism Kit and scribes with a calligrapher's supplies (ADR 0057 §9). */
+  craft: 'ui-craft',
+  craftRu: 'ui-craft-ru',
 } as const;
 
 const DM = { actorId: 'dm-ravenford', kind: 'user' } as const;
@@ -112,6 +115,8 @@ export async function seedUiItemCampaigns(engine: WorldEngine): Promise<void> {
     [UI_ITEM_CAMPAIGNS.portrait, 'en'],
     [UI_ITEM_CAMPAIGNS.loot, 'en'],
     [UI_ITEM_CAMPAIGNS.trade, 'en'],
+    [UI_ITEM_CAMPAIGNS.craft, 'en'],
+    [UI_ITEM_CAMPAIGNS.craftRu, 'ru'],
   ] as const) {
     const seed = await loadRavenfordSeed(language === 'ru' ? RAVENFORD_RU_FIXTURES_DIR : undefined);
     for (const input of seed.submissions) {
@@ -128,6 +133,68 @@ export async function seedUiItemCampaigns(engine: WorldEngine): Promise<void> {
       await seedLoad(engine, campaignId, NAMES[language].mail);
     if (campaignId === UI_ITEM_CAMPAIGNS.raising || campaignId === UI_ITEM_CAMPAIGNS.raisingRu)
       await seedRaiser(engine, campaignId);
+    if (campaignId === UI_ITEM_CAMPAIGNS.craft || campaignId === UI_ITEM_CAMPAIGNS.craftRu)
+      await seedCrafters(engine, campaignId, language);
+  }
+}
+
+/**
+ * Crafters (docs/adr/0057-encounters-maps-loot.md §9): Elowen knows the Herbalism Kit and the
+ * calligrapher's supplies and carries both, with thirty crowns more; Brann knows the kit and may
+ * help her brew.
+ */
+async function seedCrafters(
+  engine: WorldEngine,
+  campaignId: string,
+  language: 'en' | 'ru',
+): Promise<void> {
+  const state = (await engine.load(campaignId))?.state;
+  const run = async (step: string, command: Record<string, unknown>) => {
+    const result = await engine.execute({
+      campaignId,
+      commandId: `${campaignId}.craft.${step}`,
+      actor: DM,
+      command,
+    });
+    if (result.status !== 'accepted') throw new Error(`UI craft ${campaignId} ${step} refused`);
+  };
+  for (const [characterId, tools] of [
+    [ELOWEN, ['srd-herbalism-kit', 'srd-calligraphers-supplies']],
+    ['brann-ironvale', ['srd-herbalism-kit']],
+  ] as const) {
+    const sheet = state?.characterSheets.get(characterId);
+    if (!sheet) throw new Error(`UI craft ${campaignId}: ${characterId} has no sheet`);
+    await run(`tools-${characterId}`, {
+      type: 'SetCharacterSheet',
+      entityId: characterId,
+      sheet: { ...sheet, tools: [...tools] },
+    });
+  }
+  const ru = language === 'ru';
+  for (const [itemId, catalogId, name, quantity] of [
+    ['item-3f8a2c61', 'srd-herbalism-kit', ru ? 'Набор травника' : 'Herbalism Kit', 1],
+    [
+      'item-9d4e7b15',
+      'srd-calligraphers-supplies',
+      ru ? 'Инструменты каллиграфа' : 'Calligrapher’s Supplies',
+      1,
+    ],
+    ['item-c27f0e84', 'gold-crown', NAMES[language].crowns, 30],
+  ] as const) {
+    await run(`create-${itemId}`, {
+      type: 'CreateEntity',
+      entityId: itemId,
+      kind: 'item',
+      name,
+      existsSince: null,
+    });
+    await run(`grant-${itemId}`, {
+      type: 'GrantItem',
+      itemId,
+      holderId: ELOWEN,
+      catalogId,
+      quantity,
+    });
   }
 }
 

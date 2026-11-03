@@ -133,4 +133,6 @@ export const ITEM_PLAYER_COMMAND_TYPES = [
   'SplitCoins',
   'BuyItem',
   'SellItem',
+  'StartCrafting',
+  'AbandonCrafting',
 ] as const;

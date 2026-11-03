@@ -87,6 +87,13 @@ import {
 import { chronicleGeneratedPayloadSchema, chronicleRestoreSchemas } from '../chronicle/records.ts';
 import { merchantRestoreSchemas, merchantSetPayloadSchema } from '../items/trade.ts';
 import {
+  craftingAbandonedPayloadSchema,
+  craftingFinishedPayloadSchema,
+  craftingRestoreSchemas,
+  craftingStartedPayloadSchema,
+  craftingWorkedPayloadSchema,
+} from '../items/crafting.ts';
+import {
   preparedPartyEstablishedPayloadSchema,
   campaignBootstrappedPayloadSchema,
 } from '../campaign/bootstrap-events.ts';
@@ -154,6 +161,7 @@ export const restoreSchema = z.discriminatedUnion('fact', [
   ...deathRestoreSchemas,
   ...portraitWishRestoreSchemas,
   ...merchantRestoreSchemas,
+  ...craftingRestoreSchemas,
   ...chronicleRestoreSchemas,
   ...itemRestoreSchemas,
 ]);
@@ -311,6 +319,11 @@ export const kernelEventSchema = z.discriminatedUnion('type', [
   event('ItemChargesSpent', itemChargesSpentPayloadSchema),
   event('ItemChargesRegained', itemChargesRegainedPayloadSchema),
   event('ItemIdentified', itemIdentifiedPayloadSchema),
+  // Crafting (docs/adr/0057-encounters-maps-loot.md §9).
+  event('CraftingStarted', craftingStartedPayloadSchema),
+  event('CraftingWorked', craftingWorkedPayloadSchema),
+  event('CraftingFinished', craftingFinishedPayloadSchema),
+  event('CraftingAbandoned', craftingAbandonedPayloadSchema),
 ]);
 
 export type KernelEvent = z.infer<typeof kernelEventSchema>;

@@ -71,6 +71,8 @@ export function coverageInventory(target: LiveTarget): ViewRequest[] {
     // Handouts (§5): a new one signals its readers.
     views.push(scoped('handouts'));
   }
+  // Crafting (ADR 0057 §9): a project's days of work, a character's own and the DM's.
+  if (target.kind === 'CHARACTER' || target.kind === 'DM') views.push(scoped('crafting'));
   // The table's shared marks on the board (ADR 0057 §5): every member's and the display's.
   if (target.kind === 'CHARACTER' || target.kind === 'DM' || target.display === true) {
     views.push(scoped('marks'));

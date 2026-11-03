@@ -2,25 +2,28 @@
 
 Who carries an item entity, whether it is worn, and what using it does. Authority: `docs/adr/0039-item-possession.md` (Stage 460). The catalog (data, validation) is `@ltw/contracts` `items/`; the rules here only apply it.
 
-| Concern                                                | File            |
-| ------------------------------------------------------ | --------------- |
-| `Possession`, carried/worn queries, armor class delta  | `records.ts`    |
-| The catalog: Ravenford's and the SRD's, made on a base | `catalog.ts`    |
-| Event payloads and the `possession` undo restore       | `events.ts`     |
-| Fold and restore                                       | `evolve.ts`     |
-| `GrantItem` (DM/system) and its refusals               | `grant.ts`      |
-| The checks every item decision shares                  | `handling.ts`   |
-| The player commands                                    | `decide.ts`     |
-| Attunement (the DM's, or the table's in a Short Rest)  | `attune.ts`     |
-| Charges, identifying, the dawn's recharge              | `charges.ts`    |
-| Footprints (reads/writes) of the item events           | `footprints.ts` |
-| Structural invariants                                  | `integrity.ts`  |
-| Carrier-only inventory view, and the party's stash     | `view.ts`       |
-| The party's stash: giving to it and taking from it     | `stash.ts`      |
-| Coins shared out with change (`SplitCoins`)            | `coins.ts`      |
-| A holder's coins spent and paid, the change made       | `purse.ts`      |
-| Merchants: prices, `SetMerchant`, buying and selling   | `trade.ts`      |
-| A merchant's shop as a viewer sees it                  | `trade-view.ts` |
+| Concern                                                | File                 |
+| ------------------------------------------------------ | -------------------- |
+| `Possession`, carried/worn queries, armor class delta  | `records.ts`         |
+| The catalog: Ravenford's and the SRD's, made on a base | `catalog.ts`         |
+| Event payloads and the `possession` undo restore       | `events.ts`          |
+| Fold and restore                                       | `evolve.ts`          |
+| `GrantItem` (DM/system) and its refusals               | `grant.ts`           |
+| The checks every item decision shares                  | `handling.ts`        |
+| The player commands                                    | `decide.ts`          |
+| Attunement (the DM's, or the table's in a Short Rest)  | `attune.ts`          |
+| Charges, identifying, the dawn's recharge              | `charges.ts`         |
+| Footprints (reads/writes) of the item events           | `footprints.ts`      |
+| Structural invariants                                  | `integrity.ts`       |
+| Carrier-only inventory view, and the party's stash     | `view.ts`            |
+| The party's stash: giving to it and taking from it     | `stash.ts`           |
+| Coins shared out with change (`SplitCoins`)            | `coins.ts`           |
+| A holder's coins spent and paid, the change made       | `purse.ts`           |
+| Merchants: prices, `SetMerchant`, buying and selling   | `trade.ts`           |
+| A merchant's shop as a viewer sees it                  | `trade-view.ts`      |
+| Crafting projects: record, events, fold, footprints    | `crafting.ts`        |
+| `StartCrafting`, `AbandonCrafting`, `WorkDowntime`     | `crafting-decide.ts` |
+| Crafting as a viewer sees it                           | `crafting-view.ts`   |
 
 Rules:
 
@@ -40,3 +43,7 @@ Rules:
   the mark unless the event sets it (a merchant buying). Trade pools every coin and mints the change
   in the holder's home coinage (`purse.ts`); the shop shows to the DM and to a character at the
   merchant's place that knows it (docs/adr/0057-encounters-maps-loot.md §8).
+- What makes a thing is its entry's `craft` (`craftOf`: a Ravenford weapon's is its SRD weapon's).
+  A project's name is in the campaign's language when it begins (the rules' words through the
+  character port); the made thing takes it. A scroll's spell level comes from the same port, never
+  from the command.

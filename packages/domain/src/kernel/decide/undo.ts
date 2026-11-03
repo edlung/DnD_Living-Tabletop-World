@@ -437,6 +437,17 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
           value: before.merchants.get(event.payload.npcId) ?? null,
         });
         break;
+      // A crafting project (§9).
+      case 'CraftingStarted':
+      case 'CraftingWorked':
+      case 'CraftingFinished':
+      case 'CraftingAbandoned':
+        restores.push({
+          fact: 'crafting',
+          projectId: event.payload.projectId,
+          value: before.crafting.get(event.payload.projectId) ?? null,
+        });
+        break;
       case 'AssetRequested':
       case 'PortraitAsked':
       case 'AssetApproved':

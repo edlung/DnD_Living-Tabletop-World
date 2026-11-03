@@ -315,6 +315,36 @@
   fingerprint covers the focused merchant's shop for the DM and an acting character, so a sale,
   new wares or a new price reach every open shop.
 
+## Notes from the implementation (Stage 670f, part 2, 2026-11-03)
+
+- What makes a thing is data (ADR 0054 amendment of 2026-11-03): a catalog entry's `craft` names
+  the tools, any one of them, that make it — the SRD's from each tool's "Craft:" line
+  (`scripts/srd/craft-tools.ts`: a name as the table has it or turned round, ammunition in the
+  plural, "Any Melee weapon (except …)", "Medium armor (except Hide)", the focuses), 133 of its
+  entries; Ravenford's own by the DM's rule ("the GM assigns required tools"), a Ravenford weapon by
+  the SRD weapon it fights as. A Potion of Healing says its own day and 25 GP.
+- A project is a world fact (`crafting`): the crafter, its helpers, the thing and how many (a stack
+  of what stacks), the tool, the materials paid and the hours of work needed and done
+  (`CraftingStarted`, `CraftingWorked`, `CraftingFinished`, `CraftingAbandoned`, undone by the
+  `crafting` restore). `StartCrafting` (a player's, outside a fight, no turn): the character on no
+  other project, proficient with one of the thing's tools and carrying it; helpers here, of the
+  party, proficient with that tool and on no other project, one unless the campaign's option
+  allows up to four (`craftingHelpers`). The materials — half the cost, rounded down; a Potion's 25
+  GP — are spent at once from every coin, the change made; the work is the cost in GP ÷ 10 days,
+  at least one, eight hours a day.
+- A Spell Scroll of a spell the character has prepared, by proficiency in Arcana or with the
+  calligrapher's supplies at hand, at the SRD's Spell Scroll Costs (a cantrip's 1 day and 15 GP to
+  a 9th level's 120 days and 50,000 GP), on the SRD's scroll gear up to level 1 and the magic Spell
+  Scroll above, named with its spell. The scribe works alone, and a day counts only while the spell
+  is prepared. The spell's level and name, and an SRD entry's Russian, come from the rules through
+  the World Engine's character port (`spell`, `itemWords`); material components are not tracked.
+- `WorkDowntime` (the DM's, from the Party sheet's "Crafting and downtime"): days of work for every
+  project, or one, each day eight hours of every worker still standing; a project done puts the made
+  thing in the crafter's pack (drawn IDs, one a project). `AbandonCrafting`: the crafter gives a
+  project up; its materials are spent. The pack's Crafting section shows the projects with their
+  days of work and begins one: what to make by tool, the scrolls, how many, who helps, then the
+  materials and the days, shared. The live fingerprint covers `crafting` for a character and the DM.
+
 ## Consequences
 
 - Stage 670 runs in parts (`work-orders/STAGE_670.md`): the builder and the DM's hand; terrain and

@@ -53,6 +53,7 @@ import { registerSavedEncounterRoutes } from '../combat/saved-encounters.ts';
 import { registerAttuneRoutes } from '../items/attune-routes.ts';
 import { registerItemCatalogRoutes } from '../items/item-catalog-routes.ts';
 import { registerMerchantRoutes } from '../items/merchant-routes.ts';
+import { registerCraftingRoutes } from '../items/crafting-routes.ts';
 import { registerRulesReferenceRoutes } from '../rules/reference-routes.ts';
 import { registerAdvancementRoutes } from '../characters/advancement-routes.ts';
 import { registerCopyRoutes } from '../characters/copy-routes.ts';
@@ -215,6 +216,7 @@ export function buildApp(input: AppDependencies): FastifyInstance {
   registerBestiaryRoutes(app, deps);
   registerItemCatalogRoutes(app, deps);
   registerMerchantRoutes(app, deps);
+  registerCraftingRoutes(app, deps);
   registerRulesReferenceRoutes(app, deps);
   registerCharacterCreationRoutes(app, deps);
   // One lobby for the routes that read it: the pause holds players' commands.

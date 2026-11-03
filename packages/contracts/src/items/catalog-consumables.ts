@@ -4,6 +4,7 @@ import type { ItemEntry } from './schema.ts';
 export const CONSUMABLE_ITEMS: readonly ItemEntry[] = [
   {
     itemId: 'woodland-balm',
+    craft: { tools: ['srd-herbalism-kit'] },
     category: 'consumable',
     name: { ru: 'Лесной бальзам', en: 'Woodland balm' },
     description: {
@@ -18,6 +19,7 @@ export const CONSUMABLE_ITEMS: readonly ItemEntry[] = [
   },
   {
     itemId: 'greater-balm',
+    craft: { tools: ['srd-herbalism-kit'] },
     category: 'consumable',
     name: { ru: 'Крепкий бальзам', en: 'Strong balm' },
     description: {
@@ -32,6 +34,7 @@ export const CONSUMABLE_ITEMS: readonly ItemEntry[] = [
   },
   {
     itemId: 'rootwater',
+    craft: { tools: ['srd-herbalism-kit'] },
     category: 'consumable',
     name: { ru: 'Корневая вода', en: 'Rootwater' },
     description: {
@@ -46,6 +49,7 @@ export const CONSUMABLE_ITEMS: readonly ItemEntry[] = [
   },
   {
     itemId: 'smelling-salts',
+    craft: { tools: ['srd-alchemists-supplies'] },
     category: 'consumable',
     name: { ru: 'Нюхательная соль', en: 'Smelling salts' },
     description: {
@@ -60,6 +64,7 @@ export const CONSUMABLE_ITEMS: readonly ItemEntry[] = [
   },
   {
     itemId: 'traveller-bread',
+    craft: { tools: ['srd-cooks-utensils'] },
     category: 'consumable',
     name: { ru: 'Дорожный хлеб', en: 'Travel bread' },
     description: {
@@ -74,6 +79,7 @@ export const CONSUMABLE_ITEMS: readonly ItemEntry[] = [
   },
   {
     itemId: 'inn-ale',
+    craft: { tools: ['srd-brewers-supplies'] },
     category: 'consumable',
     name: { ru: 'Кружка эля', en: 'Tankard of ale' },
     description: {
@@ -88,6 +94,7 @@ export const CONSUMABLE_ITEMS: readonly ItemEntry[] = [
   },
   {
     itemId: 'iron-rations',
+    craft: { tools: ['srd-cooks-utensils'] },
     category: 'consumable',
     name: { ru: 'Походный паёк', en: 'Iron rations' },
     description: {
@@ -102,6 +109,7 @@ export const CONSUMABLE_ITEMS: readonly ItemEntry[] = [
   },
   {
     itemId: 'spiced-wine',
+    craft: { tools: ['srd-brewers-supplies'] },
     category: 'consumable',
     name: { ru: 'Пряное вино', en: 'Spiced wine' },
     description: {

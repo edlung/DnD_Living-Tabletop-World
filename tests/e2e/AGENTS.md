@@ -243,6 +243,8 @@ application on 4313.
   as "Unidentified item" until looked at: pick it up by that name.
   `trade.spec.ts` owns `ui-trade` (an item campaign: Elowen with twenty crowns more). The DM's give
   route answers the ware's name; the journey trades by that name, never a guessed one.
+  `crafting.spec.ts` owns `ui-craft` and `ui-craft-ru` (item campaigns: Elowen knows and carries the
+  Herbalism Kit and the calligrapher's supplies, with thirty crowns more; Brann knows the kit).
 - Native apps (ADR 0070, `native-shell.spec.ts`): a stand-in shell installed with `addInitScript`
   records what the page posts, and the journey speaks for the shell with `ltw-native` events; it owns
   the `native` sign-in campaign. The apps themselves are checked on the simulator and the emulator.

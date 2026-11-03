@@ -14,6 +14,7 @@ import { ItemCard } from './inventory/item-card.tsx';
 import { PaperDoll } from './inventory/paper-doll.tsx';
 import { PurseAndLoad } from './inventory/purse.tsx';
 import { ShareCoins } from './inventory/share-coins.tsx';
+import { CraftingSection } from './inventory/crafting.tsx';
 import { PartyStash } from './inventory/stash.tsx';
 import type { ItemCommandBody } from './item-command.ts';
 
@@ -218,6 +219,16 @@ export function InventoryPanel({
           onTake={(itemId) => {
             run({ type: 'TakeItem', itemId });
           }}
+        />
+      )}
+      {/* Crafting (docs/adr/0057-encounters-maps-loot.md §9): the character's own. */}
+      {canAct && (
+        <CraftingSection
+          api={api}
+          revision={revision}
+          characterId={characterId}
+          blocked={blocked || fighting}
+          onRun={run}
         />
       )}
       <GiveItemForm api={api} holderId={characterId} locked={locked} />

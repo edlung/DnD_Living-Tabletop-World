@@ -33,4 +33,5 @@ export type DmTableCommand = KernelCommandOf<
   | 'EndSession'
   | 'SetCampaignOptions'
   | 'SetMerchant'
+  | 'WorkDowntime'
 >;

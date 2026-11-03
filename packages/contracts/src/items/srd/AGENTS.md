@@ -14,4 +14,6 @@ the derivation and import again.
   never carries it. The domain reads an entry of either catalog through `itemEntry`.
 - Ids are `srd-` and the SRD name's slug; never renamed or reused. Russian words are the English
   ones, marked `untranslated`, until the translation pipeline (Stage 650e).
-- `catalog.test.ts` holds every entry to the schema and keeps Ravenford's names Ravenford's.
+- `catalog.test.ts` holds every entry to the schema and keeps Ravenford's names Ravenford's, and
+  every `craft` tool a tool (docs/adr/0057-encounters-maps-loot.md §9): the tools come from each
+  tool's "Craft:" line (`scripts/srd/craft-tools.ts`).

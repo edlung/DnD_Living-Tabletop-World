@@ -1,5 +1,5 @@
-/* Loot, the party's stash, coins shared out and merchants (docs/adr/0057-encounters-maps-loot.md
-   §7–8), beside the pack's own styles (items.css). */
+/* Loot, the party's stash, coins shared out, merchants and crafting
+   (docs/adr/0057-encounters-maps-loot.md §7–9), beside the pack's own styles (items.css). */
 
 /* The party's stash below a member's pack (items/inventory/stash.tsx; ADR 0057 §7): each stack on
    its own row, the button that takes it at the row's end. */
@@ -105,4 +105,105 @@
 .shop-price {
   color: var(--gold-bright);
   white-space: nowrap;
+}
+
+/* Crafting in the pack, and the DM's downtime on the Party sheet (items/inventory/crafting.tsx,
+   craft-start.tsx, dm/downtime-card.tsx; ADR 0057 §9): each project on its row — what it makes,
+   who works on it, the days of work done — then a way to begin one. */
+.crafting {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+.crafting h3,
+.downtime h3 {
+  margin: 0;
+}
+.crafting-projects {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.crafting-project {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.25rem 0.75rem;
+}
+.crafting-project > :not(button, .crafting-ask) {
+  grid-column: 1;
+}
+.crafting-project > button {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+}
+.crafting-name {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.crafting-project progress {
+  width: 100%;
+  height: 0.5rem;
+  accent-color: var(--gold-bright);
+}
+.crafting-done {
+  color: var(--text-muted);
+}
+.crafting-ask {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  grid-column: 1 / -1;
+}
+.crafting-ask > span {
+  flex-basis: 100%;
+}
+.craft-start[open] > summary {
+  margin-bottom: 0.5rem;
+}
+.craft-form {
+  display: grid;
+  gap: 0.75rem;
+  max-width: 40rem;
+}
+.craft-helpers {
+  display: grid;
+  gap: 0.25rem;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.craft-helpers legend {
+  margin-bottom: 0.25rem;
+  padding: 0;
+  color: var(--text-muted);
+}
+.craft-helpers .checkbox-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 32px;
+}
+.craft-sum {
+  display: grid;
+  gap: 0.15rem;
+}
+.craft-short {
+  color: var(--danger);
+}
+.craft-form > .primary-button {
+  justify-self: start;
+}
+.downtime {
+  display: grid;
+  gap: 0.75rem;
+}
+.downtime-days input {
+  max-width: 8rem;
 }

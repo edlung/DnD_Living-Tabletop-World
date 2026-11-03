@@ -1,6 +1,7 @@
 import type { CommandResult, KernelCommand, RejectionCode } from '@ltw/contracts';
 import { expect } from 'vitest';
 
+import type { CharacterBuilderPort } from '../../character/create.ts';
 import type { SkillCheckPort } from '../../investigation/skill-checks.ts';
 import type { Actor } from '../actor.ts';
 import { SequentialIds, SteppingClock } from '../engine/deterministic-sources.ts';
@@ -35,13 +36,16 @@ export function cyclingChecks(): SkillCheckPort {
 
 export type Harness = ReturnType<typeof createHarness>;
 
-export function createHarness(options: { store?: EventStore; namespace?: number } = {}) {
+export function createHarness(
+  options: { store?: EventStore; namespace?: number; characters?: CharacterBuilderPort } = {},
+) {
   const store = options.store ?? new InMemoryEventStore();
   const engine = new WorldEngine({
     store,
     ids: new SequentialIds(options.namespace ?? 0),
     clock: new SteppingClock(),
     checks: cyclingChecks(),
+    ...(options.characters ? { characters: options.characters } : {}),
   });
   let counter = 0;
 

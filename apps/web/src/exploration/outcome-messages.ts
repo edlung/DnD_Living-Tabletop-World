@@ -58,6 +58,8 @@ const ITEM_COMMANDS: ReadonlySet<string> = new Set([
   'SplitCoins',
   'BuyItem',
   'SellItem',
+  'StartCrafting',
+  'AbandonCrafting',
 ]);
 
 const ITEM_DONE = {
@@ -336,6 +338,10 @@ export function outcomeMessage(t: Translate, outcome: PlayerOutcome | undefined)
       return outcome.action === 'buy'
         ? t('You bought it, and paid. Your view has been refreshed.')
         : t('You sold it, and were paid. Your view has been refreshed.');
+    case 'Crafting':
+      return outcome.action === 'start'
+        ? t('You began the work, and paid for the materials. Your view has been refreshed.')
+        : t('You gave the work up. Your view has been refreshed.');
     case 'TakeAction':
       return outcome.disarmed
         ? t('You disarm the trap: {name}.', { name: t(TRAP_WORDS[outcome.disarmed]) })

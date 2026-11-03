@@ -174,6 +174,8 @@ export type PlayerOutcome =
   | { readonly kind: 'SplitCoins' }
   /** A thing bought from a merchant, or sold to one (docs/adr/0057-encounters-maps-loot.md §8). */
   | { readonly kind: 'Trade'; readonly action: 'buy' | 'sell' }
+  /** A crafting project begun or given up (docs/adr/0057-encounters-maps-loot.md §9). */
+  | { readonly kind: 'Crafting'; readonly action: 'start' | 'abandon' }
   | {
       readonly kind: 'TakeAction';
       /** The hidden traps a Search or a Study found, and the trap Utilize disarmed (ADR 0057 §6). */

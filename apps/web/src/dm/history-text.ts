@@ -107,6 +107,9 @@ export const STEP_TEXT: Readonly<Record<KernelCommandType, string>> = {
   SetMerchant: 'keep a shop',
   BuyItem: 'buy an item',
   SellItem: 'sell an item',
+  StartCrafting: 'begin crafting',
+  AbandonCrafting: 'give up crafting',
+  WorkDowntime: 'days of downtime',
   AttuneItem: 'attune to an item',
   IdentifyItem: 'identify an item',
   DawnRecharge: 'dawn: charges regained',
@@ -270,6 +273,10 @@ export function describePlayerAction(
         item: name(command.itemId),
         target: name(command.merchantId),
       });
+    case 'StartCrafting':
+      return t('Began crafting');
+    case 'AbandonCrafting':
+      return t('Gave up crafting');
   }
 }
 

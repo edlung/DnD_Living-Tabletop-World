@@ -38,6 +38,19 @@ export interface CharacterBuilderPort {
         }[];
       }
     | { readonly ok: false; readonly problems: readonly ChoiceProblem[] };
+  /**
+   * A spell's level and name in the campaign's language, for a Spell Scroll scribed
+   * (docs/adr/0057-encounters-maps-loot.md §9); null for no SRD spell.
+   */
+  spell?(
+    spellId: string,
+    language: 'en' | 'ru',
+  ): { readonly level: number; readonly name: string } | null;
+  /** A catalog entry's name and line in the campaign's language (an SRD entry's Russian, §9). */
+  itemWords?(
+    catalogId: string,
+    language: 'en' | 'ru',
+  ): { readonly name: string; readonly description: string } | null;
 }
 
 /** Where the party is: the first assigned character's place, else the current scene's. */

@@ -1,7 +1,8 @@
 import { CorruptHistoryError } from '../kernel/corrupt-history.ts';
-import type { RecordedEvent, Restore } from '../kernel/events.ts';
+import type { KernelEventType, RecordedEvent, Restore } from '../kernel/events.ts';
 import { withEntry, withoutEntry } from '../kernel/maps.ts';
 import type { WorldState } from '../kernel/state.ts';
+import { applyCraftingEvent, applyCraftingRestore } from './crafting.ts';
 import { possessionOf, type Possession } from './records.ts';
 
 /** Fold and undo restore of item possession (docs/adr/0039-item-possession.md). */
@@ -146,8 +147,9 @@ export function applyItemSplit(state: WorldState, event: Ev<'ItemSplit'>): World
 
 export function applyItemRestore(
   state: WorldState,
-  restore: Extract<Restore, { fact: 'possession' }>,
+  restore: Extract<Restore, { fact: 'possession' | 'crafting' }>,
 ): WorldState {
+  if (restore.fact === 'crafting') return applyCraftingRestore(state, restore);
   if (restore.value === null)
     return { ...state, possessions: withoutEntry(state.possessions, restore.itemId) };
   return put(state, restore.itemId, rebuilt(restore.value, restore.value));
@@ -184,23 +186,42 @@ export function applyItemIdentified(state: WorldState, event: Ev<'ItemIdentified
   return put(state, itemId, rebuilt(current, { ...current, unidentified: false }));
 }
 
-/** The item events (docs/adr/0039-item-possession.md), folded each by its own rule. */
-export type ItemEventType =
-  | 'ItemGranted'
-  | 'ItemEquipped'
-  | 'ItemUnequipped'
-  | 'ItemUsed'
-  | 'ItemStackChanged'
-  | 'ItemAttuned'
-  | 'ItemChargesSpent'
-  | 'ItemChargesRegained'
-  | 'ItemIdentified'
-  | 'ItemRecovered'
-  | 'ItemTransferred'
-  | 'ItemSplit';
+/**
+ * The item events (docs/adr/0039-item-possession.md), crafting's among them (docs/adr/0057-
+ * encounters-maps-loot.md §9), folded each by its own rule.
+ */
+const ITEM_EVENT_TYPES = [
+  'ItemGranted',
+  'ItemEquipped',
+  'ItemUnequipped',
+  'ItemUsed',
+  'ItemStackChanged',
+  'ItemAttuned',
+  'ItemChargesSpent',
+  'ItemChargesRegained',
+  'ItemIdentified',
+  'ItemRecovered',
+  'ItemTransferred',
+  'ItemSplit',
+  'CraftingStarted',
+  'CraftingWorked',
+  'CraftingFinished',
+  'CraftingAbandoned',
+] as const satisfies readonly KernelEventType[];
+export type ItemEventType = (typeof ITEM_EVENT_TYPES)[number];
+const ITEM_EVENTS: ReadonlySet<string> = new Set(ITEM_EVENT_TYPES);
+
+export const isItemEvent = <T extends { readonly type: string }>(
+  event: T,
+): event is Extract<T, { type: ItemEventType }> => ITEM_EVENTS.has(event.type);
 
 export function applyItemEvent(state: WorldState, event: Ev<ItemEventType>): WorldState {
   switch (event.type) {
+    case 'CraftingStarted':
+    case 'CraftingWorked':
+    case 'CraftingFinished':
+    case 'CraftingAbandoned':
+      return applyCraftingEvent(state, event);
     case 'ItemGranted':
       return applyItemGranted(state, event);
     case 'ItemEquipped':

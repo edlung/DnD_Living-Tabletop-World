@@ -115,6 +115,10 @@ function combatOutcome(
       return { kind: 'Trade', action: 'buy' };
     case 'SellItem':
       return { kind: 'Trade', action: 'sell' };
+    case 'StartCrafting':
+      return { kind: 'Crafting', action: 'start' };
+    case 'AbandonCrafting':
+      return { kind: 'Crafting', action: 'abandon' };
     // A Search's or a Study's traps found, a trap disarmed (ADR 0057 §6); otherwise the rolls say.
     case 'TakeAction': {
       const found = trapChanges(events, 'found');

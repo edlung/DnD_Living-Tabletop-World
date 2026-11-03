@@ -4,6 +4,7 @@ import type { ItemEntry } from './schema.ts';
 export const ARMOR_ITEMS: readonly ItemEntry[] = [
   {
     itemId: 'quilted-gambeson',
+    craft: { tools: ['srd-weavers-tools'] },
     category: 'armor',
     name: { ru: 'Стёганка гильдии', en: 'Guild gambeson' },
     description: {
@@ -18,6 +19,7 @@ export const ARMOR_ITEMS: readonly ItemEntry[] = [
   },
   {
     itemId: 'traveller-jerkin',
+    craft: { tools: ['srd-leatherworkers-tools'] },
     category: 'armor',
     name: { ru: 'Дорожная куртка', en: 'Traveller jerkin' },
     description: {
@@ -32,6 +34,7 @@ export const ARMOR_ITEMS: readonly ItemEntry[] = [
   },
   {
     itemId: 'ravenford-brigandine',
+    craft: { tools: ['srd-smiths-tools'] },
     category: 'armor',
     name: { ru: 'Равенфордский бригандин', en: 'Ravenford brigandine' },
     description: {
@@ -46,6 +49,7 @@ export const ARMOR_ITEMS: readonly ItemEntry[] = [
   },
   {
     itemId: 'watchman-mail',
+    craft: { tools: ['srd-smiths-tools'] },
     category: 'armor',
     name: { ru: 'Кольчуга городской стражи', en: 'Watchman mail' },
     description: {
@@ -60,6 +64,7 @@ export const ARMOR_ITEMS: readonly ItemEntry[] = [
   },
   {
     itemId: 'oak-buckler',
+    craft: { tools: ['srd-woodcarvers-tools'] },
     category: 'shield',
     name: { ru: 'Дубовый баклер', en: 'Oak buckler' },
     description: {
@@ -74,6 +79,7 @@ export const ARMOR_ITEMS: readonly ItemEntry[] = [
   },
   {
     itemId: 'stag-shield',
+    craft: { tools: ['srd-smiths-tools'] },
     category: 'shield',
     name: { ru: 'Щит с оленем', en: 'Stag shield' },
     description: {
