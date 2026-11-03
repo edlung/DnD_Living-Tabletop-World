@@ -24,8 +24,9 @@
    each done or not, and whether the party knows it. A known quest shows in the party's journal with
    its steps beside the quests the campaign's quest book follows; an unknown one is the DM's alone.
 3. **The handout library.** Handouts written ahead are the DM's preparation, kept beside the world
-   as the DM's notes are and never seen until given; one is changed or deleted until it is given,
-   and giving it is giving a handout as today (ADR 0044 §5).
+   as the DM's notes are and never seen until given; giving one is giving a handout as today (ADR
+   0044 §5) — a copy, to the party or one player — and it stays in the library, changed, given again
+   or deleted at the DM's word, with when it was last given.
 4. **Random tables.** The DM writes tables — a name, a die from d4 to d100, its results by ranges —
    kept beside the world. A roll on one is a table roll the server makes, for the DM alone or for the
    table, its result named beside it; what the result brings in, the DM brings by hand.
@@ -62,6 +63,23 @@
 - Quests by hand: `SetQuest` writes, rewrites or takes one away whole (title, what it is about, up
   to twelve steps, whether the party knows it), `SetQuestStep` ticks a step; the quest log returns
   them beside the quest book's (`handQuests`), every one to the DM, the known ones to the party.
+
+## Notes from the implementation (Stage 680b, 2026-11-03)
+
+- The library is one store beside the world (migration `0036_dm_library.sql`, the server's
+  `library/`): an entry is a kept handout or a random table, its body read back through its
+  contracts schema (`keptHandoutSchema`, `randomTableSchema`), at most 100 handouts and 50 tables a
+  campaign; the DM's routes are `…/dm/library` (read), `…/dm/library/handouts/:id` and
+  `…/dm/library/tables/:id` (write, `/delete`), nobody else's.
+- `…/handouts/:id/give` gives a copy through the handout routes' own check (`handoutRefused`: a
+  character's player or the party, a picture its reader knows) into the handouts' store, and notes
+  when it was given; the Party sheet keeps a handout from the same form that gives one ("Keep for
+  later") and lists the kept ones under it, each given, changed or deleted there.
+- A random table covers its die once, in order, from 1 (`rangeGap`): the Dice sheet writes it as
+  lines, a range first ("1–2 Wolves"), lines with no numbers sharing the die evenly.
+  `…/tables/:id/roll` rolls its die with the table's dice (`DiceSource`) into the table's rolls as
+  `{ kind: 'table', name, result }` — the one roll subject with free text, the DM's own words —
+  hidden for the DM alone or shown to the table, worded in the log, the plate and the chat.
 
 ## Consequences
 

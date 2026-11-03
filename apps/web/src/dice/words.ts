@@ -32,8 +32,14 @@ export function subjectWords(t: Translate, subject: RollSubject): string {
       return t('Hit Point Die');
     case 'dice':
       return t('Dice');
+    case 'table':
+      return t('Table: {name}', { name: subject.name });
   }
 }
+
+/** A random table's result (docs/adr/0058-campaign-content.md §4): the DM's words, as written. */
+export const tableResult = (entry: RollEntry): string | null =>
+  entry.subject.kind === 'table' ? entry.subject.result : null;
 
 export const rollerWords = (t: Translate, roller: RollEntry['roller']): string =>
   roller === null ? t('DM') : (roller.name ?? t('Someone at the table'));
@@ -91,7 +97,9 @@ export function rollSentence(t: Translate, entry: RollEntry): string {
   const subject = subjectWords(t, entry.subject);
   const what =
     entry.rerollOf === undefined ? subject : `${subject}, ${t('Heroic Inspiration reroll')}`;
-  return `${rollerWords(t, entry.roller)} · ${what}. ${lines.join('. ')}`;
+  const result = tableResult(entry);
+  const told = result === null ? lines : [...lines, result];
+  return `${rollerWords(t, entry.roller)} · ${what}. ${told.join('. ')}`;
 }
 
 /**

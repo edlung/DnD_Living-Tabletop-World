@@ -13,7 +13,9 @@ Authority: owner approval 2026-11-02 (`reviews/OWNER_FULL_GAME_2026-11-02.json`)
   on a thing's card, the DM's history listing every edit.
 - 680b — The handout library and random tables: handouts kept for later and given from the
   library; random tables the DM writes (a die, its ranges and results) and rolls, the roll the
-  World Engine's and the table's to see as the DM chooses.
+  World Engine's and the table's to see as the DM chooses. Done: "Keep for later" and the kept
+  handouts on the Party sheet (given, changed, deleted; they stay after giving), random tables in
+  the Dice sheet rolled by the server for the DM alone or for the table (migration 0036).
 - 680c — The workshop with the full SRD: what it generates may name any SRD monster, item and
   spell, checked against the catalogs as the World Engine checks them.
 - 680d — The starter adventure: a new campaign of its own for levels 1–5 in the Ravenford setting —

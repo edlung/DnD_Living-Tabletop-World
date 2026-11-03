@@ -4,6 +4,7 @@ import { useId } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { ChatSheet } from '../chat/chat-sheet.tsx';
+import { RandomTables } from '../library/random-tables.tsx';
 import { SharedScreenSheet } from '../online/shared-screen.tsx';
 import { Sheet } from '../shell/sheet.tsx';
 import type { Shell } from '../shell/use-shell.ts';
@@ -99,6 +100,7 @@ export function DicePanel({
             <RollBuilder characters={characters} />
             <CheckRoller />
             <AskForCheck characters={characters} />
+            <RandomTables api={api} />
             {table?.error && (
               <p className="field-error" role="alert">
                 {table.error}

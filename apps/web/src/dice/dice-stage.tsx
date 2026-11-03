@@ -14,6 +14,7 @@ import {
   rollMarks,
   subjectWords,
   sumWords,
+  tableResult,
 } from './words.ts';
 
 /** A throw without motion still knocks: a short tumble of impacts. */
@@ -198,6 +199,9 @@ export function DiceStage({ onAnnounce }: { readonly onAnnounce: (words: RollEnt
           </p>
         );
       })}
+      {shown.landed >= shown.entry.groups.length && tableResult(shown.entry) !== null && (
+        <p className="dice-plate-line dice-table-result">{tableResult(shown.entry)}</p>
+      )}
     </div>
   );
 

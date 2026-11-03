@@ -37,6 +37,7 @@ import '../../apps/web/src/i18n/ru-dice.ts';
 import '../../apps/web/src/i18n/ru-inventory.ts';
 import '../../apps/web/src/i18n/ru-travel.ts';
 import '../../apps/web/src/i18n/ru-editors.ts';
+import '../../apps/web/src/i18n/ru-library.ts';
 import '../../apps/web/src/i18n/ru-rest.ts';
 import '../../apps/web/src/i18n/ru-rules.ts';
 import '../../apps/web/src/i18n/ru-accounts.ts';

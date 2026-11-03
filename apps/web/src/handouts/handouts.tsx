@@ -1,14 +1,18 @@
-import type { EntityPresentationResponse, EntityRef, HandoutView } from '@ltw/contracts';
-import { HANDOUT_TEXT_MAX, HANDOUT_TITLE_MAX } from '@ltw/contracts';
+import type {
+  EntityPresentationResponse,
+  EntityRef,
+  HandoutView,
+  KeptHandout,
+} from '@ltw/contracts';
 import { useT } from '@ltw/ui';
 import { useCallback, useId, useState, type SubmitEvent } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
 import { useDiceTable } from '../dice/table.tsx';
-import { Field } from '../session/account-forms.tsx';
 import { useApprovedImage } from '../visual/approved-images.ts';
 import { Glyph } from '../visual/glyph.tsx';
+import { EMPTY_DRAFT, HandoutFields, draftHandout, type HandoutDraft } from './handout-fields.tsx';
 
 /**
  * Handouts (docs/adr/0044-online-play.md §5): what the DM shows one player, or the party — a text,
@@ -71,47 +75,68 @@ export function HandoutsSection({ api }: { readonly api: WorldApi }) {
   );
 }
 
-/** The DM gives a handout: to the party or one player, a title, a text, a picture, or both. */
+/** What keeping a handout came to: kept, refused at the library's limit, or lost. */
+export type KeepOutcome = 'done' | 'full' | 'failed';
+
+/**
+ * The DM gives a handout: to the party or one player, a title, a text, a picture, or both — or
+ * keeps it for later in the library (docs/adr/0058-campaign-content.md §3), when `onKeep` is given.
+ */
 export function GiveHandout({
   characters,
   directory,
+  onKeep,
 }: {
   readonly characters: readonly EntityRef[];
   /** What the DM may picture: the server keeps it to what the recipient knows. */
   readonly directory: readonly EntityRef[];
+  readonly onKeep?: (handout: KeptHandout) => Promise<KeepOutcome>;
 }) {
   const t = useT();
   const ids = useId();
   const table = useDiceTable();
   const [to, setTo] = useState('party');
-  const [title, setTitle] = useState('');
-  const [text, setText] = useState('');
-  const [pictured, setPictured] = useState('');
+  const [draft, setDraft] = useState<HandoutDraft>(EMPTY_DRAFT);
   const [attempted, setAttempted] = useState(false);
-  const [state, setState] = useState<'idle' | 'busy' | 'given' | 'failed'>('idle');
+  const [state, setState] = useState<
+    'idle' | 'busy' | 'given' | 'failed' | 'kept' | 'full' | 'unkept'
+  >('idle');
   if (!table?.isDm) return null;
-  const empty = text.trim() === '' && pictured === '';
+  const done = () => {
+    setDraft(EMPTY_DRAFT);
+    setAttempted(false);
+  };
   const submit = (event: SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
     setAttempted(true);
-    if (title.trim() === '' || empty) return;
+    const handout = draftHandout(draft);
+    if (handout === null) return;
     setState('busy');
     void table
-      .give({
-        title: title.trim(),
-        ...(text.trim() === '' ? {} : { text: text.trim() }),
-        ...(pictured === '' ? {} : { entityId: pictured }),
-        ...(to === 'party' ? {} : { recipientId: to }),
-      })
-      .then((done) => {
-        setState(done ? 'given' : 'failed');
-        if (!done) return;
-        setTitle('');
-        setText('');
-        setPictured('');
-        setAttempted(false);
+      .give({ ...handout, ...(to === 'party' ? {} : { recipientId: to }) })
+      .then((given) => {
+        setState(given ? 'given' : 'failed');
+        if (given) done();
       });
   };
+  const keep = () => {
+    setAttempted(true);
+    const handout = draftHandout(draft);
+    if (handout === null || !onKeep) return;
+    setState('busy');
+    void onKeep(handout).then((outcome) => {
+      setState(outcome === 'done' ? 'kept' : outcome === 'full' ? 'full' : 'unkept');
+      if (outcome === 'done') done();
+    });
+  };
+  const said: Partial<Record<typeof state, string>> = {
+    given: t('Given.'),
+    failed: t('It could not be given: the picture must be of something its reader knows.'),
+    kept: t('Kept for later: it waits below.'),
+    full: t('Your library is full: delete a kept handout first.'),
+    unkept: t('It could not be kept. Try again.'),
+  };
+  const wrong = state === 'failed' || state === 'full' || state === 'unkept';
   return (
     <section className="sheet-section give-handout" aria-labelledby={`${ids}-title`}>
       <h3 id={`${ids}-title`}>{t('Give a handout')}</h3>
@@ -131,64 +156,25 @@ export function GiveHandout({
             </option>
           ))}
         </select>
-        <Field
-          label={t('Title')}
-          error={attempted && title.trim() === '' ? t('Give it a title.') : null}
-        >
-          {(control) => (
-            <input
-              {...control}
-              maxLength={HANDOUT_TITLE_MAX}
-              value={title}
-              onChange={(event) => {
-                setTitle(event.target.value);
-              }}
-            />
-          )}
-        </Field>
-        <Field
-          label={t('Text (optional)')}
-          error={attempted && empty ? t('Write a text or choose a picture.') : null}
-        >
-          {(control) => (
-            <textarea
-              {...control}
-              rows={3}
-              maxLength={HANDOUT_TEXT_MAX}
-              value={text}
-              onChange={(event) => {
-                setText(event.target.value);
-              }}
-            />
-          )}
-        </Field>
-        <label htmlFor={`${ids}-picture`}>{t('Picture (optional)')}</label>
-        <select
-          id={`${ids}-picture`}
-          value={pictured}
-          onChange={(event) => {
-            setPictured(event.target.value);
-          }}
-        >
-          <option value="">{t('No picture')}</option>
-          {directory.map((entity) => (
-            <option key={entity.entityId} value={entity.entityId}>
-              {entity.name}
-            </option>
-          ))}
-        </select>
+        <HandoutFields
+          draft={draft}
+          onChange={setDraft}
+          attempted={attempted}
+          directory={directory}
+        />
         <div className="action-row">
           <button type="submit" className="primary-button" disabled={state === 'busy'}>
             <Glyph name="give" />
             {t('Give the handout')}
           </button>
+          {onKeep && (
+            <button type="button" disabled={state === 'busy'} onClick={keep}>
+              {t('Keep for later')}
+            </button>
+          )}
         </div>
-        <p role="status" className={state === 'failed' ? 'field-error' : 'muted'}>
-          {state === 'given'
-            ? t('Given.')
-            : state === 'failed'
-              ? t('It could not be given: the picture must be of something its reader knows.')
-              : ''}
+        <p role="status" className={wrong ? 'field-error' : 'muted'}>
+          {said[state] ?? ''}
         </p>
       </form>
     </section>

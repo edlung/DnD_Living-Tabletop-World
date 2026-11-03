@@ -27,7 +27,10 @@
   font-size: 0.9rem;
   font-weight: 600;
 }
-.account-field input[aria-invalid='true'] {
+/* Every kind of field says it is wrong the same way: a text box and a choice too, not only a line. */
+.account-field input[aria-invalid='true'],
+.account-field textarea[aria-invalid='true'],
+.account-field select[aria-invalid='true'] {
   border-color: var(--danger);
 }
 .account-error,

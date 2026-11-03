@@ -63,3 +63,9 @@ pings with their end, the DM's pointer, strokes and shown areas, each the mark o
 (`fight_id`, its start's event ID), at most 64 KB a mark — and whether the DM lets players mark: the
 table's data for the live session, not canonical state. Additive: an older build leaves both tables
 alone.
+
+Stage 680b (ADR 0058 §3–4): `0036_dm_library.sql` keeps the DM's library beside the world — handouts
+kept for later and random tables, one row an entry (its body at most 64 KB), replaced on save and
+deleted on the DM's word; a kept handout notes when it was last given. DM data, not canonical state:
+a given handout is a row of `ltw_handouts`, a roll on a table a row of `ltw_table_rolls`. Additive:
+an older build leaves the table alone, and reads a table roll's subject as any roll's.

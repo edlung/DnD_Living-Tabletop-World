@@ -16,6 +16,7 @@ import { registerMarkRoutes, type MarkDependencies } from '../marks/mark-routes.
 import { InMemoryChatStore } from '../chat/chat-store.ts';
 import { registerHandoutRoutes, type HandoutDependencies } from '../handouts/handout-routes.ts';
 import { InMemoryHandoutStore } from '../handouts/handout-store.ts';
+import { registerLibraryRoutes } from '../library/library-routes.ts';
 import { registerLobbyRoutes } from '../table/lobby-routes.ts';
 import { memoryLobby, type LobbyDependencies } from '../table/table-state.ts';
 import { registerDisplayRoutes } from '../display/display-routes.ts';
@@ -240,7 +241,9 @@ export function buildApp(input: AppDependencies): FastifyInstance {
   registerLobbyRoutes(app, { ...deps, lobby, presence: deps.presence ?? NOBODY_CONNECTED });
   registerChatRoutes(app, { ...deps, chat: deps.chat ?? memoryChat() });
   registerMarkRoutes(app, { ...deps, marks: deps.marks ?? memoryMarks() });
-  registerHandoutRoutes(app, { ...deps, handouts: deps.handouts ?? memoryHandouts() });
+  // One set of handouts for the handout routes and the DM's library that gives them (ADR 0058 §3).
+  const handouts = deps.handouts ?? memoryHandouts();
+  registerHandoutRoutes(app, { ...deps, handouts });
   registerDmRoutes(app, deps);
   registerUndoneRoutes(app, deps);
   // The roll and rest routes read the campaign's dice from the same table state (ADR 0044 §4).
@@ -249,6 +252,7 @@ export function buildApp(input: AppDependencies): FastifyInstance {
     diceOf: async (campaignId) => (await lobby.state.read(campaignId)).dice,
   };
   registerRollRoutes(app, { ...deps, table });
+  registerLibraryRoutes(app, { ...deps, handouts, table });
   registerRestRoutes(app, { ...deps, table });
   registerAdvancementRoutes(app, { ...deps, table });
   registerFeatureRoutes(app, deps);

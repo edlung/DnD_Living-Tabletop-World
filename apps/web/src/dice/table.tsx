@@ -62,6 +62,10 @@ export interface DiceTable {
   readonly readHandout: (handoutId: string) => void;
   /** The DM gives a handout. */
   readonly give: (body: HandoutRequest) => Promise<boolean>;
+  /** The DM gives a handout kept for later, to one character's player or the party (ADR 0058 §3). */
+  readonly giveKept: (entryId: string, recipientId: string | null) => Promise<boolean>;
+  /** The DM rolls on a random table, for the DM alone or for the table (ADR 0058 §4). */
+  readonly rollOnTable: (entryId: string, hidden: boolean) => Promise<boolean>;
   /** The character this perspective acts as; null for the DM. */
   readonly characterId: string | null;
   /** Table talk (docs/adr/0044-online-play.md §1), read with the dice. */
@@ -278,6 +282,22 @@ export function useDiceTableState(
         return false;
       }
     },
+    giveKept: async (entryId, recipientId) => {
+      try {
+        const path = `dm/library/handouts/${encodeURIComponent(entryId)}/give`;
+        await api.post(
+          path,
+          recipientId === null ? {} : { recipientId },
+          AbortSignal.timeout(15_000),
+        );
+        handoutLog.reread();
+        return true;
+      } catch {
+        return false;
+      }
+    },
+    rollOnTable: (entryId, hidden) =>
+      write(`dm/library/tables/${encodeURIComponent(entryId)}/roll`, { hidden }),
     characterId,
     chat: {
       log: chatLog.resource,

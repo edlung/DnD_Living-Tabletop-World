@@ -50,6 +50,9 @@ export const UI_PARTY_CAMPAIGNS = {
   /** The DM's editors without AI (Stage 680a). */
   editors: 'ui-editors',
   editorsRu: 'ui-editors-ru',
+  /** The DM's library: kept handouts and random tables (Stage 680b). */
+  library: 'ui-library',
+  libraryRu: 'ui-library-ru',
 } as const;
 
 const PARTY = ['elowen-starwhisper', 'brann-ironvale', 'tamsin-quickfoot', 'maren-ashby'];
@@ -80,6 +83,8 @@ export async function seedUiPartyCampaigns(engine: WorldEngine): Promise<void> {
     [UI_PARTY_CAMPAIGNS.travelRu, 'ru'],
     [UI_PARTY_CAMPAIGNS.editors, 'en'],
     [UI_PARTY_CAMPAIGNS.editorsRu, 'ru'],
+    [UI_PARTY_CAMPAIGNS.library, 'en'],
+    [UI_PARTY_CAMPAIGNS.libraryRu, 'ru'],
   ] as const) {
     const seed = await loadRavenfordSeed(language === 'ru' ? RAVENFORD_RU_FIXTURES_DIR : undefined);
     for (const input of seed.submissions) {

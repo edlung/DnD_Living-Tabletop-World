@@ -10,6 +10,7 @@ import {
 import {
   knownEntityIds,
   resolvePerspective,
+  type Actor,
   type ResolvedPerspective,
   type WorldState,
 } from '@ltw/domain';
@@ -47,7 +48,11 @@ function reads(perspective: ResolvedPerspective, record: HandoutRecord): boolean
   return perspective.kind === 'CHARACTER' && perspective.holderId === record.recipientId;
 }
 
-function viewOf(state: WorldState, known: ReadonlySet<string>, record: HandoutRecord): HandoutView {
+export function handoutView(
+  state: WorldState,
+  known: ReadonlySet<string>,
+  record: HandoutRecord,
+): HandoutView {
   const ref = (id: string) => ({
     entityId: id,
     name: known.has(id) ? (state.entities.get(id)?.name ?? null) : null,
@@ -60,6 +65,28 @@ function viewOf(state: WorldState, known: ReadonlySet<string>, record: HandoutRe
     to: record.recipientId === null ? 'party' : ref(record.recipientId),
     at: record.at,
   };
+}
+
+/**
+ * Whether a handout cannot be given: its recipient is no character, or its picture is of something
+ * the recipient does not know — the party's view, or the one character's.
+ */
+export function handoutRefused(
+  state: WorldState,
+  actor: Actor,
+  handout: { readonly recipientId?: string | undefined; readonly entityId?: string | undefined },
+): boolean {
+  const { recipientId, entityId } = handout;
+  if (recipientId !== undefined && state.entities.get(recipientId)?.kind !== 'character') {
+    return true;
+  }
+  if (entityId === undefined) return false;
+  const audience = resolvePerspective(
+    state,
+    actor,
+    recipientId === undefined ? { kind: 'PARTY' } : { kind: 'CHARACTER', characterId: recipientId },
+  );
+  return !audience.ok || !knownEntityIds(state, audience.perspective).has(entityId);
 }
 
 export function registerHandoutRoutes(app: FastifyInstance, deps: HandoutRouteDependencies): void {
@@ -75,7 +102,7 @@ export function registerHandoutRoutes(app: FastifyInstance, deps: HandoutRouteDe
       handouts: (await store.recent(path.campaignId, HANDOUT_PAGE * 4))
         .filter((record) => reads(context.perspective, record))
         .slice(-HANDOUT_PAGE)
-        .map((record) => viewOf(context.state, known, record)),
+        .map((record) => handoutView(context.state, known, record)),
     };
     return reply.send(body);
   });
@@ -86,25 +113,7 @@ export function registerHandoutRoutes(app: FastifyInstance, deps: HandoutRouteDe
     const { context, params: path, body } = ready;
     const { state, actor } = context;
     if (context.perspective.kind !== 'DM') return sendError(reply, request, 'FORBIDDEN');
-    if (
-      body.recipientId !== undefined &&
-      state.entities.get(body.recipientId)?.kind !== 'character'
-    ) {
-      return sendError(reply, request, 'UNPROCESSABLE');
-    }
-    // A picture of something its recipient knows: the party's view, or the one character's.
-    if (body.entityId !== undefined) {
-      const audience = resolvePerspective(
-        state,
-        actor,
-        body.recipientId === undefined
-          ? { kind: 'PARTY' }
-          : { kind: 'CHARACTER', characterId: body.recipientId },
-      );
-      if (!audience.ok || !knownEntityIds(state, audience.perspective).has(body.entityId)) {
-        return sendError(reply, request, 'UNPROCESSABLE');
-      }
-    }
+    if (handoutRefused(state, actor, body)) return sendError(reply, request, 'UNPROCESSABLE');
     const record: HandoutRecord = {
       campaignId: path.campaignId,
       handoutId: randomUUID(),
@@ -116,6 +125,6 @@ export function registerHandoutRoutes(app: FastifyInstance, deps: HandoutRouteDe
     };
     await store.add(record);
     const known = knownEntityIds(state, context.perspective);
-    return reply.code(201).send({ handout: viewOf(state, known, record) });
+    return reply.code(201).send({ handout: handoutView(state, known, record) });
   });
 }

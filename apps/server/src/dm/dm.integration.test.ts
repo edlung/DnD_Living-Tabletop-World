@@ -6,6 +6,7 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
 import { PostgresProposalStore } from '../authoring/postgres-proposal-store.ts';
 import { PostgresSavedEncounterStore } from '../combat/postgres-saved-encounter-store.ts';
+import { PostgresLibraryStore } from '../library/postgres-library-store.ts';
 import {
   TOKENS,
   get,
@@ -122,6 +123,7 @@ describe('the DM history on PostgreSQL', () => {
         substitutions: new PostgresSubstitutionStore(pool),
         notes: new PostgresDmNoteStore(pool),
         encounters: new PostgresSavedEncounterStore(pool),
+        library: new PostgresLibraryStore(pool),
         clock,
       },
     );

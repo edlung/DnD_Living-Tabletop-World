@@ -1,0 +1,94 @@
+/*
+ * The DM's library (docs/adr/0058-campaign-content.md §3–4): handouts kept for later on the Party
+ * sheet, random tables in the Dice sheet, and a table's result in the dice log and on the plate.
+ */
+.kept-text {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
+.kept-picture {
+  margin: 0.3rem 0 0;
+}
+/* Who it is for and the button that gives it, at the field's foot; below it when narrow. */
+.kept-give {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+.kept-give > .account-field {
+  flex: 1 1 12rem;
+}
+/* A quiet status line takes no room until it says something. */
+.kept-handout > p[role='status']:empty {
+  margin: 0;
+}
+.kept-handout > p[role='status'] {
+  margin: 0.4rem 0 0;
+}
+.random-tables .section-heading {
+  margin-bottom: 0.4rem;
+}
+.random-tables > .muted {
+  margin: 0 0 0.6rem;
+}
+.random-table .action-row {
+  margin: 0.4rem 0 0;
+}
+.table-results {
+  margin-top: 0.5rem;
+  padding: 0.5rem 0 0;
+}
+.table-results > summary {
+  display: list-item;
+  min-height: 24px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.table-results[open] > summary {
+  margin-bottom: 0.4rem;
+}
+.table-results ol {
+  display: grid;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.table-results li {
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 1fr);
+  gap: 0.5rem;
+  overflow-wrap: anywhere;
+}
+.table-range {
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.table-editor {
+  max-width: 40rem;
+  margin-bottom: 0.75rem;
+}
+/* A kept handout's words and a table's lines show whole while changed, up to a scrolling cap. */
+.kept-handout textarea,
+.table-editor textarea {
+  min-height: 5.5rem;
+  max-height: 20rem;
+  field-sizing: content;
+}
+.table-editor textarea {
+  min-height: 10rem;
+}
+.table-editor .hand-row {
+  grid-template-columns: minmax(0, 1fr) minmax(6rem, 8rem);
+  align-items: start;
+}
+.dice-table-result {
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
