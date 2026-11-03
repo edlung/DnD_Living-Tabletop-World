@@ -3,6 +3,7 @@ import type {
   ContextSpell,
   EncounterView,
   KernelCommandOf,
+  MetamagicChoice,
   Square,
 } from '@ltw/contracts';
 
@@ -191,6 +192,8 @@ export function castSpellCommand(
   actorId: string,
   target: { readonly entityId: string; readonly position: Square },
   using: 'free' | { readonly slotLevel: number } | undefined,
+  /** A Sorcerer's Metamagic (docs/adr/0056-characters-from-the-srd.md §4). */
+  metamagic?: MetamagicChoice,
 ): Extract<CombatUiCommand, { type: 'CastSpell' }> {
   const above = using === undefined || using === 'free' ? 0 : using.slotLevel - spell.level;
   const times = spell.times + (spell.perSlot ?? 0) * Math.max(0, above);
@@ -201,5 +204,6 @@ export function castSpellCommand(
     ...(using === undefined ? {} : { using }),
     ...(spell.names ? { targetIds: Array.from({ length: times }, () => target.entityId) } : {}),
     ...(spell.aim ? { point: { x: target.position.x, y: target.position.y } } : {}),
+    ...(metamagic ? { metamagic } : {}),
   };
 }

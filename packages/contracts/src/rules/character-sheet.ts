@@ -226,6 +226,11 @@ export const spellcastingSourceSchema = z
     ability: z.enum(ABILITIES),
     /** SRD spells by their catalog id (docs/adr/0052-spells-as-data.md §1). */
     spells: z.array(srdIdSchema).min(1).max(120),
+    /**
+     * Spells of its list cast without a slot, as often as wished: a Warlock's invocations'
+     * (docs/adr/0056-characters-from-the-srd.md §4).
+     */
+    atWill: z.array(srdIdSchema).min(1).max(12).optional(),
     /** Slot-free casts per Long Rest (Favored Enemy, Magic Initiate). */
     freeCasts: z
       .object({
@@ -324,6 +329,8 @@ export const characterSheetSchema = z
         spellId: srdIdSchema,
         /** The creature a targeted Concentration spell (Hunter's Mark) is on. */
         targetId: entityIdSchema.optional(),
+        /** Extended Spell: Advantage on saves to keep it (docs/adr/0056-…md §4). */
+        extended: z.literal(true).optional(),
       })
       .strict()
       .nullable(),
@@ -407,6 +414,9 @@ export const characterSheetSchema = z
       }
       if (source.freeCasts && !source.spells.includes(source.freeCasts.spellId)) {
         issue(`${source.source} free cast must be one of its spells`);
+      }
+      if (source.atWill?.some((spellId) => !source.spells.includes(spellId))) {
+        issue(`${source.source} at-will spells must be among its spells`);
       }
     }
     if (sheet.skills.expertise.some((skill) => !sheet.skills.proficient.includes(skill))) {

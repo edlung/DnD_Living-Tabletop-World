@@ -1,6 +1,13 @@
 import { expect as baseExpect, test } from '@playwright/test';
 
 import { expectAccessible } from './support/axe.ts';
+import {
+  COMBAT_CAMPAIGNS,
+  clickWhereShown,
+  enterCombat,
+  square,
+  turnTray,
+} from './support/combat.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
 import { openCharacter, openSheet } from './support/shell.ts';
 
@@ -63,4 +70,24 @@ test('a Russian table reads the class features in Russian', async ({ page }) => 
   await expect(features).toContainText('осталось 4 из 4');
   await features.getByText('Все умения класса — текст правил').click();
   await expect(features.locator('.feature-word-list')).toContainText('Всплеск действий');
+});
+
+test('a Sorcerer spends Quickened Spell on Fire Bolt in the turn tray', async ({ page }) => {
+  test.setTimeout(90_000);
+  await enterCombat(page, COMBAT_CAMPAIGNS.metamagic);
+  await clickWhereShown(page, square(page, 8, 4));
+  const tray = turnTray(page);
+  await tray.getByRole('button', { name: /^Cast Fire Bolt at / }).click();
+  const asked = tray.getByRole('group', { name: 'Fire Bolt: how?' });
+  await asked
+    .getByLabel('Metamagic', { exact: true })
+    .selectOption({ label: 'Quickened Spell (2 Sorcery Points)' });
+  await expectAccessible(page, 'the Metamagic question');
+  await asked.getByRole('button', { name: 'Cast Fire Bolt', exact: true }).click();
+  await expect(page.getByText(/Fire Bolt resolved on 1 target/)).toBeVisible();
+  // Two of her five Sorcery Points spent.
+  const overview = await openCharacter(page, 'Overview');
+  await expect(
+    overview.locator('.feature-row').filter({ hasText: 'Sorcery Points' }),
+  ).toContainText('3 of 5 points');
 });

@@ -56,6 +56,26 @@ export {
   type HitDieRefusal,
 } from './rest.ts';
 export {
+  charismaCount,
+  distantRangeFt,
+  metamagicCost,
+  metamagicFor,
+  metamagicRefusal,
+  metamagicTotal,
+  type MetamagicRefusal,
+} from './features/metamagic.ts';
+export {
+  INVOCATION_SPELLS,
+  atWillOnSelf,
+  atWillSpells,
+  eldritchMind,
+  hasInvocation,
+  repellingBlast,
+  spellDamageBonus,
+  spellRangeBonusFt,
+  withInvocationSpells,
+} from './features/invocations.ts';
+export {
   RAGE_RESISTANCES,
   appliedFeatures,
   athleticsAdvantage,

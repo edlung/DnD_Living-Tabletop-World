@@ -102,6 +102,9 @@ export function SpellsTab({
                   {spell.ritual && (
                     <p className="spell-tag">{t('Ritual: no slot, outside a fight')}</p>
                   )}
+                  {spell.atWill && (
+                    <p className="spell-tag">{t('At will: no slot (an Eldritch Invocation)')}</p>
+                  )}
                   {sliceSpellText(spell.spellId) !== null && (
                     <p className="spell-text">{t(sliceSpellText(spell.spellId) ?? '')}</p>
                   )}

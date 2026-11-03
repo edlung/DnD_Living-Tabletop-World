@@ -27,5 +27,6 @@
   "light": "ui-combat-light",
   "spells": "ui-combat-spells",
   "bestiary": "ui-combat-bestiary",
-  "breath": "ui-combat-breath"
+  "breath": "ui-combat-breath",
+  "metamagic": "ui-combat-metamagic"
 }

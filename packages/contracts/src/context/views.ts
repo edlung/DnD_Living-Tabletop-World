@@ -1,4 +1,5 @@
 import type { EntityKind, EntityStatus } from '../kernel/commands.ts';
+import type { MetamagicId } from '../combat/features.ts';
 import type { WeaponId, WeaponMastery } from '../rules/character-sheet.ts';
 
 /**
@@ -146,6 +147,9 @@ export const CONTEXT_ILLEGAL_REASONS = [
   'POINTS_FULL',
   'NOT_POISONED',
   'NEEDS_NO_HEALING',
+  'SELF_ONLY',
+  'ONE_METAMAGIC',
+  'NOT_FOR_THIS_SPELL',
   /** The slice does not carry this action out (Trade: no economy; docs/adr/0020-npc-intelligence.md §1). */
   'NOT_AVAILABLE',
 ] as const;
@@ -212,6 +216,11 @@ export interface ContextSpell {
   readonly forDm?: 'effect' | 'rest';
   /** The slot levels the caster could spend on it, lowest first; none for a cantrip. */
   readonly slots: readonly number[];
+  /**
+   * The Metamagic a Sorcerer could spend on it now, with its cost in Sorcery Points
+   * (docs/adr/0056-characters-from-the-srd.md §4); absent: none.
+   */
+  readonly metamagic?: readonly { readonly optionId: MetamagicId; readonly cost: number }[];
 }
 
 export interface ContextAction {

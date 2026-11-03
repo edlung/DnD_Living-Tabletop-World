@@ -1,4 +1,11 @@
-import type { CharacterSheet, CoverLevel, MonsterSpell, SpellId, Square } from '@ltw/contracts';
+import type {
+  CharacterSheet,
+  CoverLevel,
+  MetamagicChoice,
+  MonsterSpell,
+  SpellId,
+  Square,
+} from '@ltw/contracts';
 import {
   combatantOf,
   perceivedEntityIds,
@@ -85,6 +92,8 @@ export interface CharacterSpellPlan {
   readonly target: TargetInfo | null;
   readonly point: Square | null;
   readonly area: readonly CombatantRecord[];
+  /** The Metamagic spent on it (docs/adr/0056-characters-from-the-srd.md §4); null for none. */
+  readonly metamagic: MetamagicChoice | null;
 }
 
 /** Free first, then the lowest slot that can cast it (as the Context Engine shows). */
@@ -93,7 +102,9 @@ export function chooseUsing(
   spellId: string,
 ): 'free' | { readonly slotLevel: number } {
   const free = sheet.spellcasting.some(
-    (s) => s.freeCasts?.spellId === spellId && s.freeCasts.used < s.freeCasts.perLongRest,
+    (s) =>
+      s.atWill?.includes(spellId) === true ||
+      (s.freeCasts?.spellId === spellId && s.freeCasts.used < s.freeCasts.perLongRest),
   );
   if (free) return 'free';
   const level = spellRules(spellId)?.level ?? 1;
@@ -111,6 +122,7 @@ export function characterSpellPlan(
     readonly using?: Using;
     readonly targetId?: string;
     readonly point?: Square;
+    readonly metamagic?: MetamagicChoice;
   },
   refund?: Economy,
 ): CharacterSpellPlan | Refusal {
@@ -130,7 +142,11 @@ export function characterSpellPlan(
   let target: TargetInfo | null = null;
   let point: Square | null = null;
   let area: CombatantRecord[] = [];
-  const castRequest: { -readonly [K in keyof CastRequest]: CastRequest[K] } = { spellId, using };
+  const castRequest: { -readonly [K in keyof CastRequest]: CastRequest[K] } = {
+    spellId,
+    using,
+    ...(request.metamagic ? { metamagic: request.metamagic.options } : {}),
+  };
 
   if (spellId === 'hunters-mark' || spellId === 'healing-word') {
     if (request.targetId === undefined) return refuse('TARGET_REQUIRED');
@@ -182,7 +198,18 @@ export function characterSpellPlan(
     spellId === 'hunters-mark' && target
       ? { ...after.sheet, concentration: { spellId, targetId: target.entityId } }
       : after.sheet;
-  return { legal: true, spellId, cast, sheet, turn: after.turn, record, target, point, area };
+  return {
+    legal: true,
+    spellId,
+    cast,
+    sheet,
+    turn: after.turn,
+    record,
+    target,
+    point,
+    area,
+    metamagic: request.metamagic ?? null,
+  };
 }
 
 function locateTarget(

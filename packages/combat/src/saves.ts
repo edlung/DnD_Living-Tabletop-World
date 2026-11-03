@@ -31,7 +31,10 @@ export function spellSave(
   dodging = false,
   /** It squeezes (docs/adr/0049-space-and-movement.md §4): Disadvantage on Dexterity saves. */
   squeezed = false,
-  /** Heat in Medium or Heavy armor (docs/adr/0050-the-world-around.md §8): Disadvantage. */
+  /**
+   * Disadvantage from outside it: heat in Medium or Heavy armor (docs/adr/0050-the-world-around.md
+   * §8), a Heightened Spell (docs/adr/0056-characters-from-the-srd.md §4).
+   */
   hampered = false,
 ): { success: boolean; event: DraftEvent } {
   const effects = saveEffects(ability, conditionsOf(target), exhaustionOf(target));

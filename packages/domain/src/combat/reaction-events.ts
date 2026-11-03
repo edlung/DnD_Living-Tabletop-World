@@ -7,6 +7,7 @@ import {
   SPELL_COMPONENTS,
   commandIdSchema,
   entityIdSchema,
+  metamagicSchema,
   pathStepSchema,
   squareSchema,
 } from '@ltw/contracts';
@@ -36,6 +37,8 @@ const spellTriggerSchema = z
     point: squareSchema.nullable(),
     /** A spell cast from its data: every creature it names (docs/adr/0052-spells-as-data.md §5). */
     targetIds: z.array(entityIdSchema).min(1).max(12).optional(),
+    /** Its Metamagic, spent when it goes on (docs/adr/0056-characters-from-the-srd.md §4). */
+    metamagic: metamagicSchema.optional(),
   })
   .strict();
 

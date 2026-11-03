@@ -31,7 +31,8 @@ Authority: owner approval 2026-11-02 (`reviews/OWNER_FULL_GAME_2026-11-02.json`)
   numbers, the options chosen (Metamagic, invocations); what the engine cannot apply shows its words
   and is the DM's. Part 1 done: the resources, `UseFeature`, a Rage's numbers, the rests, the
   Overview's Class features and every feature's words. Part 2 done: the features that change
-  numbers and Unarmored Defense with armor.
+  numbers and Unarmored Defense with armor. Part 3 done: Eldritch Invocations and Metamagic in
+  play.
 - 660e — The table's life: death and the spells that return the dead, a character joining
   mid-campaign, a character copied into another campaign as a sheet (decision 15), a printable
   sheet, a portrait by GPT, the four summons a spell's level scales and Wild Shape's forms.

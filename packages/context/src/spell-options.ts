@@ -4,6 +4,7 @@ import { combatantOf } from '@ltw/domain';
 import {
   cantripTier,
   isSliceSpellId,
+  metamagicFor,
   slotsRemaining,
   spellRules,
   srdSpell,
@@ -85,6 +86,7 @@ export function spellOptions(
       ...(perSlot > 0 ? { perSlot } : {}),
     };
     const request = castRequest(named, using, target);
+    const metamagic = metamagicFor(sheet, rules);
     const verdict = judge(spell.aim ? 'present' : 'present-alive', () => {
       if (paused(inputs)) return PAUSED;
       const plan = dataSpellPlan(inputs.state, inputs.actor.entityId, request);
@@ -119,7 +121,12 @@ export function spellOptions(
       ...(verdict.cost ? { cost: verdict.cost } : {}),
       ...(verdict.hints ? { hints: [...verdict.hints] } : {}),
       ...(verdict.area ? { area: { affected: verdict.area.map((ref) => ({ ...ref })) } } : {}),
-      spell: { ...named, slots: slotsFor(sheet, rules.level) },
+      spell: {
+        ...named,
+        slots: slotsFor(sheet, rules.level),
+        // The Metamagic it could take now (docs/adr/0056-characters-from-the-srd.md §4).
+        ...(metamagic.length > 0 ? { metamagic } : {}),
+      },
     });
   }
   return options;

@@ -121,7 +121,12 @@ export type IllegalReason =
   | 'SLOT_TOO_HIGH'
   | 'POINTS_FULL'
   | 'NOT_POISONED'
-  | 'NEEDS_NO_HEALING';
+  | 'NEEDS_NO_HEALING'
+  /** An invocation's spell cast at will on the Warlock alone (Armor of Shadows, Jump…). */
+  | 'SELF_ONLY'
+  /** Metamagic: two options that do not stack; one this spell cannot take (Quickened on a Bonus Action spell). */
+  | 'ONE_METAMAGIC'
+  | 'NOT_FOR_THIS_SPELL';
 
 export interface Illegal {
   readonly legal: false;

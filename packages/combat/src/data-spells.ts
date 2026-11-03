@@ -27,13 +27,17 @@ export function decideDataSpell(context: DecisionContext, command: Cast, dice: D
     ...(command.using === undefined ? {} : { using: command.using }),
     ...(targetIds === undefined ? {} : { targetIds }),
     ...(command.point === undefined ? {} : { point: command.point }),
+    ...(command.metamagic === undefined ? {} : { metamagic: command.metamagic }),
   });
   if (!plan.legal) return refused(plan);
+  // Subtle Spell: no components to see, so nothing to counter (docs/adr/0056-…md §4).
+  const subtle = command.metamagic?.options.includes('subtle-spell') === true;
   const { economy } = plan.cast;
   if (
     plan.record &&
     (economy === 'action' || economy === 'bonus') &&
-    plan.rules.components.length > 0
+    plan.rules.components.length > 0 &&
+    !subtle
   ) {
     const suspended = suspendCast(
       context,
@@ -51,6 +55,7 @@ export function decideDataSpell(context: DecisionContext, command: Cast, dice: D
         targetId: plan.targets[0]?.entityId ?? null,
         ...(plan.targets.length > 0 ? { targetIds: plan.targets.map((one) => one.entityId) } : {}),
         point: plan.point ? { ...plan.point } : null,
+        ...(command.metamagic === undefined ? {} : { metamagic: command.metamagic }),
       },
       command.resolution?.ids ?? [],
     );

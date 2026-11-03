@@ -138,6 +138,28 @@ backgrounds,species,feats}.json`, held to the SRD by tests (a features table's p
   Monk's.
 - The derived view lists what the engine applies (`applied`), shown on the Overview.
 
+## Notes from the implementation (Stage 660d, part 3, 2026-11-03)
+
+- Eldritch Invocations (`packages/rules/src/features/invocations.ts`): the spells some cast at
+  will are on the Warlock's casting with an `atWill` list — cast free, as often as wished, Armor of
+  Shadows, Ascendant Step, Fiendish Vigor and Otherworldly Leap on the Warlock alone, Fiendish
+  Vigor's temporary hit points the dice's highest; Agonizing Blast adds Charisma to each Eldritch
+  Blast beam, Eldritch Spear 30 ft per Warlock level to its range, Repelling Blast pushes a Large
+  or smaller creature hit 10 ft, Eldritch Mind gives Advantage on Concentration saves. A Warlock's
+  damaging cantrip is taken to be Eldritch Blast. The rest are the DM's, in their words.
+- Metamagic (`packages/rules/src/features/metamagic.ts`, `packages/combat/src/metamagic-
+effects.ts`): `CastSpell` names the options (one, or with Empowered or Seeking beside it), their
+  cost in Sorcery Points read from the option's words; Quickened casts with the Bonus Action and
+  lets no spell of level 1+ share the turn, Distant doubles the range (Touch 30 ft), Twinned adds the
+  creature a higher level would, Heightened gives one target Disadvantage on its save, Careful
+  spares the caster's allies (or those named) up to its Charisma modifier, Empowered rerolls the
+  lowest damage dice of the first roll, Seeking rerolls a missed spell attack once, Transmuted
+  changes a listed damage type, Extended gives Advantage on Concentration saves, Subtle opens no
+  window for Counterspell. A cast a Counterspell suspends keeps its Metamagic. Fireball takes
+  Careful, Heightened, Empowered and Transmuted as the data spells do.
+- The turn tray asks a Sorcerer's Metamagic with the spell's slot; the Spells tab marks a spell
+  cast at will.
+
 ## Consequences
 
 - Stage 660 runs in parts: the data; creation; advancement; features in play; the table's life.

@@ -18,6 +18,7 @@ import { CLASS_HIT_DIE, attacksFor } from '../rest.ts';
 import advancement from '../srd/advancement.json' with { type: 'json' };
 import { classColumn, srdClass } from '../srd/classes.ts';
 import { srdFeat } from '../srd/origins.ts';
+import { withInvocationSpells } from '../features/invocations.ts';
 import { CASTING_ABILITY, classCasting, classSpellList } from './spells.ts';
 
 /**
@@ -425,7 +426,8 @@ export function levelUpCharacter(
       ...(choices.classId === 'wizard' || choicesOf.spellbook ? { spellbook } : {}),
     },
   };
-  const valid = characterSheetSchema.safeParse(next);
+  // An invocation's at-will spells on the Warlock's casting (docs/adr/0056-…md §4).
+  const valid = characterSheetSchema.safeParse(withInvocationSpells(next));
   if (!valid.success)
     for (const issue of valid.error.issues) problem(`sheet.${issue.path.join('.')}`, issue.message);
   return problems.length > 0

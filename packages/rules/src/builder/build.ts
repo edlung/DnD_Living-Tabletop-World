@@ -13,6 +13,7 @@ import {
 } from '@ltw/contracts';
 
 import { abilityModifier } from '../character-math.ts';
+import { withInvocationSpells } from '../features/invocations.ts';
 import { srdClass } from '../srd/classes.ts';
 import { srdBackground, srdFeat, srdSpecies } from '../srd/origins.ts';
 import { baseScores, withIncreases } from './abilities.ts';
@@ -246,7 +247,7 @@ export function buildCharacter(choices: CharacterChoices, d6: () => number): Bui
         }
       : {}),
   };
-  const valid = characterSheetSchema.safeParse(sheet);
+  const valid = characterSheetSchema.safeParse(withInvocationSpells(sheet));
   if (!valid.success)
     for (const issue of valid.error.issues) problem(`sheet.${issue.path.join('.')}`, issue.message);
   return problems.length > 0

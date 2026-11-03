@@ -104,6 +104,8 @@ const STAGES: Readonly<Record<keyof typeof campaigns, CombatStage>> = {
   bestiary: 'started',
   // A breath (ADR 0053 §2): Raider 1 breathes fire on its turn; started below.
   breath: 'placed',
+  // Metamagic (docs/adr/0056-…md §4): Elowen also a Sorcerer, Quickened and Distant; started below.
+  metamagic: 'placed',
 };
 
 export async function seedUiCombatCampaigns(engine: WorldEngine): Promise<void> {
@@ -128,6 +130,7 @@ export async function seedUiCombatCampaigns(engine: WorldEngine): Promise<void> 
   await seedFeatherFallStart(engine, campaigns.featherFall);
   await seedMountStart(engine, campaigns.mount);
   await seedSpellsStart(engine, campaigns.spells);
+  await seedMetamagicStart(engine, campaigns.metamagic);
   await seedBreathStart(engine, campaigns.breath);
 }
 
@@ -360,6 +363,36 @@ async function seedSpellsStart(engine: WorldEngine, campaignId: string): Promise
     actor: DM,
     commandIdPrefix: `${campaignId}.spells`,
     commands: [{ ...sheet, sheet: studied }, ambush.startCombat],
+  })) {
+    await accept(engine, submission);
+  }
+}
+
+/**
+ * The Metamagic journey (`class-features.spec.ts`, docs/adr/0056-characters-from-the-srd.md §4):
+ * Elowen also a Sorcerer 5 (Charisma 16) — Fire Bolt, Quickened and Distant Spell — and the ambush
+ * starts.
+ */
+async function seedMetamagicStart(engine: WorldEngine, campaignId: string): Promise<void> {
+  const sheet = rulesSeed.commands.find(
+    (command) => command.type === 'SetCharacterSheet' && command.entityId === 'elowen-starwhisper',
+  );
+  if (!sheet || !('sheet' in sheet)) throw new Error('UI combat: Elowen has no sheet to seed');
+  const sorcerer = {
+    ...sheet.sheet,
+    classes: [...sheet.sheet.classes, { classId: 'sorcerer', level: 5 }],
+    abilities: { ...sheet.sheet.abilities, cha: 16 },
+    spellcasting: [
+      ...sheet.sheet.spellcasting,
+      { source: 'sorcerer', ability: 'cha', spells: ['fire-bolt'] },
+    ],
+    classChoices: { metamagic: ['quickened-spell', 'distant-spell'] },
+  };
+  for (const submission of submissionsFromScript({
+    campaignId,
+    actor: DM,
+    commandIdPrefix: `${campaignId}.metamagic`,
+    commands: [{ ...sheet, sheet: sorcerer }, ambush.startCombat],
   })) {
     await accept(engine, submission);
   }

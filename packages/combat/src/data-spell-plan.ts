@@ -1,4 +1,4 @@
-import type { CharacterSheet, Square, SrdSpellMechanics } from '@ltw/contracts';
+import type { CharacterSheet, MetamagicChoice, Square, SrdSpellMechanics } from '@ltw/contracts';
 import {
   combatantOf,
   perceivedEntityIds,
@@ -8,10 +8,12 @@ import {
 } from '@ltw/domain';
 import {
   applyCast,
+  atWillOnSelf,
   cantripTier,
   checkCast,
   gapToSquareFt,
   inSpellArea,
+  metamagicRefusal,
   spellRules,
   squaresOf,
   startTurn,
@@ -60,6 +62,8 @@ export interface DataSpellPlan {
   /** The creatures in its area. */
   readonly area: readonly CombatantRecord[];
   readonly point: Square | null;
+  /** The Metamagic spent on it; null for none. */
+  readonly metamagic: MetamagicChoice | null;
 }
 
 export interface DataSpellRequest {
@@ -67,6 +71,8 @@ export interface DataSpellRequest {
   readonly using?: Using;
   readonly targetIds?: readonly string[];
   readonly point?: Square;
+  /** A Sorcerer's Metamagic (docs/adr/0056-characters-from-the-srd.md §4). */
+  readonly metamagic?: MetamagicChoice;
 }
 
 const refuse = (reason: CombatReason, resolution?: Refusal['resolution']): Refusal =>
@@ -128,7 +134,16 @@ export function dataSpellPlan(
   const named =
     request.targetIds ??
     (rules.range === 'self' && !shape && effect.kind !== 'dm' ? [casterId] : []);
-  const count = targetCount(mechanics, above, tier);
+  // Metamagic the Sorcerer knows and can pay for, before what it does to this spell (§4).
+  const metamagicFails = request.metamagic
+    ? metamagicRefusal(caster.sheet, request.metamagic.options)
+    : null;
+  if (metamagicFails) return refuse(metamagicFails);
+  // Twinned Spell: the effective level one higher, for a spell whose higher level names another.
+  const twinned = request.metamagic?.options.includes('twinned-spell') === true;
+  if (twinned && !(mechanics.upcast?.targets && mechanics.upcast.targets > 0))
+    return refuse('NOT_FOR_THIS_SPELL');
+  const count = targetCount(mechanics, above + (twinned ? 1 : 0), tier);
   const repeats = effect.kind === 'attack' || effect.kind === 'auto';
   const takesTargets =
     effect.kind !== 'dm' && (!shape || effect.kind === 'heal' || effect.kind === 'temp-hp');
@@ -156,14 +171,35 @@ export function dataSpellPlan(
     spellId: request.spellId,
     using,
     inFight: fighting,
+    ...(request.metamagic ? { metamagic: request.metamagic.options } : {}),
     ...(rules.range === 'self' && targets.every((one) => one.entityId === casterId)
       ? {}
       : { target: { distanceFt: farthest, visible: seen } }),
   });
   if (!cast.legal) return refuse(cast.reason, cast.resolution);
+  // An invocation's spell cast at will on the Warlock alone (docs/adr/0056-…md §4).
+  if (
+    cast.atWill &&
+    atWillOnSelf(caster.sheet, request.spellId) &&
+    targets.some((one) => one.entityId !== casterId)
+  )
+    return refuse('SELF_ONLY');
   if (!record && encounter && targets.some((one) => combatantOf(encounter, one.entityId)))
     return refuse('TARGET_IN_COMBAT');
-  const after = applyCast(caster.sheet, turn, cast);
+  const applied = applyCast(caster.sheet, turn, cast);
+  // Extended Spell: Advantage on saves to keep its Concentration (§4).
+  const extended =
+    request.metamagic?.options.includes('extended-spell') === true &&
+    applied.sheet.concentration?.spellId === request.spellId;
+  const after = extended
+    ? {
+        ...applied,
+        sheet: {
+          ...applied.sheet,
+          concentration: { spellId: request.spellId, extended: true as const },
+        },
+      }
+    : applied;
   return {
     legal: true,
     spellId: request.spellId,
@@ -178,6 +214,7 @@ export function dataSpellPlan(
     targets,
     area,
     point,
+    metamagic: request.metamagic ?? null,
   };
 }
 

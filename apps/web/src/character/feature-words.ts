@@ -1,4 +1,10 @@
-import type { AppliedFeatureId, ClassResource, FeatureAct, ResourceRecharge } from '@ltw/contracts';
+import type {
+  AppliedFeatureId,
+  ClassResource,
+  FeatureAct,
+  MetamagicId,
+  ResourceRecharge,
+} from '@ltw/contracts';
 
 import type { GlyphName } from '../visual/ui-kit-names.ts';
 
@@ -111,4 +117,18 @@ export const APPLIED_WORDS: Readonly<Record<AppliedFeatureId, string>> = {
   'reliable-talent':
     'Reliable Talent: a d20 under 10 counts as 10 for a skill you are proficient in.',
   'jack-of-all-trades': 'Jack of All Trades: +{amount} to the skills you lack.',
+};
+
+/** The Metamagic options' names, as the SRD gives them. */
+export const METAMAGIC_NAMES: Readonly<Record<MetamagicId, string>> = {
+  'careful-spell': 'Careful Spell',
+  'distant-spell': 'Distant Spell',
+  'empowered-spell': 'Empowered Spell',
+  'extended-spell': 'Extended Spell',
+  'heightened-spell': 'Heightened Spell',
+  'quickened-spell': 'Quickened Spell',
+  'seeking-spell': 'Seeking Spell',
+  'subtle-spell': 'Subtle Spell',
+  'transmuted-spell': 'Transmuted Spell',
+  'twinned-spell': 'Twinned Spell',
 };

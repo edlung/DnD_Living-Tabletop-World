@@ -35,6 +35,7 @@ import { spellSave } from './saves.ts';
 import { chooseUsing, characterSpellPlan, type CharacterSpellPlan } from './spell-legality.ts';
 import { vitalsEvent, vitalsOf, type Vitals } from './vitals.ts';
 import { savedDamage } from './evasion.ts';
+import { empower, metamagicEffects, transmute } from './metamagic-effects.ts';
 
 /**
  * `CastSpell` (docs/adr/0015-combat-engine.md §3). Character spells use the
@@ -58,11 +59,15 @@ export function decideCastSpell(context: DecisionContext, command: Cast, dice: D
     ...(command.using === undefined ? {} : { using: command.using }),
     ...(command.targetId === undefined ? {} : { targetId: command.targetId }),
     ...(command.point === undefined ? {} : { point: command.point }),
+    ...(command.metamagic === undefined ? {} : { metamagic: command.metamagic }),
   });
   if (!plan.legal) return refused(plan);
   const ids = command.resolution?.ids ?? [];
-  const economy = SPELLS[plan.spellId].castingTime;
-  if (plan.record && economy !== 'reaction') {
+  // Its economy as cast: a Quickened spell's Bonus Action (docs/adr/0056-…md §4).
+  const economy = plan.cast.economy === 'bonus' ? 'bonus' : SPELLS[plan.spellId].castingTime;
+  // Subtle Spell: nothing to see, nothing to counter.
+  const subtle = command.metamagic?.options.includes('subtle-spell') === true;
+  if (plan.record && economy !== 'reaction' && !subtle) {
     const suspended = suspendCast(
       context,
       {
@@ -73,6 +78,7 @@ export function decideCastSpell(context: DecisionContext, command: Cast, dice: D
         using: plan.cast.slotLevel === null ? 'free' : { slotLevel: plan.cast.slotLevel },
         targetId: plan.target?.entityId ?? null,
         point: plan.point ? { ...plan.point } : null,
+        ...(command.metamagic === undefined ? {} : { metamagic: command.metamagic }),
       },
       ids,
     );
@@ -145,10 +151,18 @@ export function castEvents(
       break;
     case 'fireball': {
       const slotLevel = plan.cast.slotLevel ?? 3;
-      const damage = rollDamage(dice, 8 + Math.max(0, slotLevel - 3), 6, 0);
+      // Metamagic (docs/adr/0056-characters-from-the-srd.md §4): spared, heightened, empowered,
+      // transmuted.
+      const meta = metamagicEffects(plan.metamagic, plan.sheet, plan.record, plan.area, null);
+      const damage = empower(
+        dice,
+        rollDamage(dice, 8 + Math.max(0, slotLevel - 3), 6, 0),
+        6,
+        meta.empowered,
+      );
       for (const affected of plan.area) {
         const target = current(affected.entityId);
-        if (!target || !encounter) continue;
+        if (!target || !encounter || meta.spared.has(affected.entityId)) continue;
         const cover = coverOf(state, encounter, affected);
         const save = spellSave(
           dice,
@@ -159,12 +173,13 @@ export function castEvents(
           'spell',
           isDodging(combatantOf(encounter, affected.entityId), target),
           affected.squeezed === true,
+          meta.heightened === affected.entityId,
         );
         effects.push(save.event);
         const applied = applyDamage(state, dice, target, {
           sourceId: casterId,
           amount: savedDamage(target, 'dex', 'half', save.success, damage.total),
-          damageType: 'fire',
+          damageType: transmute('fire', meta),
           rolls: damage.rolls,
           critical: false,
         });

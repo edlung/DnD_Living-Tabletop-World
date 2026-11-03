@@ -115,6 +115,7 @@ function copySheet(
             ...(concentration.targetId !== undefined && visible(concentration.targetId)
               ? { targetId: concentration.targetId }
               : {}),
+            ...(concentration.extended === true ? { extended: true as const } : {}),
           },
     ...(sheet.deathSaves === undefined
       ? {}

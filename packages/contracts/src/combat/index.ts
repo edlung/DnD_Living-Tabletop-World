@@ -109,7 +109,12 @@ export {
 } from './toolbox.ts';
 export {
   FEATURE_ACTS,
+  METAMAGIC_OPTIONS,
+  TRANSMUTABLE,
+  metamagicSchema,
   useFeatureCommandSchema,
   type FeatureAct,
+  type MetamagicChoice,
+  type MetamagicId,
   type UseFeatureCommand,
 } from './features.ts';

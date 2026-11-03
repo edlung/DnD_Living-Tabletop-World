@@ -31,3 +31,36 @@ export const useFeatureCommandSchema = z
   })
   .strict();
 export type UseFeatureCommand = z.infer<typeof useFeatureCommandSchema>;
+
+/** A Sorcerer's Metamagic options (SRD 5.2.1; docs/adr/0056-characters-from-the-srd.md §4). */
+export const METAMAGIC_OPTIONS = [
+  'careful-spell',
+  'distant-spell',
+  'empowered-spell',
+  'extended-spell',
+  'heightened-spell',
+  'quickened-spell',
+  'seeking-spell',
+  'subtle-spell',
+  'transmuted-spell',
+  'twinned-spell',
+] as const;
+export type MetamagicId = (typeof METAMAGIC_OPTIONS)[number];
+
+/** Transmuted Spell's types: one of them becomes another. */
+export const TRANSMUTABLE = ['acid', 'cold', 'fire', 'lightning', 'poison', 'thunder'] as const;
+
+/**
+ * The Metamagic a cast spends Sorcery Points on: its options (one, or with Empowered or Seeking
+ * beside it), the creatures Careful Spell spares, Heightened Spell's creature, Transmuted Spell's
+ * type. Absent creatures are the World Engine's choice: the caster's allies, its first target.
+ */
+export const metamagicSchema = z
+  .object({
+    options: z.array(z.enum(METAMAGIC_OPTIONS)).min(1).max(3),
+    careful: z.array(entityIdSchema).min(1).max(6).optional(),
+    heightened: entityIdSchema.optional(),
+    transmuted: z.enum(TRANSMUTABLE).optional(),
+  })
+  .strict();
+export type MetamagicChoice = z.infer<typeof metamagicSchema>;

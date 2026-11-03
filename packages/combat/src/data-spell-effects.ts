@@ -12,6 +12,10 @@ import {
   COVER_BONUS,
   abilityModifier,
   attackCircumstances,
+  hasInvocation,
+  repellingBlast,
+  sizeRank,
+  spellDamageBonus,
   attackRoll,
   conditionBlocked,
   exhaustionPenalty,
@@ -28,12 +32,15 @@ import { combatPremiseList } from './refusal.ts';
 import { spellSave } from './saves.ts';
 import { lostInTheDark } from './sight.ts';
 import { savedDamage } from './evasion.ts';
+import { pushedEvents, pushedTo } from './masteries.ts';
+import { empower, metamagicEffects, transmute } from './metamagic-effects.ts';
 import {
   conditionImmune,
   armorClass,
   conditionsOf,
   exhaustionOf,
   hitPoints,
+  sizeOf,
   vitalsEvent,
   vitalsOf,
   withAllHitPoints,
@@ -86,6 +93,26 @@ export function dataSpellEvents(
   };
   const { effect } = plan.mechanics;
   const spellAbility = abilityModifier(plan.sheet.abilities[plan.cast.source.ability]);
+  // Metamagic's changes (docs/adr/0056-characters-from-the-srd.md §4): Empowered once, on the
+  // first damage rolled; Seeking once, on the first miss.
+  const meta = metamagicEffects(
+    plan.metamagic,
+    plan.sheet,
+    plan.record,
+    plan.area.length > 0
+      ? plan.area
+      : plan.targets.flatMap((one) => (one.record ? [one.record] : [])),
+    plan.targets[0]?.entityId ?? null,
+  );
+  let empowerLeft = meta.empowered;
+  let seekingLeft = meta.seeking;
+  const damageRoll = (damage: SpellDamage, critical: boolean) => {
+    const rolled = roll_(dice, plan, damage, critical);
+    if (empowerLeft === 0) return rolled;
+    const again = empower(dice, rolled, damage.dice.sides, empowerLeft);
+    empowerLeft = 0;
+    return again;
+  };
 
   if (effect.kind === 'attack') {
     for (const target of plan.targets) {
@@ -114,12 +141,17 @@ export function dataSpellEvents(
       });
       const ac = armorClass(vitals) + (target.cover === 'none' ? 0 : COVER_BONUS[target.cover]);
       const modifier = plan.cast.attackBonus + exhaustionPenalty(exhaustionOf(casterVitals));
-      const roll = attackRoll(dice, {
+      const options = {
         modifier,
         target: ac,
         advantage: circumstances.advantage,
         disadvantage: circumstances.disadvantage,
-      });
+      };
+      let roll = attackRoll(dice, options);
+      if (!roll.success && seekingLeft) {
+        seekingLeft = false;
+        roll = attackRoll(dice, options);
+      }
       const critical = roll.success && (roll.critical || circumstances.criticalOnHit);
       effects.push({
         type: 'AttackPerformed',
@@ -139,7 +171,7 @@ export function dataSpellEvents(
       });
       if (!roll.success) continue;
       for (const damage of effect.damage) {
-        const rolled = roll_(dice, plan, damage, critical);
+        const rolled = damageRoll(damage, critical);
         const latest = current(target.entityId);
         if (!latest) break;
         harmed(
@@ -147,18 +179,19 @@ export function dataSpellEvents(
           applyDamage(state, dice, latest, {
             sourceId: casterId,
             amount: rolled.total,
-            damageType: damage.type,
+            damageType: transmute(damage.type, meta),
             rolls: rolled.rolls,
             critical,
           }),
         );
       }
+      effects.push(...repelled(state, dice, plan, target.entityId, current, records));
     }
   } else if (effect.kind === 'save') {
     // One roll of the damage for every creature it reaches (SRD 5.2.1).
     const rolls = effect.damage.map((damage) => ({
       damage,
-      rolled: roll_(dice, plan, damage, false),
+      rolled: damageRoll(damage, false),
     }));
     const reached =
       plan.area.length > 0
@@ -171,6 +204,8 @@ export function dataSpellEvents(
       if (effect.kind !== 'save') return;
       const vitals = current(entityId);
       if (!vitals) return;
+      // Careful Spell: spared, it succeeds and takes no damage a success would halve.
+      if (meta.spared.has(entityId)) return;
       const cover = record && encounter ? coverOf(state, encounter, record) : 'none';
       const save = spellSave(
         dice,
@@ -181,6 +216,8 @@ export function dataSpellEvents(
         'spell',
         record ? isDodging(record, vitals) : false,
         record?.squeezed === true,
+        // Heightened Spell's Disadvantage.
+        meta.heightened === entityId,
       );
       effects.push(save.event);
       for (const { damage, rolled } of rolls) {
@@ -199,7 +236,7 @@ export function dataSpellEvents(
           applyDamage(state, dice, latest, {
             sourceId: casterId,
             amount,
-            damageType: damage.type,
+            damageType: transmute(damage.type, meta),
             rolls: rolled.rolls,
             critical: false,
           }),
@@ -221,7 +258,14 @@ export function dataSpellEvents(
     for (const target of plan.targets) {
       const vitals = current(target.entityId);
       if (!vitals) continue;
-      const rolled = rollDice(dice, effect.dice, plan, 0);
+      // Fiendish Vigor: False Life cast at will gives the dice's highest (§4).
+      const vigor =
+        plan.cast.atWill &&
+        plan.spellId === 'false-life' &&
+        hasInvocation(plan.sheet, 'fiendish-vigor');
+      const rolled = vigor
+        ? { total: effect.dice.count * effect.dice.sides + effect.dice.bonus }
+        : rollDice(dice, effect.dice, plan, 0);
       const hp = hitPoints(vitals);
       // Temporary hit points never stack: the higher stays (ADR 0048 §1).
       if ((hp.temporary ?? 0) >= rolled.total) continue;
@@ -230,7 +274,7 @@ export function dataSpellEvents(
       effects.push(vitalsEvent(next));
     }
   } else if (effect.kind === 'auto') {
-    const rolled = roll_(dice, plan, effect.damage, false);
+    const rolled = damageRoll(effect.damage, false);
     for (const target of plan.targets) {
       const vitals = current(target.entityId);
       if (!vitals) continue;
@@ -239,7 +283,7 @@ export function dataSpellEvents(
         applyDamage(state, dice, vitals, {
           sourceId: casterId,
           amount: rolled.total,
-          damageType: effect.damage.type,
+          damageType: transmute(effect.damage.type, meta),
           rolls: rolled.rolls,
           critical: false,
         }),
@@ -328,11 +372,38 @@ function roll_(dice: Dice, plan: DataSpellPlan, damage: SpellDamage, critical: b
       ? upcast.dice.count * plan.above
       : 0;
   const count = damage.dice.count * (cantrip === 'dice' ? plan.tier : 1) + extra;
-  return rollDamage(dice, count, damage.dice.sides, damage.dice.bonus, critical);
+  // Agonizing Blast's Charisma on each beam (docs/adr/0056-characters-from-the-srd.md §4).
+  const bonus = damage.dice.bonus + spellDamageBonus(plan.sheet, plan.spellId);
+  return rollDamage(dice, count, damage.dice.sides, bonus, critical);
 }
 
 /** Healing's or temporary hit points' dice at the cast's slot, plus a modifier. */
 function rollDice(dice: Dice, base: SpellDice, plan: DataSpellPlan, modifier: number) {
   const extra = plan.mechanics.upcast?.dice ? plan.mechanics.upcast.dice.count * plan.above : 0;
   return rollDamage(dice, base.count + extra, base.sides, base.bonus + modifier);
+}
+
+/**
+ * Repelling Blast (docs/adr/0056-characters-from-the-srd.md §4): an Eldritch Blast beam that hits
+ * pushes a Large or smaller creature still standing 10 ft straight away; each beam from where the
+ * last left it.
+ */
+function repelled(
+  state: WorldState,
+  dice: Dice,
+  plan: DataSpellPlan,
+  targetId: string,
+  current: (id: string) => Vitals | null,
+  records: Map<string, CombatantRecord>,
+): DraftEvent[] {
+  const encounter = state.encounter;
+  const struck = current(targetId);
+  const record =
+    records.get(targetId) ?? (encounter ? combatantOf(encounter, targetId) : undefined);
+  if (!encounter || !plan.record || !record || !struck || !repellingBlast(plan.sheet, plan.spellId))
+    return [];
+  if (hitPoints(struck).current === 0 || sizeRank(sizeOf(struck)) > sizeRank('large')) return [];
+  const to = pushedTo(state, encounter, plan.record, record, 10);
+  records.set(targetId, { ...record, position: { ...to.square } });
+  return pushedEvents(state, dice, record, struck, to);
 }

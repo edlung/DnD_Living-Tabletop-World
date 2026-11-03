@@ -217,8 +217,13 @@ export function TurnTray({
               action.legal && command?.type === 'Attack' && question !== null
                 ? { key, question, command }
                 : null;
+            // A choice first: its slot, or the Metamagic a Sorcerer could spend on it (ADR 0056 §4).
             const slots =
-              action.legal && action.spell && action.spell.slots.length > 1 ? action.spell : null;
+              action.legal &&
+              action.spell &&
+              (action.spell.slots.length > 1 || (action.spell.metamagic?.length ?? 0) > 0)
+                ? action.spell
+                : null;
             return (
               <button
                 key={key}

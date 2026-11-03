@@ -69,6 +69,8 @@ export interface CharacterDerived {
     readonly concentration: boolean;
     /** Cast as a ritual outside a fight: no slot (docs/adr/0052-spells-as-data.md §6). */
     readonly ritual: boolean;
+    /** Cast at will without a slot: an invocation's (docs/adr/0056-…md §4). */
+    readonly atWill?: true;
     /** The SRD's text of a spell outside the slice (whose own words are the client's). */
     readonly text?: string;
     /** The language its name and text are in: Russian once its Russian exists (ADR 0055 §5). */

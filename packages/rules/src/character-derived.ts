@@ -96,6 +96,7 @@ export function deriveCharacter(
     ]),
   ) as CharacterDerived['skills'];
   const spellIds = [...new Set(sheet.spellcasting.flatMap((source) => source.spells))];
+  const atWill = new Set(sheet.spellcasting.flatMap((source) => source.atWill ?? []));
   return {
     level,
     proficiencyBonus: proficiencyBonus(level),
@@ -132,6 +133,7 @@ export function deriveCharacter(
         components: [...spell.components],
         concentration: spell.concentration,
         ritual: spell.ritual,
+        ...(atWill.has(spell.spellId) ? { atWill: true as const } : {}),
         ...(spell.mechanics ? srdWords(spell, language) : {}),
       })),
     resources: classResources(sheet),

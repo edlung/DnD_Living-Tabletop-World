@@ -55,6 +55,7 @@ export function replanSuspended(state: WorldState, trigger: SpellTrigger): Repla
           ...(trigger.using === null ? {} : { using: trigger.using }),
           ...(trigger.targetIds ? { targetIds: trigger.targetIds } : {}),
           ...(trigger.point === null ? {} : { point: trigger.point }),
+          ...(trigger.metamagic ? { metamagic: trigger.metamagic } : {}),
         },
         trigger.economy,
       );
@@ -68,6 +69,7 @@ export function replanSuspended(state: WorldState, trigger: SpellTrigger): Repla
         ...(trigger.using === null ? {} : { using: trigger.using }),
         ...(trigger.targetId === null ? {} : { targetId: trigger.targetId }),
         ...(trigger.point === null ? {} : { point: trigger.point }),
+        ...(trigger.metamagic ? { metamagic: trigger.metamagic } : {}),
       },
       trigger.economy,
     );
