@@ -193,6 +193,27 @@
   DM's: the combatant chosen last) — marks the squares the rules count in it, and the card says how
   many. While a tool is in hand a press serves it and no token is dragged.
 
+## Notes from the implementation (Stage 670c, part 3, 2026-11-03)
+
+- The table's marks live beside the world (`apps/server/src/marks/`, migration 0035) and are read
+  through `GET /campaigns/:id/marks` by every member and the paired display; the live inventory
+  covers the view for an acting character, the DM and the display. The DM lays pings, the pointer
+  (one, moved by pointing again), strokes and shown areas; a player lays pings, strokes and areas as
+  their character when the DM allows (`POST …/marks/settings`); the DM clears them all, and a mark
+  is removed by its author or the DM. At most 60 marks a minute a person, 200 a campaign.
+- Each mark belongs to the run of the fight it was laid on — the event ID of the fight's
+  `CombatStarted` — so a fight that ends takes its marks from every board, and the same saved
+  encounter fought again begins with none; the next mark sweeps the earlier fight's. Outside a
+  fight no mark is laid (409), nor off its field (400).
+- A ping fades after 4 seconds by the server's clock (the view drops it, and the stream signals
+  that) and by each screen's own clock from when it first read the ping, so a screen whose clock is
+  off still shows it for its 4 seconds. The newest mark is said once in words for assistive
+  technology (`role="status"` on the board), and a square's name says where the DM points.
+- On the board a mark is a tool like the ruler (the "Mark the board" control): a press pings or
+  points, a drag in "Draw" mode lays a stroke; a laid spell's area is shown to the table from its
+  card. A stroke has no keyboard path of its own (freehand drawing); a press on a square, and the
+  area shown from the card, are the keyboard's marks.
+
 ## Consequences
 
 - Stage 670 runs in parts (`work-orders/STAGE_670.md`): the builder and the DM's hand; terrain and

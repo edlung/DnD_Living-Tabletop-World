@@ -22,12 +22,13 @@ Authority: owner approval 2026-11-02 (`reviews/OWNER_FULL_GAME_2026-11-02.json`)
   own battle map uploaded and approved, `AlignBattleMap`, the map drawn under the squares and the
   fight taking its grid. 670b done.
 - 670c — Fog of war and shared marks: `SetFog` hides and reveals squares; the players' and the
-  display's views leave out what lies hidden; the DM sees a veil. Part 1 done: `SetFog`, the views and
-  perception that leave out what it hides, the veil and the darkness on the board. Part 2 done: the ruler
-  and a spell's area on every board, the geometry shared through contracts. A ruler and spell-area templates
+  display's views leave out what lies hidden; the DM sees a veil. A ruler and spell-area templates
   on every board (the geometry moved into contracts, shared with the rules); pings, the DM's
   pointer, strokes and placed templates kept beside the world for the live session (migration
-  0035), players marking when the DM allows.
+  0035), players marking when the DM allows. Part 1 done: `SetFog`, the views and perception that
+  leave out what it hides, the veil and the darkness on the board. Part 2 done: the ruler and a
+  spell's area on every board, the geometry shared through contracts. Part 3 done: the table's
+  shared marks on every board and the table's display, kept per run of a fight. 670c done.
 - 670d — Traps and hazards on the board: an SRD trap set on squares, hidden or seen, sprung on the
   creature that enters, found by passive Perception or Search, disarmed with Utilize and thieves'
   tools; hazard squares that harm a creature entering or starting its turn there.

@@ -33,6 +33,8 @@ export interface SquareFacts {
   readonly fogged?: boolean;
   /** Feet from the viewer's ruler's start, while it measures (ADR 0057 §5). */
   readonly rulerFt?: number | null;
+  /** The DM's pointer is on it (ADR 0057 §5). */
+  readonly pointer?: boolean;
   readonly cover: CoverLevel | null;
   /** The occupant is among those a previewed area spell would affect (the server's list). */
   readonly inArea: boolean;
@@ -97,6 +99,7 @@ export function squareName(t: Translate, square: Square, facts: SquareFacts): st
   if (facts.obscured === 'light') notes.push(t('lightly obscured'));
   if (facts.obscured === 'heavy') notes.push(t('heavily obscured'));
   if (facts.fogged) notes.push(t('in the fog of war'));
+  if (facts.pointer) notes.push(t('the DM points here'));
   if (facts.rulerFt !== undefined && facts.rulerFt !== null)
     notes.push(t('{feet} ft from the ruler’s start', { feet: facts.rulerFt }));
   if (facts.difficult) notes.push(t('difficult terrain'));

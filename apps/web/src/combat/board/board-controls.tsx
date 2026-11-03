@@ -8,8 +8,11 @@ import type { BoardView } from './board-view.ts';
 export interface BoardTools {
   readonly measuring: boolean;
   readonly laying: boolean;
+  readonly marking: boolean;
   readonly onMeasure: () => void;
   readonly onArea: () => void;
+  /** The table's marks: absent while this viewer may not mark. */
+  readonly onMark?: (() => void) | undefined;
 }
 
 /** The DM's brush on the board (docs/adr/0057-encounters-maps-loot.md §2). */
@@ -51,6 +54,14 @@ export function BoardControls({
             aria-pressed={tools.laying}
             onClick={tools.onArea}
           />
+          {tools.onMark && (
+            <IconButton
+              glyph="target"
+              label={t('Mark the board')}
+              aria-pressed={tools.marking}
+              onClick={tools.onMark}
+            />
+          )}
         </>
       )}
       {paint && (

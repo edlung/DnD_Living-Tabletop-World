@@ -57,3 +57,9 @@ older build checks no picture grant: recovery needs a Gate 07-aware build (`depl
 Stage 670a (ADR 0057 §1): `0034_saved_encounters.sql` keeps the DM's saved encounters beside the
 world, one row an encounter (its body at most 64 KB), replaced on save and deleted on the DM's word:
 DM data, not canonical state. Additive: an older build leaves the table alone.
+
+Stage 670c (ADR 0057 §5): `0035_table_marks.sql` keeps the table's shared marks beside the world —
+pings with their end, the DM's pointer, strokes and shown areas, each the mark of one run of a fight
+(`fight_id`, its start's event ID), at most 64 KB a mark — and whether the DM lets players mark: the
+table's data for the live session, not canonical state. Additive: an older build leaves both tables
+alone.

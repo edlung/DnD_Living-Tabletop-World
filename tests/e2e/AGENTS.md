@@ -229,7 +229,10 @@ application on 4313.
   test asset worker runs on it) uploads a map drawn on a canvas, lines its grid up and starts a fight
   on the road; the map's place on the flat board is measured against the plane.
   `board-tools.spec.ts` (owns `ui-board-tools`) measures and lays areas as a player; nothing of it
-  may reach the DM's board.
+  may reach the DM's board. `marks.spec.ts` (owns `ui-marks`) lays the table's marks as the DM and,
+  once allowed, as a player, and reads each on the other's board without a refresh; a ping fades in
+  4 s, so a ping is checked on its author's board only and the other screen is checked with the
+  marks that stand (the pointer, a stroke, an area).
 - Native apps (ADR 0070, `native-shell.spec.ts`): a stand-in shell installed with `addInitScript`
   records what the page posts, and the journey speaks for the shell with `ltw-native` events; it owns
   the `native` sign-in campaign. The apps themselves are checked on the simulator and the emulator.

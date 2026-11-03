@@ -71,6 +71,10 @@ export function coverageInventory(target: LiveTarget): ViewRequest[] {
     // Handouts (§5): a new one signals its readers.
     views.push(scoped('handouts'));
   }
+  // The table's shared marks on the board (ADR 0057 §5): every member's and the display's.
+  if (target.kind === 'CHARACTER' || target.kind === 'DM' || target.display === true) {
+    views.push(scoped('marks'));
+  }
   if (target.display === true) {
     // A table display (ADR 0042) also follows the table's rolls and the open join link.
     views.push(scoped('rolls'), scoped('check-requests'));

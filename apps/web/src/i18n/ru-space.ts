@@ -112,6 +112,7 @@ registerRussian({
   'lightly obscured': 'слабая заслонённость',
   'heavily obscured': 'сильная заслонённость',
   'in the fog of war': 'в тумане войны',
+  'the DM points here': 'сюда указывает мастер',
   // The DM's brush (docs/adr/0057-encounters-maps-loot.md §2): what it lays, in the history too
   'Raised {feet} ft': 'Возвышение {feet} фт',
   'A pit {feet} ft deep': 'Яма глубиной {feet} фт',

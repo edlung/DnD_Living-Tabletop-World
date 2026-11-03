@@ -43,6 +43,7 @@ import { PostgresImageLedger, imageBudgetStatus } from './images/ledger.ts';
 import { loadQuestBook } from './quests/quest-book.ts';
 import { PostgresProposalStore } from './authoring/postgres-proposal-store.ts';
 import { PostgresChatStore } from './chat/postgres-chat-store.ts';
+import { PostgresMarkStore } from './marks/postgres-mark-store.ts';
 import { PostgresHandoutStore } from './handouts/postgres-handout-store.ts';
 import { PostgresDmNoteStore } from './dm/postgres-note-store.ts';
 import { PostgresSavedEncounterStore } from './combat/postgres-saved-encounter-store.ts';
@@ -207,6 +208,7 @@ async function main(): Promise<void> {
     },
     // The table's rolls, the DM's check requests and short rests (Stages 510, 530; 0025, 0026).
     chat: { store: new PostgresChatStore(pool), now: () => new Date().toISOString() },
+    marks: { store: new PostgresMarkStore(pool), now: () => new Date().toISOString() },
     handouts: { store: new PostgresHandoutStore(pool), now: () => new Date().toISOString() },
     lobby: {
       state: new PostgresTableStateStore(pool),

@@ -22,6 +22,8 @@ import {
 import { useScrollEdges } from '../../visual/scroll-edges.ts';
 import type { LabelOf } from '../labels.ts';
 import { BoardGround } from './board-ground.tsx';
+import type { ShownMark } from '../use-marks.ts';
+import { BoardMarks } from './board-marks.tsx';
 import { BoardPlates } from './plates.tsx';
 import { squareName } from './square-name.ts';
 import { TerrainCard } from './terrain-card.tsx';
@@ -96,6 +98,8 @@ export function Board({
   ruler = null,
   template,
   tools,
+  marks,
+  draw,
   centreOn = null,
   moverId = selfId,
 }: {
@@ -139,6 +143,10 @@ export function Board({
   readonly template?: ReadonlySet<string>;
   /** The viewer's ruler and area toggles (ADR 0057 §5). */
   readonly tools?: BoardTools;
+  /** The table's shared marks (ADR 0057 §5). */
+  readonly marks?: readonly ShownMark[];
+  /** A stroke drawn as a mark: presses and drags go to it, as to the DM's brush. */
+  readonly draw?: (squares: readonly Square[]) => void;
   /** A square to keep in view when the board scrolls (the table's screen follows the fight). */
   readonly centreOn?: Square | null;
 }) {
@@ -148,15 +156,21 @@ export function Board({
   // The square the pointer is over and the one keyboard focus is on: the terrain card reads it.
   const [pointed, setPointed] = useState<Square | null>(null);
   const [focused, setFocused] = useState<Square | null>(null);
-  const painting = paint?.on === true;
+  // The DM's brush, or a mark being drawn: a press or a drag goes to it, never to a choice.
+  const strokeTo = paint?.on === true ? paint.onStroke : draw;
+  const painting = strokeTo !== undefined;
   const drag = useTokenDrag(painting ? undefined : onDropToken);
-  const stroke = usePaintStroke(painting ? paint.onStroke : undefined);
-  // While the brush is on, a press paints its square instead of choosing it.
-  const press = painting
+  const stroke = usePaintStroke(strokeTo);
+  const press = strokeTo
     ? (square: Square) => {
-        paint.onStroke([square]);
+        strokeTo([square]);
       }
     : onPick;
+  const pointedAt = new Set(
+    (marks ?? [])
+      .filter((mark) => mark.kind === 'pointer' && mark.square)
+      .map((mark) => (mark.square ? key(mark.square) : '')),
+  );
   const { width, height, difficult, cover } = encounter.battlefield;
   const grid = { width, height };
   const tilt = view.mode === 'tilted' ? TILT : null;
@@ -303,6 +317,7 @@ export function Board({
             obscured: fog.has(id) ? (fog.get(id) ? 'heavy' : 'light') : 'none',
             fogged: warFog.has(id),
             rulerFt: ruler ? squareDistanceFt(ruler.from, square) : null,
+            pointer: pointedAt.has(id),
             cover: level,
             inArea,
           })}
@@ -450,6 +465,7 @@ export function Board({
                 />
               </svg>
             )}
+            {marks && <BoardMarks marks={marks} cell={cell} layout={layout} />}
           </div>
           <BoardPlates
             encounter={encounter}

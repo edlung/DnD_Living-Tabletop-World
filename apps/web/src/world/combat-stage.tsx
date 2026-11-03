@@ -6,6 +6,7 @@ import type { WorldApi } from '../api/client.ts';
 import { useBoardView } from '../combat/board/board-view.ts';
 import { CombatPanel } from '../combat/combat-panel.tsx';
 import { useBrush } from '../combat/paint-card.tsx';
+import { useMarks } from '../combat/use-marks.ts';
 import { useCombatantLabels } from '../combat/labels.ts';
 import { askedWindowOf, ReactionPrompt } from '../combat/reaction-prompt.tsx';
 import { ReadiedCard } from '../combat/readied-card.tsx';
@@ -61,6 +62,8 @@ export function CombatStage({
   const view = useBoardView();
   // The DM's brush outlasts the battlefield's fresh start after each stroke (ADR 0057 §2).
   const hand = useBrush();
+  // So do the table's shared marks (ADR 0057 §5): read here, they neither vanish nor replay.
+  const marks = useMarks(api);
   const window = encounter.reactionWindow;
   const asked = askedWindowOf(encounter, actorId) !== null;
   const myTurn =
@@ -159,6 +162,7 @@ export function CombatStage({
           figureOf={figureOf}
           battleMap={battleMap}
           hand={hand}
+          marks={marks}
           onRun={onRun}
         />
       </div>

@@ -26,6 +26,8 @@ export interface AreaSpec {
 export type Tool =
   | { readonly kind: 'measure'; readonly from: Square | null; readonly to: Square | null }
   | { readonly kind: 'area'; readonly spec: AreaSpec; readonly toward: Square | null }
+  /** The table's marks (`mark-card.tsx`): what a press or a drag lays for everyone. */
+  | { readonly kind: 'mark'; readonly mode: 'ping' | 'pointer' | 'draw' }
   | null;
 
 const SHAPES: readonly AreaShape[] = ['sphere', 'cube', 'cone', 'line', 'emanation'];
@@ -68,15 +70,18 @@ export function ToolCard({
   hasCaster,
   panel,
   onTool,
+  onShare,
   onClose,
 }: {
-  readonly tool: Exclude<Tool, null>;
+  readonly tool: Exclude<Tool, { kind: 'mark' } | null>;
   /** How many squares the laid area covers. */
   readonly covered: number;
   /** Whether a caster stands on the board for an area sent from one. */
   readonly hasCaster: boolean;
   readonly panel: Ref<HTMLElement>;
   readonly onTool: (tool: Tool) => void;
+  /** Lays the area for the whole table, when this viewer may mark (ADR 0057 §5). */
+  readonly onShare?: (() => void) | undefined;
   readonly onClose: () => void;
 }) {
   const t = useT();
@@ -184,6 +189,11 @@ export function ToolCard({
         </>
       )}
       <div className="action-row">
+        {tool.kind === 'area' && onShare && covered > 0 && (
+          <button type="button" onClick={onShare}>
+            {t('Show it to the table')}
+          </button>
+        )}
         <button type="button" className="primary-button" onClick={onClose}>
           {t('Done')}
         </button>

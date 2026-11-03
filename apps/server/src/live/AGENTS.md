@@ -26,6 +26,10 @@ change the perspective cannot read.
   the asset lineage `assets` (Stage 330 part B: the DM's image controls follow the asset worker;
   the route takes no perspective and answers the campaign's DM only); no lower perspective covers
   either, the DM's own included.
+- An acting character, the DM and a paired display also cover `marks` (the table's shared marks,
+  ADR 0057 §5, `src/marks/`): the route answers every member and the display, and a mark is the
+  table's, so it signals nothing a perspective may not read. A ping's end changes the view, so the
+  screens drop it on the server's clock as well as their own.
 - Messages are the fixed `ready`/`changed`/`closed` frames and a comment heartbeat
   (`stream.ts`); never put world content, a credential, an event position or a version in them.
 - Tests: `live-isolation.test.ts` (every non-DM perspective and the hidden sentinel stay silent on

@@ -18,6 +18,8 @@ import { CommandedTurn } from './commanded-turn.tsx';
 import { DmSquareCard } from './dm-hand.tsx';
 import { PaintCard, type Brush, type BrushHand } from './paint-card.tsx';
 import { DEFAULT_AREA, templateSquares, ToolCard, type Tool } from './board-tools.tsx';
+import { MarkCard } from './mark-card.tsx';
+import type { Marks } from './use-marks.ts';
 import { footprint } from './board/footprint.ts';
 import { TurnTray, type TrayChoice } from './hud/turn-tray.tsx';
 import { occupantAt, squareMoves } from './move-options.ts';
@@ -54,6 +56,7 @@ export function CombatPanel({
   figureOf,
   battleMap,
   hand,
+  marks,
   onRun,
 }: {
   readonly api: WorldApi;
@@ -69,6 +72,8 @@ export function CombatPanel({
   readonly battleMap: PlayerAssetView | null;
   /** The DM's brush, kept by the stage (ADR 0057 §2). */
   readonly hand: BrushHand;
+  /** The table's shared marks, kept by the stage (ADR 0057 §5). */
+  readonly marks: Marks;
   readonly onRun: (intent: ExplorationIntent) => void;
 }) {
   const t = useT();
@@ -154,6 +159,10 @@ export function CombatPanel({
   }, []);
   // The viewer's own ruler and spell's area (ADR 0057 §5): a press on the board serves the tool.
   const [tool, setTool] = useState<Tool>(null);
+  // The table's shared marks (ADR 0057 §5): the DM always marks, players when the DM allows.
+  const mayMark = dm || (marks.value?.playersMayMark ?? false);
+  // The DM takes the players' marking back: a player's marks go out of hand.
+  if (!mayMark && tool?.kind === 'mark') setTool(null);
   const casterView = dm
     ? encounter.combatants.find((entry) => entry.entity.entityId === held)
     : self;
@@ -170,6 +179,10 @@ export function CombatPanel({
     }
     if (tool?.kind === 'area') {
       setTool({ ...tool, toward: square });
+      return;
+    }
+    if (tool?.kind === 'mark') {
+      marks.lay({ kind: tool.mode === 'pointer' ? 'pointer' : 'ping', square });
       return;
     }
     const occupant = occupantAt(encounter, square);
@@ -233,13 +246,37 @@ export function CombatPanel({
         ? { kind: 'combatant', target: picked, actions: options }
         : { kind: 'none' };
   const side =
-    tool !== null ? (
+    tool?.kind === 'mark' ? (
+      <MarkCard
+        mode={tool.mode}
+        dm={dm}
+        marks={marks}
+        panel={panel}
+        onMode={(mode) => {
+          setTool({ kind: 'mark', mode });
+        }}
+        onClose={toolOff}
+      />
+    ) : tool !== null ? (
       <ToolCard
         tool={tool}
         covered={template?.size ?? 0}
         hasCaster={caster.length > 0}
         panel={panel}
         onTool={setTool}
+        onShare={
+          mayMark && template
+            ? () => {
+                marks.lay({
+                  kind: 'area',
+                  squares: [...template].map((id) => {
+                    const [x = 0, y = 0] = id.split(',').map(Number);
+                    return { x, y };
+                  }),
+                });
+              }
+            : undefined
+        }
         onClose={toolOff}
       />
     ) : dm && painting ? (
@@ -322,9 +359,25 @@ export function CombatPanel({
         fogView={dm ? 'veil' : 'hidden'}
         ruler={tool?.kind === 'measure' && tool.from ? { from: tool.from, to: tool.to } : null}
         {...(template ? { template } : {})}
+        marks={marks.value?.marks ?? []}
+        {...(tool?.kind === 'mark' && tool.mode === 'draw'
+          ? {
+              draw: (squares: readonly Square[]) => {
+                const [first] = squares;
+                if (squares.length > 1) marks.lay({ kind: 'stroke', squares });
+                else if (first) marks.lay({ kind: 'ping', square: first });
+              },
+            }
+          : {})}
         tools={{
           measuring: tool?.kind === 'measure',
           laying: tool?.kind === 'area',
+          marking: tool?.kind === 'mark',
+          onMark: mayMark
+            ? () => {
+                toggle({ kind: 'mark', mode: 'ping' });
+              }
+            : undefined,
           onMeasure: () => {
             toggle({ kind: 'measure', from: null, to: null });
           },

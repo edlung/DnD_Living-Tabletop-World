@@ -122,6 +122,17 @@ export {
 } from './board-commands.ts';
 export { fogBattlefield, paintBattlefield, sameGround } from './terrain-paint.ts';
 export {
+  MARK_KINDS,
+  MAX_MARKS,
+  PING_MS,
+  markRequestSchema,
+  markSettingsSchema,
+  type MarkKind,
+  type MarkRequest,
+  type MarkView,
+  type MarksResponse,
+} from './marks.ts';
+export {
   SQUARE_FT,
   inSpellArea,
   squareDistanceFt,

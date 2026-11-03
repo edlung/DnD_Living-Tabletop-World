@@ -4,6 +4,7 @@ import { describe, expect, it } from 'vitest';
 
 import '../../i18n/ru.ts';
 import '../../i18n/ru-play.ts';
+import '../../i18n/ru-space.ts';
 import '../../i18n/ru-visual.ts';
 import { squareName, type SquareFacts } from './square-name.ts';
 
@@ -99,5 +100,15 @@ describe('the name of a board square', () => {
         { ...empty, occupant: elowen, label: 'Elowen Starwhisper', you: true },
       ),
     ).toBe('Клетка 2, 6: Elowen Starwhisper (вы), отряд, 78 / 78 ОЗ');
+  });
+
+  it('says where the DM points, in either language (ADR 0057 §5)', () => {
+    const pointed = { ...empty, pointer: true, fogged: true };
+    expect(squareName(english, { x: 4, y: 5 }, pointed)).toBe(
+      'Square 4, 5: in the fog of war; the DM points here',
+    );
+    expect(squareName(russian, { x: 4, y: 5 }, pointed)).toBe(
+      'Клетка 4, 5: в тумане войны; сюда указывает мастер',
+    );
   });
 });

@@ -11,6 +11,8 @@ import type { WorkshopDependencies } from '../workshop/service.ts';
 import type { CampaignQuestBooks } from '../campaigns/quest-books.ts';
 import { registerAccountRoutes } from '../accounts/account-routes.ts';
 import { registerChatRoutes, type ChatDependencies } from '../chat/chat-routes.ts';
+import { InMemoryMarkStore } from '../marks/mark-store.ts';
+import { registerMarkRoutes, type MarkDependencies } from '../marks/mark-routes.ts';
 import { InMemoryChatStore } from '../chat/chat-store.ts';
 import { registerHandoutRoutes, type HandoutDependencies } from '../handouts/handout-routes.ts';
 import { InMemoryHandoutStore } from '../handouts/handout-store.ts';
@@ -124,11 +126,18 @@ export interface AppDependencies {
   readonly lobby?: LobbyDependencies;
   /** Table talk (ADR 0044 §1): chat, whispers, the DM's word to one player; in memory when absent. */
   readonly chat?: ChatDependencies;
+  /** The table's shared marks on the board (ADR 0057 §5); in memory when absent. */
+  readonly marks?: MarkDependencies;
   /** Handouts (ADR 0044 §5): what the DM shows one player or the party; in memory when absent. */
   readonly handouts?: HandoutDependencies;
 }
 
 /** Table talk in memory: for compositions without a database. */
+export const memoryMarks = (): MarkDependencies => ({
+  store: new InMemoryMarkStore(),
+  now: () => new Date().toISOString(),
+});
+
 export const memoryChat = (): ChatDependencies => ({
   store: new InMemoryChatStore(),
   now: () => new Date().toISOString(),
@@ -220,6 +229,7 @@ export function buildApp(input: AppDependencies): FastifyInstance {
   registerPresenceRoutes(app, { ...deps, presence: deps.presence ?? NOBODY_CONNECTED });
   registerLobbyRoutes(app, { ...deps, lobby, presence: deps.presence ?? NOBODY_CONNECTED });
   registerChatRoutes(app, { ...deps, chat: deps.chat ?? memoryChat() });
+  registerMarkRoutes(app, { ...deps, marks: deps.marks ?? memoryMarks() });
   registerHandoutRoutes(app, { ...deps, handouts: deps.handouts ?? memoryHandouts() });
   registerDmRoutes(app, deps);
   registerUndoneRoutes(app, deps);

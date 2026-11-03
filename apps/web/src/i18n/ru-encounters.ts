@@ -98,6 +98,28 @@ registerRussian({
   'It covers {count} squares.': 'Клеток в области: {count}.',
   Done: 'Готово',
   '{feet} ft from the ruler’s start': '{feet} фт от начала линейки',
+  // The table's shared marks (Stage 670c)
+  'Mark the board': 'Отметить на поле',
+  'For the whole table': 'Для всего стола',
+  Mark: 'Отметка',
+  'Ping a square': 'Отметить клетку',
+  'Point at a square': 'Указать на клетку',
+  'Draw on the board': 'Рисовать на поле',
+  'Drag across the squares to draw; a press pings.':
+    'Проведите по клеткам, чтобы рисовать; нажатие ставит отметку.',
+  'Press a square: every screen at the table sees it.':
+    'Нажмите на клетку: её увидят все экраны за столом.',
+  'The mark did not reach the table. Try again.': 'Отметка не дошла до стола. Попробуйте ещё раз.',
+  'Players may mark the board': 'Игроки могут делать отметки',
+  'Clear the marks ({count})': 'Стереть отметки ({count})',
+  'Show it to the table': 'Показать столу',
+  'The DM pings: {square}': 'Отметка мастера: {square}',
+  'A player pings: {square}': 'Отметка игрока: {square}',
+  'The DM points: {square}': 'Мастер указывает: {square}',
+  'The DM draws on the board': 'Мастер рисует на поле',
+  'A player draws on the board': 'Игрок рисует на поле',
+  'The DM shows an area on the board': 'Мастер показывает область на поле',
+  'A player shows an area on the board': 'Игрок показывает область на поле',
   Height: 'Высота',
   // The DM's own battle map and its grid (Stage 670b)
   'Your own battle map': 'Своя боевая карта',
