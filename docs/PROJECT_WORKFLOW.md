@@ -28,9 +28,11 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   Stage 600 (accounts and the hub, ADR 0041), Stage 605 (a party for the table), Stage 610 (the
   table display, ADR 0042), Stage 620 (the DM's screen, ADR 0043) and Stage 630 (the player's
   companion and online play, ADR 0044) complete (`reports/STAGE_6{00,05,10,20,30}_COMPLETION.md`):
-  Milestone A is done, on PR 24 (the owner chose to merge it on green CI, no deploy yet).
-  Milestone B on `claude/full-game-b`: Stage 640 (conditions and actions, ADR 0045,
-  `work-orders/STAGE_640.md`) in progress — 640a, the 15 conditions and Exhaustion, and 640b,
+  Milestone A is done, merged with PR 24 (`a04f284`, not deployed); the native apps (Stage 700,
+  ADR 0070) merged with PR 25 (`0e7f47e`). Milestone B on `claude/full-game-b` is complete
+  (`reports/MILESTONE_B_COMPLETION.md`): Stages 640, 650 and 660, main merged in, one pull request.
+  Stage 640 (conditions and actions, ADR 0045,
+  `work-orders/STAGE_640.md`) — 640a, the 15 conditions and Exhaustion, and 640b,
   the actions beside Attack and Magic, done; 640c, reactions beyond Counterspell (opportunity
   attacks, the readied attack, Shield, Uncanny Dodge, Hellish Rebuke, Heroic Inspiration on attacks
   and on table checks; ADR 0046), done; 640d, the weapons (ADR 0047: properties, masteries, the
@@ -54,7 +56,11 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   done: part 1, the rules reference (the glossary and the toolbox as data, the Rules sheet, terms
   in place); part 2, the Toolbox at the table (traps, mental stress, contagions); parts 3 and 4,
   the Russian rules text (the reference, spells, stat blocks, magic items and equipment, held
-  complete by a test) and the catalogs' art by kind (schools, creature types, item looks).
+  complete by a test) and the catalogs' art by kind (schools, creature types, item looks). Stage
+  660, characters from the SRD (ADR 0056, `work-orders/STAGE_660.md`), complete: the data, the
+  builder, advancement, features in play, and the table's life (campaign options, death and
+  raising, languages and the printable sheet, a character from another campaign, a portrait wish,
+  the four summons, Wild Shape). Next: Milestone C (Stages 670 and 680).
 
 ## Current request — AI campaigns, 2026-10-30
 
