@@ -26,17 +26,17 @@ interface Fight {
   }[];
 }
 
-async function fightNow(page: Page): Promise<Fight> {
-  const response = await page.request.get(`/api/campaigns/${CAMPAIGN}/encounter`, {
+async function fightNow(page: Page, campaign: string = CAMPAIGN): Promise<Fight> {
+  const response = await page.request.get(`/api/campaigns/${campaign}/encounter`, {
     headers: { authorization: `Bearer ${TOKENS.dm}` },
     params: { perspective: 'DM' },
   });
   return ((await response.json()) as { encounter: Fight }).encounter;
 }
 
-async function startFight(page: Page) {
+async function startFight(page: Page, campaign: string = CAMPAIGN) {
   const headers = { authorization: `Bearer ${TOKENS.dm}` };
-  const base = `/api/campaigns/${CAMPAIGN}/encounters/saved/${randomUUID()}`;
+  const base = `/api/campaigns/${campaign}/encounters/saved/${randomUUID()}`;
   const saved = await page.request.post(base, {
     headers,
     data: {
@@ -61,14 +61,14 @@ async function startFight(page: Page) {
 }
 
 /** The DM ends turns until Elowen's comes. */
-async function untilElowen(page: Page) {
+async function untilElowen(page: Page, campaign: string = CAMPAIGN) {
   for (let turns = 0; turns < 8; turns += 1) {
-    const now = await fightNow(page);
+    const now = await fightNow(page, campaign);
     if (now.currentCombatantId === ELOWEN) return;
-    const ended = await page.request.post(`/api/campaigns/${CAMPAIGN}/commands`, {
+    const ended = await page.request.post(`/api/campaigns/${campaign}/commands`, {
       headers: { authorization: `Bearer ${TOKENS.dm}` },
       data: {
-        commandId: `${CAMPAIGN}.end.${String(turns)}`,
+        commandId: `${campaign}.end.${String(turns)}`,
         command: { type: 'EndTurn', combatantId: now.currentCombatantId },
       },
     });
@@ -125,4 +125,63 @@ test('a hidden pit springs on the player who walks through it; fire shows to all
   await expect(square(player, x + 2, y)).toHaveAccessibleName(/a pit 10 ft deep/);
   await expect(square(dm, x + 2, y)).toHaveAccessibleName(/trap: Hidden pit, sprung/);
   await expectAccessible(player, 'the sprung pit');
+});
+
+test('Elowen notices hidden darts as she comes near, stops short, and disarms them', async ({
+  browser,
+}) => {
+  test.setTimeout(150_000);
+  const campaign = UI_PARTY_CAMPAIGNS.trapsFound;
+  const dm = await (await browser.newContext()).newPage();
+  const player = await (await browser.newContext()).newPage();
+  await enterWorld(dm, TOKENS.dm, campaign);
+  await startFight(dm, campaign);
+  const elowen = (await fightNow(dm, campaign)).combatants.find(
+    (one) => one.entity.entityId === ELOWEN,
+  );
+  if (!elowen) throw new Error('Elowen is not in the fight');
+  const { x, y } = elowen.position;
+  // Poisoned darts, hidden, three squares east: found by a Search at DC 15, which her Passive
+  // Perception meets as she comes within 5 ft.
+  const laid = await dm.request.post(`/api/campaigns/${campaign}/commands`, {
+    headers: { authorization: `Bearer ${TOKENS.dm}` },
+    data: {
+      commandId: `${campaign}.darts`,
+      command: {
+        type: 'PaintTerrain',
+        squares: [{ x: x + 3, y }],
+        paint: { kind: 'trap', trapId: 'poisoned-darts', tier: 1, hidden: true },
+      },
+    },
+  });
+  expect(((await laid.json()) as { status: string }).status).toBe('accepted');
+  await untilElowen(dm, campaign);
+  await enterWorld(player, TOKENS.player, campaign);
+  await battlefield(player).getByRole('button', { name: 'Flat board', exact: true }).click();
+  await expect(square(player, x + 3, y)).not.toHaveAccessibleName(/trap/);
+
+  // She heads for the plate itself, unknowing, and stops beside it.
+  await clickSquare(player, x + 3, y);
+  expectAccepted(await submit(player, player.getByRole('button', { name: 'Move here' })));
+  await expect(player.getByText(/You notice a trap: Poisoned darts\./)).toBeVisible();
+  // Beside the plate, whichever way her route came.
+  const stopped = (await fightNow(dm, campaign)).combatants.find(
+    (one) => one.entity.entityId === ELOWEN,
+  )?.position;
+  if (!stopped) throw new Error('Elowen left the fight');
+  expect(Math.max(Math.abs(stopped.x - (x + 3)), Math.abs(stopped.y - y))).toBe(1);
+  await expect(square(player, stopped.x, stopped.y)).toHaveAccessibleName(
+    /Elowen Starwhisper \(you\)/,
+  );
+  await expect(square(player, x + 3, y)).toHaveAccessibleName(/trap: Poisoned darts, in sight/);
+
+  // Her action is still hers: she disarms them from the square's card.
+  await clickSquare(player, x + 3, y);
+  const card = player.locator('.move-card');
+  await expect(card).toContainText('trap: Poisoned darts, in sight');
+  await expectAccessible(player, 'a trap to disarm');
+  expectAccepted(await submit(player, card.getByRole('button', { name: 'Disarm the trap' })));
+  await expect(player.getByText(/You disarm the trap: Poisoned darts\./)).toBeVisible();
+  await expect(square(player, x + 3, y)).toHaveAccessibleName(/trap: Poisoned darts, disarmed/);
+  await expect(square(dm, x + 3, y)).toHaveAccessibleName(/trap: Poisoned darts, disarmed/);
 });

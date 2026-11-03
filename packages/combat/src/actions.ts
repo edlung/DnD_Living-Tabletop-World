@@ -36,6 +36,7 @@ import {
   onTurn,
   turnStateOf,
 } from './battlefield.ts';
+import { disarmable, disarmedEvent, trapsFound } from './board-traps.ts';
 import { withDetail } from './condition-details.ts';
 import { controlledMount, decideMounting, mountPlan } from './mounts.ts';
 import { hostileSides } from './reactions/opportunity.ts';
@@ -123,6 +124,11 @@ export function actionPlan(
       : refuse('NOT_GRAPPLING');
   }
   if (turn.actionUsed) return refuse('NO_ACTION');
+  // Utilize on a trap's square disarms it (docs/adr/0057-encounters-maps-loot.md §6).
+  if (action === 'utilize' && request.square !== undefined) {
+    const trap = disarmable(state, encounter, actor, request.square);
+    return typeof trap === 'string' ? refuse(trap) : { legal: true, actor, vitals, skill: null };
+  }
   if (action === 'escape' && !has(vitals, 'grappled')) return refuse('NOT_GRAPPLED');
   if (action === 'first-aid') {
     // A creature within 5 ft, dying or knocked out (docs/adr/0048-hit-points.md §4).
@@ -311,6 +317,13 @@ export function decideTakeAction(
       vitalsEvent(withConditions(vitals, ['invisible'], [])),
     );
     record = withDetail(record, 'invisible', { hidden: true });
+  }
+  // A Search or a Study finds hidden traps near; Utilize disarms one (ADR 0057 §6).
+  if ((command.action === 'search' || command.action === 'study') && check && skill)
+    events.push(...trapsFound(state, encounter.value, actor, command.action, skill, check.total));
+  if (command.action === 'utilize' && command.square !== undefined) {
+    const trap = disarmable(state, encounter.value, actor, command.square);
+    if (typeof trap !== 'string') events.push(disarmedEvent(encounter.value, trap, actor.entityId));
   }
   if (command.action === 'first-aid' && check?.success === true && command.targetId) {
     events.push(...firstAid(state, command.targetId));

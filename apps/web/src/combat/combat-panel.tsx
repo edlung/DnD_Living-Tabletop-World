@@ -19,6 +19,7 @@ import { DmSquareCard } from './dm-hand.tsx';
 import { PaintCard, type Brush, type BrushHand } from './paint-card.tsx';
 import { DEFAULT_AREA, templateSquares, ToolCard, type Tool } from './board-tools.tsx';
 import { MarkCard } from './mark-card.tsx';
+import { dangersOf, trapState } from './board/dangers.ts';
 import type { Marks } from './use-marks.ts';
 import { footprint } from './board/footprint.ts';
 import { TurnTray, type TrayChoice } from './hud/turn-tray.tsx';
@@ -239,6 +240,37 @@ export function CombatPanel({
     event.preventDefault();
     close();
   };
+  // A trap the party knows of on the chosen square, and its disarming on the viewer's own turn
+  // within 5 ft (docs/adr/0057-encounters-maps-loot.md §6): Utilize, the World Engine decides.
+  const trapHere =
+    focus?.kind === 'square'
+      ? dangersOf(encounter.battlefield).traps.get(
+          `${String(focus.square.x)},${String(focus.square.y)}`,
+        )
+      : undefined;
+  const reach = (trap: NonNullable<typeof trapHere>) =>
+    self !== undefined &&
+    footprint(self).some((mine) =>
+      trap.squares.some((one) => Math.max(Math.abs(one.x - mine.x), Math.abs(one.y - mine.y)) <= 1),
+    );
+  const disarm =
+    mayAct &&
+    trapHere &&
+    focus?.kind === 'square' &&
+    trapState(trapHere) === 'set' &&
+    reach(trapHere)
+      ? () => {
+          onRun({
+            kind: 'command',
+            command: {
+              type: 'TakeAction',
+              combatantId: actorId,
+              action: 'utilize',
+              square: { ...focus.square },
+            },
+          });
+        }
+      : undefined;
   const choice: TrayChoice =
     focus?.kind === 'square'
       ? { kind: 'square', moves }
@@ -306,6 +338,8 @@ export function CombatPanel({
         prone={self?.conditions.includes('prone') ?? false}
         riding={self?.mountedOn !== undefined && !commanding}
         myTurn={myTurn || commanding}
+        trap={trapHere}
+        onDisarm={disarm}
         panel={panel}
         onClose={close}
       />

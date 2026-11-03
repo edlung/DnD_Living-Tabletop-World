@@ -83,6 +83,8 @@ export type IllegalReason =
   | 'NOT_GRAPPLING'
   /** First aid for a creature neither dying nor knocked out (docs/adr/0048-hit-points.md §4). */
   | 'NEEDS_NO_AID'
+  /** Utilize on a square with no trap the party knows of, still to spring (ADR 0057 §6). */
+  | 'NO_KNOWN_TRAP'
   /** An object, where a grapple, a mastery or a spell names a creature (ADR 0048 §5). */
   | 'NOT_A_CREATURE'
   /** A grapple's or a shove's target more than one size larger (ADR 0049 §3). */

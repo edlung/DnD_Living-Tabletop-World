@@ -240,6 +240,26 @@
   spent or disarmed — and its words are in the square's name and the terrain card.
 - `TrapChanged` restores the encounter on undo, as every battlefield event does.
 
+## Notes from the implementation (Stage 670d, part 2, 2026-11-03)
+
+- Finding follows each trap's words, not one rule for all: a Search trap (the roof, the net, the
+  statue's plate, the darts) is found by a Search's Wisdom (Perception) at its DC, and noticed by a
+  creature of the party whose Passive Perception meets the DC as its space comes within 5 feet —
+  the move then stops short of it when the rest would come onto it; a Study trap (the pits, the
+  stone's plate) only by a Study's Intelligence (Investigation). Both act within 5 feet. The party
+  finds it once for all its members.
+- Disarming follows the SRD's words too, where §6 above named the older thieves' tools check: each
+  board trap is made safe without a check once found — the wire cut, the holes plugged, the glyph
+  defaced, a spike under the plate or the lid — so Utilize on a known trap's square within 5 feet
+  disarms it, with the Action. Utilize on a square with a hidden trap is refused as on one with
+  none (`NO_KNOWN_TRAP`), so nothing tells them apart. The item the words name (an Iron Spike, a
+  sharp tool, wax or cloth) is the player's to narrate; it is not taken from the pack.
+- The player's square card names a known trap and offers "Disarm the trap" on their turn within 5
+  feet; the route the board suggests keeps clear of known traps (a trap's square only as the end)
+  and, at the same cost, of harmful ground — advice, the World Engine decides. The mover is told
+  what it noticed ("You notice a trap: …"), and a Search, a Study or Utilize what it found or
+  disarmed.
+
 ## Consequences
 
 - Stage 670 runs in parts (`work-orders/STAGE_670.md`): the builder and the DM's hand; terrain and

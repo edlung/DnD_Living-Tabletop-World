@@ -116,6 +116,8 @@ export const CONTEXT_ILLEGAL_REASONS = [
   'NOT_GRAPPLED',
   'NOT_GRAPPLING',
   'NEEDS_NO_AID',
+  /** Utilize on a square with no trap the party knows of, still to spring (ADR 0057 §6). */
+  'NO_KNOWN_TRAP',
   /** An object, where a rule names a creature (docs/adr/0048-hit-points.md §5). */
   'NOT_A_CREATURE',
   /** A grapple's or a shove's target more than one size larger (ADR 0049 §3). */

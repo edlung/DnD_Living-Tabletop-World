@@ -167,6 +167,14 @@ export type PlayerOutcome =
       readonly falling?: true;
       /** The trap it came onto sprang (docs/adr/0057-encounters-maps-loot.md §6). */
       readonly trap?: BoardTrapId;
+      /** Hidden traps its Passive Perception noticed on the way: it stops short of them (§6). */
+      readonly noticed?: readonly BoardTrapId[];
+    }
+  | {
+      readonly kind: 'TakeAction';
+      /** The hidden traps a Search or a Study found, and the trap Utilize disarmed (ADR 0057 §6). */
+      readonly found: readonly BoardTrapId[];
+      readonly disarmed?: BoardTrapId;
     }
   | {
       readonly kind: 'Attack';

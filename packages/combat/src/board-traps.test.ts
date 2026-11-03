@@ -120,7 +120,8 @@ describe('traps on the board', () => {
   it('spring the statue again on a later turn, on one that starts its turn on it', async () => {
     const world = await roadWorld();
     await startAmbush(world);
-    await world.dm(trap(at([3, 6]), 'fire-casting-statue', true));
+    // In sight: hidden, her Passive Perception would find its plate and she would stop short.
+    await world.dm(trap(at([3, 6]), 'fire-casting-statue', false));
     await world.submit({ type: 'MoveCombatant', combatantId: ELOWEN, path: at([3, 6]) });
     expect((await world.encounter()).battlefield.traps?.[0]?.springs).toBe(1);
     const ended = await untilElowen(world);

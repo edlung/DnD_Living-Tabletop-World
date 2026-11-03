@@ -16,7 +16,7 @@ import {
 import { gapFt } from '@ltw/rules';
 
 import { combatantEvent, encounterOf, isAlive, onTurn, placedOf, withTurn } from './battlefield.ts';
-import { groundHarm, groundWalked, springTrap, trapStep } from './board-traps.ts';
+import { groundHarm, groundWalked, noticedEvents, springTrap, walkDangers } from './board-traps.ts';
 import { sourceOf } from './condition-details.ts';
 import { landingEvents } from './falling.ts';
 import { carryRider } from './mounts.ts';
@@ -182,12 +182,16 @@ function walk(
   }
   const along = new Set(heldBy(state, encounter, mover.entityId).map((c) => c.entityId));
   const provoked = firstProvocation(state, encounter, mover, path, offered, along);
-  // An armed trap on the way ends the move on it, before any reach further on (ADR 0057 §6).
-  const trapped = trapStep(state, encounter, mover, path);
-  const caught = trapped !== null && (provoked === null || trapped.index < provoked.walked);
-  const stop = caught ? null : provoked;
-  const walked = caught
-    ? path.slice(0, trapped.index + 1)
+  // A trap on the way ends the move on it, or short of one the mover noticed ahead — before any
+  // reach further on (ADR 0057 §6).
+  const dangers = walkDangers(state, encounter, mover, path);
+  const early =
+    dangers.stop !== null && (provoked === null || dangers.stop.index < provoked.walked)
+      ? dangers.stop
+      : null;
+  const stop = early ? null : provoked;
+  const walked = early
+    ? path.slice(0, early.index + 1)
     : stop === null
       ? path
       : path.slice(0, stop.walked);
@@ -228,16 +232,18 @@ function walk(
     events.push(...landed.events);
     vitals = landed.vitals;
   }
-  // Harmful ground on the way, then the trap it came onto (ADR 0057 §6).
+  // The traps it noticed, harmful ground on the way, then the trap it came onto (ADR 0057 §6).
+  events.push(...noticedEvents(encounter, dangers, walked.length, mover.entityId));
   let harmed = { vitals, events: [] as DraftEvent[], dead: false };
   for (const hazard of groundWalked(state, encounter, mover, walked))
     harmed = groundHarm(state, dice, harmed, hazard);
   events.push(...harmed.events);
   vitals = harmed.vitals;
-  if (caught) {
-    events.push(
-      ...springTrap(state, encounter, dice, trapped.trap, moved, harmed.dead ? null : vitals),
-    );
+  if (early) {
+    if (early.sprung)
+      events.push(
+        ...springTrap(state, encounter, dice, early.sprung, moved, harmed.dead ? null : vitals),
+      );
     return events;
   }
   if (stop === null && whole.fallFt > 0) {

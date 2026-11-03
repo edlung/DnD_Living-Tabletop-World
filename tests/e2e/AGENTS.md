@@ -235,7 +235,9 @@ application on 4313.
   marks that stand (the pointer, a stroke, an area). `traps.spec.ts` (owns `ui-traps`) lays a
   hidden pit and fire with the brush on flat boards (a name plate covers the square below a token
   on either view; lay what is pressed clear of plates), then walks Elowen onto the pit: a path
-  that ties around a trap may pass it by, so the journey ends its move on the trap's square.
+  that ties around a trap may pass it by, so the journey ends its move on the trap's square. Its
+  second journey (owns `ui-traps-found`) has Elowen notice hidden darts as she heads for them; her
+  route may come beside them diagonally, so it reads where she stopped from the fight.
 - Native apps (ADR 0070, `native-shell.spec.ts`): a stand-in shell installed with `addInitScript`
   records what the page posts, and the journey speaks for the shell with `ltw-native` events; it owns
   the `native` sign-in campaign. The apps themselves are checked on the simulator and the emulator.

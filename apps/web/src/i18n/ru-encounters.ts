@@ -118,6 +118,11 @@ registerRussian({
   'Kind of trap': 'Вид ловушки',
   Die: 'Кость',
   'A trap springs: {name}.': 'Срабатывает ловушка: {name}.',
+  'You notice a trap: {name}.': 'Вы замечаете ловушку: {name}.',
+  'You find a trap: {name}.': 'Вы находите ловушку: {name}.',
+  'You disarm the trap: {name}.': 'Вы обезвреживаете ловушку: {name}.',
+  'no known trap': 'здесь нет известной вам ловушки',
+  'Disarm the trap': 'Обезвредить ловушку',
   // The table's shared marks (Stage 670c)
   'Mark the board': 'Отметить на поле',
   'For the whole table': 'Для всего стола',

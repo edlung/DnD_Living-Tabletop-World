@@ -195,11 +195,16 @@ export function outcomeMessage(t: Translate, outcome: PlayerOutcome | undefined)
       const prone =
         outcome.prone && outcome.landing?.success !== false ? t('You are Prone.') : null;
       const falling = outcome.falling ? t('You fall; a reaction may slow you.') : null;
-      // A trap it came onto (docs/adr/0057-encounters-maps-loot.md §6).
+      // A trap it came onto, and those it noticed (docs/adr/0057-encounters-maps-loot.md §6).
       const trapped = outcome.trap
         ? t('A trap springs: {name}.', { name: t(TRAP_WORDS[outcome.trap]) })
         : null;
-      return [moved, trapped, aloft, landing, fell, prone, falling]
+      const noticed = outcome.noticed?.length
+        ? t('You notice a trap: {name}.', {
+            name: outcome.noticed.map((id) => t(TRAP_WORDS[id])).join(', '),
+          })
+        : null;
+      return [moved, noticed, trapped, aloft, landing, fell, prone, falling]
         .filter((part) => part !== null)
         .join(' ');
     }
@@ -322,6 +327,12 @@ export function outcomeMessage(t: Translate, outcome: PlayerOutcome | undefined)
         : outcome.trigger === 'spell'
           ? t('You let the spell happen.')
           : t('You did not react.');
+    case 'TakeAction':
+      return outcome.disarmed
+        ? t('You disarm the trap: {name}.', { name: t(TRAP_WORDS[outcome.disarmed]) })
+        : t('You find a trap: {name}.', {
+            name: outcome.found.map((id) => t(TRAP_WORDS[id])).join(', '),
+          });
     default:
       return t('Action resolved. Your view has been refreshed.');
   }
