@@ -19,6 +19,8 @@ const expect = baseExpect.configure({ timeout: 15_000 });
 test('objects lead from Mira to evidence, a hypothesis, contradictory testimony, and Orin recall', async ({
   page,
 }) => {
+  // The whole investigation in one journey: about 30 s alone on a laptop, more beside other runs.
+  test.setTimeout(90_000);
   const campaign = INVESTIGATION_CAMPAIGNS.journey;
   const privacy = investigationBoundary(page);
   await enterInvestigation(page, campaign);
