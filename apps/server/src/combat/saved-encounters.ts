@@ -19,6 +19,7 @@ import type { WorldState } from '@ltw/domain';
 import {
   encounterDifficulty,
   monsterIn,
+  squaresOf,
   srdMonster,
   srdMonsterBlock,
   totalLevel,
@@ -135,14 +136,31 @@ function viewOf(state: WorldState, record: SavedEncounterRecord): SavedEncounter
   };
 }
 
-/** Why a saved encounter cannot be written in this campaign, or null. */
+/**
+ * Why a saved encounter cannot be written in this campaign, or null: its place or a foe unknown,
+ * or someone's space off the field, in a wall, or on another's square.
+ */
 function refusal(state: WorldState, encounter: SavedEncounterRequest): string | null {
   if (state.entities.get(encounter.locationId)?.kind !== 'location') return 'location';
-  if (encounter.foes.some((foe) => foeView(state, foe) === null)) return 'foe';
+  const foes = encounter.foes.map((foe) => foeView(state, foe));
+  if (foes.some((foe) => foe === null)) return 'foe';
   const { width, height } = encounter.battlefield;
-  const inside = (square: { x: number; y: number }) => square.x < width && square.y < height;
-  if (!encounter.foes.every((foe) => inside(foe.position)) || !encounter.partyStart.every(inside))
-    return 'square';
+  const walls = new Set(
+    (encounter.battlefield.walls ?? []).map((w) => `${String(w.x)},${String(w.y)}`),
+  );
+  const spaces = [
+    ...encounter.partyStart.map((position) => squaresOf({ position, size: 'medium' })),
+    ...encounter.foes.map((foe, index) =>
+      squaresOf({ position: foe.position, size: foes[index]?.size ?? 'medium' }),
+    ),
+  ];
+  const taken = new Set<string>();
+  for (const square of spaces.flat()) {
+    const key = `${String(square.x)},${String(square.y)}`;
+    if (square.x >= width || square.y >= height || walls.has(key) || taken.has(key))
+      return 'square';
+    taken.add(key);
+  }
   return null;
 }
 

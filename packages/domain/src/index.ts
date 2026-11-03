@@ -166,7 +166,6 @@ export {
   type EncounterState,
   type TurnRecord,
 } from './combat/records.ts';
-export { paintBattlefield, sameGround } from './combat/terrain.ts';
 export {
   REACTION_WINDOW_ID_INDEX,
   candidateReactions,

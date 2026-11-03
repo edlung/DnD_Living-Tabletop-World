@@ -1,7 +1,7 @@
-import type { Battlefield } from '@ltw/contracts';
+import type { Battlefield } from './battlefield.ts';
 import { describe, expect, it } from 'vitest';
 
-import { paintBattlefield, sameGround } from './terrain.ts';
+import { paintBattlefield, sameGround } from './terrain-paint.ts';
 
 /**
  * The DM's brush (docs/adr/0057-encounters-maps-loot.md §2): each paint replaces its own kind on

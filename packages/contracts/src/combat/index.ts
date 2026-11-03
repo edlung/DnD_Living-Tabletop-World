@@ -118,6 +118,7 @@ export {
   terrainPaintSchema,
   type TerrainPaint,
 } from './board-commands.ts';
+export { paintBattlefield, sameGround } from './terrain-paint.ts';
 export {
   CONTAGION_STEPS,
   TOOLBOX_COMMAND_TYPES,

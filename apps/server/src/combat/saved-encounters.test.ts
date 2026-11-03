@@ -71,6 +71,27 @@ describe('the DM’s saved encounters', () => {
     );
     expect(unknown.statusCode).toBe(400);
     expect(unknown.json<{ reason: string }>().reason).toBe('foe');
+    // A foe in a wall, or two on one square, never reaches the fight.
+    const walled = await post(
+      app,
+      `${SAVED}/${id}`,
+      { ...goblins, battlefield: { ...goblins.battlefield, walls: [{ x: 15, y: 0 }] } },
+      TOKENS.dm,
+    );
+    expect(walled.json<{ reason: string }>().reason).toBe('square');
+    const crowded = await post(
+      app,
+      `${SAVED}/${id}`,
+      {
+        ...goblins,
+        foes: [
+          ...goblins.foes,
+          { kind: 'bestiary', monsterId: 'goblin-warrior', position: { x: 14, y: 5 } },
+        ],
+      },
+      TOKENS.dm,
+    );
+    expect(crowded.json<{ reason: string }>().reason).toBe('square');
     expect((await post(app, `${SAVED}/${id}`, goblins, TOKENS.dm)).statusCode).toBe(201);
     expect((await post(app, `${SAVED}/${id}`, goblins, TOKENS.dm)).statusCode).toBe(200);
     const listed = (await get(app, SAVED, TOKENS.dm)).json<SavedEncountersResponse>();

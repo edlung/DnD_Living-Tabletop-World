@@ -1,8 +1,9 @@
-import type { Battlefield, Square, TerrainPaint } from '@ltw/contracts';
+import type { Battlefield, Square } from './battlefield.ts';
+import type { TerrainPaint } from './board-commands.ts';
 
 /**
  * The battlefield after a stroke of the DM's brush (docs/adr/0057-encounters-maps-loot.md §2), as
- * the decision checks it and the history replays it. A paint replaces what lay on its squares of
+ * the decision checks it, the history replays it and the encounter builder paints before a fight. A paint replaces what lay on its squares of
  * its own kind; a wall replaces everything there, anything else takes a wall away, and a clear
  * leaves the squares bare (their light stays the fight's). Each list comes out ordered by row, then
  * column, so the same ground is always written the same way.

@@ -1,3 +1,5 @@
+import { paintBattlefield } from '@ltw/contracts';
+
 import { CorruptHistoryError } from '../kernel/corrupt-history.ts';
 import type { RecordedEvent, Restore } from '../kernel/events.ts';
 import { withEntry, withoutEntry } from '../kernel/maps.ts';
@@ -5,7 +7,6 @@ import type { WorldState } from '../kernel/state.ts';
 import { namedEntityIds } from './named-entities.ts';
 import { openReactionWindow } from './reactions.ts';
 import { encounterAfterTurnStart, type EncounterState } from './records.ts';
-import { paintBattlefield } from './terrain.ts';
 
 /** Fold cases for combat events (called from kernel/evolve.ts). */
 type EventOf<T extends RecordedEvent['type']> = Extract<RecordedEvent, { type: T }>;

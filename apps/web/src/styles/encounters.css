@@ -119,3 +119,39 @@
 .encounter-difficulty.is-beyond {
   color: var(--danger, var(--gold-bright));
 }
+
+/* The builder's battlefield (combat/encounter-field.tsx; ADR 0057 §1–2): the board at a height of
+   its own, as the workshop's preview has it, its brush card beneath. */
+.encounter-field {
+  display: grid;
+  gap: 0.5rem;
+  min-width: 0;
+}
+.encounter-field h6 {
+  margin: 0;
+  font-size: 1rem;
+}
+.encounter-field > p {
+  margin: 0;
+}
+.encounter-field-board {
+  position: relative;
+  min-width: 0;
+}
+.encounter-field-board .board {
+  position: relative;
+  flex-direction: column;
+  height: 420px;
+  overflow: hidden;
+}
+/* The view and brush buttons above the grid, never over a corner where a foe starts. */
+.encounter-field-board .board-controls {
+  position: static;
+  align-self: flex-end;
+  margin-bottom: 0.35rem;
+}
+@media (max-width: 700px) {
+  .encounter-field-board .board {
+    height: 340px;
+  }
+}

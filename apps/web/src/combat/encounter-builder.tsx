@@ -1,4 +1,5 @@
 import type {
+  Battlefield,
   BestiaryResponse,
   EncounterDifficultyResponse,
   EntityRef,
@@ -13,33 +14,28 @@ import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
 import { Field } from '../session/account-forms.tsx';
 import { Glyph } from '../visual/glyph.tsx';
+import { keyOf, useBuilderLayout, type Pick } from './builder-layout.ts';
 import { DifficultyWords } from './difficulty-words.tsx';
-import { foeSquares, partyStartSquares, type CreatureSize } from './encounter-layout.ts';
+import { EncounterField } from './encounter-field.tsx';
+import { resizeGround, type CreatureSize, type LayoutProblem } from './encounter-layout.ts';
 
 /**
  * The DM's encounter builder (docs/adr/0057-encounters-maps-loot.md §1): a name, a place, the
  * field's size, and foes from the bestiary or the campaign's own creatures, each with how many;
- * the fight's difficulty for the party at the place is read again as the foes change. Saving lays
- * the foes out from the right edge and the party along the left; the World Engine starts it.
+ * the fight's difficulty for the party at the place is read again as the foes change. The foes
+ * stand from the right edge and the party along the left until the DM moves them on the builder's
+ * board, where the ground is painted before the fight; the World Engine starts it.
  */
-/** A foe without its square: a bestiary entry or one of the campaign's creatures. */
-type FoeRef =
-  | { readonly kind: 'bestiary'; readonly monsterId: string }
-  | { readonly kind: 'creature'; readonly entityId: string };
-
-interface Pick {
-  readonly key: string;
-  readonly foe: FoeRef;
-  readonly name: string;
-  readonly size: CreatureSize;
-  readonly count: number;
-}
 
 const SHOWN = 30;
 const SIZES = [8, 10, 12, 16, 20, 24, 30, 40] as const;
 
-const keyOf = (foe: FoeRef) =>
-  foe.kind === 'bestiary' ? `b:${foe.monsterId}` : `c:${foe.entityId}`;
+/** What keeps a laid-out encounter from saving, in words. */
+const PROBLEM: Readonly<Record<LayoutProblem, string>> = {
+  outside: 'One of them stands off the field: move it, or make the field larger.',
+  wall: 'One of them stands in a wall: move it, or clear the wall.',
+  shared: 'Two of them stand on one square: move one.',
+};
 
 /** The picks a saved encounter holds, its foes gathered by kind. */
 function picksOf(encounter: SavedEncounterView | null): Pick[] {
@@ -60,20 +56,6 @@ function picksOf(encounter: SavedEncounterView | null): Pick[] {
     });
   }
   return [...picks.values()];
-}
-
-/** The foes one by one, each on its square; null when they do not fit on the field. */
-function placed(picks: readonly Pick[], field: { width: number; height: number }) {
-  const each = picks.flatMap((pick) => Array.from({ length: pick.count }, () => pick));
-  const squares = foeSquares(
-    each.map((pick) => pick.size),
-    field,
-  );
-  if (!squares) return null;
-  return each.map((pick, index): SavedFoe => ({
-    ...pick.foe,
-    position: squares[index] ?? { x: 0, y: 0 },
-  }));
 }
 
 export function EncounterBuilder({
@@ -107,8 +89,9 @@ export function EncounterBuilder({
   const [encounterId] = useState(() => encounter?.encounterId ?? crypto.randomUUID());
   const [name, setName] = useState(encounter?.name ?? '');
   const [place, setPlace] = useState(encounter?.location?.entityId ?? locationId);
-  const [width, setWidth] = useState(encounter?.battlefield.width ?? 16);
-  const [height, setHeight] = useState(encounter?.battlefield.height ?? 12);
+  const [ground, setGround] = useState<Battlefield>(
+    () => encounter?.battlefield ?? { width: 16, height: 12, difficult: [], cover: [] },
+  );
   const [picks, setPicks] = useState<Pick[]>(() => picksOf(encounter));
   const [words, setWords] = useState('');
   const [chosen, setChosen] = useState('');
@@ -116,8 +99,14 @@ export function EncounterBuilder({
   const [busy, setBusy] = useState(false);
   const [note, setNote] = useState<string | null>(null);
   const [difficulty, setDifficulty] = useState<EncounterDifficultyResponse | null>(null);
-  const field = { width, height };
-  const foes = placed(picks, field);
+  const { width, height } = ground;
+  // The party's places: as many as stand at the place now, or as the encounter saved.
+  const partyNames = difficulty?.party.map((member) => member.name) ?? [];
+  const layout = useBuilderLayout(encounter, picks, ground, {
+    count: partyNames.length > 0 ? partyNames.length : (encounter?.partyStart.length ?? 4),
+    name: (n) => partyNames[n] ?? t('Party place {number}', { number: n + 1 }),
+  });
+  const { foes } = layout;
   const foesKey = picks.map((pick) => `${pick.key}x${String(pick.count)}`).join('|');
   // The difficulty for the party at the place, read again as the foes change.
   useEffect(() => {
@@ -177,13 +166,13 @@ export function EncounterBuilder({
   const save = async (event: SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
     setAttempted(true);
-    if (name.trim() === '' || !foes || foes.length === 0) return;
+    if (name.trim() === '' || !foes || foes.length === 0 || layout.problem !== null) return;
     const body: SavedEncounterRequest = {
       name: name.trim(),
       locationId: place,
-      battlefield: { width, height, difficult: [], cover: [] },
-      foes,
-      partyStart: partyStartSquares(Math.max(1, difficulty?.party.length ?? 4), field),
+      battlefield: ground,
+      foes: [...foes],
+      partyStart: [...layout.partyStart],
     };
     setBusy(true);
     setNote(null);
@@ -244,7 +233,9 @@ export function EncounterBuilder({
               {...control}
               value={width}
               onChange={(event) => {
-                setWidth(Number(event.target.value));
+                setGround((current) =>
+                  resizeGround(current, Number(event.target.value), current.height),
+                );
               }}
             >
               {SIZES.map((size) => (
@@ -261,7 +252,9 @@ export function EncounterBuilder({
               {...control}
               value={height}
               onChange={(event) => {
-                setHeight(Number(event.target.value));
+                setGround((current) =>
+                  resizeGround(current, current.width, Number(event.target.value)),
+                );
               }}
             >
               {SIZES.map((size) => (
@@ -399,6 +392,17 @@ export function EncounterBuilder({
         )}
       </fieldset>
       <DifficultyWords preview={difficulty} />
+      <EncounterField
+        ground={ground}
+        tokens={layout.tokens}
+        onGround={setGround}
+        onMove={layout.move}
+      />
+      {foes && layout.problem && (
+        <p className="field-error" role="alert">
+          {t(PROBLEM[layout.problem])}
+        </p>
+      )}
       {note && (
         <p className="authoring-notice error" role="alert">
           {note}

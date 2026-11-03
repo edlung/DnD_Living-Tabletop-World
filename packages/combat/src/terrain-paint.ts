@@ -1,12 +1,10 @@
-import { battlefieldSchema, type KernelCommandOf } from '@ltw/contracts';
 import {
-  accept,
+  battlefieldSchema,
   paintBattlefield,
-  reject,
   sameGround,
-  type Decision,
-  type DecisionContext,
-} from '@ltw/domain';
+  type KernelCommandOf,
+} from '@ltw/contracts';
+import { accept, reject, type Decision, type DecisionContext } from '@ltw/domain';
 
 import { fills } from '@ltw/rules';
 

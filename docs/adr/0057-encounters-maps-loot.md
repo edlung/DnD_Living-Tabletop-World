@@ -115,7 +115,7 @@
   stroke) and one paint — a wall, difficult ground, a cover level, water shallow or deep, the
   ground's height (0 lays it level), light or heavy obscurement, or a clear. The event
   `TerrainPainted` carries the stroke, and the history replays it through one pure function
-  (`packages/domain/src/combat/terrain.ts` `paintBattlefield`): a paint replaces its own kind on
+  (`packages/contracts/src/combat/terrain-paint.ts` `paintBattlefield`, shared with the encounter builder): a paint replaces its own kind on
   its squares, a wall replaces everything there, anything else takes a wall away, a clear leaves
   the squares bare; a square's light is the fight's and stays. Every square lies on the field; no
   wall rises where a creature or an object stands; a stroke that changes nothing (`NO_EFFECT`), or
@@ -127,6 +127,19 @@
   pointer passes as one stroke, and Escape or Done puts the brush down. While it is on, a press
   chooses nothing and no token is dragged. The DM's history names each stroke ("Difficult
   terrain: 3 squares").
+
+## Notes from the implementation (Stage 670b, part 2, 2026-11-03)
+
+- The builder's battlefield (`apps/web/src/combat/encounter-field.tsx`, `builder-layout.ts`): the
+  saved encounter's ground and every token's square are the builder's to set. The board opens flat
+  from above, its view and brush buttons above the grid (never over a corner where a foe starts);
+  the same brush paints the ground before the fight (`paintBattlefield`, now in contracts, so the
+  builder and the World Engine lay the same ground); a foe or a party place moves by choosing it and
+  a square, or by dragging it. Laid out from the edges until moved, a moved token keeps its square
+  while the builder is open and in the saved encounter (the n-th foe of its kind, the n-th party
+  place). A smaller field leaves its ground beyond the edge behind.
+- Saving is refused, on the screen and by the server, while a token stands off the field, in a wall
+  or on another's square (`layoutProblem`; the server's reason `square`), each said in words.
 
 ## Consequences
 

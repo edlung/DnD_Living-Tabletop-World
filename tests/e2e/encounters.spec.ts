@@ -2,14 +2,22 @@ import { expect as baseExpect, test, type Page } from '@playwright/test';
 
 import { UI_PARTY_CAMPAIGNS } from '../../apps/server/src/testing/ui-party-campaigns.ts';
 import { expectAccessible } from './support/axe.ts';
-import { clickSquare, expectAccepted, shownPoint, square, submit } from './support/combat.ts';
+import {
+  clickSquare,
+  clickWhereShown,
+  expectAccepted,
+  shownPoint,
+  square,
+  submit,
+} from './support/combat.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
 import { openSheet } from './support/shell.ts';
 
 /**
  * The DM's encounter builder and hand (Stage 670a, docs/adr/0057-encounters-maps-loot.md §1–2):
  * the DM builds an encounter from the bestiary for the party on the Old Trade Road, sees its
- * difficulty as it grows, saves it and starts it in one step; on the board the DM sets a goblin
+ * difficulty as it grows, moves the ogre and paints a wall on the builder's board (Stage 670b),
+ * saves it and starts it in one step; on the board the DM sets a goblin
  * down on another square by choosing it and the square, another by dragging its token, and moves
  * a foe on its own turn as its rules allow.
  */
@@ -68,12 +76,27 @@ test('the DM builds, saves and starts an encounter, then sets its foes down', as
   await bestiary.selectOption({ label: 'Ogre (CR 2, 450 XP)' });
   await builder.getByRole('button', { name: 'Add', exact: true }).click();
   // Its difficulty for the four on the road, as the DM builds.
-  const difficulty = builder.getByRole('status');
+  const difficulty = builder.locator('.encounter-difficulty');
   await expect(difficulty).toContainText('Difficulty: Low. Foes 550 XP');
   await expect(difficulty).toContainText(
     'For Brann Ironvale, Elowen Starwhisper, Maren Ashby, Tamsin Quickfoot.',
   );
   await expectAccessible(page, 'the encounter builder');
+
+  // On the builder's board the ogre is moved by choosing it and a square, and a wall painted.
+  const field = builder.getByRole('region', { name: 'The battlefield' });
+  const fieldSquare = (x: number, y: number) =>
+    field.getByRole('button', { name: new RegExp(`^Square ${String(x)}, ${String(y)}(:|$)`) });
+  await expect(fieldSquare(14, 4)).toHaveAccessibleName(/Ogre/);
+  await field.locator('.board-plate', { hasText: 'Ogre' }).locator('.token-plate').click();
+  await expect(field.getByRole('status')).toHaveText('Choose a square for Ogre, or drag it there.');
+  await clickWhereShown(page, fieldSquare(10, 6));
+  await expect(fieldSquare(10, 6)).toHaveAccessibleName(/Ogre/);
+  await field.getByRole('button', { name: 'Paint the ground', exact: true }).click();
+  await clickWhereShown(page, fieldSquare(8, 8));
+  await expect(fieldSquare(8, 8)).toHaveAccessibleName(/wall/);
+  await expectAccessible(page, 'the builder’s brush');
+  await field.locator('.paint-card .primary-button').click();
   await builder.getByRole('button', { name: 'Save the encounter' }).click();
   await expect(builder).toHaveCount(0);
   const row = mine.getByRole('listitem').filter({ hasText: 'Goblins at the ford' });
@@ -86,19 +109,22 @@ test('the DM builds, saves and starts an encounter, then sets its foes down', as
   ).toBeVisible();
   await page.keyboard.press('Escape');
   await expect(encounterSheet(page)).toBeHidden();
+  // The fight stands where the builder put it.
+  await expect(square(page, 10, 6)).toHaveAccessibleName(/Ogre/);
+  await expect(square(page, 8, 8)).toHaveAccessibleName(/wall/);
 
   // Goblin Warrior 1 waits in the far corner, its plate over its square: the DM presses the plate,
   // then a square.
   await expect(square(page, 15, 0)).toHaveAccessibleName(/Goblin Warrior 1/);
   await plate(page, 'Goblin Warrior 1').click();
-  await clickSquare(page, 10, 5);
+  await clickSquare(page, 6, 3);
   const card = page.locator('.dm-square-card');
   await expect(card).toContainText('The DM’s hand');
   await expectAccessible(page, 'the DM’s hand');
   expectAccepted(
     await submit(page, card.getByRole('button', { name: 'Set Goblin Warrior 1 down here' })),
   );
-  await expect(square(page, 10, 5)).toHaveAccessibleName(/Goblin Warrior 1/);
+  await expect(square(page, 6, 3)).toHaveAccessibleName(/Goblin Warrior 1/);
   await expect(square(page, 15, 0)).not.toHaveAccessibleName(/Goblin Warrior/);
   // The world answered and the view refreshed: the hand is empty again.
   await expect(card).toHaveCount(0);

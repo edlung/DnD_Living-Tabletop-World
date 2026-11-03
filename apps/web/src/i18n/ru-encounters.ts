@@ -53,6 +53,18 @@ registerRussian({
     'Так перемещение не тратится и провоцированной атаки нет.',
   '{name} set down on another square': '{name} — теперь на другой клетке',
   '{name} stands here.': 'Здесь стоит: {name}.',
+  // The builder's battlefield
+  'The battlefield': 'Поле боя',
+  'Choose a square for {name}, or drag it there.':
+    'Выберите клетку для: {name} — или перетащите туда.',
+  'Choose a foe or a party place, then a square — or drag it there.':
+    'Выберите противника или место отряда, затем клетку — или перетащите.',
+  'Party place {number}': 'Место отряда {number}',
+  'One of them stands off the field: move it, or make the field larger.':
+    'Кто-то стоит за краем поля: передвиньте его или увеличьте поле.',
+  'One of them stands in a wall: move it, or clear the wall.':
+    'Кто-то стоит в стене: передвиньте его или уберите стену.',
+  'Two of them stand on one square: move one.': 'Двое стоят на одной клетке: передвиньте одного.',
   // The DM's brush on the board
   'Paint the ground': 'Рисовать местность',
   'Done painting': 'Готово',
