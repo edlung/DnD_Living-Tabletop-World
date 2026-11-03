@@ -94,6 +94,12 @@ import {
   craftingWorkedPayloadSchema,
 } from '../items/crafting.ts';
 import {
+  mapPinsSetPayloadSchema,
+  partyTravelledPayloadSchema,
+  routeSetPayloadSchema,
+  travelRestoreSchemas,
+} from '../travel/map.ts';
+import {
   preparedPartyEstablishedPayloadSchema,
   campaignBootstrappedPayloadSchema,
 } from '../campaign/bootstrap-events.ts';
@@ -162,6 +168,7 @@ export const restoreSchema = z.discriminatedUnion('fact', [
   ...portraitWishRestoreSchemas,
   ...merchantRestoreSchemas,
   ...craftingRestoreSchemas,
+  ...travelRestoreSchemas,
   ...chronicleRestoreSchemas,
   ...itemRestoreSchemas,
 ]);
@@ -324,6 +331,10 @@ export const kernelEventSchema = z.discriminatedUnion('type', [
   event('CraftingWorked', craftingWorkedPayloadSchema),
   event('CraftingFinished', craftingFinishedPayloadSchema),
   event('CraftingAbandoned', craftingAbandonedPayloadSchema),
+  // The world map and travel (§10).
+  event('MapPinsSet', mapPinsSetPayloadSchema),
+  event('RouteSet', routeSetPayloadSchema),
+  event('PartyTravelled', partyTravelledPayloadSchema),
 ]);
 
 export type KernelEvent = z.infer<typeof kernelEventSchema>;

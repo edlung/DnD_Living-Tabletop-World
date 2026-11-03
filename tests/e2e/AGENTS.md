@@ -245,6 +245,8 @@ application on 4313.
   route answers the ware's name; the journey trades by that name, never a guessed one.
   `crafting.spec.ts` owns `ui-craft` and `ui-craft-ru` (item campaigns: Elowen knows and carries the
   Herbalism Kit and the calligrapher's supplies, with thirty crowns more; Brann knows the kit).
+  `travel.spec.ts` owns `ui-travel` and `ui-travel-ru` (party campaigns: the party on the Old Trade
+  Road, no map yet); the journey pins places by their across and down fields, not by clicking.
 - Native apps (ADR 0070, `native-shell.spec.ts`): a stand-in shell installed with `addInitScript`
   records what the page posts, and the journey speaks for the shell with `ltw-native` events; it owns
   the `native` sign-in campaign. The apps themselves are checked on the simulator and the emulator.

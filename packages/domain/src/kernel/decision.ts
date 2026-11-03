@@ -90,6 +90,7 @@ export type ResolvedCommand =
           | 'ApplyAuthoring'
           | 'CreateCharacter'
           | 'WorkDowntime'
+          | 'Travel'
           | PlayerCommandType;
       }
     >
@@ -116,6 +117,7 @@ export type ResolvedCommand =
       | 'DawnRecharge'
       | 'CreateCharacter'
       | 'WorkDowntime'
+      | 'Travel'
     > & {
       readonly resolution: Resolution;
     })

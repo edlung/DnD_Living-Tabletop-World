@@ -46,6 +46,8 @@ const SCOPED = [
   'presence',
   // The table around a session (ADR 0043 §6): ready, absent, a pause.
   'lobby',
+  // The world map: pins and routes between known places (ADR 0057 §10).
+  'world-map',
 ];
 
 export function coverageInventory(target: LiveTarget): ViewRequest[] {

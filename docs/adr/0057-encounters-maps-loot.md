@@ -345,6 +345,33 @@
   days of work and begins one: what to make by tool, the scrolls, how many, who helps, then the
   materials and the days, shared. The live fingerprint covers `crafting` for a character and the DM.
 
+## Notes from the implementation (Stage 670g, 2026-11-03)
+
+- A region's map is a place's own approved picture (made by GPT or uploaded, as any picture), the
+  parchment until it has one. Its pins are a world fact (`mapPins`, `SetMapPins`, the DM's, all at
+  once; `MapPinsSet`, undone by the `mapPins` restore): the places it shows and where, as fractions
+  of the picture. A route joins two places (`routes`, keyed by the pair whichever way it is named;
+  `SetRoute`, null takes it away; `RouteSet`, the `route` restore) with its miles (1–1,000), the
+  predominant terrain of SRD 5.2.1's Travel Terrain table (waterborne travel, by vehicle, is not
+  modelled) and whether a good road runs.
+- `Travel` (the DM's, decided by the combat engine, which rolls): the travellers stand together at
+  one end of a route outside a fight. The pace is no faster than the terrain's maximum, one step
+  more on a good road, and Slow when any traveller's Speed is down to half or less (Exhaustion, a
+  load past Strength). The miles take their hours at 4, 3 or 2 miles an hour, so many hours a day
+  (8 by default, up to 16): each hour of a day past 8 asks each traveller a Constitution save at DC
+  10 + the hours past 8 (`purpose: 'travel'`), a failure a level of Exhaustion. The clock advances
+  by the full days and the last day's hours, the travellers arrive at that time, and the journey is
+  recorded (`PartyTravelled`: from, to, pace, miles, hours, days, who) for the DM's history, where
+  it is listed beside time and weather and undone as a whole.
+- Everyone reads the map (`GET …/world-map`, covered by every live fingerprint): the regions it
+  knows, the places it knows pinned, the routes between two places it knows, where its party stands
+  and who stands there. The Places sheet shows it above the destinations: the picture with its pins
+  (each opens its place; the party's marked "where you are") over the routes, and the routes in
+  words. The DM also edits the map — which place's picture it is, each pin clicked on the map or
+  set by its across and down, the routes between places — and sets out on a route: where to, the
+  pace with its effect on checks and the fastest allowed, the hours a day, who goes, then the hours
+  and days and the saves past 8 hours, before anything moves.
+
 ## Consequences
 
 - Stage 670 runs in parts (`work-orders/STAGE_670.md`): the builder and the DM's hand; terrain and

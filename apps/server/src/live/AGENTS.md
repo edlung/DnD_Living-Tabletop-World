@@ -30,6 +30,8 @@ change the perspective cannot read.
   ADR 0057 §5, `src/marks/`): the route answers every member and the display, and a mark is the
   table's, so it signals nothing a perspective may not read. A ping's end changes the view, so the
   screens drop it on the server's clock as well as their own.
+- Every perspective covers `world-map` (ADR 0057 §10, `src/travel/world-map-routes.ts`): the regions,
+  places and routes it knows, so a hidden place or its road never shows there.
 - An acting character and the DM also cover `crafting` (ADR 0057 §9, `src/items/crafting-routes.ts`):
   the DM's every project; a character's own, what it can make, and the party here it knows that
   could help, so a hidden character never shows there.

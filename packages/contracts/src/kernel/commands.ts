@@ -38,6 +38,11 @@ import {
   workDowntimeCommandSchema,
 } from '../items/crafting.ts';
 import { setWeatherCommandSchema } from '../visual/commands.ts';
+import {
+  setMapPinsCommandSchema,
+  setRouteCommandSchema,
+  travelCommandSchema,
+} from '../travel/travel.ts';
 import { generateChronicleCommandSchema } from '../chronicle/commands.ts';
 import { applyAuthoringCommandSchema } from '../authoring/commands.ts';
 import {
@@ -234,6 +239,9 @@ export const kernelCommandSchema = z
     startCraftingCommandSchema,
     abandonCraftingCommandSchema,
     workDowntimeCommandSchema,
+    setMapPinsCommandSchema,
+    setRouteCommandSchema,
+    travelCommandSchema,
     attuneItemCommandSchema,
     identifyItemCommandSchema,
     dawnRechargeCommandSchema,
@@ -336,6 +344,9 @@ export const KERNEL_COMMAND_TYPES = [
   'StartCrafting',
   'AbandonCrafting',
   'WorkDowntime',
+  'SetMapPins',
+  'SetRoute',
+  'Travel',
   'AttuneItem',
   'IdentifyItem',
   'DawnRecharge',

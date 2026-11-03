@@ -37,6 +37,7 @@ const KIND_GLYPH = {
   'mental-stress': 'thought',
   contagion: 'poisoned',
   hazard: 'weather',
+  travel: 'travel',
 } as const;
 
 const UNDO_LABEL: Readonly<Record<DmHistoryEntry['kind'], string>> = {

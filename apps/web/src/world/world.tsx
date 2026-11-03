@@ -371,6 +371,7 @@ export function World({
                 shell.dismissSheet();
                 select(place.entityId, place.kind);
               }}
+              travel={{ api, revision, isDm, locked: action.locked, onRun: run }}
             />
             <JournalSheet
               api={api}

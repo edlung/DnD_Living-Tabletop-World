@@ -2,6 +2,7 @@ import { ASSET_SETTLING_COMMAND_TYPES, type KernelCommandType } from '@ltw/contr
 
 import { assetHoldBlockers } from '../../assets/hold.ts';
 import { assetRestores } from '../../assets/undo.ts';
+import { isTravelEvent, travelRestores } from '../../travel/map.ts';
 
 import {
   accept,
@@ -171,6 +172,11 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
   };
 
   for (const event of events) {
+    // The world map's pins and routes (docs/adr/0057-encounters-maps-loot.md §10).
+    if (isTravelEvent(event)) {
+      restores.push(...travelRestores(event, before));
+      continue;
+    }
     switch (event.type) {
       case 'EntityCreated':
         restores.push({ fact: 'entity', entityId: event.payload.entityId, value: null });

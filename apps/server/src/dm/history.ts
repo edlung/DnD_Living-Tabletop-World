@@ -70,6 +70,8 @@ const WORLD_TYPES: ReadonlySet<string> = new Set([
   'AdvanceWorldTime',
   'SetWeather',
   'SetCampaignOptions',
+  // A journey (docs/adr/0057-encounters-maps-loot.md §10).
+  'Travel',
 ]);
 /** The listed entries and every stored command by ID (a blocker's issuer and submission). */
 interface Logged {
@@ -352,6 +354,26 @@ function worldChange(
   }
   if (event?.type === 'CampaignOptionsSet') {
     return { kind: 'options', from: event.payload.from, to: event.payload.to };
+  }
+  if (event?.type === 'PartyTravelled') {
+    const { fromId, toId, pace, hours, days } = event.payload;
+    const failed = snapshot.history
+      .slice(stored.firstSequence - 1, stored.lastSequence)
+      .filter(
+        (one) =>
+          one.type === 'SavingThrowRolled' &&
+          one.payload.purpose === 'travel' &&
+          !one.payload.success,
+      ).length;
+    return {
+      kind: 'travel',
+      from: entityRef(snapshot, fromId, 'location'),
+      to: entityRef(snapshot, toId, 'location'),
+      pace,
+      hours,
+      days,
+      failed,
+    };
   }
   return null;
 }

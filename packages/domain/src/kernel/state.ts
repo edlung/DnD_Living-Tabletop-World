@@ -24,6 +24,7 @@ import type { KnowledgeRecord } from '../knowledge/records.ts';
 import type { MemoryRecord, SessionRecord } from '../memory/records.ts';
 import type { MerchantRecord } from '../items/trade.ts';
 import type { CraftProject } from '../items/crafting.ts';
+import type { MapPin, RouteRecord } from '../travel/map.ts';
 
 /**
  * Canonical World Kernel state: the fold of a campaign's event stream
@@ -145,6 +146,10 @@ export interface WorldState {
   readonly merchants: ReadonlyMap<string, MerchantRecord>;
   /** A project's ID → the crafting under way (docs/adr/0057-encounters-maps-loot.md §9). */
   readonly crafting: ReadonlyMap<string, CraftProject>;
+  /** A region's ID → the places its map shows (docs/adr/0057-encounters-maps-loot.md §10). */
+  readonly mapPins: ReadonlyMap<string, readonly MapPin[]>;
+  /** A pair of places (`routeKey`) → the route between them (§10). */
+  readonly routes: ReadonlyMap<string, RouteRecord>;
 }
 
 export const EMPTY_WORLD_STATE: WorldState = {
@@ -177,6 +182,8 @@ export const EMPTY_WORLD_STATE: WorldState = {
   portraitWishes: new Map(),
   merchants: new Map(),
   crafting: new Map(),
+  mapPins: new Map(),
+  routes: new Map(),
 };
 
 /** Kinds that occupy a location. Locations nest via `parentId`; factions are abstract. */

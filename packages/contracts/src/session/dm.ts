@@ -11,6 +11,7 @@ import type { RejectionCode } from '../kernel/results.ts';
 import type { EntityRef } from '../knowledge/views.ts';
 import type { Weather } from '../visual/commands.ts';
 import type { CampaignOptions } from '../campaign/options.ts';
+import type { TravelPace } from '../travel/travel.ts';
 
 /**
  * The DM's table tools of the live session (docs/adr/0033-live-session.md §6–7;
@@ -126,7 +127,18 @@ export interface DmWorldEntry extends DmHistoryCommon {
         readonly from: Weather | null;
         readonly to: Weather;
       }
-    | { readonly kind: 'options'; readonly from: CampaignOptions; readonly to: CampaignOptions };
+    | { readonly kind: 'options'; readonly from: CampaignOptions; readonly to: CampaignOptions }
+    /** A journey (docs/adr/0057-encounters-maps-loot.md §10): where, how fast, how long, and how
+     * many of extended travel's saves failed. */
+    | {
+        readonly kind: 'travel';
+        readonly from: EntityRef;
+        readonly to: EntityRef;
+        readonly pace: TravelPace;
+        readonly hours: number;
+        readonly days: number;
+        readonly failed: number;
+      };
 }
 
 /**

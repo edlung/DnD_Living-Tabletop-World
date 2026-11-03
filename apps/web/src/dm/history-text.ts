@@ -17,6 +17,7 @@ import { spellName } from '../exploration/outcome-messages.ts';
 import { describeHand } from './hand-words.ts';
 import { optionChanges } from './option-words.ts';
 import { formatWorldTime } from './world-time.ts';
+import { PACE_WORDS } from '../travel/travel-words.ts';
 
 /**
  * The words of the DM history (docs/adr/0033-live-session.md §7). Every sentence is an English
@@ -110,6 +111,9 @@ export const STEP_TEXT: Readonly<Record<KernelCommandType, string>> = {
   StartCrafting: 'begin crafting',
   AbandonCrafting: 'give up crafting',
   WorkDowntime: 'days of downtime',
+  SetMapPins: 'pin places on a map',
+  SetRoute: 'set a route',
+  Travel: 'travel',
   AttuneItem: 'attune to an item',
   IdentifyItem: 'identify an item',
   DawnRecharge: 'dawn: charges regained',
@@ -298,12 +302,25 @@ const WORLD_KIND: Readonly<Record<DmWorldEntry['change']['kind'], string>> = {
   time: 'World time',
   weather: 'Weather',
   options: 'Campaign options',
+  travel: 'Travel',
 };
 
 /** A time, weather or options change, from what it was to what it became. */
 export function describeWorldChange(t: Translate, change: DmWorldEntry['change']): string {
   if (change.kind === 'options') {
     return t('Campaign options: {changes}', { changes: optionChanges(t, change.from, change.to) });
+  }
+  if (change.kind === 'travel') {
+    const pace = t(PACE_WORDS[change.pace]);
+    const went = t('Travelled from {from} to {to}, {pace}: {hours} h on the road', {
+      from: change.from.name,
+      to: change.to.name,
+      pace,
+      hours: change.hours,
+    });
+    return change.failed === 0
+      ? went
+      : `${went}; ${t('Exhaustion from the road: {count}', { count: change.failed })}`;
   }
   if (change.kind === 'time') {
     return t('Time: {from} → {to}', {

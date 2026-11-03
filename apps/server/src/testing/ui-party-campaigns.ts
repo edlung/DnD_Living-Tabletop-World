@@ -44,6 +44,9 @@ export const UI_PARTY_CAMPAIGNS = {
   trapsFound: 'ui-traps-found',
   /** What a fallen foe carried, taken after the fight (Stage 670e). */
   lootFight: 'ui-loot-fight',
+  /** The world map, its routes and a journey (Stage 670g). */
+  travel: 'ui-travel',
+  travelRu: 'ui-travel-ru',
 } as const;
 
 const PARTY = ['elowen-starwhisper', 'brann-ironvale', 'tamsin-quickfoot', 'maren-ashby'];
@@ -70,6 +73,8 @@ export async function seedUiPartyCampaigns(engine: WorldEngine): Promise<void> {
     [UI_PARTY_CAMPAIGNS.traps, 'en'],
     [UI_PARTY_CAMPAIGNS.trapsFound, 'en'],
     [UI_PARTY_CAMPAIGNS.lootFight, 'en'],
+    [UI_PARTY_CAMPAIGNS.travel, 'en'],
+    [UI_PARTY_CAMPAIGNS.travelRu, 'ru'],
   ] as const) {
     const seed = await loadRavenfordSeed(language === 'ru' ? RAVENFORD_RU_FIXTURES_DIR : undefined);
     for (const input of seed.submissions) {

@@ -442,5 +442,6 @@ export * from './dice/rolls.ts';
 export * from './session/lobby.ts';
 
 export * from './items/index.ts';
+export * from './travel/travel.ts';
 export * from './play/index.ts';
 export * from './srd/index.ts';

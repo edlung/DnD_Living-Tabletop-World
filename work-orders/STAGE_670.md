@@ -50,7 +50,9 @@ Authority: owner approval 2026-11-02 (`reviews/OWNER_FULL_GAME_2026-11-02.json`)
   (helpers, materials, days), Potions of Healing and Spell Scrolls, the DM's downtime from the Party
   sheet putting the made thing in the pack. 670f done.
 - 670g — The world map and travel: a region's map with pins, routes with miles, terrain and roads,
-  the party travelling at a pace, the clock advancing, extended travel's Constitution saves.
+  the party travelling at a pace, the clock advancing, extended travel's Constitution saves. Done:
+  the map in the Places sheet for everyone, the DM's map editor and routes, journeys at a pace with
+  the clock, arrival, extended travel's saves and the DM's history. Stage 670 done.
 
 ## Checks at each sub-stage
 

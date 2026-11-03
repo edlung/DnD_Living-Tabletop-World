@@ -34,4 +34,7 @@ export type DmTableCommand = KernelCommandOf<
   | 'SetCampaignOptions'
   | 'SetMerchant'
   | 'WorkDowntime'
+  | 'SetMapPins'
+  | 'SetRoute'
+  | 'Travel'
 >;

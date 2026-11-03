@@ -17,7 +17,7 @@ import { RESOLVED_ID_POOL } from '../../investigation/records.ts';
 import { MAX_RESOLVED_IDS } from '../../combat/reactions.ts';
 import type { SkillCheckPort } from '../../investigation/skill-checks.ts';
 import type { CharacterBuilderPort } from '../../character/create.ts';
-import { CREATE_CHARACTER_IDS, DOWNTIME_IDS, SPLIT_COINS_IDS } from './drawn-ids.ts';
+import { CREATE_CHARACTER_IDS, DOWNTIME_IDS, SPLIT_COINS_IDS, isDmRolled } from './drawn-ids.ts';
 
 import { authorize } from '../authorization.ts';
 import { decide } from '../decide/decide.ts';
@@ -283,23 +283,8 @@ export class WorldEngine {
         resolution: { ids: [], d20: null, entropy: this.#entropyPool() },
       };
     }
-    if (
-      command.type === 'AdjustHitPoints' ||
-      command.type === 'SetCondition' ||
-      command.type === 'AddCombatant' ||
-      command.type === 'RemoveCombatant' ||
-      command.type === 'DelayTurn' ||
-      command.type === 'ExposeToHazard' ||
-      command.type === 'SpringTrap' ||
-      command.type === 'InflictMentalStress' ||
-      command.type === 'InfectWithContagion' ||
-      command.type === 'ContagionCourse' ||
-      command.type === 'UseCreatureAction' ||
-      command.type === 'DawnRecharge'
-    ) {
-      // The DM's damage may call for a Concentration save, a joining creature rolls initiative, a
-      // turn that passes on may start with a death save (docs/adr/0043-dm-screen.md §1–2), and a
-      // flyer made Prone falls (docs/adr/0049-space-and-movement.md §6).
+    if (isDmRolled(command)) {
+      // The DM's commands that roll (`drawn-ids.ts`): their dice drawn here and recorded.
       return { ...command, resolution: { ids: [], d20: null, entropy: this.#entropyPool() } };
     }
     if (command.type === 'CreateCharacter' || command.type === 'WorkDowntime') {

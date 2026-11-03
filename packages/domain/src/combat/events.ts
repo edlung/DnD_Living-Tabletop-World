@@ -435,6 +435,8 @@ export const combatEventPayloadSchemas = {
         'shove',
         'saddle',
         'hazard',
+        /** Extended travel's hourly save (docs/adr/0057-encounters-maps-loot.md §10). */
+        'travel',
         /** A creature's action with a save: a breath (docs/adr/0053-monsters-as-data.md §2). */
         'creature-action',
       ]),

@@ -38,6 +38,7 @@ import { decideEndCombat, decideStartCombat } from './start-end.ts';
 import { summonsAfter } from './summons.ts';
 import { shapesAfter } from './wild-shape.ts';
 import { decideEndTurn } from './turns.ts';
+import { decideTravel } from './travel.ts';
 
 /**
  * The Combat Engine (docs/adr/0015-combat-engine.md): the domain's
@@ -127,5 +128,7 @@ function decideCommand(context: DecisionContext, command: CombatCommand, dice: D
       return decideInfectWithContagion(context, command, dice);
     case 'ContagionCourse':
       return decideContagionCourse(context, command, dice);
+    case 'Travel':
+      return decideTravel(context, command, dice);
   }
 }

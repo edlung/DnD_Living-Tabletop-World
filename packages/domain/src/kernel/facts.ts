@@ -2,6 +2,7 @@ import { assetFootprint, assetRestoredFacts } from '../assets/footprints.ts';
 import { combatFootprint } from '../combat/footprints.ts';
 import { isItemEvent } from '../items/evolve.ts';
 import { itemFootprint } from '../items/footprints.ts';
+import { isTravelEvent, travelFootprint } from '../travel/map.ts';
 import { chronicleFootprint } from '../chronicle/decide.ts';
 import { consideredCombatants } from '../combat/reactions.ts';
 import { attemptKey, insightKey, scopedKey, shownKey } from '../investigation/records.ts';
@@ -32,6 +33,7 @@ export function footprintOf(event: KernelEvent): Footprint {
   // Every event happens at the current world time, so it depends on the clock.
   const clock = facts.clock();
   if (isItemEvent(event)) return itemFootprint(event);
+  if (isTravelEvent(event)) return travelFootprint(event);
   switch (event.type) {
     case 'PreparedPartyEstablished':
       return {
@@ -467,6 +469,10 @@ export function restoredFacts(restore: Restore): FactKey[] {
       return [facts.merchant(restore.npcId)];
     case 'crafting':
       return [facts.crafting(restore.projectId)];
+    case 'mapPins':
+      return [facts.mapPins(restore.regionId)];
+    case 'route':
+      return [facts.route(restore.key)];
     case 'chronicle':
       return [facts.chronicle(restore.chronicleId)];
     case 'possession':
