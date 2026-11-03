@@ -146,7 +146,8 @@ for (const width of [768, 1024]) {
     await enterWorld(dm, TOKENS.dm);
     await dm.getByRole('button', { name: 'Mira Vale', exact: true }).click();
     await expect(dm.getByRole('complementary', { name: 'Entity details' })).toBeVisible();
-    await expect(dm.locator('nav.dock button:not(#dock-more)')).toHaveCount(14);
+    // Fourteen tools, and the Rules everyone has (docs/adr/0055-rules-reference-and-toolbox.md §2).
+    await expect(dm.locator('nav.dock button:not(#dock-more)')).toHaveCount(15);
     await expect.poll(() => coveredDockButtons(dm)).toEqual([]);
 
     // A player's result at the drawer's foot keeps clear of the dock too (read-only: talking with

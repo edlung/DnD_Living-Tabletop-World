@@ -38,8 +38,9 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   Resistance, legendary attacks, the fight's difficulty), done; 650d, items as data (ADR 0054),
   done: part 1, the SRD's equipment in the catalog and the DM's catalog in the open pack; part 2,
   magic items in the catalog (made on a base, +N bonuses, healing potions); part 3, attunement and
-  the protection items; part 4, charges at the dawn, identifying and curses. Next: 650e, the rules
-  reference, the Gameplay Toolbox, the Russian translation pipeline and the catalogs' art.
+  the protection items; part 4, charges at the dawn, identifying and curses. 650e (ADR 0055) in
+  progress: part 1, the rules reference (the glossary and the toolbox as data, the Rules sheet,
+  terms in place), done; next the toolbox's mechanics, the Russian rules text and the catalogs' art.
 
 ## Current request — AI campaigns, 2026-10-30
 

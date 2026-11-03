@@ -8,6 +8,7 @@ import { magicCatalogEntries } from './magic-catalog.ts';
 import { magicItemRows, parseMagicItems } from './magic-items.ts';
 import { deriveMonsterMechanics } from './monster-mechanics.ts';
 import { parseMonsters } from './monsters.ts';
+import { parseGlossary, parseRulesSections } from './reference.ts';
 import { deriveMechanics } from './spell-mechanics.ts';
 import { parseSpells } from './spells.ts';
 import { pageLines, pageRows, srdLine } from './text.ts';
@@ -43,7 +44,7 @@ const monsters = parseMonsters(
     .map(srdLine),
 );
 
-const write = (name: string, entries: readonly object[], into = 'packages/rules/src/srd') => {
+const write = (name: string, entries: object, into = 'packages/rules/src/srd') => {
   const path = fileURLToPath(new URL(`../../${into}/${name}`, import.meta.url));
   writeFileSync(path, `${JSON.stringify(entries, null, 2)}\n`);
 };
@@ -69,6 +70,11 @@ write(
   magicItems.flatMap((item) => magicCatalogEntries(item, equipment)),
   'packages/contracts/src/items/srd',
 );
+// The rules as a reference (docs/adr/0055-rules-reference-and-toolbox.md §1).
+const glossary = parseGlossary(dir);
+write('glossary.json', glossary);
+const rulesSections = parseRulesSections(dir);
+write('rules-sections.json', rulesSections);
 process.stdout.write(
-  `spells ${spells.length}, monsters ${monsters.length}, equipment ${equipment.length}, magic items ${magicItems.length}\n`,
+  `spells ${spells.length}, monsters ${monsters.length}, equipment ${equipment.length}, magic items ${magicItems.length}, glossary ${glossary.entries.length}, rules sections ${rulesSections.length}\n`,
 );

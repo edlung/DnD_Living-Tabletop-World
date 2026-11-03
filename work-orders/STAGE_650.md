@@ -53,6 +53,11 @@ chat (2026-11-02); it stays outside the repository.
   actions) and the Gameplay Toolbox (diseases, curses, fear and mental stress, traps); the Russian
   translation pipeline (decision 7: the Codex CLI on the owner's subscription, a glossary of the
   Russian terms, a test that every entry is translated); GPT art for the catalogs (the art rule).
+  ADR 0055; in parts: the rules reference (the glossary and the Toolbox read into blocks and
+  tables, the Rules sheet for everyone with the DM's Toolbox tab, a condition's chip and an action's
+  title opening their entry in place) — done; the toolbox's mechanics (traps, contagions, fear and
+  mental stress, the environment, the sample poisons); the Russian rules text (the terms glossary,
+  the Codex pass, the completeness test); the catalogs' art by kind.
 
 ## Checks at each sub-stage
 

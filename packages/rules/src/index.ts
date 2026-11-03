@@ -174,6 +174,13 @@ export {
   type SrdMonsterBlock,
 } from './srd/catalog.ts';
 export {
+  SRD_ABBREVIATIONS,
+  SRD_GLOSSARY,
+  SRD_RULES_SECTIONS,
+  srdGlossaryEntry,
+  srdRulesSection,
+} from './srd/reference.ts';
+export {
   FAR_FT,
   cantripTier,
   isSliceSpell as isSliceSpellId,

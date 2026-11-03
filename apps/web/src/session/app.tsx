@@ -16,6 +16,7 @@ import { useResource } from '../api/resource.ts';
 import type { StandIn } from '../combat/stand-in.ts';
 import { TopBar } from '../shell/top-bar.tsx';
 import { ornamentUrl } from '../visual/ui-kit.ts';
+import { RulesApiContext } from '../rules/reference-data.ts';
 import { World } from '../world/world.tsx';
 import { ActingBar } from './acting-bar.tsx';
 import { SessionAccountProvider } from './account-menu.tsx';
@@ -357,15 +358,17 @@ function SessionShell({
         sessionSlot={setSessionSlot}
       />
       {actingAs && <ActingBar standIn={actingAs} onStop={onStopActing} />}
-      <World
-        key={`${perspective}:${String(revision)}`}
-        api={api}
-        effectivePerspective={effective}
-        canAct={identity.role === 'PLAYER' && own.has(effective)}
-        standIn={actingAs}
-        onActAs={onActAs}
-        sessionSlot={sessionSlot}
-      />
+      <RulesApiContext.Provider value={api}>
+        <World
+          key={`${perspective}:${String(revision)}`}
+          api={api}
+          effectivePerspective={effective}
+          canAct={identity.role === 'PLAYER' && own.has(effective)}
+          standIn={actingAs}
+          onActAs={onActAs}
+          sessionSlot={sessionSlot}
+        />
+      </RulesApiContext.Provider>
     </div>
   );
 }

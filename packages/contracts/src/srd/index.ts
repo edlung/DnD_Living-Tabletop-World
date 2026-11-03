@@ -36,6 +36,27 @@ export {
   type SrdEquipmentKind,
 } from './equipment.ts';
 export {
+  SRD_GLOSSARY_TAGS,
+  SRD_RULES_PARTS,
+  srdAbbreviationSchema,
+  srdBlockSchema,
+  srdGlossaryEntrySchema,
+  srdGlossarySchema,
+  srdRulesSectionSchema,
+  type SrdAbbreviation,
+  type SrdBlock,
+  type SrdGlossary,
+  type SrdGlossaryEntry,
+  type SrdGlossaryTag,
+  type RulesEntryResponse,
+  type RulesIndexEntry,
+  type RulesIndexResponse,
+  type RulesIndexSection,
+  type RulesSectionResponse,
+  type SrdRulesPart,
+  type SrdRulesSection,
+} from './reference.ts';
+export {
   addFromBestiaryRequestSchema,
   bestiaryMonsterIdSchema,
   type AddFromBestiaryRequest,

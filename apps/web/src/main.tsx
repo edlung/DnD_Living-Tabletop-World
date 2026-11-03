@@ -15,6 +15,7 @@ import './i18n/ru-character.ts';
 import './i18n/ru-dice.ts';
 import './i18n/ru-inventory.ts';
 import './i18n/ru-rest.ts';
+import './i18n/ru-rules.ts';
 import './i18n/ru-accounts.ts';
 import './i18n/ru-display.ts';
 import './i18n/ru-dm-screen.ts';
@@ -66,6 +67,7 @@ import './styles/character.css';
 import './styles/character-tabs.css';
 import './styles/dice.css';
 import './styles/rest.css';
+import './styles/rules.css';
 import './styles/workshop.css';
 
 // An invitation link's token leaves the address before anything is requested or rendered

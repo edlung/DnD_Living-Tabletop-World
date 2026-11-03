@@ -11,6 +11,7 @@ import { useId, useState, type SubmitEvent } from 'react';
 import { skillName } from '../../character/words.ts';
 import type { ExplorationIntent } from '../../exploration/use-action.ts';
 import { weaponWords } from '../combat-art.ts';
+import { RuleTerm } from '../../rules/rule-term.tsx';
 
 /**
  * What an action asks before it is sent (docs/adr/0045-conditions-and-actions.md §5): the skill of
@@ -69,9 +70,12 @@ export function ActionChoice({
   };
   return (
     <form className="action-choice" noValidate onSubmit={submit} aria-labelledby={`${ids}-title`}>
-      <p id={`${ids}-title`} className="action-choice-title">
-        {ready ? t('Ready an attack') : t(ACTION_TITLES[action])}
-      </p>
+      <div className="action-choice-head">
+        <p id={`${ids}-title`} className="action-choice-title">
+          {ready ? t('Ready an attack') : t(ACTION_TITLES[action])}
+        </p>
+        <RuleTerm entryId={action}>{t('What the rules say')}</RuleTerm>
+      </div>
       <div className="action-choice-fields">
         {ready ? (
           <>

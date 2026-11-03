@@ -48,6 +48,7 @@ import {
 import { registerBestiaryRoutes } from '../combat/bestiary-routes.ts';
 import { registerAttuneRoutes } from '../items/attune-routes.ts';
 import { registerItemCatalogRoutes } from '../items/item-catalog-routes.ts';
+import { registerRulesReferenceRoutes } from '../rules/reference-routes.ts';
 import { registerEncounterRoutes } from './routes/encounter-routes.ts';
 import { registerKnowledgeRoutes } from './routes/knowledge-routes.ts';
 import { registerMemoryRoutes } from './routes/memory-routes.ts';
@@ -196,6 +197,7 @@ export function buildApp(input: AppDependencies): FastifyInstance {
   registerPreparedEncounterRoutes(app, deps);
   registerBestiaryRoutes(app, deps);
   registerItemCatalogRoutes(app, deps);
+  registerRulesReferenceRoutes(app, deps);
   // One lobby for the routes that read it: the pause holds players' commands.
   const lobby = deps.lobby ?? memoryLobby();
   registerCommandRoutes(app, { ...deps, lobby });

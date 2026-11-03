@@ -225,7 +225,10 @@ export function Dock({
           : []),
       ]
     : [];
-  const items = [...world, ...dm];
+  // The rules reference (docs/adr/0055-rules-reference-and-toolbox.md §2), everyone's: the first
+  // to wait under More, and shown among the world's tools.
+  const rules: Item = { id: 'rules', label: t('Rules'), short: t('Rules'), glyph: 'study' };
+  const items = [...world, ...dm, rules];
   const nav = useRef<HTMLElement>(null);
   // More's list stays open while the dock is measured again; it closes once nothing needs it.
   const [moreOpen, setMoreOpen] = useState(false);
@@ -259,7 +262,7 @@ export function Dock({
       aria-label={t('World tools')}
     >
       <ul className="dock-items">
-        {world.filter((item) => shown.has(item.id)).map((item) => entry(item))}
+        {[...world, rules].filter((item) => shown.has(item.id)).map((item) => entry(item))}
       </ul>
       {dmShown.length > 0 && (
         <ul className="dock-items dock-items--dm" aria-label={t('DM tools')}>

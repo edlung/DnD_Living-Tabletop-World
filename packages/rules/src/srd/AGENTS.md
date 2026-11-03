@@ -10,6 +10,10 @@ which stays outside the repository. Never edit them by hand: change the parser (
 SRD's misprints, `scripts/srd/monsters.ts`; the curated mechanics, `scripts/srd/spell-curated.ts`)
 and import again; the same lines give the same files.
 
+- `glossary.json` (the Rules Glossary's entries and abbreviations) and `rules-sections.json` (the
+  Gameplay Toolbox and the magic items' rules as sections) are read by `reference.ts` alone
+  (`SRD_GLOSSARY`, `SRD_ABBREVIATIONS`, `SRD_RULES_SECTIONS`, `srdGlossaryEntry`, `srdRulesSection`);
+  `reference.test.ts` holds them to their schemas (docs/adr/0055-rules-reference-and-toolbox.md).
 - `catalog.ts` is the only reader: `SRD_SPELLS`, `SRD_MONSTERS`, `SRD_SPELL_MECHANICS`,
   `SRD_MONSTER_BLOCKS`, `SRD_EQUIPMENT`, `SRD_MAGIC_ITEMS`, `srdSpell`, `srdMonster`,
   `srdSpellMechanics`, `srdMonsterBlock`, `srdEquipment`, `srdMagicItem`.

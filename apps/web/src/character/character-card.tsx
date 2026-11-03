@@ -9,6 +9,7 @@ import { readableLabel, useT } from '@ltw/ui';
 
 import { CONDITION_EFFECTS, exhaustionWords } from '../combat/condition-words.ts';
 import { loweredWords, temporaryWords } from '../combat/hit-point-words.ts';
+import { RuleTerm } from '../rules/rule-term.tsx';
 import { Glyph } from '../visual/glyph.tsx';
 import { Medallion } from '../visual/medallion.tsx';
 import type { GlyphName } from '../visual/ui-kit-names.ts';
@@ -130,13 +131,20 @@ export function CharacterCard({
           {sheet.conditions.map((condition) => (
             <li key={condition} className="hero-state hero-state--condition">
               <Glyph name={condition} />
-              {readableLabel(condition, t)}
+              {/* Slowed is a weapon mastery's, with no glossary entry of its own. */}
+              {condition === 'slowed' ? (
+                readableLabel(condition, t)
+              ) : (
+                <RuleTerm entryId={condition}>{readableLabel(condition, t)}</RuleTerm>
+              )}
             </li>
           ))}
           {sheet.exhaustion !== undefined && (
             <li className="hero-state hero-state--condition">
               <Glyph name="exhaustion" />
-              {t('Exhaustion {level}', { level: sheet.exhaustion })}
+              <RuleTerm entryId="exhaustion">
+                {t('Exhaustion {level}', { level: sheet.exhaustion })}
+              </RuleTerm>
             </li>
           )}
           {sheet.concentration && (
