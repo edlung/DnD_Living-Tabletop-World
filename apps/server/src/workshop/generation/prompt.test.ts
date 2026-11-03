@@ -1,13 +1,14 @@
 import {
   CAMPAIGN_GENERATION_STAGES,
   CLASS_IDS,
-  SPELL_IDS,
+  ITEM_CATALOG,
   WEAPON_IDS,
   campaignGenerationOutputSchemas,
   type CampaignPackage,
 } from '@ltw/contracts';
+import { SRD_ITEM_CATALOG } from '@ltw/contracts/srd-items';
 import { seedCampaignPackage } from '@ltw/domain';
-import { SPELLS, spellSlotsFor, WEAPONS } from '@ltw/rules';
+import { SRD_MONSTERS, SRD_SPELLS, spellSlotsFor, WEAPONS } from '@ltw/rules';
 import { describe, expect, it } from 'vitest';
 
 import { campaignPreparationPrompt } from './prompt.ts';
@@ -114,16 +115,27 @@ describe('private campaign preparation prompts', () => {
     }
   });
 
-  it('provides concrete supported classes, spells, weapons and all legal slot rows from the rules catalog', () => {
+  it('lists the whole SRD by ID — classes, spells, monsters, items, weapons — and every slot row', () => {
     const catalog = JSON.parse(CAMPAIGN_RULES_GUIDE.split('\n').at(-1) ?? '') as {
       classes: string[];
       weapons: unknown;
-      spells: unknown;
+      spells: [string, number, string[]][];
+      monsters: [string, string][];
+      itemCatalog: [string, string, boolean][];
       slotsByClassAndLevel: Record<string, { level: number; max: number[] }[]>;
     };
     expect(catalog.classes).toEqual(CLASS_IDS);
     expect(catalog.weapons).toEqual(Object.fromEntries(WEAPON_IDS.map((id) => [id, WEAPONS[id]])));
-    expect(catalog.spells).toEqual(Object.fromEntries(SPELL_IDS.map((id) => [id, SPELLS[id]])));
+    // docs/adr/0058-campaign-content.md §6: any SRD spell, monster, piece of equipment or magic item.
+    expect(catalog.spells.map(([id]) => id)).toEqual(SRD_SPELLS.map((spell) => spell.spellId));
+    expect(catalog.monsters.map(([id]) => id)).toEqual(SRD_MONSTERS.map((one) => one.monsterId));
+    expect(new Set(catalog.itemCatalog.map(([id]) => id))).toEqual(
+      new Set([...ITEM_CATALOG, ...SRD_ITEM_CATALOG].map((entry) => entry.itemId)),
+    );
+    expect(CAMPAIGN_RULES_GUIDE).toContain('names its monster ID (monster)');
+    // The slice's old limits are gone.
+    expect(CAMPAIGN_RULES_GUIDE).not.toContain('narrow SRD 5.2.1 slice');
+    expect(CAMPAIGN_RULES_GUIDE).not.toContain('Longbow is the only character weapon');
     for (const classId of CLASS_IDS) {
       expect(catalog.slotsByClassAndLevel[classId]).toHaveLength(20);
       for (const row of catalog.slotsByClassAndLevel[classId] ?? [])

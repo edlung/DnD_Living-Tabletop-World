@@ -17,7 +17,8 @@ Authority: owner approval 2026-11-02 (`reviews/OWNER_FULL_GAME_2026-11-02.json`)
   handouts on the Party sheet (given, changed, deleted; they stay after giving), random tables in
   the Dice sheet rolled by the server for the DM alone or for the table (migration 0036).
 - 680c — The workshop with the full SRD: what it generates may name any SRD monster, item and
-  spell, checked against the catalogs as the World Engine checks them.
+  spell, checked against the catalogs as the World Engine checks them. Done: the guide lists the
+  whole SRD by ID; a package names a bestiary creature by `monster`, its stat block the SRD's.
 - 680d — The starter adventure: a new campaign of its own for levels 1–5 in the Ravenford setting —
   its places, people, quests, clues, encounters, treasure, handouts and tables, its pictures made by
   GPT, in English and Russian — begun by the owner as any new campaign, its characters from the

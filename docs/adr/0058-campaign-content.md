@@ -81,6 +81,19 @@
   `{ kind: 'table', name, result }` — the one roll subject with free text, the DM's own words —
   hidden for the DM alone or shown to the table, worded in the log, the plate and the chat.
 
+## Notes from the implementation (Stage 680c, 2026-11-03)
+
+- The workshop's guide (`rules-guide.ts`) lists the SRD 5.2.1 as the game holds it: its twelve
+  classes, every spell (with its level and classes), every monster (with its challenge rating),
+  the campaign's and the SRD's items (`srd-…`, with category and whether they stack), the weapons
+  and every slot row — by ID, an ID spelling its English name, about 65 000 characters cached as
+  before. Its old limits (a slice of two classes and nine spells, the longbow alone) are gone.
+- A package entity names a bestiary creature by `monster` (an NPC's or a creature's): the server
+  writes the SRD's stat block into the step's output before the domain checks it, in both the
+  seven-step generation and an edit, whatever `statBlock` the model wrote; an ID the bestiary lacks
+  refuses the step (`UNKNOWN_BESTIARY_MONSTER`), and a plan refuses a `monster` with no stat block
+  (`MONSTER_UNRESOLVED`) or on another kind (`MONSTER_KIND`).
+
 ## Consequences
 
 - Stage 680 runs in parts (`work-orders/STAGE_680.md`): the editors; the library and the tables;

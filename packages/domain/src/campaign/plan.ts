@@ -7,6 +7,7 @@ import type {
 
 import {
   compareKey,
+  error,
   identity,
   topological,
   type CampaignPlan,
@@ -39,6 +40,15 @@ export function buildCampaignPlan(
   validateKnowledge(context);
   validatePossessions(context);
   validateStory(context);
+  // A bestiary creature's stat block is the SRD's, written by the server before any plan (ADR 0058).
+  for (const entity of content.entities)
+    if (entity.monster !== undefined && !entity.statBlock)
+      error(
+        context,
+        'MONSTER_UNRESOLVED',
+        `entities.${entity.key}.monster`,
+        'A bestiary creature needs its stat block from the SRD',
+      );
   const locations = topological(
     context,
     content.entities.filter((entity) => entity.kind === 'location'),

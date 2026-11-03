@@ -4,6 +4,7 @@ import { validateCampaignGenerationStep } from '@ltw/domain';
 import { campaignCanonicalJson, MAX_CAMPAIGN_PACKAGE_BYTES } from '../packages/content.ts';
 import { campaignPreparationPrompt } from './prompt.ts';
 import type { CampaignGenerationDependencies } from './runtime.ts';
+import { withSrdStatBlocks } from './srd-monsters.ts';
 import { CampaignPreparationWorker } from './worker-core.ts';
 
 /** The seven-step generator cannot claim or run selective edit jobs. */
@@ -21,7 +22,9 @@ export class CampaignGenerationWorker extends CampaignPreparationWorker {
           validate: (stage, content, output) => {
             try {
               if (stage === 'edit') return { ok: false, issues: ['INVALID_GENERATION_STAGE'] };
-              const checked = validateCampaignGenerationStep(content, stage, output);
+              const resolved = withSrdStatBlocks(output);
+              if (!resolved.ok) return resolved;
+              const checked = validateCampaignGenerationStep(content, stage, resolved.value);
               if (!checked.ok) return checked;
               const value = checked.value;
               return Buffer.byteLength(campaignCanonicalJson(value), 'utf8') >
