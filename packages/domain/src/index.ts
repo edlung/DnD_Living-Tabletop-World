@@ -109,6 +109,7 @@ export { merchantOffer } from './items/trade-view.ts';
 export { craftingView, type CraftingView } from './items/crafting-view.ts';
 export type { CraftProject } from './items/crafting.ts';
 export { worldMapView } from './travel/map-view.ts';
+export { handQuestsView } from './quest/hand-quests.ts';
 export { grantRefusal } from './items/decide.ts';
 export { baseOfGrant, itemEntry, madeOn } from './items/catalog.ts';
 export {

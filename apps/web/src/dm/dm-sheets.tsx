@@ -21,6 +21,7 @@ import { DmHazardControls } from '../rest/dm-hazard-controls.tsx';
 import { DmRestControls } from '../rest/dm-rest-controls.tsx';
 import { DmWorldControls } from './world-controls.tsx';
 import { GiveItemForm } from '../items/give-item-form.tsx';
+import { MakeByHand } from './editors/make-by-hand.tsx';
 
 /** What the DM's encounter and clock tools need from the loaded world. */
 export interface DmPlace {
@@ -131,6 +132,15 @@ export function DmSheets({
           onShowEntity={(entityId) => {
             shell.dismissSheet();
             onShowEntity(entityId, 'npc');
+          }}
+        />
+        {/* The DM's editors, no AI (docs/adr/0058-campaign-content.md §1). */}
+        <MakeByHand
+          api={api}
+          directory={directory}
+          locked={locked}
+          onRun={(command) => {
+            onRun({ kind: 'command', command });
           }}
         />
       </Sheet>

@@ -224,7 +224,37 @@ export interface DmHandEntry extends DmHistoryCommon {
   readonly reason: string | null;
 }
 
-export type DmHistoryEntry = DmAuthoringEntry | DmSubstitutionEntry | DmWorldEntry | DmHandEntry;
+/**
+ * The DM's changes by hand to the world's content (docs/adr/0058-campaign-content.md §1): a thing
+ * made, renamed, moved or gone; a clue, a piece of knowledge, a story object given; a creature's
+ * numbers; a shop, the map and its routes, days of downtime. Worded from the command itself.
+ */
+export const DM_EDIT_COMMAND_TYPES = [
+  'CreateEntity',
+  'UpdateEntityProfile',
+  'PlaceEntity',
+  'ChangeEntityStatus',
+  'AddClue',
+  'AddKnowledge',
+  'GrantItem',
+  'SetStatBlock',
+  'SetMerchant',
+  'SetMapPins',
+  'SetRoute',
+  'WorkDowntime',
+  'SetQuest',
+  'SetQuestStep',
+] as const satisfies readonly KernelCommandType[];
+export type DmEditCommandType = (typeof DM_EDIT_COMMAND_TYPES)[number];
+
+export interface DmEditEntry extends DmHistoryCommon {
+  readonly kind: 'edit';
+  /** The command as the DM submitted it, without the engine's recorded draws. */
+  readonly command: KernelCommandOf<DmEditCommandType>;
+}
+
+export type DmHistoryEntry =
+  DmAuthoringEntry | DmSubstitutionEntry | DmWorldEntry | DmHandEntry | DmEditEntry;
 
 /** `GET /campaigns/:campaignId/dm/history?perspective=DM[&before=<sequence>]` (DM only). */
 export interface DmHistoryResponse {

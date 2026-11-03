@@ -43,6 +43,7 @@ import {
   setRouteCommandSchema,
   travelCommandSchema,
 } from '../travel/travel.ts';
+import { setQuestCommandSchema, setQuestStepCommandSchema } from '../quest/hand-quests.ts';
 import { generateChronicleCommandSchema } from '../chronicle/commands.ts';
 import { applyAuthoringCommandSchema } from '../authoring/commands.ts';
 import {
@@ -242,6 +243,8 @@ export const kernelCommandSchema = z
     setMapPinsCommandSchema,
     setRouteCommandSchema,
     travelCommandSchema,
+    setQuestCommandSchema,
+    setQuestStepCommandSchema,
     attuneItemCommandSchema,
     identifyItemCommandSchema,
     dawnRechargeCommandSchema,
@@ -347,6 +350,8 @@ export const KERNEL_COMMAND_TYPES = [
   'SetMapPins',
   'SetRoute',
   'Travel',
+  'SetQuest',
+  'SetQuestStep',
   'AttuneItem',
   'IdentifyItem',
   'DawnRecharge',

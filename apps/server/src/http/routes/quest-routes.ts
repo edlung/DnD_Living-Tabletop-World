@@ -4,7 +4,7 @@ import {
   type QuestDefinition,
   type QuestListResponse,
 } from '@ltw/contracts';
-import { questLog } from '@ltw/domain';
+import { handQuestsView, questLog } from '@ltw/domain';
 import type { FastifyInstance } from 'fastify';
 import { z } from 'zod';
 
@@ -42,6 +42,8 @@ export function registerQuestRoutes(app: FastifyInstance, deps: QuestRouteDepend
     const body: QuestListResponse = {
       perspective: context.perspective.label,
       quests: questLog(context, context.perspective, definitions),
+      // The DM's quests by hand (docs/adr/0058-campaign-content.md §2).
+      handQuests: handQuestsView(context.state, context.perspective),
     };
     return reply.send(body);
   });

@@ -55,6 +55,7 @@ export {
   type ObjectMaterial,
   type ObjectSize,
   type StatBlock,
+  type StatBlockResponse,
 } from './stat-block.ts';
 export { addObjectCommandSchema } from './objects.ts';
 export {

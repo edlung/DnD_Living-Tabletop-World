@@ -57,7 +57,12 @@ import {
 } from '../assets/portrait-wishes.ts';
 import { applyChronicleGenerated, applyChronicleRestore } from '../chronicle/decide.ts';
 import { applyItemEvent, applyItemRestore, isItemEvent } from '../items/evolve.ts';
-import { applyTravelEvent, applyTravelRestore, isTravelEvent } from '../travel/map.ts';
+import {
+  applyContentEvent,
+  applyContentRestore,
+  isContentEvent,
+  isContentRestore,
+} from '../content/events.ts';
 import { applyMerchantRestore, applyMerchantSet } from '../items/trade.ts';
 import { applyRelationshipChanged, applyRelationshipRestore } from '../relationships/evolve.ts';
 import { CorruptHistoryError } from './corrupt-history.ts';
@@ -103,7 +108,7 @@ export function evolve(state: WorldState, event: RecordedEvent): WorldState {
 function apply(state: WorldState, event: RecordedEvent): WorldState {
   // Possession and crafting (docs/adr/0039-item-possession.md, 0057 §9).
   if (isItemEvent(event)) return applyItemEvent(state, event);
-  if (isTravelEvent(event)) return applyTravelEvent(state, event);
+  if (isContentEvent(event)) return applyContentEvent(state, event);
   switch (event.type) {
     case 'CampaignCreated': {
       if (state.campaign !== null) throw new CorruptHistoryError('campaign created twice');
@@ -325,6 +330,7 @@ const isRemoval = (restore: Restore) =>
   restore.fact === 'entity' || restore.fact === 'scene' || restore.fact === 'session';
 
 function applyRestore(state: WorldState, restore: Restore): WorldState {
+  if (isContentRestore(restore)) return applyContentRestore(state, restore);
   switch (restore.fact) {
     case 'entity':
       requireEntity(state, restore.entityId);
@@ -410,9 +416,6 @@ function applyRestore(state: WorldState, restore: Restore): WorldState {
     case 'possession':
     case 'crafting':
       return applyItemRestore(state, restore);
-    case 'mapPins':
-    case 'route':
-      return applyTravelRestore(state, restore);
     case 'assetRequest':
     case 'asset':
     case 'assetCanonical':

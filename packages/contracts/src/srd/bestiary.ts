@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 import { SIDES, squareSchema } from '../combat/battlefield.ts';
+import { entityIdSchema } from '../kernel/identifiers.ts';
 import { srdIdSchema, type SrdMonster } from './catalog.ts';
 
 /**
@@ -67,6 +68,11 @@ export const addFromBestiaryRequestSchema = z
     requestId: z.uuid(),
     /** Its name in the campaign; absent: the stat block's. */
     name: z.string().trim().min(1).max(60).optional(),
+    /**
+     * Where it stands outside a fight (docs/adr/0058-campaign-content.md §1); absent: where the
+     * party is. In a fight it stands at the fight's place.
+     */
+    locationId: entityIdSchema.optional(),
     /** Into the running fight, on this square, on this side. */
     square: squareSchema.optional(),
     side: z.enum(SIDES).optional(),

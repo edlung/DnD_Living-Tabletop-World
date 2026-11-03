@@ -37,4 +37,14 @@ export type DmTableCommand = KernelCommandOf<
   | 'SetMapPins'
   | 'SetRoute'
   | 'Travel'
+  // The DM's editors (docs/adr/0058-campaign-content.md §1).
+  | 'CreateEntity'
+  | 'UpdateEntityProfile'
+  | 'PlaceEntity'
+  | 'ChangeEntityStatus'
+  | 'AddClue'
+  | 'AddKnowledge'
+  | 'SetStatBlock'
+  | 'SetQuest'
+  | 'SetQuestStep'
 >;

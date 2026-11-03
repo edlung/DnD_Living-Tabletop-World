@@ -1,4 +1,4 @@
-import { CHECK_METHODS, type ClueMethod, type EntityKind } from '@ltw/contracts';
+import { CHECK_METHODS, clueFits } from '@ltw/contracts';
 
 import { findEntity } from '../kernel/decide/lookups.ts';
 import { accept, reject, type Decision, type ResolvedCommandOf } from '../kernel/decision.ts';
@@ -9,21 +9,9 @@ import { MAX_CLUES_PER_METHOD, NEVER_SHAREABLE } from './records.ts';
  * DM authoring of investigation data (docs/adr/0013-investigation.md §2–3):
  * clues on examinable entities, and NPC disclosure policy.
  */
-const INSPECTABLE: ReadonlySet<EntityKind> = new Set([
-  'character',
-  'npc',
-  'creature',
-  'item',
-  'feature',
-  'location',
-]);
-/** Skill checks apply to objects, matching the Context Engine catalog (ADR 0012). */
-const CHECKABLE: ReadonlySet<EntityKind> = new Set(['item', 'feature']);
 
-/** One target rule for canonical initial authoring and generated preparation. */
-export function clueTargetSupportsMethod(kind: EntityKind, method: ClueMethod): boolean {
-  return ((CHECK_METHODS as ReadonlySet<string>).has(method) ? CHECKABLE : INSPECTABLE).has(kind);
-}
+/** One target rule for initial authoring, generated preparation and the DM's editor (contracts). */
+export const clueTargetSupportsMethod = clueFits;
 
 export function decideAddClue(state: WorldState, command: ResolvedCommandOf<'AddClue'>): Decision {
   const { clueId, entityId, method } = command;

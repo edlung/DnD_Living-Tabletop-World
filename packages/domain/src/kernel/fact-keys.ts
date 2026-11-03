@@ -59,6 +59,8 @@ export const facts = {
   /** A region's map and a route between two places (§10). */
   mapPins: (regionId: string): FactKey => `mappins:${regionId}`,
   route: (key: string): FactKey => `route:${key}`,
+  /** A quest by hand (docs/adr/0058-campaign-content.md §2). */
+  handQuest: (questId: string): FactKey => `handquest:${questId}`,
   possession: (itemId: string): FactKey => `possession:${itemId}`,
   /** A holder's worn set: slot occupancy is a premise of every equip (ADR 0039). */
   equipment: (holderId: string): FactKey => `equipment:${holderId}`,

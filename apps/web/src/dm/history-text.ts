@@ -14,6 +14,7 @@ import { readableLabel, type Translate } from '@ltw/ui';
 import { nameFor } from '../authoring/command-text.ts';
 import { RESOURCE_NAMES } from '../character/feature-words.ts';
 import { spellName } from '../exploration/outcome-messages.ts';
+import { describeEdit } from './edit-words.ts';
 import { describeHand } from './hand-words.ts';
 import { optionChanges } from './option-words.ts';
 import { formatWorldTime } from './world-time.ts';
@@ -114,6 +115,8 @@ export const STEP_TEXT: Readonly<Record<KernelCommandType, string>> = {
   SetMapPins: 'pin places on a map',
   SetRoute: 'set a route',
   Travel: 'travel',
+  SetQuest: 'write a quest',
+  SetQuestStep: 'mark a quest step',
   AttuneItem: 'attune to an item',
   IdentifyItem: 'identify an item',
   DawnRecharge: 'dawn: charges regained',
@@ -356,6 +359,8 @@ export function entryTitle(
       });
     case 'hand':
       return describeHand(t, entry.change);
+    case 'edit':
+      return describeEdit(t, entry.command, directory);
   }
 }
 
@@ -366,18 +371,20 @@ export function entryDetails(t: Translate, entry: DmHistoryEntry): string {
       ? t('Authoring')
       : entry.kind === 'world'
         ? t(WORLD_KIND[entry.change.kind])
-        : entry.kind === 'hand'
-          ? entry.reason === null
-            ? t('By hand')
-            : t('By hand: “{reason}”', { reason: entry.reason })
-          : entry.reason === null
-            ? t('No reason was recorded')
-            : entry.reason.note === null
-              ? t(REASON_TEXT[entry.reason.reason])
-              : t('{reason}: “{note}”', {
-                  reason: t(REASON_TEXT[entry.reason.reason]),
-                  note: entry.reason.note,
-                });
+        : entry.kind === 'edit'
+          ? t('By hand')
+          : entry.kind === 'hand'
+            ? entry.reason === null
+              ? t('By hand')
+              : t('By hand: “{reason}”', { reason: entry.reason })
+            : entry.reason === null
+              ? t('No reason was recorded')
+              : entry.reason.note === null
+                ? t(REASON_TEXT[entry.reason.reason])
+                : t('{reason}: “{note}”', {
+                    reason: t(REASON_TEXT[entry.reason.reason]),
+                    note: entry.reason.note,
+                  });
   return `${kind} · ${formatWorldTime(entry.worldTime, t)}`;
 }
 

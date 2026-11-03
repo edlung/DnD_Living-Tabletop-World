@@ -114,20 +114,24 @@ export async function holdResponse(
   const finished = new Promise<void>((resolve) => {
     completed = resolve;
   });
+  // Once released, later reads (a live signal's, a trailing one) pass untouched; one still in flight
+  // as the test ends is the page's, not the test's.
+  let released = false;
   await page.route('**/api/**', async (route) => {
-    if (!matches(new URL(route.request().url()))) {
-      await route.continue();
+    if (released || !matches(new URL(route.request().url()))) {
+      await route.continue().catch(() => undefined);
       return;
     }
     const response = await route.fetch();
     requested();
     await wait;
-    await route.fulfill({ response });
+    await route.fulfill({ response }).catch(() => undefined);
     completed();
   });
   return {
     requested: arrived,
     release: () => {
+      released = true;
       release();
     },
     completed: finished,

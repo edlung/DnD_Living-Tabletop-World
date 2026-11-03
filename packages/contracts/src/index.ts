@@ -126,6 +126,9 @@ export {
   type DmUndoBlocker,
   type DmWorldEntry,
   type DmHandEntry,
+  DM_EDIT_COMMAND_TYPES,
+  type DmEditCommandType,
+  type DmEditEntry,
   MAX_DM_NOTES,
   dmNoteRequestSchema,
   type DmNoteRequest,
@@ -248,6 +251,7 @@ export {
 } from './ai-gateway/relevance.ts';
 export {
   CHECK_METHODS,
+  clueFits,
   CLUE_METHODS,
   DISCLOSURES,
   EXAMINE_METHODS,
@@ -396,6 +400,14 @@ export {
   type QuestMilestoneKind,
 } from './quest/definitions.ts';
 export type { QuestListResponse, QuestTransitionView, QuestView } from './quest/views.ts';
+export {
+  MAX_QUEST_STEPS,
+  handQuestSchema,
+  setQuestCommandSchema,
+  setQuestStepCommandSchema,
+  type HandQuest,
+  type HandQuestView,
+} from './quest/hand-quests.ts';
 export {
   CHRONICLE_LIMITS,
   chronicleEntryKeySchema,

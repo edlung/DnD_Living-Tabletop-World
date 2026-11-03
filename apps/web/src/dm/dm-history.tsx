@@ -38,6 +38,7 @@ const KIND_GLYPH = {
   contagion: 'poisoned',
   hazard: 'weather',
   travel: 'travel',
+  edit: 'replace',
 } as const;
 
 const UNDO_LABEL: Readonly<Record<DmHistoryEntry['kind'], string>> = {
@@ -45,6 +46,7 @@ const UNDO_LABEL: Readonly<Record<DmHistoryEntry['kind'], string>> = {
   substitution: 'Undo this action',
   world: 'Undo this change',
   hand: 'Undo this change',
+  edit: 'Undo this change',
 };
 
 /**

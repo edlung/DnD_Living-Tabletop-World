@@ -55,6 +55,8 @@ import { registerItemCatalogRoutes } from '../items/item-catalog-routes.ts';
 import { registerMerchantRoutes } from '../items/merchant-routes.ts';
 import { registerCraftingRoutes } from '../items/crafting-routes.ts';
 import { registerWorldMapRoutes } from '../travel/world-map-routes.ts';
+import { registerStatBlockRoutes } from '../editors/stat-block-routes.ts';
+import { registerObjectRoutes } from '../editors/object-routes.ts';
 import { registerRulesReferenceRoutes } from '../rules/reference-routes.ts';
 import { registerAdvancementRoutes } from '../characters/advancement-routes.ts';
 import { registerCopyRoutes } from '../characters/copy-routes.ts';
@@ -219,6 +221,8 @@ export function buildApp(input: AppDependencies): FastifyInstance {
   registerMerchantRoutes(app, deps);
   registerCraftingRoutes(app, deps);
   registerWorldMapRoutes(app, deps);
+  registerStatBlockRoutes(app, deps);
+  registerObjectRoutes(app, deps);
   registerRulesReferenceRoutes(app, deps);
   registerCharacterCreationRoutes(app, deps);
   // One lobby for the routes that read it: the pause holds players' commands.

@@ -21,6 +21,7 @@ const UNDONE: Readonly<Record<DmHistoryEntry['kind'], string>> = {
   substitution: 'Undone. The world is as it was before this action.',
   world: 'Undone. The world is as it was before this change.',
   hand: 'Undone. The world is as it was before this change.',
+  edit: 'Undone. The world is as it was before this change.',
 };
 
 /**

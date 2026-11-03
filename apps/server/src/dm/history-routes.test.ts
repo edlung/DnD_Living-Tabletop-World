@@ -207,7 +207,12 @@ describe('the entries', () => {
       targetId: 'creature-10fb59d4',
     };
     expect((await standIn('shot', attack, { reason: 'other' })).status).toBe(200);
-    expect((await page()).entries).toEqual([
+    // The party set on the road beforehand is the DM's change by hand (ADR 0058 §1), listed apart.
+    const listed = (await page()).entries;
+    const edits = listed.flatMap((entry) => (entry.kind === 'edit' ? [entry.command.type] : []));
+    expect(edits.length).toBeGreaterThan(0);
+    expect(new Set(edits)).toEqual(new Set(['PlaceEntity']));
+    expect(listed.filter((entry) => entry.kind !== 'edit')).toEqual([
       expect.objectContaining({
         commandId: 'http:dm-ravenford:shot',
         command: attack,
@@ -221,7 +226,7 @@ describe('the entries', () => {
     );
     const goblin = { type: 'EndTurn', combatantId: 'creature-10fb59d4' };
     expect((await command(goblin, TOKENS.dm)).status).toBe(200);
-    const [shot, ...rest] = (await page()).entries;
+    const [shot, ...rest] = (await page()).entries.filter((entry) => entry.kind !== 'edit');
     expect(rest).toEqual([]);
     expect(shot?.undo).toMatchObject({ possible: false, code: 'UNDO_UNSAFE' });
   });
@@ -305,7 +310,8 @@ describe('the entries', () => {
     await first.startAmbush();
     await first.standIn('stand', { type: 'EndTurn', combatantId: ELOWEN }, { reason: 'other' });
     const before = await first.page();
-    expect(before.entries).toHaveLength(2);
+    // Beside the party's places set by hand (ADR 0058 §1): the authoring and the stand-in.
+    expect(before.entries.filter((entry) => entry.kind !== 'edit')).toHaveLength(2);
 
     const restarted = new WorldEngine({
       store,

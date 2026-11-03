@@ -12,6 +12,7 @@ registerRussian({
   'Build one from the bestiary: it waits here until you start it.':
     'Соберите его из бестиария: оно подождёт здесь, пока вы его не начнёте.',
   'Build an encounter': 'Собрать столкновение',
+  'A fight is already running.': 'Бой уже идёт.',
   'One of its creatures cannot fight any more.': 'Одно из его существ больше не может сражаться.',
   'Its place or one of its creatures is no longer in the campaign: change it or delete it.':
     'Его места или одного из существ больше нет в кампании: измените его или удалите.',

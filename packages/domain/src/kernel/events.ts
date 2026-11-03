@@ -100,6 +100,11 @@ import {
   travelRestoreSchemas,
 } from '../travel/map.ts';
 import {
+  questRestoreSchemas,
+  questSetPayloadSchema,
+  questStepSetPayloadSchema,
+} from '../quest/hand-quests.ts';
+import {
   preparedPartyEstablishedPayloadSchema,
   campaignBootstrappedPayloadSchema,
 } from '../campaign/bootstrap-events.ts';
@@ -169,6 +174,7 @@ export const restoreSchema = z.discriminatedUnion('fact', [
   ...merchantRestoreSchemas,
   ...craftingRestoreSchemas,
   ...travelRestoreSchemas,
+  ...questRestoreSchemas,
   ...chronicleRestoreSchemas,
   ...itemRestoreSchemas,
 ]);
@@ -335,6 +341,9 @@ export const kernelEventSchema = z.discriminatedUnion('type', [
   event('MapPinsSet', mapPinsSetPayloadSchema),
   event('RouteSet', routeSetPayloadSchema),
   event('PartyTravelled', partyTravelledPayloadSchema),
+  // Quests by hand (docs/adr/0058-campaign-content.md §2).
+  event('QuestSet', questSetPayloadSchema),
+  event('QuestStepSet', questStepSetPayloadSchema),
 ]);
 
 export type KernelEvent = z.infer<typeof kernelEventSchema>;

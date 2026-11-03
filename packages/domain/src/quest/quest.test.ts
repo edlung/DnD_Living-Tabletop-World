@@ -121,8 +121,12 @@ describe('the Missing Caravan', () => {
     await questOf(world, 'DM');
     const after = await world.snapshot();
     expect(after.state).toBe(before.state);
-    expect(Object.keys(after.state).some((key) => /quest/i.test(key))).toBe(false);
-    expect(after.history.some((event) => /^Quest/.test(event.type))).toBe(false);
+    // The DM's quests by hand are a world fact of their own (docs/adr/0058-campaign-content.md §2).
+    const kept = (key: string) => /quest/i.test(key) && key !== 'handQuests';
+    expect(Object.keys(after.state).some(kept)).toBe(false);
+    const recorded = (type: string) =>
+      /^Quest/.test(type) && type !== 'QuestSet' && type !== 'QuestStepSet';
+    expect(after.history.some((event) => recorded(event.type))).toBe(false);
   });
 });
 

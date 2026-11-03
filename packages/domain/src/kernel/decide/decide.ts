@@ -75,6 +75,7 @@ import {
   decideWorkDowntime,
 } from '../../items/crafting-decide.ts';
 import { decideSetMapPins, decideSetRoute } from '../../travel/map.ts';
+import { decideSetQuest, decideSetQuestStep } from '../../quest/hand-quests.ts';
 
 /**
  * Routes a resolved, authorized command to its pure decision function, then
@@ -233,6 +234,10 @@ function route(context: DecisionContext, command: ResolvedCommand): Decision {
       return decideSetMapPins(state, command);
     case 'SetRoute':
       return decideSetRoute(state, command);
+    case 'SetQuest':
+      return decideSetQuest(state, command);
+    case 'SetQuestStep':
+      return decideSetQuestStep(state, command);
     case 'DropItem':
       return decideDropItem(state, command);
     case 'TakeItem':

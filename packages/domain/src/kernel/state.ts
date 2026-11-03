@@ -25,6 +25,7 @@ import type { MemoryRecord, SessionRecord } from '../memory/records.ts';
 import type { MerchantRecord } from '../items/trade.ts';
 import type { CraftProject } from '../items/crafting.ts';
 import type { MapPin, RouteRecord } from '../travel/map.ts';
+import type { HandQuest } from '@ltw/contracts';
 
 /**
  * Canonical World Kernel state: the fold of a campaign's event stream
@@ -150,6 +151,8 @@ export interface WorldState {
   readonly mapPins: ReadonlyMap<string, readonly MapPin[]>;
   /** A pair of places (`routeKey`) → the route between them (§10). */
   readonly routes: ReadonlyMap<string, RouteRecord>;
+  /** A quest's ID → the DM's quest by hand (docs/adr/0058-campaign-content.md §2). */
+  readonly handQuests: ReadonlyMap<string, HandQuest>;
 }
 
 export const EMPTY_WORLD_STATE: WorldState = {
@@ -184,6 +187,7 @@ export const EMPTY_WORLD_STATE: WorldState = {
   crafting: new Map(),
   mapPins: new Map(),
   routes: new Map(),
+  handQuests: new Map(),
 };
 
 /** Kinds that occupy a location. Locations nest via `parentId`; factions are abstract. */

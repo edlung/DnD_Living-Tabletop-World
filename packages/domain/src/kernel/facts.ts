@@ -2,7 +2,12 @@ import { assetFootprint, assetRestoredFacts } from '../assets/footprints.ts';
 import { combatFootprint } from '../combat/footprints.ts';
 import { isItemEvent } from '../items/evolve.ts';
 import { itemFootprint } from '../items/footprints.ts';
-import { isTravelEvent, travelFootprint } from '../travel/map.ts';
+import {
+  contentFootprint,
+  contentRestoredFacts,
+  isContentEvent,
+  isContentRestore,
+} from '../content/events.ts';
 import { chronicleFootprint } from '../chronicle/decide.ts';
 import { consideredCombatants } from '../combat/reactions.ts';
 import { attemptKey, insightKey, scopedKey, shownKey } from '../investigation/records.ts';
@@ -33,7 +38,7 @@ export function footprintOf(event: KernelEvent): Footprint {
   // Every event happens at the current world time, so it depends on the clock.
   const clock = facts.clock();
   if (isItemEvent(event)) return itemFootprint(event);
-  if (isTravelEvent(event)) return travelFootprint(event);
+  if (isContentEvent(event)) return contentFootprint(event);
   switch (event.type) {
     case 'PreparedPartyEstablished':
       return {
@@ -394,6 +399,7 @@ export function footprintOf(event: KernelEvent): Footprint {
 
 /** Facts a restore entry rewrites. Removing an entity or scene rewrites all its facts. */
 export function restoredFacts(restore: Restore): FactKey[] {
+  if (isContentRestore(restore)) return contentRestoredFacts(restore);
   switch (restore.fact) {
     case 'entity':
       return allEntityFacts(restore.entityId);
@@ -469,10 +475,6 @@ export function restoredFacts(restore: Restore): FactKey[] {
       return [facts.merchant(restore.npcId)];
     case 'crafting':
       return [facts.crafting(restore.projectId)];
-    case 'mapPins':
-      return [facts.mapPins(restore.regionId)];
-    case 'route':
-      return [facts.route(restore.key)];
     case 'chronicle':
       return [facts.chronicle(restore.chronicleId)];
     case 'possession':

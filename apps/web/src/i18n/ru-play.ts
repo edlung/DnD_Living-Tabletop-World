@@ -426,6 +426,8 @@ registerRussian({
   'pin places on a map': 'места на карте',
   'set a route': 'задать путь',
   travel: 'путешествие',
+  'write a quest': 'записать задание',
+  'mark a quest step': 'отметить шаг задания',
   'attune to an item': 'настройка на предмет',
   'identify an item': 'опознание предмета',
   'dawn: charges regained': 'рассвет: заряды восстановлены',

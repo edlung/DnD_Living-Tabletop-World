@@ -247,6 +247,8 @@ application on 4313.
   Herbalism Kit and the calligrapher's supplies, with thirty crowns more; Brann knows the kit).
   `travel.spec.ts` owns `ui-travel` and `ui-travel-ru` (party campaigns: the party on the Old Trade
   Road, no map yet); the journey pins places by their across and down fields, not by clicking.
+  `editors.spec.ts` owns `ui-editors` and `ui-editors-ru` (party campaigns on the Old Trade Road);
+  a creature made from the bestiary lists two edits (made, its numbers): take the newest.
 - Native apps (ADR 0070, `native-shell.spec.ts`): a stand-in shell installed with `addInitScript`
   records what the page posts, and the journey speaks for the shell with `ltw-native` events; it owns
   the `native` sign-in campaign. The apps themselves are checked on the simulator and the emulator.

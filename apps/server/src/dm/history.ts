@@ -1,6 +1,8 @@
 import {
+  DM_EDIT_COMMAND_TYPES,
   DM_HISTORY_PAGE_SIZE,
   PLAYER_COMMAND_TYPES,
+  type DmEditCommandType,
   type DmHistoryEntry,
   type DmHistoryResponse,
   type DmUndoAvailability,
@@ -54,7 +56,8 @@ type Listed =
     }
   | { readonly kind: 'substitution'; readonly stored: StoredCommand; readonly characterId: string }
   | { readonly kind: 'world'; readonly stored: StoredCommand }
-  | { readonly kind: 'hand'; readonly stored: StoredCommand };
+  | { readonly kind: 'hand'; readonly stored: StoredCommand }
+  | { readonly kind: 'edit'; readonly stored: StoredCommand };
 
 /** A dry decision that threw: the error's name only. */
 interface Undecided {
@@ -65,6 +68,8 @@ interface Undecided {
 export type HistoryLog = Pick<FastifyBaseLogger, 'warn'>;
 
 const PLAYER_TYPES: ReadonlySet<string> = new Set(PLAYER_COMMAND_TYPES);
+/** The DM's changes by hand to the world's content (docs/adr/0058-campaign-content.md §1). */
+const EDIT_TYPES: ReadonlySet<string> = new Set(DM_EDIT_COMMAND_TYPES);
 /** The DM's "Time and weather" commands (owner decision SI-D4, 2026-10-28), and the options. */
 const WORLD_TYPES: ReadonlySet<string> = new Set([
   'AdvanceWorldTime',
@@ -152,6 +157,11 @@ function listFrom(snapshot: CampaignSnapshot, log: readonly StoredCommand[]): Li
       if (stored.commandId.startsWith(httpCommandId(dm, ''))) listed.push({ kind: 'hand', stored });
       continue;
     }
+    // The DM's editors (ADR 0058 §1), at the table: a seed's set-up is no change by hand.
+    if (EDIT_TYPES.has(stored.commandType)) {
+      if (stored.commandId.startsWith(httpCommandId(dm, ''))) listed.push({ kind: 'edit', stored });
+      continue;
+    }
     if (!PLAYER_TYPES.has(stored.commandType)) continue;
     // At the table only, as for time and weather: a seed's set-up (the bow Elowen starts with in
     // hand, Stage 520) is not the DM acting for a player.
@@ -230,6 +240,9 @@ function entryOf(
   };
   if (item.kind === 'authoring') {
     return { ...common, kind: 'authoring', proposalId: item.proposalId, summary: item.summary };
+  }
+  if (item.kind === 'edit') {
+    return { ...common, kind: 'edit', command: submittedEdit(stored) };
   }
   if (item.kind === 'hand') {
     const hand = handChange(snapshot, stored);
@@ -392,6 +405,12 @@ function entityRef(
     ? { entityId: entity.entityId, kind: entity.kind, name: entity.name }
     : { entityId, kind, name: entityId };
 }
+
+/** The DM's edit as submitted, its recorded draws left out. */
+const submittedEdit = (stored: StoredCommand): KernelCommandOf<DmEditCommandType> =>
+  Object.fromEntries(
+    Object.entries(stored.command).filter(([key]) => key !== 'resolution'),
+  ) as KernelCommandOf<DmEditCommandType>;
 
 /** The player command as submitted: the engine's recorded draws stay server-side. */
 export function submitted(stored: StoredCommand): KernelCommandOf<PlayerCommandType> {
