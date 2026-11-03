@@ -1,0 +1,215 @@
+{
+  "campaignId": "hollowmere",
+  "dmActorId": "dm-hollowmere",
+  "commands": [
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "pub-hollowmere",
+      "scope": { "kind": "PUBLIC" },
+      "knowledgeType": "FACT",
+      "statement": "Холлоумир — деревня тростниковых резчиков и ловцов угрей у края Туманной топи, в дне пути на север от Равенфорда по Мельничной дороге.",
+      "subjects": ["hollowmere", "mill-road", "fogmarsh"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "pub-bell-rumour",
+      "scope": { "kind": "PUBLIC" },
+      "knowledgeType": "RUMOR",
+      "statement": "Говорят, колокол Холлоумира три ночи подряд звонил в полночь, и никого не было у верёвки.",
+      "subjects": ["hollowmere-bell", "hollowmere"],
+      "knownSince": -144000
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "pub-chapel-flood",
+      "scope": { "kind": "PUBLIC" },
+      "knowledgeType": "FACT",
+      "statement": "Затонувшая часовня стоит наполовину в воде со времён большого наводнения, тридцать лет назад.",
+      "subjects": ["drowned-chapel", "fogmarsh"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "pub-ford-goblins",
+      "scope": { "kind": "PUBLIC" },
+      "knowledgeType": "RUMOR",
+      "statement": "С холмов спустились гоблины и грабят повозки у Ивового брода.",
+      "subjects": ["willow-ford", "mill-road"],
+      "knownSince": -403200
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "party-brisk-hire",
+      "scope": { "kind": "PARTY" },
+      "knowledgeType": "FACT",
+      "statement": "Агна Бриск наняла нас отвезти её повозку с лампадным маслом и солью в Холлоумир и узнать, почему тамошний староста перестал писать.",
+      "subjects": ["brisk-cargo", "agna-brisk", "hollowmere", "hobb-fenwick"],
+      "knownSince": 28800
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "agna-letters",
+      "scope": { "kind": "NPC", "npcId": "agna-brisk" },
+      "knowledgeType": "FACT",
+      "statement": "Староста Фенвик писал каждый месяц, заказывая масло. Последнее письмо, месяц назад, было о колоколе и с просьбой прислать священника.",
+      "subjects": ["hobb-fenwick", "hollowmere-bell"],
+      "knownSince": -2563200
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "hobb-bell",
+      "scope": { "kind": "NPC", "npcId": "hobb-fenwick" },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Колокол звонил в полночь три ночи подряд. Старый Маттис, звонарь, на третью ночь поднялся его караулить и не вернулся.",
+      "subjects": ["hollowmere-bell", "old-matthis", "bell-tower"],
+      "attributedTo": "hobb-fenwick",
+      "knownSince": -57600
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "hobb-cellar",
+      "scope": { "kind": "NPC", "npcId": "hobb-fenwick" },
+      "knowledgeType": "FACT",
+      "statement": "Кто-то поедает соль и масло в погребе старосты, и теперь туда никто не спускается.",
+      "subjects": ["reeves-cellar"],
+      "knownSince": -230400
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "hobb-silver",
+      "scope": { "kind": "NPC", "npcId": "hobb-fenwick" },
+      "knowledgeType": "SECRET",
+      "statement": "Хобб получает долю серебра, которое Тростниковые плащи платят за стоянку лодок в Холлоумире, и молчит об их ночных вылазках в топь.",
+      "subjects": ["faction-3d7a52e8", "hobb-fenwick"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "ilse-saint",
+      "scope": { "kind": "NPC", "npcId": "sister-ilse" },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Святой Одран был рыцарем и утонул, сдерживая наводнение. Его колокол погребли вместе с ним под часовней, и звонить в него нельзя никогда.",
+      "subjects": ["drowned-chapel"],
+      "attributedTo": "sister-ilse",
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "ilse-lights",
+      "scope": { "kind": "NPC", "npcId": "sister-ilse" },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Ночью у Затонувшей часовни движутся огни, и к ней плавают лодки без зажжённых фонарей.",
+      "subjects": ["drowned-chapel", "feature-b57d2e3a"],
+      "attributedTo": "sister-ilse",
+      "knownSince": -316800
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "ilse-matthis",
+      "scope": { "kind": "NPC", "npcId": "sister-ilse" },
+      "knowledgeType": "FACT",
+      "statement": "Старый Маттис ушёл на колокольню на третью ночь с фонарём и дубинкой.",
+      "subjects": ["old-matthis", "bell-tower"],
+      "knownSince": -57600
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "kerra-lantern",
+      "scope": { "kind": "NPC", "npcId": "kerra-reed" },
+      "knowledgeType": "SECRET",
+      "statement": "Фонарщик в капюшоне платит Тростниковым плащам серебром, чтобы те возили мёртвых — и живых — к лестнице под часовней.",
+      "subjects": ["npc-7c3e91a2", "drowned-chapel", "faction-3d7a52e8"],
+      "knownSince": -1699200
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "kerra-stair",
+      "scope": { "kind": "NPC", "npcId": "kerra-reed" },
+      "knowledgeType": "SECRET",
+      "statement": "Путь вниз — под треснувшей плитой перед алтарём часовни: нажать на вырезанный колокол.",
+      "subjects": ["feature-f3c7a185", "drowned-chapel"],
+      "knownSince": -1699200
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "matthis-witness",
+      "scope": { "kind": "NPC", "npcId": "old-matthis" },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Тот, в капюшоне, заставляет меня звонить здесь в старый колокол, и всякий раз, как он звонит, рыцарь в омуте шевелится.",
+      "subjects": ["npc-7c3e91a2", "feature-6e0a4bd2", "creature-2e3554f3"],
+      "attributedTo": "old-matthis",
+      "knownSince": -57600
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "lantern-purpose",
+      "scope": { "kind": "NPC", "npcId": "npc-7c3e91a2" },
+      "knowledgeType": "SECRET",
+      "statement": "Утонувший колокол зовёт рыцаря обратно; восстав, он станет поборником Пепельного круга.",
+      "subjects": ["faction-a6c41f09", "feature-6e0a4bd2", "creature-2e3554f3"],
+      "knownSince": -3427200
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "truth-lantern-man",
+      "scope": { "kind": "WORLD_TRUTH" },
+      "knowledgeType": "SECRET",
+      "statement": "Фонарщик в капюшоне — брат Корвин из Пепельного круга.",
+      "subjects": ["npc-7c3e91a2", "faction-a6c41f09"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "truth-knight",
+      "scope": { "kind": "WORLD_TRUTH" },
+      "knowledgeType": "SECRET",
+      "statement": "Утонувший рыцарь — сам святой Одран, поднятый умертвием звоном утонувшего колокола.",
+      "subjects": ["creature-2e3554f3", "feature-6e0a4bd2"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "truth-matthis",
+      "scope": { "kind": "WORLD_TRUTH" },
+      "knowledgeType": "FACT",
+      "statement": "Старый Маттис жив: его держат в затопленном склепе, чтобы он звонил в утонувший колокол.",
+      "subjects": ["old-matthis", "location-5b2e9c47"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "truth-two-bells",
+      "scope": { "kind": "WORLD_TRUTH" },
+      "knowledgeType": "FACT",
+      "statement": "Колокол Холлоумира звонит сам, стоит ударить в утонувший колокол под топью.",
+      "subjects": ["hollowmere-bell", "feature-6e0a4bd2"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "dm-milestones",
+      "scope": { "kind": "DM" },
+      "knowledgeType": "SECRET",
+      "statement": "Вехи: 2-й уровень, когда повозка дошла до Холлоумира и погреб очищен; 3-й — после Затонувшей часовни; 4-й — после Затопленной мельницы; 5-й — когда утонувший колокол умолк.",
+      "subjects": ["hollowmere"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "dm-kerra-parley",
+      "scope": { "kind": "DM" },
+      "knowledgeType": "SECRET",
+      "statement": "Керра Рид идёт на переговоры, когда у неё остаётся меньше половины хитов: путь вниз в обмен на жизнь — свою и своих людей.",
+      "subjects": ["kerra-reed"],
+      "knownSince": null
+    },
+    { "type": "SetDisclosure", "knowledgeId": "agna-letters", "disclosure": "WILLING" },
+    { "type": "SetDisclosure", "knowledgeId": "hobb-bell", "disclosure": "WILLING" },
+    { "type": "SetDisclosure", "knowledgeId": "hobb-cellar", "disclosure": "WILLING" },
+    { "type": "SetDisclosure", "knowledgeId": "ilse-saint", "disclosure": "WILLING" },
+    { "type": "SetDisclosure", "knowledgeId": "ilse-lights", "disclosure": "WILLING" },
+    { "type": "SetDisclosure", "knowledgeId": "ilse-matthis", "disclosure": "WILLING" },
+    { "type": "SetDisclosure", "knowledgeId": "matthis-witness", "disclosure": "WILLING" }
+  ]
+}

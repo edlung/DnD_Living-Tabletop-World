@@ -28,6 +28,7 @@ describe('campaign creation', () => {
       startsAt: START,
       dmActorId: 'dm-1',
       language: 'en',
+      adventure: null,
       // The defaults until the DM sets any (docs/adr/0056-characters-from-the-srd.md §3).
       options: DEFAULT_CAMPAIGN_OPTIONS,
     });
@@ -54,6 +55,24 @@ describe('campaign creation', () => {
     expect((await russian.state()).campaign?.language).toBe('ru');
     const created = (await russian.history()).find((event) => event.type === 'CampaignCreated');
     expect(created?.payload).toMatchObject({ language: 'ru' });
+  });
+
+  it('records a ready adventure only when named, the campaign reading its books', async () => {
+    // docs/adr/0058-campaign-content.md §5: Ravenford's history names none and reads as before.
+    expect((await harness.state()).campaign?.adventure).toBeNull();
+    const created = (await harness.history()).find((event) => event.type === 'CampaignCreated');
+    expect(created?.payload).not.toHaveProperty('adventure');
+    const hollowmere = createHarness();
+    expectAccepted(
+      await hollowmere.submit({
+        type: 'CreateCampaign',
+        name: 'The Bells of Hollowmere',
+        worldName: 'Ravenford',
+        startsAt: START,
+        adventure: 'hollowmere',
+      }),
+    );
+    expect((await hollowmere.state()).campaign?.adventure).toBe('hollowmere');
   });
 
   it('rejects an unknown language as invalid input', async () => {

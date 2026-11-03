@@ -40,6 +40,7 @@ export {
   ENTITY_STATUSES,
   KERNEL_COMMAND_TYPES,
   LOCATION_TYPES,
+  adventureKeySchema,
   kernelCommandSchema,
   kernelCommandTypeSchema,
   type EntityKind,

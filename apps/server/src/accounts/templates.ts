@@ -3,17 +3,27 @@ import { randomBytes, randomUUID } from 'node:crypto';
 import type { CampaignTemplate } from '@ltw/contracts';
 import { commandSubmissionSchema, type WorldEngine } from '@ltw/domain';
 
+import {
+  TEMPLATE_SOURCES,
+  loadAdventureSeed,
+  type AdventurePictures,
+} from '../adventures/adventures.ts';
+import { copyLibrary } from '../adventures/library-copy.ts';
+import type { AssetContentStore } from '../assets/content-store.ts';
 import type { CredentialStore } from '../auth/credential-store.ts';
 import { iso, type AuthClock } from '../auth/session-authenticator.ts';
 import { HOUR_MS, SESSION_MS } from '../auth/sign-in.ts';
 import { hashToken, newToken } from '../auth/tokens.ts';
-import { RAVENFORD_RU_FIXTURES_DIR, loadRavenfordSeed } from '../world-engine/ravenford-seed.ts';
+import { importCuratedSet } from '../images/curated-import.ts';
+import type { LibraryStore } from '../library/library-store.ts';
+import type { Logger } from '../platform/logging/logger.ts';
 import type { AccountStore, SeatRecord } from './account-store.ts';
 
 /**
- * A campaign from a ready adventure (docs/adr/0041-accounts.md §5): a fresh copy of Ravenford, its
- * seats free for the DM's invitations, the account its DM. The DM's seat descends from a DM
- * invitation the account receives and uses at once, so its sessions are ADR 0036's like any other.
+ * A campaign from a ready adventure (docs/adr/0041-accounts.md §5; docs/adr/0058-campaign-content.md
+ * §5): a fresh copy of its world and its DM's library, its seats free for the DM's invitations, the
+ * account its DM. The DM's seat descends from a DM invitation the account receives and uses at
+ * once, so its sessions are ADR 0036's like any other.
  */
 export interface CreatedCampaign {
   readonly campaignId: string;
@@ -30,13 +40,20 @@ export async function createFromTemplate(
     readonly accounts: AccountStore;
     readonly credentials: CredentialStore;
     readonly clock: AuthClock;
+    /** The DM's library, where an adventure's handouts and tables are copied. */
+    readonly library?: LibraryStore;
+    /** The adventure's curated pictures and where their bytes go (docs/adr/0035-images.md §3). */
+    readonly pictures?: {
+      readonly sets: AdventurePictures;
+      readonly contents: AssetContentStore;
+      readonly logger: Logger;
+    };
   },
   accountId: string,
   template: CampaignTemplate,
 ): Promise<CreatedCampaign> {
-  const seed = await loadRavenfordSeed(
-    template === 'ravenford-ru' ? RAVENFORD_RU_FIXTURES_DIR : undefined,
-  );
+  const { adventure, language } = TEMPLATE_SOURCES[template];
+  const seed = await loadAdventureSeed(adventure, language);
   const campaignId = newCampaignId();
   const seated: string[] = [];
   for (const input of seed.submissions) {
@@ -62,6 +79,20 @@ export async function createFromTemplate(
   }
   const dmActorId = (await engine.load(campaignId))?.state.campaign?.dmActorId;
   if (!dmActorId) throw new Error(`template ${template} has no DM`);
+  // The DM's library the adventure was written with: its handouts and random tables (ADR 0058 §5).
+  if (deps.library) await copyLibrary(deps.library, campaignId, adventure, language, deps.clock);
+  // Its pictures, approved by its DM as any curated picture is (ADR 0035 §3). A picture that fails
+  // leaves the campaign without it, never without its DM.
+  if (deps.pictures) {
+    const { sets, contents, logger } = deps.pictures;
+    for (const set of sets[adventure] ?? []) {
+      await importCuratedSet({ engine, contents, set, logger }, campaignId, seed.dm).catch(
+        (error: unknown) => {
+          logger.warn({ err: error, campaignId }, 'a ready adventure picture was not imported');
+        },
+      );
+    }
+  }
 
   // The DM's invitation, used at once by the account that created the campaign.
   const now = deps.clock.now();

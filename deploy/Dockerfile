@@ -40,6 +40,9 @@ RUN mkdir -p /out/apps/server /out/fixtures \
  && find /out \( -name '*.d.ts' -o -name '*.d.ts.map' -o -name '.tsbuildinfo' \) -delete
 COPY fixtures/ravenford /out/fixtures/ravenford
 COPY fixtures/ravenford-ru /out/fixtures/ravenford-ru
+# The starter adventure (docs/adr/0058-campaign-content.md §5): its seeds, books, library, pictures.
+COPY fixtures/hollowmere /out/fixtures/hollowmere
+COPY fixtures/hollowmere-ru /out/fixtures/hollowmere-ru
 
 # Production dependencies of the server and its workspace packages only.
 FROM pnpm AS prod-deps

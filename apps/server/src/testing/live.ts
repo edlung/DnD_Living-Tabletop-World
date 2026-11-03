@@ -9,9 +9,10 @@ import { buildLiveApp } from '../live/live-app.ts';
 import { DEFAULT_PERSONAS_FILE } from '../platform/config/config.ts';
 import { createLogger, type Logger } from '../platform/logging/logger.ts';
 import {
+  ADVENTURE_BOOKS,
+  RAVENFORD_PREPARED,
   RAVENFORD_QUESTS,
   RAVENFORD_QUESTS_BY_LANGUAGE,
-  RAVENFORD_PREPARED,
   seededEngine,
   testAiGateway,
   testAssets,
@@ -101,6 +102,7 @@ export async function liveRavenford(
       quests: RAVENFORD_QUESTS,
       questsByLanguage: RAVENFORD_QUESTS_BY_LANGUAGE,
       preparedEncounters: RAVENFORD_PREPARED,
+      adventures: ADVENTURE_BOOKS,
       engine,
       authenticator:
         options.authenticator ?? (await loadDevPersonaAuthenticator(DEFAULT_PERSONAS_FILE)),

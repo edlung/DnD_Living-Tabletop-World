@@ -22,7 +22,9 @@ Authority: owner approval 2026-11-02 (`reviews/OWNER_FULL_GAME_2026-11-02.json`)
 - 680d — The starter adventure: a new campaign of its own for levels 1–5 in the Ravenford setting —
   its places, people, quests, clues, encounters, treasure, handouts and tables, its pictures made by
   GPT, in English and Russian — begun by the owner as any new campaign, its characters from the
-  builder or ready-made; the level-15 slice stays a one-shot.
+  builder or ready-made; the level-15 slice stays a one-shot. Done: The Bells of Hollowmere, built
+  from `scripts/adventures/hollowmere/` into `fixtures/hollowmere(-ru)/`, offered on the hub; a
+  campaign of it reads its own quests and encounters and starts with its library and pictures.
 
 ## Checks at each sub-stage
 

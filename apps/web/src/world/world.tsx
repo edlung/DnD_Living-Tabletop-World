@@ -183,9 +183,11 @@ export function World({
   if (data) knownDirectory.current = data.directory.entities;
   const locations = directory.filter((entity) => entity.kind === 'location');
   const current = data?.surroundings?.location;
+  // One's own place, else the scene's (the DM's, the party's view), else Ravenford's square.
   const placeId =
     viewing ??
     current?.entityId ??
+    data?.directory.scenePlaceId ??
     locations.find((place) => place.entityId === 'market-square')?.entityId ??
     locations[0]?.entityId ??
     '';

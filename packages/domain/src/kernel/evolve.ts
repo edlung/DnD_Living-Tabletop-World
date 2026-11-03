@@ -112,7 +112,8 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
   switch (event.type) {
     case 'CampaignCreated': {
       if (state.campaign !== null) throw new CorruptHistoryError('campaign created twice');
-      const { campaignId, name, worldName, startsAt, dmActorId, language } = event.payload;
+      const { campaignId, name, worldName, startsAt, dmActorId, language, adventure } =
+        event.payload;
       return {
         ...state,
         campaign: {
@@ -122,6 +123,7 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
           startsAt,
           dmActorId,
           language: language ?? DEFAULT_LANGUAGE,
+          adventure: adventure ?? null,
           options: DEFAULT_CAMPAIGN_OPTIONS,
         },
         clock: startsAt,

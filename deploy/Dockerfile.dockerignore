@@ -10,6 +10,8 @@
 !packages
 !fixtures/ravenford
 !fixtures/ravenford-ru
+!fixtures/hollowmere
+!fixtures/hollowmere-ru
 !deploy/server/start.sh
 !deploy/proxy/Caddyfile
 **/node_modules

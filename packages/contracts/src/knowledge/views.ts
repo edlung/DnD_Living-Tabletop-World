@@ -76,6 +76,11 @@ export interface EntityKnowledgeResponse {
 export interface KnownEntitiesResponse {
   readonly perspective: string;
   readonly entities: readonly EntityRef[];
+  /**
+   * The place of the scene being played, when this perspective knows it: a viewer with no place of
+   * its own (the DM, the party's view, the table's display) opens there.
+   */
+  readonly scenePlaceId?: string;
 }
 
 export const API_ERROR_CODES = [

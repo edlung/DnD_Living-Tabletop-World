@@ -139,6 +139,12 @@ export {
   type LocationType,
 } from './world-commands.ts';
 
+/** A ready adventure's content key: its quest book and prepared encounters (ADR 0058 §5). */
+export const adventureKeySchema = z
+  .string()
+  .regex(/^[a-z][a-z0-9]*(-[a-z0-9]+)*$/)
+  .max(40);
+
 /**
  * World Kernel commands (docs/adr/0007-world-kernel-model-and-event-store.md).
  * Schemas validate shape only; legality is decided by the World Engine.
@@ -152,6 +158,11 @@ const createCampaign = z
     startsAt: worldTimeSchema,
     /** Play language (ADR 0031); `en` when omitted. */
     language: languageSchema.optional(),
+    /**
+     * The ready adventure whose quest book and prepared encounters the campaign reads
+     * (docs/adr/0058-campaign-content.md §5); Ravenford's when omitted.
+     */
+    adventure: adventureKeySchema.optional(),
   })
   .strict();
 

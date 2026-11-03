@@ -1,0 +1,112 @@
+{
+  "campaignId": "hollowmere",
+  "dmActorId": "dm-hollowmere",
+  "commands": [
+    {
+      "type": "CreateEntity",
+      "entityId": "item-17fe9455",
+      "kind": "item",
+      "name": "Фляга святой воды",
+      "description": "Вода, освящённая у святыни утонувшего святого; пробка залита воском с оттиском колокола.",
+      "existsSince": null
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-17fe9455",
+      "holderId": "sister-ilse",
+      "catalogId": "srd-holy-water",
+      "quantity": 3
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "item-2777541f",
+      "kind": "item",
+      "name": "Зелье лечения",
+      "description": "Красное снадобье, мерцающее, если его встряхнуть.",
+      "existsSince": null
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-2777541f",
+      "holderId": "kerra-reed",
+      "catalogId": "srd-potion-of-healing",
+      "quantity": 2
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "item-30b9f50d",
+      "kind": "item",
+      "name": "Серебряные монеты",
+      "description": "Серебро, уплаченное Тростниковым плащам за ночную работу.",
+      "existsSince": null
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-30b9f50d",
+      "holderId": "kerra-reed",
+      "catalogId": "srd-silver-piece",
+      "quantity": 40
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "item-2385d954",
+      "kind": "item",
+      "name": "Фонарь откровения",
+      "description": "Фонарь с колпаком из чёрного железа; ровное пламя показывает то, что скрыто от глаз.",
+      "existsSince": null
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-2385d954",
+      "holderId": "npc-7c3e91a2",
+      "catalogId": "srd-lantern-of-revealing",
+      "quantity": 1
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "item-95cc9f7c",
+      "kind": "item",
+      "name": "Серый плащ",
+      "description": "Серый плащ; подол прошит кольцом нити цвета пепла.",
+      "existsSince": null
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-95cc9f7c",
+      "holderId": "npc-7c3e91a2",
+      "catalogId": "srd-cloak-of-protection",
+      "quantity": 1
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "item-2520d229",
+      "kind": "item",
+      "name": "Одранова булава",
+      "description": "Рыцарская булава с навершием в форме закрытого колокола; за тридцать лет в воде она не потускнела.",
+      "existsSince": null
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-2520d229",
+      "holderId": "location-c81f04da",
+      "catalogId": "srd-weapon-plus-1",
+      "baseCatalogId": "srd-mace",
+      "quantity": 1
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "item-79d92f2f",
+      "kind": "item",
+      "name": "Зелье большого лечения",
+      "description": "Тёмно-красное снадобье в закупоренном флаконе старого стекла.",
+      "existsSince": null
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-79d92f2f",
+      "holderId": "location-c81f04da",
+      "catalogId": "srd-potion-of-healing-greater",
+      "quantity": 1
+    }
+  ]
+}

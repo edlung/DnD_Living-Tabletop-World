@@ -1,0 +1,120 @@
+{
+  "$comment": "The Bells of Hollowmere quest book (ADR 0058 §5): written by scripts/adventures/hollowmere/build.ts.",
+  "quests": [
+    {
+      "questId": "widows-wagon",
+      "title": "Повозка вдовы",
+      "activation": {
+        "subject": "brisk-cargo",
+        "summary": "Агна Бриск наняла нас отвезти её повозку в Холлоумир."
+      },
+      "milestones": [
+        {
+          "kind": "survived-fight-at",
+          "stage": "ford-crossed",
+          "locationId": "willow-ford",
+          "summary": "Мы с боем прошли Ивовый брод."
+        },
+        {
+          "kind": "reached",
+          "stage": "wagon-delivered",
+          "locationId": "hollowmere",
+          "summary": "Мы довезли повозку до Холлоумира."
+        },
+        {
+          "kind": "told-by",
+          "stage": "reeve-heard",
+          "informant": "hobb-fenwick",
+          "subject": "hollowmere-bell",
+          "summary": "Староста рассказал нам, почему перестал писать."
+        }
+      ],
+      "completion": "reeve-heard"
+    },
+    {
+      "questId": "bells-of-hollowmere",
+      "title": "Колокола Холлоумира",
+      "activation": {
+        "subject": "hollowmere-bell",
+        "summary": "Мы узнали, что колокол Холлоумира звонит в полночь, хотя верёвку никто не тянет."
+      },
+      "milestones": [
+        {
+          "kind": "examined-at",
+          "stage": "tower-examined",
+          "locationId": "bell-tower",
+          "summary": "Мы осмотрели колокольню."
+        },
+        {
+          "kind": "hypothesized",
+          "stage": "bell-theory",
+          "subject": "hollowmere-bell",
+          "summary": "У нас появилась догадка, кто звонит в колокол."
+        },
+        {
+          "kind": "survived-fight-at",
+          "stage": "chapel-cleared",
+          "locationId": "drowned-chapel",
+          "summary": "Мы сразились с мертвецами Затонувшей часовни."
+        },
+        {
+          "kind": "survived-fight-at",
+          "stage": "mill-faced",
+          "locationId": "sunken-mill",
+          "summary": "Мы сошлись с Тростниковыми плащами на Затопленной мельнице."
+        },
+        {
+          "kind": "reached",
+          "stage": "way-down",
+          "locationId": "location-5b2e9c47",
+          "summary": "Мы нашли путь вниз под часовней."
+        },
+        {
+          "kind": "survived-fight-at",
+          "stage": "bell-silenced",
+          "locationId": "location-c81f04da",
+          "summary": "Мы заставили утонувший колокол умолкнуть."
+        },
+        {
+          "kind": "returned-to",
+          "stage": "word-brought",
+          "locationId": "hollowmere",
+          "after": "bell-silenced",
+          "summary": "Мы вернулись в Холлоумир с вестями."
+        }
+      ],
+      "completion": "word-brought"
+    },
+    {
+      "questId": "old-matthis",
+      "title": "Пропавший звонарь",
+      "activation": {
+        "subject": "old-matthis",
+        "summary": "Мы узнали, что пропал звонарь, Старый Маттис."
+      },
+      "milestones": [
+        {
+          "kind": "told-by",
+          "stage": "ilse-heard",
+          "informant": "sister-ilse",
+          "subject": "old-matthis",
+          "summary": "Сестра Ильзе рассказала нам, куда ушёл Маттис."
+        },
+        {
+          "kind": "reached",
+          "stage": "matthis-found",
+          "locationId": "location-5b2e9c47",
+          "summary": "Старый Маттис нашёлся в склепе."
+        },
+        {
+          "kind": "returned-to",
+          "stage": "matthis-home",
+          "locationId": "hollowmere",
+          "after": "matthis-found",
+          "summary": "Старый Маттис снова дома."
+        }
+      ],
+      "completion": "matthis-home"
+    }
+  ]
+}

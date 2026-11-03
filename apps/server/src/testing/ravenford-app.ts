@@ -45,6 +45,11 @@ import { buildLiveApp } from '../live/live-app.ts';
 import { DEFAULT_PERSONAS_FILE } from '../platform/config/config.ts';
 import { createLogger } from '../platform/logging/logger.ts';
 import { loadRavenfordSeed } from '../world-engine/ravenford-seed.ts';
+import {
+  loadAdventureBooks,
+  loadAdventurePictures,
+  type AdventurePictures,
+} from '../adventures/adventures.ts';
 import { memoryDiagnose } from './memory-journal.ts';
 import { characterBuilder } from '../characters/builder-port.ts';
 
@@ -194,6 +199,16 @@ export const RAVENFORD_QUESTS_BY_LANGUAGE = {
   ru: questBookSchema.parse(ruQuestBook).quests,
 };
 
+/** Every other ready adventure's quest book and prepared encounters (ADR 0058 §5). */
+export const ADVENTURE_BOOKS = await loadAdventureBooks();
+let pictures: Promise<AdventurePictures> | null = null;
+/**
+ * Each ready adventure's curated pictures, imported into a campaign made from it (ADR 0035 §3):
+ * read once, and only by the compositions that make campaigns from templates.
+ */
+export const adventurePictures = (): Promise<AdventurePictures> =>
+  (pictures ??= loadAdventurePictures());
+
 /** Ravenford's prepared encounters by language (`encounters.json`), validated (Stage 605). */
 export const RAVENFORD_PREPARED: PreparedEncounterBooks = {
   en: preparedEncounterBookSchema.parse(encounterBook).encounters,
@@ -221,6 +236,7 @@ export async function ravenfordApp(
     quests: RAVENFORD_QUESTS,
     questsByLanguage: RAVENFORD_QUESTS_BY_LANGUAGE,
     preparedEncounters: RAVENFORD_PREPARED,
+    adventures: ADVENTURE_BOOKS,
     engine: engine ?? (await seededEngine()),
     authenticator: await loadDevPersonaAuthenticator(DEFAULT_PERSONAS_FILE),
     logger: createLogger({ service: 'http-test', level: 'silent' }),

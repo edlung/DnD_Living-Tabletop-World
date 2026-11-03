@@ -36,6 +36,7 @@ import { CampaignActivationWorker } from './workshop/activation/worker.ts';
 import { startCampaignActivationLoop } from './workshop/activation/worker-loop.ts';
 import { PostgresCampaignInitialContentStore } from './campaigns/postgres-content.ts';
 import { PostgresCampaignPublication } from './campaigns/postgres-publication.ts';
+import { loadAdventureBooks, loadAdventurePictures } from './adventures/adventures.ts';
 import { createCampaignQuestBooks } from './campaigns/quest-books.ts';
 import { isOwnRequest } from './images/own-requests.ts';
 import { loadCuratedSet } from './images/curated-set.ts';
@@ -169,6 +170,9 @@ async function main(): Promise<void> {
     ru: await loadQuestBook(join(RAVENFORD_RU_FIXTURES_DIR, 'quests.json')),
   };
   const preparedEncounters = await loadPreparedEncounterBooks();
+  // Every other ready adventure's books, and each one's pictures (docs/adr/0058-campaign-content.md §5).
+  const adventures = await loadAdventureBooks();
+  const adventurePictures = await loadAdventurePictures();
   const draftImageRepository = signIn ? new PostgresDraftImageRepository(pool) : null;
   const draftImages = draftImageRepository
     ? {
@@ -227,6 +231,8 @@ async function main(): Promise<void> {
     quests,
     questsByLanguage,
     preparedEncounters,
+    adventures,
+    adventurePictures,
     campaignQuests: createCampaignQuestBooks(initialContent),
     ...(signIn ? { signIn } : {}),
     ...(signIn

@@ -94,6 +94,38 @@
   refuses the step (`UNKNOWN_BESTIARY_MONSTER`), and a plan refuses a `monster` with no stat block
   (`MONSTER_UNRESOLVED`) or on another kind (`MONSTER_KIND`).
 
+## Notes from the implementation (Stage 680d, 2026-11-04)
+
+- The starter adventure is The Bells of Hollowmere («Холлоумир: колокола в тумане»): a marsh village
+  a day north of Ravenford whose bell rings at midnight with no hand on its rope — four chapters for
+  levels 1–5 (the road and the reeve's cellar; the Drowned Chapel; the Reed Cloaks at the Sunken
+  Mill; the crypt and the sunken bell), thirteen places, six people, seven prepared encounters of
+  SRD monsters, three quests, nine clues, four handouts and three random tables.
+- It is written once in both languages (`scripts/adventures/hollowmere/`, a `{ en, ru }` text each)
+  and built into `fixtures/hollowmere/` and `fixtures/hollowmere-ru/` (`pnpm adventures:build`): six
+  seed scripts the World Engine runs for every copy, its quest book, prepared encounters and DM's
+  library; a test holds the fixtures to the build and runs every seed command through the World
+  Engine in both languages. Russian keeps personal names in the nominative (the glossary's rule).
+- `CreateCampaign` names the adventure (`adventure`, kept on `state.campaign`; absent: Ravenford's),
+  and the server reads that adventure's quest book and prepared encounters (`adventures/`); a template
+  copies its seed, its library (`library.json`) and its curated pictures — Ravenford's set, and
+  Hollowmere's beside it (its town and North Gate are Ravenford's) — imported as DM-approved assets
+  through real commands (ADR 0035 §3), Ravenford's own template now included.
+- Its ready-made characters are the builder's choices (`CreateCharacter` with no player): a human
+  fighter, a dwarf cleric, a halfling rogue and an elf wizard, built and equipped by the World
+  Engine in the campaign's language and kept for the DM's invitations; a player may build their own.
+  The campaign levels by milestones (`SetCampaignOptions`).
+- Its world map is the Northern Fens, a region whose GPT-made picture is a painted map: Ravenford,
+  the Willow Ford, Hollowmere, the Drowned Chapel and the Sunken Mill pinned on it, and the routes
+  between them set (`SetMapPins`, `SetRoute`) — thirty miles of road to Hollowmere, a few of swamp
+  beyond — so the DM leads the party with the travel of ADR 0057 §7–8 from the first session.
+- The hub offers each ready adventure as a card — what it is for, and a copy in each language.
+- A viewer with no place of its own (the DM, the party's view) opens where the scene is played: the
+  directory states the active scene's place (`scenePlaceId`), where the client once fell back to
+  Ravenford's Market Square and opened Hollowmere at its Bell Tower.
+- A ready-made character has no curated portrait: its ID is the World Engine's, new in every copy,
+  so the import (by entity ID) cannot name it; its player or the DM adds one as for any character.
+
 ## Consequences
 
 - Stage 680 runs in parts (`work-orders/STAGE_680.md`): the editors; the library and the tables;

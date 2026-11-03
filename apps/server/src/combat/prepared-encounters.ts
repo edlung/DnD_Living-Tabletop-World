@@ -19,6 +19,7 @@ import { z } from 'zod';
 import { statusOf } from '../http/command-status.ts';
 import { errorBody, sendError } from '../http/errors.ts';
 import { authenticate, parseInput, type RouteDependencies } from '../http/request-context.ts';
+import type { AdventureBooks } from '../adventures/adventures.ts';
 import {
   RAVENFORD_FIXTURES_DIR,
   RAVENFORD_RU_FIXTURES_DIR,
@@ -47,6 +48,8 @@ export async function loadPreparedEncounterBooks(): Promise<PreparedEncounterBoo
 
 export interface PreparedEncounterDependencies extends RouteDependencies {
   readonly preparedEncounters?: PreparedEncounterBooks;
+  /** Every other ready adventure's books (docs/adr/0058-campaign-content.md §5). */
+  readonly adventures?: Readonly<Record<string, AdventureBooks>>;
 }
 
 const params = z.object({ campaignId: campaignIdSchema }).strict();
@@ -54,10 +57,16 @@ const startParams = z
   .object({ campaignId: campaignIdSchema, encounterId: z.string().min(1).max(60) })
   .strict();
 
-/** The encounters of a campaign: Ravenford's, in its language; none for a prepared campaign. */
-function encountersOf(books: PreparedEncounterBooks | undefined, state: WorldState) {
-  if (!books || !state.campaign || state.bootstrap) return [];
-  return books[state.campaign.language] ?? [];
+/**
+ * The campaign's prepared encounters in its language: its adventure's, Ravenford's when it named
+ * none; none for a campaign the workshop prepared.
+ */
+function encountersOf(deps: PreparedEncounterDependencies, state: WorldState) {
+  if (!state.campaign || state.bootstrap) return [];
+  const { adventure, language } = state.campaign;
+  const books =
+    adventure === null ? deps.preparedEncounters : deps.adventures?.[adventure]?.encounters;
+  return books?.[language] ?? [];
 }
 
 /** A foe who can still fight: a creature or person that exists, is not destroyed, has hit points. */
@@ -150,7 +159,7 @@ export function registerPreparedEncounterRoutes(
     const dm = await dmState(request, reply, deps, actor, path.campaignId);
     if (!dm) return reply;
     const body: PreparedEncounterListResponse = {
-      encounters: encountersOf(deps.preparedEncounters, dm.state).flatMap((encounter) => {
+      encounters: encountersOf(deps, dm.state).flatMap((encounter) => {
         const view = preparedView(dm.state, encounter);
         return view === null ? [] : [view];
       }),
@@ -169,7 +178,7 @@ export function registerPreparedEncounterRoutes(
       if (!body) return reply;
       const dm = await dmState(request, reply, deps, actor, path.campaignId);
       if (!dm) return reply;
-      const encounter = encountersOf(deps.preparedEncounters, dm.state).find(
+      const encounter = encountersOf(deps, dm.state).find(
         (candidate) => candidate.encounterId === path.encounterId,
       );
       const view = encounter ? preparedView(dm.state, encounter) : null;

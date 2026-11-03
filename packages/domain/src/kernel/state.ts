@@ -41,6 +41,8 @@ export interface CampaignState {
   readonly dmActorId: string;
   /** The play language (ADR 0031); `en` for every history that never recorded one. */
   readonly language: Language;
+  /** The ready adventure whose books it reads (ADR 0058 §5); null: Ravenford's. */
+  readonly adventure: string | null;
   /** The DM's options (docs/adr/0056-characters-from-the-srd.md §3); the defaults until set. */
   readonly options: CampaignOptions;
 }

@@ -32,6 +32,9 @@ const LIVE = { timeout: 15_000 };
 
 const players = (page: Page) => page.locator('#sheet-players');
 const hub = (page: Page) => page.getByRole('region', { name: 'Your campaigns', exact: true });
+/** The hub's campaigns, not the ready adventures listed below them. */
+const campaigns = (page: Page) =>
+  hub(page).getByRole('list', { name: 'Your campaigns', exact: true }).getByRole('listitem');
 const inWorld = (page: Page) => page.getByRole('button', { name: 'Mira Vale', exact: true });
 
 interface NewLogin {
@@ -145,11 +148,11 @@ test('logins hold seats: join, sign out and in elsewhere, the hub, a new campaig
 
   // A campaign from a ready adventure: the login is its DM; the hub then lists both.
   await hub(tablet)
-    .getByRole('button', { name: 'The Missing Caravan, in English', exact: true })
+    .getByRole('button', { name: 'In English: The Missing Caravan', exact: true })
     .click();
   await expect(dockButton(tablet, words.players)).toBeVisible(LIVE);
   await tablet.getByRole('button', { name: 'My campaigns', exact: true }).click();
-  await expect(hub(tablet).getByRole('listitem')).toHaveCount(2);
+  await expect(campaigns(tablet)).toHaveCount(2);
   await expect(hub(tablet)).toContainText('You are the DM');
   await hub(tablet)
     .getByRole('button', { name: `Open The Missing Caravan: You play ${ELOWEN}`, exact: true })
@@ -216,6 +219,6 @@ test('a seat is saved to a login later, a taken login waits, and "I have a login
   await second.getByRole('button', { name: words.takeSeat, exact: true }).click();
   await expect(inWorld(player)).toBeVisible(LIVE);
   await player.getByRole('button', { name: 'My campaigns', exact: true }).click();
-  await expect(hub(player).getByRole('listitem')).toHaveCount(1);
+  await expect(campaigns(player)).toHaveCount(1);
   await expect(hub(player)).toContainText(`You play ${ELOWEN}`);
 });

@@ -6,6 +6,7 @@ import {
   commandIdSchema,
   entityIdSchema,
   kernelCommandTypeSchema,
+  adventureKeySchema,
   languageSchema,
   sceneIdSchema,
   worldTimeSchema,
@@ -192,6 +193,8 @@ export const kernelEventSchema = z.discriminatedUnion('type', [
         dmActorId: actorSchema.shape.actorId,
         /** Absent in histories written before ADR 0031: they read as English. */
         language: languageSchema.optional(),
+        /** The ready adventure it reads (ADR 0058 §5); absent: Ravenford's. */
+        adventure: adventureKeySchema.optional(),
       })
       .strict(),
   ),

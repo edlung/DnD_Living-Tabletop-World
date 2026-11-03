@@ -82,8 +82,14 @@ registerRussian({
   'Lead a new campaign': 'Провести новую кампанию',
   'A fresh copy of a ready adventure with you as its DM; invite your players from the Players sheet.':
     'Новая копия готового приключения, мастер в ней — вы; игроков пригласите на листе «Игроки».',
-  'The Missing Caravan, in English': 'Пропавший караван, на английском',
-  'The Missing Caravan, in Russian': 'Пропавший караван, на русском',
+  'The Bells of Hollowmere': 'Холлоумир: колокола в тумане',
+  'For a new party: levels 1 to 5 by milestones, four ready-made characters or your own.':
+    'Для нового отряда: уровни с 1-го по 5-й по вехам, четыре готовых персонажа или свои.',
+  'The Missing Caravan': 'Пропавший караван',
+  'A one-shot for a party of level 15.': 'Приключение на один вечер для отряда 15-го уровня.',
+  'In English': 'На английском',
+  'In Russian': 'На русском',
+  '{language}: {adventure}': '{language}: {adventure}',
   'Preparing the adventure…': 'Готовим приключение…',
   'You already lead ten campaigns of your own.': 'Вы уже ведёте десять своих кампаний.',
   'That campaign cannot be opened now.': 'Эту кампанию сейчас нельзя открыть.',

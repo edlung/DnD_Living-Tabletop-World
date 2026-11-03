@@ -1,0 +1,102 @@
+{
+  "handouts": [
+    {
+      "title": "A letter of hire",
+      "text": "To whoever takes my wagon north. Deliver forty jars of lamp-oil and twelve sacks of salt to Reeve Hobb Fenwick at Hollowmere, and bring me back his mark and his news. He has not written in a month, and he always writes. Half your fee now, half on your return. — Agna Brisk, North Gate, Ravenford"
+    },
+    {
+      "title": "The legend of Saint Odran",
+      "text": "When the waters rose, the knight Odran stood in the breach of the dyke with his shield and his bell, and rang it until the flood turned. The water took him, and the bell with him. We sank both beneath his chapel, that he might keep the marsh in death as in life. Let no hand ring his bell again, lest he answer."
+    },
+    {
+      "title": "A page from a tarred ledger",
+      "text": "Third of the month: from the Lantern, 20 silver. Two cargoes to the stair under the saint, by night, no lights. Fifth: one more — alive, old, deaf, kicks. The Lantern says he is wanted for the ringing. Seventh: 20 silver. K."
+    },
+    {
+      "title": "A warning from Sister Ilse",
+      "text": "If you go to the chapel, go by day and carry the holy water I gave you. The dead there were our neighbours; do not hate them. And if you hear a bell beneath your feet, do not wait for the second stroke."
+    }
+  ],
+  "tables": [
+    {
+      "name": "The Mill Road",
+      "die": 6,
+      "results": [
+        { "from": 1, "to": 1, "text": "Fresh goblin tracks cross the road toward the ford." },
+        {
+          "from": 2,
+          "to": 2,
+          "text": "A pedlar with a lame mule sells bootlaces and rumours of the bell."
+        },
+        {
+          "from": 3,
+          "to": 3,
+          "text": "Rain turns the ruts to mud: the wagon slows to a crawl for an hour."
+        },
+        {
+          "from": 4,
+          "to": 4,
+          "text": "Two wolves shadow the wagon from the willows; they flee from a show of fire."
+        },
+        { "from": 5, "to": 6, "text": "The road is quiet; only the reeds whisper." }
+      ]
+    },
+    {
+      "name": "Fog on the marsh",
+      "die": 8,
+      "results": [
+        { "from": 1, "to": 1, "text": "A pale light drifts ahead, always just out of reach." },
+        { "from": 2, "to": 2, "text": "A giant frog lunges from a pool at the last in line." },
+        {
+          "from": 3,
+          "to": 3,
+          "text": "A cold whisper calls one of the party by name from the reeds."
+        },
+        {
+          "from": 4,
+          "to": 4,
+          "text": "A sunken boat holds a waterlogged purse of 2d6 silver pieces."
+        },
+        { "from": 5, "to": 5, "text": "A drowned villager stands up out of the water, slowly." },
+        {
+          "from": 6,
+          "to": 6,
+          "text": "Far below the water, a bell tolls once, and every light goes out."
+        },
+        { "from": 7, "to": 8, "text": "Only fog, and the smell of rot." }
+      ]
+    },
+    {
+      "name": "Talk in Hollowmere",
+      "die": 6,
+      "results": [
+        { "from": 1, "to": 1, "text": "“The reeve has more silver than an eel-fisher ought to.”" },
+        {
+          "from": 2,
+          "to": 2,
+          "text": "“Kerra’s boats go out at night with no lanterns. Not my business.”"
+        },
+        {
+          "from": 3,
+          "to": 3,
+          "text": "“The bell rang before, the year of the flood. Ask Sister Ilse.”"
+        },
+        {
+          "from": 4,
+          "to": 4,
+          "text": "“Old Matthis took his cudgel. He meant to catch whoever it was.”"
+        },
+        {
+          "from": 5,
+          "to": 5,
+          "text": "“A man in a grey hood bought all the lamp-oil last spring. Paid in old coin.”"
+        },
+        {
+          "from": 6,
+          "to": 6,
+          "text": "“My cousin saw the dead walking on the chapel islet. Drowned folk, every one.”"
+        }
+      ]
+    }
+  ]
+}

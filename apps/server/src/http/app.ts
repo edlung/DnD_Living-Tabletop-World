@@ -17,6 +17,7 @@ import { InMemoryChatStore } from '../chat/chat-store.ts';
 import { registerHandoutRoutes, type HandoutDependencies } from '../handouts/handout-routes.ts';
 import { InMemoryHandoutStore } from '../handouts/handout-store.ts';
 import { registerLibraryRoutes } from '../library/library-routes.ts';
+import type { AdventureBooks, AdventurePictures } from '../adventures/adventures.ts';
 import { registerLobbyRoutes } from '../table/lobby-routes.ts';
 import { memoryLobby, type LobbyDependencies } from '../table/table-state.ts';
 import { registerDisplayRoutes } from '../display/display-routes.ts';
@@ -103,6 +104,10 @@ export interface AppDependencies {
    * in its language, so a campaign started from either template reads its own; `quests` otherwise.
    */
   readonly questsByLanguage?: Readonly<Partial<Record<Language, readonly QuestDefinition[]>>>;
+  /** Every ready adventure but Ravenford: its quests and prepared encounters (ADR 0058 §5). */
+  readonly adventures?: Readonly<Record<string, AdventureBooks>>;
+  /** Each ready adventure's curated pictures, imported into a new campaign (ADR 0035 §3). */
+  readonly adventurePictures?: AdventurePictures;
   /** Prepared encounters by language (Stage 605); none when absent. */
   readonly preparedEncounters?: PreparedEncounterBooks;
   /**
