@@ -25,6 +25,7 @@ import {
   wornIn,
   type Possession,
 } from './records.ts';
+import { decideSpendCharges } from './charges.ts';
 
 /**
  * Item commands (docs/adr/0039-item-possession.md). An item changes hands or
@@ -34,6 +35,7 @@ import {
  * `grant.ts`'s; the checks every decision shares, `handling.ts`'s.
  */
 export { decideAttuneItem } from './attune.ts';
+export { decideDawnRecharge, decideIdentifyItem } from './charges.ts';
 export { decideGrantItem, grantRefusal } from './grant.ts';
 export function decideEquipItem(
   state: WorldState,
@@ -153,6 +155,8 @@ export function decideUnequipItem(
 }
 
 export function decideUseItem(state: WorldState, command: ResolvedCommandOf<'UseItem'>): Decision {
+  // A magic item's charges (docs/adr/0054-items-as-data.md §5).
+  if (command.charges !== undefined) return decideSpendCharges(state, command, command.charges);
   const own = ownItem(state, command.characterId, command.itemId);
   if (!own.ok) return own;
   const effect = entryOf(own.possession)?.effect;

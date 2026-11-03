@@ -50,6 +50,9 @@ const listing = (entry: ItemEntry): ItemCatalogListing => ({
 
 const LIST: ItemCatalogResponse = { items: [...ITEM_CATALOG, ...SRD_ITEM_CATALOG].map(listing) };
 
+/** An unidentified magic item made on nothing, by name. */
+const UNKNOWN = { en: 'An unknown magic item', ru: 'Неизвестный магический предмет' } as const;
+
 /**
  * A given item's name in the campaign's language: a magic weapon, armor or shield made on its base
  * takes the base's name — "Weapon, +1" on a Longsword is "Longsword, +1", a Flame Tongue on it
@@ -124,7 +127,14 @@ export function registerItemCatalogRoutes(app: FastifyInstance, deps: RouteDepen
       };
       return reply.code(statusOf(rejected)).send(rejected);
     }
-    const name = madeName(entry, baseOfGrant(entry, baseId), state.campaign?.language ?? 'en');
+    const language = state.campaign?.language ?? 'en';
+    const base = baseOfGrant(entry, baseId);
+    // Unidentified, it is named for what it looks like (docs/adr/0054-items-as-data.md §5).
+    const name = body.unidentified
+      ? base !== null && typeof base !== 'string'
+        ? base.name[language]
+        : UNKNOWN[language]
+      : madeName(entry, base, language);
     const commands = [
       {
         commandId: `${prefix}.create`,
@@ -145,6 +155,7 @@ export function registerItemCatalogRoutes(app: FastifyInstance, deps: RouteDepen
           catalogId: entry.itemId,
           quantity: body.quantity,
           ...(baseId === null ? {} : { baseCatalogId: baseId }),
+          ...(body.unidentified ? { unidentified: true as const } : {}),
         },
       },
     ];

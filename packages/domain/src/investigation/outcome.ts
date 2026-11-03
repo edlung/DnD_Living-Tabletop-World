@@ -69,12 +69,15 @@ export function playerOutcome(
       // A potion's dice: the hit points they gave (docs/adr/0054-items-as-data.md §5).
       const used = events.find((event) => event.type === 'ItemUsed');
       const healed = used?.type === 'ItemUsed' ? used.payload.healed?.total : undefined;
+      const charged = events.find((event) => event.type === 'ItemChargesSpent');
+      const chargesLeft = charged?.type === 'ItemChargesSpent' ? charged.payload.left : undefined;
       return moved && 'itemId' in moved.payload
         ? {
             kind: 'Item',
             action: ITEM_ACTIONS[commandType],
             itemId: moved.payload.itemId,
             ...(healed === undefined ? {} : { healed }),
+            ...(chargesLeft === undefined ? {} : { chargesLeft }),
           }
         : undefined;
     }

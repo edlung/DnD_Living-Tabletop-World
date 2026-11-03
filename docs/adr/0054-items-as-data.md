@@ -46,6 +46,17 @@
    until the DM lifts the curse (Remove Curse). What an item does beyond these stays the DM's: the
    card shows the SRD's words.
 
+### Notes from the implementation (Stage 650d part 4, 2026-11-03)
+
+- Identifying: the DM reveals an item at any time; its carrier's player studies it in the Short
+  Rest the DM opened (the rest does not count which item was studied); a potion is known by a
+  taste at any time, as the SRD says. Until then the carrier sees the base's look, or "An unknown
+  magic item" of its category, and none of its magic, charges or words.
+- Charges: using one is a Magic action that records the charges spent; what it casts, and the
+  roll a wand makes on its last charge, stay the DM's (the card's words). The dawn is the DM's
+  button on the Time sheet, since the world's clock marks no dawns yet: every item short of its
+  charges rolls its dice, the server's dice through the World Engine.
+
 ## Consequences
 
 - `ItemEntry` gains its source and, for magic items, `magic` (rarity, attunement, bonus, charges,

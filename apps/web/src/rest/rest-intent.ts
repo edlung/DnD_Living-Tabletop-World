@@ -3,6 +3,7 @@ import type {
   ClassId,
   CommandRejected,
   HitDieSides,
+  IdentifiedResponse,
   RestResult,
 } from '@ltw/contracts';
 import type { Translate } from '@ltw/ui';
@@ -37,6 +38,12 @@ export type RestIntent =
       readonly itemId: string;
       readonly attuned: boolean;
       readonly liftCurse?: true;
+    }
+  | {
+      /** An item's properties learnt (§5): in a Short Rest, a potion by a taste, or the DM's. */
+      readonly action: 'identify';
+      readonly characterId: string;
+      readonly itemId: string;
     };
 
 export interface RestAction {
@@ -57,6 +64,7 @@ const CONFLICT: Readonly<Record<RestIntent['action'], string>> = {
   'hit-die': 'The short rest is over, or a fight began.',
   'level-up': 'The level could not be granted. Try again.',
   attune: 'Attunement waits for a short rest, out of a fight.',
+  identify: 'Studying an item waits for a short rest, out of a fight.',
 };
 const REFUSED: Readonly<Record<RestIntent['action'], string>> = {
   start: 'No rest now: a fight is running, or a short rest is already under way.',
@@ -64,6 +72,7 @@ const REFUSED: Readonly<Record<RestIntent['action'], string>> = {
   'hit-die': 'No Hit Point Die can be spent now.',
   'level-up': 'That level cannot be granted.',
   attune: 'It cannot be attuned now.',
+  identify: 'It cannot be studied now.',
 };
 
 /** The World Engine's reasons an attunement is refused (`details.attunement`), in words. */
@@ -102,6 +111,11 @@ const call = (request: RestIntent): [string, object] => {
         `characters/${encodeURIComponent(request.characterId)}/level-up`,
         { classId: request.classId },
       ];
+    case 'identify':
+      return [
+        `items/${encodeURIComponent(request.itemId)}/identify`,
+        { characterId: request.characterId },
+      ];
     case 'attune':
       return [
         `items/${encodeURIComponent(request.itemId)}/attune`,
@@ -123,12 +137,9 @@ export async function runRest(
 ): Promise<string> {
   const [path, body] = call(action.request);
   try {
-    const result = await api.post<RestResult | AttunedResponse | CommandRejected>(
-      path,
-      { requestId: action.requestId, ...body },
-      signal,
-      true,
-    );
+    const result = await api.post<
+      RestResult | AttunedResponse | IdentifiedResponse | CommandRejected
+    >(path, { requestId: action.requestId, ...body }, signal, true);
     switch (result.status) {
       case 'healed':
         return t('Regained {count} hit points.', { count: result.healed });
@@ -161,6 +172,8 @@ export async function runRest(
         return t('Attuned: its magic is yours.');
       case 'unattuned':
         return t('The attunement is ended.');
+      case 'identified':
+        return t('Identified: it is {name}.', { name: result.name });
       case 'rejected': {
         const reason = result.details?.['attunement'];
         const words = typeof reason === 'string' ? ATTUNE_REFUSALS[reason] : undefined;

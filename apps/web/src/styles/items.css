@@ -400,3 +400,10 @@
   margin: 0 0 8px;
   color: var(--gold);
 }
+/* Given unidentified: control first, then its words (ADR 0054 §5). */
+.give-item-unknown {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 8px 0;
+}

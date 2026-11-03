@@ -21,6 +21,8 @@ export const grantItemCommandSchema = z
      */
     baseCatalogId: itemCatalogIdSchema.optional(),
     quantity: z.number().int().min(1).max(99).default(1),
+    /** Given unidentified: its carrier sees what it looks like until it is identified (§5). */
+    unidentified: z.literal(true).optional(),
   })
   .strict();
 
@@ -32,7 +34,14 @@ export const equipItemCommandSchema = z
 export const unequipItemCommandSchema = z
   .object({ type: z.literal('UnequipItem'), ...acting })
   .strict();
-export const useItemCommandSchema = z.object({ type: z.literal('UseItem'), ...acting }).strict();
+export const useItemCommandSchema = z
+  .object({
+    type: z.literal('UseItem'),
+    ...acting,
+    /** A magic item's charges to expend, as its words allow (docs/adr/0054-items-as-data.md §5). */
+    charges: z.number().int().min(1).max(10).optional(),
+  })
+  .strict();
 /** Part of a stack: absent means everything the holder has of it. */
 const partOfStack = z.number().int().min(1).max(99).optional();
 
@@ -53,6 +62,20 @@ export const takeItemCommandSchema = z.object({ type: z.literal('TakeItem'), ...
  * Attunement to a magic item (docs/adr/0054-items-as-data.md §5): the DM's, or the table's for a
  * player during a Short Rest. Ending it on a cursed item is the DM's lifting of the curse.
  */
+/**
+ * An item's properties learnt (docs/adr/0054-items-as-data.md §5): the DM's, or the table's for a
+ * player who focused on it in a Short Rest or tasted a potion. Never its curse.
+ */
+export const identifyItemCommandSchema = z
+  .object({ type: z.literal('IdentifyItem'), ...acting })
+  .strict();
+
+/**
+ * Dawn (docs/adr/0054-items-as-data.md §5): the DM's word that a new day began; every magic item
+ * that regains charges at dawn rolls its dice.
+ */
+export const dawnRechargeCommandSchema = z.object({ type: z.literal('DawnRecharge') }).strict();
+
 export const attuneItemCommandSchema = z
   .object({
     type: z.literal('AttuneItem'),

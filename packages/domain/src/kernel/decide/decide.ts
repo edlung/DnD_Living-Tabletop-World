@@ -38,6 +38,8 @@ import {
   decideEquipItem,
   decideGiveItem,
   decideAttuneItem,
+  decideDawnRecharge,
+  decideIdentifyItem,
   decideGrantItem,
   decideTakeItem,
   decideUnequipItem,
@@ -187,6 +189,10 @@ function route(context: DecisionContext, command: ResolvedCommand): Decision {
       return decideGrantItem(state, command);
     case 'AttuneItem':
       return decideAttuneItem(state, command);
+    case 'IdentifyItem':
+      return decideIdentifyItem(state, command);
+    case 'DawnRecharge':
+      return decideDawnRecharge(state, command);
     case 'EquipItem':
       return decideEquipItem(state, command);
     case 'UnequipItem':

@@ -104,4 +104,21 @@ registerRussian({
   'The attunement is ended.': 'Настройка прервана.',
   'Only those the item names may attune to it.':
     'Настроиться могут только те, кого называет предмет.',
+  // Charges and identifying (docs/adr/0054-items-as-data.md §5).
+  'Not identified': 'Не опознан',
+  Charges: 'Заряды',
+  '{left} of {max}': '{left} из {max}',
+  'Use a charge': 'Потратить заряд',
+  'Reveal what it is': 'Раскрыть, что это',
+  'Taste it': 'Попробовать на вкус',
+  'Study it in this short rest': 'Изучить за этот короткий отдых',
+  'Unidentified: they see what it looks like until they learn what it is':
+    'Неопознанным: виден лишь его вид, пока его не опознают',
+  'Dawn: magic items regain charges': 'Рассвет: магические предметы восстанавливают заряды',
+  'A charge spent: {count} left. The DM says what it does.':
+    'Заряд потрачен: осталось {count}. Что он сделал, скажет мастер.',
+  'Identified: it is {name}.': 'Опознано: это {name}.',
+  'Studying an item waits for a short rest, out of a fight.':
+    'Изучить предмет можно во время короткого отдыха, не в бою.',
+  'It cannot be studied now.': 'Сейчас его не изучить.',
 });

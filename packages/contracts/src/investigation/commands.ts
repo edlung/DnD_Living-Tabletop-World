@@ -238,6 +238,8 @@ export type PlayerOutcome =
       readonly itemId: string;
       /** The hit points a potion gave (docs/adr/0054-items-as-data.md §5). */
       readonly healed?: number;
+      /** A magic item's charges left after one was spent (§5). */
+      readonly chargesLeft?: number;
     };
 
 /** What an accepted item command did (docs/adr/0039-item-possession.md). */

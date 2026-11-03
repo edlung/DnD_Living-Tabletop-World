@@ -138,9 +138,13 @@ export function outcomeMessage(t: Translate, outcome: PlayerOutcome | undefined)
     case 'FormHypothesis':
       return t('Hypothesis recorded as HYPOTHESIS.');
     case 'Item':
-      return outcome.healed === undefined
-        ? t(ITEM_DONE[outcome.action])
-        : t('You drank it: {count} hit points back.', { count: outcome.healed });
+      if (outcome.healed !== undefined)
+        return t('You drank it: {count} hit points back.', { count: outcome.healed });
+      if (outcome.chargesLeft !== undefined)
+        return t('A charge spent: {count} left. The DM says what it does.', {
+          count: outcome.chargesLeft,
+        });
+      return t(ITEM_DONE[outcome.action]);
     case 'MoveCombatant': {
       // Its height, a landing's check and a fall (docs/adr/0049-space-and-movement.md §6–8).
       const moved = t('You moved to {x}, {y}.', { x: outcome.position.x, y: outcome.position.y });

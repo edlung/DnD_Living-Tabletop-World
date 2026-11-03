@@ -29,11 +29,24 @@ export const russianEntry = (key: string): string | undefined => russian.get(key
 /** Keys given two different Russian words: one screen's meaning would overwrite another's. */
 export const russianConflicts = (): readonly string[] => [...conflicts];
 
+/** A fraction as the language writes it: "0.5" in English, "0,5" in Russian. */
+const FRACTIONS: Readonly<Record<Language, Intl.NumberFormat>> = {
+  en: new Intl.NumberFormat('en', { maximumFractionDigits: 6, useGrouping: false }),
+  ru: new Intl.NumberFormat('ru', { maximumFractionDigits: 6, useGrouping: false }),
+};
+
 export function translate(language: Language, key: string, params?: Params): string {
   const text = language === 'ru' ? (russian.get(key) ?? key) : key;
+  const shown = (value: string | number) =>
+    typeof value === 'number' && !Number.isInteger(value)
+      ? FRACTIONS[language].format(value)
+      : String(value);
   return params === undefined
     ? text
-    : text.replace(/\{(\w+)\}/g, (whole, name: string) => String(params[name] ?? whole));
+    : text.replace(/\{(\w+)\}/g, (whole, name: string) => {
+        const value = params[name];
+        return value === undefined ? whole : shown(value);
+      });
 }
 
 const LanguageContext = createContext<Language>('en');

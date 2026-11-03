@@ -169,6 +169,10 @@ export function InventoryPanel({
                 recipients={recipients}
                 attuning={attuning}
                 onRun={run}
+                canTaste={!blocked}
+                onIdentify={() => {
+                  onRun(restAction({ action: 'identify', characterId, itemId: selected.itemId }));
+                }}
                 onAttune={(attuned, liftCurse) => {
                   onRun(
                     restAction({

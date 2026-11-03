@@ -52,6 +52,9 @@ import { applyChronicleGenerated, applyChronicleRestore } from '../chronicle/dec
 import {
   applyItemEquipped,
   applyItemAttuned,
+  applyItemChargesRegained,
+  applyItemChargesSpent,
+  applyItemIdentified,
   applyItemGranted,
   applyItemRestore,
   applyItemSplit,
@@ -265,6 +268,12 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
       return applyItemUsed(state, event);
     case 'ItemAttuned':
       return applyItemAttuned(state, event);
+    case 'ItemChargesSpent':
+      return applyItemChargesSpent(state, event);
+    case 'ItemChargesRegained':
+      return applyItemChargesRegained(state, event);
+    case 'ItemIdentified':
+      return applyItemIdentified(state, event);
     case 'ItemRecovered':
       return applyItemRecovered(state, event);
     case 'ItemTransferred':

@@ -77,6 +77,7 @@ export type ResolvedCommand =
           | 'SetCondition'
           | 'ExposeToHazard'
           | 'UseCreatureAction'
+          | 'DawnRecharge'
           | 'AddCombatant'
           | 'RemoveCombatant'
           | 'DelayTurn'
@@ -100,6 +101,7 @@ export type ResolvedCommand =
       | 'DelayTurn'
       | 'ExposeToHazard'
       | 'UseCreatureAction'
+      | 'DawnRecharge'
     > & {
       readonly resolution: Resolution;
     })

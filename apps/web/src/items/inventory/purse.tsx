@@ -2,7 +2,7 @@ import type { InventoryItem } from '@ltw/contracts';
 import { useLanguage, useT, type Translate } from '@ltw/ui';
 
 import { itemArtUrl } from '../../visual/ui-kit.ts';
-import { formatWeight } from '../item-text.ts';
+import { roundWeight } from '../item-text.ts';
 
 /** The coins of Ravenford, largest first, with their worth in pennies. */
 const COINS = [
@@ -94,10 +94,10 @@ export function PurseAndLoad({
           <span>
             {capacityLb
               ? t('{weight} of {capacity} lb', {
-                  weight: formatWeight(totalWeightLb),
+                  weight: roundWeight(totalWeightLb),
                   capacity: capacityLb,
                 })
-              : t('{weight} lb', { weight: formatWeight(totalWeightLb) })}
+              : t('{weight} lb', { weight: roundWeight(totalWeightLb) })}
           </span>
         </p>
         {capacityLb !== null && (

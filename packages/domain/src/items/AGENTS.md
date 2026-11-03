@@ -12,6 +12,7 @@ Who carries an item entity, whether it is worn, and what using it does. Authorit
 | The checks every item decision shares                  | `handling.ts`   |
 | The player commands                                    | `decide.ts`     |
 | Attunement (the DM's, or the table's in a Short Rest)  | `attune.ts`     |
+| Charges, identifying, the dawn's recharge              | `charges.ts`    |
 | Footprints (reads/writes) of the item events           | `footprints.ts` |
 | Structural invariants                                  | `integrity.ts`  |
 | Carrier-only inventory view                            | `view.ts`       |
@@ -26,3 +27,7 @@ Rules:
 - Read an entry through `itemEntry` (an id) or `entryOf` (a possession): a magic weapon, armor,
   shield or ammunition made on a base reads as the base with the magic's name and magic
   (docs/adr/0054-items-as-data.md §5); never read a possession's catalog id alone.
+- An unidentified item reaches its carrier's view as what it looks like (its base, or the unknown
+  magic item), never its magic, charges or words; its curse shows to the DM, or to its carrier once
+  attuned (`view.ts`). Dice (a potion's healing, the dawn's charges) come from the command's
+  entropy, which the World Engine draws.

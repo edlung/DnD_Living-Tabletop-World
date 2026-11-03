@@ -23,6 +23,10 @@ export interface Possession {
   readonly attuned?: true;
   /** What this worn item added to its wearer's saving throws (reversed on removal). */
   readonly saveDelta?: number;
+  /** A magic item's charges left (§5). */
+  readonly charges?: number;
+  /** Its carrier has not learnt what it is (§5). */
+  readonly unidentified?: true;
 }
 
 export const possessionOf = (state: WorldState, itemId: string): Possession | undefined =>

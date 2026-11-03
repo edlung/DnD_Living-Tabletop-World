@@ -13,6 +13,10 @@ export interface InventoryItem {
   readonly slot: EquipSlot | null;
   /** Its carrier is attuned to it (docs/adr/0054-items-as-data.md §5). */
   readonly attuned: boolean;
+  /** Its carrier has not learnt what it is: `catalog` is then only what it looks like. */
+  readonly unidentified: boolean;
+  /** A magic item's charges, once known (§5). */
+  readonly charges: { readonly left: number; readonly max: number } | null;
   /** What it is, when it is an instance of a catalog entry; never a claim about the object. */
   readonly catalog: {
     readonly itemId: string;

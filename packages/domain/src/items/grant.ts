@@ -22,7 +22,10 @@ export function decideGrantItem(
   if (refused) return refused;
   if (possessionOf(state, command.itemId))
     return reject('INVALID_ITEM', `Item "${command.itemId}" already has a holder or place`);
-  const base = baseOfGrant(catalogId === null ? undefined : itemEntry(catalogId), baseId);
+  const entry = catalogId === null ? undefined : itemEntry(catalogId);
+  const base = baseOfGrant(entry, baseId);
+  // A magic item comes with its charges full (docs/adr/0054-items-as-data.md §5).
+  const charges = entry?.magic?.charges?.max;
   return accept({
     type: 'ItemGranted',
     payload: {
@@ -31,6 +34,8 @@ export function decideGrantItem(
       catalogId,
       quantity: command.quantity,
       ...(base !== null && typeof base !== 'string' ? { baseCatalogId: base.itemId } : {}),
+      ...(charges === undefined ? {} : { charges }),
+      ...(command.unidentified ? { unidentified: true as const } : {}),
     },
   });
 }

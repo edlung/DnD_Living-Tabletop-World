@@ -13,7 +13,37 @@ export const itemGrantedPayloadSchema = z
     quantity: quantity.min(1),
     /** What a magic weapon, armor or shield is made on (docs/adr/0054-items-as-data.md §5). */
     baseCatalogId: itemCatalogIdSchema.optional(),
+    /** A magic item's charges, full (§5). */
+    charges: z.number().int().min(0).max(50).optional(),
+    /** Given unidentified (§5). */
+    unidentified: z.literal(true).optional(),
   })
+  .strict();
+
+/** A magic item's charges expended (docs/adr/0054-items-as-data.md §5): `left` of them after. */
+export const itemChargesSpentPayloadSchema = z
+  .object({
+    itemId: entityIdSchema,
+    holderId: entityIdSchema,
+    spent: z.number().int().min(1).max(10),
+    left: z.number().int().min(0).max(50),
+  })
+  .strict();
+
+/** At dawn, a magic item's charges come back by its dice (§5): `charges` of them after. */
+export const itemChargesRegainedPayloadSchema = z
+  .object({
+    itemId: entityIdSchema,
+    holderId: entityIdSchema.nullable(),
+    rolls: z.array(z.number().int().min(1).max(20)).max(10),
+    regained: z.number().int().min(0).max(50),
+    charges: z.number().int().min(0).max(50),
+  })
+  .strict();
+
+/** An item's properties learnt by its carrier (§5); never its curse. */
+export const itemIdentifiedPayloadSchema = z
+  .object({ itemId: entityIdSchema, holderId: entityIdSchema })
   .strict();
 
 export const itemEquippedPayloadSchema = z
@@ -120,6 +150,8 @@ const possessionValue = z
     baseCatalogId: itemCatalogIdSchema.optional(),
     attuned: z.literal(true).optional(),
     saveDelta: z.number().int().min(-10).max(10).optional(),
+    charges: z.number().int().min(0).max(50).optional(),
+    unidentified: z.literal(true).optional(),
   })
   .strict();
 

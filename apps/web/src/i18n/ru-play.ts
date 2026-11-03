@@ -413,6 +413,8 @@ registerRussian({
   'drop item': 'бросить предмет',
   'take item': 'поднять предмет',
   'attune to an item': 'настройка на предмет',
+  'identify an item': 'опознание предмета',
+  'dawn: charges regained': 'рассвет: заряды восстановлены',
   'change hit points': 'изменить хиты',
   'set a condition': 'наложить или снять состояние',
   'set Exhaustion': 'установить истощение',

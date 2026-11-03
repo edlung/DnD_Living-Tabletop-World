@@ -16,7 +16,7 @@ import { rejectionMessage } from '../exploration/outcome-messages.ts';
 import { Field } from '../session/account-forms.tsx';
 import { Glyph } from '../visual/glyph.tsx';
 import { worthWords } from './inventory/purse.tsx';
-import { categoryName, formatWeight, rarityName } from './item-text.ts';
+import { categoryName, rarityName, roundWeight } from './item-text.ts';
 
 /**
  * The DM gives an item from the campaign's catalog (docs/adr/0054-items-as-data.md §4): Ravenford's
@@ -73,6 +73,7 @@ function GiveItemFields({
   const [chosen, setChosen] = useState('');
   const [made, setMade] = useState('');
   const [count, setCount] = useState('1');
+  const [unknown, setUnknown] = useState(false);
   const [busy, setBusy] = useState(false);
   const [note, setNote] = useState<string | null>(null);
   if (catalog.resource.status !== 'ready') return null;
@@ -111,6 +112,7 @@ function GiveItemFields({
           holderId,
           quantity,
           ...(base ? { baseCatalogId: base.itemId } : {}),
+          ...(unknown && picked.rarity !== null ? { unidentified: true } : {}),
         },
         AbortSignal.timeout(20_000),
       );
@@ -212,11 +214,23 @@ function GiveItemFields({
             picked.rarity ? rarityName(t, picked.rarity) : null,
             picked.attunement === null ? null : t('Needs attunement'),
             worthWords(t, picked.valueCp + (base?.valueCp ?? 0)),
-            t('{weight} lb', { weight: formatWeight(base?.weightLb ?? picked.weightLb) }),
+            t('{weight} lb', { weight: roundWeight(base?.weightLb ?? picked.weightLb) }),
           ]
             .filter(Boolean)
             .join(' · ')}
         </p>
+      )}
+      {picked?.rarity && (
+        <label className="give-item-unknown">
+          <input
+            type="checkbox"
+            checked={unknown}
+            onChange={(event) => {
+              setUnknown(event.target.checked);
+            }}
+          />
+          {t('Unidentified: they see what it looks like until they learn what it is')}
+        </label>
       )}
       <div className="action-row give-item-actions">
         {picked?.stackable && (

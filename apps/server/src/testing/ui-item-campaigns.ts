@@ -22,6 +22,8 @@ export const UI_ITEM_CAMPAIGNS = {
   catalog: 'ui-items-catalog',
   /** A player attunes in a Short Rest (docs/adr/0054-items-as-data.md §5). */
   attune: 'ui-items-attune',
+  /** Charges, dawn, and a potion known by a taste (§5). */
+  charges: 'ui-items-charges',
 } as const;
 
 const DM = { actorId: 'dm-ravenford', kind: 'user' } as const;
@@ -71,6 +73,7 @@ export async function seedUiItemCampaigns(engine: WorldEngine): Promise<void> {
     [UI_ITEM_CAMPAIGNS.split, 'en'],
     [UI_ITEM_CAMPAIGNS.catalog, 'en'],
     [UI_ITEM_CAMPAIGNS.attune, 'en'],
+    [UI_ITEM_CAMPAIGNS.charges, 'en'],
   ] as const) {
     const seed = await loadRavenfordSeed(language === 'ru' ? RAVENFORD_RU_FIXTURES_DIR : undefined);
     for (const input of seed.submissions) {

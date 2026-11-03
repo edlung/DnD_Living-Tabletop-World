@@ -5,9 +5,10 @@ import { enterWorld, TOKENS } from './support/session.ts';
 import { openCharacter } from './support/shell.ts';
 
 /**
- * Attunement at the table (docs/adr/0054-items-as-data.md §5): the DM gives Elowen a Ring of
+ * Magic items at the table (docs/adr/0054-items-as-data.md §5): the DM gives Elowen a Ring of
  * Protection and opens a Short Rest; her player puts it on, attunes to it in the rest, and the
- * pack counts it. Out of a rest the player is offered no attunement.
+ * pack counts it — out of a rest no attunement is offered. A potion given unidentified is known by
+ * a taste; a wand spends a charge, and at dawn the charges come back.
  */
 const expect = baseExpect.configure({ timeout: 15_000 });
 const CAMPAIGN = 'ui-items-attune';
@@ -52,4 +53,54 @@ test('a player attunes to a Ring of Protection in a short rest', async ({ page }
   await expect(pack).toContainText('Attuned to 1 of 3 items.');
   await expect(card).toContainText('Rare · Attuned');
   await expect(card).toContainText('+1 to Armor Class, +1 to saving throws');
+});
+
+test('a potion known by a taste, a wand’s charge spent, and the dawn that brings it back', async ({
+  page,
+}) => {
+  const campaign = 'ui-items-charges';
+  const dm = { authorization: `Bearer ${TOKENS.dm}` };
+  for (const [catalogId, extra] of [
+    ['srd-wand-of-magic-missiles', {}],
+    ['srd-potion-of-healing-greater', { unidentified: true }],
+  ] as const) {
+    const given = await page.request.post(
+      `/api/campaigns/${campaign}/items/catalog/${catalogId}/give`,
+      {
+        headers: dm,
+        data: { requestId: crypto.randomUUID(), holderId: 'elowen-starwhisper', ...extra },
+      },
+    );
+    expect(given.status()).toBe(200);
+  }
+  await enterWorld(page, TOKENS.player, campaign);
+  const pack = await openCharacter(page, 'Inventory');
+  const card = pack.locator('.item-card');
+  await pack
+    .getByRole('button', { name: /^An unknown magic item/ })
+    .first()
+    .click();
+  await expect(card).toContainText('Not identified');
+  await card.getByRole('button', { name: 'Taste it', exact: true }).click();
+  await expect(
+    page.getByRole('status').filter({ hasText: 'Identified: it is Potion of Healing (Greater).' }),
+  ).toBeVisible();
+  await expect(card).toContainText('Restores 4d4 + 4 hit points');
+
+  await pack
+    .getByRole('button', { name: /^Wand of Magic Missiles/ })
+    .first()
+    .click();
+  await expect(card).toContainText('7 of 7');
+  await card.getByRole('button', { name: 'Use a charge', exact: true }).click();
+  await expect(
+    page.getByRole('status').filter({ hasText: 'A charge spent: 6 left.' }),
+  ).toBeVisible();
+  await expect(card).toContainText('6 of 7');
+  const dawn = await page.request.post(`/api/campaigns/${campaign}/commands`, {
+    headers: dm,
+    data: { commandId: crypto.randomUUID(), command: { type: 'DawnRecharge' } },
+  });
+  expect(dawn.status()).toBe(200);
+  await expect(card).toContainText('7 of 7', { timeout: 20_000 });
 });

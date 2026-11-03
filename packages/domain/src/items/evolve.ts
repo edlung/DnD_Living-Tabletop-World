@@ -23,6 +23,8 @@ const rebuilt = (
     readonly baseCatalogId?: string | undefined;
     readonly attuned?: boolean | undefined;
     readonly saveDelta?: number | undefined;
+    readonly charges?: number | undefined;
+    readonly unidentified?: boolean | undefined;
   },
 ): Possession => ({
   catalogId: core.catalogId,
@@ -33,6 +35,8 @@ const rebuilt = (
   ...(more.baseCatalogId === undefined ? {} : { baseCatalogId: more.baseCatalogId }),
   ...(more.attuned === true ? { attuned: true as const } : {}),
   ...(more.saveDelta ? { saveDelta: more.saveDelta } : {}),
+  ...(more.charges === undefined ? {} : { charges: more.charges }),
+  ...(more.unidentified === true ? { unidentified: true as const } : {}),
 });
 
 const put = (state: WorldState, itemId: string, value: Possession): WorldState => ({
@@ -41,18 +45,15 @@ const put = (state: WorldState, itemId: string, value: Possession): WorldState =
 });
 
 export function applyItemGranted(state: WorldState, event: Ev<'ItemGranted'>): WorldState {
-  const { itemId, holderId, catalogId, quantity, baseCatalogId } = event.payload;
+  const { itemId, holderId, catalogId, quantity } = event.payload;
   if (state.entities.get(itemId)?.kind !== 'item')
     throw new CorruptHistoryError(`${itemId} is no item`);
   if (possessionOf(state, itemId)) throw new CorruptHistoryError(`item ${itemId} already held`);
-  return put(state, itemId, {
-    catalogId,
-    holderId,
-    quantity,
-    slot: null,
-    acDelta: 0,
-    ...(baseCatalogId === undefined ? {} : { baseCatalogId }),
-  });
+  return put(
+    state,
+    itemId,
+    rebuilt({ catalogId, holderId, quantity, slot: null, acDelta: 0 }, event.payload),
+  );
 }
 
 export function applyItemEquipped(state: WorldState, event: Ev<'ItemEquipped'>): WorldState {
@@ -138,4 +139,35 @@ export function applyItemRestore(
   if (restore.value === null)
     return { ...state, possessions: withoutEntry(state.possessions, restore.itemId) };
   return put(state, restore.itemId, rebuilt(restore.value, restore.value));
+}
+
+/** A magic item's charges expended (docs/adr/0054-items-as-data.md §5). */
+export function applyItemChargesSpent(
+  state: WorldState,
+  event: Ev<'ItemChargesSpent'>,
+): WorldState {
+  const { itemId, holderId, spent, left } = event.payload;
+  const current = mustHold(state, itemId);
+  if (current.holderId !== holderId || current.charges !== left + spent)
+    throw new CorruptHistoryError(`item ${itemId} charges do not follow`);
+  return put(state, itemId, { ...current, charges: left });
+}
+
+/** At dawn, its charges back by its dice (§5). */
+export function applyItemChargesRegained(
+  state: WorldState,
+  event: Ev<'ItemChargesRegained'>,
+): WorldState {
+  const { itemId, charges } = event.payload;
+  const current = mustHold(state, itemId);
+  return put(state, itemId, { ...current, charges });
+}
+
+/** Its properties learnt (§5). */
+export function applyItemIdentified(state: WorldState, event: Ev<'ItemIdentified'>): WorldState {
+  const { itemId, holderId } = event.payload;
+  const current = mustHold(state, itemId);
+  if (current.holderId !== holderId || current.unidentified !== true)
+    throw new CorruptHistoryError(`item ${itemId} was not unidentified`);
+  return put(state, itemId, rebuilt(current, { ...current, unidentified: false }));
 }

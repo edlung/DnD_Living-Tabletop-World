@@ -1,5 +1,5 @@
 import type { EquipSlot, InventoryItem, InventoryWeapon } from '@ltw/contracts';
-import { readableLabel, useT, type Language, type Translate } from '@ltw/ui';
+import { readableLabel, useT, type Language } from '@ltw/ui';
 import { useId, useState } from 'react';
 
 import { diceWords, signed } from '../../character/words.ts';
@@ -10,12 +10,12 @@ import type { Recipient } from '../inventory-panel.tsx';
 import {
   categoryName,
   effectText,
-  formatWeight,
   kindDescription,
   kindName,
-  rarityName,
+  roundWeight,
   slotName,
 } from '../item-text.ts';
+import { AttuneButton, MagicLine, bonusWords } from './item-magic.tsx';
 import { worthWords } from './purse.tsx';
 
 /**
@@ -32,6 +32,8 @@ export function ItemCard({
   attuning,
   onRun,
   onAttune,
+  onIdentify,
+  canTaste,
 }: {
   readonly item: InventoryItem;
   /** What is worn now: a slot already taken is said, with a way to free it. */
@@ -48,6 +50,10 @@ export function ItemCard({
   readonly attuning: 'rest' | 'dm' | null;
   readonly onRun: (command: ItemCommandBody) => void;
   readonly onAttune: (attuned: boolean, liftCurse?: true) => void;
+  /** Learn what it is (§5): its player in a Short Rest or by a taste, the DM any time. */
+  readonly onIdentify: () => void;
+  /** Its player may taste a potion now (out of a rest too). */
+  readonly canTaste: boolean;
 }) {
   const t = useT();
   const id = useId();
@@ -67,6 +73,8 @@ export function ItemCard({
   const occupantOf = (option: EquipSlot) => worn.find((entry) => entry.slot === option) ?? null;
   const chosenSlot = slot ?? slots.find((option) => !occupantOf(option)) ?? slots[0] ?? null;
   const occupant = chosenSlot && item.slot === null ? occupantOf(chosenSlot) : null;
+  // A potion is known by a taste (docs/adr/0054-items-as-data.md §5).
+  const potion = catalog?.category === 'consumable';
   // A magic weapon's +1 counts in its numbers (docs/adr/0054-items-as-data.md §5).
   const bonus = catalog?.magic?.bonus ?? null;
   const attack = weapon
@@ -99,6 +107,7 @@ export function ItemCard({
             .filter(Boolean)
             .join(' · ')}
         </p>
+        {item.unidentified && <p className="item-magic">{t('Not identified')}</p>}
         {catalog?.magic && <MagicLine magic={catalog.magic} attuned={item.attuned} />}
         {/* An SRD entry's own words say more than its line (docs/adr/0054-items-as-data.md §4). */}
         {catalog?.text ? (
@@ -169,6 +178,12 @@ export function ItemCard({
               <dd>{bonusWords(t, bonus)}</dd>
             </div>
           )}
+          {item.charges && (
+            <div>
+              <dt>{t('Charges')}</dt>
+              <dd>{t('{left} of {max}', { left: item.charges.left, max: item.charges.max })}</dd>
+            </div>
+          )}
           {catalog?.effect && (
             <div>
               <dt>{t('What it does')}</dt>
@@ -179,9 +194,7 @@ export function ItemCard({
           {catalog && catalog.weightLb > 0 && (
             <div>
               <dt>{t('Weight')}</dt>
-              <dd>
-                {t('{weight} lb', { weight: formatWeight(catalog.weightLb * item.quantity) })}
-              </dd>
+              <dd>{t('{weight} lb', { weight: roundWeight(catalog.weightLb * item.quantity) })}</dd>
             </div>
           )}
           {catalog && catalog.valueCp > 0 && (
@@ -192,6 +205,26 @@ export function ItemCard({
           )}
         </dl>
         <div className="item-actions">
+          {item.unidentified && (attuning !== null || (canTaste && potion)) && (
+            <button type="button" onClick={onIdentify}>
+              {attuning === 'dm'
+                ? t('Reveal what it is')
+                : potion
+                  ? t('Taste it')
+                  : t('Study it in this short rest')}
+            </button>
+          )}
+          {item.charges && item.charges.left > 0 && (
+            <button
+              type="button"
+              disabled={blocked}
+              onClick={() => {
+                onRun({ type: 'UseItem', itemId: item.itemId, charges: 1 });
+              }}
+            >
+              {t('Use a charge')}
+            </button>
+          )}
           {catalog?.magic?.attunement !== undefined &&
             catalog.magic.attunement !== null &&
             attuning !== null && (
@@ -338,79 +371,4 @@ export function ItemCard({
       </div>
     </article>
   );
-}
-
-type Magic = NonNullable<NonNullable<InventoryItem['catalog']>['magic']>;
-
-/** A magic item's rarity and attunement, and the curse the DM is told of (ADR 0054 §5). */
-function MagicLine({ magic, attuned }: { readonly magic: Magic; readonly attuned: boolean }) {
-  const t = useT();
-  return (
-    <p className="item-magic">
-      {rarityName(t, magic.rarity)}
-      {magic.attunement !== null && (
-        <>
-          {' · '}
-          {attuned ? t('Attuned') : t('Needs attunement')}
-          {!attuned && magic.attunement !== '' && <span lang="en"> ({magic.attunement})</span>}
-        </>
-      )}
-      {magic.cursed && ` · ${t('Cursed')}`}
-    </p>
-  );
-}
-
-/**
- * Attune or end it: the player in a Short Rest, the DM any time; a cursed item's attunement only
- * the DM ends, lifting the curse.
- */
-function AttuneButton({
-  attuned,
-  cursed,
-  attuning,
-  onAttune,
-}: {
-  readonly attuned: boolean;
-  readonly cursed: boolean;
-  readonly attuning: 'rest' | 'dm';
-  readonly onAttune: (attuned: boolean, liftCurse?: true) => void;
-}) {
-  const t = useT();
-  if (attuned && cursed)
-    return (
-      <button
-        type="button"
-        onClick={() => {
-          onAttune(false, true);
-        }}
-      >
-        {t('Lift the curse')}
-      </button>
-    );
-  return (
-    <button
-      type="button"
-      onClick={() => {
-        onAttune(!attuned);
-      }}
-    >
-      {attuned
-        ? t('End attunement')
-        : attuning === 'rest'
-          ? t('Attune in this short rest')
-          : t('Attune')}
-    </button>
-  );
-}
-
-/** "+1 to attack and damage", "+1 to Armor Class and saves". */
-function bonusWords(t: Translate, bonus: NonNullable<Magic['bonus']>): string {
-  const parts = [
-    bonus.attack !== undefined ? t('+{bonus} to attack and damage', { bonus: bonus.attack }) : null,
-    bonus.armorClass !== undefined
-      ? t('+{bonus} to Armor Class', { bonus: bonus.armorClass })
-      : null,
-    bonus.saves !== undefined ? t('+{bonus} to saving throws', { bonus: bonus.saves }) : null,
-  ];
-  return parts.filter(Boolean).join(', ');
 }

@@ -4,7 +4,12 @@ import {
   CONTEXT_ILLEGAL_REASONS,
   type ContextAction,
 } from '../../packages/contracts/src/index.ts';
-import { russianConflicts, russianEntry, type Translate } from '../../packages/ui/src/index.ts';
+import {
+  russianConflicts,
+  russianEntry,
+  translate,
+  type Translate,
+} from '../../packages/ui/src/index.ts';
 import { describe, expect, it } from 'vitest';
 
 import {
@@ -92,5 +97,13 @@ describe('the Russian client dictionary', () => {
       const russian = russianEntry(key);
       if (russian !== undefined) expect(placeholders(russian), key).toEqual(placeholders(key));
     }
+  });
+
+  it('writes a fraction as the language does', () => {
+    // "0.5 фунт." once showed on a Russian potion (Stage 650d): Russian writes "0,5".
+    expect(translate('en', '{weight} lb', { weight: 0.5 })).toBe('0.5 lb');
+    expect(translate('ru', '{weight} lb', { weight: 0.5 })).toBe('0,5 фунт.');
+    expect(translate('ru', '{count} p', { count: 0.2 })).toBe('0,2 п.');
+    expect(translate('ru', '{weight} lb', { weight: 1250 })).toBe('1250 фунт.');
   });
 });

@@ -448,6 +448,8 @@ export { ITEM_CATALOG, catalogEntry, isCatalogItemId } from './items/catalog.ts'
 export {
   attuneRequestSchema,
   catalogItemIdSchema,
+  identifyRequestSchema,
+  type IdentifiedResponse,
   giveCatalogItemRequestSchema,
   type AttuneRequest,
   type AttunedResponse,

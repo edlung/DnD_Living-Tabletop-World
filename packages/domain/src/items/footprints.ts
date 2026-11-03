@@ -13,7 +13,10 @@ type ItemEvent = Extract<
       | 'ItemRecovered'
       | 'ItemTransferred'
       | 'ItemSplit'
-      | 'ItemAttuned';
+      | 'ItemAttuned'
+      | 'ItemChargesSpent'
+      | 'ItemChargesRegained'
+      | 'ItemIdentified';
   }
 >;
 
@@ -50,6 +53,18 @@ export function itemFootprint(event: ItemEvent): Footprint {
           facts.sheet(event.payload.holderId),
         ],
         writes: [facts.possession(event.payload.itemId), facts.equipment(event.payload.holderId)],
+      };
+    // A charge spent or regained, a property learnt: the item's own record.
+    case 'ItemChargesSpent':
+    case 'ItemChargesRegained':
+    case 'ItemIdentified':
+      return {
+        reads: [
+          clock,
+          ...entityChecked(event.payload.itemId),
+          facts.possession(event.payload.itemId),
+        ],
+        writes: [facts.possession(event.payload.itemId)],
       };
     case 'ItemUsed':
     case 'ItemRecovered':

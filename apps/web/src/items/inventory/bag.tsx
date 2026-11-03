@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import { Glyph } from '../../visual/glyph.tsx';
 import { itemArtUrl } from '../../visual/ui-kit.ts';
-import { categoryName, formatWeight } from '../item-text.ts';
+import { categoryName, roundWeight } from '../item-text.ts';
 import { DRAG_TYPE, draggedItem } from './drag.ts';
 
 const ORDER: readonly ItemCategory[] = [
@@ -119,7 +119,7 @@ export function Bag({
                   </span>
                   {weight !== null && (
                     <span className="bag-weight" aria-hidden="true">
-                      {t('{weight} lb', { weight: formatWeight(weight) })}
+                      {t('{weight} lb', { weight: roundWeight(weight) })}
                     </span>
                   )}
                 </button>

@@ -1,6 +1,6 @@
 import { randomUUID } from 'node:crypto';
 
-import type { AttunedResponse } from '@ltw/contracts';
+import type { AttunedResponse, IdentifiedResponse, InventoryResponse } from '@ltw/contracts';
 import type { WorldEngine } from '@ltw/domain';
 import type { FastifyInstance } from 'fastify';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
@@ -8,6 +8,7 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { InMemoryRestStore, InMemoryTableStore } from '../dice/table-store.ts';
 import {
   TOKENS,
+  get,
   post,
   ravenfordApp,
   seededEngine,
@@ -111,5 +112,85 @@ describe('attunement at the table', () => {
     ).toBe(200);
     const sheet = (await engine.load('ravenford'))?.state.characterSheets.get(ELOWEN);
     expect(sheet?.saveBonus).toBeUndefined();
+  });
+});
+
+describe('identifying at the table', () => {
+  const inventory = async (token: string, perspective: string) =>
+    (
+      await get(app, `${BASE}/entities/${ELOWEN}/inventory?perspective=${perspective}`, token)
+    ).json<InventoryResponse>();
+  const identify = (itemId: string, token: string, perspective: string) =>
+    call(
+      `items/${itemId}/identify`,
+      { requestId: randomUUID(), characterId: ELOWEN },
+      token,
+      perspective,
+    );
+
+  it('the carrier sees only what an unidentified item looks like; the DM, all of it', async () => {
+    await dmCommand({
+      type: 'CreateEntity',
+      entityId: 'item-veiled',
+      kind: 'item',
+      name: 'A plain ring',
+      existsSince: null,
+    });
+    await dmCommand({
+      type: 'GrantItem',
+      itemId: 'item-veiled',
+      holderId: ELOWEN,
+      catalogId: 'srd-ring-of-protection',
+      unidentified: true,
+    });
+    const seen = (await inventory(TOKENS.player, 'PLAYER')).items.find(
+      (one) => one.itemId === 'item-veiled',
+    );
+    expect(seen).toMatchObject({
+      name: 'A plain ring',
+      unidentified: true,
+      charges: null,
+      catalog: {
+        itemId: 'unknown-magic-item',
+        magic: null,
+        text: null,
+        valueCp: 0,
+        slots: ['ring'],
+      },
+    });
+    const told = (await inventory(TOKENS.dm, 'DM')).items.find(
+      (one) => one.itemId === 'item-veiled',
+    );
+    expect(told?.catalog?.itemId).toBe('srd-ring-of-protection');
+    expect(told?.catalog?.text).toMatch(/\+1 bonus to Armor Class/);
+    // Studied out of a rest: refused; the DM reveals it any time.
+    expect((await identify('item-veiled', TOKENS.player, 'PLAYER')).statusCode).toBe(409);
+    const revealed = await identify('item-veiled', TOKENS.dm, 'DM');
+    expect(revealed.json<IdentifiedResponse>()).toEqual({
+      status: 'identified',
+      name: 'Ring of Protection',
+    });
+    const known = (await inventory(TOKENS.player, 'PLAYER')).items.find(
+      (one) => one.itemId === 'item-veiled',
+    );
+    expect(known?.catalog?.itemId).toBe('srd-ring-of-protection');
+  });
+
+  it('a potion is known by a taste, out of a rest too', async () => {
+    await dmCommand({
+      type: 'CreateEntity',
+      entityId: 'item-vial',
+      kind: 'item',
+      name: 'A red vial',
+      existsSince: null,
+    });
+    await dmCommand({
+      type: 'GrantItem',
+      itemId: 'item-vial',
+      holderId: ELOWEN,
+      catalogId: 'srd-potion-of-healing-greater',
+      unidentified: true,
+    });
+    expect((await identify('item-vial', TOKENS.player, 'PLAYER')).statusCode).toBe(200);
   });
 });

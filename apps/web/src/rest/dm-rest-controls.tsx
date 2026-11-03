@@ -88,6 +88,19 @@ export function DmRestControls({
           {t('Long rest (8 hours)')}
         </button>
       </div>
+      {/* A new day: magic items that regain charges at dawn roll their dice (ADR 0054 §5). */}
+      <div className="action-row">
+        <button
+          type="button"
+          disabled={locked}
+          onClick={() => {
+            onRun({ kind: 'command', command: { type: 'DawnRecharge' } });
+          }}
+        >
+          <Glyph name="dawn" />
+          {t('Dawn: magic items regain charges')}
+        </button>
+      </div>
       {!open && (
         <details
           className="rest-cut-short"

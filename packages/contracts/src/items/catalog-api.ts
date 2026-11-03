@@ -53,6 +53,8 @@ export const giveCatalogItemRequestSchema = z
     quantity: z.number().int().min(1).max(99).default(1),
     /** What a magic weapon, armor, shield or ammunition is made on (§5). */
     baseCatalogId: itemCatalogIdSchema.optional(),
+    /** Given unidentified: its carrier sees what it looks like until it is identified (§5). */
+    unidentified: z.literal(true).optional(),
   })
   .strict();
 export type GiveCatalogItemRequest = z.input<typeof giveCatalogItemRequestSchema>;
@@ -83,4 +85,18 @@ export type AttuneRequest = z.infer<typeof attuneRequestSchema>;
 
 export interface AttunedResponse {
   readonly status: 'attuned' | 'unattuned';
+}
+
+/**
+ * An item identified at the table (§5): a player in a Short Rest, or tasting a potion any time;
+ * the DM any time.
+ */
+export const identifyRequestSchema = z
+  .object({ requestId: z.uuid(), characterId: entityIdSchema })
+  .strict();
+
+export interface IdentifiedResponse {
+  readonly status: 'identified';
+  /** What it is, in the campaign's language. */
+  readonly name: string;
 }
