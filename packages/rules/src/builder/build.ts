@@ -18,6 +18,7 @@ import { srdClass } from '../srd/classes.ts';
 import { srdBackground, srdFeat, srdSpecies } from '../srd/origins.ts';
 import { baseScores, withIncreases } from './abilities.ts';
 import { startingEquipment, type StartingItem } from './equipment.ts';
+import { creationLanguages } from './languages.ts';
 import { speciesGains } from './species.ts';
 import { classSpellcasting, magicInitiateCasting } from './spells.ts';
 
@@ -154,6 +155,7 @@ export function buildCharacter(choices: CharacterChoices, d6: () => number): Bui
   const skilled = feats.filter((feat) => feat === 'skilled').length * 3;
   const skills = skillsOf(cls, background, choices, gains.skillChoice, skilled, problems);
   const { tools, wanted: toolsWanted } = toolsOf(cls, background, choices.tools);
+  const languages = creationLanguages(choices.classId, choices.languages, problem);
   if (toolsWanted !== null)
     problem('tools', 'Choose {count} of the tools offered', { count: toolsWanted });
   const orders = ORDERS[choices.classId];
@@ -237,6 +239,7 @@ export function buildCharacter(choices: CharacterChoices, d6: () => number): Bui
     },
     feats,
     tools,
+    languages,
     ...(order || invocations || choices.classId === 'wizard'
       ? {
           classChoices: {

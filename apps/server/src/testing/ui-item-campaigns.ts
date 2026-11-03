@@ -122,7 +122,10 @@ export async function seedUiItemCampaigns(engine: WorldEngine): Promise<void> {
   }
 }
 
-/** Elowen also knows the spells that return the dead, with a cleric's Wisdom behind them. */
+/**
+ * Elowen also knows the spells that return the dead, with a cleric's Wisdom behind them; her sheet
+ * records her origin, a feat, a tool and her languages (docs/adr/0056-…md §2).
+ */
 async function seedRaiser(engine: WorldEngine, campaignId: string): Promise<void> {
   const sheet = (await engine.load(campaignId))?.state.characterSheets.get(ELOWEN);
   if (!sheet) throw new Error(`UI raising ${campaignId}: no sheet`);
@@ -143,6 +146,10 @@ async function seedRaiser(engine: WorldEngine, campaignId: string): Promise<void
             spells: ['revivify', 'raise-dead', 'cure-wounds'],
           },
         ],
+        origin: { speciesId: 'elf', backgroundId: 'sage' },
+        feats: ['magic-initiate'],
+        tools: ['srd-calligraphers-supplies'],
+        languages: ['common', 'elvish', 'sylvan', 'draconic'],
       },
     },
   });

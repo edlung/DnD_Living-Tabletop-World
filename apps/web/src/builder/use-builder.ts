@@ -34,6 +34,7 @@ export const EMPTY_DRAFT: Draft = {
   moreSkills: [],
   expertise: [],
   tools: [],
+  languages: [],
   equipment: { classOption: 'A', backgroundOption: 'A', picks: [] },
   invocations: [],
   weaponMasteries: [],

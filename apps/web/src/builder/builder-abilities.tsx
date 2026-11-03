@@ -3,7 +3,7 @@ import { useT } from '@ltw/ui';
 import { useId } from 'react';
 
 import { ABILITY_NAMES, ABILITY_ORDER, signed } from '../character/words.ts';
-import { Field, Problems } from './builder-steps.tsx';
+import { Field, Problems } from './builder-fields.tsx';
 import type { Builder, Draft } from './use-builder.ts';
 
 /**

@@ -123,4 +123,20 @@ registerRussian({
   'As a reaction you interrupt a creature casting a spell within 60 feet: it makes a Constitution save or the spell fails.':
     'Реакцией вы прерываете существо, творящее заклинание в пределах 60 футов: оно совершает спасбросок Телосложения, иначе заклинание не срабатывает.',
   '{feet} ft (load)': '{feet} фт (груз)',
+  // The sheet on paper (docs/adr/0056-characters-from-the-srd.md §5)
+  'On paper': 'На бумаге',
+  'The whole sheet in plain ink: numbers, skills, attacks, spells, features and the pack.':
+    'Весь лист для печати: числа, навыки, атаки, заклинания, умения и снаряжение.',
+  'Print the sheet': 'Напечатать лист',
+  'Preparing the sheet…': 'Готовим лист…',
+  'The pack could not be read: the sheet prints without it.':
+    'Снаряжение прочитать не удалось: лист напечатается без него.',
+  Score: 'Значение',
+  // A spellcasting source named by its id (the Spells tab, the sheet on paper).
+  'Magic initiate': 'Посвящённый в магию',
+  Ability: 'Характеристика',
+  Attacks: 'Атаки',
+  '{source} ({ability}): save DC {dc}, attack {bonus}':
+    '{source} ({ability}): Сл спасброска {dc}, атака {bonus}',
+  '{name}: {left} of {max}': '{name}: {left} из {max}',
 });

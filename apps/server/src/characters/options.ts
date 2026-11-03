@@ -21,6 +21,7 @@ import {
   classCasting,
   classIn,
   featIn,
+  languageOptions,
   speciesGains,
   speciesIn,
   speciesOptionWords,
@@ -190,6 +191,7 @@ function optionsIn(language: ReferenceLanguage): Omit<CharacterOptionsResponse, 
         ),
       ),
     ].map(([weaponId, name]: readonly [WeaponId, string]) => ({ weaponId, name })),
+    languages: languageOptions(language),
   };
 }
 

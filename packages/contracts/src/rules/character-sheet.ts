@@ -4,6 +4,7 @@ import { entityIdSchema } from '../kernel/identifiers.ts';
 import { srdIdSchema } from '../srd/catalog.ts';
 import { featureUsesSchema, inspirationDieSchema, ragingSchema } from './class-features.ts';
 import { CONTAGION_IDS, contagionStateSchema } from './contagions.ts';
+import { SRD_LANGUAGES, srdLanguageSchema } from './languages.ts';
 import { DAMAGE_TYPES, WEAPON_IDS } from './weapon-ids.ts';
 
 /**
@@ -296,6 +297,8 @@ export const characterSheetSchema = z
       .array(z.string().regex(/^srd-[a-z0-9-]+$/))
       .max(20)
       .optional(),
+    /** The languages it knows (SRD 5.2.1); absent on a sheet made before Stage 660e. */
+    languages: z.array(srdLanguageSchema).max(SRD_LANGUAGES.length).optional(),
     /** A Cleric's or a Druid's order and a Warlock's invocations; absent: none. */
     classChoices: z
       .object({

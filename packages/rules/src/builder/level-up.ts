@@ -19,6 +19,7 @@ import advancement from '../srd/advancement.json' with { type: 'json' };
 import { classColumn, srdClass } from '../srd/classes.ts';
 import { srdFeat } from '../srd/origins.ts';
 import { withInvocationSpells } from '../features/invocations.ts';
+import { languagesToChoose, levelLanguages } from './languages.ts';
 import { CASTING_ABILITY, classCasting, classSpellList } from './spells.ts';
 
 /**
@@ -54,6 +55,8 @@ export interface LevelAsks {
   readonly metamagic: number;
   readonly weaponMasteries: number;
   readonly multiclassSkill: readonly Skill[] | null;
+  /** The languages the level lets the player choose (SRD 5.2.1). */
+  readonly languages: number;
 }
 
 const column = classColumn;
@@ -136,7 +139,8 @@ export function levelAsks(sheet: CharacterSheet, classId: ClassId): LevelAsks | 
     spellbook: classId === 'wizard' ? (level === 1 ? 6 : 2) : 0,
     maxSpellLevel,
     fightingStyle: features.includes('Fighting Style'),
-    expertise: features.includes('Expertise') ? 2 : 0,
+    // A Ranger's Deft Explorer: one skill's Expertise, beside its two languages.
+    expertise: features.includes('Expertise') ? 2 : features.includes('Deft Explorer') ? 1 : 0,
     invocations: delta(cls, 'Eldritch Invocations', level),
     metamagic: features.includes('Metamagic') ? 2 : 0,
     weaponMasteries: features.includes('Weapon Mastery')
@@ -148,6 +152,7 @@ export function levelAsks(sheet: CharacterSheet, classId: ClassId): LevelAsks | 
         ? [...cls.creation.skills.from]
         : [...SKILL_IDS]
       : null,
+    languages: languagesToChoose(classId, level),
   };
 }
 
@@ -398,10 +403,19 @@ export function levelUpCharacter(
     ? classCasting(srdClass('warlock') as SrdClass, 'warlock', warlock.level)
     : null;
   const max = slots.map((value, index) => value + (pact?.slots[index] ?? 0));
+  // The languages it gives and asks (SRD 5.2.1); a sheet that recorded none knows Common.
+  const languages = levelLanguages(
+    sheet.languages ?? ['common'],
+    choices.classId,
+    asks.classLevel,
+    choices.languages,
+    problem,
+  );
   const next: CharacterSheet = {
     ...sheet,
     classes,
     abilities,
+    ...(sheet.languages !== undefined || languages.length > 1 ? { languages } : {}),
     hitPoints: {
       ...sheet.hitPoints,
       max: sheet.hitPoints.max + gained,

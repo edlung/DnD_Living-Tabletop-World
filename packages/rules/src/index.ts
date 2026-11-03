@@ -32,6 +32,8 @@ export {
   weaponAttack,
 } from './character-derived.ts';
 export { hitPointsAllowed, levelReady, startingAt } from './builder/campaign-levels.ts';
+export { languageName, languageOptions, proficienciesOf } from './proficiencies.ts';
+export { languagesOpen, languagesToChoose } from './builder/languages.ts';
 export {
   attackerTilt,
   checkEffects,

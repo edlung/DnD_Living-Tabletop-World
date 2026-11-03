@@ -101,6 +101,8 @@ export interface CharacterDerived {
   }[];
   /** Strength × 15 lb by size; shown, and enforced where the campaign says (ADR 0056 §3). */
   readonly carryingCapacityLb: number;
+  /** Its origin, feats, tools and languages, named in the campaign's language (ADR 0056 §2). */
+  readonly proficiencies: CharacterProficiencies;
   /**
    * The class features spent and restored by rests, with what is left (docs/adr/0056-characters-
    * from-the-srd.md §4).
@@ -114,4 +116,13 @@ export interface CharacterDerived {
     readonly total: number;
     readonly left: number;
   }[];
+}
+
+/** What a character knows beside its numbers, each named in the campaign's language. */
+export interface CharacterProficiencies {
+  readonly species: string | null;
+  readonly background: string | null;
+  readonly feats: readonly string[];
+  readonly tools: readonly string[];
+  readonly languages: readonly string[];
 }

@@ -39,7 +39,8 @@ Authority: owner approval 2026-11-02 (`reviews/OWNER_FULL_GAME_2026-11-02.json`)
   done: the campaign's options of decision 16 (a level's hit points, levels by experience or
   milestone, carrying shown or enforced) and a new character at the campaign's starting level. Part 2
   done: death's time and the four spells that return the dead, the ordeal after them, and the
-  helping spells cast outside a fight.
+  helping spells cast outside a fight. Part 3a done: languages, the Skills tab's origin, tools and
+  languages, and the printable sheet.
 
 ## Checks at each sub-stage
 

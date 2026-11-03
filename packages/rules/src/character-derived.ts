@@ -31,6 +31,7 @@ import { spellIn } from './srd/catalogs-ru.ts';
 import type { ReferenceLanguage } from './srd/reference-ru.ts';
 import { hitDice } from './rest.ts';
 import { effectiveSpeedFt } from './turn.ts';
+import { proficienciesOf } from './proficiencies.ts';
 
 /** Strength score × 15 lb (SRD 5.2.1 carrying capacity, Small or Medium size). */
 const CAPACITY_PER_STRENGTH_LB = 15;
@@ -182,6 +183,7 @@ export function deriveCharacter(
       };
     }),
     carryingCapacityLb: carryingCapacityLb(sheet),
+    proficiencies: proficienciesOf(sheet, language),
     hitDice: hitDice(sheet).map(({ sides, total, left }) => ({ sides, total, left })),
   };
 }

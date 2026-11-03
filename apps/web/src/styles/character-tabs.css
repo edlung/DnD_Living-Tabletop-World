@@ -389,3 +389,24 @@
   gap: 6px;
   margin-top: 4px;
 }
+
+/* Origin, feats, tools and languages beside the skills (docs/adr/0056-…md §2) */
+.hero-proficiencies {
+  margin-top: 0;
+}
+.hero-proficiencies dl {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+.hero-proficiencies dl > div {
+  display: grid;
+  grid-template-columns: minmax(0, 8rem) minmax(0, 1fr);
+  gap: 12px;
+}
+.hero-proficiencies dt {
+  color: var(--text-muted);
+}
+.hero-proficiencies dd {
+  margin: 0;
+}

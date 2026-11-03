@@ -72,6 +72,7 @@ function copySheet(
     ...(sheet.experience === undefined ? {} : { experience: sheet.experience }),
     ...(sheet.pendingLevels === undefined ? {} : { pendingLevels: sheet.pendingLevels }),
     ...(sheet.tools === undefined ? {} : { tools: [...sheet.tools] }),
+    ...(sheet.languages === undefined ? {} : { languages: [...sheet.languages] }),
     ...(sheet.classChoices === undefined
       ? {}
       : {

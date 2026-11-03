@@ -33,6 +33,10 @@ test('the DM makes a level 1 character step by step and may invite a player to h
   await next(dialog);
   await dialog.getByRole('radio', { name: /^Dwarf/ }).click();
   await dialog.getByRole('radio', { name: /^Soldier/ }).click();
+  // Common and two standard languages (SRD 5.2.1).
+  const languages = dialog.getByRole('group', { name: /^Languages beside Common/ });
+  for (const language of ['Dwarvish', 'Giant'])
+    await languages.getByLabel(language, { exact: true }).check();
   await next(dialog);
   // The standard array as offered; Strength and Constitution raised by the Soldier.
   await expect(dialog.getByLabel('Strength', { exact: true })).toHaveValue('15');
@@ -109,6 +113,11 @@ test('a player makes another character of their own from the character dialog', 
   await next(dialog);
   await dialog.getByRole('radio', { name: /^Halfling/ }).click();
   await dialog.getByRole('radio', { name: /^Criminal/ }).click();
+  // A Rogue's third language may be a rare one; Thieves' Cant is hers already.
+  const languages = dialog.getByRole('group', { name: /^Languages beside Common/ });
+  for (const language of ['Halfling', 'Elvish', 'Undercommon (rare)'])
+    await languages.getByLabel(language, { exact: true }).check();
+  await expect(languages.getByLabel('Thieves’ Cant (rare)', { exact: true })).toHaveCount(0);
   await next(dialog);
   await next(dialog);
   const skills = dialog.getByRole('group', { name: /^Class skills/ });
@@ -130,7 +139,14 @@ test('a player makes another character of their own from the character dialog', 
   // The new character is the player's: the perspective control offers her.
   await page.keyboard.press('Escape');
   const perspective = page.getByLabel('Perspective', { exact: true });
-  await expect(perspective.locator('option', { hasText: 'Pip Underbough' })).toHaveCount(1);
+  const pip = perspective.locator('option', { hasText: 'Pip Underbough' });
+  await expect(pip).toHaveCount(1);
+  // Her sheet knows her languages: Common, those chosen and the Rogue's own Thieves' Cant.
+  await perspective.selectOption((await pip.getAttribute('value')) ?? '');
+  const skillsTab = await openCharacter(page, 'Skills');
+  await expect(
+    skillsTab.getByRole('region', { name: 'Origin, tools and languages' }),
+  ).toContainText('Common, Halfling, Elvish, Undercommon, Thieves’ Cant');
 });
 
 test('the DM awards experience and grants a level; the player takes it with an improvement', async ({

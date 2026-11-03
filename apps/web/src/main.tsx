@@ -73,6 +73,7 @@ import './styles/dice.css';
 import './styles/rest.css';
 import './styles/rules.css';
 import './styles/workshop.css';
+import './styles/print.css';
 
 // An invitation link's token leaves the address before anything is requested or rendered
 // (docs/adr/0036-production-sign-in.md §7) and waits in a one-shot holder, never bound here,

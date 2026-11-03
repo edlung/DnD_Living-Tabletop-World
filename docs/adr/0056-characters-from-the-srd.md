@@ -207,6 +207,23 @@ curated.ts`): Revivify (dead within a minute, 1 Hit Point), Raise Dead (10 days,
   the dead only the raising spells are offered, on the living never. A spell's name in an option,
   and in a cast's outcome, is in the campaign's language.
 
+## Notes from the implementation (Stage 660e, part 3, 2026-11-03)
+
+- Languages (SRD 5.2.1, Character Creation step 2; `packages/contracts/src/rules/languages.ts`,
+  `packages/rules/src/builder/languages.ts`): every character knows Common and two standard
+  languages chosen in the builder's Origin step; a Druid knows Druidic, a Rogue Thieves' Cant and
+  one more of either table; a Ranger chooses two more at level 2, beside Deft Explorer's one
+  Expertise, which the level now asks too. The sheet records `languages`; a sheet made before
+  Stage 660e records none and is read as knowing Common.
+- What a character knows beside its numbers — species, background, feats, tools and languages
+  (`packages/rules/src/proficiencies.ts`) — comes with the derived sheet, named in the campaign's
+  language by the server (the client's dictionary already keys "Common" as a rarity), and shows on
+  the Skills tab. The builder's options carry the languages' names the same way.
+- The sheet on paper: the Overview's "Print the sheet" reads the pack and lays a plain-ink sheet
+  beside the page for the printer alone (`apps/web/src/character/print-sheet.tsx`,
+  `styles/print.css`): vitals, abilities and saves, skills, attacks, spellcasting, class features,
+  origin, tools and languages, equipment. On the screen it never shows.
+
 ## Consequences
 
 - Stage 660 runs in parts: the data; creation; advancement; features in play; the table's life.

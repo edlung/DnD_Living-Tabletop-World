@@ -8,7 +8,8 @@ import { IconButton } from '../visual/icon-button.tsx';
 import { EquipmentStep, SkillsStep } from './builder-choices.tsx';
 import { SpellsStep } from './builder-spells.tsx';
 import { AbilitiesStep } from './builder-abilities.tsx';
-import { ClassStep, Field, OriginStep, Problems } from './builder-steps.tsx';
+import { Field, Problems } from './builder-fields.tsx';
+import { ClassStep, OriginStep } from './builder-steps.tsx';
 import { useBuilder, type Builder } from './use-builder.ts';
 
 /**
@@ -29,6 +30,7 @@ const STEPS = [
       'originFeat',
       'backgroundId',
       'increases',
+      'languages',
     ],
   },
   { title: 'Abilities', fields: ['abilities'] },

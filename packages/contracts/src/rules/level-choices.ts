@@ -2,6 +2,7 @@ import { z } from 'zod';
 
 import { entityIdSchema } from '../kernel/identifiers.ts';
 import { srdIdSchema } from '../srd/catalog.ts';
+import { srdLanguageSchema } from './languages.ts';
 import { ABILITIES, CLASS_IDS, FIGHTING_STYLES, SKILL_IDS, WEAPON_IDS } from './character-sheet.ts';
 
 /**
@@ -45,6 +46,8 @@ export const levelUpChoicesSchema = z
     weaponMasteries: z.array(z.enum(WEAPON_IDS)).max(2),
     /** A new class's skill, where it gives one (a Bard's, a Ranger's, a Rogue's). */
     multiclassSkill: z.enum(SKILL_IDS).optional(),
+    /** The languages a level lets the player choose: a Rogue's one, a Ranger's two at level 2. */
+    languages: z.array(srdLanguageSchema).max(2).optional(),
   })
   .strict();
 export type LevelUpChoices = z.infer<typeof levelUpChoicesSchema>;

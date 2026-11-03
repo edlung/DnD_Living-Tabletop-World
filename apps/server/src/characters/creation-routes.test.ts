@@ -31,6 +31,7 @@ const fighter: CharacterChoices = {
   moreSkills: [],
   expertise: [],
   tools: ['srd-dice-gaming-set'],
+  languages: ['dwarvish', 'elvish'],
   equipment: { classOption: 'A', backgroundOption: 'A', picks: ['srd-dice-gaming-set'] },
   fightingStyle: 'defense',
   invocations: [],

@@ -247,4 +247,20 @@ registerRussian({
     '5 000 зм плюс 1к10 × 250 зм, два обычных, три необычных и один редкий магический предмет',
   '20,000 GP plus 1d10 × 250 GP, two Common, four Uncommon, three Rare and one Very Rare magic item':
     '20 000 зм плюс 1к10 × 250 зм, два обычных, четыре необычных, три редких и один очень редкий магический предмет',
+  // Languages and what a character knows beside its numbers (docs/adr/0056-…md §2)
+  Feats: 'Черты',
+  Languages: 'Языки',
+  'Origin, tools and languages': 'Происхождение, инструменты и языки',
+  'Languages beside Common': 'Языки помимо Общего',
+  '{language} (rare)': '{language} (редкий)',
+  'Two from the standard languages and one of either table; a Rogue also knows Thieves’ Cant.':
+    'Два из стандартных языков и ещё один из любой таблицы; плут также знает воровской жаргон.',
+  'Two from the standard languages; a Druid also knows Druidic.':
+    'Два из стандартных языков; друид также знает друидический.',
+  'Two from the standard languages.': 'Два из стандартных языков.',
+  'Choose {count} languages': 'Выберите языков: {count}',
+  'Common and a class’s own languages are known already': 'Общий и языки класса уже известны',
+  'Two of them from the standard languages': 'Два из них — из стандартных языков',
+  'This level gives no language': 'Этот уровень не даёт языков',
+  'A language the character knows already': 'Этот язык персонаж уже знает',
 });

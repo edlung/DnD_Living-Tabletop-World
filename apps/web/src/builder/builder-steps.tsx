@@ -1,8 +1,10 @@
-import type { Ability, CharacterOptionsResponse, ChoiceProblem } from '@ltw/contracts';
+import type { Ability, CharacterOptionsResponse } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
-import { useId, type ReactNode } from 'react';
+import { useId } from 'react';
 
 import { ABILITY_NAMES, className } from '../character/words.ts';
+import { Field, Problems } from './builder-fields.tsx';
+import { LanguageChoice } from './builder-languages.tsx';
 import type { Builder } from './use-builder.ts';
 
 /**
@@ -10,36 +12,6 @@ import type { Builder } from './use-builder.ts';
  * — species with its option, background with its increases; the ability scores are
  * `builder-abilities.tsx`.
  */
-export function Problems({ problems }: { readonly problems: readonly ChoiceProblem[] }) {
-  const t = useT();
-  if (problems.length === 0) return null;
-  return (
-    <div role="status">
-      <ul className="builder-problems">
-        {problems.map((problem) => (
-          <li key={`${problem.field}:${problem.message}`}>{t(problem.message, problem.params)}</li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-/** A labelled control: its label beside it, not around it, so its name is the label's words. */
-export function Field({
-  label,
-  children,
-}: {
-  readonly label: string;
-  readonly children: (id: string) => ReactNode;
-}) {
-  const id = useId();
-  return (
-    <div className="builder-field">
-      <label htmlFor={id}>{label}</label>
-      {children(id)}
-    </div>
-  );
-}
 
 /** A row of cards to pick one from: each a name and a line. */
 function Cards<T extends string>({
@@ -289,6 +261,8 @@ export function OriginStep({
       <Problems
         problems={[...builder.problemsOf('backgroundId'), ...builder.problemsOf('increases')]}
       />
+      <h3>{t('Languages')}</h3>
+      <LanguageChoice options={options} builder={builder} />
     </div>
   );
 }

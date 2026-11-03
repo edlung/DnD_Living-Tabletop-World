@@ -38,6 +38,8 @@ export function choicesFor(
     moreSkills: [],
     expertise: classId === 'rogue' ? skills.slice(0, 2) : [],
     tools,
+    // Two standard languages, and a Rogue's one more (SRD 5.2.1).
+    languages: classId === 'rogue' ? ['dwarvish', 'elvish', 'sylvan'] : ['dwarvish', 'elvish'],
     equipment: {
       classOption: 'A',
       backgroundOption: 'A',

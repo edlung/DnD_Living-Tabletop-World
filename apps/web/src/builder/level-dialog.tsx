@@ -16,7 +16,7 @@ import type { WorldApi } from '../api/client.ts';
 import { ABILITY_NAMES, className, signed, skillName } from '../character/words.ts';
 import { IconButton } from '../visual/icon-button.tsx';
 import { Several } from './builder-choices.tsx';
-import { Field, Problems } from './builder-steps.tsx';
+import { Field, Problems } from './builder-fields.tsx';
 
 /**
  * A level taken (docs/adr/0056-characters-from-the-srd.md §3): the class it goes to — a new one only
@@ -209,6 +209,14 @@ function LevelChoices({
     ...(sheet.classChoices?.metamagic ?? []),
   ]);
   const improvement = choices.improvement;
+  // The languages one may still learn: none known, none a class's own secret.
+  const knownLanguages = new Set(sheet.languages ?? ['common']);
+  const newLanguages = options.languages.filter(
+    (one) =>
+      !knownLanguages.has(one.languageId) &&
+      one.languageId !== 'druidic' &&
+      one.languageId !== 'thieves-cant',
+  );
   const feats = options.levelFeats.filter(
     (feat) =>
       feat.featId !== 'ability-score-improvement' && (feat.category === 'General' || asks.epicBoon),
@@ -357,6 +365,19 @@ function LevelChoices({
             </select>
           )}
         </Field>
+      )}
+      {/* A Rogue's one more, a Ranger's two at level 2 (SRD 5.2.1). */}
+      {asks.languages > 0 && (
+        <Several
+          legend={t('Languages')}
+          wanted={asks.languages}
+          from={newLanguages.map((one) => one.languageId)}
+          chosen={choices.languages ?? []}
+          nameOf={(id) => newLanguages.find((one) => one.languageId === id)?.name ?? id}
+          onChange={(languages) => {
+            update({ languages });
+          }}
+        />
       )}
       {asks.expertise > 0 && (
         <Several

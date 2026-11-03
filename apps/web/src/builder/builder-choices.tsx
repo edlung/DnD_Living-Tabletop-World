@@ -9,7 +9,7 @@ import { readableLabel, useT } from '@ltw/ui';
 import { useId } from 'react';
 
 import { skillName } from '../character/words.ts';
-import { Field, Problems } from './builder-steps.tsx';
+import { Field, Problems } from './builder-fields.tsx';
 import type { Builder, Draft } from './use-builder.ts';
 
 /**

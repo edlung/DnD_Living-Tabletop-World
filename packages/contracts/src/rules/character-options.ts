@@ -1,4 +1,5 @@
 import type { CampaignOptions } from '../campaign/options.ts';
+import type { SrdLanguage } from './languages.ts';
 import type { SrdPickKind } from '../srd/creation.ts';
 import type { ChoiceProblem } from './character-choices.ts';
 import type {
@@ -131,6 +132,12 @@ export interface CharacterOptionsResponse {
   /** Every spell of every list, by level. */
   readonly spells: readonly SpellOption[];
   readonly weapons: readonly { readonly weaponId: WeaponId; readonly name: string }[];
+  /** Every language, in the campaign's language; the rare ones marked (SRD 5.2.1). */
+  readonly languages: readonly {
+    readonly languageId: SrdLanguage;
+    readonly name: string;
+    readonly rare: boolean;
+  }[];
   /** The level a new character starts at, the campaign's (docs/adr/0056-…md §3). */
   readonly startingLevel: number;
 }
@@ -167,6 +174,8 @@ export interface LevelAsksView {
   readonly metamagic: number;
   readonly weaponMasteries: number;
   readonly multiclassSkill: readonly Skill[] | null;
+  /** How many languages the level lets the player choose (SRD 5.2.1). */
+  readonly languages: number;
 }
 
 /** GET …/characters/:id/level-options: whether a level may be taken, and what each class asks. */

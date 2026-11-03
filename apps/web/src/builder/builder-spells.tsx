@@ -4,7 +4,7 @@ import { useId } from 'react';
 
 import { ABILITY_NAMES } from '../character/words.ts';
 import { Several } from './builder-choices.tsx';
-import { Field, Problems } from './builder-steps.tsx';
+import { Field, Problems } from './builder-fields.tsx';
 import type { Builder } from './use-builder.ts';
 
 /**

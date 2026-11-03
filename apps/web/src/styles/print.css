@@ -1,0 +1,94 @@
+/*
+ * A character's sheet on paper (docs/adr/0056-characters-from-the-srd.md §5): on the screen it is
+ * never shown; printed, it is the page — plain ink on white, the app's chrome hidden.
+ */
+.print-sheet {
+  display: none;
+}
+
+@media print {
+  @page {
+    margin: 12mm;
+  }
+  body > :not(.print-sheet) {
+    display: none !important;
+  }
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  .print-sheet {
+    display: block;
+    color: #000;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 10pt;
+    line-height: 1.35;
+  }
+  /* Plain ink: no colour of the screen's theme reaches the page. */
+  .print-sheet,
+  .print-sheet * {
+    color: #000 !important;
+    background: transparent !important;
+    text-shadow: none !important;
+  }
+  .print-sheet header {
+    border-bottom: 2px solid #000;
+    margin-bottom: 8pt;
+  }
+  .print-sheet h1 {
+    margin: 0;
+    font-size: 20pt;
+  }
+  .print-sheet h1 + p {
+    margin: 2pt 0 6pt;
+  }
+  .print-sheet h2 {
+    margin: 10pt 0 4pt;
+    border-bottom: 1px solid #000;
+    font-size: 12pt;
+  }
+  .print-sheet section {
+    break-inside: avoid;
+  }
+  .print-sheet ul {
+    margin: 0;
+    padding-left: 14pt;
+  }
+  .print-sheet .print-columns {
+    columns: 3;
+    column-gap: 16pt;
+    padding-left: 0;
+    list-style: none;
+  }
+  .print-vitals {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 6pt;
+    margin: 0 0 8pt;
+  }
+  .print-vitals div {
+    border: 1px solid #000;
+    padding: 4pt;
+    text-align: center;
+  }
+  .print-vitals dt {
+    font-size: 8pt;
+    text-transform: uppercase;
+  }
+  .print-vitals dd {
+    margin: 0;
+    font-size: 14pt;
+    font-weight: 700;
+  }
+  .print-abilities {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .print-abilities th,
+  .print-abilities td {
+    border: 1px solid #000;
+    padding: 2pt 4pt;
+    text-align: left;
+  }
+}

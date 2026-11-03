@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { actorIdSchema, entityIdSchema } from '../kernel/identifiers.ts';
 import { entityNameSchema } from '../kernel/world-commands.ts';
 import { srdIdSchema } from '../srd/catalog.ts';
+import { srdLanguageSchema } from './languages.ts';
 import {
   ABILITIES,
   CLASS_IDS,
@@ -79,6 +80,11 @@ export const characterChoicesSchema = z
     expertise: z.array(z.enum(SKILL_IDS)).max(2),
     /** Tools a class or a background asks to pick (a Bard's three instruments). */
     tools: z.array(catalogId).max(4),
+    /**
+     * Two standard languages beside Common, and a Rogue's one more of either table (SRD 5.2.1);
+     * absent until chosen.
+     */
+    languages: z.array(srdLanguageSchema).max(3).optional(),
     /** The options of the class's and the background's starting equipment, and the picks they ask. */
     equipment: z
       .object({

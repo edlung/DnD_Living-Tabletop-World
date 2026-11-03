@@ -161,7 +161,7 @@ export {
 } from './session/auth.ts';
 export { DEFAULT_LANGUAGE, LANGUAGES, languageSchema, type Language } from './language/language.ts';
 export type { CharacterSheetResponse } from './rules/character-view.ts';
-export type { CharacterDerived } from './rules/character-derived.ts';
+export type { CharacterDerived, CharacterProficiencies } from './rules/character-derived.ts';
 export * from './rules/builder.ts';
 export type { SurroundingsResponse } from './context/surroundings.ts';
 export {
@@ -209,6 +209,7 @@ export {
   type ContagionState,
 } from './rules/contagions.ts';
 export * from './rules/class-features.ts';
+export * from './rules/languages.ts';
 export {
   hitDieRequestSchema,
   restEndRequestSchema,

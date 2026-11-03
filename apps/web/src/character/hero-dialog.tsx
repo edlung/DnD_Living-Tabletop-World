@@ -22,6 +22,7 @@ import { usePortrait } from '../world/use-portrait.ts';
 import { useRereadOn } from '../world/use-world-data.ts';
 import { CharacterCard } from './character-card.tsx';
 import { OverviewTab } from './overview-tab.tsx';
+import { PrintSection } from './print-sheet.tsx';
 import { SkillsTab } from './skills-tab.tsx';
 import { SpellsTab } from './spells-tab.tsx';
 
@@ -263,17 +264,21 @@ function HeroContent({
               {!value.derived ? (
                 <StatusPanel state="empty" label={t('No character sheet is recorded here.')} />
               ) : tab === 'overview' ? (
-                <OverviewTab
-                  entityId={entityId}
-                  sheet={value.sheet}
-                  derived={value.derived}
-                  table={overview?.({
-                    entityId,
-                    sheet: value.sheet,
-                    derived: value.derived,
-                    reread,
-                  })}
-                />
+                <>
+                  <OverviewTab
+                    entityId={entityId}
+                    sheet={value.sheet}
+                    derived={value.derived}
+                    table={overview?.({
+                      entityId,
+                      sheet: value.sheet,
+                      derived: value.derived,
+                      reread,
+                    })}
+                  />
+                  {/* The sheet on paper (docs/adr/0056-characters-from-the-srd.md §5). */}
+                  <PrintSection api={api} entityId={entityId} value={value} />
+                </>
               ) : tab === 'skills' ? (
                 <SkillsTab entityId={entityId} derived={value.derived} />
               ) : tab === 'spells' ? (

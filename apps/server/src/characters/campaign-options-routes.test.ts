@@ -157,6 +157,7 @@ describe('the campaign options over HTTP', () => {
           moreSkills: ['history'],
           expertise: [],
           tools: ['srd-dice-gaming-set'],
+          languages: ['dwarvish', 'elvish'],
           equipment: { classOption: 'C', backgroundOption: 'B', picks: [] },
           originFeat: 'alert',
           fightingStyle: 'defense',
