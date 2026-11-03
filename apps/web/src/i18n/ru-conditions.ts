@@ -30,6 +30,10 @@ registerRussian({
   Stunned: 'Ошеломлён',
   Exhaustion: 'Истощение',
   'Exhaustion {level}': 'Истощение {level}',
+  // Back from the dead (docs/adr/0056-characters-from-the-srd.md §5).
+  'Back from the dead: −{penalty}': 'После воскрешения: −{penalty}',
+  'Back from the dead: −{penalty} to every d20 roll, 1 less after each Long Rest.':
+    'После воскрешения: −{penalty} к каждому броску d20, на 1 меньше после каждого продолжительного отдыха.',
   'Exhaustion (now {level})': 'Истощение (сейчас {level})',
   'Exhaustion level': 'Уровень истощения',
   'No exhaustion': 'Без истощения',

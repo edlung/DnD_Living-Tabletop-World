@@ -1,5 +1,6 @@
 import type { CharacterSheet, MetamagicChoice, Square, SrdSpellMechanics } from '@ltw/contracts';
 import {
+  deadForSeconds,
   combatantOf,
   perceivedEntityIds,
   type CombatantRecord,
@@ -153,7 +154,14 @@ export function dataSpellPlan(
   const targets: TargetInfo[] = [];
   let seen = true;
   for (const targetId of named) {
-    const located = locate(state, encounter, record, casterId, targetId);
+    const located = locate(
+      state,
+      encounter,
+      record,
+      casterId,
+      targetId,
+      effect.kind === 'revive' ? effect.withinSeconds : null,
+    );
     if ('legal' in located) return located;
     // Healing in an area reaches only those in it (Mass Cure Wounds' sphere).
     if (shape && fighting && !area.some((one) => one.entityId === targetId))
@@ -237,17 +245,34 @@ function creaturesInArea(
   );
 }
 
+/**
+ * Whether the target is one the spell may name: alive, or for a spell that returns the dead
+ * (`deadWithin`, docs/adr/0056-characters-from-the-srd.md §5) dead no longer than it reaches.
+ */
+function lifeRefusal(
+  state: WorldState,
+  targetId: string,
+  deadWithin: number | null,
+): Refusal | null {
+  if (deadWithin === null) return isAlive(state, targetId) ? null : refuse('TARGET_DEAD');
+  const dead = deadForSeconds(state, targetId);
+  if (dead === null) return refuse('NOT_DEAD');
+  return dead > deadWithin ? refuse('DEAD_TOO_LONG') : null;
+}
+
 function locate(
   state: WorldState,
   encounter: EncounterState | null,
   record: CombatantRecord | null,
   casterId: string,
   targetId: string,
+  deadWithin: number | null,
 ): { target: TargetInfo; distanceFt: number } | Refusal {
   if (encounter && record) {
     const targetRecord = combatantOf(encounter, targetId);
     if (!targetRecord) return refuse('NOT_A_COMBATANT');
-    if (!isAlive(state, targetId)) return refuse('TARGET_DEAD');
+    const life = lifeRefusal(state, targetId, deadWithin);
+    if (life) return life;
     if (isObjectIn(state, targetId)) return refuse('NOT_A_CREATURE');
     const cover = coverAt(encounter, targetRecord.position);
     if (cover === 'total' && targetId !== casterId) return refuse('TOTAL_COVER');
@@ -263,7 +288,8 @@ function locate(
   }
   if (targetId !== casterId && !perceivedEntityIds(state, casterId).has(targetId))
     return refuse('TARGET_NOT_VISIBLE');
-  if (!isAlive(state, targetId)) return refuse('TARGET_DEAD');
+  const life = lifeRefusal(state, targetId, deadWithin);
+  if (life) return life;
   return {
     target: { entityId: targetId, vitals: vitalsOf(state, targetId), record: null, cover: 'none' },
     distanceFt: 0,

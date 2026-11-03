@@ -47,6 +47,8 @@ export const facts = {
   asset: (assetId: string): FactKey => `asset:${assetId}`,
   assetCanonical: (entityId: string): FactKey => `assetcanonical:${entityId}`,
   weather: (locationId: string): FactKey => `weather:${locationId}`,
+  /** When a creature died (docs/adr/0056-characters-from-the-srd.md §5). */
+  death: (entityId: string): FactKey => `death:${entityId}`,
   chronicle: (chronicleId: string): FactKey => `chronicle:${chronicleId}`,
   possession: (itemId: string): FactKey => `possession:${itemId}`,
   /** A holder's worn set: slot occupancy is a premise of every equip (ADR 0039). */

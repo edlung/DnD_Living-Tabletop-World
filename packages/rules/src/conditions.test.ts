@@ -6,6 +6,7 @@ import {
   checkEffects,
   conditionBlocked,
   d20Modes,
+  d20Penalty,
   damageAfterDefenses,
   exhaustionPenalty,
   incapacitatedBy,
@@ -91,6 +92,15 @@ describe('the conditions', () => {
     expect(checkEffects(['blinded', 'grappled']).disadvantage).toBe(false);
     expect(checkEffects([], 1).penalty).toBe(-2);
     expect(exhaustionPenalty(0)).toBe(0);
+  });
+
+  it('take the ordeal of one back from the dead off every D20 Test, beside Exhaustion', () => {
+    // docs/adr/0056-characters-from-the-srd.md §5: −4 after Raise Dead or Resurrection.
+    expect(d20Penalty(1, 4)).toBe(-6);
+    expect(checkEffects([], 0, 4).penalty).toBe(-4);
+    expect(saveEffects('wis', [], 0, 3).penalty).toBe(-3);
+    expect(initiativeEffects([], 0, 2).penalty).toBe(-2);
+    expect(d20Modes([], 1, 1).penalty).toBe(-3);
   });
 
   it('roll Initiative with Advantage when Invisible and Disadvantage when Incapacitated', () => {

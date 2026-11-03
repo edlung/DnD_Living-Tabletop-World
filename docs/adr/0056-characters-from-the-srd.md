@@ -185,6 +185,28 @@ effects.ts`): `CastSpell` names the options (one, or with Empowered or Seeking b
   take one by one with their choices (`startingAt`). The builder says so, with the SRD's Starting
   Equipment at Higher Levels as the DM's guide; more equipment stays the DM's to give.
 
+## Notes from the implementation (Stage 660e, part 2, 2026-11-03)
+
+- When a creature dies the World Engine records when (`packages/domain/src/character/deaths.ts`):
+  the world time, and the fight and its round when one ran; undo restores the record before. How
+  long it has been dead counts the fight's rounds while that fight runs (6 seconds each — a fight's
+  rounds move no world clock), else world time; a death before Stage 660e counts as just now.
+- The spells that return the dead take the effect `revive` (curated in `scripts/srd/spell-
+curated.ts`): Revivify (dead within a minute, 1 Hit Point), Raise Dead (10 days, 1 Hit Point,
+  poisons neutralized), Resurrection (a century, all its Hit Points, poisons), True Resurrection
+  (200 years, all, poisons and magical contagions). One alive is refused `NOT_DEAD`, one dead
+  longer than the spell reaches `DEAD_TOO_LONG`; every other spell still refuses the dead. Old
+  age, missing parts, Undeath, the diamond and what a year dead costs Resurrection's caster stay
+  the DM's ("The DM applies the rest"). A story's NPC with no sheet or stat block only lives again.
+- Coming back is an ordeal for Raise Dead and Resurrection: the sheet's `ordeal` (4) is taken off
+  every D20 Test beside Exhaustion's penalty — attacks, saves, checks, initiative, Concentration —
+  and eases by 1 at each Long Rest; the character card says so.
+- Outside a fight the Context Engine now offers the spells that name a creature and harm no one —
+  healing, temporary hit points, the raising spells, an hour's casting among them — and the
+  exploration panel casts them at the lowest slot; in a fight the turn tray does as before. On
+  the dead only the raising spells are offered, on the living never. A spell's name in an option,
+  and in a cast's outcome, is in the campaign's language.
+
 ## Consequences
 
 - Stage 660 runs in parts: the data; creation; advancement; features in play; the table's life.

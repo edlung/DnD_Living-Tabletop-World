@@ -6,7 +6,6 @@ import {
   damageAfterDefenses,
   eldritchMind,
   damageAtZero,
-  exhaustionPenalty,
 } from '@ltw/rules';
 
 import { immersed } from './battlefield.ts';
@@ -14,7 +13,7 @@ import { isObject, isObjectIn } from './objects.ts';
 import {
   ceilingOf,
   defensesOf,
-  exhaustionOf,
+  d20PenaltyOf,
   has,
   hitPoints,
   knockedOutOf,
@@ -79,7 +78,7 @@ function concentrationAfterDamage(dice: Dice, v: Vitals, damage: number): Applie
     return { vitals: v, events: [] };
   const dc = concentrationSaveDc(damage);
   // Exhaustion takes 2 per level from the save (docs/adr/0045-conditions-and-actions.md §3).
-  const modifier = saveModifier(v, 'con') + exhaustionPenalty(exhaustionOf(v));
+  const modifier = saveModifier(v, 'con') + d20PenaltyOf(v);
   // Eldritch Mind's Advantage, or an Extended Spell's (docs/adr/0056-characters-from-the-srd.md §4).
   const advantage = eldritchMind(v.sheet) || v.sheet.concentration.extended === true;
   const save = d20Test(dice, { modifier, target: dc, advantage });

@@ -222,6 +222,9 @@ registerRussian({
   'takes too long': 'в бою на это заклинание нет времени',
   'too many targets': 'слишком много целей',
   'not a ritual': 'это заклинание не проводится как ритуал',
+  // The spells that return the dead (docs/adr/0056-characters-from-the-srd.md §5).
+  'not dead': 'цель не мертва',
+  'dead too long': 'цель мертва слишком давно для этого заклинания',
   // Any SRD spell in a fight (docs/adr/0052-spells-as-data.md §5).
   'a spell': 'заклинание',
   'Cast {spell} at {target}': 'Сотворить {spell}: {target}',
@@ -235,6 +238,7 @@ registerRussian({
     'Ячейка выше добавляет то, что сказано в заклинании.',
   ' The DM decides what it does.': ' Что оно делает, решает Мастер.',
   ' The DM applies the rest.': ' Остальное применяет Мастер.',
+  '{spell} returns the dead to life.': '{spell} возвращает мёртвых к жизни.',
   'no free cast': 'нет бесплатных использований',
   'target required': 'нужна цель',
   'target not visible': 'цель не видна',

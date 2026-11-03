@@ -218,7 +218,7 @@ export function outcomeMessage(t: Translate, outcome: PlayerOutcome | undefined)
           ? t('Shove: it falls Prone.')
           : t('Shove: it is pushed 5 ft.');
     case 'CastSpell': {
-      const spell = spellName(t, outcome.spellId);
+      const spell = outcome.spellName ?? spellName(t, outcome.spellId);
       if (outcome.awaitingReaction) return t('{spell} is waiting for reactions.', { spell });
       // What the server does not compute of it (docs/adr/0052-spells-as-data.md §2).
       const forDm =
@@ -227,6 +227,9 @@ export function outcomeMessage(t: Translate, outcome: PlayerOutcome | undefined)
           : outcome.forDm === 'rest'
             ? t(' The DM applies the rest.')
             : '';
+      // The dead returned to life (docs/adr/0056-characters-from-the-srd.md §5).
+      if (outcome.revived && outcome.revived.length > 0)
+        return `${t('{spell} returns the dead to life.', { spell })}${forDm}`;
       if (outcome.results.length > 0) {
         const total = outcome.results.reduce((sum, entry) => sum + (entry.damage ?? 0), 0);
         const healed = outcome.results.reduce((sum, entry) => sum + (entry.healed ?? 0), 0);

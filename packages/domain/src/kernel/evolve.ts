@@ -49,6 +49,7 @@ import { applyMemoryRecorded, applySessionEnded, applySessionStarted } from '../
 import { applyAssetEvent, applyAssetRestore } from '../assets/evolve.ts';
 import { applyWeatherRestore, applyWeatherSet } from '../weather/weather.ts';
 import { applyCampaignOptionsRestore, applyCampaignOptionsSet } from '../campaign/options.ts';
+import { applyDeathRestore, withDeath } from '../character/deaths.ts';
 import { applyChronicleGenerated, applyChronicleRestore } from '../chronicle/decide.ts';
 import {
   applyItemEquipped,
@@ -149,7 +150,11 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
       });
     }
     case 'EntityStatusChanged':
-      return updateEntity(state, event.payload.entityId, { status: event.payload.to });
+      // When it died, for the spells that return the dead (docs/adr/0056-…md §5).
+      return withDeath(
+        updateEntity(state, event.payload.entityId, { status: event.payload.to }),
+        event,
+      );
     case 'SceneStarted': {
       const { sceneId, title, locationId } = event.payload;
       if (state.usedIds.has(sceneId)) throw new CorruptHistoryError(`id ${sceneId} reused`);
@@ -428,6 +433,8 @@ function applyRestore(state: WorldState, restore: Restore): WorldState {
       return applyWeatherRestore(state, restore);
     case 'campaignOptions':
       return applyCampaignOptionsRestore(state, restore);
+    case 'death':
+      return applyDeathRestore(state, restore);
     case 'chronicle':
       return applyChronicleRestore(state, restore);
   }

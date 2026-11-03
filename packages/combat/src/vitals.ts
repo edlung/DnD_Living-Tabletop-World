@@ -12,6 +12,7 @@ import { campaignOptions, carriedWeightLb } from '@ltw/domain';
 import type { Dice, DraftEvent, WorldState } from '@ltw/domain';
 import {
   abilityModifier,
+  d20Penalty,
   incapacitatedBy,
   initiativeAdvantage,
   initiativeEffects,
@@ -100,6 +101,10 @@ export const incapacitated = (v: Vitals) => incapacitatedBy(conditionsOf(v));
 /** Exhaustion's level (ADR 0045 §3); 0 when none. */
 export const exhaustionOf = (v: Vitals): number =>
   (v.kind === 'character' ? v.sheet.exhaustion : v.block.exhaustion) ?? 0;
+/** The ordeal of a character back from the dead (docs/adr/0056-characters-from-the-srd.md §5). */
+export const ordealOf = (v: Vitals): number => (v.kind === 'character' ? (v.sheet.ordeal ?? 0) : 0);
+/** Every D20 Test's penalty: Exhaustion's and an ordeal's (ADR 0045 §3; ADR 0056 §5). */
+export const d20PenaltyOf = (v: Vitals): number => d20Penalty(exhaustionOf(v), ordealOf(v));
 export const dexterity = (v: Vitals) =>
   v.kind === 'character' ? v.sheet.abilities.dex : v.block.abilities.dex;
 export const initiativeModifier = (v: Vitals) =>
@@ -118,7 +123,7 @@ export function rollInitiative(
   v: Vitals,
   surprised = false,
 ): { roll: number; modifier: number } {
-  const effects = initiativeEffects(conditionsOf(v), exhaustionOf(v));
+  const effects = initiativeEffects(conditionsOf(v), exhaustionOf(v), ordealOf(v));
   const disadvantage = effects.disadvantage || surprised;
   // Feral Instinct and Remarkable Athlete (docs/adr/0056-characters-from-the-srd.md §4).
   const advantage = effects.advantage || (v.kind === 'character' && initiativeAdvantage(v.sheet));

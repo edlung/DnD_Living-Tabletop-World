@@ -60,6 +60,27 @@ export function commandFor(
             using: action.cost.kind === 'free' ? 'free' : { slotLevel: action.cost.slotLevel },
           }
         : null;
+    // A spell that helps a creature outside a fight, at the lowest slot it can spend
+    // (docs/adr/0056-characters-from-the-srd.md §5).
+    case 'cast_spell':
+      return action.spell
+        ? {
+            type: 'CastSpell',
+            combatantId: characterId,
+            spellId: action.spell.spellId,
+            ...(action.cost
+              ? {
+                  using:
+                    action.cost.kind === 'free'
+                      ? ('free' as const)
+                      : { slotLevel: action.cost.slotLevel },
+                }
+              : {}),
+            ...(action.spell.names
+              ? { targetIds: Array.from({ length: action.spell.times }, () => targetId) }
+              : {}),
+          }
+        : null;
     default:
       return null;
   }

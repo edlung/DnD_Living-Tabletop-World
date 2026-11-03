@@ -6,6 +6,7 @@ import {
   isSliceSpellId,
   metamagicFor,
   slotsRemaining,
+  spellIn,
   spellRules,
   srdSpell,
   totalLevel,
@@ -19,7 +20,10 @@ import type { Verdict } from './legality.ts';
 /**
  * The spells a character casts from their data (docs/adr/0052-spells-as-data.md §5), offered on a
  * creature in the fight: at it; at its square, for an area centred on a point; toward it, for an
- * area sent from the caster; and on oneself, a spell of one's own. Legality is the World Engine's
+ * area sent from the caster; and on oneself, a spell of one's own. Outside a fight, those that name
+ * a creature and harm no one: healing, temporary hit points and the spells that return the dead,
+ * an hour's casting among them (docs/adr/0056-characters-from-the-srd.md §5). A spell that returns
+ * the dead is offered on the dead alone, every other on the living. Legality is the World Engine's
  * own plan; each option names its spell, how often the target is named, and the slots it could
  * spend. The command the client builds from it is the one judged here (`castRequest`).
  */
@@ -36,7 +40,8 @@ export function castRequest(
   using: CastRequest['using'],
   target: {
     readonly entityId: string;
-    readonly position: { readonly x: number; readonly y: number };
+    /** Its square in the fight; none outside one. */
+    readonly position: { readonly x: number; readonly y: number } | null;
   },
 ): CastRequest {
   const above = using === undefined || using === 'free' ? 0 : using.slotLevel - spell.level;
@@ -45,22 +50,28 @@ export function castRequest(
     spellId: spell.spellId,
     ...(using === undefined ? {} : { using }),
     ...(spell.names ? { targetIds: Array.from({ length: times }, () => target.entityId) } : {}),
-    ...(spell.aim ? { point: { x: target.position.x, y: target.position.y } } : {}),
+    ...(spell.aim && target.position
+      ? { point: { x: target.position.x, y: target.position.y } }
+      : {}),
   };
 }
 
 type Judge = (requires: 'present' | 'present-alive', verdict: () => Verdict) => Verdict;
 
 export function spellOptions(
-  frame: CombatFrame,
+  frame: CombatFrame | null,
   inputs: ContextInputs,
   targetId: string,
   judge: Judge,
   refOf: (entityId: string) => ContextEntityRef,
 ): ContextAction[] {
   const sheet = inputs.sheet;
-  const target = combatantOf(frame.encounter, targetId);
-  if (!sheet || !target) return [];
+  const record = frame ? combatantOf(frame.encounter, targetId) : null;
+  if (!sheet || (frame && !record)) return [];
+  const target = { entityId: targetId, position: record ? record.position : null };
+  const dead = inputs.state.entities.get(targetId)?.status === 'dead';
+  // Its name as the campaign reads it (docs/adr/0055-rules-reference-and-toolbox.md §5).
+  const language = inputs.state.campaign?.language === 'ru' ? 'ru' : 'en';
   const self = targetId === inputs.actor.entityId;
   const known = [...new Set(sheet.spellcasting.flatMap((source) => source.spells))].filter(
     (spellId) => !isSliceSpellId(spellId),
@@ -68,11 +79,13 @@ export function spellOptions(
   const options: ContextAction[] = [];
   for (const spellId of known) {
     const rules = spellRules(spellId);
-    const spell = rules ? describe(rules, self) : null;
+    const spell = rules ? describe(rules, self, frame !== null, language) : null;
     if (!rules || !spell) continue;
     const using = rules.level === 0 ? undefined : chooseUsing(sheet, spellId);
     const mechanics = rules.mechanics;
     if (!mechanics) continue;
+    const revive = mechanics.effect.kind === 'revive';
+    if (revive !== dead) continue;
     const repeats = mechanics.effect.kind === 'attack' || mechanics.effect.kind === 'auto';
     const times = repeats ? targetCount(mechanics, 0, cantripTier(totalLevel(sheet))) : 1;
     // Magic Missile's darts and Scorching Ray's rays grow with the slot.
@@ -87,7 +100,7 @@ export function spellOptions(
     };
     const request = castRequest(named, using, target);
     const metamagic = metamagicFor(sheet, rules);
-    const verdict = judge(spell.aim ? 'present' : 'present-alive', () => {
+    const verdict = judge(spell.aim || revive ? 'present' : 'present-alive', () => {
       if (paused(inputs)) return PAUSED;
       const plan = dataSpellPlan(inputs.state, inputs.actor.entityId, request);
       if (!plan.legal) return fromRefusal(plan);
@@ -111,7 +124,10 @@ export function spellOptions(
       (inputs.state.characterSheets.get(targetId)?.hitPoints.current ?? 1) <
         (inputs.state.characterSheets.get(targetId)?.hitPoints.max ?? 0);
     const relevance: Relevance =
-      mechanics.effect.kind === 'heal' && wounded && verdict.legal ? 'high' : 'low';
+      ((mechanics.effect.kind === 'heal' && wounded) || (revive && inputs.party.has(targetId))) &&
+      verdict.legal
+        ? 'high'
+        : 'low';
     options.push({
       id: 'cast_spell',
       legal: verdict.legal,
@@ -134,12 +150,21 @@ export function spellOptions(
 
 /**
  * How the spell reaches a creature, or null where it is not offered: a fight's turn holds no
- * spell of minutes or hours, nor a reaction; a spell of one's own only on oneself.
+ * spell of minutes or hours, nor a reaction; a spell of one's own only on oneself; outside a fight
+ * only a spell that names a creature and harms no one.
  */
-function describe(rules: SpellRules, self: boolean): Omit<ContextSpell, 'times' | 'slots'> | null {
+function describe(
+  rules: SpellRules,
+  self: boolean,
+  fighting: boolean,
+  language: 'en' | 'ru',
+): Omit<ContextSpell, 'times' | 'slots'> | null {
   const mechanics = rules.mechanics;
-  if (!mechanics || rules.castingTime === 'long' || rules.castingTime === 'reaction') return null;
+  if (!mechanics || rules.castingTime === 'reaction') return null;
+  if (fighting && rules.castingTime === 'long') return null;
   const { effect, area } = mechanics;
+  const helps = effect.kind === 'heal' || effect.kind === 'temp-hp' || effect.kind === 'revive';
+  if (!fighting && (!helps || area !== null)) return null;
   const own = rules.range === 'self' && (area === null || area.shape === 'emanation');
   const caring = effect.kind === 'heal' || effect.kind === 'temp-hp';
   if (self ? !own && !caring : own) return null;
@@ -148,7 +173,7 @@ function describe(rules: SpellRules, self: boolean): Omit<ContextSpell, 'times' 
   const names = effect.kind !== 'dm' && (area === null || caring);
   return {
     spellId: rules.spellId,
-    name: srdSpell(rules.spellId)?.name ?? rules.spellId,
+    name: nameIn(rules.spellId, language),
     level: rules.level,
     names,
     ...(aim ? { aim } : {}),
@@ -166,4 +191,10 @@ function slotsFor(sheet: NonNullable<ContextInputs['sheet']>, level: number): nu
   for (let slot = level; slot <= 9; slot += 1)
     if (slotsRemaining(sheet, slot) > 0) slots.push(slot);
   return slots;
+}
+
+/** A spell's name in the campaign's language: its Russian once the translation holds it. */
+function nameIn(spellId: string, language: 'en' | 'ru'): string {
+  const english = srdSpell(spellId);
+  return english ? spellIn(english, language).value.name : spellId;
 }

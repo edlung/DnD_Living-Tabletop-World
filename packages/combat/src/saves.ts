@@ -3,7 +3,14 @@ import type { Dice, DraftEvent } from '@ltw/domain';
 import { COVER_BONUS, d20Test, dangerSense, rageAdvantage, saveEffects } from '@ltw/rules';
 
 import { isObject } from './objects.ts';
-import { conditionsOf, exhaustionOf, incapacitated, saveModifier, type Vitals } from './vitals.ts';
+import {
+  conditionsOf,
+  exhaustionOf,
+  incapacitated,
+  ordealOf,
+  saveModifier,
+  type Vitals,
+} from './vitals.ts';
 
 /**
  * A saving throw against a spell, Counterspell or a condition's own save (SRD 5.2.1; docs/adr/
@@ -37,7 +44,12 @@ export function spellSave(
    */
   hampered = false,
 ): { success: boolean; event: DraftEvent } {
-  const effects = saveEffects(ability, conditionsOf(target), exhaustionOf(target));
+  const effects = saveEffects(
+    ability,
+    conditionsOf(target),
+    exhaustionOf(target),
+    ordealOf(target),
+  );
   const bonus = ability === 'dex' && cover !== 'none' ? COVER_BONUS[cover] : 0;
   const modifier = saveModifier(target, ability) + bonus + effects.penalty;
   // An object has no ability scores: it fails every save (docs/adr/0048-hit-points.md §5).

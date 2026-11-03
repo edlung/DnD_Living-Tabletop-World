@@ -1,5 +1,8 @@
 import type { Mechanics } from './spell-mechanics.ts';
 
+const DAY = 24 * 60 * 60;
+const YEAR = 365 * DAY;
+
 /**
  * The mechanics the text's wording does not give regularly (docs/adr/0052-spells-as-data.md §4),
  * written from each spell's SRD text: they override what `deriveMechanics` reads.
@@ -44,6 +47,46 @@ export const CURATED: Readonly<Record<string, Partial<Mechanics>>> = {
   grease: { area: { shape: 'cube', sizeFt: 10, widthFt: null, origin: 'point' }, targets: null },
   // Its higher slot adds 5 Temporary Hit Points a level, which the DM applies.
   'false-life': { upcast: null },
+  // The dead returned (docs/adr/0056-characters-from-the-srd.md §5): dead within a minute, with
+  // 1 Hit Point; old age, missing parts and the diamond stay the DM's.
+  revivify: {
+    targets: 1,
+    effect: { kind: 'revive', withinSeconds: 60, hitPoints: 'one', ordeal: false, cures: 'none' },
+  },
+  // Dead no longer than 10 days, with 1 Hit Point, poisons neutralized; an ordeal.
+  'raise-dead': {
+    targets: 1,
+    effect: {
+      kind: 'revive',
+      withinSeconds: 10 * DAY,
+      hitPoints: 'one',
+      ordeal: true,
+      cures: 'poison',
+    },
+  },
+  // Dead no more than a century, with all its Hit Points, poisons neutralized; an ordeal. What a
+  // year dead or more costs the caster is the DM's.
+  resurrection: {
+    targets: 1,
+    effect: {
+      kind: 'revive',
+      withinSeconds: 100 * YEAR,
+      hitPoints: 'all',
+      ordeal: true,
+      cures: 'poison',
+    },
+  },
+  // Dead no longer than 200 years, with all its Hit Points; poison and magical contagions cured.
+  'true-resurrection': {
+    targets: 1,
+    effect: {
+      kind: 'revive',
+      withinSeconds: 200 * YEAR,
+      hitPoints: 'all',
+      ordeal: false,
+      cures: 'poison-contagion',
+    },
+  },
   // Lasting zones, walls and summons whose cast harms no one at once, areas the board cannot lay
   // out (Fire Storm's ten cubes, Meteor Swarm's four spheres) and a summoned hand: the DM's.
   ...Object.fromEntries(

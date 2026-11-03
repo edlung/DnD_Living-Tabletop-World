@@ -18,7 +18,6 @@ import {
   spellDamageBonus,
   attackRoll,
   conditionBlocked,
-  exhaustionPenalty,
   rollDamage,
 } from '@ltw/rules';
 
@@ -34,11 +33,12 @@ import { lostInTheDark } from './sight.ts';
 import { savedDamage } from './evasion.ts';
 import { pushedEvents, pushedTo } from './masteries.ts';
 import { empower, metamagicEffects, transmute } from './metamagic-effects.ts';
+import { revivalEvents, revivedVitals } from './revive.ts';
 import {
   conditionImmune,
   armorClass,
   conditionsOf,
-  exhaustionOf,
+  d20PenaltyOf,
   hitPoints,
   sizeOf,
   vitalsEvent,
@@ -140,7 +140,7 @@ export function dataSpellEvents(
           : {}),
       });
       const ac = armorClass(vitals) + (target.cover === 'none' ? 0 : COVER_BONUS[target.cover]);
-      const modifier = plan.cast.attackBonus + exhaustionPenalty(exhaustionOf(casterVitals));
+      const modifier = plan.cast.attackBonus + d20PenaltyOf(casterVitals);
       const options = {
         modifier,
         target: ac,
@@ -272,6 +272,14 @@ export function dataSpellEvents(
       const next = withAllHitPoints(vitals, { ...hp, temporary: rolled.total });
       working.set(target.entityId, next);
       effects.push(vitalsEvent(next));
+    }
+  } else if (effect.kind === 'revive') {
+    // The dead returned to life (docs/adr/0056-characters-from-the-srd.md §5).
+    for (const target of plan.targets) {
+      const vitals = current(target.entityId);
+      const back = vitals ? revivedVitals(vitals, effect) : null;
+      if (back) working.set(target.entityId, back);
+      effects.push(...revivalEvents(target.entityId, vitals, back));
     }
   } else if (effect.kind === 'auto') {
     const rolled = damageRoll(effect.damage, false);

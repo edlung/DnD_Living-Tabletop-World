@@ -135,6 +135,7 @@ export function CharacterCard({
       {(sheet.conditions.length > 0 ||
         sheet.concentration ||
         sheet.exhaustion !== undefined ||
+        sheet.ordeal !== undefined ||
         (sheet.contagions?.length ?? 0) > 0) && (
         <ul className="hero-states" aria-label={t('Conditions')}>
           {sheet.conditions.map((condition) => (
@@ -156,6 +157,13 @@ export function CharacterCard({
               </RuleTerm>
             </li>
           )}
+          {/* Back from the dead (docs/adr/0056-characters-from-the-srd.md §5). */}
+          {sheet.ordeal !== undefined && (
+            <li className="hero-state hero-state--condition">
+              <Glyph name="dead" />
+              {t('Back from the dead: −{penalty}', { penalty: sheet.ordeal })}
+            </li>
+          )}
           {/* A magical contagion it carries (docs/adr/0055-rules-reference-and-toolbox.md §4). */}
           {sheet.contagions?.map((one) => (
             <li key={one.contagionId} className="hero-state hero-state--condition">
@@ -174,7 +182,9 @@ export function CharacterCard({
         </ul>
       )}
       {/* What each does, in a line (docs/adr/0045-conditions-and-actions.md §4). */}
-      {(sheet.conditions.length > 0 || sheet.exhaustion !== undefined) && (
+      {(sheet.conditions.length > 0 ||
+        sheet.exhaustion !== undefined ||
+        sheet.ordeal !== undefined) && (
         <ul className="hero-state-effects" aria-label={t('What they do')}>
           {sheet.conditions.map((condition) => (
             <li key={condition}>
@@ -182,6 +192,13 @@ export function CharacterCard({
             </li>
           ))}
           {sheet.exhaustion !== undefined && <li>{exhaustionWords(t, sheet.exhaustion)}</li>}
+          {sheet.ordeal !== undefined && (
+            <li>
+              {t('Back from the dead: −{penalty} to every d20 roll, 1 less after each Long Rest.', {
+                penalty: sheet.ordeal,
+              })}
+            </li>
+          )}
         </ul>
       )}
     </header>

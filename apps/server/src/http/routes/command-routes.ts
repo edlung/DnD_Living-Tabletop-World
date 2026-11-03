@@ -1,5 +1,6 @@
 import { campaignIdSchema, type CommandResult } from '@ltw/contracts';
 import { campaignRole } from '@ltw/domain';
+import { isSliceSpellId, spellIn, srdSpell } from '@ltw/rules';
 import type { FastifyInstance } from 'fastify';
 import { z } from 'zod';
 
@@ -99,8 +100,21 @@ export function registerCommandRoutes(
     if (result.status === 'rejected' && result.code === 'FORBIDDEN') {
       return sendError(reply, request, 'FORBIDDEN');
     }
-    return reply.code(statusOf(result)).send(role === 'PLAYER' ? forPlayer(result) : result);
+    const named = withSpellName(result, state?.campaign?.language === 'ru' ? 'ru' : 'en');
+    return reply.code(statusOf(named)).send(role === 'PLAYER' ? forPlayer(named) : named);
   });
+}
+
+/** A cast's outcome with its SRD spell's name in the campaign's language (ADR 0055 §5). */
+function withSpellName(result: CommandResult, language: 'en' | 'ru'): CommandResult {
+  if (result.status === 'rejected' || result.outcome?.kind !== 'CastSpell') return result;
+  // The slice's own spells keep the client's words for them.
+  const spell = isSliceSpellId(result.outcome.spellId) ? null : srdSpell(result.outcome.spellId);
+  if (!spell) return result;
+  return {
+    ...result,
+    outcome: { ...result.outcome, spellName: spellIn(spell, language).value.name },
+  };
 }
 
 /**

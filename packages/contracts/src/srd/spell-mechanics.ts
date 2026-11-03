@@ -83,6 +83,20 @@ export const spellEffectSchema = z.discriminatedUnion('kind', [
       damage: spellDamageSchema,
     })
     .strict(),
+  /**
+   * The dead returned to life (docs/adr/0056-characters-from-the-srd.md §5): one dead no longer
+   * than `withinSeconds`, with 1 Hit Point or all of them; coming back an ordeal (−4 to D20 Tests,
+   * 1 less at each Long Rest) for some; poisons, and magical contagions, mended by others.
+   */
+  z
+    .object({
+      kind: z.literal('revive'),
+      withinSeconds: z.number().int().min(1),
+      hitPoints: z.enum(['one', 'all']),
+      ordeal: z.boolean(),
+      cures: z.enum(['none', 'poison', 'poison-contagion']),
+    })
+    .strict(),
   z.object({ kind: z.literal('dm') }).strict(),
 ]);
 export type SpellEffect = z.infer<typeof spellEffectSchema>;

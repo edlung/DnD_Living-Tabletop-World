@@ -222,7 +222,9 @@ export function registerRollRoutes(
     const body: CheckRequestsResponse = {
       perspective: perspective.label,
       requests: requests.map((record) => requestView(record, dm)),
-      ...(sheet ? { d20: d20Modes(sheet.conditions, sheet.exhaustion ?? 0) } : {}),
+      ...(sheet
+        ? { d20: d20Modes(sheet.conditions, sheet.exhaustion ?? 0, sheet.ordeal ?? 0) }
+        : {}),
     };
     return reply.send(body);
   });

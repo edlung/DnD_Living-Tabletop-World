@@ -351,8 +351,9 @@ export function contextActions(inputs: ContextInputs, target: EntityState): Cont
       ),
     );
   }
-  // In a fight, the spells the character casts from their data (docs/adr/0052-spells-as-data.md).
-  if (frame && CREATURE_KINDS.has(target.kind))
+  // The spells the character casts from their data (docs/adr/0052-spells-as-data.md); outside a
+  // fight those that help a creature (docs/adr/0056-characters-from-the-srd.md §5).
+  if (CREATURE_KINDS.has(target.kind))
     actions.push(
       ...spellOptions(frame, inputs, target.entityId, judge, (id) => entityRefFor(inputs, id)),
     );

@@ -32,6 +32,13 @@ export type Effect =
   | { readonly kind: 'heal'; readonly dice: Dice; readonly modifier: boolean }
   | { readonly kind: 'temp-hp'; readonly dice: Dice }
   | { readonly kind: 'auto'; readonly darts: number; readonly damage: Damage }
+  | {
+      readonly kind: 'revive';
+      readonly withinSeconds: number;
+      readonly hitPoints: 'one' | 'all';
+      readonly ordeal: boolean;
+      readonly cures: 'none' | 'poison' | 'poison-contagion';
+    }
   | { readonly kind: 'dm' };
 
 export interface Upcast {

@@ -83,3 +83,41 @@ describe('SRD spells in a fight', () => {
     expect(offered).toEqual(['false-life']);
   });
 });
+
+describe('SRD spells outside a fight (docs/adr/0056-characters-from-the-srd.md §5)', () => {
+  async function healer(): Promise<SeededWorld> {
+    const world = await seedRavenford();
+    const state = await world.current();
+    const sheet = state.characterSheets.get(ELOWEN) as CharacterSheet;
+    await world.apply({
+      type: 'SetCharacterSheet',
+      entityId: ELOWEN,
+      sheet: {
+        ...sheet,
+        spellcasting: [
+          ...sheet.spellcasting,
+          {
+            source: 'cleric',
+            ability: 'wis',
+            spells: ['cure-wounds', 'revivify', 'raise-dead', 'shatter'],
+          },
+        ],
+      },
+    });
+    return world;
+  }
+
+  it('offers a spell that helps on the living, and one that returns the dead on the dead', async () => {
+    const world = await healer();
+    // An hour's casting and an area's harm are not offered on the living either.
+    expect(spellsIn(await contextOf(world, 'mira-vale')).map((one) => one.spellId)).toEqual([
+      'cure-wounds',
+    ]);
+    await world.apply({ type: 'ChangeEntityStatus', entityId: 'mira-vale', status: 'dead' });
+    const offered = spellsIn(await contextOf(world, 'mira-vale'));
+    expect(offered.map((one) => one.spellId)).toEqual(['revivify', 'raise-dead']);
+    expect(offered.every((one) => one.action.legal && one.names)).toBe(true);
+    // Revivify at its own level: the lowest slot she has of it.
+    expect(offered[0]?.action.cost).toEqual({ kind: 'slot', slotLevel: 3 });
+  });
+});

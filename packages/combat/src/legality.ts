@@ -23,7 +23,6 @@ import {
   attackCircumstances,
   beginAttackAction,
   criticalFrom,
-  exhaustionPenalty,
   moveRequiredFt,
   proficiencyBonus,
   squaresOf,
@@ -45,7 +44,7 @@ import { hostileSides } from './reactions/opportunity.ts';
 import {
   armorClass,
   conditionsOf,
-  exhaustionOf,
+  d20PenaltyOf,
   incapacitated,
   speedsOf,
   vitalsOf,
@@ -429,7 +428,7 @@ export function attackPlan(
     helpedBy: helper?.entityId ?? null,
     hidden: detailOf(attacker, 'invisible')?.hidden === true,
     // Exhaustion takes 2 per level from the attack roll (ADR 0045 §3).
-    bonus: weapon.bonus + exhaustionPenalty(exhaustionOf(attackerVitals)),
+    bonus: weapon.bonus + d20PenaltyOf(attackerVitals),
     // Shield's +5 holds until the shielded creature's next turn starts (ADR 0046 §3).
     targetAc:
       armorClass(targetVitals) +

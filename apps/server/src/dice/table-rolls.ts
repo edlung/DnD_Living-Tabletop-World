@@ -87,8 +87,8 @@ export function checkModifier(sheet: CharacterSheet, check: Check): number {
  */
 const effectsOf = (sheet: CharacterSheet, check: Check) =>
   check.kind === 'save'
-    ? saveEffects(check.ability, sheet.conditions, sheet.exhaustion ?? 0)
-    : checkEffects(sheet.conditions, sheet.exhaustion ?? 0);
+    ? saveEffects(check.ability, sheet.conditions, sheet.exhaustion ?? 0, sheet.ordeal ?? 0)
+    : checkEffects(sheet.conditions, sheet.exhaustion ?? 0, sheet.ordeal ?? 0);
 
 /** The mode a check is rolled in: the asked one, the character's conditions counted. */
 export const checkMode = (sheet: CharacterSheet, check: Check, asked: RollMode): RollMode =>

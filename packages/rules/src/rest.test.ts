@@ -142,6 +142,13 @@ describe('rests by the full rules (docs/adr/0050-the-world-around.md §5, §7)',
     expect(longRestRefusal(rested, 1000 + DAY_SECONDS)).toBeNull();
   });
 
+  it('eases the ordeal of one back from the dead by 1 each long rest', () => {
+    // SRD 5.2.1 Raise Dead: −4 to D20 Tests, 1 less at each Long Rest until it becomes 0.
+    expect(longRest({ ...base, ordeal: 4 }).ordeal).toBe(3);
+    expect(longRest({ ...base, ordeal: 1 }).ordeal).toBeUndefined();
+    expect(longRest(base).ordeal).toBeUndefined();
+  });
+
   it('wakes one knocked out at a short rest’s end, and no one else', () => {
     expect(wakeAfterShortRest(base)).toBeNull();
     const out = { ...base, knockedOut: true as const, conditions: ['unconscious' as const] };

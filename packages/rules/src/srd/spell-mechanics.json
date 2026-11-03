@@ -7996,7 +7996,7 @@
     },
     "area": null,
     "seen": false,
-    "targets": null,
+    "targets": 1,
     "duration": {
       "unit": "instantaneous",
       "amount": null
@@ -8004,7 +8004,11 @@
     "concentration": false,
     "ritual": false,
     "effect": {
-      "kind": "dm"
+      "kind": "revive",
+      "withinSeconds": 864000,
+      "hitPoints": "one",
+      "ordeal": true,
+      "cures": "poison"
     },
     "upcast": null,
     "cantrip": null,
@@ -8270,7 +8274,7 @@
     },
     "area": null,
     "seen": false,
-    "targets": null,
+    "targets": 1,
     "duration": {
       "unit": "instantaneous",
       "amount": null
@@ -8278,7 +8282,11 @@
     "concentration": false,
     "ritual": false,
     "effect": {
-      "kind": "dm"
+      "kind": "revive",
+      "withinSeconds": 3153600000,
+      "hitPoints": "all",
+      "ordeal": true,
+      "cures": "poison"
     },
     "upcast": null,
     "cantrip": null,
@@ -8324,7 +8332,7 @@
     },
     "area": null,
     "seen": false,
-    "targets": null,
+    "targets": 1,
     "duration": {
       "unit": "instantaneous",
       "amount": null
@@ -8332,7 +8340,11 @@
     "concentration": false,
     "ritual": false,
     "effect": {
-      "kind": "dm"
+      "kind": "revive",
+      "withinSeconds": 60,
+      "hitPoints": "one",
+      "ordeal": false,
+      "cures": "none"
     },
     "upcast": null,
     "cantrip": null,
@@ -10061,7 +10073,7 @@
     },
     "area": null,
     "seen": false,
-    "targets": null,
+    "targets": 1,
     "duration": {
       "unit": "instantaneous",
       "amount": null
@@ -10069,7 +10081,11 @@
     "concentration": false,
     "ritual": false,
     "effect": {
-      "kind": "dm"
+      "kind": "revive",
+      "withinSeconds": 6307200000,
+      "hitPoints": "all",
+      "ordeal": false,
+      "cures": "poison-contagion"
     },
     "upcast": null,
     "cantrip": null,

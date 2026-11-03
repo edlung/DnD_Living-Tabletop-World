@@ -82,6 +82,9 @@ export const CONTEXT_ILLEGAL_REASONS = [
   'TAKES_TOO_LONG',
   'TOO_MANY_TARGETS',
   'NOT_A_RITUAL',
+  /** A spell that returns the dead, at one alive or dead too long (docs/adr/0056-…md §5). */
+  'NOT_DEAD',
+  'DEAD_TOO_LONG',
   'NOT_RECHARGED',
   'NO_USES_LEFT',
   'NO_FREE_CAST',
@@ -201,7 +204,7 @@ export type ContextActionCost =
 /** The spell of `cast_spell` (docs/adr/0052-spells-as-data.md §5) and how it reaches its target. */
 export interface ContextSpell {
   readonly spellId: string;
-  /** The SRD's English name, a translation key. */
+  /** Its name in the campaign's language: the SRD's, or its Russian once translated. */
   readonly name: string;
   readonly level: number;
   /** The target named this many times at the spell's own level: one per attack or dart. */

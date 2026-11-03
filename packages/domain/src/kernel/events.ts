@@ -77,6 +77,7 @@ import {
   campaignOptionsRestoreSchemas,
   campaignOptionsSetPayloadSchema,
 } from '../campaign/options.ts';
+import { deathRestoreSchemas } from '../character/deaths.ts';
 import { chronicleGeneratedPayloadSchema, chronicleRestoreSchemas } from '../chronicle/records.ts';
 import {
   preparedPartyEstablishedPayloadSchema,
@@ -143,6 +144,7 @@ export const restoreSchema = z.discriminatedUnion('fact', [
   ...assetRestoreSchemas,
   ...weatherRestoreSchemas,
   ...campaignOptionsRestoreSchemas,
+  ...deathRestoreSchemas,
   ...chronicleRestoreSchemas,
   ...itemRestoreSchemas,
 ]);

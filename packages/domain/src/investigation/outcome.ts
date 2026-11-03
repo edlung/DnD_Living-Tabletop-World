@@ -200,6 +200,7 @@ function combatOutcome(
           event.type === 'EvidenceExamined' ? event.payload.revealed.map((r) => r.knowledgeId) : [],
         ),
         ...(cast.payload.forDm ? { forDm: cast.payload.forDm } : {}),
+        ...revivedBy(events),
       };
     }
     case 'UseFeature': {
@@ -352,4 +353,16 @@ function unarmedOf(events: readonly KernelEvent[]): PlayerOutcome | undefined {
     saved: save.payload.success,
     ...(effect === 'shove' && !save.payload.success ? { shove: prone ? 'prone' : 'push' } : {}),
   };
+}
+
+/** Those a cast returned to life (docs/adr/0056-characters-from-the-srd.md §5), if any. */
+function revivedBy(events: readonly KernelEvent[]): { revived?: string[] } {
+  const revived = events.flatMap((event) =>
+    event.type === 'EntityStatusChanged' &&
+    event.payload.from === 'dead' &&
+    event.payload.to === 'active'
+      ? [event.payload.entityId]
+      : [],
+  );
+  return revived.length > 0 ? { revived } : {};
 }

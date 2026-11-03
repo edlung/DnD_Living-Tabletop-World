@@ -203,6 +203,10 @@ export type PlayerOutcome =
       readonly awaitingReaction?: true;
       /** What is the DM's to apply (docs/adr/0052-spells-as-data.md §2): its effect, or the rest. */
       readonly forDm?: 'effect' | 'rest';
+      /** Those it returned to life (docs/adr/0056-characters-from-the-srd.md §5). */
+      readonly revived?: readonly string[];
+      /** An SRD spell's name in the campaign's language, the server's (ADR 0055 §5). */
+      readonly spellName?: string;
     }
   /** An Unarmed Strike's grapple or shove (docs/adr/0047-weapons.md §3): whether it resisted. */
   | {

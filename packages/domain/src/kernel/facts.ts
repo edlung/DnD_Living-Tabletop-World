@@ -66,7 +66,7 @@ export function footprintOf(event: KernelEvent): Footprint {
     case 'EntityStatusChanged':
       return {
         reads: [clock, facts.entity(event.payload.entityId)],
-        writes: [facts.entityStatus(event.payload.entityId)],
+        writes: [facts.entityStatus(event.payload.entityId), facts.death(event.payload.entityId)],
       };
     case 'SceneStarted':
       return {
@@ -473,6 +473,8 @@ export function restoredFacts(restore: Restore): FactKey[] {
       return [facts.weather(restore.locationId)];
     case 'campaignOptions':
       return [facts.campaignOptions()];
+    case 'death':
+      return [facts.death(restore.entityId)];
     case 'chronicle':
       return [facts.chronicle(restore.chronicleId)];
     case 'possession':

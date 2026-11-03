@@ -58,13 +58,14 @@ export function hitDice(sheet: CharacterSheet): HitDicePool[] {
 }
 
 /** The sheet without one of its optional fields. */
-function without<
-  K extends 'hitDiceSpent' | 'deathSaves' | 'exhaustion' | 'knockedOut' | 'lastLongRestAt',
->(sheet: CharacterSheet, key: K): Omit<CharacterSheet, K> {
-  return Object.fromEntries(Object.entries(sheet).filter(([name]) => name !== key)) as Omit<
-    CharacterSheet,
-    K
-  >;
+type Dropped =
+  'hitDiceSpent' | 'deathSaves' | 'exhaustion' | 'knockedOut' | 'lastLongRestAt' | 'ordeal';
+
+function without<K extends Dropped>(sheet: CharacterSheet, ...keys: K[]): Omit<CharacterSheet, K> {
+  const dropped: readonly string[] = keys;
+  return Object.fromEntries(
+    Object.entries(sheet).filter(([name]) => !dropped.includes(name)),
+  ) as Omit<CharacterSheet, K>;
 }
 
 /** The sheet with these spent Hit Point Dice; none spent leaves the field out. */
@@ -127,16 +128,23 @@ export function spendHitDie(
  * points start no long rest; a stable one regains 1 after 1d4 hours, which the product counts
  * inside the eight, so the whole party wakes rested (owner-delegated decision, Stage 530). One
  * begun at `startedAt` (world time) is the one of these 24 hours (docs/adr/0050 §5). The class
- * features' uses come back, a Rage ends (docs/adr/0056-characters-from-the-srd.md §4).
+ * features' uses come back, a Rage ends (docs/adr/0056-characters-from-the-srd.md §4), and the
+ * ordeal of one back from the dead eases by 1 (§5).
  */
 export function longRest(sheet: CharacterSheet, startedAt?: number): CharacterSheet {
   const exhaustion = (sheet.exhaustion ?? 0) - 1;
+  const ordeal = (sheet.ordeal ?? 0) - 1;
   return {
     ...without(
-      without(without(without(afterLongRest(sheet), 'deathSaves'), 'hitDiceSpent'), 'exhaustion'),
+      afterLongRest(sheet),
+      'deathSaves',
+      'hitDiceSpent',
+      'exhaustion',
+      'ordeal',
       'knockedOut',
     ),
     ...(exhaustion > 0 ? { exhaustion } : {}),
+    ...(ordeal > 0 ? { ordeal } : {}),
     ...(startedAt === undefined ? {} : { lastLongRestAt: startedAt }),
     hitPoints: { max: sheet.hitPoints.max, current: sheet.hitPoints.max },
     spellSlots: { max: [...sheet.spellSlots.max], expended: sheet.spellSlots.max.map(() => 0) },

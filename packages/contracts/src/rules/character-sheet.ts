@@ -370,6 +370,11 @@ export const characterSheetSchema = z
         'One of each contagion',
       )
       .optional(),
+    /**
+     * Back from the dead (docs/adr/0056-characters-from-the-srd.md §5): the penalty to every D20
+     * Test it still takes, 1 less at each Long Rest; absent at 0.
+     */
+    ordeal: z.number().int().min(1).max(4).optional(),
     /** Death saving throws while at 0 HP (ADR 0015 §4); absent when not dying. */
     deathSaves: z
       .object({

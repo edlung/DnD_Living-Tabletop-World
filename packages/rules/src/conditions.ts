@@ -69,6 +69,13 @@ export const incapacitatedBy = (conditions: readonly Condition[]): boolean =>
 /** Every D20 Test loses 2 per Exhaustion level. */
 export const exhaustionPenalty = (level: number): number => (level > 0 ? -2 * level : 0);
 
+/**
+ * Every D20 Test's penalty: Exhaustion's, and the ordeal of one back from the dead, −4 at first
+ * (docs/adr/0056-characters-from-the-srd.md §5).
+ */
+export const d20Penalty = (exhaustion: number, ordeal = 0): number =>
+  exhaustionPenalty(exhaustion) - ordeal;
+
 /** Speed after conditions: 0 when held fast; Slowed 10 ft less; 5 ft less per Exhaustion level. */
 export function speedAfterConditions(
   speedFt: number,
@@ -85,7 +92,7 @@ export interface RollEffects {
   readonly autoFail: boolean;
   readonly advantage: boolean;
   readonly disadvantage: boolean;
-  /** Added to the total: Exhaustion's −2 per level, or 0. */
+  /** Added to the total: Exhaustion's −2 per level and an ordeal's, or 0. */
   readonly penalty: number;
 }
 
@@ -94,33 +101,42 @@ export function saveEffects(
   ability: Ability,
   conditions: readonly Condition[],
   exhaustion = 0,
+  ordeal = 0,
 ): RollEffects {
   const physical = ability === 'str' || ability === 'dex';
   return {
     autoFail: physical && any(conditions, FAILS_STRENGTH_AND_DEXTERITY),
     advantage: false,
     disadvantage: ability === 'dex' && conditions.includes('restrained'),
-    penalty: exhaustionPenalty(exhaustion),
+    penalty: d20Penalty(exhaustion, ordeal),
   };
 }
 
 /** An ability check (an ability or a skill): Poisoned and Frightened give Disadvantage. */
-export function checkEffects(conditions: readonly Condition[], exhaustion = 0): RollEffects {
+export function checkEffects(
+  conditions: readonly Condition[],
+  exhaustion = 0,
+  ordeal = 0,
+): RollEffects {
   return {
     autoFail: false,
     advantage: false,
     disadvantage: conditions.includes('poisoned') || conditions.includes('frightened'),
-    penalty: exhaustionPenalty(exhaustion),
+    penalty: d20Penalty(exhaustion, ordeal),
   };
 }
 
 /** Initiative: Invisible gives Advantage, Incapacitated Disadvantage; Exhaustion lowers it. */
-export function initiativeEffects(conditions: readonly Condition[], exhaustion = 0): RollEffects {
+export function initiativeEffects(
+  conditions: readonly Condition[],
+  exhaustion = 0,
+  ordeal = 0,
+): RollEffects {
   return {
     autoFail: false,
     advantage: conditions.includes('invisible'),
     disadvantage: incapacitatedBy(conditions),
-    penalty: exhaustionPenalty(exhaustion),
+    penalty: d20Penalty(exhaustion, ordeal),
   };
 }
 
@@ -207,13 +223,13 @@ const modesFor = (effects: RollEffects): Readonly<Record<RollMode, RollMode>> =>
  * conditions, the saves they fail outright and Exhaustion's penalty (ADR 0045 §1, §3): lookups
  * the server hands the client, which never combines them itself.
  */
-export function d20Modes(conditions: readonly Condition[], exhaustion = 0): D20Modes {
+export function d20Modes(conditions: readonly Condition[], exhaustion = 0, ordeal = 0): D20Modes {
   return {
     checks: modesFor(checkEffects(conditions, exhaustion)),
     saves: Object.fromEntries(
       ABILITIES.map((ability) => [ability, modesFor(saveEffects(ability, conditions, exhaustion))]),
     ) as D20Modes['saves'],
     autoFail: ABILITIES.filter((ability) => saveEffects(ability, conditions).autoFail),
-    penalty: exhaustionPenalty(exhaustion),
+    penalty: d20Penalty(exhaustion, ordeal),
   };
 }

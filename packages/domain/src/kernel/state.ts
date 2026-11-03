@@ -15,6 +15,7 @@ import type {
 
 import { EMPTY_ASSETS, type AssetState } from '../assets/records.ts';
 import type { ChronicleRecord } from '../chronicle/records.ts';
+import type { DeathRecord } from '../character/deaths.ts';
 import type { EncounterState } from '../combat/records.ts';
 import type { ReactionWindowRecord } from '../combat/reactions.ts';
 import { EMPTY_EPISTEMICS, type EpistemicState } from '../contradiction/records.ts';
@@ -134,6 +135,8 @@ export interface WorldState {
   readonly chronicles: ReadonlyMap<string, ChronicleRecord>;
   /** Item entity ID → who carries it and how (ADR 0039); absent means no record. */
   readonly possessions: ReadonlyMap<string, Possession>;
+  /** A dead creature's ID → when it died (docs/adr/0056-characters-from-the-srd.md §5). */
+  readonly deaths: ReadonlyMap<string, DeathRecord>;
 }
 
 export const EMPTY_WORLD_STATE: WorldState = {
@@ -162,6 +165,7 @@ export const EMPTY_WORLD_STATE: WorldState = {
   weather: new Map(),
   chronicles: new Map(),
   possessions: new Map(),
+  deaths: new Map(),
 };
 
 /** Kinds that occupy a location. Locations nest via `parentId`; factions are abstract. */

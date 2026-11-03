@@ -194,11 +194,18 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
       }
       case 'EntityStatusChanged':
         if (removedEntities.has(event.payload.entityId)) break;
-        restores.push({
-          fact: 'entity.status',
-          entityId: event.payload.entityId,
-          value: entityBefore(event.payload.entityId).status,
-        });
+        restores.push(
+          {
+            fact: 'entity.status',
+            entityId: event.payload.entityId,
+            value: entityBefore(event.payload.entityId).status,
+          },
+          {
+            fact: 'death',
+            entityId: event.payload.entityId,
+            value: before.deaths.get(event.payload.entityId) ?? null,
+          },
+        );
         break;
       case 'SceneStarted':
         removedScenes.add(event.payload.sceneId);

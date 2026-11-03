@@ -39,6 +39,9 @@ export const UI_ITEM_CAMPAIGNS = {
    */
   options: 'ui-campaign-options',
   optionsRu: 'ui-campaign-options-ru',
+  /** The spells that return the dead (docs/adr/0056-…md §5): Elowen also knows them. */
+  raising: 'ui-raising',
+  raisingRu: 'ui-raising-ru',
 } as const;
 
 const DM = { actorId: 'dm-ravenford', kind: 'user' } as const;
@@ -98,6 +101,8 @@ export async function seedUiItemCampaigns(engine: WorldEngine): Promise<void> {
     [UI_ITEM_CAMPAIGNS.charges, 'en'],
     [UI_ITEM_CAMPAIGNS.options, 'en'],
     [UI_ITEM_CAMPAIGNS.optionsRu, 'ru'],
+    [UI_ITEM_CAMPAIGNS.raising, 'en'],
+    [UI_ITEM_CAMPAIGNS.raisingRu, 'ru'],
   ] as const) {
     const seed = await loadRavenfordSeed(language === 'ru' ? RAVENFORD_RU_FIXTURES_DIR : undefined);
     for (const input of seed.submissions) {
@@ -112,7 +117,36 @@ export async function seedUiItemCampaigns(engine: WorldEngine): Promise<void> {
     await seedItems(engine, campaignId, NAMES[language], campaignId !== UI_ITEM_CAMPAIGNS.take);
     if (campaignId === UI_ITEM_CAMPAIGNS.options || campaignId === UI_ITEM_CAMPAIGNS.optionsRu)
       await seedLoad(engine, campaignId, NAMES[language].mail);
+    if (campaignId === UI_ITEM_CAMPAIGNS.raising || campaignId === UI_ITEM_CAMPAIGNS.raisingRu)
+      await seedRaiser(engine, campaignId);
   }
+}
+
+/** Elowen also knows the spells that return the dead, with a cleric's Wisdom behind them. */
+async function seedRaiser(engine: WorldEngine, campaignId: string): Promise<void> {
+  const sheet = (await engine.load(campaignId))?.state.characterSheets.get(ELOWEN);
+  if (!sheet) throw new Error(`UI raising ${campaignId}: no sheet`);
+  const result = await engine.execute({
+    campaignId,
+    commandId: `${campaignId}.raiser`,
+    actor: DM,
+    command: {
+      type: 'SetCharacterSheet',
+      entityId: ELOWEN,
+      sheet: {
+        ...sheet,
+        spellcasting: [
+          ...sheet.spellcasting,
+          {
+            source: 'cleric',
+            ability: 'wis',
+            spells: ['revivify', 'raise-dead', 'cure-wounds'],
+          },
+        ],
+      },
+    },
+  });
+  if (result.status !== 'accepted') throw new Error(`UI raising ${campaignId}: sheet refused`);
 }
 
 /** Four 40 lb mail shirts beside her gear: about 190 lb against the 150 her Strength carries. */

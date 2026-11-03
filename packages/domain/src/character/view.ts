@@ -117,6 +117,8 @@ function copySheet(
               : {}),
             ...(concentration.extended === true ? { extended: true as const } : {}),
           },
+    // Back from the dead, the penalty it still takes (docs/adr/0056-characters-from-the-srd.md §5).
+    ...(sheet.ordeal === undefined ? {} : { ordeal: sheet.ordeal }),
     ...(sheet.deathSaves === undefined
       ? {}
       : {

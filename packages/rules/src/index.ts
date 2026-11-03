@@ -39,6 +39,7 @@ export {
   d20Modes,
   damageAfterDefenses,
   type DamageDefenses,
+  d20Penalty,
   exhaustionPenalty,
   incapacitatedBy,
   initiativeEffects,

@@ -27,6 +27,7 @@ export const executable: ReadonlySet<string> = new Set([
   'investigation_check',
   'perception_check',
   'detect_magic',
+  'cast_spell',
   'enter_location',
   'take_item',
   'recall',
@@ -77,10 +78,14 @@ export function ContextActions({
   const names = distinctNames(t, directory);
   // Evidence is shown deliberately, from "More conversation options" (or the conversation):
   // never a one-click button among the primary actions (second stand-in pass).
+  // A spell is cast here only outside a fight: a fight's spells are the turn tray's. The dead
+  // are not talked to: their conversation is not listed (docs/adr/0056-…md §5).
   const listed = actions.filter(
     (action) =>
       executable.has(action.id) &&
       action.id !== 'show_evidence' &&
+      (action.id !== 'cast_spell' || canAct) &&
+      !(CONVERSATION.has(action.id) && action.reason === 'TARGET_DEAD') &&
       !(conversing && CONVERSATION.has(action.id)),
   );
   return (

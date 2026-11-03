@@ -37,7 +37,9 @@ Authority: owner approval 2026-11-02 (`reviews/OWNER_FULL_GAME_2026-11-02.json`)
   mid-campaign, a character copied into another campaign as a sheet (decision 15), a printable
   sheet, a portrait by GPT, the four summons a spell's level scales and Wild Shape's forms. Part 1
   done: the campaign's options of decision 16 (a level's hit points, levels by experience or
-  milestone, carrying shown or enforced) and a new character at the campaign's starting level.
+  milestone, carrying shown or enforced) and a new character at the campaign's starting level. Part 2
+  done: death's time and the four spells that return the dead, the ordeal after them, and the
+  helping spells cast outside a fight.
 
 ## Checks at each sub-stage
 

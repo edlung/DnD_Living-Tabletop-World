@@ -223,6 +223,7 @@ export { flashbackFor } from './chronicle/flashback.ts';
 export { questFor, questLog } from './quest/projection.ts';
 export { buildCampaignPlan, type CampaignPlan } from './campaign/plan.ts';
 export { campaignOptions } from './campaign/options.ts';
+export { deadForSeconds, type DeathRecord } from './character/deaths.ts';
 export { seedCampaignPackage, mergeCampaignGenerationStep } from './campaign/generation.ts';
 export {
   validateCampaignGenerationStep,

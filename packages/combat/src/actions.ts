@@ -47,6 +47,7 @@ import { combatPremises, refused } from './refusal.ts';
 import {
   conditionsOf,
   exhaustionOf,
+  ordealOf,
   has,
   hitPoints,
   incapacitated,
@@ -185,7 +186,7 @@ export function needsAid(v: Vitals): boolean {
  * armor that rustles on Stealth (docs/adr/0050-the-world-around.md §10).
  */
 export function rollSkill(dice: Dice, vitals: Vitals, skill: Skill, dc = HIDE_DC) {
-  const effects = checkEffects(conditionsOf(vitals), exhaustionOf(vitals));
+  const effects = checkEffects(conditionsOf(vitals), exhaustionOf(vitals), ordealOf(vitals));
   // A Rage's Advantage on Strength checks, a Champion's on Athletics (docs/adr/0056-…md §4).
   const raging =
     vitals.kind === 'character' &&
