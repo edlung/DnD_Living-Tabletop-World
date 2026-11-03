@@ -225,6 +225,9 @@ application on 4313.
   plate (`.board-plate`), as a person does, rather than the square. `paint-terrain.spec.ts` (owns
   `ui-terrain`) starts its fight through the saved-encounter routes with `page.request`, then paints
   by presses, a stroke and the brush card, and reads the DM's history.
+  `battle-map.spec.ts` (owns `ui-battle-map`: a party campaign with the curated pictures, and the
+  test asset worker runs on it) uploads a map drawn on a canvas, lines its grid up and starts a fight
+  on the road; the map's place on the flat board is measured against the plane.
 - Native apps (ADR 0070, `native-shell.spec.ts`): a stand-in shell installed with `addInitScript`
   records what the page posts, and the journey speaks for the shell with `ltw-native` events; it owns
   the `native` sign-in campaign. The apps themselves are checked on the simulator and the emulator.

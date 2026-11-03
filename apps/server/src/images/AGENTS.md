@@ -118,3 +118,11 @@ Rules:
   `packages/domain/src/assets/purposes.test.ts`, `purposes.property.test.ts`,
   `packages/domain/src/visual/figures.test.ts`, `../http/image-purposes.test.ts`,
   `packages/combat/src/asset-history.test.ts`.
+
+Stage 670b (docs/adr/0057-encounters-maps-loot.md §3): `battle-map-upload.ts` takes the DM's own
+battle map for a place with an approved picture (base64 in JSON, at most 10 MB), re-encodes it in
+its own shape (`reencodeImage(…, 'uploaded-battle-map')`: no 4:3 crop, at most 1,536 px a side) and
+runs the lineage itself — the DM's request and approval, the job started and completed for the
+worker with the stored bytes. `own-requests.ts` names the requests no worker may start (the curated
+import's and the uploads'); the production and the test workers both skip them, so no image model
+is asked or paid for an upload.

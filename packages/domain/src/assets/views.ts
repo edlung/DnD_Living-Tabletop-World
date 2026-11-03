@@ -30,14 +30,22 @@ const ORDER = { reference: 0, derived: 1 } as const;
 /**
  * The only fields of an asset a player sees: never IDs, labels, notes, generator, lineage, or the
  * version, which counts the DM-only, candidate and retracted pictures of its kind as well (Gate
- * 06, G06-images-03); the DM reads versions in the lineage.
+ * 06, G06-images-03); the DM reads versions in the lineage. A battle map's grid shows with it: the
+ * board draws the picture under its squares by it (docs/adr/0057-encounters-maps-loot.md §3).
  */
 export const playerAssetView = ({
   variant,
   purpose,
   contentHash,
   mediaType,
-}: AssetRecord): PlayerAssetView => ({ variant, purpose, contentHash, mediaType });
+  grid,
+}: AssetRecord): PlayerAssetView => ({
+  variant,
+  purpose,
+  contentHash,
+  mediaType,
+  ...(grid ? { grid: { ...grid } } : {}),
+});
 
 /** Reference first, then derived pictures in the order they were made. */
 export const sortedViews = (assets: readonly AssetRecord[]): PlayerAssetView[] =>

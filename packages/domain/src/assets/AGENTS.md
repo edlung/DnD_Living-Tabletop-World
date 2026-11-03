@@ -25,6 +25,8 @@ Rules:
   survives supersession, retraction and undo restores; it is DM lineage only, never
   a player projection. Replay and integrity bind derived assets to the chosen
   reference bytes and the final campaign bootstrap source.
+- A battle map's grid (Stage 670b, docs/adr/0057-encounters-maps-loot.md §3): `AlignBattleMap` (DM) records `BattleMapAligned` on a candidate or approved battle map only — a cell's size, its first full cell's corner in the picture's pixels, its columns and rows — on the asset record (`grid`), shown to players with the picture (`playerAssetView`); undo restores the record (`undo.ts` `assetRestores`, which every undoable picture event goes through). Integrity: a grid on a battle map only. Visual state, never a world fact: a fight takes the grid's size only through the DM's start.
+- The DM's uploaded battle maps go through the ordinary lineage under command IDs `<campaign>.upload.<request>` (request and approval by the DM, start and completion by the server for the worker, generator `upload`): the running worker never starts them (`apps/server/src/images/own-requests.ts`).
 - The worker's reports (`StartAssetJob`, `CompleteAssetJob`, `FailAssetJob`) are system-only. They, `CancelAssetRequest`, and `RetractAsset` are final: not undoable, folded as recorded by the re-decision oracle, and reading no fact a world command wrote. Keep it so, or a failed job would block undo forever.
 - Undo safety for external work lives in `hold.ts`, not in footprints: a started job, or an image neither retracted nor discarded, blocks undo of the command that requested it.
 - A job copies its request when it starts, so lineage survives an undo of the request. Never make job events require the request.

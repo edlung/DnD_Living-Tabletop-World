@@ -78,6 +78,10 @@ export function assetViolations(state: WorldState): string[] {
     if (asset.derivedFrom !== null && !assets.has(asset.derivedFrom)) {
       report(`asset ${id} derives from missing ${asset.derivedFrom}`);
     }
+    // A grid lines up a battle map, and only a battle map (ADR 0057 §3).
+    if (asset.grid !== undefined && asset.purpose !== 'battle-map') {
+      report(`asset ${id} has a grid but is no battle map`);
+    }
   }
 
   for (const [entityId, assetId] of canonical) {

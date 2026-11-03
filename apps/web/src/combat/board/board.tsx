@@ -379,7 +379,7 @@ export function Board({
               gridTemplateColumns: `repeat(${String(width)}, var(--cell))`,
             }}
           >
-            <BoardGround map={battleMap} />
+            <BoardGround map={battleMap} cell={cell} />
             {squares}
             {route.length > 1 && (
               <svg

@@ -91,6 +91,7 @@ export const STEP_TEXT: Readonly<Record<KernelCommandType, string>> = {
   CancelAssetRequest: 'cancel asset request',
   RetractAsset: 'retract asset',
   ApproveAsset: 'approve asset',
+  AlignBattleMap: 'line up a battle map',
   SetWeather: 'set weather',
   SetCampaignOptions: 'set campaign options',
   AskPortrait: 'ask for a portrait',

@@ -18,7 +18,8 @@ type AssetEventType =
   | 'AssetJobFailed'
   | 'AssetRequestCancelled'
   | 'AssetRetracted'
-  | 'AssetApproved';
+  | 'AssetApproved'
+  | 'BattleMapAligned';
 
 export function assetFootprint(event: Extract<KernelEvent, { type: AssetEventType }>): {
   reads: FactKey[];
@@ -61,6 +62,12 @@ export function assetFootprint(event: Extract<KernelEvent, { type: AssetEventTyp
       return {
         reads: [],
         writes: [facts.assetJob(event.payload.requestId), facts.asset(event.payload.assetId)],
+      };
+    case 'BattleMapAligned':
+      // The picture's grid, as the DM lined it up: its own record and nothing a world command wrote.
+      return {
+        reads: [facts.asset(event.payload.assetId)],
+        writes: [facts.asset(event.payload.assetId)],
       };
     case 'AssetRetracted': {
       const { assetId, entityId, wasCanonical } = event.payload;

@@ -5,6 +5,7 @@ import { createCharacterCommandSchema } from '../rules/character-choices.ts';
 import { setCampaignOptionsCommandSchema } from '../campaign/options.ts';
 
 import {
+  alignBattleMapCommandSchema,
   approveAssetCommandSchema,
   askPortraitCommandSchema,
   cancelAssetRequestCommandSchema,
@@ -206,6 +207,7 @@ export const kernelCommandSchema = z
     cancelAssetRequestCommandSchema,
     retractAssetCommandSchema,
     approveAssetCommandSchema,
+    alignBattleMapCommandSchema,
     setWeatherCommandSchema,
     generateChronicleCommandSchema,
     grantItemCommandSchema,
@@ -299,6 +301,7 @@ export const KERNEL_COMMAND_TYPES = [
   'CancelAssetRequest',
   'RetractAsset',
   'ApproveAsset',
+  'AlignBattleMap',
   'SetWeather',
   'GenerateChronicle',
   'GrantItem',

@@ -363,6 +363,7 @@ export function footprintOf(event: KernelEvent): Footprint {
     case 'AssetRequestCancelled':
     case 'AssetRetracted':
     case 'AssetApproved':
+    case 'BattleMapAligned':
       return assetFootprint(event);
     case 'ChronicleGenerated':
       // A chapter rests on everything it tells (ADR 0024 §4).

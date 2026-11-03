@@ -141,6 +141,26 @@
 - Saving is refused, on the screen and by the server, while a token stands off the field, in a wall
   or on another's square (`layoutProblem`; the server's reason `square`), each said in words.
 
+## Notes from the implementation (Stage 670b, part 3, 2026-11-03)
+
+- The DM's own battle map (`apps/server/src/images/battle-map-upload.ts`, the place's Images panel
+  `apps/web/src/images/battle-map-tools.tsx`): a PNG, JPEG or WebP of up to 10 MB for a place with
+  an approved picture (a battle map derives from it, as every battle map does), re-encoded in its
+  own shape and approved through the lineage under command IDs that follow from the request — the
+  DM's request and approval, the server's start and completion for the asset worker (generator
+  `upload`); the running worker never starts such a request, so no image model is asked for it. It
+  supersedes the place's battle map before it. A retried upload changes nothing twice.
+- `AlignBattleMap` (DM) records a battle map's grid on its picture: a cell's size and its first
+  whole cell's corner in the picture's pixels, its columns and rows (at most 40 a side). Visual
+  state, never a world fact; shown to players with the picture; undone as any DM command. The
+  editor draws the grid over the picture and counts the whole cells.
+- The board draws a lined-up map at the squares' scale from its first cell's corner (the ground
+  clips what lies beyond the field); a fight started with who is at the place takes the grid's
+  columns and rows. A generated map without a grid is stretched over the field as before.
+- Undo of `PaintTerrain` (part 1) restored nothing until this part: the undo restores now name
+  every event type (`never` in `packages/domain/src/kernel/decide/undo.ts`), so an event left out
+  fails to compile instead of undoing silently.
+
 ## Consequences
 
 - Stage 670 runs in parts (`work-orders/STAGE_670.md`): the builder and the DM's hand; terrain and

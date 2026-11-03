@@ -36,6 +36,7 @@ import type { Authenticator } from './auth.ts';
 import { sendError } from './errors.ts';
 import { registerAiRoutes, type AiRouteDependencies } from './routes/ai-routes.ts';
 import { registerAssetRoutes } from './routes/asset-routes.ts';
+import { registerBattleMapUploadRoutes } from '../images/battle-map-upload.ts';
 import { registerChronicleRoutes } from './routes/chronicle-routes.ts';
 import { registerCharacterRoutes } from './routes/character-routes.ts';
 import { registerAuthoringRoutes } from './routes/authoring-routes.ts';
@@ -212,6 +213,7 @@ export function buildApp(input: AppDependencies): FastifyInstance {
   registerNpcRoutes(app, deps);
   registerAuthoringRoutes(app, deps);
   registerAssetRoutes(app, deps);
+  registerBattleMapUploadRoutes(app, deps);
   registerVisualRoutes(app, deps);
   registerChronicleRoutes(app, { ...deps, chronicleIds: deps.authoring.ids });
   registerQuestRoutes(app, deps);

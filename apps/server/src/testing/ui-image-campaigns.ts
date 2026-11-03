@@ -4,6 +4,7 @@ import type { AssetContentStore } from '../assets/content-store.ts';
 import { importCuratedSet } from '../images/curated-import.ts';
 import { loadCuratedSet } from '../images/curated-set.ts';
 import { createLogger } from '../platform/logging/logger.ts';
+import { UI_PARTY_CAMPAIGNS } from './ui-party-campaigns.ts';
 import { UI_RU_CAMPAIGNS, UI_RU_COMBAT } from './ui-ru-campaigns.ts';
 
 const DM = { actorId: 'dm-ravenford', kind: 'user' } as const;
@@ -17,6 +18,8 @@ const DM = { actorId: 'dm-ravenford', kind: 'user' } as const;
 export const UI_IMAGE_CAMPAIGNS: readonly string[] = [
   'ravenford',
   'ui-combat',
+  // The DM's own battle map over the curated one (Stage 670b).
+  UI_PARTY_CAMPAIGNS.battleMap,
   ...Object.values(UI_RU_CAMPAIGNS),
   UI_RU_COMBAT,
 ];

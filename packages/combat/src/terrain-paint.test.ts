@@ -51,4 +51,28 @@ describe('the DM paints the battlefield', () => {
     expect((await world.encounter()).battlefield.walls).toBeUndefined();
     await verifyHistory(world);
   });
+
+  it('undoes a stroke: the ground as it lay comes back', async () => {
+    const world = await roadWorld();
+    await startAmbush(world);
+    const before = (await world.encounter()).battlefield;
+    const painted = await world.dm({
+      type: 'PaintTerrain',
+      squares: [
+        { x: 5, y: 2 },
+        { x: 5, y: 3 },
+      ],
+      paint: { kind: 'water', deep: true },
+    });
+    expect(codeOf(painted)).toBe('accepted');
+    expect((await world.encounter()).battlefield.water).toEqual([
+      { x: 5, y: 2, deep: true },
+      { x: 5, y: 3, deep: true },
+    ]);
+    if (painted.status !== 'accepted') throw new Error('not painted');
+    const undone = await world.dm({ type: 'UndoCommand', targetCommandId: painted.commandId });
+    expect(codeOf(undone)).toBe('accepted');
+    expect((await world.encounter()).battlefield).toEqual(before);
+    await verifyHistory(world);
+  });
 });

@@ -32,6 +32,8 @@ export const UI_PARTY_CAMPAIGNS = {
   encounters: 'ui-encounters',
   /** The DM's brush on a running fight's ground (Stage 670b). */
   terrain: 'ui-terrain',
+  /** The DM's own battle map and its grid, with the curated pictures (Stage 670b). */
+  battleMap: 'ui-battle-map',
 } as const;
 
 const PARTY = ['elowen-starwhisper', 'brann-ironvale', 'tamsin-quickfoot', 'maren-ashby'];
@@ -52,6 +54,7 @@ export async function seedUiPartyCampaigns(engine: WorldEngine): Promise<void> {
     [UI_PARTY_CAMPAIGNS.actions, 'en'],
     [UI_PARTY_CAMPAIGNS.encounters, 'en'],
     [UI_PARTY_CAMPAIGNS.terrain, 'en'],
+    [UI_PARTY_CAMPAIGNS.battleMap, 'en'],
   ] as const) {
     const seed = await loadRavenfordSeed(language === 'ru' ? RAVENFORD_RU_FIXTURES_DIR : undefined);
     for (const input of seed.submissions) {

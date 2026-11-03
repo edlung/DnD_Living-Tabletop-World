@@ -72,4 +72,33 @@ registerRussian({
     'Выберите кисть, затем нажмите на клетку или проведите по нескольким.',
   Brush: 'Кисть',
   Height: 'Высота',
+  // The DM's own battle map and its grid (Stage 670b)
+  'Your own battle map': 'Своя боевая карта',
+  'A PNG, JPEG or WebP picture of up to 10 MB, seen from above.':
+    'Картинка PNG, JPEG или WebP до 10 МБ, вид сверху.',
+  'Uploading…': 'Загружаем…',
+  'Upload a battle map': 'Загрузить боевую карту',
+  'The answer was lost on the way.': 'Ответ потерялся по дороге.',
+  'Upload it again': 'Загрузить ещё раз',
+  'The battle map is approved: line its grid up next.':
+    'Боевая карта одобрена: теперь выровняйте её сетку.',
+  'Line up the grid: {subject}': 'Выровнять сетку: {subject}',
+  'Set the size of one cell and where the first whole cell begins, in the picture’s pixels.':
+    'Укажите размер одной клетки и где начинается первая целая клетка — в пикселях картинки.',
+  'Cell size in pixels': 'Размер клетки, пикс.',
+  'First cell from the left, in pixels': 'Первая клетка от левого края, пикс.',
+  'First cell from the top, in pixels': 'Первая клетка от верхнего края, пикс.',
+  'The fight here takes {columns} × {rows} squares.': 'Бой здесь займёт {columns} × {rows} клеток.',
+  'The first cell begins within one cell, at least 8 px wide.':
+    'Первая клетка начинается в пределах одной клетки шириной не меньше 8 пикс.',
+  'Save the grid: {subject}': 'Сохранить сетку: {subject}',
+  'The grid is lined up.': 'Сетка выровнена.',
+  'Save the grid': 'Сохранить сетку',
+  'This is not a PNG, JPEG or WebP picture.': 'Это не картинка PNG, JPEG или WebP.',
+  'The picture is larger than 10 MB.': 'Картинка больше 10 МБ.',
+  'Approve a picture of this place first: a battle map derives from it.':
+    'Сначала одобрите картинку этого места: боевая карта строится от неё.',
+  'Line up the grid': 'Выровнять сетку',
+  'On the place’s battle map: {columns} × {rows} squares.':
+    'На боевой карте места: {columns} × {rows} клеток.',
 });

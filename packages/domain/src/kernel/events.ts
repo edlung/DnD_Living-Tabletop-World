@@ -71,6 +71,7 @@ import {
   assetRequestedPayloadSchema,
   assetRestoreSchemas,
   assetRetractedPayloadSchema,
+  battleMapAlignedPayloadSchema,
 } from '../assets/events.ts';
 import { weatherRestoreSchemas, weatherSetPayloadSchema } from '../weather/weather.ts';
 import {
@@ -283,6 +284,7 @@ export const kernelEventSchema = z.discriminatedUnion('type', [
   event('AssetJobFailed', assetJobFailedPayloadSchema),
   event('AssetRequestCancelled', assetRequestCancelledPayloadSchema),
   event('AssetRetracted', assetRetractedPayloadSchema),
+  event('BattleMapAligned', battleMapAlignedPayloadSchema),
   event('AssetApproved', assetApprovedPayloadSchema),
   event('WeatherSet', weatherSetPayloadSchema),
   event('CampaignOptionsSet', campaignOptionsSetPayloadSchema),

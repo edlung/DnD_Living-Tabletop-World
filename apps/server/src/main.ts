@@ -37,7 +37,7 @@ import { startCampaignActivationLoop } from './workshop/activation/worker-loop.t
 import { PostgresCampaignInitialContentStore } from './campaigns/postgres-content.ts';
 import { PostgresCampaignPublication } from './campaigns/postgres-publication.ts';
 import { createCampaignQuestBooks } from './campaigns/quest-books.ts';
-import { isCuratedRequest } from './images/curated-import.ts';
+import { isOwnRequest } from './images/own-requests.ts';
 import { loadCuratedSet } from './images/curated-set.ts';
 import { PostgresImageLedger, imageBudgetStatus } from './images/ledger.ts';
 import { loadQuestBook } from './quests/quest-book.ts';
@@ -311,8 +311,9 @@ async function main(): Promise<void> {
     timeoutMs: config.assets.generationTimeoutMs,
     intervalMs: config.assets.workerIntervalMs,
     campaigns: () => PostgresAssetContentStore.campaignsWithAssetWork(pool),
-    // The curated import's requests are its own (ADR 0035 §3): never generated or paid for here.
-    skip: isCuratedRequest,
+    // The curated import's requests and the DM's uploads are the server's own (ADR 0035 §3,
+    // ADR 0057 §3): never generated or paid for here.
+    skip: isOwnRequest,
     logger,
   });
 

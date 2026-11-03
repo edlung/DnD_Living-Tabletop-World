@@ -9,6 +9,7 @@ import { poolDice } from '../../combat/port.ts';
 import { decideSetClaim } from '../../contradiction/decide.ts';
 import { withContradictions } from '../../contradiction/detect.ts';
 import {
+  decideAlignBattleMap,
   decideApproveAsset,
   decideCancelAssetRequest,
   decideCompleteAssetJob,
@@ -224,6 +225,8 @@ function route(context: DecisionContext, command: ResolvedCommand): Decision {
       return decideRetractAsset(state, command);
     case 'ApproveAsset':
       return decideApproveAsset(state, command);
+    case 'AlignBattleMap':
+      return decideAlignBattleMap(state, command);
     case 'SetWeather':
       return decideSetWeather(state, command);
     case 'SetCampaignOptions':

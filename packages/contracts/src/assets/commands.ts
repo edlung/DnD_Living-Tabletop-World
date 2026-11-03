@@ -1,5 +1,6 @@
 import { z } from 'zod';
 
+import { MAX_BATTLEFIELD } from '../combat/battlefield.ts';
 import { entityIdSchema } from '../kernel/identifiers.ts';
 
 /**
@@ -118,6 +119,26 @@ export const retractAssetCommandSchema = z
 
 export const approveAssetCommandSchema = z
   .object({ type: z.literal('ApproveAsset'), assetId: assetIdSchema })
+  .strict();
+
+/**
+ * A battle map's grid lined up with the board (docs/adr/0057-encounters-maps-loot.md §3): a cell's
+ * size and the corner of its first full cell in the picture's pixels, and how many columns and rows
+ * of cells the picture holds — the fight there takes them. Visual state: never a world fact.
+ */
+export const battleMapGridSchema = z
+  .object({
+    cellPx: z.number().int().min(8).max(512),
+    originX: z.number().int().min(0).max(511),
+    originY: z.number().int().min(0).max(511),
+    columns: z.number().int().min(1).max(MAX_BATTLEFIELD),
+    rows: z.number().int().min(1).max(MAX_BATTLEFIELD),
+  })
+  .strict();
+export type BattleMapGrid = z.infer<typeof battleMapGridSchema>;
+
+export const alignBattleMapCommandSchema = z
+  .object({ type: z.literal('AlignBattleMap'), assetId: assetIdSchema, grid: battleMapGridSchema })
   .strict();
 
 /** Reports of external work: the asset worker (a system process) only. */

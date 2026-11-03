@@ -72,6 +72,16 @@ export function applyLightSet(state: WorldState, event: EventOf<'LightSet'>): Wo
   };
 }
 
+/** The fight's light and ground as the DM sets them (ADR 0050 §1; ADR 0057 §2). */
+export function applyBattlefieldEvent(
+  state: WorldState,
+  event: EventOf<'LightSet' | 'TerrainPainted'>,
+): WorldState {
+  return event.type === 'LightSet'
+    ? applyLightSet(state, event)
+    : applyTerrainPainted(state, event);
+}
+
 /** The DM's brush on the fight's ground (docs/adr/0057-encounters-maps-loot.md §2). */
 export function applyTerrainPainted(
   state: WorldState,

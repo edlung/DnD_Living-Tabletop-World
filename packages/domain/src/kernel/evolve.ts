@@ -5,8 +5,7 @@ import { applyCharacterSheetSet } from '../character/character.ts';
 import {
   applyCombatEnded,
   applyCombatOrderChanged,
-  applyLightSet,
-  applyTerrainPainted,
+  applyBattlefieldEvent,
   applyCombatRecord,
   applyCombatRestore,
   applyCombatStarted,
@@ -238,9 +237,8 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
     case 'CombatOrderChanged':
       return applyCombatOrderChanged(state, event);
     case 'LightSet':
-      return applyLightSet(state, event);
     case 'TerrainPainted':
-      return applyTerrainPainted(state, event);
+      return applyBattlefieldEvent(state, event);
     case 'StatBlockSet':
       return applyStatBlockSet(state, event);
     case 'ActionTaken':
@@ -318,6 +316,7 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
     case 'AssetRequestCancelled':
     case 'AssetRetracted':
     case 'AssetApproved':
+    case 'BattleMapAligned':
       return applyAssetEvent(state, event);
     case 'AuthoringPremisesRecorded':
       // Reads only (ADR 0019 §2): the entities it names must exist.

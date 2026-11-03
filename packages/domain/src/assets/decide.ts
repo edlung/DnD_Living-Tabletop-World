@@ -224,3 +224,35 @@ export function decideApproveAsset(
     },
   });
 }
+
+/**
+ * The DM lines a battle map's grid up with the board (docs/adr/0057-encounters-maps-loot.md §3):
+ * a candidate or approved battle map, its first full cell's corner inside one cell. Visual state:
+ * the picture's record changes, never a world fact; undo puts the earlier grid back.
+ */
+export function decideAlignBattleMap(
+  state: WorldState,
+  command: ResolvedCommandOf<'AlignBattleMap'>,
+): Decision {
+  const asset = state.assets.assets.get(command.assetId);
+  if (asset?.purpose !== 'battle-map') return invalid('Only a battle map has a grid');
+  if (asset.status !== 'CANDIDATE' && asset.status !== 'APPROVED')
+    return invalid('Only a standing battle map takes a grid');
+  const { grid } = command;
+  if (grid.originX >= grid.cellPx || grid.originY >= grid.cellPx)
+    return invalid('The first cell starts inside one cell of the picture');
+  const known = asset.grid;
+  if (
+    known &&
+    known.cellPx === grid.cellPx &&
+    known.originX === grid.originX &&
+    known.originY === grid.originY &&
+    known.columns === grid.columns &&
+    known.rows === grid.rows
+  )
+    return reject('NO_EFFECT', 'The grid is already so');
+  return accept({
+    type: 'BattleMapAligned',
+    payload: { assetId: asset.assetId, grid: { ...grid } },
+  });
+}

@@ -374,6 +374,7 @@ export {
   assetIdSchema,
   assetLabelSchema,
   assetRequestIdSchema,
+  battleMapGridSchema,
   contentHashSchema,
   type AssetAudience,
   type AssetFailure,
@@ -382,6 +383,7 @@ export {
   type AssetRequestStatus,
   type AssetStatus,
   type AssetVariant,
+  type BattleMapGrid,
 } from './assets/commands.ts';
 export {
   QUEST_MILESTONE_KINDS,

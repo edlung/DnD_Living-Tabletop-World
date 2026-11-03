@@ -404,6 +404,7 @@ registerRussian({
   'cancel asset request': 'отмена запроса изображения',
   'retract asset': 'отзыв изображения',
   'approve asset': 'одобрение изображения',
+  'line up a battle map': 'выравнивание сетки боевой карты',
   'set weather': 'погода',
   'set campaign options': 'параметры кампании',
   'ask for a portrait': 'просьба о портрете',
