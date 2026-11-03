@@ -142,6 +142,8 @@ function copySheet(
             until: sheet.inspirationDie.until,
           },
         }),
+    // Wild Shape's form (§5).
+    ...(sheet.shape === undefined ? {} : { shape: { formId: sheet.shape.formId } }),
     ...contagionsSeen(sheet, dm),
   };
 }

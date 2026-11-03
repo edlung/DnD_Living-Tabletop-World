@@ -114,15 +114,22 @@ export function CharacterCard({
         </span>
       </div>
       <dl className="hero-vitals">
-        <Vital glyph="armor-class" label={t('Armor class')} value={String(sheet.armorClass)} />
+        {/* A Wild Shape's form gives its own Armor Class and Speed (docs/adr/0056-…md §5). */}
+        <Vital
+          glyph="armor-class"
+          label={t('Armor class')}
+          value={String(derived?.wildShape?.current?.armorClass ?? sheet.armorClass)}
+        />
         <Vital
           glyph="speed"
           label={t('Speed')}
           value={
             // Slowed by a load the campaign enforces (docs/adr/0056-characters-from-the-srd.md §3).
-            derived?.loadSpeedFt === undefined
-              ? t('{feet} ft', { feet: derived?.speedFt ?? sheet.speedFt })
-              : t('{feet} ft (load)', { feet: derived.speedFt })
+            derived?.wildShape?.current
+              ? t('{feet} ft', { feet: derived.wildShape.current.speedFt })
+              : derived?.loadSpeedFt === undefined
+                ? t('{feet} ft', { feet: derived?.speedFt ?? sheet.speedFt })
+                : t('{feet} ft (load)', { feet: derived.speedFt })
           }
         />
         {derived && (

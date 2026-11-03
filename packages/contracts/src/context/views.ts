@@ -34,6 +34,8 @@ export const CONTEXT_ACTION_IDS = [
   'cleave_attack',
   /** An Unarmed Strike: its damage, a grapple or a shove, or an object at hand (ADR 0047 §3, §6). */
   'unarmed_strike',
+  /** An attack of a Wild Shape's form (docs/adr/0056-…md §5); `formAttack` names it. */
+  'form_attack',
   'enter_location',
   'fireball',
   'counterspell',
@@ -162,6 +164,13 @@ export const CONTEXT_ILLEGAL_REASONS = [
   'SUMMON_CHOICE',
   'NO_ROOM',
   'USED_THIS_TURN',
+  /**
+   * Wild Shape (ADR 0056 §5): a form the Druid cannot take yet; no spells while it wears one; no
+   * form to leave.
+   */
+  'NOT_A_FORM',
+  'SHAPED',
+  'NOT_SHAPED',
   /** The slice does not carry this action out (Trade: no economy; docs/adr/0020-npc-intelligence.md §1). */
   'NOT_AVAILABLE',
 ] as const;
@@ -252,6 +261,8 @@ export interface ContextAction {
   readonly evidence?: { readonly knowledgeId: string };
   /** The weapon of `weapon_attack`: a rules weapon ID (Stage 520). */
   readonly weapon?: WeaponId;
+  /** The attack of `form_attack`: one of the Wild Shape form's, named (ADR 0056 §5). */
+  readonly formAttack?: { readonly attackId: string; readonly name: string };
   /**
    * The mastery the actor uses with that weapon (docs/adr/0047-weapons.md §2): Push and Topple
    * ask their choice before the attack.

@@ -2,6 +2,7 @@ import type { SrdSchool } from '../srd/catalog.ts';
 import type { AppliedFeature, ResourceView } from './class-features.ts';
 import type {
   Ability,
+  CreatureSize,
   HitDieSides,
   Skill,
   SpellcastingSource,
@@ -116,6 +117,26 @@ export interface CharacterDerived {
     readonly total: number;
     readonly left: number;
   }[];
+  /**
+   * Wild Shape (docs/adr/0056-characters-from-the-srd.md §5): the Beast forms a Druid's level
+   * allows, named in the campaign's language, and the one it wears; absent below Druid level 2.
+   */
+  readonly wildShape?: {
+    /** The form worn, with the Armor Class and walking Speed it gives while worn. */
+    readonly current: {
+      readonly formId: string;
+      readonly name: string;
+      readonly armorClass: number;
+      readonly speedFt: number;
+    } | null;
+    readonly forms: readonly {
+      readonly formId: string;
+      readonly name: string;
+      readonly rating: string;
+      readonly size: CreatureSize;
+      readonly flies: boolean;
+    }[];
+  };
 }
 
 /** What a character knows beside its numbers, each named in the campaign's language. */

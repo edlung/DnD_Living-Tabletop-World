@@ -8,7 +8,13 @@ import { CLASS_RESOURCES } from '../rules/class-features.ts';
  * Wind, Rage, Action Surge, Lay on Hands, Bardic Inspiration… — in a fight with its turn's action
  * or Bonus Action, or out of one; a Rage ended; a Bardic Inspiration die rolled by its holder.
  */
-export const FEATURE_ACTS = [...CLASS_RESOURCES, 'end-rage', 'inspiration-die'] as const;
+export const FEATURE_ACTS = [
+  ...CLASS_RESOURCES,
+  'end-rage',
+  'inspiration-die',
+  /** Leaving Wild Shape's form early, with a Bonus Action (docs/adr/0056-…md §5). */
+  'end-wild-shape',
+] as const;
 export type FeatureAct = (typeof FEATURE_ACTS)[number];
 
 export const useFeatureCommandSchema = z
@@ -22,7 +28,10 @@ export const useFeatureCommandSchema = z
     amount: z.number().int().min(1).max(100).optional(),
     /** The expended slots Arcane Recovery or Magical Cunning regains, by level. */
     slots: z.array(z.number().int().min(1).max(9)).min(1).max(9).optional(),
-    /** The feature's own use where it has several: Lay on Hands' `cure-poison`, a Channel Divinity. */
+    /**
+     * The feature's own use where it has several: Lay on Hands' `cure-poison`, a Channel Divinity,
+     * Wild Shape's Beast form (an SRD stat block).
+     */
     option: z
       .string()
       .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/)

@@ -135,6 +135,16 @@ export function combatCommandFor(
         action: 'mount',
         targetId: target.entityId,
       };
+    // An attack of a Wild Shape's form (docs/adr/0056-characters-from-the-srd.md §5).
+    case 'form_attack':
+      return action.formAttack
+        ? {
+            type: 'Attack',
+            combatantId: actorId,
+            attackId: action.formAttack.attackId,
+            targetId: target.entityId,
+          }
+        : null;
     // A strike without a weapon: its punch, which its question turns into another way (ADR 0047 §3).
     case 'unarmed_strike':
       return {

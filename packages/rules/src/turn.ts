@@ -136,7 +136,11 @@ export type IllegalReason =
    */
   | 'SUMMON_CHOICE'
   | 'NO_ROOM'
-  | 'USED_THIS_TURN';
+  | 'USED_THIS_TURN'
+  /** Wild Shape (§5): a form not open to it; no spells in a form; no form to leave. */
+  | 'NOT_A_FORM'
+  | 'SHAPED'
+  | 'NOT_SHAPED';
 
 export interface Illegal {
   readonly legal: false;

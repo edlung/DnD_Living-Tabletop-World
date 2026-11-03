@@ -106,14 +106,21 @@ export function ActiveCard({
               <Glyph name="armor-class" />
               {t('Armor class')}
             </dt>
-            <dd>{sheet.armorClass}</dd>
+            <dd>{ownSheet?.derived?.wildShape?.current?.armorClass ?? sheet.armorClass}</dd>
           </div>
           <div>
             <dt>
               <Glyph name="speed" />
               {t('Speed')}
             </dt>
-            <dd>{t('{feet} ft', { feet: ownSheet?.derived?.speedFt ?? sheet.speedFt })}</dd>
+            <dd>
+              {t('{feet} ft', {
+                feet:
+                  ownSheet?.derived?.wildShape?.current?.speedFt ??
+                  ownSheet?.derived?.speedFt ??
+                  sheet.speedFt,
+              })}
+            </dd>
           </div>
           {sheet.concentration && (
             <div className="active-concentration">

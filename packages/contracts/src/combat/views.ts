@@ -45,6 +45,8 @@ export interface EncounterCombatantView {
   readonly senses?: Senses;
   /** Its breath held under water, seen the same way: the rounds it has left (ADR 0050 §8). */
   readonly breath?: { readonly roundsLeft: number };
+  /** The Beast form a Druid wears with Wild Shape, as anyone sees it (ADR 0056 §5). */
+  readonly form?: string;
   /** Its legendary actions' attacks and the uses left this round, for the DM (ADR 0053 §4). */
   readonly legendary?: {
     readonly usesLeft: number;

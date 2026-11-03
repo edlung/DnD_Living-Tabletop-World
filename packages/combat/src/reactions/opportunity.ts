@@ -31,10 +31,14 @@ export interface MeleeAttack {
   readonly reachFt: number;
 }
 
-/** A creature's melee attacks: its stat block's; a character's melee weapons and Unarmed Strike. */
+/**
+ * A creature's melee attacks: its stat block's, or a Druid's Wild Shape form's (docs/adr/0056-…md
+ * §5); a character's melee weapons and Unarmed Strike.
+ */
 export function meleeAttacks(state: WorldState, vitals: Vitals): MeleeAttack[] {
-  if (vitals.kind === 'creature') {
-    return vitals.block.attacks
+  if (vitals.kind === 'creature' || vitals.form) {
+    const body = vitals.kind === 'creature' ? vitals.block : vitals.form;
+    return (body?.attacks ?? [])
       .filter((attack) => attack.kind === 'melee')
       .map((attack) => ({
         attackId: attack.attackId,

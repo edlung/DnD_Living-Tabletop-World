@@ -58,6 +58,8 @@ export function checkCast(
 ): CastPlan | Illegal {
   const spell = spellRules(request.spellId);
   if (isIncapacitated(sheet)) return illegal('INCAPACITATED');
+  // No spells in Wild Shape's form (docs/adr/0056-characters-from-the-srd.md §5).
+  if (sheet.shape) return illegal('SHAPED');
   const sources = sourcesFor(sheet, request.spellId);
   if (!spell || sources.length === 0) return illegal('NOT_KNOWN');
   if (spell.castingTime === 'long' && request.inFight === true) return illegal('TAKES_TOO_LONG');

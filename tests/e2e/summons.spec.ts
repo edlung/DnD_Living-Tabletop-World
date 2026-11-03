@@ -39,9 +39,15 @@ test('Elowen calls up a giant spider in a fight and runs its turn', async ({ pag
   );
   const card = page.locator('.commanded-turn');
   await expect(card).toContainText('Giant Insect (Spider)’s turn: you command it.');
-  await card.getByLabel('Which attack', { exact: true }).selectOption({ label: 'Web Bolt' });
+  // A raider chosen on the board: the spider's attacks at it.
+  await clickSquare(page, 8, 4);
   await expectAccessible(page, 'a summoned creature’s turn');
-  expectAccepted(await submit(page, card.getByRole('button', { name: /^Web Bolt at / })));
+  expectAccepted(
+    await submit(
+      page,
+      card.getByRole('button', { name: 'Web Bolt at Unidentified creature 1', exact: true }),
+    ),
+  );
   expectAccepted(await submit(page, card.getByRole('button', { name: 'End its turn' })));
   await expect(card).toHaveCount(0);
 });

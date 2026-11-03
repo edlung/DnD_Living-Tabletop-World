@@ -9,7 +9,7 @@ import {
   type KernelCommandType,
   type SubstitutionReason,
 } from '@ltw/contracts';
-import type { Translate } from '@ltw/ui';
+import { readableLabel, type Translate } from '@ltw/ui';
 
 import { nameFor } from '../authoring/command-text.ts';
 import { RESOURCE_NAMES } from '../character/feature-words.ts';
@@ -208,6 +208,10 @@ export function describePlayerAction(
       // A class feature (docs/adr/0056-characters-from-the-srd.md §4), and whom it reached.
       if (command.feature === 'end-rage') return t('Ended the Rage');
       if (command.feature === 'inspiration-die') return t('Rolled a Bardic Inspiration die');
+      // Wild Shape's form taken or left (§5).
+      if (command.feature === 'end-wild-shape') return t('Left the Wild Shape');
+      if (command.feature === 'wild-shape' && command.option !== undefined)
+        return t('Took a Wild Shape: {form}', { form: readableLabel(command.option, t) });
       return command.targetId === undefined || command.targetId === command.characterId
         ? t('Used {feature}', { feature: t(RESOURCE_NAMES[command.feature]) })
         : t('Used {feature} on {target}', {

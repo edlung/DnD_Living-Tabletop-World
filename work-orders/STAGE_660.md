@@ -43,7 +43,7 @@ Authority: owner approval 2026-11-02 (`reviews/OWNER_FULL_GAME_2026-11-02.json`)
   languages, and the printable sheet. Part 3b done: a character copied from another campaign as a
   sheet, and a player's wish for a portrait the DM makes. Part 4a done: the four summons a slot
   scales, in a fight and out of one, the commander's pick of a creature's attack and its actions
-  with a save.
+  with a save. Part 4b done: Wild Shape's Beast forms in play.
 
 ## Checks at each sub-stage
 

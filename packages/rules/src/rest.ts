@@ -59,7 +59,13 @@ export function hitDice(sheet: CharacterSheet): HitDicePool[] {
 
 /** The sheet without one of its optional fields. */
 type Dropped =
-  'hitDiceSpent' | 'deathSaves' | 'exhaustion' | 'knockedOut' | 'lastLongRestAt' | 'ordeal';
+  | 'hitDiceSpent'
+  | 'deathSaves'
+  | 'exhaustion'
+  | 'knockedOut'
+  | 'lastLongRestAt'
+  | 'ordeal'
+  | 'shape';
 
 function without<K extends Dropped>(sheet: CharacterSheet, ...keys: K[]): Omit<CharacterSheet, K> {
   const dropped: readonly string[] = keys;
@@ -128,8 +134,8 @@ export function spendHitDie(
  * points start no long rest; a stable one regains 1 after 1d4 hours, which the product counts
  * inside the eight, so the whole party wakes rested (owner-delegated decision, Stage 530). One
  * begun at `startedAt` (world time) is the one of these 24 hours (docs/adr/0050 §5). The class
- * features' uses come back, a Rage ends (docs/adr/0056-characters-from-the-srd.md §4), and the
- * ordeal of one back from the dead eases by 1 (§5).
+ * features' uses come back, a Rage ends (docs/adr/0056-characters-from-the-srd.md §4), the
+ * ordeal of one back from the dead eases by 1, and a Wild Shape's form ends (§5).
  */
 export function longRest(sheet: CharacterSheet, startedAt?: number): CharacterSheet {
   const exhaustion = (sheet.exhaustion ?? 0) - 1;
@@ -142,6 +148,8 @@ export function longRest(sheet: CharacterSheet, startedAt?: number): CharacterSh
       'exhaustion',
       'ordeal',
       'knockedOut',
+      // Wild Shape lasts hours, half the Druid's level: eight of them end it (ADR 0056 §5).
+      'shape',
     ),
     ...(exhaustion > 0 ? { exhaustion } : {}),
     ...(ordeal > 0 ? { ordeal } : {}),

@@ -26,7 +26,10 @@ export function obscuredAt(encounter: EncounterState, square: Square): Obscureme
 
 /** Its senses beside sight (§2): none when its sheet or block names none. */
 export const sensesOf = (v: Vitals): Senses =>
-  (v.kind === 'character' ? v.sheet.senses : v.block.senses) ?? {};
+  v.kind === 'character'
+    ? // A Wild Shape's form brings its senses to the Druid's own (docs/adr/0056-…md §5).
+      { ...(v.sheet.senses ?? {}), ...(v.form?.senses ?? {}) }
+    : (v.block.senses ?? {});
 
 /** Within its Blindsight or Truesight: it perceives the target whatever hides it. */
 export function perceives(

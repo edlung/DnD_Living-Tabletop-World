@@ -34,6 +34,14 @@ export {
 export { hitPointsAllowed, levelReady, startingAt } from './builder/campaign-levels.ts';
 export { languageName, languageOptions, proficienciesOf } from './proficiencies.ts';
 export {
+  druidLevel,
+  formName,
+  formOf,
+  takesForm,
+  wildShapeForms,
+  type WildShapeForm,
+} from './features/wild-shape.ts';
+export {
   MAX_SUMMONED,
   animatedSizes,
   summonName,

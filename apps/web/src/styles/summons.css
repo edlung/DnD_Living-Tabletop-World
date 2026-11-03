@@ -21,14 +21,3 @@
   width: 100%;
   margin-top: 0.5rem;
 }
-/* The commander's pick of its creature's attack and target (combat/commanded-turn.tsx) */
-.commanded-attack {
-  display: grid;
-  gap: 0.5rem;
-}
-.commanded-attack .action-row {
-  margin: 0;
-}
-.commanded-turn .creature-actions {
-  margin: 0;
-}

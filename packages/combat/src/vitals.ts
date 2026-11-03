@@ -4,6 +4,7 @@ import {
   type CharacterSheet,
   type Condition,
   type CreatureSize,
+  type DamageType,
   type HitPoints,
   type Speeds,
   type StatBlock,
@@ -13,6 +14,7 @@ import type { Dice, DraftEvent, WorldState } from '@ltw/domain';
 import {
   abilityModifier,
   d20Penalty,
+  formOf,
   incapacitatedBy,
   initiativeAdvantage,
   initiativeEffects,
@@ -35,6 +37,11 @@ export type Vitals =
       readonly entityId: string;
       readonly sheet: CharacterSheet;
       readonly loadSpeedFt?: number;
+      /**
+       * Wild Shape's Beast form while the Druid wears it (docs/adr/0056-…md §5): its Armor Class,
+       * Strength, Dexterity and Constitution, size, speeds, senses, defenses and attacks.
+       */
+      readonly form?: StatBlock;
     }
   | { readonly kind: 'creature'; readonly entityId: string; readonly block: StatBlock };
 
@@ -48,7 +55,14 @@ export function vitalsOf(state: WorldState, entityId: string): Vitals | null {
       campaignOptions(state).carrying === 'enforced'
         ? loadSpeedFt(sheet, carriedWeightLb(state, entityId))
         : null;
-    return { kind: 'character', entityId, sheet, ...(load === null ? {} : { loadSpeedFt: load }) };
+    const form = formOf(sheet);
+    return {
+      kind: 'character',
+      entityId,
+      sheet,
+      ...(load === null ? {} : { loadSpeedFt: load }),
+      ...(form ? { form } : {}),
+    };
   }
   const block = state.statBlocks.get(entityId);
   return block ? { kind: 'creature', entityId, block } : null;
@@ -62,18 +76,33 @@ export const ceilingOf = (v: Vitals): number => effectiveMaximum(hitPoints(v));
  * Its Resistances, Vulnerabilities and Immunities by damage type (ADR 0048 §3): a raging
  * character's resistances among them (docs/adr/0056-characters-from-the-srd.md §4).
  */
-export const defensesOf = (v: Vitals) =>
-  v.kind === 'character'
-    ? v.sheet.raging
-      ? { ...v.sheet, resistances: [...resistancesOf(v.sheet)] }
-      : v.sheet
-    : v.block;
+export const defensesOf = (v: Vitals) => {
+  if (v.kind === 'creature') return v.block;
+  const own = v.sheet.raging ? { ...v.sheet, resistances: [...resistancesOf(v.sheet)] } : v.sheet;
+  if (!v.form) return own;
+  // A Wild Shape's form adds its own (docs/adr/0056-…md §5).
+  const both = (a?: readonly DamageType[], b?: readonly DamageType[]) => [
+    ...new Set([...(a ?? []), ...(b ?? [])]),
+  ];
+  return {
+    resistances: both(own.resistances, v.form.resistances),
+    vulnerabilities: both(own.vulnerabilities, v.form.vulnerabilities),
+    immunities: both(own.immunities, v.form.immunities),
+  };
+};
+/** The block whose body the creature has: its own, or a Druid's Wild Shape form. */
+const bodyOf = (v: Vitals): StatBlock | null =>
+  v.kind === 'creature' ? v.block : (v.form ?? null);
 /** Its size (docs/adr/0049-space-and-movement.md §1): Medium when its sheet or block names none. */
-export const sizeOf = (v: Vitals): CreatureSize =>
-  (v.kind === 'character' ? v.sheet.size : v.block.size) ?? 'medium';
+export const sizeOf = (v: Vitals): CreatureSize => {
+  const body = bodyOf(v);
+  return (body ? body.size : v.kind === 'character' ? v.sheet.size : undefined) ?? 'medium';
+};
 /** Its speeds beside walking (ADR 0049 §5): none when its sheet or block names none. */
-export const speedsOf = (v: Vitals): Speeds =>
-  (v.kind === 'character' ? v.sheet.speeds : v.block.speeds) ?? {};
+export const speedsOf = (v: Vitals): Speeds => {
+  const body = bodyOf(v);
+  return (body ? body.speeds : v.kind === 'character' ? v.sheet.speeds : undefined) ?? {};
+};
 
 /** The ways a creature moves (ADR 0049 §5): on foot, by air, swimming, climbing, underground. */
 export type Way = 'walk' | 'fly' | 'swim' | 'climb' | 'burrow';
@@ -92,7 +121,7 @@ export function wayOfSpeed(v: Vitals, way: Way): number {
   return Math.min(loadOf(v), Math.max(0, own - lowered));
 }
 export const armorClass = (v: Vitals) =>
-  v.kind === 'character' ? v.sheet.armorClass : v.block.armorClass;
+  bodyOf(v)?.armorClass ?? (v.kind === 'character' ? v.sheet.armorClass : 0);
 export const conditionsOf = (v: Vitals): readonly Condition[] =>
   v.kind === 'character' ? v.sheet.conditions : v.block.conditions;
 export const has = (v: Vitals, condition: Condition) => conditionsOf(v).includes(condition);
@@ -106,9 +135,9 @@ export const ordealOf = (v: Vitals): number => (v.kind === 'character' ? (v.shee
 /** Every D20 Test's penalty: Exhaustion's and an ordeal's (ADR 0045 §3; ADR 0056 §5). */
 export const d20PenaltyOf = (v: Vitals): number => d20Penalty(exhaustionOf(v), ordealOf(v));
 export const dexterity = (v: Vitals) =>
-  v.kind === 'character' ? v.sheet.abilities.dex : v.block.abilities.dex;
+  (bodyOf(v) ?? (v.kind === 'character' ? v.sheet : v.block)).abilities.dex;
 export const initiativeModifier = (v: Vitals) =>
-  v.kind === 'character' ? abilityModifier(v.sheet.abilities.dex) : v.block.initiativeBonus;
+  v.kind === 'character' ? abilityModifier(dexterity(v)) : v.block.initiativeBonus;
 
 /**
  * Initiative (SRD 5.2.1; docs/adr/0045-conditions-and-actions.md §1): an Invisible creature rolls
@@ -135,12 +164,22 @@ export function rollInitiative(
   }
   return { roll, modifier: initiativeModifier(v) + effects.penalty };
 }
-export const saveModifier = (v: Vitals, ability: Ability) =>
-  v.kind === 'character' ? savingThrowModifier(v.sheet, ability) : v.block.savingThrows[ability];
+export function saveModifier(v: Vitals, ability: Ability): number {
+  if (v.kind === 'creature') return v.block.savingThrows[ability];
+  const form = v.form;
+  if (!form || (ability !== 'str' && ability !== 'dex' && ability !== 'con'))
+    return savingThrowModifier(v.sheet, ability);
+  // In a form: its score with the Druid's own proficiency, or the form's save where higher.
+  const shaped = {
+    ...v.sheet,
+    abilities: { ...v.sheet.abilities, [ability]: form.abilities[ability] },
+  };
+  return Math.max(savingThrowModifier(shaped, ability), form.savingThrows[ability]);
+}
 
 /** Walking speed before conditions: a character's with its class's movement (ADR 0056 §4). */
 export const baseSpeedOf = (v: Vitals): number =>
-  v.kind === 'character' ? walkingSpeedFt(v.sheet) : v.block.speedFt;
+  bodyOf(v)?.speedFt ?? (v.kind === 'character' ? walkingSpeedFt(v.sheet) : 0);
 
 /** The most its load lets it move (ADR 0056 §3); no limit when it carries it all. */
 const loadOf = (v: Vitals): number =>
@@ -173,7 +212,7 @@ export function withAllHitPoints(v: Vitals, next: HitPoints): Vitals {
 
 /** A condition its stat block is immune to (docs/adr/0053-monsters-as-data.md §1). */
 export const conditionImmune = (v: Vitals, condition: Condition): boolean =>
-  v.kind === 'creature' && (v.block.conditionImmunities ?? []).includes(condition);
+  (bodyOf(v)?.conditionImmunities ?? []).includes(condition);
 
 export function withConditions(
   v: Vitals,

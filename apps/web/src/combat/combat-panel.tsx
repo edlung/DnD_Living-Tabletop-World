@@ -204,6 +204,7 @@ export function CombatPanel({
           encounter={encounter}
           actorId={canAct ? actorId : null}
           moves={commanding ? moves : []}
+          target={commanding ? picked : null}
           locked={locked}
           onRun={onRun}
         />

@@ -24,6 +24,7 @@ import {
   RESOURCE_GLYPHS,
   RESOURCE_NAMES,
 } from './feature-words.ts';
+import { WildShapeForm } from './wild-shape-form.tsx';
 import { className } from './words.ts';
 
 /** Sends one use of a feature; the World Engine decides and applies it. */
@@ -125,16 +126,19 @@ export function FeatureSection({
                   {t(RESOURCE_EFFECTS[view.resource])} {t(RECHARGE_WORDS[view.recharge])}
                 </p>
               </div>
-              {canUse && (
-                <FeatureUse
-                  view={view}
-                  entityId={entityId}
-                  sheet={sheet}
-                  party={party}
-                  locked={locked}
-                  use={use}
-                />
-              )}
+              {canUse &&
+                (view.resource === 'wild-shape' && derived.wildShape ? (
+                  <WildShapeForm view={view} shape={derived.wildShape} locked={locked} use={use} />
+                ) : (
+                  <FeatureUse
+                    view={view}
+                    entityId={entityId}
+                    sheet={sheet}
+                    party={party}
+                    locked={locked}
+                    use={use}
+                  />
+                ))}
             </li>
           ))}
         </ul>

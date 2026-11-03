@@ -55,7 +55,13 @@ export const stateWords = (t: Translate, combatant: EncounterCombatantView): str
     ? combatant.state === 'dead'
       ? t('Destroyed')
       : objectWords(t, combatant.object)
-    : t(readableLabel(combatant.state));
+    : combatant.form !== undefined
+      ? // A Druid in Wild Shape's form (docs/adr/0056-characters-from-the-srd.md §5).
+        t('{state}, in the shape of: {form}', {
+          state: t(readableLabel(combatant.state)),
+          form: combatant.form,
+        })
+      : t(readableLabel(combatant.state));
 
 /** A combatant's side, or "Object" for a thing in the fight. */
 export const sideWords = (t: Translate, combatant: EncounterCombatantView): string =>

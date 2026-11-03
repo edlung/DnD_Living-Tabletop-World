@@ -33,6 +33,8 @@ function costOf(command: Use): ResourceCost {
     case 'end-rage':
     case 'inspiration-die':
       return 'none';
+    case 'end-wild-shape':
+      return 'bonus';
     case 'sorcery-points':
       // Font of Magic: a slot made with a Bonus Action; a slot turned into points, no action.
       return command.option === 'create-slot' ? 'bonus' : 'none';
@@ -71,14 +73,20 @@ export function decideUseFeature(context: DecisionContext, command: Use, dice: D
   if (!found.ok) return found.decision;
   const vitals = found.vitals;
   if (vitals.kind !== 'character') return refuse('NOT_A_FEATURE');
-  // Rolling a held die or ending a Rage asks nothing of the character's state.
-  const free = command.feature === 'end-rage' || command.feature === 'inspiration-die';
+  // Rolling a held die, ending a Rage or a Wild Shape spends no use of a resource.
+  const free =
+    command.feature === 'end-rage' ||
+    command.feature === 'inspiration-die' ||
+    command.feature === 'end-wild-shape';
   if (!free && incapacitated(vitals)) return refuse('INCAPACITATED');
   const paid = payFor(state, command, costOf(command));
   if (typeof paid === 'string') return refuse(paid);
   let spent: Vitals = vitals;
   if (!free) {
-    const resource = command.feature as Exclude<Use['feature'], 'end-rage' | 'inspiration-die'>;
+    const resource = command.feature as Exclude<
+      Use['feature'],
+      'end-rage' | 'inspiration-die' | 'end-wild-shape'
+    >;
     const amount = pointsSpent(command);
     const sheet = spendResource(vitals.sheet, resource, amount);
     if (typeof sheet === 'string') return refuse(sheet);

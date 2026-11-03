@@ -49,6 +49,7 @@ export const COMBAT_ACTIONS: readonly ContextActionId[] = [
   'cleave_attack',
   'offhand_attack',
   'weapon_attack',
+  'form_attack',
   'unarmed_strike',
   'fireball',
   'counterspell',
@@ -123,6 +124,7 @@ const LABELS: Partial<Record<ContextActionId, (t: Translate, target: string) => 
   ready: (t, target) => t('Ready an action against {target}', { target }),
   influence: (t, target) => t('Influence {target}', { target }),
   unarmed_strike: (t, target) => t('Unarmed Strike at {target}', { target }),
+  form_attack: (t, target) => t('Attack {target} in your Wild Shape form', { target }),
   escape: (t) => t('Escape a grapple'),
   release: (t) => t('Let go'),
   'first-aid': (t, target) => t('First aid for {target}', { target }),
@@ -157,6 +159,7 @@ const SHORT: Partial<Record<ContextActionId, string>> = {
   ready: 'Ready an action',
   influence: 'Influence',
   unarmed_strike: 'Unarmed Strike',
+  form_attack: 'Attack',
   escape: 'Escape a grapple',
   release: 'Let go',
   'first-aid': 'First aid',
@@ -222,6 +225,9 @@ export function optionLabelFor(t: Translate, action: ContextAction, target: stri
       ? t('Cast {spell} at {target}’s square', { spell, target })
       : t('Cast {spell} at {target}', { spell, target });
   }
+  // A Wild Shape form's attack, by the name the server gave it (docs/adr/0056-…md §5).
+  if (action.id === 'form_attack' && action.formAttack)
+    return t('{attack} at {target}', { attack: t(action.formAttack.name), target });
   if (action.weapon && WEAPON_OPTIONS.has(action.id)) {
     const weapon = weaponWords(t, action.weapon);
     if (action.id === 'offhand_attack')
@@ -235,6 +241,7 @@ export function optionLabelFor(t: Translate, action: ContextAction, target: stri
 /** The tray's short words for an option: a weapon attack shows the weapon. */
 export function shortLabelFor(t: Translate, action: ContextAction): string {
   if (action.id === 'cast_spell' && action.spell) return t(action.spell.name);
+  if (action.id === 'form_attack' && action.formAttack) return t(action.formAttack.name);
   if (!action.weapon || !WEAPON_OPTIONS.has(action.id)) return t(shortLabelOf(action.id));
   const weapon = weaponWords(t, action.weapon);
   if (action.id === 'offhand_attack') return t('Other hand: {weapon}', { weapon });

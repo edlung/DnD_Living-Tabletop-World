@@ -323,6 +323,7 @@ const ACTION_TEXT: Readonly<
   study: 'Study',
   utilize: 'Utilize',
   unarmed_strike: 'Unarmed Strike',
+  form_attack: 'Attack in your Wild Shape form',
   escape: 'Escape a grapple',
   release: 'Let go',
   'first-aid': 'First aid',

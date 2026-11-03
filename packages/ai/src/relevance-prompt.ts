@@ -72,6 +72,7 @@ const LABEL: Readonly<Record<ContextActionId, string>> = {
   offhand_attack: 'Strike them with the weapon in the other hand',
   cleave_attack: 'Cleave through to them with the same swing',
   unarmed_strike: 'Strike, grapple or shove them without a weapon',
+  form_attack: 'Attack them in your Wild Shape form',
   escape: 'Break free of a grapple',
   release: 'Let go of someone you hold',
   'first-aid': 'Tend a dying or knocked-out creature',

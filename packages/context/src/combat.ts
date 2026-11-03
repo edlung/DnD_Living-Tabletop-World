@@ -75,7 +75,8 @@ export function combatAttackVerdict(
   frame: CombatFrame,
   inputs: ContextInputs,
   targetId: string,
-  weaponId: WeaponId = 'longbow',
+  /** A weapon, or a Wild Shape form's attack (docs/adr/0056-…md §5). */
+  weaponId: WeaponId | (string & {}) = 'longbow',
   /** An extra attack (docs/adr/0047-weapons.md): the other hand's, or Cleave's. */
   extra?: AttackExtra,
 ): Verdict {

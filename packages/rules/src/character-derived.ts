@@ -23,6 +23,7 @@ import {
   totalLevel,
 } from './character-math.ts';
 import { appliedFeatures, rageDamage, usesStrength } from './features/numbers.ts';
+import { formName, formOf, wildShapeForms } from './features/wild-shape.ts';
 import { classResources } from './features/resources.ts';
 import { masteryOf } from './masteries.ts';
 import { spellRules, type SpellRules } from './spell-rules.ts';
@@ -185,6 +186,32 @@ export function deriveCharacter(
     carryingCapacityLb: carryingCapacityLb(sheet),
     proficiencies: proficienciesOf(sheet, language),
     hitDice: hitDice(sheet).map(({ sides, total, left }) => ({ sides, total, left })),
+    ...wildShapeOf(sheet, language),
+  };
+}
+
+/** A Druid's Wild Shape forms and the one it wears (docs/adr/0056-…md §5). */
+function wildShapeOf(
+  sheet: CharacterSheet,
+  language: ReferenceLanguage,
+): Pick<CharacterDerived, 'wildShape'> {
+  const forms = wildShapeForms(sheet, language);
+  if (forms.length === 0) return {};
+  const formId = sheet.shape?.formId;
+  const form = formOf(sheet);
+  return {
+    wildShape: {
+      current:
+        formId === undefined || !form
+          ? null
+          : {
+              formId,
+              name: formName(formId, language),
+              armorClass: form.armorClass,
+              speedFt: form.speedFt,
+            },
+      forms: forms.map((one) => ({ ...one })),
+    },
   };
 }
 

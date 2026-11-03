@@ -9,6 +9,7 @@ import '../i18n/ru-visual.ts';
 import '../i18n/ru-weapons.ts';
 import '../i18n/ru-hit-points.ts';
 import '../i18n/ru-space.ts';
+import '../i18n/ru-summons.ts';
 import { CATALOG_NAMES, GLYPH_NAMES } from '../visual/ui-kit-names.ts';
 import {
   actionEffect,
@@ -37,6 +38,7 @@ describe('combat option pictures and words', () => {
       'cleave_attack',
       'unarmed_strike',
       'cast_spell',
+      'form_attack',
     ]);
     for (const action of COMBAT_ACTIONS.filter((id) => !weaponOptions.has(id))) {
       const art = catalogArtOf(action);

@@ -5,6 +5,7 @@ import { classColumn, pactSlots, regainResource, regainSlots, srdClass } from '@
 import { gapBetween, isAlive, turnStateOf } from './battlefield.ts';
 import { applyHealing } from './damage.ts';
 import type { CombatReason } from './legality.ts';
+import { leaveShape, takeShape } from './wild-shape.ts';
 import {
   ceilingOf,
   has,
@@ -22,8 +23,9 @@ import {
  * for: Second Wind's and Lay on Hands' hit points, Lay on Hands' end of Poisoned, a Rage begun or
  * ended, Action Surge's action, a Bardic Inspiration die given and rolled, Patient Defense's and
  * Step of the Wind's actions, Arcane Recovery's and Magical Cunning's slots, Font of Magic's slot
- * made or turned into points. The rest — Channel Divinity, Wild Shape, Flurry of Blows, Innate
- * Sorcery, Indomitable — is spent with its words for the DM.
+ * made or turned into points, Wild Shape's form taken or left (`wild-shape.ts`). The rest —
+ * Channel Divinity, Flurry of Blows, Innate Sorcery, Indomitable — is spent with its words for the
+ * DM.
  */
 export interface FeatureUse {
   readonly state: WorldState;
@@ -196,8 +198,11 @@ export function featureEffect(use: FeatureUse): FeatureEffect | CombatReason {
     }
     case 'sorcery-points':
       return fontOfMagic(use);
-    case 'channel-divinity':
     case 'wild-shape':
+      return takeShape(use);
+    case 'end-wild-shape':
+      return leaveShape(use);
+    case 'channel-divinity':
     case 'innate-sorcery':
     case 'indomitable':
       // Spent with its words; what it does is the DM's.

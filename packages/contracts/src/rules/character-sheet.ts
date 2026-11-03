@@ -393,6 +393,8 @@ export const characterSheetSchema = z
     featureUses: featureUsesSchema.optional(),
     raging: ragingSchema.optional(),
     inspirationDie: inspirationDieSchema.optional(),
+    /** Wild Shape's Beast form, an SRD stat block, while the Druid wears it (ADR 0056 §5). */
+    shape: z.object({ formId: srdIdSchema }).strict().optional(),
     /** Hit Point Dice spent since the last long rest, by size; absent when none is (Stage 530). */
     hitDiceSpent: z
       .object({ d6: spentDice, d8: spentDice, d10: spentDice, d12: spentDice })

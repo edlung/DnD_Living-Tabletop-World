@@ -284,7 +284,11 @@ export function attackPlan(
     if (attackerVitals.kind === 'character') {
       const begun = beginAttackAction(attackerVitals.sheet, turn);
       if ('legal' in begun) return refuse(begun.reason);
-      turn = begun;
+      // A Wild Shape's form makes its Multiattack's attacks (docs/adr/0056-…md §5).
+      const form = attackerVitals.form;
+      turn = form
+        ? { ...begun, attacksRemaining: Math.max(begun.attacksRemaining, form.attacksPerAction) }
+        : begun;
     } else {
       if (turn.actionUsed) return refuse('NO_ACTION');
       turn = { ...turn, actionUsed: true, attacksRemaining: attackerVitals.block.attacksPerAction };

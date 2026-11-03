@@ -270,6 +270,26 @@ curated.ts`): Revivify (dead within a minute, 1 Hit Point), Raise Dead (10 days,
   their Exhaustion immunity (Exhaustion is a level here, not a condition). The spell's words show
   them, and its cast says the DM applies the rest.
 
+## Notes from the implementation (Stage 660e, part 4b, 2026-11-03)
+
+- Wild Shape (`packages/rules/src/features/wild-shape.ts`): with a Bonus Action in a fight (no
+  turn outside one) a Druid takes the form of an SRD Beast the Beast Shapes table allows — Challenge
+  Rating 1/4 from level 2, 1/2 from level 4, 1 from level 8, a flyer from level 8 — spending a use;
+  the sheet records the form (`shape`). The Druid keeps its own Hit Points and gains Temporary Hit
+  Points equal to its Druid level (the higher stays); in a fight a Large form needs room where the
+  Druid stands (`NO_ROOM`).
+- While worn, the form's stat block is the body the engine plays (`vitals.ts`): its Armor Class,
+  size, speeds and senses, its defenses beside the Druid's own, its Strength, Dexterity and
+  Constitution saves (the Druid's proficiency with the form's score, or the form's save where
+  higher), its attacks and Multiattack — no weapon and no spell (`SHAPED`); the turn tray offers the
+  form's attacks (`form_attack`) in their place. Everyone sees the form beside the Druid's name.
+- The form ends with a Bonus Action (`end-wild-shape`), another form, the Druid Incapacitated or
+  dead (a sweep after every fight command), or a Long Rest (its hours, half the Druid's level, are
+  shorter than one; within the day the table keeps the time).
+- The table's: the four (six, eight) known forms and the one changed at a Long Rest — any form the
+  level allows is open; the form's skills, Intelligence, Wisdom and Charisma (the Druid keeps its
+  own); what the form's limbs can hold and the equipment that falls or merges.
+
 ## Consequences
 
 - Stage 660 runs in parts: the data; creation; advancement; features in play; the table's life.

@@ -137,7 +137,7 @@ export function TargetDetails({
         <div className="side-title">
           <p className="eyebrow">{sideWords(t, target)}</p>
           <h3>{name}</h3>
-          {(target.state !== 'up' || target.object) && (
+          {(target.state !== 'up' || target.object || target.form !== undefined) && (
             <p className="side-state">{stateWords(t, target)}</p>
           )}
         </div>

@@ -149,6 +149,17 @@ export function outcomeMessage(t: Translate, outcome: PlayerOutcome | undefined)
     case 'UseFeature': {
       // A class feature (docs/adr/0056-characters-from-the-srd.md §4).
       if (outcome.feature === 'end-rage') return t('The Rage ends.');
+      // Wild Shape's form (§5): taken, or left.
+      if (outcome.feature === 'end-wild-shape') return t('You are yourself again.');
+      if (outcome.feature === 'wild-shape')
+        return outcome.left === undefined
+          ? t('You take the Beast’s shape.')
+          : t(
+              outcome.left === 1
+                ? 'You take the Beast’s shape: 1 use left.'
+                : 'You take the Beast’s shape: {count} uses left.',
+              { count: outcome.left },
+            );
       if (outcome.feature === 'inspiration-die')
         return t(
           'Your Bardic Inspiration die shows {roll}: add it to the failed d20 test; the DM applies it.',

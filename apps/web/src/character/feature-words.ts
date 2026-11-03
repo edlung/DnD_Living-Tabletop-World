@@ -57,7 +57,8 @@ export const RESOURCE_EFFECTS: Readonly<Record<ClassResource, string>> = {
   'bardic-inspiration':
     'Bonus Action. A creature within 60 ft holds your Bardic Inspiration die for an hour.',
   'channel-divinity': 'Magic action. The DM applies its effect.',
-  'wild-shape': 'Bonus Action. The DM applies the form.',
+  'wild-shape':
+    'Bonus Action. You take a Beast form your Druid level allows: its Armor Class, Strength, Dexterity and Constitution, size, speeds and attacks, your own hit points with temporary ones equal to your Druid level, and no spells. A Bonus Action, being Incapacitated or a long rest ends it.',
   'second-wind': 'Bonus Action. You regain 1d10 + your Fighter level hit points.',
   'action-surge': 'After your action: one more action this turn, not a Magic action.',
   indomitable: 'After a failed saving throw: the DM rerolls it with your Fighter level added.',
@@ -79,7 +80,8 @@ export const ACT_WORDS: Readonly<Record<FeatureAct, string>> = {
   'bardic-inspiration': 'Inspire',
   'inspiration-die': 'Roll the die',
   'channel-divinity': 'Use Channel Divinity',
-  'wild-shape': 'Use Wild Shape',
+  'wild-shape': 'Take the shape',
+  'end-wild-shape': 'Leave the shape',
   'second-wind': 'Use Second Wind',
   'action-surge': 'Use Action Surge',
   indomitable: 'Use Indomitable',

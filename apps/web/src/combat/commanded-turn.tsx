@@ -1,14 +1,16 @@
-import type { EncounterSuggestionResponse, EncounterView } from '@ltw/contracts';
+import type {
+  EncounterCombatantView,
+  EncounterSuggestionResponse,
+  EncounterView,
+} from '@ltw/contracts';
 import { useT, type Translate } from '@ltw/ui';
-import { useCallback, useId, useState } from 'react';
+import { useCallback } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
 import { useReservedHeight } from '../shell/reserved-height.ts';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
-import { Field } from '../session/account-forms.tsx';
 import { Glyph } from '../visual/glyph.tsx';
-import { CreatureActionsCard } from './creature-actions-card.tsx';
 import { useCombatantLabels } from './labels.ts';
 import type { MoveOption } from './move-options.ts';
 import { moveLabel } from './move-words.ts';
@@ -19,9 +21,9 @@ import { moveLabel } from './move-words.ts';
  * from this player's own view (no creature named that the player does not know), with Do it and
  * End its turn; and the ways to a square the player chose on the board, as for their own
  * character — a mount goes where its rider directs (docs/adr/0049-space-and-movement.md §10); and
- * its own attacks and actions with a save, at the creature the player picks (a summoned spirit's
- * breath among them; docs/adr/0056-characters-from-the-srd.md §5). The World Engine decides each
- * as the creature's commander's.
+ * its own attacks and actions with a save at the creature the player chose on the board, as for
+ * their own turn (a summoned spirit's breath among them; docs/adr/0056-characters-from-the-srd.md
+ * §5). The World Engine decides each as the creature's commander's.
  */
 type Suggestion = NonNullable<EncounterSuggestionResponse['suggestion']>;
 
@@ -48,6 +50,7 @@ export function CommandedTurn({
   encounter,
   actorId,
   moves = [],
+  target = null,
   locked,
   onRun,
 }: {
@@ -56,6 +59,8 @@ export function CommandedTurn({
   readonly actorId: string | null;
   /** The ways to the square chosen on the board, for the creature. */
   readonly moves?: readonly MoveOption[];
+  /** The creature chosen on the board: the one its attacks and actions go at. */
+  readonly target?: EncounterCombatantView | null;
   readonly locked: boolean;
   readonly onRun: (intent: ExplorationIntent) => void;
 }) {
@@ -79,6 +84,13 @@ export function CommandedTurn({
   if (!mine) return null;
   const suggestion = read.resource.status === 'ready' ? read.resource.value.suggestion : null;
   const name = labelOf(current.entity.entityId);
+  // Its attacks and actions with a save at the creature chosen on the board (ADR 0056 §5).
+  const at =
+    target && target.entity.entityId !== current.entity.entityId && target.state !== 'dead'
+      ? target
+      : null;
+  const aimed = at === null ? [] : commandsAt(t, current, at, labelOf(at.entity.entityId));
+  const pickable = (current.attacks?.length ?? 0) + (current.creatureActions?.length ?? 0) > 0;
   return (
     <section
       ref={tray}
@@ -92,8 +104,9 @@ export function CommandedTurn({
       {suggestion && suggestion.command.type !== 'EndTurn' && (
         <p className="muted">{suggestionWords(t, suggestion, labelOf)}</p>
       )}
-      <CommandedAttack encounter={encounter} locked={locked} onRun={onRun} />
-      <CreatureActionsCard encounter={encounter} locked={locked} onRun={onRun} />
+      {pickable && at === null && (
+        <p className="muted">{t('Choose a creature on the board for its attacks.')}</p>
+      )}
       <div className="action-row">
         {moves.map((option) => (
           <button
@@ -113,6 +126,18 @@ export function CommandedTurn({
             }}
           >
             {moveLabel(t, option)}
+          </button>
+        ))}
+        {aimed.map((one) => (
+          <button
+            key={one.key}
+            type="button"
+            disabled={locked || !one.ready}
+            onClick={() => {
+              onRun({ kind: 'command', command: one.command });
+            }}
+          >
+            {one.label}
           </button>
         ))}
         {suggestion && suggestion.command.type !== 'EndTurn' && (
@@ -144,99 +169,42 @@ export function CommandedTurn({
   );
 }
 
-/** The creature's own attack, at the creature its commander's player picks. */
-function CommandedAttack({
-  encounter,
-  locked,
-  onRun,
-}: {
-  readonly encounter: EncounterView;
-  readonly locked: boolean;
-  readonly onRun: (intent: ExplorationIntent) => void;
-}) {
-  const t = useT();
-  const ids = useId();
-  const labelOf = useCombatantLabels(encounter);
-  const [attackId, setAttackId] = useState('');
-  const [targetId, setTargetId] = useState('');
-  const current = encounter.combatants.find(
-    (one) => one.entity.entityId === encounter.currentCombatantId,
-  );
-  const attacks = current?.attacks ?? [];
-  // Foes first: the living others, those of another side before its own.
-  const others = encounter.combatants
-    .filter((one) => one.entity.entityId !== current?.entity.entityId && one.state !== 'dead')
-    .sort((a, b) => Number(a.side === current?.side) - Number(b.side === current?.side));
-  if (!current || attacks.length === 0 || others.length === 0) return null;
-  const attack = attacks.find((one) => one.attackId === attackId) ?? attacks[0];
-  const target = others.find((one) => one.entity.entityId === targetId) ?? others[0];
-  if (!attack || !target) return null;
-  return (
-    <div className="commanded-attack" role="group" aria-labelledby={`${ids}-title`}>
-      <p id={`${ids}-title`} className="action-choice-title">
-        {t('Its attack')}
-      </p>
-      <div className="action-choice-fields">
-        {attacks.length > 1 && (
-          <Field label={t('Which attack')}>
-            {(control) => (
-              <select
-                {...control}
-                value={attack.attackId}
-                onChange={(event) => {
-                  setAttackId(event.target.value);
-                }}
-              >
-                {attacks.map((one) => (
-                  <option key={one.attackId} value={one.attackId}>
-                    {t(one.name)}
-                  </option>
-                ))}
-              </select>
-            )}
-          </Field>
-        )}
-        <Field label={t('Aimed at')}>
-          {(control) => (
-            <select
-              {...control}
-              value={target.entity.entityId}
-              onChange={(event) => {
-                setTargetId(event.target.value);
-              }}
-            >
-              {others.map((one) => (
-                <option key={one.entity.entityId} value={one.entity.entityId}>
-                  {labelOf(one.entity.entityId)}
-                </option>
-              ))}
-            </select>
-          )}
-        </Field>
-      </div>
-      <div className="action-row">
-        <button
-          type="button"
-          className="primary-button"
-          disabled={locked}
-          onClick={() => {
-            onRun({
-              kind: 'command',
-              command: {
-                type: 'Attack',
-                combatantId: current.entity.entityId,
-                attackId: attack.attackId,
-                targetId: target.entity.entityId,
-              },
-            });
-          }}
-        >
-          {t('{attack} at {target}', {
-            attack: t(attack.name),
-            target: labelOf(target.entity.entityId),
-          })}
-        </button>
-      </div>
-    </div>
-  );
+interface Aimed {
+  readonly key: string;
+  readonly label: string;
+  readonly ready: boolean;
+  readonly command: Extract<ExplorationIntent, { kind: 'command' }>['command'];
+}
+
+/** The creature's attacks and actions with a save, each at the chosen creature. */
+function commandsAt(
+  t: Translate,
+  current: EncounterCombatantView,
+  target: EncounterCombatantView,
+  targetName: string,
+): Aimed[] {
+  const combatantId = current.entity.entityId;
+  const targetId = target.entity.entityId;
+  return [
+    ...(current.attacks ?? []).map((attack) => ({
+      key: `attack:${attack.attackId}`,
+      label: t('{attack} at {target}', { attack: t(attack.name), target: targetName }),
+      ready: true,
+      command: { type: 'Attack' as const, combatantId, attackId: attack.attackId, targetId },
+    })),
+    ...(current.creatureActions ?? []).map((action) => ({
+      key: `action:${action.actionId}`,
+      label: t('{attack} at {target}', { attack: t(action.name), target: targetName }),
+      ready: action.ready,
+      command: {
+        type: 'UseCreatureAction' as const,
+        combatantId,
+        actionId: action.actionId,
+        // A breath toward the creature's square, any other action at the creature.
+        ...(action.aim === 'square'
+          ? { point: { x: target.position.x, y: target.position.y } }
+          : { targetId }),
+      },
+    })),
+  ];
 }

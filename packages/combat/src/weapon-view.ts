@@ -1,4 +1,4 @@
-import type { AmmunitionKind, Damage, WeaponId, WeaponMastery } from '@ltw/contracts';
+import type { AmmunitionKind, Damage, StatBlock, WeaponId, WeaponMastery } from '@ltw/contracts';
 import { handsOf, wieldedBonus, wieldedWeapons, type WorldState } from '@ltw/domain';
 import {
   WEAPONS,
@@ -84,6 +84,8 @@ export function weaponOf(
   attackId: string,
   distanceFt: number,
 ): WeaponView | WeaponRefusal {
+  // In Wild Shape's form, the form's attacks only (docs/adr/0056-characters-from-the-srd.md §5).
+  if (v.kind === 'character' && v.form) return blockAttack(v.form, attackId);
   if (v.kind === 'character' && attackId === UNARMED_STRIKE) {
     const strength = abilityModifier(v.sheet.abilities.str);
     // Martial Arts: the Monk's die, and Dexterity where it is better (docs/adr/0056-…md §4).
@@ -186,7 +188,12 @@ export function weaponOf(
       ammunition: definition.ammunition ?? null,
     };
   }
-  const attack = v.block.attacks.find((a) => a.attackId === attackId);
+  return blockAttack(v.block, attackId);
+}
+
+/** A stat block's attack, a creature's or a Druid's Wild Shape form's (ADR 0056 §5). */
+function blockAttack(block: StatBlock, attackId: string): WeaponView | WeaponRefusal {
+  const attack = block.attacks.find((a) => a.attackId === attackId);
   if (!attack) return 'NO_WEAPON';
   return {
     ...plain,

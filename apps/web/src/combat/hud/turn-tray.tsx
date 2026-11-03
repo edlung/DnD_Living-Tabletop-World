@@ -346,4 +346,5 @@ const ATTACK_OPTIONS: ReadonlySet<string> = new Set([
   'offhand_attack',
   'cleave_attack',
   'unarmed_strike',
+  'form_attack',
 ]);

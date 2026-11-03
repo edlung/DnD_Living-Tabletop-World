@@ -13,7 +13,7 @@ import {
   type EncounterState,
   type WorldState,
 } from '@ltw/domain';
-import { encounterDifficulty, totalLevel } from '@ltw/rules';
+import { encounterDifficulty, formName, totalLevel } from '@ltw/rules';
 
 import { reactionWindowView } from './reactions/view.ts';
 import { sensesOf } from './sight.ts';
@@ -49,6 +49,7 @@ export function encounterView(
   const current = encounter ? currentCombatant(encounter) : undefined;
   if (!encounter || !current) return null;
   const dm = perspective.kind === 'DM';
+  const language = state.campaign?.language === 'ru' ? 'ru' : 'en';
   const holder = perspective.kind === 'CHARACTER' ? perspective.holderId : null;
   const members = projectionPartyMemberIds(state, perspective);
   const asParty =
@@ -111,6 +112,10 @@ export function encounterView(
       ...(speedsOf(vitals).fly === undefined ? {} : { flies: true as const }),
       // The creature it rides, as anyone sees (§10).
       ...(combatant.mountedOn === undefined ? {} : { mountedOn: named(combatant.mountedOn) }),
+      // A Druid's Wild Shape form, as anyone sees it (docs/adr/0056-…md §5).
+      ...(vitals.kind === 'character' && vitals.sheet.shape
+        ? { form: formName(vitals.sheet.shape.formId, language) }
+        : {}),
       // Its speeds beside walking, as its hit points: the party's and the DM's to know (§5).
       ...(showHp && Object.keys(speedsOf(vitals)).length > 0 ? { speeds: speedsOf(vitals) } : {}),
       // Its breath under water, the same way (docs/adr/0050-the-world-around.md §8).

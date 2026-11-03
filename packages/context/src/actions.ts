@@ -26,6 +26,7 @@ import {
 } from './combat.ts';
 import { showableEvidence } from './evidence.ts';
 import type { ContextInputs } from './inputs.ts';
+import { inForm } from './form-actions.ts';
 import { spellOptions } from './spell-options.ts';
 import {
   LEGAL,
@@ -357,8 +358,10 @@ export function contextActions(inputs: ContextInputs, target: EntityState): Cont
     actions.push(
       ...spellOptions(frame, inputs, target.entityId, judge, (id) => entityRefFor(inputs, id)),
     );
+  // In Wild Shape's form, its attacks for weapons and spells (docs/adr/0056-…md §5).
+  const offered = inForm(actions, frame, inputs, { entityId: target.entityId, struck }, judge);
   // Stable: equal relevance keeps catalog order.
-  return actions.sort((a, b) => RELEVANCE_RANK[a.relevance] - RELEVANCE_RANK[b.relevance]);
+  return offered.sort((a, b) => RELEVANCE_RANK[a.relevance] - RELEVANCE_RANK[b.relevance]);
 }
 
 function toAction(

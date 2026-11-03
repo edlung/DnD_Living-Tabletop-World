@@ -29,7 +29,8 @@ registerRussian({
   'Bonus Action. A creature within 60 ft holds your Bardic Inspiration die for an hour.':
     'Бонусное действие. Существо в пределах 60 фт получает кость бардовского вдохновения на час.',
   'Magic action. The DM applies its effect.': 'Действие «Магия». Эффект применяет мастер.',
-  'Bonus Action. The DM applies the form.': 'Бонусное действие. Облик применяет мастер.',
+  'Bonus Action. You take a Beast form your Druid level allows: its Armor Class, Strength, Dexterity and Constitution, size, speeds and attacks, your own hit points with temporary ones equal to your Druid level, and no spells. A Bonus Action, being Incapacitated or a long rest ends it.':
+    'Бонусное действие. Вы принимаете облик зверя, доступный по уровню друида: его Класс доспеха, Сила, Ловкость и Телосложение, размер, скорости и атаки; хиты остаются ваши, и вы получаете временные хиты, равные уровню друида; заклинаний нет. Облик заканчивается бонусным действием, состоянием «Недееспособен» или долгим отдыхом.',
   'Bonus Action. You regain 1d10 + your Fighter level hit points.':
     'Бонусное действие. Вы восстанавливаете 1к10 + уровень воина хитов.',
   'After your action: one more action this turn, not a Magic action.':
@@ -53,7 +54,8 @@ registerRussian({
   Inspire: 'Вдохновить',
   'Roll the die': 'Бросить кость',
   'Use Channel Divinity': 'Использовать Божественный канал',
-  'Use Wild Shape': 'Использовать Дикий облик',
+  'Take the shape': 'Принять облик',
+  'Leave the shape': 'Покинуть облик',
   'Use Second Wind': 'Использовать Второе дыхание',
   'Use Action Surge': 'Использовать Всплеск действий',
   'Use Indomitable': 'Использовать Упорство',
