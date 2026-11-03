@@ -69,7 +69,8 @@ Branch `claude/full-game-b`, main (Stage 700, the native apps) merged in.
   each new screen audited at 1440, 768, 390 and 320 px, light and dark, in English and in Russian
   (0 findings). Two defects found by the suite were fixed before the commit: the commander's card
   that grew over the board, and a Wild Shape form the sheet's view dropped.
-- After merging main: see the PR's checks and the record below.
+- After merging main, the whole browser suite: 297 of 298 passed; the one that failed (`toolbox.spec`, the DM's
+  history read slowly under load) passed on its own rerun.
 
 ## What stays the DM's
 
