@@ -40,7 +40,8 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   magic items in the catalog (made on a base, +N bonuses, healing potions); part 3, attunement and
   the protection items; part 4, charges at the dawn, identifying and curses. 650e (ADR 0055) in
   progress: part 1, the rules reference (the glossary and the toolbox as data, the Rules sheet,
-  terms in place), done; next the toolbox's mechanics, the Russian rules text and the catalogs' art.
+  terms in place), done; part 2, the Toolbox at the table (traps, mental stress, contagions),
+  done; next the Russian rules text and the catalogs' art.
 
 ## Current request — AI campaigns, 2026-10-30
 

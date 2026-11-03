@@ -44,11 +44,11 @@ import {
  * Each decision reads the target's vitals (a premise), so undoing an earlier change of the same
  * creature after this one is refused as unsafe instead of silently wiping this one.
  */
-type Target =
+export type Target =
   | { readonly ok: true; readonly vitals: NonNullable<ReturnType<typeof vitalsOf>> }
   | { readonly ok: false; readonly decision: Decision };
 
-function living(state: WorldState, entityId: string): Target {
+export function living(state: WorldState, entityId: string): Target {
   const entity = state.entities.get(entityId);
   if (!entity) return { ok: false, decision: reject('ENTITY_NOT_FOUND', 'No such creature') };
   if (entity.status !== 'active')

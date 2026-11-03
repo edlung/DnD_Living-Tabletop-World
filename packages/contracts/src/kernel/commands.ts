@@ -76,6 +76,12 @@ import {
   useReactionCommandSchema,
 } from '../combat/reactions.ts';
 import { addObjectCommandSchema } from '../combat/objects.ts';
+import {
+  contagionCourseCommandSchema,
+  infectWithContagionCommandSchema,
+  inflictMentalStressCommandSchema,
+  springTrapCommandSchema,
+} from '../combat/toolbox.ts';
 import { setStatBlockCommandSchema } from '../combat/stat-block.ts';
 import { setClaimCommandSchema } from '../knowledge/claims.ts';
 import { setRelationshipCommandSchema } from '../relationships/commands.ts';
@@ -214,6 +220,10 @@ export const kernelCommandSchema = z
     addObjectCommandSchema,
     setLightCommandSchema,
     exposeToHazardCommandSchema,
+    springTrapCommandSchema,
+    inflictMentalStressCommandSchema,
+    infectWithContagionCommandSchema,
+    contagionCourseCommandSchema,
   ])
   .superRefine((command, context) => {
     const issue = worldCommandIssue(command);
@@ -298,6 +308,10 @@ export const KERNEL_COMMAND_TYPES = [
   'AddObject',
   'SetLight',
   'ExposeToHazard',
+  'SpringTrap',
+  'InflictMentalStress',
+  'InfectWithContagion',
+  'ContagionCourse',
 ] as const satisfies readonly KernelCommandType[];
 
 export const kernelCommandTypeSchema = z.enum(KERNEL_COMMAND_TYPES);

@@ -415,6 +415,11 @@ registerRussian({
   'attune to an item': 'настройка на предмет',
   'identify an item': 'опознание предмета',
   'dawn: charges regained': 'рассвет: заряды восстановлены',
+  // The Gameplay Toolbox's steps (docs/adr/0055-rules-reference-and-toolbox.md §4)
+  'spring a trap': 'сработала ловушка',
+  'mental stress': 'ментальный стресс',
+  'infect with a contagion': 'заразить болезнью',
+  'a contagion’s course': 'течение болезни',
   'change hit points': 'изменить хиты',
   'set a condition': 'наложить или снять состояние',
   'set Exhaustion': 'установить истощение',

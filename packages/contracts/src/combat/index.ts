@@ -96,3 +96,14 @@ export {
   type PreparedEncounterView,
   type StartedPreparedEncounterResponse,
 } from './prepared.ts';
+export {
+  CONTAGION_STEPS,
+  TOOLBOX_COMMAND_TYPES,
+  TRAP_IDS,
+  contagionCourseCommandSchema,
+  infectWithContagionCommandSchema,
+  inflictMentalStressCommandSchema,
+  springTrapCommandSchema,
+  type ContagionStep,
+  type TrapId,
+} from './toolbox.ts';

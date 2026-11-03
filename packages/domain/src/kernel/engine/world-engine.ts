@@ -283,6 +283,10 @@ export class WorldEngine {
       command.type === 'RemoveCombatant' ||
       command.type === 'DelayTurn' ||
       command.type === 'ExposeToHazard' ||
+      command.type === 'SpringTrap' ||
+      command.type === 'InflictMentalStress' ||
+      command.type === 'InfectWithContagion' ||
+      command.type === 'ContagionCourse' ||
       command.type === 'UseCreatureAction' ||
       command.type === 'DawnRecharge'
     ) {

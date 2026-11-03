@@ -10,6 +10,7 @@ import { Field } from '../session/account-forms.tsx';
 import { Glyph } from '../visual/glyph.tsx';
 import { useRereadOn } from '../world/use-world-data.ts';
 import { PartyCard } from './party-card.tsx';
+import { ToolboxForms } from './toolbox-forms.tsx';
 import type { DmTableCommand } from './table-commands.ts';
 
 /**
@@ -88,6 +89,11 @@ export function PartySheet({
       </section>
       <div className="party-tools">
         <AskForCheck characters={characters.map((entry) => entry.character)} />
+        <ToolboxForms
+          characters={characters.map((entry) => entry.character)}
+          locked={locked}
+          onRun={onRun}
+        />
         <RulingForm
           api={api}
           characters={characters.map((entry) => entry.character)}

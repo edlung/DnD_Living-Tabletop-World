@@ -358,3 +358,65 @@
   outline: 2px solid var(--teal);
   outline-offset: -2px;
 }
+
+/* The Toolbox at the table (§4): the DM's trap and mental stress on the Party sheet. */
+.toolbox-form {
+  display: grid;
+  gap: 12px;
+  max-width: 40rem;
+}
+.toolbox-form h3,
+.toolbox-form p {
+  margin: 0;
+}
+.toolbox-fields {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 12px 16px;
+}
+.toolbox-field {
+  display: grid;
+  flex: 1 1 12rem;
+  gap: 4px;
+  min-width: 0;
+}
+.toolbox-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.toolbox-who {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+/* A group's legend reads as the fields' labels do (base.css label). */
+.toolbox-who legend {
+  margin-bottom: 4px;
+  padding: 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+.toolbox-who-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 32px;
+}
+.toolbox-form .primary-button {
+  justify-self: start;
+}
+.party-contagions {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.party-contagions p {
+  margin: 0;
+}

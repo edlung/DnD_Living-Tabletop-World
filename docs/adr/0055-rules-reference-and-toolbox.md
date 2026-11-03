@@ -70,6 +70,25 @@
   of an action that asks a choice (Search, Study, Influence, Ready) are terms; the spells tab
   already shows each spell's words. The toolbox (index and sections) reaches the DM only.
 
+### Notes from the implementation (Stage 650e part 2, 2026-11-03)
+
+- The DM's Party sheet holds the Toolbox at the table: a trap (the eight, at the tier of the
+  characters' levels; the rolling stone has one) sprung on the characters it catches, mental
+  stress (the three sample effects or the DM's own save, DC and d6s, none or half on a success),
+  and a contagion given to one character. A trap's numbers are data the tests hold to its words
+  (`packages/rules/src/toolbox/traps.ts`); a pit is a fall (the glossary's Falling: damage and
+  Prone). Each creature saves and takes its damage through the damage rules.
+- A contagion's course is on the character's sheet (`contagions`) and followed on the DM's party
+  card: it takes hold (a level of Exhaustion), the character fights it (Cackle Fever after a Long
+  Rest, three saves won ending it and its level; Sewer Plague at dawn, a level more or less, none
+  ending it), or it ends (Sight Rot only so, its Blinded lifted). Its carrier sees it once it has
+  taken hold; the DM from the infection. The DM says when; the World Engine rolls.
+- Fear stays the condition form's (Frightened with a Wisdom save first, the sample DCs in the
+  reference); the sample poisons and the environment's frigid water, deep water, slippery ice,
+  strong wind and heavy precipitation stay text in the reference — the DM applies them with the
+  hand tools (a condition with a save, Exhaustion, damage). The toolbox's changes enter the DM's
+  history as changes by hand, undone like any other.
+
 ## Consequences
 
 - Stage 650e runs in parts: the rules reference and the terms in place; the toolbox's mechanics;

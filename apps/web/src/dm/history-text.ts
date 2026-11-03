@@ -112,6 +112,10 @@ export const STEP_TEXT: Readonly<Record<KernelCommandType, string>> = {
   AddObject: 'bring an object into the fight',
   SetLight: 'set the light of the fight',
   ExposeToHazard: 'expose the party to a hazard',
+  SpringTrap: 'spring a trap',
+  InflictMentalStress: 'mental stress',
+  InfectWithContagion: 'infect with a contagion',
+  ContagionCourse: 'a contagion’s course',
   UseCreatureAction: 'use a creature’s action',
 };
 

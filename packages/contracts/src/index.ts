@@ -198,6 +198,12 @@ export {
   type WeaponMastery,
 } from './rules/character-sheet.ts';
 export {
+  CONTAGION_IDS,
+  contagionStateSchema,
+  type ContagionId,
+  type ContagionState,
+} from './rules/contagions.ts';
+export {
   hitDieRequestSchema,
   levelUpRequestSchema,
   restEndRequestSchema,

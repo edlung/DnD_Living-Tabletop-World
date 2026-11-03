@@ -1,4 +1,6 @@
 import type { Hazard, LightLevel } from '../combat/commands.ts';
+import type { ContagionStep, TrapId } from '../combat/toolbox.ts';
+import type { ContagionId } from '../rules/contagions.ts';
 import { z } from 'zod';
 
 import type { PlayerCommandType } from '../investigation/commands.ts';
@@ -172,6 +174,28 @@ export interface DmHandEntry extends DmHistoryCommon {
         readonly hazard: Hazard;
         readonly hours: number;
         readonly failed: number;
+      }
+    /**
+     * The Gameplay Toolbox (docs/adr/0055-rules-reference-and-toolbox.md §4): a trap sprung on
+     * those it caught, at a tier; mental stress; a contagion given, or a step of its course.
+     */
+    | {
+        readonly kind: 'trap';
+        readonly trapId: TrapId;
+        readonly tier: number;
+        readonly targets: readonly EntityRef[];
+      }
+    | {
+        readonly kind: 'mental-stress';
+        readonly targets: readonly EntityRef[];
+        readonly dc: number;
+        readonly dice: number;
+      }
+    | {
+        readonly kind: 'contagion';
+        readonly target: EntityRef;
+        readonly contagionId: ContagionId;
+        readonly step: 'infect' | ContagionStep;
       };
   /** The DM's reason; null for a change of the fight that takes none. */
   readonly reason: string | null;

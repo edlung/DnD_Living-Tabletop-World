@@ -45,6 +45,10 @@ const RESOLVED_TYPES: ReadonlySet<string> = new Set([
   'DelayTurn',
   // The hazards of the road roll their saves (docs/adr/0050-the-world-around.md §8).
   'ExposeToHazard',
+  'SpringTrap',
+  'InflictMentalStress',
+  'InfectWithContagion',
+  'ContagionCourse',
   // A creature's breath rolls its damage and the saves (docs/adr/0053-monsters-as-data.md §2).
   'UseCreatureAction',
   // At dawn magic items roll the charges they regain (docs/adr/0054-items-as-data.md §5).

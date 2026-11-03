@@ -25,12 +25,16 @@ export function characterSheetView(
   return {
     perspective: perspective.label,
     entity: entityRef(state, entityId),
-    sheet: copySheet(sheet, visible),
+    sheet: copySheet(sheet, visible, dm),
   };
 }
 
 /** Explicit nested whitelist: future canonical fields cannot silently enter a client response. */
-function copySheet(sheet: CharacterSheet, visible: (id: string) => boolean): CharacterSheet {
+function copySheet(
+  sheet: CharacterSheet,
+  visible: (id: string) => boolean,
+  dm: boolean,
+): CharacterSheet {
   const concentration = sheet.concentration;
   return {
     classes: sheet.classes.map(({ classId, level, subclass }) => ({
@@ -95,7 +99,20 @@ function copySheet(sheet: CharacterSheet, visible: (id: string) => boolean): Cha
         }),
     ...(sheet.hitDiceSpent === undefined ? {} : { hitDiceSpent: spentDice(sheet.hitDiceSpent) }),
     ...(sheet.heroicInspiration === true ? { heroicInspiration: true } : {}),
+    ...contagionsSeen(sheet, dm),
   };
+}
+
+/**
+ * The magical contagions it carries (docs/adr/0055-rules-reference-and-toolbox.md §4): the DM
+ * sees each from its infection; its carrier only once it has taken hold — until then, nothing is
+ * felt.
+ */
+function contagionsSeen(sheet: CharacterSheet, dm: boolean): Pick<CharacterSheet, 'contagions'> {
+  const seen = (sheet.contagions ?? [])
+    .filter((one) => dm || one.takenHold)
+    .map(({ contagionId, takenHold, successes }) => ({ contagionId, takenHold, successes }));
+  return seen.length === 0 ? {} : { contagions: seen };
 }
 
 /** Spent Hit Point Dice, by size, field by field. */

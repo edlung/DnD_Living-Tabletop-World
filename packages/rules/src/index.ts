@@ -194,3 +194,5 @@ export {
   type DifficultyRating,
   type EncounterDifficulty,
 } from './difficulty.ts';
+export { TRAPS, trapRules, type TrapDice, type TrapRules, type TrapTier } from './toolbox/traps.ts';
+export { CONTAGIONS, contagionRules, type ContagionRules } from './toolbox/contagions.ts';

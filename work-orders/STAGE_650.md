@@ -55,9 +55,10 @@ chat (2026-11-02); it stays outside the repository.
   Russian terms, a test that every entry is translated); GPT art for the catalogs (the art rule).
   ADR 0055; in parts: the rules reference (the glossary and the Toolbox read into blocks and
   tables, the Rules sheet for everyone with the DM's Toolbox tab, a condition's chip and an action's
-  title opening their entry in place) — done; the toolbox's mechanics (traps, contagions, fear and
-  mental stress, the environment, the sample poisons); the Russian rules text (the terms glossary,
-  the Codex pass, the completeness test); the catalogs' art by kind.
+  title opening their entry in place) — done; the Toolbox at the table (the eight traps, mental
+  stress, the three contagions and their course; fear, poisons and the environment stay the hand
+  tools' with the reference's words) — done; the Russian rules text (the terms glossary, the Codex
+  pass, the completeness test); the catalogs' art by kind.
 
 ## Checks at each sub-stage
 

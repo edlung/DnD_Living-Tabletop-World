@@ -8,6 +8,7 @@ import {
 import { readableLabel, useT } from '@ltw/ui';
 
 import { CONDITION_EFFECTS, exhaustionWords } from '../combat/condition-words.ts';
+import { CONTAGION_WORDS } from '../rules/toolbox-words.ts';
 import { loweredWords, temporaryWords } from '../combat/hit-point-words.ts';
 import { RuleTerm } from '../rules/rule-term.tsx';
 import { Glyph } from '../visual/glyph.tsx';
@@ -126,7 +127,10 @@ export function CharacterCard({
           </>
         )}
       </dl>
-      {(sheet.conditions.length > 0 || sheet.concentration || sheet.exhaustion !== undefined) && (
+      {(sheet.conditions.length > 0 ||
+        sheet.concentration ||
+        sheet.exhaustion !== undefined ||
+        (sheet.contagions?.length ?? 0) > 0) && (
         <ul className="hero-states" aria-label={t('Conditions')}>
           {sheet.conditions.map((condition) => (
             <li key={condition} className="hero-state hero-state--condition">
@@ -147,6 +151,13 @@ export function CharacterCard({
               </RuleTerm>
             </li>
           )}
+          {/* A magical contagion it carries (docs/adr/0055-rules-reference-and-toolbox.md §4). */}
+          {sheet.contagions?.map((one) => (
+            <li key={one.contagionId} className="hero-state hero-state--condition">
+              <Glyph name="poisoned" />
+              {t(CONTAGION_WORDS[one.contagionId])}
+            </li>
+          ))}
           {sheet.concentration && (
             <li className="hero-state hero-state--concentration">
               <Glyph name="concentration" />

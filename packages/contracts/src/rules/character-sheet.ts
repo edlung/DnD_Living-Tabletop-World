@@ -2,6 +2,7 @@ import { z } from 'zod';
 
 import { entityIdSchema } from '../kernel/identifiers.ts';
 import { srdIdSchema } from '../srd/catalog.ts';
+import { CONTAGION_IDS, contagionStateSchema } from './contagions.ts';
 
 /**
  * Canonical character sheet for the slice (docs/adr/0011-ruleset-srd-5-2.md).
@@ -344,6 +345,18 @@ export const characterSheetSchema = z
      * hit points or first aid wakes it; absent otherwise.
      */
     knockedOut: z.literal(true).optional(),
+    /**
+     * The magical contagions it carries (docs/adr/0055-rules-reference-and-toolbox.md §4), one of
+     * each at most; absent when none.
+     */
+    contagions: z
+      .array(contagionStateSchema)
+      .max(CONTAGION_IDS.length)
+      .refine(
+        (list) => new Set(list.map((one) => one.contagionId)).size === list.length,
+        'One of each contagion',
+      )
+      .optional(),
     /** Death saving throws while at 0 HP (ADR 0015 §4); absent when not dying. */
     deathSaves: z
       .object({

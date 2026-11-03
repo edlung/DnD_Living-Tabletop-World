@@ -45,7 +45,7 @@ const constitution = (v: Vitals): number =>
 export const breathRounds = (v: Vitals): number => Math.max(5, (1 + constitution(v)) * 10);
 
 /** Exhaustion set to `level`, death at the sixth (ADR 0045 §3). */
-function exhausted(state: WorldState, vitals: Vitals, level: number) {
+export function exhausted(state: WorldState, vitals: Vitals, level: number) {
   const capped = Math.min(MAX_EXHAUSTION, Math.max(0, level));
   let next = withExhaustion(vitals, capped);
   if (capped < MAX_EXHAUSTION) return { vitals: next, dead: false, events: [] as DraftEvent[] };

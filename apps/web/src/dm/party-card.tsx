@@ -12,6 +12,7 @@ import { Medallion } from '../visual/medallion.tsx';
 import { usePortrait } from '../world/use-portrait.ts';
 import { useRereadOn } from '../world/use-world-data.ts';
 import { ConditionForm, useFightRoster } from './condition-form.tsx';
+import { ContagionCourse } from './contagion-course.tsx';
 import { HitPointsForm, InspirationForm, type HandForm } from './hand-forms.tsx';
 import { CONDITION_WORDS } from './hand-words.ts';
 import type { DmTableCommand } from './table-commands.ts';
@@ -149,6 +150,13 @@ export function PartyCard({
               {t('Dying: {successes} successes, {failures} failures', sheet.deathSaves)}
             </p>
           )}
+          <ContagionCourse
+            characterId={character.entityId}
+            name={character.name}
+            contagions={sheet.contagions ?? []}
+            locked={locked}
+            onRun={onRun}
+          />
           {view?.derived && (
             <p className="party-passive">
               {t(

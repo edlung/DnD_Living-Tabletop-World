@@ -18,6 +18,8 @@ import {
 } from './order.ts';
 import { decideUseCreatureAction } from './creature-actions.ts';
 import { decideExposeToHazard } from './hazards.ts';
+import { decideInflictMentalStress, decideSpringTrap } from './toolbox.ts';
+import { decideContagionCourse, decideInfectWithContagion } from './contagions.ts';
 import { decideSetLight } from './light.ts';
 import { decideMove } from './movement.ts';
 import { ridersAfter } from './mounts.ts';
@@ -97,5 +99,13 @@ function decideCommand(context: DecisionContext, command: CombatCommand, dice: D
       return decideSetLight(context, command);
     case 'ExposeToHazard':
       return decideExposeToHazard(context, command, dice);
+    case 'SpringTrap':
+      return decideSpringTrap(context, command, dice);
+    case 'InflictMentalStress':
+      return decideInflictMentalStress(context, command, dice);
+    case 'InfectWithContagion':
+      return decideInfectWithContagion(context, command, dice);
+    case 'ContagionCourse':
+      return decideContagionCourse(context, command, dice);
   }
 }

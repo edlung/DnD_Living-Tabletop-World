@@ -1,6 +1,16 @@
 import type { Condition, DamageType, DmHandEntry } from '@ltw/contracts';
 import type { Translate } from '@ltw/ui';
 
+import { CONTAGION_WORDS, TRAP_WORDS, trapTiers } from '../rules/toolbox-words.ts';
+
+/** A contagion's step in the DM's history (docs/adr/0055-rules-reference-and-toolbox.md §4). */
+const CONTAGION_STEPS = {
+  infect: '{name}: given {disease}',
+  'takes-hold': '{name}: {disease} took hold',
+  fight: '{name}: fought {disease}',
+  cure: '{name}: {disease} ended',
+} as const;
+
 /**
  * Words for the DM's changes by hand (docs/adr/0043-dm-screen.md §1): damage types, conditions,
  * and one line for each change as the DM's history lists it.
@@ -102,6 +112,24 @@ export function describeHand(t: Translate, change: DmHandEntry['change']): strin
       return t('Ruling: {summary}', { summary: change.summary });
     case 'light':
       return t(LIGHT_WORDS[change.ambient]);
+    // The Gameplay Toolbox (docs/adr/0055-rules-reference-and-toolbox.md §4).
+    case 'trap':
+      return t('{trap} (levels {range}) sprung on {names}', {
+        trap: t(TRAP_WORDS[change.trapId]),
+        range: trapTiers(change.trapId)[change.tier - 1] ?? '',
+        names: change.targets.map((target) => target.name).join(', '),
+      });
+    case 'mental-stress':
+      return t('Mental stress (DC {dc}, {dice}d6) on {names}', {
+        dc: change.dc,
+        dice: change.dice,
+        names: change.targets.map((target) => target.name).join(', '),
+      });
+    case 'contagion':
+      return t(CONTAGION_STEPS[change.step], {
+        name: change.target.name,
+        disease: t(CONTAGION_WORDS[change.contagionId]),
+      });
     case 'fight': {
       const name = change.combatant.name;
       switch (change.change) {

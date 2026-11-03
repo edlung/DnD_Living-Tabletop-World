@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 import { entityIdSchema } from '../kernel/identifiers.ts';
+import { TOOLBOX_COMMAND_TYPES } from './toolbox.ts';
 import {
   ABILITIES,
   CONDITIONS,
@@ -480,5 +481,7 @@ export const COMBAT_COMMAND_TYPES = [
   'CloseReactionWindow',
   ...DM_HAND_COMMAND_TYPES,
   ...FIGHT_CHANGE_COMMAND_TYPES,
+  /** The Gameplay Toolbox (docs/adr/0055-rules-reference-and-toolbox.md §4). */
+  ...TOOLBOX_COMMAND_TYPES,
 ] as const;
 export type CombatCommandType = (typeof COMBAT_COMMAND_TYPES)[number];
