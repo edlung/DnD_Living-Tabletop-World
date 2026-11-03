@@ -57,10 +57,20 @@ export {
 } from './rest.ts';
 export {
   RAGE_RESISTANCES,
+  appliedFeatures,
+  athleticsAdvantage,
+  criticalFrom,
+  dangerSense,
+  evasion,
+  initiativeAdvantage,
+  martialArtsDie,
   rageAdvantage,
   rageDamage,
+  reliableTalent,
   resistancesOf,
+  sneakAttackDice,
   usesStrength,
+  walkingSpeedFt,
 } from './features/numbers.ts';
 export {
   RESOURCE_RULES,

@@ -27,6 +27,7 @@ import { fallsAfterHarm, killedIn } from './falling.ts';
 import { combatPremiseList } from './refusal.ts';
 import { spellSave } from './saves.ts';
 import { lostInTheDark } from './sight.ts';
+import { savedDamage } from './evasion.ts';
 import {
   conditionImmune,
   armorClass,
@@ -183,11 +184,13 @@ export function dataSpellEvents(
       );
       effects.push(save.event);
       for (const { damage, rolled } of rolls) {
-        const amount = !save.success
-          ? rolled.total
-          : effect.onSuccess === 'half'
-            ? Math.floor(rolled.total / 2)
-            : 0;
+        const amount = savedDamage(
+          vitals,
+          effect.ability,
+          effect.onSuccess === 'half' ? 'half' : 'none',
+          save.success,
+          rolled.total,
+        );
         if (amount === 0 && save.success) continue;
         const latest = current(entityId);
         if (!latest) return;

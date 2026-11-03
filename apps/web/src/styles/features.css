@@ -170,3 +170,20 @@
   margin: 8px 0 4px;
   font-size: 1rem;
 }
+/* What the World Engine applies on its own: a short list above the resources. */
+.feature-applied {
+  margin: 0 0 12px;
+}
+.feature-applied h4 {
+  margin: 0 0 4px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.feature-applied ul {
+  display: grid;
+  gap: 4px;
+  max-width: 65ch;
+  margin: 0;
+  padding-left: 1.25rem;
+}

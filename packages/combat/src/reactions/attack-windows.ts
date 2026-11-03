@@ -58,6 +58,8 @@ export const specOf = (plan: AttackPlan): AttackSpec => ({
     ? { extraDamage: plan.extraDamage.map((one) => ({ ...one })) }
     : {}),
   huntersMark: plan.huntersMark,
+  ...(plan.critFrom === 18 || plan.critFrom === 19 ? { critFrom: plan.critFrom } : {}),
+  ...(plan.sneak > 0 ? { sneak: plan.sneak } : {}),
   slow: plan.slow,
   ...(plan.mastery ? { mastery: { ...plan.mastery } } : {}),
   melee: plan.melee,
@@ -72,7 +74,10 @@ export interface Rolled {
   readonly critical: boolean;
 }
 
-/** The d20 against the target's AC; a Critical Hit on a natural 20 or a hit the rules make one. */
+/**
+ * The d20 against the target's AC; a Critical Hit on a natural 20, on a hit with a d20 in a
+ * Champion's wider range, or a hit the rules make one.
+ */
 export function rollAgainst(dice: Dice, spec: AttackSpec): Rolled {
   const roll = attackRoll(dice, {
     modifier: spec.bonus,
@@ -86,7 +91,7 @@ export function rollAgainst(dice: Dice, spec: AttackSpec): Rolled {
     natural: roll.natural,
     total: roll.total,
     hit,
-    critical: hit && (roll.critical || spec.criticalOnHit),
+    critical: hit && (roll.critical || spec.criticalOnHit || roll.natural >= (spec.critFrom ?? 20)),
   };
 }
 
@@ -421,6 +426,10 @@ export function hitEvents(
     { sourceId: made.attackerId, extras: damage.extras ?? [], halved, critical },
   );
   const events: DraftEvent[] = [...applied.events];
+  // Sneak Attack is spent on the hit that deals it, once a turn (docs/adr/0056-…md §4).
+  const attacker = spec.sneak ? combatantOf(encounter, made.attackerId) : undefined;
+  if (attacker)
+    events.push(combatantEvent({ ...attacker, turn: { ...attacker.turn, sneakAttacked: true } }));
   const dead = died(applied.events);
   const target = combatantOf(encounter, made.targetId);
   // Slow and Vex need the hit to deal damage (SRD 5.2.1).

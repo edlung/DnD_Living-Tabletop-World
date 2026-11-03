@@ -31,7 +31,12 @@ export function skillModifier(sheet: CharacterSheet, skill: Skill): number {
     : sheet.skills.proficient.includes(skill)
       ? 1
       : 0;
-  return modifierOf(sheet, SKILLS[skill]) + multiplier * proficiency;
+  // A Bard's Jack of All Trades: half the bonus, rounded down, to a skill it lacks (SRD 5.2.1).
+  const jack =
+    multiplier === 0 && sheet.classes.some((entry) => entry.classId === 'bard' && entry.level >= 2)
+      ? Math.floor(proficiency / 2)
+      : 0;
+  return modifierOf(sheet, SKILLS[skill]) + multiplier * proficiency + jack;
 }
 
 export function savingThrowModifier(sheet: CharacterSheet, ability: Ability): number {

@@ -1,5 +1,5 @@
 import type { SrdSchool } from '../srd/catalog.ts';
-import type { ResourceView } from './class-features.ts';
+import type { AppliedFeature, ResourceView } from './class-features.ts';
 import type {
   Ability,
   HitDieSides,
@@ -99,6 +99,8 @@ export interface CharacterDerived {
    * from-the-srd.md §4).
    */
   readonly resources: readonly ResourceView[];
+  /** The class features the World Engine applies on its own, with their numbers. */
+  readonly applied: readonly AppliedFeature[];
   /** Hit Point Dice by size, largest first: one per class level, spent in short rests. */
   readonly hitDice: readonly {
     readonly sides: HitDieSides;

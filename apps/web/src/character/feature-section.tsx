@@ -16,6 +16,7 @@ import { Glyph } from '../visual/glyph.tsx';
 import { ArcaneRecovery, FontOfMagic, LayOnHands, Inspire } from './feature-forms.tsx';
 import {
   ACT_WORDS,
+  APPLIED_WORDS,
   FOCUS_USES,
   FOCUS_WORDS,
   RECHARGE_WORDS,
@@ -91,6 +92,21 @@ export function FeatureSection({
             </button>
           )}
         </p>
+      )}
+      {derived.applied.length > 0 && (
+        <div className="feature-applied">
+          <h4>{t('Applied by the World Engine')}</h4>
+          <ul>
+            {derived.applied.map((one) => (
+              <li key={one.feature}>
+                {t(
+                  APPLIED_WORDS[one.feature],
+                  one.amount === undefined ? {} : { amount: one.amount },
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
       {derived.resources.length > 0 && (
         <ul className="feature-list">

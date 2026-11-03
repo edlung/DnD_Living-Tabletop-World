@@ -1,9 +1,9 @@
 import type { Ability } from '@ltw/contracts';
 import type { Dice, DraftEvent } from '@ltw/domain';
-import { COVER_BONUS, d20Test, rageAdvantage, saveEffects } from '@ltw/rules';
+import { COVER_BONUS, d20Test, dangerSense, rageAdvantage, saveEffects } from '@ltw/rules';
 
 import { isObject } from './objects.ts';
-import { conditionsOf, exhaustionOf, saveModifier, type Vitals } from './vitals.ts';
+import { conditionsOf, exhaustionOf, incapacitated, saveModifier, type Vitals } from './vitals.ts';
 
 /**
  * A saving throw against a spell, Counterspell or a condition's own save (SRD 5.2.1; docs/adr/
@@ -48,8 +48,13 @@ export function spellSave(
           advantage:
             effects.advantage ||
             (dodging && ability === 'dex') ||
-            // A Rage's Advantage on Strength saves (docs/adr/0056-characters-from-the-srd.md §4).
+            // A Rage's Advantage on Strength saves, Danger Sense's on Dexterity ones while able to
+            // act (docs/adr/0056-characters-from-the-srd.md §4).
             (target.kind === 'character' && rageAdvantage(target.sheet, ability)) ||
+            (target.kind === 'character' &&
+              ability === 'dex' &&
+              dangerSense(target.sheet) &&
+              !incapacitated(target)) ||
             ((purpose === 'spell' || purpose === 'counterspell') &&
               target.kind === 'creature' &&
               target.block.traits?.magicResistance === true),

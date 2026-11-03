@@ -4,6 +4,7 @@ import {
   WEAPONS,
   abilityModifier,
   masteryOf,
+  martialArtsDie,
   proficiencyBonus,
   rageDamage,
   totalLevel,
@@ -85,20 +86,23 @@ export function weaponOf(
 ): WeaponView | WeaponRefusal {
   if (v.kind === 'character' && attackId === UNARMED_STRIKE) {
     const strength = abilityModifier(v.sheet.abilities.str);
+    // Martial Arts: the Monk's die, and Dexterity where it is better (docs/adr/0056-…md §4).
+    const art = martialArtsDie(v.sheet);
+    const dexterity = abilityModifier(v.sheet.abilities.dex);
+    const ability = art !== null ? Math.max(strength, dexterity) : strength;
+    const rage = ability === strength ? rageDamage(v.sheet) : 0;
     return {
       ...plain,
       melee: true,
       reachFt: 5,
       normalRangeFt: 0,
       longRangeFt: 0,
-      bonus: strength + proficiencyBonus(totalLevel(v.sheet)),
-      damage: {
-        count: 0,
-        sides: 4,
-        bonus: 1 + strength + rageDamage(v.sheet),
-        type: 'bludgeoning',
-      },
-      abilityModifier: strength,
+      bonus: ability + proficiencyBonus(totalLevel(v.sheet)),
+      damage:
+        art !== null
+          ? { count: 1, sides: art as Damage['sides'], bonus: ability + rage, type: 'bludgeoning' }
+          : { count: 0, sides: 4, bonus: 1 + strength + rage, type: 'bludgeoning' },
+      abilityModifier: ability,
     };
   }
   if (v.kind === 'character' && attackId === IMPROVISED) {
@@ -134,7 +138,16 @@ export function weaponOf(
     const range = thrown ? definition.thrownRange : undefined;
     const twoHands =
       melee && definition.versatileSides !== undefined && !hands.shield && hands.off === null;
-    const modifier = weaponModifier(v.sheet, weapon);
+    // A Monk weapon with Martial Arts: Dexterity where it is better, the Monk's die where it is
+    // larger (Simple melee weapons and Martial melee ones with Light; docs/adr/0056-…md §4).
+    const art = martialArtsDie(v.sheet);
+    const monkWeapon =
+      art !== null &&
+      !definition.ranged &&
+      (definition.category === 'simple' || definition.properties.includes('light'));
+    const modifier = monkWeapon
+      ? Math.max(abilityModifier(v.sheet.abilities.str), abilityModifier(v.sheet.abilities.dex))
+      : weaponModifier(v.sheet, weapon);
     // A magic weapon's +1 to attack and damage (docs/adr/0054-items-as-data.md §5).
     const magic = wieldedBonus(state, v.entityId, weapon);
     return {
@@ -142,13 +155,17 @@ export function weaponOf(
       reachFt,
       normalRangeFt: range?.normalFt ?? definition.normalRangeFt,
       longRangeFt: range?.longFt ?? definition.longRangeFt,
-      bonus: weaponAttackBonus(v.sheet, weapon) + magic.attack,
+      bonus:
+        (monkWeapon
+          ? modifier + proficiencyBonus(totalLevel(v.sheet))
+          : weaponAttackBonus(v.sheet, weapon)) + magic.attack,
       extraDamage: [],
       damage: {
         count: definition.damageDice.count,
-        sides: (twoHands
-          ? definition.versatileSides
-          : definition.damageDice.sides) as Damage['sides'],
+        sides: Math.max(
+          twoHands ? definition.versatileSides : definition.damageDice.sides,
+          monkWeapon ? art : 0,
+        ) as Damage['sides'],
         // A Rage's damage with a Strength attack (docs/adr/0056-characters-from-the-srd.md §4).
         bonus:
           modifier +

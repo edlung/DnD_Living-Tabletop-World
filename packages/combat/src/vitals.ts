@@ -10,13 +10,14 @@ import {
 } from '@ltw/contracts';
 import type { Dice, DraftEvent, WorldState } from '@ltw/domain';
 import {
-  armorSlowFt,
   abilityModifier,
   incapacitatedBy,
+  initiativeAdvantage,
   initiativeEffects,
   resistancesOf,
   savingThrowModifier,
   speedAfterConditions,
+  walkingSpeedFt,
 } from '@ltw/rules';
 
 /**
@@ -104,11 +105,13 @@ export function rollInitiative(
 ): { roll: number; modifier: number } {
   const effects = initiativeEffects(conditionsOf(v), exhaustionOf(v));
   const disadvantage = effects.disadvantage || surprised;
+  // Feral Instinct and Remarkable Athlete (docs/adr/0056-characters-from-the-srd.md §4).
+  const advantage = effects.advantage || (v.kind === 'character' && initiativeAdvantage(v.sheet));
   const first = dice.roll(20);
   let roll = first;
-  if (effects.advantage !== disadvantage) {
+  if (advantage !== disadvantage) {
     const second = dice.roll(20);
-    roll = effects.advantage ? Math.max(first, second) : Math.min(first, second);
+    roll = advantage ? Math.max(first, second) : Math.min(first, second);
   }
   return { roll, modifier: initiativeModifier(v) + effects.penalty };
 }
@@ -119,8 +122,9 @@ export const saveModifier = (v: Vitals, ability: Ability) =>
  * Its walking Speed before conditions and Exhaustion: 10 ft less in armor too heavy for it
  * (docs/adr/0050-the-world-around.md §10).
  */
+/** Walking speed before conditions: a character's with its class's movement (ADR 0056 §4). */
 export const baseSpeedOf = (v: Vitals): number =>
-  v.kind === 'character' ? Math.max(0, v.sheet.speedFt - armorSlowFt(v.sheet)) : v.block.speedFt;
+  v.kind === 'character' ? walkingSpeedFt(v.sheet) : v.block.speedFt;
 
 /** Speed after conditions and Exhaustion (ADR 0015; ADR 0045 §1, §3). */
 export function speedOf(v: Vitals): number {

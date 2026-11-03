@@ -29,6 +29,9 @@ test('the DM uses a wounded Fighter’s Second Wind and reads his features’ wo
   await card.getByRole('button', { name: `Open the sheet of ${BRANN}`, exact: true }).click();
   const overview = await openCharacter(page, 'Overview', 'Character');
   const features = overview.getByRole('region', { name: 'Class features' });
+  // A Champion 15: the World Engine applies its wider Critical Hits and its Advantage itself.
+  await expect(features).toContainText('Superior Critical: a Critical Hit on an 18, 19 or 20.');
+  await expect(features).toContainText('Remarkable Athlete');
   const secondWind = features.locator('.feature-row').filter({ hasText: 'Second Wind' });
   await expect(secondWind).toContainText('4 of 4 left');
   await expect(features.locator('.feature-row').filter({ hasText: 'Action Surge' })).toContainText(

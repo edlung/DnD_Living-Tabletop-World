@@ -90,6 +90,12 @@ const attackTriggerSchema = z
         /** A stat block's added damage, each of its own type (docs/adr/0053 §1). */
         extraDamage: z.array(damageDice).min(1).max(2).optional(),
         huntersMark: z.boolean(),
+        /**
+         * A class feature's numbers (docs/adr/0056-characters-from-the-srd.md §4): the lowest d20
+         * that is a Critical Hit (a Champion's 19 or 18); Sneak Attack's d6s on a hit.
+         */
+        critFrom: z.union([z.literal(18), z.literal(19)]).optional(),
+        sneak: z.number().int().min(1).max(10).optional(),
         slow: z.boolean(),
         /**
          * The weapon's mastery as this attack uses it (docs/adr/0047-weapons.md §2): Push's feet,

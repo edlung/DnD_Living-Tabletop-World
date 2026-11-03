@@ -79,6 +79,8 @@ export const turnRecordSchema = z
     mounting: z.literal(true).optional(),
     /** Action Surge's action taken this turn: once a turn (docs/adr/0056-…md §4). */
     surged: z.literal(true).optional(),
+    /** Sneak Attack dealt this turn: once a turn (§4). */
+    sneakAttacked: z.literal(true).optional(),
   })
   .strict();
 

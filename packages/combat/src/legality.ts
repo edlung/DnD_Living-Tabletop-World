@@ -22,6 +22,7 @@ import {
   SPELLS,
   attackCircumstances,
   beginAttackAction,
+  criticalFrom,
   exhaustionPenalty,
   moveRequiredFt,
   proficiencyBonus,
@@ -50,6 +51,7 @@ import {
   vitalsOf,
   type Vitals,
 } from './vitals.ts';
+import { sneakDice } from './sneak-attack.ts';
 import { weaponOf, type AttackDamage, type WeaponView } from './weapon-view.ts';
 
 /**
@@ -131,6 +133,9 @@ export interface AttackPlan {
   readonly extraDamage: readonly Damage[];
   readonly slow: boolean;
   readonly huntersMark: boolean;
+  /** A Champion's wider Critical Hits; Sneak Attack's d6s on a hit (docs/adr/0056-…md §4). */
+  readonly critFrom: number;
+  readonly sneak: number;
   /** The ally whose Help gave this attack Advantage: it is spent (ADR 0045 §5). */
   readonly helpedBy: string | null;
   /** The attacker was hidden: attacking reveals it (§5). */
@@ -439,6 +444,8 @@ export function attackPlan(
     extraDamage: weapon.extraDamage,
     slow: mastery?.kind === 'slow',
     huntersMark: marked,
+    critFrom: attackerVitals.kind === 'character' ? criticalFrom(attackerVitals.sheet) : 20,
+    sneak: sneakDice(state, encounter, attacker, attackerVitals, target, weapon, circumstances),
     weapon,
     extra,
     marks,

@@ -4,7 +4,14 @@ import { accept, reject, type Decision, type ResolvedCommandOf } from '../kernel
 import type { KernelEvent } from '../kernel/events.ts';
 import type { WorldState } from '../kernel/state.ts';
 import { ownItem, withSaveBonus, withSheet } from './handling.ts';
-import { armorClassDelta, carriedBy, clampArmorClass, entryOf, magicBonus } from './records.ts';
+import {
+  armorClassDelta,
+  carriedBy,
+  clampArmorClass,
+  entryOf,
+  magicBonus,
+  shieldIn,
+} from './records.ts';
 
 /**
  * Attunement (docs/adr/0054-items-as-data.md §5): the DM's, or the table's for a player during a
@@ -61,7 +68,7 @@ export function decideAttuneItem(
   const worn = possession.slot;
   const ac =
     worn !== null && sheet
-      ? armorClassDelta(entry, worn, sheet.abilities.dex, command.attuned)
+      ? armorClassDelta(entry, worn, sheet, command.attuned, shieldIn(state, command.characterId))
       : possession.acDelta;
   const saves = worn !== null ? magicBonus(entry, command.attuned).saves : 0;
   const applied = sheet ? clampArmorClass(sheet.armorClass + ac - possession.acDelta) : 0;

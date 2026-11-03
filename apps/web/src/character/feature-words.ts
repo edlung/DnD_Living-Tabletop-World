@@ -1,4 +1,4 @@
-import type { ClassResource, FeatureAct, ResourceRecharge } from '@ltw/contracts';
+import type { AppliedFeatureId, ClassResource, FeatureAct, ResourceRecharge } from '@ltw/contracts';
 
 import type { GlyphName } from '../visual/ui-kit-names.ts';
 
@@ -91,4 +91,24 @@ export const FOCUS_WORDS: Readonly<Record<(typeof FOCUS_USES)[number], string>> 
   'flurry-of-blows': 'Flurry of Blows',
   'patient-defense': 'Patient Defense',
   'step-of-the-wind': 'Step of the Wind',
+};
+
+/** The features the World Engine applies on its own, each in a sentence with its number. */
+export const APPLIED_WORDS: Readonly<Record<AppliedFeatureId, string>> = {
+  'sneak-attack':
+    'Sneak Attack: +{amount}d6 once a turn on a hit with a Finesse or Ranged weapon, with Advantage or an ally beside the target.',
+  'improved-critical': 'Improved Critical: a Critical Hit on a 19 or 20.',
+  'superior-critical': 'Superior Critical: a Critical Hit on an 18, 19 or 20.',
+  'martial-arts': 'Martial Arts: a d{amount} and Dexterity for Unarmed Strikes and Monk weapons.',
+  'unarmored-defense':
+    'Unarmored Defense: without armor, your Armor Class adds your class’s ability; armor or a shield is measured from it.',
+  'fast-movement': 'Fast Movement: +{amount} ft of Speed out of heavy armor.',
+  'unarmored-movement': 'Unarmored Movement: +{amount} ft of Speed in no armor.',
+  'danger-sense': 'Danger Sense: Advantage on Dexterity saving throws.',
+  'feral-instinct': 'Feral Instinct: Advantage on Initiative.',
+  'remarkable-athlete': 'Remarkable Athlete: Advantage on Initiative and Athletics checks.',
+  evasion: 'Evasion: no damage from a Dexterity save for half you make, half from one you fail.',
+  'reliable-talent':
+    'Reliable Talent: a d20 under 10 counts as 10 for a skill you are proficient in.',
+  'jack-of-all-trades': 'Jack of All Trades: +{amount} to the skills you lack.',
 };

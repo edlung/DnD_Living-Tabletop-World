@@ -1,4 +1,11 @@
-import type { AmmunitionKind, EquipSlot, ItemEntry, WeaponId } from '@ltw/contracts';
+import {
+  unarmoredArmorClass,
+  type AmmunitionKind,
+  type CharacterSheet,
+  type EquipSlot,
+  type ItemEntry,
+  type WeaponId,
+} from '@ltw/contracts';
 
 import type { WorldState } from '../kernel/state.ts';
 import { itemEntry, madeOn } from './catalog.ts';
@@ -57,25 +64,46 @@ export function wornIn(state: WorldState, holderId: string, slot: EquipSlot): st
   return null;
 }
 
+/** Whether the holder's other hand holds a shield. */
+export function shieldIn(state: WorldState, holderId: string): boolean {
+  const itemId = wornIn(state, holderId, 'offhand');
+  const possession = itemId === null ? undefined : state.possessions.get(itemId);
+  const entry = possession ? entryOf(possession) : undefined;
+  return entry?.shieldBonus !== undefined;
+}
+
 const abilityModifier = (score: number): number => Math.floor((score - 10) / 2);
 
 /**
- * The armor class a worn item adds to a sheet whose Dexterity score is given:
- * body armor replaces the unarmored base of 10 + Dexterity, a shield adds its bonus.
+ * The armor class a worn item adds to a sheet: body armor replaces its unarmored base — 10 +
+ * Dexterity, or a class's Unarmored Defense (docs/adr/0056-characters-from-the-srd.md §4) — and a
+ * shield adds its bonus, less a Monk's Wisdom it ends while no armor is worn.
  */
 export function armorClassDelta(
   entry: ItemEntry,
   slot: EquipSlot,
-  dexterity: number,
+  sheet: Pick<CharacterSheet, 'abilities' | 'classes' | 'wornArmor'>,
   attuned = false,
+  /** A shield is in the other hand. */
+  shield = false,
 ): number {
   if (slot === 'body' && entry.armor) {
-    const dex = abilityModifier(dexterity);
+    const dex = abilityModifier(sheet.abilities.dex);
     const capped = entry.armor.dexCap === null ? dex : Math.min(dex, entry.armor.dexCap);
-    return entry.armor.baseAc + capped - (10 + dex) + magicBonus(entry, attuned).armorClass;
+    return (
+      entry.armor.baseAc +
+      capped -
+      unarmoredArmorClass(sheet, shield) +
+      magicBonus(entry, attuned).armorClass
+    );
   }
-  if (slot === 'offhand' && entry.shieldBonus !== undefined)
-    return entry.shieldBonus + magicBonus(entry, attuned).armorClass;
+  if (slot === 'offhand' && entry.shieldBonus !== undefined) {
+    const lost =
+      sheet.wornArmor === undefined
+        ? unarmoredArmorClass(sheet, false) - unarmoredArmorClass(sheet, true)
+        : 0;
+    return entry.shieldBonus - lost + magicBonus(entry, attuned).armorClass;
+  }
   // A worn ring's or cloak's: a Ring of Protection's +1.
   return entry.armor || entry.shieldBonus !== undefined ? 0 : magicBonus(entry, attuned).armorClass;
 }

@@ -18,6 +18,8 @@ export function damageOf(dice: Dice, spec: AttackSpec, critical: boolean) {
     parts.push(rollDamage(dice, extra.count, extra.sides, extra.bonus, critical));
   }
   if (spec.huntersMark) parts.push(rollDamage(dice, 1, 6, 0, critical));
+  // Sneak Attack's d6s, of the weapon's type (docs/adr/0056-characters-from-the-srd.md §4).
+  if (spec.sneak) parts.push(rollDamage(dice, spec.sneak, 6, 0, critical));
   // A stat block's added damage, each of its own type (docs/adr/0053-monsters-as-data.md §1).
   const extras = (spec.extraDamage ?? []).map((extra) => {
     const rolled = rollDamage(dice, extra.count, extra.sides, extra.bonus, critical);

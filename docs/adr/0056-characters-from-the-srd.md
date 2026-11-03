@@ -122,6 +122,22 @@ backgrounds,species,feats}.json`, held to the SRD by tests (a features table's p
   character's levels give in the campaign's language, with its chosen Metamagic and invocations
   (`GET …/characters/:id/features`).
 
+## Notes from the implementation (Stage 660d, part 2, 2026-11-03)
+
+- The features that change numbers are the rules' (`packages/rules/src/features/numbers.ts`) and
+  the combat engine applies them: Sneak Attack's d6s once a turn on a hit with a Finesse or Ranged
+  weapon with Advantage, or with an ally beside the target and no Disadvantage (its once is the
+  Rogue's own turn's; the turn records it); a Champion's Critical Hit on a 19 (18 from 15) when
+  the attack hits; Martial Arts' die and Dexterity for Unarmed Strikes and Monk weapons; Fast
+  Movement and Unarmored Movement in the walking speed; Danger Sense's Advantage on Dexterity
+  saves; Feral Instinct's and Remarkable Athlete's on Initiative (and Athletics); Reliable
+  Talent's 10; Evasion on every Dexterity save for half (spells, creatures' actions); Jack of All
+  Trades in the skills.
+- Unarmored Defense measures donned armor and a shield (`unarmoredArmorClass`): body armor
+  replaces a Barbarian's or a Monk's unarmored Armor Class, not 10 + Dexterity, and a shield ends a
+  Monk's.
+- The derived view lists what the engine applies (`applied`), shown on the Overview.
+
 ## Consequences
 
 - Stage 660 runs in parts: the data; creation; advancement; features in play; the table's life.

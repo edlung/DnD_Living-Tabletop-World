@@ -1,7 +1,7 @@
-import { armorSlowFt } from './armor.ts';
 import type { CharacterSheet } from '@ltw/contracts';
 
 import { incapacitatedBy, speedAfterConditions } from './conditions.ts';
+import { walkingSpeedFt } from './features/numbers.ts';
 import { pathCostFt, type Position } from './grid.ts';
 
 /**
@@ -155,11 +155,8 @@ export const isIncapacitated = (sheet: Pick<CharacterSheet, 'conditions'>) =>
  * armor too heavy for its wearer 10 more (docs/adr/0050-the-world-around.md §10).
  */
 export function effectiveSpeedFt(sheet: CharacterSheet): number {
-  return speedAfterConditions(
-    Math.max(0, sheet.speedFt - armorSlowFt(sheet)),
-    sheet.conditions,
-    sheet.exhaustion ?? 0,
-  );
+  // Fast Movement and Unarmored Movement included (docs/adr/0056-characters-from-the-srd.md §4).
+  return speedAfterConditions(walkingSpeedFt(sheet), sheet.conditions, sheet.exhaustion ?? 0);
 }
 
 export type MoveCheck =

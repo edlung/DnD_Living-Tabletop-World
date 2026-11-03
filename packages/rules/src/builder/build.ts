@@ -1,6 +1,7 @@
 import {
   CLASS_ORDERS,
   characterSheetSchema,
+  unarmoredArmorClass,
   type CharacterChoices,
   type CharacterSheet,
   type ChoiceProblem,
@@ -199,13 +200,11 @@ export function buildCharacter(choices: CharacterChoices, d6: () => number): Bui
           : {}),
       });
   }
-  const dex = abilityModifier(scores.dex);
-  const unarmored =
-    choices.classId === 'barbarian'
-      ? 10 + dex + abilityModifier(scores.con)
-      : choices.classId === 'monk'
-        ? 10 + dex + abilityModifier(scores.wis)
-        : 10 + dex;
+  // Unarmored Defense for a Barbarian or a Monk (docs/adr/0056-characters-from-the-srd.md §4).
+  const unarmored = unarmoredArmorClass(
+    { abilities: scores, classes: [{ classId: choices.classId, level: 1 }] },
+    false,
+  );
   const hp = Math.max(
     1,
     cls.creation.hitDie + abilityModifier(scores.con) + gains.hitPointsPerLevel,

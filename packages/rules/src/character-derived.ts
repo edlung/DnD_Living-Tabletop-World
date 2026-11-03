@@ -21,7 +21,7 @@ import {
   spellSaveDc,
   totalLevel,
 } from './character-math.ts';
-import { rageDamage, usesStrength } from './features/numbers.ts';
+import { appliedFeatures, rageDamage, usesStrength } from './features/numbers.ts';
 import { classResources } from './features/resources.ts';
 import { masteryOf } from './masteries.ts';
 import { spellRules, type SpellRules } from './spell-rules.ts';
@@ -135,6 +135,7 @@ export function deriveCharacter(
         ...(spell.mechanics ? srdWords(spell, language) : {}),
       })),
     resources: classResources(sheet),
+    applied: appliedFeatures(sheet),
     attacks: [...new Set([...sheet.weapons, ...wielded])].map((weaponId) => {
       const attack = weaponAttack(sheet, weaponId);
       const mastery = masteryOf(sheet, weaponId);

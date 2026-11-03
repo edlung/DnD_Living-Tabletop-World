@@ -22,6 +22,7 @@ import {
   entryOf,
   magicBonus,
   possessionOf,
+  shieldIn,
   wornIn,
   type Possession,
 } from './records.ts';
@@ -61,7 +62,9 @@ export function decideEquipItem(
   if (affectsArmor && !sheet)
     return reject('NO_CHARACTER_SHEET', "Armor needs the wearer's character sheet");
   const attuned = own.possession.attuned === true;
-  const requested = sheet ? armorClassDelta(entry, command.slot, sheet.abilities.dex, attuned) : 0;
+  // A shield already held: a Monk's Unarmored Defense is gone (docs/adr/0056-…md §4).
+  const shieldHeld = shieldIn(state, command.characterId);
+  const requested = sheet ? armorClassDelta(entry, command.slot, sheet, attuned, shieldHeld) : 0;
   const applied = sheet ? clampArmorClass(sheet.armorClass + requested) - sheet.armorClass : 0;
   // A Ring of Protection's +1 to saves, worn and attuned (docs/adr/0054-items-as-data.md §5).
   const saves = sheet ? magicBonus(entry, attuned).saves : 0;

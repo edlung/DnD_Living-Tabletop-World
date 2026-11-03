@@ -29,6 +29,7 @@ import { isObjectIn } from './objects.ts';
 import { combatPremises, refused } from './refusal.ts';
 import { spellSave } from './saves.ts';
 import { incapacitated, vitalsOf, type Vitals } from './vitals.ts';
+import { savedDamage } from './evasion.ts';
 
 /**
  * A creature's action with a save (docs/adr/0053-monsters-as-data.md §2), on its turn and for its
@@ -120,11 +121,13 @@ export function decideUseCreatureAction(
     effects.push(save.event);
     let latest = target;
     for (const { damage, rolled } of rolls) {
-      const amount = !save.success
-        ? rolled.total
-        : action.onSuccess === 'half'
-          ? Math.floor(rolled.total / 2)
-          : 0;
+      const amount = savedDamage(
+        target,
+        action.ability,
+        action.onSuccess === 'half' ? 'half' : 'none',
+        save.success,
+        rolled.total,
+      );
       if (amount === 0) continue;
       const applied = applyDamage(state, dice, latest, {
         sourceId: record.entityId,

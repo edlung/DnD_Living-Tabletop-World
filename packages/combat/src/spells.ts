@@ -34,6 +34,7 @@ import { combatPremiseList, combatPremises, refused } from './refusal.ts';
 import { spellSave } from './saves.ts';
 import { chooseUsing, characterSpellPlan, type CharacterSpellPlan } from './spell-legality.ts';
 import { vitalsEvent, vitalsOf, type Vitals } from './vitals.ts';
+import { savedDamage } from './evasion.ts';
 
 /**
  * `CastSpell` (docs/adr/0015-combat-engine.md §3). Character spells use the
@@ -162,7 +163,7 @@ export function castEvents(
         effects.push(save.event);
         const applied = applyDamage(state, dice, target, {
           sourceId: casterId,
-          amount: save.success ? Math.floor(damage.total / 2) : damage.total,
+          amount: savedDamage(target, 'dex', 'half', save.success, damage.total),
           damageType: 'fire',
           rolls: damage.rolls,
           critical: false,

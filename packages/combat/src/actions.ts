@@ -20,8 +20,10 @@ import {
   abilityModifier,
   armorHampersStealth,
   checkEffects,
+  athleticsAdvantage,
   d20Test,
   rageAdvantage,
+  reliableTalent,
   skillModifier,
 } from '@ltw/rules';
 
@@ -184,8 +186,11 @@ export function needsAid(v: Vitals): boolean {
  */
 export function rollSkill(dice: Dice, vitals: Vitals, skill: Skill, dc = HIDE_DC) {
   const effects = checkEffects(conditionsOf(vitals), exhaustionOf(vitals));
-  // A Rage's Advantage on Strength checks: Athletics (docs/adr/0056-…md §4).
-  const raging = vitals.kind === 'character' && rageAdvantage(vitals.sheet, SKILLS[skill]);
+  // A Rage's Advantage on Strength checks, a Champion's on Athletics (docs/adr/0056-…md §4).
+  const raging =
+    vitals.kind === 'character' &&
+    (rageAdvantage(vitals.sheet, SKILLS[skill]) ||
+      (skill === 'athletics' && athleticsAdvantage(vitals.sheet)));
   const rustles =
     skill === 'stealth' && vitals.kind === 'character' && armorHampersStealth(vitals.sheet);
   const base =
@@ -199,7 +204,15 @@ export function rollSkill(dice: Dice, vitals: Vitals, skill: Skill, dc = HIDE_DC
     advantage: effects.advantage || raging,
     disadvantage: effects.disadvantage || rustles,
   });
-  return { ...roll, modifier };
+  // Reliable Talent: a d20 under 10 counts as 10 for a skill it is proficient in (§4).
+  const reliable =
+    vitals.kind === 'character' &&
+    reliableTalent(vitals.sheet) &&
+    vitals.sheet.skills.proficient.includes(skill) &&
+    roll.natural < 10;
+  return reliable
+    ? { ...roll, natural: 10, total: 10 + modifier, success: 10 + modifier >= dc, modifier }
+    : { ...roll, modifier };
 }
 
 export function decideTakeAction(

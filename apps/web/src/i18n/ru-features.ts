@@ -68,6 +68,32 @@ registerRussian({
   'Step of the Wind': 'Поступь ветра',
   // The section
   'Class features': 'Умения класса',
+  'Applied by the World Engine': 'Применяет World Engine',
+  'Sneak Attack: +{amount}d6 once a turn on a hit with a Finesse or Ranged weapon, with Advantage or an ally beside the target.':
+    'Скрытая атака: +{amount}к6 раз в ход при попадании фехтовальным или дальнобойным оружием, с преимуществом или когда рядом с целью союзник.',
+  'Improved Critical: a Critical Hit on a 19 or 20.':
+    'Улучшенный критический удар: критическое попадание на 19 или 20.',
+  'Superior Critical: a Critical Hit on an 18, 19 or 20.':
+    'Превосходный критический удар: критическое попадание на 18, 19 или 20.',
+  'Martial Arts: a d{amount} and Dexterity for Unarmed Strikes and Monk weapons.':
+    'Боевые искусства: к{amount} и Ловкость для безоружных ударов и монашеского оружия.',
+  'Unarmored Defense: without armor, your Armor Class adds your class’s ability; armor or a shield is measured from it.':
+    'Защита без доспехов: без доспеха к КД прибавляется характеристика вашего класса; доспех и щит считаются от неё.',
+  'Fast Movement: +{amount} ft of Speed out of heavy armor.':
+    'Быстрое передвижение: +{amount} фт скорости вне тяжёлого доспеха.',
+  'Unarmored Movement: +{amount} ft of Speed in no armor.':
+    'Передвижение без доспехов: +{amount} фт скорости без доспеха.',
+  'Danger Sense: Advantage on Dexterity saving throws.':
+    'Чувство опасности: преимущество на спасброски Ловкости.',
+  'Feral Instinct: Advantage on Initiative.': 'Дикий инстинкт: преимущество на инициативу.',
+  'Remarkable Athlete: Advantage on Initiative and Athletics checks.':
+    'Выдающийся атлет: преимущество на инициативу и проверки Атлетики.',
+  'Evasion: no damage from a Dexterity save for half you make, half from one you fail.':
+    'Увёртливость: при успешном спасброске Ловкости на половину урона — урона нет, при провале — половина.',
+  'Reliable Talent: a d20 under 10 counts as 10 for a skill you are proficient in.':
+    'Надёжный талант: к20 меньше 10 считается за 10 в навыке, которым вы владеете.',
+  'Jack of All Trades: +{amount} to the skills you lack.':
+    'Мастер на все руки: +{amount} к навыкам, которыми вы не владеете.',
   'You hold a Bardic Inspiration die: d{sides}. Roll it after a failed d20 test.':
     'У вас кость бардовского вдохновения: к{sides}. Бросьте её после проваленной проверки к20.',
   '{left} of {max} points': 'осталось {left} из {max} очков',

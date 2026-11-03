@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 import { entityIdSchema } from '../kernel/identifiers.ts';
 import type { SrdBlock } from '../srd/reference.ts';
-import type { ClassId } from './character-sheet.ts';
+import type { CharacterSheet, ClassId } from './character-sheet.ts';
 
 /**
  * The class features a character spends and its rests restore (SRD 5.2.1;
@@ -68,6 +68,32 @@ export interface ResourceView {
   readonly recharge: ResourceRecharge;
 }
 
+/**
+ * The class features the World Engine applies on its own (docs/adr/0056-characters-from-the-srd.md
+ * §4), each with its number where it has one: Sneak Attack's d6s, Martial Arts' die, the feet of
+ * speed, Jack of All Trades' bonus.
+ */
+export const APPLIED_FEATURES = [
+  'sneak-attack',
+  'improved-critical',
+  'superior-critical',
+  'martial-arts',
+  'unarmored-defense',
+  'fast-movement',
+  'unarmored-movement',
+  'danger-sense',
+  'feral-instinct',
+  'remarkable-athlete',
+  'evasion',
+  'reliable-talent',
+  'jack-of-all-trades',
+] as const;
+export type AppliedFeatureId = (typeof APPLIED_FEATURES)[number];
+export interface AppliedFeature {
+  readonly feature: AppliedFeatureId;
+  readonly amount?: number;
+}
+
 /** A feature the character has from a class or its subclass, in the campaign's language. */
 export interface CharacterFeatureView {
   readonly classId: ClassId;
@@ -86,4 +112,23 @@ export interface CharacterFeatureView {
 export interface CharacterFeaturesResponse {
   readonly perspective: string;
   readonly features: readonly CharacterFeatureView[];
+}
+
+/**
+ * The Armor Class a character has without body armor (SRD 5.2.1): 10 + Dexterity, or a class's
+ * Unarmored Defense — a Barbarian's adds Constitution (a Shield allowed), a Monk's Wisdom (without
+ * a Shield). The World Engine measures donned armor and a shield from it.
+ */
+export function unarmoredArmorClass(
+  sheet: Pick<CharacterSheet, 'abilities' | 'classes'>,
+  shield: boolean,
+): number {
+  const modifier = (score: number) => Math.floor((score - 10) / 2);
+  const dex = 10 + modifier(sheet.abilities.dex);
+  const has = (classId: ClassId) => sheet.classes.some((entry) => entry.classId === classId);
+  return Math.max(
+    dex,
+    has('barbarian') ? dex + modifier(sheet.abilities.con) : dex,
+    has('monk') && !shield ? dex + modifier(sheet.abilities.wis) : dex,
+  );
 }
