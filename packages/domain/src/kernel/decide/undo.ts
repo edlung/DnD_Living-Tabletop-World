@@ -347,6 +347,7 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
       case 'LightSet':
       case 'TerrainPainted':
       case 'FogSet':
+      case 'TrapChanged':
       case 'CombatEnded':
         restores.push({
           fact: 'encounter',

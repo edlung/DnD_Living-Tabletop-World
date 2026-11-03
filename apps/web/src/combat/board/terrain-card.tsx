@@ -1,7 +1,8 @@
-import type { CoverLevel, Square } from '@ltw/contracts';
+import type { BoardHazard, BoardTrap, CoverLevel, Square } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
 
 import { Glyph } from '../../visual/glyph.tsx';
+import { hazardWords, trapWords } from './square-name.ts';
 
 const COVER: Readonly<Record<CoverLevel, string>> = {
   half: 'Half cover',
@@ -22,6 +23,8 @@ export function TerrainCard({
   wall = false,
   water = null,
   groundFt = 0,
+  trap,
+  hazard,
 }: {
   readonly square: Square;
   readonly cover: CoverLevel | null;
@@ -32,9 +35,13 @@ export function TerrainCard({
   readonly water?: 'shallow' | 'deep' | null;
   /** The ground raised, or a pit (§6). */
   readonly groundFt?: number;
+  /** A trap and harmful ground (docs/adr/0057-encounters-maps-loot.md §6). */
+  readonly trap?: BoardTrap | undefined;
+  readonly hazard?: BoardHazard | undefined;
 }) {
   const t = useT();
-  if (!cover && !difficult && !wall && water === null && groundFt === 0) return null;
+  if (!cover && !difficult && !wall && water === null && groundFt === 0 && !trap && !hazard)
+    return null;
   return (
     <div className="terrain-card" aria-hidden="true">
       <p className="terrain-square">{t('Square {x}, {y}', { x: square.x, y: square.y })}</p>
@@ -72,6 +79,18 @@ export function TerrainCard({
             : t('A pit {feet} ft deep: climbed down, dropped into or jumped', {
                 feet: -groundFt,
               })}
+        </p>
+      )}
+      {trap && (
+        <p>
+          <Glyph name="warning" />
+          {trapWords(t, trap)}
+        </p>
+      )}
+      {hazard && (
+        <p>
+          <Glyph name="warning" />
+          {hazardWords(t, hazard)}
         </p>
       )}
     </div>

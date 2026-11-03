@@ -3,6 +3,7 @@ import { readableLabel, type Translate } from '@ltw/ui';
 
 import { RESOURCE_NAMES } from '../character/feature-words.ts';
 import { isSliceSpellId } from '../character/words.ts';
+import { TRAP_WORDS } from '../rules/toolbox-words.ts';
 
 /**
  * The words of what happened. Every sentence is an English key the client dictionary
@@ -194,7 +195,11 @@ export function outcomeMessage(t: Translate, outcome: PlayerOutcome | undefined)
       const prone =
         outcome.prone && outcome.landing?.success !== false ? t('You are Prone.') : null;
       const falling = outcome.falling ? t('You fall; a reaction may slow you.') : null;
-      return [moved, aloft, landing, fell, prone, falling]
+      // A trap it came onto (docs/adr/0057-encounters-maps-loot.md §6).
+      const trapped = outcome.trap
+        ? t('A trap springs: {name}.', { name: t(TRAP_WORDS[outcome.trap]) })
+        : null;
+      return [moved, trapped, aloft, landing, fell, prone, falling]
         .filter((part) => part !== null)
         .join(' ');
     }

@@ -52,6 +52,24 @@ describe('the Toolbox’s traps', () => {
       }
       // Its levels begin where its subtitle says (the rolling stone's one tier spans two ranges).
       expect(section?.subtitle).toContain(`(Levels ${trap.tiers[0]?.levels.split('–')[0] ?? ''}–`);
+      // How it is found on the board (ADR 0057 §6): a Search's Perception or a Study's
+      // Investigation, at the DC its words give.
+      const finding =
+        trap.detect.action === 'search'
+          ? `As a Search action, a creature can examine`
+          : `As a Study action, a creature can examine`;
+      expect(words).toContain(finding);
+      expect(words).toContain(
+        `DC ${String(trap.detect.dc)} ${
+          trap.detect.action === 'search' ? 'Wisdom (Perception)' : 'Intelligence (Investigation)'
+        } check`,
+      );
+      if (trap.resets === 'each-turn')
+        expect(words).toContain('resets at the start of the next turn');
+      if (trap.resets === 'thrice') expect(words).toContain('fewer than three times');
+      if (trap.leaves === 'rubble') expect(words).toContain('into Difficult Terrain');
+      if (trap.leaves === 'pit') expect(words).toContain('pit');
+      if (trap.onTurnStart) expect(words).toContain('starts its turn there');
     });
   }
 });

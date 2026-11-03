@@ -250,6 +250,7 @@ export const kernelEventSchema = z.discriminatedUnion('type', [
   event('LightSet', combatEventPayloadSchemas.LightSet),
   event('TerrainPainted', combatEventPayloadSchemas.TerrainPainted),
   event('FogSet', combatEventPayloadSchemas.FogSet),
+  event('TrapChanged', combatEventPayloadSchemas.TrapChanged),
   event('StatBlockSet', combatEventPayloadSchemas.StatBlockSet),
   event('ActionTaken', combatEventPayloadSchemas.ActionTaken),
   event('FeatureUsed', combatEventPayloadSchemas.FeatureUsed),

@@ -4,12 +4,14 @@ import { useId, useState, type Dispatch, type Ref, type SetStateAction } from 'r
 
 import { Glyph } from '../visual/glyph.tsx';
 import { IconButton } from '../visual/icon-button.tsx';
+import { DEFAULT_HAZARD, DEFAULT_TRAP, HazardOptions, TrapOptions } from './danger-brushes.tsx';
 import { paintName } from './terrain-words.ts';
 
 /**
  * The DM's brush (docs/adr/0057-encounters-maps-loot.md §2): what a press or a stroke across the
- * board lays — a wall, difficult ground, cover, water, a height, obscurement — or clears. The World
- * Engine decides each stroke; a wall never rises where someone stands.
+ * board lays — a wall, difficult ground, cover, water, a height, obscurement, a trap or harmful
+ * ground (§6) — or clears. The World Engine decides each stroke; a wall never rises where someone
+ * stands.
  */
 /** What the DM's brush lays: the ground, or the fog of war hiding or revealing (ADR 0057 §4). */
 export type Brush = TerrainPaint | { readonly kind: 'fog'; readonly hidden: boolean };
@@ -25,6 +27,8 @@ const BRUSHES: readonly Brush[] = [
   { kind: 'ground', ft: 10 },
   { kind: 'obscured', heavy: false },
   { kind: 'obscured', heavy: true },
+  DEFAULT_TRAP,
+  DEFAULT_HAZARD,
   { kind: 'clear' },
   { kind: 'fog', hidden: true },
   { kind: 'fog', hidden: false },
@@ -97,8 +101,10 @@ export function PaintCard({
         {BRUSHES.map((option) => {
           const id = `${ids}-${brushKey(option)}`;
           const chosen = brushKey(option) === brushKey(brush);
+          // A trap's or harmful ground's settings open under its own brush, across the card.
+          const open = chosen && (option.kind === 'trap' || option.kind === 'hazard');
           return (
-            <div key={id} className="paint-brush">
+            <div key={id} className={open ? 'paint-brush paint-brush--open' : 'paint-brush'}>
               <input
                 id={id}
                 type="radio"
@@ -113,7 +119,11 @@ export function PaintCard({
                   ? t('Height')
                   : option.kind === 'fog'
                     ? t(option.hidden ? 'Hide in the fog of war' : 'Reveal from the fog')
-                    : paintName(t, option)}
+                    : option.kind === 'trap'
+                      ? t('Trap')
+                      : option.kind === 'hazard'
+                        ? t('Harmful ground')
+                        : paintName(t, option)}
               </label>
               {option.kind === 'ground' && (
                 <select
@@ -130,6 +140,8 @@ export function PaintCard({
                   ))}
                 </select>
               )}
+              {open && brush.kind === 'trap' && <TrapOptions brush={brush} onBrush={onBrush} />}
+              {open && brush.kind === 'hazard' && <HazardOptions brush={brush} onBrush={onBrush} />}
             </div>
           );
         })}

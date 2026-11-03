@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 import { entityIdSchema } from '../kernel/identifiers.ts';
-import { COVER_LEVELS, squareSchema } from './battlefield.ts';
+import { BOARD_TRAP_IDS, COVER_LEVELS, boardHazardSchema, squareSchema } from './battlefield.ts';
 
 /**
  * The DM's hand on a running fight's board (docs/adr/0057-encounters-maps-loot.md §2): a
@@ -18,9 +18,10 @@ export const placeCombatantCommandSchema = z
 
 /**
  * A stroke of the DM's brush on a running fight's ground (docs/adr/0057-encounters-maps-loot.md
- * §2): a wall, difficult ground, cover, water, a height, obscurement, or the square cleared. Each
- * replaces what lay there of its own kind; a wall replaces everything, and anything else laid on
- * a wall's square takes the wall away.
+ * §2): a wall, difficult ground, cover, water, a height, obscurement, a trap or harmful ground
+ * (§6), or the square cleared. Each replaces what lay there of its own kind; a wall replaces
+ * everything, and anything else laid on a wall's square takes the wall away. A trap's stroke lays
+ * one trap over all its squares.
  */
 export const terrainPaintSchema = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('wall') }).strict(),
@@ -35,6 +36,15 @@ export const terrainPaintSchema = z.discriminatedUnion('kind', [
     })
     .strict(),
   z.object({ kind: z.literal('obscured'), heavy: z.boolean() }).strict(),
+  z
+    .object({
+      kind: z.literal('trap'),
+      trapId: z.enum(BOARD_TRAP_IDS),
+      tier: z.number().int().min(1).max(4),
+      hidden: z.boolean(),
+    })
+    .strict(),
+  z.object({ kind: z.literal('hazard'), hazard: boardHazardSchema }).strict(),
   z.object({ kind: z.literal('clear') }).strict(),
 ]);
 export type TerrainPaint = z.infer<typeof terrainPaintSchema>;
@@ -45,6 +55,8 @@ export const TERRAIN_PAINT_KINDS = [
   'water',
   'ground',
   'obscured',
+  'trap',
+  'hazard',
   'clear',
 ] as const satisfies readonly TerrainPaint['kind'][];
 

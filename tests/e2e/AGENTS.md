@@ -232,7 +232,10 @@ application on 4313.
   may reach the DM's board. `marks.spec.ts` (owns `ui-marks`) lays the table's marks as the DM and,
   once allowed, as a player, and reads each on the other's board without a refresh; a ping fades in
   4 s, so a ping is checked on its author's board only and the other screen is checked with the
-  marks that stand (the pointer, a stroke, an area).
+  marks that stand (the pointer, a stroke, an area). `traps.spec.ts` (owns `ui-traps`) lays a
+  hidden pit and fire with the brush on flat boards (a name plate covers the square below a token
+  on either view; lay what is pressed clear of plates), then walks Elowen onto the pit: a path
+  that ties around a trap may pass it by, so the journey ends its move on the trap's square.
 - Native apps (ADR 0070, `native-shell.spec.ts`): a stand-in shell installed with `addInitScript`
   records what the page posts, and the journey speaks for the shell with `ltw-native` events; it owns
   the `native` sign-in campaign. The apps themselves are checked on the simulator and the emulator.

@@ -1,14 +1,9 @@
-import {
-  squareDistanceFt,
-  type EncounterView,
-  type PlayerAssetView,
-  type Square,
-} from '@ltw/contracts';
+import { squareDistanceFt, type Square } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
-import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from 'react';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
 
-import { BoardControls, type BoardPaint, type BoardTools } from './board-controls.tsx';
-import type { BoardView } from './board-view.ts';
+import { BoardControls } from './board-controls.tsx';
+import type { BoardProps } from './board-props.ts';
 import {
   boardLayout,
   fitCell,
@@ -17,13 +12,12 @@ import {
   squareCenter,
   TILT,
   uprightTransform,
-  type Size,
 } from './geometry.ts';
 import { useScrollEdges } from '../../visual/scroll-edges.ts';
-import type { LabelOf } from '../labels.ts';
 import { BoardGround } from './board-ground.tsx';
-import type { ShownMark } from '../use-marks.ts';
 import { BoardMarks } from './board-marks.tsx';
+import { DangerMarks } from './board-dangers.tsx';
+import { dangersOf } from './dangers.ts';
 import { BoardPlates } from './plates.tsx';
 import { squareName } from './square-name.ts';
 import { TerrainCard } from './terrain-card.tsx';
@@ -31,6 +25,7 @@ import { footprint, spanOf } from './footprint.ts';
 import { CoverPiece, Token } from './token.tsx';
 import { usePaintStroke } from './paint-stroke.ts';
 import { useTokenDrag } from './token-drag.ts';
+import { useSpace } from './use-space.ts';
 
 const key = (square: { readonly x: number; readonly y: number }) =>
   `${String(square.x)},${String(square.y)}`;
@@ -38,30 +33,6 @@ const key = (square: { readonly x: number; readonly y: number }) =>
 /** A raised square's or a pit's mark in its corner: "+10", "−10"; none on level ground. */
 const heightMark = (ft: number): string | undefined =>
   ft === 0 ? undefined : ft > 0 ? `+${String(ft)}` : `−${String(-ft)}`;
-
-/** The space the board is given, as laid out by the stylesheet for this width. */
-function useSpace(): [React.RefObject<HTMLDivElement | null>, Size | null] {
-  const ref = useRef<HTMLDivElement>(null);
-  const [space, setSpace] = useState<Size | null>(null);
-  useLayoutEffect(() => {
-    const element = ref.current;
-    if (!element) return;
-    const measure = () => {
-      const width = element.clientWidth;
-      const height = element.clientHeight;
-      setSpace((known) =>
-        known?.width === width && known.height === height ? known : { width, height },
-      );
-    };
-    measure();
-    const observer = new ResizeObserver(measure);
-    observer.observe(element);
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-  return [ref, space];
-}
 
 type StageStyle = CSSProperties & {
   readonly '--cell': string;
@@ -102,54 +73,7 @@ export function Board({
   draw,
   centreOn = null,
   moverId = selfId,
-}: {
-  readonly encounter: Pick<EncounterView, 'battlefield' | 'combatants'>;
-  readonly labelOf: LabelOf;
-  /** Only a live encounter has an active turn; prepared layouts omit it. */
-  readonly currentCombatantId?: string | null;
-  readonly selfId: string | null;
-  readonly selected: Square | null;
-  /** The advisory route to the selected square, without the mover's own square. */
-  readonly path: readonly Square[];
-  /**
-   * Whose route `path` is: the viewer's, or a creature it commands on that creature's turn
-   * (docs/adr/0044-online-play.md §7). Absent: the viewer's.
-   */
-  readonly moverId?: string | null;
-  /** Combatants a previewed area spell would affect, as the server listed them. */
-  readonly affected: ReadonlySet<string>;
-  readonly imageOf: (entityId: string) => PlayerAssetView | null;
-  /** A combatant's approved tabletop figure (ADR 0035 §4), when the place's presentation has it. */
-  readonly figureOf: (entityId: string) => PlayerAssetView | null;
-  /** The encounter's place's approved battle map: the ground under the grid when there is one. */
-  readonly battleMap: PlayerAssetView | null;
-  readonly view: BoardView;
-  readonly onPick: (square: Square) => void;
-  /** A combatant's token dragged to a square: the DM's hand (docs/adr/0057-…md §2). */
-  readonly onDropToken?: (entityId: string, square: Square) => void;
-  /** The DM's brush (ADR 0057 §2): its toggle, and squares pressed or stroked while it is on. */
-  readonly paint?: BoardPaint;
-  /**
-   * How the fog of war shows (ADR 0057 §4): as a veil the DM sees through, or as darkness — the
-   * players' and the display's, whose view leaves out what lies under it.
-   */
-  readonly fogView?: 'veil' | 'hidden';
-  /**
-   * The viewer's ruler (docs/adr/0057-encounters-maps-loot.md §5): from its start to its end, or
-   * to the square the pointer or the keyboard is on while no end is set.
-   */
-  readonly ruler?: { readonly from: Square; readonly to: Square | null } | null;
-  /** The squares a spell's area laid on the board covers, as `x,y` (ADR 0057 §5). */
-  readonly template?: ReadonlySet<string>;
-  /** The viewer's ruler and area toggles (ADR 0057 §5). */
-  readonly tools?: BoardTools;
-  /** The table's shared marks (ADR 0057 §5). */
-  readonly marks?: readonly ShownMark[];
-  /** A stroke drawn as a mark: presses and drags go to it, as to the DM's brush. */
-  readonly draw?: (squares: readonly Square[]) => void;
-  /** A square to keep in view when the board scrolls (the table's screen follows the fight). */
-  readonly centreOn?: Square | null;
-}) {
+}: BoardProps) {
   const t = useT();
   const [area, space] = useSpace();
   const viewport = useRef<HTMLDivElement>(null);
@@ -190,6 +114,8 @@ export function Board({
   const fog = new Map(
     (encounter.battlefield.obscured ?? []).map((o) => [key(o), o.heavy === true] as const),
   );
+  // Traps and harmful ground (ADR 0057 §6), as the viewer's projection has them.
+  const dangers = dangersOf(encounter.battlefield);
   // The fog of war (ADR 0057 §4), apart from the fog that obscures (ADR 0050 §1).
   const warFog = new Set((encounter.battlefield.fog ?? []).map(key));
   const coverAt = new Map(cover.map((entry) => [key(entry), entry.level]));
@@ -318,6 +244,8 @@ export function Board({
             fogged: warFog.has(id),
             rulerFt: ruler ? squareDistanceFt(ruler.from, square) : null,
             pointer: pointedAt.has(id),
+            trap: dangers.traps.get(id),
+            hazard: dangers.hazards.get(id),
             cover: level,
             inArea,
           })}
@@ -356,6 +284,7 @@ export function Board({
               aria-hidden="true"
             />
           )}
+          <DangerMarks trap={dangers.traps.get(id)} hazard={dangers.hazards.get(id)} />
           {warFog.has(id) && (
             <span className={`square-war-fog square-war-fog--${fogView}`} aria-hidden="true" />
           )}
@@ -408,6 +337,8 @@ export function Board({
           wall={walls.has(key(looked))}
           water={water.has(key(looked)) ? (water.get(key(looked)) ? 'deep' : 'shallow') : null}
           groundFt={heights.get(key(looked)) ?? 0}
+          trap={dangers.traps.get(key(looked))}
+          hazard={dangers.hazards.get(key(looked))}
         />
       )}
       <div

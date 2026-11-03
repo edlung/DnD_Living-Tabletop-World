@@ -38,6 +38,8 @@ export const UI_PARTY_CAMPAIGNS = {
   boardTools: 'ui-board-tools',
   /** The table's shared marks on the board (Stage 670c). */
   marks: 'ui-marks',
+  /** Traps and harmful ground on the board (Stage 670d). */
+  traps: 'ui-traps',
 } as const;
 
 const PARTY = ['elowen-starwhisper', 'brann-ironvale', 'tamsin-quickfoot', 'maren-ashby'];
@@ -61,6 +63,7 @@ export async function seedUiPartyCampaigns(engine: WorldEngine): Promise<void> {
     [UI_PARTY_CAMPAIGNS.battleMap, 'en'],
     [UI_PARTY_CAMPAIGNS.boardTools, 'en'],
     [UI_PARTY_CAMPAIGNS.marks, 'en'],
+    [UI_PARTY_CAMPAIGNS.traps, 'en'],
   ] as const) {
     const seed = await loadRavenfordSeed(language === 'ru' ? RAVENFORD_RU_FIXTURES_DIR : undefined);
     for (const input of seed.submissions) {

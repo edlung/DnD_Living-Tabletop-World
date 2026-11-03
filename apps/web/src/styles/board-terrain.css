@@ -147,3 +147,60 @@
     color-mix(in srgb, var(--text) 22%, transparent) 70%
   );
 }
+
+/* Traps and harmful ground (combat/board/board-dangers.tsx; docs/adr/0057-encounters-maps-loot.md
+   §6): harmful ground a hatched tint in its kind's colour under the figures; a trap's squares
+   outlined, dashed, with its mark in the corner — gold while hidden from the players (the DM's
+   alone), red in sight, dotted and dim once sprung or disarmed. */
+.square-hazard {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--hazard) 46%, transparent) 0 6px,
+    color-mix(in srgb, var(--hazard) 22%, transparent) 6px 12px
+  );
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--hazard) 75%, transparent);
+  pointer-events: none;
+}
+.square-hazard--fire {
+  --hazard: #e0662f;
+}
+.square-hazard--acid {
+  --hazard: #7cc242;
+}
+.square-hazard--poison {
+  --hazard: #a77de0;
+}
+.square-trap-area {
+  position: absolute;
+  inset: 2px;
+  border: 2px dashed color-mix(in srgb, var(--danger) 85%, transparent);
+  border-radius: 3px;
+  pointer-events: none;
+}
+.square-trap-area--hidden {
+  border-color: color-mix(in srgb, var(--gold-bright) 85%, transparent);
+}
+.square-trap-area--sprung,
+.square-trap-area--disarmed {
+  border-style: dotted;
+  opacity: 0.6;
+}
+.square-trap {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: clamp(14px, calc(var(--cell) * 0.42), 26px);
+  height: clamp(14px, calc(var(--cell) * 0.42), 26px);
+  color: var(--danger);
+  filter: drop-shadow(0 0 1px var(--ink-950)) drop-shadow(0 0 2px var(--ink-950));
+  pointer-events: none;
+}
+.square-trap--hidden {
+  color: var(--gold-bright);
+}
+.square-trap--sprung,
+.square-trap--disarmed {
+  opacity: 0.55;
+}

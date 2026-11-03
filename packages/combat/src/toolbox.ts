@@ -31,13 +31,14 @@ import {
  * takes its own damage through the damage rules (resistances, temporary hit points, 0 hit points,
  * Concentration); a pit is a fall. The World Engine's dice decide; in a fight or out of one.
  */
-interface Caught {
+export interface Caught {
   readonly vitals: Vitals;
   readonly events: DraftEvent[];
   readonly dead: boolean;
 }
 
-function harm(
+/** Damage through the damage rules on a creature still standing (the board's traps too). */
+export function harm(
   state: WorldState,
   dice: Dice,
   caught: Caught,
@@ -60,7 +61,8 @@ function harm(
   };
 }
 
-function sprung(
+/** A trap sprung on one creature: its save, a pit's fall, the damage and what a failure leaves. */
+export function sprung(
   state: WorldState,
   dice: Dice,
   trap: TrapRules,

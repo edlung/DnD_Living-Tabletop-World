@@ -11,6 +11,7 @@ import {
   WEAPON_IDS,
   WEAPON_MASTERIES,
   battlefieldSchema,
+  boardTrapSchema,
   conditionDetailsSchema,
   entityIdSchema,
   squareSchema,
@@ -201,6 +202,22 @@ export const combatEventPayloadSchemas = {
       encounterId: entityIdSchema,
       squares: z.array(squareSchema).min(1).max(MAX_PAINTED_SQUARES),
       hidden: z.boolean(),
+    })
+    .strict(),
+  /**
+   * A trap on the board changed (docs/adr/0057-encounters-maps-loot.md §6): it sprang, the party
+   * found it, or it was disarmed — `trap` is the trap now, found by `square`, one of its squares.
+   * Sprung, it may leave rubble (Difficult Terrain) or an open pit on its squares.
+   */
+  TrapChanged: z
+    .object({
+      encounterId: entityIdSchema,
+      square: squareSchema,
+      change: z.enum(['sprung', 'found', 'disarmed']),
+      byId: entityIdSchema.optional(),
+      trap: boardTrapSchema,
+      rubble: z.literal(true).optional(),
+      pitFt: z.number().int().min(5).max(200).multipleOf(5).optional(),
     })
     .strict(),
   /** The DM's brush on the fight's ground (docs/adr/0057-encounters-maps-loot.md §2). */

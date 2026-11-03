@@ -1,17 +1,20 @@
-import type { Battlefield, Square } from './battlefield.ts';
+import type { Battlefield, BoardTrap, Square } from './battlefield.ts';
 import type { TerrainPaint } from './board-commands.ts';
 
 /**
  * The battlefield after a stroke of the DM's brush (docs/adr/0057-encounters-maps-loot.md §2), as
- * the decision checks it, the history replays it and the encounter builder paints before a fight. A paint replaces what lay on its squares of
- * its own kind; a wall replaces everything there, anything else takes a wall away, and a clear
- * leaves the squares bare (their light stays the fight's). Each list comes out ordered by row, then
- * column, so the same ground is always written the same way.
+ * the decision checks it, the history replays it and the encounter builder paints before a fight.
+ * A paint replaces what lay on its squares of its own kind; a wall replaces everything there,
+ * anything else takes a wall away, and a clear leaves the squares bare (their light stays the
+ * fight's). A trap's stroke lays one trap over its squares, taking them from any trap there (§6).
+ * Each list comes out ordered by row, then column, so the same ground is always written the same
+ * way.
  */
 type At = { readonly x: number; readonly y: number };
 
 const key = (square: At) => `${String(square.x)},${String(square.y)}`;
 const byPlace = (a: At, b: At) => a.y - b.y || a.x - b.x;
+const firstOf = (trap: BoardTrap): At => trap.squares[0] ?? { x: 0, y: 0 };
 
 export function paintBattlefield(
   field: Battlefield,
@@ -62,6 +65,28 @@ export function paintBattlefield(
       : clear
         ? all(off(field.ground))
         : field.ground;
+  // One trap a stroke; a trap that loses all its squares is gone (§6).
+  const trapsLeft = (field.traps ?? [])
+    .map((trap) => ({ ...trap, squares: trap.squares.filter((square) => !hit.has(key(square))) }))
+    .filter((trap) => trap.squares.length > 0);
+  const traps: BoardTrap[] | undefined =
+    paint.kind === 'trap'
+      ? [
+          ...trapsLeft,
+          { trapId: paint.trapId, tier: paint.tier, squares: laid, hidden: paint.hidden },
+        ].sort((a, b) => byPlace(firstOf(a), firstOf(b)))
+      : clear
+        ? trapsLeft
+        : field.traps;
+  const hazards =
+    paint.kind === 'hazard'
+      ? all(
+          off(field.hazards),
+          laid.map((square) => ({ ...square, hazard: paint.hazard })),
+        )
+      : clear
+        ? all(off(field.hazards))
+        : field.hazards;
   const obscured =
     paint.kind === 'obscured'
       ? all(
@@ -72,7 +97,7 @@ export function paintBattlefield(
         ? all(off(field.obscured))
         : field.obscured;
   // The optional lists stay absent while empty, as a battlefield without them was written.
-  const optional = <K extends 'walls' | 'water' | 'ground' | 'obscured'>(
+  const optional = <K extends 'walls' | 'water' | 'ground' | 'obscured' | 'traps' | 'hazards'>(
     name: K,
     list: Battlefield[K],
   ): Partial<Pick<Battlefield, K>> =>
@@ -82,12 +107,16 @@ export function paintBattlefield(
   delete rest.water;
   delete rest.ground;
   delete rest.obscured;
+  delete rest.traps;
+  delete rest.hazards;
   return {
     ...rest,
     ...optional('walls', walls),
     ...optional('water', water),
     ...optional('ground', ground),
     ...optional('obscured', obscured),
+    ...optional('traps', traps),
+    ...optional('hazards', hazards),
   };
 }
 
@@ -107,10 +136,42 @@ export function sameGround(a: Battlefield, b: Battlefield): boolean {
       )
       .sort()
       .join('|');
+  const traps = (field: Battlefield) =>
+    (field.traps ?? [])
+      .map((trap) =>
+        [
+          trap.trapId,
+          trap.tier,
+          trap.hidden ? 'hidden' : '',
+          trap.found ? 'found' : '',
+          trap.disarmed ? 'disarmed' : '',
+          trap.squares.map(key).sort().join(';'),
+        ].join(':'),
+      )
+      .sort()
+      .join('|');
+  const hazards = (field: Battlefield) =>
+    (field.hazards ?? [])
+      .map(({ hazard, ...square }) =>
+        [
+          key(square),
+          hazard.kind,
+          `${String(hazard.dice.count)}d${String(hazard.dice.sides)}`,
+          hazard.ability,
+          hazard.dc,
+          hazard.onSuccess,
+        ].join(':'),
+      )
+      .sort()
+      .join('|');
   const norm = (field: Battlefield) =>
-    [field.difficult, field.cover, field.walls, field.water, field.ground, field.obscured]
-      .map((list) => lines(list))
-      .join('/');
+    [
+      ...[field.difficult, field.cover, field.walls, field.water, field.ground, field.obscured].map(
+        (list) => lines(list),
+      ),
+      traps(field),
+      hazards(field),
+    ].join('/');
   return norm(a) === norm(b);
 }
 

@@ -1,5 +1,17 @@
-import type { CoverLevel, EncounterCombatantView, LightLevel, Square } from '@ltw/contracts';
+import type {
+  BoardHazard,
+  BoardTrap,
+  CoverLevel,
+  EncounterCombatantView,
+  LightLevel,
+  Square,
+} from '@ltw/contracts';
 import type { Translate } from '@ltw/ui';
+
+import { ABILITY_NAMES } from '../../character/words.ts';
+import { TRAP_WORDS } from '../../rules/toolbox-words.ts';
+import { HAZARD_WORDS } from '../terrain-words.ts';
+import { trapState } from './dangers.ts';
 
 const COVER: Readonly<Record<CoverLevel, string>> = {
   half: 'half cover',
@@ -35,6 +47,9 @@ export interface SquareFacts {
   readonly rulerFt?: number | null;
   /** The DM's pointer is on it (ADR 0057 §5). */
   readonly pointer?: boolean;
+  /** A trap on it, and harmful ground (ADR 0057 §6), as the viewer's projection has them. */
+  readonly trap?: BoardTrap | undefined;
+  readonly hazard?: BoardHazard | undefined;
   readonly cover: CoverLevel | null;
   /** The occupant is among those a previewed area spell would affect (the server's list). */
   readonly inArea: boolean;
@@ -100,6 +115,8 @@ export function squareName(t: Translate, square: Square, facts: SquareFacts): st
   if (facts.obscured === 'heavy') notes.push(t('heavily obscured'));
   if (facts.fogged) notes.push(t('in the fog of war'));
   if (facts.pointer) notes.push(t('the DM points here'));
+  if (facts.trap) notes.push(trapWords(t, facts.trap));
+  if (facts.hazard) notes.push(hazardWords(t, facts.hazard));
   if (facts.rulerFt !== undefined && facts.rulerFt !== null)
     notes.push(t('{feet} ft from the ruler’s start', { feet: facts.rulerFt }));
   if (facts.difficult) notes.push(t('difficult terrain'));
@@ -108,3 +125,27 @@ export function squareName(t: Translate, square: Square, facts: SquareFacts): st
   const name = t('Square {x}, {y}', { x: square.x, y: square.y });
   return notes.length > 0 ? `${name}: ${notes.join('; ')}` : name;
 }
+
+const TRAP_STATES = {
+  hidden: 'hidden from the players',
+  set: 'in sight',
+  sprung: 'sprung',
+  disarmed: 'disarmed',
+} as const;
+
+/** "trap: Hidden pit, hidden from the players" (ADR 0057 §6). */
+export const trapWords = (t: Translate, trap: BoardTrap): string =>
+  t('trap: {name}, {state}', {
+    name: t(TRAP_WORDS[trap.trapId]),
+    state: t(TRAP_STATES[trapState(trap)]),
+  });
+
+/** "Fire on the ground: 2d6, Dexterity save DC 12, half on a success". */
+export const hazardWords = (t: Translate, hazard: BoardHazard): string =>
+  t('{harm}: {dice}, {ability} save DC {dc}, {success}', {
+    harm: t(HAZARD_WORDS[hazard.kind]),
+    dice: `${String(hazard.dice.count)}d${String(hazard.dice.sides)}`,
+    ability: t(ABILITY_NAMES[hazard.ability]),
+    dc: hazard.dc,
+    success: hazard.onSuccess === 'half' ? t('half on a success') : t('none on a success'),
+  });

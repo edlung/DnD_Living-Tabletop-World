@@ -31,7 +31,10 @@ Authority: owner approval 2026-11-02 (`reviews/OWNER_FULL_GAME_2026-11-02.json`)
   shared marks on every board and the table's display, kept per run of a fight. 670c done.
 - 670d — Traps and hazards on the board: an SRD trap set on squares, hidden or seen, sprung on the
   creature that enters, found by passive Perception or Search, disarmed with Utilize and thieves'
-  tools; hazard squares that harm a creature entering or starting its turn there.
+  tools; hazard squares that harm a creature entering or starting its turn there. Part 1 done: the
+  trap and harmful-ground brushes (running fight and builder), traps hidden from the table until
+  found or sprung, a move stopped and a trap sprung on entering, harmful ground on entering and at
+  a turn's start, the open pit and the rubble they leave.
 - 670e — Loot, the stash and coins: creatures carry items; the party takes a fallen foe's; the DM
   leaves treasure at a place; the party's stash; coins split with change.
 - 670f — Merchants and crafting: an NPC's stock and prices, buying and selling at the SRD's rates

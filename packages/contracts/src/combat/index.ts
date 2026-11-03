@@ -122,6 +122,17 @@ export {
 } from './board-commands.ts';
 export { fogBattlefield, paintBattlefield, sameGround } from './terrain-paint.ts';
 export {
+  BOARD_HAZARDS,
+  BOARD_TRAP_IDS,
+  MAX_TRAP_SQUARES,
+  boardHazardSchema,
+  boardTrapSchema,
+  type BoardHazard,
+  type BoardHazardKind,
+  type BoardTrap,
+  type BoardTrapId,
+} from './battlefield.ts';
+export {
   MARK_KINDS,
   MAX_MARKS,
   PING_MS,

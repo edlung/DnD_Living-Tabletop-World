@@ -290,6 +290,7 @@ export function footprintOf(event: KernelEvent): Footprint {
     case 'LightSet':
     case 'TerrainPainted':
     case 'FogSet':
+    case 'TrapChanged':
     case 'StatBlockSet':
     case 'ActionTaken':
     case 'FeatureUsed':

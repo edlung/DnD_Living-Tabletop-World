@@ -102,8 +102,20 @@ function combatOutcome(
 ): PlayerOutcome | undefined {
   switch (commandType) {
     case 'MoveCombatant': {
-      const moved = events.findLast((event) => event.type === 'CombatantUpdated');
+      // The mover's own record, the last of it (a fall changes it again); a creature dragged or
+      // caught with it has its own.
+      const first = events.find((event) => event.type === 'CombatantUpdated');
+      if (first?.type !== 'CombatantUpdated') return undefined;
+      const moverId = first.payload.combatant.entityId;
+      const moved = events.findLast(
+        (event) =>
+          event.type === 'CombatantUpdated' && event.payload.combatant.entityId === moverId,
+      );
       if (moved?.type !== 'CombatantUpdated') return undefined;
+      // A trap it came onto (docs/adr/0057-encounters-maps-loot.md §6).
+      const sprang = events.find(
+        (event) => event.type === 'TrapChanged' && event.payload.change === 'sprung',
+      );
       // Its height, a landing's check, a fall and the Prone they left (ADR 0049 §6–8).
       const { position, altitudeFt } = moved.payload.combatant;
       // A move's only check is a landing's.
@@ -126,6 +138,7 @@ function combatOutcome(
           ? { fell: { feet: fall.payload.fallFt, damage: fall.payload.amount } }
           : {}),
         ...(prone ? { prone: true as const } : {}),
+        ...(sprang?.type === 'TrapChanged' ? { trap: sprang.payload.trap.trapId } : {}),
         ...(events.some(
           (event) =>
             event.type === 'ReactionWindowOpened' && event.payload.window.trigger.kind === 'fall',

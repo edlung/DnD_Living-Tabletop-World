@@ -27,6 +27,7 @@ import {
   withSheet,
   withoutDeathSaves,
 } from './vitals.ts';
+import { turnStartGround } from './board-traps.ts';
 
 /**
  * Turn order and the start of a turn (docs/adr/0015-combat-engine.md §2, §4):
@@ -222,5 +223,9 @@ function turnStart(
       }
     }
   }
+  // The harmful ground under it, and a trap that springs on one standing on it (ADR 0057 §6).
+  const standing = work.combatant(combatant.entityId) ?? combatant;
+  const alive = vitals && hitPoints(vitals).current > 0 ? work.vitalsOf(combatant.entityId) : null;
+  events.push(...turnStartGround(work.state, after, dice, standing, alive ?? null));
   return events;
 }

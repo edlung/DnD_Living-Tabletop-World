@@ -4,6 +4,7 @@ import {
   type ConditionNoteView,
   type EncounterCombatantView,
   type EncounterView,
+  type Battlefield,
 } from '@ltw/contracts';
 import {
   combatantOf,
@@ -275,11 +276,42 @@ export function encounterView(
       ...(battlefield.fog && battlefield.fog.length > 0
         ? { fog: battlefield.fog.map(({ x, y }) => ({ x, y })) }
         : {}),
+      // Its traps and harmful ground (ADR 0057 §6): a hidden trap is the DM's until it is found
+      // or springs; under the fog the table sees neither.
+      ...traps(battlefield.traps, dm, seen),
+      ...(battlefield.hazards
+        ? {
+            hazards: seen(battlefield.hazards).map(({ x, y, hazard }) => ({
+              x,
+              y,
+              hazard: structuredClone(hazard),
+            })),
+          }
+        : {}),
     },
     combatants,
     reactionWindow: reactionWindowView(state, { dm, holder, known }),
     ...(dm ? difficultyOf(state, encounter) : {}),
   };
+}
+
+/** The traps a viewer sees (ADR 0057 §6): all for the DM; for the table, those known and in sight. */
+function traps(
+  list: Battlefield['traps'],
+  dm: boolean,
+  seen: <T extends { readonly x: number; readonly y: number }>(
+    squares: readonly T[],
+  ) => readonly T[],
+): Pick<Battlefield, 'traps'> {
+  if (!list) return {};
+  const shown = list
+    .filter((trap) => dm || !trap.hidden || trap.found === true)
+    .map((trap) => ({
+      ...structuredClone(trap),
+      squares: seen(trap.squares).map(({ x, y }) => ({ x, y })),
+    }))
+    .filter((trap) => trap.squares.length > 0);
+  return { traps: shown };
 }
 
 /**

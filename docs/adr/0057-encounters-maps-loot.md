@@ -214,6 +214,32 @@
   card. A stroke has no keyboard path of its own (freehand drawing); a press on a square, and the
   area shown from the card, are the keyboard's marks.
 
+## Notes from the implementation (Stage 670d, part 1, 2026-11-03)
+
+- Traps and harmful ground are the battlefield's (`traps`, `hazards`), laid with the DM's brush on
+  a running fight (`PaintTerrain` with `trap` or `hazard`) and in the builder: one trap a stroke,
+  over all its squares (64 at most), at a tier the trap has; a wall or a clear takes either away.
+  The board's traps are the Toolbox's but the Poisoned Needle, which waits in a lock.
+- Each trap's own words decide (`packages/rules/src/toolbox/traps.ts`, held to the SRD's text): how
+  it is found (a Search's Perception, which a Passive Perception also meets, or a Study's
+  Investigation, at its DC), whom it catches (the collapsing roof, the statue's cone and the darts
+  every creature on the trap; the net, the stone and the pits the one that set them off), whether
+  it resets (the statue at each later turn, the darts until they have fired three times), and what
+  it leaves (the roof's rubble as Difficult Terrain, a pit open as a pit of its depth).
+- A creature whose space comes onto an armed trap at ground level stops there and springs it
+  (`TrapChanged`, then each caught creature's save and harm through the Toolbox's `sprung`); before
+  any reach it would leave further on, so no opportunity attack is offered past a trap. A step in
+  flight or in a jump touches nothing. The statue springs too on a creature that starts its turn
+  on it. The mover's outcome names the trap ("A trap springs: Hidden pit.") with its fall.
+- Harmful ground harms a creature whose space comes onto a square of it, once a square a move, and
+  one that starts its turn on it, once a kind: the save the DM set, then the damage, none or half
+  on a success.
+- A hidden trap is the DM's until found or sprung: the players' and the display's views leave it
+  out, and under the fog of war they see neither traps nor harmful ground. On the board a trap's
+  squares are outlined with its mark in a corner — gold while hidden, red in sight, dotted once
+  spent or disarmed — and its words are in the square's name and the terrain card.
+- `TrapChanged` restores the encounter on undo, as every battlefield event does.
+
 ## Consequences
 
 - Stage 670 runs in parts (`work-orders/STAGE_670.md`): the builder and the DM's hand; terrain and

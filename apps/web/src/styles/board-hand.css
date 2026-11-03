@@ -57,6 +57,18 @@
   flex: 1 1 100%;
   min-width: 0;
 }
+/* A trap's or harmful ground's settings (combat/danger-brushes.tsx; ADR 0057 §6): under their own
+   brush, across the card, in line with the brush's words. */
+.paint-brush--open {
+  grid-column: 1 / -1;
+}
+.danger-options {
+  display: grid;
+  flex: 1 1 100%;
+  gap: 0.75rem;
+  min-width: 0;
+  padding: 0.25rem 0 0.5rem calc(24px + 0.5rem);
+}
 
 /* The fog of war (ADR 0057 §4): darkness on the players' and the display's boards, whose view leaves
    out what lies under it; a veil the DM sees through, its figures above it. */

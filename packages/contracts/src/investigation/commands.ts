@@ -1,5 +1,6 @@
 import { z } from 'zod';
 
+import type { BoardTrapId } from '../combat/battlefield.ts';
 import type { FeatureAct } from '../combat/features.ts';
 import type { ReactionId } from '../combat/reactions.ts';
 import { entityIdSchema, knowledgeIdSchema } from '../kernel/identifiers.ts';
@@ -164,6 +165,8 @@ export type PlayerOutcome =
       readonly prone?: true;
       /** It falls, and a reaction may slow the fall before it lands (§8). */
       readonly falling?: true;
+      /** The trap it came onto sprang (docs/adr/0057-encounters-maps-loot.md §6). */
+      readonly trap?: BoardTrapId;
     }
   | {
       readonly kind: 'Attack';

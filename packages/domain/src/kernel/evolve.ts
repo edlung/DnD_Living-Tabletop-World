@@ -239,6 +239,7 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
     case 'LightSet':
     case 'TerrainPainted':
     case 'FogSet':
+    case 'TrapChanged':
       return applyBattlefieldEvent(state, event);
     case 'StatBlockSet':
       return applyStatBlockSet(state, event);
@@ -338,15 +339,14 @@ function applyUndo(
   const ordered = [...event.payload.restores].sort(
     (a, b) => Number(!isRemoval(a)) - Number(!isRemoval(b)),
   );
-  let next = ordered.reduce(applyRestore, state);
-  next = {
+  const next = ordered.reduce(applyRestore, state);
+  return {
     ...next,
     commands: withEntry(next.commands, target.commandId, {
       ...target,
       undoneBy: event.causation.commandId,
     }),
   };
-  return next;
 }
 
 const isRemoval = (restore: Restore) =>
