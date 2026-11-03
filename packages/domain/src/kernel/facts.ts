@@ -379,6 +379,7 @@ export function footprintOf(event: KernelEvent): Footprint {
     case 'ItemEquipped':
     case 'ItemUnequipped':
     case 'ItemUsed':
+    case 'ItemStackChanged':
     case 'ItemRecovered':
     case 'ItemTransferred':
     case 'ItemSplit':

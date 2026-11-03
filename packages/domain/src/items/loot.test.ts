@@ -44,7 +44,7 @@ beforeEach(async () => {
   for (const command of [
     create('hero', 'character', at('square')),
     create('friend', 'character', at('inn')),
-    create('stranger', 'character', at('square')),
+    create('stranger', 'npc', at('square')),
     create('wolf', 'creature', at('square')),
     create('fang', 'item'),
     create('hoard', 'item'),

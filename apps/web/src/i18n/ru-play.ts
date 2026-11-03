@@ -416,6 +416,7 @@ registerRussian({
   'give item': 'передать предмет',
   'drop item': 'бросить предмет',
   'take item': 'поднять предмет',
+  'share coins out': 'поделить монеты',
   'attune to an item': 'настройка на предмет',
   'identify an item': 'опознание предмета',
   'dawn: charges regained': 'рассвет: заряды восстановлены',

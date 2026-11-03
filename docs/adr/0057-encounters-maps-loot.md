@@ -276,6 +276,23 @@
   Every member's inventory lists it; someone outside the party neither gives to it (refused) nor
   takes from it (refused as for a thing not there).
 
+## Notes from the implementation (Stage 670e, part 2, 2026-11-03)
+
+- A member of the party, for the stash and for coins, is a character — as a fight takes the
+  characters at a place for the party — whether or not a player sits in its seat; NPCs and
+  creatures are not.
+- `SplitCoins` (a player's, for the character's own coins): each coinage the character carries —
+  Ravenford's crowns, marks and pennies, and the SRD's platinum to copper — is pooled in copper and
+  split evenly among the members named who are here (the character too, when named), each share
+  paid in the largest coins and never in electrum (`packages/contracts/src/items/coins.ts`); what
+  does not divide stays with the character, and a coinage worth less than a copper each is left as
+  it is. The character's old stacks of that coinage are spent (`ItemStackChanged` to 0, then
+  destroyed) and the shares minted anew, a stack a coin (up to 42 IDs drawn by the engine). Stacks
+  minted so may hold more than a grant's 99. Outside a fight; someone not here, not a character or
+  not standing is refused as not present.
+- The pack offers "Share the coins out" to a member: who shares (everyone here, the character too,
+  until unticked) and what each gets, line by line, before anything moves.
+
 ## Consequences
 
 - Stage 670 runs in parts (`work-orders/STAGE_670.md`): the builder and the DM's hand; terrain and

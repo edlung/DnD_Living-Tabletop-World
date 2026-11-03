@@ -4,8 +4,7 @@ import type { WorldState } from '../kernel/state.ts';
 import type { ResolvedPerspective } from '../knowledge/perspective.ts';
 import { entityRef } from '../knowledge/projection.ts';
 import { itemEntry } from './catalog.ts';
-import { isPartyMember } from '../knowledge/party.ts';
-import { PARTY_STASH, carriedBy, entryOf, possessionOf } from './records.ts';
+import { PARTY_STASH, carriedBy, entryOf, isPartyCharacter, possessionOf } from './records.ts';
 
 /**
  * What a character carries, for the DM or for that character's own perspective
@@ -28,7 +27,7 @@ export function inventoryView(
     return one ? [one] : [];
   });
   // The party's stash, for a member of the party (docs/adr/0057-encounters-maps-loot.md §7).
-  const stash = isPartyMember(state, entityId)
+  const stash = isPartyCharacter(state, entityId)
     ? carriedBy(state, PARTY_STASH).flatMap((itemId) => {
         const one = inventoryItem(state, dm, itemId);
         return one ? [one] : [];

@@ -438,3 +438,35 @@
   min-width: 0;
   overflow-wrap: anywhere;
 }
+
+/* Coins shared out (items/inventory/share-coins.tsx; ADR 0057 §7): who shares them, what each gets
+   line by line, then the button. */
+.share-coins {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0.5rem 0 1rem;
+}
+.share-coins[open] > summary {
+  margin-bottom: 0.25rem;
+}
+.share-coins-members {
+  display: grid;
+  gap: 0.35rem;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.share-coins-members legend {
+  margin-bottom: 0.35rem;
+  padding: 0;
+  color: var(--text-muted);
+}
+.share-coins-preview {
+  display: grid;
+  gap: 0.15rem;
+  margin: 0;
+}
+.share-coins > .primary-button {
+  justify-self: start;
+}

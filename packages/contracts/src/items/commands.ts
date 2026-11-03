@@ -59,6 +59,24 @@ export const dropItemCommandSchema = z
 export const takeItemCommandSchema = z.object({ type: z.literal('TakeItem'), ...acting }).strict();
 
 /**
+ * Coins shared out (docs/adr/0057-encounters-maps-loot.md §7): the character's coins of each
+ * coinage split evenly among the members named — the character too, when named — with change
+ * made; what does not divide stays with the character.
+ */
+export const MAX_SHARERS = 6;
+export const splitCoinsCommandSchema = z
+  .object({
+    type: z.literal('SplitCoins'),
+    characterId: entityIdSchema,
+    amongIds: z
+      .array(entityIdSchema)
+      .min(1)
+      .max(MAX_SHARERS)
+      .refine((ids) => new Set(ids).size === ids.length, 'A member is named once'),
+  })
+  .strict();
+
+/**
  * Attunement to a magic item (docs/adr/0054-items-as-data.md §5): the DM's, or the table's for a
  * player during a Short Rest. Ending it on a cursed item is the DM's lifting of the curse.
  */
@@ -93,4 +111,5 @@ export const ITEM_PLAYER_COMMAND_TYPES = [
   'GiveItem',
   'DropItem',
   'TakeItem',
+  'SplitCoins',
 ] as const;

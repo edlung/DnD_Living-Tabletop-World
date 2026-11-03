@@ -483,8 +483,18 @@ export {
   takeItemCommandSchema,
   unequipItemCommandSchema,
   useItemCommandSchema,
+  splitCoinsCommandSchema,
+  MAX_SHARERS,
 } from './items/commands.ts';
 export { PARTY_STASH } from './items/views.ts';
+export {
+  COINAGES,
+  coinageOf,
+  coinsFor,
+  splitWorth,
+  type Coin,
+  type CoinCount,
+} from './items/coins.ts';
 export type { InventoryItem, InventoryResponse, InventoryWeapon } from './items/views.ts';
 export * from './play/index.ts';
 export * from './srd/index.ts';

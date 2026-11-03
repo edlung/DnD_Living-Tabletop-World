@@ -93,6 +93,15 @@ export function applyItemUsed(state: WorldState, event: Ev<'ItemUsed'>): WorldSt
   return put(state, itemId, { ...current, quantity: remaining });
 }
 
+/** A stack's count set anew as coins are exchanged (docs/adr/0057-encounters-maps-loot.md §7). */
+function applyItemStackChanged(state: WorldState, event: Ev<'ItemStackChanged'>): WorldState {
+  const { itemId, holderId, quantity } = event.payload;
+  const current = mustHold(state, itemId);
+  if (current.holderId !== holderId || current.slot !== null)
+    throw new CorruptHistoryError(`item ${itemId} is not ${holderId}'s to change`);
+  return put(state, itemId, { ...current, quantity });
+}
+
 export function applyItemRecovered(state: WorldState, event: Ev<'ItemRecovered'>): WorldState {
   const { itemId, holderId, recovered, quantity } = event.payload;
   const current = mustHold(state, itemId);
@@ -170,4 +179,48 @@ export function applyItemIdentified(state: WorldState, event: Ev<'ItemIdentified
   if (current.holderId !== holderId || current.unidentified !== true)
     throw new CorruptHistoryError(`item ${itemId} was not unidentified`);
   return put(state, itemId, rebuilt(current, { ...current, unidentified: false }));
+}
+
+/** The item events (docs/adr/0039-item-possession.md), folded each by its own rule. */
+export type ItemEventType =
+  | 'ItemGranted'
+  | 'ItemEquipped'
+  | 'ItemUnequipped'
+  | 'ItemUsed'
+  | 'ItemStackChanged'
+  | 'ItemAttuned'
+  | 'ItemChargesSpent'
+  | 'ItemChargesRegained'
+  | 'ItemIdentified'
+  | 'ItemRecovered'
+  | 'ItemTransferred'
+  | 'ItemSplit';
+
+export function applyItemEvent(state: WorldState, event: Ev<ItemEventType>): WorldState {
+  switch (event.type) {
+    case 'ItemGranted':
+      return applyItemGranted(state, event);
+    case 'ItemEquipped':
+      return applyItemEquipped(state, event);
+    case 'ItemUnequipped':
+      return applyItemUnequipped(state, event);
+    case 'ItemUsed':
+      return applyItemUsed(state, event);
+    case 'ItemStackChanged':
+      return applyItemStackChanged(state, event);
+    case 'ItemAttuned':
+      return applyItemAttuned(state, event);
+    case 'ItemChargesSpent':
+      return applyItemChargesSpent(state, event);
+    case 'ItemChargesRegained':
+      return applyItemChargesRegained(state, event);
+    case 'ItemIdentified':
+      return applyItemIdentified(state, event);
+    case 'ItemRecovered':
+      return applyItemRecovered(state, event);
+    case 'ItemTransferred':
+      return applyItemTransferred(state, event);
+    case 'ItemSplit':
+      return applyItemSplit(state, event);
+  }
 }

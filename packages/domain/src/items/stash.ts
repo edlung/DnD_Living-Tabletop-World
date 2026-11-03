@@ -1,9 +1,8 @@
 import { reject, type Decision, type ResolvedCommandOf } from '../kernel/decision.ts';
 import type { WorldState } from '../kernel/state.ts';
-import { isPartyMember } from '../knowledge/party.ts';
 import { isCombatant } from '../combat/records.ts';
 import { mayHandle, ownItem, played, portion } from './handling.ts';
-import { PARTY_STASH, possessionOf } from './records.ts';
+import { PARTY_STASH, isPartyCharacter, possessionOf } from './records.ts';
 
 /**
  * The party's stash (docs/adr/0057-encounters-maps-loot.md §7): one store every member of the party
@@ -22,7 +21,7 @@ export function decideStashItem(
 ): Decision {
   const own = ownItem(state, command.characterId, command.itemId);
   if (!own.ok) return own;
-  if (!isPartyMember(state, command.characterId))
+  if (!isPartyCharacter(state, command.characterId))
     return reject('FORBIDDEN', 'Only the party keeps a stash');
   const fighting = outsideFights(state, command.characterId);
   if (fighting) return fighting;
@@ -60,7 +59,7 @@ export function decideUnstashItem(
   if (possession?.holderId !== PARTY_STASH) return null;
   const actor = mayHandle(state, command.characterId);
   if (!actor.ok) return actor;
-  if (!isPartyMember(state, command.characterId))
+  if (!isPartyCharacter(state, command.characterId))
     return reject('NOT_PRESENT', `"${command.itemId}" is not here`, { itemId: command.itemId });
   const fighting = outsideFights(state, command.characterId);
   if (fighting) return fighting;

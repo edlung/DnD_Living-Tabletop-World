@@ -86,4 +86,20 @@ registerRussian({
   'It carries: {items}.': 'При нём: {items}.',
   'If it falls, what it carries lies here once the fight is over.':
     'Если существо падёт, его вещи останутся здесь после боя.',
+  // Coins shared out (Stage 670e)
+  'Share the coins out': 'Поделить монеты',
+  Among: 'Между',
+  You: 'Вы',
+  'Choose who shares them.': 'Выберите, между кем делить.',
+  'Each gets: {coins}': 'Каждому: {coins}',
+  'Left with you: {coins}': 'Остаётся у вас: {coins}',
+  'Too few to share; left with you: {coins}': 'Слишком мало, чтобы делить; остаётся у вас: {coins}',
+  'Share them out': 'Поделить',
+  '{count} pp': '{count} пм',
+  '{count} gp': '{count} зм',
+  '{count} ep': '{count} эм',
+  '{count} sp': '{count} см',
+  '{count} cp': '{count} мм',
+  'You shared the coins out. Your view has been refreshed.': 'Вы поделили монеты. Вид обновлён.',
+  'Shared the coins out among {names}': 'Монеты поделены между: {names}',
 });

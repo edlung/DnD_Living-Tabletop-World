@@ -55,6 +55,7 @@ const ITEM_COMMANDS: ReadonlySet<string> = new Set([
   'GiveItem',
   'DropItem',
   'TakeItem',
+  'SplitCoins',
 ]);
 
 const ITEM_DONE = {
@@ -327,6 +328,8 @@ export function outcomeMessage(t: Translate, outcome: PlayerOutcome | undefined)
         : outcome.trigger === 'spell'
           ? t('You let the spell happen.')
           : t('You did not react.');
+    case 'SplitCoins':
+      return t('You shared the coins out. Your view has been refreshed.');
     case 'TakeAction':
       return outcome.disarmed
         ? t('You disarm the trap: {name}.', { name: t(TRAP_WORDS[outcome.disarmed]) })

@@ -17,6 +17,7 @@ Who carries an item entity, whether it is worn, and what using it does. Authorit
 | Structural invariants                                  | `integrity.ts`  |
 | Carrier-only inventory view, and the party's stash     | `view.ts`       |
 | The party's stash: giving to it and taking from it     | `stash.ts`      |
+| Coins shared out with change (`SplitCoins`)            | `coins.ts`      |
 
 Rules:
 

@@ -12,8 +12,9 @@ import { closeCharacter, openCharacter, openSheet } from './support/shell.ts';
 /**
  * Loot, treasure and the party's stash (Stage 670e, docs/adr/0057-encounters-maps-loot.md §7). The
  * DM leaves silver at Market Square and Elowen picks it up; she puts part of her crowns in the
- * party's stash and takes them back. In a fight on the road the DM gives a goblin gold, the goblin
- * falls, and once the fight is over its gold lies on the road for her to take.
+ * party's stash and takes them back, then shares her coins out with Brann. In a fight on the road
+ * the DM gives a goblin gold, the goblin falls, and once the fight is over its gold lies on the
+ * road for her to take.
  */
 const expect = baseExpect.configure({ timeout: 15_000 });
 
@@ -67,6 +68,25 @@ test('the DM leaves treasure; Elowen takes it, and shares her crowns through the
   await expectAccessible(player, 'the party’s stash');
   await stash.getByRole('button', { name: 'Take Purse of crowns from the stash' }).click();
   await expect(stash).toContainText('Nothing in the stash yet');
+
+  // She shares her coins out with Brann, here with her: an even worth each, change made.
+  await sheet.getByText('Share the coins out', { exact: true }).click();
+  const share = sheet.locator('.share-coins');
+  for (const name of ['Maren Ashby', 'Tamsin Quickfoot'])
+    await share.getByLabel(name, { exact: true }).uncheck();
+  await expect(share.getByRole('status')).toContainText('Each gets');
+  await expectAccessible(player, 'coins shared out');
+  await share.getByRole('button', { name: 'Share them out', exact: true }).click();
+  await expect(
+    player.getByRole('status').filter({ hasText: 'You shared the coins out.' }),
+  ).toBeVisible();
+  const brann = (await (
+    await dm.request.get(`/api/campaigns/${campaign}/entities/brann-ironvale/inventory`, {
+      headers: { authorization: `Bearer ${TOKENS.dm}` },
+      params: { perspective: 'DM' },
+    })
+  ).json()) as { items: { catalog: { category: string } | null }[] };
+  expect(brann.items.some((item) => item.catalog?.category === 'coins')).toBe(true);
   await closeCharacter(player);
 });
 

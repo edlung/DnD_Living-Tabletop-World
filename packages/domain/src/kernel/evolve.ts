@@ -56,20 +56,7 @@ import {
   withoutAnsweredWish,
 } from '../assets/portrait-wishes.ts';
 import { applyChronicleGenerated, applyChronicleRestore } from '../chronicle/decide.ts';
-import {
-  applyItemEquipped,
-  applyItemAttuned,
-  applyItemChargesRegained,
-  applyItemChargesSpent,
-  applyItemIdentified,
-  applyItemGranted,
-  applyItemRestore,
-  applyItemSplit,
-  applyItemTransferred,
-  applyItemUnequipped,
-  applyItemRecovered,
-  applyItemUsed,
-} from '../items/evolve.ts';
+import { applyItemEvent, applyItemRestore } from '../items/evolve.ts';
 import { applyRelationshipChanged, applyRelationshipRestore } from '../relationships/evolve.ts';
 import { CorruptHistoryError } from './corrupt-history.ts';
 import type { RecordedEvent, Restore } from './events.ts';
@@ -275,27 +262,18 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
     case 'RelationshipChanged':
       return applyRelationshipChanged(state, event);
     case 'ItemGranted':
-      return applyItemGranted(state, event);
     case 'ItemEquipped':
-      return applyItemEquipped(state, event);
     case 'ItemUnequipped':
-      return applyItemUnequipped(state, event);
     case 'ItemUsed':
-      return applyItemUsed(state, event);
+    case 'ItemStackChanged':
     case 'ItemAttuned':
-      return applyItemAttuned(state, event);
     case 'ItemChargesSpent':
-      return applyItemChargesSpent(state, event);
     case 'ItemChargesRegained':
-      return applyItemChargesRegained(state, event);
     case 'ItemIdentified':
-      return applyItemIdentified(state, event);
     case 'ItemRecovered':
-      return applyItemRecovered(state, event);
     case 'ItemTransferred':
-      return applyItemTransferred(state, event);
     case 'ItemSplit':
-      return applyItemSplit(state, event);
+      return applyItemEvent(state, event);
     case 'WeatherSet':
       return applyWeatherSet(state, event);
     case 'CampaignOptionsSet':

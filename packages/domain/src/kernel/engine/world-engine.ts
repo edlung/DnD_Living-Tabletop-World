@@ -36,6 +36,7 @@ import {
 } from './event-store.ts';
 import { KeyedMutex } from './keyed-mutex.ts';
 import { commandSubmissionSchema, fingerprintOf, type CommandSubmission } from './submission.ts';
+import { SPLIT_COINS_IDS } from '../../items/coins.ts';
 
 /**
  * The World Engine: the only path to canonical mutation (invariant 1).
@@ -326,7 +327,10 @@ export class WorldEngine {
             command.type === 'ShowEvidence' ||
             command.type === 'InsightCheck'
           ? 1
-          : RESOLVED_ID_POOL;
+          : // Coins shared out mint the shares (docs/adr/0057-encounters-maps-loot.md §7).
+            command.type === 'SplitCoins'
+            ? SPLIT_COINS_IDS
+            : RESOLVED_ID_POOL;
     const ids = Array.from({ length: count }, () => this.#ids.next());
     // A potion of healing rolls its dice (docs/adr/0054-items-as-data.md §5), where the engine
     // has randomness to draw.

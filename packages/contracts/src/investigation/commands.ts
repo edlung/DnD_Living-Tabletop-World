@@ -170,6 +170,8 @@ export type PlayerOutcome =
       /** Hidden traps its Passive Perception noticed on the way: it stops short of them (§6). */
       readonly noticed?: readonly BoardTrapId[];
     }
+  /** Coins shared out among the party (docs/adr/0057-encounters-maps-loot.md §7). */
+  | { readonly kind: 'SplitCoins' }
   | {
       readonly kind: 'TakeAction';
       /** The hidden traps a Search or a Study found, and the trap Utilize disarmed (ADR 0057 §6). */

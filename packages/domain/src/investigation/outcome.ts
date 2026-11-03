@@ -109,6 +109,8 @@ function combatOutcome(
   events: readonly KernelEvent[],
 ): PlayerOutcome | undefined {
   switch (commandType) {
+    case 'SplitCoins':
+      return { kind: 'SplitCoins' };
     // A Search's or a Study's traps found, a trap disarmed (ADR 0057 §6); otherwise the rolls say.
     case 'TakeAction': {
       const found = trapChanges(events, 'found');

@@ -3,7 +3,8 @@ import { z } from 'zod';
 
 /** Item possession events and undo restores (docs/adr/0039-item-possession.md). */
 const slot = z.enum(EQUIP_SLOTS);
-const quantity = z.number().int().min(0).max(99);
+// A stack of coins shared out may hold more than a grant's 99 (docs/adr/0057-…md §7).
+const quantity = z.number().int().min(0).max(99_999);
 
 export const itemGrantedPayloadSchema = z
   .object({
@@ -19,6 +20,14 @@ export const itemGrantedPayloadSchema = z
     /** Given unidentified (§5). */
     unidentified: z.literal(true).optional(),
   })
+  .strict();
+
+/**
+ * A stack's count set anew: coins exchanged as they are shared out
+ * (docs/adr/0057-encounters-maps-loot.md §7); 0 leaves the stack spent.
+ */
+export const itemStackChangedPayloadSchema = z
+  .object({ itemId: entityIdSchema, holderId: entityIdSchema, quantity })
   .strict();
 
 /** A magic item's charges expended (docs/adr/0054-items-as-data.md §5): `left` of them after. */

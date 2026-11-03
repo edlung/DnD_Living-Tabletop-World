@@ -85,5 +85,6 @@ one past twice it a Speed of 0 (docs/adr/0056-characters-from-the-srd.md, 660e n
 
 §7's holder is a character, an NPC or a creature, or the party's stash (`PARTY_STASH`, no entity);
 `GrantItem` to a place leaves the item lying there with no holder. What a creature or NPC that fell
-in a fight carried, unworn, lies where the fight was once it ends
+in a fight carried, unworn, lies where the fight was once it ends; coins shared out
+(`SplitCoins`) are minted anew in stacks that may hold more than 99
 (docs/adr/0057-encounters-maps-loot.md, 670e notes).

@@ -13,6 +13,7 @@ type ItemEvent = Extract<
       | 'ItemRecovered'
       | 'ItemTransferred'
       | 'ItemSplit'
+      | 'ItemStackChanged'
       | 'ItemAttuned'
       | 'ItemChargesSpent'
       | 'ItemChargesRegained'
@@ -69,6 +70,7 @@ export function itemFootprint(event: ItemEvent): Footprint {
       };
     case 'ItemUsed':
     case 'ItemRecovered':
+    case 'ItemStackChanged':
       return {
         reads: [
           clock,

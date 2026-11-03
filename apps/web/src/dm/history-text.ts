@@ -103,6 +103,7 @@ export const STEP_TEXT: Readonly<Record<KernelCommandType, string>> = {
   GiveItem: 'give item',
   DropItem: 'drop item',
   TakeItem: 'take item',
+  SplitCoins: 'share coins out',
   AttuneItem: 'attune to an item',
   IdentifyItem: 'identify an item',
   DawnRecharge: 'dawn: charges regained',
@@ -252,6 +253,10 @@ export function describePlayerAction(
       return t('Dropped {item}', { item: name(command.itemId) });
     case 'TakeItem':
       return t('Picked up {item}', { item: name(command.itemId) });
+    case 'SplitCoins':
+      return t('Shared the coins out among {names}', {
+        names: command.amongIds.map(name).join(', '),
+      });
   }
 }
 
