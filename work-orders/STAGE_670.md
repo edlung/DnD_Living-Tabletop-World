@@ -43,7 +43,9 @@ Authority: owner approval 2026-11-02 (`reviews/OWNER_FULL_GAME_2026-11-02.json`)
   the party's stash. Part 2 done: coins shared out with change made. 670e done.
 - 670f — Merchants and crafting: an NPC's stock and prices, buying and selling at the SRD's rates
   with change made; crafting by the SRD (tools, half cost in materials, cost ÷ 10 days, helpers),
-  Potions of Healing and Spell Scrolls, projects advanced by days of downtime.
+  Potions of Healing and Spell Scrolls, projects advanced by days of downtime. Part 1 done:
+  merchants — the DM's shop on an NPC (price factor, wares from the catalog), buying with the
+  change made and selling at half the worth under Trade, the shop live for every viewer.
 - 670g — The world map and travel: a region's map with pins, routes with miles, terrain and roads,
   the party travelling at a pace, the clock advancing, extended travel's Constitution saves.
 

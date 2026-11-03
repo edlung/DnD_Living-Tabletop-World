@@ -429,6 +429,14 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
           value: before.statBlocks.get(event.payload.entityId) ?? null,
         });
         break;
+      // An NPC's shop (docs/adr/0057-encounters-maps-loot.md §8).
+      case 'MerchantSet':
+        restores.push({
+          fact: 'merchant',
+          npcId: event.payload.npcId,
+          value: before.merchants.get(event.payload.npcId) ?? null,
+        });
+        break;
       case 'AssetRequested':
       case 'PortraitAsked':
       case 'AssetApproved':

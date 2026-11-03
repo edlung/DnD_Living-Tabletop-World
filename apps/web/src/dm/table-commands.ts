@@ -32,4 +32,5 @@ export type DmTableCommand = KernelCommandOf<
   | 'StartSession'
   | 'EndSession'
   | 'SetCampaignOptions'
+  | 'SetMerchant'
 >;

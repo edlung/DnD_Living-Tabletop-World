@@ -11,6 +11,7 @@ import { useCallback } from 'react';
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
 import { NpcProfile, type ProfileEditing } from '../authoring/npc-profile.tsx';
+import { NpcShop } from '../dm/npc-shop.tsx';
 import { PerformNpc } from '../dm/perform-npc.tsx';
 import { ContextActions } from '../exploration/context-actions.tsx';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
@@ -169,6 +170,7 @@ export function EntityDetails({
                 knowledge={knowledge}
                 canAct={canAct}
                 locked={locked}
+                revision={revision}
                 conversing={conversing}
                 onShowConversation={onShowConversation}
                 onRun={onRun}
@@ -185,6 +187,10 @@ export function EntityDetails({
           )}
           {effectivePerspective === 'DM' && kind === 'npc' && profileEditing && name !== null && (
             <NpcProfile entityId={entityId} name={name} editing={profileEditing} />
+          )}
+          {/* An NPC's shop (docs/adr/0057-encounters-maps-loot.md §8). */}
+          {effectivePerspective === 'DM' && kind === 'npc' && (
+            <NpcShop api={api} npcId={entityId} locked={locked} revision={revision} onRun={onRun} />
           )}
           {effectivePerspective === 'DM' && kind === 'npc' && (
             <PerformNpc

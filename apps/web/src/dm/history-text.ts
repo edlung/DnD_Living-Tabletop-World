@@ -104,6 +104,9 @@ export const STEP_TEXT: Readonly<Record<KernelCommandType, string>> = {
   DropItem: 'drop item',
   TakeItem: 'take item',
   SplitCoins: 'share coins out',
+  SetMerchant: 'keep a shop',
+  BuyItem: 'buy an item',
+  SellItem: 'sell an item',
   AttuneItem: 'attune to an item',
   IdentifyItem: 'identify an item',
   DawnRecharge: 'dawn: charges regained',
@@ -256,6 +259,16 @@ export function describePlayerAction(
     case 'SplitCoins':
       return t('Shared the coins out among {names}', {
         names: command.amongIds.map(name).join(', '),
+      });
+    case 'BuyItem':
+      return t('Bought {item} from {target}', {
+        item: name(command.itemId),
+        target: name(command.merchantId),
+      });
+    case 'SellItem':
+      return t('Sold {item} to {target}', {
+        item: name(command.itemId),
+        target: name(command.merchantId),
       });
   }
 }

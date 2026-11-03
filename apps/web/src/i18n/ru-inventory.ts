@@ -102,4 +102,32 @@ registerRussian({
   '{count} cp': '{count} мм',
   'You shared the coins out. Your view has been refreshed.': 'Вы поделили монеты. Вид обновлён.',
   'Shared the coins out among {names}': 'Монеты поделены между: {names}',
+  // Merchants (Stage 670f)
+  'Opening the shop…': 'Открываем лавку…',
+  'Your coins: {worth}': 'Ваши монеты: {worth}',
+  none: 'нет',
+  'For sale': 'На продажу',
+  'Nothing for sale right now.': 'Сейчас ничего не продаётся.',
+  'Buy {item} for {price}': 'Купить {item} за {price}',
+  Buy: 'Купить',
+  'Not enough coins': 'Не хватает монет',
+  'What they would pay you': 'Что у вас купят',
+  'You carry nothing they would buy.': 'У вас нет ничего, что здесь купят.',
+  'Sell {item} for {price}': 'Продать {item} за {price}',
+  Sell: 'Продать',
+  Shop: 'Лавка',
+  'Add wares from the catalog': 'Добавить товар из каталога',
+  'Keeps a shop': 'Держит лавку',
+  'No shop': 'Нет лавки',
+  'Prices at {percent}% of the worth': 'Цены: {percent}% от стоимости',
+  'Nothing for sale yet: give it wares from the catalog.':
+    'Пока нечего продать: выдайте товары из каталога.',
+  'For sale: {items}.': 'В продаже: {items}.',
+  'You bought it, and paid. Your view has been refreshed.':
+    'Вы купили вещь и расплатились. Вид обновлён.',
+  'You sold it, and were paid. Your view has been refreshed.':
+    'Вы продали вещь и получили деньги. Вид обновлён.',
+  'not enough coins': 'не хватает монет',
+  'Bought {item} from {target}': 'Куплено у {target}: {item}',
+  'Sold {item} to {target}': 'Продано ({target}): {item}',
 });

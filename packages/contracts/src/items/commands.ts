@@ -23,6 +23,8 @@ export const grantItemCommandSchema = z
     quantity: z.number().int().min(1).max(99).default(1),
     /** Given unidentified: its carrier sees what it looks like until it is identified (§5). */
     unidentified: z.literal(true).optional(),
+    /** Given to a merchant as wares (docs/adr/0057-encounters-maps-loot.md §8). */
+    forSale: z.literal(true).optional(),
   })
   .strict();
 
@@ -57,6 +59,23 @@ export const dropItemCommandSchema = z
   .object({ type: z.literal('DropItem'), ...acting, quantity: partOfStack })
   .strict();
 export const takeItemCommandSchema = z.object({ type: z.literal('TakeItem'), ...acting }).strict();
+
+/**
+ * Merchants (docs/adr/0057-encounters-maps-loot.md §8): the DM makes an NPC a merchant, its prices
+ * a factor in percent of the catalog's worth, or a merchant no more (null). What it sells is what
+ * it carries; a character here buys a stack or part of one, or sells what it carries unworn, the
+ * coins changing hands at once with change made.
+ */
+export const setMerchantCommandSchema = z
+  .object({
+    type: z.literal('SetMerchant'),
+    npcId: entityIdSchema,
+    priceFactor: z.number().int().min(25).max(500).nullable(),
+  })
+  .strict();
+const trading = { ...acting, merchantId: entityIdSchema, quantity: partOfStack };
+export const buyItemCommandSchema = z.object({ type: z.literal('BuyItem'), ...trading }).strict();
+export const sellItemCommandSchema = z.object({ type: z.literal('SellItem'), ...trading }).strict();
 
 /**
  * Coins shared out (docs/adr/0057-encounters-maps-loot.md §7): the character's coins of each
@@ -112,4 +131,6 @@ export const ITEM_PLAYER_COMMAND_TYPES = [
   'DropItem',
   'TakeItem',
   'SplitCoins',
+  'BuyItem',
+  'SellItem',
 ] as const;

@@ -10,7 +10,7 @@ import type { Footprint } from './facts.ts';
  */
 export function tableFootprint(
   event: KernelEventOf<
-    'PortraitAsked' | 'CampaignOptionsSet' | 'WeatherSet' | 'RelationshipChanged'
+    'PortraitAsked' | 'CampaignOptionsSet' | 'WeatherSet' | 'RelationshipChanged' | 'MerchantSet'
   >,
   clock: FactKey,
 ): Footprint {
@@ -22,6 +22,12 @@ export function tableFootprint(
       };
     case 'CampaignOptionsSet':
       return { reads: [facts.campaign()], writes: [facts.campaignOptions()] };
+    // An NPC's shop (docs/adr/0057-encounters-maps-loot.md §8).
+    case 'MerchantSet':
+      return {
+        reads: [...entityChecked(event.payload.npcId)],
+        writes: [facts.merchant(event.payload.npcId)],
+      };
     case 'WeatherSet':
       return {
         reads: [clock, ...entityChecked(event.payload.locationId)],

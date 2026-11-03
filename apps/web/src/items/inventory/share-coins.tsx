@@ -1,22 +1,9 @@
-import { COINAGES, coinsFor, splitWorth, type CoinCount, type InventoryItem } from '@ltw/contracts';
-import { useT, type Translate } from '@ltw/ui';
+import { COINAGES, coinsFor, splitWorth, type InventoryItem } from '@ltw/contracts';
+import { useT } from '@ltw/ui';
 import { useId, useState } from 'react';
 
+import { coinWords } from '../coin-words.ts';
 import type { Recipient } from '../inventory-panel.tsx';
-
-/** A coin's count as the purse writes it: "5 cr", "12 gp". */
-const AMOUNTS: Readonly<Record<string, string>> = {
-  'gold-crown': '{count} cr',
-  'silver-mark': '{count} m',
-  'copper-penny': '{count} p',
-  'srd-platinum-piece': '{count} pp',
-  'srd-gold-piece': '{count} gp',
-  'srd-electrum-piece': '{count} ep',
-  'srd-silver-piece': '{count} sp',
-  'srd-copper-piece': '{count} cp',
-};
-const coinWords = (t: Translate, counts: readonly CoinCount[]) =>
-  counts.map((one) => t(AMOUNTS[one.catalogId] ?? '{count}', { count: one.count })).join(' · ');
 
 /**
  * Coins shared out among the party here (docs/adr/0057-encounters-maps-loot.md §7): the members

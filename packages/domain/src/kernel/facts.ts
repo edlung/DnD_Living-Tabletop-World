@@ -374,6 +374,7 @@ export function footprintOf(event: KernelEvent): Footprint {
     case 'CampaignOptionsSet':
     case 'WeatherSet':
     case 'RelationshipChanged':
+    case 'MerchantSet':
       return tableFootprint(event, clock);
     case 'ItemGranted':
     case 'ItemEquipped':
@@ -473,6 +474,8 @@ export function restoredFacts(restore: Restore): FactKey[] {
       return [facts.death(restore.entityId)];
     case 'portraitWish':
       return [facts.portraitWish(restore.characterId)];
+    case 'merchant':
+      return [facts.merchant(restore.npcId)];
     case 'chronicle':
       return [facts.chronicle(restore.chronicleId)];
     case 'possession':

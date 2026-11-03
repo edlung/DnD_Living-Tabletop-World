@@ -39,6 +39,7 @@ export function decideGrantItem(
         ...(base !== null && typeof base !== 'string' ? { baseCatalogId: base.itemId } : {}),
         ...(charges === undefined ? {} : { charges }),
         ...(command.unidentified ? { unidentified: true as const } : {}),
+        ...(command.forSale ? { forSale: true as const } : {}),
       },
     },
     ...(lying

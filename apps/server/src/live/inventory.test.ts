@@ -62,6 +62,8 @@ describe('the coverage inventory', () => {
       '/campaigns/ravenford/entities/mira-vale/context ?',
       '/campaigns/ravenford/entities/mira-vale/knowledge ?',
       '/campaigns/ravenford/entities/mira-vale/presentation ?',
+      // A focused merchant's shop (ADR 0057 §8).
+      '/campaigns/ravenford/merchants/mira-vale ?',
       '/campaigns/ravenford/locations/market-square/scene ?',
     ]);
     for (const view of views) {
@@ -90,6 +92,7 @@ describe('the coverage inventory', () => {
       '/campaigns/ravenford/assets',
       '/campaigns/ravenford/entities/mira-vale/knowledge ?',
       '/campaigns/ravenford/entities/mira-vale/presentation ?',
+      '/campaigns/ravenford/merchants/mira-vale ?',
     ]);
     const history = views.find((view) => view.url.includes('/dm/history'));
     expect(new URL(history?.url ?? '', 'http://test').searchParams.get('perspective')).toBe('DM');

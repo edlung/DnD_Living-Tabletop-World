@@ -18,6 +18,9 @@ Who carries an item entity, whether it is worn, and what using it does. Authorit
 | Carrier-only inventory view, and the party's stash     | `view.ts`       |
 | The party's stash: giving to it and taking from it     | `stash.ts`      |
 | Coins shared out with change (`SplitCoins`)            | `coins.ts`      |
+| A holder's coins spent and paid, the change made       | `purse.ts`      |
+| Merchants: prices, `SetMerchant`, buying and selling   | `trade.ts`      |
+| A merchant's shop as a viewer sees it                  | `trade-view.ts` |
 
 Rules:
 
@@ -33,3 +36,7 @@ Rules:
   magic item), never its magic, charges or words; its curse shows to the DM, or to its carrier once
   attuned (`view.ts`). Dice (a potion's healing, the dawn's charges) come from the command's
   entropy, which the World Engine draws.
+- A merchant sells only its wares (`Possession.forSale`), never its own things; a transfer clears
+  the mark unless the event sets it (a merchant buying). Trade pools every coin and mints the change
+  in the holder's home coinage (`purse.ts`); the shop shows to the DM and to a character at the
+  merchant's place that knows it (docs/adr/0057-encounters-maps-loot.md §8).

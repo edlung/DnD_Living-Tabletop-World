@@ -25,6 +25,7 @@ const rebuilt = (
     readonly saveDelta?: number | undefined;
     readonly charges?: number | undefined;
     readonly unidentified?: boolean | undefined;
+    readonly forSale?: boolean | undefined;
   },
 ): Possession => ({
   catalogId: core.catalogId,
@@ -37,6 +38,7 @@ const rebuilt = (
   ...(more.saveDelta ? { saveDelta: more.saveDelta } : {}),
   ...(more.charges === undefined ? {} : { charges: more.charges }),
   ...(more.unidentified === true ? { unidentified: true as const } : {}),
+  ...(more.forSale === true ? { forSale: true as const } : {}),
 });
 
 const put = (state: WorldState, itemId: string, value: Possession): WorldState => ({
@@ -115,13 +117,14 @@ export function applyItemTransferred(state: WorldState, event: Ev<'ItemTransferr
   const current = possessionOf(state, itemId);
   if (current && (current.holderId !== from || current.slot !== null))
     throw new CorruptHistoryError(`item ${itemId} was not carried by ${from ?? 'nobody'}`);
-  return put(
-    state,
-    itemId,
-    current
-      ? { ...current, holderId: to }
-      : { catalogId, holderId: to, quantity, slot: null, acDelta: 0 },
-  );
+  // A thing changing hands is wares only when sold to a merchant (ADR 0057 §8).
+  const { forSale } = event.payload;
+  const moved: Possession = current
+    ? { ...current, holderId: to }
+    : { catalogId, holderId: to, quantity, slot: null, acDelta: 0 };
+  const rest: Possession = { ...moved };
+  delete (rest as { forSale?: true }).forSale;
+  return put(state, itemId, forSale ? { ...rest, forSale: true } : rest);
 }
 
 export function applyItemSplit(state: WorldState, event: Ev<'ItemSplit'>): WorldState {

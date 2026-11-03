@@ -76,6 +76,7 @@ import './styles/board-terrain.css';
 import './styles/images.css';
 import './styles/battle-maps.css';
 import './styles/items.css';
+import './styles/trade.css';
 import './styles/character.css';
 import './styles/character-tabs.css';
 import './styles/dice.css';

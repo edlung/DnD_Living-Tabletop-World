@@ -130,24 +130,7 @@ export const withSrdWords = (
   body: InventoryResponse,
   language: ReferenceLanguage = 'en',
 ): InventoryResponse => {
-  const worded = (item: InventoryItem): InventoryItem => {
-    const catalog = item.catalog;
-    if (!catalog) return item;
-    const words = srdTextOf(catalog.itemId, language);
-    const entry = itemEntry(catalog.itemId);
-    const shown = entry ? entryIn(entry, language) : null;
-    const translated = shown !== null && shown !== entry;
-    return {
-      ...item,
-      catalog: {
-        ...catalog,
-        ...(words ? { text: words } : {}),
-        ...(translated
-          ? { name: shown.name, description: shown.description, untranslated: false }
-          : {}),
-      },
-    };
-  };
+  const worded = (item: InventoryItem) => wordedItem(item, language);
   // The party's stash too (docs/adr/0057-encounters-maps-loot.md §7).
   return {
     ...body,
@@ -155,3 +138,26 @@ export const withSrdWords = (
     ...(body.stash ? { stash: body.stash.map(worded) } : {}),
   };
 };
+
+/** One item with its SRD entry's words beside it, named in the campaign's language. */
+export function wordedItem<T extends InventoryItem>(
+  item: T,
+  language: ReferenceLanguage = 'en',
+): T {
+  const catalog = item.catalog;
+  if (!catalog) return item;
+  const words = srdTextOf(catalog.itemId, language);
+  const entry = itemEntry(catalog.itemId);
+  const shown = entry ? entryIn(entry, language) : null;
+  const translated = shown !== null && shown !== entry;
+  return {
+    ...item,
+    catalog: {
+      ...catalog,
+      ...(words ? { text: words } : {}),
+      ...(translated
+        ? { name: shown.name, description: shown.description, untranslated: false }
+        : {}),
+    },
+  };
+}

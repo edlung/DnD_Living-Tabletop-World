@@ -105,6 +105,7 @@ export {
 export { campaignSession } from './knowledge/session.ts';
 export { characterSheetView } from './character/view.ts';
 export { carriedWeightLb, inventoryView } from './items/view.ts';
+export { merchantOffer } from './items/trade-view.ts';
 export { grantRefusal } from './items/decide.ts';
 export { baseOfGrant, itemEntry, madeOn } from './items/catalog.ts';
 export {

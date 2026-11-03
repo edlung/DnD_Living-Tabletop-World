@@ -31,12 +31,15 @@ export function GiveItemForm({
   holderId,
   locked,
   place = false,
+  forSale = false,
 }: {
   readonly api: WorldApi;
   readonly holderId: string;
   readonly locked: boolean;
   /** `holderId` is a place: the item is treasure lying there. */
   readonly place?: boolean;
+  /** `holderId` is a merchant: the item is its wares (ADR 0057 §8). */
+  readonly forSale?: boolean;
 }) {
   const t = useT();
   const isDm = useDiceTable()?.isDm ?? false;
@@ -49,8 +52,22 @@ export function GiveItemForm({
         setOpen(event.currentTarget.open);
       }}
     >
-      <summary>{place ? t('Leave treasure here') : t('Give an item from the catalog')}</summary>
-      {open && <GiveItemFields api={api} holderId={holderId} locked={locked} place={place} />}
+      <summary>
+        {place
+          ? t('Leave treasure here')
+          : forSale
+            ? t('Add wares from the catalog')
+            : t('Give an item from the catalog')}
+      </summary>
+      {open && (
+        <GiveItemFields
+          api={api}
+          holderId={holderId}
+          locked={locked}
+          place={place}
+          forSale={forSale}
+        />
+      )}
     </details>
   );
 }
@@ -60,10 +77,12 @@ function GiveItemFields({
   holderId,
   locked,
   place,
+  forSale,
 }: {
   readonly api: WorldApi;
   readonly holderId: string;
   readonly place: boolean;
+  readonly forSale: boolean;
   readonly locked: boolean;
 }) {
   const t = useT();
@@ -119,6 +138,7 @@ function GiveItemFields({
           quantity,
           ...(base ? { baseCatalogId: base.itemId } : {}),
           ...(unknown && picked.rarity !== null ? { unidentified: true } : {}),
+          ...(forSale ? { forSale: true } : {}),
         },
         AbortSignal.timeout(20_000),
       );

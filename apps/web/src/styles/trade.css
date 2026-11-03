@@ -1,0 +1,108 @@
+/* Loot, the party's stash, coins shared out and merchants (docs/adr/0057-encounters-maps-loot.md
+   §7–8), beside the pack's own styles (items.css). */
+
+/* The party's stash below a member's pack (items/inventory/stash.tsx; ADR 0057 §7): each stack on
+   its own row, the button that takes it at the row's end. */
+.party-stash {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+.party-stash h3 {
+  margin: 0;
+}
+.party-stash-list {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.party-stash-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  min-height: 40px;
+}
+.party-stash-list span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+/* Coins shared out (items/inventory/share-coins.tsx; ADR 0057 §7): who shares them, what each gets
+   line by line, then the button. */
+.share-coins {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0.5rem 0 1rem;
+}
+.share-coins[open] > summary {
+  margin-bottom: 0.25rem;
+}
+.share-coins-members {
+  display: grid;
+  gap: 0.35rem;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.share-coins-members legend {
+  margin-bottom: 0.35rem;
+  padding: 0;
+  color: var(--text-muted);
+}
+.share-coins-preview {
+  display: grid;
+  gap: 0.15rem;
+  margin: 0;
+}
+.share-coins > .primary-button {
+  justify-self: start;
+}
+
+/* A merchant's shop under Trade, and the DM's shop on an NPC (items/shop-panel.tsx,
+   dm/npc-shop.tsx; ADR 0057 §8): each ware on its row — its name, its price, the button. */
+.shop,
+.npc-shop {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+.shop h4,
+.npc-shop h3 {
+  margin: 0.5rem 0 0;
+}
+.shop-purse {
+  margin: 0;
+  color: var(--text-muted);
+}
+.shop-list {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.shop-list li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 40px;
+}
+.shop-name {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.shop-short {
+  display: block;
+  color: var(--text-muted);
+}
+.shop-price {
+  color: var(--gold-bright);
+  white-space: nowrap;
+}

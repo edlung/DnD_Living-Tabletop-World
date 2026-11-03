@@ -43,7 +43,11 @@ export function inventoryView(
 }
 
 /** One item as its viewer may know it: a magic one's base, an unidentified one's look (§5). */
-function inventoryItem(state: WorldState, dm: boolean, itemId: string): InventoryItem | null {
+export function inventoryItem(
+  state: WorldState,
+  dm: boolean,
+  itemId: string,
+): InventoryItem | null {
   const possession = possessionOf(state, itemId);
   const entity = state.entities.get(itemId);
   if (!possession || entity?.status !== 'active') return null;

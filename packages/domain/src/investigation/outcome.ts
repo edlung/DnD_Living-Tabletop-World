@@ -111,6 +111,10 @@ function combatOutcome(
   switch (commandType) {
     case 'SplitCoins':
       return { kind: 'SplitCoins' };
+    case 'BuyItem':
+      return { kind: 'Trade', action: 'buy' };
+    case 'SellItem':
+      return { kind: 'Trade', action: 'sell' };
     // A Search's or a Study's traps found, a trap disarmed (ADR 0057 §6); otherwise the rolls say.
     case 'TakeAction': {
       const found = trapChanges(events, 'found');

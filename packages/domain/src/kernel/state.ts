@@ -22,6 +22,7 @@ import { EMPTY_EPISTEMICS, type EpistemicState } from '../contradiction/records.
 import { EMPTY_INVESTIGATION, type InvestigationState } from '../investigation/records.ts';
 import type { KnowledgeRecord } from '../knowledge/records.ts';
 import type { MemoryRecord, SessionRecord } from '../memory/records.ts';
+import type { MerchantRecord } from '../items/trade.ts';
 
 /**
  * Canonical World Kernel state: the fold of a campaign's event stream
@@ -139,6 +140,8 @@ export interface WorldState {
   readonly deaths: ReadonlyMap<string, DeathRecord>;
   /** A character's ID → the portrait its player asked for, until the DM requests one (§5). */
   readonly portraitWishes: ReadonlyMap<string, string>;
+  /** An NPC's ID → its shop (docs/adr/0057-encounters-maps-loot.md §8); absent: no merchant. */
+  readonly merchants: ReadonlyMap<string, MerchantRecord>;
 }
 
 export const EMPTY_WORLD_STATE: WorldState = {
@@ -169,6 +172,7 @@ export const EMPTY_WORLD_STATE: WorldState = {
   possessions: new Map(),
   deaths: new Map(),
   portraitWishes: new Map(),
+  merchants: new Map(),
 };
 
 /** Kinds that occupy a location. Locations nest via `parentId`; factions are abstract. */

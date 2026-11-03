@@ -15,6 +15,8 @@ export type ExplorationCommand = KernelCommandOf<
   | 'DropItem'
   | 'TakeItem'
   | 'SplitCoins'
+  | 'BuyItem'
+  | 'SellItem'
 >;
 
 /**

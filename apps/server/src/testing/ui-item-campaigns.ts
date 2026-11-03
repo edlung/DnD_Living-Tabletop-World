@@ -46,6 +46,8 @@ export const UI_ITEM_CAMPAIGNS = {
   portrait: 'ui-portrait',
   /** Treasure the DM leaves at a place, and the party's stash (ADR 0057 §7). */
   loot: 'ui-loot',
+  /** A merchant at Market Square (ADR 0057 §8). */
+  trade: 'ui-trade',
 } as const;
 
 const DM = { actorId: 'dm-ravenford', kind: 'user' } as const;
@@ -109,6 +111,7 @@ export async function seedUiItemCampaigns(engine: WorldEngine): Promise<void> {
     [UI_ITEM_CAMPAIGNS.raisingRu, 'ru'],
     [UI_ITEM_CAMPAIGNS.portrait, 'en'],
     [UI_ITEM_CAMPAIGNS.loot, 'en'],
+    [UI_ITEM_CAMPAIGNS.trade, 'en'],
   ] as const) {
     const seed = await loadRavenfordSeed(language === 'ru' ? RAVENFORD_RU_FIXTURES_DIR : undefined);
     for (const input of seed.submissions) {

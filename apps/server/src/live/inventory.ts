@@ -105,6 +105,11 @@ export function coverageInventory(target: LiveTarget): ViewRequest[] {
     // Default deterministic ranking: `ranking=ai` is never requested here.
     if (acting) views.push(scoped(`${entity}/context`, true));
     views.push(scoped(`${entity}/knowledge`, true), scoped(`${entity}/presentation`, true));
+    // A focused merchant's shop (ADR 0057 §8), as the DM and a character at its place read it:
+    // its wares, its prices and the character's purse change with no other view.
+    if (acting || target.kind === 'DM') {
+      views.push(scoped(`merchants/${encodeURIComponent(target.focus)}`, true));
+    }
   }
   if (target.place !== null) {
     views.push(scoped(`locations/${encodeURIComponent(target.place)}/scene`, true));

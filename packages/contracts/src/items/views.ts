@@ -76,6 +76,23 @@ export interface InventoryWeapon {
  */
 export const PARTY_STASH = 'party-stash';
 
+/**
+ * `GET /campaigns/:campaignId/merchants/:npcId?perspective=`: a merchant's offer to a character at
+ * its place, or to the DM (docs/adr/0057-encounters-maps-loot.md §8). What it sells, a price
+ * apiece in copper each; what it would pay apiece for each thing the viewer carries unworn; and
+ * the worth of the viewer's coins. Never what the merchant carries beyond its wares.
+ */
+export interface MerchantOfferResponse {
+  readonly perspective: string;
+  readonly merchant: EntityRef;
+  readonly priceFactor: number;
+  readonly stock: readonly (InventoryItem & { readonly priceCp: number })[];
+  readonly offers: readonly (InventoryItem & { readonly priceCp: number })[];
+  readonly purseCp: number;
+  /** The coinage the viewer's coins are mostly in: its index in `COINAGES`. */
+  readonly coinage: number;
+}
+
 /** The items a character carries; shown to the DM or to that character's own perspective only. */
 export interface InventoryResponse {
   readonly perspective: string;

@@ -97,14 +97,26 @@ export function contextActions(inputs: ContextInputs, target: EntityState): Cont
     const counter = frame && !self ? counterspellVerdict(frame, inputs, target.entityId) : null;
     if (counter) add('counterspell', 'present-alive', () => counter, 'high');
     if (npc) {
-      // Talk and Insight are NPC dialogue (ADR 0020 §1); Trade is not carried out in the slice.
+      // Talk and Insight are NPC dialogue (ADR 0020 §1); Trade, with a merchant.
       add(
         'talk',
         'present-alive',
         () => capableVerdict(sheet),
         present && alive ? 'medium' : 'low',
       );
-      add('trade', 'present-alive', () => unavailable(capableVerdict(sheet)), 'low');
+      // A merchant trades outside a fight (docs/adr/0057-encounters-maps-loot.md §8).
+      const merchant = inputs.state.merchants.has(target.entityId);
+      add(
+        'trade',
+        'present-alive',
+        () =>
+          !merchant
+            ? unavailable(capableVerdict(sheet))
+            : isCombatant(inputs.state, inputs.actor.entityId)
+              ? illegalBecause('IN_COMBAT')
+              : capableVerdict(sheet),
+        merchant ? 'medium' : 'low',
+      );
     }
     add('inspect', 'present', () => LEGAL, 'low');
     if (npc) {

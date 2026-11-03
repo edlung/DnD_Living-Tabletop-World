@@ -52,6 +52,8 @@ export const facts = {
   /** A player's wish for their character's portrait (docs/adr/0056-…md §5). */
   portraitWish: (characterId: string): FactKey => `portraitwish:${characterId}`,
   chronicle: (chronicleId: string): FactKey => `chronicle:${chronicleId}`,
+  /** An NPC's shop (docs/adr/0057-encounters-maps-loot.md §8). */
+  merchant: (npcId: string): FactKey => `merchant:${npcId}`,
   possession: (itemId: string): FactKey => `possession:${itemId}`,
   /** A holder's worn set: slot occupancy is a premise of every equip (ADR 0039). */
   equipment: (holderId: string): FactKey => `equipment:${holderId}`,

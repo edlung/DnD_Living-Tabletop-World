@@ -172,6 +172,8 @@ export type PlayerOutcome =
     }
   /** Coins shared out among the party (docs/adr/0057-encounters-maps-loot.md §7). */
   | { readonly kind: 'SplitCoins' }
+  /** A thing bought from a merchant, or sold to one (docs/adr/0057-encounters-maps-loot.md §8). */
+  | { readonly kind: 'Trade'; readonly action: 'buy' | 'sell' }
   | {
       readonly kind: 'TakeAction';
       /** The hidden traps a Search or a Study found, and the trap Utilize disarmed (ADR 0057 §6). */

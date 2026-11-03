@@ -16,6 +16,7 @@ import { ConversationOptions } from './conversation-options.tsx';
 import { Hypothesis } from './hypothesis.tsx';
 import { Recall } from './recall.tsx';
 import { SummonCast } from './summon-cast.tsx';
+import { ShopPanel } from '../items/shop-panel.tsx';
 import type { ExplorationIntent } from './use-action.ts';
 import { readableLabel, useT, type Translate } from '@ltw/ui';
 import { distinctNames, unidentifiedName } from '../world/entity-words.ts';
@@ -32,6 +33,7 @@ export const executable: ReadonlySet<string> = new Set([
   'enter_location',
   'take_item',
   'recall',
+  'trade',
 ]);
 
 /**
@@ -55,6 +57,7 @@ export function ContextActions({
   knowledge,
   canAct,
   locked,
+  revision,
   conversing,
   onShowConversation,
   onRun,
@@ -65,6 +68,8 @@ export function ContextActions({
   readonly knowledge: readonly KnowledgeView[];
   readonly canAct: boolean;
   readonly locked: boolean;
+  /** The screen's action count (a shop open under Trade reads again after a trade). */
+  readonly revision: number;
   /** The conversation with this NPC is shown: its options live there. */
   readonly conversing: boolean;
   readonly onShowConversation: () => void;
@@ -75,6 +80,8 @@ export function ContextActions({
   const [recall, setRecall] = useState(false);
   // A summoning spell asks what it calls up before it is cast (docs/adr/0056-…md §5).
   const [summoning, setSummoning] = useState<string | null>(null);
+  // A merchant's shop opens under Trade (docs/adr/0057-encounters-maps-loot.md §8).
+  const [trading, setTrading] = useState(false);
   const { entity, actions } = context.context;
   const actor = context.actingCharacterId;
   const name = entity.name ?? unidentifiedName(t, entity.kind);
@@ -114,7 +121,10 @@ export function ContextActions({
           const isRecall = action.id === 'recall';
           const available =
             action.legal &&
-            (isRecall || (canAct && !locked && (command !== null || action.id === 'talk')));
+            (isRecall ||
+              (canAct &&
+                !locked &&
+                (command !== null || action.id === 'talk' || action.id === 'trade')));
           const reasonId = `${ids}-reason-${String(index)}`;
           return (
             <div className="context-option" key={`${action.id}:${index}`}>
@@ -122,14 +132,19 @@ export function ContextActions({
                 disabled={!available}
                 aria-describedby={action.legal ? undefined : reasonId}
                 aria-expanded={
-                  action.spell?.summon ? summoning === action.spell.spellId : undefined
+                  action.spell?.summon
+                    ? summoning === action.spell.spellId
+                    : action.id === 'trade'
+                      ? trading
+                      : undefined
                 }
                 onClick={() => {
                   if (isRecall) setRecall((open) => !open);
                   else if (action.spell?.summon) {
                     const spellId = action.spell.spellId;
                     setSummoning((open) => (open === spellId ? null : spellId));
-                  } else if (action.id === 'talk')
+                  } else if (action.id === 'trade') setTrading((open) => !open);
+                  else if (action.id === 'talk')
                     onRun({ kind: 'talk', characterId: actor, npcId: entity.entityId });
                   else if (command) onRun({ kind: 'command', command });
                 }}
@@ -166,6 +181,16 @@ export function ContextActions({
         })}
       </div>
       {recall && <Recall api={api} entityId={entity.entityId} />}
+      {trading && (
+        <ShopPanel
+          api={api}
+          characterId={actor}
+          merchantId={entity.entityId}
+          locked={locked}
+          revision={revision}
+          onRun={onRun}
+        />
+      )}
       {canAct && entity.kind === 'npc' && (
         <ConversationOptions
           api={api}

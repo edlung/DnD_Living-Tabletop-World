@@ -293,6 +293,28 @@
 - The pack offers "Share the coins out" to a member: who shares (everyone here, the character too,
   until unticked) and what each gets, line by line, before anything moves.
 
+## Notes from the implementation (Stage 670f, part 1, 2026-11-03)
+
+- A merchant is an NPC with a price factor (`merchants`, a world fact; `SetMerchant`, the DM's,
+  25–500% of the worth, null for no shop; `MerchantSet`, undone by the `merchant` restore). Its
+  stock is what it carries, unworn, marked as wares (`forSale` on the possession): what the DM gave
+  it to sell ("Add wares from the catalog" under the NPC's shop) and what it bought. Its own things
+  are never for sale.
+- `BuyItem` (a character at the merchant's place, outside a fight, no turn): one ware or part of a
+  stack at the price apiece, `ceil(worth × factor ÷ 100)`, at least a copper. Every coin the
+  character carries is pooled in copper and spent, and the change minted back in its home coinage
+  — the coinage it holds most worth of (`purse.ts`); too few coins are refused (`NOT_ENOUGH_COINS`).
+  `SellItem`: something it carries unworn at half the worth, rounded down, paid into its stacks of
+  each coin (or minted); the merchant then sells it on. SRD 5.2.1's "Selling Equipment" keeps trade
+  goods, gems and art objects at full value; the catalog holds none of them yet, so every sale is at
+  half. Coins and things without a worth never trade.
+- The shop (`GET …/merchants/:npcId`) answers the DM and a character at the merchant's place that
+  knows it; anything else, a non-merchant included, is a 404. A player opens it under Trade on the
+  merchant's card: what is for sale with the price and Buy, what the merchant would pay for each of
+  the character's unworn things with Sell, and the worth of the character's coins. The live
+  fingerprint covers the focused merchant's shop for the DM and an acting character, so a sale,
+  new wares or a new price reach every open shop.
+
 ## Consequences
 
 - Stage 670 runs in parts (`work-orders/STAGE_670.md`): the builder and the DM's hand; terrain and

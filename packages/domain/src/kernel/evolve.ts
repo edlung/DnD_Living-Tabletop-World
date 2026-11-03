@@ -57,6 +57,7 @@ import {
 } from '../assets/portrait-wishes.ts';
 import { applyChronicleGenerated, applyChronicleRestore } from '../chronicle/decide.ts';
 import { applyItemEvent, applyItemRestore } from '../items/evolve.ts';
+import { applyMerchantRestore, applyMerchantSet } from '../items/trade.ts';
 import { applyRelationshipChanged, applyRelationshipRestore } from '../relationships/evolve.ts';
 import { CorruptHistoryError } from './corrupt-history.ts';
 import type { RecordedEvent, Restore } from './events.ts';
@@ -289,6 +290,8 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
       return withoutAnsweredWish(applyAssetEvent(state, event), event);
     case 'PortraitAsked':
       return applyPortraitAsked(state, event);
+    case 'MerchantSet':
+      return applyMerchantSet(state, event);
     case 'AssetAdopted':
     case 'AssetJobStarted':
     case 'AssetGenerated':
@@ -427,6 +430,8 @@ function applyRestore(state: WorldState, restore: Restore): WorldState {
       return applyDeathRestore(state, restore);
     case 'portraitWish':
       return applyPortraitWishRestore(state, restore);
+    case 'merchant':
+      return applyMerchantRestore(state, restore);
     case 'chronicle':
       return applyChronicleRestore(state, restore);
   }

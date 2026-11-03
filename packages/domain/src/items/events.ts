@@ -19,6 +19,8 @@ export const itemGrantedPayloadSchema = z
     charges: z.number().int().min(0).max(50).optional(),
     /** Given unidentified (§5). */
     unidentified: z.literal(true).optional(),
+    /** Given to a merchant as wares (docs/adr/0057-encounters-maps-loot.md §8). */
+    forSale: z.literal(true).optional(),
   })
   .strict();
 
@@ -147,6 +149,8 @@ export const itemTransferredPayloadSchema = z
     /** Used only to create the record when a placed world item is first picked up. */
     catalogId: itemCatalogIdSchema.nullable(),
     quantity: quantity.min(1),
+    /** Sold to a merchant: its wares now (docs/adr/0057-encounters-maps-loot.md §8). */
+    forSale: z.literal(true).optional(),
   })
   .strict();
 
@@ -162,6 +166,7 @@ const possessionValue = z
     saveDelta: z.number().int().min(-10).max(10).optional(),
     charges: z.number().int().min(0).max(50).optional(),
     unidentified: z.literal(true).optional(),
+    forSale: z.literal(true).optional(),
   })
   .strict();
 

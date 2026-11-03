@@ -34,6 +34,8 @@ export interface Possession {
   readonly charges?: number;
   /** Its carrier has not learnt what it is (§5). */
   readonly unidentified?: true;
+  /** A merchant's wares, apart from its own things (docs/adr/0057-encounters-maps-loot.md §8). */
+  readonly forSale?: true;
 }
 
 export const possessionOf = (state: WorldState, itemId: string): Possession | undefined =>

@@ -68,6 +68,7 @@ import {
   decideStartScene,
 } from './world.ts';
 import { decideSplitCoins } from '../../items/coins.ts';
+import { decideBuyItem, decideSellItem, decideSetMerchant } from '../../items/trade.ts';
 
 /**
  * Routes a resolved, authorized command to its pure decision function, then
@@ -210,6 +211,12 @@ function route(context: DecisionContext, command: ResolvedCommand): Decision {
       return decideGiveItem(state, command);
     case 'SplitCoins':
       return decideSplitCoins(state, command);
+    case 'SetMerchant':
+      return decideSetMerchant(state, command);
+    case 'BuyItem':
+      return decideBuyItem(state, command);
+    case 'SellItem':
+      return decideSellItem(state, command);
     case 'DropItem':
       return decideDropItem(state, command);
     case 'TakeItem':

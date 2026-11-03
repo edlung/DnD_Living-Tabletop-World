@@ -58,6 +58,8 @@ export const giveCatalogItemRequestSchema = z
     baseCatalogId: itemCatalogIdSchema.optional(),
     /** Given unidentified: its carrier sees what it looks like until it is identified (§5). */
     unidentified: z.literal(true).optional(),
+    /** Given to a merchant as wares (docs/adr/0057-encounters-maps-loot.md §8). */
+    forSale: z.literal(true).optional(),
   })
   .strict();
 export type GiveCatalogItemRequest = z.input<typeof giveCatalogItemRequestSchema>;

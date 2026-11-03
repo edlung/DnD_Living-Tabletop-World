@@ -241,6 +241,8 @@ application on 4313.
   `loot.spec.ts` owns `ui-loot` (an item campaign: treasure, the stash) and `ui-loot-fight` (a
   party campaign: a goblin's gold after the fight). A thing lying at a place shows to the player
   as "Unidentified item" until looked at: pick it up by that name.
+  `trade.spec.ts` owns `ui-trade` (an item campaign: Elowen with twenty crowns more). The DM's give
+  route answers the ware's name; the journey trades by that name, never a guessed one.
 - Native apps (ADR 0070, `native-shell.spec.ts`): a stand-in shell installed with `addInitScript`
   records what the page posts, and the journey speaks for the shell with `ltw-native` events; it owns
   the `native` sign-in campaign. The apps themselves are checked on the simulator and the emulator.
