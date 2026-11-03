@@ -14,6 +14,10 @@ and import again; the same lines give the same files.
   Gameplay Toolbox and the magic items' rules as sections) are read by `reference.ts` alone
   (`SRD_GLOSSARY`, `SRD_ABBREVIATIONS`, `SRD_RULES_SECTIONS`, `srdGlossaryEntry`, `srdRulesSection`);
   `reference.test.ts` holds them to their schemas (docs/adr/0055-rules-reference-and-toolbox.md).
+- `classes.json`, `backgrounds.json`, `species.json` and `feats.json` (the SRD's characters,
+  docs/adr/0056-characters-from-the-srd.md §1) are read by `classes.ts` (`SRD_CLASSES`,
+  `srdClass`) and `origins.ts` (`SRD_BACKGROUNDS`, `SRD_SPECIES`, `SRD_FEATS`, `srdBackground`,
+  `srdSpecies`, `srdFeat`); `classes.test.ts` and `origins.test.ts` hold them to the SRD.
 - `catalog.ts` is the only reader: `SRD_SPELLS`, `SRD_MONSTERS`, `SRD_SPELL_MECHANICS`,
   `SRD_MONSTER_BLOCKS`, `SRD_EQUIPMENT`, `SRD_MAGIC_ITEMS`, `srdSpell`, `srdMonster`,
   `srdSpellMechanics`, `srdMonsterBlock`, `srdEquipment`, `srdMagicItem`.

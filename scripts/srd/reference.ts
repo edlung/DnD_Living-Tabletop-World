@@ -7,7 +7,7 @@ import {
   type SrdRulesPart,
   type SrdRulesSection,
 } from '../../packages/contracts/src/index.ts';
-import { freshReading, readBlocks } from './reference-blocks.ts';
+import { freshReading, isSidebarTitle, readBlocks } from './reference-blocks.ts';
 import { pageLinesAt, pageRows, slugOf, type PdfLine } from './text.ts';
 
 /**
@@ -118,9 +118,7 @@ const LEVELS = [
   [14, 3],
   [12, 4],
 ] as const;
-/** A sidebar's title ("Magic Item Rules") is set in 11 pt small capitals: a subsection. */
-const isSidebarTitle = (row: PdfLine) =>
-  Math.abs(row.size - 11) < 0.2 && row.runs.every((run) => run.font === 'Helvetica');
+/** A sidebar's title is a subsection. */
 const levelOf = (row: PdfLine) =>
   isSidebarTitle(row) ? 3 : (LEVELS.find(([size]) => heading(row, size))?.[1] ?? null);
 /** The line under a toolbox entry's name: its kind, as "Deadly Trap (Levels 1–4)". */

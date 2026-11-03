@@ -68,3 +68,23 @@ export {
   type BestiaryResponse,
   type SrdCreatureType,
 } from './bestiary.ts';
+export {
+  srdClassFeatureSchema,
+  srdClassOptionSchema,
+  srdClassSchema,
+  type SrdClass,
+  type SrdClassFeature,
+  type SrdClassOption,
+} from './classes.ts';
+export {
+  SRD_FEAT_CATEGORIES,
+  srdBackgroundSchema,
+  srdFeatSchema,
+  srdSpeciesSchema,
+  srdTraitSchema,
+  type SrdBackground,
+  type SrdFeat,
+  type SrdFeatCategory,
+  type SrdSpecies,
+  type SrdTrait,
+} from './origins.ts';

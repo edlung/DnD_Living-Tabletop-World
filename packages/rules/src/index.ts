@@ -216,3 +216,12 @@ export {
   type ReferenceLanguage,
 } from './srd/reference-ru.ts';
 export { equipmentIn, magicItemIn, monsterIn, spellIn } from './srd/catalogs-ru.ts';
+export { SRD_CLASSES, srdClass } from './srd/classes.ts';
+export {
+  SRD_BACKGROUNDS,
+  SRD_FEATS,
+  SRD_SPECIES,
+  srdBackground,
+  srdFeat,
+  srdSpecies,
+} from './srd/origins.ts';

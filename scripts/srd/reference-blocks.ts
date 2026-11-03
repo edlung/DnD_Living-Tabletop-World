@@ -21,7 +21,10 @@ const LEFT_EDGE = 63;
 const RIGHT_EDGE = 313.5;
 /** A sidebar's text ("Magic Item Rules") is set in 9 pt and 9.2 pt in from its column's edge. */
 const SIDEBAR_INSET = 9.2;
-const inSidebar = (line: PdfLine) => line.runs.some((run) => Math.abs(run.size - 9) < 0.3);
+export const inSidebar = (line: PdfLine) => line.runs.some((run) => Math.abs(run.size - 9) < 0.3);
+/** A sidebar's title ("Magic Item Rules") is set in 11 pt small capitals. */
+export const isSidebarTitle = (row: PdfLine) =>
+  Math.abs(row.size - 11) < 0.2 && row.runs.every((run) => run.font === 'Helvetica');
 const edgeOf = (line: PdfLine) =>
   (line.x0 >= 294 ? RIGHT_EDGE : LEFT_EDGE) + (inSidebar(line) ? SIDEBAR_INSET : 0);
 const LABELLED = /^(Trigger|Duration): /;
@@ -64,9 +67,12 @@ export function readBlocks(dir: string, rows: readonly PdfLine[], so: ReadingSoF
       stepOf(row) < 3 && next !== undefined && sameColumn(row, next) && isSetIn(stepOf(next));
   };
   const marked = withBullets(rows);
+  // The line read last: a table's line skipped between two of a paragraph's does not part them.
+  let before: PdfLine | undefined;
   for (const [index, row] of marked.entries()) {
     if (regions.some((region) => inRegion(row, region))) continue;
-    const before = marked[index - 1];
+    const last = before;
+    before = row;
     const next = marked[index + 1];
     if (isTableTitle(row) || isTableHeader(row)) {
       flush();
@@ -98,7 +104,7 @@ export function readBlocks(dir: string, rows: readonly PdfLine[], so: ReadingSoF
     }
     const step = stepOf(row);
     // Space wider than a line's between two lines of one column parts paragraphs.
-    const parted = before !== undefined && sameColumn(before, row) && before.y0 - row.y0 > 15;
+    const parted = last !== undefined && sameColumn(last, row) && last.y0 - row.y0 > 15;
     if (row.text.startsWith('•')) start('item', row.text.replace(/^•\s*/, ''));
     else if (open.kind === 'item' && step > 5 && step < 17 && !parted) open.lines.push(row.text);
     else if (open.kind !== 'paragraph' || parted || LABELLED.test(row.text)) paragraph(row, next);

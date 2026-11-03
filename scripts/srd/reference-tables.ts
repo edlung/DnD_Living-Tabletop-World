@@ -1,4 +1,5 @@
 import type { SrdBlock } from '../../packages/contracts/src/index.ts';
+import { CHARACTER_TABLE_SPECS } from './character-tables.ts';
 import { joinLines, pageLinesAt, type PdfLine } from './text.ts';
 
 /**
@@ -273,9 +274,10 @@ export function readTable(dir: string, start: PdfLine): ReadTable {
   }
   const title = isTableTitle(start) ? start.text : null;
   const header = headers.map((line) => line.text).join(' ');
+  const specs = [...TABLE_SPECS, ...CHARACTER_TABLE_SPECS];
   const spec =
-    TABLE_SPECS.find((one) => title !== null && one.title === title) ??
-    TABLE_SPECS.find((one) => one.header === header);
+    specs.find((one) => title !== null && one.title === title) ??
+    specs.find((one) => one.header === header);
   if (!spec) throw new Error(`page ${String(start.page)}: no table spec for "${title ?? header}"`);
   const { rows, notes } = cellsOf(spec, groups);
   const bottom = Math.min(...[...headers, ...groups.flat()].map((line) => line.y0));
