@@ -8,6 +8,7 @@ import { LanguageProvider, StatusPanel, useT, type Language } from '@ltw/ui';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { WorldApi, type Connection } from '../api/client.ts';
+import { LiveActiveContext, LiveRefreshContext } from '../api/live-context.ts';
 import { useResource } from '../api/resource.ts';
 import { useScreenAwake } from '../alerts/screen.ts';
 import { TableMusic } from '../audio/table-music.tsx';
@@ -202,7 +203,6 @@ function DisplayStage({
   readonly onLost: () => void;
   readonly onForget: () => void;
 }) {
-  const t = useT();
   const lost = useRef(onLost);
   lost.current = onLost;
   const connection = useMemo<Connection>(
@@ -229,6 +229,32 @@ function DisplayStage({
   const live = useLiveSession(connection, 'PARTY');
   // A paired screen stays awake (ADR 0044 §3): the TV never dims mid-game.
   useScreenAwake(true);
+  // As on the world screen (docs/adr/0033-live-session.md §4): every read follows the live signal
+  // and is checked once more after it, so a read that met the state mid-change never stays shown.
+  return (
+    <LiveActiveContext.Provider value={true}>
+      <LiveRefreshContext.Provider value={live.refresh}>
+        <ApprovedImagesContext.Provider value={images}>
+          <DisplayScreen api={api} live={live} session={session} onForget={onForget} />
+        </ApprovedImagesContext.Provider>
+      </LiveRefreshContext.Provider>
+    </LiveActiveContext.Provider>
+  );
+}
+
+/** What a paired screen shows, inside its live session. */
+function DisplayScreen({
+  api,
+  live,
+  session,
+  onForget,
+}: {
+  readonly api: WorldApi;
+  readonly live: ReturnType<typeof useLiveSession>;
+  readonly session: Extract<DisplaySessionResponse, { state: 'paired' }>;
+  readonly onForget: () => void;
+}) {
+  const t = useT();
   const loadCast = useCallback(
     (signal: AbortSignal) => api.get<CastResponse>('display/cast', signal, false),
     [api],
@@ -265,51 +291,49 @@ function DisplayStage({
   const table = lobby.resource.status === 'ready' ? lobby.resource.value : null;
   const choice = table?.sound.ambience ?? null;
   return (
-    <ApprovedImagesContext.Provider value={images}>
-      <main
-        className="display"
-        data-cast={cast.resource.status === 'ready' ? cast.resource.value.cast.kind : 'loading'}
-      >
-        {cast.resource.status === 'ready' ? (
-          <>
-            {/* Another cast fades in (ADR 0059 §4); a battlefield's zoom or focus does not. */}
-            <div key={castKey(cast.resource.value)} className="display-cast">
-              <CastView
-                api={api}
-                cast={cast.resource.value}
-                directory={directory}
-                refresh={live.refresh}
-                campaignName={session.campaignName}
-              />
-            </div>
-            {/* The dice cast lists whom the table waits for itself; the join card is for joining. */}
-            {!['dice', 'join'].includes(cast.resource.value.cast.kind) && (
-              <WaitingStrip api={api} refresh={live.refresh} directory={directory} />
-            )}
-            {/* A roll the table may see, big over the cast; a plate beside the battlefield. */}
-            <BigRoll
+    <main
+      className="display"
+      data-cast={cast.resource.status === 'ready' ? cast.resource.value.cast.kind : 'loading'}
+    >
+      {cast.resource.status === 'ready' ? (
+        <>
+          {/* Another cast fades in (ADR 0059 §4); a battlefield's zoom or focus does not. */}
+          <div key={castKey(cast.resource.value)} className="display-cast">
+            <CastView
               api={api}
+              cast={cast.resource.value}
+              directory={directory}
               refresh={live.refresh}
-              compact={cast.resource.value.cast.kind === 'battlefield'}
-            />
-          </>
-        ) : (
-          <div className="display-wait">
-            <StatusPanel
-              state={cast.resource.status === 'error' ? 'error' : 'loading'}
-              label={
-                cast.resource.status === 'error'
-                  ? cast.resource.message
-                  : t('Opening the table’s screen…')
-              }
-              onRetry={cast.retry}
+              campaignName={session.campaignName}
             />
           </div>
-        )}
-        <TableAmbience api={api} refresh={live.refresh} choice={choice} placeId={scenePlaceId} />
-        <TableMusic api={api} music={table?.sound.music ?? null} />
-        <DisplayCorner name={session.name} onForget={onForget} />
-      </main>
-    </ApprovedImagesContext.Provider>
+          {/* The dice cast lists whom the table waits for itself; the join card is for joining. */}
+          {!['dice', 'join'].includes(cast.resource.value.cast.kind) && (
+            <WaitingStrip api={api} refresh={live.refresh} directory={directory} />
+          )}
+          {/* A roll the table may see, big over the cast; a plate beside the battlefield. */}
+          <BigRoll
+            api={api}
+            refresh={live.refresh}
+            compact={cast.resource.value.cast.kind === 'battlefield'}
+          />
+        </>
+      ) : (
+        <div className="display-wait">
+          <StatusPanel
+            state={cast.resource.status === 'error' ? 'error' : 'loading'}
+            label={
+              cast.resource.status === 'error'
+                ? cast.resource.message
+                : t('Opening the table’s screen…')
+            }
+            onRetry={cast.retry}
+          />
+        </div>
+      )}
+      <TableAmbience api={api} refresh={live.refresh} choice={choice} placeId={scenePlaceId} />
+      <TableMusic api={api} music={table?.sound.music ?? null} />
+      <DisplayCorner name={session.name} onForget={onForget} />
+    </main>
   );
 }
