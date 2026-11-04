@@ -48,9 +48,15 @@ work); 2026-11-04. Branch `claude/full-game-c`, built on Milestone B's `claude/f
 
 ## Verification
 
-- Unit, integration, build, lint, typecheck, format and the context budget clean on every part.
-- The browser suite on every part's commit; every new screen audited at 1440, 768, 390 and 320 px,
-  light and dark, in English and in Russian, its findings fixed before the commit.
+- On the last commit (680d): unit 4160 passed (517 files), integration 377 (74); build, lint,
+  typecheck, format and the context budget clean — as on every part before it.
+- The browser suite on every part's commit: 312 journeys on 680d, 309 in the full run and the three
+  others (a stand-in's skip, the phone's layout, the table's display: each under the run's load)
+  passing on their own rerun. Every new screen audited at 1440, 768, 390 and 320 px, light and dark,
+  in English and in Russian: 0 findings after the fixes each audit led to (wide editor fields, a
+  field in error without its red edge, option words left in English, a kept handout's words cut).
+- Found on the way and fixed: a campaign that opened at Ravenford's square instead of its scene's
+  place; a server image that would have shipped without the new adventure's fixtures.
 
 ## What stays the DM's
 
