@@ -101,7 +101,7 @@ check 'X-Content-Type-Options nosniff' header_is page x-content-type-options nos
 check 'X-Frame-Options DENY' header_is page x-frame-options DENY
 check 'Cross-Origin-Opener-Policy same-origin' header_is page cross-origin-opener-policy same-origin
 check 'Permissions-Policy' header_is page permissions-policy \
-  'camera=(), microphone=(), geolocation=(), payment=(), usb=()'
+  'camera=(), microphone=(self), geolocation=(), payment=(), usb=()'
 check 'no Server header' header_absent page server
 if [ "$(env_value TLS_MODE)" = internal ]; then
   check 'no HSTS in local verification' header_absent page strict-transport-security
@@ -161,7 +161,8 @@ say 'settings and scripts'
 SERVER_SETTINGS=(PUBLIC_ORIGIN LTW_QUESTS_FILE LTW_ALLOW_NEWER_SCHEMA LOG_LEVEL ANTHROPIC_API_KEY
   LTW_AI_MODEL LTW_AI_TIMEOUT_MS DEEPSEEK_API_KEY LTW_DEEPSEEK_MODEL LTW_AI_ROUTES
   LTW_AI_REQUEST_TIMEOUT_MS LTW_AI_APPROVAL_ID LTW_AI_RELEVANCE_BUDGET_MS LTW_IMAGE_GENERATOR
-  LTW_IMAGE_MODEL OPENROUTER_API_KEY LTW_ASSET_WORKER_INTERVAL_MS LTW_ASSET_TIMEOUT_MS)
+  LTW_IMAGE_MODEL OPENROUTER_API_KEY LTW_ASSET_WORKER_INTERVAL_MS LTW_ASSET_TIMEOUT_MS
+  LTW_TURN_URLS LTW_TURN_SECRET)
 server_setting() {
   local known
   for known in "${SERVER_SETTINGS[@]}"; do

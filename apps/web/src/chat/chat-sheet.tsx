@@ -3,17 +3,20 @@ import { CHAT_TEXT_MAX } from '@ltw/contracts';
 import { StatusPanel, useLanguage, useT, type Translate } from '@ltw/ui';
 import { useEffect, useId, useLayoutEffect, useRef, useState, type KeyboardEvent } from 'react';
 
+import type { WorldApi } from '../api/client.ts';
 import { useDiceTable } from '../dice/table.tsx';
 import { rollMarks, rollSentence } from '../dice/words.ts';
 import { Sheet } from '../shell/sheet.tsx';
 import type { Shell } from '../shell/use-shell.ts';
 import { useScrollEdges } from '../visual/scroll-edges.ts';
+import { VoicePanel } from '../voice/voice-panel.tsx';
 
 /**
  * The table's chat (docs/adr/0044-online-play.md §1): the table's talk, a whisper to the DM, the
  * DM's word to one player, with the table's rolls woven in by time — for online play, and for a
  * private word at the table too. A player speaks as their character or out of character; the DM
- * narrates or speaks plainly. Enter sends; Shift+Enter starts a new line.
+ * narrates or speaks plainly. Enter sends; Shift+Enter starts a new line. Online, the table's voice
+ * (docs/adr/0060-voice.md) sits above it.
  */
 type Line =
   | { readonly kind: 'message'; readonly at: string; readonly message: ChatMessageView }
@@ -36,9 +39,11 @@ function whereOf(t: Translate, message: ChatMessageView): string | null {
 }
 
 export function ChatSheet({
+  api,
   shell,
   characters,
 }: {
+  readonly api: WorldApi;
   readonly shell: Shell;
   /** The characters at the table, for the DM's word to one player. */
   readonly characters: readonly EntityRef[];
@@ -112,6 +117,7 @@ export function ChatSheet({
   };
   return (
     <Sheet id="chat" title={t('Chat')} glyph="talk" open={open} onClose={shell.closeSheet}>
+      {table.online && <VoicePanel api={api} isDm={isDm} />}
       <div className="chat">
         {chat.log.status !== 'ready' ? (
           <StatusPanel

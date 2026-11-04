@@ -5,6 +5,7 @@ import {
   ENTITY_STATUSES,
   KNOWLEDGE_RELATION_TYPES,
   KNOWLEDGE_TYPES,
+  PLACE_SETTINGS,
   WEATHERS,
   EQUIP_SLOTS,
   ITEM_CATEGORIES,
@@ -59,6 +60,7 @@ const scene = z
     worldTime: z.number(),
     phase: z.enum(DAY_PHASES),
     location: entityPresentation,
+    setting: z.enum(PLACE_SETTINGS),
     present: z.array(entityPresentation),
   })
   .strict();

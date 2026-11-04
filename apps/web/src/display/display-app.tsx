@@ -1,16 +1,27 @@
-import type { CastResponse, DisplaySessionResponse, KnownEntitiesResponse } from '@ltw/contracts';
+import type {
+  CastResponse,
+  DisplaySessionResponse,
+  KnownEntitiesResponse,
+  LobbyResponse,
+} from '@ltw/contracts';
 import { LanguageProvider, StatusPanel, useT, type Language } from '@ltw/ui';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { WorldApi, type Connection } from '../api/client.ts';
+import { LiveActiveContext, LiveRefreshContext } from '../api/live-context.ts';
 import { useResource } from '../api/resource.ts';
 import { useScreenAwake } from '../alerts/screen.ts';
+import { TableMusic } from '../audio/table-music.tsx';
+import { TableAmbience } from '../audio/table-sound.tsx';
 import { onForgetAsked, reportToHost } from '../native/tv-report.ts';
 import { useLiveSession } from '../session/use-live-session.ts';
 import { ApprovedImages, ApprovedImagesContext } from '../visual/approved-images.ts';
 import { ornamentUrl, textureUrl } from '../visual/ui-kit.ts';
 import { useRereadOn } from '../world/use-world-data.ts';
+import { BigRoll } from './big-roll.tsx';
 import { CastView } from './cast-views.tsx';
+import { DisplayCorner } from './display-corner.tsx';
+import { castKey } from './moments.ts';
 import {
   forgetDisplay,
   readDisplaySession,
@@ -37,8 +48,6 @@ type Stage =
   | { readonly kind: 'unreachable' };
 
 const POLL_MS = 2_000;
-/** The quiet corner goes away when nobody has moved the pointer or pressed a key for this long. */
-const IDLE_MS = 4_000;
 
 const browserLanguage = (): Language =>
   navigator.language.toLowerCase().startsWith('ru') ? 'ru' : 'en';
@@ -194,7 +203,6 @@ function DisplayStage({
   readonly onLost: () => void;
   readonly onForget: () => void;
 }) {
-  const t = useT();
   const lost = useRef(onLost);
   lost.current = onLost;
   const connection = useMemo<Connection>(
@@ -221,6 +229,32 @@ function DisplayStage({
   const live = useLiveSession(connection, 'PARTY');
   // A paired screen stays awake (ADR 0044 §3): the TV never dims mid-game.
   useScreenAwake(true);
+  // As on the world screen (docs/adr/0033-live-session.md §4): every read follows the live signal
+  // and is checked once more after it, so a read that met the state mid-change never stays shown.
+  return (
+    <LiveActiveContext.Provider value={true}>
+      <LiveRefreshContext.Provider value={live.refresh}>
+        <ApprovedImagesContext.Provider value={images}>
+          <DisplayScreen api={api} live={live} session={session} onForget={onForget} />
+        </ApprovedImagesContext.Provider>
+      </LiveRefreshContext.Provider>
+    </LiveActiveContext.Provider>
+  );
+}
+
+/** What a paired screen shows, inside its live session. */
+function DisplayScreen({
+  api,
+  live,
+  session,
+  onForget,
+}: {
+  readonly api: WorldApi;
+  readonly live: ReturnType<typeof useLiveSession>;
+  readonly session: Extract<DisplaySessionResponse, { state: 'paired' }>;
+  readonly onForget: () => void;
+}) {
+  const t = useT();
   const loadCast = useCallback(
     (signal: AbortSignal) => api.get<CastResponse>('display/cast', signal, false),
     [api],
@@ -234,14 +268,37 @@ function DisplayStage({
   const names = useResource('display-names', loadNames);
   useRereadOn(live.refresh, names.reread);
   const directory = names.resource.status === 'ready' ? names.resource.value.entities : [];
+  const scenePlaceId =
+    names.resource.status === 'ready' ? (names.resource.value.scenePlaceId ?? null) : null;
+  // The live stream follows the place the screen shows — the cast's scene, else where the scene
+  // is played — so its weather and hour reach the screen and the table's sound as they change.
+  const castPlace =
+    cast.resource.status === 'ready' && cast.resource.value.cast.kind === 'scene'
+      ? (cast.resource.value.place ?? null)
+      : null;
+  const followed = castPlace ?? scenePlaceId;
+  const { report } = live;
+  useEffect(() => {
+    report(null, followed);
+  }, [report, followed]);
+  // What the table hears (docs/adr/0059-atmosphere.md §1): the DM's choice, from the table's state.
+  const loadLobby = useCallback(
+    (signal: AbortSignal) => api.get<LobbyResponse>('lobby', signal),
+    [api],
+  );
+  const lobby = useResource('display-lobby', loadLobby);
+  useRereadOn(live.refresh, lobby.reread);
+  const table = lobby.resource.status === 'ready' ? lobby.resource.value : null;
+  const choice = table?.sound.ambience ?? null;
   return (
-    <ApprovedImagesContext.Provider value={images}>
-      <main
-        className="display"
-        data-cast={cast.resource.status === 'ready' ? cast.resource.value.cast.kind : 'loading'}
-      >
-        {cast.resource.status === 'ready' ? (
-          <>
+    <main
+      className="display"
+      data-cast={cast.resource.status === 'ready' ? cast.resource.value.cast.kind : 'loading'}
+    >
+      {cast.resource.status === 'ready' ? (
+        <>
+          {/* Another cast fades in (ADR 0059 §4); a battlefield's zoom or focus does not. */}
+          <div key={castKey(cast.resource.value)} className="display-cast">
             <CastView
               api={api}
               cast={cast.resource.value}
@@ -249,104 +306,34 @@ function DisplayStage({
               refresh={live.refresh}
               campaignName={session.campaignName}
             />
-            {/* The dice cast lists whom the table waits for itself; the join card is for joining. */}
-            {!['dice', 'join'].includes(cast.resource.value.cast.kind) && (
-              <WaitingStrip api={api} refresh={live.refresh} directory={directory} />
-            )}
-          </>
-        ) : (
-          <div className="display-wait">
-            <StatusPanel
-              state={cast.resource.status === 'error' ? 'error' : 'loading'}
-              label={
-                cast.resource.status === 'error'
-                  ? cast.resource.message
-                  : t('Opening the table’s screen…')
-              }
-              onRetry={cast.retry}
-            />
           </div>
-        )}
-        <DisplayCorner name={session.name} onForget={onForget} />
-      </main>
-    </ApprovedImagesContext.Provider>
-  );
-}
-
-/**
- * A quiet corner: full screen, and unpairing this screen (asked first). It shows while someone
- * moves the pointer or presses a key, then goes, so the room sees only the cast; focus inside it
- * keeps it.
- */
-function DisplayCorner({
-  name,
-  onForget,
-}: {
-  readonly name: string;
-  readonly onForget: () => void;
-}) {
-  const t = useT();
-  const [asking, setAsking] = useState(false);
-  const [idle, setIdle] = useState(false);
-  useEffect(() => {
-    let timer = window.setTimeout(() => {
-      setIdle(true);
-    }, IDLE_MS);
-    const wake = () => {
-      setIdle(false);
-      window.clearTimeout(timer);
-      timer = window.setTimeout(() => {
-        setIdle(true);
-      }, IDLE_MS);
-    };
-    window.addEventListener('pointermove', wake);
-    window.addEventListener('keydown', wake);
-    return () => {
-      window.clearTimeout(timer);
-      window.removeEventListener('pointermove', wake);
-      window.removeEventListener('keydown', wake);
-    };
-  }, []);
-  return (
-    <div className={idle && !asking ? 'display-corner is-idle' : 'display-corner'}>
-      <span className="display-name">{name}</span>
-      {document.fullscreenEnabled && (
-        <button
-          className="quiet-button"
-          onClick={() => {
-            void (document.fullscreenElement
-              ? document.exitFullscreen()
-              : document.documentElement.requestFullscreen());
-          }}
-        >
-          {t('Full screen')}
-        </button>
-      )}
-      {asking ? (
-        <span className="display-confirm">
-          {t('Unpair this screen?')}
-          <button className="quiet-button" onClick={onForget}>
-            {t('Unpair')}
-          </button>
-          <button
-            className="quiet-button"
-            onClick={() => {
-              setAsking(false);
-            }}
-          >
-            {t('Keep')}
-          </button>
-        </span>
+          {/* The dice cast lists whom the table waits for itself; the join card is for joining. */}
+          {!['dice', 'join'].includes(cast.resource.value.cast.kind) && (
+            <WaitingStrip api={api} refresh={live.refresh} directory={directory} />
+          )}
+          {/* A roll the table may see, big over the cast; a plate beside the battlefield. */}
+          <BigRoll
+            api={api}
+            refresh={live.refresh}
+            compact={cast.resource.value.cast.kind === 'battlefield'}
+          />
+        </>
       ) : (
-        <button
-          className="quiet-button"
-          onClick={() => {
-            setAsking(true);
-          }}
-        >
-          {t('Unpair this screen')}
-        </button>
+        <div className="display-wait">
+          <StatusPanel
+            state={cast.resource.status === 'error' ? 'error' : 'loading'}
+            label={
+              cast.resource.status === 'error'
+                ? cast.resource.message
+                : t('Opening the table’s screen…')
+            }
+            onRetry={cast.retry}
+          />
+        </div>
       )}
-    </div>
+      <TableAmbience api={api} refresh={live.refresh} choice={choice} placeId={scenePlaceId} />
+      <TableMusic api={api} music={table?.sound.music ?? null} />
+      <DisplayCorner name={session.name} onForget={onForget} />
+    </main>
   );
 }

@@ -1,0 +1,162 @@
+/* The trust page of local mode (docs/adr/0061-local-mode.md §3): the game's colours, the system's
+   fonts (nothing is fetched from elsewhere), dark unless the device asks for light. */
+:root {
+  --page: #0b1016;
+  --panel: #131b24;
+  --text: #ece4d4;
+  --muted: #b8ad99;
+  --line: rgba(255, 255, 255, 0.18);
+  --gold: #e3c27a;
+  --accent: #1e5d6b;
+  --accent-text: #ffffff;
+  --good: #8fd1a5;
+  --warn: #f0b97a;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --page: #f4efe6;
+    --panel: #fffdf8;
+    --text: #1f1a14;
+    --muted: #5a5044;
+    --line: rgba(40, 30, 20, 0.22);
+    --gold: #7a5a14;
+    --accent: #1e5d6b;
+    --accent-text: #ffffff;
+    --good: #1f6b3a;
+    --warn: #8a4b0b;
+    color-scheme: light;
+  }
+}
+* {
+  box-sizing: border-box;
+}
+html {
+  background: var(--page);
+}
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--text);
+  font:
+    17px/1.55 system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
+  overflow-wrap: break-word;
+}
+.page {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+}
+.brand {
+  margin: 0;
+  color: var(--gold);
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.languages {
+  display: flex;
+  gap: 8px;
+}
+h1 {
+  margin: 24px 0 8px;
+  font-size: 1.75rem;
+  line-height: 1.25;
+}
+h2 {
+  margin: 32px 0 8px;
+  font-size: 1.2rem;
+}
+p,
+ol {
+  margin: 0 0 12px;
+}
+ol {
+  padding-left: 1.4em;
+}
+li + li {
+  margin-top: 8px;
+}
+.lead {
+  color: var(--muted);
+}
+code {
+  font-size: 0.9em;
+  overflow-wrap: anywhere;
+}
+.check {
+  margin: 16px 0;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--panel);
+}
+.check[data-trust='trusted'] {
+  border-color: var(--good);
+}
+.check[data-trust='untrusted'] {
+  border-color: var(--warn);
+}
+.state {
+  margin: 0 0 12px;
+}
+.check[data-trust='trusted'] .state {
+  color: var(--good);
+}
+.check[data-trust='untrusted'] .state {
+  color: var(--warn);
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+button,
+.primary,
+.download {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 8px 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--text);
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+.languages button {
+  min-height: 36px;
+  padding: 4px 12px;
+  font-size: 0.9rem;
+}
+button[aria-pressed='true'] {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+.primary,
+.download {
+  border-color: transparent;
+  background: var(--accent);
+  color: var(--accent-text);
+}
+.primary[hidden] {
+  display: none;
+}
+:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}

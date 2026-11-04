@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark light" />
+    <title>Стол на этом ноутбуке · Living Tabletop World</title>
+    <link rel="stylesheet" href="/trust.css" />
+    <script src="/trust.js" defer></script>
+  </head>
+  <body>
+    <!--
+      The trust page of local mode (docs/adr/0061-local-mode.md §3), served over plain HTTP by the
+      laptop's proxy: the laptop's root certificate to install once, how on each kind of device, and
+      a check that says when this device trusts the laptop. Russian first; trust.js shows English
+      where the device asks for it, and the switch changes it.
+    -->
+    <main class="page">
+      <header class="head">
+        <p class="brand">Living Tabletop World</p>
+        <div class="languages" role="group" aria-label="Язык · Language">
+          <button type="button" data-language="ru" aria-pressed="true">Русский</button>
+          <button type="button" data-language="en" aria-pressed="false">English</button>
+        </div>
+      </header>
+
+      <section lang="ru" data-language-block="ru">
+        <h1>Стол на ноутбуке мастера</h1>
+        <p class="lead">
+          Игра идёт на ноутбуке мастера, в этой сети. Чтобы телефон открыл её по защищённой связи,
+          один раз установите сертификат ноутбука.
+        </p>
+        <div class="check" data-check>
+          <p class="state" role="status" data-state="checking">
+            Проверяем, доверяет ли телефон ноутбуку…
+          </p>
+          <p class="state" role="status" data-state="trusted" hidden>
+            Телефон доверяет ноутбуку: можно играть.
+          </p>
+          <p class="state" role="status" data-state="untrusted" hidden>
+            Телефон пока не доверяет ноутбуку: установите сертификат по шагам ниже.
+          </p>
+          <div class="actions">
+            <a class="primary" data-table href="/">Открыть стол</a>
+            <button type="button" data-recheck>Проверить снова</button>
+          </div>
+        </div>
+        <p>
+          <a class="download" href="/ltw-local-root.crt" download>Скачать сертификат ноутбука</a>
+        </p>
+        <p class="lead">
+          Прежде чем включить доверие, сверьте отпечаток SHA-256 сертификата с тем, что показал
+          терминал мастера при запуске: эта страница приходит без защиты, и только совпавший
+          отпечаток говорит, что сертификат — от ноутбука.
+        </p>
+
+        <h2>iPhone или iPad</h2>
+        <ol>
+          <li>
+            Откройте эту страницу в Safari и нажмите «Скачать сертификат ноутбука», затем
+            «Разрешить».
+          </li>
+          <li>
+            Настройки → «Профиль загружен» → «Подробнее» → сверьте SHA-256 → «Установить» (попросит
+            код-пароль).
+          </li>
+          <li>
+            Настройки → Основные → Об этом устройстве → Доверие сертификатам → включите «Living
+            Tabletop World local root».
+          </li>
+          <li>Вернитесь сюда и нажмите «Проверить снова».</li>
+        </ol>
+
+        <h2>Android</h2>
+        <ol>
+          <li>Нажмите «Скачать сертификат ноутбука».</li>
+          <li>
+            Настройки → Безопасность → Другие настройки безопасности → Шифрование и учётные данные →
+            Установить сертификат → Сертификат ЦС → «Всё равно установить» → выберите
+            ltw-local-root.crt. Названия пунктов зависят от производителя: ищите «сертификат ЦС».
+          </li>
+          <li>Вернитесь сюда и нажмите «Проверить снова».</li>
+        </ol>
+
+        <h2>Компьютер у телевизора</h2>
+        <p>
+          macOS: откройте скачанный файл, в «Связке ключей» дважды щёлкните сертификат → «Доверие» →
+          «Всегда доверять». Windows: откройте файл → «Установить сертификат» → «Доверенные корневые
+          центры сертификации». На ноутбуке мастера это делает команда
+          <code>deploy/local/ltw-local.sh trust-here</code>.
+        </p>
+
+        <h2>Что значит этот сертификат</h2>
+        <p>
+          Он позволяет устройству доверять игре на ноутбуке мастера. Такой корневой сертификат может
+          подтвердить любой сайт, поэтому ставьте его только с ноутбука своего мастера, дома, и
+          удалите, когда больше не играете у него: на iPhone — Настройки → Основные → VPN и
+          управление устройством → профиль → «Удалить»; на Android — «Учётные данные пользователя».
+        </p>
+      </section>
+
+      <section lang="en" data-language-block="en" hidden>
+        <h1>The table on the DM’s laptop</h1>
+        <p class="lead">
+          The game runs on the DM’s laptop, on this network. To open it over a secure connection,
+          install the laptop’s certificate on this phone once.
+        </p>
+        <div class="check" data-check>
+          <p class="state" role="status" data-state="checking">
+            Checking whether this phone trusts the laptop…
+          </p>
+          <p class="state" role="status" data-state="trusted" hidden>
+            This phone trusts the laptop: you can play.
+          </p>
+          <p class="state" role="status" data-state="untrusted" hidden>
+            This phone does not trust the laptop yet: install its certificate with the steps below.
+          </p>
+          <div class="actions">
+            <a class="primary" data-table href="/">Open the table</a>
+            <button type="button" data-recheck>Check again</button>
+          </div>
+        </div>
+        <p>
+          <a class="download" href="/ltw-local-root.crt" download
+            >Download the laptop’s certificate</a
+          >
+        </p>
+        <p class="lead">
+          Before you turn its trust on, compare the certificate’s SHA-256 fingerprint with the one
+          the DM’s terminal showed when it started: this page comes unprotected, and only a matching
+          fingerprint says the certificate is the laptop’s.
+        </p>
+
+        <h2>iPhone or iPad</h2>
+        <ol>
+          <li>Open this page in Safari, tap “Download the laptop’s certificate”, then “Allow”.</li>
+          <li>
+            Settings → “Profile Downloaded” → “More Details” → compare the SHA-256 → “Install” (it
+            asks for the passcode).
+          </li>
+          <li>
+            Settings → General → About → Certificate Trust Settings → turn on “Living Tabletop World
+            local root”.
+          </li>
+          <li>Come back here and tap “Check again”.</li>
+        </ol>
+
+        <h2>Android</h2>
+        <ol>
+          <li>Tap “Download the laptop’s certificate”.</li>
+          <li>
+            Settings → Security → More security settings → Encryption and credentials → Install a
+            certificate → CA certificate → “Install anyway” → choose ltw-local-root.crt. Makers name
+            these differently: look for “CA certificate”.
+          </li>
+          <li>Come back here and tap “Check again”.</li>
+        </ol>
+
+        <h2>A computer by the TV</h2>
+        <p>
+          macOS: open the downloaded file, double-click the certificate in Keychain Access → Trust →
+          “Always Trust”. Windows: open the file → “Install Certificate” → “Trusted Root
+          Certification Authorities”. On the DM’s laptop,
+          <code>deploy/local/ltw-local.sh trust-here</code>
+          does it.
+        </p>
+
+        <h2>What this certificate means</h2>
+        <p>
+          It lets this device trust the game on the DM’s laptop. A root certificate like this can
+          vouch for any site, so install it only from your own DM’s laptop, at home, and remove it
+          when you no longer play there: on an iPhone, Settings → General → VPN &amp; Device
+          Management → the profile → “Remove Profile”; on Android, “User credentials”.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>

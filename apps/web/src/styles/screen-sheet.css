@@ -1,0 +1,36 @@
+/* The DM's Table screen sheet (dm/screen-sheet.tsx, docs/adr/0042-table-display.md) */
+.screen-sheet {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+  align-items: start;
+  gap: 1rem;
+}
+.screen-pair-form,
+.screen-cast-form {
+  display: grid;
+  gap: 0.6rem;
+}
+.screen-pair-form .primary-button,
+.screen-cast-form .primary-button {
+  justify-self: start;
+}
+/* The battlefield's zoom and whom it keeps in view, side by side */
+.screen-cast-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr));
+  align-items: end;
+  gap: 0.6rem;
+}
+/* What to show: a compact grid, so the button stays in reach */
+.screen-cast-form .join-modes {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 12rem), 1fr));
+}
+.screen-cast-form .join-mode label {
+  margin: 0;
+  color: var(--text);
+  cursor: pointer;
+}
+.screen-sheet .glyph {
+  width: 20px;
+  height: 20px;
+}

@@ -10,6 +10,7 @@ registerRussian({
   'Press a die to add it.': 'Нажмите на кубик, чтобы добавить его.',
   Modifier: 'Модификатор',
   Roll: 'Бросить',
+  'Dice roll': 'Бросок',
   'Clear the dice': 'Убрать кубики',
   'Roll a check': 'Бросить проверку',
   Check: 'Проверка',

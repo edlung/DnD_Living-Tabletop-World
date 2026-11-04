@@ -11,6 +11,7 @@ import {
   type ImageModel,
 } from '../../images/models.ts';
 import { parseRoutes, routeIssues, type RouteProvider } from './ai-routes.ts';
+import { parseVoiceRelay, type VoiceRelaySettings } from './voice-relay.ts';
 
 /**
  * Validated runtime configuration for the server process.
@@ -100,6 +101,8 @@ export interface AppConfig {
    * setting (`--allow-newer-database`). Only `true` or `false` (default).
    */
   readonly allowNewerSchema: boolean;
+  /** The table's voice relay (`voice-relay.ts`, docs/adr/0060-voice.md §3); null: none. */
+  readonly voiceRelay: VoiceRelaySettings | null;
   /** The asset worker (docs/adr/0022-asset-identity.md §4) and its image generator (ADR 0035). */
   readonly assets: {
     /** Pause between worker runs; 0 disables the worker. */
@@ -199,6 +202,8 @@ const envSchema = z.object({
   ),
   PUBLIC_ORIGIN: z.preprocess(emptyAsUndefined, z.string().max(200).optional()),
   LTW_TRUST_PROXY: z.preprocess(emptyAsUndefined, z.string().max(1_000).optional()),
+  LTW_TURN_URLS: z.preprocess(emptyAsUndefined, z.string().max(1_000).optional()),
+  LTW_TURN_SECRET: z.preprocess(emptyAsUndefined, z.string().max(256).optional()),
   DEV_PERSONAS_FILE: z.preprocess(emptyAsUndefined, z.string().min(1).optional()),
   LTW_QUESTS_FILE: z.preprocess(emptyAsUndefined, z.string().min(1).optional()),
   LTW_ALLOW_NEWER_SCHEMA: z.preprocess(
@@ -346,6 +351,12 @@ export function loadConfig(env: Env = process.env): AppConfig {
     issues.push('LTW_TRUST_PROXY: required in invitations mode (none, or the reverse proxy)');
   }
 
+  const voiceRelay = parseVoiceRelay(
+    values.LTW_TURN_URLS,
+    values.LTW_TURN_SECRET,
+    (value) => new Secret(value),
+    issues,
+  );
   const routes = parseRoutes(values.LTW_AI_ROUTES, issues);
   if (routes !== null) {
     const keyed = new Set<RouteProvider>([
@@ -402,6 +413,7 @@ export function loadConfig(env: Env = process.env): AppConfig {
     }),
     questsFile: values.LTW_QUESTS_FILE ?? DEFAULT_QUESTS_FILE,
     allowNewerSchema: values.LTW_ALLOW_NEWER_SCHEMA === 'true',
+    voiceRelay,
     assets: Object.freeze({
       workerIntervalMs: values.LTW_ASSET_WORKER_INTERVAL_MS,
       generationTimeoutMs:

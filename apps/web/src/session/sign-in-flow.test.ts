@@ -183,6 +183,20 @@ describe('redeeming an invitation', () => {
     });
   });
 
+  it('says so when the campaign plays on another server, asked or confirmed', async () => {
+    for (const replaceSession of [false, true]) {
+      const moved = transport(
+        json(
+          { error: { code: 'MOVED', message: 'The campaign is played on another server' } },
+          409,
+        ),
+      );
+      await expect(redeemInvitation(moved.fake, TOKEN, replaceSession)).resolves.toEqual({
+        kind: 'moved',
+      });
+    }
+  });
+
   it('reads every other answer as the same failure, whatever its reason', async () => {
     for (const answer of [
       json({ error: { code: 'UNAUTHENTICATED' } }, 401),

@@ -125,6 +125,24 @@ export default defineConfig(
     },
   },
   {
+    // Local mode's trust page (docs/adr/0061-local-mode.md §3): a classic script the laptop's proxy
+    // serves as it is, over plain HTTP; not part of the TypeScript program.
+    ...tseslint.configs.disableTypeChecked,
+    name: 'ltw/trust-page',
+    files: ['deploy/proxy/trust/**/*.js'],
+    languageOptions: {
+      ...tseslint.configs.disableTypeChecked.languageOptions,
+      sourceType: 'script',
+      globals: globals.browser,
+    },
+  },
+  {
+    // Local mode's terminal helpers (deploy/local/): plain Node modules the launcher runs.
+    ...tseslint.configs.disableTypeChecked,
+    name: 'ltw/local-mode-tools',
+    files: ['deploy/local/**/*.mjs'],
+  },
+  {
     name: 'ltw/cli-entry-points',
     files: ['scripts/**/cli.ts', 'apps/server/src/**/*-cli.ts', 'apps/server/src/main.ts'],
     rules: { 'no-console': 'off' },

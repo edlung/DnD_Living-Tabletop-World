@@ -116,14 +116,19 @@ describe('a player’s view of the past', () => {
     const shopOnDay1 = scenePresentationAt(snapshot, elowen, 'orins-alchemy', DAY1);
     expect(shopOnDay1?.location).toMatchObject({ observed: false, weather: null });
     expect(shopOnDay1?.present).toEqual([]);
+    // What the place is she knows, though not how it was (the table's sound, ADR 0059 §1).
+    expect(shopOnDay1?.setting).toBe('indoors');
 
     const shopInside = scenePresentationAt(snapshot, elowen, 'orins-alchemy', INSIDE);
     expect(shopInside?.present.map((entity) => entity.entityId).sort()).toEqual(
       [ORIN, WATCHER, 'elowen-starwhisper'].sort(),
     );
+    expect(shopInside?.setting).toBe('indoors');
 
     const square = scenePresentationAt(snapshot, elowen, 'market-square', DAY1);
     expect(square?.location).toMatchObject({ observed: true, weather: 'clear' });
+    // The market square lies in Ravenford: a town's street.
+    expect(square?.setting).toBe('town');
     expect(square?.present.map((entity) => entity.entityId)).toContain('mira-vale');
     // Ravenford around her was in view; its rain image is the DM's alone.
     expect(
@@ -132,6 +137,37 @@ describe('a player’s view of the past', () => {
     expect(
       entityPresentationAt(snapshot, DM_VIEW, 'ravenford', DAY2)?.presentation.image?.contentHash,
     ).toBe(hash(5));
+  });
+
+  it('says a known place lies in a town only when the town is known too (ADR 0059 §1)', async () => {
+    const world = await walkedThrough();
+    for (const [entityId, name, type, parentId] of [
+      ['hidden-town', 'Hidden Town', 'settlement', null],
+      ['lonely-well', 'Lonely Well', 'site', 'hidden-town'],
+    ] as const) {
+      await world.dm({
+        type: 'CreateEntity',
+        entityId,
+        kind: 'location',
+        name,
+        existsSince: null,
+        location: { type, parentId },
+      });
+    }
+    await world.dm({
+      type: 'AddKnowledge',
+      knowledgeId: 'pub-lonely-well',
+      scope: { kind: 'PUBLIC' },
+      knowledgeType: 'FACT',
+      statement: 'A well stands alone somewhere to the north.',
+      subjects: ['lonely-well'],
+      knownSince: null,
+    });
+    const snapshot = await world.snapshot();
+    const party = await world.party();
+    expect(scenePresentationAt(snapshot, party, 'lonely-well', null)?.setting).toBe('wild');
+    expect(scenePresentationAt(snapshot, party, 'hidden-town', null)).toBeNull();
+    expect(scenePresentationAt(snapshot, DM_VIEW, 'lonely-well', null)?.setting).toBe('town');
   });
 
   it('shows nothing of what Elowen never knew nor saw, or of what did not exist yet', async () => {

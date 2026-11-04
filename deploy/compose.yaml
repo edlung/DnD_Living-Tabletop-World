@@ -31,6 +31,8 @@ services:
     environment:
       PUBLIC_HOST: ${PUBLIC_HOST:?set PUBLIC_HOST in deploy/.env}
       TLS_MODE: ${TLS_MODE:?set TLS_MODE (acme or internal) in deploy/.env}
+      # `local` on the DM's laptop (docs/adr/0061-local-mode.md): the trust page, private clients.
+      LTW_PROXY_MODE: ${LTW_PROXY_MODE:-server}
     ports:
       - '${PROXY_HTTP_PUBLISH:-80}:80'
       - '${PROXY_HTTPS_PUBLISH:-443}:443'
@@ -98,6 +100,9 @@ services:
       LTW_AI_REQUEST_TIMEOUT_MS: ${LTW_AI_REQUEST_TIMEOUT_MS:-}
       LTW_AI_APPROVAL_ID: ${LTW_AI_APPROVAL_ID:-}
       LTW_AI_RELEVANCE_BUDGET_MS: ${LTW_AI_RELEVANCE_BUDGET_MS:-}
+      # The table's voice relay (docs/adr/0060-voice.md §3; RUNBOOK §14): empty, direct only.
+      LTW_TURN_URLS: ${LTW_TURN_URLS:-}
+      LTW_TURN_SECRET: ${LTW_TURN_SECRET:-}
       # The asset worker's generator: the local placeholder unless the operator chooses
       # openrouter-openai (with OPENROUTER_API_KEY); its spending ceiling is an operator record
       # (ai:operator image-budget-set), never a setting (deploy/RUNBOOK.md section 8).

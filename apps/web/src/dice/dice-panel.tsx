@@ -27,7 +27,7 @@ function DiceSettingsForm() {
   const ids = useId();
   return (
     <details className="disclosure dice-settings">
-      <summary>{t('Dice sound and motion')}</summary>
+      <summary>{t('Sound and motion')}</summary>
       <label className="dice-toggle">
         <input
           type="checkbox"
@@ -66,6 +66,31 @@ function DiceSettingsForm() {
           </option>
         ))}
       </select>
+      {/* The table's sound on this screen (docs/adr/0059-atmosphere.md §1, §3). */}
+      <label className="dice-toggle">
+        <input
+          type="checkbox"
+          checked={settings.atmosphere}
+          onChange={(event) => {
+            unlockAudio();
+            changeDiceSettings({ atmosphere: event.target.checked });
+          }}
+        />
+        <span>{t('The table’s sound: ambience and music')}</span>
+      </label>
+      <label htmlFor={`${ids}-atmosphere`}>{t('Volume of the table’s sound')}</label>
+      <input
+        id={`${ids}-atmosphere`}
+        type="range"
+        min={0}
+        max={100}
+        step={5}
+        value={Math.round(settings.atmosphereVolume * 100)}
+        disabled={!settings.atmosphere}
+        onChange={(event) => {
+          changeDiceSettings({ atmosphereVolume: Number(event.target.value) / 100 });
+        }}
+      />
     </details>
   );
 }
@@ -114,7 +139,7 @@ export function DicePanel({
         </div>
       </Sheet>
       {/* The table's talk beside its dice (ADR 0044 §1): one table, its rolls woven in. */}
-      <ChatSheet shell={shell} characters={characters} />
+      <ChatSheet api={api} shell={shell} characters={characters} />
       {/* Online, the table's screen on every player's screen (ADR 0044 §5). */}
       <SharedScreenSheet api={api} shell={shell} />
     </>

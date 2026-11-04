@@ -32,8 +32,11 @@ async function rolled(page: Page, press: () => Promise<void>): Promise<RollEntry
 }
 
 const plate = (page: Page) => page.locator('.dice-plate');
-/** How long a throw may take to land: a hosted runner's software WebGL is slow (Stage 540). */
-const LANDS = 15_000;
+/**
+ * How long a throw may take to land: a hosted runner's software WebGL is slow (Stage 540), and a
+ * loaded one's timers late (Milestone D's CI once took longer than 15 s).
+ */
+const LANDS = 30_000;
 
 test('free dice fly, land on the server’s values and join the log', async ({ page }) => {
   await enterWorld(page, TOKENS.player, CAMPAIGNS.roll);
@@ -44,6 +47,20 @@ test('free dice fly, land on the server’s values and join the log', async ({ p
   await sheet.getByRole('button', { name: 'Add a d6' }).click();
   await expect(sheet.locator('.dice-pool')).toHaveText('1d20 + 2d6');
   await sheet.getByLabel('Modifier').fill('3');
+  // Whether the log lists the roll before its plate tells the sum: not even for one frame.
+  await page.evaluate(() => {
+    const listed = () => document.querySelectorAll('#sheet-dice .dice-log-entry').length;
+    const before = listed();
+    const order: string[] = [];
+    Object.assign(window, { logOrder: order });
+    const observer = new MutationObserver(() => {
+      if (listed() === before) return;
+      const landed = /=\s*\d/.test(document.querySelector('.dice-plate')?.textContent ?? '');
+      order.push(landed ? 'after landing' : 'before landing');
+      observer.disconnect();
+    });
+    observer.observe(document.body, { childList: true, subtree: true, characterData: true });
+  });
   const roll = await rolled(page, () =>
     sheet.getByRole('button', { name: 'Roll', exact: true }).click(),
   );
@@ -53,9 +70,14 @@ test('free dice fly, land on the server’s values and join the log', async ({ p
   // The dice fly in the top layer; the plate tells the sum once they rest.
   await expect(page.locator('.dice-layer')).toBeVisible();
   await expect(plate(page)).toContainText(`= ${String(group?.total)}`, { timeout: LANDS });
+  // Free dice say nothing more than their bounces (docs/adr/0059-atmosphere.md §2).
+  await expect(plate(page).locator('[data-cue]')).toHaveCount(0);
   const log = sheet.getByRole('region', { name: 'Recent rolls' });
   await expect(log).toContainText(`= ${String(group?.total)}`);
   await expect(log).toContainText('Elowen Starwhisper');
+  expect(await page.evaluate(() => (window as unknown as { logOrder: string[] }).logOrder)).toEqual(
+    ['after landing'],
+  );
   // Said once in words for screen readers.
   await expect(
     page.locator('.roll-announcer').filter({ hasText: 'Elowen Starwhisper · Dice' }),
@@ -107,6 +129,10 @@ test('the DM asks for a check with a hidden DC, and the player answers it', asyn
   await expect(player.locator('body')).not.toContainText('DC 15');
   const roll = await rolled(player, () => asked.getByRole('button', { name: 'Roll' }).click());
   expect(roll.groups[0]?.modifier).toBe(9);
+  // The player does not know the DC: no sound tells them how it went (ADR 0059 §2). Asked while
+  // the plate shows, before it leaves.
+  await expect(plate(player).locator('.dice-plate-line')).toHaveCount(1, { timeout: LANDS });
+  await expect(plate(player).locator('[data-cue]')).toHaveCount(0);
   const total = roll.groups[0]?.total ?? 0;
   // The DM's sheet follows the player's roll through the live stream: a loaded runner's time. The
   // verdict is what proves the answer came ("15" alone may be the DC).

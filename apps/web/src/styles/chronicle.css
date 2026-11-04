@@ -418,8 +418,7 @@
   .book-writer-form {
     position: fixed;
     top: 104px;
-    right: 8px;
     left: 8px;
-    width: auto;
+    width: min(26rem, calc(100vw - 16px));
   }
 }

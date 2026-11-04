@@ -82,6 +82,11 @@ test('the Missing Caravan from the sign-in to its ending, with dice, a rest and 
   });
   expectAccepted(await submit(player, shot));
   await expect(player.locator('.dice-plate')).toContainText('Attack roll', { timeout: 15_000 });
+  // It lands with the sound of what came of it (docs/adr/0059-atmosphere.md §2).
+  await expect(player.locator('.dice-plate-line--attack')).toHaveAttribute(
+    'data-cue',
+    /^(hit|miss|critical)$/,
+  );
   expectAccepted(await submit(player, turnTray(player).getByRole('button', { name: 'End turn' })));
 
   // The ambushers break; the DM ends the fight with Elowen standing.

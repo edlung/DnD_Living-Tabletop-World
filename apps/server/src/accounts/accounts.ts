@@ -9,6 +9,7 @@ import {
 } from '@ltw/contracts';
 import { campaignRole, type WorldEngine } from '@ltw/domain';
 
+import { NOTHING_AWAY, type CampaignMoves } from '../campaigns/move/moves.ts';
 import type { CredentialStore } from '../auth/credential-store.ts';
 import { iso, type AuthClock } from '../auth/session-authenticator.ts';
 import { SESSION_MS } from '../auth/sign-in.ts';
@@ -95,6 +96,7 @@ export async function openAccountSession(
 export async function campaignsOf(
   engine: WorldEngine,
   seats: readonly SeatRecord[],
+  moves: CampaignMoves = NOTHING_AWAY,
 ): Promise<AccountCampaign[]> {
   const listed: AccountCampaign[] = [];
   for (const seat of seats) {
@@ -111,6 +113,7 @@ export async function campaignsOf(
       role: seat.role,
       language: campaign.language,
       characters,
+      away: await moves.awayOf(seat.campaignId),
     });
   }
   return listed;

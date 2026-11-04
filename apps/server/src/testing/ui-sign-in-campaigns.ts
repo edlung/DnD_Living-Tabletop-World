@@ -5,6 +5,7 @@ import { scriptedDice } from '@ltw/rules';
 
 import campaigns from '../../../../tests/e2e/fixtures/sign-in-campaigns.json' with { type: 'json' };
 import type { CredentialStore } from '../auth/credential-store.ts';
+import type { CampaignMoves } from '../campaigns/move/moves.ts';
 import { iso } from '../auth/session-authenticator.ts';
 import { HOUR_MS } from '../auth/sign-in.ts';
 import { hashToken } from '../auth/tokens.ts';
@@ -21,8 +22,30 @@ const RUSSIAN: ReadonlySet<string> = new Set([
   campaigns.a11yRu,
   campaigns.dockRu,
   campaigns.builderRu,
+  campaigns.movedRu,
 ]);
 const SCANNED: ReadonlySet<string> = new Set([campaigns.a11y, campaigns.a11yRu]);
+
+const away = new Set<string>();
+
+/**
+ * The campaigns the browser tests send away (docs/adr/0061-local-mode.md §5): moved to a laptop
+ * once their journey has seated its DM — an away campaign seats nobody new — and from then on read
+ * and never changed here. `send` answers false for any other campaign.
+ */
+export const MOVED_AWAY: CampaignMoves & { send(campaignId: string): boolean } = {
+  awayOf: (campaignId) =>
+    Promise.resolve(
+      away.has(campaignId)
+        ? { destination: 'MacBook Pro', movedAt: '2026-11-04T09:30:00.000Z' }
+        : null,
+    ),
+  send: (campaignId) => {
+    if (campaignId !== campaigns.moved && campaignId !== campaigns.movedRu) return false;
+    away.add(campaignId);
+    return true;
+  },
+};
 
 /**
  * The invitation-mode journeys' campaigns (`tests/e2e/fixtures/sign-in-campaigns.json`), each

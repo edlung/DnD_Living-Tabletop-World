@@ -1,0 +1,219 @@
+/*
+ * The table screen's moments (display/, docs/adr/0059-atmosphere.md §4–6): another cast fades in;
+ * a new place's title card stands big over its picture for a few seconds; a roll the table may see
+ * shows big over the cast (a plate in the corner beside the battlefield). With reduced motion the
+ * screen cuts, the card and the roll simply appear and go.
+ */
+.display-cast {
+  display: grid;
+  min-height: 100dvh;
+  animation: display-fade-in 600ms var(--ease) both;
+}
+@keyframes display-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+/* The place's title card, over the picture, above its caption */
+.display-place-card {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 2vmin;
+  padding: 6vmin;
+  background: color-mix(in srgb, var(--ink-950) 55%, transparent);
+  text-align: center;
+  pointer-events: none;
+  animation: display-card 4s var(--ease) both;
+}
+.display-place-card h2 {
+  margin: 0;
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 11vmin, 9rem);
+  line-height: 1;
+  text-shadow: 0 4px 32px color-mix(in srgb, var(--umbra) 80%, transparent);
+}
+.display-place-card p {
+  margin: 0;
+  color: var(--gold-bright);
+  font-size: clamp(1.2rem, 4vmin, 3.2rem);
+}
+@keyframes display-card {
+  0% {
+    opacity: 0;
+  }
+  15%,
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* A roll, big over the cast */
+.display-big-roll {
+  position: fixed;
+  inset: 50% auto auto 50%;
+  z-index: 8;
+  display: grid;
+  justify-items: center;
+  gap: 2vmin;
+  width: min(90vw, 1100px);
+  padding: 4vmin 5vmin;
+  border: 2px solid var(--gold);
+  border-radius: var(--radius-panel);
+  background: color-mix(in srgb, var(--ink-950) 88%, transparent);
+  box-shadow: var(--shadow);
+  text-align: center;
+  translate: -50% -50%;
+  animation: display-roll-in 350ms var(--ease) both;
+}
+.display-big-roll.is-compact {
+  inset: 2vmin 2vmin auto auto;
+  width: min(42vw, 520px);
+  padding: 2vmin 3vmin;
+  translate: none;
+}
+.display-big-who {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1vmin 3vmin;
+  margin: 0;
+  color: var(--text-muted);
+  font-size: clamp(1.1rem, 3.4vmin, 2.8rem);
+}
+.display-big-who span:first-child {
+  color: var(--text);
+}
+.display-big-throw {
+  display: grid;
+  justify-items: center;
+  gap: 1.5vmin;
+}
+.display-big-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 1vmin 3vmin;
+  margin: 0;
+  font-size: clamp(1.1rem, 3.4vmin, 2.8rem);
+}
+.display-big-total {
+  color: var(--gold-bright);
+  font-family: var(--font-display);
+  font-size: 1.8em;
+  line-height: 1;
+}
+.display-big-result {
+  color: var(--text);
+  font-weight: 700;
+}
+/* As the dice's plate says them. */
+.display-big-result.is-hit,
+.display-big-result.is-success {
+  color: var(--hp);
+}
+.display-big-result.is-miss {
+  color: var(--text-muted);
+}
+.display-big-result.is-failure {
+  color: var(--danger);
+}
+.display-big-result.is-critical {
+  color: var(--gold-bright);
+  text-shadow: 0 0 10px color-mix(in srgb, var(--gold) 70%, transparent);
+}
+.display-big-table {
+  margin: 0;
+  font-size: clamp(1.1rem, 3.4vmin, 2.8rem);
+}
+.is-compact .display-big-who,
+.is-compact .display-big-line,
+.is-compact .display-big-table {
+  font-size: clamp(1rem, 2.4vmin, 1.8rem);
+}
+@keyframes display-roll-in {
+  from {
+    opacity: 0;
+    scale: 0.92;
+  }
+}
+
+/* A throw's dice: each its face, its kind below; one not counted, dim and struck */
+.display-dice-faces {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5vmin;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.display-dice-faces li {
+  display: grid;
+  justify-items: center;
+  min-width: clamp(3rem, 9vmin, 7rem);
+  padding: 1vmin 1.5vmin;
+  border: 2px solid var(--line-strong);
+  border-radius: var(--radius-control);
+  background: color-mix(in srgb, var(--text) 6%, transparent);
+}
+.display-die-face {
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 6vmin, 4.6rem);
+  font-weight: 700;
+  line-height: 1;
+}
+.display-die-sides {
+  color: var(--text-muted);
+  font-size: clamp(0.8rem, 1.8vmin, 1.3rem);
+}
+.display-dice-faces li.is-dropped {
+  opacity: 0.55;
+}
+.display-dice-faces li.is-dropped .display-die-face {
+  text-decoration: line-through;
+}
+.is-compact .display-dice-faces li {
+  min-width: clamp(2.4rem, 6vmin, 4.4rem);
+}
+.is-compact .display-die-face {
+  font-size: clamp(1.2rem, 3.6vmin, 2.8rem);
+}
+/* In the dice cast's list, smaller beside each total */
+.display-rolls .display-dice-faces li {
+  min-width: clamp(2rem, 5vmin, 3.6rem);
+  padding: 0.5vmin 1vmin;
+}
+.display-rolls .display-die-face {
+  font-size: clamp(1rem, 3vmin, 2.2rem);
+}
+
+/* Narrower than a TV, the scene's caption keeps room for the corner's row below it. */
+@media (max-width: 1023px) {
+  .display-caption {
+    padding-bottom: calc(6vmin + 64px);
+  }
+}
+@media (max-width: 600px) {
+  .display-caption {
+    padding-bottom: calc(6vmin + 112px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .display-cast,
+  .display-place-card,
+  .display-big-roll {
+    animation: none;
+  }
+}

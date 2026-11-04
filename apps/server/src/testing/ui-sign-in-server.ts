@@ -25,7 +25,7 @@ import {
   testAuthoring,
   testDm,
 } from './ravenford-app.ts';
-import { seedDmInvitations, seedSignInCampaigns } from './ui-sign-in-campaigns.ts';
+import { MOVED_AWAY, seedDmInvitations, seedSignInCampaigns } from './ui-sign-in-campaigns.ts';
 import { SIGN_IN_ORIGIN, SIGN_IN_PORTS, signInSeed } from './ui-sign-in-links.ts';
 import { WORKSHOP_FIXTURES, workshopOwnerId } from './ui-workshop-links.ts';
 import { seedWorkshopAccess } from './ui-workshop-fixtures.ts';
@@ -124,6 +124,7 @@ const { app } = buildLiveApp({
   signIn,
   workshop: { ...workshop, campaignEntry: { engine, signIn } },
   trustedProxies: [],
+  moves: MOVED_AWAY,
 });
 app.addHook('onClose', async () => {
   await stopGeneration();
@@ -132,6 +133,15 @@ app.post('/testing/workshop-activation-release', async (_request, reply) => {
   activationFixture.releasePending();
   return reply.send({ released: true });
 });
+
+// Test-process-only: a journey's campaign moves to a laptop once its DM is seated (ADR 0061 §5).
+app.post<{ Params: { campaignId: string } }>(
+  '/testing/campaign-away/:campaignId',
+  async (request, reply) =>
+    MOVED_AWAY.send(request.params.campaignId)
+      ? reply.send({ away: true })
+      : reply.code(404).send({}),
+);
 
 // Test-process-only operator revocation trigger; never imported by production composition.
 app.post<{ Params: { name: string } }>('/testing/workshop-revoke/:name', async (request, reply) => {

@@ -74,8 +74,11 @@ RUN addgroup -S -g 1000 caddy && adduser -S -D -H -u 1000 -G caddy caddy \
  && chown -R caddy:caddy /data /config \
  && setcap -r /usr/bin/caddy
 COPY --from=build /app/apps/web/build /srv
+COPY deploy/proxy/trust /srv-trust
 COPY deploy/proxy/Caddyfile /etc/caddy/Caddyfile
 RUN PUBLIC_HOST=ltw.example TLS_MODE=acme caddy validate --config /etc/caddy/Caddyfile \
  && PUBLIC_HOST=localhost TLS_MODE=internal caddy validate --config /etc/caddy/Caddyfile \
+ && PUBLIC_HOST=192.168.1.10 TLS_MODE=internal LTW_PROXY_MODE=local \
+    caddy validate --config /etc/caddy/Caddyfile \
  && rm -rf /data/caddy /config/caddy
 USER caddy

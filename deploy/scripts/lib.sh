@@ -1,11 +1,13 @@
 # Shared by deploy/scripts/*.sh (sourced, never run). Compose runs in deploy/, so it reads
 # compose.yaml and deploy/.env there (and COMPOSE_FILE from that file, if a verification override
-# is configured). No helper here reads or prints a secret.
+# is configured). LTW_ENV_FILE names another settings file instead (the laptop's local mode,
+# deploy/local/.env, whose COMPOSE_PROJECT_NAME keeps it apart). No helper here reads or prints a
+# secret.
 set -euo pipefail
 
 DEPLOY_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
 REPO_DIR=$(cd "$DEPLOY_DIR/.." && pwd)
-ENV_FILE="$DEPLOY_DIR/.env"
+ENV_FILE=${LTW_ENV_FILE:-$DEPLOY_DIR/.env}
 SERVER_DIST=apps/server/dist
 # The restore drill's verdicts, one line each: `<epoch> <UTC time> passed|failed <dump>`.
 # restore-drill.sh appends, watch.sh alarms on the last; git-ignored, like every *.log.
@@ -14,7 +16,11 @@ DRILL_LOG=${LTW_DRILL_LOG:-$DEPLOY_DIR/restore-drill.log}
 DOCKER_ENGINE_MINIMUM=28
 
 compose() {
-  (cd "$DEPLOY_DIR" && docker compose "$@")
+  if [ -n "${LTW_ENV_FILE:-}" ]; then
+    (cd "$DEPLOY_DIR" && docker compose --env-file "$ENV_FILE" "$@")
+  else
+    (cd "$DEPLOY_DIR" && docker compose "$@")
+  fi
 }
 
 die() {

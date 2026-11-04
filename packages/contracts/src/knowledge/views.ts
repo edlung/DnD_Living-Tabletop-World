@@ -93,6 +93,8 @@ export const API_ERROR_CODES = [
   'INTERNAL',
   /** A request limit (docs/adr/0036-production-sign-in.md §6): 429 with a fixed body. */
   'RATE_LIMITED',
+  /** A change to a campaign played on another server since a move (docs/adr/0061-local-mode.md §5): 409. */
+  'MOVED',
 ] as const;
 export type ApiErrorCode = (typeof API_ERROR_CODES)[number];
 

@@ -10,6 +10,7 @@ confirmed source and recovery protocol.
 | Immutable scenario/quest/asset content       | `content.ts`, `postgres-content.ts`; migration0022                                                            |
 | Campaign quest book and explicit owner entry | `quest-books.ts`, `owner-routes.ts`; ordinary quest authorization remains in `../http/routes/quest-routes.ts` |
 | Closed route/invitation regressions          | `publication.test.ts`; activation storage integration tests                                                   |
+| A campaign's move between servers (ADR 0061) | `move/AGENTS.md`                                                                                              |
 
 - Publication is one-way. An untracked campaign is legacy; never cache that absence
   as permanent permission. Storage errors fail closed.

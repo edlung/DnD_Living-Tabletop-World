@@ -2,6 +2,7 @@ import { MAX_INVITATION_HOURS, actorIdSchema, campaignIdSchema, loginSchema } fr
 import type { WorldEngine } from '@ltw/domain';
 
 import { issueReset } from '../accounts/accounts.ts';
+import { forgetAccount } from '../accounts/privacy.ts';
 import { iso } from './session-authenticator.ts';
 import { issueInvitation, type IssuedInvitation, type SignInDependencies } from './sign-in.ts';
 
@@ -31,7 +32,12 @@ export type AuthOperatorCommand =
       readonly authorizationSource: string;
     }
   | { readonly kind: 'sessions'; readonly campaignId: string }
-  | { readonly kind: 'reset-password'; readonly login: string };
+  | { readonly kind: 'reset-password'; readonly login: string }
+  | {
+      readonly kind: 'delete-account';
+      readonly login: string;
+      readonly authorizationSource: string;
+    };
 
 export class AuthOperatorUsageError extends Error {
   constructor(message: string) {
@@ -59,6 +65,7 @@ const FLAGS = {
   'revoke-actor': ['actor', 'authorization-source'],
   sessions: ['campaign'],
   'reset-password': ['login'],
+  'delete-account': ['login', 'authorization-source'],
 } as const satisfies Record<AuthOperatorCommand['kind'], readonly string[]>;
 
 const isKind = (value: string | undefined): value is AuthOperatorCommand['kind'] =>
@@ -146,6 +153,15 @@ export function parseAuthOperatorArgs(argv: readonly string[]): AuthOperatorComm
       const login = loginSchema.safeParse(flag('login'));
       if (!login.success) throw new AuthOperatorUsageError('--login must be a login');
       return { kind, login: login.data };
+    }
+    case 'delete-account': {
+      const login = loginSchema.safeParse(flag('login'));
+      if (!login.success) throw new AuthOperatorUsageError('--login must be a login');
+      return {
+        kind,
+        login: login.data,
+        authorizationSource: authorizationSourceOf(flag('authorization-source')),
+      };
     }
   }
 }
@@ -319,6 +335,24 @@ export async function runAuthOperatorCommand(
         'operator',
       );
       return { login: account.login, ...reset };
+    }
+    case 'delete-account': {
+      // A person's account forgotten (ADR 0062 §3), a DM's too: the operator then invites the
+      // campaign's next DM to the same seat (`dm-invite`), if it goes on.
+      const account = await deps.accounts?.findByLogin(command.login);
+      if (!deps.accounts || !account) throw new AuthOperatorRefusal('ACCOUNT_NOT_FOUND');
+      const seats = await deps.accounts.seats(account.accountId);
+      const now = iso(deps.clock.now());
+      const accounts = { accounts: deps.accounts, credentials: deps.credentials };
+      if (!(await forgetAccount(accounts, account.accountId, now))) {
+        throw new AuthOperatorRefusal('ACCOUNT_NOT_FOUND');
+      }
+      return {
+        login: command.login,
+        deleted: true,
+        authorizationSource: command.authorizationSource,
+        seats: seats.map((seat) => ({ campaignId: seat.campaignId, role: seat.role })),
+      };
     }
   }
 }

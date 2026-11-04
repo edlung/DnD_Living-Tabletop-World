@@ -21,7 +21,9 @@ around the client the chosen server serves. Read the ADR first; the bridge's cas
   and `addDocumentStartJavaScript` with that origin's rule); a WebView without them gets the "update
   the WebView" screen, never an unrestricted `addJavascriptInterface`.
 - Release builds play on `https` only (`res/xml/network_security_config.xml`); debug builds also on
-  `http://localhost` and `http://127.0.0.1` (`src/debug/res/xml/`).
+  `http://localhost` and `http://127.0.0.1` (`src/debug/res/xml/`). A server off `vardahei.tech`
+  (the DM's laptop, ADR 0061 §3) may be trusted through a CA certificate the owner installed on the
+  device; `vardahei.tech` only through the system's roots. Keep both files' trust rules alike.
 - Pictures are GPT art (the UI kit's key art and emblem, the app icon); code draws only shapes.
 - Build: JDK 21 and the Android SDK (`ANDROID_HOME`); `./gradlew test assembleDebug lint`. A release
   key is the owner's: `keystore.properties` (ignored) names it. Debug builds take

@@ -1,5 +1,5 @@
 import type { AccountCampaign, AccountResponse, CampaignTemplate } from '@ltw/contracts';
-import { StatusPanel, useT } from '@ltw/ui';
+import { StatusPanel, useLanguage, useT } from '@ltw/ui';
 import { useCallback, useEffect, useId, useState, type SubmitEvent } from 'react';
 
 import { AboutButton } from '../guide/about.tsx';
@@ -7,6 +7,7 @@ import { NativeEntry } from '../native/native-entry.tsx';
 import { Glyph } from '../visual/glyph.tsx';
 import { ornamentUrl, textureUrl } from '../visual/ui-kit.ts';
 import { changePassword, readAccount, renameAccount, type EnterAnswer } from './account-flow.ts';
+import { AccountData } from './account-data.tsx';
 import { Field, useFocusFirstInvalid } from './account-forms.tsx';
 
 /**
@@ -190,6 +191,7 @@ export function Hub({
         </ul>
       </section>
       <AccountSettings transport={transport} account={account} onRenamed={reload} />
+      <AccountData transport={transport} login={account.login} onDeleted={() => void onSignOut()} />
       <div className="action-row">
         <button type="button" onClick={() => void onSignOut()}>
           <Glyph name="leave" />
@@ -212,7 +214,10 @@ function CampaignCard({
   readonly onOpen: () => void;
 }) {
   const t = useT();
+  const language = useLanguage();
   const titleId = useId();
+  // A server from before moves sends none.
+  const away = campaign.away ?? null;
   const who =
     campaign.role === 'dm'
       ? t('You are the DM')
@@ -228,6 +233,16 @@ function CampaignCard({
         <p className="muted">
           {who} · {campaign.language === 'ru' ? t('Russian') : t('English')}
         </p>
+        {away !== null && (
+          <p className="hub-campaign-away">
+            {t('Played on {where} since {when}: here you can look, not play.', {
+              where: away.destination,
+              when: new Intl.DateTimeFormat(language, { dateStyle: 'medium' }).format(
+                new Date(away.movedAt),
+              ),
+            })}
+          </p>
+        )}
       </div>
       <button
         type="button"

@@ -2,6 +2,7 @@ import { useT } from '@ltw/ui';
 import { useState, type Ref } from 'react';
 
 import type { LiveStatus } from '../api/live.ts';
+import { SoundOnButton } from '../audio/sound-on.tsx';
 import { GuideButton, GuideDialog } from '../guide/guide.tsx';
 import { AccountButton } from '../session/account-menu.tsx';
 import { ConnectionBadge } from '../session/live-status.tsx';
@@ -12,9 +13,10 @@ import { ornamentUrl } from '../visual/ui-kit.ts';
 /**
  * The top bar (docs/STAGE_320_DESIGN.md §5.1): the emblem and wordmark, the campaign and the
  * open play session (written in by the world screen, which owns that view), whether this view
- * follows the world live, the perspective, refresh, the account (my campaigns, or saving the seat
- * to a login: docs/adr/0041-accounts.md) and leave — signing out, for a browser signed in by
- * invitation (docs/adr/0036-production-sign-in.md §7).
+ * follows the world live, "Sound on" while the table's sound waits for a press
+ * (docs/adr/0059-atmosphere.md §6), the perspective, refresh, the account (my campaigns, or saving
+ * the seat to a login: docs/adr/0041-accounts.md) and leave — signing out, for a browser signed in
+ * by invitation (docs/adr/0036-production-sign-in.md §7).
  */
 export function TopBar({
   campaignName,
@@ -58,6 +60,7 @@ export function TopBar({
       </div>
       <div className="session-controls">
         <ConnectionBadge status={status} />
+        <SoundOnButton className="sound-on-button" />
         <div className="perspective-control">
           <label htmlFor="perspective">{t('Perspective')}</label>
           <select

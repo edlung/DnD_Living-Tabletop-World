@@ -49,6 +49,9 @@ export function SignInLayout({ children }: { readonly children: ReactNode }) {
           <p className="sign-in-footer">
             {t('Your character. Your perspective. One living world.')}
           </p>
+          <a className="text-link" href="/privacy">
+            {t('Privacy notice')}
+          </a>
           <AboutButton />
         </div>
       </section>
@@ -284,7 +287,23 @@ export function SignInScreens({
           </AccessState>
         );
       case 'join-failed':
-        return (
+        return screen.reason === 'moved' ? (
+          <AccessState
+            glyph="invitation"
+            eyebrow={t('An invitation')}
+            title={t('This campaign is played elsewhere now')}
+            focus
+          >
+            <p>
+              {t(
+                'Its DM moved it to another server, such as a laptop at home. Ask your DM where it is played now, and for an invitation there.',
+              )}
+            </p>
+            <div className="action-row">
+              <button onClick={onBackToStart}>{t('Back to the start')}</button>
+            </div>
+          </AccessState>
+        ) : (
           <AccessState
             glyph="invitation"
             eyebrow={t('An invitation')}

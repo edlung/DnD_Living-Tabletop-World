@@ -7,21 +7,49 @@
  */
 let context: AudioContext | null = null;
 let master: GainNode | null = null;
+let limiter: DynamicsCompressorNode | null = null;
 const banks = new Map<'table' | 'die', AudioBuffer[]>();
+const soundListeners = new Set<() => void>();
+
+const tell = () => {
+  for (const listener of soundListeners) listener();
+};
 
 /** Creates (or resumes) the audio context; call from a user gesture. */
 export function unlockAudio(): void {
   if (typeof AudioContext === 'undefined') return;
   if (!context) {
     context = new AudioContext();
-    const limiter = context.createDynamicsCompressor();
+    limiter = context.createDynamicsCompressor();
     limiter.threshold.value = -10;
     limiter.knee.value = 6;
     limiter.ratio.value = 8;
+    limiter.connect(context.destination);
     master = context.createGain();
-    master.connect(limiter).connect(context.destination);
+    master.connect(limiter);
+    context.addEventListener('statechange', tell);
   }
   if (context.state === 'suspended') void context.resume();
+  tell();
+}
+
+/** Whether sound plays on this screen: a press unlocked it and the browser lets it run. */
+export const soundRunning = (): boolean => context?.state === 'running';
+
+/**
+ * Where every sound of the table goes (docs/adr/0059-atmosphere.md): the running context and the
+ * limiter the dice share; null until a press unlocked sound on this screen.
+ */
+export function soundOut(): { readonly context: AudioContext; readonly out: AudioNode } | null {
+  return context && limiter && context.state === 'running' ? { context, out: limiter } : null;
+}
+
+/** Called whenever sound starts or stops running on this screen; returns its removal. */
+export function onSoundChange(listener: () => void): () => void {
+  soundListeners.add(listener);
+  return () => {
+    soundListeners.delete(listener);
+  };
 }
 
 /** Unlocks on the first press or key anywhere; harmless to call more than once. */

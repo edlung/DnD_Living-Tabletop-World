@@ -3,6 +3,7 @@ import { useT } from '@ltw/ui';
 import { useState } from 'react';
 
 import { ApiError, type WorldApi } from '../api/client.ts';
+import { Opening } from '../shell/opening.tsx';
 import { Glyph } from '../visual/glyph.tsx';
 import { chapterMessage } from './chapter-message.ts';
 
@@ -50,11 +51,15 @@ export function GenerateChapter({
     }
   };
   return (
-    <details className="disclosure book-writer">
-      <summary>
-        <Glyph name="chronicle" />
-        {t('Write a chapter (DM)')}
-      </summary>
+    <Opening
+      className="disclosure book-writer"
+      summary={
+        <>
+          <Glyph name="chronicle" />
+          {t('Write a chapter (DM)')}
+        </>
+      }
+    >
       <div className="book-writer-form">
         <label htmlFor="chapter-title">{t('Title')}</label>
         <input
@@ -96,6 +101,6 @@ export function GenerateChapter({
         )}
         {message && <p role="status">{message}</p>}
       </div>
-    </details>
+    </Opening>
   );
 }

@@ -57,8 +57,12 @@ async function json<T>(response: Response): Promise<T | null> {
   }
 }
 
-/** A conflict's reason: a taken login, a seat the account already has, the campaign limit. */
-export type ConflictReason = 'login-taken' | 'already-seated' | 'has-account' | 'campaign-limit';
+/**
+ * A conflict's reason: a taken login, a seat the account already has, the campaign limit, a DM's
+ * account asked to be deleted.
+ */
+export type ConflictReason =
+  'login-taken' | 'already-seated' | 'has-account' | 'campaign-limit' | 'dm-seat';
 
 const reasonOf = async (response: Response): Promise<ConflictReason | null> => {
   const body = await json<{ reason?: unknown }>(response);
@@ -66,7 +70,8 @@ const reasonOf = async (response: Response): Promise<ConflictReason | null> => {
   return reason === 'login-taken' ||
     reason === 'already-seated' ||
     reason === 'has-account' ||
-    reason === 'campaign-limit'
+    reason === 'campaign-limit' ||
+    reason === 'dm-seat'
     ? reason
     : null;
 };
@@ -160,3 +165,7 @@ export const changePassword = async (transport: Transport, current: string, next
 
 export const renameAccount = async (transport: Transport, displayName: string) =>
   formAnswer(await post(transport, '/api/account/name', { displayName }));
+
+/** The account forgotten (docs/adr/0062-account-privacy.md §3): its password and login again. */
+export const deleteAccount = async (transport: Transport, login: string, password: string) =>
+  formAnswer(await post(transport, '/api/account/delete', { login, password }));

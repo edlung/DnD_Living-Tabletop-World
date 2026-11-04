@@ -10,6 +10,7 @@ import { registerWorkshopRoutes } from '../workshop/routes.ts';
 import type { WorkshopDependencies } from '../workshop/service.ts';
 import type { CampaignQuestBooks } from '../campaigns/quest-books.ts';
 import { registerAccountRoutes } from '../accounts/account-routes.ts';
+import { registerPrivacyRoutes } from '../accounts/privacy-routes.ts';
 import { registerChatRoutes, type ChatDependencies } from '../chat/chat-routes.ts';
 import { InMemoryMarkStore } from '../marks/mark-store.ts';
 import { registerMarkRoutes, type MarkDependencies } from '../marks/mark-routes.ts';
@@ -19,6 +20,12 @@ import { InMemoryHandoutStore } from '../handouts/handout-store.ts';
 import { registerLibraryRoutes } from '../library/library-routes.ts';
 import type { AdventureBooks, AdventurePictures } from '../adventures/adventures.ts';
 import { registerLobbyRoutes } from '../table/lobby-routes.ts';
+import { isAwayRefusal, registerMoveGuard } from '../campaigns/move/guard.ts';
+import { NOTHING_AWAY, type CampaignMoves } from '../campaigns/move/moves.ts';
+import { registerMusicRoutes } from '../music/music-routes.ts';
+import { registerVoiceRoutes, type VoiceRelay } from '../voice/voice-routes.ts';
+import { VoiceRooms } from '../voice/voice-rooms.ts';
+import { InMemoryTrackStore, type TrackStore } from '../music/track-store.ts';
 import { memoryLobby, type LobbyDependencies } from '../table/table-state.ts';
 import { registerDisplayRoutes } from '../display/display-routes.ts';
 import { registerTableLinkRoutes } from '../display/table-links.ts';
@@ -141,6 +148,18 @@ export interface AppDependencies {
   readonly marks?: MarkDependencies;
   /** Handouts (ADR 0044 §5): what the DM shows one player or the party; in memory when absent. */
   readonly handouts?: HandoutDependencies;
+  /** The DM's music (docs/adr/0059-atmosphere.md §3); in memory when absent. */
+  readonly music?: TrackStore;
+  /**
+   * The table's voice (docs/adr/0060-voice.md): its rooms, always this process's memory, and the
+   * relay, when one is set (`LTW_TURN_URLS`, `LTW_TURN_SECRET`).
+   */
+  readonly voice?: { readonly rooms: VoiceRooms; readonly relay: VoiceRelay | null };
+  /**
+   * Where each campaign plays (docs/adr/0061-local-mode.md §5): an away campaign is read, not
+   * changed. Without it nothing is ever away.
+   */
+  readonly moves?: CampaignMoves;
 }
 
 /** Table talk in memory: for compositions without a database. */
@@ -198,9 +217,11 @@ export function buildApp(input: AppDependencies): FastifyInstance {
     }
   });
   if (deps.signIn) registerOriginCheck(app, deps.signIn.publicOrigin);
+  if (deps.moves) registerMoveGuard(app, deps.moves);
 
   app.setNotFoundHandler((request, reply) => sendError(reply, request, 'NOT_FOUND'));
   app.setErrorHandler((error, request, reply) => {
+    if (isAwayRefusal(error)) return sendError(reply, request, 'MOVED');
     const status = (error as { statusCode?: unknown }).statusCode;
     if (typeof status === 'number' && status >= 400 && status < 500) {
       request.log.info({ code: (error as { code?: unknown }).code }, 'request rejected');
@@ -243,8 +264,29 @@ export function buildApp(input: AppDependencies): FastifyInstance {
   registerChronicleRoutes(app, { ...deps, chronicleIds: deps.authoring.ids });
   registerQuestRoutes(app, deps);
   registerPresenceRoutes(app, { ...deps, presence: deps.presence ?? NOBODY_CONNECTED });
-  registerLobbyRoutes(app, { ...deps, lobby, presence: deps.presence ?? NOBODY_CONNECTED });
-  registerChatRoutes(app, { ...deps, chat: deps.chat ?? memoryChat() });
+  // One set of tracks for the music's routes and the lobby that plays them (ADR 0059 §3).
+  const music = deps.music ?? new InMemoryTrackStore();
+  // One voice room a campaign, which the lobby ends when the table leaves online play (ADR 0060).
+  const voice = deps.voice ?? { rooms: new VoiceRooms(), relay: null };
+  registerLobbyRoutes(app, {
+    ...deps,
+    lobby,
+    music,
+    voice: voice.rooms,
+    presence: deps.presence ?? NOBODY_CONNECTED,
+    moves: deps.moves ?? NOTHING_AWAY,
+  });
+  registerMusicRoutes(app, { ...deps, lobby, music });
+  registerVoiceRoutes(app, {
+    ...deps,
+    lobby,
+    voice: voice.rooms,
+    relay: voice.relay,
+    credentialHeader: vary,
+  });
+  // One chat for its routes and a person's copy of their data (ADR 0062 §2).
+  const chat = deps.chat ?? memoryChat();
+  registerChatRoutes(app, { ...deps, chat });
   registerMarkRoutes(app, { ...deps, marks: deps.marks ?? memoryMarks() });
   // One set of handouts for the handout routes and the DM's library that gives them (ADR 0058 §3).
   const handouts = deps.handouts ?? memoryHandouts();
@@ -269,9 +311,12 @@ export function buildApp(input: AppDependencies): FastifyInstance {
     const { accounts, accountLimits } = deps.signIn;
     // A character from another campaign of the same login (docs/FULL_GAME_PLAN.md decision 15).
     if (accounts) registerCopyRoutes(app, { ...deps, accounts });
-    // Accounts (ADR 0041): the hub, signing in with a login, opening and creating campaigns.
+    // Accounts (ADR 0041): the hub, signing in with a login, opening and creating campaigns; a
+    // person's data, copied or deleted (ADR 0062).
     if (accounts && accountLimits) {
-      registerAccountRoutes(app, { ...deps, signIn: { ...deps.signIn, accounts, accountLimits } });
+      const withAccounts = { ...deps, signIn: { ...deps.signIn, accounts, accountLimits } };
+      registerAccountRoutes(app, withAccounts);
+      registerPrivacyRoutes(app, { ...withAccounts, chat: chat.store, table: table.store });
     }
     // The table's displays and join links (ADR 0042): pairing, the cast, the table's QR code.
     const { displays, displayLimits, openLinks } = deps.signIn;

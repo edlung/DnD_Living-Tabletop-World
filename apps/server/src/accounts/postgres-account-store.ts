@@ -6,6 +6,7 @@ import type {
   AccountRecord,
   AccountSessionRecord,
   AccountStore,
+  ForgottenAccount,
   ResetRecord,
   SeatRecord,
 } from './account-store.ts';
@@ -50,6 +51,7 @@ interface SessionRow {
 
 const ACCOUNT_COLUMNS =
   'account_id, login, password_hash, display_name, created_at, password_changed_at';
+const SESSION_COLUMNS = 'session_id, token_hash, account_id, created_at, expires_at, revoked_at';
 const SEAT_COLUMNS = 'account_id, campaign_id, actor_id, role, invitation_id, joined_at';
 
 const toAccount = (row: AccountRow): AccountRecord => ({
@@ -59,6 +61,15 @@ const toAccount = (row: AccountRow): AccountRecord => ({
   displayName: row.display_name,
   createdAt: row.created_at.toISOString(),
   passwordChangedAt: row.password_changed_at.toISOString(),
+});
+
+const toSession = (row: SessionRow): AccountSessionRecord => ({
+  sessionId: row.session_id,
+  tokenHash: row.token_hash,
+  accountId: row.account_id,
+  createdAt: row.created_at.toISOString(),
+  expiresAt: row.expires_at.toISOString(),
+  revokedAt: row.revoked_at?.toISOString() ?? null,
 });
 
 const toSeat = (row: SeatRow): SeatRecord => ({
@@ -190,21 +201,20 @@ export class PostgresAccountStore implements AccountStore {
 
   async findSession(tokenHash: string): Promise<AccountSessionRecord | null> {
     const { rows } = await this.#pool.query<SessionRow>(
-      `SELECT session_id, token_hash, account_id, created_at, expires_at, revoked_at
-       FROM ltw_account_sessions WHERE token_hash = $1`,
+      `SELECT ${SESSION_COLUMNS} FROM ltw_account_sessions WHERE token_hash = $1`,
       [tokenHash],
     );
     const row = rows[0];
-    return row
-      ? {
-          sessionId: row.session_id,
-          tokenHash: row.token_hash,
-          accountId: row.account_id,
-          createdAt: row.created_at.toISOString(),
-          expiresAt: row.expires_at.toISOString(),
-          revokedAt: row.revoked_at?.toISOString() ?? null,
-        }
-      : null;
+    return row ? toSession(row) : null;
+  }
+
+  async sessionsOf(accountId: string): Promise<readonly AccountSessionRecord[]> {
+    const { rows } = await this.#pool.query<SessionRow>(
+      `SELECT ${SESSION_COLUMNS} FROM ltw_account_sessions
+        WHERE account_id = $1 ORDER BY created_at DESC`,
+      [accountId],
+    );
+    return rows.map(toSession);
   }
 
   async revokeSession(tokenHash: string, now: string): Promise<boolean> {
@@ -248,5 +258,41 @@ export class PostgresAccountStore implements AccountStore {
       [tokenHash, now],
     );
     return rows[0]?.account_id ?? null;
+  }
+
+  async forget(accountId: string, replacement: ForgottenAccount, at: string): Promise<boolean> {
+    const client = await this.#pool.connect();
+    try {
+      await client.query('BEGIN');
+      const { rowCount } = await client.query(
+        `UPDATE ltw_accounts SET login = $2, display_name = $3, password_hash = $4,
+           password_changed_at = GREATEST($5::timestamptz, created_at)
+          WHERE account_id = $1`,
+        [accountId, replacement.login, replacement.displayName, replacement.passwordHash, at],
+      );
+      if (rowCount !== 1) {
+        await client.query('ROLLBACK');
+        return false;
+      }
+      await client.query(
+        `UPDATE ltw_account_sessions SET revoked_at = GREATEST($2::timestamptz, created_at)
+          WHERE account_id = $1 AND revoked_at IS NULL`,
+        [accountId, at],
+      );
+      await client.query(
+        `UPDATE ltw_account_resets SET used_at = GREATEST($2::timestamptz, created_at)
+          WHERE account_id = $1 AND used_at IS NULL`,
+        [accountId, at],
+      );
+      await client.query('DELETE FROM ltw_account_seats WHERE account_id = $1', [accountId]);
+      await client.query('COMMIT');
+      return true;
+    } catch (error) {
+      await client.query('ROLLBACK').catch(() => undefined);
+      if (isUniqueViolation(error)) return false;
+      throw error;
+    } finally {
+      client.release();
+    }
   }
 }

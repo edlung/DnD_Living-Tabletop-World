@@ -385,7 +385,7 @@
   min-height: 100dvh;
 }
 
-/* The quiet corner: full screen and unpairing, out of the way; gone while nobody moves */
+/* The quiet corner: its sound, full screen and unpairing, out of the way; gone while nobody moves */
 .display-corner {
   position: fixed;
   right: 12px;
@@ -403,6 +403,8 @@
 }
 .display-corner.is-idle:not(:focus-within, :hover) {
   opacity: 0;
+  /* Gone, it lets presses through: a pointer moving wakes it first. */
+  pointer-events: none;
 }
 .display-name {
   color: var(--text-muted);
@@ -412,42 +414,16 @@
   align-items: center;
   gap: 0.5rem;
 }
-
-/* The DM's Table screen sheet */
-.screen-sheet {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
-  align-items: start;
-  gap: 1rem;
-}
-.screen-pair-form,
-.screen-cast-form {
-  display: grid;
-  gap: 0.6rem;
-}
-.screen-pair-form .primary-button,
-.screen-cast-form .primary-button {
-  justify-self: start;
-}
-/* The battlefield's zoom and whom it keeps in view, side by side */
-.screen-cast-row {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr));
-  align-items: end;
-  gap: 0.6rem;
-}
-/* What to show: a compact grid, so the button stays in reach */
-.screen-cast-form .join-modes {
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 12rem), 1fr));
-}
-.screen-cast-form .join-mode label {
-  margin: 0;
-  color: var(--text);
-  cursor: pointer;
-}
-.screen-sheet .glyph {
-  width: 20px;
-  height: 20px;
+/*
+ * Narrower than a TV (a tablet standing in for one): the corner is a row along the bottom, and the
+ * scene's caption keeps the room above it (`display-moments.css`), so the corner never lies over
+ * the place's name — it stays shown while "Sound on" waits (ADR 0059 §6).
+ */
+@media (max-width: 1023px) {
+  .display-corner {
+    left: 12px;
+    justify-content: flex-end;
+  }
 }
 
 /* The table link's free seats to choose from */

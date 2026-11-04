@@ -48,7 +48,20 @@ export function registerBattleMapUploadRoutes(
 ): void {
   app.post(
     '/campaigns/:campaignId/entities/:entityId/battle-map',
-    { bodyLimit: Math.ceil((MAX_UPLOAD_BYTES * 4) / 3) + 16 * 1024 },
+    {
+      bodyLimit: Math.ceil((MAX_UPLOAD_BYTES * 4) / 3) + 16 * 1024,
+      // Only the DM's upload is read: anyone else is answered before a byte of it is buffered.
+      onRequest: async (request, reply) => {
+        const actor = await authenticate(request, reply, deps);
+        if (!actor) return reply;
+        const path = params.safeParse(request.params);
+        if (!path.success) return sendError(reply, request, 'INVALID_REQUEST');
+        const state = (await deps.engine.load(path.data.campaignId))?.state ?? null;
+        const role = campaignRole(state, actor);
+        if (role === null) return sendError(reply, request, 'NOT_FOUND');
+        if (role !== 'DM') return sendError(reply, request, 'FORBIDDEN');
+      },
+    },
     async (request, reply) => {
       const actor = await authenticate(request, reply, deps);
       if (!actor) return reply;

@@ -1,0 +1,86 @@
+/*
+ * The table's sound (audio/table-sound.tsx, docs/adr/0059-atmosphere.md §6): a browser plays only
+ * after a press, so a page whose sound waits for one shows one "Sound on" in the world's top bar,
+ * beside whether it is live (the table's screen has it in its quiet corner).
+ */
+.sound-on-button {
+  min-height: 38px;
+  padding: 0 12px;
+  border-color: var(--teal);
+  background: var(--teal-fill);
+  color: var(--text);
+  font-weight: 700;
+  white-space: nowrap;
+}
+.sound-on-button:hover:enabled {
+  background: color-mix(in srgb, var(--teal-fill) 82%, var(--teal));
+  border-color: var(--side-party);
+}
+
+/*
+ * Phones: it waits beside the perspective (under it, where the two do not fit), so the bar's
+ * glyphs keep their own row and the perspective keeps room for its chosen name.
+ */
+@media (max-width: 419px) {
+  .sound-on-button {
+    order: 2;
+  }
+  .session-controls:has(.sound-on-button) .perspective-control {
+    flex: 1 1 0;
+    min-width: 180px;
+  }
+}
+
+/* The DM's choice, in the Session sheet's "At the table". */
+.lobby-sound {
+  max-width: 420px;
+  margin-top: 12px;
+}
+.lobby-sound .muted {
+  margin: 4px 0 0;
+}
+
+/* The DM's music (dm/music-panel.tsx, ADR 0059 §3): what plays, the tracks, adding one. */
+.music-panel {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+}
+.music-now {
+  display: grid;
+  gap: 4px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-panel);
+}
+.music-now p,
+.music-panel > .muted {
+  margin: 0;
+}
+.music-list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.music-row {
+  display: grid;
+  gap: 4px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-panel);
+}
+.music-row-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 8px;
+  min-width: 0;
+}
+.music-row-head strong {
+  overflow-wrap: anywhere;
+}
+.music-panel .action-row {
+  margin: 0;
+}

@@ -438,10 +438,12 @@ export {
   type DayPhase,
   type Weather,
 } from './visual/commands.ts';
-export type {
-  EntityPresentation,
-  EntityPresentationResponse,
-  ScenePresentationResponse,
+export {
+  PLACE_SETTINGS,
+  type EntityPresentation,
+  type EntityPresentationResponse,
+  type PlaceSetting,
+  type ScenePresentationResponse,
 } from './visual/views.ts';
 export type {
   AssetLineageResponse,

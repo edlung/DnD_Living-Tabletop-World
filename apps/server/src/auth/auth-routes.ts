@@ -9,6 +9,7 @@ import { campaignRole, type WorldEngine } from '@ltw/domain';
 import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod';
 
+import type { CampaignMoves } from '../campaigns/move/moves.ts';
 import type { Authenticator, Principal } from '../http/auth.ts';
 import { sendError } from '../http/errors.ts';
 import { credentialsOf } from '../http/request-context.ts';
@@ -55,6 +56,8 @@ export interface AuthRouteDependencies {
   readonly engine: WorldEngine;
   readonly authenticator: Authenticator;
   readonly signIn: SignInDependencies;
+  /** Where each campaign plays: an away one is joined nowhere here (docs/adr/0061 §5). */
+  readonly moves?: CampaignMoves;
 }
 
 const emptyBody = z.object({}).strict().optional();
@@ -220,7 +223,15 @@ export function registerAuthRoutes(app: FastifyInstance, deps: AuthRouteDependen
     // would refuse it is checked before the invitation is spent.
     const seatAccount = await accountForRedeem(request, reply, client, body.data);
     if (seatAccount === 'answered') return reply;
-    const outcome = await redeemInvitation(deps.engine, deps.signIn, body.data.token);
+    const outcome = await redeemInvitation(
+      deps.engine,
+      deps.moves ? { ...deps.signIn, moves: deps.moves } : deps.signIn,
+      body.data.token,
+    );
+    // Not the person's mistake: the campaign plays on another server now.
+    if (outcome.kind === 'refused' && outcome.reason === 'moved') {
+      return sendError(reply, request, 'MOVED');
+    }
     if (outcome.kind === 'refused') {
       admission.failed(prefix);
       await record(request, client, 'refused', prefix);

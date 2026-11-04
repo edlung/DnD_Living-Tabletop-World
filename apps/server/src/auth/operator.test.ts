@@ -266,3 +266,40 @@ describe('listing live sessions', () => {
     });
   });
 });
+
+describe('deleting an account', () => {
+  it('forgets a DM’s account too, with the authorization, and refuses a login nobody holds', async () => {
+    const table = await signInTable();
+    const joined = await table.redeem(
+      await table.dmInvitation(),
+      {},
+      {
+        newAccount: { login: 'ada-dm', password: 'correct horse battery', displayName: 'Ada' },
+      },
+    );
+    expect(joined.statusCode).toBe(200);
+    const run = (argv: readonly string[]) =>
+      runAuthOperatorCommand(
+        table.engine,
+        {
+          credentials: table.credentials,
+          clock: table.clock,
+          publicOrigin: ORIGIN,
+          accounts: table.accounts,
+        },
+        parseAuthOperatorArgs(argv),
+      );
+    const argv = ['delete-account', '--login', 'ada-dm', '--authorization-source', SOURCE];
+    expect(await run(argv)).toEqual({
+      login: 'ada-dm',
+      deleted: true,
+      authorizationSource: SOURCE,
+      seats: [{ campaignId: 'ravenford', role: 'dm' }],
+    });
+    expect(await table.accounts.findByLogin('ada-dm')).toBeNull();
+    await expect(run(argv)).rejects.toThrow(AuthOperatorRefusal);
+    expect(() => parseAuthOperatorArgs(['delete-account', '--login', 'ada-dm'])).toThrow(
+      AuthOperatorUsageError,
+    );
+  });
+});

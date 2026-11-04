@@ -1,7 +1,10 @@
 import { z } from 'zod';
 
+import type { ChatChannel, ChatVoice } from '../chat/chat.ts';
+import type { RollGroup, RollSubject } from '../dice/rolls.ts';
 import type { Language } from '../language/language.ts';
 import { CREDENTIAL_TOKEN_PATTERN } from './auth.ts';
+import type { CampaignAway } from './lobby.ts';
 
 /**
  * Accounts (docs/adr/0041-accounts.md, Stage 600): a login and a password that hold a person's seats
@@ -81,6 +84,8 @@ export interface AccountCampaign {
   readonly language: Language;
   /** The account's characters there; none for the DM. */
   readonly characters: readonly { readonly entityId: string; readonly name: string }[];
+  /** Played on another server since a move; null at home (docs/adr/0061-local-mode.md §5). */
+  readonly away: CampaignAway | null;
 }
 
 /** `GET /account`: the signed-in account, or 401. */
@@ -100,4 +105,63 @@ export interface EnteredCampaignResponse {
 export interface CreatedResetResponse {
   readonly link: string;
   readonly expiresAt: string;
+}
+
+/**
+ * `POST /account/delete` (docs/adr/0062-account-privacy.md §3): the current password and the login
+ * typed again, so a session left open is not enough.
+ */
+export const deleteAccountRequestSchema = z
+  .object({ password: z.string().min(1).max(200), login: z.string().min(1).max(64) })
+  .strict();
+export type DeleteAccountRequest = z.infer<typeof deleteAccountRequestSchema>;
+
+/** A chat message one wrote, in a copy of one's data. */
+export interface AccountChatLine {
+  readonly at: string;
+  readonly channel: ChatChannel;
+  readonly voice: ChatVoice;
+  /** The character it was said as; null for the DM. */
+  readonly speaker: string | null;
+  readonly text: string;
+}
+
+/** A roll one made, in a copy of one's data. */
+export interface AccountRollLine {
+  readonly at: string;
+  /** The character who rolled; null for the DM. */
+  readonly roller: string | null;
+  readonly subject: RollSubject;
+  readonly groups: readonly RollGroup[];
+}
+
+/** One campaign in a copy of one's data: what the account wrote and rolled there. */
+export interface AccountCampaignData {
+  readonly campaignId: string;
+  readonly name: string;
+  readonly role: SeatRole;
+  readonly language: Language;
+  readonly characters: readonly { readonly entityId: string; readonly name: string }[];
+  readonly chat: readonly AccountChatLine[];
+  readonly rolls: readonly AccountRollLine[];
+}
+
+/**
+ * `GET /account/data` (docs/adr/0062-account-privacy.md §2): a person's data as one file. Never a
+ * password hash, a token, another person's message or what the person's characters do not know.
+ */
+export interface AccountDataResponse {
+  readonly exportedAt: string;
+  readonly account: {
+    readonly login: string;
+    readonly displayName: string;
+    readonly createdAt: string;
+    readonly passwordChangedAt: string;
+  };
+  readonly sessions: readonly {
+    readonly createdAt: string;
+    readonly expiresAt: string;
+    readonly revokedAt: string | null;
+  }[];
+  readonly campaigns: readonly AccountCampaignData[];
 }

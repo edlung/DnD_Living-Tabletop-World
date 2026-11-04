@@ -9,8 +9,8 @@ import { useId, useState } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
+import { Opening } from '../shell/opening.tsx';
 import { MapCanvas } from './map-canvas.tsx';
-import { Opening } from './opening.tsx';
 import { TERRAIN_WORDS } from './travel-words.ts';
 
 interface Place {

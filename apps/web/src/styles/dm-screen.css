@@ -330,6 +330,12 @@
   align-items: start;
   gap: 1rem;
 }
+.session-main {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+  min-width: 0;
+}
 .session-sheet h3 {
   display: flex;
   align-items: center;
@@ -401,6 +407,28 @@
 }
 .lobby-banner button {
   min-height: 36px;
+}
+/* A campaign played on another server since a move (ADR 0061 §5): a sentence, not a pill. */
+.lobby-banner.is-away {
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  max-width: 640px;
+  padding: 8px 16px;
+  border-radius: var(--radius-panel);
+}
+.lobby-banner.is-away > span {
+  min-width: 0;
+}
+/* It stays while the campaign is away: under the place's card, never over it, on every width
+   that floats the slot (a phone's sits above the tab bar). */
+@media (min-width: 768px) {
+  .rest-banner-slot:has(.lobby-banner.is-away) {
+    top: calc(var(--topbar-h) + 120px);
+    left: 120px;
+    max-width: min(640px, calc(100vw - 136px));
+    translate: none;
+  }
 }
 
 @media (max-width: 900px) {

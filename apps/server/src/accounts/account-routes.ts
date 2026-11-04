@@ -15,6 +15,7 @@ import { campaignRole, type WorldEngine } from '@ltw/domain';
 import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod';
 
+import type { CampaignMoves } from '../campaigns/move/moves.ts';
 import { iso } from '../auth/session-authenticator.ts';
 import { SESSION_MS, type SignInDependencies } from '../auth/sign-in.ts';
 import {
@@ -65,6 +66,8 @@ export interface AccountRouteDependencies {
   readonly adventurePictures?: AdventurePictures;
   readonly assets?: { readonly contents: AssetContentStore };
   readonly logger?: Logger;
+  /** Where each campaign plays: the hub says which are away (docs/adr/0061-local-mode.md §5). */
+  readonly moves?: CampaignMoves;
 }
 
 const params = z.object({ campaignId: campaignIdSchema }).strict();
@@ -72,12 +75,19 @@ const emptyBody = z.object({}).strict().optional();
 
 /**
  * A 409 whose reason the page words: a taken login, a seat the account already has, a seat that
- * has a login already, the campaign limit, or a login that also plays at other DMs' tables.
+ * has a login already, the campaign limit, a login that also plays at other DMs' tables, or a DM's
+ * account asked to be deleted (ADR 0062 §3).
  */
 export const conflict = (
   reply: FastifyReply,
   request: FastifyRequest,
-  reason: 'login-taken' | 'already-seated' | 'has-account' | 'campaign-limit' | 'other-tables',
+  reason:
+    | 'login-taken'
+    | 'already-seated'
+    | 'has-account'
+    | 'campaign-limit'
+    | 'other-tables'
+    | 'dm-seat',
 ) => reply.code(409).send({ ...errorBody('CONFLICT', request.id), reason });
 
 export function registerAccountRoutes(app: FastifyInstance, deps: AccountRouteDependencies): void {
@@ -142,6 +152,10 @@ export function registerAccountRoutes(app: FastifyInstance, deps: AccountRouteDe
     }
     const body = claimRequestSchema.safeParse(request.body);
     if (!body.success) return sendError(reply, request, 'INVALID_REQUEST');
+    // A campaign played on another server takes no new seat here (docs/adr/0061 §5).
+    if (deps.moves && (await deps.moves.awayOf(principal.campaignId)) !== null) {
+      return sendError(reply, request, 'MOVED');
+    }
     const state = (await deps.engine.load(principal.campaignId))?.state ?? null;
     const role = campaignRole(state, principal.actor);
     const session = await credentials.findSession(hashToken(token));
@@ -204,7 +218,11 @@ export function registerAccountRoutes(app: FastifyInstance, deps: AccountRouteDe
     const response: AccountResponse = {
       login: account.login,
       displayName: account.displayName,
-      campaigns: await campaignsOf(deps.engine, await accounts.seats(account.accountId)),
+      campaigns: await campaignsOf(
+        deps.engine,
+        await accounts.seats(account.accountId),
+        deps.moves,
+      ),
     };
     return reply.send(response);
   });

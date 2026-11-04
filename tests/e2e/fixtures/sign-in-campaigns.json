@@ -22,5 +22,15 @@
   "builder": "ui-signin-builder",
   "builderRu": "ui-signin-builder-ru",
   "native": "ui-signin-native",
-  "adventure": "ui-signin-adventure"
+  "adventure": "ui-signin-adventure",
+  "atmosphere": "ui-signin-atmosphere",
+  "music": "ui-signin-music",
+  "moments": "ui-signin-moments",
+  "voice": "ui-signin-voice",
+  "moved": "ui-signin-moved",
+  "movedRu": "ui-signin-moved-ru",
+  "privacy": "ui-signin-privacy",
+  "release": "ui-signin-release",
+  "releaseWebkit": "ui-signin-release-webkit",
+  "chronicleWriter": "ui-signin-chronicle-writer"
 }

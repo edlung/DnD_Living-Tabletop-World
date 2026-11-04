@@ -33,6 +33,7 @@ describe('loadConfig', () => {
       },
       questsFile: DEFAULT_QUESTS_FILE,
       allowNewerSchema: false,
+      voiceRelay: null,
       assets: {
         workerIntervalMs: 5_000,
         generationTimeoutMs: 60_000,
@@ -261,5 +262,32 @@ describe('describeDatabaseUrl', () => {
       expect((error as ConfigError).message).not.toContain(value);
       expect((error as ConfigError).message).not.toContain(KEY);
     });
+  });
+});
+
+describe('the voice relay', () => {
+  it('takes both settings or neither, its addresses checked, its secret kept', () => {
+    const relay = loadConfig({
+      LTW_TURN_URLS: 'turn:relay.example:3478, turns:relay.example:5349?transport=tcp',
+      LTW_TURN_SECRET: 'a long shared relay secret',
+    }).voiceRelay;
+    expect(relay?.urls).toEqual([
+      'turn:relay.example:3478',
+      'turns:relay.example:5349?transport=tcp',
+    ]);
+    expect(relay?.secret.reveal()).toBe('a long shared relay secret');
+    expect(JSON.stringify(relay)).not.toContain('a long shared relay secret');
+    expect(() => loadConfig({ LTW_TURN_URLS: 'turn:relay.example:3478' })).toThrow(
+      /LTW_TURN_URLS and LTW_TURN_SECRET/,
+    );
+    expect(() =>
+      loadConfig({
+        LTW_TURN_URLS: 'https://relay.example',
+        LTW_TURN_SECRET: 'a long shared relay secret',
+      }),
+    ).toThrow(/LTW_TURN_URLS/);
+    expect(() =>
+      loadConfig({ LTW_TURN_URLS: 'turn:relay.example', LTW_TURN_SECRET: 'short' }),
+    ).toThrow(/LTW_TURN_SECRET/);
   });
 });

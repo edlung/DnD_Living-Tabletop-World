@@ -10,8 +10,8 @@ import { useT } from '@ltw/ui';
 import { useId, useState } from 'react';
 
 import type { ExplorationIntent } from '../exploration/use-action.ts';
+import { Opening } from '../shell/opening.tsx';
 import { Glyph } from '../visual/glyph.tsx';
-import { Opening } from './opening.tsx';
 import { PACE_EFFECTS, PACE_NAMES, TERRAIN_WORDS } from './travel-words.ts';
 
 /**

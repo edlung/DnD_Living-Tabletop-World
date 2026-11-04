@@ -2,6 +2,7 @@ import type { RollEntry, RollGroup } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
 import { useEffect, useRef, useState } from 'react';
 
+import { cueFor, playCue } from '../audio/cues.ts';
 import { nativeHaptic } from '../native/signals.ts';
 import { listenForUnlock, playImpacts, type Impact } from './audio.ts';
 import type { DiceEngine, DieRequest, Landing } from './engine/index.ts';
@@ -67,7 +68,8 @@ interface Shown {
 /**
  * The dice on the screen (Stage 510): every roll new to this perspective is thrown across the whole
  * screen in the top layer (above an open dialog), lands on the server's values with the sound of its
- * bounces, and leaves a plate with the sum and what came of it. Rolls queue; motion follows the
+ * bounces and of what came of it — a hit, a miss, a success… (docs/adr/0059-atmosphere.md §2) —
+ * and leaves a plate with the sum and what came of it. Rolls queue; motion follows the
  * viewer's setting (reduced motion shows the plate and keeps the sound). Without WebGL, with an
  * engine still loading or a page out of sight, the plate tells the numbers without the throw
  * (Stage 540: a CI runner's software GL never held them back again). Decorative: the roll is
@@ -143,6 +145,7 @@ export function DiceStage({ onAnnounce }: { readonly onAnnounce: (words: RollEnt
         // In the apps a thrown group lands with a knock in the hand, as it sounds (ADR 0070 §5).
         if (flies && sound.sound && group.dice.length > 0) nativeHaptic('dice');
         setShown({ entry, landed: index + 1, at, leaving: false });
+        if (sound.sound) playCue(cueFor(entry, index), sound.volume);
         if (index + 1 < entry.groups.length) await wait(900);
       }
       // Landed: the roll joins the log and is said in words; the plate stays a moment.
@@ -186,7 +189,11 @@ export function DiceStage({ onAnnounce }: { readonly onAnnounce: (words: RollEnt
       {shown.entry.groups.slice(0, shown.landed).map((group, index) => {
         const result = resultWords(t, group);
         return (
-          <p key={index} className={`dice-plate-line dice-plate-line--${group.purpose}`}>
+          <p
+            key={index}
+            className={`dice-plate-line dice-plate-line--${group.purpose}`}
+            data-cue={cueFor(shown.entry, index) ?? undefined}
+          >
             <span className="dice-plate-purpose">{purposeWords(t, group)}</span>
             <span className="dice-plate-sum">{sumWords(group)}</span>
             {result && (
