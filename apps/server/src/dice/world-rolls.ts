@@ -62,6 +62,8 @@ function attackDamageSides(
   attackId: string,
   count: number,
   critical: boolean,
+  /** A Versatile weapon in two hands rolls its larger die (docs/adr/0047-weapons.md §1). */
+  twoHanded = false,
 ): (DieSides | null)[] {
   const block: StatBlock | undefined = state.statBlocks.get(attackerId);
   const monster = block?.attacks.find((attack) => attack.attackId === attackId);
@@ -72,15 +74,19 @@ function attackDamageSides(
       index < base ? monster.damage.sides : (extra?.sides ?? null),
     );
   }
+  // An object at hand rolls a d4 (docs/adr/0047-weapons.md §6).
+  if (attackId === 'improvised') return Array.from({ length: count }, () => 4);
   const weapon = (WEAPONS as Readonly<Record<string, (typeof WEAPONS)[WeaponId] | undefined>>)[
     attackId
   ];
   if (!weapon) return Array.from({ length: count }, () => null);
   // The weapon's dice, then Hunter's Mark's d6 (doubled alike on a critical hit).
   const base = weapon.damageDice.count * (critical ? 2 : 1);
-  return Array.from({ length: count }, (_, index) =>
-    index < base ? asSides(weapon.damageDice.sides) : 6,
-  );
+  const sides =
+    twoHanded && weapon.versatileSides !== undefined
+      ? weapon.versatileSides
+      : weapon.damageDice.sides;
+  return Array.from({ length: count }, (_, index) => (index < base ? asSides(sides) : 6));
 }
 
 /** Dice with their sides, or none when any side is unknown (the total still shows). */
@@ -146,26 +152,36 @@ function rollsOf(events: readonly RecordedEvent[], state: WorldState): WorldRoll
               later.payload.sourceId === attackerId &&
               later.payload.targetId === targetId,
           );
-        if (damage?.type === 'DamageApplied' && event.payload.hit) {
+        // A hit's damage, or Graze's on a miss: no dice (docs/adr/0047-weapons.md §2).
+        const grazed = damage?.type === 'DamageApplied' && damage.payload.rolls.length === 0;
+        if (damage?.type === 'DamageApplied' && (event.payload.hit || grazed)) {
           const sides = attackDamageSides(
             state,
             attackerId,
             attackId,
             damage.payload.rolls.length,
             event.payload.critical,
+            event.payload.grip === 'two-handed',
           );
+          // The roll as made: a Resistance or a Vulnerability changes what the target takes
+          // after it (docs/adr/0048-hit-points.md §3).
+          const rolled = damage.payload.dealt ?? damage.payload.amount;
           groups.push({
             purpose: 'damage',
             dice: diceOf(damage.payload.rolls, sides),
-            modifier: damage.payload.amount - sum(damage.payload.rolls),
-            total: damage.payload.amount,
+            modifier: rolled - sum(damage.payload.rolls),
+            total: rolled,
           });
         }
         rolls.push(
           entry(
             event,
             attackerId,
-            { kind: 'attack', attack: attackId },
+            {
+              kind: 'attack',
+              attack: attackId,
+              ...(event.payload.by === undefined ? {} : { by: event.payload.by }),
+            },
             groups,
             !party(attackerId),
           ),
@@ -230,6 +246,8 @@ function rollsOf(events: readonly RecordedEvent[], state: WorldState): WorldRoll
                 modifier,
                 total,
                 result: success ? 'success' : 'failure',
+                // A condition failed it outright: no die was rolled (ADR 0045 §1).
+                ...(d20.length === 0 ? { autoFail: true as const } : {}),
               },
             ],
             !party(creatureId),
@@ -254,6 +272,31 @@ function rollsOf(events: readonly RecordedEvent[], state: WorldState): WorldRoll
               },
             ],
             false,
+          ),
+        );
+        break;
+      }
+      case 'ActionTaken': {
+        // An action's check (docs/adr/0045-conditions-and-actions.md §5): Search, Study, Hide…
+        const { combatantId, check } = event.payload;
+        if (!check) break;
+        rolls.push(
+          entry(
+            event,
+            combatantId,
+            { kind: 'skill', skill: check.skill },
+            [
+              {
+                purpose: 'check',
+                dice: check.rolls.map((value) => ({ sides: 20, value })),
+                modifier: check.modifier,
+                total: check.total,
+                ...(check.success === undefined
+                  ? {}
+                  : { result: check.success ? ('success' as const) : ('failure' as const) }),
+              },
+            ],
+            !party(combatantId),
           ),
         );
         break;

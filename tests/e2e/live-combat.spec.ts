@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect as baseExpect, test } from '@playwright/test';
 
 import {
   anchor,
@@ -22,6 +22,12 @@ import { TOKENS } from './support/session.ts';
 import { openSheet } from './support/shell.ts';
 
 /**
+ * Steps here wait for another browser to follow the live stream; a laptop running the whole suite
+ * needs more than the default five seconds (as `live-stand-in.spec.ts`).
+ */
+const expect = baseExpect.configure({ timeout: 15_000 });
+
+/**
  * A combat shared live (docs/adr/0033-live-session.md): two browsers on one campaign, and
  * neither ever presses "Refresh world". Each journey owns its campaign
  * (`apps/server/src/testing/ui-live-campaigns.ts`).
@@ -33,6 +39,8 @@ const total = (slots: readonly number[]) => slots.reduce((a, b) => a + b, 0);
 test('the turn passes from the player to the DM and back without a refresh', async ({
   browser,
 }) => {
+  // Two screens through several turns: about 18 s alone, beyond 30 s beside a busy suite.
+  test.slow();
   const campaign = LIVE_CAMPAIGNS.turn;
   const dm = await browser.newPage();
   const player = await browser.newPage();

@@ -1,0 +1,149 @@
+/*
+ * Space and terrain on the board (docs/adr/0049-space-and-movement.md): figures as big as their
+ * space, and the battlefield's walls. Markup — lines and tints over the GPT ground — until Stage
+ * 670's maps bring pictures of their own.
+ */
+
+/* A figure spanning its space from the square that holds it, everything in it scaled (§1) */
+.token.is-spanning {
+  inset: 0 auto auto 0;
+  width: var(--cell);
+  height: var(--cell);
+}
+.board-square.has-span {
+  z-index: 2;
+}
+
+/* A wall: no one stands in it or crosses it (§4); the legend's swatch is drawn alike */
+.board-square.is-wall,
+.legend-swatch--wall {
+  background: repeating-linear-gradient(
+    45deg,
+    color-mix(in srgb, var(--ink-950) 85%, transparent) 0 6px,
+    color-mix(in srgb, var(--ink-850) 78%, transparent) 6px 12px
+  );
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--gold) 28%, transparent),
+    inset 0 0 10px color-mix(in srgb, var(--ink-950) 70%, transparent);
+}
+
+/* Water (§5), deep water darker (§11); the legend's swatches are drawn alike */
+.board,
+.board-legend {
+  --water: #2c6a96;
+  --water-deep: #173f63;
+}
+.board-square.is-water,
+.legend-swatch--water {
+  background: color-mix(in srgb, var(--water) 36%, transparent);
+  box-shadow: inset 0 0 12px color-mix(in srgb, var(--water) 70%, transparent);
+}
+.board-square.is-water.is-deep,
+.legend-swatch--deep {
+  background: color-mix(in srgb, var(--water-deep) 62%, transparent);
+}
+
+/* Raised ground lighter, a pit darker, the height in a corner (§6) */
+.board-square.is-raised,
+.legend-swatch--raised {
+  background: color-mix(in srgb, var(--gold) 14%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--gold) 38%, transparent);
+}
+.board-square.is-pit,
+.legend-swatch--pit {
+  background: radial-gradient(
+    closest-side,
+    color-mix(in srgb, var(--ink-950) 88%, transparent),
+    color-mix(in srgb, var(--ink-950) 46%, transparent)
+  );
+}
+.board-square[data-height]::after {
+  content: attr(data-height);
+  position: absolute;
+  top: 2px;
+  left: 3px;
+  color: var(--gold-bright);
+  font-size: clamp(12px, calc(var(--cell) * 0.24), 13px);
+  font-weight: 700;
+  line-height: 1;
+  pointer-events: none;
+  text-shadow: 0 1px 2px var(--ink-950);
+}
+
+/* A flyer's height above its ground, over its name plate in the plates' layer (§6) */
+.plate-altitude {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  padding: 1px 5px;
+  border: 1px solid color-mix(in srgb, var(--teal) 60%, transparent);
+  border-radius: var(--radius-pill);
+  background: var(--glass-raised);
+  color: var(--text);
+  font-size: clamp(12px, calc(var(--cell) * 0.24), 13px);
+  font-weight: 700;
+  line-height: 1.1;
+  white-space: nowrap;
+  translate: -50% -2px;
+}
+
+/*
+ * A rider on its mount (§10), drawn from the mount's north-west square over the mount's figure:
+ * flat, stacked above it and a little up and left; tilted, lifted off the board onto its back.
+ */
+.token.is-riding {
+  z-index: 3;
+  translate: -14% -14%;
+}
+.board--tilted .token.is-riding {
+  translate: 0 0 calc(var(--cell) * 0.9);
+}
+
+/*
+ * Light and fog (docs/adr/0050-the-world-around.md §1): a shade over the ground and under the
+ * figures — Dim Light and Darkness darken it, fog veils it; the legend's swatches are drawn alike.
+ */
+.square-shade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.square-shade--dim {
+  background: color-mix(in srgb, var(--ink-950) 32%, transparent);
+}
+.square-shade--dark {
+  background: color-mix(in srgb, var(--ink-950) 62%, transparent);
+}
+/* A swatch shows the shade over the ground it darkens */
+.legend-swatch--dim {
+  background:
+    linear-gradient(
+      color-mix(in srgb, var(--ink-950) 32%, transparent),
+      color-mix(in srgb, var(--ink-950) 32%, transparent)
+    ),
+    url('../assets/ui-kit/board/ground.webp') center / 84px;
+}
+.legend-swatch--dark {
+  background:
+    linear-gradient(
+      color-mix(in srgb, var(--ink-950) 62%, transparent),
+      color-mix(in srgb, var(--ink-950) 62%, transparent)
+    ),
+    url('../assets/ui-kit/board/ground.webp') center / 84px;
+}
+.square-shade--fog,
+.legend-swatch--fog {
+  background-color: transparent;
+  background-image: radial-gradient(
+    circle at 50% 50%,
+    color-mix(in srgb, var(--text) 26%, transparent),
+    color-mix(in srgb, var(--text) 8%, transparent) 70%
+  );
+}
+.square-shade--fog-heavy {
+  background-image: radial-gradient(
+    circle at 50% 50%,
+    color-mix(in srgb, var(--text) 46%, transparent),
+    color-mix(in srgb, var(--text) 22%, transparent) 70%
+  );
+}

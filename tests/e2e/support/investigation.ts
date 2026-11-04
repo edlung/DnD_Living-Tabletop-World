@@ -33,14 +33,23 @@ export async function commandAction(page: Page, label: string): Promise<void> {
 }
 
 export async function travelTo(page: Page, name: string): Promise<void> {
-  const explore = page.getByRole('button', { name: `Explore ${name}`, exact: true }).first();
-  // Places not adjacent to the current one are listed under known destinations, in the
-  // Places sheet; choosing one there closes the sheet and opens its details.
-  if (!(await explore.isVisible())) {
+  const button = { name: `Explore ${name}`, exact: true } as const;
+  // A place beside this one shows in the scene, once the scene has caught up with an arrival, and
+  // a lead may name it in the details; others are listed under known destinations, in the Places
+  // sheet, and choosing one there closes the sheet and opens its details. Opened too soon, the
+  // sheet would cover the scene's button.
+  const shown = page.getByRole('button', button).first();
+  const near = await shown
+    .waitFor({ state: 'visible', timeout: 3_000 })
+    .then(() => true)
+    .catch(() => false);
+  if (near) {
+    await shown.click();
+  } else {
     await openSheet(page, 'Places');
     await expect(page.getByText('Known destinations', { exact: true })).toBeVisible();
+    await page.locator('#sheet-places').getByRole('button', button).click();
   }
-  await explore.click();
   await commandAction(page, `Enter ${name}`);
   await expect(
     page

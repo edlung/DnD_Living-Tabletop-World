@@ -7,6 +7,7 @@ import { useBoardView } from '../combat/board/board-view.ts';
 import { CombatPanel } from '../combat/combat-panel.tsx';
 import { useCombatantLabels } from '../combat/labels.ts';
 import { askedWindowOf, ReactionPrompt } from '../combat/reaction-prompt.tsx';
+import { ReadiedCard } from '../combat/readied-card.tsx';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
 import { Glyph } from '../visual/glyph.tsx';
 
@@ -126,6 +127,15 @@ export function CombatStage({
           canAct={canAct}
           locked={locked}
           blocked={blocked}
+          onRun={onRun}
+        />
+      )}
+      {!asked && actorId !== null && (
+        <ReadiedCard
+          encounter={encounter}
+          actorId={actorId}
+          canAct={canAct}
+          locked={locked}
           onRun={onRun}
         />
       )}

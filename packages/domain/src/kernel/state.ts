@@ -2,6 +2,7 @@ import type { Possession } from '../items/records.ts';
 import type {
   Attitude,
   BootstrapCampaignCommand,
+  CampaignOptions,
   CharacterSheet,
   EntityKind,
   EntityStatus,
@@ -14,6 +15,7 @@ import type {
 
 import { EMPTY_ASSETS, type AssetState } from '../assets/records.ts';
 import type { ChronicleRecord } from '../chronicle/records.ts';
+import type { DeathRecord } from '../character/deaths.ts';
 import type { EncounterState } from '../combat/records.ts';
 import type { ReactionWindowRecord } from '../combat/reactions.ts';
 import { EMPTY_EPISTEMICS, type EpistemicState } from '../contradiction/records.ts';
@@ -35,6 +37,8 @@ export interface CampaignState {
   readonly dmActorId: string;
   /** The play language (ADR 0031); `en` for every history that never recorded one. */
   readonly language: Language;
+  /** The DM's options (docs/adr/0056-characters-from-the-srd.md §3); the defaults until set. */
+  readonly options: CampaignOptions;
 }
 
 export interface LocationInfo {
@@ -131,6 +135,10 @@ export interface WorldState {
   readonly chronicles: ReadonlyMap<string, ChronicleRecord>;
   /** Item entity ID → who carries it and how (ADR 0039); absent means no record. */
   readonly possessions: ReadonlyMap<string, Possession>;
+  /** A dead creature's ID → when it died (docs/adr/0056-characters-from-the-srd.md §5). */
+  readonly deaths: ReadonlyMap<string, DeathRecord>;
+  /** A character's ID → the portrait its player asked for, until the DM requests one (§5). */
+  readonly portraitWishes: ReadonlyMap<string, string>;
 }
 
 export const EMPTY_WORLD_STATE: WorldState = {
@@ -159,6 +167,8 @@ export const EMPTY_WORLD_STATE: WorldState = {
   weather: new Map(),
   chronicles: new Map(),
   possessions: new Map(),
+  deaths: new Map(),
+  portraitWishes: new Map(),
 };
 
 /** Kinds that occupy a location. Locations nest via `parentId`; factions are abstract. */

@@ -177,4 +177,35 @@ registerRussian({
   // The dock's More (ADR 0043 §3)
   More: 'Ещё',
   'More tools': 'Другие инструменты',
+  // The campaign's options (docs/adr/0056-characters-from-the-srd.md §3)
+  'Campaign options': 'Параметры кампании',
+  'Hit points at a new level': 'Хиты на новом уровне',
+  'The player chooses': 'Выбирает игрок',
+  'Always fixed': 'Всегда фиксированные',
+  'Always rolled': 'Всегда бросок',
+  'Fixed: the class’s fixed value. Rolled: the World Engine rolls the Hit Die.':
+    'Фиксированные — значение класса; бросок — кость хитов бросает World Engine.',
+  Levels: 'Уровни',
+  'By experience': 'По опыту',
+  'By milestone': 'По вехам',
+  'By milestone the DM grants each level, and no experience is counted.':
+    'По вехам каждый уровень выдаёт мастер, опыт не считается.',
+  Carrying: 'Переносимый вес',
+  Shown: 'Показывается',
+  Enforced: 'Учитывается',
+  'Enforced: past what Strength carries, Speed is 5 ft; past twice that, 0.':
+    'Если учитывается: сверх грузоподъёмности Скорость 5 фт, сверх двойной — 0.',
+  'New characters start at level': 'Новые персонажи начинают с уровня',
+  'A character who joins later starts at the party’s level.':
+    'Кто присоединится позже, начнёт на уровне группы.',
+  'Save the options': 'Сохранить параметры',
+  'Campaign options: {changes}': 'Параметры кампании: {changes}',
+  'hit points chosen by the player': 'хиты выбирает игрок',
+  'hit points always fixed': 'хиты всегда фиксированные',
+  'hit points always rolled': 'хиты всегда бросаются',
+  'levels by experience': 'уровни по опыту',
+  'levels by milestone': 'уровни по вехам',
+  'carrying shown': 'вес показывается',
+  'carrying enforced': 'вес учитывается',
+  'new characters at level {level}': 'новые персонажи с уровня {level}',
 });

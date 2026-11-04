@@ -11,6 +11,7 @@ import type {
   RestView,
   RollEntry,
   RollFeedResponse,
+  TableRerollRequest,
   TableRollRequest,
 } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
@@ -41,6 +42,12 @@ export interface DiceTable {
   readonly cancel: (requestId: string) => Promise<boolean>;
   /** The DM's word that an entered roll is what the dice showed (ADR 0044 §4). */
   readonly confirm: (rollId: string) => Promise<boolean>;
+  /**
+   * The viewer's latest check its Heroic Inspiration may roll again, as the server says
+   * (docs/adr/0046-reactions-beyond-counterspell.md §6), and the reroll: the app's d20 or one's own.
+   */
+  readonly rerollable: string | null;
+  readonly reroll: (rollId: string, body: TableRerollRequest) => Promise<boolean>;
   readonly busy: boolean;
   readonly error: string | null;
   readonly isDm: boolean;
@@ -198,7 +205,8 @@ export function useDiceTableState(
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const write = useCallback(
-    async (path: string, body: unknown) => {
+    /** `conflict`: what a 409 means here, in the viewer's words. */
+    async (path: string, body: unknown, conflict?: string) => {
       setBusy(true);
       setError(null);
       try {
@@ -209,9 +217,10 @@ export function useDiceTableState(
       } catch (failure) {
         setError(
           failure instanceof ApiError && failure.status === 409
-            ? t('That request was already answered or withdrawn.')
+            ? (conflict ?? t('That request was already answered or withdrawn.'))
             : t('The dice could not be rolled. Try again.'),
         );
+        feed.reread();
         requests.reread();
         return false;
       } finally {
@@ -241,6 +250,13 @@ export function useDiceTableState(
     cancel: (requestId) => write(`check-requests/${encodeURIComponent(requestId)}/cancel`, {}),
     confirm: (rollId) =>
       write(`rolls/${encodeURIComponent(rollId.replace(/^table:/, ''))}/confirm`, {}),
+    rerollable: feed.resource.status === 'ready' ? (feed.resource.value.rerollable ?? null) : null,
+    reroll: (rollId, body) =>
+      write(
+        `rolls/${encodeURIComponent(rollId.replace(/^table:/, ''))}/reroll`,
+        body,
+        t('That roll can no longer be rolled again.'),
+      ),
     busy,
     error,
     isDm,

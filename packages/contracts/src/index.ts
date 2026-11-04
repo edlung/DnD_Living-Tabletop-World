@@ -161,37 +161,64 @@ export {
 } from './session/auth.ts';
 export { DEFAULT_LANGUAGE, LANGUAGES, languageSchema, type Language } from './language/language.ts';
 export type { CharacterSheetResponse } from './rules/character-view.ts';
-export type { CharacterDerived } from './rules/character-derived.ts';
+export type { CharacterDerived, CharacterProficiencies } from './rules/character-derived.ts';
+export * from './rules/builder.ts';
 export type { SurroundingsResponse } from './context/surroundings.ts';
 export {
   ABILITIES,
+  AMMUNITION_KINDS,
   CLASS_IDS,
+  CLASS_ORDERS,
   CONDITIONS,
+  CREATURE_SIZES,
+  FIGHTING_STYLES,
   HIT_DIE_SIDES,
+  MAX_EXHAUSTION,
   SKILLS,
+  SKILL_IDS,
   SPELL_IDS,
   WEAPON_IDS,
+  WEAPON_MASTERIES,
   characterSheetSchema,
+  effectiveMaximum,
+  hitPointsSchema,
+  sensesSchema,
+  speedsSchema,
   type Ability,
+  type AmmunitionKind,
   type CharacterSheet,
   type ClassId,
+  type ClassOrder,
   type Condition,
+  type CreatureSize,
+  type FightingStyle,
   type HitDieSides,
+  type HitPoints,
   type Skill,
   type SpellId,
   type SpellcastingSource,
+  type Senses,
+  type Speeds,
   type WeaponId,
+  type WeaponMastery,
 } from './rules/character-sheet.ts';
 export {
+  CONTAGION_IDS,
+  contagionStateSchema,
+  type ContagionId,
+  type ContagionState,
+} from './rules/contagions.ts';
+export * from './rules/class-features.ts';
+export * from './rules/languages.ts';
+export {
   hitDieRequestSchema,
-  levelUpRequestSchema,
   restEndRequestSchema,
   restRequestSchema,
   type HitDieRequest,
-  type LevelUpRequest,
   type RestRequest,
   type RestResponse,
   type RestResult,
+  type RestSkipped,
   type RestView,
 } from './rules/rest.ts';
 export {
@@ -202,6 +229,7 @@ export {
   RELEVANCE_LEVELS,
   type ContextAction,
   type ContextActionCost,
+  type ContextSpell,
   type ContextActionId,
   type ContextEntityRef,
   type ContextHint,
@@ -239,70 +267,7 @@ export {
   type ClaimTarget,
   type KnowledgeClaim,
 } from './knowledge/claims.ts';
-export {
-  COMBAT_COMMAND_TYPES,
-  COVER_LEVELS,
-  DAMAGE_TYPES,
-  DM_HAND_COMMAND_TYPES,
-  FIGHT_CHANGE_COMMAND_TYPES,
-  MAX_BATTLEFIELD,
-  MAX_COMBATANTS,
-  PLAYER_COMBAT_COMMAND_TYPES,
-  SIDES,
-  battlefieldSchema,
-  dmReasonSchema,
-  squareSchema,
-  type Battlefield,
-  type CombatCommandType,
-  type CoverLevel,
-  type DamageType,
-  type DmHandCommandType,
-  type Side,
-  type Square,
-} from './combat/commands.ts';
-export {
-  damageSchema,
-  monsterAttackSchema,
-  monsterSpellSchema,
-  statBlockSchema,
-  type Damage,
-  type MonsterAttack,
-  type MonsterSpell,
-  type StatBlock,
-} from './combat/stat-block.ts';
-export {
-  REACTION_COMMAND_TYPES,
-  REACTION_IDS,
-  REACTION_RESPONSES,
-  REACTION_WINDOW_STATUSES,
-  SPELL_COMPONENTS,
-  closeReactionWindowCommandSchema,
-  declineReactionCommandSchema,
-  useReactionCommandSchema,
-  type ReactionCommandType,
-  type ReactionId,
-  type ReactionResponse,
-  type ReactionWindowStatus,
-  type SpellComponent,
-} from './combat/reactions.ts';
-export type {
-  EncounterCombatantView,
-  EncounterResponse,
-  EncounterSuggestionResponse,
-  EncounterView,
-  MonsterTurnSuggestion,
-  ReactionWindowView,
-} from './combat/views.ts';
-export {
-  preparedEncounterBookSchema,
-  preparedEncounterSchema,
-  startPreparedEncounterRequestSchema,
-  type PreparedEncounter,
-  type PreparedEncounterBlock,
-  type PreparedEncounterListResponse,
-  type PreparedEncounterView,
-  type StartedPreparedEncounterResponse,
-} from './combat/prepared.ts';
+export * from './combat/index.ts';
 export {
   AI_CAPABILITIES,
   INTENT_DECLINE_REASONS,
@@ -477,15 +442,36 @@ export * from './session/lobby.ts';
 export {
   EQUIP_SLOTS,
   ITEM_CATEGORIES,
+  armorWeight,
   itemCatalogIdSchema,
+  ITEM_LOOKS,
+  ITEM_RARITIES,
   itemEffectSchema,
   itemEntrySchema,
+  itemMagicSchema,
   type EquipSlot,
   type ItemCategory,
   type ItemEffect,
   type ItemEntry,
+  type ItemLook,
+  type ItemMagic,
+  type ItemRarity,
 } from './items/schema.ts';
 export { ITEM_CATALOG, catalogEntry, isCatalogItemId } from './items/catalog.ts';
+export {
+  attuneRequestSchema,
+  catalogItemIdSchema,
+  identifyRequestSchema,
+  type IdentifiedResponse,
+  giveCatalogItemRequestSchema,
+  type AttuneRequest,
+  type AttunedResponse,
+  type GiveCatalogItemRequest,
+  type GivenCatalogItemResponse,
+  type ItemCatalogEntryResponse,
+  type ItemCatalogListing,
+  type ItemCatalogResponse,
+} from './items/catalog-api.ts';
 export {
   ITEM_PLAYER_COMMAND_TYPES,
   dropItemCommandSchema,
@@ -498,3 +484,4 @@ export {
 } from './items/commands.ts';
 export type { InventoryItem, InventoryResponse, InventoryWeapon } from './items/views.ts';
 export * from './play/index.ts';
+export * from './srd/index.ts';

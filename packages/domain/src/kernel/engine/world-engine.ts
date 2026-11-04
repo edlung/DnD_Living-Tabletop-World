@@ -16,6 +16,8 @@ import { ENTROPY_POOL, type CombatPort, type EntropySource } from '../../combat/
 import { RESOLVED_ID_POOL } from '../../investigation/records.ts';
 import { MAX_RESOLVED_IDS } from '../../combat/reactions.ts';
 import type { SkillCheckPort } from '../../investigation/skill-checks.ts';
+import type { CharacterBuilderPort } from '../../character/create.ts';
+import { CREATE_CHARACTER_IDS } from '../../character/limits.ts';
 
 import { authorize } from '../authorization.ts';
 import { decide } from '../decide/decide.ts';
@@ -58,6 +60,8 @@ export interface WorldEngineOptions {
   readonly checks?: SkillCheckPort;
   /** Combat engine (ADR 0015); required to decide combat commands. */
   readonly combat?: CombatPort;
+  /** The character builder (ADR 0056 §2); required to decide CreateCharacter. */
+  readonly characters?: CharacterBuilderPort;
   /** Uniform 32-bit randomness for combat, drawn at resolution and recorded. */
   readonly entropy?: EntropySource;
 }
@@ -78,6 +82,7 @@ export class WorldEngine {
   readonly #backoff: (attempt: number) => Promise<void>;
   readonly #checks: SkillCheckPort | undefined;
   readonly #combat: CombatPort | undefined;
+  readonly #characters: CharacterBuilderPort | undefined;
   readonly #entropy: EntropySource | undefined;
   readonly #mutex = new KeyedMutex();
   readonly #cache = new Map<string, CampaignSnapshot>();
@@ -90,6 +95,7 @@ export class WorldEngine {
     this.#backoff = options.backoff ?? jitteredBackoff;
     this.#checks = options.checks;
     this.#combat = options.combat;
+    this.#characters = options.characters;
     this.#entropy = options.entropy;
   }
 
@@ -182,6 +188,7 @@ export class WorldEngine {
           actor,
           authority: authorization.authority,
           ...(this.#combat ? { combat: this.#combat } : {}),
+          ...(this.#characters ? { characters: this.#characters } : {}),
           ...(this.#checks ? { skillModifier: this.#checks.skillModifier.bind(this.#checks) } : {}),
         },
         command,
@@ -278,17 +285,32 @@ export class WorldEngine {
     }
     if (
       command.type === 'AdjustHitPoints' ||
+      command.type === 'SetCondition' ||
       command.type === 'AddCombatant' ||
       command.type === 'RemoveCombatant' ||
-      command.type === 'DelayTurn'
+      command.type === 'DelayTurn' ||
+      command.type === 'ExposeToHazard' ||
+      command.type === 'SpringTrap' ||
+      command.type === 'InflictMentalStress' ||
+      command.type === 'InfectWithContagion' ||
+      command.type === 'ContagionCourse' ||
+      command.type === 'UseCreatureAction' ||
+      command.type === 'DawnRecharge'
     ) {
-      // The DM's damage may call for a Concentration save, a joining creature rolls initiative, and
-      // a turn that passes on may start with a death save (docs/adr/0043-dm-screen.md §1–2).
+      // The DM's damage may call for a Concentration save, a joining creature rolls initiative, a
+      // turn that passes on may start with a death save (docs/adr/0043-dm-screen.md §1–2), and a
+      // flyer made Prone falls (docs/adr/0049-space-and-movement.md §6).
       return { ...command, resolution: { ids: [], d20: null, entropy: this.#entropyPool() } };
     }
+    if (command.type === 'CreateCharacter') {
+      // Its records' IDs and the dice of rolled scores (docs/adr/0056-…md §2).
+      const ids = Array.from({ length: CREATE_CHARACTER_IDS }, () => this.#ids.next());
+      return { ...command, resolution: { ids, d20: null, entropy: this.#entropyPool() } };
+    }
     if (command.type === 'CloseReactionWindow') {
-      // Closing may resolve the suspended spell (ADR 0016): its records and dice.
-      return { ...command, resolution: this.#combatResolution(RESOLVED_ID_POOL) };
+      // Closing may resolve the suspended spell (ADR 0016) — its records and dice — or let a
+      // provoking move go on to the next reach it leaves, a window of its own (ADR 0046).
+      return { ...command, resolution: this.#combatResolution(MAX_RESOLVED_IDS) };
     }
     if (isPlayerCommand(command)) return { ...command, resolution: this.#draw(command) };
     return command;
@@ -306,6 +328,10 @@ export class WorldEngine {
           ? 1
           : RESOLVED_ID_POOL;
     const ids = Array.from({ length: count }, () => this.#ids.next());
+    // A potion of healing rolls its dice (docs/adr/0054-items-as-data.md §5), where the engine
+    // has randomness to draw.
+    if (command.type === 'UseItem')
+      return { ids, d20: null, entropy: this.#entropy ? this.#entropyPool() : [] };
     const checked =
       command.type === 'InsightCheck' ||
       (command.type === 'ExamineEntity' && CHECK_METHODS.has(command.method));
@@ -415,12 +441,21 @@ const isPlayerCommand = (command: KernelCommand): command is KernelCommandOf<Pla
 /**
  * IDs a combat command may need: a cast may reveal records (Detect Magic,
  * ADR 0015 §3) and open a reaction window; an answer that closes a window
- * may resolve the suspended cast (ADR 0016).
+ * may resolve the suspended cast (ADR 0016); a move may open a window, and an
+ * answer may let a move go on to the next one (docs/adr/0046-reactions-beyond-counterspell.md §2).
  */
 function combatIds(type: string): number {
-  if (type === 'CastSpell') return MAX_RESOLVED_IDS;
-  return type === 'UseReaction' || type === 'DeclineReaction' ? RESOLVED_ID_POOL : 0;
+  // An attack may open its window: a reroll, an answer to its hit, a rebuke of its damage.
+  return WINDOW_TYPES.has(type) ? MAX_RESOLVED_IDS : 0;
 }
+const WINDOW_TYPES: ReadonlySet<string> = new Set([
+  'CastSpell',
+  'UseReaction',
+  'DeclineReaction',
+  'MoveCombatant',
+  'Attack',
+  'MakeReadiedAttack',
+]);
 
 function accepted(
   status: 'accepted' | 'duplicate',

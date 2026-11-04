@@ -1,6 +1,16 @@
-import type { CharacterDerived, CharacterSheet, EntityKind, PlayerAssetView } from '@ltw/contracts';
+import {
+  effectiveMaximum,
+  type CharacterDerived,
+  type CharacterSheet,
+  type EntityKind,
+  type PlayerAssetView,
+} from '@ltw/contracts';
 import { readableLabel, useT } from '@ltw/ui';
 
+import { CONDITION_EFFECTS, exhaustionWords } from '../combat/condition-words.ts';
+import { CONTAGION_WORDS } from '../rules/toolbox-words.ts';
+import { loweredWords, temporaryWords } from '../combat/hit-point-words.ts';
+import { RuleTerm } from '../rules/rule-term.tsx';
 import { Glyph } from '../visual/glyph.tsx';
 import { Medallion } from '../visual/medallion.tsx';
 import type { GlyphName } from '../visual/ui-kit-names.ts';
@@ -53,8 +63,13 @@ export function CharacterCard({
   readonly derived: CharacterDerived | undefined;
 }) {
   const t = useT();
-  const { current, max } = sheet.hitPoints;
+  const { current } = sheet.hitPoints;
+  // The maximum as an effect may have lowered it (docs/adr/0048-hit-points.md §2).
+  const max = effectiveMaximum(sheet.hitPoints);
   const low = current * 2 <= max;
+  const notes = [temporaryWords(t, sheet.hitPoints), loweredWords(t, sheet.hitPoints)].filter(
+    (note) => note !== null,
+  );
   const condition =
     current === 0
       ? sheet.deathSaves?.failures === 3
@@ -93,13 +108,30 @@ export function CharacterCard({
             <span className="visually-hidden">{t('of')}</span> {max}
           </span>
         </p>
+        {notes.length > 0 && <p className="hero-hp-notes">{notes.join('\u00a0· ')}</p>}
         <span className={`hp-bar hero-hp-bar${low ? ' hp-bar--low' : ''}`} aria-hidden="true">
           <span style={{ width: share(current, max) }} />
         </span>
       </div>
       <dl className="hero-vitals">
-        <Vital glyph="armor-class" label={t('Armor class')} value={String(sheet.armorClass)} />
-        <Vital glyph="speed" label={t('Speed')} value={t('{feet} ft', { feet: sheet.speedFt })} />
+        {/* A Wild Shape's form gives its own Armor Class and Speed (docs/adr/0056-…md §5). */}
+        <Vital
+          glyph="armor-class"
+          label={t('Armor class')}
+          value={String(derived?.wildShape?.current?.armorClass ?? sheet.armorClass)}
+        />
+        <Vital
+          glyph="speed"
+          label={t('Speed')}
+          value={
+            // Slowed by a load the campaign enforces (docs/adr/0056-characters-from-the-srd.md §3).
+            derived?.wildShape?.current
+              ? t('{feet} ft', { feet: derived.wildShape.current.speedFt })
+              : derived?.loadSpeedFt === undefined
+                ? t('{feet} ft', { feet: derived?.speedFt ?? sheet.speedFt })
+                : t('{feet} ft (load)', { feet: derived.speedFt })
+          }
+        />
         {derived && (
           <>
             <Vital glyph="initiative" label={t('Initiative')} value={signed(derived.initiative)} />
@@ -107,12 +139,43 @@ export function CharacterCard({
           </>
         )}
       </dl>
-      {(sheet.conditions.length > 0 || sheet.concentration) && (
+      {(sheet.conditions.length > 0 ||
+        sheet.concentration ||
+        sheet.exhaustion !== undefined ||
+        sheet.ordeal !== undefined ||
+        (sheet.contagions?.length ?? 0) > 0) && (
         <ul className="hero-states" aria-label={t('Conditions')}>
           {sheet.conditions.map((condition) => (
             <li key={condition} className="hero-state hero-state--condition">
               <Glyph name={condition} />
-              {readableLabel(condition, t)}
+              {/* Slowed is a weapon mastery's, with no glossary entry of its own. */}
+              {condition === 'slowed' ? (
+                readableLabel(condition, t)
+              ) : (
+                <RuleTerm entryId={condition}>{readableLabel(condition, t)}</RuleTerm>
+              )}
+            </li>
+          ))}
+          {sheet.exhaustion !== undefined && (
+            <li className="hero-state hero-state--condition">
+              <Glyph name="exhaustion" />
+              <RuleTerm entryId="exhaustion">
+                {t('Exhaustion {level}', { level: sheet.exhaustion })}
+              </RuleTerm>
+            </li>
+          )}
+          {/* Back from the dead (docs/adr/0056-characters-from-the-srd.md §5). */}
+          {sheet.ordeal !== undefined && (
+            <li className="hero-state hero-state--condition">
+              <Glyph name="dead" />
+              {t('Back from the dead: −{penalty}', { penalty: sheet.ordeal })}
+            </li>
+          )}
+          {/* A magical contagion it carries (docs/adr/0055-rules-reference-and-toolbox.md §4). */}
+          {sheet.contagions?.map((one) => (
+            <li key={one.contagionId} className="hero-state hero-state--condition">
+              <Glyph name="poisoned" />
+              {t(CONTAGION_WORDS[one.contagionId])}
             </li>
           ))}
           {sheet.concentration && (
@@ -120,6 +183,26 @@ export function CharacterCard({
               <Glyph name="concentration" />
               {t('Concentrating: {spell}', {
                 spell: readableLabel(sheet.concentration.spellId, t),
+              })}
+            </li>
+          )}
+        </ul>
+      )}
+      {/* What each does, in a line (docs/adr/0045-conditions-and-actions.md §4). */}
+      {(sheet.conditions.length > 0 ||
+        sheet.exhaustion !== undefined ||
+        sheet.ordeal !== undefined) && (
+        <ul className="hero-state-effects" aria-label={t('What they do')}>
+          {sheet.conditions.map((condition) => (
+            <li key={condition}>
+              <strong>{readableLabel(condition, t)}:</strong> {t(CONDITION_EFFECTS[condition])}
+            </li>
+          ))}
+          {sheet.exhaustion !== undefined && <li>{exhaustionWords(t, sheet.exhaustion)}</li>}
+          {sheet.ordeal !== undefined && (
+            <li>
+              {t('Back from the dead: −{penalty} to every d20 roll, 1 less after each Long Rest.', {
+                penalty: sheet.ordeal,
               })}
             </li>
           )}

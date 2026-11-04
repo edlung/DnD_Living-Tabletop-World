@@ -13,6 +13,7 @@ const combatant = (entityId: string, kind: 'character' | 'creature', name: strin
 
 const encounter = (changes: Partial<EncounterView> = {}): EncounterView => ({
   encounterId: 'e1',
+  locationId: 'old-trade-road',
   round: 1,
   currentCombatantId: 'elowen-starwhisper',
   order: ['elowen-starwhisper', 'seren-ashgrove', 'creature-ae08be99'],

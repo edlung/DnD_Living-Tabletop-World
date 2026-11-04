@@ -22,6 +22,10 @@ export interface TableRollRecord {
   readonly confirmed?: boolean;
   readonly requestId: string | null;
   readonly at: string;
+  /** The roll this one replaces: Heroic Inspiration spent on a check (migration 0033). */
+  readonly rerollOf?: string | null;
+  /** A check's mode, to roll it again the same way (migration 0033); null for older rolls. */
+  readonly mode?: RollMode | null;
 }
 
 export interface CheckRequestRecord {
@@ -60,6 +64,11 @@ export interface TableStore {
   findRoll(campaignId: string, rollId: string): Promise<TableRollRecord | null>;
   /** The DM's word that an entered roll is what the dice showed; once is enough. */
   confirmRoll(campaignId: string, rollId: string, at: string): Promise<void>;
+  /**
+   * A check rolled again (`roll.rerollOf`, docs/adr/0046 §6): written once per roll it replaces,
+   * and the request it answered takes the new total. False when it was rolled again meanwhile.
+   */
+  addReroll(roll: TableRollRecord, total: number): Promise<boolean>;
 }
 
 export class InMemoryTableStore implements TableStore {
@@ -93,6 +102,22 @@ export class InMemoryTableStore implements TableStore {
   confirmRoll(campaignId: string, rollId: string): Promise<void> {
     this.#confirmed.add(`${campaignId}\n${rollId}`);
     return Promise.resolve();
+  }
+
+  addReroll(roll: TableRollRecord, total: number): Promise<boolean> {
+    const taken = this.#rolls.some(
+      (one) => one.campaignId === roll.campaignId && one.rerollOf === roll.rerollOf,
+    );
+    if (taken || !roll.rerollOf) return Promise.resolve(false);
+    if (roll.requestId !== null) {
+      const key = `${roll.campaignId}\n${roll.requestId}`;
+      const asked = this.#requests.get(key);
+      if (asked?.status !== 'rolled' || asked.rollId !== roll.rerollOf)
+        return Promise.resolve(false);
+      this.#requests.set(key, { ...asked, rollId: roll.rollId, total });
+    }
+    this.#rolls.push(roll);
+    return Promise.resolve(true);
   }
 
   addRequest(record: CheckRequestRecord): Promise<void> {

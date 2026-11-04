@@ -422,46 +422,53 @@ async function expectAcceptedUndosSafe(world: RoadWorld, mine: readonly string[]
 
 describe('randomized reaction integrity', () => {
   let hidden = 0; // Bram's commands compared with a world where the window never opened
-  it.each([1, 7, 42, 1337, 20261004, 90, 3, 11, 2026, 77, 5, 13])('seed %i', async (seed) => {
-    const rng = mulberry32(seed);
-    const world = await roadWorld({ entropy: { next: () => Math.floor(rng() * 2 ** 32) } });
-    await addSeren(world);
-    await addBystanders(world);
-    await startAmbush(world, [17, 3, 2, 1, 15, 5], withSeren());
-    // Magic on every goblin, near and far, so Detect Magic's range is always at stake.
-    for (const goblin of GOBLINS) {
-      await world.dm({
-        type: 'AddClue',
-        entityId: goblin,
-        method: 'magic',
-        statement: `${goblin} carries a charm.`,
-        subjects: [],
-      });
-    }
-    const mine: string[] = []; // effective commands of this test, oldest first
-    let windows = 0;
-    for (let step = 0; step < 70; step += 1) {
-      const before = await world.state();
-      const { type, result, undid, outsider } = await randomStep(world, rng, mine);
-      const after = await world.state();
-      if (result.status === 'rejected') {
-        expect(after.version, `${type} rejected yet changed state`).toBe(before.version);
-      } else {
-        if (undid !== undefined) mine.splice(mine.indexOf(undid), 1);
-        else mine.push(result.commandId);
+  it.each([1, 7, 42, 1337, 20261004, 90, 3, 11, 2026, 77, 5, 13])(
+    'seed %i',
+    async (seed) => {
+      const rng = mulberry32(seed);
+      const world = await roadWorld({ entropy: { next: () => Math.floor(rng() * 2 ** 32) } });
+      await addSeren(world);
+      await addBystanders(world);
+      await startAmbush(world, [17, 3, 2, 1, 15, 5], withSeren());
+      // Magic on every goblin, near and far, so Detect Magic's range is always at stake.
+      for (const goblin of GOBLINS) {
+        await world.dm({
+          type: 'AddClue',
+          entityId: goblin,
+          method: 'magic',
+          statement: `${goblin} carries a charm.`,
+          subjects: [],
+        });
       }
-      await expectPauseHeld(world, before, type);
-      if (outsider && (await expectWindowHidden(world, before, outsider, result))) hidden += 1;
-      await expectMagicWithinRange(world, before);
-      expect(checkWorldIntegrity(after), `after ${type} at step ${String(step)}`).toEqual([]);
-      expect(reactionWindowViolations(after), `after ${type} at step ${String(step)}`).toEqual([]);
-      if (step % 10 === 9) await verifyHistory(world);
-      if (step % 5 === 4) await expectAcceptedUndosSafe(world, mine);
-      windows = Math.max(windows, after.reactionWindows.size);
-    }
-    expect(windows).toBeGreaterThan(0);
-    await verifyHistory(world);
-  });
+      const mine: string[] = []; // effective commands of this test, oldest first
+      let windows = 0;
+      for (let step = 0; step < 70; step += 1) {
+        const before = await world.state();
+        const { type, result, undid, outsider } = await randomStep(world, rng, mine);
+        const after = await world.state();
+        if (result.status === 'rejected') {
+          expect(after.version, `${type} rejected yet changed state`).toBe(before.version);
+        } else {
+          if (undid !== undefined) mine.splice(mine.indexOf(undid), 1);
+          else mine.push(result.commandId);
+        }
+        await expectPauseHeld(world, before, type);
+        if (outsider && (await expectWindowHidden(world, before, outsider, result))) hidden += 1;
+        await expectMagicWithinRange(world, before);
+        expect(checkWorldIntegrity(after), `after ${type} at step ${String(step)}`).toEqual([]);
+        expect(reactionWindowViolations(after), `after ${type} at step ${String(step)}`).toEqual(
+          [],
+        );
+        if (step % 10 === 9) await verifyHistory(world);
+        if (step % 5 === 4) await expectAcceptedUndosSafe(world, mine);
+        windows = Math.max(windows, after.reactionWindows.size);
+      }
+      expect(windows).toBeGreaterThan(0);
+      await verifyHistory(world);
+      // Seventy random steps with their checks: about a second alone, far more on a busy machine.
+    },
+    30_000,
+  );
 
   it('compared Bram during open windows with worlds where they never opened', () => {
     expect(hidden).toBeGreaterThanOrEqual(5);

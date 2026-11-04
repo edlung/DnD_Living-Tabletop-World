@@ -9,6 +9,7 @@ import { holderOf, scopeKey } from '../knowledge/records.ts';
 import type { KernelEvent, Restore } from './events.ts';
 import { allEntityFacts, entityChecked, facts, type FactKey } from './fact-keys.ts';
 import { premiseFacts } from './premise-facts.ts';
+import { tableFootprint } from './table-footprints.ts';
 
 /**
  * Fact footprints (docs/adr/0007-world-kernel-model-and-event-store.md,
@@ -66,7 +67,7 @@ export function footprintOf(event: KernelEvent): Footprint {
     case 'EntityStatusChanged':
       return {
         reads: [clock, facts.entity(event.payload.entityId)],
-        writes: [facts.entityStatus(event.payload.entityId)],
+        writes: [facts.entityStatus(event.payload.entityId), facts.death(event.payload.entityId)],
       };
     case 'SceneStarted':
       return {
@@ -286,13 +287,20 @@ export function footprintOf(event: KernelEvent): Footprint {
     case 'CombatantUpdated':
     case 'CombatEnded':
     case 'CombatOrderChanged':
+    case 'LightSet':
     case 'StatBlockSet':
+    case 'ActionTaken':
+    case 'FeatureUsed':
     case 'AttackPerformed':
+    case 'WeaponMasteryApplied':
     case 'SpellCast':
     case 'DamageApplied':
     case 'HealingApplied':
     case 'HitPointsAdjusted':
     case 'SavingThrowRolled':
+    case 'CheckRolled':
+    case 'RechargeRolled':
+    case 'CreatureActionUsed':
     case 'ConditionApplied':
     case 'DeathSaveRolled':
       return combatFootprint(event);
@@ -318,7 +326,9 @@ export function footprintOf(event: KernelEvent): Footprint {
     case 'ReactionUsed':
     case 'ReactionDeclined':
     case 'ReactionWindowExpired':
-    case 'ReactionWindowResolved': {
+    case 'ReactionWindowResolved':
+    case 'ReactionWindowWaiting':
+    case 'ReactionWindowResumed': {
       // Every answer and the close read and change the window: undo is strictly reverse.
       const window = facts.reaction(event.payload.windowId);
       return { reads: [clock, facts.encounter(), window], writes: [window] };
@@ -356,24 +366,22 @@ export function footprintOf(event: KernelEvent): Footprint {
     case 'ChronicleGenerated':
       // A chapter rests on everything it tells (ADR 0024 §4).
       return chronicleFootprint(event.payload);
+    case 'PortraitAsked':
+    case 'CampaignOptionsSet':
     case 'WeatherSet':
-      // A location's own weather, from now on (ADR 0023 §1).
-      return {
-        reads: [clock, ...entityChecked(event.payload.locationId)],
-        writes: [facts.weather(event.payload.locationId)],
-      };
     case 'RelationshipChanged':
-      // A living NPC's attitude (ADR 0019 §3).
-      return {
-        reads: [clock, ...entityChecked(event.payload.npcId)],
-        writes: [facts.relationship(event.payload.npcId)],
-      };
+      return tableFootprint(event, clock);
     case 'ItemGranted':
     case 'ItemEquipped':
     case 'ItemUnequipped':
     case 'ItemUsed':
+    case 'ItemRecovered':
     case 'ItemTransferred':
     case 'ItemSplit':
+    case 'ItemAttuned':
+    case 'ItemChargesSpent':
+    case 'ItemChargesRegained':
+    case 'ItemIdentified':
       return itemFootprint(event);
     case 'AuthoringPremisesRecorded':
       // Reads only: what an authoring commit's legality rested on (ADR 0019 §2).
@@ -454,6 +462,12 @@ export function restoredFacts(restore: Restore): FactKey[] {
       return assetRestoredFacts(restore);
     case 'weather':
       return [facts.weather(restore.locationId)];
+    case 'campaignOptions':
+      return [facts.campaignOptions()];
+    case 'death':
+      return [facts.death(restore.entityId)];
+    case 'portraitWish':
+      return [facts.portraitWish(restore.characterId)];
     case 'chronicle':
       return [facts.chronicle(restore.chronicleId)];
     case 'possession':

@@ -1,17 +1,21 @@
 import {
   ASSET_WORKER_COMMAND_TYPES,
+  type CombatAction,
   type DmHistoryEntry,
   type DmSubstitutionEntry,
   type DmWorldEntry,
   type EntityRef,
+  type KernelCommandOf,
   type KernelCommandType,
   type SubstitutionReason,
 } from '@ltw/contracts';
-import type { Translate } from '@ltw/ui';
+import { readableLabel, type Translate } from '@ltw/ui';
 
 import { nameFor } from '../authoring/command-text.ts';
+import { RESOURCE_NAMES } from '../character/feature-words.ts';
 import { spellName } from '../exploration/outcome-messages.ts';
 import { describeHand } from './hand-words.ts';
+import { optionChanges } from './option-words.ts';
 import { formatWorldTime } from './world-time.ts';
 
 /**
@@ -23,6 +27,17 @@ export const REASON_TEXT: Readonly<Record<SubstitutionReason, string>> = {
   absent: 'The player is absent',
   asked: 'The player asked the DM',
   other: 'Another reason',
+};
+
+/** A reaction as the DM's history says it was used (docs/adr/0046-reactions-beyond-counterspell.md). */
+const REACTION_WORDS: Readonly<Record<KernelCommandOf<'UseReaction'>['reaction'], string>> = {
+  counterspell: 'Cast Counterspell as a reaction',
+  'opportunity-attack': 'Made an opportunity attack',
+  'inspiration-reroll': 'Rolled again with Heroic Inspiration',
+  shield: 'Cast Shield as a reaction',
+  'uncanny-dodge': 'Used Uncanny Dodge',
+  'hellish-rebuke': 'Cast Hellish Rebuke as a reaction',
+  'feather-fall': 'Cast Feather Fall as a reaction',
 };
 
 /** A command type as a step the DM can name: blockers and undo actions. */
@@ -58,6 +73,10 @@ export const STEP_TEXT: Readonly<Record<KernelCommandType, string>> = {
   MoveCombatant: 'move combatant',
   Attack: 'attack',
   CastSpell: 'cast spell',
+  TakeAction: 'take an action',
+  MakeReadiedAttack: 'make the readied attack',
+  SpendInspiration: 'spend heroic inspiration',
+  UseFeature: 'use a class feature',
   EndTurn: 'end turn',
   EndCombat: 'end combat',
   UseReaction: 'use reaction',
@@ -73,6 +92,8 @@ export const STEP_TEXT: Readonly<Record<KernelCommandType, string>> = {
   RetractAsset: 'retract asset',
   ApproveAsset: 'approve asset',
   SetWeather: 'set weather',
+  SetCampaignOptions: 'set campaign options',
+  AskPortrait: 'ask for a portrait',
   GenerateChronicle: 'generate chronicle',
   GrantItem: 'grant item',
   EquipItem: 'equip item',
@@ -81,14 +102,46 @@ export const STEP_TEXT: Readonly<Record<KernelCommandType, string>> = {
   GiveItem: 'give item',
   DropItem: 'drop item',
   TakeItem: 'take item',
+  AttuneItem: 'attune to an item',
+  IdentifyItem: 'identify an item',
+  DawnRecharge: 'dawn: charges regained',
   AdjustHitPoints: 'change hit points',
   SetCondition: 'set a condition',
+  SetExhaustion: 'set Exhaustion',
   SetInspiration: 'set Heroic Inspiration',
   CommandCreature: 'handed a creature to a player',
   AddCombatant: 'add a combatant',
   RemoveCombatant: 'remove a combatant',
   DelayTurn: 'delay a turn',
   SetInitiative: 'set initiative',
+  AddObject: 'bring an object into the fight',
+  SetLight: 'set the light of the fight',
+  ExposeToHazard: 'expose the party to a hazard',
+  SpringTrap: 'spring a trap',
+  InflictMentalStress: 'mental stress',
+  InfectWithContagion: 'infect with a contagion',
+  ContagionCourse: 'a contagion’s course',
+  CreateCharacter: 'make a character',
+  UseCreatureAction: 'use a creature’s action',
+};
+
+/** The actions' names (docs/adr/0045-conditions-and-actions.md §5), English keys. */
+const ACTION_WORDS: Readonly<Record<CombatAction, string>> = {
+  dash: 'Dash',
+  disengage: 'Disengage',
+  dodge: 'Dodge',
+  help: 'Help',
+  hide: 'Hide',
+  influence: 'Influence',
+  ready: 'Ready an action',
+  search: 'Search',
+  study: 'Study',
+  utilize: 'Utilize',
+  escape: 'Escape a grapple',
+  release: 'Let go',
+  'first-aid': 'First aid',
+  mount: 'Mount',
+  dismount: 'Dismount',
 };
 
 /** What the DM did for the character, in plain words. */
@@ -114,7 +167,17 @@ export function describePlayerAction(
     case 'EndTurn':
       return t('Ended the turn');
     case 'Attack':
-      return t('Attacked {target}', { target: name(command.targetId) });
+      // The extra attacks (docs/adr/0047-weapons.md §2, §4) say which they were.
+      if (command.unarmed !== undefined) {
+        return command.unarmed === 'grapple'
+          ? t('Tried to grapple {target}', { target: name(command.targetId) })
+          : t('Tried to shove {target}', { target: name(command.targetId) });
+      }
+      return command.extra === 'offhand'
+        ? t('Attacked {target} with the other hand', { target: name(command.targetId) })
+        : command.extra === 'cleave'
+          ? t('Cleaved through to {target}', { target: name(command.targetId) })
+          : t('Attacked {target}', { target: name(command.targetId) });
     case 'CastSpell':
       return command.targetId === undefined
         ? t('Cast {spell}', { spell: spellName(t, command.spellId) })
@@ -126,10 +189,35 @@ export function describePlayerAction(
       const last = command.path.at(-1);
       return last ? t('Moved to {x}, {y}', { x: last.x, y: last.y }) : t('Moved');
     }
+    case 'TakeAction':
+      return command.targetId === undefined
+        ? t('Took the {action} action', { action: t(ACTION_WORDS[command.action]) })
+        : t('Took the {action} action at {target}', {
+            action: t(ACTION_WORDS[command.action]),
+            target: name(command.targetId),
+          });
     case 'UseReaction':
-      return t('Cast Counterspell as a reaction');
+      return t(REACTION_WORDS[command.reaction]);
     case 'DeclineReaction':
-      return t('Let the spell happen');
+      return t('Let it happen');
+    case 'MakeReadiedAttack':
+      return t('Made the readied attack');
+    case 'SpendInspiration':
+      return t('Rolled a check again with Heroic Inspiration');
+    case 'UseFeature':
+      // A class feature (docs/adr/0056-characters-from-the-srd.md §4), and whom it reached.
+      if (command.feature === 'end-rage') return t('Ended the Rage');
+      if (command.feature === 'inspiration-die') return t('Rolled a Bardic Inspiration die');
+      // Wild Shape's form taken or left (§5).
+      if (command.feature === 'end-wild-shape') return t('Left the Wild Shape');
+      if (command.feature === 'wild-shape' && command.option !== undefined)
+        return t('Took a Wild Shape: {form}', { form: readableLabel(command.option, t) });
+      return command.targetId === undefined || command.targetId === command.characterId
+        ? t('Used {feature}', { feature: t(RESOURCE_NAMES[command.feature]) })
+        : t('Used {feature} on {target}', {
+            feature: t(RESOURCE_NAMES[command.feature]),
+            target: name(command.targetId),
+          });
     case 'EnterLocation':
       return t('Went to {place}', { place: name(command.locationId) });
     case 'AskAbout':
@@ -177,8 +265,17 @@ const PICTURE_HOLDS: ReadonlySet<KernelCommandType> = new Set([
 export const isPictureHold = (commandType: KernelCommandType): boolean =>
   PICTURE_HOLDS.has(commandType);
 
-/** A time or weather change, from what it was to what it became. */
+const WORLD_KIND: Readonly<Record<DmWorldEntry['change']['kind'], string>> = {
+  time: 'World time',
+  weather: 'Weather',
+  options: 'Campaign options',
+};
+
+/** A time, weather or options change, from what it was to what it became. */
 export function describeWorldChange(t: Translate, change: DmWorldEntry['change']): string {
+  if (change.kind === 'options') {
+    return t('Campaign options: {changes}', { changes: optionChanges(t, change.from, change.to) });
+  }
   if (change.kind === 'time') {
     return t('Time: {from} → {to}', {
       from: formatWorldTime(change.from, t),
@@ -222,7 +319,7 @@ export function entryDetails(t: Translate, entry: DmHistoryEntry): string {
     entry.kind === 'authoring'
       ? t('Authoring')
       : entry.kind === 'world'
-        ? t(entry.change.kind === 'time' ? 'World time' : 'Weather')
+        ? t(WORLD_KIND[entry.change.kind])
         : entry.kind === 'hand'
           ? entry.reason === null
             ? t('By hand')

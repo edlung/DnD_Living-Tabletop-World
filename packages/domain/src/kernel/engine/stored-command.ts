@@ -9,6 +9,7 @@ import {
 import { z } from 'zod';
 
 import { actorSchema } from '../actor.ts';
+import { CREATE_CHARACTER_IDS } from '../../character/limits.ts';
 import { ENTROPY_POOL } from '../../combat/port.ts';
 import { MAX_RESOLVED_IDS } from '../../combat/reactions.ts';
 import type { ResolvedCommand } from '../decision.ts';
@@ -16,7 +17,9 @@ import type { StoredCommand } from './event-store.ts';
 
 const resolutionSchema = z
   .object({
-    ids: z.array(z.string().regex(OBJECT_ID_PATTERN)).max(MAX_RESOLVED_IDS),
+    ids: z
+      .array(z.string().regex(OBJECT_ID_PATTERN))
+      .max(Math.max(MAX_RESOLVED_IDS, CREATE_CHARACTER_IDS)),
     d20: z.number().int().min(1).max(20).nullable(),
     /** Absent in commands stored before combat existed (Stage 60). */
     entropy: z
@@ -43,7 +46,25 @@ const RESOLVED_TYPES: ReadonlySet<string> = new Set([
   'AddCombatant',
   'RemoveCombatant',
   'DelayTurn',
+  // The hazards of the road roll their saves (docs/adr/0050-the-world-around.md §8).
+  'ExposeToHazard',
+  'SpringTrap',
+  'InflictMentalStress',
+  'InfectWithContagion',
+  'ContagionCourse',
+  // A creature's breath rolls its damage and the saves (docs/adr/0053-monsters-as-data.md §2).
+  'UseCreatureAction',
+  // At dawn magic items roll the charges they regain (docs/adr/0054-items-as-data.md §5).
+  'DawnRecharge',
+  // A new character's rolled scores and its records' IDs (docs/adr/0056-…md §2).
+  'CreateCharacter',
 ]);
+
+/**
+ * Commands resolved since a later stage, stored without a resolution before it: a condition by
+ * hand, which rolls a grounded flyer's fall (docs/adr/0049-space-and-movement.md §6, Stage 640f).
+ */
+const LATER_RESOLVED_TYPES: ReadonlySet<string> = new Set(['SetCondition']);
 
 /**
  * A stored command must carry the IDs and draws the engine resolved before
@@ -78,7 +99,10 @@ const resolvedCommandSchema = z.looseObject({ type: z.string() }).transform((raw
     context.addIssue({ code: 'custom', message: 'stored commands must have resolved IDs' });
     return z.NEVER;
   }
-  if (!RESOLVED_TYPES.has(value.type)) {
+  if (LATER_RESOLVED_TYPES.has(value.type) && resolution === undefined) {
+    return value as ResolvedCommand;
+  }
+  if (!RESOLVED_TYPES.has(value.type) && !LATER_RESOLVED_TYPES.has(value.type)) {
     if (resolution !== undefined)
       context.addIssue({ code: 'custom', message: 'unexpected resolution' });
     return value as ResolvedCommand;

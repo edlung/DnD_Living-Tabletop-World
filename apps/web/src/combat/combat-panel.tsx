@@ -11,7 +11,7 @@ import { InitiativeStrip } from './hud/initiative-strip.tsx';
 import { BoardLegend, CombatantCard, MoveDetails } from './hud/side-panel.tsx';
 import { CommandedTurn } from './commanded-turn.tsx';
 import { TurnTray, type TrayChoice } from './hud/turn-tray.tsx';
-import { planPath } from './movement.ts';
+import { occupantAt, squareMoves } from './move-options.ts';
 import { useCombatantLabels } from './labels.ts';
 import { combatOptions, TargetDetails, useTargetContext } from './target-options.tsx';
 
@@ -68,14 +68,24 @@ export function CombatPanel({
   const self = encounter.combatants.find((entry) => entry.entity.entityId === actorId);
   const myTurn = self !== undefined && encounter.currentCombatantId === actorId;
   const mayAct = actorId !== null && canAct && myTurn && encounter.reactionWindow === null;
+  // A creature the viewer's character commands, on its own turn (docs/adr/0044-online-play.md §7):
+  // the viewer moves it, a mount among them, where its rider directs (ADR 0049 §10).
+  const commanding =
+    actorId !== null &&
+    canAct &&
+    encounter.reactionWindow === null &&
+    encounter.combatants.find((entry) => entry.entity.entityId === encounter.currentCombatantId)
+      ?.commandedBy?.entityId === actorId;
+  const moverId = commanding ? encounter.currentCombatantId : actorId;
   const picked =
     focus?.kind === 'combatant'
       ? (encounter.combatants.find((entry) => entry.entity.entityId === focus.id) ?? null)
       : null;
-  const plan =
-    focus?.kind === 'square' && actorId !== null
-      ? planPath(encounter, actorId, focus.square)
-      : null;
+  // The ways to a chosen square (docs/adr/0049-space-and-movement.md §5–8); the first is drawn.
+  const moves =
+    focus?.kind === 'square' && moverId !== null
+      ? squareMoves(encounter, moverId, focus.square)
+      : [];
   const { resource, retry } = useTargetContext(
     api,
     picked && actorId !== null ? picked.entity.entityId : null,
@@ -94,9 +104,7 @@ export function CombatPanel({
     if (chosen !== '') panel.current?.focus({ preventScroll: true });
   }, [chosen]);
   const pick = (square: Square) => {
-    const occupant = encounter.combatants.find(
-      (entry) => entry.position.x === square.x && entry.position.y === square.y,
-    );
+    const occupant = occupantAt(encounter, square);
     setFocus(
       occupant ? { kind: 'combatant', id: occupant.entity.entityId } : { kind: 'square', square },
     );
@@ -115,7 +123,7 @@ export function CombatPanel({
   };
   const choice: TrayChoice =
     focus?.kind === 'square'
-      ? { kind: 'square', plan }
+      ? { kind: 'square', moves }
       : picked
         ? { kind: 'combatant', target: picked, actions: options }
         : { kind: 'none' };
@@ -123,8 +131,10 @@ export function CombatPanel({
     focus?.kind === 'square' && actorId !== null ? (
       <MoveDetails
         square={focus.square}
-        plan={plan}
-        myTurn={myTurn}
+        moves={moves}
+        prone={self?.conditions.includes('prone') ?? false}
+        riding={self?.mountedOn !== undefined && !commanding}
+        myTurn={myTurn || commanding}
         panel={panel}
         onClose={close}
       />
@@ -167,7 +177,8 @@ export function CombatPanel({
         currentCombatantId={encounter.currentCombatantId}
         selfId={actorId}
         selected={focus?.kind === 'square' ? focus.square : (picked?.position ?? null)}
-        path={plan?.path ?? []}
+        path={moves[0]?.path ?? []}
+        moverId={moverId}
         affected={affected}
         imageOf={imageOf}
         figureOf={figureOf}
@@ -192,6 +203,8 @@ export function CombatPanel({
           api={api}
           encounter={encounter}
           actorId={canAct ? actorId : null}
+          moves={commanding ? moves : []}
+          target={commanding ? picked : null}
           locked={locked}
           onRun={onRun}
         />

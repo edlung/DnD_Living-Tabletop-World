@@ -1,34 +1,57 @@
 import type { EncounterView, EntityContextResponse } from '@ltw/contracts';
 import { StatusPanel, useT } from '@ltw/ui';
-import { useCallback, useEffect, useId, useRef } from 'react';
+import { useCallback, useId } from 'react';
 
-import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
-import type { ExplorationIntent } from '../exploration/use-action.ts';
 import { Glyph } from '../visual/glyph.tsx';
 import { catalogUrl } from '../visual/ui-kit.ts';
 import { combatCommandFor, ignoreReaction } from './combat-bindings.ts';
 import { useCombatantLabels } from './labels.ts';
+import { AttackPrompt } from './attack-prompt.tsx';
+import { OpportunityPrompt } from './opportunity-prompt.tsx';
+import { useAnnounceOnce, type ReactionPromptProps } from './reaction-card.ts';
 
-/** The open reaction window that asks this viewer's character, if one does. */
+/**
+ * The open reaction window that asks this viewer, if one does: their character, or a creature it
+ * commands (docs/adr/0044-online-play.md §7).
+ */
 export const askedWindowOf = (
   encounter: EncounterView | null,
   actorId: string | null,
-): string | null =>
-  actorId !== null && encounter?.reactionWindow && encounter.reactionWindow.choices.length > 0
-    ? encounter.reactionWindow.windowId
-    : null;
+): string | null => {
+  const window = encounter?.reactionWindow;
+  if (actorId === null || !window) return null;
+  const asked =
+    window.choices.length > 0 || window.candidates.some((c) => (c.choices?.length ?? 0) > 0);
+  return asked ? window.windowId : null;
+};
+
+/**
+ * The question of the open window, by what set it off: a spell, a creature leaving reach, an
+ * attack or the damage it did (docs/adr/0046-reactions-beyond-counterspell.md), a fall
+ * (docs/adr/0049-space-and-movement.md §8).
+ */
+export function ReactionPrompt(props: ReactionPromptProps) {
+  switch (props.encounter.reactionWindow?.trigger.kind) {
+    case 'move':
+      return <OpportunityPrompt {...props} />;
+    case 'attack':
+    case 'damage':
+    case 'fall':
+      return <AttackPrompt {...props} />;
+    default:
+      return <SpellPrompt {...props} />;
+  }
+}
 
 /**
  * The reaction question (docs/STAGE_320_DESIGN.md §5.5, ADR 0028 §5), shown only to a
  * character the open window asks: a prominent card — "Reaction: Counterspell", who casts, the
- * components, Counterspell's catalog picture and slot — with Cast and Don't interfere. It is
- * announced once, by taking focus (an alert dialog reads its name and question), once per
- * window; while a modal book covers the stage it waits, and takes focus when the book has
- * closed. The window's lifecycle belongs to the domain: a stale answer is refused there and
- * the prompt simply goes away.
+ * components, Counterspell's catalog picture and slot — with Cast and Don't interfere. The
+ * window's lifecycle belongs to the domain: a stale answer is refused there and the prompt
+ * simply goes away.
  */
-export function ReactionPrompt({
+function SpellPrompt({
   api,
   encounter,
   actorId,
@@ -36,21 +59,13 @@ export function ReactionPrompt({
   locked,
   blocked,
   onRun,
-}: {
-  readonly api: WorldApi;
-  readonly encounter: EncounterView;
-  readonly actorId: string;
-  readonly canAct: boolean;
-  readonly locked: boolean;
-  /** A modal dialog (the Chronicle) is open: everything behind it is inert. */
-  readonly blocked: boolean;
-  readonly onRun: (intent: ExplorationIntent) => void;
-}) {
+}: ReactionPromptProps) {
   const t = useT();
   const ids = useId();
-  const card = useRef<HTMLElement>(null);
+  const card = useAnnounceOnce(blocked);
   const window = encounter.reactionWindow;
-  const casterId = window?.trigger.caster.entityId ?? '';
+  const trigger = window?.trigger.kind === 'spell' ? window.trigger : null;
+  const casterId = trigger?.caster.entityId ?? '';
   const load = useCallback(
     (signal: AbortSignal) =>
       api.get<EntityContextResponse>(`entities/${encodeURIComponent(casterId)}/context`, signal),
@@ -58,15 +73,8 @@ export function ReactionPrompt({
   );
   const { resource, retry } = useResource(`${casterId}:${window?.windowId ?? ''}`, load);
   const labelOf = useCombatantLabels(encounter);
-  const focused = useRef(false);
-  useEffect(() => {
-    const element = card.current;
-    if (blocked || focused.current || !element) return;
-    element.focus({ preventScroll: true });
-    focused.current = document.activeElement === element;
-  }, [blocked]);
-  if (!window || window.choices.length === 0) return null;
-  const caster = window.trigger.caster.name ?? labelOf(casterId);
+  if (!window || !trigger || window.choices.length === 0) return null;
+  const caster = trigger.caster.name ?? labelOf(casterId);
   const counter =
     resource.status === 'ready'
       ? resource.value.context.actions.find((action) => action.id === 'counterspell')
@@ -105,7 +113,7 @@ export function ReactionPrompt({
         </p>
         <p>
           {t('Components: {components}. The spell waits until you answer.', {
-            components: window.trigger.components.map((component) => t(component)).join(', '),
+            components: trigger.components.map((component) => t(component)).join(', '),
           })}
         </p>
       </div>

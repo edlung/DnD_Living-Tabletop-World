@@ -54,7 +54,12 @@ import {
   itemSplitPayloadSchema,
   itemTransferredPayloadSchema,
   itemUnequippedPayloadSchema,
+  itemRecoveredPayloadSchema,
   itemUsedPayloadSchema,
+  itemAttunedPayloadSchema,
+  itemChargesRegainedPayloadSchema,
+  itemChargesSpentPayloadSchema,
+  itemIdentifiedPayloadSchema,
 } from '../items/events.ts';
 import {
   assetAdoptedPayloadSchema,
@@ -68,6 +73,15 @@ import {
   assetRetractedPayloadSchema,
 } from '../assets/events.ts';
 import { weatherRestoreSchemas, weatherSetPayloadSchema } from '../weather/weather.ts';
+import {
+  campaignOptionsRestoreSchemas,
+  campaignOptionsSetPayloadSchema,
+} from '../campaign/options.ts';
+import { deathRestoreSchemas } from '../character/deaths.ts';
+import {
+  portraitAskedPayloadSchema,
+  portraitWishRestoreSchemas,
+} from '../assets/portrait-wishes.ts';
 import { chronicleGeneratedPayloadSchema, chronicleRestoreSchemas } from '../chronicle/records.ts';
 import {
   preparedPartyEstablishedPayloadSchema,
@@ -133,6 +147,9 @@ export const restoreSchema = z.discriminatedUnion('fact', [
   ...relationshipRestoreSchemas,
   ...assetRestoreSchemas,
   ...weatherRestoreSchemas,
+  ...campaignOptionsRestoreSchemas,
+  ...deathRestoreSchemas,
+  ...portraitWishRestoreSchemas,
   ...chronicleRestoreSchemas,
   ...itemRestoreSchemas,
 ]);
@@ -229,13 +246,20 @@ export const kernelEventSchema = z.discriminatedUnion('type', [
   event('CombatantUpdated', combatEventPayloadSchemas.CombatantUpdated),
   event('CombatEnded', combatEventPayloadSchemas.CombatEnded),
   event('CombatOrderChanged', combatEventPayloadSchemas.CombatOrderChanged),
+  event('LightSet', combatEventPayloadSchemas.LightSet),
   event('StatBlockSet', combatEventPayloadSchemas.StatBlockSet),
+  event('ActionTaken', combatEventPayloadSchemas.ActionTaken),
+  event('FeatureUsed', combatEventPayloadSchemas.FeatureUsed),
   event('AttackPerformed', combatEventPayloadSchemas.AttackPerformed),
+  event('WeaponMasteryApplied', combatEventPayloadSchemas.WeaponMasteryApplied),
   event('SpellCast', combatEventPayloadSchemas.SpellCast),
   event('DamageApplied', combatEventPayloadSchemas.DamageApplied),
   event('HealingApplied', combatEventPayloadSchemas.HealingApplied),
   event('HitPointsAdjusted', combatEventPayloadSchemas.HitPointsAdjusted),
   event('SavingThrowRolled', combatEventPayloadSchemas.SavingThrowRolled),
+  event('CheckRolled', combatEventPayloadSchemas.CheckRolled),
+  event('RechargeRolled', combatEventPayloadSchemas.RechargeRolled),
+  event('CreatureActionUsed', combatEventPayloadSchemas.CreatureActionUsed),
   event('ConditionApplied', combatEventPayloadSchemas.ConditionApplied),
   event('DeathSaveRolled', combatEventPayloadSchemas.DeathSaveRolled),
   event('ReactionWindowOpened', reactionEventPayloadSchemas.ReactionWindowOpened),
@@ -243,6 +267,8 @@ export const kernelEventSchema = z.discriminatedUnion('type', [
   event('ReactionDeclined', reactionEventPayloadSchemas.ReactionDeclined),
   event('ReactionWindowExpired', reactionEventPayloadSchemas.ReactionWindowExpired),
   event('ReactionWindowResolved', reactionEventPayloadSchemas.ReactionWindowResolved),
+  event('ReactionWindowWaiting', reactionEventPayloadSchemas.ReactionWindowWaiting),
+  event('ReactionWindowResumed', reactionEventPayloadSchemas.ReactionWindowResumed),
   event('RelationshipChanged', relationshipChangedPayloadSchema),
   event('AuthoringPremisesRecorded', authoringPremisesPayloadSchema),
   event('EvidenceShown', evidenceShownPayloadSchema),
@@ -258,14 +284,23 @@ export const kernelEventSchema = z.discriminatedUnion('type', [
   event('AssetRetracted', assetRetractedPayloadSchema),
   event('AssetApproved', assetApprovedPayloadSchema),
   event('WeatherSet', weatherSetPayloadSchema),
+  event('CampaignOptionsSet', campaignOptionsSetPayloadSchema),
+  event('PortraitAsked', portraitAskedPayloadSchema),
   event('ChronicleGenerated', chronicleGeneratedPayloadSchema),
   event('CharacterReleased', characterReleasedPayloadSchema),
   event('ItemGranted', itemGrantedPayloadSchema),
   event('ItemEquipped', itemEquippedPayloadSchema),
   event('ItemUnequipped', itemUnequippedPayloadSchema),
   event('ItemUsed', itemUsedPayloadSchema),
+  event('ItemRecovered', itemRecoveredPayloadSchema),
   event('ItemTransferred', itemTransferredPayloadSchema),
   event('ItemSplit', itemSplitPayloadSchema),
+  // Attunement (docs/adr/0054-items-as-data.md §5).
+  event('ItemAttuned', itemAttunedPayloadSchema),
+  // Charges and what a carrier knows (ADR 0054 §5).
+  event('ItemChargesSpent', itemChargesSpentPayloadSchema),
+  event('ItemChargesRegained', itemChargesRegainedPayloadSchema),
+  event('ItemIdentified', itemIdentifiedPayloadSchema),
 ]);
 
 export type KernelEvent = z.infer<typeof kernelEventSchema>;

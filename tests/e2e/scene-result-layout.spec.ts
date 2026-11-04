@@ -6,6 +6,7 @@ import {
   INVESTIGATION_CAMPAIGNS,
   travelTo,
 } from './support/investigation.ts';
+import { settled } from './support/axe.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
 import { closeSheet } from './support/shell.ts';
 
@@ -103,6 +104,8 @@ test('beside an open conversation and a result the scene keeps room for its name
   await expect(page.locator('.outcome')).toBeVisible();
   expect(await brokenWords(page, '.scene-presence .name-plate strong, .scene-caption')).toEqual([]);
   await expect.poll(() => unreachable(page)).toEqual([]);
+  // The result slides in: measured where it comes to rest.
+  await settled(page);
   const overlaps = await page.locator('.scene-presence').evaluate((row) => {
     const box = row.getBoundingClientRect();
     return ['.outcome', '.dialogue-panel', '.exits'].filter((selector) => {
@@ -143,7 +146,8 @@ for (const width of [768, 1024]) {
     await enterWorld(dm, TOKENS.dm);
     await dm.getByRole('button', { name: 'Mira Vale', exact: true }).click();
     await expect(dm.getByRole('complementary', { name: 'Entity details' })).toBeVisible();
-    await expect(dm.locator('nav.dock button:not(#dock-more)')).toHaveCount(14);
+    // Fourteen tools, and the Rules everyone has (docs/adr/0055-rules-reference-and-toolbox.md §2).
+    await expect(dm.locator('nav.dock button:not(#dock-more)')).toHaveCount(15);
     await expect.poll(() => coveredDockButtons(dm)).toEqual([]);
 
     // A player's result at the drawer's foot keeps clear of the dock too (read-only: talking with

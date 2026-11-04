@@ -2,6 +2,7 @@ import { SESSION_DAYS, type NewAccount } from '@ltw/contracts';
 import { StatusPanel, useT } from '@ltw/ui';
 import { useEffect, useRef, useState, type ComponentProps, type ReactNode } from 'react';
 
+import { AboutButton } from '../guide/about.tsx';
 import { NativeEntry } from '../native/native-entry.tsx';
 import { Glyph } from '../visual/glyph.tsx';
 import type { GlyphName } from '../visual/ui-kit-names.ts';
@@ -44,7 +45,12 @@ export function SignInLayout({ children }: { readonly children: ReactNode }) {
         </div>
         <img className="sign-in-divider" src={ornamentUrl('divider')} alt="" />
         {children}
-        <p className="sign-in-footer">{t('Your character. Your perspective. One living world.')}</p>
+        <div className="sign-in-foot">
+          <p className="sign-in-footer">
+            {t('Your character. Your perspective. One living world.')}
+          </p>
+          <AboutButton />
+        </div>
       </section>
     </main>
   );

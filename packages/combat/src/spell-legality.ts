@@ -1,4 +1,11 @@
-import type { CharacterSheet, CoverLevel, MonsterSpell, SpellId, Square } from '@ltw/contracts';
+import type {
+  CharacterSheet,
+  CoverLevel,
+  MetamagicChoice,
+  MonsterSpell,
+  SpellId,
+  Square,
+} from '@ltw/contracts';
 import {
   combatantOf,
   perceivedEntityIds,
@@ -7,20 +14,33 @@ import {
   type WorldState,
 } from '@ltw/domain';
 import {
-  SPELLS,
   applyCast,
   checkCast,
+  gapToSquareFt,
   moveRequiredFt,
   slotsRemaining,
-  squareDistanceFt,
+  spellRules,
+  squaresOf,
   startTurn,
   type CastPlan,
   type CastRequest,
   type TurnState,
 } from '@ltw/rules';
 
-import { coverAt, inBounds, isAlive, occupant, turnStateOf } from './battlefield.ts';
+import { canSee } from './sight.ts';
+import {
+  coverAt,
+  fitsOnField,
+  gapBetween,
+  inBounds,
+  isAlive,
+  occupant,
+  placedOf,
+  turnStateOf,
+} from './battlefield.ts';
+import { charmedBy } from './condition-details.ts';
 import { fireballArea, type CombatReason, type Refusal } from './legality.ts';
+import { isObject, isObjectIn } from './objects.ts';
 import { incapacitated, vitalsOf, type Vitals } from './vitals.ts';
 
 /**
@@ -40,7 +60,7 @@ import { incapacitated, vitalsOf, type Vitals } from './vitals.ts';
 const refuse = (reason: CombatReason, resolution?: Refusal['resolution']): Refusal =>
   resolution ? { legal: false, reason, resolution } : { legal: false, reason };
 
-export type Using = 'free' | { readonly slotLevel: number };
+export type Using = 'free' | 'ritual' | { readonly slotLevel: number };
 
 /** What casting spends: a suspended cast already spent it (ADR 0016). */
 export type Economy = 'action' | 'bonus';
@@ -72,15 +92,22 @@ export interface CharacterSpellPlan {
   readonly target: TargetInfo | null;
   readonly point: Square | null;
   readonly area: readonly CombatantRecord[];
+  /** The Metamagic spent on it (docs/adr/0056-characters-from-the-srd.md §4); null for none. */
+  readonly metamagic: MetamagicChoice | null;
 }
 
 /** Free first, then the lowest slot that can cast it (as the Context Engine shows). */
-export function chooseUsing(sheet: CharacterSheet, spellId: SpellId): Using {
+export function chooseUsing(
+  sheet: CharacterSheet,
+  spellId: string,
+): 'free' | { readonly slotLevel: number } {
   const free = sheet.spellcasting.some(
-    (s) => s.freeCasts?.spellId === spellId && s.freeCasts.used < s.freeCasts.perLongRest,
+    (s) =>
+      s.atWill?.includes(spellId) === true ||
+      (s.freeCasts?.spellId === spellId && s.freeCasts.used < s.freeCasts.perLongRest),
   );
   if (free) return 'free';
-  const level = SPELLS[spellId].level;
+  const level = spellRules(spellId)?.level ?? 1;
   for (let slotLevel = level; slotLevel <= 9; slotLevel += 1) {
     if (slotsRemaining(sheet, slotLevel) > 0) return { slotLevel };
   }
@@ -95,6 +122,7 @@ export function characterSpellPlan(
     readonly using?: Using;
     readonly targetId?: string;
     readonly point?: Square;
+    readonly metamagic?: MetamagicChoice;
   },
   refund?: Economy,
 ): CharacterSpellPlan | Refusal {
@@ -114,32 +142,52 @@ export function characterSpellPlan(
   let target: TargetInfo | null = null;
   let point: Square | null = null;
   let area: CombatantRecord[] = [];
-  const castRequest: { -readonly [K in keyof CastRequest]: CastRequest[K] } = { spellId, using };
+  const castRequest: { -readonly [K in keyof CastRequest]: CastRequest[K] } = {
+    spellId,
+    using,
+    ...(request.metamagic ? { metamagic: request.metamagic.options } : {}),
+  };
 
   if (spellId === 'hunters-mark' || spellId === 'healing-word') {
     if (request.targetId === undefined) return refuse('TARGET_REQUIRED');
     const located = locateTarget(state, encounter, record, casterId, request.targetId);
     if ('legal' in located) return located;
     target = located.target;
-    castRequest.target = { distanceFt: located.distanceFt, visible: true };
+    // A creature it can see, in this light, with its senses (docs/adr/0050 §3).
+    const seen =
+      !encounter || !record || !located.target.record || request.targetId === casterId
+        ? true
+        : canSee(state, encounter, record, located.target.record);
+    castRequest.target = { distanceFt: located.distanceFt, visible: seen };
   } else if (spellId === 'fireball' || spellId === 'misty-step') {
     if (!encounter || !record) return refuse('NOT_IN_COMBAT');
     if (request.point === undefined) return refuse('TARGET_REQUIRED');
     if (!inBounds(encounter, request.point)) return refuse('DESTINATION_INVALID');
     point = request.point;
-    const distanceFt = squareDistanceFt(record.position, point);
+    // From the caster's nearest square (docs/adr/0049-space-and-movement.md §1).
+    const distanceFt = gapToSquareFt(placedOf(state, record), point);
     if (spellId === 'fireball') {
       castRequest.target = { distanceFt, visible: true };
       area = fireballArea(state, encounter, point);
     } else {
+      // The caster's whole space must fit there (ADR 0049 §1).
+      const there = { ...placedOf(state, record), position: point };
       const blocked =
-        occupant(state, encounter, point, casterId) !== undefined ||
-        coverAt(encounter, point) === 'total';
+        !fitsOnField(encounter, there) ||
+        squaresOf(there).some(
+          (square) =>
+            occupant(state, encounter, square, casterId) !== undefined ||
+            coverAt(encounter, square) === 'total',
+        );
       castRequest.destination = { distanceFt, visible: true, occupied: blocked };
     }
   }
 
   if (incapacitated(caster)) return refuse('INCAPACITATED');
+  // A Charmed caster aims no spell at its charmer (docs/adr/0045-conditions-and-actions.md §1).
+  if (record && target && charmedBy(record, caster, target.entityId)) {
+    return refuse('CHARMED_BY_TARGET');
+  }
   const cast = checkCast(caster.sheet, turn, castRequest);
   if (!cast.legal) return refuse(cast.reason, cast.resolution);
   if (!record && target && encounter && combatantOf(encounter, target.entityId)) {
@@ -150,7 +198,18 @@ export function characterSpellPlan(
     spellId === 'hunters-mark' && target
       ? { ...after.sheet, concentration: { spellId, targetId: target.entityId } }
       : after.sheet;
-  return { legal: true, spellId, cast, sheet, turn: after.turn, record, target, point, area };
+  return {
+    legal: true,
+    spellId,
+    cast,
+    sheet,
+    turn: after.turn,
+    record,
+    target,
+    point,
+    area,
+    metamagic: request.metamagic ?? null,
+  };
 }
 
 function locateTarget(
@@ -164,6 +223,8 @@ function locateTarget(
     const targetRecord = combatantOf(encounter, targetId);
     if (!targetRecord) return refuse('NOT_A_COMBATANT');
     if (!isAlive(state, targetId)) return refuse('TARGET_DEAD');
+    // The slice's spells name creatures (docs/adr/0048-hit-points.md §5).
+    if (isObjectIn(state, targetId)) return refuse('NOT_A_CREATURE');
     const cover = coverAt(encounter, targetRecord.position);
     if (cover === 'total' && targetId !== casterId) return refuse('TOTAL_COVER');
     return {
@@ -173,7 +234,7 @@ function locateTarget(
         record: targetRecord,
         cover: cover === 'total' ? 'none' : cover,
       },
-      distanceFt: squareDistanceFt(record.position, targetRecord.position),
+      distanceFt: gapBetween(state, record, targetRecord),
     };
   }
   // Outside combat: a present creature; range is not tracked (ADR 0012).
@@ -219,9 +280,11 @@ export function monsterSpellPlan(
   const targetVitals = vitalsOf(state, targetId);
   if (!targetRecord || !targetVitals) return refuse('NOT_A_COMBATANT');
   if (!isAlive(state, targetId)) return refuse('TARGET_DEAD');
+  if (isObject(targetVitals)) return refuse('NOT_A_CREATURE');
+  if (charmedBy(record, caster, targetId)) return refuse('CHARMED_BY_TARGET');
   const cover = coverAt(encounter, targetRecord.position);
   if (cover === 'total') return refuse('TOTAL_COVER');
-  const distanceFt = squareDistanceFt(record.position, targetRecord.position);
+  const distanceFt = gapBetween(state, record, targetRecord);
   if (distanceFt > spell.rangeFt) {
     return refuse('OUT_OF_RANGE', { moveRequiredFt: moveRequiredFt(distanceFt, spell.rangeFt) });
   }

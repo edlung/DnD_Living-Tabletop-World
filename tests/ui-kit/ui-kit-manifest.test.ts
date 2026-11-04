@@ -3,10 +3,23 @@ import { join, relative, sep } from 'node:path';
 
 import { describe, expect, it } from 'vitest';
 
-import { LOADED } from '../../apps/web/src/visual/ui-kit.ts';
+import {
+  ITEM_LOOKS,
+  SRD_CREATURE_TYPES,
+  SRD_SCHOOLS,
+  srdCreatureTypeOf,
+} from '../../packages/contracts/src/index.ts';
+import { SRD_MONSTERS } from '../../packages/rules/src/index.ts';
+import {
+  creatureTypeArtUrl,
+  itemPictureUrl,
+  LOADED,
+  schoolArtUrl,
+} from '../../apps/web/src/visual/ui-kit.ts';
 import {
   BOARD_NAMES,
   CATALOG_NAMES,
+  KIND_NAMES,
   GLYPH_NAMES,
   ORNAMENT_NAMES,
   TEXTURE_NAMES,
@@ -91,6 +104,7 @@ describe('the UI kit in the client', () => {
     expect([...BOARD_NAMES].sort()).toEqual(names('board'));
     expect([...CATALOG_NAMES.spells].sort()).toEqual(names('catalog/spells'));
     expect([...CATALOG_NAMES.weapons].sort()).toEqual(names('catalog/weapons'));
+    expect([...KIND_NAMES].sort()).toEqual(names('catalog/kinds'));
   });
 
   it('builds a URL for every named picture', () => {
@@ -101,6 +115,18 @@ describe('the UI kit in the client', () => {
     expect(loaded(LOADED.board)).toEqual([...BOARD_NAMES].sort());
     expect(loaded(LOADED.spells)).toEqual([...CATALOG_NAMES.spells].sort());
     expect(loaded(LOADED.weapons)).toEqual([...CATALOG_NAMES.weapons].sort());
+    expect(loaded(LOADED.kinds)).toEqual([...KIND_NAMES].sort());
     for (const url of LOADED.glyphs.values()) expect(url).toMatch(/\.png$/);
+  });
+
+  it('pictures every school, creature type and item look an SRD entry can have', () => {
+    for (const school of SRD_SCHOOLS) expect(schoolArtUrl(school), school).not.toBeNull();
+    for (const type of SRD_CREATURE_TYPES) expect(creatureTypeArtUrl(type), type).not.toBeNull();
+    for (const look of ITEM_LOOKS)
+      expect(itemPictureUrl({ itemId: 'srd-none', look }), look).not.toBeNull();
+    // Every stat block has its type, a swarm its members' ("Swarm of Tiny Beasts").
+    const untyped = SRD_MONSTERS.filter((monster) => srdCreatureTypeOf(monster.type) === null);
+    expect(untyped.map((monster) => monster.name)).toEqual([]);
+    expect(srdCreatureTypeOf('Swarm of Tiny Undead')).toBe('undead');
   });
 });

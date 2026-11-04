@@ -232,3 +232,73 @@ export const COIN_ITEMS: readonly ItemEntry[] = [
     1,
   ),
 ];
+
+const ammunition = (
+  itemId: string,
+  kind: NonNullable<ItemEntry['ammunition']>,
+  name: ItemEntry['name'],
+  description: ItemEntry['description'],
+  weightLb: number,
+  valueCp: number,
+): ItemEntry => ({
+  itemId,
+  category: 'gear',
+  name,
+  description,
+  weightLb,
+  valueCp,
+  stackable: true,
+  slots: [],
+  ammunition: kind,
+});
+
+/**
+ * Ammunition of the Ravenford setting (docs/adr/0047-weapons.md §5): a unit is one piece, spent by
+ * a shot of the weapon that fires its kind, half of them found again after a fight.
+ */
+export const AMMUNITION_ITEMS: readonly ItemEntry[] = [
+  ammunition(
+    'goose-fletched-arrows',
+    'arrow',
+    { ru: 'Стрелы с гусиным оперением', en: 'Goose-fletched arrows' },
+    {
+      ru: 'Прямые ясеневые стрелы с серым оперением и гранёными наконечниками.',
+      en: 'Straight ash arrows with grey fletching and faceted heads.',
+    },
+    0.05,
+    5,
+  ),
+  ammunition(
+    'iron-quarrels',
+    'bolt',
+    { ru: 'Железные болты', en: 'Iron quarrels' },
+    {
+      ru: 'Короткие арбалетные болты с кожаным оперением, тяжёлые и злые.',
+      en: 'Short crossbow quarrels with leather vanes, heavy and mean.',
+    },
+    0.075,
+    5,
+  ),
+  ammunition(
+    'river-stones',
+    'bullet',
+    { ru: 'Речные камни', en: 'River stones' },
+    {
+      ru: 'Гладкие речные камни: каждый ровно ложится в ремень пращи.',
+      en: 'Smooth river stones; each sits snug in a sling.',
+    },
+    0.075,
+    1,
+  ),
+  ammunition(
+    'reed-darts',
+    'needle',
+    { ru: 'Тростниковые иглы', en: 'Reed needles' },
+    {
+      ru: 'Тонкие иглы с пушком на хвосте, для духовой трубки.',
+      en: 'Thin needles with a tuft of down, for a blowgun.',
+    },
+    0.02,
+    2,
+  ),
+];

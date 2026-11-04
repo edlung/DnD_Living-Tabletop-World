@@ -5,12 +5,14 @@ import { deriveCharacter } from './character-derived.ts';
 import { spellSlotsFor } from './character-math.ts';
 import {
   CLASS_HIT_DIE,
+  DAY_SECONDS,
   attacksFor,
   hitDice,
   hitDieRefusal,
-  levelUp,
   longRest,
+  longRestRefusal,
   spendHitDie,
+  wakeAfterShortRest,
 } from './rest.ts';
 import { elowen as sheetOfElowen } from './testing/elowen.ts';
 
@@ -76,39 +78,27 @@ describe('Hit Point Dice (SRD 5.2.1)', () => {
     expect(rested.spellcasting.every((source) => (source.freeCasts?.used ?? 0) === 0)).toBe(true);
     expect(characterSheetSchema.safeParse(rested).success).toBe(true);
   });
-});
 
-describe('a milestone level', () => {
-  it('adds the class die’s fixed hit points and Constitution, and the new spell slots', () => {
-    const next = levelUp(elowen, 'wizard');
-    if (typeof next === 'string') throw new Error(next);
-    expect(next.classes).toContainEqual(expect.objectContaining({ classId: 'wizard', level: 9 }));
-    expect(next.hitPoints).toEqual({ max: 84, current: 84 });
-    expect(next.spellSlots.max).toEqual([4, 3, 3, 3, 2, 1, 1, 0, 0]);
-    expect(deriveCharacter(next).proficiencyBonus).toBe(5);
-    expect(characterSheetSchema.safeParse(next).success).toBe(true);
-  });
-
-  it('gives a Ranger Extra Attack at level 5', () => {
-    const young: CharacterSheet = {
-      ...elowen,
-      classes: [{ classId: 'ranger', level: 4 }],
-      attacksPerAction: 1,
-      spellSlots: { max: [3, 0, 0, 0, 0, 0, 0, 0, 0], expended: [1, 0, 0, 0, 0, 0, 0, 0, 0] },
-    };
-    const next = levelUp(young, 'ranger');
-    if (typeof next === 'string') throw new Error(next);
-    expect(next.attacksPerAction).toBe(2);
-    expect(next.spellSlots).toEqual({
-      max: [4, 2, 0, 0, 0, 0, 0, 0, 0],
-      expended: [1, 0, 0, 0, 0, 0, 0, 0, 0],
+  it('heals up to a lowered maximum, wakes the knocked out, and the long rest restores all', () => {
+    // docs/adr/0048-hit-points.md §1, §2, §4.
+    const drained = { ...elowen, hitPoints: { max: 78, current: 40, reducedBy: 30, temporary: 4 } };
+    expect(spent(drained, 10, 10).sheet.hitPoints).toEqual({
+      max: 78,
+      current: 48,
+      reducedBy: 30,
+      temporary: 4,
     });
-  });
-
-  it('refuses a class the character lacks and a level past 20', () => {
-    const ranger: CharacterSheet = { ...elowen, classes: [{ classId: 'ranger', level: 20 }] };
-    expect(levelUp(ranger, 'wizard')).toBe('NOT_A_CLASS_OF_THE_CHARACTER');
-    expect(levelUp(ranger, 'ranger')).toBe('MAX_LEVEL');
+    expect(
+      hitDieRefusal({ ...drained, hitPoints: { ...drained.hitPoints, current: 48 } }, 10),
+    ).toBe('FULL_HIT_POINTS');
+    const out = hurt(1, { knockedOut: true, conditions: ['unconscious', 'prone'] });
+    const woken = spent(out, 10, 3).sheet;
+    expect(woken.knockedOut).toBeUndefined();
+    expect(woken.conditions).toEqual(['prone']);
+    const rested = longRest({ ...drained, knockedOut: true, conditions: ['unconscious'] });
+    expect(rested.hitPoints).toEqual({ max: 78, current: 78 });
+    expect(rested.knockedOut).toBeUndefined();
+    expect(characterSheetSchema.safeParse(rested).success).toBe(true);
   });
 });
 
@@ -133,17 +123,37 @@ describe('the Fighter, the Rogue and the Cleric (Stage 605)', () => {
     expect(attacksFor([{ classId: 'fighter', level: 11 }])).toBe(3);
     expect(attacksFor([{ classId: 'fighter', level: 20 }])).toBe(4);
     expect(attacksFor([{ classId: 'rogue', level: 20 }])).toBe(1);
-    const next = levelUp(sheetOf('fighter', 10), 'fighter');
-    if (typeof next === 'string') throw new Error(next);
-    expect(next.attacksPerAction).toBe(3);
   });
 
   it('counts a Cleric as a full caster', () => {
     expect(spellSlotsFor([{ classId: 'cleric', level: 15 }])).toEqual([4, 3, 3, 3, 2, 1, 1, 1, 0]);
-    // The ninth-level slot comes at caster level 17.
-    const next = levelUp(sheetOf('cleric', 16), 'cleric');
-    if (typeof next === 'string') throw new Error(next);
-    expect(next.spellSlots.max).toEqual([4, 3, 3, 3, 2, 1, 1, 1, 1]);
-    expect(next.hitPoints.max - sheetOf('cleric', 16).hitPoints.max).toBe(7);
+    // The ninth-level slot comes at caster level 17 (a level taken: builder/level-up.test.ts).
+    expect(spellSlotsFor([{ classId: 'cleric', level: 17 }])).toEqual([4, 3, 3, 3, 2, 1, 1, 1, 1]);
+  });
+});
+
+describe('rests by the full rules (docs/adr/0050-the-world-around.md §5, §7)', () => {
+  const base = elowen;
+  it('allows one long rest in 24 hours, counted from the last one’s start', () => {
+    expect(longRestRefusal(base, 1000)).toBeNull();
+    const rested = longRest(base, 1000);
+    expect(rested.lastLongRestAt).toBe(1000);
+    expect(longRestRefusal(rested, 1000 + DAY_SECONDS - 1)).toBe('RESTED_TODAY');
+    expect(longRestRefusal(rested, 1000 + DAY_SECONDS)).toBeNull();
+  });
+
+  it('eases the ordeal of one back from the dead by 1 each long rest', () => {
+    // SRD 5.2.1 Raise Dead: −4 to D20 Tests, 1 less at each Long Rest until it becomes 0.
+    expect(longRest({ ...base, ordeal: 4 }).ordeal).toBe(3);
+    expect(longRest({ ...base, ordeal: 1 }).ordeal).toBeUndefined();
+    expect(longRest(base).ordeal).toBeUndefined();
+  });
+
+  it('wakes one knocked out at a short rest’s end, and no one else', () => {
+    expect(wakeAfterShortRest(base)).toBeNull();
+    const out = { ...base, knockedOut: true as const, conditions: ['unconscious' as const] };
+    const awake = wakeAfterShortRest(out);
+    expect(awake?.knockedOut).toBeUndefined();
+    expect(awake?.conditions).not.toContain('unconscious');
   });
 });

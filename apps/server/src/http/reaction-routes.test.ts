@@ -77,7 +77,13 @@ describe('the open window in the encounter view', () => {
         caster: { entityId: 'creature-ae08be99', kind: 'creature', name: null },
         components: ['V', 'S'],
       },
-      candidates: [{ entityId: 'elowen-starwhisper', response: 'pending' }],
+      candidates: [
+        {
+          entityId: 'elowen-starwhisper',
+          response: 'pending',
+          choices: ['counterspell', 'ignore'],
+        },
+      ],
       choices: ['counterspell', 'ignore'],
     });
     expect(player.raw).not.toMatch(/ashen|Ashen|targetId/);

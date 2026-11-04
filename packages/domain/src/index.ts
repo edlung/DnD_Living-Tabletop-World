@@ -104,8 +104,19 @@ export {
 } from './knowledge/projection-party.ts';
 export { campaignSession } from './knowledge/session.ts';
 export { characterSheetView } from './character/view.ts';
-export { inventoryView } from './items/view.ts';
-export { carriedBy, possessionOf, wieldedWeapons, type Possession } from './items/records.ts';
+export { carriedWeightLb, inventoryView } from './items/view.ts';
+export { grantRefusal } from './items/decide.ts';
+export { baseOfGrant, itemEntry, madeOn } from './items/catalog.ts';
+export {
+  ammunitionOf,
+  carriedBy,
+  handsOf,
+  possessionOf,
+  wieldedBonus,
+  wieldedWeapons,
+  type Hands,
+  type Possession,
+} from './items/records.ts';
 export { clueTargetSupportsMethod } from './investigation/authoring.ts';
 export { knownEntityIds, visibleRecords } from './knowledge/projection.ts';
 export type { MemoryRecord, SessionRecord } from './memory/records.ts';
@@ -151,14 +162,17 @@ export {
   encounterAfterTurnStart,
   isCombatant,
   type CombatantRecord,
+  type ConditionDetailRecord,
   type EncounterState,
   type TurnRecord,
 } from './combat/records.ts';
 export {
   REACTION_WINDOW_ID_INDEX,
+  candidateReactions,
   consideredCombatants,
   openReactionWindow,
   pendingCandidates,
+  triggerActor,
   type ReactionTrigger,
   type ReactionWindowRecord,
 } from './combat/reactions.ts';
@@ -208,6 +222,8 @@ export { memorySuggestions, type SuggestionScope } from './chronicle/suggestions
 export { flashbackFor } from './chronicle/flashback.ts';
 export { questFor, questLog } from './quest/projection.ts';
 export { buildCampaignPlan, type CampaignPlan } from './campaign/plan.ts';
+export { campaignOptions } from './campaign/options.ts';
+export { deadForSeconds, type DeathRecord } from './character/deaths.ts';
 export { seedCampaignPackage, mergeCampaignGenerationStep } from './campaign/generation.ts';
 export {
   validateCampaignGenerationStep,
@@ -231,3 +247,5 @@ export {
 } from './campaign/bootstrap-plan.ts';
 
 export { partyMemberIds, isPartyMember } from './knowledge/party.ts';
+export { decideCreateCharacter, type CharacterBuilderPort } from './character/create.ts';
+export { CREATE_CHARACTER_IDS } from './character/limits.ts';

@@ -1,5 +1,18 @@
 export { createCombatEngine } from './engine.ts';
-export { coverAt, encounterOf, isAlive, occupant, turnStateOf } from './battlefield.ts';
+export { actionPlan, needsAid, type ActionPlan, type ActionRequest } from './actions.ts';
+export { isObjectIn } from './objects.ts';
+export {
+  coverAt,
+  encounterOf,
+  gapBetween,
+  isAlive,
+  JOIN_REFUSALS,
+  joinRefusal,
+  type JoinRefusal,
+  occupant,
+  placedOf,
+  turnStateOf,
+} from './battlefield.ts';
 export {
   attackPlan,
   fireballArea,
@@ -8,6 +21,7 @@ export {
   type CombatReason,
   type Refusal,
 } from './legality.ts';
+export { dataSpellPlan, targetCount, type DataSpellPlan } from './data-spell-plan.ts';
 export {
   chooseUsing,
   characterSpellPlan,
@@ -20,7 +34,8 @@ export {
   type CounterspellPlan,
 } from './reactions/eligibility.ts';
 export { reactionWindowViolations } from './reactions/invariants.ts';
-export { hitPoints, vitalsOf, type Vitals } from './vitals.ts';
+export { hitPoints, sizeOf, vitalsOf, type Vitals } from './vitals.ts';
+export { IMPROVISED, UNARMED_STRIKE } from './weapon-view.ts';
 export { encounterView } from './view.ts';
 export { suggestMonsterTurn } from './suggestion.ts';
 export { movePlan, type MovePlan } from './movement.ts';

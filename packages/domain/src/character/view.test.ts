@@ -13,7 +13,17 @@ import {
 import { resolvePerspective } from '../knowledge/perspective.ts';
 import { characterSheetView } from './view.ts';
 
-const canonical = characterSheetSchema.parse(rulesSeed.commands[0]?.sheet);
+// Optional statistics set too, so a field the view forgets to copy fails here (Exhaustion did).
+const canonical = characterSheetSchema.parse({
+  ...rulesSeed.commands[0]?.sheet,
+  exhaustion: 2,
+  heroicInspiration: true,
+  contagions: [{ contagionId: 'sewer-plague', takenHold: true, successes: 0 }],
+  // The class features' state (docs/adr/0056-characters-from-the-srd.md §4).
+  featureUses: { 'second-wind': 1 },
+  raging: { since: 0 },
+  inspirationDie: { sides: 8, fromId: 'other', until: 3600 },
+});
 let state: WorldState;
 
 beforeAll(async () => {
@@ -49,6 +59,32 @@ function perspective(request: PerspectiveRequest) {
   if (!access.ok) throw new Error('Expected permitted perspective');
   return access.perspective;
 }
+
+describe('a contagion not yet taken hold', () => {
+  it('is the DM’s to know; its carrier feels nothing yet (ADR 0055 §4)', () => {
+    const incubating = {
+      ...state,
+      characterSheets: new Map(state.characterSheets).set('hero', {
+        ...canonical,
+        contagions: [
+          { contagionId: 'cackle-fever', takenHold: false, successes: 0 },
+          { contagionId: 'sewer-plague', takenHold: true, successes: 0 },
+        ],
+      }),
+    } as WorldState;
+    const own = characterSheetView(
+      incubating,
+      perspective({ kind: 'CHARACTER', characterId: 'hero' }),
+      'hero',
+    );
+    expect(own?.sheet.contagions).toEqual([
+      { contagionId: 'sewer-plague', takenHold: true, successes: 0 },
+    ]);
+    expect(
+      characterSheetView(incubating, perspective({ kind: 'DM' }), 'hero')?.sheet.contagions,
+    ).toHaveLength(2);
+  });
+});
 
 describe('full character statistics projection', () => {
   it('exposes every modeled own statistic without canonical object aliases', () => {

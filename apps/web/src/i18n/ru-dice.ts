@@ -35,6 +35,13 @@ registerRussian({
   'That request was already answered or withdrawn.':
     'На этот запрос уже ответили или его отозвали.',
   'The dice could not be rolled. Try again.': 'Не удалось бросить кубики. Попробуйте ещё раз.',
+  'That roll can no longer be rolled again.': 'Этот бросок уже нельзя перебросить.',
+  'Heroic Inspiration: roll the lower d20 ({face}) again. The new roll counts.':
+    'Героическое вдохновение: перебросить меньший d20 ({face}). В счёт пойдёт новый бросок.',
+  'Heroic Inspiration: roll the d20 again. The new roll counts.':
+    'Героическое вдохновение: перебросить d20. В счёт пойдёт новый бросок.',
+  'rolled again, does not count': 'переброшен, не в счёт',
+  'Heroic Inspiration reroll': 'переброс за вдохновение',
   'Dice sound and motion': 'Звук и движение кубиков',
   'Sound of the dice': 'Звук кубиков',
   Volume: 'Громкость',

@@ -150,6 +150,12 @@
   height: 8px;
   border-radius: 4px;
 }
+/* Temporary hit points and a lowered maximum (docs/adr/0048-hit-points.md §1, §2). */
+.hero-hp-notes {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
 .hero-vitals {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -204,6 +210,22 @@
 }
 .hero-state--concentration .glyph {
   color: var(--magic);
+}
+/* What each condition does, in a line (docs/adr/0045-conditions-and-actions.md §4). */
+.hero-state-effects {
+  display: grid;
+  gap: 4px;
+  width: 100%;
+  max-width: 65ch;
+  margin: 0;
+  padding: 0;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  list-style: none;
+}
+.hero-state-effects strong {
+  color: var(--text);
+  font-weight: 600;
 }
 
 /* Tabs and the panel */
@@ -326,6 +348,12 @@
     grid-template-columns: repeat(6, minmax(0, 1fr));
   }
 }
+/* A panel narrower than a small phone's: two a row, so "Спасбросок" stays inside its tile. */
+@container (max-width: 319px) {
+  .ability-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
 
 /* Attacks and features */
 .attack-list,
@@ -352,10 +380,29 @@
   border-radius: 6px;
   object-fit: cover;
 }
+/* A weapon without a picture: its glyph, small inside the picture's square */
+.attack-art-blank {
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  color: var(--gold);
+}
+.attack-art-blank .glyph {
+  width: 24px;
+  height: 24px;
+}
 .attack-name {
+  display: grid;
   font-family: var(--font-display);
   font-size: 1.15rem;
   font-weight: 600;
+}
+/* The mastery and the ammunition left, under the weapon's name (ADR 0047) */
+.attack-extra {
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 400;
 }
 .attack-stat {
   display: grid;

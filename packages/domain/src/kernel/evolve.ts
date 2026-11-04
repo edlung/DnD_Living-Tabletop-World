@@ -1,10 +1,11 @@
 import { applyPreparedParty, applyCampaignBootstrapped } from '../campaign/bootstrap-evolve.ts';
-import { DEFAULT_LANGUAGE } from '@ltw/contracts';
+import { DEFAULT_CAMPAIGN_OPTIONS, DEFAULT_LANGUAGE } from '@ltw/contracts';
 
 import { applyCharacterSheetSet } from '../character/character.ts';
 import {
   applyCombatEnded,
   applyCombatOrderChanged,
+  applyLightSet,
   applyCombatRecord,
   applyCombatRestore,
   applyCombatStarted,
@@ -19,6 +20,8 @@ import {
   applyReactionWindowExpired,
   applyReactionWindowOpened,
   applyReactionWindowResolved,
+  applyReactionWindowResumed,
+  applyReactionWindowWaiting,
 } from '../combat/reaction-evolve.ts';
 import {
   applyClaimSet,
@@ -45,14 +48,26 @@ import {
 import { applyMemoryRecorded, applySessionEnded, applySessionStarted } from '../memory/evolve.ts';
 import { applyAssetEvent, applyAssetRestore } from '../assets/evolve.ts';
 import { applyWeatherRestore, applyWeatherSet } from '../weather/weather.ts';
+import { applyCampaignOptionsRestore, applyCampaignOptionsSet } from '../campaign/options.ts';
+import { applyDeathRestore, withDeath } from '../character/deaths.ts';
+import {
+  applyPortraitAsked,
+  applyPortraitWishRestore,
+  withoutAnsweredWish,
+} from '../assets/portrait-wishes.ts';
 import { applyChronicleGenerated, applyChronicleRestore } from '../chronicle/decide.ts';
 import {
   applyItemEquipped,
+  applyItemAttuned,
+  applyItemChargesRegained,
+  applyItemChargesSpent,
+  applyItemIdentified,
   applyItemGranted,
   applyItemRestore,
   applyItemSplit,
   applyItemTransferred,
   applyItemUnequipped,
+  applyItemRecovered,
   applyItemUsed,
 } from '../items/evolve.ts';
 import { applyRelationshipChanged, applyRelationshipRestore } from '../relationships/evolve.ts';
@@ -110,6 +125,7 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
           startsAt,
           dmActorId,
           language: language ?? DEFAULT_LANGUAGE,
+          options: DEFAULT_CAMPAIGN_OPTIONS,
         },
         clock: startsAt,
       };
@@ -139,7 +155,11 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
       });
     }
     case 'EntityStatusChanged':
-      return updateEntity(state, event.payload.entityId, { status: event.payload.to });
+      // When it died, for the spells that return the dead (docs/adr/0056-…md §5).
+      return withDeath(
+        updateEntity(state, event.payload.entityId, { status: event.payload.to }),
+        event,
+      );
     case 'SceneStarted': {
       const { sceneId, title, locationId } = event.payload;
       if (state.usedIds.has(sceneId)) throw new CorruptHistoryError(`id ${sceneId} reused`);
@@ -216,14 +236,22 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
       return applyCombatEnded(state, event);
     case 'CombatOrderChanged':
       return applyCombatOrderChanged(state, event);
+    case 'LightSet':
+      return applyLightSet(state, event);
     case 'StatBlockSet':
       return applyStatBlockSet(state, event);
+    case 'ActionTaken':
+    case 'FeatureUsed':
     case 'AttackPerformed':
+    case 'WeaponMasteryApplied':
     case 'SpellCast':
     case 'DamageApplied':
     case 'HealingApplied':
     case 'HitPointsAdjusted':
     case 'SavingThrowRolled':
+    case 'CheckRolled':
+    case 'RechargeRolled':
+    case 'CreatureActionUsed':
     case 'ConditionApplied':
     case 'DeathSaveRolled':
       return applyCombatRecord(state, event);
@@ -237,6 +265,10 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
       return applyReactionWindowExpired(state, event);
     case 'ReactionWindowResolved':
       return applyReactionWindowResolved(state, event);
+    case 'ReactionWindowWaiting':
+      return applyReactionWindowWaiting(state, event);
+    case 'ReactionWindowResumed':
+      return applyReactionWindowResumed(state, event);
     case 'RelationshipChanged':
       return applyRelationshipChanged(state, event);
     case 'ItemGranted':
@@ -247,20 +279,36 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
       return applyItemUnequipped(state, event);
     case 'ItemUsed':
       return applyItemUsed(state, event);
+    case 'ItemAttuned':
+      return applyItemAttuned(state, event);
+    case 'ItemChargesSpent':
+      return applyItemChargesSpent(state, event);
+    case 'ItemChargesRegained':
+      return applyItemChargesRegained(state, event);
+    case 'ItemIdentified':
+      return applyItemIdentified(state, event);
+    case 'ItemRecovered':
+      return applyItemRecovered(state, event);
     case 'ItemTransferred':
       return applyItemTransferred(state, event);
     case 'ItemSplit':
       return applyItemSplit(state, event);
     case 'WeatherSet':
       return applyWeatherSet(state, event);
+    case 'CampaignOptionsSet':
+      return applyCampaignOptionsSet(state, event);
     case 'ChronicleGenerated':
       return applyChronicleGenerated(state, event);
     case 'EvidenceShown':
       return applyEvidenceShown(state, event);
     case 'InsightChecked':
       return applyInsightChecked(state, event);
-    case 'AssetAdopted':
     case 'AssetRequested':
+      // The DM's request for a character's picture answers its player's wish (ADR 0056 §5).
+      return withoutAnsweredWish(applyAssetEvent(state, event), event);
+    case 'PortraitAsked':
+      return applyPortraitAsked(state, event);
+    case 'AssetAdopted':
     case 'AssetJobStarted':
     case 'AssetGenerated':
     case 'AssetJobFailed':
@@ -392,6 +440,12 @@ function applyRestore(state: WorldState, restore: Restore): WorldState {
       return applyAssetRestore(state, restore);
     case 'weather':
       return applyWeatherRestore(state, restore);
+    case 'campaignOptions':
+      return applyCampaignOptionsRestore(state, restore);
+    case 'death':
+      return applyDeathRestore(state, restore);
+    case 'portraitWish':
+      return applyPortraitWishRestore(state, restore);
     case 'chronicle':
       return applyChronicleRestore(state, restore);
   }

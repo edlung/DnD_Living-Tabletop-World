@@ -1,10 +1,14 @@
+import type { SrdSchool } from '../srd/catalog.ts';
+import type { AppliedFeature, ResourceView } from './class-features.ts';
 import type {
   Ability,
+  CreatureSize,
   HitDieSides,
   Skill,
-  SpellId,
   SpellcastingSource,
   WeaponId,
+  AmmunitionKind,
+  WeaponMastery,
 } from './character-sheet.ts';
 
 /**
@@ -38,6 +42,13 @@ export interface CharacterDerived {
     >
   >;
   readonly initiative: number;
+  /** Speed after the character's conditions and Exhaustion (ADR 0045 §1, §3), and its load. */
+  readonly speedFt: number;
+  /**
+   * Where the campaign enforces carrying and the load is too heavy (docs/adr/0056-characters-from-
+   * the-srd.md §3): the most it lets the character move — 5 ft dragging it, 0 past that.
+   */
+  readonly loadSpeedFt?: number;
   readonly passive: {
     readonly perception: number;
     readonly investigation: number;
@@ -51,13 +62,29 @@ export interface CharacterDerived {
   }[];
   /** Rule data of the spells the sheet lists (the words are the client dictionary's). */
   readonly spells: readonly {
-    readonly spellId: SpellId;
+    /** A slice spell or any SRD spell (docs/adr/0052-spells-as-data.md §1). */
+    readonly spellId: string;
+    /** The SRD's name, in the campaign's language where its translation exists. */
+    readonly name: string;
     readonly level: number;
-    readonly castingTime: 'action' | 'bonus' | 'reaction';
+    /** `long`: minutes or hours, outside a fight only. */
+    readonly castingTime: 'action' | 'bonus' | 'reaction' | 'long';
     /** Feet, or 'self'. */
     readonly range: number | 'self';
     readonly components: readonly ('V' | 'S' | 'M')[];
     readonly concentration: boolean;
+    /** Cast as a ritual outside a fight: no slot (docs/adr/0052-spells-as-data.md §6). */
+    readonly ritual: boolean;
+    /** Cast at will without a slot: an invocation's (docs/adr/0056-…md §4). */
+    readonly atWill?: true;
+    /** The SRD's text of a spell outside the slice (whose own words are the client's). */
+    readonly text?: string;
+    /** The language its name and text are in: Russian once its Russian exists (ADR 0055 §5). */
+    readonly textLanguage?: 'en' | 'ru';
+    /** Its school of magic, for its school's picture until it has its own (ADR 0055 §6). */
+    readonly school?: SrdSchool;
+    /** What is the DM's to apply (docs/adr/0052-spells-as-data.md §2): its effect, or the rest. */
+    readonly forDm?: 'effect' | 'rest';
   }[];
   /** Weapon attacks the sheet can make: bonus to hit and damage (dice plus the ability modifier). */
   readonly attacks: readonly {
@@ -68,13 +95,55 @@ export interface CharacterDerived {
     readonly ranged: boolean;
     readonly normalRangeFt: number;
     readonly longRangeFt: number;
+    /** The mastery the character uses with it (docs/adr/0047-weapons.md §2); absent: none. */
+    readonly mastery?: WeaponMastery;
+    /** The pieces of its ammunition the character carries, when they are counted (§5). */
+    readonly ammunition?: { readonly kind: AmmunitionKind; readonly count: number };
   }[];
-  /** Strength × 15 lb; shown, never enforced (ADR 0039). */
+  /** Strength × 15 lb by size; shown, and enforced where the campaign says (ADR 0056 §3). */
   readonly carryingCapacityLb: number;
+  /** Its origin, feats, tools and languages, named in the campaign's language (ADR 0056 §2). */
+  readonly proficiencies: CharacterProficiencies;
+  /**
+   * The class features spent and restored by rests, with what is left (docs/adr/0056-characters-
+   * from-the-srd.md §4).
+   */
+  readonly resources: readonly ResourceView[];
+  /** The class features the World Engine applies on its own, with their numbers. */
+  readonly applied: readonly AppliedFeature[];
   /** Hit Point Dice by size, largest first: one per class level, spent in short rests. */
   readonly hitDice: readonly {
     readonly sides: HitDieSides;
     readonly total: number;
     readonly left: number;
   }[];
+  /**
+   * Wild Shape (docs/adr/0056-characters-from-the-srd.md §5): the Beast forms a Druid's level
+   * allows, named in the campaign's language, and the one it wears; absent below Druid level 2.
+   */
+  readonly wildShape?: {
+    /** The form worn, with the Armor Class and walking Speed it gives while worn. */
+    readonly current: {
+      readonly formId: string;
+      readonly name: string;
+      readonly armorClass: number;
+      readonly speedFt: number;
+    } | null;
+    readonly forms: readonly {
+      readonly formId: string;
+      readonly name: string;
+      readonly rating: string;
+      readonly size: CreatureSize;
+      readonly flies: boolean;
+    }[];
+  };
+}
+
+/** What a character knows beside its numbers, each named in the campaign's language. */
+export interface CharacterProficiencies {
+  readonly species: string | null;
+  readonly background: string | null;
+  readonly feats: readonly string[];
+  readonly tools: readonly string[];
+  readonly languages: readonly string[];
 }

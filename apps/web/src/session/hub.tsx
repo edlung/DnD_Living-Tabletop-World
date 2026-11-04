@@ -2,6 +2,7 @@ import type { AccountCampaign, AccountResponse, CampaignTemplate } from '@ltw/co
 import { StatusPanel, useT } from '@ltw/ui';
 import { useCallback, useEffect, useId, useState, type SubmitEvent } from 'react';
 
+import { AboutButton } from '../guide/about.tsx';
 import { NativeEntry } from '../native/native-entry.tsx';
 import { Glyph } from '../visual/glyph.tsx';
 import { ornamentUrl, textureUrl } from '../visual/ui-kit.ts';
@@ -37,6 +38,7 @@ export function HubPage(props: Parameters<typeof Hub>[0]) {
           <span>{t('Living Tabletop World')}</span>
         </p>
         <Hub {...props} />
+        <AboutButton />
       </section>
     </main>
   );

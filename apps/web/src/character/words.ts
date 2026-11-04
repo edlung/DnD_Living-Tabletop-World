@@ -49,7 +49,12 @@ export function skillName(t: Translate, skill: Skill): string {
   return words === undefined ? readableLabel(skill, t) : t(words);
 }
 
-export const spellName = (t: Translate, spellId: SpellId): string => readableLabel(spellId, t);
+/** A slice spell's name from the dictionary; any other SRD spell's, its English name until translated. */
+export const spellName = (t: Translate, spellId: string, name?: string): string =>
+  isSliceSpellId(spellId) || name === undefined ? readableLabel(spellId, t) : t(name);
+
+export const isSliceSpellId = (spellId: string): spellId is SpellId =>
+  Object.hasOwn(SPELL_TEXT, spellId);
 
 export const className = (t: Translate, classId: string): string => readableLabel(classId, t);
 
@@ -66,7 +71,16 @@ export function classLine(t: Translate, classes: CharacterSheet['classes']): str
 type Spell = CharacterDerived['spells'][number];
 
 export const castingTimeWords = (t: Translate, time: Spell['castingTime']): string =>
-  ({ action: t('Action'), bonus: t('Bonus action'), reaction: t('Reaction') })[time];
+  ({
+    action: t('Action'),
+    bonus: t('Bonus action'),
+    reaction: t('Reaction'),
+    long: t('Minutes or hours'),
+  })[time];
+
+/** A slice spell's short rules text; an SRD spell's text comes with its catalog entry. */
+export const sliceSpellText = (spellId: string): string | null =>
+  isSliceSpellId(spellId) ? SPELL_TEXT[spellId] : null;
 
 export const rangeWords = (t: Translate, range: Spell['range']): string =>
   range === 'self' ? t('Self') : t('{feet} ft', { feet: range });
@@ -87,4 +101,10 @@ export const SPELL_TEXT: Readonly<Record<SpellId, string>> = {
     'A bead of flame bursts in a 20-foot radius: everyone there makes a Dexterity save, taking 8d6 Fire damage, half on a success.',
   counterspell:
     'As a reaction you interrupt a creature casting a spell within 60 feet: it makes a Constitution save or the spell fails.',
+  shield:
+    'As a reaction when an attack would hit you, a ward gives you +5 Armor Class until the start of your next turn, against that attack too.',
+  'hellish-rebuke':
+    'As a reaction when a creature you can see within 60 feet damages you, it takes 2d10 Fire damage, half on a Dexterity save; more with a higher slot.',
+  'feather-fall':
+    'As a reaction when you or a creature you can see within 60 feet falls, up to five falling creatures there drift down and land on their feet, taking no damage from the fall.',
 };

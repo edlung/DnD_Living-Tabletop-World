@@ -36,7 +36,7 @@ import type { AuthoringDependencies } from '../authoring/service.ts';
 import type { DmDependencies } from '../dm/dm-routes.ts';
 import { InMemoryDmNoteStore } from '../dm/note-store.ts';
 import { InMemorySubstitutionStore } from '../dm/substitution-store.ts';
-import type { TableDependencies } from '../dice/roll-routes.ts';
+import type { TableDependencies } from '../dice/roll-access.ts';
 import type { AccountingDiagnostics } from '../http/routes/ai-routes.ts';
 import { loadDevPersonaAuthenticator } from '../http/auth.ts';
 import { buildLiveApp } from '../live/live-app.ts';
@@ -44,6 +44,7 @@ import { DEFAULT_PERSONAS_FILE } from '../platform/config/config.ts';
 import { createLogger } from '../platform/logging/logger.ts';
 import { loadRavenfordSeed } from '../world-engine/ravenford-seed.ts';
 import { memoryDiagnose } from './memory-journal.ts';
+import { characterBuilder } from '../characters/builder-port.ts';
 
 /** Test support (excluded from builds): the HTTP app over a seeded Ravenford. */
 export const TOKENS = {
@@ -75,6 +76,7 @@ export async function seededEngine(
     clock: new SteppingClock(),
     checks: skillCheckPort(dice),
     combat: createCombatEngine(),
+    characters: characterBuilder,
     entropy,
   });
   const seed = await loadRavenfordSeed(fixturesDir);

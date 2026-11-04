@@ -194,11 +194,18 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
       }
       case 'EntityStatusChanged':
         if (removedEntities.has(event.payload.entityId)) break;
-        restores.push({
-          fact: 'entity.status',
-          entityId: event.payload.entityId,
-          value: entityBefore(event.payload.entityId).status,
-        });
+        restores.push(
+          {
+            fact: 'entity.status',
+            entityId: event.payload.entityId,
+            value: entityBefore(event.payload.entityId).status,
+          },
+          {
+            fact: 'death',
+            entityId: event.payload.entityId,
+            value: before.deaths.get(event.payload.entityId) ?? null,
+          },
+        );
         break;
       case 'SceneStarted':
         removedScenes.add(event.payload.sceneId);
@@ -317,12 +324,17 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
       }
       case 'PremisesRecorded':
       case 'AuthoringPremisesRecorded':
+      case 'ActionTaken':
       case 'AttackPerformed':
+      case 'WeaponMasteryApplied':
       case 'SpellCast':
       case 'DamageApplied':
       case 'HealingApplied':
       case 'HitPointsAdjusted':
       case 'SavingThrowRolled':
+      case 'CheckRolled':
+      case 'RechargeRolled':
+      case 'CreatureActionUsed':
       case 'ConditionApplied':
       case 'DeathSaveRolled':
         // Reads only: nothing to restore.
@@ -331,6 +343,7 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
       case 'TurnStarted':
       case 'CombatantUpdated':
       case 'CombatOrderChanged':
+      case 'LightSet':
       case 'CombatEnded':
         restores.push({
           fact: 'encounter',
@@ -341,7 +354,9 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
       case 'ReactionUsed':
       case 'ReactionDeclined':
       case 'ReactionWindowExpired':
-      case 'ReactionWindowResolved': {
+      case 'ReactionWindowResolved':
+      case 'ReactionWindowWaiting':
+      case 'ReactionWindowResumed': {
         const windowId =
           event.type === 'ReactionWindowOpened'
             ? event.payload.window.windowId
@@ -356,6 +371,9 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
       }
       case 'ChronicleGenerated':
         restores.push({ fact: 'chronicle', chronicleId: event.payload.chronicleId, value: null });
+        break;
+      case 'CampaignOptionsSet':
+        restores.push({ fact: 'campaignOptions', value: event.payload.from });
         break;
       case 'WeatherSet':
         restores.push({
@@ -379,7 +397,12 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
       case 'ItemEquipped':
       case 'ItemUnequipped':
       case 'ItemUsed':
+      case 'ItemRecovered':
       case 'ItemTransferred':
+      case 'ItemAttuned':
+      case 'ItemChargesSpent':
+      case 'ItemChargesRegained':
+      case 'ItemIdentified':
         restores.push({
           fact: 'possession',
           itemId: event.payload.itemId,
@@ -401,8 +424,22 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
           value: before.statBlocks.get(event.payload.entityId) ?? null,
         });
         break;
-      case 'AssetRequested':
+      case 'AssetRequested': {
         restores.push({ fact: 'assetRequest', requestId: event.payload.requestId, value: null });
+        // The wish it may have answered comes back (docs/adr/0056-characters-from-the-srd.md §5).
+        restores.push({
+          fact: 'portraitWish',
+          characterId: event.payload.entityId,
+          value: before.portraitWishes.get(event.payload.entityId) ?? null,
+        });
+        break;
+      }
+      case 'PortraitAsked':
+        restores.push({
+          fact: 'portraitWish',
+          characterId: event.payload.characterId,
+          value: before.portraitWishes.get(event.payload.characterId) ?? null,
+        });
         break;
       case 'AssetApproved': {
         const { assetId, entityId, previous, supersedes = [] } = event.payload;

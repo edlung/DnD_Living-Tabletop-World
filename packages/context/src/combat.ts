@@ -1,11 +1,24 @@
-import type { ContextEntityRef, ContextIllegalReason, SpellId, WeaponId } from '@ltw/contracts';
 import {
+  ACTION_SKILLS,
+  type CombatAction,
+  type ContextEntityRef,
+  type ContextHint,
+  type ContextIllegalReason,
+  type SpellId,
+  type AttackExtra,
+  type WeaponId,
+} from '@ltw/contracts';
+import {
+  actionPlan,
   attackPlan,
   characterSpellPlan,
   chooseUsing,
   counterspellPlan,
   fireballArea,
+  gapBetween,
+  isObjectIn,
   type Refusal,
+  UNARMED_STRIKE,
 } from '@ltw/combat';
 import {
   combatantOf,
@@ -13,7 +26,6 @@ import {
   type CombatantRecord,
   type EncounterState,
 } from '@ltw/domain';
-import { squareDistanceFt } from '@ltw/rules';
 
 import type { ContextInputs } from './inputs.ts';
 import type { Verdict } from './legality.ts';
@@ -26,8 +38,8 @@ import type { Verdict } from './legality.ts';
  * a reaction window is open the encounter waits (ADR 0016 §4): combat
  * actions are `REACTION_PENDING`, and a pending candidate may counter.
  */
-const PAUSED: Verdict = { legal: false, reason: 'REACTION_PENDING' };
-const paused = (inputs: ContextInputs) => openReactionWindow(inputs.state) !== null;
+export const PAUSED: Verdict = { legal: false, reason: 'REACTION_PENDING' };
+export const paused = (inputs: ContextInputs) => openReactionWindow(inputs.state) !== null;
 export interface CombatFrame {
   readonly encounter: EncounterState;
   readonly actor: CombatantRecord;
@@ -44,11 +56,12 @@ export function distanceTo(inputs: ContextInputs, entityId: string): number | un
   const frame = combatFrame(inputs);
   const target = frame ? combatantOf(frame.encounter, entityId) : undefined;
   if (!frame || !target || !inputs.perceived.has(entityId)) return undefined;
-  return squareDistanceFt(frame.actor.position, target.position);
+  // From nearest square to nearest square (docs/adr/0049-space-and-movement.md §1).
+  return gapBetween(inputs.state, frame.actor, target);
 }
 
 /** A combatant that is not part of the encounter cannot be fought there. */
-function fromRefusal(refusal: Refusal): Verdict {
+export function fromRefusal(refusal: Refusal): Verdict {
   const reason: ContextIllegalReason =
     refusal.reason === 'NOT_A_COMBATANT' ? 'NOT_IN_COMBAT' : refusal.reason;
   return {
@@ -62,12 +75,73 @@ export function combatAttackVerdict(
   frame: CombatFrame,
   inputs: ContextInputs,
   targetId: string,
-  weaponId: WeaponId = 'longbow',
+  /** A weapon, or a Wild Shape form's attack (docs/adr/0056-…md §5). */
+  weaponId: WeaponId | (string & {}) = 'longbow',
+  /** An extra attack (docs/adr/0047-weapons.md): the other hand's, or Cleave's. */
+  extra?: AttackExtra,
 ): Verdict {
   if (paused(inputs)) return PAUSED;
-  const plan = attackPlan(inputs.state, frame.encounter, frame.actor.entityId, weaponId, targetId);
+  const plan = attackPlan(
+    inputs.state,
+    frame.encounter,
+    frame.actor.entityId,
+    weaponId,
+    targetId,
+    'action',
+    extra === undefined ? {} : { extra },
+  );
   if (!plan.legal) return fromRefusal(plan);
-  return plan.longRange ? { legal: true, hints: ['LONG_RANGE'] } : { legal: true };
+  // What tilts the roll on the whole, beside long range's own word (docs/adr/0047-weapons.md).
+  const tilt: ContextHint | null =
+    plan.advantage === plan.disadvantage ? null : plan.advantage ? 'ADVANTAGE' : 'DISADVANTAGE';
+  const hints: ContextHint[] = [];
+  if (plan.longRange) hints.push('LONG_RANGE');
+  if (tilt !== null && !(tilt === 'DISADVANTAGE' && plan.longRange)) hints.push(tilt);
+  // A mastery names a creature: at an object it is not shown (docs/adr/0048-hit-points.md §5).
+  const mastery = isObjectIn(inputs.state, targetId) ? null : plan.weapon.mastery;
+  return {
+    legal: true,
+    ...(hints.length > 0 ? { hints } : {}),
+    ...(mastery !== null ? { mastery } : {}),
+  };
+}
+
+/** An Unarmed Strike at the target (docs/adr/0047-weapons.md §3): its reach and the turn's attacks. */
+export function unarmedVerdict(
+  frame: CombatFrame,
+  inputs: ContextInputs,
+  targetId: string,
+): Verdict {
+  if (paused(inputs)) return PAUSED;
+  const plan = attackPlan(
+    inputs.state,
+    frame.encounter,
+    frame.actor.entityId,
+    UNARMED_STRIKE,
+    targetId,
+  );
+  return plan.legal ? { legal: true } : fromRefusal(plan);
+}
+
+/**
+ * An action beside Attack and Magic (docs/adr/0045-conditions-and-actions.md §5), as the World
+ * Engine judges it now. Search, Study and Influence are judged with their first skill and Ready
+ * with a stand-in attack: the player picks the skill, or the attack and its trigger, next.
+ */
+export function combatActionVerdict(
+  frame: CombatFrame,
+  inputs: ContextInputs,
+  action: CombatAction,
+  targetId?: string,
+): Verdict {
+  if (paused(inputs)) return PAUSED;
+  const plan = actionPlan(inputs.state, frame.encounter, frame.actor, {
+    action,
+    targetId,
+    skill: ACTION_SKILLS[action]?.[0],
+    readied: action === 'ready' ? { attackId: 'longbow', trigger: 'ready' } : undefined,
+  });
+  return plan.legal ? { legal: true } : fromRefusal(plan);
 }
 
 export function combatSpellVerdict(
@@ -133,7 +207,7 @@ export function counterspellVerdict(
   targetId: string,
 ): Verdict | null {
   const window = openReactionWindow(inputs.state);
-  if (window?.trigger.casterId !== targetId) return null;
+  if (window?.trigger.kind !== 'spell' || window.trigger.casterId !== targetId) return null;
   const mine = window.candidates.find((c) => c.entityId === inputs.actor.entityId);
   if (mine?.response !== 'pending') return null;
   const plan = counterspellPlan(

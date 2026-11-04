@@ -34,8 +34,10 @@ export function useScrollEdges(
     };
     measure();
     box.addEventListener('scroll', measure, { passive: true });
+    // The box, and what it holds: content read after it opened grows inside an unchanged box.
     const observer = new ResizeObserver(measure);
     observer.observe(box);
+    for (const child of box.children) observer.observe(child);
     return () => {
       box.removeEventListener('scroll', measure);
       observer.disconnect();

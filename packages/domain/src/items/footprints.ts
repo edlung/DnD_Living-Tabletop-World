@@ -10,8 +10,13 @@ type ItemEvent = Extract<
       | 'ItemEquipped'
       | 'ItemUnequipped'
       | 'ItemUsed'
+      | 'ItemRecovered'
       | 'ItemTransferred'
-      | 'ItemSplit';
+      | 'ItemSplit'
+      | 'ItemAttuned'
+      | 'ItemChargesSpent'
+      | 'ItemChargesRegained'
+      | 'ItemIdentified';
   }
 >;
 
@@ -33,8 +38,10 @@ export function itemFootprint(event: ItemEvent): Footprint {
         ],
         writes: [facts.possession(event.payload.itemId)],
       };
+    // Attunement reads and writes the holder's worn and attuned set, and its sheet changes.
     case 'ItemEquipped':
     case 'ItemUnequipped':
+    case 'ItemAttuned':
       return {
         reads: [
           clock,
@@ -47,7 +54,20 @@ export function itemFootprint(event: ItemEvent): Footprint {
         ],
         writes: [facts.possession(event.payload.itemId), facts.equipment(event.payload.holderId)],
       };
+    // A charge spent or regained, a property learnt: the item's own record.
+    case 'ItemChargesSpent':
+    case 'ItemChargesRegained':
+    case 'ItemIdentified':
+      return {
+        reads: [
+          clock,
+          ...entityChecked(event.payload.itemId),
+          facts.possession(event.payload.itemId),
+        ],
+        writes: [facts.possession(event.payload.itemId)],
+      };
     case 'ItemUsed':
+    case 'ItemRecovered':
       return {
         reads: [
           clock,

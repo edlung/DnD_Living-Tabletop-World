@@ -1,0 +1,422 @@
+/*
+ * The rules reference (docs/adr/0055-rules-reference-and-toolbox.md §2–3): the Rules sheet — the
+ * glossary's list and an entry side by side on a laptop, one at a time on a phone — and a term's
+ * words in a popover beside it.
+ */
+.sheet--rules .sheet-body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  overflow: hidden;
+}
+@media (min-width: 768px) {
+  .sheet--rules {
+    height: min(70vh, calc(100% - var(--dock-h) - 40px));
+    max-height: none;
+  }
+}
+.rules-reference {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 0;
+}
+.rules-parts {
+  display: flex;
+  flex: none;
+  gap: 4px;
+  align-self: flex-start;
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+}
+.rules-parts button {
+  min-height: 36px;
+  padding: 4px 16px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--text-muted);
+}
+.rules-parts button[aria-selected='true'] {
+  background: var(--teal-fill);
+  color: var(--text);
+  box-shadow: inset 0 0 0 1px var(--teal);
+}
+.rules-part {
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+.rules-glossary,
+.rules-toolbox {
+  display: grid;
+  flex: 1 1 auto;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+  min-height: 0;
+}
+.rules-index,
+.rules-entry {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-right: 4px;
+}
+/* More above or below a pane: that edge fades (ui-layout-audit scroll-edge-cut). */
+.rules-index[data-more-before],
+.rules-entry[data-more-before] {
+  mask-image: linear-gradient(to bottom, transparent, #000 24px);
+}
+.rules-index[data-more-after],
+.rules-entry[data-more-after] {
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 24px), transparent);
+}
+.rules-index[data-more-before][data-more-after],
+.rules-entry[data-more-before][data-more-after] {
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 24px,
+    #000 calc(100% - 24px),
+    transparent
+  );
+}
+/* A phone reads the list or an entry; the way back is the entry's first control. */
+.has-entry > .rules-index,
+.rules-pick {
+  display: none;
+}
+@media (min-width: 768px) {
+  .rules-glossary,
+  .rules-toolbox {
+    grid-template-columns: minmax(15rem, 20rem) minmax(0, 1fr);
+  }
+  .has-entry > .rules-index {
+    display: grid;
+  }
+  .rules-pick {
+    display: block;
+    align-self: start;
+  }
+  .rules-back {
+    display: none;
+  }
+}
+.rules-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.rules-tags button {
+  min-height: 32px;
+  padding: 4px 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+.rules-tags button[aria-pressed='true'] {
+  border-color: var(--teal);
+  background: var(--teal-fill);
+  color: var(--text);
+}
+.rules-list {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.rules-list .list-button[aria-current='true'] {
+  border-color: var(--teal);
+  background: var(--teal-fill);
+}
+/* The muted kind on the teal fill falls under 4.5:1: the chosen row's words are all bright. */
+.rules-list .list-button[aria-current='true'] .directory-kind {
+  color: var(--text);
+}
+.rules-chapter {
+  margin: 4px 0 8px;
+  color: var(--gold-bright);
+  font-size: 1rem;
+}
+.rules-abbreviations summary {
+  min-height: 32px;
+  cursor: pointer;
+}
+.rules-abbreviations dl {
+  display: grid;
+  gap: 4px;
+  margin: 8px 0 0;
+}
+.rules-abbreviations dl > div {
+  display: flex;
+  gap: 8px;
+}
+.rules-abbreviations dt {
+  min-width: 3.5rem;
+  color: var(--gold-bright);
+  font-weight: 600;
+}
+.rules-abbreviations dd {
+  margin: 0;
+}
+.rules-back {
+  justify-self: start;
+}
+.rules-entry h3 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px;
+  margin: 0;
+}
+.rules-entry h3:focus {
+  outline: none;
+}
+.rules-entry h3:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}
+.rules-tag {
+  padding: 2px 8px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-pill);
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.rules-section + .rules-section {
+  margin-top: 8px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+.rules-section > h3,
+.rules-section h4,
+.rules-section h5 {
+  margin: 0 0 8px;
+}
+.rules-subtitle {
+  margin: 0 0 8px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+.rules-see-also h4 {
+  margin: 8px 0 4px;
+  font-size: 0.875rem;
+}
+.rules-see-also ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* The SRD's words */
+.srd-blocks {
+  max-width: 70ch;
+}
+.srd-blocks p {
+  display: block;
+  margin: 0 0 8px;
+  line-height: 1.5;
+}
+.srd-head {
+  color: var(--gold-bright);
+}
+.srd-items {
+  margin: 0 0 8px;
+  padding-left: 1.25rem;
+}
+.srd-items li + li {
+  margin-top: 4px;
+}
+.srd-names {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin: 0 0 8px;
+  padding: 0;
+  list-style: none;
+}
+.srd-link,
+.rule-term {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-decoration: underline dotted;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.srd-link {
+  color: var(--teal);
+  text-decoration-style: solid;
+}
+.srd-link:hover,
+.rule-term:hover {
+  color: var(--teal);
+}
+.srd-table {
+  margin: 0 0 12px;
+}
+.srd-table-box {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+}
+.srd-table-box[data-more-before] {
+  mask-image: linear-gradient(to right, transparent, #000 24px);
+}
+.srd-table-box[data-more-after] {
+  mask-image: linear-gradient(to right, #000 calc(100% - 24px), transparent);
+}
+.srd-table-box[data-more-before][data-more-after] {
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 24px,
+    #000 calc(100% - 24px),
+    transparent
+  );
+}
+.srd-table table {
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+.srd-table caption {
+  margin-bottom: 4px;
+  color: var(--gold-bright);
+  font-weight: 600;
+  text-align: left;
+}
+.srd-table th,
+.srd-table td {
+  padding: 4px 12px 4px 0;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+.srd-table th {
+  color: var(--text-muted);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.srd-table figcaption p {
+  margin: 4px 0 0;
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+}
+
+/* A term's words beside it: a popover in the top layer, under the term where anchoring works. */
+.rule-popover {
+  width: min(26rem, calc(100vw - 32px));
+  max-height: min(60vh, 28rem);
+  overflow-y: auto;
+  padding: 16px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-panel);
+  background: var(--glass-raised);
+  color: var(--text);
+  box-shadow: var(--shadow);
+}
+@supports (position-area: bottom) {
+  .rule-popover {
+    inset: auto;
+    margin: 6px 0;
+    position-area: bottom span-right;
+    position-try-fallbacks: flip-block, flip-inline;
+  }
+}
+.rule-popover-title {
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+}
+.rule-popover .fine-print {
+  margin: 8px 0 0;
+}
+.action-choice-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 12px;
+}
+.rules-entry:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: -2px;
+}
+
+/* The Toolbox at the table (§4): the DM's trap and mental stress on the Party sheet. */
+.toolbox-form {
+  display: grid;
+  gap: 12px;
+  max-width: 40rem;
+}
+.toolbox-form h3,
+.toolbox-form p {
+  margin: 0;
+}
+.toolbox-fields {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 12px 16px;
+}
+.toolbox-field {
+  display: grid;
+  flex: 1 1 12rem;
+  gap: 4px;
+  min-width: 0;
+}
+.toolbox-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.toolbox-who {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+/* A group's legend reads as the fields' labels do (base.css label). */
+.toolbox-who legend {
+  margin-bottom: 4px;
+  padding: 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+.toolbox-who-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 32px;
+}
+.toolbox-form .primary-button {
+  justify-self: start;
+}
+.party-contagions {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.party-contagions p {
+  margin: 0;
+}

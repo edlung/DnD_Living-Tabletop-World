@@ -25,6 +25,7 @@ const fighter = (
 /** The ambush as a player sees it: Elowen by name, four goblins without one. */
 const ambush = (order: readonly string[]): EncounterView => ({
   encounterId: 'road-ambush',
+  locationId: 'old-trade-road',
   round: 1,
   currentCombatantId: 'elowen-starwhisper',
   order,

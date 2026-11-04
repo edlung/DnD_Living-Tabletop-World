@@ -1,5 +1,5 @@
 import type { WorldState } from '../kernel/state.ts';
-import { pendingCandidates } from './reactions.ts';
+import { pendingCandidates, triggerActor } from './reactions.ts';
 
 /**
  * Structural invariants of combat (ADR 0015) and reaction windows
@@ -32,6 +32,15 @@ export function combatViolations(state: WorldState): string[] {
       if (x >= encounter.battlefield.width || y >= encounter.battlefield.height) {
         report(`combatant ${combatant.entityId} is off the battlefield`);
       }
+      // A rider stands where its mount stands, sharing its square (docs/adr/0049 §10).
+      if (combatant.mountedOn !== undefined) {
+        const mount = encounter.combatants.find((c) => c.entityId === combatant.mountedOn);
+        if (!mount) report(`rider ${combatant.entityId} rides no combatant`);
+        else if (mount.position.x !== x || mount.position.y !== y) {
+          report(`rider ${combatant.entityId} is not where its mount is`);
+        }
+        continue;
+      }
       if (entity.status === 'active') {
         const square = `${String(x)},${String(y)}`;
         if (occupied.has(square)) report(`two living combatants share square ${square}`);
@@ -45,6 +54,11 @@ export function combatViolations(state: WorldState): string[] {
     if (id !== window.windowId) report(`reaction window key ${id} != ${window.windowId}`);
     if (!state.usedIds.has(id)) report(`reaction window ${id} missing from used IDs`);
     const pending = pendingCandidates(window);
+    // A window that waits for one its answer opened (ADR 0046 §1): neither closed nor open.
+    if (window.status === 'waiting') {
+      if (window.closedBy !== null) report(`waiting reaction window ${id} has a closing command`);
+      continue;
+    }
     if (window.status !== 'open') {
       if (pending.length > 0) report(`closed reaction window ${id} has pending candidates`);
       if (window.closedBy === null) report(`closed reaction window ${id} has no closing command`);
@@ -57,14 +71,19 @@ export function combatViolations(state: WorldState): string[] {
       report(`open reaction window ${id} outside its encounter`);
       continue;
     }
+    // A spell is cast and a move made on the actor's turn; an attack or damage on anyone's.
     const current = encounter.combatants[encounter.currentIndex]?.entityId;
-    if (current !== window.trigger.casterId) report(`reaction window ${id} off its caster's turn`);
+    const ownTurn = window.trigger.kind === 'spell' || window.trigger.kind === 'move';
+    if (ownTurn && current !== triggerActor(window.trigger))
+      report(`reaction window ${id} off its actor's turn`);
     for (const candidate of window.candidates) {
       if (!encounter.combatants.some((c) => c.entityId === candidate.entityId)) {
         report(`reaction candidate ${candidate.entityId} is not a combatant`);
       }
-      if (state.entities.get(candidate.entityId)?.kind !== 'character') {
-        report(`reaction candidate ${candidate.entityId} is not a character`);
+      // Counterspell is a character's; an opportunity attack anyone's (ADR 0046 §2).
+      const kind = state.entities.get(candidate.entityId)?.kind;
+      if (window.trigger.kind === 'spell' ? kind !== 'character' : kind === undefined) {
+        report(`reaction candidate ${candidate.entityId} cannot react here`);
       }
     }
   }

@@ -21,6 +21,11 @@ export function decideSetStatBlock(
   if (state.encounter?.combatants.some((c) => c.entityId === command.entityId)) {
     return reject('COMBAT_ALREADY_ACTIVE', 'A combatant’s stat block changes only through combat');
   }
+  // An object's numbers are the rules' tables, given as it joins a fight
+  // (docs/adr/0048-hit-points.md §5).
+  if (command.statBlock.object !== undefined) {
+    return reject('INVALID_COMMAND', 'An object’s statistics come from what it is made of');
+  }
   return accept({
     type: 'StatBlockSet',
     payload: { entityId: command.entityId, statBlock: command.statBlock },

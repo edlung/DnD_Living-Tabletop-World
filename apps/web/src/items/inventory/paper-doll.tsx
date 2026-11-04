@@ -2,7 +2,7 @@ import type { EquipSlot, InventoryItem } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
 import { useState, type DragEvent } from 'react';
 
-import { boardUrl, itemArtUrl } from '../../visual/ui-kit.ts';
+import { boardUrl, itemPictureUrl } from '../../visual/ui-kit.ts';
 import { slotName } from '../item-text.ts';
 import { DRAG_TYPE, draggedItem } from './drag.ts';
 
@@ -40,7 +40,7 @@ export function PaperDoll({
   };
   const slotView = (slot: EquipSlot) => {
     const item = worn.find((entry) => entry.slot === slot);
-    const art = item?.catalog ? itemArtUrl(item.catalog.itemId) : null;
+    const art = item?.catalog ? itemPictureUrl(item.catalog) : null;
     const name = slotName(t, slot);
     return (
       <li

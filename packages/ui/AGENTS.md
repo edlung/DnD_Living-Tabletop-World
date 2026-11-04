@@ -9,6 +9,8 @@ shown before the type's word, never in place of it.
 the projection does not name is labelled by `labels.ts` `combatantLabels` ("Unidentified creature
 N", numbered in turn order, then position), never by its ID, as on the client's battlefield.
 `status-panel.tsx` handles loading, empty, and error presentation.
+`i18n.tsx` writes a number parameter's fraction as the language does ("0,5" in Russian): pass the
+number, never a `toFixed()` or `String()` of it.
 
 Consume `@ltw/contracts` types only. Authorization, fetching, session transitions, commands,
 domain rules, and AI belong outside this package. Never infer missing canonical values or

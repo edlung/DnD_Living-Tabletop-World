@@ -4,17 +4,18 @@ import { useId, useState } from 'react';
 
 import { diceWords, signed } from '../../character/words.ts';
 import { Glyph } from '../../visual/glyph.tsx';
-import { itemArtUrl } from '../../visual/ui-kit.ts';
+import { itemPictureUrl } from '../../visual/ui-kit.ts';
 import type { ItemCommandBody } from '../item-command.ts';
 import type { Recipient } from '../inventory-panel.tsx';
 import {
   categoryName,
   effectText,
-  formatWeight,
   kindDescription,
   kindName,
+  roundWeight,
   slotName,
 } from '../item-text.ts';
+import { AttuneButton, MagicLine, bonusWords } from './item-magic.tsx';
 import { worthWords } from './purse.tsx';
 
 /**
@@ -28,7 +29,11 @@ export function ItemCard({
   language,
   blocked,
   recipients,
+  attuning,
   onRun,
+  onAttune,
+  onIdentify,
+  canTaste,
 }: {
   readonly item: InventoryItem;
   /** What is worn now: a slot already taken is said, with a way to free it. */
@@ -38,7 +43,17 @@ export function ItemCard({
   readonly language: Language;
   readonly blocked: boolean;
   readonly recipients: readonly Recipient[];
+  /**
+   * Who may change its attunement now (docs/adr/0054-items-as-data.md §5): its player in a Short
+   * Rest, the DM any time; null: nobody.
+   */
+  readonly attuning: 'rest' | 'dm' | null;
   readonly onRun: (command: ItemCommandBody) => void;
+  readonly onAttune: (attuned: boolean, liftCurse?: true) => void;
+  /** Learn what it is (§5): its player in a Short Rest or by a taste, the DM any time. */
+  readonly onIdentify: () => void;
+  /** Its player may taste a potion now (out of a rest too). */
+  readonly canTaste: boolean;
 }) {
   const t = useT();
   const id = useId();
@@ -48,14 +63,26 @@ export function ItemCard({
   const howMany = Math.min(amount ?? item.quantity, item.quantity);
   const part = howMany < item.quantity ? { quantity: howMany } : {};
   const catalog = item.catalog;
-  const art = catalog ? itemArtUrl(catalog.itemId) : null;
+  const art = catalog ? itemPictureUrl(catalog) : null;
   const kind = kindName(item, language);
+  // The SRD's words still in English in a Russian campaign (Stage 650e translates them).
+  const english = language === 'ru' && catalog?.untranslated === true;
   const description = kindDescription(item, language) ?? item.description;
   const slots = catalog?.slots ?? [];
   // The first free slot the item fits, unless one was chosen.
   const occupantOf = (option: EquipSlot) => worn.find((entry) => entry.slot === option) ?? null;
   const chosenSlot = slot ?? slots.find((option) => !occupantOf(option)) ?? slots[0] ?? null;
   const occupant = chosenSlot && item.slot === null ? occupantOf(chosenSlot) : null;
+  // A potion is known by a taste (docs/adr/0054-items-as-data.md §5).
+  const potion = catalog?.category === 'consumable';
+  // A magic weapon's +1 counts in its numbers (docs/adr/0054-items-as-data.md §5).
+  const bonus = catalog?.magic?.bonus ?? null;
+  const attack = weapon
+    ? {
+        toHit: weapon.attackBonus + (bonus?.attack ?? 0),
+        damage: { ...weapon.damage, bonus: weapon.damage.bonus + (bonus?.damage ?? 0) },
+      }
+    : null;
   return (
     <article className="item-card" aria-labelledby={`${id}-name`}>
       <div className="item-card-art">
@@ -67,26 +94,40 @@ export function ItemCard({
           {item.quantity > 1 && <span className="item-count"> ×{item.quantity}</span>}
         </h3>
         <p className="item-card-kind">
+          {kind && kind !== item.name && (
+            <>
+              <span lang={english ? 'en' : undefined}>{kind}</span>
+              {' · '}
+            </>
+          )}
           {[
-            kind && kind !== item.name ? kind : null,
             catalog ? categoryName(t, catalog.category) : t('Unique object'),
             item.slot ? t('Worn: {slot}', { slot: slotName(t, item.slot) }) : null,
           ]
             .filter(Boolean)
             .join(' · ')}
         </p>
-        {description !== '' && <p>{description}</p>}
+        {item.unidentified && <p className="item-magic">{t('Not identified')}</p>}
+        {catalog?.magic && <MagicLine magic={catalog.magic} attuned={item.attuned} />}
+        {/* An SRD entry's own words say more than its line (docs/adr/0054-items-as-data.md §4). */}
+        {catalog?.text ? (
+          <p className="item-srd-words" lang="en">
+            {catalog.text}
+          </p>
+        ) : (
+          description !== '' && <p lang={english ? 'en' : undefined}>{description}</p>
+        )}
         <dl className="item-facts">
           {weapon && (
             <>
               <div>
                 <dt>{t('To hit')}</dt>
-                <dd>{signed(weapon.attackBonus)}</dd>
+                <dd>{signed(attack?.toHit ?? weapon.attackBonus)}</dd>
               </div>
               <div>
                 <dt>{t('Damage')}</dt>
                 <dd>
-                  {diceWords(weapon.damage)} {t(readableLabel(weapon.damageType))}
+                  {diceWords(attack?.damage ?? weapon.damage)} {t(readableLabel(weapon.damageType))}
                 </dd>
               </div>
               <div>
@@ -116,10 +157,12 @@ export function ItemCard({
               <dd>
                 {catalog.armor.dexCap === null
                   ? t('{base} + Dexterity', { base: catalog.armor.baseAc })
-                  : t('{base} + Dexterity (up to {cap})', {
-                      base: catalog.armor.baseAc,
-                      cap: catalog.armor.dexCap,
-                    })}
+                  : catalog.armor.dexCap === 0
+                    ? String(catalog.armor.baseAc)
+                    : t('{base} + Dexterity (up to {cap})', {
+                        base: catalog.armor.baseAc,
+                        cap: catalog.armor.dexCap,
+                      })}
               </dd>
             </div>
           )}
@@ -129,18 +172,29 @@ export function ItemCard({
               <dd>{t('+{bonus} while held', { bonus: catalog.shieldBonus })}</dd>
             </div>
           )}
+          {bonus && (
+            <div>
+              <dt>{t('Magic')}</dt>
+              <dd>{bonusWords(t, bonus)}</dd>
+            </div>
+          )}
+          {item.charges && (
+            <div>
+              <dt>{t('Charges')}</dt>
+              <dd>{t('{left} of {max}', { left: item.charges.left, max: item.charges.max })}</dd>
+            </div>
+          )}
           {catalog?.effect && (
             <div>
-              <dt>{t('Effect')}</dt>
+              <dt>{t('What it does')}</dt>
               <dd>{effectText(t, catalog.effect)}</dd>
             </div>
           )}
-          {catalog && (
+          {/* A weight the SRD does not give (most magic items) is not said as nothing. */}
+          {catalog && catalog.weightLb > 0 && (
             <div>
               <dt>{t('Weight')}</dt>
-              <dd>
-                {t('{weight} lb', { weight: formatWeight(catalog.weightLb * item.quantity) })}
-              </dd>
+              <dd>{t('{weight} lb', { weight: roundWeight(catalog.weightLb * item.quantity) })}</dd>
             </div>
           )}
           {catalog && catalog.valueCp > 0 && (
@@ -151,6 +205,36 @@ export function ItemCard({
           )}
         </dl>
         <div className="item-actions">
+          {item.unidentified && (attuning !== null || (canTaste && potion)) && (
+            <button type="button" onClick={onIdentify}>
+              {attuning === 'dm'
+                ? t('Reveal what it is')
+                : potion
+                  ? t('Taste it')
+                  : t('Study it in this short rest')}
+            </button>
+          )}
+          {item.charges && item.charges.left > 0 && (
+            <button
+              type="button"
+              disabled={blocked}
+              onClick={() => {
+                onRun({ type: 'UseItem', itemId: item.itemId, charges: 1 });
+              }}
+            >
+              {t('Use a charge')}
+            </button>
+          )}
+          {catalog?.magic?.attunement !== undefined &&
+            catalog.magic.attunement !== null &&
+            attuning !== null && (
+              <AttuneButton
+                attuned={item.attuned}
+                cursed={catalog.magic.cursed}
+                attuning={attuning}
+                onAttune={onAttune}
+              />
+            )}
           {slots.length > 0 && item.slot === null && (
             <>
               {slots.length > 1 && (

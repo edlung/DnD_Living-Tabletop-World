@@ -1,5 +1,6 @@
 import type { CoverLevel, EncounterCombatantView, PlayerAssetView } from '@ltw/contracts';
 import { readableLabel, useT } from '@ltw/ui';
+import type { CSSProperties } from 'react';
 
 import { useHeldImage } from '../../visual/approved-images.ts';
 import { Glyph } from '../../visual/glyph.tsx';
@@ -47,6 +48,9 @@ export function Token({
   current,
   selected,
   inArea,
+  span = 1,
+  cell = 0,
+  riding = false,
 }: {
   readonly combatant: EncounterCombatantView;
   /** Its name, or "Unidentified creature N" (`combat/labels.ts`). */
@@ -61,6 +65,15 @@ export function Token({
   readonly current: boolean;
   readonly selected: boolean;
   readonly inArea: boolean;
+  /**
+   * Squares across its space (docs/adr/0049-space-and-movement.md §1): a Large figure is drawn
+   * over 2×2 squares from the square that holds it, everything in it scaled to the space.
+   */
+  readonly span?: number;
+  /** Sitting on its mount, drawn smaller over it (docs/adr/0049-space-and-movement.md §10). */
+  readonly riding?: boolean;
+  /** The board's square in pixels, to scale a spanning figure. */
+  readonly cell?: number;
 }) {
   const t = useT();
   const standing = useHeldImage(figure);
@@ -75,18 +88,29 @@ export function Token({
     current ? 'is-current' : '',
     selected ? 'is-selected' : '',
     inArea ? 'in-area' : '',
+    span > 1 ? 'is-spanning' : '',
+    riding ? 'is-riding' : '',
   ];
+  const style = span > 1 ? ({ '--cell': `${String(cell * span)}px` } as CSSProperties) : undefined;
   return (
-    <span className={classes.filter(Boolean).join(' ')} aria-hidden="true">
+    <span className={classes.filter(Boolean).join(' ')} style={style} aria-hidden="true">
       <span className="token-ring" />
       <span className="token-figure">
-        {combatant.conditions.length > 0 && (
+        {(combatant.conditions.length > 0 || combatant.exhaustion !== undefined) && (
           <span className="token-pips">
             {combatant.conditions.map((condition) => (
               <span key={condition} className="token-pip" title={t(readableLabel(condition))}>
                 <Glyph name={conditionGlyph(condition)} />
               </span>
             ))}
+            {combatant.exhaustion !== undefined && (
+              <span
+                className="token-pip"
+                title={t('Exhaustion {level}', { level: combatant.exhaustion })}
+              >
+                <Glyph name="exhaustion" />
+              </span>
+            )}
           </span>
         )}
         {upright ? (

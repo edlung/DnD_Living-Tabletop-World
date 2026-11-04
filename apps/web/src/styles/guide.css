@@ -66,6 +66,52 @@
   width: 18px;
   height: 18px;
 }
+/*
+ * About the game (guide/about.tsx, ADR 0051 §1): its button at the foot of the sign-in and hub
+ * panels, the SRD's attribution quoted as given.
+ */
+.about-button {
+  justify-self: start;
+  min-height: 32px;
+  margin-top: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  margin-left: -0.5rem;
+  font-size: 0.875rem;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+/* On the sign-in panel the button shares the tagline's row, and wraps under it when narrow. */
+.sign-in-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  column-gap: 1rem;
+}
+/* No taller than the tagline's line, so the panel does not grow: a 24 px target (WCAG 2.5.8). */
+.sign-in-foot .about-button {
+  min-height: 24px;
+  margin-top: 0;
+  padding-block: 0;
+}
+.about-page {
+  min-height: 0;
+}
+.about-page h3 {
+  margin-top: 0.75rem;
+}
+.about-attribution {
+  margin: 0.5rem 0 0;
+  padding: 0.5rem 0.75rem;
+  border-left: 3px solid var(--line-strong);
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.about-footer {
+  justify-content: flex-end;
+}
 /* "How to play" sits beside the controls; on a phone, on the title's row (shell/top-bar.tsx). */
 .topbar .guide-button--title {
   display: none;

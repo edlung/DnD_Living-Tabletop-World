@@ -481,6 +481,375 @@
       "originalSha256": "1c1951c9dc0e279354b762492d79cd92ae32305762924f7ad185048b8fb76181",
       "recipe": "resized to 384 px wide; WebP q82"
     },
+    "catalog/kinds/kind-ammunition.webp": {
+      "source": "kind-ammunition",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a bundle of fletched arrows and short crossbow bolts tied with twine.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "e5113fe3575a3e41af8cbd61ba9623f737b2c8937e444f986d43df24cb46c428",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/kind-armor.webp": {
+      "source": "kind-armor",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a steel breastplate with leather straps and antique gold trim.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "aa09bf25a4121b93d474cc91fd834f288e74673c16b65c651751ed5cb2bd824a",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/kind-coins.webp": {
+      "source": "kind-coins",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a small pile of gold, silver and copper coins with blank faces.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "0d28c1b29ce5872b8690c7f7a87892d5993bc80da077e70441531f928f88d24a",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/kind-focus.webp": {
+      "source": "kind-focus",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a glowing crystal orb in a small bronze stand.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "35610e6095230e06734e1d1810633b593e8e8b99eeed361d8bd1ee5d1092844b",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/kind-food.webp": {
+      "source": "kind-food",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a loaf of dark bread, a wedge of cheese and a leather waterskin.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "dfa52602b61ec868d0152e47f712d2355c8c42696f5d91902bbc945d1513ab9a",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/kind-gear.webp": {
+      "source": "kind-gear",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: an adventurer's gear: a coil of rope, a lantern and a bedroll.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "149719c161d7db0e81de75a2cc3f21f8d7d04a4fcc506cbef5de21388881451c",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/kind-melee-weapon.webp": {
+      "source": "kind-melee-weapon",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a steel longsword in a worn leather scabbard beside a hand axe.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "d2693ff5a90371dccc577bfea79e5b27b122fb4d5213852a1ce668075c1cae2c",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/kind-pack.webp": {
+      "source": "kind-pack",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a stuffed traveller's backpack with a bedroll strapped on top.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "ad3c4a9e571094c03029a8a4c9fc82762b56560d21defe5e477eb61c0eab378a",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/kind-potion.webp": {
+      "source": "kind-potion",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a round glass potion flask of glowing red liquid with a cork stopper.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "6fa0e6cf00359fe7dc69df128db91460a35187ae5631366335ae068e0c510d18",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/kind-ranged-weapon.webp": {
+      "source": "kind-ranged-weapon",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a yew longbow with a quiver of fletched arrows.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "9b058728fc3107f2f0f2995df37bdb0ee0238f2c0c90726357aaa463cf749a74",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/kind-ring.webp": {
+      "source": "kind-ring",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a gold ring set with a glowing blue gem.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "784a2d402b03c7aaa80ac86eba0a0ffc56f48b6a4a7f6e88d14595de5f44e2ff",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/kind-rod.webp": {
+      "source": "kind-rod",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: an ornate short metal rod with a jewelled head and gold bands.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "6a7e68bfd6511e88bf9aaf7800dd1c7af2a2190fa8483f7442dc3fd3a3489446",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/kind-scroll.webp": {
+      "source": "kind-scroll",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a rolled parchment scroll tied with a ribbon and sealed with blank red wax.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "4bd79492dfba54a763eb53280bc923431f483eb8360a99591b46b39adf48997f",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/kind-shield.webp": {
+      "source": "kind-shield",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a round wooden shield with an iron rim and a central iron boss.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "8e00a5ef92c37965536cbad38527c5adeaf1729ce96565efd60af2f9a9a7e500",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/kind-staff.webp": {
+      "source": "kind-staff",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a tall gnarled wooden staff topped by a glowing teal crystal in silver claws.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "9db5ac7aa38ee751821efb14b64c2a6c6f0ab9d41924705fa8bef68dfa2e3a87",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/kind-tack.webp": {
+      "source": "kind-tack",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a leather riding saddle with stirrups and a bridle.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "a1fba77e297125005e9b1612ab3bfd916f29681cd4712813a6f4f6ed69343eb8",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/kind-tool.webp": {
+      "source": "kind-tool",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a leather tool roll open to show a smith's hammer, tongs and fine chisels.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "35e817278243599d6f472a1f8b195bcfc596c1d81e4c3d3ca5cfa0feaa4189c0",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/kind-wand.webp": {
+      "source": "kind-wand",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a slender carved wooden wand with a glowing crystal tip.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "59b0011de390d98691992e40ec348538dfceaa8792f230e178eedeb838e3a0b8",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/kind-wondrous.webp": {
+      "source": "kind-wondrous",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. One item, centred, three-quarter view, on a dark charcoal background with a soft vignette, like a premium fantasy RPG inventory illustration: dark worn metal, wood and leather with antique gold details, subtle rim light. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The item: a small heap of wondrous trinkets — an amulet, a cloak clasp and a little drawstring bag — faintly glowing.",
+      "references": ["docs/design/stage-320/owner-concepts/03-equipment.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "5451be4bc3c541eeeb942e1ff5b498238d59d6504594541b2f23f808c71251f3",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/school-abjuration.webp": {
+      "source": "school-abjuration",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted spell icon for a fantasy RPG spellbook: a single bold magical motif filling a square, rich glowing colour on a dark background, painterly and readable at small size, inside no frame. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The spell: a translucent teal ward of interlocking hexagonal plates of light shielding a small candle flame.",
+      "references": ["docs/design/stage-320/owner-concepts/01-overview.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "02215de3b195e164c29cd6ca96ebface81c256c3c6613fa1b6076dc6adaf1998",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/school-conjuration.webp": {
+      "source": "school-conjuration",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted spell icon for a fantasy RPG spellbook: a single bold magical motif filling a square, rich glowing colour on a dark background, painterly and readable at small size, inside no frame. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The spell: a swirling violet ring portal with a shadowy shape stepping out of silver mist.",
+      "references": ["docs/design/stage-320/owner-concepts/01-overview.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "81bf8e9e4be4ea5c3f97a93165564b1e568798b1208ad4b162a18e1f4ee7cd20",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/school-divination.webp": {
+      "source": "school-divination",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted spell icon for a fantasy RPG spellbook: a single bold magical motif filling a square, rich glowing colour on a dark background, painterly and readable at small size, inside no frame. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The spell: a crystal eye floating above an open palm, radiating soft golden rays.",
+      "references": ["docs/design/stage-320/owner-concepts/01-overview.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "3672697d8749e72fd4974daced45e8614218a56864dd3975dbbdab017d28c9c6",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/school-enchantment.webp": {
+      "source": "school-enchantment",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted spell icon for a fantasy RPG spellbook: a single bold magical motif filling a square, rich glowing colour on a dark background, painterly and readable at small size, inside no frame. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The spell: a heart-shaped wisp of rose-violet light trailing glittering motes, wound with a ribbon of light.",
+      "references": ["docs/design/stage-320/owner-concepts/01-overview.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "c1479b44729bff61f11ea78cec0863dfa36716b7f6b0167ffb76b287e5f4cb0d",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/school-evocation.webp": {
+      "source": "school-evocation",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted spell icon for a fantasy RPG spellbook: a single bold magical motif filling a square, rich glowing colour on a dark background, painterly and readable at small size, inside no frame. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The spell: a crackling burst of flame and blue lightning exploding outward from one bright point.",
+      "references": ["docs/design/stage-320/owner-concepts/01-overview.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "aaf25d309178ae9bc71a8491747398205ac148dbc8167612fe12d55d0f63f9f1",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/school-illusion.webp": {
+      "source": "school-illusion",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted spell icon for a fantasy RPG spellbook: a single bold magical motif filling a square, rich glowing colour on a dark background, painterly and readable at small size, inside no frame. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The spell: a theatre mask half-dissolving into shimmering mirror fragments and drifting mist.",
+      "references": ["docs/design/stage-320/owner-concepts/01-overview.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "cc880327a47ec755e95ad09e73ad1c1c724783772ee637d693d30ae1b159fe65",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/school-necromancy.webp": {
+      "source": "school-necromancy",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted spell icon for a fantasy RPG spellbook: a single bold magical motif filling a square, rich glowing colour on a dark background, painterly and readable at small size, inside no frame. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The spell: a cold green flame rising from the empty eye sockets of a cracked skull.",
+      "references": ["docs/design/stage-320/owner-concepts/01-overview.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "2bf5bac565ccad89340ed92c9afe4628fd76b890220ce1ac881a12f991245eef",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/school-transmutation.webp": {
+      "source": "school-transmutation",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted spell icon for a fantasy RPG spellbook: a single bold magical motif filling a square, rich glowing colour on a dark background, painterly and readable at small size, inside no frame. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The spell: a grey stone feather turning into a gleaming golden feather, sparks between them.",
+      "references": ["docs/design/stage-320/owner-concepts/01-overview.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "ee3824c6fbd9a883f81513758ea38ccecbb369fcc6c5c758b51a61771bd33814",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/type-aberration.webp": {
+      "source": "type-aberration",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted bestiary portrait for a fantasy RPG: one original creature, head and shoulders or whole, centred, three-quarter view, dramatic rim light on a dark smoky background with a soft vignette, readable at small size. Original design, not any known franchise creature. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The creature: an eldritch horror of coiled tentacles and many small glowing eyes emerging from violet mist.",
+      "references": ["docs/design/stage-320/owner-concepts/05-combat-bridge.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "85f5106ff0f68fc86114685239ce6dfaa0c2e0e65fdcc90c5836a37b2a6353b9",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/type-beast.webp": {
+      "source": "type-beast",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted bestiary portrait for a fantasy RPG: one original creature, head and shoulders or whole, centred, three-quarter view, dramatic rim light on a dark smoky background with a soft vignette, readable at small size. Original design, not any known franchise creature. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The creature: a snarling grey wolf, fur bristling, amber eyes.",
+      "references": ["docs/design/stage-320/owner-concepts/05-combat-bridge.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "9da3d4c3fc2998aaa4d32f99df6ba31cec77c03c8f58fc44338894afef8456a0",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/type-celestial.webp": {
+      "source": "type-celestial",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted bestiary portrait for a fantasy RPG: one original creature, head and shoulders or whole, centred, three-quarter view, dramatic rim light on a dark smoky background with a soft vignette, readable at small size. Original design, not any known franchise creature. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The creature: a radiant winged figure whose face is hidden in white-gold light, a halo behind.",
+      "references": ["docs/design/stage-320/owner-concepts/05-combat-bridge.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "88e79ed8ef7b73badd05d2ed35503f242fe991a3e765c3cee533f71f35e7d788",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/type-construct.webp": {
+      "source": "type-construct",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted bestiary portrait for a fantasy RPG: one original creature, head and shoulders or whole, centred, three-quarter view, dramatic rim light on a dark smoky background with a soft vignette, readable at small size. Original design, not any known franchise creature. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The creature: a hulking iron golem with glowing seams between its plates and steam venting from its shoulders.",
+      "references": ["docs/design/stage-320/owner-concepts/05-combat-bridge.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "14b601c1fd7d2cc8c6f392a8b49b16d98fa57f9c288e5a42a3b59e25d52383c3",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/type-dragon.webp": {
+      "source": "type-dragon",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted bestiary portrait for a fantasy RPG: one original creature, head and shoulders or whole, centred, three-quarter view, dramatic rim light on a dark smoky background with a soft vignette, readable at small size. Original design, not any known franchise creature. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The creature: a horned dragon head with glowing amber eyes and smoke curling from its nostrils, dark red scales.",
+      "references": ["docs/design/stage-320/owner-concepts/05-combat-bridge.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "ec2315cd0d2e9cd89beff6afc68d8199bf185971ebb44769e4d789f01365bcf7",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/type-elemental.webp": {
+      "source": "type-elemental",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted bestiary portrait for a fantasy RPG: one original creature, head and shoulders or whole, centred, three-quarter view, dramatic rim light on a dark smoky background with a soft vignette, readable at small size. Original design, not any known franchise creature. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The creature: a towering figure made of swirling fire, stone and wind woven together.",
+      "references": ["docs/design/stage-320/owner-concepts/05-combat-bridge.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "29709c04588bdbb2f17dabb89e9c533abf06574c21b00b471fdacf7e6caa9542",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/type-fey.webp": {
+      "source": "type-fey",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted bestiary portrait for a fantasy RPG: one original creature, head and shoulders or whole, centred, three-quarter view, dramatic rim light on a dark smoky background with a soft vignette, readable at small size. Original design, not any known franchise creature. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The creature: a slender horned forest spirit with glowing green eyes among leaves and fireflies.",
+      "references": ["docs/design/stage-320/owner-concepts/05-combat-bridge.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "fbb40e2bfd4cebd8ab40852333b266548b04edafb588180d4c6485ab1899f871",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/type-fiend.webp": {
+      "source": "type-fiend",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted bestiary portrait for a fantasy RPG: one original creature, head and shoulders or whole, centred, three-quarter view, dramatic rim light on a dark smoky background with a soft vignette, readable at small size. Original design, not any known franchise creature. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The creature: a horned demonic figure with ember-red eyes in smoke and drifting embers.",
+      "references": ["docs/design/stage-320/owner-concepts/05-combat-bridge.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "29a9d76177832433dcefa5e6ddaf1127bf6d3dc45a451f938e921440108bfac3",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/type-giant.webp": {
+      "source": "type-giant",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted bestiary portrait for a fantasy RPG: one original creature, head and shoulders or whole, centred, three-quarter view, dramatic rim light on a dark smoky background with a soft vignette, readable at small size. Original design, not any known franchise creature. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The creature: a towering bearded giant's head and shoulders rising above low clouds.",
+      "references": ["docs/design/stage-320/owner-concepts/05-combat-bridge.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "69c1b470875eac027251505c14fa52efd40611c36f585b521569eb57b30deb28",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/type-humanoid.webp": {
+      "source": "type-humanoid",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted bestiary portrait for a fantasy RPG: one original creature, head and shoulders or whole, centred, three-quarter view, dramatic rim light on a dark smoky background with a soft vignette, readable at small size. Original design, not any known franchise creature. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The creature: a hooded traveller's head and shoulders, half in shadow, warm lantern light on the face.",
+      "references": ["docs/design/stage-320/owner-concepts/05-combat-bridge.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "e93d36d9fca5b2fed60cf862a90eccd9f7ac46a7109fa72196bec7735be1575a",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/type-monstrosity.webp": {
+      "source": "type-monstrosity",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted bestiary portrait for a fantasy RPG: one original creature, head and shoulders or whole, centred, three-quarter view, dramatic rim light on a dark smoky background with a soft vignette, readable at small size. Original design, not any known franchise creature. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The creature: a chimera beast with a lion head, a goat head and a serpent tail, snarling.",
+      "references": ["docs/design/stage-320/owner-concepts/05-combat-bridge.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "545164de2397892f78614691d0a553c38a7261a4a45b4f0f4222b79635076863",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/type-ooze.webp": {
+      "source": "type-ooze",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted bestiary portrait for a fantasy RPG: one original creature, head and shoulders or whole, centred, three-quarter view, dramatic rim light on a dark smoky background with a soft vignette, readable at small size. Original design, not any known franchise creature. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The creature: a glistening translucent green ooze with half-dissolved bones and a rusted dagger inside it.",
+      "references": ["docs/design/stage-320/owner-concepts/05-combat-bridge.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "c3ff1dfd20bcda1e107296c6b566d35c4873c0dc84c2e0bf193bc758329b7df8",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/type-plant.webp": {
+      "source": "type-plant",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted bestiary portrait for a fantasy RPG: one original creature, head and shoulders or whole, centred, three-quarter view, dramatic rim light on a dark smoky background with a soft vignette, readable at small size. Original design, not any known franchise creature. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The creature: a gnarled walking tree creature with a face in its bark and glowing eyes.",
+      "references": ["docs/design/stage-320/owner-concepts/05-combat-bridge.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "0210370b74b0c6f5a4faf76e6a1fc5b566dca66c73b00c3f9c5c57963eb61fae",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
+    "catalog/kinds/type-undead.webp": {
+      "source": "type-undead",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted bestiary portrait for a fantasy RPG: one original creature, head and shoulders or whole, centred, three-quarter view, dramatic rim light on a dark smoky background with a soft vignette, readable at small size. Original design, not any known franchise creature. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The creature: a skeletal warrior skull in a rusted helm with cold blue light in its eye sockets.",
+      "references": ["docs/design/stage-320/owner-concepts/05-combat-bridge.webp"],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-03",
+      "originalSha256": "9b3d7d13e20802402097f7fa69846b0f31646e1257450568beb87fa189597ffd",
+      "recipe": "resized to 384 px wide; WebP q82"
+    },
     "catalog/spells/ashen-bolt.webp": {
       "source": "spell-ashen-bolt",
       "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate: Square 1:1. A painted spell icon for a fantasy RPG spellbook: a single bold magical motif filling a square, rich glowing colour on a dark background, painterly and readable at small size, inside no frame. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. The spell: a bolt of grey ash and dying embers streaking forward.",
@@ -661,6 +1030,19 @@
       "originalSha256": "482f318178592d0569e233c4057799ca1f2da400eeb8b4413cd079c3490f9dc0",
       "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
     },
+    "glyphs/blinded.png": {
+      "source": "icons-conditions",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate A sheet of exactly 16 icons in a strict 4 by 4 grid on a pure flat black background (#000000). Each icon is centred in its own equal square cell with generous empty margin, never touching another icon or the image edge. Style: refined fantasy game UI icons, pure white line art with a consistent medium stroke weight and small solid fills, like engraved metal glyphs; no colour, no gradients, no glow, no shadows, no frames or circles around the icons, no grid lines. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. Match the first two attached icon sheets exactly: the same bold stroke weight, the same small solid fills and the same proportions, so the new icons sit beside them as one set.\nThe 16 icons, left to right, top to bottom: 1. a closed eye covered by a tied blindfold (blinded); 2. a heart wrapped by a small spiral (charmed); 3. an ear crossed out by a diagonal line (deafened); 4. a slumped hooded figure leaning on a staff (exhaustion); 5. a face with wide eyes and an open mouth, its hair on end (frightened); 6. a large hand gripping a smaller wrist (grappled); 7. a dashed outline of a hooded figure (invisible); 8. a rigid standing figure crossed by jagged lightning lines (paralyzed); 9. a cracked stone head of a statue (petrified); 10. a droplet with a small skull inside it (poisoned); 11. two wrists bound together with rope (restrained); 12. a head with a jagged lightning bolt above it (stunned); 13. a running figure with speed lines behind it (dash); 14. a figure stepping backwards with a curved arrow behind it (disengage); 15. a figure leaning aside as an arrow flies past (dodge); 16. two clasped hands (help).\nSquare 1:1 image.",
+      "references": [
+        "ui-kit:icons-world",
+        "ui-kit:icons-more",
+        "docs/design/stage-320/owner-concepts/07-player-and-dm-view.webp"
+      ],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-02",
+      "originalSha256": "0abaab879853bca8370aafdde160c61a5e0dd898cb1602858a633baab92a53ed",
+      "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
+    },
     "glyphs/bookmark.png": {
       "source": "icons-more",
       "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate A sheet of exactly 16 icons in a strict 4 by 4 grid on a pure flat black background (#000000). Each icon is centred in its own equal square cell with generous empty margin, never touching another icon or the image edge. Style: refined fantasy game UI icons, pure white line art with a consistent medium stroke weight and small solid fills, like engraved metal glyphs; no colour, no gradients, no glow, no shadows, no frames or circles around the icons, no grid lines. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. Match the first attached icon sheet exactly: the same bold stroke weight, the same small solid fills and the same proportions, so the new icons sit beside it as one set.\nThe 16 icons, left to right, top to bottom: 1. a figure lying flat on the ground (prone); 2. a snail shell with a small chain (slowed); 3. a head with circling stars, dazed (incapacitated); 4. a sealed letter with a wax seal (invitation); 5. two linked chain links (link); 6. two overlapping parchment sheets (copy); 7. a key crossed out by a diagonal line (revoke); 8. an ornate key (key); 9. a hooded bust with a small check mark (member); 10. a framed picture with a question mark (candidate picture); 11. a framed picture with two circular arrows (replace picture); 12. a hanging ribbon bookmark (bookmark); 13. an open doorway with an arrow entering it (sign in); 14. an eye crossed out by a diagonal line (hidden); 15. a sun above a single page (day counter); 16. a sun rising behind a right arrow (next day).\nSquare 1:1 image.",
@@ -731,6 +1113,19 @@
       "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
       "generated": "2026-10-15",
       "originalSha256": "455bc1b0bb11d9e3f74fbd65943c244683075ea391e8b08f95d670f7ed477733",
+      "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
+    },
+    "glyphs/charmed.png": {
+      "source": "icons-conditions",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate A sheet of exactly 16 icons in a strict 4 by 4 grid on a pure flat black background (#000000). Each icon is centred in its own equal square cell with generous empty margin, never touching another icon or the image edge. Style: refined fantasy game UI icons, pure white line art with a consistent medium stroke weight and small solid fills, like engraved metal glyphs; no colour, no gradients, no glow, no shadows, no frames or circles around the icons, no grid lines. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. Match the first two attached icon sheets exactly: the same bold stroke weight, the same small solid fills and the same proportions, so the new icons sit beside them as one set.\nThe 16 icons, left to right, top to bottom: 1. a closed eye covered by a tied blindfold (blinded); 2. a heart wrapped by a small spiral (charmed); 3. an ear crossed out by a diagonal line (deafened); 4. a slumped hooded figure leaning on a staff (exhaustion); 5. a face with wide eyes and an open mouth, its hair on end (frightened); 6. a large hand gripping a smaller wrist (grappled); 7. a dashed outline of a hooded figure (invisible); 8. a rigid standing figure crossed by jagged lightning lines (paralyzed); 9. a cracked stone head of a statue (petrified); 10. a droplet with a small skull inside it (poisoned); 11. two wrists bound together with rope (restrained); 12. a head with a jagged lightning bolt above it (stunned); 13. a running figure with speed lines behind it (dash); 14. a figure stepping backwards with a curved arrow behind it (disengage); 15. a figure leaning aside as an arrow flies past (dodge); 16. two clasped hands (help).\nSquare 1:1 image.",
+      "references": [
+        "ui-kit:icons-world",
+        "ui-kit:icons-more",
+        "docs/design/stage-320/owner-concepts/07-player-and-dm-view.webp"
+      ],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-02",
+      "originalSha256": "0abaab879853bca8370aafdde160c61a5e0dd898cb1602858a633baab92a53ed",
       "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
     },
     "glyphs/chevron-down.png": {
@@ -877,6 +1272,19 @@
       "originalSha256": "28d073d3f53902166aeb646dafacd9520172083e730b2ac795bdd1fdd553319c",
       "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
     },
+    "glyphs/dash.png": {
+      "source": "icons-conditions",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate A sheet of exactly 16 icons in a strict 4 by 4 grid on a pure flat black background (#000000). Each icon is centred in its own equal square cell with generous empty margin, never touching another icon or the image edge. Style: refined fantasy game UI icons, pure white line art with a consistent medium stroke weight and small solid fills, like engraved metal glyphs; no colour, no gradients, no glow, no shadows, no frames or circles around the icons, no grid lines. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. Match the first two attached icon sheets exactly: the same bold stroke weight, the same small solid fills and the same proportions, so the new icons sit beside them as one set.\nThe 16 icons, left to right, top to bottom: 1. a closed eye covered by a tied blindfold (blinded); 2. a heart wrapped by a small spiral (charmed); 3. an ear crossed out by a diagonal line (deafened); 4. a slumped hooded figure leaning on a staff (exhaustion); 5. a face with wide eyes and an open mouth, its hair on end (frightened); 6. a large hand gripping a smaller wrist (grappled); 7. a dashed outline of a hooded figure (invisible); 8. a rigid standing figure crossed by jagged lightning lines (paralyzed); 9. a cracked stone head of a statue (petrified); 10. a droplet with a small skull inside it (poisoned); 11. two wrists bound together with rope (restrained); 12. a head with a jagged lightning bolt above it (stunned); 13. a running figure with speed lines behind it (dash); 14. a figure stepping backwards with a curved arrow behind it (disengage); 15. a figure leaning aside as an arrow flies past (dodge); 16. two clasped hands (help).\nSquare 1:1 image.",
+      "references": [
+        "ui-kit:icons-world",
+        "ui-kit:icons-more",
+        "docs/design/stage-320/owner-concepts/07-player-and-dm-view.webp"
+      ],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-02",
+      "originalSha256": "0abaab879853bca8370aafdde160c61a5e0dd898cb1602858a633baab92a53ed",
+      "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
+    },
     "glyphs/dawn.png": {
       "source": "icons-sky",
       "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate A sheet of exactly 16 icons in a strict 4 by 4 grid on a pure flat black background (#000000). Each icon is centred in its own equal square cell with generous empty margin, never touching another icon or the image edge. Style: refined fantasy game UI icons, pure white line art with a consistent medium stroke weight and small solid fills, like engraved metal glyphs; no colour, no gradients, no glow, no shadows, no frames or circles around the icons, no grid lines. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. Match the first attached icon sheet exactly: the same bold stroke weight, the same small solid fills and the same proportions, so the new icons sit beside it as one set.\nThe 16 icons, left to right, top to bottom: 1. a half sun rising over a horizon line with short rays (dawn); 2. a full sun with rays (day); 3. a half sun setting below a horizon line with a down arrow (dusk); 4. a crescent moon with two small stars (night); 5. a small clear sun with no clouds (clear weather); 6. two overlapping clouds (overcast); 7. a cloud with slanted rain lines (rain); 8. a dark cloud with a lightning bolt and rain (storm); 9. three wavy horizontal mist lines (fog); 10. a cloud with falling snowflakes (snow); 11. an open book with a ribbon (chapter); 12. a spiral with a small clock hand (flashback); 13. a framed painting of a mountain (picture); 14. a paintbrush with a small sparkle (generate a picture); 15. a wax seal with a check mark (approve); 16. a crumpled parchment ball (discard).\nSquare 1:1 image.",
@@ -925,6 +1333,19 @@
       "originalSha256": "482f318178592d0569e233c4057799ca1f2da400eeb8b4413cd079c3490f9dc0",
       "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
     },
+    "glyphs/deafened.png": {
+      "source": "icons-conditions",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate A sheet of exactly 16 icons in a strict 4 by 4 grid on a pure flat black background (#000000). Each icon is centred in its own equal square cell with generous empty margin, never touching another icon or the image edge. Style: refined fantasy game UI icons, pure white line art with a consistent medium stroke weight and small solid fills, like engraved metal glyphs; no colour, no gradients, no glow, no shadows, no frames or circles around the icons, no grid lines. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. Match the first two attached icon sheets exactly: the same bold stroke weight, the same small solid fills and the same proportions, so the new icons sit beside them as one set.\nThe 16 icons, left to right, top to bottom: 1. a closed eye covered by a tied blindfold (blinded); 2. a heart wrapped by a small spiral (charmed); 3. an ear crossed out by a diagonal line (deafened); 4. a slumped hooded figure leaning on a staff (exhaustion); 5. a face with wide eyes and an open mouth, its hair on end (frightened); 6. a large hand gripping a smaller wrist (grappled); 7. a dashed outline of a hooded figure (invisible); 8. a rigid standing figure crossed by jagged lightning lines (paralyzed); 9. a cracked stone head of a statue (petrified); 10. a droplet with a small skull inside it (poisoned); 11. two wrists bound together with rope (restrained); 12. a head with a jagged lightning bolt above it (stunned); 13. a running figure with speed lines behind it (dash); 14. a figure stepping backwards with a curved arrow behind it (disengage); 15. a figure leaning aside as an arrow flies past (dodge); 16. two clasped hands (help).\nSquare 1:1 image.",
+      "references": [
+        "ui-kit:icons-world",
+        "ui-kit:icons-more",
+        "docs/design/stage-320/owner-concepts/07-player-and-dm-view.webp"
+      ],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-02",
+      "originalSha256": "0abaab879853bca8370aafdde160c61a5e0dd898cb1602858a633baab92a53ed",
+      "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
+    },
     "glyphs/difficult.png": {
       "source": "icons-combat",
       "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate A sheet of exactly 16 icons in a strict 4 by 4 grid on a pure flat black background (#000000). Each icon is centred in its own equal square cell with generous empty margin, never touching another icon or the image edge. Style: refined fantasy game UI icons, pure white line art with a consistent medium stroke weight and small solid fills, like engraved metal glyphs; no colour, no gradients, no glow, no shadows, no frames or circles around the icons, no grid lines. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks.\nThe 16 icons, left to right, top to bottom: 1. winged boot (move); 2. two crossed swords (melee attack); 3. drawn bow with arrow (ranged attack); 4. hand casting a four-pointed star spark (cast a spell); 5. round potion flask (use an item); 6. hooded cloak (hide); 7. swirling wind around a figure (dodge); 8. two clasped hands (help); 9. hourglass (ready); 10. arrow passing through an archway (end turn); 11. lightning bolt (reaction); 12. broken magic circle (counterspell); 13. tall tower shield (cover); 14. jagged rocks with thorns (difficult ground); 15. target crosshair reticle (target); 16. twenty-sided die (initiative).\nSquare 1:1 image.",
@@ -947,6 +1368,19 @@
       "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
       "generated": "2026-10-15",
       "originalSha256": "854887eb8771a11f9df4bd7d4b263606152c3b674653b065821ebe808b28e333",
+      "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
+    },
+    "glyphs/disengage.png": {
+      "source": "icons-conditions",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate A sheet of exactly 16 icons in a strict 4 by 4 grid on a pure flat black background (#000000). Each icon is centred in its own equal square cell with generous empty margin, never touching another icon or the image edge. Style: refined fantasy game UI icons, pure white line art with a consistent medium stroke weight and small solid fills, like engraved metal glyphs; no colour, no gradients, no glow, no shadows, no frames or circles around the icons, no grid lines. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. Match the first two attached icon sheets exactly: the same bold stroke weight, the same small solid fills and the same proportions, so the new icons sit beside them as one set.\nThe 16 icons, left to right, top to bottom: 1. a closed eye covered by a tied blindfold (blinded); 2. a heart wrapped by a small spiral (charmed); 3. an ear crossed out by a diagonal line (deafened); 4. a slumped hooded figure leaning on a staff (exhaustion); 5. a face with wide eyes and an open mouth, its hair on end (frightened); 6. a large hand gripping a smaller wrist (grappled); 7. a dashed outline of a hooded figure (invisible); 8. a rigid standing figure crossed by jagged lightning lines (paralyzed); 9. a cracked stone head of a statue (petrified); 10. a droplet with a small skull inside it (poisoned); 11. two wrists bound together with rope (restrained); 12. a head with a jagged lightning bolt above it (stunned); 13. a running figure with speed lines behind it (dash); 14. a figure stepping backwards with a curved arrow behind it (disengage); 15. a figure leaning aside as an arrow flies past (dodge); 16. two clasped hands (help).\nSquare 1:1 image.",
+      "references": [
+        "ui-kit:icons-world",
+        "ui-kit:icons-more",
+        "docs/design/stage-320/owner-concepts/07-player-and-dm-view.webp"
+      ],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-02",
+      "originalSha256": "0abaab879853bca8370aafdde160c61a5e0dd898cb1602858a633baab92a53ed",
       "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
     },
     "glyphs/dodge.png": {
@@ -1009,6 +1443,19 @@
       "originalSha256": "482f318178592d0569e233c4057799ca1f2da400eeb8b4413cd079c3490f9dc0",
       "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
     },
+    "glyphs/exhaustion.png": {
+      "source": "icons-conditions",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate A sheet of exactly 16 icons in a strict 4 by 4 grid on a pure flat black background (#000000). Each icon is centred in its own equal square cell with generous empty margin, never touching another icon or the image edge. Style: refined fantasy game UI icons, pure white line art with a consistent medium stroke weight and small solid fills, like engraved metal glyphs; no colour, no gradients, no glow, no shadows, no frames or circles around the icons, no grid lines. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. Match the first two attached icon sheets exactly: the same bold stroke weight, the same small solid fills and the same proportions, so the new icons sit beside them as one set.\nThe 16 icons, left to right, top to bottom: 1. a closed eye covered by a tied blindfold (blinded); 2. a heart wrapped by a small spiral (charmed); 3. an ear crossed out by a diagonal line (deafened); 4. a slumped hooded figure leaning on a staff (exhaustion); 5. a face with wide eyes and an open mouth, its hair on end (frightened); 6. a large hand gripping a smaller wrist (grappled); 7. a dashed outline of a hooded figure (invisible); 8. a rigid standing figure crossed by jagged lightning lines (paralyzed); 9. a cracked stone head of a statue (petrified); 10. a droplet with a small skull inside it (poisoned); 11. two wrists bound together with rope (restrained); 12. a head with a jagged lightning bolt above it (stunned); 13. a running figure with speed lines behind it (dash); 14. a figure stepping backwards with a curved arrow behind it (disengage); 15. a figure leaning aside as an arrow flies past (dodge); 16. two clasped hands (help).\nSquare 1:1 image.",
+      "references": [
+        "ui-kit:icons-world",
+        "ui-kit:icons-more",
+        "docs/design/stage-320/owner-concepts/07-player-and-dm-view.webp"
+      ],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-02",
+      "originalSha256": "0abaab879853bca8370aafdde160c61a5e0dd898cb1602858a633baab92a53ed",
+      "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
+    },
     "glyphs/fact.png": {
       "source": "icons-status",
       "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate A sheet of exactly 16 icons in a strict 4 by 4 grid on a pure flat black background (#000000). Each icon is centred in its own equal square cell with generous empty margin, never touching another icon or the image edge. Style: refined fantasy game UI icons, pure white line art with a consistent medium stroke weight and small solid fills, like engraved metal glyphs; no colour, no gradients, no glow, no shadows, no frames or circles around the icons, no grid lines. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks.\nThe 16 icons, left to right, top to bottom: 1. wax seal with a star (fact); 2. two curling whisper lines from lips (rumour); 3. scroll with quotation marks (claim); 4. question mark rune stone (hypothesis); 5. footprint (evidence); 6. hourglass with an eye (memory, flashback); 7. beacon flame (live connection); 8. extinguished candle with smoke (offline); 9. exclamation mark in a triangle (warning); 10. letter-free information symbol: a dot over a bar in a circle (information); 11. pair of dice (roll); 12. three concentric circles with a glowing centre (concentration); 13. closed eye (unconscious); 14. skull (dead); 15. single blood drop (wounded); 16. radiant sun (blessing).\nSquare 1:1 image.",
@@ -1019,6 +1466,32 @@
       "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
       "generated": "2026-10-15",
       "originalSha256": "482f318178592d0569e233c4057799ca1f2da400eeb8b4413cd079c3490f9dc0",
+      "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
+    },
+    "glyphs/falling.png": {
+      "source": "icons-actions",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate A sheet of exactly 16 icons in a strict 4 by 4 grid on a pure flat black background (#000000). Each icon is centred in its own equal square cell with generous empty margin, never touching another icon or the image edge. Style: refined fantasy game UI icons, pure white line art with a consistent medium stroke weight and small solid fills, like engraved metal glyphs; no colour, no gradients, no glow, no shadows, no frames or circles around the icons, no grid lines. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. Match the first two attached icon sheets exactly: the same bold stroke weight, the same small solid fills and the same proportions, so the new icons sit beside them as one set.\nThe 16 icons, left to right, top to bottom: 1. a hooded figure crouching behind a low wall (hide); 2. an hourglass beside an upright sword (ready an action); 3. a lantern held up in a hand (search); 4. an open book with a magnifying glass over it (study); 5. a hand pulling a lever (use an object); 6. two hooded figures facing each other, one with an open palm (influence); 7. a sword swinging at a figure running past (opportunity attack); 8. a round shield made of a glowing ring of light (shield spell); 9. a figure twisting away behind a half circle arc (uncanny dodge); 10. a flame rising from an open palm (hellish rebuke); 11. a feather drifting down beside a falling figure (feather fall); 12. two arms locked in a grapple (grapple); 13. a figure pushing another figure with both hands (shove); 14. two short swords crossed, one for each hand (two-weapon fighting); 15. a heart with a small round shield overlapping it (temporary hit points); 16. a figure falling with two downward arrows (falling).\nSquare 1:1 image.",
+      "references": [
+        "ui-kit:icons-world",
+        "ui-kit:icons-more",
+        "docs/design/stage-320/owner-concepts/07-player-and-dm-view.webp"
+      ],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-02",
+      "originalSha256": "91701e9431bcc95c8f074cc56999b17a19eecff4175d94373dae81737f997817",
+      "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
+    },
+    "glyphs/feather-fall.png": {
+      "source": "icons-actions",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate A sheet of exactly 16 icons in a strict 4 by 4 grid on a pure flat black background (#000000). Each icon is centred in its own equal square cell with generous empty margin, never touching another icon or the image edge. Style: refined fantasy game UI icons, pure white line art with a consistent medium stroke weight and small solid fills, like engraved metal glyphs; no colour, no gradients, no glow, no shadows, no frames or circles around the icons, no grid lines. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. Match the first two attached icon sheets exactly: the same bold stroke weight, the same small solid fills and the same proportions, so the new icons sit beside them as one set.\nThe 16 icons, left to right, top to bottom: 1. a hooded figure crouching behind a low wall (hide); 2. an hourglass beside an upright sword (ready an action); 3. a lantern held up in a hand (search); 4. an open book with a magnifying glass over it (study); 5. a hand pulling a lever (use an object); 6. two hooded figures facing each other, one with an open palm (influence); 7. a sword swinging at a figure running past (opportunity attack); 8. a round shield made of a glowing ring of light (shield spell); 9. a figure twisting away behind a half circle arc (uncanny dodge); 10. a flame rising from an open palm (hellish rebuke); 11. a feather drifting down beside a falling figure (feather fall); 12. two arms locked in a grapple (grapple); 13. a figure pushing another figure with both hands (shove); 14. two short swords crossed, one for each hand (two-weapon fighting); 15. a heart with a small round shield overlapping it (temporary hit points); 16. a figure falling with two downward arrows (falling).\nSquare 1:1 image.",
+      "references": [
+        "ui-kit:icons-world",
+        "ui-kit:icons-more",
+        "docs/design/stage-320/owner-concepts/07-player-and-dm-view.webp"
+      ],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-02",
+      "originalSha256": "91701e9431bcc95c8f074cc56999b17a19eecff4175d94373dae81737f997817",
       "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
     },
     "glyphs/flashback.png": {
@@ -1057,6 +1530,19 @@
       "originalSha256": "854887eb8771a11f9df4bd7d4b263606152c3b674653b065821ebe808b28e333",
       "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
     },
+    "glyphs/frightened.png": {
+      "source": "icons-conditions",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate A sheet of exactly 16 icons in a strict 4 by 4 grid on a pure flat black background (#000000). Each icon is centred in its own equal square cell with generous empty margin, never touching another icon or the image edge. Style: refined fantasy game UI icons, pure white line art with a consistent medium stroke weight and small solid fills, like engraved metal glyphs; no colour, no gradients, no glow, no shadows, no frames or circles around the icons, no grid lines. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. Match the first two attached icon sheets exactly: the same bold stroke weight, the same small solid fills and the same proportions, so the new icons sit beside them as one set.\nThe 16 icons, left to right, top to bottom: 1. a closed eye covered by a tied blindfold (blinded); 2. a heart wrapped by a small spiral (charmed); 3. an ear crossed out by a diagonal line (deafened); 4. a slumped hooded figure leaning on a staff (exhaustion); 5. a face with wide eyes and an open mouth, its hair on end (frightened); 6. a large hand gripping a smaller wrist (grappled); 7. a dashed outline of a hooded figure (invisible); 8. a rigid standing figure crossed by jagged lightning lines (paralyzed); 9. a cracked stone head of a statue (petrified); 10. a droplet with a small skull inside it (poisoned); 11. two wrists bound together with rope (restrained); 12. a head with a jagged lightning bolt above it (stunned); 13. a running figure with speed lines behind it (dash); 14. a figure stepping backwards with a curved arrow behind it (disengage); 15. a figure leaning aside as an arrow flies past (dodge); 16. two clasped hands (help).\nSquare 1:1 image.",
+      "references": [
+        "ui-kit:icons-world",
+        "ui-kit:icons-more",
+        "docs/design/stage-320/owner-concepts/07-player-and-dm-view.webp"
+      ],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-02",
+      "originalSha256": "0abaab879853bca8370aafdde160c61a5e0dd898cb1602858a633baab92a53ed",
+      "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
+    },
     "glyphs/game-master.png": {
       "source": "icons-dm",
       "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate A sheet of exactly 16 icons in a strict 4 by 4 grid on a pure flat black background (#000000). Each icon is centred in its own equal square cell with generous empty margin, never touching another icon or the image edge. Style: refined fantasy game UI icons, pure white line art with a consistent medium stroke weight and small solid fills, like engraved metal glyphs; no colour, no gradients, no glow, no shadows, no frames or circles around the icons, no grid lines. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks.\nThe 16 icons, left to right, top to bottom: 1. eye inside a crown (game master); 2. person bust with a plus sign (add a character); 3. skull over crossed swords (encounter); 4. sun and crescent moon (time of day); 5. cloud with rain (weather); 6. scroll with a circular arrow (history); 7. curved arrow back (undo); 8. two theatre masks (perform a character); 9. cluster of three sparkles (AI assistant); 10. check mark in a circle (confirm); 11. cross in a circle (cancel); 12. eye with a half-closed lid (who sees); 13. closed padlock (secret); 14. heart (hit points); 15. heater shield (armour class); 16. feathered wing (speed).\nSquare 1:1 image.",
@@ -1091,6 +1577,45 @@
       "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
       "generated": "2026-10-15",
       "originalSha256": "455bc1b0bb11d9e3f74fbd65943c244683075ea391e8b08f95d670f7ed477733",
+      "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
+    },
+    "glyphs/grapple.png": {
+      "source": "icons-actions",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate A sheet of exactly 16 icons in a strict 4 by 4 grid on a pure flat black background (#000000). Each icon is centred in its own equal square cell with generous empty margin, never touching another icon or the image edge. Style: refined fantasy game UI icons, pure white line art with a consistent medium stroke weight and small solid fills, like engraved metal glyphs; no colour, no gradients, no glow, no shadows, no frames or circles around the icons, no grid lines. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. Match the first two attached icon sheets exactly: the same bold stroke weight, the same small solid fills and the same proportions, so the new icons sit beside them as one set.\nThe 16 icons, left to right, top to bottom: 1. a hooded figure crouching behind a low wall (hide); 2. an hourglass beside an upright sword (ready an action); 3. a lantern held up in a hand (search); 4. an open book with a magnifying glass over it (study); 5. a hand pulling a lever (use an object); 6. two hooded figures facing each other, one with an open palm (influence); 7. a sword swinging at a figure running past (opportunity attack); 8. a round shield made of a glowing ring of light (shield spell); 9. a figure twisting away behind a half circle arc (uncanny dodge); 10. a flame rising from an open palm (hellish rebuke); 11. a feather drifting down beside a falling figure (feather fall); 12. two arms locked in a grapple (grapple); 13. a figure pushing another figure with both hands (shove); 14. two short swords crossed, one for each hand (two-weapon fighting); 15. a heart with a small round shield overlapping it (temporary hit points); 16. a figure falling with two downward arrows (falling).\nSquare 1:1 image.",
+      "references": [
+        "ui-kit:icons-world",
+        "ui-kit:icons-more",
+        "docs/design/stage-320/owner-concepts/07-player-and-dm-view.webp"
+      ],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-02",
+      "originalSha256": "91701e9431bcc95c8f074cc56999b17a19eecff4175d94373dae81737f997817",
+      "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
+    },
+    "glyphs/grappled.png": {
+      "source": "icons-conditions",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate A sheet of exactly 16 icons in a strict 4 by 4 grid on a pure flat black background (#000000). Each icon is centred in its own equal square cell with generous empty margin, never touching another icon or the image edge. Style: refined fantasy game UI icons, pure white line art with a consistent medium stroke weight and small solid fills, like engraved metal glyphs; no colour, no gradients, no glow, no shadows, no frames or circles around the icons, no grid lines. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. Match the first two attached icon sheets exactly: the same bold stroke weight, the same small solid fills and the same proportions, so the new icons sit beside them as one set.\nThe 16 icons, left to right, top to bottom: 1. a closed eye covered by a tied blindfold (blinded); 2. a heart wrapped by a small spiral (charmed); 3. an ear crossed out by a diagonal line (deafened); 4. a slumped hooded figure leaning on a staff (exhaustion); 5. a face with wide eyes and an open mouth, its hair on end (frightened); 6. a large hand gripping a smaller wrist (grappled); 7. a dashed outline of a hooded figure (invisible); 8. a rigid standing figure crossed by jagged lightning lines (paralyzed); 9. a cracked stone head of a statue (petrified); 10. a droplet with a small skull inside it (poisoned); 11. two wrists bound together with rope (restrained); 12. a head with a jagged lightning bolt above it (stunned); 13. a running figure with speed lines behind it (dash); 14. a figure stepping backwards with a curved arrow behind it (disengage); 15. a figure leaning aside as an arrow flies past (dodge); 16. two clasped hands (help).\nSquare 1:1 image.",
+      "references": [
+        "ui-kit:icons-world",
+        "ui-kit:icons-more",
+        "docs/design/stage-320/owner-concepts/07-player-and-dm-view.webp"
+      ],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-02",
+      "originalSha256": "0abaab879853bca8370aafdde160c61a5e0dd898cb1602858a633baab92a53ed",
+      "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
+    },
+    "glyphs/hellish-rebuke.png": {
+      "source": "icons-actions",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate A sheet of exactly 16 icons in a strict 4 by 4 grid on a pure flat black background (#000000). Each icon is centred in its own equal square cell with generous empty margin, never touching another icon or the image edge. Style: refined fantasy game UI icons, pure white line art with a consistent medium stroke weight and small solid fills, like engraved metal glyphs; no colour, no gradients, no glow, no shadows, no frames or circles around the icons, no grid lines. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. Match the first two attached icon sheets exactly: the same bold stroke weight, the same small solid fills and the same proportions, so the new icons sit beside them as one set.\nThe 16 icons, left to right, top to bottom: 1. a hooded figure crouching behind a low wall (hide); 2. an hourglass beside an upright sword (ready an action); 3. a lantern held up in a hand (search); 4. an open book with a magnifying glass over it (study); 5. a hand pulling a lever (use an object); 6. two hooded figures facing each other, one with an open palm (influence); 7. a sword swinging at a figure running past (opportunity attack); 8. a round shield made of a glowing ring of light (shield spell); 9. a figure twisting away behind a half circle arc (uncanny dodge); 10. a flame rising from an open palm (hellish rebuke); 11. a feather drifting down beside a falling figure (feather fall); 12. two arms locked in a grapple (grapple); 13. a figure pushing another figure with both hands (shove); 14. two short swords crossed, one for each hand (two-weapon fighting); 15. a heart with a small round shield overlapping it (temporary hit points); 16. a figure falling with two downward arrows (falling).\nSquare 1:1 image.",
+      "references": [
+        "ui-kit:icons-world",
+        "ui-kit:icons-more",
+        "docs/design/stage-320/owner-concepts/07-player-and-dm-view.webp"
+      ],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-02",
+      "originalSha256": "91701e9431bcc95c8f074cc56999b17a19eecff4175d94373dae81737f997817",
       "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
     },
     "glyphs/help.png": {
@@ -1189,6 +1714,19 @@
       "originalSha256": "36acad5073dba515ea9b9ec3967a450b9148e6d60abb4eac5399aca3f30ce3bc",
       "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
     },
+    "glyphs/influence.png": {
+      "source": "icons-actions",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate A sheet of exactly 16 icons in a strict 4 by 4 grid on a pure flat black background (#000000). Each icon is centred in its own equal square cell with generous empty margin, never touching another icon or the image edge. Style: refined fantasy game UI icons, pure white line art with a consistent medium stroke weight and small solid fills, like engraved metal glyphs; no colour, no gradients, no glow, no shadows, no frames or circles around the icons, no grid lines. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. Match the first two attached icon sheets exactly: the same bold stroke weight, the same small solid fills and the same proportions, so the new icons sit beside them as one set.\nThe 16 icons, left to right, top to bottom: 1. a hooded figure crouching behind a low wall (hide); 2. an hourglass beside an upright sword (ready an action); 3. a lantern held up in a hand (search); 4. an open book with a magnifying glass over it (study); 5. a hand pulling a lever (use an object); 6. two hooded figures facing each other, one with an open palm (influence); 7. a sword swinging at a figure running past (opportunity attack); 8. a round shield made of a glowing ring of light (shield spell); 9. a figure twisting away behind a half circle arc (uncanny dodge); 10. a flame rising from an open palm (hellish rebuke); 11. a feather drifting down beside a falling figure (feather fall); 12. two arms locked in a grapple (grapple); 13. a figure pushing another figure with both hands (shove); 14. two short swords crossed, one for each hand (two-weapon fighting); 15. a heart with a small round shield overlapping it (temporary hit points); 16. a figure falling with two downward arrows (falling).\nSquare 1:1 image.",
+      "references": [
+        "ui-kit:icons-world",
+        "ui-kit:icons-more",
+        "docs/design/stage-320/owner-concepts/07-player-and-dm-view.webp"
+      ],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-02",
+      "originalSha256": "91701e9431bcc95c8f074cc56999b17a19eecff4175d94373dae81737f997817",
+      "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
+    },
     "glyphs/info.png": {
       "source": "icons-status",
       "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate A sheet of exactly 16 icons in a strict 4 by 4 grid on a pure flat black background (#000000). Each icon is centred in its own equal square cell with generous empty margin, never touching another icon or the image edge. Style: refined fantasy game UI icons, pure white line art with a consistent medium stroke weight and small solid fills, like engraved metal glyphs; no colour, no gradients, no glow, no shadows, no frames or circles around the icons, no grid lines. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks.\nThe 16 icons, left to right, top to bottom: 1. wax seal with a star (fact); 2. two curling whisper lines from lips (rumour); 3. scroll with quotation marks (claim); 4. question mark rune stone (hypothesis); 5. footprint (evidence); 6. hourglass with an eye (memory, flashback); 7. beacon flame (live connection); 8. extinguished candle with smoke (offline); 9. exclamation mark in a triangle (warning); 10. letter-free information symbol: a dot over a bar in a circle (information); 11. pair of dice (roll); 12. three concentric circles with a glowing centre (concentration); 13. closed eye (unconscious); 14. skull (dead); 15. single blood drop (wounded); 16. radiant sun (blessing).\nSquare 1:1 image.",
@@ -1223,6 +1761,19 @@
       "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
       "generated": "2026-10-15",
       "originalSha256": "455bc1b0bb11d9e3f74fbd65943c244683075ea391e8b08f95d670f7ed477733",
+      "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
+    },
+    "glyphs/invisible.png": {
+      "source": "icons-conditions",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate A sheet of exactly 16 icons in a strict 4 by 4 grid on a pure flat black background (#000000). Each icon is centred in its own equal square cell with generous empty margin, never touching another icon or the image edge. Style: refined fantasy game UI icons, pure white line art with a consistent medium stroke weight and small solid fills, like engraved metal glyphs; no colour, no gradients, no glow, no shadows, no frames or circles around the icons, no grid lines. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. Match the first two attached icon sheets exactly: the same bold stroke weight, the same small solid fills and the same proportions, so the new icons sit beside them as one set.\nThe 16 icons, left to right, top to bottom: 1. a closed eye covered by a tied blindfold (blinded); 2. a heart wrapped by a small spiral (charmed); 3. an ear crossed out by a diagonal line (deafened); 4. a slumped hooded figure leaning on a staff (exhaustion); 5. a face with wide eyes and an open mouth, its hair on end (frightened); 6. a large hand gripping a smaller wrist (grappled); 7. a dashed outline of a hooded figure (invisible); 8. a rigid standing figure crossed by jagged lightning lines (paralyzed); 9. a cracked stone head of a statue (petrified); 10. a droplet with a small skull inside it (poisoned); 11. two wrists bound together with rope (restrained); 12. a head with a jagged lightning bolt above it (stunned); 13. a running figure with speed lines behind it (dash); 14. a figure stepping backwards with a curved arrow behind it (disengage); 15. a figure leaning aside as an arrow flies past (dodge); 16. two clasped hands (help).\nSquare 1:1 image.",
+      "references": [
+        "ui-kit:icons-world",
+        "ui-kit:icons-more",
+        "docs/design/stage-320/owner-concepts/07-player-and-dm-view.webp"
+      ],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-02",
+      "originalSha256": "0abaab879853bca8370aafdde160c61a5e0dd898cb1602858a633baab92a53ed",
       "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
     },
     "glyphs/invitation.png": {
@@ -1429,6 +1980,19 @@
       "originalSha256": "482f318178592d0569e233c4057799ca1f2da400eeb8b4413cd079c3490f9dc0",
       "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
     },
+    "glyphs/opportunity-attack.png": {
+      "source": "icons-actions",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate A sheet of exactly 16 icons in a strict 4 by 4 grid on a pure flat black background (#000000). Each icon is centred in its own equal square cell with generous empty margin, never touching another icon or the image edge. Style: refined fantasy game UI icons, pure white line art with a consistent medium stroke weight and small solid fills, like engraved metal glyphs; no colour, no gradients, no glow, no shadows, no frames or circles around the icons, no grid lines. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. Match the first two attached icon sheets exactly: the same bold stroke weight, the same small solid fills and the same proportions, so the new icons sit beside them as one set.\nThe 16 icons, left to right, top to bottom: 1. a hooded figure crouching behind a low wall (hide); 2. an hourglass beside an upright sword (ready an action); 3. a lantern held up in a hand (search); 4. an open book with a magnifying glass over it (study); 5. a hand pulling a lever (use an object); 6. two hooded figures facing each other, one with an open palm (influence); 7. a sword swinging at a figure running past (opportunity attack); 8. a round shield made of a glowing ring of light (shield spell); 9. a figure twisting away behind a half circle arc (uncanny dodge); 10. a flame rising from an open palm (hellish rebuke); 11. a feather drifting down beside a falling figure (feather fall); 12. two arms locked in a grapple (grapple); 13. a figure pushing another figure with both hands (shove); 14. two short swords crossed, one for each hand (two-weapon fighting); 15. a heart with a small round shield overlapping it (temporary hit points); 16. a figure falling with two downward arrows (falling).\nSquare 1:1 image.",
+      "references": [
+        "ui-kit:icons-world",
+        "ui-kit:icons-more",
+        "docs/design/stage-320/owner-concepts/07-player-and-dm-view.webp"
+      ],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-02",
+      "originalSha256": "91701e9431bcc95c8f074cc56999b17a19eecff4175d94373dae81737f997817",
+      "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
+    },
     "glyphs/overcast.png": {
       "source": "icons-sky",
       "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate A sheet of exactly 16 icons in a strict 4 by 4 grid on a pure flat black background (#000000). Each icon is centred in its own equal square cell with generous empty margin, never touching another icon or the image edge. Style: refined fantasy game UI icons, pure white line art with a consistent medium stroke weight and small solid fills, like engraved metal glyphs; no colour, no gradients, no glow, no shadows, no frames or circles around the icons, no grid lines. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. Match the first attached icon sheet exactly: the same bold stroke weight, the same small solid fills and the same proportions, so the new icons sit beside it as one set.\nThe 16 icons, left to right, top to bottom: 1. a half sun rising over a horizon line with short rays (dawn); 2. a full sun with rays (day); 3. a half sun setting below a horizon line with a down arrow (dusk); 4. a crescent moon with two small stars (night); 5. a small clear sun with no clouds (clear weather); 6. two overlapping clouds (overcast); 7. a cloud with slanted rain lines (rain); 8. a dark cloud with a lightning bolt and rain (storm); 9. three wavy horizontal mist lines (fog); 10. a cloud with falling snowflakes (snow); 11. an open book with a ribbon (chapter); 12. a spiral with a small clock hand (flashback); 13. a framed painting of a mountain (picture); 14. a paintbrush with a small sparkle (generate a picture); 15. a wax seal with a check mark (approve); 16. a crumpled parchment ball (discard).\nSquare 1:1 image.",
@@ -1439,6 +2003,19 @@
       "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
       "generated": "2026-10-15",
       "originalSha256": "854887eb8771a11f9df4bd7d4b263606152c3b674653b065821ebe808b28e333",
+      "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
+    },
+    "glyphs/paralyzed.png": {
+      "source": "icons-conditions",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate A sheet of exactly 16 icons in a strict 4 by 4 grid on a pure flat black background (#000000). Each icon is centred in its own equal square cell with generous empty margin, never touching another icon or the image edge. Style: refined fantasy game UI icons, pure white line art with a consistent medium stroke weight and small solid fills, like engraved metal glyphs; no colour, no gradients, no glow, no shadows, no frames or circles around the icons, no grid lines. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. Match the first two attached icon sheets exactly: the same bold stroke weight, the same small solid fills and the same proportions, so the new icons sit beside them as one set.\nThe 16 icons, left to right, top to bottom: 1. a closed eye covered by a tied blindfold (blinded); 2. a heart wrapped by a small spiral (charmed); 3. an ear crossed out by a diagonal line (deafened); 4. a slumped hooded figure leaning on a staff (exhaustion); 5. a face with wide eyes and an open mouth, its hair on end (frightened); 6. a large hand gripping a smaller wrist (grappled); 7. a dashed outline of a hooded figure (invisible); 8. a rigid standing figure crossed by jagged lightning lines (paralyzed); 9. a cracked stone head of a statue (petrified); 10. a droplet with a small skull inside it (poisoned); 11. two wrists bound together with rope (restrained); 12. a head with a jagged lightning bolt above it (stunned); 13. a running figure with speed lines behind it (dash); 14. a figure stepping backwards with a curved arrow behind it (disengage); 15. a figure leaning aside as an arrow flies past (dodge); 16. two clasped hands (help).\nSquare 1:1 image.",
+      "references": [
+        "ui-kit:icons-world",
+        "ui-kit:icons-more",
+        "docs/design/stage-320/owner-concepts/07-player-and-dm-view.webp"
+      ],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-02",
+      "originalSha256": "0abaab879853bca8370aafdde160c61a5e0dd898cb1602858a633baab92a53ed",
       "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
     },
     "glyphs/party.png": {
@@ -1465,6 +2042,19 @@
       "originalSha256": "2a5edd4e09c6828267b6a6bb4636e68d9b76b3078e142ce287354318fee81bc3",
       "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
     },
+    "glyphs/petrified.png": {
+      "source": "icons-conditions",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate A sheet of exactly 16 icons in a strict 4 by 4 grid on a pure flat black background (#000000). Each icon is centred in its own equal square cell with generous empty margin, never touching another icon or the image edge. Style: refined fantasy game UI icons, pure white line art with a consistent medium stroke weight and small solid fills, like engraved metal glyphs; no colour, no gradients, no glow, no shadows, no frames or circles around the icons, no grid lines. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. Match the first two attached icon sheets exactly: the same bold stroke weight, the same small solid fills and the same proportions, so the new icons sit beside them as one set.\nThe 16 icons, left to right, top to bottom: 1. a closed eye covered by a tied blindfold (blinded); 2. a heart wrapped by a small spiral (charmed); 3. an ear crossed out by a diagonal line (deafened); 4. a slumped hooded figure leaning on a staff (exhaustion); 5. a face with wide eyes and an open mouth, its hair on end (frightened); 6. a large hand gripping a smaller wrist (grappled); 7. a dashed outline of a hooded figure (invisible); 8. a rigid standing figure crossed by jagged lightning lines (paralyzed); 9. a cracked stone head of a statue (petrified); 10. a droplet with a small skull inside it (poisoned); 11. two wrists bound together with rope (restrained); 12. a head with a jagged lightning bolt above it (stunned); 13. a running figure with speed lines behind it (dash); 14. a figure stepping backwards with a curved arrow behind it (disengage); 15. a figure leaning aside as an arrow flies past (dodge); 16. two clasped hands (help).\nSquare 1:1 image.",
+      "references": [
+        "ui-kit:icons-world",
+        "ui-kit:icons-more",
+        "docs/design/stage-320/owner-concepts/07-player-and-dm-view.webp"
+      ],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-02",
+      "originalSha256": "0abaab879853bca8370aafdde160c61a5e0dd898cb1602858a633baab92a53ed",
+      "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
+    },
     "glyphs/picture.png": {
       "source": "icons-sky",
       "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate A sheet of exactly 16 icons in a strict 4 by 4 grid on a pure flat black background (#000000). Each icon is centred in its own equal square cell with generous empty margin, never touching another icon or the image edge. Style: refined fantasy game UI icons, pure white line art with a consistent medium stroke weight and small solid fills, like engraved metal glyphs; no colour, no gradients, no glow, no shadows, no frames or circles around the icons, no grid lines. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. Match the first attached icon sheet exactly: the same bold stroke weight, the same small solid fills and the same proportions, so the new icons sit beside it as one set.\nThe 16 icons, left to right, top to bottom: 1. a half sun rising over a horizon line with short rays (dawn); 2. a full sun with rays (day); 3. a half sun setting below a horizon line with a down arrow (dusk); 4. a crescent moon with two small stars (night); 5. a small clear sun with no clouds (clear weather); 6. two overlapping clouds (overcast); 7. a cloud with slanted rain lines (rain); 8. a dark cloud with a lightning bolt and rain (storm); 9. three wavy horizontal mist lines (fog); 10. a cloud with falling snowflakes (snow); 11. an open book with a ribbon (chapter); 12. a spiral with a small clock hand (flashback); 13. a framed painting of a mountain (picture); 14. a paintbrush with a small sparkle (generate a picture); 15. a wax seal with a check mark (approve); 16. a crumpled parchment ball (discard).\nSquare 1:1 image.",
@@ -1487,6 +2077,19 @@
       "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
       "generated": "2026-10-15",
       "originalSha256": "455bc1b0bb11d9e3f74fbd65943c244683075ea391e8b08f95d670f7ed477733",
+      "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
+    },
+    "glyphs/poisoned.png": {
+      "source": "icons-conditions",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate A sheet of exactly 16 icons in a strict 4 by 4 grid on a pure flat black background (#000000). Each icon is centred in its own equal square cell with generous empty margin, never touching another icon or the image edge. Style: refined fantasy game UI icons, pure white line art with a consistent medium stroke weight and small solid fills, like engraved metal glyphs; no colour, no gradients, no glow, no shadows, no frames or circles around the icons, no grid lines. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. Match the first two attached icon sheets exactly: the same bold stroke weight, the same small solid fills and the same proportions, so the new icons sit beside them as one set.\nThe 16 icons, left to right, top to bottom: 1. a closed eye covered by a tied blindfold (blinded); 2. a heart wrapped by a small spiral (charmed); 3. an ear crossed out by a diagonal line (deafened); 4. a slumped hooded figure leaning on a staff (exhaustion); 5. a face with wide eyes and an open mouth, its hair on end (frightened); 6. a large hand gripping a smaller wrist (grappled); 7. a dashed outline of a hooded figure (invisible); 8. a rigid standing figure crossed by jagged lightning lines (paralyzed); 9. a cracked stone head of a statue (petrified); 10. a droplet with a small skull inside it (poisoned); 11. two wrists bound together with rope (restrained); 12. a head with a jagged lightning bolt above it (stunned); 13. a running figure with speed lines behind it (dash); 14. a figure stepping backwards with a curved arrow behind it (disengage); 15. a figure leaning aside as an arrow flies past (dodge); 16. two clasped hands (help).\nSquare 1:1 image.",
+      "references": [
+        "ui-kit:icons-world",
+        "ui-kit:icons-more",
+        "docs/design/stage-320/owner-concepts/07-player-and-dm-view.webp"
+      ],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-02",
+      "originalSha256": "0abaab879853bca8370aafdde160c61a5e0dd898cb1602858a633baab92a53ed",
       "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
     },
     "glyphs/prone.png": {
@@ -1585,6 +2188,19 @@
       "originalSha256": "7d529189cc1f8c596af8653dc73642139a0c4600edc0387b43f7f4e1bf3f3005",
       "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
     },
+    "glyphs/restrained.png": {
+      "source": "icons-conditions",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate A sheet of exactly 16 icons in a strict 4 by 4 grid on a pure flat black background (#000000). Each icon is centred in its own equal square cell with generous empty margin, never touching another icon or the image edge. Style: refined fantasy game UI icons, pure white line art with a consistent medium stroke weight and small solid fills, like engraved metal glyphs; no colour, no gradients, no glow, no shadows, no frames or circles around the icons, no grid lines. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. Match the first two attached icon sheets exactly: the same bold stroke weight, the same small solid fills and the same proportions, so the new icons sit beside them as one set.\nThe 16 icons, left to right, top to bottom: 1. a closed eye covered by a tied blindfold (blinded); 2. a heart wrapped by a small spiral (charmed); 3. an ear crossed out by a diagonal line (deafened); 4. a slumped hooded figure leaning on a staff (exhaustion); 5. a face with wide eyes and an open mouth, its hair on end (frightened); 6. a large hand gripping a smaller wrist (grappled); 7. a dashed outline of a hooded figure (invisible); 8. a rigid standing figure crossed by jagged lightning lines (paralyzed); 9. a cracked stone head of a statue (petrified); 10. a droplet with a small skull inside it (poisoned); 11. two wrists bound together with rope (restrained); 12. a head with a jagged lightning bolt above it (stunned); 13. a running figure with speed lines behind it (dash); 14. a figure stepping backwards with a curved arrow behind it (disengage); 15. a figure leaning aside as an arrow flies past (dodge); 16. two clasped hands (help).\nSquare 1:1 image.",
+      "references": [
+        "ui-kit:icons-world",
+        "ui-kit:icons-more",
+        "docs/design/stage-320/owner-concepts/07-player-and-dm-view.webp"
+      ],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-02",
+      "originalSha256": "0abaab879853bca8370aafdde160c61a5e0dd898cb1602858a633baab92a53ed",
+      "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
+    },
     "glyphs/revoke.png": {
       "source": "icons-more",
       "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate A sheet of exactly 16 icons in a strict 4 by 4 grid on a pure flat black background (#000000). Each icon is centred in its own equal square cell with generous empty margin, never touching another icon or the image edge. Style: refined fantasy game UI icons, pure white line art with a consistent medium stroke weight and small solid fills, like engraved metal glyphs; no colour, no gradients, no glow, no shadows, no frames or circles around the icons, no grid lines. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. Match the first attached icon sheet exactly: the same bold stroke weight, the same small solid fills and the same proportions, so the new icons sit beside it as one set.\nThe 16 icons, left to right, top to bottom: 1. a figure lying flat on the ground (prone); 2. a snail shell with a small chain (slowed); 3. a head with circling stars, dazed (incapacitated); 4. a sealed letter with a wax seal (invitation); 5. two linked chain links (link); 6. two overlapping parchment sheets (copy); 7. a key crossed out by a diagonal line (revoke); 8. an ornate key (key); 9. a hooded bust with a small check mark (member); 10. a framed picture with a question mark (candidate picture); 11. a framed picture with two circular arrows (replace picture); 12. a hanging ribbon bookmark (bookmark); 13. an open doorway with an arrow entering it (sign in); 14. an eye crossed out by a diagonal line (hidden); 15. a sun above a single page (day counter); 16. a sun rising behind a right arrow (next day).\nSquare 1:1 image.",
@@ -1621,6 +2237,19 @@
       "originalSha256": "482f318178592d0569e233c4057799ca1f2da400eeb8b4413cd079c3490f9dc0",
       "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
     },
+    "glyphs/search-area.png": {
+      "source": "icons-actions",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate A sheet of exactly 16 icons in a strict 4 by 4 grid on a pure flat black background (#000000). Each icon is centred in its own equal square cell with generous empty margin, never touching another icon or the image edge. Style: refined fantasy game UI icons, pure white line art with a consistent medium stroke weight and small solid fills, like engraved metal glyphs; no colour, no gradients, no glow, no shadows, no frames or circles around the icons, no grid lines. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. Match the first two attached icon sheets exactly: the same bold stroke weight, the same small solid fills and the same proportions, so the new icons sit beside them as one set.\nThe 16 icons, left to right, top to bottom: 1. a hooded figure crouching behind a low wall (hide); 2. an hourglass beside an upright sword (ready an action); 3. a lantern held up in a hand (search); 4. an open book with a magnifying glass over it (study); 5. a hand pulling a lever (use an object); 6. two hooded figures facing each other, one with an open palm (influence); 7. a sword swinging at a figure running past (opportunity attack); 8. a round shield made of a glowing ring of light (shield spell); 9. a figure twisting away behind a half circle arc (uncanny dodge); 10. a flame rising from an open palm (hellish rebuke); 11. a feather drifting down beside a falling figure (feather fall); 12. two arms locked in a grapple (grapple); 13. a figure pushing another figure with both hands (shove); 14. two short swords crossed, one for each hand (two-weapon fighting); 15. a heart with a small round shield overlapping it (temporary hit points); 16. a figure falling with two downward arrows (falling).\nSquare 1:1 image.",
+      "references": [
+        "ui-kit:icons-world",
+        "ui-kit:icons-more",
+        "docs/design/stage-320/owner-concepts/07-player-and-dm-view.webp"
+      ],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-02",
+      "originalSha256": "91701e9431bcc95c8f074cc56999b17a19eecff4175d94373dae81737f997817",
+      "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
+    },
     "glyphs/search.png": {
       "source": "icons-ui",
       "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate A sheet of exactly 16 icons in a strict 4 by 4 grid on a pure flat black background (#000000). Each icon is centred in its own equal square cell with generous empty margin, never touching another icon or the image edge. Style: refined fantasy game UI icons, pure white line art with a consistent medium stroke weight and small solid fills, like engraved metal glyphs; no colour, no gradients, no glow, no shadows, no frames or circles around the icons, no grid lines. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks.\nThe 16 icons, left to right, top to bottom: 1. three linked chain rings ending in a small spark (inference); 2. two arrows clashing head-on (contradiction); 3. an eye veiled by a wisp of mist (unknown); 4. an elegant thin X cross (close); 5. a simple downward chevron (expand); 6. a simple right-pointing chevron (next); 7. a simple left-pointing chevron (previous); 8. three dots in a row (more); 9. a brass spyglass (search); 10. magnifying glass with a plus (zoom in); 11. magnifying glass with a minus (zoom out); 12. a square tile seen in perspective, tilted away (tilted view); 13. a square grid seen straight from above (flat view); 14. two circular arrows (refresh); 15. an open doorway with an arrow leaving it (leave); 16. a globe with meridians (language).\nSquare 1:1 image.",
@@ -1655,6 +2284,32 @@
       "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
       "generated": "2026-10-15",
       "originalSha256": "455bc1b0bb11d9e3f74fbd65943c244683075ea391e8b08f95d670f7ed477733",
+      "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
+    },
+    "glyphs/shield-spell.png": {
+      "source": "icons-actions",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate A sheet of exactly 16 icons in a strict 4 by 4 grid on a pure flat black background (#000000). Each icon is centred in its own equal square cell with generous empty margin, never touching another icon or the image edge. Style: refined fantasy game UI icons, pure white line art with a consistent medium stroke weight and small solid fills, like engraved metal glyphs; no colour, no gradients, no glow, no shadows, no frames or circles around the icons, no grid lines. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. Match the first two attached icon sheets exactly: the same bold stroke weight, the same small solid fills and the same proportions, so the new icons sit beside them as one set.\nThe 16 icons, left to right, top to bottom: 1. a hooded figure crouching behind a low wall (hide); 2. an hourglass beside an upright sword (ready an action); 3. a lantern held up in a hand (search); 4. an open book with a magnifying glass over it (study); 5. a hand pulling a lever (use an object); 6. two hooded figures facing each other, one with an open palm (influence); 7. a sword swinging at a figure running past (opportunity attack); 8. a round shield made of a glowing ring of light (shield spell); 9. a figure twisting away behind a half circle arc (uncanny dodge); 10. a flame rising from an open palm (hellish rebuke); 11. a feather drifting down beside a falling figure (feather fall); 12. two arms locked in a grapple (grapple); 13. a figure pushing another figure with both hands (shove); 14. two short swords crossed, one for each hand (two-weapon fighting); 15. a heart with a small round shield overlapping it (temporary hit points); 16. a figure falling with two downward arrows (falling).\nSquare 1:1 image.",
+      "references": [
+        "ui-kit:icons-world",
+        "ui-kit:icons-more",
+        "docs/design/stage-320/owner-concepts/07-player-and-dm-view.webp"
+      ],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-02",
+      "originalSha256": "91701e9431bcc95c8f074cc56999b17a19eecff4175d94373dae81737f997817",
+      "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
+    },
+    "glyphs/shove.png": {
+      "source": "icons-actions",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate A sheet of exactly 16 icons in a strict 4 by 4 grid on a pure flat black background (#000000). Each icon is centred in its own equal square cell with generous empty margin, never touching another icon or the image edge. Style: refined fantasy game UI icons, pure white line art with a consistent medium stroke weight and small solid fills, like engraved metal glyphs; no colour, no gradients, no glow, no shadows, no frames or circles around the icons, no grid lines. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. Match the first two attached icon sheets exactly: the same bold stroke weight, the same small solid fills and the same proportions, so the new icons sit beside them as one set.\nThe 16 icons, left to right, top to bottom: 1. a hooded figure crouching behind a low wall (hide); 2. an hourglass beside an upright sword (ready an action); 3. a lantern held up in a hand (search); 4. an open book with a magnifying glass over it (study); 5. a hand pulling a lever (use an object); 6. two hooded figures facing each other, one with an open palm (influence); 7. a sword swinging at a figure running past (opportunity attack); 8. a round shield made of a glowing ring of light (shield spell); 9. a figure twisting away behind a half circle arc (uncanny dodge); 10. a flame rising from an open palm (hellish rebuke); 11. a feather drifting down beside a falling figure (feather fall); 12. two arms locked in a grapple (grapple); 13. a figure pushing another figure with both hands (shove); 14. two short swords crossed, one for each hand (two-weapon fighting); 15. a heart with a small round shield overlapping it (temporary hit points); 16. a figure falling with two downward arrows (falling).\nSquare 1:1 image.",
+      "references": [
+        "ui-kit:icons-world",
+        "ui-kit:icons-more",
+        "docs/design/stage-320/owner-concepts/07-player-and-dm-view.webp"
+      ],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-02",
+      "originalSha256": "91701e9431bcc95c8f074cc56999b17a19eecff4175d94373dae81737f997817",
       "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
     },
     "glyphs/sign-in.png": {
@@ -1717,6 +2372,32 @@
       "originalSha256": "854887eb8771a11f9df4bd7d4b263606152c3b674653b065821ebe808b28e333",
       "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
     },
+    "glyphs/study.png": {
+      "source": "icons-actions",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate A sheet of exactly 16 icons in a strict 4 by 4 grid on a pure flat black background (#000000). Each icon is centred in its own equal square cell with generous empty margin, never touching another icon or the image edge. Style: refined fantasy game UI icons, pure white line art with a consistent medium stroke weight and small solid fills, like engraved metal glyphs; no colour, no gradients, no glow, no shadows, no frames or circles around the icons, no grid lines. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. Match the first two attached icon sheets exactly: the same bold stroke weight, the same small solid fills and the same proportions, so the new icons sit beside them as one set.\nThe 16 icons, left to right, top to bottom: 1. a hooded figure crouching behind a low wall (hide); 2. an hourglass beside an upright sword (ready an action); 3. a lantern held up in a hand (search); 4. an open book with a magnifying glass over it (study); 5. a hand pulling a lever (use an object); 6. two hooded figures facing each other, one with an open palm (influence); 7. a sword swinging at a figure running past (opportunity attack); 8. a round shield made of a glowing ring of light (shield spell); 9. a figure twisting away behind a half circle arc (uncanny dodge); 10. a flame rising from an open palm (hellish rebuke); 11. a feather drifting down beside a falling figure (feather fall); 12. two arms locked in a grapple (grapple); 13. a figure pushing another figure with both hands (shove); 14. two short swords crossed, one for each hand (two-weapon fighting); 15. a heart with a small round shield overlapping it (temporary hit points); 16. a figure falling with two downward arrows (falling).\nSquare 1:1 image.",
+      "references": [
+        "ui-kit:icons-world",
+        "ui-kit:icons-more",
+        "docs/design/stage-320/owner-concepts/07-player-and-dm-view.webp"
+      ],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-02",
+      "originalSha256": "91701e9431bcc95c8f074cc56999b17a19eecff4175d94373dae81737f997817",
+      "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
+    },
+    "glyphs/stunned.png": {
+      "source": "icons-conditions",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate A sheet of exactly 16 icons in a strict 4 by 4 grid on a pure flat black background (#000000). Each icon is centred in its own equal square cell with generous empty margin, never touching another icon or the image edge. Style: refined fantasy game UI icons, pure white line art with a consistent medium stroke weight and small solid fills, like engraved metal glyphs; no colour, no gradients, no glow, no shadows, no frames or circles around the icons, no grid lines. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. Match the first two attached icon sheets exactly: the same bold stroke weight, the same small solid fills and the same proportions, so the new icons sit beside them as one set.\nThe 16 icons, left to right, top to bottom: 1. a closed eye covered by a tied blindfold (blinded); 2. a heart wrapped by a small spiral (charmed); 3. an ear crossed out by a diagonal line (deafened); 4. a slumped hooded figure leaning on a staff (exhaustion); 5. a face with wide eyes and an open mouth, its hair on end (frightened); 6. a large hand gripping a smaller wrist (grappled); 7. a dashed outline of a hooded figure (invisible); 8. a rigid standing figure crossed by jagged lightning lines (paralyzed); 9. a cracked stone head of a statue (petrified); 10. a droplet with a small skull inside it (poisoned); 11. two wrists bound together with rope (restrained); 12. a head with a jagged lightning bolt above it (stunned); 13. a running figure with speed lines behind it (dash); 14. a figure stepping backwards with a curved arrow behind it (disengage); 15. a figure leaning aside as an arrow flies past (dodge); 16. two clasped hands (help).\nSquare 1:1 image.",
+      "references": [
+        "ui-kit:icons-world",
+        "ui-kit:icons-more",
+        "docs/design/stage-320/owner-concepts/07-player-and-dm-view.webp"
+      ],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-02",
+      "originalSha256": "0abaab879853bca8370aafdde160c61a5e0dd898cb1602858a633baab92a53ed",
+      "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
+    },
     "glyphs/talk.png": {
       "source": "icons-world",
       "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate A sheet of exactly 16 icons in a strict 4 by 4 grid on a pure flat black background (#000000). Each icon is centred in its own equal square cell with generous empty margin, never touching another icon or the image edge. Style: refined fantasy game UI icons, pure white line art with a consistent medium stroke weight and small solid fills, like engraved metal glyphs; no colour, no gradients, no glow, no shadows, no frames or circles around the icons, no grid lines. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks.\nThe 16 icons, left to right, top to bottom: 1. speech bubble (talk); 2. speech bubble with a question mark (ask); 3. magnifying glass (inspect); 4. stack of coins (trade); 5. open hand offering a small pouch (give); 6. open scroll with a spiral (recall a memory); 7. thought cloud with a question mark (hypothesis); 8. footprints on a path (travel); 9. folded map (map); 10. open eye (look); 11. closed book with a ribbon bookmark (journal); 12. quill in an inkwell (chronicle); 13. three hooded heads (party); 14. single hooded head (character); 15. map pin (place); 16. cogwheel (settings).\nSquare 1:1 image.",
@@ -1739,6 +2420,19 @@
       "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
       "generated": "2026-10-15",
       "originalSha256": "28d073d3f53902166aeb646dafacd9520172083e730b2ac795bdd1fdd553319c",
+      "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
+    },
+    "glyphs/temporary-hit-points.png": {
+      "source": "icons-actions",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate A sheet of exactly 16 icons in a strict 4 by 4 grid on a pure flat black background (#000000). Each icon is centred in its own equal square cell with generous empty margin, never touching another icon or the image edge. Style: refined fantasy game UI icons, pure white line art with a consistent medium stroke weight and small solid fills, like engraved metal glyphs; no colour, no gradients, no glow, no shadows, no frames or circles around the icons, no grid lines. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. Match the first two attached icon sheets exactly: the same bold stroke weight, the same small solid fills and the same proportions, so the new icons sit beside them as one set.\nThe 16 icons, left to right, top to bottom: 1. a hooded figure crouching behind a low wall (hide); 2. an hourglass beside an upright sword (ready an action); 3. a lantern held up in a hand (search); 4. an open book with a magnifying glass over it (study); 5. a hand pulling a lever (use an object); 6. two hooded figures facing each other, one with an open palm (influence); 7. a sword swinging at a figure running past (opportunity attack); 8. a round shield made of a glowing ring of light (shield spell); 9. a figure twisting away behind a half circle arc (uncanny dodge); 10. a flame rising from an open palm (hellish rebuke); 11. a feather drifting down beside a falling figure (feather fall); 12. two arms locked in a grapple (grapple); 13. a figure pushing another figure with both hands (shove); 14. two short swords crossed, one for each hand (two-weapon fighting); 15. a heart with a small round shield overlapping it (temporary hit points); 16. a figure falling with two downward arrows (falling).\nSquare 1:1 image.",
+      "references": [
+        "ui-kit:icons-world",
+        "ui-kit:icons-more",
+        "docs/design/stage-320/owner-concepts/07-player-and-dm-view.webp"
+      ],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-02",
+      "originalSha256": "91701e9431bcc95c8f074cc56999b17a19eecff4175d94373dae81737f997817",
       "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
     },
     "glyphs/testimony.png": {
@@ -1813,6 +2507,32 @@
       "originalSha256": "455bc1b0bb11d9e3f74fbd65943c244683075ea391e8b08f95d670f7ed477733",
       "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
     },
+    "glyphs/two-weapons.png": {
+      "source": "icons-actions",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate A sheet of exactly 16 icons in a strict 4 by 4 grid on a pure flat black background (#000000). Each icon is centred in its own equal square cell with generous empty margin, never touching another icon or the image edge. Style: refined fantasy game UI icons, pure white line art with a consistent medium stroke weight and small solid fills, like engraved metal glyphs; no colour, no gradients, no glow, no shadows, no frames or circles around the icons, no grid lines. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. Match the first two attached icon sheets exactly: the same bold stroke weight, the same small solid fills and the same proportions, so the new icons sit beside them as one set.\nThe 16 icons, left to right, top to bottom: 1. a hooded figure crouching behind a low wall (hide); 2. an hourglass beside an upright sword (ready an action); 3. a lantern held up in a hand (search); 4. an open book with a magnifying glass over it (study); 5. a hand pulling a lever (use an object); 6. two hooded figures facing each other, one with an open palm (influence); 7. a sword swinging at a figure running past (opportunity attack); 8. a round shield made of a glowing ring of light (shield spell); 9. a figure twisting away behind a half circle arc (uncanny dodge); 10. a flame rising from an open palm (hellish rebuke); 11. a feather drifting down beside a falling figure (feather fall); 12. two arms locked in a grapple (grapple); 13. a figure pushing another figure with both hands (shove); 14. two short swords crossed, one for each hand (two-weapon fighting); 15. a heart with a small round shield overlapping it (temporary hit points); 16. a figure falling with two downward arrows (falling).\nSquare 1:1 image.",
+      "references": [
+        "ui-kit:icons-world",
+        "ui-kit:icons-more",
+        "docs/design/stage-320/owner-concepts/07-player-and-dm-view.webp"
+      ],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-02",
+      "originalSha256": "91701e9431bcc95c8f074cc56999b17a19eecff4175d94373dae81737f997817",
+      "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
+    },
+    "glyphs/uncanny-dodge.png": {
+      "source": "icons-actions",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate A sheet of exactly 16 icons in a strict 4 by 4 grid on a pure flat black background (#000000). Each icon is centred in its own equal square cell with generous empty margin, never touching another icon or the image edge. Style: refined fantasy game UI icons, pure white line art with a consistent medium stroke weight and small solid fills, like engraved metal glyphs; no colour, no gradients, no glow, no shadows, no frames or circles around the icons, no grid lines. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. Match the first two attached icon sheets exactly: the same bold stroke weight, the same small solid fills and the same proportions, so the new icons sit beside them as one set.\nThe 16 icons, left to right, top to bottom: 1. a hooded figure crouching behind a low wall (hide); 2. an hourglass beside an upright sword (ready an action); 3. a lantern held up in a hand (search); 4. an open book with a magnifying glass over it (study); 5. a hand pulling a lever (use an object); 6. two hooded figures facing each other, one with an open palm (influence); 7. a sword swinging at a figure running past (opportunity attack); 8. a round shield made of a glowing ring of light (shield spell); 9. a figure twisting away behind a half circle arc (uncanny dodge); 10. a flame rising from an open palm (hellish rebuke); 11. a feather drifting down beside a falling figure (feather fall); 12. two arms locked in a grapple (grapple); 13. a figure pushing another figure with both hands (shove); 14. two short swords crossed, one for each hand (two-weapon fighting); 15. a heart with a small round shield overlapping it (temporary hit points); 16. a figure falling with two downward arrows (falling).\nSquare 1:1 image.",
+      "references": [
+        "ui-kit:icons-world",
+        "ui-kit:icons-more",
+        "docs/design/stage-320/owner-concepts/07-player-and-dm-view.webp"
+      ],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-02",
+      "originalSha256": "91701e9431bcc95c8f074cc56999b17a19eecff4175d94373dae81737f997817",
+      "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
+    },
     "glyphs/unconscious.png": {
       "source": "icons-status",
       "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate A sheet of exactly 16 icons in a strict 4 by 4 grid on a pure flat black background (#000000). Each icon is centred in its own equal square cell with generous empty margin, never touching another icon or the image edge. Style: refined fantasy game UI icons, pure white line art with a consistent medium stroke weight and small solid fills, like engraved metal glyphs; no colour, no gradients, no glow, no shadows, no frames or circles around the icons, no grid lines. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks.\nThe 16 icons, left to right, top to bottom: 1. wax seal with a star (fact); 2. two curling whisper lines from lips (rumour); 3. scroll with quotation marks (claim); 4. question mark rune stone (hypothesis); 5. footprint (evidence); 6. hourglass with an eye (memory, flashback); 7. beacon flame (live connection); 8. extinguished candle with smoke (offline); 9. exclamation mark in a triangle (warning); 10. letter-free information symbol: a dot over a bar in a circle (information); 11. pair of dice (roll); 12. three concentric circles with a glowing centre (concentration); 13. closed eye (unconscious); 14. skull (dead); 15. single blood drop (wounded); 16. radiant sun (blessing).\nSquare 1:1 image.",
@@ -1859,6 +2579,19 @@
       "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
       "generated": "2026-10-15",
       "originalSha256": "28d073d3f53902166aeb646dafacd9520172083e730b2ac795bdd1fdd553319c",
+      "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
+    },
+    "glyphs/utilize.png": {
+      "source": "icons-actions",
+      "prompt": "Visual language: match the attached concept art exactly in rendering quality, palette and mood — premium cinematic dark-fantasy game art, high-detail painterly digital painting like AAA fantasy RPG key art; deep night-blue and charcoal shadows, warm amber lantern and candle light, burnished antique gold metalwork, accents of luminous teal-cyan magic and ember red. Use the attached images only as a style reference: do not copy their layout, characters, panels or any text.\n\nCreate A sheet of exactly 16 icons in a strict 4 by 4 grid on a pure flat black background (#000000). Each icon is centred in its own equal square cell with generous empty margin, never touching another icon or the image edge. Style: refined fantasy game UI icons, pure white line art with a consistent medium stroke weight and small solid fills, like engraved metal glyphs; no colour, no gradients, no glow, no shadows, no frames or circles around the icons, no grid lines. Absolutely no text, letters, numbers, runes that read as letters, logos, signatures or watermarks. Match the first two attached icon sheets exactly: the same bold stroke weight, the same small solid fills and the same proportions, so the new icons sit beside them as one set.\nThe 16 icons, left to right, top to bottom: 1. a hooded figure crouching behind a low wall (hide); 2. an hourglass beside an upright sword (ready an action); 3. a lantern held up in a hand (search); 4. an open book with a magnifying glass over it (study); 5. a hand pulling a lever (use an object); 6. two hooded figures facing each other, one with an open palm (influence); 7. a sword swinging at a figure running past (opportunity attack); 8. a round shield made of a glowing ring of light (shield spell); 9. a figure twisting away behind a half circle arc (uncanny dodge); 10. a flame rising from an open palm (hellish rebuke); 11. a feather drifting down beside a falling figure (feather fall); 12. two arms locked in a grapple (grapple); 13. a figure pushing another figure with both hands (shove); 14. two short swords crossed, one for each hand (two-weapon fighting); 15. a heart with a small round shield overlapping it (temporary hit points); 16. a figure falling with two downward arrows (falling).\nSquare 1:1 image.",
+      "references": [
+        "ui-kit:icons-world",
+        "ui-kit:icons-more",
+        "docs/design/stage-320/owner-concepts/07-player-and-dm-view.webp"
+      ],
+      "channel": "OpenAI image model through Codex CLI image generation on the owner's ChatGPT subscription",
+      "generated": "2026-11-02",
+      "originalSha256": "91701e9431bcc95c8f074cc56999b17a19eecff4175d94373dae81737f997817",
       "recipe": "4x4 sheet sliced by empty gaps; luminance to alpha mask; 128 px PNG"
     },
     "glyphs/warning.png": {

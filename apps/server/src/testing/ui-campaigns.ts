@@ -16,7 +16,9 @@ import { seedUiAToZCampaign } from './ui-a-to-z-campaigns.ts';
 import { seedUiPartyCampaigns } from './ui-party-campaigns.ts';
 import { seedUiRestCampaigns } from './ui-rest-campaigns.ts';
 import { seedUiItemCampaigns } from './ui-item-campaigns.ts';
+import { seedUiRulesCampaigns } from './ui-rules-campaigns.ts';
 import { seedUiRussianCampaigns } from './ui-ru-campaigns.ts';
+import { seedUiSummonCampaigns } from './ui-summon-campaigns.ts';
 
 const COMBAT_CAMPAIGN = 'ui-combat';
 const DM = { actorId: 'dm-ravenford', kind: 'user' } as const;
@@ -51,6 +53,8 @@ export async function uiCampaigns(
   await seedUiAuthoringCampaigns(engine);
   await seedUiRussianCampaigns(engine);
   await seedUiItemCampaigns(engine);
+  await seedUiSummonCampaigns(engine);
+  await seedUiRulesCampaigns(engine);
   await seedUiDiceCampaigns(engine);
   await seedUiRestCampaigns(engine);
   await seedUiPartyCampaigns(engine);

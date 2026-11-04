@@ -18,6 +18,32 @@ export const UI_ITEM_CAMPAIGNS = {
   fight: 'ui-items-fight',
   /** Part of a stack is handed over (Stage 490). */
   split: 'ui-items-split',
+  /** The DM gives items from the catalog (docs/adr/0054-items-as-data.md §4). */
+  catalog: 'ui-items-catalog',
+  /** The same in Russian: the SRD's names and words, and an item's look (ADR 0055 §5–6). */
+  catalogRu: 'ui-items-catalog-ru',
+  /** A player makes a character of their own (docs/adr/0056-…md §2). */
+  builder: 'ui-builder-player',
+  /** The DM grants a level and a player takes it (docs/adr/0056-…md §3). */
+  levels: 'ui-builder-levels',
+  /** The class features in play, in English and in Russian (docs/adr/0056-…md §4). */
+  features: 'ui-class-features',
+  featuresRu: 'ui-class-features-ru',
+  /** A player attunes in a Short Rest (docs/adr/0054-items-as-data.md §5). */
+  attune: 'ui-items-attune',
+  /** Charges, dawn, and a potion known by a taste (§5). */
+  charges: 'ui-items-charges',
+  /**
+   * The DM's campaign options (docs/adr/0056-…md §3), in English and in Russian: Elowen also
+   * carries four mail shirts, more than her Strength carries.
+   */
+  options: 'ui-campaign-options',
+  optionsRu: 'ui-campaign-options-ru',
+  /** The spells that return the dead (docs/adr/0056-…md §5): Elowen also knows them. */
+  raising: 'ui-raising',
+  raisingRu: 'ui-raising-ru',
+  /** A player's wish for a portrait, made by the DM (docs/adr/0056-…md §5). */
+  portrait: 'ui-portrait',
 } as const;
 
 const DM = { actorId: 'dm-ravenford', kind: 'user' } as const;
@@ -32,6 +58,7 @@ const NAMES = {
     lantern: 'Dented lantern',
     blade: 'Practice blade',
     crowns: 'Purse of crowns',
+    mail: 'Spare mail shirt',
   },
   ru: {
     brigandine: 'Равенфордский бригандин',
@@ -41,6 +68,7 @@ const NAMES = {
     lantern: 'Помятый фонарь',
     blade: 'Учебный клинок',
     crowns: 'Кошель крон',
+    mail: 'Запасная кольчуга',
   },
 } as const;
 
@@ -65,6 +93,19 @@ export async function seedUiItemCampaigns(engine: WorldEngine): Promise<void> {
     [UI_ITEM_CAMPAIGNS.ru, 'ru'],
     [UI_ITEM_CAMPAIGNS.axe, 'en'],
     [UI_ITEM_CAMPAIGNS.split, 'en'],
+    [UI_ITEM_CAMPAIGNS.catalog, 'en'],
+    [UI_ITEM_CAMPAIGNS.catalogRu, 'ru'],
+    [UI_ITEM_CAMPAIGNS.builder, 'en'],
+    [UI_ITEM_CAMPAIGNS.levels, 'en'],
+    [UI_ITEM_CAMPAIGNS.features, 'en'],
+    [UI_ITEM_CAMPAIGNS.featuresRu, 'ru'],
+    [UI_ITEM_CAMPAIGNS.attune, 'en'],
+    [UI_ITEM_CAMPAIGNS.charges, 'en'],
+    [UI_ITEM_CAMPAIGNS.options, 'en'],
+    [UI_ITEM_CAMPAIGNS.optionsRu, 'ru'],
+    [UI_ITEM_CAMPAIGNS.raising, 'en'],
+    [UI_ITEM_CAMPAIGNS.raisingRu, 'ru'],
+    [UI_ITEM_CAMPAIGNS.portrait, 'en'],
   ] as const) {
     const seed = await loadRavenfordSeed(language === 'ru' ? RAVENFORD_RU_FIXTURES_DIR : undefined);
     for (const input of seed.submissions) {
@@ -77,6 +118,62 @@ export async function seedUiItemCampaigns(engine: WorldEngine): Promise<void> {
       if (result.status !== 'accepted') throw new Error(`UI items ${campaignId} seed failed`);
     }
     await seedItems(engine, campaignId, NAMES[language], campaignId !== UI_ITEM_CAMPAIGNS.take);
+    if (campaignId === UI_ITEM_CAMPAIGNS.options || campaignId === UI_ITEM_CAMPAIGNS.optionsRu)
+      await seedLoad(engine, campaignId, NAMES[language].mail);
+    if (campaignId === UI_ITEM_CAMPAIGNS.raising || campaignId === UI_ITEM_CAMPAIGNS.raisingRu)
+      await seedRaiser(engine, campaignId);
+  }
+}
+
+/**
+ * Elowen also knows the spells that return the dead, with a cleric's Wisdom behind them; her sheet
+ * records her origin, a feat, a tool and her languages (docs/adr/0056-…md §2).
+ */
+async function seedRaiser(engine: WorldEngine, campaignId: string): Promise<void> {
+  const sheet = (await engine.load(campaignId))?.state.characterSheets.get(ELOWEN);
+  if (!sheet) throw new Error(`UI raising ${campaignId}: no sheet`);
+  const result = await engine.execute({
+    campaignId,
+    commandId: `${campaignId}.raiser`,
+    actor: DM,
+    command: {
+      type: 'SetCharacterSheet',
+      entityId: ELOWEN,
+      sheet: {
+        ...sheet,
+        spellcasting: [
+          ...sheet.spellcasting,
+          {
+            source: 'cleric',
+            ability: 'wis',
+            spells: ['revivify', 'raise-dead', 'cure-wounds'],
+          },
+        ],
+        origin: { speciesId: 'elf', backgroundId: 'sage' },
+        feats: ['magic-initiate'],
+        tools: ['srd-calligraphers-supplies'],
+        languages: ['common', 'elvish', 'sylvan', 'draconic'],
+      },
+    },
+  });
+  if (result.status !== 'accepted') throw new Error(`UI raising ${campaignId}: sheet refused`);
+}
+
+/** Four 40 lb mail shirts beside her gear: about 190 lb against the 150 her Strength carries. */
+async function seedLoad(engine: WorldEngine, campaignId: string, name: string): Promise<void> {
+  for (const itemId of ['item-2b8e41d7', 'item-7c05f9a3', 'item-e41a6c28', 'item-93d7b05e']) {
+    for (const command of [
+      { type: 'CreateEntity', entityId: itemId, kind: 'item', name, existsSince: null },
+      { type: 'GrantItem', itemId, holderId: ELOWEN, catalogId: 'watchman-mail', quantity: 1 },
+    ]) {
+      const result = await engine.execute({
+        campaignId,
+        commandId: `${campaignId}.load.${command.type}.${itemId}`,
+        actor: DM,
+        command,
+      });
+      if (result.status !== 'accepted') throw new Error(`UI options ${campaignId}: load failed`);
+    }
   }
 }
 

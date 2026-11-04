@@ -105,6 +105,10 @@ const currentPremises = [
   z.object({ kind: z.literal('perceived'), entityId: entityIdSchema }).strict(),
   z.object({ kind: z.literal('self') }).strict(),
   z.object({ kind: z.literal('party-member'), characterId: entityIdSchema }).strict(),
+  /** A creature its summoner's party knows (docs/adr/0056-characters-from-the-srd.md §5). */
+  z
+    .object({ kind: z.literal('summoned'), entityId: entityIdSchema, characterId: entityIdSchema })
+    .strict(),
   z
     .object({ kind: z.literal('knowledge'), knowledgeId: knowledgeIdSchema, viaParty: z.boolean() })
     .strict(),

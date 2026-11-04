@@ -15,6 +15,7 @@ import { PostgresEventStore } from './postgres-event-store.ts';
 import { PostgresCampaignPublication } from '../campaigns/postgres-publication.ts';
 import { PublishedEventStore } from '../campaigns/published-event-store.ts';
 import type { CampaignPublication } from '../campaigns/publication.ts';
+import { characterBuilder } from '../characters/builder-port.ts';
 
 /** Production sources of nondeterminism; their outputs are recorded in events. */
 export const randomIds: IdGenerator = { next: () => randomUUID() };
@@ -43,6 +44,7 @@ function engine(store: PostgresEventStore | PublishedEventStore): WorldEngine {
     clock: systemClock,
     checks: rulesSkillChecks,
     combat: createCombatEngine(),
+    characters: characterBuilder,
     entropy: cryptoEntropy,
   });
 }

@@ -49,7 +49,8 @@ export function assetFootprint(event: Extract<KernelEvent, { type: AssetEventTyp
           facts.entity(entityId),
           ...(derivedFrom === null ? [] : [facts.assetCanonical(entityId)]),
         ],
-        writes: [facts.assetRequest(requestId)],
+        // It answers a player's wish for the entity's portrait (docs/adr/0056-…md §5).
+        writes: [facts.assetRequest(requestId), facts.portraitWish(entityId)],
       };
     }
     case 'AssetJobStarted':

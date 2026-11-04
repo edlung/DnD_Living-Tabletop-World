@@ -136,3 +136,16 @@ export const ASSET_SETTLING_COMMAND_TYPES = [
   'CancelAssetRequest',
   'RetractAsset',
 ] as const;
+
+/**
+ * A player's wish for a portrait of their own character (docs/adr/0056-characters-from-the-srd.md
+ * §5): how they see it, for the DM to turn into a picture request. Nothing is generated until the
+ * DM asks for it: the image key and its costs stay the DM's.
+ */
+export const askPortraitCommandSchema = z
+  .object({
+    type: z.literal('AskPortrait'),
+    characterId: entityIdSchema,
+    look: z.string().trim().min(1).max(300),
+  })
+  .strict();

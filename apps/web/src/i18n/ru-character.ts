@@ -5,6 +5,11 @@ import { registerRussian } from '@ltw/ui';
  * tabs, abilities, the 18 skills, spellcasting and the spells' own words.
  */
 registerRussian({
+  'Minutes or hours': 'Минуты или часы',
+  'Ritual: no slot, outside a fight': 'Ритуал: без ячейки, вне боя',
+  'The DM decides what this spell does.': 'Что делает это заклинание, решает Мастер.',
+  'The server rolls its dice; the DM applies the rest.':
+    'Сервер бросает его кости; остальное применяет Мастер.',
   // Dock, dialog and tabs
   'Character: {name}': 'Персонаж: {name}',
   'Close the character sheet': 'Закрыть лист персонажа',
@@ -53,6 +58,14 @@ registerRussian({
   'Fighting style: {style}': 'Боевой стиль: {style}',
   Archery: 'Стрельба',
   '+2 to ranged weapon attacks': '+2 к броскам атаки дальнобойным оружием',
+  Defense: 'Оборона',
+  '+1 to Armor Class while wearing armor': '+1 к КД, пока на вас доспех',
+  'Great Weapon Fighting': 'Сражение большим оружием',
+  'damage dice of 1 or 2 count as 3 with a two-handed melee weapon':
+    'выпавшие 1 и 2 на костях урона двуручного рукопашного оружия считаются тройкой',
+  'Two Weapon Fighting': 'Сражение двумя оружиями',
+  'your ability modifier added to the extra Light weapon attack':
+    'модификатор характеристики добавляется к урону дополнительной атаки лёгким оружием',
   'Extra Attack: {count} attacks with the Attack action':
     'Дополнительная атака: {count} атаки действием «Атака»',
   '{spell} without a slot: {left} of {total} until a long rest':
@@ -101,6 +114,29 @@ registerRussian({
     'Окутанные серебристым туманом, вы телепортируетесь на расстояние до 30 футов в видимое место.',
   'A bead of flame bursts in a 20-foot radius: everyone there makes a Dexterity save, taking 8d6 Fire damage, half on a success.':
     'Огненная искра взрывается в радиусе 20 футов: каждый там совершает спасбросок Ловкости и получает 8d6 урона огнём, вдвое меньше при успехе.',
+  'As a reaction when an attack would hit you, a ward gives you +5 Armor Class until the start of your next turn, against that attack too.':
+    'Реакцией, когда атака должна попасть по вам, щит даёт +5 к Классу Доспеха до начала вашего следующего хода — и против этой атаки.',
+  'As a reaction when a creature you can see within 60 feet damages you, it takes 2d10 Fire damage, half on a Dexterity save; more with a higher slot.':
+    'Реакцией, когда видимое вами существо в пределах 60 футов наносит вам урон, оно получает 2к10 урона огнём, половину при успешном спасброске Ловкости; больше с ячейкой выше.',
+  'As a reaction when you or a creature you can see within 60 feet falls, up to five falling creatures there drift down and land on their feet, taking no damage from the fall.':
+    'Реакцией, когда вы или видимое вами существо в пределах 60 футов падает: до пяти падающих там существ плавно опускаются и приземляются на ноги, не получая урона от падения.',
   'As a reaction you interrupt a creature casting a spell within 60 feet: it makes a Constitution save or the spell fails.':
     'Реакцией вы прерываете существо, творящее заклинание в пределах 60 футов: оно совершает спасбросок Телосложения, иначе заклинание не срабатывает.',
+  '{feet} ft (load)': '{feet} фт (груз)',
+  // The sheet on paper (docs/adr/0056-characters-from-the-srd.md §5)
+  'On paper': 'На бумаге',
+  'The whole sheet in plain ink: numbers, skills, attacks, spells, features and the pack.':
+    'Весь лист для печати: числа, навыки, атаки, заклинания, умения и снаряжение.',
+  'Print the sheet': 'Напечатать лист',
+  'Preparing the sheet…': 'Готовим лист…',
+  'The pack could not be read: the sheet prints without it.':
+    'Снаряжение прочитать не удалось: лист напечатается без него.',
+  Score: 'Значение',
+  // A spellcasting source named by its id (the Spells tab, the sheet on paper).
+  'Magic initiate': 'Посвящённый в магию',
+  Ability: 'Характеристика',
+  Attacks: 'Атаки',
+  '{source} ({ability}): save DC {dc}, attack {bonus}':
+    '{source} ({ability}): Сл спасброска {dc}, атака {bonus}',
+  '{name}: {left} of {max}': '{name}: {left} из {max}',
 });

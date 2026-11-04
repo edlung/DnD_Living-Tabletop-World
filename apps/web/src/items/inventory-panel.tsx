@@ -5,6 +5,9 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
+import { useDiceTable } from '../dice/table.tsx';
+import { restAction } from '../rest/rest-intent.ts';
+import { GiveItemForm } from './give-item-form.tsx';
 import { useRereadOn } from '../world/use-world-data.ts';
 import { Bag } from './inventory/bag.tsx';
 import { ItemCard } from './inventory/item-card.tsx';
@@ -77,6 +80,17 @@ export function InventoryPanel({
     (encounter?.combatants.some((entry) => entry.entity.entityId === characterId) ?? false);
   const myTurn = fighting && encounter?.currentCombatantId === characterId;
   const blocked = !canAct || locked || (fighting && !myTurn);
+  // Attunement (docs/adr/0054-items-as-data.md §5): the DM any time; the player in a Short Rest.
+  const table = useDiceTable();
+  const attuning =
+    locked || characterId === null
+      ? null
+      : table?.isDm === true
+        ? 'dm'
+        : canAct && !fighting && table?.rest?.kind === 'short'
+          ? 'rest'
+          : null;
+  const attunedCount = inventory?.items.filter((item) => item.attuned).length ?? 0;
   const run = (body: ItemCommandBody) => {
     if (characterId === null) return;
     onRun({ kind: 'command', command: { characterId, ...body } });
@@ -102,7 +116,11 @@ export function InventoryPanel({
         items={inventory.items}
         totalWeightLb={inventory.totalWeightLb}
         capacityLb={inventory.capacityLb ?? null}
+        loadSpeedFt={inventory.loadSpeedFt ?? null}
       />
+      {attunedCount > 0 && (
+        <p className="field-hint">{t('Attuned to {count} of 3 items.', { count: attunedCount })}</p>
+      )}
       {fighting && (
         <p className="field-hint" role="note">
           {myTurn
@@ -150,7 +168,23 @@ export function InventoryPanel({
                 language={language}
                 blocked={blocked}
                 recipients={recipients}
+                attuning={attuning}
                 onRun={run}
+                canTaste={!blocked}
+                onIdentify={() => {
+                  onRun(restAction({ action: 'identify', characterId, itemId: selected.itemId }));
+                }}
+                onAttune={(attuned, liftCurse) => {
+                  onRun(
+                    restAction({
+                      action: 'attune',
+                      characterId,
+                      itemId: selected.itemId,
+                      attuned,
+                      ...(liftCurse ? { liftCurse } : {}),
+                    }),
+                  );
+                }}
               />
             ) : (
               <p className="inventory-choose muted">
@@ -160,6 +194,7 @@ export function InventoryPanel({
           </div>
         </>
       )}
+      <GiveItemForm api={api} holderId={characterId} locked={locked} />
     </div>
   );
 }

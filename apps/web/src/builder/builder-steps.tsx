@@ -1,0 +1,363 @@
+import type { Ability, CharacterOptionsResponse } from '@ltw/contracts';
+import { useT } from '@ltw/ui';
+import { useId } from 'react';
+
+import { ABILITY_NAMES, className } from '../character/words.ts';
+import { Field, Problems } from './builder-fields.tsx';
+import { LanguageChoice } from './builder-languages.tsx';
+import type { Builder } from './use-builder.ts';
+
+/**
+ * The builder's first steps (docs/adr/0056-characters-from-the-srd.md §2): the class and the origin
+ * — species with its option, background with its increases; the ability scores are
+ * `builder-abilities.tsx`.
+ */
+
+/** A row of cards to pick one from: each a name and a line. */
+function Cards<T extends string>({
+  label,
+  items,
+  chosen,
+  onChoose,
+}: {
+  readonly label: string;
+  readonly items: readonly {
+    readonly id: T;
+    readonly name: string;
+    readonly line: string;
+    readonly lang?: string | undefined;
+  }[];
+  readonly chosen: T | null;
+  readonly onChoose: (id: T) => void;
+}) {
+  return (
+    <div className="builder-cards" role="radiogroup" aria-label={label}>
+      {items.map((item) => (
+        <button
+          key={item.id}
+          type="button"
+          role="radio"
+          aria-checked={chosen === item.id}
+          lang={item.lang}
+          className="builder-card"
+          onClick={() => {
+            onChoose(item.id);
+          }}
+        >
+          <span className="builder-card-name">{item.name}</span>
+          <span className="builder-card-line">{item.line}</span>
+        </button>
+      ))}
+    </div>
+  );
+}
+
+export function ClassStep({
+  options,
+  builder,
+}: {
+  readonly options: CharacterOptionsResponse;
+  readonly builder: Builder;
+}) {
+  const t = useT();
+  const { draft, update } = builder;
+  const chosen = options.classes.find((one) => one.classId === draft.classId);
+  return (
+    <div className="builder-step">
+      <Cards
+        label={t('Class')}
+        items={options.classes.map((one) => ({
+          id: one.classId,
+          name: className(t, one.classId),
+          line: t('d{die} hit points · {ability}', {
+            die: one.hitDie,
+            ability: t(one.primaryAbility),
+          }),
+        }))}
+        chosen={draft.classId}
+        onChoose={(classId) => {
+          // A new class starts its own choices over.
+          update({
+            classId,
+            skills: [],
+            expertise: [],
+            tools: [],
+            cantrips: [],
+            spells: [],
+            spellbook: [],
+            invocations: [],
+            weaponMasteries: [],
+            equipment: { ...draft.equipment, classOption: 'A', picks: [] },
+          });
+        }}
+      />
+      {chosen && (
+        <dl className="builder-facts">
+          <dt>{t('Saving throws')}</dt>
+          <dd>{chosen.savingThrows.map((ability) => t(ABILITY_NAMES[ability])).join(', ')}</dd>
+          <dt>{t('Armor')}</dt>
+          <dd lang={chosen.language === options.language ? undefined : chosen.language}>
+            {chosen.armor}
+          </dd>
+          <dt>{t('Weapons')}</dt>
+          <dd lang={chosen.language === options.language ? undefined : chosen.language}>
+            {chosen.weapons}
+          </dd>
+          <dt>{t('At level 1')}</dt>
+          <dd lang={chosen.language === options.language ? undefined : chosen.language}>
+            {chosen.features.join(', ')}
+          </dd>
+        </dl>
+      )}
+      <Problems problems={builder.problemsOf('classId')} />
+    </div>
+  );
+}
+
+export function OriginStep({
+  options,
+  builder,
+}: {
+  readonly options: CharacterOptionsResponse;
+  readonly builder: Builder;
+}) {
+  const t = useT();
+  const ids = useId();
+  const { draft, update } = builder;
+  const species = options.species.find((one) => one.speciesId === draft.speciesId);
+  const background = options.backgrounds.find((one) => one.backgroundId === draft.backgroundId);
+  return (
+    <div className="builder-step">
+      <h3>{t('Species')}</h3>
+      <Cards
+        label={t('Species')}
+        items={options.species.map((one) => ({
+          id: one.speciesId,
+          lang: one.language === options.language ? undefined : one.language,
+          name: one.name,
+          line: t('{speed} ft · {traits}', { speed: one.speedFt, traits: one.traits.join(', ') }),
+        }))}
+        chosen={draft.speciesId}
+        onChoose={(speciesId) => {
+          // A new species asks its own options again.
+          update({
+            speciesId,
+            speciesOption: undefined,
+            size: undefined,
+            speciesAbility: undefined,
+            originFeat: undefined,
+            moreSkills: [],
+          });
+        }}
+      />
+      {species && species.options.length > 0 && (
+        <Field label={t('Lineage or ancestry')}>
+          {(id) => (
+            <select
+              id={id}
+              value={draft.speciesOption ?? ''}
+              onChange={(event) => {
+                update({ speciesOption: event.target.value || undefined });
+              }}
+            >
+              <option value="">{t('Choose…')}</option>
+              {species.options.map((option) => (
+                <option
+                  key={option.value}
+                  value={option.value}
+                  lang={species.language === options.language ? undefined : species.language}
+                >
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          )}
+        </Field>
+      )}
+      {species?.choosesSize && (
+        <fieldset className="builder-inline">
+          <legend>{t('Size')}</legend>
+          {(['medium', 'small'] as const).map((size) => (
+            <label key={size}>
+              <input
+                type="radio"
+                name={`${ids}-size`}
+                checked={(draft.size ?? 'medium') === size}
+                onChange={() => {
+                  update({ size });
+                }}
+              />
+              {t(size === 'small' ? 'Small' : 'Medium')}
+            </label>
+          ))}
+        </fieldset>
+      )}
+      {species?.givesSpells && (
+        <AbilityPick
+          label={t('Ability for your lineage’s spells')}
+          from={['int', 'wis', 'cha']}
+          value={draft.speciesAbility ?? null}
+          onChange={(ability) => {
+            update({ speciesAbility: ability as 'int' | 'wis' | 'cha' });
+          }}
+        />
+      )}
+      {species?.originFeat && (
+        <Field label={t('Another Origin feat')}>
+          {(id) => (
+            <select
+              id={id}
+              value={draft.originFeat ?? ''}
+              onChange={(event) => {
+                update({ originFeat: event.target.value || undefined });
+              }}
+            >
+              <option value="">{t('Choose…')}</option>
+              {options.originFeats.map((feat) => (
+                <option key={feat.featId} value={feat.featId}>
+                  {feat.name}
+                </option>
+              ))}
+            </select>
+          )}
+        </Field>
+      )}
+      <Problems
+        problems={[
+          ...builder.problemsOf('speciesId'),
+          // The options by their words in the table's language.
+          ...builder.problemsOf('speciesOption').map((problem) =>
+            species && problem.params?.['options'] !== undefined
+              ? {
+                  ...problem,
+                  params: { options: species.options.map((option) => option.label).join(', ') },
+                }
+              : problem,
+          ),
+          ...builder.problemsOf('size'),
+          ...builder.problemsOf('speciesAbility'),
+          ...builder.problemsOf('originFeat'),
+        ]}
+      />
+      <h3>{t('Background')}</h3>
+      <Cards
+        label={t('Background')}
+        items={options.backgrounds.map((one) => ({
+          id: one.backgroundId,
+          lang: one.language === options.language ? undefined : one.language,
+          name: one.name,
+          line: `${one.abilityScores.map((ability) => t(ABILITY_NAMES[ability])).join(', ')} · ${one.feat}`,
+        }))}
+        chosen={draft.backgroundId}
+        onChoose={(backgroundId) => {
+          update({
+            backgroundId,
+            increases: { each: true },
+            equipment: { ...draft.equipment, backgroundOption: 'A', picks: [] },
+          });
+        }}
+      />
+      {background && <Increases builder={builder} raises={background.abilityScores} />}
+      <Problems
+        problems={[...builder.problemsOf('backgroundId'), ...builder.problemsOf('increases')]}
+      />
+      <h3>{t('Languages')}</h3>
+      <LanguageChoice options={options} builder={builder} />
+    </div>
+  );
+}
+
+function AbilityPick({
+  label,
+  from,
+  value,
+  onChange,
+}: {
+  readonly label: string;
+  readonly from: readonly Ability[];
+  readonly value: Ability | null;
+  readonly onChange: (ability: Ability) => void;
+}) {
+  const t = useT();
+  return (
+    <Field label={label}>
+      {(id) => (
+        <select
+          id={id}
+          value={value ?? ''}
+          onChange={(event) => {
+            onChange(event.target.value as Ability);
+          }}
+        >
+          <option value="">{t('Choose…')}</option>
+          {from.map((ability) => (
+            <option key={ability} value={ability}>
+              {t(ABILITY_NAMES[ability])}
+            </option>
+          ))}
+        </select>
+      )}
+    </Field>
+  );
+}
+
+/** The background's +2 and +1, or +1 to each of its three. */
+function Increases({
+  builder,
+  raises,
+}: {
+  readonly builder: Builder;
+  readonly raises: readonly Ability[];
+}) {
+  const t = useT();
+  const ids = useId();
+  const { increases } = builder.draft;
+  const each = 'each' in increases;
+  return (
+    <fieldset className="builder-increases">
+      <legend>{t('Ability increases')}</legend>
+      <label>
+        <input
+          type="radio"
+          name={`${ids}-way`}
+          checked={each}
+          onChange={() => {
+            builder.update({ increases: { each: true } });
+          }}
+        />
+        {t('+1 to each of the three')}
+      </label>
+      <label>
+        <input
+          type="radio"
+          name={`${ids}-way`}
+          checked={!each}
+          onChange={() => {
+            builder.update({ increases: { plus2: raises[0] ?? 'str', plus1: raises[1] ?? 'dex' } });
+          }}
+        />
+        {t('+2 to one and +1 to another')}
+      </label>
+      {!('each' in increases) && (
+        <div className="builder-row">
+          <AbilityPick
+            label="+2"
+            from={raises}
+            value={increases.plus2}
+            onChange={(plus2) => {
+              builder.update({ increases: { ...increases, plus2 } });
+            }}
+          />
+          <AbilityPick
+            label="+1"
+            from={raises}
+            value={increases.plus1}
+            onChange={(plus1) => {
+              builder.update({ increases: { ...increases, plus1 } });
+            }}
+          />
+        </div>
+      )}
+    </fieldset>
+  );
+}

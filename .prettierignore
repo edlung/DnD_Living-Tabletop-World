@@ -89,3 +89,10 @@ reports/evidence/stage-360/ai-stand-in-2/
 reports/evidence/stage-450-live-2026-10-30/**/*.json
 # Frozen Stage 450 receipt: preserve its committed evidence hash.
 reports/evidence/stage-450/uuid-red-receipt.md
+
+# SRD 5.2.1 catalogs written by `scripts/srd/import.ts` (ADR 0051): regenerated, never edited by hand.
+packages/rules/src/srd/*.json
+packages/contracts/src/items/srd/*.json
+# Their Russian, written by `scripts/srd/translate.ts` (ADR 0055 §5); the terms glossary is hand-kept.
+packages/rules/src/srd/ru/*.json
+!packages/rules/src/srd/ru/terms.json

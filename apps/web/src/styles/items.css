@@ -369,3 +369,41 @@
   color: var(--text-muted);
   font-size: 0.9rem;
 }
+
+/* An SRD entry's own words (ADR 0054 §4): running text, at reading width. */
+.item-srd-words {
+  max-width: 70ch;
+  line-height: 1.5;
+}
+
+/* The DM gives an item from the catalog (ADR 0054 §4), under the pack. */
+.give-item {
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+}
+.give-item summary {
+  min-height: 24px;
+  cursor: pointer;
+}
+.give-item-form {
+  max-width: 640px;
+  margin-top: 12px;
+}
+/* The count and the button on the field's line (ui-layout-audit button-off-field-line). */
+.give-item-actions {
+  align-items: flex-end;
+  margin: 0;
+}
+
+/* A magic item's rarity and attunement (ADR 0054 §5). */
+.item-magic {
+  margin: 0 0 8px;
+  color: var(--gold);
+}
+/* Given unidentified: control first, then its words (ADR 0054 §5). */
+.give-item-unknown {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 8px 0;
+}

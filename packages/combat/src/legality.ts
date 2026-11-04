@@ -1,7 +1,16 @@
-import type { CoverLevel, Damage, SpellId, Square } from '@ltw/contracts';
+import type {
+  AttackExtra,
+  CoverLevel,
+  Damage,
+  SpellId,
+  Square,
+  WeaponId,
+  WeaponMastery,
+} from '@ltw/contracts';
 import {
+  ammunitionOf,
   combatantOf,
-  wieldedWeapons,
+  handsOf,
   type CombatantRecord,
   type EncounterState,
   type WorldState,
@@ -9,22 +18,40 @@ import {
 import {
   COVER_BONUS,
   FIREBALL_RADIUS_FT,
+  SHIELD_AC_BONUS,
   SPELLS,
-  WEAPONS,
   attackCircumstances,
   beginAttackAction,
+  criticalFrom,
   moveRequiredFt,
-  squareDistanceFt,
+  proficiencyBonus,
+  squaresOf,
+  totalLevel,
+  underwaterDisadvantage,
   withinArea,
   type Illegal,
   type IllegalReason,
   type TurnState,
-  weaponAttackBonus,
-  weaponModifier,
 } from '@ltw/rules';
 
-import { coverAt, isAlive, turnStateOf } from './battlefield.ts';
-import { armorClass, conditionsOf, incapacitated, vitalsOf, type Vitals } from './vitals.ts';
+import { isDodging } from './actions.ts';
+import { coverOf, gapBetween, immersed, isAlive, placedOf, turnStateOf } from './battlefield.ts';
+import { charmedBy, conditionsAgainst, detailOf } from './condition-details.ts';
+import { controlledMount } from './mounts.ts';
+import { canSee, lostInTheDark, perceives } from './sight.ts';
+import { isObjectIn } from './objects.ts';
+import { hostileSides } from './reactions/opportunity.ts';
+import {
+  armorClass,
+  conditionsOf,
+  d20PenaltyOf,
+  incapacitated,
+  speedsOf,
+  vitalsOf,
+  type Vitals,
+} from './vitals.ts';
+import { sneakDice } from './sneak-attack.ts';
+import { weaponOf, type AttackDamage, type WeaponView } from './weapon-view.ts';
 
 /**
  * Attack legality (docs/adr/0015-combat-engine.md §3), shared by the combat
@@ -47,8 +74,46 @@ export type Refusal = {
 const refuse = (reason: CombatReason, resolution?: Illegal['resolution']): Refusal =>
   resolution ? { legal: false, reason, resolution } : { legal: false, reason };
 
+/**
+ * How an attack is paid: the Attack action on the attacker's turn, or its Reaction — an
+ * opportunity attack or the readied attack (docs/adr/0046-reactions-beyond-counterspell.md).
+ */
+/** `legendary`: a legendary action's attack, off its own turn (docs/adr/0053 §4). */
+export type AttackEconomy = 'action' | 'reaction' | 'legendary';
+
+/** What an attack asks before its roll (docs/adr/0047-weapons.md §2, §4). */
+export interface AttackOptions {
+  /** An extra attack: the other hand's (Light), or Cleave's second. */
+  readonly extra?: AttackExtra;
+  /** Push's feet on a hit (0: none; absent: 10), and Topple (absent: yes). */
+  readonly push?: 0 | 5 | 10;
+  readonly topple?: boolean;
+  /** A melee attack that would bring it to 0 leaves it at 1, Unconscious (ADR 0048 §4). */
+  readonly knockOut?: boolean;
+}
+
+/** A weapon's mastery as one attack uses it: Push's feet, Topple's DC, Graze's damage. */
+export interface MasteryUse {
+  readonly kind: WeaponMastery;
+  readonly pushFt?: 0 | 5 | 10 | undefined;
+  readonly dc?: number | undefined;
+  readonly graze?: number | undefined;
+}
+
+/** The weapons' marks an attack leaves on its attacker's turn (docs/adr/0047-weapons.md). */
+export interface WeaponMarks {
+  readonly lightWeapon?: WeaponId;
+  readonly offhandAttacked?: true;
+  readonly cleaved?: true;
+  readonly loadingFired?: true;
+  /** A creature's Attack action begun: its Multiattack's breath may still come (ADR 0056 §5). */
+  readonly attackAction?: true;
+}
+
 export interface AttackPlan {
   readonly legal: true;
+  /** Whether the attack is melee: an opportunity attack must be (ADR 0046 §2). */
+  readonly melee: boolean;
   readonly attacker: CombatantRecord;
   readonly target: CombatantRecord;
   readonly attackerVitals: Vitals;
@@ -63,10 +128,117 @@ export interface AttackPlan {
   readonly advantage: boolean;
   readonly disadvantage: boolean;
   readonly criticalOnHit: boolean;
-  readonly damage: Damage;
+  readonly damage: AttackDamage;
   readonly advantageDamage: Damage | null;
+  /** A stat block's added damage, each of its own type (docs/adr/0053-monsters-as-data.md §1). */
+  readonly extraDamage: readonly Damage[];
   readonly slow: boolean;
   readonly huntersMark: boolean;
+  /** A Champion's wider Critical Hits; Sneak Attack's d6s on a hit (docs/adr/0056-…md §4). */
+  readonly critFrom: number;
+  readonly sneak: number;
+  /** The ally whose Help gave this attack Advantage: it is spent (ADR 0045 §5). */
+  readonly helpedBy: string | null;
+  /** The attacker was hidden: attacking reveals it (§5). */
+  readonly hidden: boolean;
+  readonly weapon: WeaponView;
+  readonly extra: AttackExtra | null;
+  readonly marks: WeaponMarks;
+  /** The stack whose piece this shot spends; null when its ammunition is not counted. */
+  readonly ammunitionFrom: string | null;
+  readonly mastery: MasteryUse | null;
+  /** Vex's Advantage is used on this attack, and Sap's Disadvantage: both end with it. */
+  readonly vexed: boolean;
+  readonly sapped: boolean;
+  /** Knocking out instead of killing: a melee attack's choice (ADR 0048 §4). */
+  readonly knockOut: boolean;
+}
+
+const masteryUse = (
+  weapon: WeaponView,
+  extra: AttackExtra | null,
+  options: AttackOptions,
+  proficiency: number,
+): MasteryUse | null => {
+  switch (weapon.mastery) {
+    case null:
+    case 'nick':
+      return null;
+    case 'push': {
+      const pushFt = options.push ?? 10;
+      return pushFt === 0 ? null : { kind: 'push', pushFt };
+    }
+    case 'topple':
+      return options.topple === false
+        ? null
+        : { kind: 'topple', dc: 8 + weapon.abilityModifier + proficiency };
+    case 'graze':
+      return weapon.abilityModifier > 0 ? { kind: 'graze', graze: weapon.abilityModifier } : null;
+    case 'cleave':
+      // Cleave's own second attack cleaves no further (once per turn).
+      return weapon.melee && extra === null ? { kind: 'cleave' } : null;
+    default:
+      return { kind: weapon.mastery };
+  }
+};
+
+/** A foe within 5 ft that sees the attacker and can act: a ranged attack has Disadvantage. */
+function foeClose(state: WorldState, encounter: EncounterState, attacker: CombatantRecord) {
+  return encounter.combatants.some((other) => {
+    if (!hostileSides(other.side, attacker.side) || !isAlive(state, other.entityId)) return false;
+    if (gapBetween(state, other, attacker) > 5) return false;
+    // An object sees no one (docs/adr/0048-hit-points.md §5).
+    if (isObjectIn(state, other.entityId)) return false;
+    const vitals = vitalsOf(state, other.entityId);
+    return vitals !== null && !incapacitated(vitals) && canSee(state, encounter, other, attacker);
+  });
+}
+
+/** Whether an extra attack is on offer now (docs/adr/0047-weapons.md §2, §4), and its turn. */
+function extraTurn(
+  state: WorldState,
+  encounter: EncounterState,
+  attacker: CombatantRecord,
+  target: CombatantRecord,
+  weapon: WeaponView,
+  extra: AttackExtra,
+  turn: TurnState,
+): TurnState | Refusal {
+  const record = attacker.turn;
+  if (extra === 'cleave') {
+    const offer = record.cleave;
+    if (
+      !offer ||
+      offer.attackId !== weapon.weaponId ||
+      offer.targetId === target.entityId ||
+      offer.movementUsedFt !== turn.movementUsedFt ||
+      offer.attacksRemaining !== turn.attacksRemaining ||
+      !weapon.melee
+    ) {
+      return refuse('NO_EXTRA_ATTACK');
+    }
+    // Its second target is a creature, as the first was (docs/adr/0048-hit-points.md §5).
+    if (isObjectIn(state, target.entityId)) return refuse('NOT_A_CREATURE');
+    const first = combatantOf(encounter, offer.targetId);
+    if (!first || gapBetween(state, first, target) > 5) {
+      return refuse('OUT_OF_RANGE');
+    }
+    return turn;
+  }
+  // The Light property's: a different Light weapon after the Attack action's Light one.
+  const first = record.lightWeapon;
+  if (first === undefined || record.offhandAttacked === true || !weapon.light) {
+    return refuse('NO_EXTRA_ATTACK');
+  }
+  const hands = handsOf(state, attacker.entityId);
+  if (hands.shield) return refuse('HANDS_FULL');
+  if (weapon.weaponId === first && !(hands.main === first && hands.off === first)) {
+    return refuse('NO_EXTRA_ATTACK');
+  }
+  // Nick makes it part of the Attack action; else it takes the Bonus Action.
+  if (weapon.mastery === 'nick') return turn;
+  if (turn.bonusActionUsed) return refuse('NO_BONUS_ACTION');
+  return { ...turn, bonusActionUsed: true };
 }
 
 export function attackPlan(
@@ -75,6 +247,8 @@ export function attackPlan(
   attackerId: string,
   attackId: string,
   targetId: string,
+  economy: AttackEconomy = 'action',
+  options: AttackOptions = {},
 ): AttackPlan | Refusal {
   const attacker = combatantOf(encounter, attackerId);
   const target = combatantOf(encounter, targetId);
@@ -87,107 +261,207 @@ export function attackPlan(
   if (attackerId === targetId) return refuse('TARGET_REQUIRED');
   if (!isAlive(state, targetId)) return refuse('TARGET_DEAD');
   if (incapacitated(attackerVitals)) return refuse('INCAPACITATED');
+  // A mount its rider controls dashes, disengages or dodges only (ADR 0049 §10).
+  if (controlledMount(encounter, attacker)) return refuse('CONTROLLED_MOUNT');
+  // A Charmed creature cannot attack its charmer (docs/adr/0045-conditions-and-actions.md §1).
+  if (charmedBy(attacker, attackerVitals, targetId)) return refuse('CHARMED_BY_TARGET');
 
+  const extra = options.extra ?? null;
   let turn = turnStateOf(encounter, attacker);
-  if (!turn.ownTurn) return refuse('NOT_YOUR_TURN');
-  if (turn.attacksRemaining === 0) {
+  let multiattack = false;
+  if (economy === 'reaction') {
+    // Off its own turn, paid with the Reaction (ADR 0046 §2, §5).
+    if (extra !== null) return refuse('NO_EXTRA_ATTACK');
+    if (!turn.reactionAvailable) return refuse('NO_REACTION');
+    turn = { ...turn, reactionAvailable: false };
+  } else if (economy === 'legendary') {
+    // Off its own turn, paid with a legendary use (docs/adr/0053-monsters-as-data.md §4).
+    if (extra !== null) return refuse('NO_EXTRA_ATTACK');
+    if (turn.ownTurn) return refuse('NOT_YOUR_TURN');
+  } else if (!turn.ownTurn) {
+    return refuse('NOT_YOUR_TURN');
+  } else if (extra === null && turn.attacksRemaining === 0) {
     if (attackerVitals.kind === 'character') {
       const begun = beginAttackAction(attackerVitals.sheet, turn);
       if ('legal' in begun) return refuse(begun.reason);
-      turn = begun;
+      // A Wild Shape's form makes its Multiattack's attacks (docs/adr/0056-…md §5).
+      const form = attackerVitals.form;
+      turn = form
+        ? { ...begun, attacksRemaining: Math.max(begun.attacksRemaining, form.attacksPerAction) }
+        : begun;
     } else {
       if (turn.actionUsed) return refuse('NO_ACTION');
       turn = { ...turn, actionUsed: true, attacksRemaining: attackerVitals.block.attacksPerAction };
+      multiattack = attackerVitals.block.saveActions?.some((one) => one.inMultiattack) === true;
     }
   }
 
-  const distanceFt = squareDistanceFt(attacker.position, target.position);
-  const coverLevel = coverAt(encounter, target.position);
+  // From nearest square to nearest square (docs/adr/0049-space-and-movement.md §1).
+  const distanceFt = gapBetween(state, attacker, target);
+  const coverLevel = coverOf(state, encounter, target);
   if (coverLevel === 'total') return refuse('TOTAL_COVER');
-  const weapon = weaponOf(state, attackerVitals, attackId);
-  if (!weapon) return refuse('NO_WEAPON');
-  const limit = weapon.melee ? weapon.reachFt : weapon.longRangeFt;
+  const weapon = weaponOf(state, attackerVitals, attackId, distanceFt);
+  if (typeof weapon === 'string') return refuse(weapon);
+  if (extra !== null) {
+    const paid = extraTurn(state, encounter, attacker, target, weapon, extra, turn);
+    if ('legal' in paid) return paid;
+    turn = paid;
+  }
+  // A Loading weapon fires once an action, whatever Extra Attack allows (ADR 0047 §1).
+  const firesLoading = weapon.loading && economy === 'action' && extra === null;
+  if (firesLoading && attacker.turn.loadingFired === true) return refuse('LOADING');
+  // Under water a ranged weapon reaches its normal range only (docs/adr/0049-space-and-movement.md
+  // §11): the attacker fully in deep water, or a shot into it.
+  const wetAttacker = immersed(state, encounter, attacker);
+  const wet = wetAttacker || (!weapon.melee && immersed(state, encounter, target));
+  const limit = weapon.melee ? weapon.reachFt : wet ? weapon.normalRangeFt : weapon.longRangeFt;
   if (distanceFt > limit)
     return refuse('OUT_OF_RANGE', { moveRequiredFt: moveRequiredFt(distanceFt, limit) });
+  // Counted ammunition: a shot needs a piece of its kind (ADR 0047 §5).
+  let ammunitionFrom: string | null = null;
+  if (weapon.ammunition !== null && !weapon.melee) {
+    const stacks = ammunitionOf(state, attackerId, weapon.ammunition);
+    if (stacks.length > 0) {
+      const stack = stacks.find((one) => one.quantity > 0);
+      if (!stack) return refuse('NO_AMMUNITION');
+      ammunitionFrom = stack.itemId;
+    }
+  }
   const longRange = !weapon.melee && distanceFt > weapon.normalRangeFt;
+  // Dodge and Help (docs/adr/0045-conditions-and-actions.md §5): a Dodge holds while the target
+  // can move and act; Help is an ally's, against this target, until the helper's next turn.
+  const helper = encounter.combatants.find(
+    (c) =>
+      c.turn.helping === targetId &&
+      c.entityId !== attackerId &&
+      c.side === attacker.side &&
+      isAlive(state, c.entityId),
+  );
+  // Pack Tactics (docs/adr/0053-monsters-as-data.md §4): an ally of the attacker within 5 ft of
+  // the target that is not Incapacitated gives the attack Advantage.
+  const pack =
+    attackerVitals.kind === 'creature' &&
+    attackerVitals.block.traits?.packTactics === true &&
+    encounter.combatants.some((c) => {
+      if (c.entityId === attackerId || c.entityId === targetId || c.side !== attacker.side)
+        return false;
+      const ally = vitalsOf(state, c.entityId);
+      return (
+        isAlive(state, c.entityId) &&
+        ally !== null &&
+        !incapacitated(ally) &&
+        gapBetween(state, c, target) <= 5
+      );
+    });
+  const vexed = attacker.vexing?.targetId === targetId;
+  const sapped = attacker.sappedBy !== undefined;
+  // Who sees whom (docs/adr/0050-the-world-around.md §2–3): Blindsight or Truesight within range
+  // sees past Blinded and Invisible; the dark and the fog hide what the conditions do not.
+  const thing = isObjectIn(state, targetId);
+  const perceivesTarget = perceives(state, attacker, target);
+  const perceivedBy = !thing && perceives(state, target, attacker);
   const circumstances = attackCircumstances({
-    attackerConditions: conditionsOf(attackerVitals),
-    targetConditions: conditionsOf(targetVitals),
+    attackerConditions: conditionsAgainst(
+      state,
+      encounter,
+      attacker,
+      attackerVitals,
+      targetId,
+    ).filter(
+      (condition) =>
+        !(perceivesTarget && condition === 'blinded') &&
+        !(perceivedBy && condition === 'invisible'),
+    ),
+    targetConditions: conditionsOf(targetVitals).filter(
+      (condition) =>
+        !(perceivesTarget && condition === 'invisible') &&
+        !(perceivedBy && condition === 'blinded'),
+    ),
+    targetUnseen: lostInTheDark(state, encounter, attacker, target),
+    attackerUnseen: !thing && lostInTheDark(state, encounter, target, attacker),
     melee: weapon.melee,
     distanceFt,
     longRange,
+    targetDodging: isDodging(target, targetVitals),
+    helped: helper !== undefined || pack,
+    foeClose: !weapon.melee && foeClose(state, encounter, attacker),
+    tooHeavy: weapon.tooHeavy,
+    vexing: vexed,
+    sapped,
+    attackerSqueezed: attacker.squeezed === true,
+    targetSqueezed: target.squeezed === true,
+    underwater:
+      (weapon.melee ? wetAttacker : wet) &&
+      underwaterDisadvantage({
+        melee: weapon.melee,
+        weapon: weapon.weaponId ?? attackId,
+        swims: speedsOf(attackerVitals).swim !== undefined,
+      }),
   });
   const marked =
     attackerVitals.kind === 'character' &&
     attackerVitals.sheet.concentration?.spellId === 'hunters-mark' &&
     attackerVitals.sheet.concentration.targetId === targetId;
+  const proficiency =
+    attackerVitals.kind === 'character' ? proficiencyBonus(totalLevel(attackerVitals.sheet)) : 0;
+  const mastery = masteryUse(weapon, extra, options, proficiency);
+  // An extra attack adds no ability modifier to its damage unless it is negative (ADR 0047 §2, §4).
+  const damage =
+    extra === null
+      ? weapon.damage
+      : {
+          ...weapon.damage,
+          bonus: weapon.damage.bonus - weapon.abilityModifier + Math.min(weapon.abilityModifier, 0),
+        };
+  const lightFirst =
+    economy === 'action' &&
+    extra === null &&
+    weapon.light &&
+    weapon.weaponId !== null &&
+    attacker.turn.lightWeapon === undefined;
+  const marks: WeaponMarks = {
+    ...(lightFirst ? { lightWeapon: weapon.weaponId } : {}),
+    ...(extra === 'offhand' ? { offhandAttacked: true as const } : {}),
+    ...(extra === 'cleave' ? { cleaved: true as const } : {}),
+    ...(firesLoading ? { loadingFired: true as const } : {}),
+    ...(multiattack ? { attackAction: true as const } : {}),
+  };
   return {
     legal: true,
+    melee: weapon.melee,
     attacker,
     target,
     attackerVitals,
     targetVitals,
     turn,
-    bonus: weapon.bonus,
-    targetAc: armorClass(targetVitals) + (coverLevel === 'none' ? 0 : COVER_BONUS[coverLevel]),
+    helpedBy: helper?.entityId ?? null,
+    hidden: detailOf(attacker, 'invisible')?.hidden === true,
+    // Exhaustion takes 2 per level from the attack roll (ADR 0045 §3).
+    bonus: weapon.bonus + d20PenaltyOf(attackerVitals),
+    // Shield's +5 holds until the shielded creature's next turn starts (ADR 0046 §3).
+    targetAc:
+      armorClass(targetVitals) +
+      (coverLevel === 'none' ? 0 : COVER_BONUS[coverLevel]) +
+      (target.turn.shielded === true ? SHIELD_AC_BONUS : 0),
     cover: coverLevel,
     distanceFt,
     longRange,
     ...circumstances,
-    damage: weapon.damage,
+    damage,
     advantageDamage: weapon.advantageDamage,
-    slow: weapon.slow,
+    extraDamage: weapon.extraDamage,
+    slow: mastery?.kind === 'slow',
     huntersMark: marked,
-  };
-}
-
-interface WeaponView {
-  readonly melee: boolean;
-  readonly reachFt: number;
-  readonly normalRangeFt: number;
-  readonly longRangeFt: number;
-  readonly bonus: number;
-  readonly damage: Damage;
-  readonly advantageDamage: Damage | null;
-  readonly slow: boolean;
-}
-
-function weaponOf(state: WorldState, v: Vitals, attackId: string): WeaponView | null {
-  if (v.kind === 'character') {
-    // The sheet's weapons, and the weapon items the character wields (Stage 520).
-    const weapon = [...v.sheet.weapons, ...wieldedWeapons(state, v.entityId)].find(
-      (id) => id === attackId,
-    );
-    if (!weapon) return null;
-    const definition = WEAPONS[weapon];
-    const modifier = weaponModifier(v.sheet, weapon);
-    return {
-      melee: !definition.ranged,
-      reachFt: 5,
-      normalRangeFt: definition.normalRangeFt,
-      longRangeFt: definition.longRangeFt,
-      bonus: weaponAttackBonus(v.sheet, weapon),
-      damage: {
-        ...definition.damageDice,
-        sides: definition.damageDice.sides as Damage['sides'],
-        bonus: modifier,
-        type: definition.damageType,
-      },
-      advantageDamage: null,
-      slow: definition.mastery === 'slow',
-    };
-  }
-  const attack = v.block.attacks.find((a) => a.attackId === attackId);
-  if (!attack) return null;
-  return {
-    melee: attack.kind === 'melee',
-    reachFt: attack.reachFt ?? 5,
-    normalRangeFt: attack.normalRangeFt ?? 0,
-    longRangeFt: attack.longRangeFt ?? 0,
-    bonus: attack.bonus,
-    damage: attack.damage,
-    advantageDamage: attack.advantageDamage ?? null,
-    slow: false,
+    critFrom: attackerVitals.kind === 'character' ? criticalFrom(attackerVitals.sheet) : 20,
+    sneak: sneakDice(state, encounter, attacker, attackerVitals, target, weapon, circumstances),
+    weapon,
+    extra,
+    marks,
+    ammunitionFrom,
+    mastery,
+    vexed,
+    sapped,
+    knockOut: weapon.melee && options.knockOut === true,
   };
 }
 
@@ -197,11 +471,15 @@ export function fireballArea(
   encounter: EncounterState,
   point: Square,
 ): CombatantRecord[] {
+  // Each creature in the sphere: an object takes no part (docs/adr/0048-hit-points.md §5).
   return encounter.combatants.filter(
     (c) =>
       isAlive(state, c.entityId) &&
-      withinArea(point, c.position, FIREBALL_RADIUS_FT) &&
-      coverAt(encounter, c.position) !== 'total',
+      !isObjectIn(state, c.entityId) &&
+      squaresOf(placedOf(state, c)).some((square) =>
+        withinArea(point, square, FIREBALL_RADIUS_FT),
+      ) &&
+      coverOf(state, encounter, c) !== 'total',
   );
 }
 

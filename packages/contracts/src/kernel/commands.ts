@@ -1,9 +1,12 @@
 import { z } from 'zod';
 
 import { bootstrapCampaignCommandSchema } from '../campaign/bootstrap.ts';
+import { createCharacterCommandSchema } from '../rules/character-choices.ts';
+import { setCampaignOptionsCommandSchema } from '../campaign/options.ts';
 
 import {
   approveAssetCommandSchema,
+  askPortraitCommandSchema,
   cancelAssetRequestCommandSchema,
   completeAssetJobCommandSchema,
   failAssetJobCommandSchema,
@@ -13,10 +16,13 @@ import {
 } from '../assets/commands.ts';
 import { languageSchema } from '../language/language.ts';
 import {
+  attuneItemCommandSchema,
+  dawnRechargeCommandSchema,
   dropItemCommandSchema,
   equipItemCommandSchema,
   giveItemCommandSchema,
   grantItemCommandSchema,
+  identifyItemCommandSchema,
   takeItemCommandSchema,
   unequipItemCommandSchema,
   useItemCommandSchema,
@@ -52,19 +58,34 @@ import {
   delayTurnCommandSchema,
   removeCombatantCommandSchema,
   setInitiativeCommandSchema,
+  setLightCommandSchema,
+  exposeToHazardCommandSchema,
   castSpellCommandSchema,
   endCombatCommandSchema,
   endTurnCommandSchema,
+  makeReadiedAttackCommandSchema,
   moveCombatantCommandSchema,
+  spendInspirationCommandSchema,
   setConditionCommandSchema,
+  setExhaustionCommandSchema,
   setInspirationCommandSchema,
   startCombatCommandSchema,
+  takeActionCommandSchema,
+  useCreatureActionCommandSchema,
 } from '../combat/commands.ts';
 import {
   closeReactionWindowCommandSchema,
   declineReactionCommandSchema,
   useReactionCommandSchema,
 } from '../combat/reactions.ts';
+import { addObjectCommandSchema } from '../combat/objects.ts';
+import { useFeatureCommandSchema } from '../combat/features.ts';
+import {
+  contagionCourseCommandSchema,
+  infectWithContagionCommandSchema,
+  inflictMentalStressCommandSchema,
+  springTrapCommandSchema,
+} from '../combat/toolbox.ts';
 import { setStatBlockCommandSchema } from '../combat/stat-block.ts';
 import { setClaimCommandSchema } from '../knowledge/claims.ts';
 import { setRelationshipCommandSchema } from '../relationships/commands.ts';
@@ -162,6 +183,11 @@ export const kernelCommandSchema = z
     attackCommandSchema,
     castSpellCommandSchema,
     endTurnCommandSchema,
+    takeActionCommandSchema,
+    useCreatureActionCommandSchema,
+    makeReadiedAttackCommandSchema,
+    spendInspirationCommandSchema,
+    useFeatureCommandSchema,
     endCombatCommandSchema,
     useReactionCommandSchema,
     declineReactionCommandSchema,
@@ -169,6 +195,7 @@ export const kernelCommandSchema = z
     applyAuthoringCommandSchema,
     setRelationshipCommandSchema,
     requestAssetCommandSchema,
+    askPortraitCommandSchema,
     startAssetJobCommandSchema,
     completeAssetJobCommandSchema,
     failAssetJobCommandSchema,
@@ -184,14 +211,27 @@ export const kernelCommandSchema = z
     giveItemCommandSchema,
     dropItemCommandSchema,
     takeItemCommandSchema,
+    attuneItemCommandSchema,
+    identifyItemCommandSchema,
+    dawnRechargeCommandSchema,
     adjustHitPointsCommandSchema,
     setConditionCommandSchema,
+    setExhaustionCommandSchema,
     setInspirationCommandSchema,
     addCombatantCommandSchema,
     removeCombatantCommandSchema,
     delayTurnCommandSchema,
     setInitiativeCommandSchema,
     commandCreatureCommandSchema,
+    addObjectCommandSchema,
+    setLightCommandSchema,
+    exposeToHazardCommandSchema,
+    springTrapCommandSchema,
+    inflictMentalStressCommandSchema,
+    infectWithContagionCommandSchema,
+    contagionCourseCommandSchema,
+    createCharacterCommandSchema,
+    setCampaignOptionsCommandSchema,
   ])
   .superRefine((command, context) => {
     const issue = worldCommandIssue(command);
@@ -234,7 +274,12 @@ export const KERNEL_COMMAND_TYPES = [
   'MoveCombatant',
   'Attack',
   'CastSpell',
+  'UseCreatureAction',
   'EndTurn',
+  'TakeAction',
+  'MakeReadiedAttack',
+  'SpendInspiration',
+  'UseFeature',
   'EndCombat',
   'UseReaction',
   'DeclineReaction',
@@ -257,14 +302,28 @@ export const KERNEL_COMMAND_TYPES = [
   'GiveItem',
   'DropItem',
   'TakeItem',
+  'AttuneItem',
+  'IdentifyItem',
+  'DawnRecharge',
   'AdjustHitPoints',
   'SetCondition',
+  'SetExhaustion',
   'SetInspiration',
   'AddCombatant',
   'RemoveCombatant',
   'DelayTurn',
   'SetInitiative',
   'CommandCreature',
+  'AddObject',
+  'SetLight',
+  'ExposeToHazard',
+  'SpringTrap',
+  'InflictMentalStress',
+  'InfectWithContagion',
+  'ContagionCourse',
+  'CreateCharacter',
+  'SetCampaignOptions',
+  'AskPortrait',
 ] as const satisfies readonly KernelCommandType[];
 
 export const kernelCommandTypeSchema = z.enum(KERNEL_COMMAND_TYPES);

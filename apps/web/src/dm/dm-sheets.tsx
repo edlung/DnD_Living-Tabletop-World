@@ -17,6 +17,7 @@ import { PartySheet } from './party-sheet.tsx';
 import { SessionSheet } from './session-sheet.tsx';
 import { PlayersSheet } from './players-sheet.tsx';
 import { ScreenSheet } from './screen-sheet.tsx';
+import { DmHazardControls } from '../rest/dm-hazard-controls.tsx';
 import { DmRestControls } from '../rest/dm-rest-controls.tsx';
 import { DmWorldControls } from './world-controls.tsx';
 
@@ -172,6 +173,7 @@ export function DmSheets({
             onRun={onRun}
           >
             <DmRestControls locked={locked} fighting={place.encounter !== null} onRun={onRun} />
+            <DmHazardControls locked={locked} fighting={place.encounter !== null} onRun={onRun} />
           </DmWorldControls>
         )}
       </Sheet>

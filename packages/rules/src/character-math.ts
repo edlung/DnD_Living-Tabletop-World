@@ -4,7 +4,6 @@ import {
   type CharacterSheet,
   type ClassId,
   type Skill,
-  type SpellId,
   type SpellcastingSource,
 } from '@ltw/contracts';
 
@@ -32,12 +31,21 @@ export function skillModifier(sheet: CharacterSheet, skill: Skill): number {
     : sheet.skills.proficient.includes(skill)
       ? 1
       : 0;
-  return modifierOf(sheet, SKILLS[skill]) + multiplier * proficiency;
+  // A Bard's Jack of All Trades: half the bonus, rounded down, to a skill it lacks (SRD 5.2.1).
+  const jack =
+    multiplier === 0 && sheet.classes.some((entry) => entry.classId === 'bard' && entry.level >= 2)
+      ? Math.floor(proficiency / 2)
+      : 0;
+  return modifierOf(sheet, SKILLS[skill]) + multiplier * proficiency + jack;
 }
 
 export function savingThrowModifier(sheet: CharacterSheet, ability: Ability): number {
   const proficient = sheet.savingThrows.includes(ability);
-  return modifierOf(sheet, ability) + (proficient ? proficiencyBonus(totalLevel(sheet)) : 0);
+  // A Ring of Protection's +1, and the like (docs/adr/0054-items-as-data.md §5).
+  const items = sheet.saveBonus ?? 0;
+  return (
+    modifierOf(sheet, ability) + (proficient ? proficiencyBonus(totalLevel(sheet)) : 0) + items
+  );
 }
 
 export function spellSaveDc(sheet: CharacterSheet, source: SpellcastingSource): number {
@@ -49,12 +57,20 @@ export function spellAttackBonus(sheet: CharacterSheet, source: SpellcastingSour
 }
 
 /** The casting sources that list a spell (a spell may come from several). */
-export function sourcesFor(sheet: CharacterSheet, spellId: SpellId): SpellcastingSource[] {
+export function sourcesFor(sheet: CharacterSheet, spellId: string): SpellcastingSource[] {
   return sheet.spellcasting.filter((source) => source.spells.includes(spellId));
 }
 
-const FULL_CASTERS: ReadonlySet<ClassId> = new Set(['wizard', 'cleric']);
-const HALF_CASTERS: ReadonlySet<ClassId> = new Set(['ranger']);
+/** The SRD's Multiclass Spellcaster rule: full casters' levels, half casters' halved; the
+ * Warlock's Pact Magic apart (docs/adr/0056-characters-from-the-srd.md §3). */
+const FULL_CASTERS: ReadonlySet<ClassId> = new Set([
+  'wizard',
+  'cleric',
+  'bard',
+  'druid',
+  'sorcerer',
+]);
+const HALF_CASTERS: ReadonlySet<ClassId> = new Set(['ranger', 'paladin']);
 
 /** SRD 5.2.1 Multiclass Spellcaster table, levels 1-20, slot levels 1-9. */
 const MULTICLASS_SLOTS: readonly (readonly number[])[] = [

@@ -370,3 +370,41 @@
   border-color: var(--teal);
   background: var(--teal-fill);
 }
+
+/* The portraits players asked for, first on the sheet (docs/adr/0056-characters-from-the-srd.md §5) */
+.portrait-wishes {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0 0 0.9rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid var(--line);
+}
+.portrait-wishes h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+.portrait-wishes ul {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.portrait-wishes li {
+  display: grid;
+  gap: 0.5rem;
+}
+.portrait-wishes li p {
+  display: grid;
+  gap: 0.25rem;
+  margin: 0;
+}
+.portrait-wishes li p span {
+  color: var(--text-muted);
+  font-style: italic;
+}
+.portrait-wishes li button {
+  justify-self: start;
+}

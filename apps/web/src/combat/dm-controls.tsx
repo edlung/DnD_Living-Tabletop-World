@@ -12,13 +12,17 @@ import { useResource } from '../api/resource.ts';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
 import { withPictureTimes } from '../visual/approved-images.ts';
 import { Glyph } from '../visual/glyph.tsx';
+import { LightControl } from './light-control.tsx';
 import { Medallion } from '../visual/medallion.tsx';
 import { catalogUrl } from '../visual/ui-kit.ts';
 import { suggestionArt } from './combat-art.ts';
+import { CreatureActionsCard, DifficultyLine, LegendaryCard } from './creature-actions-card.tsx';
 import type { CombatUiCommand } from './combat-bindings.ts';
+import { DmReactionWindow, DmReadiedList } from './dm-reaction-window.tsx';
 import type { StandIn } from './stand-in.ts';
 import { PreparedEncounters } from './prepared-encounters.tsx';
 import { StandInControls } from './stand-in-controls.tsx';
+import { SurpriseChoice, type SurpriseValue } from './surprise-choice.tsx';
 import { TurnOrderControls } from './turn-order-controls.tsx';
 
 const FIELD = { width: 16, height: 12 } as const;
@@ -90,7 +94,6 @@ export function DmCombatControls({
           <RunningControls
             api={api}
             encounter={encounter}
-            locationId={locationId}
             directory={directory}
             locked={locked}
             onRun={onRun}
@@ -142,6 +145,7 @@ function StartControls({
   );
   const { resource, retry } = useResource(locationId, load);
   const [skipped, setSkipped] = useState<ReadonlySet<string>>(new Set());
+  const [surprised, setSurprised] = useState<SurpriseValue>('none');
   if (resource.status !== 'ready')
     return (
       <StatusPanel
@@ -193,17 +197,22 @@ function StartControls({
           );
         })}
       </ul>
+      <SurpriseChoice value={surprised} disabled={locked} onChange={setSurprised} />
       <button
         className="primary-button"
         disabled={locked || chosen.length < 2}
         onClick={() => {
+          // The side the DM names is surprised: its Initiative has Disadvantage (ADR 0045 §5).
+          const side = surprised === 'foes' ? 'hostile' : surprised;
           onRun({
             kind: 'command',
             command: {
               type: 'StartCombat',
               locationId,
               battlefield: { ...FIELD, difficult: [], cover: [] },
-              combatants: openGroundStart(chosen),
+              combatants: openGroundStart(chosen).map((combatant) =>
+                combatant.side === side ? { ...combatant, surprised: true } : combatant,
+              ),
             },
           });
         }}
@@ -218,14 +227,12 @@ function StartControls({
 function RunningControls({
   api,
   encounter,
-  locationId,
   directory,
   locked,
   onRun,
 }: {
   readonly api: WorldApi;
   readonly encounter: EncounterView;
-  readonly locationId: string;
   readonly directory: readonly EntityRef[];
   readonly locked: boolean;
   readonly onRun: (intent: ExplorationIntent) => void;
@@ -248,24 +255,7 @@ function RunningControls({
   return (
     <div className="encounter-tools">
       {window && (
-        <div className="tool-card tool-card--reaction">
-          <p>
-            <Glyph name="reaction" />
-            {t('Spell resolution is waiting for reactions.')}
-          </p>
-          <button
-            disabled={locked}
-            onClick={() => {
-              onRun({
-                kind: 'command',
-                command: { type: 'CloseReactionWindow', windowId: window.windowId },
-              });
-            }}
-          >
-            <Glyph name="close" />
-            {t('Close reaction window')}
-          </button>
-        </div>
+        <DmReactionWindow encounter={encounter} window={window} locked={locked} onRun={onRun} />
       )}
       {suggestion && !window && (
         <div className="tool-card monster-suggestion">
@@ -290,11 +280,14 @@ function RunningControls({
           </div>
         </div>
       )}
+      <DifficultyLine encounter={encounter} />
+      {!window && <CreatureActionsCard encounter={encounter} locked={locked} onRun={onRun} />}
+      {!window && <LegendaryCard encounter={encounter} locked={locked} onRun={onRun} />}
+      {!window && <DmReadiedList encounter={encounter} locked={locked} onRun={onRun} />}
       {!window && (
         <TurnOrderControls
           api={api}
           encounter={encounter}
-          locationId={locationId}
           directory={directory}
           locked={locked}
           onRun={(command) => {
@@ -302,6 +295,7 @@ function RunningControls({
           }}
         />
       )}
+      {!window && <LightControl encounter={encounter} locked={locked} onRun={onRun} />}
       <div className="action-row end-encounter">
         {confirmingEnd ? (
           <>

@@ -125,4 +125,41 @@ describe('the table rolls tables', () => {
     await store.addRequest({ ...request(asked), private: true });
     expect((await store.findRequest('ravenford', asked))?.private).toBe(true);
   });
+
+  it('links a check rolled again to the roll it replaces, once, with its request (0033)', async () => {
+    const store = new PostgresTableStore(pool);
+    const asked = '10000000-0000-4000-8000-000000000010';
+    const first = '50000000-0000-4000-8000-000000000001';
+    const check = { subject: { kind: 'skill', skill: 'athletics' }, requestId: asked } as const;
+    await store.addRequest(request(asked));
+    expect(await store.answerRequest(roll(first, { ...check, mode: 'advantage' }), 13)).toBe(true);
+    const again = roll('50000000-0000-4000-8000-000000000002', {
+      ...check,
+      rerollOf: first,
+      mode: 'advantage',
+      at: '2026-11-01T20:00:01.000Z',
+    });
+    expect(await store.addReroll(again, 18)).toBe(true);
+    expect(await store.findRequest('ravenford', asked)).toMatchObject({
+      status: 'rolled',
+      rollId: again.rollId,
+      total: 18,
+    });
+    expect(
+      (await store.recentRolls('ravenford', 5)).map((one) => [one.rollId, one.rerollOf, one.mode]),
+    ).toEqual([
+      [first, undefined, 'advantage'],
+      [again.rollId, first, 'advantage'],
+    ]);
+    // The first is rolled again only once: its request moved on, and the index holds.
+    const twice = { ...again, rollId: '50000000-0000-4000-8000-000000000003' };
+    expect(await store.addReroll(twice, 20)).toBe(false);
+    expect((await store.findRequest('ravenford', asked))?.total).toBe(18);
+    const free = '50000000-0000-4000-8000-000000000004';
+    await store.addRoll(roll(free, { subject: { kind: 'skill', skill: 'stealth' } }));
+    const replace = (rollId: string) => roll(rollId, { rerollOf: free, mode: 'normal' });
+    expect(await store.addReroll(replace('50000000-0000-4000-8000-000000000005'), 9)).toBe(true);
+    expect(await store.addReroll(replace('50000000-0000-4000-8000-000000000006'), 9)).toBe(false);
+    expect(await store.findRoll('ravenford', '50000000-0000-4000-8000-000000000006')).toBeNull();
+  });
 });

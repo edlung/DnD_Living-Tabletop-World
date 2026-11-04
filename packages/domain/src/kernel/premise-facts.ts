@@ -20,6 +20,14 @@ export function premiseFacts(characterId: string, premise: RecordedPremise): Fac
       return [];
     case 'party-member':
       return [facts.rosterCharacter(premise.characterId), ...party];
+    case 'summoned':
+      // Its mark names its summoner, the holder or one of the party (ADR 0056 §5).
+      return [
+        facts.entity(premise.entityId),
+        facts.statBlock(premise.entityId),
+        facts.rosterCharacter(premise.characterId),
+        ...party,
+      ];
     case 'knowledge':
       return [facts.knowledge(premise.knowledgeId), ...(premise.viaParty ? party : [])];
     case 'memory':
@@ -38,11 +46,13 @@ export function premiseFacts(characterId: string, premise: RecordedPremise): Fac
         facts.encounter(),
       ];
     case 'vitals':
-      // Everything a combat decision may read about a creature (Gate 03, G03-H02).
+      // Everything a combat decision may read about a creature (Gate 03, G03-H02), what it holds
+      // included: a shield rules out a Two-Handed weapon (docs/adr/0047-weapons.md §7).
       return [
         ...entityChecked(premise.entityId),
         facts.sheet(premise.entityId),
         facts.statBlock(premise.entityId),
+        facts.equipment(premise.entityId),
       ];
     case 'revealed':
       // Negative premises: passed over because found before, or out of reach (Gate 03).

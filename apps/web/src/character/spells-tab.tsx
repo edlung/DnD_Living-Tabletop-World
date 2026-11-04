@@ -2,10 +2,10 @@ import type { CharacterDerived, CharacterSheet } from '@ltw/contracts';
 import { readableLabel, useT } from '@ltw/ui';
 
 import { Glyph } from '../visual/glyph.tsx';
-import { catalogUrl } from '../visual/ui-kit.ts';
+import { catalogUrl, schoolArtUrl } from '../visual/ui-kit.ts';
 import {
   ABILITY_NAMES,
-  SPELL_TEXT,
+  sliceSpellText,
   castingTimeWords,
   rangeWords,
   signed,
@@ -79,12 +79,15 @@ export function SpellsTab({
         <h3 id="hero-spell-list">{t('Spells')}</h3>
         <ul className="spell-cards">
           {derived.spells.map((spell) => {
-            const art = catalogUrl('spells', spell.spellId);
+            const art = catalogUrl('spells', spell.spellId) ?? schoolArtUrl(spell.school);
             return (
               <li key={spell.spellId} className="spell-card">
-                <div className="spell-art">{art && <img src={art} alt="" />}</div>
+                <div className="spell-art">
+                  {/* An SRD spell's GPT picture comes with Stage 650e; its glyph until then. */}
+                  {art ? <img src={art} alt="" /> : <Glyph name="cast" />}
+                </div>
                 <div className="spell-body">
-                  <h4>{spellName(t, spell.spellId)}</h4>
+                  <h4>{spellName(t, spell.spellId, spell.name)}</h4>
                   <p className="spell-meta">
                     {spellLevelWords(t, spell.level)} · {castingTimeWords(t, spell.castingTime)} ·{' '}
                     {rangeWords(t, spell.range)} ·{' '}
@@ -96,7 +99,27 @@ export function SpellsTab({
                       {t('Concentration')}
                     </p>
                   )}
-                  <p className="spell-text">{t(SPELL_TEXT[spell.spellId])}</p>
+                  {spell.ritual && (
+                    <p className="spell-tag">{t('Ritual: no slot, outside a fight')}</p>
+                  )}
+                  {spell.atWill && (
+                    <p className="spell-tag">{t('At will: no slot (an Eldritch Invocation)')}</p>
+                  )}
+                  {sliceSpellText(spell.spellId) !== null && (
+                    <p className="spell-text">{t(sliceSpellText(spell.spellId) ?? '')}</p>
+                  )}
+                  {spell.text?.split('\n').map((paragraph) => (
+                    <p key={paragraph} className="spell-text" lang={spell.textLanguage ?? 'en'}>
+                      {paragraph}
+                    </p>
+                  ))}
+                  {spell.forDm && (
+                    <p className="spell-note">
+                      {spell.forDm === 'effect'
+                        ? t('The DM decides what this spell does.')
+                        : t('The server rolls its dice; the DM applies the rest.')}
+                    </p>
+                  )}
                 </div>
               </li>
             );

@@ -17,7 +17,10 @@ import { counterspellCandidates } from './eligibility.ts';
  * Action) is spent and the window records everything needed to resolve the
  * spell later. Nothing else happens yet: no slot, no effect.
  */
-export type PendingCast = Omit<ReactionTrigger, 'kind' | 'components'> & {
+export type PendingCast = Omit<
+  Extract<ReactionTrigger, { kind: 'spell' }>,
+  'kind' | 'components'
+> & {
   readonly components: readonly SpellComponent[];
 };
 

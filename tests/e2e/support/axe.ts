@@ -40,15 +40,11 @@ function axe(page: Page): AxeBuilder {
 }
 
 /**
- * No serious or critical axe violation, text contrast on its panels, and no sideways scroll.
- * Each state is scanned once by every rule: the contrast rule runs only with the art set aside,
- * where it reaches every text the scan with the art could (a picture or gradient behind a text
- * only ever leaves it unchecked) and the text over the art besides, and any impact fails it.
+ * Every finite animation finished: a panel still fading in is not yet at its colours, nor one
+ * sliding in at its place.
  */
-export async function expectAccessible(page: Page, where: string): Promise<void> {
-  await page.evaluate(() => document.fonts.ready);
-  // A panel still fading in is not yet at its colours: let every finite animation finish.
-  await page.evaluate(() =>
+export const settled = (page: Page) =>
+  page.evaluate(() =>
     Promise.all(
       document
         .getAnimations()
@@ -56,6 +52,16 @@ export async function expectAccessible(page: Page, where: string): Promise<void>
         .map((animation) => animation.finished.catch(() => undefined)),
     ),
   );
+
+/**
+ * No serious or critical axe violation, text contrast on its panels, and no sideways scroll.
+ * Each state is scanned once by every rule: the contrast rule runs only with the art set aside,
+ * where it reaches every text the scan with the art could (a picture or gradient behind a text
+ * only ever leaves it unchecked) and the text over the art besides, and any impact fails it.
+ */
+export async function expectAccessible(page: Page, where: string): Promise<void> {
+  await page.evaluate(() => document.fonts.ready);
+  await settled(page);
   const overflow = await page.evaluate(
     () => document.documentElement.scrollWidth > window.innerWidth,
   );
@@ -66,6 +72,8 @@ export async function expectAccessible(page: Page, where: string): Promise<void>
   );
   expect(listed(blocking), `${where}: serious or critical axe violations`).toEqual([]);
   const flat = await page.addStyleTag({ content: FLAT });
+  // Again: a live update during the first scan (a TV changing what it shows) may have begun one.
+  await settled(page);
   const contrast = await axe(page).withRules(['color-contrast']).analyze();
   await flat.evaluate((node) => {
     node.parentNode?.removeChild(node);

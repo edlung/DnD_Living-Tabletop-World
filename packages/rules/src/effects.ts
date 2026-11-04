@@ -1,4 +1,4 @@
-import type { CharacterSheet } from '@ltw/contracts';
+import { effectiveMaximum, type CharacterSheet } from '@ltw/contracts';
 
 import { d20Test, rollDamage, type D20Result, type DamageRoll } from './d20.ts';
 import type { Dice } from './dice.ts';
@@ -33,9 +33,10 @@ export function resolveFireball(
   return { damage, results };
 }
 
-/** Hit Points never drop below 0 or rise above the maximum. */
+/** Hit Points never drop below 0 or rise above the maximum (as an effect may have lowered it). */
 export function applyHitPointChange(sheet: CharacterSheet, delta: number): CharacterSheet {
-  const current = Math.min(sheet.hitPoints.max, Math.max(0, sheet.hitPoints.current + delta));
+  const ceiling = effectiveMaximum(sheet.hitPoints);
+  const current = Math.min(ceiling, Math.max(0, sheet.hitPoints.current + delta));
   return { ...sheet, hitPoints: { ...sheet.hitPoints, current } };
 }
 

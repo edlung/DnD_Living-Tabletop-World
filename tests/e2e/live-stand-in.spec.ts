@@ -92,6 +92,8 @@ test('the DM skips an absent player’s turn, and the player’s screen follows 
 test('the DM acts as the character with a reason; her screen follows, and the history undoes it', async ({
   browser,
 }) => {
+  // Two screens, two moves and two undos: about 16 s alone, beyond 30 s beside a busy suite.
+  test.slow();
   const campaign = LIVE_CAMPAIGNS.actAs;
   const player = await browser.newPage();
   const dm = await browser.newPage();
@@ -234,7 +236,7 @@ test('the DM’s skip waits for an open reaction window, and the DM answers it f
   await expect(historyEntry(dm, 'Acting as Elowen Starwhisper: Ended the turn')).toContainText(
     'The player is absent',
   );
-  await expect(historyEntry(dm, 'Acting as Seren Ashgrove: Let the spell happen')).toContainText(
+  await expect(historyEntry(dm, 'Acting as Seren Ashgrove: Let it happen')).toContainText(
     'The player is absent',
   );
   await player.close();

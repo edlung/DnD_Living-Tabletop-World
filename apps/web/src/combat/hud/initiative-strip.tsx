@@ -5,6 +5,7 @@ import { useRef } from 'react';
 import { Medallion } from '../../visual/medallion.tsx';
 import { useScrollEdges } from '../../visual/scroll-edges.ts';
 import { HpBar } from '../board/token.tsx';
+import { temporaryWords } from '../hit-point-words.ts';
 import { splitLabel, useCombatantLabels } from '../labels.ts';
 
 /**
@@ -58,7 +59,8 @@ export function InitiativeStrip({
               (entry) => entry.entity.entityId === entityId,
             );
             const acting = entityId === encounter.currentCombatantId;
-            if (!combatant) return null;
+            // An object takes no turn (docs/adr/0048-hit-points.md §5): it is not in the order.
+            if (!combatant || combatant.object) return null;
             // An unnamed combatant's number rides on its portrait; the words wrap beneath.
             const label = labelOf(entityId);
             const { words, number } = splitLabel(label);
@@ -117,6 +119,7 @@ export function InitiativeStrip({
               current: self.hitPoints.current,
               max: self.hitPoints.max,
             })}
+            {temporaryWords(t, self.hitPoints) && ` ${String(temporaryWords(t, self.hitPoints))}`}
           </span>
         )}
         {self && !myTurn && !window && (

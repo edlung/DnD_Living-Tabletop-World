@@ -79,6 +79,16 @@ const items = byName(
   }),
 );
 
+// Pictures by kind (docs/adr/0055-rules-reference-and-toolbox.md §6): a school, a creature type, an
+// item's look; an SRD entry shows its kind's until it has its own.
+const kinds = byName(
+  import.meta.glob<string>('../assets/ui-kit/catalog/kinds/*.webp', {
+    eager: true,
+    query: '?url',
+    import: 'default',
+  }),
+);
+
 /** A white alpha mask; render with `Glyph` (CSS `mask-image` tinted by `currentColor`). */
 export const glyphUrl = (name: GlyphName): string => glyphs.get(name) ?? '';
 export const textureUrl = (name: TextureName): string => textures.get(name) ?? '';
@@ -104,5 +114,21 @@ export function weaponArtUrl(weaponId: WeaponId): string | null {
   return item ? itemArtUrl(item.itemId) : null;
 }
 
+/** A school of magic's picture (`evocation`), for an SRD spell without its own. */
+export const schoolArtUrl = (school: string | undefined): string | null =>
+  school === undefined ? null : (kinds.get(`school-${school}`) ?? null);
+
+/** A creature type's picture (`dragon`), for an SRD stat block in the bestiary. */
+export const creatureTypeArtUrl = (creatureType: string | null): string | null =>
+  creatureType === null ? null : (kinds.get(`type-${creatureType}`) ?? null);
+
+/** An item's picture: its own, else its look's (an SRD entry), else none. */
+export const itemPictureUrl = (catalog: {
+  readonly itemId: string;
+  readonly look: string | null;
+}): string | null =>
+  itemArtUrl(catalog.itemId) ??
+  (catalog.look === null ? null : (kinds.get(`kind-${catalog.look}`) ?? null));
+
 /** Every loaded name per folder, for the completeness test. */
-export const LOADED = { glyphs, textures, ornaments, board, spells, weapons } as const;
+export const LOADED = { glyphs, textures, ornaments, board, spells, weapons, kinds } as const;

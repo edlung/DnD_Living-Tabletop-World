@@ -1,6 +1,7 @@
 import {
   DM_HAND_COMMAND_TYPES,
   FIGHT_CHANGE_COMMAND_TYPES,
+  TOOLBOX_COMMAND_TYPES,
   type DmHandEntry,
   type EntityRef,
 } from '@ltw/contracts';
@@ -13,7 +14,7 @@ import type { CampaignSnapshot, StoredCommand } from '@ltw/domain';
  */
 const HAND_TYPES: ReadonlySet<string> = new Set(
   // A creature handed to a player (ADR 0044 §7) is listed as any other command of the DM's.
-  [...DM_HAND_COMMAND_TYPES, ...FIGHT_CHANGE_COMMAND_TYPES].filter(
+  [...DM_HAND_COMMAND_TYPES, ...FIGHT_CHANGE_COMMAND_TYPES, ...TOOLBOX_COMMAND_TYPES].filter(
     (type) => type !== 'CommandCreature',
   ),
 );
@@ -56,16 +57,34 @@ export function handChange(
         reason: command.reason,
       };
     }
-    case 'SetCondition':
+    case 'SetCondition': {
+      // A save made first that held it off (docs/adr/0050-the-world-around.md §9).
+      const resisted =
+        command.resist !== undefined && !events.some((event) => event.type === 'ConditionApplied');
       return {
         change: {
           kind: 'condition',
           target: ref(command.targetId),
           condition: command.condition,
           applied: command.applied,
+          ...(resisted ? { resisted: true as const } : {}),
         },
         reason: command.reason,
       };
+    }
+    case 'ExposeToHazard': {
+      // Each failed hour a level of Exhaustion (docs/adr/0050-the-world-around.md §8).
+      const failed = events.filter(
+        (event) =>
+          event.type === 'SavingThrowRolled' &&
+          event.payload.purpose === 'hazard' &&
+          !event.payload.success,
+      ).length;
+      return {
+        change: { kind: 'hazard', hazard: command.hazard, hours: command.hours, failed },
+        reason: command.reason,
+      };
+    }
     case 'SetInspiration':
       return {
         change: {
@@ -75,13 +94,55 @@ export function handChange(
         },
         reason: command.reason,
       };
+    case 'SetExhaustion':
+      return {
+        change: { kind: 'exhaustion', target: ref(command.targetId), level: command.level },
+        reason: command.reason,
+      };
+    case 'SetLight':
+      return { change: { kind: 'light', ambient: command.ambient }, reason: null };
+    // The Gameplay Toolbox (docs/adr/0055-rules-reference-and-toolbox.md §4): no reason asked.
+    case 'SpringTrap':
+      return {
+        change: {
+          kind: 'trap',
+          trapId: command.trapId,
+          tier: command.tier,
+          targets: command.targetIds.map(ref),
+        },
+        reason: null,
+      };
+    case 'InflictMentalStress':
+      return {
+        change: {
+          kind: 'mental-stress',
+          targets: command.targetIds.map(ref),
+          dc: command.dc,
+          dice: command.dice,
+        },
+        reason: null,
+      };
+    case 'InfectWithContagion':
+    case 'ContagionCourse':
+      return {
+        change: {
+          kind: 'contagion',
+          target: ref(command.targetId),
+          contagionId: command.contagionId,
+          step: command.type === 'InfectWithContagion' ? 'infect' : command.step,
+        },
+        reason: null,
+      };
     case 'AddCombatant':
+    case 'AddObject':
     case 'RemoveCombatant':
     case 'DelayTurn':
     case 'SetInitiative': {
       const recorded = events.find((event) => event.type === 'CombatOrderChanged');
       if (recorded?.type !== 'CombatOrderChanged') return null;
       const { change, entityId, combatants } = recorded.payload;
+      // A mount taking its rider's place is the rider's move, not the DM's hand (ADR 0049 §10).
+      if (change === 'mounted') return null;
       const total =
         change === 'initiative'
           ? (combatants.find((c) => c.entityId === entityId)?.initiative.total ?? null)

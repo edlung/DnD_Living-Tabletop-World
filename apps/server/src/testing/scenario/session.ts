@@ -32,6 +32,7 @@ import {
   ravenfordApp,
   testAuthoring,
 } from '../ravenford-app.ts';
+import { characterBuilder } from '../../characters/builder-port.ts';
 
 /**
  * Test support (excluded from builds): one Ravenford session over the real
@@ -108,6 +109,7 @@ export class RavenfordSession {
       clock: new SteppingClock(),
       checks: skillCheckPort(options.dice ?? scriptedDice(Array<number>(80).fill(15))),
       combat: createCombatEngine(),
+      characters: characterBuilder,
       entropy: options.entropy ?? MIDDLE_ENTROPY,
     });
     const script = options.script ?? EN_SCRIPT;

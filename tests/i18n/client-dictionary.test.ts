@@ -4,7 +4,12 @@ import {
   CONTEXT_ILLEGAL_REASONS,
   type ContextAction,
 } from '../../packages/contracts/src/index.ts';
-import { russianEntry, type Translate } from '../../packages/ui/src/index.ts';
+import {
+  russianConflicts,
+  russianEntry,
+  translate,
+  type Translate,
+} from '../../packages/ui/src/index.ts';
 import { describe, expect, it } from 'vitest';
 
 import {
@@ -31,12 +36,20 @@ import '../../apps/web/src/i18n/ru-character.ts';
 import '../../apps/web/src/i18n/ru-dice.ts';
 import '../../apps/web/src/i18n/ru-inventory.ts';
 import '../../apps/web/src/i18n/ru-rest.ts';
+import '../../apps/web/src/i18n/ru-rules.ts';
 import '../../apps/web/src/i18n/ru-accounts.ts';
 import '../../apps/web/src/i18n/ru-display.ts';
 import '../../apps/web/src/i18n/ru-dm-screen.ts';
 import '../../apps/web/src/i18n/ru-chat.ts';
 import '../../apps/web/src/i18n/ru-guide.ts';
 import '../../apps/web/src/i18n/ru-companion.ts';
+import '../../apps/web/src/i18n/ru-conditions.ts';
+import '../../apps/web/src/i18n/ru-weapons.ts';
+import '../../apps/web/src/i18n/ru-hit-points.ts';
+import '../../apps/web/src/i18n/ru-space.ts';
+import '../../apps/web/src/i18n/ru-builder.ts';
+import '../../apps/web/src/i18n/ru-features.ts';
+import '../../apps/web/src/i18n/ru-summons.ts';
 import '../../apps/web/src/i18n/ru-native.ts';
 
 /**
@@ -49,6 +62,12 @@ const placeholders = (text: string) =>
   [...new Set([...text.matchAll(/\{(\w+)\}/g)].map((m) => m[1]))].sort();
 
 describe('the Russian client dictionary', () => {
+  it('never gives one key two different Russian words', () => {
+    // A key is one English string: two meanings ("Ready" in the lobby and the Ready action) need
+    // two keys, or the file loaded later overwrites the other screen's word.
+    expect(russianConflicts()).toEqual([]);
+  });
+
   const unique = clientKeys();
 
   it('finds the strings the client shows', () => {
@@ -83,5 +102,13 @@ describe('the Russian client dictionary', () => {
       const russian = russianEntry(key);
       if (russian !== undefined) expect(placeholders(russian), key).toEqual(placeholders(key));
     }
+  });
+
+  it('writes a fraction as the language does', () => {
+    // "0.5 фунт." once showed on a Russian potion (Stage 650d): Russian writes "0,5".
+    expect(translate('en', '{weight} lb', { weight: 0.5 })).toBe('0.5 lb');
+    expect(translate('ru', '{weight} lb', { weight: 0.5 })).toBe('0,5 фунт.');
+    expect(translate('ru', '{count} p', { count: 0.2 })).toBe('0,2 п.');
+    expect(translate('ru', '{weight} lb', { weight: 1250 })).toBe('1250 фунт.');
   });
 });

@@ -1,6 +1,7 @@
 import { expect as baseExpect, test, type Page } from '@playwright/test';
 
 import { expectAccessible, WIDTHS } from './support/axe.ts';
+import { takeWizardLevel } from './support/levels.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
 import { openCharacter, openSheet } from './support/shell.ts';
 
@@ -8,9 +9,9 @@ import { openCharacter, openSheet } from './support/shell.ts';
 const expect = baseExpect.configure({ timeout: 15_000 });
 
 /**
- * Rests, Hit Point Dice, milestone levels and the quest log (Stage 530, work-orders/STAGE_530.md):
- * the DM calls a rest from Time and weather, the player spends a Hit Point Die the server rolls, the
- * DM grants a level; the Journal tells the party's quest. Elowen starts each campaign at 30 of 78
+ * Rests, Hit Point Dice, levels and the quest log (Stage 530, work-orders/STAGE_530.md): the DM
+ * calls a rest from Time and weather, the player spends a Hit Point Die the server rolls, the DM
+ * takes a level for a character (Stage 660); the Journal tells the party's quest. Elowen starts each campaign at 30 of 78
  * hit points (`ui-rest-campaigns.ts`); each journey owns its campaign.
  */
 const CAMPAIGNS = {
@@ -19,6 +20,8 @@ const CAMPAIGNS = {
   ru: 'ui-rest-ru',
   axe: 'ui-rest-axe',
   notice: 'ui-rest-notice',
+  cut: 'ui-rest-cut',
+  hazard: 'ui-rest-hazard',
 } as const;
 
 const banner = (page: Page) => page.locator('.rest-banner');
@@ -80,7 +83,7 @@ test('the DM’s short rest lets the player spend a Hit Point Die the server rol
   ).toBeVisible();
 });
 
-test('a long rest restores Elowen, and the DM grants a level the rules compute', async ({
+test('a long rest restores Elowen, and the DM takes a level for her by the rules', async ({
   page,
 }) => {
   await enterWorld(page, TOKENS.dm, CAMPAIGNS.long);
@@ -92,14 +95,59 @@ test('a long rest restores Elowen, and the DM grants a level the rules compute',
   await page.getByRole('button', { name: 'Full character sheet' }).click();
   const dialog = await openCharacter(page, 'Overview');
   await hitPoints(page, 78, 78);
-  await dialog
-    .getByRole('combobox', { name: 'Class to level' })
-    .selectOption({ label: 'Wizard 8 → 9' });
-  await dialog.getByRole('button', { name: 'Grant a level' }).click();
-  await dialog.getByRole('button', { name: 'Grant Wizard 8 → 9' }).click();
-  await expect(page.getByRole('dialog').getByText('A new level is granted.')).toBeVisible();
+  await takeWizardLevel(page, dialog);
   await hitPoints(page, 84, 84);
   await expect(page.getByRole('dialog').getByText('Level 16', { exact: true })).toBeVisible();
+});
+
+test('a long rest cut short is a short rest; a second one the same day restores no one', async ({
+  page,
+}) => {
+  // docs/adr/0050-the-world-around.md §5–6.
+  await enterWorld(page, TOKENS.dm, CAMPAIGNS.cut);
+  await openSheet(page, 'Time and weather');
+  const time = page.locator('#sheet-time');
+  await time.getByText('The long rest was cut short').click();
+  await time.getByRole('combobox', { name: 'Hours rested' }).selectOption('3');
+  await time.getByRole('button', { name: 'Cut short after 3 h' }).click();
+  await expect(
+    page.getByText('The long rest is cut short after 3 h', { exact: false }),
+  ).toBeVisible();
+  await expect(banner(page)).toContainText('Short rest: the players spend Hit Point Dice.');
+  await expect(time).toContainText('Day 1 · 13:00');
+  await banner(page).getByRole('button', { name: 'End the short rest' }).click();
+  await expect(banner(page)).toHaveCount(0);
+  // A full long rest now, then another the same day: the second restores no one.
+  await time.getByRole('button', { name: 'Long rest (8 hours)' }).click();
+  await expect(page.getByText('The party rests eight hours', { exact: false })).toBeVisible();
+  await time.getByRole('button', { name: 'Long rest (8 hours)' }).click();
+  await expect(
+    page.getByText('Elowen Starwhisper had a long rest less than 24 hours ago: nothing restored.', {
+      exact: false,
+    }),
+  ).toBeVisible();
+  await expectAccessible(page, 'the DM’s rests with a rest cut short');
+});
+
+test('the DM exposes the party to extreme cold, and the history keeps the failed saves', async ({
+  page,
+}) => {
+  // docs/adr/0050-the-world-around.md §8.
+  await enterWorld(page, TOKENS.dm, CAMPAIGNS.hazard);
+  await openSheet(page, 'Time and weather');
+  const hazards = page.locator('#sheet-time').getByRole('region', { name: 'Hazards of the road' });
+  await hazards.getByRole('combobox', { name: 'Hazard' }).selectOption('cold');
+  await hazards.getByRole('combobox', { name: 'Hours' }).selectOption('2');
+  const answer = page.waitForResponse(
+    (response) =>
+      new URL(response.url()).pathname.endsWith('/commands') &&
+      response.request().method() === 'POST',
+  );
+  await hazards.getByRole('button', { name: 'Expose the party for 2 h' }).click();
+  expect((await (await answer).json()) as { status: string }).toMatchObject({ status: 'accepted' });
+  await openSheet(page, 'History');
+  await expect(page.getByText(/Extreme cold for 2 h: \d+ saves failed/).first()).toBeVisible();
+  await expectAccessible(page, 'the DM history with a hazard');
 });
 
 test('the Journal tells the party’s quest as it lived it', async ({ page }) => {

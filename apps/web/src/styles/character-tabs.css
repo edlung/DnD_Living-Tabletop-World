@@ -168,6 +168,13 @@
   height: 100%;
   object-fit: cover;
 }
+.spell-art .glyph {
+  display: block;
+  width: 40px;
+  height: 40px;
+  margin: 15px;
+  color: var(--magic);
+}
 .spell-body h4 {
   margin: 0;
   color: var(--gold-bright);
@@ -193,6 +200,19 @@
 .spell-tag .glyph {
   width: 14px;
   height: 14px;
+}
+/* What the server leaves to the DM (docs/adr/0052-spells-as-data.md §2). */
+.spell-note {
+  margin: 6px 0 0;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-style: italic;
+}
+.spell-text + .spell-text {
+  margin-top: 6px;
+}
+.spell-body .spell-text {
+  max-width: 70ch;
 }
 
 /* Below 900 px the card becomes a band above the tabs */
@@ -233,7 +253,8 @@
   }
   .hero-hp,
   .hero-vitals,
-  .hero-states {
+  .hero-states,
+  .hero-state-effects {
     grid-column: 1 / -1;
   }
   .hero-vitals {
@@ -325,6 +346,17 @@
     grid-column: 2;
   }
 }
+/*
+ * The smallest phones: four tabs share the row by their words, which a quarter each did not hold
+ * in Russian ("Заклинания", "Снаряжение" ran into each other at 320 px).
+ */
+@media (max-width: 359px) {
+  .hero-tab {
+    flex: 1 1 auto;
+    padding: 8px 2px;
+    font-size: 0.9rem;
+  }
+}
 
 /* Rolls from the sheet (Stage 510): the die glyph beside a skill, Check and Save under an ability */
 .roll-button {
@@ -356,4 +388,25 @@
   justify-content: center;
   gap: 6px;
   margin-top: 4px;
+}
+
+/* Origin, feats, tools and languages beside the skills (docs/adr/0056-…md §2) */
+.hero-proficiencies {
+  margin-top: 0;
+}
+.hero-proficiencies dl {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+.hero-proficiencies dl > div {
+  display: grid;
+  grid-template-columns: minmax(0, 8rem) minmax(0, 1fr);
+  gap: 12px;
+}
+.hero-proficiencies dt {
+  color: var(--text-muted);
+}
+.hero-proficiencies dd {
+  margin: 0;
 }

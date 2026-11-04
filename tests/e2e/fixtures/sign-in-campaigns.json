@@ -19,5 +19,7 @@
   "dockRu": "ui-signin-dock-ru",
   "online": "ui-signin-online",
   "characters": "ui-signin-characters",
+  "builder": "ui-signin-builder",
+  "builderRu": "ui-signin-builder-ru",
   "native": "ui-signin-native"
 }

@@ -20,6 +20,7 @@ const RUSSIAN: ReadonlySet<string> = new Set([
   campaigns.russian,
   campaigns.a11yRu,
   campaigns.dockRu,
+  campaigns.builderRu,
 ]);
 const SCANNED: ReadonlySet<string> = new Set([campaigns.a11y, campaigns.a11yRu]);
 

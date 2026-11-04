@@ -1,0 +1,189 @@
+/* The class features on the character's Overview (character/feature-section.tsx, ADR 0056 §4). */
+.feature-list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.feature-row {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  align-items: start;
+  gap: 8px 12px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  background: var(--glass-soft);
+}
+.feature-row > .glyph {
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  color: var(--gold);
+}
+.feature-main {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+.feature-name {
+  color: var(--gold-bright);
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+}
+.feature-left {
+  color: var(--text);
+}
+.feature-note {
+  max-width: 65ch;
+  margin: 2px 0 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+/* The way to use it, under its words, in line with them. */
+.feature-row > .feature-actions,
+.feature-row > .feature-form {
+  grid-column: 2;
+}
+.feature-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.feature-actions button {
+  min-height: 32px;
+}
+.feature-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+  align-items: end;
+  gap: 8px 12px;
+}
+.feature-form > .feature-actions,
+.feature-form > .feature-slots {
+  grid-column: 1 / -1;
+}
+.feature-field {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+.feature-field select,
+.feature-field input {
+  width: 100%;
+  min-width: 0;
+}
+.feature-slots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  min-inline-size: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.feature-slots legend {
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+.feature-slots label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 32px;
+}
+.feature-slots p {
+  flex-basis: 100%;
+  margin: 0;
+}
+/* A Bardic Inspiration die held. */
+.feature-held {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin: 0 0 8px;
+}
+.feature-held > .glyph {
+  width: 20px;
+  height: 20px;
+  color: var(--gold);
+}
+.feature-held > span {
+  flex: 1 1 16rem;
+}
+/* Every feature's words, on demand: each summary keeps a chevron that turns when it opens. */
+.feature-words {
+  margin-top: 12px;
+}
+.feature-words > summary,
+.feature-word-list summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 8px;
+  min-height: 32px;
+  padding: 4px 0;
+  cursor: pointer;
+  list-style: none;
+}
+.feature-words > summary {
+  color: var(--gold-bright);
+}
+.feature-words summary::-webkit-details-marker {
+  display: none;
+}
+.feature-words summary::before {
+  content: '';
+  flex: none;
+  align-self: center;
+  width: 0.5em;
+  height: 0.5em;
+  margin-right: 4px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(-45deg);
+  transition: transform 150ms ease;
+}
+.feature-words details[open] > summary::before,
+.feature-words[open] > summary::before {
+  transform: rotate(45deg);
+}
+@media (prefers-reduced-motion: reduce) {
+  .feature-words summary::before {
+    transition: none;
+  }
+}
+.feature-word-list {
+  display: grid;
+  gap: 4px;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.feature-word-list > li {
+  padding: 0 8px;
+  border-left: 2px solid var(--line);
+}
+.feature-chosen h4 {
+  margin: 8px 0 4px;
+  font-size: 1rem;
+}
+/* What the World Engine applies on its own: a short list above the resources. */
+.feature-applied {
+  margin: 0 0 12px;
+}
+.feature-applied h4 {
+  margin: 0 0 4px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.feature-applied ul {
+  display: grid;
+  gap: 4px;
+  max-width: 65ch;
+  margin: 0;
+  padding-left: 1.25rem;
+}

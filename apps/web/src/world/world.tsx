@@ -1,7 +1,6 @@
 import type { EntityKind, EntityRef, PlayerOutcome, Weather } from '@ltw/contracts';
 import { StatusPanel, useT } from '@ltw/ui';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { createPortal } from 'react-dom';
 
 import type { WorldApi } from '../api/client.ts';
 import { useLiveTarget } from '../api/live-context.ts';
@@ -25,8 +24,10 @@ import { ApprovedImages } from '../visual/approved-images.ts';
 import { WIDE } from '../combat/board/board-view.ts';
 import { Backdrop } from './backdrop.tsx';
 import { CombatStage } from './combat-stage.tsx';
+import { DetailPanel } from './detail-panel.tsx';
 import { EntityDetails } from './entity-details.tsx';
 import { recipientsOf } from '../items/recipients.ts';
+import { RulesSheet } from '../rules/rules-sheet.tsx';
 import { useFightTakesStage } from './use-fight-takes-stage.ts';
 import { WorldOverlays } from './world-overlays.tsx';
 import { DicePanel } from '../dice/dice-panel.tsx';
@@ -37,6 +38,7 @@ import { JournalSheet } from './journal-sheet.tsx';
 import { PartyRail } from './party-rail.tsx';
 import { PlacesSheet } from './places-sheet.tsx';
 import { Scene } from './scene.tsx';
+import { SessionTitle } from './session-title.tsx';
 import { UndoneNotice } from './undone-notice.tsx';
 import { useScene, useWorldData } from './use-world-data.ts';
 
@@ -269,12 +271,7 @@ export function World({
           className={`world-main${selected ? ' has-details' : ''}${battlefield ? ' has-battle' : ''}`}
           tabIndex={-1}
         >
-          {sessionSlot &&
-            data &&
-            createPortal(
-              <span>{openSession?.title ?? t('No open play session')}</span>,
-              sessionSlot,
-            )}
+          <SessionTitle slot={data ? sessionSlot : null} title={openSession?.title} />
           <div
             className={`stage${battlefield ? ' stage--battle' : ''}${speaking ? ' stage--talking' : ''}`}
           >
@@ -388,6 +385,7 @@ export function World({
               shell={shell}
               characters={directory.filter((entity) => entity.kind === 'character')}
             />
+            <RulesSheet shell={shell} isDm={isDm} />
             {isDm && (
               <DmSheets
                 api={api}
@@ -447,12 +445,10 @@ export function World({
             onRun={run}
             outcome={outcome}
           />
-          <aside
-            ref={details}
-            className="detail-panel"
-            aria-label={t('Entity details')}
-            tabIndex={-1}
+          <DetailPanel
+            panelRef={details}
             hidden={!selected}
+            contentKey={`${shown?.entityId ?? ''}|${String(revision)}`}
           >
             {shown && data && (
               <EntityDetails
@@ -492,7 +488,7 @@ export function World({
                 }
               />
             )}
-          </aside>
+          </DetailPanel>
         </main>
       </WorldPictures>
     </DiceTableProvider>

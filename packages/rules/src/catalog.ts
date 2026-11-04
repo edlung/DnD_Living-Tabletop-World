@@ -74,11 +74,53 @@ export const SPELLS: Readonly<Record<SpellId, SpellDefinition>> = {
     concentration: false,
     needsVisibleTarget: true,
   },
+  // Reactions (docs/adr/0046-reactions-beyond-counterspell.md §3–4).
+  shield: {
+    spellId: 'shield',
+    level: 1,
+    castingTime: 'reaction',
+    range: 'self',
+    components: ['V', 'S'],
+    concentration: false,
+    needsVisibleTarget: false,
+  },
+  'hellish-rebuke': {
+    spellId: 'hellish-rebuke',
+    level: 1,
+    castingTime: 'reaction',
+    range: 60,
+    components: ['V', 'S'],
+    concentration: false,
+    needsVisibleTarget: true,
+  },
+  // A fall slowed (docs/adr/0049-space-and-movement.md §8).
+  'feather-fall': {
+    spellId: 'feather-fall',
+    level: 1,
+    castingTime: 'reaction',
+    range: 60,
+    components: ['V', 'M'],
+    concentration: false,
+    needsVisibleTarget: true,
+  },
 };
+
+/** Feather Fall: up to five falling creatures within 60 ft land on their feet, unharmed. */
+export const FEATHER_FALL = { rangeFt: 60, creatures: 5 } as const;
+
+/** Shield's bonus to Armor Class until the start of the caster's next turn (ADR 0046 §3). */
+export const SHIELD_AC_BONUS = 5;
+/** Hellish Rebuke: 2d10 Fire, 1d10 more for each slot level above 1, a Dexterity save for half. */
+export const HELLISH_REBUKE_DICE = { count: 2, sides: 10, perLevel: 1 } as const;
+
+/** Uncanny Dodge (Rogue 5): a Reaction halves an attack's damage against the rogue (ADR 0046 §3). */
+export const hasUncannyDodge = (sheet: {
+  readonly classes: readonly { readonly classId: string; readonly level: number }[];
+}): boolean => sheet.classes.some((entry) => entry.classId === 'rogue' && entry.level >= 5);
 
 export const MISTY_STEP_DISTANCE_FT = 30;
 export const FIREBALL_RADIUS_FT = 20;
 /** Detect Magic senses magic within 30 ft (ADR 0011). */
 export const DETECT_MAGIC_RADIUS_FT = 30;
 
-export { WEAPONS, type WeaponDefinition, type WeaponProperty } from './weapons.ts';
+export { WEAPONS, hasProperty, type WeaponDefinition, type WeaponProperty } from './weapons.ts';

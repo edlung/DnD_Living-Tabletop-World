@@ -10,13 +10,17 @@ import tseslint from 'typescript-eslint';
 /**
  * Module boundaries come from workspace-boundaries.json so ESLint and
  * tests/architecture/ enforce the same dependency graph.
- * @typedef {{ path: string, mayDependOn: string[], forbiddenGroups: string[], forbiddenNames?: Record<string, string[]> }} PackageRule
+ * @typedef {{ path: string, mayDependOn: string[], forbiddenGroups: string[], forbiddenNames?: Record<string, string[]>, entryPoints?: Record<string, string>, browser?: boolean }} PackageRule
  * @typedef {{ moduleGroups: Record<string, string[]>, packages: Record<string, PackageRule> }} Boundaries
  */
 const boundaries = /** @type {Boundaries} */ (
   JSON.parse(readFileSync(new URL('./workspace-boundaries.json', import.meta.url), 'utf8'))
 );
 const workspacePackages = Object.keys(boundaries.packages);
+/** The further public entry points ("@ltw/contracts/srd-items"): for server-side packages only. */
+const furtherEntryPoints = Object.entries(boundaries.packages).flatMap(([name, rule]) =>
+  Object.keys(rule.entryPoints ?? {}).map((subpath) => `${name}/${subpath.replace(/^\.\//, '')}`),
+);
 
 const boundaryConfigs = Object.entries(boundaries.packages).flatMap(([name, rule]) => {
   const disallowedWorkspace = workspacePackages.filter(
@@ -24,8 +28,10 @@ const boundaryConfigs = Object.entries(boundaries.packages).flatMap(([name, rule
   );
   const patterns = [
     {
-      group: ['@ltw/*/*'],
-      message: 'Import workspace packages through their public entry point only.',
+      group: ['@ltw/*/*', ...(rule.browser ? [] : furtherEntryPoints.map((entry) => `!${entry}`))],
+      message: rule.browser
+        ? 'Import workspace packages through their main entry point only: the further ones hold server-side data the browser must not carry.'
+        : 'Import workspace packages through their public entry points only.',
     },
     ...(disallowedWorkspace.length > 0
       ? [

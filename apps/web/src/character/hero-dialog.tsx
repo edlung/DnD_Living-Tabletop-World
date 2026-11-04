@@ -22,6 +22,7 @@ import { usePortrait } from '../world/use-portrait.ts';
 import { useRereadOn } from '../world/use-world-data.ts';
 import { CharacterCard } from './character-card.tsx';
 import { OverviewTab } from './overview-tab.tsx';
+import { PrintSection } from './print-sheet.tsx';
 import { SkillsTab } from './skills-tab.tsx';
 import { SpellsTab } from './spells-tab.tsx';
 
@@ -30,6 +31,10 @@ export type OverviewSections = (shown: {
   readonly entityId: string;
   readonly sheet: CharacterSheet;
   readonly derived: CharacterDerived;
+  /** Reads the sheet again: a change made here shows without waiting for the live signal. */
+  readonly reread: () => void;
+  /** The portrait its player asked for, while the DM has not requested it (ADR 0056 §5). */
+  readonly portraitWish: string | null;
 }) => ReactNode;
 
 const TABS: readonly { readonly id: HeroTab; readonly label: string }[] = [
@@ -261,12 +266,22 @@ function HeroContent({
               {!value.derived ? (
                 <StatusPanel state="empty" label={t('No character sheet is recorded here.')} />
               ) : tab === 'overview' ? (
-                <OverviewTab
-                  entityId={entityId}
-                  sheet={value.sheet}
-                  derived={value.derived}
-                  table={overview?.({ entityId, sheet: value.sheet, derived: value.derived })}
-                />
+                <>
+                  <OverviewTab
+                    entityId={entityId}
+                    sheet={value.sheet}
+                    derived={value.derived}
+                    table={overview?.({
+                      entityId,
+                      sheet: value.sheet,
+                      derived: value.derived,
+                      reread,
+                      portraitWish: value.portraitWish ?? null,
+                    })}
+                  />
+                  {/* The sheet on paper (docs/adr/0056-characters-from-the-srd.md §5). */}
+                  <PrintSection api={api} entityId={entityId} value={value} />
+                </>
               ) : tab === 'skills' ? (
                 <SkillsTab entityId={entityId} derived={value.derived} />
               ) : tab === 'spells' ? (

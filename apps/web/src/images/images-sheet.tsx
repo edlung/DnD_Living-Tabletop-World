@@ -8,6 +8,7 @@ import { useFocusRecovery } from './focus-recovery.ts';
 import { CandidateCard, RequestRow, type Context } from './image-cards.tsx';
 import { ImagesResult } from './images-result.tsx';
 import { pendingWork } from './lineage.ts';
+import { PortraitWishes } from './portrait-wishes.tsx';
 
 /**
  * The DM's Images sheet (docs/STAGE_330_DESIGN.md "DM controls"): every entity with pictures
@@ -39,6 +40,8 @@ export function ImagesSheet({
         )}
       </p>
       <ImagesResult place="sheet" />
+      {/* What players asked for comes first: nothing is made until the DM asks (ADR 0056 §5). */}
+      {lineage && <PortraitWishes images={images} lineage={lineage} directory={directory} />}
       {!lineage ? (
         <StatusPanel
           state={images.lineage.status === 'error' ? 'error' : 'loading'}
@@ -48,10 +51,12 @@ export function ImagesSheet({
           onRetry={images.retryRead}
         />
       ) : work.length === 0 ? (
-        <StatusPanel
-          state="empty"
-          label={t('Nothing is waiting for you: no candidates and no requests in progress.')}
-        />
+        lineage.wishes.length === 0 && (
+          <StatusPanel
+            state="empty"
+            label={t('Nothing is waiting for you: no candidates and no requests in progress.')}
+          />
+        )
       ) : (
         <ul className="images-work">
           {work.map(({ entityId, images: mine }) => {

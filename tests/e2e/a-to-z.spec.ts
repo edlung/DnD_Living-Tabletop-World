@@ -13,6 +13,7 @@ import {
   entityDetails,
   travelTo,
 } from './support/investigation.ts';
+import { takeWizardLevel } from './support/levels.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
 import { chooseLocation, closeSheet, openCharacter, openSheet } from './support/shell.ts';
 
@@ -113,7 +114,7 @@ test('the Missing Caravan from the sign-in to its ending, with dice, a rest and 
   }
   await closeSheet(player, 'Journal');
 
-  // A long rest, then a milestone level from the DM; the player's sheet follows.
+  // A long rest, then a level the DM takes for her; the player's sheet follows.
   await openSheet(dm, 'Time and weather');
   await dm.locator('#sheet-time').getByRole('button', { name: 'Long rest (8 hours)' }).click();
   await expect(dm.getByText('The party rests eight hours', { exact: false })).toBeVisible();
@@ -121,15 +122,13 @@ test('the Missing Caravan from the sign-in to its ending, with dice, a rest and 
   await dm.locator('.rail-member').filter({ hasText: 'Elowen Starwhisper' }).click();
   await dm.getByRole('button', { name: 'Full character sheet' }).click();
   const sheet = await openCharacter(dm, 'Overview');
-  await sheet.getByRole('combobox', { name: 'Class to level' }).selectOption({
-    label: 'Wizard 8 → 9',
-  });
-  await sheet.getByRole('button', { name: 'Grant a level' }).click();
-  await sheet.getByRole('button', { name: 'Grant Wizard 8 → 9' }).click();
+  await takeWizardLevel(dm, sheet);
   await expect(dm.getByRole('dialog').getByText('Level 16', { exact: true })).toBeVisible();
   const own = await openCharacter(player, 'Overview');
   await expect(player.getByRole('dialog').getByText('Level 16', { exact: true })).toBeVisible({
     timeout: 15_000,
   });
-  await expect(own.getByText('Wizard 8 → 9')).toHaveCount(0);
+  // Only the DM grants a level; she has no experience for the next one yet.
+  await expect(own.getByRole('button', { name: 'Grant a level to take' })).toHaveCount(0);
+  await expect(own.getByRole('button', { name: /^Take level/ })).toHaveCount(0);
 });

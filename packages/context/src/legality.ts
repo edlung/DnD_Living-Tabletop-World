@@ -5,6 +5,7 @@ import type {
   ContextHint,
   ContextIllegalReason,
   SpellId,
+  WeaponMastery,
 } from '@ltw/contracts';
 import {
   SPELLS,
@@ -33,6 +34,8 @@ export interface Verdict {
   readonly hints?: readonly ContextHint[];
   /** Area spells: the combatants affected (ADR 0015 §6). */
   readonly area?: readonly ContextEntityRef[];
+  /** A weapon attack's mastery, as the actor uses it (docs/adr/0047-weapons.md §2). */
+  readonly mastery?: WeaponMastery;
 }
 
 export const LEGAL: Verdict = { legal: true };

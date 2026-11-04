@@ -1,3 +1,6 @@
+import type { Hazard, LightLevel } from '../combat/commands.ts';
+import type { ContagionStep, TrapId } from '../combat/toolbox.ts';
+import type { ContagionId } from '../rules/contagions.ts';
 import { z } from 'zod';
 
 import type { PlayerCommandType } from '../investigation/commands.ts';
@@ -6,6 +9,7 @@ import type { KernelCommandOf, KernelCommandType } from '../kernel/commands.ts';
 import type { RejectionCode } from '../kernel/results.ts';
 import type { EntityRef } from '../knowledge/views.ts';
 import type { Weather } from '../visual/commands.ts';
+import type { CampaignOptions } from '../campaign/options.ts';
 
 /**
  * The DM's table tools of the live session (docs/adr/0033-live-session.md §6–7;
@@ -106,8 +110,9 @@ export interface DmSubstitutionEntry extends DmHistoryCommon {
 }
 
 /**
- * A world-time or weather change the DM made at the table (`AdvanceWorldTime`, `SetWeather`),
- * as the World Engine recorded it; undone as `UndoCommand` (owner decision SI-D4, 2026-10-28).
+ * A world-time or weather change the DM made at the table (`AdvanceWorldTime`, `SetWeather`), or
+ * the campaign's options (`SetCampaignOptions`), as the World Engine recorded it; undone as
+ * `UndoCommand` (owner decision SI-D4, 2026-10-28).
  */
 export interface DmWorldEntry extends DmHistoryCommon {
   readonly kind: 'world';
@@ -119,7 +124,8 @@ export interface DmWorldEntry extends DmHistoryCommon {
         /** Null when the place had no weather of its own before. */
         readonly from: Weather | null;
         readonly to: Weather;
-      };
+      }
+    | { readonly kind: 'options'; readonly from: CampaignOptions; readonly to: CampaignOptions };
 }
 
 /**
@@ -133,7 +139,8 @@ export interface DmHandEntry extends DmHistoryCommon {
     | {
         readonly kind: 'hit-points';
         readonly target: EntityRef;
-        readonly change: 'damage' | 'healing';
+        /** Temporary hit points given, or the maximum lowered (docs/adr/0048-hit-points.md). */
+        readonly change: 'damage' | 'healing' | 'temporary' | 'reduce-maximum';
         readonly amount: number;
         readonly damageType: string | null;
         readonly hpBefore: number;
@@ -144,8 +151,12 @@ export interface DmHandEntry extends DmHistoryCommon {
         readonly target: EntityRef;
         readonly condition: string;
         readonly applied: boolean;
+        /** Its save made first held it off (docs/adr/0050-the-world-around.md §9). */
+        readonly resisted?: true;
       }
     | { readonly kind: 'inspiration'; readonly target: EntityRef; readonly inspired: boolean }
+    /** Exhaustion's level set (docs/adr/0045-conditions-and-actions.md §3); 0 lifted it. */
+    | { readonly kind: 'exhaustion'; readonly target: EntityRef; readonly level: number }
     | {
         readonly kind: 'ruling';
         readonly summary: string;
@@ -157,6 +168,37 @@ export interface DmHandEntry extends DmHistoryCommon {
         readonly change: 'joined' | 'left' | 'delayed' | 'initiative';
         readonly combatant: EntityRef;
         readonly total: number | null;
+      }
+    /** The fight's light set (docs/adr/0050-the-world-around.md §1). */
+    | { readonly kind: 'light'; readonly ambient: LightLevel }
+    /** The party exposed to the cold or the heat; how many hourly saves failed (§8). */
+    | {
+        readonly kind: 'hazard';
+        readonly hazard: Hazard;
+        readonly hours: number;
+        readonly failed: number;
+      }
+    /**
+     * The Gameplay Toolbox (docs/adr/0055-rules-reference-and-toolbox.md §4): a trap sprung on
+     * those it caught, at a tier; mental stress; a contagion given, or a step of its course.
+     */
+    | {
+        readonly kind: 'trap';
+        readonly trapId: TrapId;
+        readonly tier: number;
+        readonly targets: readonly EntityRef[];
+      }
+    | {
+        readonly kind: 'mental-stress';
+        readonly targets: readonly EntityRef[];
+        readonly dc: number;
+        readonly dice: number;
+      }
+    | {
+        readonly kind: 'contagion';
+        readonly target: EntityRef;
+        readonly contagionId: ContagionId;
+        readonly step: 'infect' | ContagionStep;
       };
   /** The DM's reason; null for a change of the fight that takes none. */
   readonly reason: string | null;

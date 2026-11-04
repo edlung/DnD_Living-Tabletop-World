@@ -1,6 +1,7 @@
 import {
   FRESH_TURN,
   accept,
+  possessionOf,
   reject,
   type CombatCommand,
   type CombatantRecord,
@@ -8,12 +9,17 @@ import {
   type DecisionContext,
   type Dice,
   type DraftEvent,
+  type EncounterState,
+  type WorldState,
 } from '@ltw/domain';
-import { initiativeOrder } from '@ltw/rules';
+import { initiativeOrder, squaresOf } from '@ltw/rules';
 
-import { combatantEvent, encounterOf, isAlive } from './battlefield.ts';
+import { encounterOf, isAlive } from './battlefield.ts';
+import { FightWork, fightEnded } from './condition-details.ts';
+import { isObject } from './objects.ts';
+import { withSummoners } from './summons.ts';
 import { firstTurn } from './turns.ts';
-import { dexterity, initiativeModifier, vitalsEvent, vitalsOf, withConditions } from './vitals.ts';
+import { dexterity, rollInitiative, sizeOf, vitalsOf, withConditions } from './vitals.ts';
 
 /**
  * Starting and ending an encounter (docs/adr/0015-combat-engine.md §1–2).
@@ -41,14 +47,22 @@ export function decideStartCombat(
   const { battlefield } = command;
   const inside = (s: { x: number; y: number }) =>
     s.x < battlefield.width && s.y < battlefield.height;
-  if (![...battlefield.difficult, ...battlefield.cover].every(inside)) {
+  const walls = new Set((battlefield.walls ?? []).map(key));
+  const terrain = [
+    ...battlefield.difficult,
+    ...battlefield.cover,
+    ...(battlefield.walls ?? []),
+    ...(battlefield.water ?? []),
+    ...(battlefield.ground ?? []),
+  ];
+  if (!terrain.every(inside)) {
     return invalid('Terrain lies outside the battlefield');
   }
   const ids = command.combatants.map((c) => c.entityId);
   if (new Set(ids).size !== ids.length) return invalid('Each combatant may appear once');
-  if (new Set(command.combatants.map((c) => key(c.position))).size !== ids.length) {
-    return invalid('Two combatants cannot share a square');
-  }
+  // Each one's whole space on the field and clear of walls, none sharing another's — Tiny with
+  // Tiny apart (docs/adr/0049-space-and-movement.md §1).
+  const taken = new Map<string, boolean>();
   const entries = [];
   for (const combatant of command.combatants) {
     const entity = state.entities.get(combatant.entityId);
@@ -56,11 +70,21 @@ export function decideStartCombat(
       return invalid('Combatants must exist and be alive');
     if (entity.placement?.locationId !== command.locationId)
       return invalid('Combatants must be at the location');
-    if (!inside(combatant.position)) return invalid('A combatant stands outside the battlefield');
     const vitals = vitalsOf(state, combatant.entityId);
     if (!vitals) return reject('NO_STAT_BLOCK', 'Every combatant needs a sheet or a stat block');
-    const roll = dice.roll(20);
-    const modifier = initiativeModifier(vitals);
+    const tiny = sizeOf(vitals) === 'tiny';
+    const space = squaresOf({ position: combatant.position, size: sizeOf(vitals) });
+    if (!space.every((square) => inside(square) && !walls.has(key(square))))
+      return invalid('A combatant stands outside the battlefield');
+    for (const square of space) {
+      const other = taken.get(key(square));
+      if (other !== undefined && !(other && tiny))
+        return invalid('Two combatants cannot share a square');
+      taken.set(key(square), tiny);
+    }
+    // An object joins a running fight (docs/adr/0048-hit-points.md §5); it rolls no initiative.
+    if (isObject(vitals)) return invalid('An object joins a running fight as an object');
+    const { roll, modifier } = rollInitiative(dice, vitals, combatant.surprised === true);
     entries.push({
       id: combatant.entityId,
       total: roll + modifier,
@@ -70,14 +94,21 @@ export function decideStartCombat(
       modifier,
     });
   }
-  const combatants: CombatantRecord[] = initiativeOrder(entries).map((e) => ({
+  // A summoned creature acts right after its caster, who commands it (docs/adr/0056-…md §5).
+  const rolled: CombatantRecord[] = initiativeOrder(entries).map((e) => ({
     entityId: e.id,
     side: e.combatant.side,
     position: { ...e.combatant.position },
-    initiative: { roll: e.roll, modifier: e.modifier, total: e.total },
+    initiative: {
+      roll: e.roll,
+      modifier: e.modifier,
+      total: e.total,
+      ...(e.combatant.surprised === true ? { surprised: true as const } : {}),
+    },
     turn: { ...FRESH_TURN },
     slowedBy: null,
   }));
+  const combatants = withSummoners(state, rolled);
   const encounter = {
     encounterId,
     locationId: command.locationId,
@@ -98,11 +129,13 @@ export function decideEndCombat(context: DecisionContext, command: EndCombat): D
   if (!encounter.ok) return encounter;
   if (encounter.value.encounterId !== command.encounterId)
     return reject('NOT_IN_COMBAT', 'No such encounter');
-  // Slowed lasts only until a turn that will no longer come.
+  // Slowed lasts only until a turn that will no longer come; a condition with a duration or a
+  // save ends with the fight (docs/adr/0045-conditions-and-actions.md §2).
+  const work = new FightWork(state, encounter.value.combatants);
   const events: DraftEvent[] = [];
   for (const combatant of encounter.value.combatants) {
     if (combatant.slowedBy === null) continue;
-    const vitals = vitalsOf(state, combatant.entityId);
+    const vitals = work.vitalsOf(combatant.entityId);
     if (vitals) {
       events.push(
         {
@@ -114,10 +147,37 @@ export function decideEndCombat(context: DecisionContext, command: EndCombat): D
             cause: 'combat-ended',
           },
         },
-        vitalsEvent(withConditions(vitals, [], ['slowed'])),
+        work.vitals(withConditions(vitals, [], ['slowed'])),
       );
     }
-    events.push(combatantEvent({ ...combatant, slowedBy: null }));
+    events.push(work.record({ ...combatant, slowedBy: null }));
   }
+  events.push(...fightEnded(work), ...ammunitionRecovered(state, encounter.value));
   return accept(...events, { type: 'CombatEnded', payload: { encounterId: command.encounterId } });
+}
+
+/**
+ * Half the ammunition each one spent, rounded down, comes back to the stack it came from — the
+ * minute's search after a fight the rules allow (docs/adr/0047-weapons.md §5).
+ */
+function ammunitionRecovered(state: WorldState, encounter: EncounterState): DraftEvent[] {
+  const events: DraftEvent[] = [];
+  for (const combatant of encounter.combatants) {
+    for (const { itemId, spent } of combatant.ammunitionSpent ?? []) {
+      const stack = possessionOf(state, itemId);
+      if (!stack || stack.holderId !== combatant.entityId) continue;
+      const quantity = Math.min(99, stack.quantity + Math.floor(spent / 2));
+      if (quantity === stack.quantity) continue;
+      events.push({
+        type: 'ItemRecovered',
+        payload: {
+          itemId,
+          holderId: combatant.entityId,
+          recovered: quantity - stack.quantity,
+          quantity,
+        },
+      });
+    }
+  }
+  return events;
 }

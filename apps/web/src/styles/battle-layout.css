@@ -438,15 +438,6 @@
     max-height: 62vh;
     overflow-y: auto;
   }
-  .tray-action,
-  .tray-end {
-    min-width: 4rem;
-    padding-inline: 0.3rem;
-  }
-  .tray-art {
-    width: 2rem;
-    height: 2rem;
-  }
   .turn-tray {
     right: 0;
     bottom: var(--dock-h);
@@ -456,11 +447,6 @@
     margin: 0;
     border-width: 1px 0 0;
     border-radius: 0;
-  }
-  .tray-row {
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    overflow-x: auto;
   }
   .initiative .medallion {
     --m: 32px;
@@ -479,5 +465,9 @@
     right: 8px;
     bottom: calc(var(--dock-h) + var(--tray-h, 88px) + 8px);
     left: 8px;
+  }
+  /* A reaction asked, or an attack readied, holds the spot above the dock: a result stands above it */
+  .world-main:has(.reaction-prompt) .outcome {
+    bottom: calc(var(--dock-h) + var(--prompt-h, 0px) + 16px);
   }
 }

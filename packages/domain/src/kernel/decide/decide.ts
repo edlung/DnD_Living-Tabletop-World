@@ -1,5 +1,6 @@
 import { PLAYER_COMMAND_TYPES } from '@ltw/contracts';
 
+import { decideCreateCharacter } from '../../character/create.ts';
 import { decideBootstrapCampaign } from '../../campaign/bootstrap.ts';
 import { decideApplyAuthoring } from '../../authoring/decide.ts';
 import { decideSetCharacterSheet } from '../../character/character.ts';
@@ -17,6 +18,8 @@ import {
   decideStartAssetJob,
 } from '../../assets/decide.ts';
 import { decideSetWeather } from '../../weather/weather.ts';
+import { decideSetCampaignOptions } from '../../campaign/options.ts';
+import { decideAskPortrait } from '../../assets/portrait-wishes.ts';
 import { decideGenerateChronicle } from '../../chronicle/decide.ts';
 import { decideAddClue, decideSetDisclosure } from '../../investigation/authoring.ts';
 import { decideAskAbout } from '../../investigation/conversation.ts';
@@ -37,6 +40,9 @@ import {
   decideDropItem,
   decideEquipItem,
   decideGiveItem,
+  decideAttuneItem,
+  decideDawnRecharge,
+  decideIdentifyItem,
   decideGrantItem,
   decideTakeItem,
   decideUnequipItem,
@@ -182,8 +188,16 @@ function route(context: DecisionContext, command: ResolvedCommand): Decision {
       return decideApplyAuthoring(context, command);
     case 'SetRelationship':
       return decideSetRelationship(state, command);
+    case 'CreateCharacter':
+      return decideCreateCharacter(context, command);
     case 'GrantItem':
       return decideGrantItem(state, command);
+    case 'AttuneItem':
+      return decideAttuneItem(state, command);
+    case 'IdentifyItem':
+      return decideIdentifyItem(state, command);
+    case 'DawnRecharge':
+      return decideDawnRecharge(state, command);
     case 'EquipItem':
       return decideEquipItem(state, command);
     case 'UnequipItem':
@@ -212,12 +226,21 @@ function route(context: DecisionContext, command: ResolvedCommand): Decision {
       return decideApproveAsset(state, command);
     case 'SetWeather':
       return decideSetWeather(state, command);
+    case 'SetCampaignOptions':
+      return decideSetCampaignOptions(state, command);
+    case 'AskPortrait':
+      return decideAskPortrait(state, command);
     case 'GenerateChronicle':
       return decideGenerateChronicle(context, command);
     case 'StartCombat':
     case 'MoveCombatant':
     case 'Attack':
     case 'CastSpell':
+    case 'UseCreatureAction':
+    case 'TakeAction':
+    case 'MakeReadiedAttack':
+    case 'SpendInspiration':
+    case 'UseFeature':
     case 'EndTurn':
     case 'EndCombat':
     case 'UseReaction':
@@ -225,13 +248,22 @@ function route(context: DecisionContext, command: ResolvedCommand): Decision {
     case 'CloseReactionWindow':
     case 'AdjustHitPoints':
     case 'SetCondition':
+    case 'SetExhaustion':
     case 'SetInspiration':
     case 'AddCombatant':
     case 'RemoveCombatant':
     case 'DelayTurn':
     case 'SetInitiative':
-    case 'CommandCreature': {
+    case 'CommandCreature':
+    case 'AddObject':
+    case 'SetLight':
+    case 'ExposeToHazard':
+    case 'SpringTrap':
+    case 'InflictMentalStress':
+    case 'InfectWithContagion':
+    case 'ContagionCourse': {
       if (!context.combat) throw new Error(`${command.type} needs the combat engine port`);
+      // A condition by hand stored before Stage 640f carries no resolution.
       const entropy = 'resolution' in command ? command.resolution.entropy : [];
       return context.combat.decide(context, command, poolDice(entropy));
     }

@@ -8,6 +8,15 @@ export interface EncounterSummaryProps {
   readonly encounter: EncounterResponse['encounter'];
 }
 
+/** What a window holds, by what set it off (docs/adr/0046-reactions-beyond-counterspell.md). */
+const WAITING: Readonly<Record<ReactionWindowView['trigger']['kind'], string>> = {
+  spell: 'Spell resolution is waiting for reactions.',
+  move: 'The move is waiting for opportunity attacks.',
+  attack: 'The attack is waiting for a reaction.',
+  damage: 'The damage done is waiting for a reaction.',
+  fall: 'The fall is waiting for a reaction.',
+};
+
 function ReactionSummary({
   window,
   labels,
@@ -18,41 +27,69 @@ function ReactionSummary({
 }) {
   const t = useT();
   const nameOf = (entityId: string) => labels.get(entityId) ?? t('Unidentified creature');
+  const { trigger } = window;
   return (
     <section className="reaction-summary" aria-label={t('Reaction window')}>
-      <p role="status">{t('Spell resolution is waiting for reactions.')}</p>
+      <p role="status">{t(WAITING[trigger.kind])}</p>
       <dl className="field-list">
-        <div>
-          <dt>{t('Caster')}</dt>
-          <dd>{window.trigger.caster.name ?? nameOf(window.trigger.caster.entityId)}</dd>
-        </div>
-        <div>
-          <dt>{t('Components')}</dt>
-          <dd>
-            {window.trigger.components.map((component) => t(component)).join(', ') ||
-              t('None recorded')}
-          </dd>
-        </div>
-        {window.trigger.spellId ? (
+        {trigger.kind === 'spell' ? (
+          <>
+            <div>
+              <dt>{t('Caster')}</dt>
+              <dd>{trigger.caster.name ?? nameOf(trigger.caster.entityId)}</dd>
+            </div>
+            <div>
+              <dt>{t('Components')}</dt>
+              <dd>
+                {trigger.components.map((component) => t(component)).join(', ') ||
+                  t('None recorded')}
+              </dd>
+            </div>
+            {trigger.spellId ? (
+              <div>
+                <dt>{t('Spell')}</dt>
+                <dd>{readableLabel(trigger.spellId, t)}</dd>
+              </div>
+            ) : null}
+            {trigger.targetId ? (
+              <div>
+                <dt>{t('Target')}</dt>
+                <dd>{nameOf(trigger.targetId)}</dd>
+              </div>
+            ) : null}
+            {trigger.point ? (
+              <div>
+                <dt>{t('Target point')}</dt>
+                <dd>
+                  {trigger.point.x}, {trigger.point.y}
+                </dd>
+              </div>
+            ) : null}
+          </>
+        ) : trigger.kind === 'move' ? (
           <div>
-            <dt>{t('Spell')}</dt>
-            <dd>{readableLabel(window.trigger.spellId, t)}</dd>
+            <dt>{t('Moving')}</dt>
+            <dd>{trigger.mover.name ?? nameOf(trigger.mover.entityId)}</dd>
           </div>
-        ) : null}
-        {window.trigger.targetId ? (
+        ) : trigger.kind === 'fall' ? (
           <div>
-            <dt>{t('Target')}</dt>
-            <dd>{nameOf(window.trigger.targetId)}</dd>
-          </div>
-        ) : null}
-        {window.trigger.point ? (
-          <div>
-            <dt>{t('Target point')}</dt>
+            <dt>{t('Falling')}</dt>
             <dd>
-              {window.trigger.point.x}, {window.trigger.point.y}
+              {trigger.fallers
+                .map(({ creature }) => creature.name ?? nameOf(creature.entityId))
+                .join(', ')}
             </dd>
           </div>
-        ) : null}
+        ) : (
+          <div>
+            <dt>{t('Attacker')}</dt>
+            <dd>
+              {trigger.kind === 'attack'
+                ? (trigger.attacker.name ?? nameOf(trigger.attacker.entityId))
+                : (trigger.source.name ?? nameOf(trigger.source.entityId))}
+            </dd>
+          </div>
+        )}
         <div>
           <dt>{t('Your available responses')}</dt>
           <dd>{readableList(window.choices, t)}</dd>

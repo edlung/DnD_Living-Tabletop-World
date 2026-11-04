@@ -1,8 +1,8 @@
 import type { InventoryItem } from '@ltw/contracts';
-import { useT, type Translate } from '@ltw/ui';
+import { useLanguage, useT, type Translate } from '@ltw/ui';
 
 import { itemArtUrl } from '../../visual/ui-kit.ts';
-import { formatWeight } from '../item-text.ts';
+import { roundWeight } from '../item-text.ts';
 
 /** The coins of Ravenford, largest first, with their worth in pennies. */
 const COINS = [
@@ -13,11 +13,13 @@ const COINS = [
 
 /** A worth in pennies as coins, largest first: "15 cr · 3 m · 4 p". */
 export function worthWords(t: Translate, pennies: number): string {
-  let left = pennies;
+  // To the hundredth of a penny: a sling bullet is worth a fifth of one (SRD 5.2.1).
+  let left = Math.round(pennies * 100) / 100;
   const parts: string[] = [];
   for (const coin of COINS) {
-    const count = Math.floor(left / coin.value);
-    left -= count * coin.value;
+    const last = coin.value === 1;
+    const count = last ? left : Math.floor(left / coin.value);
+    left = Math.round((left - count * coin.value) * 100) / 100;
     if (count > 0) parts.push(t(coin.amount, { count }));
   }
   return parts.length === 0 ? t('{count} p', { count: 0 }) : parts.join(' · ');
@@ -25,24 +27,42 @@ export function worthWords(t: Translate, pennies: number): string {
 
 /**
  * The purse and the load (Stage 520): how many of each coin the character carries, and the pack's
- * weight against what its Strength carries (shown, never enforced: ADR 0039).
+ * weight against what its Strength carries — shown, and where the campaign enforces carrying the
+ * Speed the load leaves (docs/adr/0056-characters-from-the-srd.md §3).
  */
 export function PurseAndLoad({
   items,
   totalWeightLb,
   capacityLb,
+  loadSpeedFt = null,
 }: {
   readonly items: readonly InventoryItem[];
   readonly totalWeightLb: number;
   readonly capacityLb: number | null;
+  /** The most the load lets the character move, where the campaign enforces carrying. */
+  readonly loadSpeedFt?: number | null;
 }) {
   const t = useT();
+  const language = useLanguage();
   const coins = COINS.map((coin) => ({
     ...coin,
     count: items
       .filter((item) => item.catalog?.itemId === coin.catalogId)
       .reduce((sum, item) => sum + item.quantity, 0),
   }));
+  // Other coins carried — the SRD's, by their own names (docs/adr/0054-items-as-data.md §3).
+  const own = new Set<string>(COINS.map((coin) => coin.catalogId));
+  const others = new Map<string, { name: string; count: number; english: boolean }>();
+  for (const item of items) {
+    const catalog = item.catalog;
+    if (catalog?.category !== 'coins' || own.has(catalog.itemId)) continue;
+    const before = others.get(catalog.itemId);
+    others.set(catalog.itemId, {
+      name: catalog.name[language === 'ru' ? 'ru' : 'en'],
+      count: (before?.count ?? 0) + item.quantity,
+      english: language === 'ru' && catalog.untranslated,
+    });
+  }
   const share = capacityLb ? Math.min(100, (100 * totalWeightLb) / capacityLb) : 0;
   const heavy = capacityLb !== null && totalWeightLb > capacityLb;
   return (
@@ -62,6 +82,14 @@ export function PurseAndLoad({
               </li>
             );
           })}
+          {[...others].map(([catalogId, coin]) => (
+            <li key={catalogId} className="purse-coin">
+              <span className="purse-count">{coin.count}</span>
+              <span className="purse-name" lang={coin.english ? 'en' : undefined}>
+                {coin.name}
+              </span>
+            </li>
+          ))}
         </ul>
       </section>
       <section className={`load${heavy ? ' is-heavy' : ''}`} aria-label={t('Load')}>
@@ -70,10 +98,10 @@ export function PurseAndLoad({
           <span>
             {capacityLb
               ? t('{weight} of {capacity} lb', {
-                  weight: formatWeight(totalWeightLb),
+                  weight: roundWeight(totalWeightLb),
                   capacity: capacityLb,
                 })
-              : t('{weight} lb', { weight: formatWeight(totalWeightLb) })}
+              : t('{weight} lb', { weight: roundWeight(totalWeightLb) })}
           </span>
         </p>
         {capacityLb !== null && (
@@ -81,7 +109,15 @@ export function PurseAndLoad({
             <span style={{ width: `${String(share)}%` }} />
           </span>
         )}
-        {heavy && <p className="field-hint">{t('More than your Strength carries comfortably.')}</p>}
+        {loadSpeedFt !== null ? (
+          <p className="field-hint">
+            {loadSpeedFt === 0
+              ? t('More than you can drag: you cannot move until you drop something.')
+              : t('More than you can carry: you drag it, at a Speed of 5 ft.')}
+          </p>
+        ) : (
+          heavy && <p className="field-hint">{t('More than your Strength carries comfortably.')}</p>
+        )}
       </section>
     </div>
   );

@@ -10,6 +10,7 @@ export const facts = {
   preparedParty: (): FactKey => 'party#prepared',
   bootstrap: (): FactKey => 'campaign#bootstrap',
   campaign: (): FactKey => 'campaign',
+  campaignOptions: (): FactKey => 'campaign#options',
   clock: (): FactKey => 'world#clock',
   activeScene: (): FactKey => 'world#activeScene',
   entity: (id: string): FactKey => `entity:${id}`,
@@ -46,6 +47,10 @@ export const facts = {
   asset: (assetId: string): FactKey => `asset:${assetId}`,
   assetCanonical: (entityId: string): FactKey => `assetcanonical:${entityId}`,
   weather: (locationId: string): FactKey => `weather:${locationId}`,
+  /** When a creature died (docs/adr/0056-characters-from-the-srd.md §5). */
+  death: (entityId: string): FactKey => `death:${entityId}`,
+  /** A player's wish for their character's portrait (docs/adr/0056-…md §5). */
+  portraitWish: (characterId: string): FactKey => `portraitwish:${characterId}`,
   chronicle: (chronicleId: string): FactKey => `chronicle:${chronicleId}`,
   possession: (itemId: string): FactKey => `possession:${itemId}`,
   /** A holder's worn set: slot occupancy is a premise of every equip (ADR 0039). */

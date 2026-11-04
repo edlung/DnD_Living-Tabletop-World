@@ -158,6 +158,8 @@
 .hand-form {
   position: relative;
   display: grid;
+  /* A select's longest option must not widen the form past its card (a 320 px phone). */
+  grid-template-columns: minmax(0, 1fr);
   gap: 0.5rem;
   padding: 0.6rem 0.7rem;
   border: 1px solid var(--line);
@@ -199,6 +201,28 @@
 .hand-form .action-row {
   margin: 0.2rem 0 0;
 }
+/* A condition's end: the turn and the count under the choice (docs/adr/0045-conditions-and-actions.md §2). */
+.hand-choice .hand-row {
+  flex-basis: 100%;
+}
+/* In a turn order row the hand stays a form's width, not the row's. */
+.turn-order .hand-form {
+  max-width: 40rem;
+}
+/* Fields side by side keep to their cells and line their controls up at the foot. */
+.hand-row > * {
+  min-width: 0;
+}
+.hand-row--controls {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr));
+  align-items: end;
+}
+.hand-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 32px;
+}
 
 /* The turn order the DM changes (Encounter sheet) */
 .turn-order-tools h4 {
@@ -229,19 +253,26 @@
 .turn-order > li.is-current {
   border-color: color-mix(in srgb, var(--gold) 70%, transparent);
 }
+/*
+ * The total, the name and the buttons on one line while they fit; on a narrow sheet the buttons
+ * wrap to a line of their own. A grid's `auto` column gave them every pixel they wanted, and at
+ * 320 px left the name a column one letter wide.
+ */
 .turn-order-row {
-  display: grid;
-  grid-template-columns: 2.5rem minmax(0, 1fr) auto;
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.5rem;
 }
 .turn-order-total {
+  flex: 0 0 2.5rem;
   color: var(--gold-bright);
   font-variant-numeric: tabular-nums;
   text-align: end;
 }
 .turn-order-name {
   display: inline-flex;
+  flex: 1 1 10rem;
   flex-wrap: wrap;
   align-items: center;
   gap: 0.4rem;
@@ -249,7 +280,13 @@
   overflow-wrap: anywhere;
 }
 .turn-order-row .action-row {
-  margin: 0;
+  margin: 0 0 0 auto;
+}
+
+/* Surprised as the fight started: its Initiative had Disadvantage */
+.turn-order-note {
+  color: var(--text-muted);
+  font-size: 0.8rem;
 }
 
 /* The DM's notes */

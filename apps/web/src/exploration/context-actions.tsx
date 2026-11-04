@@ -15,6 +15,7 @@ import { commandFor } from './action-bindings.ts';
 import { ConversationOptions } from './conversation-options.tsx';
 import { Hypothesis } from './hypothesis.tsx';
 import { Recall } from './recall.tsx';
+import { SummonCast } from './summon-cast.tsx';
 import type { ExplorationIntent } from './use-action.ts';
 import { readableLabel, useT, type Translate } from '@ltw/ui';
 import { distinctNames, unidentifiedName } from '../world/entity-words.ts';
@@ -27,6 +28,7 @@ export const executable: ReadonlySet<string> = new Set([
   'investigation_check',
   'perception_check',
   'detect_magic',
+  'cast_spell',
   'enter_location',
   'take_item',
   'recall',
@@ -71,16 +73,22 @@ export function ContextActions({
   const t = useT();
   const ids = useId();
   const [recall, setRecall] = useState(false);
+  // A summoning spell asks what it calls up before it is cast (docs/adr/0056-…md §5).
+  const [summoning, setSummoning] = useState<string | null>(null);
   const { entity, actions } = context.context;
   const actor = context.actingCharacterId;
   const name = entity.name ?? unidentifiedName(t, entity.kind);
   const names = distinctNames(t, directory);
   // Evidence is shown deliberately, from "More conversation options" (or the conversation):
   // never a one-click button among the primary actions (second stand-in pass).
+  // A spell is cast here only outside a fight: a fight's spells are the turn tray's. The dead
+  // are not talked to: their conversation is not listed (docs/adr/0056-…md §5).
   const listed = actions.filter(
     (action) =>
       executable.has(action.id) &&
       action.id !== 'show_evidence' &&
+      (action.id !== 'cast_spell' || canAct) &&
+      !(CONVERSATION.has(action.id) && action.reason === 'TARGET_DEAD') &&
       !(conversing && CONVERSATION.has(action.id)),
   );
   return (
@@ -113,9 +121,15 @@ export function ContextActions({
               <button
                 disabled={!available}
                 aria-describedby={action.legal ? undefined : reasonId}
+                aria-expanded={
+                  action.spell?.summon ? summoning === action.spell.spellId : undefined
+                }
                 onClick={() => {
                   if (isRecall) setRecall((open) => !open);
-                  else if (action.id === 'talk')
+                  else if (action.spell?.summon) {
+                    const spellId = action.spell.spellId;
+                    setSummoning((open) => (open === spellId ? null : spellId));
+                  } else if (action.id === 'talk')
                     onRun({ kind: 'talk', characterId: actor, npcId: entity.entityId });
                   else if (command) onRun({ kind: 'command', command });
                 }}
@@ -131,6 +145,22 @@ export function ContextActions({
                     : t('Level {level} slot', { level: action.cost.slotLevel })}
                 </small>
               )}
+              {action.spell?.summon &&
+                summoning === action.spell.spellId &&
+                command?.type === 'CastSpell' && (
+                  <SummonCast
+                    spell={{ ...action.spell, summon: action.spell.summon }}
+                    command={command}
+                    locked={locked}
+                    onRun={(intent) => {
+                      setSummoning(null);
+                      onRun(intent);
+                    }}
+                    onCancel={() => {
+                      setSummoning(null);
+                    }}
+                  />
+                )}
             </div>
           );
         })}
@@ -228,8 +258,19 @@ export function actionLabel(
       return t('Recall memories');
     case 'talk':
       return t('Talk');
+    case 'cast_spell':
+      return t('Cast {spell}', { spell: t(action.spell?.name ?? 'a spell') });
     case 'weapon_attack':
       return t('Attack with {weapon}', {
+        weapon: action.weapon ? readableLabel(action.weapon, t) : t('a weapon'),
+      });
+    // The extra attacks of docs/adr/0047-weapons.md: the other hand's, Cleave's second.
+    case 'offhand_attack':
+      return t('Other hand: {weapon}', {
+        weapon: action.weapon ? readableLabel(action.weapon, t) : t('a weapon'),
+      });
+    case 'cleave_attack':
+      return t('Cleave: {weapon}', {
         weapon: action.weapon ? readableLabel(action.weapon, t) : t('a weapon'),
       });
     default:
@@ -256,6 +297,9 @@ const ACTION_TEXT: Readonly<
       | 'recall'
       | 'talk'
       | 'weapon_attack'
+      | 'offhand_attack'
+      | 'cleave_attack'
+      | 'cast_spell'
     >,
     string
   >
@@ -268,6 +312,23 @@ const ACTION_TEXT: Readonly<
   fireball: 'Fireball',
   counterspell: 'Counterspell',
   take_item: 'Pick up',
+  dash: 'Dash',
+  disengage: 'Disengage',
+  dodge: 'Dodge',
+  help: 'Help',
+  hide: 'Hide',
+  influence: 'Influence',
+  ready: 'Ready an action',
+  search: 'Search',
+  study: 'Study',
+  utilize: 'Utilize',
+  unarmed_strike: 'Unarmed Strike',
+  form_attack: 'Attack in your Wild Shape form',
+  escape: 'Escape a grapple',
+  release: 'Let go',
+  'first-aid': 'First aid',
+  mount: 'Mount',
+  dismount: 'Dismount',
 };
 
 /** Longest evidence wording on a button; the full statement is in the journal and the picker. */

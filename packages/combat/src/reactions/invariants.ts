@@ -1,7 +1,10 @@
-import { openReactionWindow, pendingCandidates, type WorldState } from '@ltw/domain';
+import { combatantOf, openReactionWindow, pendingCandidates, type WorldState } from '@ltw/domain';
 
 import { replanSuspended } from './complete.ts';
 import { counterspellPlan } from './eligibility.ts';
+import { opportunityPlan } from './opportunity.ts';
+import { dodgePlan, mayReroll, rebukePlan, shieldPlan } from './attack-windows.ts';
+import { featherFallPlan } from './fall-window.ts';
 
 /**
  * What an open reaction window needs the Rules for (docs/adr/0016-reaction-engine.md;
@@ -15,14 +18,53 @@ export function reactionWindowViolations(state: WorldState): string[] {
   const encounter = state.encounter;
   if (!encounter) return [`reaction window ${window.windowId} is open outside combat`];
   const violations: string[] = [];
-  const replanned = replanSuspended(state, window);
-  if ('legal' in replanned) {
-    violations.push(`suspended ${window.trigger.spellId} is no longer legal: ${replanned.reason}`);
+  const { trigger } = window;
+  const pending = pendingCandidates(window);
+  const report = (id: string, plan: { legal: boolean; reason?: string }) => {
+    if (!plan.legal) violations.push(`pending ${id} can no longer react: ${plan.reason ?? ''}`);
+  };
+  switch (trigger.kind) {
+    case 'move':
+      // A provoking move: every pending candidate can still take its opportunity attack (ADR 0046).
+      for (const id of pending) report(id, opportunityPlan(state, encounter, id, trigger.moverId));
+      return violations;
+    case 'attack':
+      for (const id of pending) {
+        if (trigger.phase === 'missed') {
+          report(
+            id,
+            mayReroll(state, id) ? { legal: true } : { legal: false, reason: 'NO_INSPIRATION' },
+          );
+          continue;
+        }
+        const roll = {
+          natural: trigger.natural,
+          total: trigger.total,
+          armorClass: trigger.spec.armorClass,
+        };
+        const shield = shieldPlan(state, encounter, id, roll);
+        report(id, shield.legal ? shield : dodgePlan(state, encounter, id, trigger.attackerId));
+      }
+      return violations;
+    case 'damage':
+      for (const id of pending) report(id, rebukePlan(state, encounter, id, trigger.sourceId));
+      return violations;
+    case 'fall': {
+      const fallers = trigger.fallers.flatMap(
+        ({ entityId }) => combatantOf(encounter, entityId) ?? [],
+      );
+      for (const id of pending) report(id, featherFallPlan(state, encounter, id, fallers));
+      return violations;
+    }
+    case 'spell': {
+      const replanned = replanSuspended(state, trigger);
+      if ('legal' in replanned) {
+        violations.push(`suspended ${trigger.spellId} is no longer legal: ${replanned.reason}`);
+      }
+      for (const id of pending) {
+        report(id, counterspellPlan(state, encounter, id, trigger.casterId, trigger.components));
+      }
+      return violations;
+    }
   }
-  const { casterId, components } = window.trigger;
-  for (const candidateId of pendingCandidates(window)) {
-    const plan = counterspellPlan(state, encounter, candidateId, casterId, components);
-    if (!plan.legal) violations.push(`pending ${candidateId} can no longer react: ${plan.reason}`);
-  }
-  return violations;
 }

@@ -118,6 +118,20 @@ describe('the DM’s hand in the history', () => {
     });
   });
 
+  it('lists Exhaustion’s level with its reason (docs/adr/0045-conditions-and-actions.md §3)', async () => {
+    const { command, page } = await table();
+    const tired = { type: 'SetExhaustion', targetId: ELOWEN, level: 2, reason: 'A forced march' };
+    expect((await command(tired, TOKENS.dm, 'tired')).status).toBe(200);
+    const [entry] = (await page()).entries as DmHistoryEntry[];
+    expect(entry).toMatchObject({
+      kind: 'hand',
+      change: { kind: 'exhaustion', target: { entityId: ELOWEN }, level: 2 },
+      reason: 'A forced march',
+      undo: { possible: true },
+    });
+    expect((await command({ ...tired, level: 1 }, TOKENS.player, 'mine')).status).toBe(403);
+  });
+
   it('refuses the hand to a player', async () => {
     const { command } = await table();
     const heal = {

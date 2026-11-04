@@ -1,8 +1,10 @@
-import type { CharacterDerived, CharacterSheet } from '@ltw/contracts';
+import type { AmmunitionKind, CharacterDerived, CharacterSheet } from '@ltw/contracts';
 import { readableLabel, useT, type Translate } from '@ltw/ui';
 import type { ReactNode } from 'react';
 
-import { catalogUrl } from '../visual/ui-kit.ts';
+import { masteryName } from '../combat/weapon-words.ts';
+import { Glyph } from '../visual/glyph.tsx';
+import { weaponArtUrl } from '../visual/ui-kit.ts';
 import { RollButton, useRollFor } from './roll-buttons.tsx';
 import { ABILITY_NAMES, ABILITY_ORDER, ABILITY_SHORT, diceWords, signed } from './words.ts';
 
@@ -84,6 +86,9 @@ function Abilities({
 /** What each fighting style does, in words. */
 const STYLE_EFFECT: Readonly<Record<NonNullable<CharacterSheet['fightingStyle']>, string>> = {
   archery: '+2 to ranged weapon attacks',
+  defense: '+1 to Armor Class while wearing armor',
+  'great-weapon-fighting': 'damage dice of 1 or 2 count as 3 with a two-handed melee weapon',
+  'two-weapon-fighting': 'your ability modifier added to the extra Light weapon attack',
 };
 
 const featureLines = (t: Translate, sheet: CharacterSheet): string[] => {
@@ -130,12 +135,24 @@ function Combat({
       ) : (
         <ul className="attack-list">
           {derived.attacks.map((attack) => {
-            const art = catalogUrl('weapons', attack.weaponId);
+            // Its catalog or item picture; without one a glyph keeps the picture's column.
+            const art = weaponArtUrl(attack.weaponId);
             const damage = diceWords(attack.damage);
             return (
               <li key={attack.weaponId} className="attack-row">
-                {art ? <img className="attack-art" src={art} alt="" /> : null}
-                <span className="attack-name">{readableLabel(attack.weaponId, t)}</span>
+                {art ? (
+                  <img className="attack-art" src={art} alt="" />
+                ) : (
+                  <span className="attack-art attack-art-blank">
+                    <Glyph name={attack.ranged ? 'ranged' : 'melee'} />
+                  </span>
+                )}
+                <span className="attack-name">
+                  {readableLabel(attack.weaponId, t)}
+                  {extraWords(t, attack) && (
+                    <small className="attack-extra">{extraWords(t, attack)}</small>
+                  )}
+                </span>
                 <span className="attack-stat">
                   <span className="attack-label">{t('To hit')}</span>
                   <strong>{signed(attack.attackBonus)}</strong>
@@ -228,4 +245,26 @@ export function OverviewTab({
       <Combat sheet={sheet} derived={derived} />
     </div>
   );
+}
+
+const AMMUNITION: Readonly<Record<AmmunitionKind, string>> = {
+  arrow: 'Arrows: {count}',
+  bolt: 'Bolts: {count}',
+  bullet: 'Sling bullets: {count}',
+  needle: 'Needles: {count}',
+  'firearm-bullet': 'Firearm bullets: {count}',
+};
+
+/**
+ * What else an attack is (docs/adr/0047-weapons.md): the mastery the character uses with it and the
+ * ammunition it has left, joined so a wrapped line never starts with the dot.
+ */
+function extraWords(t: Translate, attack: CharacterDerived['attacks'][number]): string | null {
+  const words = [
+    ...(attack.mastery ? [masteryName(t, attack.mastery)] : []),
+    ...(attack.ammunition
+      ? [t(AMMUNITION[attack.ammunition.kind], { count: attack.ammunition.count })]
+      : []),
+  ];
+  return words.length === 0 ? null : words.join('\u00a0· ');
 }

@@ -9,13 +9,16 @@ import {
 } from '@ltw/domain';
 import { COVER_BONUS, attackCircumstances, attackRoll, rollDamage } from '@ltw/rules';
 
+import { lostInTheDark } from './sight.ts';
 import { combatantEvent, encounterOf, onTurn, withTurn } from './battlefield.ts';
+import { isDodging } from './actions.ts';
+import { conditionsAgainst, isHidden, revealed, withDetail } from './condition-details.ts';
 import { applyDamage } from './damage.ts';
 import { combatPremises, refused } from './refusal.ts';
 import { spellSave } from './saves.ts';
 import { suspendCast } from './reactions/suspend.ts';
 import { monsterSpellPlan, type MonsterSpellPlan } from './spell-legality.ts';
-import { armorClass, conditionsOf } from './vitals.ts';
+import { armorClass, conditionsOf, d20PenaltyOf } from './vitals.ts';
 
 /**
  * A creature's stat-block spell (docs/adr/0015-combat-engine.md §3): a spell
@@ -86,17 +89,32 @@ export function monsterSpellEvents(
   let critical = false;
   let rolls: readonly number[] = [];
   if (effect.kind === 'attack') {
+    const encounter = state.encounter;
     const circumstances = attackCircumstances({
-      attackerConditions: conditionsOf(plan.caster),
+      attackerConditions: encounter
+        ? conditionsAgainst(state, encounter, plan.record, plan.caster, target.entityId)
+        : conditionsOf(plan.caster),
       targetConditions: conditionsOf(target.vitals),
       melee: false,
       distanceFt: plan.distanceFt,
       longRange: false,
+      targetDodging: isDodging(target.record, target.vitals),
+      attackerSqueezed: plan.record.squeezed === true,
+      targetSqueezed: target.record.squeezed === true,
+      // The dark and the fog (docs/adr/0050-the-world-around.md §3).
+      ...(encounter
+        ? {
+            targetUnseen: lostInTheDark(state, encounter, plan.record, target.record),
+            attackerUnseen: lostInTheDark(state, encounter, target.record, plan.record),
+          }
+        : {}),
     });
     const targetAc =
       armorClass(target.vitals) + (target.cover === 'none' ? 0 : COVER_BONUS[target.cover]);
+    // Exhaustion takes 2 per level from the attack roll (ADR 0045 §3).
+    const modifier = effect.bonus + d20PenaltyOf(plan.caster);
     const roll = attackRoll(dice, {
-      modifier: effect.bonus,
+      modifier,
       target: targetAc,
       advantage: circumstances.advantage,
       disadvantage: circumstances.disadvantage,
@@ -109,7 +127,7 @@ export function monsterSpellEvents(
         targetId: target.entityId,
         attackId: spell.spellId,
         rolls: [...roll.rolls],
-        modifier: effect.bonus,
+        modifier,
         total: roll.total,
         advantage: circumstances.advantage,
         disadvantage: circumstances.disadvantage,
@@ -130,7 +148,16 @@ export function monsterSpellEvents(
       rolls = damage.rolls;
     }
   } else {
-    const save = spellSave(dice, target.vitals, effect.ability, effect.dc, target.cover);
+    const save = spellSave(
+      dice,
+      target.vitals,
+      effect.ability,
+      effect.dc,
+      target.cover,
+      'spell',
+      isDodging(target.record, target.vitals),
+      target.record.squeezed === true,
+    );
     events.push(save.event);
     const damage = rollDamage(dice, effect.damage.count, effect.damage.sides, effect.damage.bonus);
     rolls = damage.rolls;
@@ -146,6 +173,12 @@ export function monsterSpellEvents(
     });
     events.push(...applied.events);
   }
-  events.push(combatantEvent(withTurn(plan.record, plan.turn)));
+  // A hidden caster is found by casting (docs/adr/0045-conditions-and-actions.md §5).
+  let record = withTurn(plan.record, plan.turn);
+  if (isHidden(plan.record)) {
+    events.push(...revealed(casterId, plan.caster));
+    record = withDetail(record, 'invisible', null);
+  }
+  events.push(combatantEvent(record));
   return events;
 }

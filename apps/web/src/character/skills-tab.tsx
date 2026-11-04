@@ -12,7 +12,8 @@ const PROFICIENCY_WORDS = {
 
 /**
  * The skills tab (Stage 500): the three passive scores, then all 18 skills grouped under their
- * ability, each with its proficiency mark (none, proficient, expertise) and total bonus.
+ * ability, each with its proficiency mark (none, proficient, expertise) and total bonus; last its
+ * origin, feats, tools and languages, as the server names them (docs/adr/0056-…md §2).
  */
 export function SkillsTab({
   entityId,
@@ -89,6 +90,37 @@ export function SkillsTab({
           );
         })}
       </div>
+      <Proficiencies proficiencies={derived.proficiencies} />
     </div>
+  );
+}
+
+function Proficiencies({
+  proficiencies,
+}: {
+  readonly proficiencies: CharacterDerived['proficiencies'];
+}) {
+  const t = useT();
+  const rows = [
+    ['Species', proficiencies.species === null ? [] : [proficiencies.species]],
+    ['Background', proficiencies.background === null ? [] : [proficiencies.background]],
+    ['Feats', proficiencies.feats],
+    ['Tools', proficiencies.tools],
+    ['Languages', proficiencies.languages],
+  ] as const;
+  const shown = rows.filter(([, values]) => values.length > 0);
+  if (shown.length === 0) return null;
+  return (
+    <section className="skill-group hero-proficiencies" aria-labelledby="hero-proficiencies">
+      <h3 id="hero-proficiencies">{t('Origin, tools and languages')}</h3>
+      <dl>
+        {shown.map(([label, values]) => (
+          <div key={label}>
+            <dt>{t(label)}</dt>
+            <dd>{values.join(', ')}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
   );
 }

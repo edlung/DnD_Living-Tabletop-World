@@ -48,11 +48,24 @@ export interface RollGroup {
   readonly critical?: true;
   /** Hit or miss, success or failure, where the viewer may know it. */
   readonly result?: 'hit' | 'miss' | 'success' | 'failure';
+  /**
+   * Failed without a die counting: a condition fails the save outright (docs/adr/0045-conditions-
+   * and-actions.md §1). A table roll keeps its die for the log; a world save records none.
+   */
+  readonly autoFail?: true;
 }
 
 /** What a roll was for, in tokens the client words (never free text, never a target's ID). */
 export type RollSubject =
-  | { readonly kind: 'attack'; readonly attack: string }
+  | {
+      readonly kind: 'attack';
+      readonly attack: string;
+      /**
+       * Made with the Reaction (docs/adr/0046-reactions-beyond-counterspell.md), or an extra attack
+       * (docs/adr/0047-weapons.md: the other hand's, Cleave's); absent: the Attack action.
+       */
+      readonly by?: 'opportunity' | 'readied' | 'offhand' | 'cleave' | 'legendary';
+    }
   | { readonly kind: 'spell'; readonly spellId: string }
   | { readonly kind: 'skill'; readonly skill: Skill }
   | { readonly kind: 'ability'; readonly ability: Ability }
@@ -77,6 +90,12 @@ export interface RollEntry {
   readonly confirmed?: true;
   /** Seen by the DM and one character only: a word between the DM and one player. */
   readonly private?: true;
+  /**
+   * Heroic Inspiration spent (docs/adr/0046-reactions-beyond-counterspell.md §6): this roll
+   * replaces the one named; that one is `rerolled` and no longer counts.
+   */
+  readonly rerollOf?: string;
+  readonly rerolled?: true;
   /** ISO time the roll was made (wall clock), for ordering and the log. */
   readonly at: string;
 }
@@ -85,6 +104,11 @@ export interface RollEntry {
 export interface RollFeedResponse {
   readonly perspective: string;
   readonly rolls: readonly RollEntry[];
+  /**
+   * The viewer's own latest check, which its character's Heroic Inspiration may roll again
+   * (docs/adr/0046-reactions-beyond-counterspell.md §6): a roll ID of `rolls`, or absent.
+   */
+  readonly rerollable?: string;
 }
 
 /** Most entries a feed returns. */
@@ -148,6 +172,15 @@ export const tableRollRequestSchema = z.discriminatedUnion('kind', [
 export type TableRollRequest = z.infer<typeof tableRollRequestSchema>;
 
 /**
+ * POST …/rolls/:rollId/reroll: Heroic Inspiration spent on one's latest check (ADR 0046 §6), its
+ * lower d20 rolled again by the app, or read off one's own die (ADR 0044 §4).
+ */
+export const tableRerollRequestSchema = z
+  .object({ faces: enteredFacesSchema.max(1).optional() })
+  .strict();
+export type TableRerollRequest = z.infer<typeof tableRerollRequestSchema>;
+
+/**
  * POST …/check-requests (DM): ask a character for a check, with an optional hidden DC — or ask
  * several at once (docs/adr/0043-dm-screen.md §1): one request each, sharing a group.
  */
@@ -188,8 +221,23 @@ export interface CheckRequestView {
   readonly at: string;
 }
 
+/**
+ * How a character's d20 rolls come out under its conditions (docs/adr/0045-conditions-and-actions.md
+ * §1, §3): for each asked mode, the one an ability check and each saving throw take; the saves its
+ * conditions fail outright; Exhaustion's penalty. The server computes them; the client looks them
+ * up (how many of a player's own dice to read, what to tell them).
+ */
+export interface D20Modes {
+  readonly checks: Readonly<Record<RollMode, RollMode>>;
+  readonly saves: Readonly<Record<Ability, Readonly<Record<RollMode, RollMode>>>>;
+  readonly autoFail: readonly Ability[];
+  readonly penalty: number;
+}
+
 /** GET …/check-requests: open requests for the viewer's character; for the DM all recent ones. */
 export interface CheckRequestsResponse {
   readonly perspective: string;
   readonly requests: readonly CheckRequestView[];
+  /** The viewer's character's d20 rolls under its conditions; absent for the DM and the party. */
+  readonly d20?: D20Modes;
 }

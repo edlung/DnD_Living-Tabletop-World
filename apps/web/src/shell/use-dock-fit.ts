@@ -17,12 +17,19 @@ interface Measured extends DockFit {
   readonly key: string;
 }
 
-/** The dock is wider than its room, or a word is cut inside its button. */
+/**
+ * The dock is wider than its room, a word is cut inside its button, or a word is wider than its
+ * button and runs past its edge into the next one.
+ */
 function overflows(dock: HTMLElement): boolean {
   if (dock.scrollWidth > dock.clientWidth + 1) return true;
+  const spills = (box: HTMLElement) =>
+    box.scrollWidth > box.clientWidth + 1 && box.checkVisibility();
   return [
-    ...dock.querySelectorAll<HTMLElement>('.dock-items .dock-label, .dock-items .dock-short'),
-  ].some((words) => words.scrollWidth > words.clientWidth + 1 && words.checkVisibility());
+    ...dock.querySelectorAll<HTMLElement>(
+      '.dock-items .dock-label, .dock-items .dock-short, .dock-items .dock-button',
+    ),
+  ].some(spills);
 }
 
 export function useDockFit(

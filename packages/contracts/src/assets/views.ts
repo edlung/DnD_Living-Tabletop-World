@@ -78,4 +78,6 @@ export interface AssetLineageResponse {
    * request form shows it, so an approval for players is informed. Entities with none are absent.
    */
   readonly descriptions: readonly { readonly entityId: string; readonly description: string }[];
+  /** The portraits players asked for, not yet requested (docs/adr/0056-…md §5). */
+  readonly wishes: readonly { readonly characterId: string; readonly look: string }[];
 }

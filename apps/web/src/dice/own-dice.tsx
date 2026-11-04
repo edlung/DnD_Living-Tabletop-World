@@ -1,7 +1,9 @@
-import type { CheckRequestView } from '@ltw/contracts';
+import type { Check, CheckRequestView, RollMode } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
 import { useId, useState } from 'react';
 
+import { signed } from '../character/words.ts';
+import { d20sFor, failsOutright, rolledMode } from './modes.ts';
 import { useDiceTable } from './table.tsx';
 
 /**
@@ -68,9 +70,52 @@ export function FaceFields({
   );
 }
 
+/** The d20 lookups of the viewer's character (ADR 0045 §1), once the table has read them. */
+export function useD20Modes() {
+  const table = useDiceTable();
+  return table?.requests.status === 'ready' ? table.requests.value.d20 : undefined;
+}
+
+/**
+ * What the character's conditions do to this roll, in words (docs/adr/0045-conditions-and-
+ * actions.md §1, §3): a save they fail outright, the Advantage or Disadvantage they bring, and
+ * Exhaustion's penalty. Nothing when they change nothing.
+ */
+export function ConditionsNote({
+  check,
+  asked,
+}: {
+  readonly check: Check;
+  readonly asked: RollMode;
+}) {
+  const t = useT();
+  const d20 = useD20Modes();
+  if (!d20) return null;
+  if (failsOutright(d20, check)) {
+    return <small className="roll-note">{t('Your conditions fail this save outright.')}</small>;
+  }
+  const rolled = rolledMode(d20, check, asked);
+  const words = [
+    ...(rolled === asked
+      ? []
+      : [
+          rolled === 'advantage'
+            ? t('Your conditions give Advantage.')
+            : rolled === 'disadvantage'
+              ? t('Your conditions give Disadvantage.')
+              : t('Your conditions cancel it out: one die.'),
+        ]),
+    ...(d20.penalty === 0
+      ? []
+      : [t('Exhaustion: {penalty} to the roll.', { penalty: signed(d20.penalty) })]),
+  ];
+  return words.length === 0 ? null : <small className="roll-note">{words.join(' ')}</small>;
+}
+
 /**
  * The answer to a check the DM asked (Stage 510; ADR 0044 §4): the app's Roll, and where the
- * player's own dice may be used, their d20s' faces (two with Advantage or Disadvantage) entered.
+ * player's own dice may be used, their d20s' faces entered — two when the roll, under the
+ * character's conditions, has Advantage or Disadvantage (ADR 0045 §1).
  */
 export function AnswerCheck({ request }: { readonly request: CheckRequestView }) {
   const t = useT();
@@ -80,7 +125,8 @@ export function AnswerCheck({ request }: { readonly request: CheckRequestView })
   const [entered, setEntered] = useState<string[]>([]);
   if (!table || table.characterId === null) return null;
   const characterId = table.characterId;
-  const dice = request.mode === 'normal' ? [20] : [20, 20];
+  const d20 = table.requests.status === 'ready' ? table.requests.value.d20 : undefined;
+  const dice = d20sFor(rolledMode(d20, request.check, request.mode));
   const faces = facesOf(dice, entered);
   const answer = (extra: { readonly faces?: number[] }) =>
     void table
@@ -97,6 +143,7 @@ export function AnswerCheck({ request }: { readonly request: CheckRequestView })
       });
   return (
     <span className="answer-check">
+      <ConditionsNote check={request.check} asked={request.mode} />
       {entering ? (
         <>
           <FaceFields dice={dice} entered={entered} onChange={setEntered} />

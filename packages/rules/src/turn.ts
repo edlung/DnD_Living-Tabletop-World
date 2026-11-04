@@ -1,5 +1,7 @@
 import type { CharacterSheet } from '@ltw/contracts';
 
+import { incapacitatedBy, speedAfterConditions } from './conditions.ts';
+import { walkingSpeedFt } from './features/numbers.ts';
 import { pathCostFt, type Position } from './grid.ts';
 
 /**
@@ -16,6 +18,11 @@ export interface TurnState {
   readonly slotExpendedThisTurn: boolean;
   /** Attacks left from the current Attack action (Extra Attack). */
   readonly attacksRemaining: number;
+  /**
+   * Action Surge's action is the one left this turn: no Magic action with it
+   * (docs/adr/0056-characters-from-the-srd.md §4).
+   */
+  readonly surged?: boolean | undefined;
 }
 
 export type IllegalReason =
@@ -28,6 +35,18 @@ export type IllegalReason =
   | 'NO_SLOT'
   | 'SLOT_TOO_LOW'
   | 'SLOT_ALREADY_USED_THIS_TURN'
+  /** A spell of minutes or hours, cast in a fight (docs/adr/0052-spells-as-data.md §5). */
+  | 'TAKES_TOO_LONG'
+  /** More targets than the spell names at its slot, or one named twice (ADR 0052 §5). */
+  | 'TOO_MANY_TARGETS'
+  /** A ritual cast of a spell that is none (ADR 0052 §6). */
+  | 'NOT_A_RITUAL'
+  /** A spell that returns the dead, at one alive, or dead longer than it reaches (ADR 0056 §5). */
+  | 'NOT_DEAD'
+  | 'DEAD_TOO_LONG'
+  /** A creature's action spent until its Recharge comes up, or used up for the day (ADR 0053 §2). */
+  | 'NOT_RECHARGED'
+  | 'NO_USES_LEFT'
   | 'NO_FREE_CAST'
   | 'OUT_OF_RANGE'
   | 'TARGET_REQUIRED'
@@ -38,7 +57,90 @@ export type IllegalReason =
   | 'TOTAL_COVER'
   | 'NO_ATTACKS_LEFT'
   | 'INVALID_PATH'
-  | 'NOT_ENOUGH_MOVEMENT';
+  | 'NOT_ENOUGH_MOVEMENT'
+  /** A Charmed creature's attack or harmful spell at its charmer (ADR 0045 §1). */
+  | 'CHARMED_BY_TARGET'
+  /** A Frightened creature's move closer to the source of its fear (ADR 0045 §1). */
+  | 'CLOSER_TO_FEAR'
+  /** An action's check with a skill that action does not use (ADR 0045 §5). */
+  | 'INVALID_SKILL'
+  /** Help in a fight is against a foe within 5 ft (§5). */
+  | 'NOT_A_FOE'
+  /** Hide from behind Three-Quarters or Total Cover (§5). */
+  | 'NO_COVER_TO_HIDE'
+  /**
+   * The weapons' rules (docs/adr/0047-weapons.md): no ammunition of the kind left; both hands
+   * needed while a shield is held; a Loading weapon fired already with this action; no extra
+   * attack on offer (the other hand's, or Cleave's).
+   */
+  | 'NO_AMMUNITION'
+  | 'HANDS_FULL'
+  | 'LOADING'
+  | 'NO_EXTRA_ATTACK'
+  /** A grapple's (ADR 0047 §3): it holds the target already; nothing holds it; it holds no one. */
+  | 'ALREADY_GRAPPLED'
+  | 'NOT_GRAPPLED'
+  | 'NOT_GRAPPLING'
+  /** First aid for a creature neither dying nor knocked out (docs/adr/0048-hit-points.md §4). */
+  | 'NEEDS_NO_AID'
+  /** An object, where a grapple, a mastery or a spell names a creature (ADR 0048 §5). */
+  | 'NOT_A_CREATURE'
+  /** A grapple's or a shove's target more than one size larger (ADR 0049 §3). */
+  | 'TOO_LARGE'
+  /** A move through the air or the earth without the speed for it; a jump beyond its reach (§5–7). */
+  | 'NO_FLY_SPEED'
+  | 'NO_BURROW_SPEED'
+  | 'JUMP_TOO_FAR'
+  /**
+   * Mounted combat (ADR 0049 §10): it rides already; it rides nothing; the creature is not willing,
+   * not a size larger, or ridden; once a move; a controlled mount's actions are Dash, Disengage and
+   * Dodge.
+   */
+  | 'MOUNTED'
+  | 'NOT_MOUNTED'
+  | 'NOT_WILLING'
+  | 'MOUNT_TOO_SMALL'
+  | 'MOUNT_TAKEN'
+  | 'MOUNTED_THIS_TURN'
+  | 'CONTROLLED_MOUNT'
+  /**
+   * Class features (docs/adr/0056-characters-from-the-srd.md §4): one the character has not; a Rage
+   * begun already, none to end, or one in heavy armor; Action Surge before the action is spent,
+   * twice in a turn, or its action for magic; no Bardic Inspiration die held, or one held already; a
+   * feature used out of a fight only; more slots than it regains, or none of them expended.
+   */
+  | 'NOT_A_FEATURE'
+  | 'ALREADY_RAGING'
+  | 'NOT_RAGING'
+  | 'HEAVY_ARMOR'
+  | 'ACTION_UNUSED'
+  | 'ALREADY_SURGED'
+  | 'SURGE_NOT_MAGIC'
+  | 'NO_INSPIRATION_DIE'
+  | 'ALREADY_INSPIRED'
+  | 'OUT_OF_FIGHT_ONLY'
+  | 'TOO_MANY_SLOTS'
+  | 'NO_SLOT_EXPENDED'
+  | 'SLOT_TOO_HIGH'
+  | 'POINTS_FULL'
+  | 'NOT_POISONED'
+  | 'NEEDS_NO_HEALING'
+  /** An invocation's spell cast at will on the Warlock alone (Armor of Shadows, Jump…). */
+  | 'SELF_ONLY'
+  /** Metamagic: two options that do not stack; one this spell cannot take (Quickened on a Bonus Action spell). */
+  | 'ONE_METAMAGIC'
+  | 'NOT_FOR_THIS_SPELL'
+  /**
+   * Summons (docs/adr/0056-characters-from-the-srd.md §5): no option or one the creature has not,
+   * more objects than the caster animates; no room near the square; a breath used this turn.
+   */
+  | 'SUMMON_CHOICE'
+  | 'NO_ROOM'
+  | 'USED_THIS_TURN'
+  /** Wild Shape (§5): a form not open to it; no spells in a form; no form to leave. */
+  | 'NOT_A_FORM'
+  | 'SHAPED'
+  | 'NOT_SHAPED';
 
 export interface Illegal {
   readonly legal: false;
@@ -63,13 +165,17 @@ export function startTurn(ownTurn: boolean, previous?: TurnState): TurnState {
   };
 }
 
-/** Incapacitated, or Unconscious, which includes it (ADR 0015 §4). */
+/** Incapacitated, or a condition that includes it (docs/adr/0045-conditions-and-actions.md §1). */
 export const isIncapacitated = (sheet: Pick<CharacterSheet, 'conditions'>) =>
-  sheet.conditions.some((c) => c === 'incapacitated' || c === 'unconscious');
+  incapacitatedBy(sheet.conditions);
 
-/** Speed after conditions; Slowed (Slow mastery) reduces Speed by 10 ft. */
+/**
+ * Speed after conditions and Exhaustion (ADR 0045 §1, §3); Slowed (Slow mastery) takes 10 ft, and
+ * armor too heavy for its wearer 10 more (docs/adr/0050-the-world-around.md §10).
+ */
 export function effectiveSpeedFt(sheet: CharacterSheet): number {
-  return Math.max(0, sheet.speedFt - (sheet.conditions.includes('slowed') ? 10 : 0));
+  // Fast Movement and Unarmored Movement included (docs/adr/0056-characters-from-the-srd.md §4).
+  return speedAfterConditions(walkingSpeedFt(sheet), sheet.conditions, sheet.exhaustion ?? 0);
 }
 
 export type MoveCheck =

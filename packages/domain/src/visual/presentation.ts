@@ -1,4 +1,9 @@
-import type { AssetPurpose, EntityPresentation, PlayerAssetView } from '@ltw/contracts';
+import {
+  effectiveMaximum,
+  type AssetPurpose,
+  type EntityPresentation,
+  type PlayerAssetView,
+} from '@ltw/contracts';
 
 import { PURPOSE_KINDS, type AssetRecord } from '../assets/records.ts';
 import { playerAssetView, shownTo } from '../assets/views.ts';
@@ -164,7 +169,9 @@ function lookOf(timeline: VisualTimeline, scope: PresentationScope, entityId: st
   const held = observed && active ? timeline.vitals.get(entityId) : undefined;
   const vitals = held
     ? {
-        wounded: held.hitPoints.current > 0 && held.hitPoints.current * 2 <= held.hitPoints.max,
+        wounded:
+          held.hitPoints.current > 0 &&
+          held.hitPoints.current * 2 <= effectiveMaximum(held.hitPoints),
         unconscious: held.hitPoints.current === 0 || held.conditions.includes('unconscious'),
       }
     : null;

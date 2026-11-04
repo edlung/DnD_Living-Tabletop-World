@@ -16,7 +16,6 @@ registerRussian({
   'to the DM': 'мастеру',
   'to {name}': 'для: {name}',
   To: 'Кому',
-  'The table': 'Всем за столом',
   'Only the DM': 'Только мастеру',
   'Only {name}': 'Только: {name}',
   As: 'Как',

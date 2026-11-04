@@ -1,6 +1,13 @@
 import type { EntityRef } from '../knowledge/views.ts';
 import type { WeaponId } from '../rules/character-sheet.ts';
-import type { EquipSlot, ItemCategory, ItemEffect } from './schema.ts';
+import type {
+  EquipSlot,
+  ItemCategory,
+  ItemEffect,
+  ItemLook,
+  ItemMagic,
+  ItemRarity,
+} from './schema.ts';
 
 /** One carried item as its carrier sees it (docs/adr/0039-item-possession.md). */
 export interface InventoryItem {
@@ -11,6 +18,12 @@ export interface InventoryItem {
   readonly quantity: number;
   /** The slot it is worn in, or null. */
   readonly slot: EquipSlot | null;
+  /** Its carrier is attuned to it (docs/adr/0054-items-as-data.md §5). */
+  readonly attuned: boolean;
+  /** Its carrier has not learnt what it is: `catalog` is then only what it looks like. */
+  readonly unidentified: boolean;
+  /** A magic item's charges, once known (§5). */
+  readonly charges: { readonly left: number; readonly max: number } | null;
   /** What it is, when it is an instance of a catalog entry; never a claim about the object. */
   readonly catalog: {
     readonly itemId: string;
@@ -26,6 +39,22 @@ export interface InventoryItem {
     readonly shieldBonus: number | null;
     /** The rules weapon a weapon fights as. */
     readonly weapon: WeaponId | null;
+    /** The SRD's entry, or Ravenford's own (null) (docs/adr/0054-items-as-data.md §3). */
+    readonly source: 'srd' | null;
+    /** What it looks like, for its kind's picture (docs/adr/0055-…md §6); null for Ravenford's own. */
+    readonly look: ItemLook | null;
+    /** Its Russian words are still the English ones (Stage 650e translates them). */
+    readonly untranslated: boolean;
+    /** The SRD's words about it, English, for an SRD entry; null for Ravenford's own. */
+    readonly text: string | null;
+    /** A magic item's rarity, attunement and bonuses (docs/adr/0054-items-as-data.md §5). */
+    readonly magic: {
+      readonly rarity: ItemRarity;
+      readonly attunement: string | null;
+      readonly bonus: ItemMagic['bonus'] | null;
+      /** A curse, told to the DM alone. */
+      readonly cursed: boolean;
+    } | null;
   } | null;
 }
 
@@ -49,6 +78,12 @@ export interface InventoryResponse {
   readonly totalWeightLb: number;
   /** What Strength carries (× 15 lb), when the carrier has a sheet (Stage 520). */
   readonly capacityLb?: number;
+  /**
+   * Where the campaign enforces carrying (docs/adr/0056-characters-from-the-srd.md §3): the most
+   * the load lets its carrier move, 5 ft past what it carries and 0 past what it drags; absent
+   * when the load is light or the campaign only shows it.
+   */
+  readonly loadSpeedFt?: number;
   /** Each carried weapon's attack for this character, by rules weapon ID. */
   readonly weapons?: Readonly<Partial<Record<WeaponId, InventoryWeapon>>>;
 }

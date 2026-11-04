@@ -128,8 +128,14 @@ const INTRODUCED_AT: Partial<Record<KernelEventType, number>> = {
   ItemEquipped: DEPENDENCY_CONTRACT,
   ItemUnequipped: DEPENDENCY_CONTRACT,
   ItemUsed: DEPENDENCY_CONTRACT,
+  // Stage 640d (ADR 0047 §5): ammunition picked up after a fight.
+  ItemRecovered: DEPENDENCY_CONTRACT,
   ItemTransferred: DEPENDENCY_CONTRACT,
   ItemSplit: DEPENDENCY_CONTRACT,
+  // Stage 660e (ADR 0056 §3): the campaign's options.
+  CampaignOptionsSet: DEPENDENCY_CONTRACT,
+  // Stage 660e (ADR 0056 §5): a player's wish for a portrait.
+  PortraitAsked: DEPENDENCY_CONTRACT,
 };
 
 export const schemaVersionOf = (type: KernelEventType): number =>

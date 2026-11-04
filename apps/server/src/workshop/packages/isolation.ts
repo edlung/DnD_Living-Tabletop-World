@@ -7,6 +7,7 @@ import {
   type CampaignSnapshot,
 } from '@ltw/domain';
 import { skillCheckPort } from '@ltw/rules';
+import { characterBuilder } from '../../characters/builder-port.ts';
 
 /** Only local memory, deterministic sources and the normal domain/rules adapters. */
 export function isolatedCampaignEngine(
@@ -20,6 +21,7 @@ export function isolatedCampaignEngine(
     clock: new SteppingClock(recordedAt, 1),
     backoff: () => Promise.resolve(),
     combat: createCombatEngine(),
+    characters: characterBuilder,
     entropy: { next: () => 2 ** 31 },
     checks: skillCheckPort({ roll: (sides) => Math.max(1, Math.ceil(sides / 2)) }),
   });

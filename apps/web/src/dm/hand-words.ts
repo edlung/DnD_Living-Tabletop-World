@@ -1,6 +1,16 @@
 import type { Condition, DamageType, DmHandEntry } from '@ltw/contracts';
 import type { Translate } from '@ltw/ui';
 
+import { CONTAGION_WORDS, TRAP_WORDS, trapTiers } from '../rules/toolbox-words.ts';
+
+/** A contagion's step in the DM's history (docs/adr/0055-rules-reference-and-toolbox.md §4). */
+const CONTAGION_STEPS = {
+  infect: '{name}: given {disease}',
+  'takes-hold': '{name}: {disease} took hold',
+  fight: '{name}: fought {disease}',
+  cure: '{name}: {disease} ended',
+} as const;
+
 /**
  * Words for the DM's changes by hand (docs/adr/0043-dm-screen.md §1): damage types, conditions,
  * and one line for each change as the DM's history lists it.
@@ -22,9 +32,20 @@ export const DAMAGE_WORDS: Readonly<Record<DamageType, string>> = {
 };
 
 export const CONDITION_WORDS: Readonly<Record<Condition, string>> = {
+  blinded: 'Blinded',
+  charmed: 'Charmed',
+  deafened: 'Deafened',
+  frightened: 'Frightened',
+  grappled: 'Grappled',
   incapacitated: 'Incapacitated',
+  invisible: 'Invisible',
+  paralyzed: 'Paralyzed',
+  petrified: 'Petrified',
+  poisoned: 'Poisoned',
   prone: 'Prone',
+  restrained: 'Restrained',
   slowed: 'Slowed',
+  stunned: 'Stunned',
   unconscious: 'Unconscious',
 };
 
@@ -34,35 +55,81 @@ const conditionWord = (t: Translate, condition: string) =>
   condition in CONDITION_WORDS ? t(CONDITION_WORDS[condition as Condition]) : condition;
 
 /** The change's line: who, what, and the hit points before and after. */
+/** The fight's light as the DM's history says it was set (docs/adr/0050 §1). */
+const LIGHT_WORDS = {
+  bright: 'The light of the fight: bright',
+  dim: 'The light of the fight: dim',
+  dark: 'The light of the fight: darkness',
+} as const;
+
 export function describeHand(t: Translate, change: DmHandEntry['change']): string {
   switch (change.kind) {
-    case 'hit-points':
-      return change.change === 'damage'
-        ? t('{name}: {amount} damage ({type}), hit points {before} → {after}', {
-            name: change.target.name,
-            amount: change.amount,
-            type: damageWord(t, change.damageType),
-            before: change.hpBefore,
-            after: change.hpAfter,
-          })
-        : t('{name}: healed {amount}, hit points {before} → {after}', {
-            name: change.target.name,
-            amount: change.amount,
-            before: change.hpBefore,
-            after: change.hpAfter,
-          });
+    case 'hit-points': {
+      const words = {
+        name: change.target.name,
+        amount: change.amount,
+        before: change.hpBefore,
+        after: change.hpAfter,
+      };
+      if (change.change === 'damage') {
+        return t('{name}: {amount} damage ({type}), hit points {before} → {after}', {
+          ...words,
+          type: damageWord(t, change.damageType),
+        });
+      }
+      if (change.change === 'healing') {
+        return t('{name}: healed {amount}, hit points {before} → {after}', words);
+      }
+      // Temporary hit points and a lowered maximum (docs/adr/0048-hit-points.md §1, §2).
+      return change.change === 'temporary'
+        ? t('{name}: {amount} temporary hit points', words)
+        : t('{name}: maximum lowered by {amount}, hit points {before} → {after}', words);
+    }
     case 'condition': {
       const words = { name: change.target.name, condition: conditionWord(t, change.condition) };
+      // A save made first that held it off (docs/adr/0050-the-world-around.md §9).
+      if (change.resisted) return t('{name}: resisted being {condition}', words);
       return change.applied
         ? t('{name}: now {condition}', words)
         : t('{name}: no longer {condition}', words);
     }
+    case 'hazard':
+      return t(
+        change.hazard === 'cold'
+          ? 'Extreme cold for {hours} h: {failed} saves failed'
+          : 'Extreme heat for {hours} h: {failed} saves failed',
+        { hours: change.hours, failed: change.failed },
+      );
+    case 'exhaustion':
+      return change.level === 0
+        ? t('{name}: no longer exhausted', { name: change.target.name })
+        : t('{name}: Exhaustion {level}', { name: change.target.name, level: change.level });
     case 'inspiration':
       return change.inspired
         ? t('{name}: Heroic Inspiration granted', { name: change.target.name })
         : t('{name}: Heroic Inspiration taken back', { name: change.target.name });
     case 'ruling':
       return t('Ruling: {summary}', { summary: change.summary });
+    case 'light':
+      return t(LIGHT_WORDS[change.ambient]);
+    // The Gameplay Toolbox (docs/adr/0055-rules-reference-and-toolbox.md §4).
+    case 'trap':
+      return t('{trap} (levels {range}) sprung on {names}', {
+        trap: t(TRAP_WORDS[change.trapId]),
+        range: trapTiers(change.trapId)[change.tier - 1] ?? '',
+        names: change.targets.map((target) => target.name).join(', '),
+      });
+    case 'mental-stress':
+      return t('Mental stress (DC {dc}, {dice}d6) on {names}', {
+        dc: change.dc,
+        dice: change.dice,
+        names: change.targets.map((target) => target.name).join(', '),
+      });
+    case 'contagion':
+      return t(CONTAGION_STEPS[change.step], {
+        name: change.target.name,
+        disease: t(CONTAGION_WORDS[change.contagionId]),
+      });
     case 'fight': {
       const name = change.combatant.name;
       switch (change.change) {

@@ -66,8 +66,19 @@ export function playerOutcome(
     case 'DropItem':
     case 'TakeItem': {
       const moved = events.find((event) => 'itemId' in event.payload);
+      // A potion's dice: the hit points they gave (docs/adr/0054-items-as-data.md §5).
+      const used = events.find((event) => event.type === 'ItemUsed');
+      const healed = used?.type === 'ItemUsed' ? used.payload.healed?.total : undefined;
+      const charged = events.find((event) => event.type === 'ItemChargesSpent');
+      const chargesLeft = charged?.type === 'ItemChargesSpent' ? charged.payload.left : undefined;
       return moved && 'itemId' in moved.payload
-        ? { kind: 'Item', action: ITEM_ACTIONS[commandType], itemId: moved.payload.itemId }
+        ? {
+            kind: 'Item',
+            action: ITEM_ACTIONS[commandType],
+            itemId: moved.payload.itemId,
+            ...(healed === undefined ? {} : { healed }),
+            ...(chargesLeft === undefined ? {} : { chargesLeft }),
+          }
         : undefined;
     }
     case 'FormHypothesis': {
@@ -92,31 +103,57 @@ function combatOutcome(
   switch (commandType) {
     case 'MoveCombatant': {
       const moved = events.findLast((event) => event.type === 'CombatantUpdated');
-      return moved?.type === 'CombatantUpdated'
-        ? { kind: 'MoveCombatant', position: { ...moved.payload.combatant.position } }
-        : undefined;
-    }
-    case 'Attack': {
-      const attack = events.find((event) => event.type === 'AttackPerformed');
-      if (attack?.type !== 'AttackPerformed') return undefined;
-      const damage = events.find(
+      if (moved?.type !== 'CombatantUpdated') return undefined;
+      // Its height, a landing's check, a fall and the Prone they left (ADR 0049 §6–8).
+      const { position, altitudeFt } = moved.payload.combatant;
+      // A move's only check is a landing's.
+      const landing = events.find((event) => event.type === 'CheckRolled');
+      const fall = events.find((event) => event.type === 'DamageApplied' && event.payload.fallFt);
+      const prone = events.some(
         (event) =>
-          event.type === 'DamageApplied' && event.payload.targetId === attack.payload.targetId,
+          event.type === 'ConditionApplied' &&
+          event.payload.condition === 'prone' &&
+          (event.payload.cause === 'fell' || event.payload.cause === 'landing'),
       );
       return {
-        kind: 'Attack',
-        d20: [...attack.payload.rolls],
-        attackTotal: attack.payload.total,
-        hit: attack.payload.hit,
-        critical: attack.payload.critical,
-        damage: damage?.type === 'DamageApplied' ? damage.payload.amount : null,
+        kind: 'MoveCombatant',
+        position: { ...position },
+        ...(altitudeFt ? { altitudeFt } : {}),
+        ...(landing?.type === 'CheckRolled'
+          ? { landing: { total: landing.payload.total, success: landing.payload.success } }
+          : {}),
+        ...(fall?.type === 'DamageApplied' && fall.payload.fallFt
+          ? { fell: { feet: fall.payload.fallFt, damage: fall.payload.amount } }
+          : {}),
+        ...(prone ? { prone: true as const } : {}),
+        ...(events.some(
+          (event) =>
+            event.type === 'ReactionWindowOpened' && event.payload.window.trigger.kind === 'fall',
+        )
+          ? { falling: true as const }
+          : {}),
       };
+    }
+    // The readied attack is an attack, made with the Reaction (ADR 0046 §5).
+    case 'Attack':
+    case 'MakeReadiedAttack': {
+      const attack = attackOf(events);
+      if (!attack) return unarmedOf(events);
+      // Its window opened: what comes of the roll waits for the answer (ADR 0046 §3). A fall's
+      // window waits for the fall alone: the hit is done (ADR 0049 §8).
+      const waiting = events.some(
+        (event) =>
+          event.type === 'ReactionWindowOpened' && event.payload.window.trigger.kind !== 'fall',
+      );
+      return { kind: 'Attack', ...attack, ...(waiting ? { awaitingReaction: true as const } : {}) };
     }
     case 'CastSpell': {
       const opened = events.find((event) => event.type === 'ReactionWindowOpened');
-      if (opened?.type === 'ReactionWindowOpened') {
+      const trigger =
+        opened?.type === 'ReactionWindowOpened' ? opened.payload.window.trigger : null;
+      if (trigger?.kind === 'spell') {
         // Suspended in a reaction window (ADR 0016): nothing happened yet.
-        const { spellId } = opened.payload.window.trigger;
+        const { spellId } = trigger;
         return { kind: 'CastSpell', spellId, results: [], discovered: [], awaitingReaction: true };
       }
       const cast = events.find((event) => event.type === 'SpellCast');
@@ -144,19 +181,40 @@ function combatOutcome(
               e.payload.creatureId === targetId,
           );
           const attack = find('AttackPerformed', targetId, 'targetId');
-          const damage = find('DamageApplied', targetId, 'targetId');
+          // Every dart's, ray's and damage type's (docs/adr/0052-spells-as-data.md §5).
+          const damages = events.flatMap((event) =>
+            event.type === 'DamageApplied' && event.payload.targetId === targetId
+              ? [event.payload.amount]
+              : [],
+          );
           const healing = find('HealingApplied', targetId, 'targetId');
           return {
             targetId,
             saved: save?.type === 'SavingThrowRolled' ? save.payload.success : null,
             hit: attack ? attack.payload.hit : null,
-            damage: damage ? damage.payload.amount : null,
+            damage: damages.length > 0 ? damages.reduce((sum, amount) => sum + amount, 0) : null,
             healed: healing ? healing.payload.amount : null,
           };
         }),
         discovered: events.flatMap((event) =>
           event.type === 'EvidenceExamined' ? event.payload.revealed.map((r) => r.knowledgeId) : [],
         ),
+        ...(cast.payload.forDm ? { forDm: cast.payload.forDm } : {}),
+        ...revivedBy(events),
+        ...summonedBy(events),
+      };
+    }
+    case 'UseFeature': {
+      // A class feature (docs/adr/0056-characters-from-the-srd.md §4): its dice and hit points.
+      const used = events.find((event) => event.type === 'FeatureUsed');
+      if (used?.type !== 'FeatureUsed') return undefined;
+      const healing = events.find((event) => event.type === 'HealingApplied');
+      return {
+        kind: 'UseFeature',
+        feature: used.payload.feature,
+        rolls: [...used.payload.rolls],
+        ...(healing?.type === 'HealingApplied' ? { healed: healing.payload.amount } : {}),
+        ...(used.payload.left === undefined ? {} : { left: used.payload.left }),
       };
     }
     case 'EndTurn': {
@@ -176,15 +234,144 @@ function combatOutcome(
       const countered = events.some(
         (event) => event.type === 'ReactionWindowResolved' && event.payload.outcome === 'countered',
       );
-      return { kind: 'UseReaction', windowId, reaction, countered };
+      // An opportunity attack or a reroll says how it went, as an attack does (ADR 0046 §2–3);
+      // Uncanny Dodge the damage still taken, Hellish Rebuke the damage it dealt.
+      const attack =
+        reaction === 'opportunity-attack' || reaction === 'inspiration-reroll'
+          ? attackOf(events)
+          : null;
+      const reactorId = used.payload.reactorId;
+      const dealt = events.find(
+        (event) =>
+          event.type === 'DamageApplied' &&
+          (reaction === 'uncanny-dodge'
+            ? event.payload.targetId === reactorId
+            : reaction === 'hellish-rebuke' && event.payload.sourceId === reactorId),
+      );
+      return {
+        kind: 'UseReaction',
+        windowId,
+        reaction,
+        countered,
+        ...(attack
+          ? {
+              attack: {
+                attackTotal: attack.attackTotal,
+                hit: attack.hit,
+                critical: attack.critical,
+                damage: attack.damage,
+              },
+            }
+          : {}),
+        ...(dealt?.type === 'DamageApplied' ? { damage: dealt.payload.amount } : {}),
+      };
     }
     case 'DeclineReaction': {
       const declined = events.find((event) => event.type === 'ReactionDeclined');
       return declined?.type === 'ReactionDeclined'
-        ? { kind: 'DeclineReaction', windowId: declined.payload.windowId }
+        ? {
+            kind: 'DeclineReaction',
+            windowId: declined.payload.windowId,
+            trigger: declined.payload.trigger ?? 'spell',
+          }
         : undefined;
     }
     default:
       return undefined;
   }
+}
+
+/** The first attack among a command's events: its roll and the damage it did to its target. */
+function attackOf(events: readonly KernelEvent[]) {
+  const attack = events.find((event) => event.type === 'AttackPerformed');
+  if (attack?.type !== 'AttackPerformed') return null;
+  const { targetId } = attack.payload;
+  const damage = events.find(
+    (event) => event.type === 'DamageApplied' && event.payload.targetId === targetId,
+  );
+  // What the weapon's mastery did to the target (docs/adr/0047-weapons.md §2).
+  const used = events.find(
+    (event) => event.type === 'WeaponMasteryApplied' && event.payload.targetId === targetId,
+  );
+  const mastery =
+    used?.type === 'WeaponMasteryApplied'
+      ? {
+          kind: used.payload.mastery,
+          ...(used.payload.from && used.payload.to
+            ? {
+                pushedFt:
+                  5 *
+                  Math.max(
+                    Math.abs(used.payload.to.x - used.payload.from.x),
+                    Math.abs(used.payload.to.y - used.payload.from.y),
+                  ),
+              }
+            : {}),
+          ...(used.payload.mastery === 'topple'
+            ? {
+                toppled: events.some(
+                  (event) =>
+                    event.type === 'ConditionApplied' &&
+                    event.payload.targetId === targetId &&
+                    event.payload.cause === 'topple-mastery',
+                ),
+              }
+            : {}),
+        }
+      : null;
+  return {
+    d20: [...attack.payload.rolls],
+    attackTotal: attack.payload.total,
+    hit: attack.payload.hit,
+    critical: attack.payload.critical,
+    damage: damage?.type === 'DamageApplied' ? damage.payload.amount : null,
+    ...(mastery ? { mastery } : {}),
+    // What its defenses made of the damage, and a knock out (docs/adr/0048-hit-points.md §3, §4).
+    ...(damage?.type === 'DamageApplied' && damage.payload.defense
+      ? { defense: damage.payload.defense }
+      : {}),
+    ...(damage?.type === 'DamageApplied' && damage.payload.knockedOut
+      ? { knockedOut: true as const }
+      : {}),
+  };
+}
+
+/** An Unarmed Strike's grapple or shove (docs/adr/0047-weapons.md §3): whether it resisted. */
+function unarmedOf(events: readonly KernelEvent[]): PlayerOutcome | undefined {
+  const save = events.find(
+    (event) =>
+      event.type === 'SavingThrowRolled' &&
+      (event.payload.purpose === 'grapple' || event.payload.purpose === 'shove'),
+  );
+  if (save?.type !== 'SavingThrowRolled') return undefined;
+  const effect = save.payload.purpose === 'grapple' ? 'grapple' : 'shove';
+  const prone = events.some(
+    (event) => event.type === 'ConditionApplied' && event.payload.cause === 'shove',
+  );
+  return {
+    kind: 'UnarmedStrike',
+    effect,
+    saved: save.payload.success,
+    ...(effect === 'shove' && !save.payload.success ? { shove: prone ? 'prone' : 'push' } : {}),
+  };
+}
+
+/** The creatures a cast called up, by name (docs/adr/0056-characters-from-the-srd.md §5). */
+function summonedBy(events: readonly KernelEvent[]): { summoned?: string[] } {
+  const summoned = events.flatMap((event) =>
+    event.type === 'EntityCreated' && event.payload.kind === 'creature' ? [event.payload.name] : [],
+  );
+  return summoned.length > 0 ? { summoned } : {};
+}
+
+/** Those a cast returned to life (docs/adr/0056-characters-from-the-srd.md §5), if any. */
+function revivedBy(events: readonly KernelEvent[]): { revived?: string[] } {
+  const revived = events.flatMap((event) =>
+    event.type === 'EntityStatusChanged' &&
+    event.payload.from === 'dead' &&
+    event.payload.to === 'active'
+      ? [event.payload.entityId]
+      : [],
+  );
+  return revived.length > 0 ? { revived } : {};
 }

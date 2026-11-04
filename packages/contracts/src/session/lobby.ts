@@ -1,5 +1,6 @@
 import { z } from 'zod';
 
+import type { CampaignOptions } from '../campaign/options.ts';
 import { entityIdSchema } from '../kernel/identifiers.ts';
 import type { EntityRef } from '../knowledge/views.ts';
 
@@ -35,6 +36,8 @@ export interface LobbyResponse {
   /** The open session; null between sessions. */
   readonly session: { readonly sessionId: string; readonly title: string } | null;
   readonly characters: readonly LobbyCharacter[];
+  /** The campaign's options, the World Engine's (docs/adr/0056-characters-from-the-srd.md §3). */
+  readonly options: CampaignOptions;
 }
 
 /** `POST …/lobby/ready`: a player for their character, or the DM for anyone. */

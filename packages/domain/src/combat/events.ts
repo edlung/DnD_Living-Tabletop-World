@@ -1,9 +1,16 @@
 import {
+  LIGHT_LEVELS,
   ABILITIES,
+  COMBAT_ACTIONS,
   CONDITIONS,
+  FEATURE_ACTS,
   MAX_COMBATANTS,
   SIDES,
+  SKILL_IDS,
+  WEAPON_IDS,
+  WEAPON_MASTERIES,
   battlefieldSchema,
+  conditionDetailsSchema,
   entityIdSchema,
   squareSchema,
   statBlockSchema,
@@ -30,6 +37,52 @@ export const turnRecordSchema = z
     movementUsedFt: z.number().int().min(0).max(1000),
     slotExpendedThisTurn: z.boolean(),
     attacksRemaining: z.number().int().min(0).max(4),
+    /**
+     * The actions of docs/adr/0045-conditions-and-actions.md §5, until the creature's next turn
+     * starts: Dash's added movement, Disengage, Dodge, the foe its Help is against, the attack it
+     * holds ready. Absent: none.
+     */
+    dashFt: z.number().int().min(0).max(400).optional(),
+    disengaged: z.literal(true).optional(),
+    dodging: z.literal(true).optional(),
+    helping: entityIdSchema.optional(),
+    readied: z
+      .object({
+        attackId: slug,
+        targetId: entityIdSchema,
+        trigger: z.string().min(1).max(120),
+      })
+      .strict()
+      .optional(),
+    /** Shield's +5 AC until its next turn starts (docs/adr/0046-reactions-beyond-counterspell.md §3). */
+    shielded: z.literal(true).optional(),
+    /** Its Attack action taken: its Multiattack's breath may still come (docs/adr/0056-…md §5). */
+    attackAction: z.literal(true).optional(),
+    /**
+     * The weapons' rules this turn (docs/adr/0047-weapons.md): the Light weapon the Attack action
+     * attacked with, which the other hand may follow; that extra attack made; a Cleave hit's second
+     * attack on offer while nothing else happened since, and Cleave used; a Loading weapon fired
+     * with the action.
+     */
+    lightWeapon: z.enum(WEAPON_IDS).optional(),
+    offhandAttacked: z.literal(true).optional(),
+    cleave: z
+      .object({
+        targetId: entityIdSchema,
+        attackId: slug,
+        movementUsedFt: z.number().int().min(0).max(1000),
+        attacksRemaining: z.number().int().min(0).max(4),
+      })
+      .strict()
+      .optional(),
+    cleaved: z.literal(true).optional(),
+    loadingFired: z.literal(true).optional(),
+    /** It mounted or dismounted this turn: once a move (docs/adr/0049-space-and-movement.md §10). */
+    mounting: z.literal(true).optional(),
+    /** Action Surge's action taken this turn: once a turn (docs/adr/0056-…md §4). */
+    surged: z.literal(true).optional(),
+    /** Sneak Attack dealt this turn: once a turn (§4). */
+    sneakAttacked: z.literal(true).optional(),
   })
   .strict();
 
@@ -39,12 +92,82 @@ export const combatantRecordSchema = z
     side: z.enum(SIDES),
     position: squareSchema,
     initiative: z
-      .object({ roll, modifier: z.number().int().min(-10).max(30), total: z.number().int() })
+      // Exhaustion lowers the modifier (ADR 0045 §3): it reaches below a Dexterity of 1's −5.
+      .object({
+        roll,
+        modifier: z.number().int().min(-30).max(30),
+        total: z.number().int(),
+        /** Surprised as the fight started: rolled with Disadvantage (ADR 0045 §5). */
+        surprised: z.literal(true).optional(),
+      })
       .strict(),
     turn: turnRecordSchema,
     slowedBy: entityIdSchema.nullable(),
     /** The party character whose player runs this creature (ADR 0044 §7); absent or null: none. */
     commandedBy: entityIdSchema.nullable().optional(),
+    /**
+     * How its conditions in this fight end and their sources (docs/adr/0045-conditions-and-actions.md
+     * §2): one entry per condition that has any; `until.turns` counts down at the named point of the
+     * named combatant's turns. Absent: none.
+     */
+    conditionDetails: z
+      .array(conditionDetailsSchema.extend({ condition: z.enum(CONDITIONS) }).strict())
+      .max(CONDITIONS.length)
+      .optional(),
+    /**
+     * The masteries' marks (docs/adr/0047-weapons.md §2): Sap — the creature whose hit gives this one
+     * Disadvantage on its next attack roll, until that creature's next turn starts; Vex — the target
+     * this one has Advantage against, ending after `turnsLeft` more ends of its own turns.
+     */
+    sappedBy: entityIdSchema.optional(),
+    vexing: z
+      .object({ targetId: entityIdSchema, turnsLeft: z.number().int().min(1).max(2) })
+      .strict()
+      .optional(),
+    /** Ammunition this one spent in the fight, by stack: half comes back as it ends (ADR 0047 §5). */
+    ammunitionSpent: z
+      .array(z.object({ itemId: entityIdSchema, spent: z.number().int().min(1).max(99) }).strict())
+      .max(8)
+      .optional(),
+    /**
+     * Squeezed through a space a size smaller (docs/adr/0049-space-and-movement.md §4): it fills
+     * that smaller space until it stands where it fits again. Absent: not squeezed.
+     */
+    squeezed: z.literal(true).optional(),
+    /**
+     * The creature it rides (ADR 0049 §10): it shares that one's space and moves as it moves.
+     * Absent: on its own feet.
+     */
+    mountedOn: entityIdSchema.optional(),
+    /**
+     * Its breath held under water (docs/adr/0050-the-world-around.md §8): the rounds it has left,
+     * and the Exhaustion levels its lost breath gave, which go once it breathes again.
+     */
+    breath: z
+      .object({
+        roundsLeft: z.number().int().min(0).max(1000),
+        gained: z.number().int().min(0).max(6),
+      })
+      .strict()
+      .optional(),
+    /**
+     * Its actions with a Recharge spent, waiting for their d6 at the start of its turn
+     * (docs/adr/0053-monsters-as-data.md §2); absent: none.
+     */
+    spent: z.array(slug).min(1).max(6).optional(),
+    /** Its legendary actions spent this round (ADR 0053 §4); absent: none. */
+    legendaryUsed: z.number().int().min(1).max(5).optional(),
+    /** Its per-day actions' uses in this fight (§2); absent: none. */
+    used: z
+      .array(z.object({ actionId: slug, count: z.number().int().min(1).max(9) }).strict())
+      .min(1)
+      .max(6)
+      .optional(),
+    /**
+     * Feet above the ground of its squares (ADR 0049 §6): a flyer's height, or below it while it
+     * burrows. Absent: on the ground.
+     */
+    altitudeFt: z.number().int().min(-50).max(500).multipleOf(5).optional(),
   })
   .strict();
 
@@ -68,13 +191,16 @@ export const combatEventPayloadSchemas = {
   TurnStarted: z.object({ combatantId: entityIdSchema, round: z.number().int().min(1) }).strict(),
   CombatantUpdated: z.object({ combatant: combatantRecordSchema }).strict(),
   CombatEnded: z.object({ encounterId: entityIdSchema }).strict(),
+  /** The fight's light set (docs/adr/0050-the-world-around.md §1). */
+  LightSet: z.object({ encounterId: entityIdSchema, ambient: z.enum(LIGHT_LEVELS) }).strict(),
   /**
    * The DM changed a running fight (docs/adr/0043-dm-screen.md §2): who joined, left, delayed or
    * had initiative set, and the whole order after it, with the current turn's place.
    */
   CombatOrderChanged: z
     .object({
-      change: z.enum(['joined', 'left', 'delayed', 'initiative']),
+      /** `mounted`: a controlled mount acts right after its rider (ADR 0049 §10). */
+      change: z.enum(['joined', 'left', 'delayed', 'initiative', 'mounted']),
       entityId: entityIdSchema,
       combatants: z.array(combatantRecordSchema).min(2).max(MAX_COMBATANTS),
       currentIndex: z
@@ -85,6 +211,42 @@ export const combatEventPayloadSchemas = {
     })
     .strict(),
   StatBlockSet: z.object({ entityId: entityIdSchema, statBlock: statBlockSchema }).strict(),
+  /** An action beside Attack and Magic (docs/adr/0045-conditions-and-actions.md §5), with its check. */
+  ActionTaken: z
+    .object({
+      combatantId: entityIdSchema,
+      action: z.enum(COMBAT_ACTIONS),
+      targetId: entityIdSchema.optional(),
+      check: z
+        .object({
+          skill: z.enum(SKILL_IDS),
+          rolls,
+          modifier: z.number().int(),
+          total: z.number().int(),
+          /** Hide against its DC 15: whether it hid. Absent for a check the DM reads. */
+          success: z.boolean().optional(),
+        })
+        .strict()
+        .optional(),
+    })
+    .strict(),
+  /**
+   * A class feature used (docs/adr/0056-characters-from-the-srd.md §4): what it spent, the dice it
+   * rolled, the creature it touched; its effect follows in its own records (healing, the sheet).
+   */
+  FeatureUsed: z
+    .object({
+      characterId: entityIdSchema,
+      feature: z.enum(FEATURE_ACTS),
+      targetId: entityIdSchema.optional(),
+      amount: z.number().int().min(1).max(100).optional(),
+      option: slug.optional(),
+      slots: z.array(z.number().int().min(1).max(9)).max(9).optional(),
+      rolls,
+      /** The uses or points of its resource left after it. */
+      left: z.number().int().min(0).max(100).optional(),
+    })
+    .strict(),
   AttackPerformed: z
     .object({
       attackerId: entityIdSchema,
@@ -98,6 +260,29 @@ export const combatEventPayloadSchemas = {
       cover: z.enum(['none', 'half', 'three-quarters']),
       critical: z.boolean(),
       hit: z.boolean(),
+      /**
+       * Made with the Reaction: an opportunity attack or the readied attack
+       * (docs/adr/0046-reactions-beyond-counterspell.md); absent: the Attack action.
+       */
+      by: z.enum(['opportunity', 'readied', 'offhand', 'cleave', 'legendary']).optional(),
+      /** The d20 rolled again with Heroic Inspiration: this roll replaces the one before (ADR 0046 §3). */
+      rerolled: z.literal(true).optional(),
+      /** A Versatile weapon in two hands, or a weapon thrown (docs/adr/0047-weapons.md §1). */
+      grip: z.literal('two-handed').optional(),
+      thrown: z.literal(true).optional(),
+    })
+    .strict(),
+  /**
+   * A weapon's mastery at work (docs/adr/0047-weapons.md §2): Sap, Vex, Topple's attempt, Graze's
+   * damage, and Push with the squares the target was pushed from and to.
+   */
+  WeaponMasteryApplied: z
+    .object({
+      attackerId: entityIdSchema,
+      targetId: entityIdSchema,
+      mastery: z.enum(WEAPON_MASTERIES),
+      from: squareSchema.optional(),
+      to: squareSchema.optional(),
     })
     .strict(),
   SpellCast: z
@@ -108,17 +293,31 @@ export const combatEventPayloadSchemas = {
       free: z.boolean(),
       targetId: entityIdSchema.nullable(),
       point: squareSchema.nullable(),
+      /** Every creature it names, when it names more than one (docs/adr/0052-spells-as-data.md §5). */
+      targetIds: z.array(entityIdSchema).min(2).max(12).optional(),
+      /** What is the DM's to apply: its whole effect, or what its effect leaves out (§2). */
+      forDm: z.enum(['effect', 'rest']).optional(),
     })
     .strict(),
   DamageApplied: z
     .object({
       targetId: entityIdSchema,
       sourceId: entityIdSchema,
+      /** What it took, after its defenses (docs/adr/0048-hit-points.md §3). */
       amount: z.number().int().min(0),
       damageType: slug,
       rolls: z.array(z.number().int().min(1).max(12)).max(60),
       hpBefore: hp,
       hpAfter: hp,
+      /** Its Resistance, Vulnerability or Immunity to the type changed it; what was dealt. */
+      defense: z.enum(['resisted', 'vulnerable', 'immune']).optional(),
+      dealt: z.number().int().min(0).optional(),
+      /** Temporary hit points that took part of it (ADR 0048 §1). */
+      absorbed: z.number().int().min(1).max(999).optional(),
+      /** Knocked out instead of brought to 0 (ADR 0048 §4). */
+      knockedOut: z.literal(true).optional(),
+      /** A fall's damage, from this many feet (docs/adr/0049-space-and-movement.md §8). */
+      fallFt: z.number().int().min(5).max(1000).optional(),
     })
     .strict(),
   HealingApplied: z
@@ -135,11 +334,46 @@ export const combatEventPayloadSchemas = {
   HitPointsAdjusted: z
     .object({
       targetId: entityIdSchema,
-      change: z.enum(['damage', 'healing']),
+      change: z.enum(['damage', 'healing', 'temporary', 'reduce-maximum']),
       amount: z.number().int().min(0),
       damageType: slug.optional(),
       hpBefore: hp,
       hpAfter: hp,
+    })
+    .strict(),
+  /**
+   * An ability check rolled in a fight by its rules (docs/adr/0049-space-and-movement.md §7): a
+   * long jump's landing in Difficult Terrain, DC 10 Dexterity (Acrobatics). A record only.
+   */
+  /** A creature's action with a save, where it was aimed (docs/adr/0053-monsters-as-data.md §2). */
+  CreatureActionUsed: z
+    .object({
+      creatureId: entityIdSchema,
+      /** Its stat block's action (an id of the block's, not an entity's). */
+      action: slug,
+      point: squareSchema.nullable(),
+      targetId: entityIdSchema.nullable(),
+    })
+    .strict(),
+  /** A spent action's d6 at the start of its creature's turn (docs/adr/0053 §2). */
+  RechargeRolled: z
+    .object({
+      creatureId: entityIdSchema,
+      action: slug,
+      roll: z.number().int().min(1).max(6),
+      recharged: z.boolean(),
+    })
+    .strict(),
+  CheckRolled: z
+    .object({
+      creatureId: entityIdSchema,
+      skill: z.enum(SKILL_IDS),
+      dc: z.number().int().min(1).max(40),
+      rolls,
+      modifier: z.number().int(),
+      total: z.number().int(),
+      success: z.boolean(),
+      purpose: z.enum(['landing']),
     })
     .strict(),
   SavingThrowRolled: z
@@ -151,7 +385,24 @@ export const combatEventPayloadSchemas = {
       modifier: z.number().int(),
       total: z.number().int(),
       success: z.boolean(),
-      purpose: z.enum(['spell', 'concentration', 'counterspell']),
+      /**
+       * `condition`: the save at the end of a turn that ends a condition (ADR 0045 §2); `topple`,
+       * `grapple`, `shove`: against a weapon's Topple or an Unarmed Strike (ADR 0047 §2–3); `saddle`:
+       * a rider keeping its seat (docs/adr/0049-space-and-movement.md §10).
+       */
+      purpose: z.enum([
+        'spell',
+        'concentration',
+        'counterspell',
+        'condition',
+        'topple',
+        'grapple',
+        'shove',
+        'saddle',
+        'hazard',
+        /** A creature's action with a save: a breath (docs/adr/0053-monsters-as-data.md §2). */
+        'creature-action',
+      ]),
     })
     .strict(),
   ConditionApplied: z

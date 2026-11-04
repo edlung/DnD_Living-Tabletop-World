@@ -9,4 +9,9 @@ export interface CharacterSheetResponse {
   readonly sheet: CharacterSheet;
   /** What the rules derive from the sheet; the server adds it (Stage 500). */
   readonly derived?: CharacterDerived;
+  /**
+   * The portrait its player asked for, while the DM has not requested it (docs/adr/0056-…md §5);
+   * told to the DM and to the character's own player only.
+   */
+  readonly portraitWish?: string;
 }

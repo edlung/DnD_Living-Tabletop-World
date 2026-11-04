@@ -55,6 +55,21 @@ export function applyCombatantUpdated(
 }
 
 /** The DM's change of a running fight (ADR 0043 §2): the whole new order and the turn's place. */
+/** The fight's light (docs/adr/0050-the-world-around.md §1). */
+export function applyLightSet(state: WorldState, event: EventOf<'LightSet'>): WorldState {
+  const encounter = requireEncounter(state, 'light');
+  if (encounter.encounterId !== event.payload.encounterId) {
+    throw new CorruptHistoryError('light for another fight');
+  }
+  return {
+    ...state,
+    encounter: {
+      ...encounter,
+      battlefield: { ...encounter.battlefield, ambient: event.payload.ambient },
+    },
+  };
+}
+
 export function applyCombatOrderChanged(
   state: WorldState,
   event: EventOf<'CombatOrderChanged'>,

@@ -12,13 +12,20 @@ type CombatEvent = Extract<
       | 'CombatantUpdated'
       | 'CombatEnded'
       | 'CombatOrderChanged'
+      | 'LightSet'
       | 'StatBlockSet'
+      | 'ActionTaken'
+      | 'FeatureUsed'
       | 'AttackPerformed'
+      | 'WeaponMasteryApplied'
       | 'SpellCast'
       | 'DamageApplied'
       | 'HealingApplied'
       | 'HitPointsAdjusted'
       | 'SavingThrowRolled'
+      | 'CheckRolled'
+      | 'RechargeRolled'
+      | 'CreatureActionUsed'
       | 'ConditionApplied'
       | 'DeathSaveRolled';
   }
@@ -50,6 +57,7 @@ export function combatFootprint(event: CombatEvent): Footprint {
     case 'TurnStarted':
     case 'CombatantUpdated':
     case 'CombatEnded':
+    case 'LightSet':
       // Combat is strictly sequential: undo unwinds it in reverse order (ADR 0015).
       return { reads: [clock, facts.encounter()], writes: [facts.encounter()] };
     case 'CombatOrderChanged':
@@ -74,12 +82,18 @@ export function combatFootprint(event: CombatEvent): Footprint {
         reads: [clock, facts.encounter(), facts.entity(event.payload.entityId)],
         writes: [facts.statBlock(event.payload.entityId)],
       };
+    case 'ActionTaken':
+    case 'FeatureUsed':
     case 'AttackPerformed':
+    case 'WeaponMasteryApplied':
     case 'SpellCast':
     case 'DamageApplied':
     case 'HealingApplied':
     case 'HitPointsAdjusted':
     case 'SavingThrowRolled':
+    case 'CheckRolled':
+    case 'RechargeRolled':
+    case 'CreatureActionUsed':
     case 'ConditionApplied':
     case 'DeathSaveRolled':
       // Narrative records: their fold needs every creature they name (G03-H05).

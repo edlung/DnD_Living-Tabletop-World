@@ -14,8 +14,17 @@ import { Glyph } from '../visual/glyph.tsx';
 import { IconButton } from '../visual/icon-button.tsx';
 import { Medallion } from '../visual/medallion.tsx';
 import { HpBar } from './board/token.tsx';
-import { COMBAT_ACTIONS, conditionGlyph, optionArtUrl, optionLabelFor } from './combat-art.ts';
+import {
+  COMBAT_ACTIONS,
+  TURN_ACTIONS,
+  actionEffect,
+  conditionGlyph,
+  optionArtUrl,
+  optionLabelFor,
+} from './combat-art.ts';
+import { sideWords, stateWords, temporaryWords } from './hit-point-words.ts';
 import type { LabelOf } from './labels.ts';
+import { masteryEffect } from './weapon-words.ts';
 
 const words = (t: Translate, text: string) => t(text.replaceAll('_', ' ').toLowerCase());
 
@@ -56,6 +65,14 @@ export function optionNotes(t: Translate, action: ContextAction): readonly strin
       ? [t('Move {feet} ft closer first', { feet: action.resolution.moveRequiredFt })]
       : []),
     ...(action.hints?.includes('LONG_RANGE') ? [t('long range: disadvantage')] : []),
+    ...(action.hints?.includes('DISADVANTAGE') ? [t('with disadvantage')] : []),
+    ...(action.hints?.includes('ADVANTAGE') ? [t('with advantage')] : []),
+    // What the server does not compute of a spell (docs/adr/0052-spells-as-data.md §2).
+    ...(action.spell?.forDm === 'effect'
+      ? [t('the DM decides its effect')]
+      : action.spell?.forDm === 'rest'
+        ? [t('the DM applies the rest')]
+        : []),
   ];
 }
 
@@ -68,7 +85,9 @@ export function combatOptions(
   resource: Resource<EntityContextResponse | null>,
 ): readonly ContextAction[] | null {
   return resource.status === 'ready' && resource.value
-    ? resource.value.context.actions.filter((action) => COMBAT_ACTIONS.includes(action.id))
+    ? resource.value.context.actions.filter(
+        (action) => COMBAT_ACTIONS.includes(action.id) || TURN_ACTIONS.includes(action.id),
+      )
     : null;
 }
 
@@ -116,9 +135,11 @@ export function TargetDetails({
       <header className="side-header">
         <Medallion image={image} kind={target.entity.kind} size="lg" tone={target.side} />
         <div className="side-title">
-          <p className="eyebrow">{t(readableLabel(target.side))}</p>
+          <p className="eyebrow">{sideWords(t, target)}</p>
           <h3>{name}</h3>
-          {target.state !== 'up' && <p className="side-state">{t(readableLabel(target.state))}</p>}
+          {(target.state !== 'up' || target.object || target.form !== undefined) && (
+            <p className="side-state">{stateWords(t, target)}</p>
+          )}
         </div>
         <IconButton glyph="close" label={t('Close options')} onClick={onClose} />
       </header>
@@ -126,6 +147,9 @@ export function TargetDetails({
         <p className="side-hp">
           <Glyph name="hit-points" />
           {t('Hit points: {current} / {max}', { ...target.hitPoints })}
+          {temporaryWords(t, target.hitPoints) && (
+            <span className="hp-temporary">{temporaryWords(t, target.hitPoints)}</span>
+          )}
           <HpBar hitPoints={target.hitPoints} />
         </p>
       )}
@@ -171,6 +195,7 @@ export function TargetDetails({
                 action={action}
                 label={optionLabelFor(t, action, name)}
                 labelOf={labelOf}
+                object={target.object !== undefined}
               />
             ))}
           </ul>
@@ -185,14 +210,24 @@ function OptionEntry({
   action,
   label,
   labelOf,
+  object,
 }: {
   readonly id: string;
   readonly action: ContextAction;
   readonly label: string;
   readonly labelOf: LabelOf;
+  /** The target is an object: struck, never grappled or shoved (docs/adr/0048-hit-points.md §5). */
+  readonly object: boolean;
 }) {
   const t = useT();
   const url = optionArtUrl(action);
+  // A weapon attack tells what its mastery will do (docs/adr/0047-weapons.md §2).
+  const effect =
+    object && action.id === 'unarmed_strike'
+      ? t('A punch, or a blow with an object at hand.')
+      : action.mastery === undefined
+        ? actionEffect(t, action.id)
+        : masteryEffect(t, action.mastery);
   return (
     <li className={`option-entry${action.legal ? '' : ' is-unavailable'}`}>
       {url ? (
@@ -202,6 +237,7 @@ function OptionEntry({
       )}
       <div className="option-text" id={id}>
         <strong>{label}</strong>
+        {effect && <small className="option-effect">{effect}</small>}
         {optionNotes(t, action).map((note) => (
           <small key={note}>{note}</small>
         ))}

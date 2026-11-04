@@ -17,6 +17,8 @@ export const UI_DICE_CAMPAIGNS = {
   still: 'ui-dice-still',
   /** The browser has no WebGL here: the plate alone tells the numbers (Stage 540). */
   plain: 'ui-dice-plain',
+  /** A check rolled again with Heroic Inspiration (ADR 0046 §6). */
+  reroll: 'ui-dice-reroll',
 } as const;
 
 export async function seedUiDiceCampaigns(engine: WorldEngine): Promise<void> {
@@ -28,6 +30,7 @@ export async function seedUiDiceCampaigns(engine: WorldEngine): Promise<void> {
     [UI_DICE_CAMPAIGNS.axe, 'en'],
     [UI_DICE_CAMPAIGNS.still, 'en'],
     [UI_DICE_CAMPAIGNS.plain, 'en'],
+    [UI_DICE_CAMPAIGNS.reroll, 'en'],
   ] as const) {
     const seed = await loadRavenfordSeed(language === 'ru' ? RAVENFORD_RU_FIXTURES_DIR : undefined);
     for (const input of seed.submissions) {

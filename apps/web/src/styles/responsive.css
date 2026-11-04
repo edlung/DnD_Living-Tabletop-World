@@ -400,8 +400,9 @@
     flex: 1;
     gap: 0;
   }
+  /* Each tab as wide as its word, the rest shared: equal shares left "Персонаж" past its edge. */
   .dock:not([data-dm]) .dock-items > li {
-    flex: 1 1 0;
+    flex: 1 1 auto;
     min-width: 0;
   }
   .dock:not([data-dm]) .dock-button {

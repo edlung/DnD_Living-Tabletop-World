@@ -4,6 +4,7 @@ import {
   lobbyReadyRequestSchema,
   type LobbyResponse,
 } from '@ltw/contracts';
+import { campaignOptions } from '@ltw/domain';
 import type { FastifyInstance } from 'fastify';
 import { z } from 'zod';
 
@@ -54,6 +55,7 @@ export function registerLobbyRoutes(app: FastifyInstance, deps: LobbyRouteDepend
         ready: sayReady.has(character.entityId),
         absent: table.absent.includes(character.entityId),
       })),
+      options: campaignOptions(state),
     };
     return reply.send(body);
   });

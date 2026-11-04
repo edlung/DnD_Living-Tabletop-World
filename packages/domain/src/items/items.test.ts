@@ -117,6 +117,37 @@ describe('equipment and armor class', () => {
     expect(worn).not.toBe(base);
   });
 
+  it('measures armor from Unarmored Defense; a Monk’s ends with a shield (ADR 0056 §4)', async () => {
+    const armorClass = async () => (await verified()).characterSheets.get('hero')?.armorClass;
+    const as = async (classId: string, unarmored: number) =>
+      expectAccepted(
+        await harness.submit({
+          type: 'SetCharacterSheet',
+          entityId: 'hero',
+          sheet: {
+            ...sheet,
+            classes: [{ classId, level: 1 }],
+            abilities: { str: 15, dex: 14, con: 16, int: 8, wis: 14, cha: 10 },
+            armorClass: unarmored,
+          },
+        }),
+      );
+    await grant('mail', 'watchman-mail');
+    await grant('buckler', 'oak-buckler');
+    // A Barbarian: 10 + Dexterity +2 + Constitution +3; the mail's 16 replaces it.
+    await as('barbarian', 15);
+    expectAccepted(await act({ type: 'EquipItem', itemId: 'mail', slot: 'body' }));
+    expect(await armorClass()).toBe(16);
+    expectAccepted(await act({ type: 'UnequipItem', itemId: 'mail' }));
+    expect(await armorClass()).toBe(15);
+    // A Monk: 10 + Dexterity +2 + Wisdom +2; a shield ends it — 10 + 2 + the buckler's 1.
+    await as('monk', 14);
+    expectAccepted(await act({ type: 'EquipItem', itemId: 'buckler', slot: 'offhand' }));
+    expect(await armorClass()).toBe(13);
+    expectAccepted(await act({ type: 'UnequipItem', itemId: 'buckler' }));
+    expect(await armorClass()).toBe(14);
+  });
+
   it('refuses a taken slot, a wrong slot, and an item that is not gear', async () => {
     await grant('mail', 'watchman-mail');
     await grant('cloak', 'caravan-cloak');
@@ -129,6 +160,19 @@ describe('equipment and armor class', () => {
     expectAccepted(await act({ type: 'EquipItem', itemId: 'cloak', slot: 'cloak' }));
     expectRejected(await act({ type: 'EquipItem', itemId: 'cloak', slot: 'cloak' }), 'NO_EFFECT');
     expectRejected(await act({ type: 'UnequipItem', itemId: 'mail' }), 'NO_EFFECT');
+  });
+
+  it('keeps what the rules need of the body armor on the sheet while it is worn', async () => {
+    // docs/adr/0050-the-world-around.md §10: the watch's mail asks Strength 13, and it rustles.
+    await grant('mail', 'watchman-mail');
+    expectAccepted(await act({ type: 'EquipItem', itemId: 'mail', slot: 'body' }));
+    expect((await verified()).characterSheets.get('hero')?.wornArmor).toEqual({
+      weight: 'heavy',
+      strength: 13,
+      stealthDisadvantage: true,
+    });
+    expectAccepted(await act({ type: 'UnequipItem', itemId: 'mail' }));
+    expect((await verified()).characterSheets.get('hero')?.wornArmor).toBeUndefined();
   });
 
   it('undoing an equip restores both the item and the sheet', async () => {

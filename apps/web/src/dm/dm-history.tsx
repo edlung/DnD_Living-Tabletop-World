@@ -23,11 +23,18 @@ const KIND_GLYPH = {
   substitution: 'perform',
   time: 'time',
   weather: 'weather',
+  options: 'settings',
   'hit-points': 'hit-points',
   condition: 'incapacitated',
+  exhaustion: 'exhaustion',
   inspiration: 'blessing',
   ruling: 'game-master',
   fight: 'initiative',
+  light: 'day',
+  trap: 'falling',
+  'mental-stress': 'thought',
+  contagion: 'poisoned',
+  hazard: 'weather',
 } as const;
 
 const UNDO_LABEL: Readonly<Record<DmHistoryEntry['kind'], string>> = {

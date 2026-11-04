@@ -270,3 +270,59 @@ describe('the table rolls (Stage 510)', () => {
     expect(ALL_SECRET_MARKERS.filter((marker) => response.body.includes(marker))).toEqual([]);
   });
 });
+
+describe('a character’s conditions on the table’s rolls (docs/adr/0045-conditions-and-actions.md §1)', () => {
+  const setCondition = (condition: string, applied: boolean) =>
+    post(
+      app,
+      `${BASE}/commands`,
+      {
+        commandId: `condition-${condition}-${String(applied)}`,
+        command: { type: 'SetCondition', targetId: ELOWEN, condition, applied, reason: 'A test' },
+      },
+      TOKENS.dm,
+    );
+  const check = (body: object) =>
+    rollAs(
+      'PLAYER',
+      { kind: 'check', characterId: ELOWEN, mode: 'normal', ...body },
+      TOKENS.player,
+    );
+
+  it('rolls a Poisoned character’s check with Disadvantage, and tells the player beforehand', async () => {
+    expect((await setCondition('poisoned', true)).statusCode).toBe(200);
+    const requests = (
+      await get(app, `${BASE}/check-requests?perspective=PLAYER`, TOKENS.player)
+    ).json<CheckRequestsResponse>();
+    expect(requests.d20?.checks).toEqual({
+      normal: 'disadvantage',
+      advantage: 'normal',
+      disadvantage: 'disadvantage',
+    });
+    queue.push(15, 4);
+    const rolled = await check({ check: { kind: 'skill', skill: 'perception' } });
+    expect(rolled.statusCode).toBe(201);
+    expect(rolled.json<{ roll: RollEntry }>().roll.groups[0]?.dice).toEqual([
+      { sides: 20, value: 15, dropped: true },
+      { sides: 20, value: 4 },
+    ]);
+    expect((await setCondition('poisoned', false)).statusCode).toBe(200);
+    // The DM's view carries no character's lookups.
+    const dm = (
+      await get(app, `${BASE}/check-requests?perspective=DM`, TOKENS.dm)
+    ).json<CheckRequestsResponse>();
+    expect(dm.d20).toBeUndefined();
+  });
+
+  it('fails a Paralyzed character’s Dexterity save outright, its die kept for the log', async () => {
+    expect((await setCondition('paralyzed', true)).statusCode).toBe(200);
+    queue.push(18);
+    const rolled = await check({ check: { kind: 'save', ability: 'dex' } });
+    expect(rolled.json<{ roll: RollEntry }>().roll.groups[0]).toMatchObject({
+      dice: [{ sides: 20, value: 18 }],
+      result: 'failure',
+      autoFail: true,
+    });
+    expect((await setCondition('paralyzed', false)).statusCode).toBe(200);
+  });
+});

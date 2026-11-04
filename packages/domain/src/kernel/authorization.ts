@@ -55,25 +55,53 @@ export function authorize(state: WorldState, actor: Actor, command: KernelComman
       ? { ok: true, authority: 'dm' }
       : forbidden('Only the DM can release a character');
   }
+  if (command.type === 'CreateCharacter') {
+    // The DM makes a character for anyone or to invite a player to; a seated player makes one
+    // of their own (docs/adr/0056-characters-from-the-srd.md §2).
+    if (actor.kind !== 'user') return forbidden('A character is made by a person');
+    if (actor.actorId === state.campaign?.dmActorId) return { ok: true, authority: 'dm' };
+    const seated = [...state.roster.values()].includes(actor.actorId);
+    return seated && command.playerActorId === actor.actorId
+      ? { ok: true, authority: 'controller' }
+      : forbidden('A player makes only their own character');
+  }
+  if (command.type === 'AskPortrait') {
+    // A player asks for their own character's portrait; the DM may for anyone (ADR 0056 §5).
+    if (actor.kind !== 'user') return forbidden('A portrait is asked for by a person');
+    if (actor.actorId === state.campaign?.dmActorId) return { ok: true, authority: 'dm' };
+    return state.roster.get(command.characterId) === actor.actorId
+      ? { ok: true, authority: 'controller' }
+      : forbidden('A player asks only for their own character’s portrait');
+  }
   if (WORKER_TYPES.has(command.type)) {
     // Only the asset worker reports what external work did (ADR 0022 §4).
     return actor.kind === 'system'
       ? { ok: true, authority: 'system' }
       : forbidden('Only the asset worker reports asset jobs');
   }
-  const acting = !PLAYER_TYPES.has(command.type)
-    ? null
-    : 'characterId' in command
-      ? command.characterId
-      : 'combatantId' in command
-        ? command.combatantId
-        : null;
+  // A creature's action with a save is the DM's, or its commander's player's (ADR 0056 §5).
+  const acting =
+    command.type === 'UseCreatureAction'
+      ? command.combatantId
+      : !PLAYER_TYPES.has(command.type)
+        ? null
+        : 'characterId' in command
+          ? command.characterId
+          : 'combatantId' in command
+            ? command.combatantId
+            : null;
   const authorization = authorizeActingFor(state, actor, acting, COMMANDABLE.has(command.type));
   return authorization.ok ? authorization : forbidden(`Not permitted to issue ${command.type}`);
 }
 
-/** What a player may do for a creature their character commands (ADR 0044 §7): its turn's acts. */
-const COMMANDABLE: ReadonlySet<string> = new Set(PLAYER_COMBAT_COMMAND_TYPES);
+/**
+ * What a player may do for a creature their character commands (ADR 0044 §7): its turn's acts,
+ * its actions with a save among them (docs/adr/0056-characters-from-the-srd.md §5).
+ */
+const COMMANDABLE: ReadonlySet<string> = new Set([
+  ...PLAYER_COMBAT_COMMAND_TYPES,
+  'UseCreatureAction',
+]);
 
 /** The party character commanding a creature in the running fight, if any (ADR 0044 §7). */
 export function commanderOf(state: WorldState, combatantId: string): string | null {

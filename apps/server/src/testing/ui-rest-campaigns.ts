@@ -14,6 +14,10 @@ export const UI_REST_CAMPAIGNS = {
   axe: 'ui-rest-axe',
   /** A result inside the character sheet, which must never hide its last lines (Stage 540). */
   notice: 'ui-rest-notice',
+  /** A long rest cut short, and one more the same day (docs/adr/0050-the-world-around.md §5–6). */
+  cut: 'ui-rest-cut',
+  /** The hazards of the road (docs/adr/0050-the-world-around.md §8). */
+  hazard: 'ui-rest-hazard',
 } as const;
 
 const ELOWEN = 'elowen-starwhisper';
@@ -26,6 +30,8 @@ export async function seedUiRestCampaigns(engine: WorldEngine): Promise<void> {
     [UI_REST_CAMPAIGNS.ru, 'ru'],
     [UI_REST_CAMPAIGNS.axe, 'en'],
     [UI_REST_CAMPAIGNS.notice, 'en'],
+    [UI_REST_CAMPAIGNS.cut, 'en'],
+    [UI_REST_CAMPAIGNS.hazard, 'en'],
   ] as const) {
     const seed = await loadRavenfordSeed(language === 'ru' ? RAVENFORD_RU_FIXTURES_DIR : undefined);
     for (const input of seed.submissions) {

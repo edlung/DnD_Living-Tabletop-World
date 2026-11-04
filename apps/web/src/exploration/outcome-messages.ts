@@ -1,5 +1,8 @@
 import type { KnowledgeView, PlayerOutcome } from '@ltw/contracts';
-import type { Translate } from '@ltw/ui';
+import { readableLabel, type Translate } from '@ltw/ui';
+
+import { RESOURCE_NAMES } from '../character/feature-words.ts';
+import { isSliceSpellId } from '../character/words.ts';
 
 /**
  * The words of what happened. Every sentence is an English key the client dictionary
@@ -28,6 +31,13 @@ const REJECTIONS: Readonly<Record<string, string>> = {
   INVALID_COMMAND: 'The world could not accept this as written.',
   SESSION_PAUSED: 'The DM paused the game. It waits until they resume.',
 };
+
+/** A target's defense against the damage's type (docs/adr/0048-hit-points.md §3). */
+const DEFENSE_WORDS = {
+  resisted: 'It resists the damage: half of it.',
+  vulnerable: 'It is vulnerable to the damage: double.',
+  immune: 'It is immune to the damage.',
+} as const;
 
 /** Changes of a running fight (ADR 0043 §2): a refusal is about the fight, not its start. */
 const FIGHT_COMMANDS: ReadonlySet<string> = new Set([
@@ -106,7 +116,9 @@ export function rejectionMessage(
 }
 
 /** A spell by its ID, in the form the dictionary keys it ("detect magic"). */
-export const spellName = (t: Translate, id: string) => t(id.replaceAll('-', ' '));
+/** A slice spell's name in a sentence; any other SRD spell's, read from its id (ADR 0052). */
+export const spellName = (t: Translate, id: string) =>
+  isSliceSpellId(id) ? t(id.replaceAll('-', ' ')) : readableLabel(id, t);
 
 export function outcomeMessage(t: Translate, outcome: PlayerOutcome | undefined): string {
   switch (outcome?.kind) {
@@ -127,11 +139,68 @@ export function outcomeMessage(t: Translate, outcome: PlayerOutcome | undefined)
     case 'FormHypothesis':
       return t('Hypothesis recorded as HYPOTHESIS.');
     case 'Item':
+      if (outcome.healed !== undefined)
+        return t('You drank it: {count} hit points back.', { count: outcome.healed });
+      if (outcome.chargesLeft !== undefined)
+        return t('A charge spent: {count} left. The DM says what it does.', {
+          count: outcome.chargesLeft,
+        });
       return t(ITEM_DONE[outcome.action]);
-    case 'MoveCombatant':
-      return t('You moved to {x}, {y}.', { x: outcome.position.x, y: outcome.position.y });
-    case 'Attack':
-      return outcome.hit
+    case 'UseFeature': {
+      // A class feature (docs/adr/0056-characters-from-the-srd.md §4).
+      if (outcome.feature === 'end-rage') return t('The Rage ends.');
+      // Wild Shape's form (§5): taken, or left.
+      if (outcome.feature === 'end-wild-shape') return t('You are yourself again.');
+      if (outcome.feature === 'wild-shape')
+        return outcome.left === undefined
+          ? t('You take the Beast’s shape.')
+          : t(
+              outcome.left === 1
+                ? 'You take the Beast’s shape: 1 use left.'
+                : 'You take the Beast’s shape: {count} uses left.',
+              { count: outcome.left },
+            );
+      if (outcome.feature === 'inspiration-die')
+        return t(
+          'Your Bardic Inspiration die shows {roll}: add it to the failed d20 test; the DM applies it.',
+          { roll: outcome.rolls[0] ?? 0 },
+        );
+      const feature = t(RESOURCE_NAMES[outcome.feature]);
+      if (outcome.healed !== undefined)
+        return t('{feature}: {count} hit points back.', { feature, count: outcome.healed });
+      return outcome.left === undefined
+        ? t('{feature} used.', { feature })
+        : t('{feature} used: {count} left.', { feature, count: outcome.left });
+    }
+    case 'MoveCombatant': {
+      // Its height, a landing's check and a fall (docs/adr/0049-space-and-movement.md §6–8).
+      const moved = t('You moved to {x}, {y}.', { x: outcome.position.x, y: outcome.position.y });
+      const aloft = outcome.altitudeFt
+        ? t(outcome.altitudeFt > 0 ? 'You are {feet} ft up.' : 'You are {feet} ft underground.', {
+            feet: Math.abs(outcome.altitudeFt),
+          })
+        : null;
+      const landing = outcome.landing
+        ? t(
+            outcome.landing.success
+              ? 'Landing: Acrobatics {total}, you keep your feet.'
+              : 'Landing: Acrobatics {total}, you fall Prone.',
+            { total: outcome.landing.total },
+          )
+        : null;
+      const fell = outcome.fell
+        ? t('You fall {feet} ft and take {damage} damage.', { ...outcome.fell })
+        : null;
+      const prone =
+        outcome.prone && outcome.landing?.success !== false ? t('You are Prone.') : null;
+      const falling = outcome.falling ? t('You fall; a reaction may slow you.') : null;
+      return [moved, aloft, landing, fell, prone, falling]
+        .filter((part) => part !== null)
+        .join(' ');
+    }
+    case 'Attack': {
+      if (outcome.awaitingReaction) return t('The attack waits for a reaction.');
+      const roll = outcome.hit
         ? t(
             outcome.critical
               ? 'Critical hit: {damage} damage (attack {total}).'
@@ -142,9 +211,44 @@ export function outcomeMessage(t: Translate, outcome: PlayerOutcome | undefined)
             },
           )
         : t('Miss (attack {total}).', { total: outcome.attackTotal });
+      const mastery = outcome.mastery ? masteryWords(t, outcome.mastery, outcome.damage) : null;
+      // What its defenses made of the damage, and a knock out (docs/adr/0048-hit-points.md).
+      const defense = outcome.defense ? t(DEFENSE_WORDS[outcome.defense]) : null;
+      const out = outcome.knockedOut ? t('It is knocked out.') : null;
+      return [roll, defense, mastery, out].filter((part) => part !== null).join(' ');
+    }
+    case 'UnarmedStrike':
+      if (outcome.saved) {
+        return outcome.effect === 'grapple'
+          ? t('Grapple: it slips your grasp.')
+          : t('Shove: it stands its ground.');
+      }
+      return outcome.effect === 'grapple'
+        ? t('Grapple: it is Grappled.')
+        : outcome.shove === 'prone'
+          ? t('Shove: it falls Prone.')
+          : t('Shove: it is pushed 5 ft.');
     case 'CastSpell': {
-      const spell = spellName(t, outcome.spellId);
+      const spell = outcome.spellName ?? spellName(t, outcome.spellId);
       if (outcome.awaitingReaction) return t('{spell} is waiting for reactions.', { spell });
+      // What the server does not compute of it (docs/adr/0052-spells-as-data.md §2).
+      const forDm =
+        outcome.forDm === 'effect'
+          ? t(' The DM decides what it does.')
+          : outcome.forDm === 'rest'
+            ? t(' The DM applies the rest.')
+            : '';
+      // The dead returned to life (docs/adr/0056-characters-from-the-srd.md §5).
+      if (outcome.revived && outcome.revived.length > 0)
+        return `${t('{spell} returns the dead to life.', { spell })}${forDm}`;
+      // The creatures it called up (§5), their names as the server gave them.
+      if (outcome.summoned && outcome.summoned.length > 0)
+        return `${t(
+          outcome.summoned.length === 1
+            ? '{spell}: {names} appears at your call.'
+            : '{spell}: {names} appear at your call.',
+          { spell, names: outcome.summoned.join(', ') },
+        )}${forDm}`;
       if (outcome.results.length > 0) {
         const total = outcome.results.reduce((sum, entry) => sum + (entry.damage ?? 0), 0);
         const healed = outcome.results.reduce((sum, entry) => sum + (entry.healed ?? 0), 0);
@@ -164,20 +268,80 @@ export function outcomeMessage(t: Translate, outcome: PlayerOutcome | undefined)
           total > 0 ? t(': {total} damage in all', { total }) : '',
           healed > 0 ? t(': {healed} healed', { healed }) : '',
           '.',
+          forDm,
         ].join('');
       }
       if (outcome.discovered.length) return t('Magic revealed new evidence.');
       return outcome.spellId === 'detect-magic'
         ? t('Nothing magical was found.')
-        : t('You cast {spell}.', { spell });
+        : `${t('You cast {spell}.', { spell })}${forDm}`;
     }
     case 'EndTurn':
       return t('Turn ended. Round {round}.', { round: outcome.round });
-    case 'UseReaction':
-      return outcome.countered ? t('Counterspell stopped the spell.') : t('The reaction was used.');
+    case 'UseReaction': {
+      const { attack } = outcome;
+      if (outcome.reaction === 'inspiration-reroll' && attack) {
+        return attack.hit
+          ? t('Rolled again: hit for {damage} damage (attack {total}).', {
+              damage: attack.damage ?? 0,
+              total: attack.attackTotal,
+            })
+          : t('Rolled again: miss (attack {total}).', { total: attack.attackTotal });
+      }
+      if (attack) {
+        return attack.hit
+          ? t('Opportunity attack: hit for {damage} damage (attack {total}).', {
+              damage: attack.damage ?? 0,
+              total: attack.attackTotal,
+            })
+          : t('Opportunity attack: miss (attack {total}).', { total: attack.attackTotal });
+      }
+      switch (outcome.reaction) {
+        case 'shield':
+          return t('Shield: the attack misses, and your AC is 5 higher until your next turn.');
+        case 'uncanny-dodge':
+          return t('Uncanny Dodge: you take {damage} damage.', { damage: outcome.damage ?? 0 });
+        case 'hellish-rebuke':
+          return t('Hellish Rebuke: {damage} fire damage.', { damage: outcome.damage ?? 0 });
+        case 'feather-fall':
+          return t('Feather Fall: the falling drift down and land on their feet, unharmed.');
+        default:
+          return outcome.countered
+            ? t('Counterspell stopped the spell.')
+            : t('The reaction was used.');
+      }
+    }
     case 'DeclineReaction':
-      return t('You let the spell happen.');
+      return outcome.trigger === 'move'
+        ? t('You let it go.')
+        : outcome.trigger === 'spell'
+          ? t('You let the spell happen.')
+          : t('You did not react.');
     default:
       return t('Action resolved. Your view has been refreshed.');
+  }
+}
+
+/** What a weapon's mastery did, after the roll's words (docs/adr/0047-weapons.md §2). */
+function masteryWords(
+  t: Translate,
+  mastery: NonNullable<Extract<PlayerOutcome, { kind: 'Attack' }>['mastery']>,
+  damage: number | null,
+): string | null {
+  switch (mastery.kind) {
+    case 'sap':
+      return t('Sap: its next attack has Disadvantage.');
+    case 'vex':
+      return t('Vex: your next attack against it has Advantage.');
+    case 'push':
+      return t('Push: it is pushed {feet} ft.', { feet: mastery.pushedFt ?? 0 });
+    case 'topple':
+      return mastery.toppled === true
+        ? t('Topple: it falls Prone.')
+        : t('Topple: it keeps its feet.');
+    case 'graze':
+      return t('Graze: {damage} damage.', { damage: damage ?? 0 });
+    default:
+      return null;
   }
 }

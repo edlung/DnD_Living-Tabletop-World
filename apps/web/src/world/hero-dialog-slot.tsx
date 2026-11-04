@@ -3,10 +3,16 @@ import { useT } from '@ltw/ui';
 import type { ReactNode } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
+import { BringCharacter } from '../builder/bring-character.tsx';
+import { PortraitWish } from '../character/portrait-wish.tsx';
+import { LevelSection } from '../builder/level-section.tsx';
+import { MakeCharacter } from '../builder/make-character.tsx';
+import { FeatureSection } from '../character/feature-section.tsx';
 import { HeroDialog } from '../character/hero-dialog.tsx';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
 import { InventoryPanel, type Recipient } from '../items/inventory-panel.tsx';
-import { GrantLevel, HitDice } from '../rest/sheet-rest.tsx';
+import { useDiceTable } from '../dice/table.tsx';
+import { HitDice } from '../rest/sheet-rest.tsx';
 import type { Shell } from '../shell/use-shell.ts';
 
 /**
@@ -40,7 +46,10 @@ export function WorldHeroDialog({
   readonly notice: ReactNode;
 }) {
   const t = useT();
+  const isDm = useDiceTable()?.isDm ?? false;
   const shown = directory.find((entity) => entity.entityId === shell.hero);
+  const heroName = shown?.name ?? t('Character');
+  const party = directory.filter((entity) => entity.kind === 'character');
   return (
     <HeroDialog
       api={api}
@@ -55,7 +64,45 @@ export function WorldHeroDialog({
       overview={(shown) => (
         <>
           <HitDice {...shown} locked={locked} onRun={onRun} />
-          <GrantLevel {...shown} locked={locked} onRun={onRun} />
+          {/* The class features in play (docs/adr/0056-…md §4). */}
+          <FeatureSection
+            api={api}
+            entityId={shown.entityId}
+            sheet={shown.sheet}
+            derived={shown.derived}
+            party={party}
+            canUse={isDm || shown.entityId === actorId}
+            locked={locked}
+            onRun={onRun}
+          />
+          {/* Experience and the levels to take (docs/adr/0056-…md §3). */}
+          <LevelSection
+            api={api}
+            characterId={shown.entityId}
+            sheet={shown.sheet}
+            own={shown.entityId === actorId}
+            onChanged={shown.reread}
+          />
+          {/* A player makes another character of their own (docs/adr/0056-…md §2). */}
+          {shown.entityId === actorId && (
+            <MakeCharacter
+              api={api}
+              onMade={() => undefined}
+              intro="Make another character of your own: a spare hero, or one for someone who shares your screen."
+            />
+          )}
+          {/* One the player's login plays elsewhere, as a sheet only (decision 15). */}
+          {shown.entityId === actorId && <BringCharacter api={api} onBrought={() => undefined} />}
+          {/* Their portrait, asked of the DM (docs/adr/0056-…md §5). */}
+          {shown.entityId === actorId && (
+            <PortraitWish
+              api={api}
+              characterId={shown.entityId}
+              name={heroName}
+              asked={shown.portraitWish}
+              onAsked={shown.reread}
+            />
+          )}
         </>
       )}
       inventory={

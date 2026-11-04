@@ -20,10 +20,15 @@ import { BoardGround } from './board-ground.tsx';
 import { BoardPlates } from './plates.tsx';
 import { squareName } from './square-name.ts';
 import { TerrainCard } from './terrain-card.tsx';
+import { footprint, spanOf } from './footprint.ts';
 import { CoverPiece, Token } from './token.tsx';
 
 const key = (square: { readonly x: number; readonly y: number }) =>
   `${String(square.x)},${String(square.y)}`;
+
+/** A raised square's or a pit's mark in its corner: "+10", "−10"; none on level ground. */
+const heightMark = (ft: number): string | undefined =>
+  ft === 0 ? undefined : ft > 0 ? `+${String(ft)}` : `−${String(-ft)}`;
 
 /** The space the board is given, as laid out by the stylesheet for this width. */
 function useSpace(): [React.RefObject<HTMLDivElement | null>, Size | null] {
@@ -79,6 +84,7 @@ export function Board({
   view,
   onPick,
   centreOn = null,
+  moverId = selfId,
 }: {
   readonly encounter: Pick<EncounterView, 'battlefield' | 'combatants'>;
   readonly labelOf: LabelOf;
@@ -88,6 +94,11 @@ export function Board({
   readonly selected: Square | null;
   /** The advisory route to the selected square, without the mover's own square. */
   readonly path: readonly Square[];
+  /**
+   * Whose route `path` is: the viewer's, or a creature it commands on that creature's turn
+   * (docs/adr/0044-online-play.md §7). Absent: the viewer's.
+   */
+  readonly moverId?: string | null;
   /** Combatants a previewed area spell would affect, as the server listed them. */
   readonly affected: ReadonlySet<string>;
   readonly imageOf: (entityId: string) => PlayerAssetView | null;
@@ -115,11 +126,34 @@ export function Board({
   const cell = Math.round(fitted * view.zoom);
   const layout = boardLayout(grid, cell, tilt);
   const hard = new Set(difficult.map(key));
+  const walls = new Set((encounter.battlefield.walls ?? []).map(key));
+  // Water and the ground's heights (docs/adr/0049-space-and-movement.md §5–6).
+  const water = new Map((encounter.battlefield.water ?? []).map((w) => [key(w), w.deep === true]));
+  const heights = new Map((encounter.battlefield.ground ?? []).map((g) => [key(g), g.ft]));
+  // Its light and its fog (docs/adr/0050-the-world-around.md §1).
+  const ambient = encounter.battlefield.ambient ?? 'bright';
+  const lit = new Map((encounter.battlefield.light ?? []).map((l) => [key(l), l.level]));
+  const fog = new Map(
+    (encounter.battlefield.obscured ?? []).map((o) => [key(o), o.heavy === true] as const),
+  );
   const coverAt = new Map(cover.map((entry) => [key(entry), entry.level]));
-  const occupants = new Map(encounter.combatants.map((entry) => [key(entry.position), entry]));
+  // Every square a combatant fills names it; its figure stands on its north-west square, as big
+  // as its space (docs/adr/0049-space-and-movement.md §1).
+  // A rider sits on its mount and shares its space (§10): the mount's squares hold the mount, and
+  // name its rider too; the rider's figure is drawn on the mount's.
+  const occupants = new Map(
+    encounter.combatants
+      .filter((entry) => entry.mountedOn === undefined)
+      .flatMap((entry) => footprint(entry).map((square) => [key(square), entry] as const)),
+  );
+  const riders = new Map(
+    encounter.combatants.flatMap((entry) =>
+      entry.mountedOn ? [[entry.mountedOn.entityId, entry] as const] : [],
+    ),
+  );
   const walk = new Set(path.map(key));
   const destination = path.at(-1);
-  const mover = encounter.combatants.find((entry) => entry.entity.entityId === selfId);
+  const mover = encounter.combatants.find((entry) => entry.entity.entityId === moverId);
   // The pointer over a square, or over the plate of the combatant standing on it (`plates.tsx`).
   const point = (square: Square, over: boolean) => {
     if (over) setPointed(square);
@@ -167,12 +201,21 @@ export function Board({
       const square = { x, y };
       const id = key(square);
       const occupant = occupants.get(id) ?? null;
+      const rider = occupant ? (riders.get(occupant.entity.entityId) ?? null) : null;
+      const anchor = occupant !== null && key(occupant.position) === id;
+      const span = occupant ? spanOf(occupant) : 1;
       const level = coverAt.get(id) ?? null;
       const isSelected = selected !== null && key(selected) === id;
       const inArea = occupant !== null && affected.has(occupant.entity.entityId);
       const classes = [
         'board-square',
         hard.has(id) ? 'is-difficult' : '',
+        walls.has(id) ? 'is-wall' : '',
+        water.has(id) ? (water.get(id) ? 'is-water is-deep' : 'is-water') : '',
+        (heights.get(id) ?? 0) > 0 ? 'is-raised' : '',
+        (heights.get(id) ?? 0) < 0 ? 'is-pit' : '',
+
+        anchor && span > 1 ? 'has-span' : '',
         level ? 'has-cover' : '',
         level && occupant ? 'has-occupant' : '',
         walk.has(id) ? 'on-path' : '',
@@ -188,11 +231,24 @@ export function Board({
           type="button"
           className={classes.filter(Boolean).join(' ')}
           style={{ '--x': x, '--y': y } as CSSProperties}
+          data-height={heightMark(heights.get(id) ?? 0)}
           aria-label={squareName(t, square, {
             occupant,
             label: occupant ? labelOf(occupant.entity.entityId) : '',
             you: occupant !== null && occupant.entity.entityId === selfId,
+            rider: rider
+              ? {
+                  view: rider,
+                  label: labelOf(rider.entity.entityId),
+                  you: rider.entity.entityId === selfId,
+                }
+              : null,
             difficult: hard.has(id),
+            wall: walls.has(id),
+            water: water.has(id) ? (water.get(id) ? 'deep' : 'shallow') : null,
+            groundFt: heights.get(id) ?? 0,
+            light: lit.get(id) ?? ambient,
+            obscured: fog.has(id) ? (fog.get(id) ? 'heavy' : 'light') : 'none',
             cover: level,
             inArea,
           })}
@@ -213,9 +269,24 @@ export function Board({
             setFocused((known) => (known && key(known) === id ? null : known));
           }}
         >
+          {/* Its light and its fog, a shade under the figures (docs/adr/0050 §1). */}
+          {((lit.get(id) ?? ambient) !== 'bright' || fog.has(id)) && (
+            <span
+              className={[
+                'square-shade',
+                `square-shade--${lit.get(id) ?? ambient}`,
+                fog.has(id) ? (fog.get(id) ? 'square-shade--fog-heavy' : 'square-shade--fog') : '',
+              ]
+                .filter(Boolean)
+                .join(' ')}
+              aria-hidden="true"
+            />
+          )}
           {level && <CoverPiece level={level} />}
-          {occupant && (
+          {occupant && anchor && (
             <Token
+              span={span}
+              cell={cell}
               combatant={occupant}
               label={labelOf(occupant.entity.entityId)}
               cover={level}
@@ -225,6 +296,20 @@ export function Board({
               current={occupant.entity.entityId === currentCombatantId}
               selected={isSelected}
               inArea={inArea}
+            />
+          )}
+          {rider && anchor && (
+            <Token
+              riding
+              combatant={rider}
+              label={labelOf(rider.entity.entityId)}
+              cover={null}
+              image={imageOf(rider.entity.entityId)}
+              figure={figureOf(rider.entity.entityId)}
+              tilted={tilt !== null}
+              current={rider.entity.entityId === currentCombatantId}
+              selected={false}
+              inArea={affected.has(rider.entity.entityId)}
             />
           )}
         </button>,
@@ -241,6 +326,9 @@ export function Board({
           square={looked}
           cover={coverAt.get(key(looked)) ?? null}
           difficult={hard.has(key(looked))}
+          wall={walls.has(key(looked))}
+          water={water.has(key(looked)) ? (water.get(key(looked)) ? 'deep' : 'shallow') : null}
+          groundFt={heights.get(key(looked)) ?? 0}
         />
       )}
       <div

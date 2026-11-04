@@ -90,11 +90,14 @@ export function StandInControls({
           <div key={choice.characterId} className="stand-in-choice">
             <p className="stand-in-who">
               <span className={`stand-in-dot${present ? ' is-present' : ''}`} aria-hidden="true" />
-              <strong>{choice.name}</strong>
+              {/* The "·" stays with the name when the row wraps (one flex item). */}
+              <span>
+                <strong>{choice.name}</strong>
+                {present !== undefined && <span className="muted">{' · '}</span>}
+              </span>
               {present !== undefined && (
                 <span className="muted">
-                  {' '}
-                  · {present ? t('Player connected') : t('Player not connected')}
+                  {present ? t('Player connected') : t('Player not connected')}
                 </span>
               )}
             </p>

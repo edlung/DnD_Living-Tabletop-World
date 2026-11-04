@@ -1,9 +1,11 @@
 import { z } from 'zod';
 
+import type { FeatureAct } from '../combat/features.ts';
 import type { ReactionId } from '../combat/reactions.ts';
 import { entityIdSchema, knowledgeIdSchema } from '../kernel/identifiers.ts';
 import { ITEM_PLAYER_COMMAND_TYPES } from '../items/commands.ts';
 import { knowledgeRelationSchema } from '../knowledge/commands.ts';
+import type { WeaponMastery } from '../rules/character-sheet.ts';
 
 /**
  * Investigation commands (docs/adr/0013-investigation.md). Player commands
@@ -117,6 +119,10 @@ export const PLAYER_COMMAND_TYPES = [
   'MoveCombatant',
   'Attack',
   'CastSpell',
+  'TakeAction',
+  'MakeReadiedAttack',
+  'SpendInspiration',
+  'UseFeature',
   'EndTurn',
   'UseReaction',
   'DeclineReaction',
@@ -148,6 +154,16 @@ export type PlayerOutcome =
   | {
       readonly kind: 'MoveCombatant';
       readonly position: { readonly x: number; readonly y: number };
+      /** Feet above the ground where it stopped, flying (docs/adr/0049-space-and-movement.md §6). */
+      readonly altitudeFt?: number;
+      /** A long jump's landing in Difficult Terrain: its Dexterity (Acrobatics) check (§7). */
+      readonly landing?: { readonly total: number; readonly success: boolean };
+      /** A fall at its end (§8): the feet fallen and the damage taken. */
+      readonly fell?: { readonly feet: number; readonly damage: number };
+      /** The landing or the fall left it Prone. */
+      readonly prone?: true;
+      /** It falls, and a reaction may slow the fall before it lands (§8). */
+      readonly falling?: true;
     }
   | {
       readonly kind: 'Attack';
@@ -156,6 +172,21 @@ export type PlayerOutcome =
       readonly hit: boolean;
       readonly critical: boolean;
       readonly damage: number | null;
+      /** Its window is open: a reroll or an answer to the hit waits (ADR 0046 §3). */
+      readonly awaitingReaction?: true;
+      /**
+       * What the weapon's mastery did (docs/adr/0047-weapons.md §2): the feet Push moved it,
+       * whether Topple knocked it Prone; Graze's damage on a miss is `damage`.
+       */
+      readonly mastery?: {
+        readonly kind: WeaponMastery;
+        readonly pushedFt?: number;
+        readonly toppled?: boolean;
+      };
+      /** The target's defense changed the damage (docs/adr/0048-hit-points.md §3). */
+      readonly defense?: 'resisted' | 'vulnerable' | 'immune';
+      /** Knocked out instead of brought to 0 hit points (ADR 0048 §4). */
+      readonly knockedOut?: true;
     }
   | {
       readonly kind: 'CastSpell';
@@ -170,6 +201,21 @@ export type PlayerOutcome =
       readonly discovered: readonly string[];
       /** The spell is suspended in a reaction window (docs/adr/0016-reaction-engine.md). */
       readonly awaitingReaction?: true;
+      /** What is the DM's to apply (docs/adr/0052-spells-as-data.md §2): its effect, or the rest. */
+      readonly forDm?: 'effect' | 'rest';
+      /** Those it returned to life (docs/adr/0056-characters-from-the-srd.md §5). */
+      readonly revived?: readonly string[];
+      /** The creatures it called up, by name (§5). */
+      readonly summoned?: readonly string[];
+      /** An SRD spell's name in the campaign's language, the server's (ADR 0055 §5). */
+      readonly spellName?: string;
+    }
+  /** An Unarmed Strike's grapple or shove (docs/adr/0047-weapons.md §3): whether it resisted. */
+  | {
+      readonly kind: 'UnarmedStrike';
+      readonly effect: 'grapple' | 'shove';
+      readonly saved: boolean;
+      readonly shove?: 'push' | 'prone';
     }
   | { readonly kind: 'EndTurn'; readonly nextCombatantId: string; readonly round: number }
   | {
@@ -178,9 +224,42 @@ export type PlayerOutcome =
       readonly reaction: ReactionId;
       /** True when the reaction stopped the spell. */
       readonly countered: boolean;
+      /** An opportunity attack's or a reroll's roll and damage (docs/adr/0046-reactions-beyond-counterspell.md). */
+      readonly attack?: {
+        readonly attackTotal: number;
+        readonly hit: boolean;
+        readonly critical: boolean;
+        readonly damage: number | null;
+      };
+      /** The damage the answer dealt (Hellish Rebuke) or the reactor took (Uncanny Dodge). */
+      readonly damage?: number;
     }
-  | { readonly kind: 'DeclineReaction'; readonly windowId: string }
-  | { readonly kind: 'Item'; readonly action: ItemAction; readonly itemId: string };
+  | {
+      readonly kind: 'DeclineReaction';
+      readonly windowId: string;
+      /** What the window was about: a spell, a creature leaving reach, an attack, damage (ADR 0046). */
+      readonly trigger: 'spell' | 'move' | 'attack' | 'damage' | 'fall';
+    }
+  | {
+      readonly kind: 'Item';
+      readonly action: ItemAction;
+      readonly itemId: string;
+      /** The hit points a potion gave (docs/adr/0054-items-as-data.md §5). */
+      readonly healed?: number;
+      /** A magic item's charges left after one was spent (§5). */
+      readonly chargesLeft?: number;
+    }
+  | {
+      /** A class feature used (docs/adr/0056-characters-from-the-srd.md §4). */
+      readonly kind: 'UseFeature';
+      readonly feature: FeatureAct;
+      /** The dice it rolled: Second Wind's d10, a Bardic Inspiration die. */
+      readonly rolls: readonly number[];
+      /** The hit points it gave (Second Wind, Lay on Hands). */
+      readonly healed?: number;
+      /** What is left of the resource after it. */
+      readonly left?: number;
+    };
 
 /** What an accepted item command did (docs/adr/0039-item-possession.md). */
 export type ItemAction = 'equip' | 'unequip' | 'use' | 'give' | 'drop' | 'take';

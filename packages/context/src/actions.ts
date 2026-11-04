@@ -1,4 +1,9 @@
-import type { ContextAction, ContextActionId, Relevance } from '@ltw/contracts';
+import {
+  WEAPON_IDS,
+  type ContextAction,
+  type ContextActionId,
+  type Relevance,
+} from '@ltw/contracts';
 import {
   attemptKey,
   combatantOf,
@@ -7,16 +12,22 @@ import {
   wieldedWeapons,
   type EntityState,
 } from '@ltw/domain';
+import { needsAid, sizeOf, vitalsOf } from '@ltw/combat';
+import { WEAPONS, sizeRank } from '@ltw/rules';
 
 import {
   combatAttackVerdict,
+  unarmedVerdict,
   combatFrame,
   combatSpellVerdict,
   counterspellVerdict,
+  combatActionVerdict,
   fireballVerdict,
 } from './combat.ts';
 import { showableEvidence } from './evidence.ts';
 import type { ContextInputs } from './inputs.ts';
+import { inForm } from './form-actions.ts';
+import { spellOptions } from './spell-options.ts';
 import {
   LEGAL,
   capableVerdict,
@@ -130,6 +141,83 @@ export function contextActions(inputs: ContextInputs, target: EntityState): Cont
           'low',
         );
     }
+    // The actions beside Attack and Magic (ADR 0045 §5), after them: one's own, and Help, Ready
+    // or Influence at another.
+    if (frame && self) {
+      for (const own of [
+        'dodge',
+        'dash',
+        'disengage',
+        'hide',
+        'search',
+        'study',
+        'utilize',
+      ] as const)
+        add(own, 'present-alive', () => combatActionVerdict(frame, inputs, own), 'low');
+      // A grapple's own actions while one holds (docs/adr/0047-weapons.md §3): breaking free,
+      // letting go.
+      const id = inputs.actor.entityId;
+      const conditions =
+        inputs.state.characterSheets.get(id)?.conditions ??
+        inputs.state.statBlocks.get(id)?.conditions ??
+        [];
+      if (conditions.includes('grappled')) {
+        add('escape', 'present-alive', () => combatActionVerdict(frame, inputs, 'escape'), 'high');
+      }
+      const holds = frame.encounter.combatants.some((c) =>
+        c.conditionDetails?.some((d) => d.condition === 'grappled' && d.sourceId === id),
+      );
+      if (holds) {
+        add('release', 'present-alive', () => combatActionVerdict(frame, inputs, 'release'), 'low');
+      }
+      // Getting down from the creature it rides (docs/adr/0049-space-and-movement.md §10).
+      if (frame.actor.mountedOn !== undefined) {
+        add(
+          'dismount',
+          'present-alive',
+          () => combatActionVerdict(frame, inputs, 'dismount'),
+          'high',
+        );
+      }
+    }
+    if (frame && !self) {
+      for (const at of ['help', 'ready', 'influence'] as const)
+        add(
+          at,
+          'present-alive',
+          () => combatActionVerdict(frame, inputs, at, target.entityId),
+          'low',
+        );
+      // A willing creature a size larger to ride (docs/adr/0049-space-and-movement.md §10): one of
+      // its own side, or one it commands.
+      const steed = frame.encounter.combatants.find((c) => c.entityId === target.entityId);
+      const steedVitals = vitalsOf(inputs.state, target.entityId);
+      const riderVitals = vitalsOf(inputs.state, inputs.actor.entityId);
+      if (
+        steed &&
+        steedVitals &&
+        riderVitals &&
+        (steed.side === frame.actor.side || steed.commandedBy === inputs.actor.entityId) &&
+        sizeRank(sizeOf(steedVitals)) > sizeRank(sizeOf(riderVitals))
+      ) {
+        add(
+          'mount',
+          'present-alive',
+          () => combatActionVerdict(frame, inputs, 'mount', target.entityId),
+          'low',
+        );
+      }
+      // First aid for one dying or knocked out (docs/adr/0048-hit-points.md §4).
+      const tended = vitalsOf(inputs.state, target.entityId);
+      if (tended && needsAid(tended)) {
+        add(
+          'first-aid',
+          'present-alive',
+          () => combatActionVerdict(frame, inputs, 'first-aid', target.entityId),
+          'high',
+        );
+      }
+    }
   } else if (OBJECT_KINDS.has(target.kind)) {
     add('inspect', 'present', () => LEGAL, examine);
     const attempted = (method: 'investigation' | 'perception') =>
@@ -144,6 +232,15 @@ export function contextActions(inputs: ContextInputs, target: EntityState): Cont
     );
     add('perception_check', 'present', () => checkVerdict(sheet, attempted('perception')), examine);
     add('detect_magic', 'present', spell('detect-magic', false), 'low');
+    // An object in the fight is struck as any target (docs/adr/0048-hit-points.md §5).
+    if (frame && fighting) {
+      add(
+        'longbow_attack',
+        'present-alive',
+        () => combatAttackVerdict(frame, inputs, target.entityId),
+        'low',
+      );
+    }
     // An uncarried item can be picked up (ADR 0039); a combatant handles no items.
     if (target.kind === 'item' && target.status === 'active') {
       const carried = inputs.state.possessions.get(target.entityId)?.holderId ?? null;
@@ -188,8 +285,10 @@ export function contextActions(inputs: ContextInputs, target: EntityState): Cont
       : [];
     actions.splice(position, 0, ...asks, ...shows);
   }
-  // In a fight, an attack with every other weapon the actor wields or lists (Stage 520).
-  if (frame && CREATURE_KINDS.has(target.kind) && !self) {
+  // In a fight, an attack with every other weapon the actor wields or lists (Stage 520), at a
+  // creature or at an object in the fight (ADR 0048 §5).
+  const struck = CREATURE_KINDS.has(target.kind) || (OBJECT_KINDS.has(target.kind) && fighting);
+  if (frame && struck && !self) {
     const weapons = [
       ...new Set([
         ...(sheet?.weapons ?? []),
@@ -205,10 +304,64 @@ export function contextActions(inputs: ContextInputs, target: EntityState): Cont
         { weapon: weaponId },
       ),
     );
-    actions.splice(after, 0, ...strikes);
+    // The extra attacks while they are on offer (docs/adr/0047-weapons.md §2, §4): the other
+    // hand's after the Attack action's Light weapon, Cleave's after its hit.
+    const turn = frame.actor.turn;
+    const offhand =
+      turn.lightWeapon !== undefined && turn.offhandAttacked !== true
+        ? [
+            ...new Set([
+              ...(sheet?.weapons ?? []),
+              ...wieldedWeapons(inputs.state, inputs.actor.entityId),
+            ]),
+          ]
+            .filter((weaponId) => WEAPONS[weaponId].properties.includes('light'))
+            .map((weaponId) =>
+              toAction(
+                'offhand_attack',
+                judge('present-alive', () =>
+                  combatAttackVerdict(frame, inputs, target.entityId, weaponId, 'offhand'),
+                ),
+                'medium',
+                { weapon: weaponId },
+              ),
+            )
+        : [];
+    const cleaveWeapon = WEAPON_IDS.find((id) => id === turn.cleave?.attackId);
+    const cleave =
+      cleaveWeapon !== undefined
+        ? [
+            toAction(
+              'cleave_attack',
+              judge('present-alive', () =>
+                combatAttackVerdict(frame, inputs, target.entityId, cleaveWeapon, 'cleave'),
+              ),
+              'medium',
+              { weapon: cleaveWeapon },
+            ),
+          ]
+        : [];
+    actions.splice(after, 0, ...cleave, ...offhand, ...strikes);
+    // Without a weapon, last, as it is seldom first: a punch, a grapple, a shove, or an object at
+    // hand (ADR 0047 §3, §6).
+    actions.push(
+      toAction(
+        'unarmed_strike',
+        judge('present-alive', () => unarmedVerdict(frame, inputs, target.entityId)),
+        'low',
+      ),
+    );
   }
+  // The spells the character casts from their data (docs/adr/0052-spells-as-data.md); outside a
+  // fight those that help a creature (docs/adr/0056-characters-from-the-srd.md §5).
+  if (CREATURE_KINDS.has(target.kind))
+    actions.push(
+      ...spellOptions(frame, inputs, target.entityId, judge, (id) => entityRefFor(inputs, id)),
+    );
+  // In Wild Shape's form, its attacks for weapons and spells (docs/adr/0056-…md §5).
+  const offered = inForm(actions, frame, inputs, { entityId: target.entityId, struck }, judge);
   // Stable: equal relevance keeps catalog order.
-  return actions.sort((a, b) => RELEVANCE_RANK[a.relevance] - RELEVANCE_RANK[b.relevance]);
+  return offered.sort((a, b) => RELEVANCE_RANK[a.relevance] - RELEVANCE_RANK[b.relevance]);
 }
 
 function toAction(
@@ -222,6 +375,7 @@ function toAction(
     ...(about.topic ? { topic: about.topic } : {}),
     ...(about.evidence ? { evidence: { knowledgeId: about.evidence.knowledgeId } } : {}),
     ...(about.weapon ? { weapon: about.weapon } : {}),
+    ...(verdict.mastery ? { mastery: verdict.mastery } : {}),
     legal: verdict.legal,
     ...(verdict.reason ? { reason: verdict.reason } : {}),
     ...(verdict.resolution ? { resolution: verdict.resolution } : {}),

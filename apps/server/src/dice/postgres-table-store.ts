@@ -28,6 +28,8 @@ interface RollRow {
   readonly entered: boolean;
   readonly audience_id: string | null;
   readonly confirmed: boolean;
+  readonly reroll_of: string | null;
+  readonly check_mode: RollMode | null;
 }
 
 interface RequestRow {
@@ -47,9 +49,9 @@ interface RequestRow {
 
 const ROLL_COLUMNS =
   'campaign_id, roll_id, roller_id, subject, groups, hidden, request_id, created_at, entered, ' +
-  'audience_id';
+  'audience_id, reroll_of, check_mode';
 const INSERT_ROLL = `INSERT INTO ltw_table_rolls (${ROLL_COLUMNS})
-  VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`;
+  VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`;
 /** A roll with whether the DM confirmed it. */
 const SELECT_ROLLS = `SELECT ${ROLL_COLUMNS.split(', ')
   .map((column) => `r.${column}`)
@@ -72,6 +74,8 @@ const toRoll = (row: RollRow): TableRollRecord => ({
   confirmed: row.confirmed,
   requestId: row.request_id,
   at: row.created_at.toISOString(),
+  ...(row.reroll_of === null ? {} : { rerollOf: row.reroll_of }),
+  ...(row.check_mode === null ? {} : { mode: row.check_mode }),
 });
 
 const toRequest = (row: RequestRow): CheckRequestRecord => ({
@@ -100,6 +104,8 @@ const rollValues = (record: TableRollRecord) => [
   record.at,
   record.entered,
   record.audienceId,
+  record.rerollOf ?? null,
+  record.mode ?? null,
 ];
 
 export class PostgresTableStore implements TableStore {
@@ -195,6 +201,34 @@ export class PostgresTableStore implements TableStore {
       return true;
     } catch (error) {
       await client.query('ROLLBACK');
+      throw error;
+    } finally {
+      client.release();
+    }
+  }
+
+  async addReroll(roll: TableRollRecord, total: number): Promise<boolean> {
+    const client = await this.#pool.connect();
+    try {
+      await client.query('BEGIN');
+      if (roll.requestId !== null) {
+        const { rowCount } = await client.query(
+          `UPDATE ltw_check_requests SET roll_id = $3, total = $4
+           WHERE campaign_id = $1 AND request_id = $2 AND status = 'rolled' AND roll_id = $5`,
+          [roll.campaignId, roll.requestId, roll.rollId, total, roll.rerollOf],
+        );
+        if (rowCount !== 1) {
+          await client.query('ROLLBACK');
+          return false;
+        }
+      }
+      await client.query(INSERT_ROLL, rollValues(roll));
+      await client.query('COMMIT');
+      return true;
+    } catch (error) {
+      await client.query('ROLLBACK');
+      // Rolled again meanwhile: the one-reroll index refused the second.
+      if ((error as { code?: string }).code === '23505') return false;
       throw error;
     } finally {
       client.release();

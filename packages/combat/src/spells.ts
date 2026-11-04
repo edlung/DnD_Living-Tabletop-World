@@ -19,18 +19,23 @@ import {
   abilityModifier,
   rollDamage,
   rollHealingWord,
-  squareDistanceFt,
 } from '@ltw/rules';
 
-import { combatantEvent, coverAt, withTurn } from './battlefield.ts';
+import { combatantEvent, coverOf, gapBetween, withTurn } from './battlefield.ts';
+import { isDodging } from './actions.ts';
+import { isHidden, withDetail } from './condition-details.ts';
 import { applyDamage, applyHealing } from './damage.ts';
+import { fallsAfterHarm, killedIn } from './falling.ts';
 import { isSliceSpell } from './legality.ts';
+import { decideDataSpell } from './data-spells.ts';
 import { decideMonsterSpell } from './monster-spells.ts';
 import { suspendCast } from './reactions/suspend.ts';
 import { combatPremiseList, combatPremises, refused } from './refusal.ts';
 import { spellSave } from './saves.ts';
 import { chooseUsing, characterSpellPlan, type CharacterSpellPlan } from './spell-legality.ts';
 import { vitalsEvent, vitalsOf, type Vitals } from './vitals.ts';
+import { savedDamage } from './evasion.ts';
+import { empower, metamagicEffects, transmute } from './metamagic-effects.ts';
 
 /**
  * `CastSpell` (docs/adr/0015-combat-engine.md §3). Character spells use the
@@ -48,17 +53,21 @@ export function decideCastSpell(context: DecisionContext, command: Cast, dice: D
     if (!state.encounter) return refused({ legal: false, reason: 'NOT_IN_COMBAT' });
     return decideMonsterSpell(context, command, dice);
   }
-  if (!isSliceSpell(command.spellId)) return refused({ legal: false, reason: 'NOT_KNOWN' });
+  if (!isSliceSpell(command.spellId)) return decideDataSpell(context, command, dice);
   const plan = characterSpellPlan(state, command.combatantId, {
     spellId: command.spellId,
     ...(command.using === undefined ? {} : { using: command.using }),
     ...(command.targetId === undefined ? {} : { targetId: command.targetId }),
     ...(command.point === undefined ? {} : { point: command.point }),
+    ...(command.metamagic === undefined ? {} : { metamagic: command.metamagic }),
   });
   if (!plan.legal) return refused(plan);
   const ids = command.resolution?.ids ?? [];
-  const economy = SPELLS[plan.spellId].castingTime;
-  if (plan.record && economy !== 'reaction') {
+  // Its economy as cast: a Quickened spell's Bonus Action (docs/adr/0056-…md §4).
+  const economy = plan.cast.economy === 'bonus' ? 'bonus' : SPELLS[plan.spellId].castingTime;
+  // Subtle Spell: nothing to see, nothing to counter.
+  const subtle = command.metamagic?.options.includes('subtle-spell') === true;
+  if (plan.record && economy !== 'reaction' && !subtle) {
     const suspended = suspendCast(
       context,
       {
@@ -69,6 +78,7 @@ export function decideCastSpell(context: DecisionContext, command: Cast, dice: D
         using: plan.cast.slotLevel === null ? 'free' : { slotLevel: plan.cast.slotLevel },
         targetId: plan.target?.entityId ?? null,
         point: plan.point ? { ...plan.point } : null,
+        ...(command.metamagic === undefined ? {} : { metamagic: command.metamagic }),
       },
       ids,
     );
@@ -95,8 +105,13 @@ export function castEvents(
   // legality; an encounter the caster is not in changes nothing (G03-H04).
   const encounter = plan.record ? state.encounter : null;
   // Every creature's latest vitals within this command (the caster may be in its own Fireball).
+  // A hidden caster is found by casting (docs/adr/0045-conditions-and-actions.md §5).
+  const hidden = isHidden(plan.record);
+  const sheet = hidden
+    ? { ...plan.sheet, conditions: plan.sheet.conditions.filter((c) => c !== 'invisible') }
+    : plan.sheet;
   const working = new Map<string, Vitals>([
-    [casterId, { kind: 'character', entityId: casterId, sheet: plan.sheet }],
+    [casterId, { kind: 'character', entityId: casterId, sheet }],
   ]);
   const current = (id: string) => working.get(id) ?? vitalsOf(state, id);
   const effects: DraftEvent[] = [];
@@ -104,6 +119,7 @@ export function castEvents(
   const premises: Premise[] = combatPremiseList(state, casterId);
   if (!encounter && plan.target) premises.push({ kind: 'vitals', entityId: plan.target.entityId });
   let record = plan.record ? withTurn(plan.record, plan.turn) : null;
+  if (record && hidden) record = withDetail(record, 'invisible', null);
 
   switch (plan.spellId) {
     case 'healing-word': {
@@ -135,28 +151,43 @@ export function castEvents(
       break;
     case 'fireball': {
       const slotLevel = plan.cast.slotLevel ?? 3;
-      const damage = rollDamage(dice, 8 + Math.max(0, slotLevel - 3), 6, 0);
+      // Metamagic (docs/adr/0056-characters-from-the-srd.md §4): spared, heightened, empowered,
+      // transmuted.
+      const meta = metamagicEffects(plan.metamagic, plan.sheet, plan.record, plan.area, null);
+      const damage = empower(
+        dice,
+        rollDamage(dice, 8 + Math.max(0, slotLevel - 3), 6, 0),
+        6,
+        meta.empowered,
+      );
       for (const affected of plan.area) {
         const target = current(affected.entityId);
-        if (!target || !encounter) continue;
-        const cover = coverAt(encounter, affected.position);
+        if (!target || !encounter || meta.spared.has(affected.entityId)) continue;
+        const cover = coverOf(state, encounter, affected);
         const save = spellSave(
           dice,
           target,
           'dex',
           plan.cast.saveDc,
           cover === 'total' ? 'none' : cover,
+          'spell',
+          isDodging(combatantOf(encounter, affected.entityId), target),
+          affected.squeezed === true,
+          meta.heightened === affected.entityId,
         );
         effects.push(save.event);
         const applied = applyDamage(state, dice, target, {
           sourceId: casterId,
-          amount: save.success ? Math.floor(damage.total / 2) : damage.total,
-          damageType: 'fire',
+          amount: savedDamage(target, 'dex', 'half', save.success, damage.total),
+          damageType: transmute('fire', meta),
           rolls: damage.rolls,
           critical: false,
         });
         working.set(target.entityId, applied.vitals);
         effects.push(...applied.events);
+        // A flyer it leaves unable to stay aloft falls (docs/adr/0049-space-and-movement.md §6).
+        const dead = killedIn(applied.events, affected.entityId);
+        effects.push(...fallsAfterHarm(state, dice, effects, affected, applied.vitals, dead));
       }
       break;
     }
@@ -167,10 +198,7 @@ export function castEvents(
       const sensed = (entityId: string) => {
         if (!encounter || !caster) return true;
         const other = combatantOf(encounter, entityId);
-        return (
-          other !== undefined &&
-          squareDistanceFt(caster.position, other.position) <= DETECT_MAGIC_RADIUS_FT
-        );
+        return other !== undefined && gapBetween(state, caster, other) <= DETECT_MAGIC_RADIUS_FT;
       };
       const discovered = magicDiscoveryEvents(state, casterId, ids, sensed);
       premises.push(...magicSensingPremises(state, casterId, sensed));
@@ -199,7 +227,20 @@ export function castEvents(
         point: plan.point ? { ...plan.point } : null,
       },
     },
-    vitalsEvent({ kind: 'character', entityId: casterId, sheet: plan.sheet }),
+    ...(hidden
+      ? [
+          {
+            type: 'ConditionApplied',
+            payload: {
+              targetId: casterId,
+              condition: 'invisible',
+              applied: false,
+              cause: 'revealed',
+            },
+          } as const,
+        ]
+      : []),
+    vitalsEvent({ kind: 'character', entityId: casterId, sheet }),
     ...effects,
   ];
   if (record) events.push(combatantEvent(record));

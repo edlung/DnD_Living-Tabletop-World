@@ -187,6 +187,22 @@
 .detail-panel:focus {
   outline: none;
 }
+/* More of the details above or below the drawer's edge: that edge fades (scroll-edge-cut). */
+.detail-panel[data-more-before] {
+  mask-image: linear-gradient(to bottom, transparent, #000 24px);
+}
+.detail-panel[data-more-after] {
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 24px), transparent);
+}
+.detail-panel[data-more-before][data-more-after] {
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 24px,
+    #000 calc(100% - 24px),
+    transparent
+  );
+}
 
 /* Dock */
 .dock {

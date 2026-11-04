@@ -28,8 +28,6 @@ registerRussian({
   'Character preview shows only what this character initially knows or perceives.':
     'Превью персонажа показывает лишь то, что он изначально знает или воспринимает.',
   'Preview object details': 'Сведения об объекте в превью',
-  'A closer look': 'Рассмотреть ближе',
-  'Close details': 'Закрыть сведения',
   'Preview details could not be read.': 'Не удалось прочитать сведения для превью.',
   'Full character sheet': 'Полный лист персонажа',
   'Open in scenario': 'Открыть в сценарии',
@@ -38,7 +36,6 @@ registerRussian({
   'NPC: {name}': 'НПС: {name}',
   'Another record': 'Другая запись',
   'Unidentified object': 'Неизвестный объект',
-  'No character sheet is recorded here.': 'Лист персонажа здесь не записан.',
   'The character sheet could not be read.': 'Не удалось прочитать лист персонажа.',
   'Loading the full character sheet…': 'Загружаем полный лист персонажа…',
   'Draft pictures': 'Иллюстрации черновика',
@@ -70,7 +67,6 @@ registerRussian({
   'No appearance notes': 'Нет заметок о внешности',
   'Image style': 'Стиль иллюстрации',
   'No style notes': 'Нет заметок о стиле',
-  'Note to the image model (optional)': 'Примечание модели изображений (необязательно)',
   'Generate picture': 'Сгенерировать иллюстрацию',
   'Picture candidates': 'Варианты иллюстрации',
   'No picture candidates for this object yet.': 'Для этого объекта пока нет вариантов иллюстрации.',
@@ -109,7 +105,6 @@ registerRussian({
   'Retry original picture request': 'Повторить исходный запрос иллюстрации',
   'Discard pending picture request and refresh':
     'Отбросить ожидающий запрос иллюстрации и обновить',
-  'Main picture': 'Основная иллюстрация',
   'Tabletop figure': 'Настольная фигурка',
   'Battle map': 'Карта боя',
   'Picture queued': 'Иллюстрация в очереди',

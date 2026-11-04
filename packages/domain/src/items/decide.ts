@@ -1,136 +1,43 @@
-import { catalogEntry, type CharacterSheet } from '@ltw/contracts';
+import { armorWeight, effectiveMaximum, type CharacterSheet } from '@ltw/contracts';
 
 import { isCombatant } from '../combat/records.ts';
-import { adjacentInEncounter, spendTurn, type ItemCost } from './economy.ts';
-import { premisesEvent } from '../investigation/acting.ts';
-import type { Premise } from '../investigation/events.ts';
-import { findEntity, type Lookup } from '../kernel/decide/lookups.ts';
-import { accept, reject, type Decision, type ResolvedCommandOf } from '../kernel/decision.ts';
+import { poolDice } from '../combat/port.ts';
+import { reject, type Decision, type ResolvedCommandOf } from '../kernel/decision.ts';
 import type { KernelEvent } from '../kernel/events.ts';
-import type { EntityState, WorldState } from '../kernel/state.ts';
+import type { WorldState } from '../kernel/state.ts';
+import { adjacentInEncounter } from './economy.ts';
+import {
+  carrier,
+  item,
+  mayHandle,
+  ownItem,
+  played,
+  SELF,
+  withSaveBonus,
+  withSheet,
+} from './handling.ts';
 import {
   armorClassDelta,
   clampArmorClass,
   entryOf,
+  magicBonus,
   possessionOf,
+  shieldIn,
   wornIn,
   type Possession,
 } from './records.ts';
+import { decideSpendCharges } from './charges.ts';
 
 /**
  * Item commands (docs/adr/0039-item-possession.md). An item changes hands or
  * state only through these decisions. Anything that changes a sheet (armor
  * class, hit points, conditions) is recorded as an ordinary `CharacterSheetSet`
- * beside the item event, so undo and replay need no special case.
+ * beside the item event, so undo and replay need no special case. Giving one is
+ * `grant.ts`'s; the checks every decision shares, `handling.ts`'s.
  */
-const CARRIER_KINDS = new Set(['character', 'npc']);
-
-function carrier(state: WorldState, id: string): Lookup<EntityState> {
-  const found = findEntity(state, id);
-  if (!found.ok) return found;
-  if (!CARRIER_KINDS.has(found.value.kind))
-    return reject('INVALID_ITEM', `Entity "${id}" cannot carry items`, { entityId: id });
-  if (found.value.status !== 'active')
-    return reject('ACTOR_DEAD', `"${id}" cannot handle items`, { entityId: id });
-  return found;
-}
-
-function item(state: WorldState, id: string): Lookup<EntityState> {
-  const found = findEntity(state, id);
-  if (!found.ok) return found;
-  if (found.value.kind !== 'item')
-    return reject('INVALID_ITEM', `Entity "${id}" is not an item`, { itemId: id });
-  if (found.value.status !== 'active')
-    return reject('ENTITY_DESTROYED', `Item "${id}" is destroyed`, { itemId: id });
-  return found;
-}
-
-/** Refusals shared by every play action of a character: dead, unconscious. */
-function mayHandle(state: WorldState, characterId: string): Lookup<EntityState> {
-  const actor = carrier(state, characterId);
-  if (!actor.ok) return actor;
-  if (state.characterSheets.get(characterId)?.conditions.includes('unconscious'))
-    return reject('ACTOR_INCAPACITATED', `"${characterId}" is unconscious`);
-  return actor;
-}
-
-/**
- * The acting character's own, active item. What they do not carry is refused alike whether it
- * exists, is hidden, or is not an item: a refusal never confirms an entity (ADR 0013 §1).
- */
-function ownItem(
-  state: WorldState,
-  characterId: string,
-  itemId: string,
-): { ok: true; possession: Possession; actor: EntityState } | (Decision & { ok: false }) {
-  const actor = mayHandle(state, characterId);
-  if (!actor.ok) return actor;
-  const possession = possessionOf(state, itemId);
-  if (possession?.holderId !== characterId)
-    return reject('INVALID_ITEM', `"${characterId}" does not carry "${itemId}"`, { itemId });
-  const thing = item(state, itemId);
-  if (!thing.ok) return thing;
-  return { ok: true, possession, actor: actor.value };
-}
-
-/** A player's item command: the premises it relied on come first (Gate 02, G02-H02). */
-const played = (
-  state: WorldState,
-  characterId: string,
-  premises: readonly Premise[],
-  events: readonly KernelEvent[],
-  cost: ItemCost,
-): Decision => {
-  const spent = spendTurn(state, characterId, cost);
-  return spent.ok
-    ? accept(premisesEvent(characterId, premises), ...events, ...spent.events)
-    : spent;
-};
-
-const SELF: readonly Premise[] = [{ kind: 'self' }, { kind: 'sheet' }];
-
-/** The item event(s), plus a sheet change when the sheet exists and the change alters it. */
-function withSheet(
-  state: WorldState,
-  characterId: string,
-  events: KernelEvent[],
-  change: (sheet: CharacterSheet) => CharacterSheet,
-): KernelEvent[] {
-  const sheet = state.characterSheets.get(characterId);
-  if (!sheet) return events;
-  const next = change(sheet);
-  return next === sheet
-    ? events
-    : [...events, { type: 'CharacterSheetSet', payload: { entityId: characterId, sheet: next } }];
-}
-
-export function decideGrantItem(
-  state: WorldState,
-  command: ResolvedCommandOf<'GrantItem'>,
-): Decision {
-  const thing = item(state, command.itemId);
-  if (!thing.ok) return thing;
-  const holder = carrier(state, command.holderId);
-  if (!holder.ok) return holder;
-  if (possessionOf(state, command.itemId))
-    return reject('INVALID_ITEM', `Item "${command.itemId}" already has a holder or place`);
-  const catalogId = command.catalogId ?? null;
-  const entry = catalogId === null ? undefined : catalogEntry(catalogId);
-  if (catalogId !== null && !entry)
-    return reject('INVALID_ITEM', `Unknown catalog item "${catalogId}"`, { catalogId });
-  if (command.quantity > 1 && !entry?.stackable)
-    return reject('INVALID_ITEM', 'Only a stackable catalog item can be granted in quantity');
-  return accept({
-    type: 'ItemGranted',
-    payload: {
-      itemId: command.itemId,
-      holderId: command.holderId,
-      catalogId,
-      quantity: command.quantity,
-    },
-  });
-}
-
+export { decideAttuneItem } from './attune.ts';
+export { decideDawnRecharge, decideIdentifyItem } from './charges.ts';
+export { decideGrantItem, grantRefusal } from './grant.ts';
 export function decideEquipItem(
   state: WorldState,
   command: ResolvedCommandOf<'EquipItem'>,
@@ -154,8 +61,13 @@ export function decideEquipItem(
   const affectsArmor = entry.armor !== undefined || entry.shieldBonus !== undefined;
   if (affectsArmor && !sheet)
     return reject('NO_CHARACTER_SHEET', "Armor needs the wearer's character sheet");
-  const requested = sheet ? armorClassDelta(entry, command.slot, sheet.abilities.dex) : 0;
+  const attuned = own.possession.attuned === true;
+  // A shield already held: a Monk's Unarmored Defense is gone (docs/adr/0056-…md §4).
+  const shieldHeld = shieldIn(state, command.characterId);
+  const requested = sheet ? armorClassDelta(entry, command.slot, sheet, attuned, shieldHeld) : 0;
   const applied = sheet ? clampArmorClass(sheet.armorClass + requested) - sheet.armorClass : 0;
+  // A Ring of Protection's +1 to saves, worn and attuned (docs/adr/0054-items-as-data.md §5).
+  const saves = sheet ? magicBonus(entry, attuned).saves : 0;
   if (command.slot === 'body' && isCombatant(state, command.characterId))
     return reject('INVALID_ITEM', 'Armor cannot be changed during an encounter');
   return played(
@@ -173,10 +85,28 @@ export function decideEquipItem(
             holderId: command.characterId,
             slot: command.slot,
             acDelta: applied,
+            ...(saves === 0 ? {} : { saveDelta: saves }),
           },
         },
       ],
-      (s) => (applied === 0 ? s : { ...s, armorClass: s.armorClass + applied }),
+      (s) => {
+        const armored = withSaveBonus(
+          applied === 0 ? s : { ...s, armorClass: s.armorClass + applied },
+          saves,
+        );
+        // What the rules need of body armor (docs/adr/0050-the-world-around.md §10).
+        const armor = command.slot === 'body' ? entry.armor : undefined;
+        return armor
+          ? {
+              ...armored,
+              wornArmor: {
+                weight: armorWeight(armor.dexCap),
+                ...(armor.strength === undefined ? {} : { strength: armor.strength }),
+                ...(armor.stealthDisadvantage ? { stealthDisadvantage: true as const } : {}),
+              },
+            }
+          : armored;
+      },
     ),
     command.slot === 'offhand' ? 'action' : 'bonus',
   );
@@ -188,7 +118,7 @@ export function decideUnequipItem(
 ): Decision {
   const own = ownItem(state, command.characterId, command.itemId);
   if (!own.ok) return own;
-  const { slot, acDelta } = own.possession;
+  const { slot, acDelta, saveDelta = 0 } = own.possession;
   if (slot === null) return reject('NO_EFFECT', `"${command.itemId}" is not worn`);
   if (slot === 'body' && isCombatant(state, command.characterId))
     return reject('INVALID_ITEM', 'Armor cannot be changed during an encounter');
@@ -202,12 +132,25 @@ export function decideUnequipItem(
       [
         {
           type: 'ItemUnequipped',
-          payload: { itemId: command.itemId, holderId: command.characterId, slot, acDelta },
+          payload: {
+            itemId: command.itemId,
+            holderId: command.characterId,
+            slot,
+            acDelta,
+            ...(saveDelta === 0 ? {} : { saveDelta }),
+          },
         },
       ],
       (s) => {
         const armorClass = clampArmorClass(s.armorClass - acDelta);
-        return armorClass === s.armorClass ? s : { ...s, armorClass };
+        const next = withSaveBonus(
+          armorClass === s.armorClass ? s : { ...s, armorClass },
+          -saveDelta,
+        );
+        if (slot !== 'body' || next.wornArmor === undefined) return next;
+        const bare = { ...next };
+        delete bare.wornArmor;
+        return bare;
       },
     ),
     slot === 'offhand' ? 'action' : 'bonus',
@@ -215,6 +158,8 @@ export function decideUnequipItem(
 }
 
 export function decideUseItem(state: WorldState, command: ResolvedCommandOf<'UseItem'>): Decision {
+  // A magic item's charges (docs/adr/0054-items-as-data.md §5).
+  if (command.charges !== undefined) return decideSpendCharges(state, command, command.charges);
   const own = ownItem(state, command.characterId, command.itemId);
   if (!own.ok) return own;
   const effect = entryOf(own.possession)?.effect;
@@ -222,20 +167,30 @@ export function decideUseItem(state: WorldState, command: ResolvedCommandOf<'Use
     return reject('INVALID_ITEM', `"${command.itemId}" cannot be used`);
   const sheet = state.characterSheets.get(command.characterId);
   let change: (s: CharacterSheet) => CharacterSheet = (s) => s;
-  if (effect.kind === 'heal') {
+  let healed: { rolls: number[]; bonus: number; total: number } | undefined;
+  if (effect.kind === 'heal' || effect.kind === 'heal-dice') {
     if (!sheet) return reject('NO_CHARACTER_SHEET', 'Healing needs a character sheet');
     if (sheet.hitPoints.current <= 0)
       return reject(
         'INVALID_ITEM',
         'A character at 0 hit points needs care that this item cannot give',
       );
-    if (sheet.hitPoints.current >= sheet.hitPoints.max)
+    // Full up to the maximum as an effect may have lowered it (docs/adr/0048-hit-points.md §2).
+    if (sheet.hitPoints.current >= effectiveMaximum(sheet.hitPoints))
       return reject('NO_EFFECT', 'Already at full hit points');
+    // A potion of healing rolls its dice (docs/adr/0054-items-as-data.md §5).
+    if (effect.kind === 'heal-dice') {
+      const dice = poolDice(command.resolution.entropy);
+      const rolls = Array.from({ length: effect.count }, () => dice.roll(effect.sides));
+      const total = rolls.reduce((sum, roll) => sum + roll, effect.bonus);
+      healed = { rolls, bonus: effect.bonus, total };
+    }
+    const amount = effect.kind === 'heal' ? effect.amount : (healed?.total ?? 0);
     change = (s) => ({
       ...s,
       hitPoints: {
         ...s.hitPoints,
-        current: Math.min(s.hitPoints.max, s.hitPoints.current + effect.amount),
+        current: Math.min(effectiveMaximum(s.hitPoints), s.hitPoints.current + amount),
       },
     });
   } else if (effect.kind === 'removeCondition') {
@@ -247,7 +202,12 @@ export function decideUseItem(state: WorldState, command: ResolvedCommandOf<'Use
   const events: KernelEvent[] = [
     {
       type: 'ItemUsed',
-      payload: { itemId: command.itemId, holderId: command.characterId, remaining },
+      payload: {
+        itemId: command.itemId,
+        holderId: command.characterId,
+        remaining,
+        ...(healed ? { healed } : {}),
+      },
     },
   ];
   if (remaining === 0)

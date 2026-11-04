@@ -23,7 +23,8 @@ import { registerMemberRoutes } from '../auth/member-routes.ts';
 import type { SignInDependencies } from '../auth/sign-in.ts';
 import type { AuthoringDependencies } from '../authoring/service.ts';
 import { registerDmRoutes, type DmDependencies } from '../dm/dm-routes.ts';
-import { registerRollRoutes, type TableDependencies } from '../dice/roll-routes.ts';
+import type { TableDependencies } from '../dice/roll-access.ts';
+import { registerRollRoutes } from '../dice/roll-routes.ts';
 import { serverDice } from '../dice/table-rolls.ts';
 import { InMemoryRestStore, InMemoryTableStore } from '../dice/table-store.ts';
 import { registerRestRoutes } from '../rest/rest-routes.ts';
@@ -44,6 +45,14 @@ import {
   registerPreparedEncounterRoutes,
   type PreparedEncounterBooks,
 } from '../combat/prepared-encounters.ts';
+import { registerBestiaryRoutes } from '../combat/bestiary-routes.ts';
+import { registerAttuneRoutes } from '../items/attune-routes.ts';
+import { registerItemCatalogRoutes } from '../items/item-catalog-routes.ts';
+import { registerRulesReferenceRoutes } from '../rules/reference-routes.ts';
+import { registerAdvancementRoutes } from '../characters/advancement-routes.ts';
+import { registerCopyRoutes } from '../characters/copy-routes.ts';
+import { registerFeatureRoutes } from '../characters/feature-routes.ts';
+import { registerCharacterCreationRoutes } from '../characters/creation-routes.ts';
 import { registerEncounterRoutes } from './routes/encounter-routes.ts';
 import { registerKnowledgeRoutes } from './routes/knowledge-routes.ts';
 import { registerMemoryRoutes } from './routes/memory-routes.ts';
@@ -190,6 +199,10 @@ export function buildApp(input: AppDependencies): FastifyInstance {
   registerSurroundingsRoutes(app, deps);
   registerEncounterRoutes(app, deps);
   registerPreparedEncounterRoutes(app, deps);
+  registerBestiaryRoutes(app, deps);
+  registerItemCatalogRoutes(app, deps);
+  registerRulesReferenceRoutes(app, deps);
+  registerCharacterCreationRoutes(app, deps);
   // One lobby for the routes that read it: the pause holds players' commands.
   const lobby = deps.lobby ?? memoryLobby();
   registerCommandRoutes(app, { ...deps, lobby });
@@ -213,11 +226,16 @@ export function buildApp(input: AppDependencies): FastifyInstance {
   };
   registerRollRoutes(app, { ...deps, table });
   registerRestRoutes(app, { ...deps, table });
+  registerAdvancementRoutes(app, { ...deps, table });
+  registerFeatureRoutes(app, deps);
+  registerAttuneRoutes(app, { ...deps, table });
   if (deps.signIn) {
     const signIn = { ...deps, signIn: deps.signIn };
     registerAuthRoutes(app, signIn);
     registerMemberRoutes(app, signIn);
     const { accounts, accountLimits } = deps.signIn;
+    // A character from another campaign of the same login (docs/FULL_GAME_PLAN.md decision 15).
+    if (accounts) registerCopyRoutes(app, { ...deps, accounts });
     // Accounts (ADR 0041): the hub, signing in with a login, opening and creating campaigns.
     if (accounts && accountLimits) {
       registerAccountRoutes(app, { ...deps, signIn: { ...deps.signIn, accounts, accountLimits } });

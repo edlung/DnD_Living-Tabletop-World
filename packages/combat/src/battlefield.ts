@@ -1,4 +1,4 @@
-import type { CoverLevel, Square } from '@ltw/contracts';
+import { MAX_COMBATANTS, type CoverLevel, type Square } from '@ltw/contracts';
 import {
   combatantOf,
   currentCombatant,
@@ -10,7 +10,9 @@ import {
   type TurnRecord,
   type WorldState,
 } from '@ltw/domain';
-import type { TurnState } from '@ltw/rules';
+import { fills, gapFt, squaresOf, type Placed, type TurnState } from '@ltw/rules';
+
+import { sizeOf, vitalsOf } from './vitals.ts';
 
 /**
  * Encounter lookups shared by the combat decisions and the Context Engine
@@ -54,7 +56,135 @@ export function coverAt(encounter: EncounterState, square: Square): CoverLevel |
 export const isDifficult = (encounter: EncounterState, square: Square) =>
   encounter.battlefield.difficult.some((d) => sameSquare(d, square));
 
-/** A living combatant other than `except` standing on the square (the dead do not block). */
+/** A wall: no one stands in it or crosses it (docs/adr/0049-space-and-movement.md §4). */
+export const isWall = (encounter: EncounterState, square: Square) =>
+  (encounter.battlefield.walls ?? []).some((w) => sameSquare(w, square));
+
+/**
+ * A combatant's place: its north-west square, its size and whether it squeezes
+ * (docs/adr/0049-space-and-movement.md §1, §4).
+ */
+export function placedOf(state: WorldState, record: CombatantRecord): Placed {
+  // A rider shares its mount's space (§10).
+  const mount =
+    record.mountedOn === undefined
+      ? undefined
+      : state.encounter?.combatants.find((c) => c.entityId === record.mountedOn);
+  if (mount && mount.mountedOn === undefined) return placedOf(state, mount);
+  const vitals = vitalsOf(state, record.entityId);
+  return {
+    position: record.position,
+    size: vitals ? sizeOf(vitals) : 'medium',
+    squeezed: record.squeezed === true,
+  };
+}
+
+const COVER_ORDER: readonly (CoverLevel | 'none')[] = ['none', 'half', 'three-quarters', 'total'];
+
+/** A combatant's cover: the least of its squares', as an attacker aims where it is open (§1). */
+export function coverOf(
+  state: WorldState,
+  encounter: EncounterState,
+  record: CombatantRecord,
+): CoverLevel | 'none' {
+  const levels = squaresOf(placedOf(state, record)).map((square) => coverAt(encounter, square));
+  return levels.reduce(
+    (least, level) => (COVER_ORDER.indexOf(level) < COVER_ORDER.indexOf(least) ? level : least),
+    levels[0] ?? 'none',
+  );
+}
+
+/** The ground's height of a square in feet (ADR 0049 §6): raised or sunk, 0 when unmarked. */
+export const groundAt = (encounter: EncounterState, square: Square): number =>
+  (encounter.battlefield.ground ?? []).find((g) => sameSquare(g, square))?.ft ?? 0;
+
+/** Water, swum (ADR 0049 §5); deep water immerses (§11). */
+export const isWater = (encounter: EncounterState, square: Square): boolean =>
+  (encounter.battlefield.water ?? []).some((w) => sameSquare(w, square));
+export const isDeepWater = (encounter: EncounterState, square: Square): boolean =>
+  (encounter.battlefield.water ?? []).some((w) => sameSquare(w, square) && w.deep === true);
+
+/**
+ * Fully under water (docs/adr/0049-space-and-movement.md §11): every square of its space deep
+ * water, and it not flying above.
+ */
+export const immersed = (
+  state: WorldState,
+  encounter: EncounterState,
+  record: CombatantRecord,
+): boolean =>
+  (record.altitudeFt ?? 0) <= 0 &&
+  squaresOf(placedOf(state, record)).every((square) => isDeepWater(encounter, square));
+
+/** The ground under a space: its highest square's, where it stands. */
+export const groundOf = (encounter: EncounterState, placed: Placed): number =>
+  Math.max(...squaresOf(placed).map((square) => groundAt(encounter, square)));
+
+/** Where a combatant's feet are, in feet: its ground and its height above it (§6). */
+export const heightOf = (
+  state: WorldState,
+  encounter: EncounterState,
+  record: CombatantRecord,
+): number => groundOf(encounter, placedOf(state, record)) + (record.altitudeFt ?? 0);
+
+/** Feet between a combatant and a space `altitudeFt` above its ground (ADR 0049 §1, §6). */
+export function gapToSpace(
+  state: WorldState,
+  encounter: EncounterState,
+  record: CombatantRecord,
+  space: Placed,
+  altitudeFt: number,
+): number {
+  const across = gapFt(placedOf(state, record), space);
+  const up = Math.abs(
+    heightOf(state, encounter, record) - (groundOf(encounter, space) + altitudeFt),
+  );
+  return Math.max(across, up);
+}
+
+/**
+ * Feet between two combatants (ADR 0049 §1, §6): between their nearest squares across, and the
+ * difference of their heights up, the larger counting as the SRD's grid counts a step up.
+ */
+export function gapBetween(state: WorldState, a: CombatantRecord, b: CombatantRecord): number {
+  const across = gapFt(placedOf(state, a), placedOf(state, b));
+  const encounter = state.encounter;
+  if (!encounter) return across;
+  const up = Math.abs(heightOf(state, encounter, a) - heightOf(state, encounter, b));
+  return Math.max(across, up);
+}
+
+/** Whether a space lies on the battlefield, clear of walls. */
+export const fitsOnField = (encounter: EncounterState, placed: Placed): boolean =>
+  squaresOf(placed).every((square) => inBounds(encounter, square) && !isWall(encounter, square));
+
+/** Why a creature cannot join the fight on a space, and the engine's words for it. */
+export type JoinRefusal = 'full' | 'outside' | 'taken';
+export const JOIN_REFUSALS: Readonly<Record<JoinRefusal, string>> = {
+  full: 'The fight holds as many combatants as it can',
+  outside: 'A combatant stands outside the battlefield',
+  taken: 'Two combatants cannot share a square',
+};
+
+/**
+ * Why a creature `entityId` filling `space` cannot join the fight, or null: room in the fight, its
+ * whole space on the field, clear of walls and of others (docs/adr/0049-space-and-movement.md §1).
+ * The bestiary asks it before it writes anything (docs/adr/0053-monsters-as-data.md §3).
+ */
+export function joinRefusal(
+  state: WorldState,
+  encounter: EncounterState,
+  space: Placed,
+  entityId: string,
+): JoinRefusal | null {
+  if (encounter.combatants.length >= MAX_COMBATANTS) return 'full';
+  if (!fitsOnField(encounter, space)) return 'outside';
+  if (squaresOf(space).some((square) => occupant(state, encounter, square, entityId)))
+    return 'taken';
+  return null;
+}
+
+/** A living combatant other than `except` filling the square (the dead do not block). */
 export function occupant(
   state: WorldState,
   encounter: EncounterState,
@@ -62,7 +192,7 @@ export function occupant(
   except: string,
 ): CombatantRecord | undefined {
   return encounter.combatants.find(
-    (c) => c.entityId !== except && sameSquare(c.position, square) && isAlive(state, c.entityId),
+    (c) => c.entityId !== except && isAlive(state, c.entityId) && fills(placedOf(state, c), square),
   );
 }
 
@@ -86,9 +216,11 @@ export function withTurn(
     slotExpendedThisTurn,
     attacksRemaining,
   } = turn;
+  // The actions' marks (Dash, Dodge, Help…; docs/adr/0045-conditions-and-actions.md §5) stay.
   return {
     ...combatant,
     turn: {
+      ...combatant.turn,
       actionUsed,
       bonusActionUsed,
       reactionAvailable,
