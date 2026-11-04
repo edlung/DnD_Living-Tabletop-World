@@ -31,5 +31,6 @@
   "movedRu": "ui-signin-moved-ru",
   "privacy": "ui-signin-privacy",
   "release": "ui-signin-release",
-  "releaseWebkit": "ui-signin-release-webkit"
+  "releaseWebkit": "ui-signin-release-webkit",
+  "chronicleWriter": "ui-signin-chronicle-writer"
 }
