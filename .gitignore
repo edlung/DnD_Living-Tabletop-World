@@ -38,3 +38,7 @@ DerivedData/
 xcuserdata/
 *.xcuserstate
 Signing.local.xcconfig
+# Local mode (docs/adr/0061-local-mode.md): campaign packages hold password hashes; the laptop's
+# root certificate is fetched for trust-here.
+deploy/local/moves/
+deploy/local/*.crt

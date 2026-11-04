@@ -31,6 +31,8 @@ services:
     environment:
       PUBLIC_HOST: ${PUBLIC_HOST:?set PUBLIC_HOST in deploy/.env}
       TLS_MODE: ${TLS_MODE:?set TLS_MODE (acme or internal) in deploy/.env}
+      # `local` on the DM's laptop (docs/adr/0061-local-mode.md): the trust page, private clients.
+      LTW_PROXY_MODE: ${LTW_PROXY_MODE:-server}
     ports:
       - '${PROXY_HTTP_PUBLISH:-80}:80'
       - '${PROXY_HTTPS_PUBLISH:-443}:443'

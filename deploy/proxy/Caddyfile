@@ -1,11 +1,25 @@
 # Living Tabletop World proxy (docs/adr/0037-deployment.md): the built client and the API under
 # /api for {$PUBLIC_HOST}, over TLS only. TLS_MODE=acme for a public domain (automatic
-# certificates, HSTS); TLS_MODE=internal for local verification (Caddy's own CA, no HSTS).
+# certificates, HSTS); TLS_MODE=internal for local verification and local mode (Caddy's own CA,
+# no HSTS). LTW_PROXY_MODE=local (docs/adr/0061-local-mode.md §2–3; the DM's laptop) adds the
+# trust page over plain HTTP and answers private addresses only; the default `server` adds nothing.
 # The server is reachable only through this proxy; compose publishes nothing else.
 {
 	# The configuration changes only with a new image.
 	admin off
 	skip_install_trust
+	# A client that sends no server name (a phone opening the laptop's IP address, local mode)
+	# gets the site's certificate: inside the container the connection's address is not the one
+	# the certificate names.
+	default_sni {$PUBLIC_HOST}
+	# The local authority's names, as a phone lists the root it installs (local mode, ADR 0061 §3).
+	pki {
+		ca local {
+			name "Living Tabletop World"
+			root_cn "Living Tabletop World local root"
+			intermediate_cn "Living Tabletop World local intermediate"
+		}
+	}
 	servers {
 		# TCP only: compose publishes 80/tcp and 443/tcp.
 		protocols h1 h2
@@ -24,8 +38,54 @@
 	tls internal
 }
 
+# Server mode: nothing more.
+(mode-server) {
+}
+(trust-server) {
+}
+
+# Local mode: the home network only (private addresses; Docker Desktop shows every client as its
+# gateway, so there the published address is the limit). `invoke` runs before every `handle`, so
+# nothing of the site answers a client from outside.
+(mode-local) {
+	@outside not remote_ip private_ranges
+	invoke @outside outside
+}
+&(outside) {
+	respond "Only this home network" 403
+}
+# The trust page (plain HTTP, the same address): the local root to install and how, nothing of
+# the game or the API. Its script checks the HTTPS address it sends the phone to.
+(trust-local) {
+	http://{$PUBLIC_HOST} {
+		import mode-local
+		header {
+			Content-Security-Policy "default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src https://{$PUBLIC_HOST}; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+			Referrer-Policy no-referrer
+			X-Content-Type-Options nosniff
+			X-Frame-Options DENY
+			Cache-Control no-store
+			-Server
+		}
+		handle /ltw-local-root.crt {
+			root * /data/caddy/pki/authorities/local
+			rewrite * /root.crt
+			header Content-Type application/x-x509-ca-cert
+			header Content-Disposition "attachment; filename=ltw-local-root.crt"
+			file_server
+		}
+		handle {
+			root * /srv-trust
+			try_files {path} /index.html
+			file_server
+		}
+	}
+}
+import trust-{$LTW_PROXY_MODE:server} # the trust page in local mode (ADR 0061 §3)
+
 {$PUBLIC_HOST} {
 	import tls-{$TLS_MODE}
+	import mode-{$LTW_PROXY_MODE:server}
 
 	header {
 		# Applied as the response is written; where the server set its own policy

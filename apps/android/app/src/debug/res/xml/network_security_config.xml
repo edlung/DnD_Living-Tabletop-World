@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Debug builds also play on a loopback server, whose cookie the server sets without Secure. -->
+<!-- Debug builds also play on a loopback server, whose cookie the server sets without Secure; the
+     rest as the release build's (src/main): a laptop's root installed on the device for a server
+     off the public domain (docs/adr/0061-local-mode.md §3), the system's roots alone for it. -->
 <network-security-config>
-    <base-config cleartextTrafficPermitted="false" />
+    <base-config cleartextTrafficPermitted="false">
+        <trust-anchors>
+            <certificates src="system" />
+            <certificates src="user" />
+        </trust-anchors>
+    </base-config>
+    <domain-config cleartextTrafficPermitted="false">
+        <domain includeSubdomains="true">vardahei.tech</domain>
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </domain-config>
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="false">localhost</domain>
         <domain includeSubdomains="false">127.0.0.1</domain>

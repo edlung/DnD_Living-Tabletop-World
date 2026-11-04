@@ -983,3 +983,80 @@ VPS's internal networks); (3) open UDP and TCP 3478, TCP 5349 and UDP 49160–49
 `deploy/scripts/deploy.sh` and check two browsers on different networks hear each other, the Voice
 panel no longer saying "Without a relay…". To switch it off: remove both settings, restart the
 server, stop coturn, close the ports.
+
+## 15. Локальный режим и переезд кампании · Local mode and a campaign's move
+
+**RU.** Игра на ноутбуке мастера без интернета (ADR 0061): тот же стек под Docker, отдельный проект
+`ltw-local` со своими настройками `deploy/local/.env` (пишутся при первом запуске, права 600,
+случайные секреты, ключей ИИ нет) и копиями на ноутбуке (`~/Documents/LTW-local-backups`, каждые
+6 часов). Нужны Docker Desktop (Engine 28+), эта рабочая копия и интернет один раз — для сборки
+образов; для QR-кода в терминале — установленные зависимости (`pnpm install`), иначе печатается
+только адрес. Сервер слушает только адрес ноутбука в домашней сети и отвечает только частным
+адресам; запускайте его дома, не в общественной сети.
+
+1. `deploy/local/ltw-local.sh start` — адрес ноутбука в сети, образы текущего коммита (впервые),
+   запуск и ожидание готовности (как `deploy.sh`: защищённая копия перед новой версией), затем
+   адрес и QR-код. Сменился адрес (роутер выдал другой) — снова `start`. Остановить — `stop`
+   (данные остаются); что запущено — `status`; адрес и код ещё раз — `address`.
+2. Брандмауэр: `start` говорит, что разрешить (macOS: не включать «Блокировать все входящие»,
+   разрешить Docker, когда macOS спросит; Linux: `ufw`/`firewalld` — команда для домашней сети).
+   Сам он ничего не меняет.
+3. Телефоны и планшеты: открыть `http://<адрес>/` (QR-код из терминала) — страница доверия:
+   скачать сертификат ноутбука, установить и включить доверие (шаги для iPhone/iPad и Android на
+   странице), «Проверить снова» → «Открыть стол» (`https://<адрес>/`). Один раз на устройство,
+   пока живёт том `caddy-data` проекта `ltw-local` (его не удалять: новый корень — установка
+   заново). Компьютер у телевизора: на этом Mac — `ltw-local.sh trust-here` (спросит; macOS
+   попросит пароль), на другом — шаги на странице.
+4. Кампании: перевезти с VPS — `ltw-local.sh bring <кампания> --from vardahei-vps` (по SSH: на VPS
+   кампания помечается «уехала» — её видно, но не играть, изменения 409 `MOVED`; пакет — история,
+   записи стола, места и учётные записи — сохраняется в `deploy/local/moves/`, права 600, в нём
+   хэши паролей; затем импорт здесь, всё или ничего). Вернуть — `ltw-local.sh return <кампания>
+--to vardahei-vps`: на VPS дописывается сыгранное дома, записи стола становятся домашними,
+   пароли — по последней смене. Нет ни одной кампании и VPS не нужен — `ltw-local.sh first-dm`
+   (русский Равенфорд и ссылка мастера, один раз). Сессии и экраны не переезжают: все входят
+   заново своим логином, телевизор снова сопрягается.
+5. Если импорт не удался, кампания остаётся «уехавшей» там, откуда её вывезли: повторить
+   `ltw-local.sh import <пакет>` (или на VPS `deploy/scripts/campaign-move.sh import < пакет`), либо
+   отменить переезд там — `deploy/scripts/campaign-move.sh cancel <кампания>` (локально:
+   `ltw-local.sh cancel <кампания>`). Импорт отказывает, если кампания там «дома» (никогда не
+   перезаписывает) или истории разошлись; перед импортом берётся защищённая копия (`prerestore`).
+6. Копии: `ltw-local.sh backup` — сейчас; восстановление — `LTW_ENV_FILE=deploy/local/.env
+deploy/scripts/restore.sh <копия>` (раздел 5).
+
+**EN.** The game on the DM's laptop without the internet (ADR 0061): the same stack under Docker as
+its own project `ltw-local` with its own settings `deploy/local/.env` (written on the first start,
+mode 600, random secrets, no AI keys) and its backups on the laptop (`~/Documents/LTW-local-backups`,
+every 6 hours). It needs Docker Desktop (Engine 28+), this checkout and the internet once, to build
+the images; the terminal's QR code needs the dependencies installed (`pnpm install`), otherwise the
+address alone is printed. The server listens on the laptop's home-network address only and answers
+private addresses only: run it at home, never on a public network.
+
+1. `deploy/local/ltw-local.sh start`: the laptop's address, the images of the current commit (the
+   first time), the stack started and waited for (as `deploy.sh` does: a protected dump before a new
+   version), then the address and its QR code. A new address (the router gave another): `start`
+   again. `stop` stops it (data kept); `status` shows what runs; `address` shows the address and
+   code again.
+2. The firewall: `start` says what to allow (macOS: no "Block all incoming connections", allow
+   Docker when macOS asks; Linux: the `ufw`/`firewalld` command for the home network). It changes
+   nothing itself.
+3. Phones and tablets: open `http://<address>/` (the terminal's QR code), the trust page: download
+   the laptop's certificate, install it and turn its trust on (the iPhone/iPad and Android steps are
+   on the page), "Check again", then "Open the table" (`https://<address>/`). Once per device, while
+   the `ltw-local` project's `caddy-data` volume lives (keep it: a new root means installing again).
+   The computer by the TV: on this Mac `ltw-local.sh trust-here` (it asks; macOS asks for your
+   password), elsewhere the page's steps.
+4. Campaigns: from the VPS, `ltw-local.sh bring <campaign> --from vardahei-vps` (over SSH: the VPS
+   marks the campaign away, to be read and not played, changes refused with 409 `MOVED`; the
+   package, its history, the table's records, seats and accounts, is kept in `deploy/local/moves/`,
+   mode 600, password hashes inside; then imported here, all or nothing). Back:
+   `ltw-local.sh return <campaign> --to vardahei-vps`: the VPS appends what was played at home, the
+   table's records become the home's, passwords follow the latest change. No campaign and no need of
+   the VPS: `ltw-local.sh first-dm` (the Russian Ravenford and the DM's link, once). Sessions and
+   screens do not move: everyone signs in again with their login, the TV pairs again.
+5. When an import fails, the campaign stays away where it left: retry `ltw-local.sh import
+<package>` (or on the VPS `deploy/scripts/campaign-move.sh import < package`), or cancel the move
+   there, `deploy/scripts/campaign-move.sh cancel <campaign>` (here: `ltw-local.sh cancel
+<campaign>`). An import refuses a campaign at home there (never overwritten) and a history played
+   apart; a protected dump (`prerestore`) comes first.
+6. Backups: `ltw-local.sh backup` for one now; restore with `LTW_ENV_FILE=deploy/local/.env
+deploy/scripts/restore.sh <dump>` (section 5).

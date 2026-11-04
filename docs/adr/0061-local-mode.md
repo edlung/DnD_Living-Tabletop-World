@@ -76,14 +76,21 @@ return <campaign> --to <host>`).
 
 - Migration 0039: the moves (`ltw_campaign_moves`, one open move a campaign) and the triggers that
   refuse an away campaign's history, seats and invitations. The HTTP layer refuses a change to an away
-  campaign with 409 `MOVED`; the account's campaign list and the game's error notice say where it
-  plays. The production proxy keeps its behaviour; its local mode (`LTW_PROXY_MODE=local`) adds the
+  campaign with 409 `MOVED`; the account's campaign list and the game's notice say where it plays. The production proxy keeps its behaviour; its local mode (`LTW_PROXY_MODE=local`) adds the
   trust page and the private-range rule.
 - New: `apps/server/src/campaigns/move/` (package, export, import, CLI), `deploy/scripts/campaign-move.sh`,
-  `deploy/local/` (the launcher, its Compose override, the trust page), RUNBOOK §15.
-- Verified on this machine with the stack bound to the loopback address (an IP certificate the
-  same way, the trust page, a move between two local stacks and back); opening it to the home
-  network is the owner's step at home.
+  `deploy/local/` (the launcher and its terminal QR code), the proxy's trust page
+  (`deploy/proxy/trust/`), `deploy/verify/local-mode.sh`, RUNBOOK §15. The deployment's scripts take
+  another settings file (`LTW_ENV_FILE`), so the laptop's stack is deployed, backed up and restored
+  as the VPS's is.
+- The native apps reach the laptop by its address: on an iPhone or iPad the installed and trusted
+  root serves the app as it serves Safari; the Android app trusts an installed CA certificate for a
+  server off `vardahei.tech` only (its network security configuration), never for the public
+  server.
+- Verified on this machine with the stack bound to the loopback address: the IP certificate the
+  same way a phone sees it, the trust page, a campaign marked away and brought home again through the
+  operator's command; between two servers in the integration tests. Opening it to the home network
+  is the owner's step at home.
 
 ## Invariants affected
 
