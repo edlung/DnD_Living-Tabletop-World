@@ -29,5 +29,7 @@
   "voice": "ui-signin-voice",
   "moved": "ui-signin-moved",
   "movedRu": "ui-signin-moved-ru",
-  "privacy": "ui-signin-privacy"
+  "privacy": "ui-signin-privacy",
+  "release": "ui-signin-release",
+  "releaseWebkit": "ui-signin-release-webkit"
 }

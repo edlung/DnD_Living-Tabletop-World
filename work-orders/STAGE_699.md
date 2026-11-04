@@ -24,6 +24,15 @@ the owner's: nothing here does them.
   `AccountStore.forget`), the operator's `delete-account`, RUNBOOK §6. Unit, integration and browser
   tests; the layout audit of the notice, the data section and the dialog (48 views, none found).
 
+- 699b done: `tests/e2e/release.spec.ts` in Chromium and WebKit (a `webkit` project for it): a DM
+  with a login leads a new campaign of The Bells of Hollowmere from the hub and seats three players
+  with logins of their own; at the table a TV pairs and shows the scene, the session starts, a
+  player's roll reaches the DM, the session ends; online every player has the table's screen and
+  the title card, and what one says the others read. All four pass.
+- 699c: the security review of Milestone D's changes (an independent reviewer, then our own pass)
+  and its fixes (commit "Milestone D security review: its findings fixed"); the layout audit of
+  every sheet; the report.
+
 ## Checks at each sub-stage
 
 Format, lint, typecheck, context budget, unit and integration tests, build; the browser suite; the

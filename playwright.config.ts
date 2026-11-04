@@ -33,6 +33,12 @@ export default defineConfig({
       use: { ...devices['iPad Pro 11 landscape'] },
       testMatch: /dm-screen\.spec\.ts$/,
     },
+    // Release 1.0's journeys in Safari's engine too (work-orders/STAGE_699.md, 699b).
+    {
+      name: 'webkit',
+      use: { ...devices['Desktop Safari'] },
+      testMatch: /release\.spec\.ts$/,
+    },
   ],
   webServer: [
     {
