@@ -17,8 +17,10 @@ import { useLiveSession } from '../session/use-live-session.ts';
 import { ApprovedImages, ApprovedImagesContext } from '../visual/approved-images.ts';
 import { ornamentUrl, textureUrl } from '../visual/ui-kit.ts';
 import { useRereadOn } from '../world/use-world-data.ts';
+import { BigRoll } from './big-roll.tsx';
 import { CastView } from './cast-views.tsx';
 import { DisplayCorner } from './display-corner.tsx';
+import { castKey } from './moments.ts';
 import {
   forgetDisplay,
   readDisplaySession,
@@ -270,17 +272,26 @@ function DisplayStage({
       >
         {cast.resource.status === 'ready' ? (
           <>
-            <CastView
-              api={api}
-              cast={cast.resource.value}
-              directory={directory}
-              refresh={live.refresh}
-              campaignName={session.campaignName}
-            />
+            {/* Another cast fades in (ADR 0059 §4); a battlefield's zoom or focus does not. */}
+            <div key={castKey(cast.resource.value)} className="display-cast">
+              <CastView
+                api={api}
+                cast={cast.resource.value}
+                directory={directory}
+                refresh={live.refresh}
+                campaignName={session.campaignName}
+              />
+            </div>
             {/* The dice cast lists whom the table waits for itself; the join card is for joining. */}
             {!['dice', 'join'].includes(cast.resource.value.cast.kind) && (
               <WaitingStrip api={api} refresh={live.refresh} directory={directory} />
             )}
+            {/* A roll the table may see, big over the cast; a plate beside the battlefield. */}
+            <BigRoll
+              api={api}
+              refresh={live.refresh}
+              compact={cast.resource.value.cast.kind === 'battlefield'}
+            />
           </>
         ) : (
           <div className="display-wait">

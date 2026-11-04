@@ -24,6 +24,8 @@ export function DisplayCorner({
 }) {
   const t = useT();
   const settings = useDiceSettings();
+  // The TV has no settings of its own: its one switch is all its sound, the dice's cues too.
+  const heard = settings.atmosphere || settings.sound;
   const waiting = useSoundWaiting();
   const [asking, setAsking] = useState(false);
   const [idle, setIdle] = useState(false);
@@ -58,11 +60,11 @@ export function DisplayCorner({
           className="quiet-button"
           onClick={() => {
             // Turned on again by a press: the press lets the browser play too.
-            if (!settings.atmosphere) unlockAudio();
-            changeDiceSettings({ atmosphere: !settings.atmosphere });
+            if (!heard) unlockAudio();
+            changeDiceSettings({ atmosphere: !heard, sound: !heard });
           }}
         >
-          {settings.atmosphere ? t('Turn the sound off') : t('Turn the sound on')}
+          {heard ? t('Turn the sound off') : t('Turn the sound on')}
         </button>
       )}
       {document.fullscreenEnabled && (

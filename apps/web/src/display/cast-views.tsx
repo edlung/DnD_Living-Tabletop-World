@@ -27,6 +27,8 @@ import { phaseGlyph, weatherGlyph } from '../visual/glyph-map.ts';
 import { QrCode } from '../visual/qr-code.tsx';
 import { textureUrl } from '../visual/ui-kit.ts';
 import { useRereadOn } from '../world/use-world-data.ts';
+import { DiceFaces } from './big-roll.tsx';
+import { PlaceCard } from './place-card.tsx';
 import { WaitingList } from './waiting-strip.tsx';
 
 /**
@@ -130,6 +132,13 @@ function SceneCast(props: Props & { readonly place: string | null }) {
         </p>
         {party.length > 0 && <p className="display-party">{party.join(' · ')}</p>}
       </header>
+      {/* A new place's title card, big over its picture for a moment (ADR 0059 §4). */}
+      <PlaceCard
+        key={props.place}
+        name={name}
+        when={formatWorldTime(scene.worldTime, t)}
+        weather={scene.location.weather ? t(scene.location.weather) : null}
+      />
     </section>
   );
 }
@@ -250,6 +259,10 @@ function DiceCast(props: Props) {
               <span className="display-total">
                 {roll.groups.reduce((sum, group) => sum + group.total, 0)}
               </span>
+              {/* With its dice (ADR 0059 §5). */}
+              {roll.groups.map((group, throwIndex) => (
+                <DiceFaces key={throwIndex} group={group} />
+              ))}
             </li>
           ))}
         </ol>

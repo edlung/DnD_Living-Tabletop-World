@@ -20,6 +20,10 @@ Authority: owner approval 2026-11-02 (`reviews/OWNER_FULL_GAME_2026-11-02.json`)
   0038; `server/src/music/`; the Session sheet's Music beside the session's own controls; the TV and
   online screens play it by the server's clock, the ambience lower beneath it.
 - 690d — The screen's moments: fades between casts, the place's title card, big dice over the cast.
+  Done: another cast fades in (`display/moments.ts` `castKey`: a battlefield's zoom or focus does
+  not); the place card for each new place; a roll the table may see big over the cast (a plate
+  beside the battlefield) with its dice and its cue (690b), the dice cast's rolls with their dice;
+  reduced motion cuts. The TV's corner switch silences all its sound.
 
 ## Checks at each sub-stage
 

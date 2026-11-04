@@ -415,13 +415,14 @@
   gap: 0.5rem;
 }
 /*
- * Narrower than a TV (a tablet standing in for one): the corner stacks at the right, clear of the
- * scene's name and time at the left — it stays while "Sound on" waits (ADR 0059 §6).
+ * Narrower than a TV (a tablet standing in for one): the corner is a row along the bottom, and the
+ * scene's caption keeps the room above it (`display-moments.css`), so the corner never lies over
+ * the place's name — it stays shown while "Sound on" waits (ADR 0059 §6).
  */
 @media (max-width: 1023px) {
   .display-corner {
-    flex-direction: column;
-    align-items: flex-end;
+    left: 12px;
+    justify-content: flex-end;
   }
 }
 

@@ -53,7 +53,8 @@ const PURPOSE: Readonly<Record<RollGroup['purpose'], string>> = {
   'death-save': 'Death save',
   initiative: 'Initiative',
   'hit-die': 'Hit Point Die',
-  dice: 'Roll',
+  // A noun, as on the plate: "Roll" alone is the button's verb in Russian.
+  dice: 'Dice roll',
 };
 
 export const purposeWords = (t: Translate, group: RollGroup): string => t(PURPOSE[group.purpose]);
