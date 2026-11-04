@@ -26,17 +26,25 @@ const RUSSIAN: ReadonlySet<string> = new Set([
 ]);
 const SCANNED: ReadonlySet<string> = new Set([campaigns.a11y, campaigns.a11yRu]);
 
+const away = new Set<string>();
+
 /**
- * The campaigns the browser tests see away (docs/adr/0061-local-mode.md §5): moved to a laptop, so
- * read and never changed here.
+ * The campaigns the browser tests send away (docs/adr/0061-local-mode.md §5): moved to a laptop
+ * once their journey has seated its DM — an away campaign seats nobody new — and from then on read
+ * and never changed here. `send` answers false for any other campaign.
  */
-export const MOVED_AWAY: CampaignMoves = {
+export const MOVED_AWAY: CampaignMoves & { send(campaignId: string): boolean } = {
   awayOf: (campaignId) =>
     Promise.resolve(
-      campaignId === campaigns.moved || campaignId === campaigns.movedRu
+      away.has(campaignId)
         ? { destination: 'MacBook Pro', movedAt: '2026-11-04T09:30:00.000Z' }
         : null,
     ),
+  send: (campaignId) => {
+    if (campaignId !== campaigns.moved && campaignId !== campaigns.movedRu) return false;
+    away.add(campaignId);
+    return true;
+  },
 };
 
 /**

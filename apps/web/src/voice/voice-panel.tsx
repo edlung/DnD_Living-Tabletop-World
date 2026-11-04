@@ -1,5 +1,5 @@
 import { useT } from '@ltw/ui';
-import { useId, type KeyboardEvent } from 'react';
+import { useEffect, useId, type KeyboardEvent } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { Glyph } from '../visual/glyph.tsx';
@@ -15,6 +15,10 @@ export function VoicePanel({ api, isDm }: { readonly api: WorldApi; readonly isD
   const t = useT();
   const ids = useId();
   const { session, shown } = useVoice(api);
+  // The panel shows only while the table plays online: each time it comes, so did a new room.
+  useEffect(() => {
+    session.forgetEarlierRoom();
+  }, [session]);
   const peers = shown.room?.peers ?? [];
   const me = shown.room?.you ?? null;
   const mutedByDm = peers.find((peer) => peer.peerId === me)?.muted ?? false;
@@ -35,19 +39,24 @@ export function VoicePanel({ api, isDm }: { readonly api: WorldApi; readonly isD
           {shown.status === 'refused' && (
             <p className="muted">{t('The voice opens while the session plays online.')}</p>
           )}
-          {shown.status === 'removed' && (
-            <p className="muted">{t('The DM took you out of the voice.')}</p>
+          {shown.status === 'removed' ? (
+            // Until the room ends (ADR 0060 §6): no button that could only be refused.
+            <p className="muted">
+              {t('The DM took you out of the voice.')}{' '}
+              {t('You can join again the next time the table plays online.')}
+            </p>
+          ) : (
+            <button
+              type="button"
+              className="primary-button"
+              disabled={shown.status === 'joining'}
+              onClick={() => {
+                session.join();
+              }}
+            >
+              {shown.status === 'joining' ? t('Joining the voice…') : t('Join the voice')}
+            </button>
           )}
-          <button
-            type="button"
-            className="primary-button"
-            disabled={shown.status === 'joining'}
-            onClick={() => {
-              session.join();
-            }}
-          >
-            {shown.status === 'joining' ? t('Joining the voice…') : t('Join the voice')}
-          </button>
         </>
       ) : (
         <>

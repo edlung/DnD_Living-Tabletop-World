@@ -91,6 +91,9 @@ registerRussian({
   'This invitation cannot be used': 'Это приглашение нельзя использовать',
   'Invitation links work once and expire after a while. Ask for a new one.':
     'Ссылка-приглашение срабатывает один раз и со временем истекает. Попросите новую.',
+  'This campaign is played elsewhere now': 'Эта кампания теперь идёт в другом месте',
+  'Its DM moved it to another server, such as a laptop at home. Ask your DM where it is played now, and for an invitation there.':
+    'Мастер перенёс её на другой сервер, например на ноутбук дома. Спросите мастера, где она идёт сейчас, и попросите приглашение туда.',
   'Back to the start': 'В начало',
   'Join with an invitation': 'Вход по приглашению',
   'This table is open to invited players. Open the invitation link you were sent to take your seat.':

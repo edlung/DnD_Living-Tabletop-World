@@ -16,7 +16,7 @@ import {
  * The table's voice in the browser (docs/adr/0060-voice.md; Stage 695): online, the DM and a player
  * join the voice from the Chat sheet and hear each other — proved by each connection's statistics,
  * a tone standing in for the microphone arriving, never by ear; the DM mutes the player for everyone and removes
- * them; back at the table, the voice is gone.
+ * them until the room ends; back at the table, the voice is gone, and the next room takes them back.
  */
 test.use({
   baseURL: SIGN_IN_ORIGIN,
@@ -58,6 +58,8 @@ const voice = (page: Page) => page.locator('#sheet-chat').getByRole('region', { 
 /** The other speaker's row in a screen's list of who is in the voice. */
 const other = (page: Page) =>
   voice(page).getByRole('list', { name: 'In the voice' }).locator('li:not([data-state="self"])');
+const join = (page: Page) =>
+  voice(page).getByRole('button', { name: 'Join the voice', exact: true });
 
 async function mode(dm: Page, next: 'online' | 'table') {
   const status = await dm.evaluate(
@@ -124,16 +126,27 @@ test('online, the DM and a player hear each other; the DM mutes and removes', as
     .click();
   await expect(voice(player)).not.toContainText('The DM muted you.');
 
-  // Removed, the player is out, and may join again.
+  // Removed, the player is out until the room ends: no button that could only be refused, and a
+  // reload changes nothing (ADR 0060 §6).
   await other(dm)
     .getByRole('button', { name: 'Remove from the voice: Elowen Starwhisper', exact: true })
     .click();
   await expect(voice(player)).toContainText('The DM took you out of the voice.');
+  await expect(voice(player)).toContainText(
+    'You can join again the next time the table plays online.',
+  );
+  await expect(join(player)).toHaveCount(0);
   await expect(other(dm)).toHaveCount(0);
-  await voice(player).getByRole('button', { name: 'Join the voice', exact: true }).click();
-  await expect(other(dm)).toHaveAttribute('data-hearing', 'true');
+  await player.reload();
+  await openSheet(player, 'Chat');
+  await join(player).click();
+  await expect(voice(player)).toContainText('The DM took you out of the voice.');
+  await expect(other(dm)).toHaveCount(0);
 
-  // Back at the table, the voice is gone.
+  // Back at the table, the voice is gone; online again, a new room takes the player back.
   await mode(dm, 'table');
   await expect(voice(player)).toHaveCount(0);
+  await mode(dm, 'online');
+  for (const page of [dm, player]) await join(page).click();
+  await expect(other(dm)).toHaveAttribute('data-hearing', 'true');
 });

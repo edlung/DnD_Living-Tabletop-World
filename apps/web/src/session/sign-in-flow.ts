@@ -96,7 +96,8 @@ export async function probeSession(
 
 /**
  * `POST /auth/redeem`. A browser already signed in gets 409 until it confirms replacing that
- * sign-in (`replaceSession`, sent only after the person said yes). Anything else that is not a
+ * sign-in (`replaceSession`, sent only after the person said yes). A campaign played on another
+ * server since a move answers 409 `MOVED`, asked or confirmed. Anything else that is not a
  * sign-in — refused, limited, malformed, unanswered — is one failure, whatever its reason.
  */
 export type RedeemOutcome =
@@ -105,15 +106,19 @@ export type RedeemOutcome =
   /** Accounts (Stage 600): the new login is taken, or the account already sits at that table. */
   | { readonly kind: 'login-taken' }
   | { readonly kind: 'already-seated' }
+  /** The campaign plays on another server since a move (docs/adr/0061-local-mode.md §5). */
+  | { readonly kind: 'moved' }
   | { readonly kind: 'failed' };
 
-/** A conflict's reason (Stage 600), or null for the sign-in question's plain conflict. */
+/** A conflict's reason (Stage 600, 697), or null for the sign-in question's plain conflict. */
 async function conflictReason(
   response: Response,
-): Promise<'login-taken' | 'already-seated' | null> {
+): Promise<'login-taken' | 'already-seated' | 'moved' | null> {
   const data = await bodyOf(response);
-  const reason =
-    typeof data === 'object' && data !== null && 'reason' in data ? data.reason : undefined;
+  if (typeof data !== 'object' || data === null) return null;
+  const error = 'error' in data && typeof data.error === 'object' ? data.error : null;
+  if (error !== null && 'code' in error && error.code === 'MOVED') return 'moved';
+  const reason = 'reason' in data ? data.reason : undefined;
   return reason === 'login-taken' || reason === 'already-seated' ? reason : null;
 }
 
@@ -137,6 +142,7 @@ export async function redeemInvitation(
     const reason = await conflictReason(response);
     if (reason === 'login-taken') return { kind: 'login-taken' };
     if (reason === 'already-seated') return { kind: 'already-seated' };
+    if (reason === 'moved') return { kind: 'moved' };
     if (!replaceSession) return { kind: 'needs-confirmation' };
   }
   if (!response.ok) return { kind: 'failed' };
@@ -312,6 +318,8 @@ export type SeatOutcome =
    * token for that question alone (one-shot: kept or replaced, it is gone).
    */
   | { readonly kind: 'needs-confirmation'; readonly replacement: InvitationHolder }
+  /** The campaign plays on another server now: no seat is taken here. */
+  | { readonly kind: 'moved' }
   | { readonly kind: 'failed' };
 
 /**
@@ -342,5 +350,5 @@ export async function replaceSignIn(
   const token = replacement.take();
   if (token === null) return null;
   const outcome = await redeemInvitation(transport, token, true);
-  return outcome.kind === 'joined' ? outcome : { kind: 'failed' };
+  return outcome.kind === 'joined' || outcome.kind === 'moved' ? outcome : { kind: 'failed' };
 }

@@ -188,6 +188,16 @@ export class VoiceSession {
     this.#set({ status: 'out' });
   }
 
+  /**
+   * A new room (the table plays online again): what an earlier room said of this screen — the DM's
+   * removal, a refusal — ended with that room (ADR 0060 §6).
+   */
+  forgetEarlierRoom(): void {
+    if (this.shown.status === 'removed' || this.shown.status === 'refused') {
+      this.#set({ status: 'out' });
+    }
+  }
+
   setOpen(open: boolean): void {
     this.#set({ open });
     this.#apply();

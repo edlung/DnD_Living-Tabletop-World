@@ -11,6 +11,8 @@ registerRussian({
   'Leave the voice': 'Выйти из голоса',
   'The voice opens while the session plays online.': 'Голос открыт, пока сессия идёт онлайн.',
   'The DM took you out of the voice.': 'Мастер убрал вас из голоса.',
+  'You can join again the next time the table plays online.':
+    'Войти снова можно, когда стол в следующий раз будет играть онлайн.',
   'Microphone on': 'Микрофон включён',
   'Microphone off': 'Микрофон выключен',
   'Hold to talk': 'Удерживайте, чтобы говорить',

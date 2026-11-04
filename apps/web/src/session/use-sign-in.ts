@@ -46,7 +46,8 @@ export type SignInScreen =
       /** Who this browser is signed in as: undefined while it is read, null if unknown. */
       readonly current: CurrentSignIn | null | undefined;
     }
-  | { readonly kind: 'join-failed' }
+  /** `moved`: the campaign plays on another server since a move (docs/adr/0061-local-mode.md §5). */
+  | { readonly kind: 'join-failed'; readonly reason?: 'moved' }
   /** `none`: never signed in here; `ended`: the session ended under it; `left`: signed out. */
   | {
       readonly kind: 'signed-out';
@@ -223,6 +224,9 @@ export function useSignIn(
           return;
         case 'failed':
           next({ kind: 'join-failed' });
+          return;
+        case 'moved':
+          next({ kind: 'join-failed', reason: 'moved' });
           return;
         case 'needs-confirmation':
           next({ kind: 'confirm', current: undefined });

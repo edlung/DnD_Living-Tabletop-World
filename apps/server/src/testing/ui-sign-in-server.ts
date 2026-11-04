@@ -134,6 +134,15 @@ app.post('/testing/workshop-activation-release', async (_request, reply) => {
   return reply.send({ released: true });
 });
 
+// Test-process-only: a journey's campaign moves to a laptop once its DM is seated (ADR 0061 §5).
+app.post<{ Params: { campaignId: string } }>(
+  '/testing/campaign-away/:campaignId',
+  async (request, reply) =>
+    MOVED_AWAY.send(request.params.campaignId)
+      ? reply.send({ away: true })
+      : reply.code(404).send({}),
+);
+
 // Test-process-only operator revocation trigger; never imported by production composition.
 app.post<{ Params: { name: string } }>('/testing/workshop-revoke/:name', async (request, reply) => {
   const name = WORKSHOP_FIXTURES.find((candidate) => candidate === request.params.name);
