@@ -74,9 +74,10 @@ test('the DM’s short rest lets the player spend a Hit Point Die the server rol
   await expect(dialog.getByText('6 of 7 left')).toBeVisible();
   // The die flies with its plate.
   await expect(player.locator('.dice-plate')).toContainText('Hit Point Die', { timeout: LIVE });
-  // The DM ends the rest; the player can spend no more.
+  // The DM ends the rest; the player can spend no more. The DM's screen reads the rest again while
+  // the player's die still flies on it: on a loaded runner that took longer than 15 s once.
   await banner(dm).getByRole('button', { name: 'End the short rest' }).click();
-  await expect(banner(dm)).toHaveCount(0);
+  await expect(banner(dm)).toHaveCount(0, { timeout: LIVE * 2 });
   await expect(dialog.getByRole('button', { name: 'Spend a d10' })).toBeDisabled({ timeout: LIVE });
   await expect(
     dialog.getByText('Hit Point Dice are spent in a short rest the DM calls.'),

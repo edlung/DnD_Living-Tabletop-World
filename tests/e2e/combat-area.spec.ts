@@ -55,7 +55,9 @@ test('Fireball previews who it affects, warns about an ally, and still casts whe
   // The server spent exactly one slot and the ally warning was a warning, not a block.
   const after = await expendedSlots(page, campaign);
   expect(after.reduce((a, b) => a + b, 0) - before.reduce((a, b) => a + b, 0)).toBe(1);
-  expect(await playerHp(page)).toBeLessThan(hpBefore);
+  // The fight's anchor reads the encounter again after the result: on a loaded runner, a moment
+  // later (CI once read the hit points before it had).
+  await expect.poll(() => playerHp(page)).toBeLessThan(hpBefore);
   await expect(anchor(page)).toContainText('Round 1');
 });
 
