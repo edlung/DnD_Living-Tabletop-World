@@ -25,12 +25,24 @@ describe('PostgresTableStateStore', () => {
     expect(await store.read('ravenford')).toEqual(FRESH_TABLE);
     await store.write(
       'ravenford',
-      { mode: 'online', paused: true, absent: ['brann-ironvale'], dice: 'physical' },
+      {
+        mode: 'online',
+        paused: true,
+        absent: ['brann-ironvale'],
+        dice: 'physical',
+        sound: { ambience: 'rain' },
+      },
       '2026-11-02T10:00:00.000Z',
     );
     await store.write(
       'ravenford',
-      { mode: 'online', paused: false, absent: ['brann-ironvale', 'maren-ashby'], dice: 'app' },
+      {
+        mode: 'online',
+        paused: false,
+        absent: ['brann-ironvale', 'maren-ashby'],
+        dice: 'app',
+        sound: { ambience: 'none' },
+      },
       '2026-11-02T10:05:00.000Z',
     );
     expect(await store.read('ravenford')).toEqual({
@@ -38,6 +50,8 @@ describe('PostgresTableStateStore', () => {
       paused: false,
       absent: ['brann-ironvale', 'maren-ashby'],
       dice: 'app',
+      // The table's sound (migration 0037): the ambience the DM chose.
+      sound: { ambience: 'none' },
     });
     expect(await store.read('other-table')).toEqual(FRESH_TABLE);
   });

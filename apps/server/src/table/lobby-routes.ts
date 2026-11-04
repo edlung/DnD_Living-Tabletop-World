@@ -56,6 +56,7 @@ export function registerLobbyRoutes(app: FastifyInstance, deps: LobbyRouteDepend
         absent: table.absent.includes(character.entityId),
       })),
       options: campaignOptions(state),
+      sound: table.sound,
     };
     return reply.send(body);
   });
@@ -92,9 +93,14 @@ export function registerLobbyRoutes(app: FastifyInstance, deps: LobbyRouteDepend
       paused: body.paused ?? before.paused,
       absent: [...absent].sort(),
       dice: body.dice ?? before.dice,
+      sound:
+        body.ambience === undefined ? before.sound : { ...before.sound, ambience: body.ambience },
     };
     await lobby.state.write(path.campaignId, next, lobby.now());
-    request.log.info({ mode: next.mode, paused: next.paused, dice: next.dice }, 'table changed');
+    request.log.info(
+      { mode: next.mode, paused: next.paused, dice: next.dice, ambience: next.sound.ambience },
+      'table changed',
+    );
     return reply.code(204).send();
   });
 }

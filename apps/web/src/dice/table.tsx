@@ -13,6 +13,7 @@ import type {
   RollFeedResponse,
   TableRerollRequest,
   TableRollRequest,
+  TableSound,
 } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
 import { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react';
@@ -55,6 +56,8 @@ export interface DiceTable {
   readonly physical: boolean;
   /** The session plays online: every screen shows the table's (ADR 0044 §5). */
   readonly online: boolean;
+  /** What the table hears, as the DM chose it (docs/adr/0059-atmosphere.md); null until read. */
+  readonly sound: TableSound | null;
   /** Handouts this perspective reads (ADR 0044 §5), oldest first. */
   readonly handouts: readonly HandoutView[];
   /** Handouts that arrived since the table was first read here, not yet opened. */
@@ -140,6 +143,7 @@ export function useDiceTableState(
   useRereadOn(revision, lobby.reread);
   const physical = lobby.resource.status === 'ready' && lobby.resource.value?.dice === 'physical';
   const online = lobby.resource.status === 'ready' && lobby.resource.value?.mode === 'online';
+  const sound = lobby.resource.status === 'ready' ? (lobby.resource.value?.sound ?? null) : null;
   // Handouts (ADR 0044 §5): those there at the first read are read; later ones wait to be opened.
   const loadHandouts = useCallback(
     (signal: AbortSignal) =>
@@ -266,6 +270,7 @@ export function useDiceTableState(
     isDm,
     physical,
     online,
+    sound,
     handouts: handouts ?? [],
     unreadHandouts,
     readHandout: (handoutId) => {

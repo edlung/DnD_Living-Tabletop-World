@@ -4,6 +4,7 @@
  * and random tables (docs/adr/0058-campaign-content.md §3–4).
  */
 export * from '../display/display.ts';
+export * from '../display/sound.ts';
 export * from '../chat/chat.ts';
 export * from './handouts.ts';
 export * from './library.ts';

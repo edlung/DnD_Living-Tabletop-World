@@ -2,18 +2,32 @@ import { useSyncExternalStore } from 'react';
 
 /**
  * The viewer's dice settings (Stage 510): sound on or off and its volume, and whether dice roll
- * across the screen (`auto` follows the system's reduced-motion setting). A per-viewer convenience
- * kept in this browser only; every read and write survives storage being unavailable.
+ * across the screen (`auto` follows the system's reduced-motion setting); and the table's sound on
+ * this screen — the ambience and the DM's music (docs/adr/0059-atmosphere.md §1, §3) — on or off and
+ * its volume. A per-viewer convenience kept in this browser only; every read and write survives
+ * storage being unavailable.
  */
 export interface DiceSettings {
   readonly sound: boolean;
   /** 0–1. */
   readonly volume: number;
   readonly motion: 'auto' | 'on' | 'off';
+  readonly atmosphere: boolean;
+  /** 0–1. */
+  readonly atmosphereVolume: number;
 }
 
 const KEY = 'ltw.dice-settings';
-const DEFAULTS: DiceSettings = { sound: true, volume: 0.7, motion: 'auto' };
+const DEFAULTS: DiceSettings = {
+  sound: true,
+  volume: 0.7,
+  motion: 'auto',
+  atmosphere: true,
+  atmosphereVolume: 0.6,
+};
+
+const share = (value: unknown, fallback: number) =>
+  typeof value === 'number' && value >= 0 && value <= 1 ? value : fallback;
 
 function read(): DiceSettings {
   try {
@@ -23,11 +37,10 @@ function read(): DiceSettings {
     if (!stored || typeof stored !== 'object') return DEFAULTS;
     return {
       sound: typeof stored.sound === 'boolean' ? stored.sound : DEFAULTS.sound,
-      volume:
-        typeof stored.volume === 'number' && stored.volume >= 0 && stored.volume <= 1
-          ? stored.volume
-          : DEFAULTS.volume,
+      volume: share(stored.volume, DEFAULTS.volume),
       motion: stored.motion === 'on' || stored.motion === 'off' ? stored.motion : 'auto',
+      atmosphere: typeof stored.atmosphere === 'boolean' ? stored.atmosphere : DEFAULTS.atmosphere,
+      atmosphereVolume: share(stored.atmosphereVolume, DEFAULTS.atmosphereVolume),
     };
   } catch {
     return DEFAULTS;

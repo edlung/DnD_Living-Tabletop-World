@@ -22,5 +22,6 @@
   "builder": "ui-signin-builder",
   "builderRu": "ui-signin-builder-ru",
   "native": "ui-signin-native",
-  "adventure": "ui-signin-adventure"
+  "adventure": "ui-signin-adventure",
+  "atmosphere": "ui-signin-atmosphere"
 }

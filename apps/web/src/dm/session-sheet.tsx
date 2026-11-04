@@ -15,6 +15,7 @@ import { useSignInKind } from '../session/sign-in-kind.ts';
 import { Glyph } from '../visual/glyph.tsx';
 import { useRereadOn } from '../world/use-world-data.ts';
 import { CampaignOptionsForm } from './campaign-options.tsx';
+import { SoundChoice } from './sound-choice.tsx';
 import type { DmTableCommand } from './table-commands.ts';
 
 /**
@@ -138,6 +139,13 @@ export function SessionSheet({
           />
           {t('Players roll their own dice and enter what they show')}
         </label>
+        {/* What the table hears (ADR 0059 §1): on the table's screen and, online, everywhere. */}
+        <SoundChoice
+          api={api}
+          revision={revision + round}
+          current={table.sound.ambience}
+          onChoose={(ambience) => change({ ambience })}
+        />
         {table.characters.length === 0 ? (
           <p className="muted">{t('No characters are at the table yet.')}</p>
         ) : (

@@ -439,6 +439,7 @@ export function World({
             isDm={isDm}
             ready={data !== null}
             directory={directory}
+            scenePlaceId={data?.directory.scenePlaceId ?? null}
             actorId={actorId}
             canAct={canAct || standIn !== null}
             locked={action.locked}

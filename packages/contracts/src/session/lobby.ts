@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 import type { CampaignOptions } from '../campaign/options.ts';
+import { ambienceChoiceSchema, type TableSound } from '../display/sound.ts';
 import { entityIdSchema } from '../kernel/identifiers.ts';
 import type { EntityRef } from '../knowledge/views.ts';
 
@@ -38,6 +39,8 @@ export interface LobbyResponse {
   readonly characters: readonly LobbyCharacter[];
   /** The campaign's options, the World Engine's (docs/adr/0056-characters-from-the-srd.md §3). */
   readonly options: CampaignOptions;
+  /** What the table hears (docs/adr/0059-atmosphere.md). */
+  readonly sound: TableSound;
 }
 
 /** `POST …/lobby/ready`: a player for their character, or the DM for anyone. */
@@ -52,5 +55,7 @@ export const lobbyChangeRequestSchema = z
     paused: z.boolean().optional(),
     dice: z.enum(TABLE_DICE).optional(),
     absent: z.object({ characterId: entityIdSchema, absent: z.boolean() }).strict().optional(),
+    /** The table's ambience: one, none, or by the scene (ADR 0059 §1). */
+    ambience: ambienceChoiceSchema.optional(),
   })
   .strict();

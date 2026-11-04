@@ -40,6 +40,13 @@ export interface EntityPresentation {
   readonly battleMap: PlayerAssetView | null;
 }
 
+/**
+ * Where a place is (docs/adr/0059-atmosphere.md §1): under a roof (a building or a room), in a
+ * town's streets (a settlement or a district, or a place within one), or out in the open.
+ */
+export const PLACE_SETTINGS = ['indoors', 'town', 'wild'] as const;
+export type PlaceSetting = (typeof PLACE_SETTINGS)[number];
+
 /** `GET /campaigns/:campaignId/entities/:entityId/presentation?perspective=…&at=…` */
 export interface EntityPresentationResponse {
   readonly perspective: string;
@@ -54,6 +61,11 @@ export interface ScenePresentationResponse {
   readonly worldTime: number;
   readonly phase: DayPhase;
   readonly location: EntityPresentation;
+  /**
+   * Where the place is, as the perspective knows it: its own kind, and a town it is known to lie
+   * in — never how it was then. The table's sound follows it (docs/adr/0059-atmosphere.md §1).
+   */
+  readonly setting: PlaceSetting;
   /** Who and what was there, only when the perspective perceived the place at that time. */
   readonly present: readonly EntityPresentation[];
 }

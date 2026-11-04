@@ -27,7 +27,7 @@ function DiceSettingsForm() {
   const ids = useId();
   return (
     <details className="disclosure dice-settings">
-      <summary>{t('Dice sound and motion')}</summary>
+      <summary>{t('Sound and motion')}</summary>
       <label className="dice-toggle">
         <input
           type="checkbox"
@@ -66,6 +66,31 @@ function DiceSettingsForm() {
           </option>
         ))}
       </select>
+      {/* The table's sound on this screen (docs/adr/0059-atmosphere.md §1, §3). */}
+      <label className="dice-toggle">
+        <input
+          type="checkbox"
+          checked={settings.atmosphere}
+          onChange={(event) => {
+            unlockAudio();
+            changeDiceSettings({ atmosphere: event.target.checked });
+          }}
+        />
+        <span>{t('The table’s sound: ambience and music')}</span>
+      </label>
+      <label htmlFor={`${ids}-atmosphere`}>{t('Volume of the table’s sound')}</label>
+      <input
+        id={`${ids}-atmosphere`}
+        type="range"
+        min={0}
+        max={100}
+        step={5}
+        value={Math.round(settings.atmosphereVolume * 100)}
+        disabled={!settings.atmosphere}
+        onChange={(event) => {
+          changeDiceSettings({ atmosphereVolume: Number(event.target.value) / 100 });
+        }}
+      />
     </details>
   );
 }

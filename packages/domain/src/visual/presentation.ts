@@ -2,6 +2,7 @@ import {
   effectiveMaximum,
   type AssetPurpose,
   type EntityPresentation,
+  type PlaceSetting,
   type PlayerAssetView,
 } from '@ltw/contracts';
 
@@ -250,10 +251,15 @@ export function presentScene(
   timeline: VisualTimeline,
   scope: PresentationScope,
   locationId: string,
-): { location: EntityPresentation; present: EntityPresentation[] } | null {
+): {
+  location: EntityPresentation;
+  setting: PlaceSetting;
+  present: EntityPresentation[];
+} | null {
   if (timeline.view.entities.get(locationId)?.kind !== 'location') return null;
   const location = presentEntity(timeline, scope, locationId);
   if (!location) return null;
+  const setting = settingOf(timeline, scope, locationId);
   const present = location.observed
     ? [...timeline.view.entities.values()]
         // Only what was perceived there: knowing someone never says where they were.
@@ -264,5 +270,31 @@ export function presentScene(
         .filter((entity): entity is EntityPresentation => entity !== null)
         .sort((a, b) => a.entityId.localeCompare(b.entityId))
     : [];
-  return { location, present };
+  return { location, setting, present };
+}
+
+const TOWN_TYPES: ReadonlySet<string> = new Set(['settlement', 'district']);
+
+/**
+ * Under a roof, in a town — the place, or one it lies in that the perspective knows — or in the
+ * open (ADR 0059 §1): what the place is, never how it was, so knowing the place is enough.
+ */
+function settingOf(
+  timeline: VisualTimeline,
+  scope: PresentationScope,
+  locationId: string,
+): PlaceSetting {
+  const type = timeline.current.entities.get(locationId)?.location?.type;
+  if (type !== undefined && INDOOR_LOCATION_TYPES.has(type)) return 'indoors';
+  const seen = new Set<string>();
+  for (
+    let id: string | null = locationId;
+    id !== null && has(scope.visible, id) && !seen.has(id);
+  ) {
+    seen.add(id);
+    const kind = timeline.current.entities.get(id)?.location?.type;
+    if (kind !== undefined && TOWN_TYPES.has(kind)) return 'town';
+    id = timeline.current.entities.get(id)?.location?.parentId ?? null;
+  }
+  return 'wild';
 }

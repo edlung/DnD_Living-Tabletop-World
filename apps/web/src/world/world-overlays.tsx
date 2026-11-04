@@ -3,9 +3,11 @@ import { useState, type ReactNode } from 'react';
 
 import { TableAsks } from '../alerts/table-asks.tsx';
 import type { WorldApi } from '../api/client.ts';
+import { TableAmbience } from '../audio/table-sound.tsx';
 import { ChronicleBook } from '../chronicle/chronicle-book.tsx';
 import { RollAnnouncer } from '../dice/announcer.tsx';
 import { DiceStage } from '../dice/dice-stage.tsx';
+import { useDiceTable } from '../dice/table.tsx';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
 import { handoutElementId } from '../handouts/handouts.tsx';
 import type { Recipient } from '../items/inventory-panel.tsx';
@@ -16,8 +18,9 @@ import { WorldHeroDialog } from './hero-dialog-slot.tsx';
 /**
  * What lies over the world screen: the table's questions — the short rest (Stage 530) and the
  * checks asked, with the companion's alerts (ADR 0044 §3) — the Chronicle book, the character
- * dialog and the dice (Stage 510). The action's result and the latest roll in words go where the viewer is — inside the
- * character dialog while it is open (the world behind a modal is out of reach), else in the world.
+ * dialog, the dice (Stage 510) and, online, the table's sound (ADR 0059 §1). The action's result
+ * and the latest roll in words go where the viewer is — inside the character dialog while it is
+ * open (the world behind a modal is out of reach), else in the world.
  */
 export function WorldOverlays({
   api,
@@ -26,6 +29,7 @@ export function WorldOverlays({
   isDm,
   ready,
   directory,
+  scenePlaceId,
   actorId,
   canAct,
   locked,
@@ -42,6 +46,8 @@ export function WorldOverlays({
   /** The world's views have been read (the book needs the directory). */
   readonly ready: boolean;
   readonly directory: readonly EntityRef[];
+  /** The place of the scene being played, as this perspective knows it (the table's sound). */
+  readonly scenePlaceId: string | null;
   readonly actorId: string | null;
   readonly canAct: boolean;
   readonly locked: boolean;
@@ -55,6 +61,7 @@ export function WorldOverlays({
 }) {
   const [announced, setAnnounced] = useState<RollEntry | null>(null);
   const announcer = <RollAnnouncer entry={announced} />;
+  const table = useDiceTable();
   return (
     <>
       <TableAsks
@@ -115,6 +122,14 @@ export function WorldOverlays({
         }
       />
       <DiceStage onAnnounce={setAnnounced} />
+      {table?.online && (
+        <TableAmbience
+          api={api}
+          refresh={revision}
+          choice={table.sound?.ambience ?? null}
+          placeId={scenePlaceId}
+        />
+      )}
     </>
   );
 }
