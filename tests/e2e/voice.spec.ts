@@ -126,12 +126,30 @@ test('online, the DM and a player hear each other; the DM mutes and removes', as
     .click();
   await expect(voice(player)).not.toContainText('The DM muted you.');
 
+  // Removal holds until the room ends, so it is asked first; keeping changes nothing.
+  const remove = other(dm).getByRole('button', {
+    name: 'Remove from the voice: Elowen Starwhisper',
+    exact: true,
+  });
+  await remove.click();
+  const keep = other(dm).getByRole('button', {
+    name: 'Keep in the voice: Elowen Starwhisper',
+    exact: true,
+  });
+  await expect(keep).toBeFocused();
+  await expect(other(dm)).toContainText('Take Elowen Starwhisper out of the voice?');
+  await keep.click();
+  await expect(remove).toBeFocused();
+  await expect(other(dm)).toHaveAttribute('data-hearing', 'true');
+
   // Removed, the player is out until the room ends: no button that could only be refused, and a
   // reload changes nothing (ADR 0060 §6).
+  await remove.click();
   await other(dm)
-    .getByRole('button', { name: 'Remove from the voice: Elowen Starwhisper', exact: true })
+    .getByRole('button', { name: 'Yes, remove: Elowen Starwhisper', exact: true })
     .click();
   await expect(voice(player)).toContainText('The DM took you out of the voice.');
+  await expect(voice(dm).getByRole('list', { name: 'In the voice' })).toBeFocused();
   await expect(voice(player)).toContainText(
     'You can join again the next time the table plays online.',
   );

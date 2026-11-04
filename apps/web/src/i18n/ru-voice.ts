@@ -19,8 +19,8 @@ registerRussian({
   'The browser did not allow the microphone: you listen only. Allow it in the site’s settings in the browser, then join again.':
     'Браузер не разрешил микрофон: вы только слушаете. Разрешите его в настройках сайта в браузере и войдите снова.',
   'The DM muted you.': 'Мастер выключил вам микрофон.',
-  'Without a relay, voices reach only the screens that can reach each other.':
-    'Без ретранслятора голоса доходят только до экранов, которые видят друг друга напрямую.',
+  'Voices go straight between the screens. If someone cannot be heard, they may be on another network: the DM can set up a relay.':
+    'Голоса идут напрямую между экранами. Если кого-то не слышно, возможно, он в другой сети: мастер может включить ретранслятор.',
   Microphone: 'Микрофон',
   'As the device chooses': 'Как выберет устройство',
   'Microphone {number}': 'Микрофон {number}',
@@ -37,4 +37,10 @@ registerRussian({
   'Mute for everyone: {name}': 'Выключить для всех: {name}',
   'Remove from the voice': 'Убрать из голоса',
   'Remove from the voice: {name}': 'Убрать из голоса: {name}',
+  'Take {name} out of the voice? They can join again only the next time the table plays online.':
+    'Убрать из голоса: {name}? Вернуться можно будет, только когда стол в следующий раз будет играть онлайн.',
+  'Yes, remove': 'Да, убрать',
+  'Yes, remove: {name}': 'Да, убрать: {name}',
+  'Keep in the voice': 'Оставить в голосе',
+  'Keep in the voice: {name}': 'Оставить в голосе: {name}',
 });

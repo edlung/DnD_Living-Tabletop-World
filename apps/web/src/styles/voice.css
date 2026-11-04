@@ -61,3 +61,21 @@
 .voice-peer .action-row {
   margin-left: auto;
 }
+/* The DM's question before taking a speaker out, which holds until the room ends */
+.voice-confirm {
+  display: grid;
+  flex-basis: 100%;
+  gap: 8px;
+  margin: 4px 0;
+  padding: 8px 12px;
+  border: 1px solid color-mix(in srgb, var(--danger) 55%, transparent);
+  border-left: 3px solid var(--danger);
+  border-radius: var(--radius-control);
+}
+/* Its answers start under its words, as the Players sheet's question's do */
+.voice-confirm .action-row {
+  margin-left: 0;
+}
+.voice-peers:focus {
+  outline: none;
+}

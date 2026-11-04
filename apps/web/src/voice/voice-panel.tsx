@@ -1,20 +1,23 @@
 import { useT } from '@ltw/ui';
-import { useEffect, useId, type KeyboardEvent } from 'react';
+import { useEffect, useId, useRef, type KeyboardEvent } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { Glyph } from '../visual/glyph.tsx';
+import { PeerControls } from './peer-controls.tsx';
 import { useVoice } from './use-voice.ts';
 
 /**
  * The table's voice on the Chat sheet (docs/adr/0060-voice.md §4–6): join and leave; the microphone
  * on, or off with "hold to talk"; the microphone's choice; "this screen shares a room with another"
  * (it then plays nobody's voice and talks only while held); who is in the room, who talks; and the
- * DM's mute and removal. A refused microphone is explained, and the screen still listens.
+ * DM's mute and removal (asked first: it holds until the room ends). A refused microphone is
+ * explained, and the screen still listens.
  */
 export function VoicePanel({ api, isDm }: { readonly api: WorldApi; readonly isDm: boolean }) {
   const t = useT();
   const ids = useId();
   const { session, shown } = useVoice(api);
+  const list = useRef<HTMLUListElement>(null);
   // The panel shows only while the table plays online: each time it comes, so did a new room.
   useEffect(() => {
     session.forgetEarlierRoom();
@@ -123,7 +126,9 @@ export function VoicePanel({ api, isDm }: { readonly api: WorldApi; readonly isD
           )}
           {!shown.relayed && (
             <p className="muted">
-              {t('Without a relay, voices reach only the screens that can reach each other.')}
+              {t(
+                'Voices go straight between the screens. If someone cannot be heard, they may be on another network: the DM can set up a relay.',
+              )}
             </p>
           )}
           {shown.microphones.length > 1 && (
@@ -157,7 +162,7 @@ export function VoicePanel({ api, isDm }: { readonly api: WorldApi; readonly isD
             />
             <span>{t('This screen shares a room with another: play no voices here')}</span>
           </label>
-          <ul className="voice-peers" aria-label={t('In the voice')}>
+          <ul ref={list} className="voice-peers" aria-label={t('In the voice')} tabIndex={-1}>
             {peers.map((peer) => {
               const heard = shown.heard.get(peer.peerId);
               const self = peer.peerId === me;
@@ -181,32 +186,15 @@ export function VoicePanel({ api, isDm }: { readonly api: WorldApi; readonly isD
                           : t('connecting…')}
                   </span>
                   {isDm && !self && (
-                    <span className="action-row">
-                      <button
-                        type="button"
-                        className="quiet-button"
-                        aria-label={
-                          peer.muted
-                            ? t('Let talk: {name}', { name })
-                            : t('Mute for everyone: {name}', { name })
-                        }
-                        onClick={() => {
-                          session.muteFor(peer.peerId, !peer.muted);
-                        }}
-                      >
-                        {peer.muted ? t('Let talk') : t('Mute for everyone')}
-                      </button>
-                      <button
-                        type="button"
-                        className="quiet-button"
-                        aria-label={t('Remove from the voice: {name}', { name })}
-                        onClick={() => {
-                          session.remove(peer.peerId);
-                        }}
-                      >
-                        {t('Remove from the voice')}
-                      </button>
-                    </span>
+                    <PeerControls
+                      session={session}
+                      peerId={peer.peerId}
+                      name={name}
+                      muted={peer.muted}
+                      onRemoved={() => {
+                        list.current?.focus();
+                      }}
+                    />
                   )}
                 </li>
               );
