@@ -34,7 +34,8 @@
    table.
 6. **The DM's controls.** The DM mutes a speaker for everyone (until the DM lets them talk again) and
    removes one from the room, until the room ends; both hold for the person, so a reload changes
-   neither. The room lists who is in it, who talks and who is muted.
+   neither. A removed person's screen says when they may join again (the next room) and offers no
+   button that could only be refused. The room lists who is in it, who talks and who is muted.
 7. **Reconnection.** A connection that fails restarts its candidates; a screen whose stream drops
    joins again and renews every connection, without the speaker pressing anything.
 

@@ -29,9 +29,14 @@ the owner's: nothing here does them.
   with logins of their own; at the table a TV pairs and shows the scene, the session starts, a
   player's roll reaches the DM, the session ends; online every player has the table's screen and
   the title card, and what one says the others read. All four pass.
-- 699c: the security review of Milestone D's changes (an independent reviewer, then our own pass)
-  and its fixes (commit "Milestone D security review: its findings fixed"); the layout audit of
-  every sheet; the report.
+- 699c done: the security review of Milestone D's changes (an independent reviewer, then our own
+  pass) and its fixes (commit "Milestone D security review: its findings fixed"); the layout audit
+  of every screen (896 views: the DM's and a player's sheets and dialogs at the table and online,
+  the screens around the game) and its two fixes, the chapter writer on a narrowed screen
+  (`tests/e2e/chronicle-writer.spec.ts`) and the Players sheet's other character; the full browser
+  suite after the review's fixes, and what it found they changed for people (an invitation to a
+  campaign away read as "already signed in"; a removed speaker's button that could only be
+  refused); the report `reports/MILESTONE_D_COMPLETION.md`.
 
 ## Checks at each sub-stage
 

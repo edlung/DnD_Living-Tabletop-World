@@ -66,7 +66,8 @@ return <campaign> --to <host>`).
      holds here gets a number added, reported.
    - **Joining an away campaign.** An invitation is not redeemed, claimed or revoked there and no
      seat is taken (409 `MOVED`, before anything is written; the invitations' rows refuse changes
-     under the application): a row changed there could never take the package's back.
+     under the application): a row changed there could never take the package's back. The invitation
+     page says the campaign is played elsewhere and to ask its DM where, never "already signed in".
    - **Cancelled.** A move whose import never happened is cancelled on the server that marked it.
    - A campaign published from the workshop does not move yet: its publication belongs to the
      workshop's records (and its AI is off locally); the export says so.
