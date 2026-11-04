@@ -1,0 +1,63 @@
+/*
+ * The table's voice (voice/voice-panel.tsx, docs/adr/0060-voice.md): above the chat, online. Who
+ * talks is marked by the edge of their row; holding to talk shows while it is held.
+ */
+.voice {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 16px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-panel);
+}
+.voice h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+.voice h3 .glyph {
+  width: 22px;
+  height: 22px;
+  color: var(--gold);
+}
+.voice p,
+.voice .action-row {
+  margin: 0;
+}
+.voice-hold {
+  min-height: 44px;
+  touch-action: none;
+  user-select: none;
+}
+.voice-hold.is-holding {
+  border-color: var(--teal);
+  background: var(--teal-fill);
+}
+.voice-peers {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.voice-peer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 8px;
+  padding: 4px 8px;
+  border-left: 3px solid transparent;
+  border-radius: var(--radius-control);
+}
+.voice-peer.is-talking {
+  border-left-color: var(--teal);
+  background: color-mix(in srgb, var(--teal) 10%, transparent);
+}
+.voice-name {
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+.voice-peer .action-row {
+  margin-left: auto;
+}

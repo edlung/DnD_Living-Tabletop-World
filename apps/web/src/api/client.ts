@@ -262,4 +262,21 @@ export class WorldApi {
     }
     return 'failed';
   }
+
+  /**
+   * Opens one of the campaign's event streams (the table's voice, docs/adr/0060-voice.md §2) with
+   * this connection's credential, never in the URL; the caller reads and ends it.
+   */
+  openStream(path: string, signal: AbortSignal): Promise<Response> {
+    const credential = credentialOptions(this.connection);
+    // Called unbound, as `fetch` must be.
+    const transport = this.transport;
+    return transport(`/api/campaigns/${encodeURIComponent(this.connection.campaignId)}/${path}`, {
+      signal,
+      headers: { ...credential.headers, Accept: 'text/event-stream' },
+      cache: 'no-store',
+      credentials: credential.credentials,
+      redirect: 'error',
+    });
+  }
 }

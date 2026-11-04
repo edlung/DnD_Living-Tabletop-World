@@ -25,5 +25,6 @@
   "adventure": "ui-signin-adventure",
   "atmosphere": "ui-signin-atmosphere",
   "music": "ui-signin-music",
-  "moments": "ui-signin-moments"
+  "moments": "ui-signin-moments",
+  "voice": "ui-signin-voice"
 }

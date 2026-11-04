@@ -139,7 +139,7 @@ export function DicePanel({
         </div>
       </Sheet>
       {/* The table's talk beside its dice (ADR 0044 §1): one table, its rolls woven in. */}
-      <ChatSheet shell={shell} characters={characters} />
+      <ChatSheet api={api} shell={shell} characters={characters} />
       {/* Online, the table's screen on every player's screen (ADR 0044 §5). */}
       <SharedScreenSheet api={api} shell={shell} />
     </>
