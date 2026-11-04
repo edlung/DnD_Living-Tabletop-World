@@ -36,6 +36,7 @@ import '../../apps/web/src/i18n/ru-character.ts';
 import '../../apps/web/src/i18n/ru-dice.ts';
 import '../../apps/web/src/i18n/ru-atmosphere.ts';
 import '../../apps/web/src/i18n/ru-voice.ts';
+import '../../apps/web/src/i18n/ru-moves.ts';
 import '../../apps/web/src/i18n/ru-inventory.ts';
 import '../../apps/web/src/i18n/ru-travel.ts';
 import '../../apps/web/src/i18n/ru-editors.ts';

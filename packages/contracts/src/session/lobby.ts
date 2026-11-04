@@ -18,6 +18,16 @@ export type TableMode = (typeof TABLE_MODES)[number];
 export const TABLE_DICE = ['app', 'physical'] as const;
 export type TableDice = (typeof TABLE_DICE)[number];
 
+/**
+ * A campaign played on another server since a move took it there (docs/adr/0061-local-mode.md §5):
+ * here it is read, not played, until it comes back.
+ */
+export interface CampaignAway {
+  /** Where it plays, in the operator's words (a computer's or a server's name). */
+  readonly destination: string;
+  readonly movedAt: string;
+}
+
 export interface LobbyCharacter {
   readonly character: EntityRef;
   /** Its player holds a live subscription. */
@@ -42,6 +52,8 @@ export interface LobbyResponse {
   readonly options: CampaignOptions;
   /** What the table hears (docs/adr/0059-atmosphere.md). */
   readonly sound: TableSound;
+  /** Played on another server since a move; null at home (docs/adr/0061-local-mode.md §5). */
+  readonly away: CampaignAway | null;
 }
 
 /** `POST …/lobby/ready`: a player for their character, or the DM for anyone. */

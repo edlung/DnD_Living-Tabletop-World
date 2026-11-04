@@ -36,6 +36,7 @@ import './i18n/ru-space.ts';
 import './i18n/ru-native.ts';
 import './i18n/ru-atmosphere.ts';
 import './i18n/ru-voice.ts';
+import './i18n/ru-moves.ts';
 import { DisplayApp } from './display/display-app.tsx';
 import { startNative } from './native/start.ts';
 import { App } from './session/app.tsx';

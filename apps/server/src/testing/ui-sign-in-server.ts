@@ -25,7 +25,7 @@ import {
   testAuthoring,
   testDm,
 } from './ravenford-app.ts';
-import { seedDmInvitations, seedSignInCampaigns } from './ui-sign-in-campaigns.ts';
+import { MOVED_AWAY, seedDmInvitations, seedSignInCampaigns } from './ui-sign-in-campaigns.ts';
 import { SIGN_IN_ORIGIN, SIGN_IN_PORTS, signInSeed } from './ui-sign-in-links.ts';
 import { WORKSHOP_FIXTURES, workshopOwnerId } from './ui-workshop-links.ts';
 import { seedWorkshopAccess } from './ui-workshop-fixtures.ts';
@@ -124,6 +124,7 @@ const { app } = buildLiveApp({
   signIn,
   workshop: { ...workshop, campaignEntry: { engine, signIn } },
   trustedProxies: [],
+  moves: MOVED_AWAY,
 });
 app.addHook('onClose', async () => {
   await stopGeneration();

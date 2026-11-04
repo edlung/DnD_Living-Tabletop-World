@@ -267,6 +267,36 @@ export class PostgresEventStore implements EventStore {
   }
 }
 
+/**
+ * Every event and command of one campaign parses with this build's schemas, read through `db`
+ * (a campaign's move checks what it imports inside its transaction, docs/adr/0061-local-mode.md
+ * §6). Throws naming the first that does not.
+ */
+export async function assertCampaignReadable(db: pg.ClientBase, campaignId: string): Promise<void> {
+  for (let after = 0; ;) {
+    const { rows } = await db.query<EventRow>(
+      `SELECT ${EVENT_COLUMNS} FROM ltw_events WHERE stream_id = $1 AND sequence > $2
+        ORDER BY sequence LIMIT $3`,
+      [campaignId, after, HISTORY_PAGE_SIZE],
+    );
+    rows.forEach(readableEvent);
+    const last = rows.at(-1);
+    if (last === undefined || rows.length < HISTORY_PAGE_SIZE) break;
+    after = toSafeInteger(last.sequence);
+  }
+  const { rows } = await db.query<CommandRow>(
+    `SELECT ${COMMAND_COLUMNS} FROM ltw_commands WHERE stream_id = $1`,
+    [campaignId],
+  );
+  for (const row of rows) {
+    try {
+      toStoredCommand(row);
+    } catch (error: unknown) {
+      throw new Error(`this build cannot read command ${row.command_id}`, { cause: error });
+    }
+  }
+}
+
 /** `toRecordedEvent` for readiness: a refusal names the event (stream, sequence, type, version). */
 function readableEvent(row: EventRow): void {
   try {

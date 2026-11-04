@@ -13,6 +13,7 @@ import { sendError } from '../http/errors.ts';
 import { withBody, withPerspective, type RouteDependencies } from '../http/request-context.ts';
 import { presenceView } from '../live/presence.ts';
 import type { PresenceSource } from '../live/registry.ts';
+import type { CampaignMoves } from '../campaigns/move/moves.ts';
 import type { TrackStore } from '../music/track-store.ts';
 import type { VoiceRooms } from '../voice/voice-rooms.ts';
 import type { LobbyDependencies } from './table-state.ts';
@@ -31,6 +32,8 @@ export interface LobbyRouteDependencies extends RouteDependencies {
   readonly music: TrackStore;
   /** The table's voice rooms: leaving online play ends the campaign's (ADR 0060 §1). */
   readonly voice?: VoiceRooms;
+  /** Where the campaign plays: away, its screens say where (docs/adr/0061-local-mode.md §5). */
+  readonly moves: CampaignMoves;
 }
 
 const params = z.object({ campaignId: campaignIdSchema }).strict();
@@ -65,6 +68,7 @@ export function registerLobbyRoutes(app: FastifyInstance, deps: LobbyRouteDepend
       })),
       options: campaignOptions(state),
       sound: table.sound,
+      away: await deps.moves.awayOf(path.campaignId),
     };
     return reply.send(body);
   });

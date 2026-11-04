@@ -77,7 +77,7 @@ export function TableAsks({
   const asked = isDm ? [] : requests.filter((request) => request.status === 'open');
   return (
     <div className="rest-banner-slot table-asks" aria-live="polite">
-      {!isDm && <LobbyBanner api={api} actorId={actorId} />}
+      <LobbyBanner api={api} actorId={actorId} isDm={isDm} />
       <RestBanner
         isDm={isDm}
         actorId={actorId}

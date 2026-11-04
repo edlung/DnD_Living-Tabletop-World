@@ -5,6 +5,7 @@ import { scriptedDice } from '@ltw/rules';
 
 import campaigns from '../../../../tests/e2e/fixtures/sign-in-campaigns.json' with { type: 'json' };
 import type { CredentialStore } from '../auth/credential-store.ts';
+import type { CampaignMoves } from '../campaigns/move/moves.ts';
 import { iso } from '../auth/session-authenticator.ts';
 import { HOUR_MS } from '../auth/sign-in.ts';
 import { hashToken } from '../auth/tokens.ts';
@@ -21,8 +22,22 @@ const RUSSIAN: ReadonlySet<string> = new Set([
   campaigns.a11yRu,
   campaigns.dockRu,
   campaigns.builderRu,
+  campaigns.movedRu,
 ]);
 const SCANNED: ReadonlySet<string> = new Set([campaigns.a11y, campaigns.a11yRu]);
+
+/**
+ * The campaigns the browser tests see away (docs/adr/0061-local-mode.md §5): moved to a laptop, so
+ * read and never changed here.
+ */
+export const MOVED_AWAY: CampaignMoves = {
+  awayOf: (campaignId) =>
+    Promise.resolve(
+      campaignId === campaigns.moved || campaignId === campaigns.movedRu
+        ? { destination: 'MacBook Pro', movedAt: '2026-11-04T09:30:00.000Z' }
+        : null,
+    ),
+};
 
 /**
  * The invitation-mode journeys' campaigns (`tests/e2e/fixtures/sign-in-campaigns.json`), each

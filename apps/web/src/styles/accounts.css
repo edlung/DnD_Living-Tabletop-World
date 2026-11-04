@@ -168,6 +168,12 @@
 .hub-campaign-text .muted {
   margin: 0.15rem 0 0;
 }
+/* Played on another server since a move (ADR 0061 §5). */
+.hub-campaign-away {
+  margin: 0.25rem 0 0;
+  color: var(--gold-bright);
+  font-size: 0.9rem;
+}
 .hub-section {
   display: grid;
   gap: 0.6rem;

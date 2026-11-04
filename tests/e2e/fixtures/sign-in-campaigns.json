@@ -26,5 +26,7 @@
   "atmosphere": "ui-signin-atmosphere",
   "music": "ui-signin-music",
   "moments": "ui-signin-moments",
-  "voice": "ui-signin-voice"
+  "voice": "ui-signin-voice",
+  "moved": "ui-signin-moved",
+  "movedRu": "ui-signin-moved-ru"
 }

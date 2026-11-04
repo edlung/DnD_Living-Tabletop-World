@@ -15,6 +15,7 @@ import { campaignRole, type WorldEngine } from '@ltw/domain';
 import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod';
 
+import type { CampaignMoves } from '../campaigns/move/moves.ts';
 import { iso } from '../auth/session-authenticator.ts';
 import { SESSION_MS, type SignInDependencies } from '../auth/sign-in.ts';
 import {
@@ -65,6 +66,8 @@ export interface AccountRouteDependencies {
   readonly adventurePictures?: AdventurePictures;
   readonly assets?: { readonly contents: AssetContentStore };
   readonly logger?: Logger;
+  /** Where each campaign plays: the hub says which are away (docs/adr/0061-local-mode.md §5). */
+  readonly moves?: CampaignMoves;
 }
 
 const params = z.object({ campaignId: campaignIdSchema }).strict();
@@ -204,7 +207,11 @@ export function registerAccountRoutes(app: FastifyInstance, deps: AccountRouteDe
     const response: AccountResponse = {
       login: account.login,
       displayName: account.displayName,
-      campaigns: await campaignsOf(deps.engine, await accounts.seats(account.accountId)),
+      campaigns: await campaignsOf(
+        deps.engine,
+        await accounts.seats(account.accountId),
+        deps.moves,
+      ),
     };
     return reply.send(response);
   });

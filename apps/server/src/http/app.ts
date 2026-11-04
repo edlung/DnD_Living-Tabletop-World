@@ -19,6 +19,8 @@ import { InMemoryHandoutStore } from '../handouts/handout-store.ts';
 import { registerLibraryRoutes } from '../library/library-routes.ts';
 import type { AdventureBooks, AdventurePictures } from '../adventures/adventures.ts';
 import { registerLobbyRoutes } from '../table/lobby-routes.ts';
+import { isAwayRefusal, registerMoveGuard } from '../campaigns/move/guard.ts';
+import { NOTHING_AWAY, type CampaignMoves } from '../campaigns/move/moves.ts';
 import { registerMusicRoutes } from '../music/music-routes.ts';
 import { registerVoiceRoutes, type VoiceRelay } from '../voice/voice-routes.ts';
 import { VoiceRooms } from '../voice/voice-rooms.ts';
@@ -152,6 +154,11 @@ export interface AppDependencies {
    * relay, when one is set (`LTW_TURN_URLS`, `LTW_TURN_SECRET`).
    */
   readonly voice?: { readonly rooms: VoiceRooms; readonly relay: VoiceRelay | null };
+  /**
+   * Where each campaign plays (docs/adr/0061-local-mode.md §5): an away campaign is read, not
+   * changed. Without it nothing is ever away.
+   */
+  readonly moves?: CampaignMoves;
 }
 
 /** Table talk in memory: for compositions without a database. */
@@ -209,9 +216,11 @@ export function buildApp(input: AppDependencies): FastifyInstance {
     }
   });
   if (deps.signIn) registerOriginCheck(app, deps.signIn.publicOrigin);
+  if (deps.moves) registerMoveGuard(app, deps.moves);
 
   app.setNotFoundHandler((request, reply) => sendError(reply, request, 'NOT_FOUND'));
   app.setErrorHandler((error, request, reply) => {
+    if (isAwayRefusal(error)) return sendError(reply, request, 'MOVED');
     const status = (error as { statusCode?: unknown }).statusCode;
     if (typeof status === 'number' && status >= 400 && status < 500) {
       request.log.info({ code: (error as { code?: unknown }).code }, 'request rejected');
@@ -264,6 +273,7 @@ export function buildApp(input: AppDependencies): FastifyInstance {
     music,
     voice: voice.rooms,
     presence: deps.presence ?? NOBODY_CONNECTED,
+    moves: deps.moves ?? NOTHING_AWAY,
   });
   registerMusicRoutes(app, { ...deps, lobby, music });
   registerVoiceRoutes(app, {

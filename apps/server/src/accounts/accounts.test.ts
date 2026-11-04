@@ -67,6 +67,7 @@ describe('accounts', () => {
           role: 'player',
           language: 'en',
           characters: [{ entityId: SEREN, name: expect.any(String) as string }],
+          away: null,
         },
       ],
     });
