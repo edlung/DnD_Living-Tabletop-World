@@ -12,8 +12,11 @@ import { openSheet } from './support/shell.ts';
  * the offer goes.
  */
 const CAMPAIGN = 'ui-dice-reroll';
-/** How long a throw may take to land: a hosted runner's software WebGL is slow (Stage 540). */
-const LANDS = 15_000;
+/**
+ * How long a throw may take to land: a hosted runner's software WebGL is slow (Stage 540), and a
+ * loaded one's timers late (Milestone D's CI once took longer than 15 s).
+ */
+const LANDS = 30_000;
 
 /** The roll the server answered with, for the button press `press` makes. */
 async function rolled(page: Page, ending: string, press: () => Promise<void>): Promise<RollEntry> {

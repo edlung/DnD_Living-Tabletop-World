@@ -16,7 +16,7 @@ import type {
   TableSound,
 } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
-import { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react';
+import { createContext, useCallback, useContext, useEffect, useState } from 'react';
 
 import { ApiError, type WorldApi } from '../api/client.ts';
 import { useResource, type Resource } from '../api/resource.ts';
@@ -193,23 +193,33 @@ export function useDiceTableState(
   useRereadOn(revision, rest.reread);
   const [fresh, setFresh] = useState<readonly RollEntry[]>([]);
   const [flying, setFlying] = useState<ReadonlySet<string>>(new Set());
-  const seen = useRef<{ readonly scope: string; readonly ids: Set<string> } | null>(null);
-  useEffect(() => {
-    if (feed.resource.status !== 'ready') return;
+  // The rolls this screen knows, taken in as each read arrives and during that render (React's
+  // "adjusting state while rendering"): a new roll is flying before anything shows it, so the log
+  // never lists it for a frame before its dice are thrown.
+  const [known, setKnown] = useState<{
+    readonly read: Resource<RollFeedResponse>;
+    readonly scope: string;
+    readonly ids: ReadonlySet<string>;
+  } | null>(null);
+  if (feed.resource.status === 'ready' && known?.read !== feed.resource) {
     const rolls = feed.resource.value.rolls;
-    if (seen.current?.scope !== scope) {
+    if (known?.scope !== scope) {
       // The first read is the table as it was: nothing in it is thrown again.
-      seen.current = { scope, ids: new Set(rolls.map((roll) => roll.rollId)) };
-      return;
+      setKnown({ read: feed.resource, scope, ids: new Set(rolls.map((roll) => roll.rollId)) });
+    } else {
+      const arrived = rolls.filter((roll) => !known.ids.has(roll.rollId));
+      setKnown({
+        read: feed.resource,
+        scope,
+        ids: new Set([...known.ids, ...arrived.map((roll) => roll.rollId)]),
+      });
+      if (arrived.length > 0) {
+        const thrown = arrived.slice(-AT_ONCE);
+        setFresh((queued) => [...queued, ...thrown].slice(-AT_ONCE));
+        setFlying((now) => new Set([...now, ...thrown.map((roll) => roll.rollId)]));
+      }
     }
-    const known = seen.current.ids;
-    const arrived = rolls.filter((roll) => !known.has(roll.rollId));
-    for (const roll of arrived) known.add(roll.rollId);
-    if (arrived.length === 0) return;
-    const thrown = arrived.slice(-AT_ONCE);
-    setFresh((queued) => [...queued, ...thrown].slice(-AT_ONCE));
-    setFlying((now) => new Set([...now, ...thrown.map((roll) => roll.rollId)]));
-  }, [feed.resource]);
+  }
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const write = useCallback(
