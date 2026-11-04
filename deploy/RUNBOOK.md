@@ -945,3 +945,41 @@ dc up --detach --wait --wait-timeout 300          # 4. migrations run as the ser
 deploy/scripts/review-campaign.sh --expires-hours 72   # 5. the seed, then the DM link (secret)
 deploy/scripts/backup-now.sh && deploy/scripts/restore-drill.sh   # 6.
 ```
+
+## 14. Ретранслятор голоса · The voice relay
+
+**RU.** Голос стола (ADR 0060) идёт напрямую между экранами; там, где они не видят друг друга
+(разные домашние роутеры, мобильная сеть), его несёт ретранслятор TURN (coturn) — звук и через него
+зашифрован между экранами. **Порты ретранслятора на общем VPS открывает только владелец**; до его
+согласия раздел не выполняется, и голос работает только напрямую. Порядок, когда согласие есть:
+
+1. Сгенерировать секрет (`openssl rand -base64 32`) и записать в `deploy/.env`:
+   `LTW_TURN_SECRET=<секрет>`, `LTW_TURN_URLS=turn:<PUBLIC_HOST>:3478,turns:<PUBLIC_HOST>:5349`.
+   Значение не печатать и не передавать в командной строке.
+2. Запустить coturn рядом (отдельный контейнер, образ закрепить по дайджесту при первом
+   скачивании) с настройками: `use-auth-secret`, `static-auth-secret=<тот же секрет>`,
+   `realm=<PUBLIC_HOST>`, `listening-port=3478`, `tls-listening-port=5349` с сертификатом прокси,
+   `min-port=49160`, `max-port=49200`, `external-ip=<публичный адрес>`, `no-cli`,
+   `no-multicast-peers`, и **запрет частных адресов**: `denied-peer-ip` для 10.0.0.0/8,
+   172.16.0.0/12, 192.168.0.0/16, 127.0.0.0/8, 169.254.0.0/16 и `::1`, `fc00::/7`, `fe80::/10` —
+   иначе ретранслятор стал бы дорогой во внутренние сети VPS.
+3. Открыть на брандмауэре VPS: UDP и TCP 3478, TCP 5349, UDP 49160–49200.
+4. `deploy/scripts/deploy.sh` (сервер перечитает настройки), затем проверить: два браузера в
+   разных сетях входят в голос, в панели «Голос» нет строки «Без ретранслятора…».
+   Выключить: убрать обе настройки из `deploy/.env`, перезапустить сервер, остановить coturn, закрыть
+   порты.
+
+**EN.** The table's voice (ADR 0060) flows directly between screens; where they cannot reach each
+other (two home routers, a mobile network), a TURN relay (coturn) carries it, still encrypted between
+the screens. **Only the owner opens the relay's ports on the shared VPS**; until then this section
+is not carried out and voice works only directly. With the owner's word: (1) generate a secret
+(`openssl rand -base64 32`) into `deploy/.env` as `LTW_TURN_SECRET`, with
+`LTW_TURN_URLS=turn:<PUBLIC_HOST>:3478,turns:<PUBLIC_HOST>:5349`, never printed or passed on a
+command line; (2) run coturn beside the stack (its image pinned by digest on first pull) with
+`use-auth-secret`, the same `static-auth-secret`, `realm=<PUBLIC_HOST>`, ports 3478 and 5349 (the
+proxy's certificate), relay ports 49160–49200, `external-ip`, `no-cli`, `no-multicast-peers`, and
+`denied-peer-ip` for every private, loopback and link-local range (so the relay never reaches the
+VPS's internal networks); (3) open UDP and TCP 3478, TCP 5349 and UDP 49160–49200; (4) run
+`deploy/scripts/deploy.sh` and check two browsers on different networks hear each other, the Voice
+panel no longer saying "Without a relay…". To switch it off: remove both settings, restart the
+server, stop coturn, close the ports.

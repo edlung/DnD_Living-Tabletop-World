@@ -36,7 +36,8 @@
 		X-Content-Type-Options nosniff
 		X-Frame-Options DENY
 		Cross-Origin-Opener-Policy same-origin
-		Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+		# The table's voice (docs/adr/0060-voice.md) asks for the microphone on this origin alone.
+		Permissions-Policy "camera=(), microphone=(self), geolocation=(), payment=(), usb=()"
 		-Server
 		-Via
 	}

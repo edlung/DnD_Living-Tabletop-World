@@ -98,6 +98,9 @@ services:
       LTW_AI_REQUEST_TIMEOUT_MS: ${LTW_AI_REQUEST_TIMEOUT_MS:-}
       LTW_AI_APPROVAL_ID: ${LTW_AI_APPROVAL_ID:-}
       LTW_AI_RELEVANCE_BUDGET_MS: ${LTW_AI_RELEVANCE_BUDGET_MS:-}
+      # The table's voice relay (docs/adr/0060-voice.md §3; RUNBOOK §14): empty, direct only.
+      LTW_TURN_URLS: ${LTW_TURN_URLS:-}
+      LTW_TURN_SECRET: ${LTW_TURN_SECRET:-}
       # The asset worker's generator: the local placeholder unless the operator chooses
       # openrouter-openai (with OPENROUTER_API_KEY); its spending ceiling is an operator record
       # (ai:operator image-budget-set), never a setting (deploy/RUNBOOK.md section 8).
