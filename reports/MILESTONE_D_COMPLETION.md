@@ -146,6 +146,10 @@ work orders `work-orders/STAGE_690.md`, `STAGE_695.md`, `STAGE_697.md`, `STAGE_6
 
 ## What the owner does next
 
+Steps 1 and 2 are done: merged as PR #28 (`ad652e2b`) and deployed on 2026-11-04 (tag
+`ad652e2b5383`; the review campaign kept on the owner's word instead of the reset, with a new DM
+invitation handed over privately).
+
 1. **Merge** Milestone D, PR #28 (B #26 and C #27 are in main since 2026-11-04).
 2. **Deploy** to the VPS (RUNBOOK §2). The VPS runs Stages 500–540, so this deploy brings
    Milestones A–D at once: `deploy.sh` takes its protected dump first; migrations 0027–0039 only

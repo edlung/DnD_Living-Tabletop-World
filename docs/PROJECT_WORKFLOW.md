@@ -64,9 +64,13 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   (2026-11-04: PR 26 as `2a96db0c`, PR 27 as `dffa0149`; not deployed). Milestone D on
   `claude/full-game-d` is complete (`reports/MILESTONE_D_COMPLETION.md`): Stage 690 (atmosphere,
   ADR 0059), Stage 695 (voice, ADR 0060; the relay's ports are the owner's), Stage 697 (local mode
-  and a campaign's move between servers, ADR 0061) and Stage 699 (release 1.0, ADR 0062); one pull
-  request to main, awaiting the owner's merge. Then the owner's deploy, the family playtest and the
-  v1.0 tag.
+  and a campaign's move between servers, ADR 0061) and Stage 699 (release 1.0, ADR 0062); merged on
+  the owner's word as PR 28 (`ad652e2b`). Milestones A–D deployed to the VPS on 2026-11-04 (tag
+  `ad652e2b5383`, previous `a959e70eced7`; protected dump `ltw-predeploy-20261104T184829Z.dump`;
+  the restore drill passed on the new schema). The review campaign was kept, not reset (the owner's
+  choice: it was an unplayed seed); a new DM invitation for it, valid 7 days, went to the owner
+  privately, and new campaigns of either adventure start from the hub. Next, the owner's: the
+  family playtest and the v1.0 tag; optionally the voice relay's ports, AI keys and ceilings.
 
 ## Current request — AI campaigns, 2026-10-30
 
