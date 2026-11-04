@@ -29,7 +29,8 @@ case ${1:-} in
   import)
     [ $# -eq 1 ] || die "$usage"
     # What the import changes can come back: a protected dump, kept apart from the retention.
-    dump=$(compose exec -T backup /bin/sh /opt/ltw/backup.sh pre-restore)
+    # Its input is not the package: standard input is the import's alone.
+    dump=$(compose exec -T backup /bin/sh /opt/ltw/backup.sh pre-restore </dev/null)
     say "protected dump before the import: $dump" >&2
     server_node "$CLI" import
     ;;

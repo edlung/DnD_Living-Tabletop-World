@@ -44,7 +44,7 @@ plain root /ltw-local-root.crt
 check 'trust page: 200, no caching' status_is page 200
 check 'trust page: no-store' header_has page cache-control no-store
 check 'trust page: its policy names the HTTPS address' header_has page content-security-policy "connect-src https://$address"
-check 'trust page: the steps in Russian and English' grep -q 'Living Tabletop World local root' "$work/page.body"
+check 'trust page: the steps in Russian and English' sh -c "grep -q 'data-language-block=\"ru\"' '$work/page.body' && grep -q 'data-language-block=\"en\"' '$work/page.body'"
 check 'trust page: its script' status_is script 200
 check 'root: served as a CA certificate' header_has root content-type application/x-x509-ca-cert
 check 'root: a download named ltw-local-root.crt' header_has root content-disposition ltw-local-root.crt
@@ -64,12 +64,12 @@ change() {
     --header "Origin: $origin" --header 'content-type: application/json' \
     --data '{"mode":"online"}' "$origin/api/campaigns/$campaign/lobby?perspective=DM"
 }
-"$DEPLOY_DIR/scripts/campaign-move.sh" export "$campaign" --move 'local check' >"$work/package.gz" 2>"$work/export.txt"
+"$DEPLOY_DIR/scripts/campaign-move.sh" export "$campaign" --move 'local check' >"$work/package.gz" 2>"$work/export.txt" || true
 check 'move: exported' grep -q '"move":true' "$work/export.txt"
 check 'move: away here' sh -c "'$DEPLOY_DIR/scripts/campaign-move.sh' status '$campaign' 2>&1 | grep -q 'local check'"
-code=$(change)
+code=$(change || true)
 check 'move: a change is 409 MOVED' sh -c "[ '$code' = 409 ] && grep -q MOVED '$work/change.body'"
-"$DEPLOY_DIR/scripts/campaign-move.sh" import <"$work/package.gz" >"$work/import.out" 2>"$work/import.txt"
+"$DEPLOY_DIR/scripts/campaign-move.sh" import <"$work/package.gz" >"$work/import.out" 2>"$work/import.txt" || true
 check 'move: the package comes home' grep -q '"outcome":"returned"' "$work/import.txt"
 check 'move: at home again' sh -c "'$DEPLOY_DIR/scripts/campaign-move.sh' status '$campaign' 2>&1 | grep -q '\"away\":null'"
 

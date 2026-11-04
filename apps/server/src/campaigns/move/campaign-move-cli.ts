@@ -52,8 +52,10 @@ async function run(command: Command, pool: pg.Pool, source: string): Promise<voi
   const move = command.to === null ? null : { destination: command.to };
   const summary = await exportCampaign(pool, command.campaign, { move, source }, gzip);
   gzip.end();
-  await finished(sink);
+  // Every compressed byte handed on; standard output is never ended, so only a file is waited for.
+  await finished(gzip);
   if (partial !== null && command.out !== null) {
+    await finished(sink);
     chmodSync(partial, 0o600);
     renameSync(partial, command.out);
   }

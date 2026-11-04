@@ -26,6 +26,14 @@ firewall rule and moving a campaign off the VPS are the owner's acts: nothing he
   triggers, the away notice under the place's card and in the account's campaigns,
   `deploy/scripts/campaign-move.sh`. Proved between two databases both ways
   (`move.integration.test.ts`) and in the browser (`tests/e2e/campaign-moved.spec.ts`).
+- 697b done: `deploy/local/ltw-local.sh` and its QR code, the proxy's local mode and trust page,
+  `LTW_ENV_FILE` for the deployment's scripts, the Android app's trust of an installed root off
+  `vardahei.tech`.
+- 697c done: RUNBOOK §15, the context map, the plan's status, `deploy/verify/local-mode.sh`. The
+  stack on 127.0.0.1 found two faults, fixed: an export to standard output waited for an end that
+  never comes (no report, the process left by the pool's idle timeout), and the import's protected
+  dump read the package from standard input. Then every check passed: the trust page, the root, the
+  chain for the IP address with no server name, readiness, a campaign away (409 `MOVED`) and home.
 
 ## Checks at each sub-stage
 

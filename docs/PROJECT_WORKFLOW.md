@@ -60,7 +60,11 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   660, characters from the SRD (ADR 0056, `work-orders/STAGE_660.md`), complete: the data, the
   builder, advancement, features in play, and the table's life (campaign options, death and
   raising, languages and the printable sheet, a character from another campaign, a portrait wish,
-  the four summons, Wild Shape). Next: Milestone C (Stages 670 and 680).
+  the four summons, Wild Shape). Milestone C (Stages 670 and 680) complete on `claude/full-game-c`
+  (PR 27, awaiting the owner). Milestone D on `claude/full-game-d`: Stage 690 (atmosphere, ADR
+  0059), Stage 695 (voice, ADR 0060; the relay's ports are the owner's) and Stage 697 (local mode
+  and a campaign's move between servers, ADR 0061) complete; Stage 699 (release 1.0, ADR 0062) in
+  progress.
 
 ## Current request — AI campaigns, 2026-10-30
 
