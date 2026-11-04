@@ -109,15 +109,16 @@ test('the DM asks for a check with a hidden DC, and the player answers it', asyn
   await expect(player.locator('body')).not.toContainText('DC 15');
   const roll = await rolled(player, () => asked.getByRole('button', { name: 'Roll' }).click());
   expect(roll.groups[0]?.modifier).toBe(9);
+  // The player does not know the DC: no sound tells them how it went (ADR 0059 §2). Asked while
+  // the plate shows, before it leaves.
+  await expect(plate(player).locator('.dice-plate-line')).toHaveCount(1, { timeout: LANDS });
+  await expect(plate(player).locator('[data-cue]')).toHaveCount(0);
   const total = roll.groups[0]?.total ?? 0;
   // The DM's sheet follows the player's roll through the live stream: a loaded runner's time. The
   // verdict is what proves the answer came ("15" alone may be the DC).
   const requests = dmSheet.getByRole('region', { name: 'Requests' });
   await expect(requests).toContainText(total >= 15 ? 'Success' : 'Failure', { timeout: LANDS });
   await expect(requests).toContainText(String(total));
-  // The player does not know the DC: no sound tells them how it went (ADR 0059 §2).
-  await expect(plate(player).locator('.dice-plate-line')).toHaveCount(1, { timeout: LANDS });
-  await expect(plate(player).locator('[data-cue]')).toHaveCount(0);
   await expect(asked).toHaveCount(0);
   await dmContext.close();
   await playerContext.close();
