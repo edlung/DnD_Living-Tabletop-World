@@ -302,3 +302,75 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* A person's data (ADR 0062): the copy to save is a link, drawn like the buttons beside it. */
+.button-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-height: 40px;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-control);
+  background: color-mix(in srgb, var(--text) 4%, transparent);
+  color: var(--text);
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.25;
+  text-decoration: none;
+}
+.button-link:hover {
+  background: color-mix(in srgb, var(--text) 9%, transparent);
+  border-color: color-mix(in srgb, var(--text) 48%, transparent);
+}
+.text-link {
+  display: inline-block;
+  min-height: 24px;
+  color: var(--teal);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.account-delete-dialog form {
+  display: grid;
+  gap: 12px;
+}
+
+/* The privacy notice (ADR 0062 §1): the sign-in frame, a reading column. */
+.privacy-panel {
+  display: grid;
+  gap: 0.75rem;
+}
+.privacy-panel h1 {
+  margin: 0.5rem 0 0;
+  font-size: clamp(1.8rem, 3vw, 2.3rem);
+  line-height: 1.1;
+}
+.privacy-panel h2 {
+  margin: 0.75rem 0 0;
+  font-size: 1.15rem;
+}
+.privacy-panel p,
+.privacy-panel ul {
+  max-width: 65ch;
+  margin: 0;
+}
+.privacy-panel ul {
+  display: grid;
+  gap: 0.4rem;
+  padding-left: 1.2rem;
+}
+.privacy-lead {
+  color: var(--text-muted);
+}
+.privacy-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+}
+.privacy-languages {
+  display: flex;
+  gap: 0.5rem;
+}

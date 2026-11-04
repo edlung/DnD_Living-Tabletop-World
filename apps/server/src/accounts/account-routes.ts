@@ -75,12 +75,19 @@ const emptyBody = z.object({}).strict().optional();
 
 /**
  * A 409 whose reason the page words: a taken login, a seat the account already has, a seat that
- * has a login already, the campaign limit, or a login that also plays at other DMs' tables.
+ * has a login already, the campaign limit, a login that also plays at other DMs' tables, or a DM's
+ * account asked to be deleted (ADR 0062 §3).
  */
 export const conflict = (
   reply: FastifyReply,
   request: FastifyRequest,
-  reason: 'login-taken' | 'already-seated' | 'has-account' | 'campaign-limit' | 'other-tables',
+  reason:
+    | 'login-taken'
+    | 'already-seated'
+    | 'has-account'
+    | 'campaign-limit'
+    | 'other-tables'
+    | 'dm-seat',
 ) => reply.code(409).send({ ...errorBody('CONFLICT', request.id), reason });
 
 export function registerAccountRoutes(app: FastifyInstance, deps: AccountRouteDependencies): void {

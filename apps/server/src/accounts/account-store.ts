@@ -71,7 +71,18 @@ export interface AccountStore {
   createReset(reset: Omit<ResetRecord, 'usedAt'>): Promise<void>;
   /** Uses a live reset link once: the account it belongs to, or null (unknown, used, expired). */
   useReset(tokenHash: string, now: string): Promise<string | null>;
+  /** The account's sign-in sessions, newest first (for a copy of one's data). */
+  sessionsOf(accountId: string): Promise<readonly AccountSessionRecord[]>;
+  /**
+   * Forgets the person behind an account (docs/adr/0062-account-privacy.md §3): the login, the name
+   * and the password replaced, every live session revoked, every open reset link spent, every seat
+   * removed. False when the new login is taken (nothing is written then).
+   */
+  forget(accountId: string, replacement: ForgottenAccount, at: string): Promise<boolean>;
 }
+
+/** What stays of a forgotten account: a login nobody chose, a fixed name, a password nobody knows. */
+export type ForgottenAccount = Pick<AccountRecord, 'login' | 'displayName' | 'passwordHash'>;
 
 export class InMemoryAccountStore implements AccountStore {
   readonly #accounts = new Map<string, AccountRecord>();
@@ -182,5 +193,29 @@ export class InMemoryAccountStore implements AccountStore {
     }
     this.#resets.set(tokenHash, { ...reset, usedAt: now });
     return Promise.resolve(reset.accountId);
+  }
+
+  sessionsOf(accountId: string): Promise<readonly AccountSessionRecord[]> {
+    const own = [...this.#sessions.values()].filter((session) => session.accountId === accountId);
+    return Promise.resolve(own.sort((a, b) => b.createdAt.localeCompare(a.createdAt)));
+  }
+
+  async forget(accountId: string, replacement: ForgottenAccount, at: string): Promise<boolean> {
+    const account = this.#accounts.get(accountId);
+    const taken = [...this.#accounts.values()].some(
+      (other) => other.accountId !== accountId && other.login === replacement.login,
+    );
+    if (!account || taken) return false;
+    this.#accounts.set(accountId, { ...account, ...replacement, passwordChangedAt: at });
+    await this.revokeSessions(accountId, at);
+    for (const [hash, reset] of this.#resets) {
+      if (reset.accountId === accountId && reset.usedAt === null) {
+        this.#resets.set(hash, { ...reset, usedAt: at });
+      }
+    }
+    for (let index = this.#seats.length - 1; index >= 0; index -= 1) {
+      if (this.#seats[index]?.accountId === accountId) this.#seats.splice(index, 1);
+    }
+    return true;
   }
 }

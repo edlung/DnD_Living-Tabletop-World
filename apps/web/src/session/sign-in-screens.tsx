@@ -49,6 +49,9 @@ export function SignInLayout({ children }: { readonly children: ReactNode }) {
           <p className="sign-in-footer">
             {t('Your character. Your perspective. One living world.')}
           </p>
+          <a className="text-link" href="/privacy">
+            {t('Privacy notice')}
+          </a>
           <AboutButton />
         </div>
       </section>

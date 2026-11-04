@@ -7,6 +7,7 @@ import { NativeEntry } from '../native/native-entry.tsx';
 import { Glyph } from '../visual/glyph.tsx';
 import { ornamentUrl, textureUrl } from '../visual/ui-kit.ts';
 import { changePassword, readAccount, renameAccount, type EnterAnswer } from './account-flow.ts';
+import { AccountData } from './account-data.tsx';
 import { Field, useFocusFirstInvalid } from './account-forms.tsx';
 
 /**
@@ -190,6 +191,7 @@ export function Hub({
         </ul>
       </section>
       <AccountSettings transport={transport} account={account} onRenamed={reload} />
+      <AccountData transport={transport} login={account.login} onDeleted={() => void onSignOut()} />
       <div className="action-row">
         <button type="button" onClick={() => void onSignOut()}>
           <Glyph name="leave" />

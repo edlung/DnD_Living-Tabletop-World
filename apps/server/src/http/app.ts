@@ -10,6 +10,7 @@ import { registerWorkshopRoutes } from '../workshop/routes.ts';
 import type { WorkshopDependencies } from '../workshop/service.ts';
 import type { CampaignQuestBooks } from '../campaigns/quest-books.ts';
 import { registerAccountRoutes } from '../accounts/account-routes.ts';
+import { registerPrivacyRoutes } from '../accounts/privacy-routes.ts';
 import { registerChatRoutes, type ChatDependencies } from '../chat/chat-routes.ts';
 import { InMemoryMarkStore } from '../marks/mark-store.ts';
 import { registerMarkRoutes, type MarkDependencies } from '../marks/mark-routes.ts';
@@ -283,7 +284,9 @@ export function buildApp(input: AppDependencies): FastifyInstance {
     relay: voice.relay,
     credentialHeader: vary,
   });
-  registerChatRoutes(app, { ...deps, chat: deps.chat ?? memoryChat() });
+  // One chat for its routes and a person's copy of their data (ADR 0062 §2).
+  const chat = deps.chat ?? memoryChat();
+  registerChatRoutes(app, { ...deps, chat });
   registerMarkRoutes(app, { ...deps, marks: deps.marks ?? memoryMarks() });
   // One set of handouts for the handout routes and the DM's library that gives them (ADR 0058 §3).
   const handouts = deps.handouts ?? memoryHandouts();
@@ -308,9 +311,12 @@ export function buildApp(input: AppDependencies): FastifyInstance {
     const { accounts, accountLimits } = deps.signIn;
     // A character from another campaign of the same login (docs/FULL_GAME_PLAN.md decision 15).
     if (accounts) registerCopyRoutes(app, { ...deps, accounts });
-    // Accounts (ADR 0041): the hub, signing in with a login, opening and creating campaigns.
+    // Accounts (ADR 0041): the hub, signing in with a login, opening and creating campaigns; a
+    // person's data, copied or deleted (ADR 0062).
     if (accounts && accountLimits) {
-      registerAccountRoutes(app, { ...deps, signIn: { ...deps.signIn, accounts, accountLimits } });
+      const withAccounts = { ...deps, signIn: { ...deps.signIn, accounts, accountLimits } };
+      registerAccountRoutes(app, withAccounts);
+      registerPrivacyRoutes(app, { ...withAccounts, chat: chat.store, table: table.store });
     }
     // The table's displays and join links (ADR 0042): pairing, the cast, the table's QR code.
     const { displays, displayLimits, openLinks } = deps.signIn;

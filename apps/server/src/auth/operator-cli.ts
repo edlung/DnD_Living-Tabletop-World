@@ -23,7 +23,9 @@ import { PostgresAccountStore } from '../accounts/postgres-account-store.ts';
  * - `revoke-actor --actor <actorId> --authorization-source <reference>`: sign one actor out
  *   everywhere (its sessions and open invitations in every campaign);
  * - `sessions --campaign <id>`: the campaign's live sessions (no token, no hash);
- * - `reset-password --login <login>`: a single-use reset link for an account (ADR 0041 §7).
+ * - `reset-password --login <login>`: a single-use reset link for an account (ADR 0041 §7);
+ * - `delete-account --login <login> --authorization-source <reference>`: the account forgotten, a
+ *   DM's too (ADR 0062 §3).
  * Prints one JSON line; nothing else ever prints or logs a token.
  */
 async function main(): Promise<void> {

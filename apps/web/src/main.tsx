@@ -37,7 +37,9 @@ import './i18n/ru-native.ts';
 import './i18n/ru-atmosphere.ts';
 import './i18n/ru-voice.ts';
 import './i18n/ru-moves.ts';
+import './i18n/ru-privacy.ts';
 import { DisplayApp } from './display/display-app.tsx';
+import { PrivacyPage } from './session/privacy-notice.tsx';
 import { startNative } from './native/start.ts';
 import { App } from './session/app.tsx';
 import { WorkshopApp } from './workshop/app.tsx';
@@ -109,6 +111,13 @@ if (window.location.pathname === '/display' || window.location.pathname === '/di
   createRoot(root).render(
     <StrictMode>
       <DisplayApp />
+    </StrictMode>,
+  );
+} else if (window.location.pathname === '/privacy' || window.location.pathname === '/privacy/') {
+  // The privacy notice (docs/adr/0062-account-privacy.md §1): readable before signing in.
+  createRoot(root).render(
+    <StrictMode>
+      <PrivacyPage language={navigator.language.toLowerCase().startsWith('ru') ? 'ru' : 'en'} />
     </StrictMode>,
   );
 } else if (isWorkshopPath(window.location.pathname)) {

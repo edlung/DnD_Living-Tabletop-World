@@ -544,6 +544,23 @@ dc exec -T postgres psql -U ltw -d ltw -c \
   "UPDATE ltw_table_states SET paused = false, updated_at = now() WHERE campaign_id = '<campaign>'"
 ```
 
+**Удалить учётную запись / Delete an account (Stage 699, ADR 0062).** RU: игрок удаляет свою
+учётную запись сам — «Ваши данные» → «Удалить учётную запись» (пароль и логин ещё раз). Учётную
+запись мастера, или по просьбе человека, который не может войти, удаляет оператор: логин, имя и
+пароль забываются, все входы заканчиваются, места снимаются; персонажи остаются в истории кампаний.
+Если кампания мастера продолжается — пригласите её следующего мастера на то же место
+(`dm-invite`). Резервные копии хранят прежнее состояние до истечения (до двух месяцев). EN: a
+player deletes their own account from "Your data" → "Delete my account" (the password and the login
+again). The operator deletes a DM's account, or the account of someone who cannot sign in: the
+login, the name and the password are forgotten, every sign-in ends, the seats go; the characters
+stay in their campaigns' story. If the DM's campaign goes on, invite its next DM to the same seat
+(`dm-invite`). Backups keep the earlier state until they expire (up to two months).
+
+```bash
+dc exec -T server node apps/server/dist/auth/operator-cli.js delete-account \
+  --login <login> --authorization-source '<whose request, when>'
+```
+
 ## 7. Остановить все расходы на ИИ · Stop all AI spending
 
 **RU.** Сразу: очистите в `deploy/.env` `ANTHROPIC_API_KEY`, `LTW_AI_ROUTES`, `LTW_AI_APPROVAL_ID`
