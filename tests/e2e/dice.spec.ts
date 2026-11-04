@@ -53,6 +53,8 @@ test('free dice fly, land on the server’s values and join the log', async ({ p
   // The dice fly in the top layer; the plate tells the sum once they rest.
   await expect(page.locator('.dice-layer')).toBeVisible();
   await expect(plate(page)).toContainText(`= ${String(group?.total)}`, { timeout: LANDS });
+  // Free dice say nothing more than their bounces (docs/adr/0059-atmosphere.md §2).
+  await expect(plate(page).locator('[data-cue]')).toHaveCount(0);
   const log = sheet.getByRole('region', { name: 'Recent rolls' });
   await expect(log).toContainText(`= ${String(group?.total)}`);
   await expect(log).toContainText('Elowen Starwhisper');
@@ -113,6 +115,9 @@ test('the DM asks for a check with a hidden DC, and the player answers it', asyn
   const requests = dmSheet.getByRole('region', { name: 'Requests' });
   await expect(requests).toContainText(total >= 15 ? 'Success' : 'Failure', { timeout: LANDS });
   await expect(requests).toContainText(String(total));
+  // The player does not know the DC: no sound tells them how it went (ADR 0059 §2).
+  await expect(plate(player).locator('.dice-plate-line')).toHaveCount(1, { timeout: LANDS });
+  await expect(plate(player).locator('[data-cue]')).toHaveCount(0);
   await expect(asked).toHaveCount(0);
   await dmContext.close();
   await playerContext.close();

@@ -12,7 +12,9 @@ Authority: owner approval 2026-11-02 (`reviews/OWNER_FULL_GAME_2026-11-02.json`)
   pressed. Done: by the scene reads the scene's new `setting` (indoors, town, wild: what the
   perspective knows of the place); "Sound on" in the world's top bar and the TV's quiet corner.
 - 690b — Sound effects: a hit, a miss, a critical hit, a success, a failure, a spell and healing, where
-  the roll shows, with the dice's sound switch.
+  the roll shows, with the dice's sound switch. Done on every screen whose dice stage throws the roll
+  (a hidden result, such as a check against a DC the player does not know, has no sound); the
+  table's screen hears them with its big dice (690d).
 - 690c — The DM's music: tracks uploaded, listed, deleted, private to the campaign; played once or on
   repeat, paused, resumed, stopped, in step on every screen that plays the ambience.
 - 690d — The screen's moments: fades between casts, the place's title card, big dice over the cast.
