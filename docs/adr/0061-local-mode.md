@@ -35,7 +35,9 @@ start`, builds the images of the checkout's commit the first time (the one step 
    profile and turns its trust on; Android installs it as a CA certificate in Settings), the steps in
    Russian and English, and a check that says when the phone trusts the laptop, with "Open the table".
    The start command's QR code opens the trust page; the game's own QR codes (invitations, the table's
-   link) open the HTTPS address. The root lives in the local stack's volume; its key never leaves the
+   link) open the HTTPS address. The page comes over plain HTTP, so the terminal shows the root's
+   SHA-256 fingerprint and the page asks to compare it before trusting. Only a home network's
+   address (10/8, 172.16/12, 192.168/16) is accepted. The root lives in the local stack's volume; its key never leaves the
    laptop. A root can vouch for any name, so the trust page says so plainly and how to remove it; it
    is needed only for local play.
 4. **Backups stay on the laptop.** The backup service writes to a folder on the laptop
@@ -59,17 +61,23 @@ return <campaign> --to <host>`).
      (it moved from here and comes back), the history here must be the beginning of the package's
      history; the rest of the package's history is appended and the table's records become the
      package's. A campaign at home on the target is never overwritten. An account that exists keeps
-     its name and takes the package's password only when that changed later; a login someone else
+     its name and takes the package's password only when that changed later and the account sat in
+     this campaign here before (a package never sets a stranger's password); a login someone else
      holds here gets a number added, reported.
+   - **Joining an away campaign.** An invitation is not redeemed, claimed or revoked there and no
+     seat is taken (409 `MOVED`, before anything is written; the invitations' rows refuse changes
+     under the application): a row changed there could never take the package's back.
    - **Cancelled.** A move whose import never happened is cancelled on the server that marked it.
    - A campaign published from the workshop does not move yet: its publication belongs to the
      workshop's records (and its AI is off locally); the export says so.
 6. **The package is a secret and a checked file.** Gzip of JSON lines: a header (format, version,
    campaign, the source's last migration, the source, whether it is a move), each table's columns
    and rows, and a SHA-256 of all of it. It holds password hashes: written with mode 600, kept in
-   `deploy/local/moves/` (git-ignored) as the move's copy, never sent anywhere but the operator's
-   SSH. The import refuses an unknown table or column, a row of another campaign, a digest that does
-   not match, and history the target cannot read (each event parsed as readiness does), and commits
+   `deploy/local/moves/` (git-ignored) as the move's copy — the newest of each campaign only — never
+   sent anywhere but the operator's SSH. A package is as trusted as the server it came from: a
+   password it carries is taken only for an account that sat in the campaign here, changed while
+   the campaign was away and before the package was cut. The import refuses an unknown table or column, a row of another campaign, a key another
+   campaign holds here, a digest that does not match, and history the target cannot read (each event parsed as readiness does), and commits
    all of it or nothing.
 
 ## Consequences

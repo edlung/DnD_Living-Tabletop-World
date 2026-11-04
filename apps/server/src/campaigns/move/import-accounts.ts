@@ -5,8 +5,11 @@ import type { StagedTable } from './stage.ts';
 /**
  * The accounts a package brings (docs/adr/0061-local-mode.md §5): people, shared with other
  * campaigns, so merged and never deleted. An account this server has keeps its login and name, and
- * takes the package's password only when that changed later. A new one comes as it is; when its
- * login belongs to someone else here, it gets the first free number after it (`masha-2`), reported.
+ * takes the package's password only when that changed later — while the campaign was away and
+ * before its package was cut, never in the future — and the account sat in this campaign here
+ * before (it came back with it): a package never sets the password of someone this campaign did
+ * not hold. A new one comes as it is; when its login belongs to someone else here, it gets the
+ * first free number after it (`masha-2`), reported.
  */
 export interface AccountsMerged {
   readonly created: number;
@@ -28,6 +31,10 @@ const LOGIN_LIMIT = 32;
 export async function mergeAccounts(
   client: pg.ClientBase,
   staged: StagedTable,
+  /** The accounts that sat in this campaign here before the import changed anything. */
+  seatedHere: ReadonlySet<string>,
+  /** When a password the package carries may have changed: while the campaign was away. */
+  window: { readonly from: Date; readonly to: Date } | null,
 ): Promise<AccountsMerged> {
   const { rows } = await client.query<StagedAccount & { here: boolean; here_changed: Date | null }>(
     `SELECT s.*, a.account_id IS NOT NULL AS here, a.password_changed_at AS here_changed
@@ -39,7 +46,10 @@ export async function mergeAccounts(
   const renamed: { from: string; to: string }[] = [];
   for (const account of rows) {
     if (account.here) {
-      if (account.here_changed !== null && account.password_changed_at > account.here_changed) {
+      const changed = account.password_changed_at;
+      const later = account.here_changed !== null && changed > account.here_changed;
+      const meanwhile = window !== null && changed >= window.from && changed <= window.to;
+      if (seatedHere.has(account.account_id) && later && meanwhile) {
         await client.query(
           `UPDATE ltw_accounts SET password_hash = $2, password_changed_at = $3 WHERE account_id = $1`,
           [account.account_id, account.password_hash, account.password_changed_at],

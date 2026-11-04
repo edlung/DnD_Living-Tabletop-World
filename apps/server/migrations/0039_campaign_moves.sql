@@ -1,9 +1,10 @@
 -- Campaign moves (Stage 697a, docs/adr/0061-local-mode.md §5): a campaign exported for a move is
 -- away, played on another server, until a package brings it home or the move is cancelled. While
--- it is away its history takes no appends and its membership no new seats or invitations: the
--- triggers below refuse them under the application (the HTTP layer answers 409 first). A move is
--- one-way: it ends once, as returned or cancelled, and is never deleted. Additive: an older build
--- never reads the table, and its appends to a campaign that never moved pass as before.
+-- it is away its history takes no appends, its membership no new seats and its invitations no
+-- new rows or changes: the triggers below refuse them under the application (the HTTP layer and
+-- the redeem answer 409 first). A move is one-way: it ends once, as returned or cancelled, and is
+-- never deleted. Additive: an older build never reads the table, and its appends to a campaign
+-- that never moved pass as before.
 
 CREATE TABLE ltw_campaign_moves (
   move_id uuid PRIMARY KEY,
@@ -72,6 +73,7 @@ $$;
 CREATE TRIGGER ltw_account_seats_not_away
   BEFORE INSERT ON ltw_account_seats
   FOR EACH ROW EXECUTE FUNCTION ltw_refuse_away_membership();
+-- An invitation used, claimed or revoked while away could never take the package's row back.
 CREATE TRIGGER ltw_auth_invitations_not_away
-  BEFORE INSERT ON ltw_auth_invitations
+  BEFORE INSERT OR UPDATE ON ltw_auth_invitations
   FOR EACH ROW EXECUTE FUNCTION ltw_refuse_away_membership();

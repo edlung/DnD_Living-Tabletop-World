@@ -977,9 +977,10 @@ deploy/scripts/backup-now.sh && deploy/scripts/restore-drill.sh   # 6.
    скачивании) с настройками: `use-auth-secret`, `static-auth-secret=<тот же секрет>`,
    `realm=<PUBLIC_HOST>`, `listening-port=3478`, `tls-listening-port=5349` с сертификатом прокси,
    `min-port=49160`, `max-port=49200`, `external-ip=<публичный адрес>`, `no-cli`,
-   `no-multicast-peers`, и **запрет частных адресов**: `denied-peer-ip` для 10.0.0.0/8,
-   172.16.0.0/12, 192.168.0.0/16, 127.0.0.0/8, 169.254.0.0/16 и `::1`, `fc00::/7`, `fe80::/10` —
-   иначе ретранслятор стал бы дорогой во внутренние сети VPS.
+   `no-multicast-peers`, и **запрет частных адресов**: `denied-peer-ip` для 0.0.0.0/8, 10.0.0.0/8,
+   100.64.0.0/10, 172.16.0.0/12, 192.168.0.0/16, 127.0.0.0/8, 169.254.0.0/16 и `::1`, `fc00::/7`,
+   `fe80::/10`, `::ffff:0:0/96` — иначе ретранслятор стал бы дорогой во внутренние сети VPS; и
+   пределы: `user-quota=12`, `total-quota=200`, `max-bps=256000` (голосу хватает десятков кбит/с).
 3. Открыть на брандмауэре VPS: UDP и TCP 3478, TCP 5349, UDP 49160–49200.
 4. `deploy/scripts/deploy.sh` (сервер перечитает настройки), затем проверить: два браузера в
    разных сетях входят в голос, в панели «Голос» нет строки «Без ретранслятора…».
@@ -994,9 +995,11 @@ is not carried out and voice works only directly. With the owner's word: (1) gen
 `LTW_TURN_URLS=turn:<PUBLIC_HOST>:3478,turns:<PUBLIC_HOST>:5349`, never printed or passed on a
 command line; (2) run coturn beside the stack (its image pinned by digest on first pull) with
 `use-auth-secret`, the same `static-auth-secret`, `realm=<PUBLIC_HOST>`, ports 3478 and 5349 (the
-proxy's certificate), relay ports 49160–49200, `external-ip`, `no-cli`, `no-multicast-peers`, and
-`denied-peer-ip` for every private, loopback and link-local range (so the relay never reaches the
-VPS's internal networks); (3) open UDP and TCP 3478, TCP 5349 and UDP 49160–49200; (4) run
+proxy's certificate), relay ports 49160–49200, `external-ip`, `no-cli`, `no-multicast-peers`,
+`denied-peer-ip` for every private, loopback, link-local, carrier-grade NAT (100.64.0.0/10), this-network
+(0.0.0.0/8) and IPv4-mapped (`::ffff:0:0/96`) range (so the relay never reaches the VPS's internal
+networks), and the limits `user-quota=12`, `total-quota=200`, `max-bps=256000` (voice needs tens of
+kbit/s); (3) open UDP and TCP 3478, TCP 5349 and UDP 49160–49200; (4) run
 `deploy/scripts/deploy.sh` and check two browsers on different networks hear each other, the Voice
 panel no longer saying "Without a relay…". To switch it off: remove both settings, restart the
 server, stop coturn, close the ports.
@@ -1018,7 +1021,8 @@ server, stop coturn, close the ports.
 2. Брандмауэр: `start` говорит, что разрешить (macOS: не включать «Блокировать все входящие»,
    разрешить Docker, когда macOS спросит; Linux: `ufw`/`firewalld` — команда для домашней сети).
    Сам он ничего не меняет.
-3. Телефоны и планшеты: открыть `http://<адрес>/` (QR-код из терминала) — страница доверия:
+3. Телефоны и планшеты: открыть `http://<адрес>/` (QR-код из терминала; там же отпечаток SHA-256
+   сертификата — сверьте его на телефоне до включения доверия) — страница доверия:
    скачать сертификат ноутбука, установить и включить доверие (шаги для iPhone/iPad и Android на
    странице), «Проверить снова» → «Открыть стол» (`https://<адрес>/`). Один раз на устройство,
    пока живёт том `caddy-data` проекта `ltw-local` (его не удалять: новый корень — установка
@@ -1027,7 +1031,7 @@ server, stop coturn, close the ports.
 4. Кампании: перевезти с VPS — `ltw-local.sh bring <кампания> --from vardahei-vps` (по SSH: на VPS
    кампания помечается «уехала» — её видно, но не играть, изменения 409 `MOVED`; пакет — история,
    записи стола, места и учётные записи — сохраняется в `deploy/local/moves/`, права 600, в нём
-   хэши паролей; затем импорт здесь, всё или ничего). Вернуть — `ltw-local.sh return <кампания>
+   хэши паролей; хранится только последний пакет кампании; затем импорт здесь, всё или ничего). Вернуть — `ltw-local.sh return <кампания>
 --to vardahei-vps`: на VPS дописывается сыгранное дома, записи стола становятся домашними,
    пароли — по последней смене. Нет ни одной кампании и VPS не нужен — `ltw-local.sh first-dm`
    (русский Равенфорд и ссылка мастера, один раз). Сессии и экраны не переезжают: все входят
@@ -1056,7 +1060,8 @@ private addresses only: run it at home, never on a public network.
 2. The firewall: `start` says what to allow (macOS: no "Block all incoming connections", allow
    Docker when macOS asks; Linux: the `ufw`/`firewalld` command for the home network). It changes
    nothing itself.
-3. Phones and tablets: open `http://<address>/` (the terminal's QR code), the trust page: download
+3. Phones and tablets: open `http://<address>/` (the terminal's QR code; the terminal also shows the
+   certificate's SHA-256 fingerprint — compare it on the phone before trusting), the trust page: download
    the laptop's certificate, install it and turn its trust on (the iPhone/iPad and Android steps are
    on the page), "Check again", then "Open the table" (`https://<address>/`). Once per device, while
    the `ltw-local` project's `caddy-data` volume lives (keep it: a new root means installing again).
@@ -1065,7 +1070,8 @@ private addresses only: run it at home, never on a public network.
 4. Campaigns: from the VPS, `ltw-local.sh bring <campaign> --from vardahei-vps` (over SSH: the VPS
    marks the campaign away, to be read and not played, changes refused with 409 `MOVED`; the
    package, its history, the table's records, seats and accounts, is kept in `deploy/local/moves/`,
-   mode 600, password hashes inside; then imported here, all or nothing). Back:
+   mode 600, password hashes inside, the newest of each campaign only; then imported here, all or
+   nothing). Back:
    `ltw-local.sh return <campaign> --to vardahei-vps`: the VPS appends what was played at home, the
    table's records become the home's, passwords follow the latest change. No campaign and no need of
    the VPS: `ltw-local.sh first-dm` (the Russian Ravenford and the DM's link, once). Sessions and

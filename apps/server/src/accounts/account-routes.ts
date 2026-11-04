@@ -152,6 +152,10 @@ export function registerAccountRoutes(app: FastifyInstance, deps: AccountRouteDe
     }
     const body = claimRequestSchema.safeParse(request.body);
     if (!body.success) return sendError(reply, request, 'INVALID_REQUEST');
+    // A campaign played on another server takes no new seat here (docs/adr/0061 §5).
+    if (deps.moves && (await deps.moves.awayOf(principal.campaignId)) !== null) {
+      return sendError(reply, request, 'MOVED');
+    }
     const state = (await deps.engine.load(principal.campaignId))?.state ?? null;
     const role = campaignRole(state, principal.actor);
     const session = await credentials.findSession(hashToken(token));

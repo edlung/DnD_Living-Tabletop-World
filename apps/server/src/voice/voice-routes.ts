@@ -11,8 +11,15 @@ import { campaignRole, controlledCharacter, type WorldState } from '@ltw/domain'
 import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod';
 
+import type { CampaignMoves } from '../campaigns/move/moves.ts';
+import { actorFor } from '../http/auth.ts';
 import { sendError } from '../http/errors.ts';
-import { authenticate, parseInput, type RouteDependencies } from '../http/request-context.ts';
+import {
+  authenticate,
+  credentialsOf,
+  parseInput,
+  type RouteDependencies,
+} from '../http/request-context.ts';
 import { responseSink, streamHeaders } from '../live/stream.ts';
 import type { LobbyDependencies } from '../table/table-state.ts';
 import type { Speaker, VoiceRooms } from './voice-rooms.ts';
@@ -36,11 +43,15 @@ export interface VoiceRouteDependencies extends RouteDependencies {
   readonly lobby: LobbyDependencies;
   readonly relay: VoiceRelay | null;
   readonly credentialHeader: 'Authorization' | 'Cookie';
+  /** Where the campaign plays: away, its room closes (docs/adr/0061-local-mode.md §5). */
+  readonly moves?: CampaignMoves;
 }
 
 const params = z.object({ campaignId: campaignIdSchema }).strict();
 /** A relay credential lasts an hour: a screen asks again when it joins. */
 const CREDENTIAL_SECONDS = 60 * 60;
+/** How often a speaker's right to be in the room is checked again. */
+const RECHECK_MS = 20_000;
 
 /** The speaker the actor may be in the campaign's room, with the state; null when answered. */
 async function speakerIn(
@@ -79,6 +90,28 @@ async function roomOpen(deps: VoiceRouteDependencies, campaignId: string, state:
   );
 }
 
+/**
+ * Whether the speaker may still be in the room: the same sign-in, still the DM or a player, the
+ * session still played online, the campaign at home. A revoked seat, a deleted account, the
+ * session's end or a move closes the speaker's stream within a recheck.
+ */
+async function stillSpeaker(
+  deps: VoiceRouteDependencies,
+  campaignId: string,
+  credentials: ReturnType<typeof credentialsOf>,
+  actorId: string,
+): Promise<boolean> {
+  const principal = await deps.authenticator.authenticate(credentials);
+  const actor = principal === null ? null : actorFor(principal, campaignId);
+  if (actor?.actorId !== actorId) return false;
+  const state = (await deps.engine.load(campaignId))?.state ?? null;
+  const role = campaignRole(state, actor);
+  if (state === null || (role !== 'DM' && role !== 'PLAYER')) return false;
+  if (!(await roomOpen(deps, campaignId, state))) return false;
+  const away = deps.moves ? await deps.moves.awayOf(campaignId) : null;
+  return away === null;
+}
+
 /** coturn's REST credentials: `<expiry>:<name>` and the HMAC-SHA1 of it with the shared secret. */
 export function relayCredentials(
   relay: VoiceRelay,
@@ -102,7 +135,21 @@ export function registerVoiceRoutes(app: FastifyInstance, deps: VoiceRouteDepend
     const raw = reply.raw;
     raw.writeHead(200, { ...streamHeaders(deps.credentialHeader), 'x-request-id': request.id });
     raw.flushHeaders();
-    deps.voice.join(path.campaignId, joined.speaker, responseSink(raw));
+    const sink = responseSink(raw);
+    const peerId = deps.voice.join(path.campaignId, joined.speaker, sink);
+    if (peerId === null) return reply;
+    const credentials = credentialsOf(request);
+    const recheck = setInterval(() => {
+      void stillSpeaker(deps, path.campaignId, credentials, joined.speaker.actorId)
+        .then((still) => {
+          if (!still) deps.voice.dismiss(path.campaignId, peerId);
+        })
+        .catch(() => undefined);
+    }, RECHECK_MS);
+    recheck.unref();
+    sink.onClose(() => {
+      clearInterval(recheck);
+    });
     return reply;
   });
 
@@ -156,6 +203,9 @@ export function registerVoiceRoutes(app: FastifyInstance, deps: VoiceRouteDepend
     if (!path) return reply;
     const joined = await speakerIn(request, reply, deps, path.campaignId);
     if (!joined) return reply;
+    // The relay's credentials only while the room is open: never a proxy between sessions.
+    if (!(await roomOpen(deps, path.campaignId, joined.state)))
+      return sendError(reply, request, 'CONFLICT');
     const body: VoiceIceResponse = {
       iceServers: deps.relay
         ? [relayCredentials(deps.relay, path.campaignId, Date.parse(deps.lobby.now()))]

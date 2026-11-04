@@ -48,6 +48,11 @@
         <p>
           <a class="download" href="/ltw-local-root.crt" download>Скачать сертификат ноутбука</a>
         </p>
+        <p class="lead">
+          Прежде чем включить доверие, сверьте отпечаток SHA-256 сертификата с тем, что показал
+          терминал мастера при запуске: эта страница приходит без защиты, и только совпавший
+          отпечаток говорит, что сертификат — от ноутбука.
+        </p>
 
         <h2>iPhone или iPad</h2>
         <ol>
@@ -55,7 +60,10 @@
             Откройте эту страницу в Safari и нажмите «Скачать сертификат ноутбука», затем
             «Разрешить».
           </li>
-          <li>Настройки → «Профиль загружен» → «Установить» (попросит код-пароль).</li>
+          <li>
+            Настройки → «Профиль загружен» → «Подробнее» → сверьте SHA-256 → «Установить» (попросит
+            код-пароль).
+          </li>
           <li>
             Настройки → Основные → Об этом устройстве → Доверие сертификатам → включите «Living
             Tabletop World local root».
@@ -117,11 +125,19 @@
             >Download the laptop’s certificate</a
           >
         </p>
+        <p class="lead">
+          Before you turn its trust on, compare the certificate’s SHA-256 fingerprint with the one
+          the DM’s terminal showed when it started: this page comes unprotected, and only a matching
+          fingerprint says the certificate is the laptop’s.
+        </p>
 
         <h2>iPhone or iPad</h2>
         <ol>
           <li>Open this page in Safari, tap “Download the laptop’s certificate”, then “Allow”.</li>
-          <li>Settings → “Profile Downloaded” → “Install” (it asks for the passcode).</li>
+          <li>
+            Settings → “Profile Downloaded” → “More Details” → compare the SHA-256 → “Install” (it
+            asks for the passcode).
+          </li>
           <li>
             Settings → General → About → Certificate Trust Settings → turn on “Living Tabletop World
             local root”.

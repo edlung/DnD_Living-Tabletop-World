@@ -7,6 +7,7 @@ import type { CredentialStore, InvitationPurpose, InvitationRecord } from './cre
 import type { RequestLimits } from './limits.ts';
 import { iso, type AuthClock } from './session-authenticator.ts';
 import { hashToken, newToken } from './tokens.ts';
+import type { CampaignMoves } from '../campaigns/move/moves.ts';
 import type { CampaignPublication } from '../campaigns/publication.ts';
 import type { AccountLimits } from '../accounts/account-limits.ts';
 import type { AccountStore } from '../accounts/account-store.ts';
@@ -91,7 +92,7 @@ export async function issueInvitation(
 
 /** Why a redeem failed: for logs only. Every failure answers the caller the same. */
 export type RefusalReason =
-  'unknown' | 'used' | 'revoked' | 'expired' | 'campaign' | 'seat' | 'raced';
+  'unknown' | 'used' | 'revoked' | 'expired' | 'campaign' | 'seat' | 'raced' | 'moved';
 
 export type RedeemOutcome =
   | {
@@ -114,7 +115,7 @@ const refused = (reason: RefusalReason): RedeemOutcome => ({ kind: 'refused', re
  */
 export async function redeemInvitation(
   engine: WorldEngine,
-  deps: Pick<SignInDependencies, 'credentials' | 'clock'>,
+  deps: Pick<SignInDependencies, 'credentials' | 'clock'> & { readonly moves?: CampaignMoves },
   token: string,
 ): Promise<RedeemOutcome> {
   const invitation = await deps.credentials.findInvitation(hashToken(token));
@@ -125,6 +126,9 @@ export async function redeemInvitation(
   const { campaignId, invitationId } = invitation;
   const campaign = (await engine.load(campaignId))?.state.campaign ?? null;
   if (campaign === null) return refused('campaign');
+  // A campaign played on another server takes nobody here, before anything is written
+  // (docs/adr/0061-local-mode.md §5): a used invitation would block its way back.
+  if (deps.moves && (await deps.moves.awayOf(campaignId)) !== null) return refused('moved');
 
   let actorId: string;
   if (invitation.purpose === 'dm') {

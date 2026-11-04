@@ -104,6 +104,10 @@ import trust-{$LTW_PROXY_MODE:server} # the trust page in local mode (ADR 0061 Â
 
 	# The API without its /api prefix. The live stream (ADR 0033) passes every frame on at once.
 	handle_path /api/* {
+		# The largest body the server takes is a track of music (15 MB): nothing larger reaches it.
+		request_body {
+			max_size 16MB
+		}
 		reverse_proxy server:3000 {
 			flush_interval -1
 		}

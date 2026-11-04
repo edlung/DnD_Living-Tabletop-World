@@ -37,8 +37,8 @@ let laptopPool: pg.Pool;
 let submissions: Awaited<ReturnType<typeof loadRavenfordSeed>>['submissions'];
 
 const CAMPAIGN = 'ravenford';
-const NOW = '2026-11-04T10:00:00.000Z';
-const LATER = '2026-11-04T12:00:00.000Z';
+const NOW = '2026-11-01T10:00:00.000Z';
+const LATER = '2026-11-01T12:00:00.000Z';
 const PHRASE = 'a long enough phrase';
 const NOTES = { miller: randomUUID(), bell: randomUUID() };
 
@@ -243,6 +243,71 @@ describe('a campaign’s move', () => {
     expect(await tally(laptopPool, 'ltw_dm_notes')).toBe(0);
   });
 
+  it('refuses a package whose keys another campaign holds here', async () => {
+    // The laptop holds Ravenford; another campaign's package reusing its command IDs is refused.
+    await bring(laptopPool, await pack(vpsPool, { move: null }));
+    const elsewhere = await rewrite(await pack(vpsPool, { move: null }), (one) => {
+      if (one.startsWith('H ')) {
+        return one.replace('"campaign":"ravenford"', '"campaign":"elsewhere"');
+      }
+      if (!one.startsWith('R ')) return one;
+      const values = JSON.parse(one.slice(2)) as Record<string, unknown>;
+      for (const column of ['campaign_id', 'stream_id']) {
+        if (values[column] === CAMPAIGN) values[column] = 'elsewhere';
+      }
+      return row(values);
+    });
+    await expect(bring(laptopPool, elsewhere)).rejects.toThrow(/keys of another campaign/);
+    expect(await createWorldEngine(laptopPool).load('elsewhere')).toBeNull();
+  });
+
+  it('never sets the password of an account that did not sit in the campaign here', async () => {
+    const stranger = randomUUID();
+    await new PostgresAccountStore(laptopPool).createAccount({
+      accountId: stranger,
+      login: 'stranger',
+      passwordHash: await hashPassword('the stranger’s own phrase'),
+      displayName: 'Stranger',
+      createdAt: NOW,
+      passwordChangedAt: NOW,
+    });
+    // Masha's rows in the package are made to name the stranger, with a later password change.
+    const masha = await new PostgresAccountStore(vpsPool).findByLogin('masha');
+    if (!masha) throw new Error('no masha');
+    const claimed = await rewrite(await pack(vpsPool, { move: null }), (one) =>
+      one.startsWith('R ') && one.includes(masha.accountId)
+        ? one
+            .replaceAll(masha.accountId, stranger)
+            .replace(
+              /"password_changed_at":"[^"]+"/,
+              '"password_changed_at":"2026-12-01T00:00:00+00:00"',
+            )
+        : one,
+    );
+    const report = await bring(laptopPool, claimed);
+    expect(report.accounts.passwordsChanged).toBe(0);
+    const kept = await new PostgresAccountStore(laptopPool).findByLogin('stranger');
+    expect(
+      kept !== null && (await verifyPassword('the stranger’s own phrase', kept.passwordHash)),
+    ).toBe(true);
+  });
+
+  it('takes no change to an away campaign’s invitations, under the application', async () => {
+    await pack(vpsPool, { move: { destination: 'MacBook' } });
+    await expect(
+      vpsPool.query('UPDATE ltw_auth_invitations SET used_at = $2 WHERE campaign_id = $1', [
+        CAMPAIGN,
+        LATER,
+      ]),
+    ).rejects.toThrow(/is away/);
+    expect(await endMove(vpsPool, CAMPAIGN, 'cancelled', new Date())).toBe(true);
+    const { rowCount } = await vpsPool.query(
+      'UPDATE ltw_auth_invitations SET used_at = $2 WHERE campaign_id = $1 AND used_at IS NULL',
+      [CAMPAIGN, LATER],
+    );
+    expect(rowCount).toBeGreaterThan(0);
+  });
+
   it('merges accounts: a taken login gets a number, a later password comes back', async () => {
     const other = await new PostgresAccountStore(laptopPool).createAccount({
       accountId: randomUUID(),
@@ -264,12 +329,21 @@ describe('a campaign’s move', () => {
     });
     const renamed = await new PostgresAccountStore(laptopPool).findByLogin('masha-2');
     expect(renamed?.displayName).toBe('Маша');
+    // A password changed at home, while the campaign was away: it comes back with it.
     await laptopPool.query(
       'UPDATE ltw_accounts SET password_hash = $2, password_changed_at = $3 WHERE account_id = $1',
-      [renamed?.accountId, await hashPassword('changed at home'), LATER],
+      [renamed?.accountId, await hashPassword('changed at home'), new Date().toISOString()],
+    );
+    // One "changed" in the future does not: the DM's account keeps its own.
+    const ada = await new PostgresAccountStore(laptopPool).findByLogin('master');
+    await laptopPool.query(
+      'UPDATE ltw_accounts SET password_hash = $2, password_changed_at = $3 WHERE account_id = $1',
+      [ada?.accountId, await hashPassword('from the future'), '2099-01-01T00:00:00Z'],
     );
     const returned = await bring(vpsPool, await pack(laptopPool, { move: { destination: 'VPS' } }));
     expect(returned.accounts).toEqual({ created: 0, passwordsChanged: 1, renamed: [] });
+    const master = await new PostgresAccountStore(vpsPool).findByLogin('master');
+    expect(master !== null && (await verifyPassword(PHRASE, master.passwordHash))).toBe(true);
     // The VPS keeps the login it knows; the password is the one changed at home.
     const home = await new PostgresAccountStore(vpsPool).findByLogin('masha');
     expect(home?.accountId).toBe(renamed?.accountId);

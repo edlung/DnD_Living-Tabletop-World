@@ -6,6 +6,7 @@ import { assertCampaignReadable } from '../../world-engine/postgres-event-store.
 import { mergeAccounts, type AccountsMerged } from './import-accounts.ts';
 import {
   appendHistory,
+  assertKeysOwned,
   checkHistory,
   deleteReplaced,
   DivergedError,
@@ -55,14 +56,17 @@ export async function importCampaign(
   const client = await pool.connect();
   try {
     await client.query('BEGIN');
-    const found: { header: PackageHeader | null; situation: Situation } = {
-      header: null,
-      situation: 'new',
-    };
+    const found: { header: PackageHeader | null; situation: Situation; awaySince: string | null } =
+      {
+        header: null,
+        situation: 'new',
+        awaySince: null,
+      };
     const stager = new Stager(client);
     for await (const line of readPackage(input, async (header) => {
       found.header = header;
       found.situation = await situationOf(client, header.campaign);
+      found.awaySince = (await openMove(client, header.campaign))?.movedAt ?? null;
     })) {
       await stager.take(line);
     }
@@ -70,6 +74,7 @@ export async function importCampaign(
     if (read === null) throw new PackageError('not a campaign package');
     const campaignId = read.campaign;
     await stager.assertOwnedBy(campaignId);
+    for (const staged of stager.staged) await assertKeysOwned(client, campaignId, staged);
     const history = historyOf(stager.staged);
     const atHome = () =>
       new ImportRefusal(`campaign ${campaignId} is played here: a package never overwrites it`);
@@ -94,6 +99,12 @@ export async function importCampaign(
       };
     }
     if (situation === 'away') await endMove(client, campaignId, 'returned', now());
+    // Who sat here before anything changes: only they may take a password the package carries.
+    const seated = await client.query<{ account_id: string }>(
+      'SELECT account_id FROM ltw_account_seats WHERE campaign_id = $1',
+      [campaignId],
+    );
+    const seatedHere = new Set(seated.rows.map((row) => row.account_id));
     const events = await appendHistory(client, campaignId, history, heads);
     const records = stager.staged.filter(
       (staged) => staged.table.kind !== 'history' && staged.table.kind !== 'accounts',
@@ -108,8 +119,18 @@ export async function importCampaign(
     let accounts: AccountsMerged = none;
     for (const staged of stager.staged) {
       if (staged.table.kind === 'history') continue;
-      if (staged.table.kind === 'accounts') accounts = await mergeAccounts(client, staged);
-      else {
+      if (staged.table.kind === 'accounts') {
+        // A password changed while the campaign was away and before the package was cut; none
+        // for a campaign new here, and none from the future.
+        const window =
+          found.awaySince === null
+            ? null
+            : {
+                from: new Date(found.awaySince),
+                to: new Date(Math.min(Date.parse(read.exportedAt), now().getTime())),
+              };
+        accounts = await mergeAccounts(client, staged, seatedHere, window);
+      } else {
         const done = deleted.get(staged.table.name) ?? 0;
         tables.push(await mergeRows(client, campaignId, staged, done));
       }

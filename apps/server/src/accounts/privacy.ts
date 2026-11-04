@@ -6,7 +6,7 @@ import type {
   AccountDataResponse,
   AccountRollLine,
 } from '@ltw/contracts';
-import type { WorldEngine } from '@ltw/domain';
+import { commanderOf, type WorldEngine } from '@ltw/domain';
 
 import type { CredentialStore } from '../auth/credential-store.ts';
 import type { ChatStore } from '../chat/chat-store.ts';
@@ -47,11 +47,20 @@ export async function accountData(
   )) {
     const state = (await deps.engine.load(campaign.campaignId))?.state ?? null;
     const own = new Set(campaign.characters.map((character) => character.entityId));
-    // A DM speaks and rolls as the DM (null) or as anyone the players do not play.
-    const theirs = (who: string | null) =>
-      campaign.role === 'dm'
-        ? who === null || !(state?.roster.has(who) ?? false)
-        : who !== null && own.has(who);
+    const kindOf = (who: string) => state?.entities.get(who)?.kind ?? null;
+    const commander = (who: string) => (state === null ? null : commanderOf(state, who));
+    // A DM speaks and rolls as the DM (null) or as the people and creatures the DM plays; a
+    // player as their characters and the creatures those command. Never a character of anyone else.
+    const theirs = (who: string | null) => {
+      if (campaign.role === 'dm') {
+        if (who === null) return true;
+        const kind = kindOf(who);
+        return (kind === 'npc' || kind === 'creature') && commander(who) === null;
+      }
+      if (who === null) return false;
+      const by = commander(who);
+      return own.has(who) || (by !== null && own.has(by));
+    };
     const named = (who: string | null) =>
       who === null ? null : (state?.entities.get(who)?.name ?? who);
     const chat: AccountChatLine[] = (await deps.chat.recent(campaign.campaignId, HISTORY_LIMIT))
@@ -102,26 +111,32 @@ export async function accountData(
 }
 
 /**
- * Forgets the person behind an account: the campaign sessions of its seats end, then the account
- * keeps nothing of them (`AccountStore.forget`). The characters stay in their worlds: the DM sees
- * their seats empty. False when no free login was found (nothing is written then).
+ * Forgets the person behind an account: the account keeps nothing of them (`AccountStore.forget`:
+ * its sign-ins revoked, its seats gone), then the campaign sessions of those seats end — in that
+ * order, so no new campaign session is opened from the account in between. The characters stay in
+ * their worlds: the DM sees their seats empty. False when no free login was found (nothing is
+ * written then).
  */
 export async function forgetAccount(
   deps: Pick<PrivacyDependencies, 'accounts' | 'credentials'>,
   accountId: string,
   now: string,
 ): Promise<boolean> {
-  for (const seat of await deps.accounts.seats(accountId)) {
+  const seats = await deps.accounts.seats(accountId);
+  // A password nobody was ever told.
+  const passwordHash = await hashPassword(randomBytes(32).toString('base64url'));
+  let forgotten = false;
+  for (let attempt = 0; attempt < 5 && !forgotten; attempt += 1) {
+    const login = `deleted-${randomBytes(5).toString('hex')}`;
+    forgotten = await deps.accounts.forget(
+      accountId,
+      { login, displayName: FORGOTTEN_NAME, passwordHash },
+      now,
+    );
+  }
+  if (!forgotten) return false;
+  for (const seat of seats) {
     await deps.credentials.revokeActorSessions(seat.campaignId, seat.actorId, now);
   }
-  for (let attempt = 0; attempt < 5; attempt += 1) {
-    const replacement = {
-      login: `deleted-${randomBytes(5).toString('hex')}`,
-      displayName: FORGOTTEN_NAME,
-      // A password nobody was ever told.
-      passwordHash: await hashPassword(randomBytes(32).toString('base64url')),
-    };
-    if (await deps.accounts.forget(accountId, replacement, now)) return true;
-  }
-  return false;
+  return true;
 }

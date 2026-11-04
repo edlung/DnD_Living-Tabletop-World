@@ -35,7 +35,11 @@
 ## Consequences
 
 - No migration: the account row stays (sessions and resets refer to it, one-way), with nothing of
-  the person left in it. A deleted login can be taken again by someone else.
+  the person left in it. A deleted login can be taken again by someone else. The account is
+  forgotten first and its campaign sessions end after, so none is opened in between.
+- A deletion belongs to the server it is made on: an account deleted on the DM's laptop is not
+  deleted on the VPS (delete it where the campaigns live). A campaign that comes back with a seat
+  of an account deleted meanwhile brings the seat to the forgotten account, which nobody can use.
 - Stage 699 runs in parts (`work-orders/STAGE_699.md`): the person's data (this ADR); the release
   journeys of both modes on Chromium and WebKit; the audits, a security review and the report.
 

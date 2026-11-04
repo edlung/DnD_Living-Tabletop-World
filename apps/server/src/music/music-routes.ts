@@ -166,7 +166,17 @@ export function registerMusicRoutes(app: FastifyInstance, deps: MusicRouteDepend
     );
     scope.post(
       '/campaigns/:campaignId/music',
-      { bodyLimit: MAX_TRACK_BYTES },
+      {
+        bodyLimit: MAX_TRACK_BYTES,
+        // Only the DM's upload is read: anyone else is answered before a byte of it is buffered.
+        onRequest: async (request, reply) => {
+          const path = campaignParams.safeParse(request.params);
+          if (!path.success) return sendError(reply, request, 'INVALID_REQUEST');
+          const role = await roleIn(request, reply, deps, path.data.campaignId);
+          if (role === null) return reply;
+          if (role !== 'DM') return sendError(reply, request, 'FORBIDDEN');
+        },
+      },
       async (request, reply) => {
         const path = parseInput(campaignParams, request.params, request, reply);
         if (!path) return reply;

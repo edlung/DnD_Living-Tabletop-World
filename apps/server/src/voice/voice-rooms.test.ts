@@ -12,12 +12,14 @@ import { VoiceRooms } from './voice-rooms.ts';
 class Sink implements LiveSink {
   readonly frames: string[] = [];
   ended = false;
+  /** What the network has not taken yet: a screen that stopped reading its stream. */
+  backlog = 0;
   #close: (() => void) | null = null;
   write(text: string) {
     this.frames.push(text);
   }
   unsent() {
-    return 0;
+    return this.backlog;
   }
   end() {
     this.ended = true;
@@ -118,7 +120,7 @@ describe('the table’s voice room', () => {
     expect(rooms.peers('ravenford')).toHaveLength(MAX_SPEAKERS);
   });
 
-  it('stops a speaker that floods the room with signals', () => {
+  it('stops a speaker that floods the room with signals, across reconnections', () => {
     let now = 0;
     const rooms = new VoiceRooms(() => now);
     rooms.join('ravenford', speaker('a'), new Sink());
@@ -126,7 +128,43 @@ describe('the table’s voice room', () => {
     const send = () => rooms.signal('ravenford', 'a', { to: peerB, kind: 'offer', sdp: 'v=0' });
     for (let index = 0; index < 600; index += 1) expect(send()).toBe('sent');
     expect(send()).toBe('limited');
+    // Joining again does not give the same person a new minute.
+    rooms.join('ravenford', speaker('a'), new Sink());
+    expect(send()).toBe('limited');
     now = 60_000;
     expect(send()).toBe('sent');
+  });
+
+  it('keeps the DM’s mute and removal by the person until the room ends', () => {
+    const rooms = new VoiceRooms();
+    rooms.join('ravenford', speaker('dm', true), new Sink());
+    const peer = rooms.join('ravenford', speaker('elowen'), new Sink()) ?? '';
+    rooms.mute('ravenford', peer, true);
+    // A reload: still muted.
+    const again = new Sink();
+    const rejoined = rooms.join('ravenford', speaker('elowen'), again) ?? '';
+    expect(again.of('room').at(-1)).toMatchObject({ you: rejoined, peers: [{}, { muted: true }] });
+    // Removed: joining again is refused until the room ends.
+    rooms.remove('ravenford', rejoined);
+    const refused = new Sink();
+    expect(rooms.join('ravenford', speaker('elowen'), refused)).toBeNull();
+    expect(refused.of('closed')).toEqual([{ reason: 'removed' }]);
+    rooms.end('ravenford');
+    const later = new Sink();
+    expect(rooms.join('ravenford', speaker('elowen'), later)).not.toBeNull();
+    expect(later.of('room').at(-1)).toMatchObject({ peers: [{ muted: false }] });
+  });
+
+  it('drops a screen that stops reading its stream, before its backlog grows', () => {
+    const rooms = new VoiceRooms();
+    const sender = new Sink();
+    const stalled = new Sink();
+    rooms.join('ravenford', speaker('a'), sender);
+    const peerB = rooms.join('ravenford', speaker('b'), stalled) ?? '';
+    stalled.backlog = 300 * 1024;
+    expect(rooms.signal('ravenford', 'a', { to: peerB, kind: 'offer', sdp: 'v=0' })).toBe('sent');
+    expect(stalled.ended).toBe(true);
+    expect(rooms.peers('ravenford')).toHaveLength(1);
+    expect(sender.of('room').at(-1)).toMatchObject({ peers: [{ name: 'a' }] });
   });
 });

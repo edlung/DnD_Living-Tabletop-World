@@ -57,8 +57,16 @@ home_address() {
   echo "$address"
 }
 
+# A home network's address only (10/8, 172.16/12, 192.168/16; 127/8 for a check on this machine).
 valid_address() {
-  [[ $1 =~ ^([0-9]{1,3}\.){3}[0-9]{1,3}$ ]] || die "not an IPv4 address: $1"
+  [[ $1 =~ ^([0-9]{1,3})\.([0-9]{1,3})\.[0-9]{1,3}\.[0-9]{1,3}$ ]] || die "not an IPv4 address: $1"
+  local first=${BASH_REMATCH[1]} second=${BASH_REMATCH[2]}
+  case $first in
+    10 | 127) return 0 ;;
+    172) [ "$second" -ge 16 ] && [ "$second" -le 31 ] && return 0 ;;
+    192) [ "$second" -eq 168 ] && return 0 ;;
+  esac
+  die "$1 is not a home network's address: the game on this laptop is for the home network only"
 }
 
 # The first start: settings with fresh secrets, never printed.
@@ -115,10 +123,15 @@ firewall_check() {
 }
 
 show_address() {
-  local address
+  local address fingerprint
   address=$(env_value PUBLIC_HOST)
   say "on a phone or tablet: open http://$address/ (or scan the code below) — once, to trust this laptop"
   say "then the table is at https://$address/"
+  # The page comes over plain HTTP: the certificate a phone installs is checked against this.
+  fingerprint=$(compose exec -T proxy cat /data/caddy/pki/authorities/local/root.crt </dev/null |
+    openssl x509 -noout -fingerprint -sha256 2>/dev/null | cut -d= -f2) || true
+  [ -z "$fingerprint" ] ||
+    say "the laptop's certificate, SHA-256: $fingerprint — a phone's must show the same before you trust it"
   node "$LOCAL_DIR/qr.mjs" "http://$address/" 2>/dev/null || true
 }
 
@@ -138,8 +151,10 @@ start() {
   require_docker_engine
   [ -f "$ENV_FILE" ] || write_settings "$address"
   follow_address "$address"
-  local tag running
-  tag=$(git -C "$REPO_DIR" rev-parse --short=12 HEAD)
+  local commit tag running
+  # Exactly as build.sh tags it: the commit's first 12 characters (--short may give more).
+  commit=$(git -C "$REPO_DIR" rev-parse --verify HEAD)
+  tag=${commit:0:12}
   if ! docker image inspect "ltw-server:$tag" "ltw-proxy:$tag" >/dev/null 2>&1; then
     say "building the images of $tag (the internet is needed for this once)"
     "$SCRIPTS/build.sh" "$tag" >/dev/null
@@ -193,7 +208,17 @@ bring() {
     say "or cancel the move there: ssh $host 'cd $remote && deploy/scripts/campaign-move.sh cancel $campaign'"
     exit 1
   fi
+  forget_older "$campaign" "$file"
   say "$campaign plays here now"
+}
+
+# A package holds password hashes: only the newest of a campaign stays, as the move's copy.
+forget_older() {
+  local older
+  for older in "$MOVES_DIR/$1"-*.ltwcampaign; do
+    [ -e "$older" ] && [ "$older" != "$2" ] && rm -f -- "$older"
+  done
+  return 0
 }
 
 return_campaign() {
@@ -211,6 +236,7 @@ return_campaign() {
     say "the import on $host failed; the campaign stays away here. Try again, or cancel: $0 cancel $campaign"
     exit 1
   fi
+  forget_older "$campaign" "$file"
   say "$campaign plays on $host again"
 }
 

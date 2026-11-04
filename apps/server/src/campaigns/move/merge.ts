@@ -22,6 +22,9 @@ export interface TableMerged {
 /** The two copies were played apart: nothing is written. */
 export class DivergedError extends Error {}
 
+/** PostgreSQL's code for a one-way row refusing its change (the credential triggers). */
+const RESTRICT_VIOLATION = '23001';
+
 const list = (alias: string, columns: readonly string[]) =>
   `(${columns.map((column) => `${alias}.${column}`).join(', ')})`;
 const sameKey = (staged: StagedTable) =>
@@ -99,6 +102,28 @@ export async function appendHistory(
   return insertMissing(client, history.events);
 }
 
+/**
+ * A staged row whose key this server already holds for another campaign (keys without the campaign:
+ * a command's, an invitation's, a table link's) would merge into that campaign's row or vanish: the
+ * package is refused instead. Tables owned through another (`via`) and accounts are checked apart.
+ */
+export async function assertKeysOwned(
+  client: pg.ClientBase,
+  campaignId: string,
+  staged: StagedTable,
+): Promise<void> {
+  const { table } = staged;
+  if (table.kind === 'accounts' || table.owner.via !== undefined) return;
+  if (table.key.includes(table.owner.column)) return;
+  const foreign = await count(
+    client,
+    `SELECT count(*)::int AS n FROM ${staged.stage} s JOIN ${table.name} t ON ${sameKey(staged)}
+      WHERE t.${table.owner.column} IS DISTINCT FROM $1`,
+    [campaignId],
+  );
+  if (foreign > 0) throw new PackageError(`table ${table.name} has keys of another campaign here`);
+}
+
 /** The first pass, for a `state` table: rows the package lacks or changed go. */
 export async function deleteReplaced(
   client: pg.ClientBase,
@@ -134,14 +159,22 @@ export async function mergeRows(
     added = await insertMissing(client, staged);
   } else if (table.kind === 'record') {
     const columns = staged.columns.join(', ');
-    const { rows } = await client.query<{ inserted: boolean }>(
-      `INSERT INTO ${table.name} AS t (${columns})
-       SELECT ${columns} FROM ${staged.stage} ORDER BY ${table.order}
-       ON CONFLICT (${table.key.join(', ')}) DO UPDATE
-         SET ${staged.columns.map((column) => `${column} = EXCLUDED.${column}`).join(', ')}
-         WHERE ${list('t', staged.columns)} IS DISTINCT FROM ${list('EXCLUDED', staged.columns)}
-       RETURNING (xmax = 0) AS inserted`,
-    );
+    const { rows } = await client
+      .query<{ inserted: boolean }>(
+        `INSERT INTO ${table.name} AS t (${columns})
+         SELECT ${columns} FROM ${staged.stage} ORDER BY ${table.order}
+         ON CONFLICT (${table.key.join(', ')}) DO UPDATE
+           SET ${staged.columns.map((column) => `${column} = EXCLUDED.${column}`).join(', ')}
+           WHERE ${list('t', staged.columns)} IS DISTINCT FROM ${list('EXCLUDED', staged.columns)}
+         RETURNING (xmax = 0) AS inserted`,
+      )
+      .catch((error: unknown) => {
+        // A row that changes one way changed here as it never did in the package.
+        if ((error as { code?: unknown }).code === RESTRICT_VIOLATION) {
+          throw new DivergedError(`${table.name}: a row changed here while the campaign was away`);
+        }
+        throw error;
+      });
     added = rows.filter((row) => row.inserted).length;
     updated = rows.length - added;
   } else {

@@ -1,7 +1,7 @@
 import { createHmac } from 'node:crypto';
 
 import type { FastifyInstance } from 'fastify';
-import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { delivered, openLive, type LiveStream } from '../testing/live.ts';
 import { TOKENS, get, post, ravenfordApp } from '../testing/ravenford-app.ts';
@@ -135,7 +135,39 @@ describe('the table’s voice', () => {
     await delivered();
   });
 
-  it('gives a relay’s short-lived credentials when one is set, none otherwise', async () => {
+  it('closes a speaker’s stream once they may no longer speak: the session ended', async () => {
+    vi.useFakeTimers({ toFake: ['setInterval', 'clearInterval'] });
+    try {
+      await playOnline();
+      const player = await stream(TOKENS.player);
+      await player.until(() => roomOf(player) !== undefined);
+      const lobby = (await get(app, `${BASE}/lobby?perspective=DM`, TOKENS.dm)).json<{
+        session: { sessionId: string };
+      }>();
+      const ended = await post(
+        app,
+        `${BASE}/commands?perspective=DM`,
+        {
+          commandId: 'voice-session-ends',
+          command: { type: 'EndSession', sessionId: lobby.session.sessionId },
+        },
+        TOKENS.dm,
+      );
+      expect(ended.statusCode).toBe(200);
+      // Still in the room until the next check of who may be.
+      expect(player.ended()).toBe(false);
+      vi.advanceTimersByTime(20_000);
+      await player.until(() => player.ended());
+      expect(player.messages().at(-1)).toEqual({ type: 'closed', reason: 'ended' });
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
+  it('gives a relay’s short-lived credentials while the room is open, none without a relay', async () => {
+    // Not a proxy between sessions: before the table plays online there are none to give.
+    expect((await get(app, `${BASE}/voice/ice`, TOKENS.player)).statusCode).toBe(409);
+    await playOnline();
     const ice = await get(app, `${BASE}/voice/ice`, TOKENS.player);
     expect(ice.json()).toEqual({ iceServers: [] });
     const secret = 'a long shared relay secret';

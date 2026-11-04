@@ -33,11 +33,18 @@
    and talks only by push to talk, so one room's devices never feed each other's speakers back to the
    table.
 6. **The DM's controls.** The DM mutes a speaker for everyone (until the DM lets them talk again) and
-   removes one from the room; the room lists who is in it, who talks and who is muted.
+   removes one from the room, until the room ends; both hold for the person, so a reload changes
+   neither. The room lists who is in it, who talks and who is muted.
 7. **Reconnection.** A connection that fails restarts its candidates; a screen whose stream drops
    joins again and renews every connection, without the speaker pressing anything.
 
 ## Consequences
+
+- A speaker's right to the room is checked again every 20 seconds — the same sign-in, still the DM
+  or a player, the session still played online, the campaign at home (ADR 0061) — and the stream
+  closes when it no longer holds: a revoked seat, a deleted account or the session's end. A screen
+  that stops reading its stream is dropped before its backlog grows; a person's signals are
+  counted across reconnections. The relay's credentials are given only while the room is open.
 
 - The page's `Permissions-Policy` lets the app's own origin ask for the microphone
   (`microphone=(self)`; the camera, geolocation, payment and USB stay off), in `deploy/proxy/Caddyfile`
