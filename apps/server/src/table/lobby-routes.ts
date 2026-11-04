@@ -14,6 +14,7 @@ import { withBody, withPerspective, type RouteDependencies } from '../http/reque
 import { presenceView } from '../live/presence.ts';
 import type { PresenceSource } from '../live/registry.ts';
 import type { TrackStore } from '../music/track-store.ts';
+import type { VoiceRooms } from '../voice/voice-rooms.ts';
 import type { LobbyDependencies } from './table-state.ts';
 
 /**
@@ -28,6 +29,8 @@ export interface LobbyRouteDependencies extends RouteDependencies {
   readonly presence: PresenceSource;
   /** The DM's tracks: a track played must be one of the campaign's. */
   readonly music: TrackStore;
+  /** The table's voice rooms: leaving online play ends the campaign's (ADR 0060 §1). */
+  readonly voice?: VoiceRooms;
 }
 
 const params = z.object({ campaignId: campaignIdSchema }).strict();
@@ -113,6 +116,7 @@ export function registerLobbyRoutes(app: FastifyInstance, deps: LobbyRouteDepend
       },
     };
     await lobby.state.write(path.campaignId, next, now);
+    if (before.mode === 'online' && next.mode !== 'online') deps.voice?.end(path.campaignId);
     request.log.info(
       {
         mode: next.mode,

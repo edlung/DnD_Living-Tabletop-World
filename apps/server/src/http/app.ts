@@ -20,6 +20,8 @@ import { registerLibraryRoutes } from '../library/library-routes.ts';
 import type { AdventureBooks, AdventurePictures } from '../adventures/adventures.ts';
 import { registerLobbyRoutes } from '../table/lobby-routes.ts';
 import { registerMusicRoutes } from '../music/music-routes.ts';
+import { registerVoiceRoutes, type VoiceRelay } from '../voice/voice-routes.ts';
+import { VoiceRooms } from '../voice/voice-rooms.ts';
 import { InMemoryTrackStore, type TrackStore } from '../music/track-store.ts';
 import { memoryLobby, type LobbyDependencies } from '../table/table-state.ts';
 import { registerDisplayRoutes } from '../display/display-routes.ts';
@@ -145,6 +147,11 @@ export interface AppDependencies {
   readonly handouts?: HandoutDependencies;
   /** The DM's music (docs/adr/0059-atmosphere.md §3); in memory when absent. */
   readonly music?: TrackStore;
+  /**
+   * The table's voice (docs/adr/0060-voice.md): its rooms, always this process's memory, and the
+   * relay, when one is set (`LTW_TURN_URLS`, `LTW_TURN_SECRET`).
+   */
+  readonly voice?: { readonly rooms: VoiceRooms; readonly relay: VoiceRelay | null };
 }
 
 /** Table talk in memory: for compositions without a database. */
@@ -249,13 +256,23 @@ export function buildApp(input: AppDependencies): FastifyInstance {
   registerPresenceRoutes(app, { ...deps, presence: deps.presence ?? NOBODY_CONNECTED });
   // One set of tracks for the music's routes and the lobby that plays them (ADR 0059 §3).
   const music = deps.music ?? new InMemoryTrackStore();
+  // One voice room a campaign, which the lobby ends when the table leaves online play (ADR 0060).
+  const voice = deps.voice ?? { rooms: new VoiceRooms(), relay: null };
   registerLobbyRoutes(app, {
     ...deps,
     lobby,
     music,
+    voice: voice.rooms,
     presence: deps.presence ?? NOBODY_CONNECTED,
   });
   registerMusicRoutes(app, { ...deps, lobby, music });
+  registerVoiceRoutes(app, {
+    ...deps,
+    lobby,
+    voice: voice.rooms,
+    relay: voice.relay,
+    credentialHeader: vary,
+  });
   registerChatRoutes(app, { ...deps, chat: deps.chat ?? memoryChat() });
   registerMarkRoutes(app, { ...deps, marks: deps.marks ?? memoryMarks() });
   // One set of handouts for the handout routes and the DM's library that gives them (ADR 0058 §3).

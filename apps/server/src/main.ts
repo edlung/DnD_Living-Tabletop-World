@@ -47,6 +47,7 @@ import { PostgresChatStore } from './chat/postgres-chat-store.ts';
 import { PostgresMarkStore } from './marks/postgres-mark-store.ts';
 import { PostgresHandoutStore } from './handouts/postgres-handout-store.ts';
 import { PostgresTrackStore } from './music/postgres-track-store.ts';
+import { VoiceRooms } from './voice/voice-rooms.ts';
 import { PostgresDmNoteStore } from './dm/postgres-note-store.ts';
 import { PostgresSavedEncounterStore } from './combat/postgres-saved-encounter-store.ts';
 import { PostgresLibraryStore } from './library/postgres-library-store.ts';
@@ -219,6 +220,8 @@ async function main(): Promise<void> {
     handouts: { store: new PostgresHandoutStore(pool), now: () => new Date().toISOString() },
     // The DM's music (ADR 0059 §3; migration 0038).
     music: new PostgresTrackStore(pool),
+    // The table's voice (ADR 0060): rooms in memory; the relay when the operator set one.
+    voice: { rooms: new VoiceRooms(), relay: config.voiceRelay },
     lobby: {
       state: new PostgresTableStateStore(pool),
       ready: new ReadyRegistry(),
