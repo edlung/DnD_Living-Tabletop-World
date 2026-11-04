@@ -105,23 +105,44 @@ work orders `work-orders/STAGE_690.md`, `STAGE_695.md`, `STAGE_697.md`, `STAGE_6
   `campaign-moved.spec.ts` and `voice.spec.ts` follow the new rules; both new screens are audited
   (48 views, no findings).
 
+- **CI's runs** (hosted runners, slower than the local machine) found one more thing and three
+  waits too short for them:
+  - The dice log listed a new roll for one frame before its dice were thrown, then hid it until
+    they landed (the flight was marked after that render; Stage 510's code). New rolls are now
+    taken in during the render that brings them; `dice.spec.ts` watches the log with a
+    MutationObserver, which saw the roll listed before landing on the old code.
+  - `library.spec.ts` now reads the table's rolls after their dice land, and the dice journeys
+    give a throw 30 s; the iPad's `dm-screen.spec.ts` timed out once on Linux WebKit and passed on
+    the next run, as it always does locally.
+
+- **A walk through the voice as the DM and a player** (the UX pass of the new screens):
+  - "Remove from the voice" acted at once, and since the review it holds until the room ends: a
+    slip of the finger on a phone kept a player out for the rest of the online session. It now asks
+    first, as deleting an account does — who and until when, opening on "Keep in the voice" — and
+    focus stays in the panel either way (`voice/peer-controls.tsx`; `voice.spec.ts` keeps, then
+    removes). Audited open and after: 32 views, no findings.
+  - The note without a relay spoke of screens reaching each other; it now says what a family can act
+    on: voices go straight between the screens, someone unheard may be on another network, and the
+    DM can set up a relay.
+
 ## Verification
 
-- On the last code commit (`4bccee5e`): format, lint, typecheck and the context budget (2391
-  files, none over) clean; unit 4218 passed (531 files), integration 391 (77); build.
-- The full browser suite on that commit: 329 journeys (Chromium; the DM's screen on the iPad's
-  WebKit; the release journeys in WebKit) — 327 in the run, and the other two (`live-undo-notice`,
-  `toolbox`: timeouts while the machine's load stood near 18) passing on their own rerun. The run
-  before it, on `96c461fd`, found the two changes above; its `language-ru` failure was the same
-  load and passed alone.
-- The release journeys (699b), in Chromium and WebKit, pass inside that suite.
-- The layout audit: 896 views of every screen, 80 of the two places it fixed, 48 of the last two
-  screens; no findings after the fixes but the warning above. D's own screens (the table's moments,
-  music, sound, voice, a campaign away, privacy) audited again on the last commit by their stages'
-  scripts: 257 views, no findings.
+- On the last commit (`16b5e91e`): format, lint, typecheck and the context budget (2392 files,
+  none over) clean; unit 4218 passed (531 files), integration 391 (77); build.
+- The full browser suite (329 journeys: Chromium; the DM's screen on the iPad's WebKit; the release
+  journeys in WebKit) on `ecb67fa6`, the commit before the voice's question: 326 in the run, the
+  other three (`live-world`, `rest`, `weapons`: timeouts while the machine's load peaked near 40)
+  passing on their own rerun. On `16b5e91e` the journeys the voice's change reaches: `voice`,
+  `accessibility`, `online`, `chat` and the release journeys in Chromium and WebKit, all passing.
+  Earlier full runs found the changes above (on `96c461fd`) and passed 327 + 2 on rerun
+  (`4bccee5e`).
+- The layout audit: 896 views of every screen, then 80 + 48 + 32 of what the fixes changed, and D's
+  own screens again by their stages' scripts (257 views): no findings but the warning above.
 - The security review: an independent reviewer over the milestone's changes, then our own pass over
   the move's import; each finding fixed with its test (`redeem-away.test.ts`,
   `move.integration.test.ts`, `voice-rooms.test.ts`, `voice-routes.test.ts`).
+- CI: the first two runs on GitHub's runners failed as described above; the run on the last commit
+  is the merge's check.
 
 ## What the owner does next
 
