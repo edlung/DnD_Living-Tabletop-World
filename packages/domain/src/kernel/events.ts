@@ -6,6 +6,7 @@ import {
   commandIdSchema,
   entityIdSchema,
   kernelCommandTypeSchema,
+  adventureKeySchema,
   languageSchema,
   sceneIdSchema,
   worldTimeSchema,
@@ -56,6 +57,7 @@ import {
   itemUnequippedPayloadSchema,
   itemRecoveredPayloadSchema,
   itemUsedPayloadSchema,
+  itemStackChangedPayloadSchema,
   itemAttunedPayloadSchema,
   itemChargesRegainedPayloadSchema,
   itemChargesSpentPayloadSchema,
@@ -71,6 +73,7 @@ import {
   assetRequestedPayloadSchema,
   assetRestoreSchemas,
   assetRetractedPayloadSchema,
+  battleMapAlignedPayloadSchema,
 } from '../assets/events.ts';
 import { weatherRestoreSchemas, weatherSetPayloadSchema } from '../weather/weather.ts';
 import {
@@ -83,6 +86,25 @@ import {
   portraitWishRestoreSchemas,
 } from '../assets/portrait-wishes.ts';
 import { chronicleGeneratedPayloadSchema, chronicleRestoreSchemas } from '../chronicle/records.ts';
+import { merchantRestoreSchemas, merchantSetPayloadSchema } from '../items/trade.ts';
+import {
+  craftingAbandonedPayloadSchema,
+  craftingFinishedPayloadSchema,
+  craftingRestoreSchemas,
+  craftingStartedPayloadSchema,
+  craftingWorkedPayloadSchema,
+} from '../items/crafting.ts';
+import {
+  mapPinsSetPayloadSchema,
+  partyTravelledPayloadSchema,
+  routeSetPayloadSchema,
+  travelRestoreSchemas,
+} from '../travel/map.ts';
+import {
+  questRestoreSchemas,
+  questSetPayloadSchema,
+  questStepSetPayloadSchema,
+} from '../quest/hand-quests.ts';
 import {
   preparedPartyEstablishedPayloadSchema,
   campaignBootstrappedPayloadSchema,
@@ -150,6 +172,10 @@ export const restoreSchema = z.discriminatedUnion('fact', [
   ...campaignOptionsRestoreSchemas,
   ...deathRestoreSchemas,
   ...portraitWishRestoreSchemas,
+  ...merchantRestoreSchemas,
+  ...craftingRestoreSchemas,
+  ...travelRestoreSchemas,
+  ...questRestoreSchemas,
   ...chronicleRestoreSchemas,
   ...itemRestoreSchemas,
 ]);
@@ -167,6 +193,8 @@ export const kernelEventSchema = z.discriminatedUnion('type', [
         dmActorId: actorSchema.shape.actorId,
         /** Absent in histories written before ADR 0031: they read as English. */
         language: languageSchema.optional(),
+        /** The ready adventure it reads (ADR 0058 §5); absent: Ravenford's. */
+        adventure: adventureKeySchema.optional(),
       })
       .strict(),
   ),
@@ -247,6 +275,9 @@ export const kernelEventSchema = z.discriminatedUnion('type', [
   event('CombatEnded', combatEventPayloadSchemas.CombatEnded),
   event('CombatOrderChanged', combatEventPayloadSchemas.CombatOrderChanged),
   event('LightSet', combatEventPayloadSchemas.LightSet),
+  event('TerrainPainted', combatEventPayloadSchemas.TerrainPainted),
+  event('FogSet', combatEventPayloadSchemas.FogSet),
+  event('TrapChanged', combatEventPayloadSchemas.TrapChanged),
   event('StatBlockSet', combatEventPayloadSchemas.StatBlockSet),
   event('ActionTaken', combatEventPayloadSchemas.ActionTaken),
   event('FeatureUsed', combatEventPayloadSchemas.FeatureUsed),
@@ -282,16 +313,19 @@ export const kernelEventSchema = z.discriminatedUnion('type', [
   event('AssetJobFailed', assetJobFailedPayloadSchema),
   event('AssetRequestCancelled', assetRequestCancelledPayloadSchema),
   event('AssetRetracted', assetRetractedPayloadSchema),
+  event('BattleMapAligned', battleMapAlignedPayloadSchema),
   event('AssetApproved', assetApprovedPayloadSchema),
   event('WeatherSet', weatherSetPayloadSchema),
   event('CampaignOptionsSet', campaignOptionsSetPayloadSchema),
   event('PortraitAsked', portraitAskedPayloadSchema),
+  event('MerchantSet', merchantSetPayloadSchema),
   event('ChronicleGenerated', chronicleGeneratedPayloadSchema),
   event('CharacterReleased', characterReleasedPayloadSchema),
   event('ItemGranted', itemGrantedPayloadSchema),
   event('ItemEquipped', itemEquippedPayloadSchema),
   event('ItemUnequipped', itemUnequippedPayloadSchema),
   event('ItemUsed', itemUsedPayloadSchema),
+  event('ItemStackChanged', itemStackChangedPayloadSchema),
   event('ItemRecovered', itemRecoveredPayloadSchema),
   event('ItemTransferred', itemTransferredPayloadSchema),
   event('ItemSplit', itemSplitPayloadSchema),
@@ -301,6 +335,18 @@ export const kernelEventSchema = z.discriminatedUnion('type', [
   event('ItemChargesSpent', itemChargesSpentPayloadSchema),
   event('ItemChargesRegained', itemChargesRegainedPayloadSchema),
   event('ItemIdentified', itemIdentifiedPayloadSchema),
+  // Crafting (docs/adr/0057-encounters-maps-loot.md §9).
+  event('CraftingStarted', craftingStartedPayloadSchema),
+  event('CraftingWorked', craftingWorkedPayloadSchema),
+  event('CraftingFinished', craftingFinishedPayloadSchema),
+  event('CraftingAbandoned', craftingAbandonedPayloadSchema),
+  // The world map and travel (§10).
+  event('MapPinsSet', mapPinsSetPayloadSchema),
+  event('RouteSet', routeSetPayloadSchema),
+  event('PartyTravelled', partyTravelledPayloadSchema),
+  // Quests by hand (docs/adr/0058-campaign-content.md §2).
+  event('QuestSet', questSetPayloadSchema),
+  event('QuestStepSet', questStepSetPayloadSchema),
 ]);
 
 export type KernelEvent = z.infer<typeof kernelEventSchema>;

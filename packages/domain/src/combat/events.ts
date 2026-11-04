@@ -1,5 +1,6 @@
 import {
   LIGHT_LEVELS,
+  MAX_PAINTED_SQUARES,
   ABILITIES,
   COMBAT_ACTIONS,
   CONDITIONS,
@@ -10,10 +11,12 @@ import {
   WEAPON_IDS,
   WEAPON_MASTERIES,
   battlefieldSchema,
+  boardTrapSchema,
   conditionDetailsSchema,
   entityIdSchema,
   squareSchema,
   statBlockSchema,
+  terrainPaintSchema,
 } from '@ltw/contracts';
 import { z } from 'zod';
 
@@ -193,6 +196,38 @@ export const combatEventPayloadSchemas = {
   CombatEnded: z.object({ encounterId: entityIdSchema }).strict(),
   /** The fight's light set (docs/adr/0050-the-world-around.md §1). */
   LightSet: z.object({ encounterId: entityIdSchema, ambient: z.enum(LIGHT_LEVELS) }).strict(),
+  /** The fog of war laid on squares or lifted (docs/adr/0057-encounters-maps-loot.md §4). */
+  FogSet: z
+    .object({
+      encounterId: entityIdSchema,
+      squares: z.array(squareSchema).min(1).max(MAX_PAINTED_SQUARES),
+      hidden: z.boolean(),
+    })
+    .strict(),
+  /**
+   * A trap on the board changed (docs/adr/0057-encounters-maps-loot.md §6): it sprang, the party
+   * found it, or it was disarmed — `trap` is the trap now, found by `square`, one of its squares.
+   * Sprung, it may leave rubble (Difficult Terrain) or an open pit on its squares.
+   */
+  TrapChanged: z
+    .object({
+      encounterId: entityIdSchema,
+      square: squareSchema,
+      change: z.enum(['sprung', 'found', 'disarmed']),
+      byId: entityIdSchema.optional(),
+      trap: boardTrapSchema,
+      rubble: z.literal(true).optional(),
+      pitFt: z.number().int().min(5).max(200).multipleOf(5).optional(),
+    })
+    .strict(),
+  /** The DM's brush on the fight's ground (docs/adr/0057-encounters-maps-loot.md §2). */
+  TerrainPainted: z
+    .object({
+      encounterId: entityIdSchema,
+      squares: z.array(squareSchema).min(1).max(MAX_PAINTED_SQUARES),
+      paint: terrainPaintSchema,
+    })
+    .strict(),
   /**
    * The DM changed a running fight (docs/adr/0043-dm-screen.md §2): who joined, left, delayed or
    * had initiative set, and the whole order after it, with the current turn's place.
@@ -400,6 +435,8 @@ export const combatEventPayloadSchemas = {
         'shove',
         'saddle',
         'hazard',
+        /** Extended travel's hourly save (docs/adr/0057-encounters-maps-loot.md §10). */
+        'travel',
         /** A creature's action with a save: a breath (docs/adr/0053-monsters-as-data.md §2). */
         'creature-action',
       ]),

@@ -261,7 +261,7 @@ export {
   spellRules,
   type SpellRules,
 } from './spell-rules.ts';
-export { inSpellArea, type SpellArea } from './areas.ts';
+export { inSpellArea, type SpellArea } from '@ltw/contracts';
 export {
   DIFFICULTY_RATINGS,
   encounterDifficulty,

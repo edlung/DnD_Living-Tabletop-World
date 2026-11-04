@@ -3,12 +3,14 @@ import { useT } from '@ltw/ui';
 
 import { Sheet } from '../shell/sheet.tsx';
 import type { Shell } from '../shell/use-shell.ts';
+import { WorldMap, type WorldMapProps } from '../travel/world-map.tsx';
 import { Glyph } from '../visual/glyph.tsx';
 
 /**
  * The Places sheet (docs/STAGE_320_DESIGN.md §5.2): which known place the stage shows — a
  * viewing choice that never moves a character (ADR 0026 §4) — and every known destination,
- * each opening its details, where Enter goes there.
+ * each opening its details, where Enter goes there; and the world map, with the DM's journeys
+ * (docs/adr/0057-encounters-maps-loot.md §10).
  */
 export function PlacesSheet({
   shell,
@@ -17,6 +19,7 @@ export function PlacesSheet({
   locations,
   onView,
   onExplore,
+  travel,
 }: {
   readonly shell: Shell;
   readonly placeId: string;
@@ -25,6 +28,7 @@ export function PlacesSheet({
   readonly locations: readonly EntityRef[] | null;
   readonly onView: (placeId: string) => void;
   readonly onExplore: (place: EntityRef) => void;
+  readonly travel: WorldMapProps;
 }) {
   const t = useT();
   return (
@@ -61,6 +65,14 @@ export function PlacesSheet({
               {t('Shows another place you know. It does not move your character.')}
             </p>
           </div>
+          <WorldMap
+            {...travel}
+            places={locations}
+            onPlace={(placeId) => {
+              const place = locations.find((one) => one.entityId === placeId);
+              if (place) onExplore(place);
+            }}
+          />
           <section className="sheet-section" aria-labelledby="known-destinations">
             <h3 id="known-destinations">{t('Known destinations')}</h3>
             <ul className="place-list">

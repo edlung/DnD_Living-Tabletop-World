@@ -5,8 +5,9 @@ import type { Ability, TrapId } from '@ltw/contracts';
  * them (docs/adr/0055-rules-reference-and-toolbox.md §4): each tier's save, damage, fall and
  * condition, the numbers the SRD's words and tier tables give (`traps.test.ts` holds them to the
  * text). A pit is a fall (the glossary's Falling: 1d6 per 10 feet, Prone unless it dealt nothing).
- * What the text leaves to the DM — finding and disarming, a net's escape, a stone's course, the
- * rubble's Difficult Terrain — stays the DM's.
+ * On the board (docs/adr/0057-encounters-maps-loot.md §6) each also says how it is found, whom it
+ * catches, whether it springs again and what it leaves. What the text leaves to the DM — a net's
+ * escape, a stone's course — stays the DM's.
  */
 export interface TrapDice {
   readonly count: number;
@@ -36,7 +37,27 @@ export interface TrapRules {
   readonly condition: 'prone' | 'restrained' | 'poisoned' | null;
   /** Huge and larger succeed at once (the Net). */
   readonly hugeEscapes: boolean;
+  /**
+   * How it is found: a Search — Wisdom (Perception), which a Passive Perception at the DC also
+   * meets as a creature comes near — or a Study — Intelligence (Investigation) — at this DC.
+   */
+  readonly detect: { readonly action: 'search' | 'study'; readonly dc: number };
+  /** Whom it catches on the board: the creature that sets it off, or every creature on it. */
+  readonly catches: 'mover' | 'area';
+  /** Whether it springs again: never, at each later turn, or so until it has sprung three times. */
+  readonly resets: 'never' | 'each-turn' | 'thrice';
+  /** What it leaves on its squares: the rubble's Difficult Terrain, or an open pit. */
+  readonly leaves: 'rubble' | 'pit' | null;
+  /** It springs too on a creature that starts its turn on it (the statue's plate). */
+  readonly onTurnStart: boolean;
 }
+
+const BOARD = {
+  catches: 'mover',
+  resets: 'never',
+  leaves: null,
+  onTurnStart: false,
+} as const satisfies Partial<TrapRules>;
 
 const LEVELS = ['1–4', '5–10', '11–16', '17–20'] as const;
 const DEPTHS = [10, 30, 60, 120] as const;
@@ -63,6 +84,10 @@ export const TRAPS: readonly TrapRules[] = [
     half: true,
     condition: null,
     hugeEscapes: false,
+    detect: { action: 'search', dc: 11 },
+    ...BOARD,
+    catches: 'area',
+    leaves: 'rubble',
   },
   {
     trapId: 'falling-net',
@@ -70,6 +95,8 @@ export const TRAPS: readonly TrapRules[] = [
     half: false,
     condition: 'restrained',
     hugeEscapes: true,
+    detect: { action: 'search', dc: 11 },
+    ...BOARD,
   },
   {
     trapId: 'fire-casting-statue',
@@ -80,6 +107,11 @@ export const TRAPS: readonly TrapRules[] = [
     half: true,
     condition: null,
     hugeEscapes: false,
+    detect: { action: 'search', dc: 15 },
+    ...BOARD,
+    catches: 'area',
+    resets: 'each-turn',
+    onTurnStart: true,
   },
   {
     trapId: 'hidden-pit',
@@ -87,6 +119,9 @@ export const TRAPS: readonly TrapRules[] = [
     half: false,
     condition: null,
     hugeEscapes: false,
+    detect: { action: 'study', dc: 15 },
+    ...BOARD,
+    leaves: 'pit',
   },
   {
     trapId: 'poisoned-darts',
@@ -98,6 +133,10 @@ export const TRAPS: readonly TrapRules[] = [
     half: false,
     condition: null,
     hugeEscapes: false,
+    detect: { action: 'search', dc: 15 },
+    ...BOARD,
+    catches: 'area',
+    resets: 'thrice',
   },
   {
     trapId: 'poisoned-needle',
@@ -108,6 +147,8 @@ export const TRAPS: readonly TrapRules[] = [
     half: true,
     condition: 'poisoned',
     hugeEscapes: false,
+    detect: { action: 'search', dc: 15 },
+    ...BOARD,
   },
   {
     trapId: 'rolling-stone',
@@ -117,6 +158,8 @@ export const TRAPS: readonly TrapRules[] = [
     half: false,
     condition: 'prone',
     hugeEscapes: false,
+    detect: { action: 'study', dc: 15 },
+    ...BOARD,
   },
   {
     trapId: 'spiked-pit',
@@ -128,6 +171,9 @@ export const TRAPS: readonly TrapRules[] = [
     half: false,
     condition: null,
     hugeEscapes: false,
+    detect: { action: 'study', dc: 15 },
+    ...BOARD,
+    leaves: 'pit',
   },
 ];
 

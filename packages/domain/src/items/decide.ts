@@ -15,18 +15,20 @@ import {
   SELF,
   withSaveBonus,
   withSheet,
+  portion,
 } from './handling.ts';
 import {
   armorClassDelta,
   clampArmorClass,
   entryOf,
   magicBonus,
+  PARTY_STASH,
   possessionOf,
   shieldIn,
   wornIn,
-  type Possession,
 } from './records.ts';
 import { decideSpendCharges } from './charges.ts';
+import { decideStashItem, decideUnstashItem } from './stash.ts';
 
 /**
  * Item commands (docs/adr/0039-item-possession.md). An item changes hands or
@@ -224,71 +226,12 @@ export function decideUseItem(state: WorldState, command: ResolvedCommandOf<'Use
   );
 }
 
-/**
- * How much of a stack moves, and the events that make it a thing of its own when it is part:
- * a new item entity (its ID drawn by the engine) takes that quantity from the stack.
- */
-function portion(
-  state: WorldState,
-  command: {
-    readonly itemId: string;
-    readonly quantity?: number | undefined;
-    readonly characterId: string;
-    readonly resolution: { readonly ids: readonly string[] };
-  },
-  possession: Possession,
-):
-  | {
-      readonly ok: true;
-      readonly itemId: string;
-      readonly quantity: number;
-      readonly events: KernelEvent[];
-    }
-  | (Decision & { ok: false }) {
-  const wanted = command.quantity ?? possession.quantity;
-  if (wanted > possession.quantity)
-    return reject('INVALID_ITEM', 'Not that many are carried', { itemId: command.itemId });
-  if (wanted === possession.quantity)
-    return { ok: true, itemId: command.itemId, quantity: wanted, events: [] };
-  if (!entryOf(possession)?.stackable)
-    return reject('INVALID_ITEM', 'Only a stack can be divided', { itemId: command.itemId });
-  const newItemId = command.resolution.ids[0];
-  const source = state.entities.get(command.itemId);
-  if (newItemId === undefined || !source)
-    return reject('INVALID_ITEM', 'The stack cannot be divided now', { itemId: command.itemId });
-  return {
-    ok: true,
-    itemId: newItemId,
-    quantity: wanted,
-    events: [
-      {
-        type: 'EntityCreated',
-        payload: {
-          entityId: newItemId,
-          kind: 'item',
-          name: source.name,
-          description: source.description,
-          existsSince: source.existsSince,
-          location: null,
-        },
-      },
-      {
-        type: 'ItemSplit',
-        payload: {
-          itemId: command.itemId,
-          newItemId,
-          holderId: command.characterId,
-          quantity: wanted,
-        },
-      },
-    ],
-  };
-}
-
 export function decideGiveItem(
   state: WorldState,
   command: ResolvedCommandOf<'GiveItem'>,
 ): Decision {
+  // Into the party's stash (docs/adr/0057-encounters-maps-loot.md §7).
+  if (command.toHolderId === PARTY_STASH) return decideStashItem(state, command);
   const own = ownItem(state, command.characterId, command.itemId);
   if (!own.ok) return own;
   if (own.possession.slot !== null)
@@ -381,6 +324,9 @@ export function decideTakeItem(
   state: WorldState,
   command: ResolvedCommandOf<'TakeItem'>,
 ): Decision {
+  // Out of the party's stash (docs/adr/0057-encounters-maps-loot.md §7).
+  const unstashed = decideUnstashItem(state, command);
+  if (unstashed) return unstashed;
   const actor = mayHandle(state, command.characterId);
   if (!actor.ok) return actor;
   // Things on the ground are not on the battlefield: nothing is picked up in the middle of a fight.

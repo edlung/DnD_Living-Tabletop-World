@@ -1,4 +1,5 @@
 import type { ChronicleSourceView } from '../chronicle/views.ts';
+import type { HandQuestView } from './hand-quests.ts';
 
 /**
  * The party's quest log (docs/adr/0025-ravenford-integration.md §2). Each
@@ -28,4 +29,6 @@ export interface QuestView {
 export interface QuestListResponse {
   readonly perspective: string;
   readonly quests: readonly QuestView[];
+  /** The DM's quests by hand it may see (docs/adr/0058-campaign-content.md §2). */
+  readonly handQuests: readonly HandQuestView[];
 }

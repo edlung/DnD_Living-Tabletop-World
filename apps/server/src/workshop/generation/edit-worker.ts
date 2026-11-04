@@ -6,6 +6,7 @@ import { parseCampaignEditSpec } from './edit-spec.ts';
 import { campaignEditPrompt } from './edit-prompt.ts';
 import { digest } from './postgres-rows.ts';
 import type { CampaignGenerationDependencies } from './runtime.ts';
+import { withSrdStatBlocks } from './srd-monsters.ts';
 import { CampaignPreparationWorker } from './worker-core.ts';
 
 /** EDIT has one durable step and produces only an immutable candidate for explicit owner adoption. */
@@ -28,7 +29,9 @@ export class CampaignEditWorker extends CampaignPreparationWorker {
         return {
           payload: () => campaignEditPrompt(base.content, spec),
           validate: (_stage, _input, output) => {
-            const checked = validateCampaignEditOutput(base, output, spec);
+            const resolved = withSrdStatBlocks(output);
+            if (!resolved.ok) return resolved;
+            const checked = validateCampaignEditOutput(base, resolved.value, spec);
             return checked.ok &&
               Buffer.byteLength(campaignCanonicalJson(checked.value), 'utf8') >
                 MAX_CAMPAIGN_PACKAGE_BYTES

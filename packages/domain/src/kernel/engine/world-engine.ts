@@ -17,7 +17,7 @@ import { RESOLVED_ID_POOL } from '../../investigation/records.ts';
 import { MAX_RESOLVED_IDS } from '../../combat/reactions.ts';
 import type { SkillCheckPort } from '../../investigation/skill-checks.ts';
 import type { CharacterBuilderPort } from '../../character/create.ts';
-import { CREATE_CHARACTER_IDS } from '../../character/limits.ts';
+import { CREATE_CHARACTER_IDS, DOWNTIME_IDS, SPLIT_COINS_IDS, isDmRolled } from './drawn-ids.ts';
 
 import { authorize } from '../authorization.ts';
 import { decide } from '../decide/decide.ts';
@@ -283,29 +283,16 @@ export class WorldEngine {
         resolution: { ids: [], d20: null, entropy: this.#entropyPool() },
       };
     }
-    if (
-      command.type === 'AdjustHitPoints' ||
-      command.type === 'SetCondition' ||
-      command.type === 'AddCombatant' ||
-      command.type === 'RemoveCombatant' ||
-      command.type === 'DelayTurn' ||
-      command.type === 'ExposeToHazard' ||
-      command.type === 'SpringTrap' ||
-      command.type === 'InflictMentalStress' ||
-      command.type === 'InfectWithContagion' ||
-      command.type === 'ContagionCourse' ||
-      command.type === 'UseCreatureAction' ||
-      command.type === 'DawnRecharge'
-    ) {
-      // The DM's damage may call for a Concentration save, a joining creature rolls initiative, a
-      // turn that passes on may start with a death save (docs/adr/0043-dm-screen.md §1–2), and a
-      // flyer made Prone falls (docs/adr/0049-space-and-movement.md §6).
+    if (isDmRolled(command)) {
+      // The DM's commands that roll (`drawn-ids.ts`): their dice drawn here and recorded.
       return { ...command, resolution: { ids: [], d20: null, entropy: this.#entropyPool() } };
     }
-    if (command.type === 'CreateCharacter') {
-      // Its records' IDs and the dice of rolled scores (docs/adr/0056-…md §2).
-      const ids = Array.from({ length: CREATE_CHARACTER_IDS }, () => this.#ids.next());
-      return { ...command, resolution: { ids, d20: null, entropy: this.#entropyPool() } };
+    if (command.type === 'CreateCharacter' || command.type === 'WorkDowntime') {
+      // A character's records and rolled scores (ADR 0056 §2); what downtime makes (0057 §9).
+      const count = command.type === 'CreateCharacter' ? CREATE_CHARACTER_IDS : DOWNTIME_IDS;
+      const ids = Array.from({ length: count }, () => this.#ids.next());
+      const entropy = command.type === 'CreateCharacter' ? this.#entropyPool() : [];
+      return { ...command, resolution: { ids, d20: null, entropy } };
     }
     if (command.type === 'CloseReactionWindow') {
       // Closing may resolve the suspended spell (ADR 0016) — its records and dice — or let a
@@ -326,7 +313,10 @@ export class WorldEngine {
             command.type === 'ShowEvidence' ||
             command.type === 'InsightCheck'
           ? 1
-          : RESOLVED_ID_POOL;
+          : // Coins shared out mint the shares (docs/adr/0057-encounters-maps-loot.md §7).
+            command.type === 'SplitCoins'
+            ? SPLIT_COINS_IDS
+            : RESOLVED_ID_POOL;
     const ids = Array.from({ length: count }, () => this.#ids.next());
     // A potion of healing rolls its dice (docs/adr/0054-items-as-data.md §5), where the engine
     // has randomness to draw.

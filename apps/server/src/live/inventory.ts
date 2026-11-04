@@ -46,6 +46,8 @@ const SCOPED = [
   'presence',
   // The table around a session (ADR 0043 §6): ready, absent, a pause.
   'lobby',
+  // The world map: pins and routes between known places (ADR 0057 §10).
+  'world-map',
 ];
 
 export function coverageInventory(target: LiveTarget): ViewRequest[] {
@@ -70,6 +72,12 @@ export function coverageInventory(target: LiveTarget): ViewRequest[] {
     views.push(scoped('chat'));
     // Handouts (§5): a new one signals its readers.
     views.push(scoped('handouts'));
+  }
+  // Crafting (ADR 0057 §9): a project's days of work, a character's own and the DM's.
+  if (target.kind === 'CHARACTER' || target.kind === 'DM') views.push(scoped('crafting'));
+  // The table's shared marks on the board (ADR 0057 §5): every member's and the display's.
+  if (target.kind === 'CHARACTER' || target.kind === 'DM' || target.display === true) {
+    views.push(scoped('marks'));
   }
   if (target.display === true) {
     // A table display (ADR 0042) also follows the table's rolls and the open join link.
@@ -101,6 +109,11 @@ export function coverageInventory(target: LiveTarget): ViewRequest[] {
     // Default deterministic ranking: `ranking=ai` is never requested here.
     if (acting) views.push(scoped(`${entity}/context`, true));
     views.push(scoped(`${entity}/knowledge`, true), scoped(`${entity}/presentation`, true));
+    // A focused merchant's shop (ADR 0057 §8), as the DM and a character at its place read it:
+    // its wares, its prices and the character's purse change with no other view.
+    if (acting || target.kind === 'DM') {
+      views.push(scoped(`merchants/${encodeURIComponent(target.focus)}`, true));
+    }
   }
   if (target.place !== null) {
     views.push(scoped(`locations/${encodeURIComponent(target.place)}/scene`, true));

@@ -53,3 +53,19 @@ draft identity registry hold `quests` and `quest-stages` (local key `<quest>/<st
 owners whose latest text preparation grant was enabled. Both are additive, but once a revision is
 saved with quest identities an older build cannot read it (its identity schema is strict), and an
 older build checks no picture grant: recovery needs a Gate 07-aware build (`deploy/RUNBOOK.md` §8).
+
+Stage 670a (ADR 0057 §1): `0034_saved_encounters.sql` keeps the DM's saved encounters beside the
+world, one row an encounter (its body at most 64 KB), replaced on save and deleted on the DM's word:
+DM data, not canonical state. Additive: an older build leaves the table alone.
+
+Stage 670c (ADR 0057 §5): `0035_table_marks.sql` keeps the table's shared marks beside the world —
+pings with their end, the DM's pointer, strokes and shown areas, each the mark of one run of a fight
+(`fight_id`, its start's event ID), at most 64 KB a mark — and whether the DM lets players mark: the
+table's data for the live session, not canonical state. Additive: an older build leaves both tables
+alone.
+
+Stage 680b (ADR 0058 §3–4): `0036_dm_library.sql` keeps the DM's library beside the world — handouts
+kept for later and random tables, one row an entry (its body at most 64 KB), replaced on save and
+deleted on the DM's word; a kept handout notes when it was last given. DM data, not canonical state:
+a given handout is a row of `ltw_handouts`, a roll on a table a row of `ltw_table_rolls`. Additive:
+an older build leaves the table alone, and reads a table roll's subject as any roll's.

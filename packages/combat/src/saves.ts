@@ -33,6 +33,7 @@ export function spellSave(
     | 'shove'
     | 'saddle'
     | 'hazard'
+    | 'travel'
     | 'creature-action' = 'spell',
   /** It Dodges (docs/adr/0045-conditions-and-actions.md §5): Advantage on Dexterity saves. */
   dodging = false,

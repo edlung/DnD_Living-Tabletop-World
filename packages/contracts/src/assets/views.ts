@@ -7,6 +7,7 @@ import type {
   AssetRequestStatus,
   AssetStatus,
   AssetVariant,
+  BattleMapGrid,
 } from './commands.ts';
 
 /**
@@ -25,6 +26,8 @@ export interface PlayerAssetView {
    */
   readonly contentHash: string;
   readonly mediaType: AssetMediaType;
+  /** A battle map's grid as the DM lined it up (docs/adr/0057-encounters-maps-loot.md §3). */
+  readonly grid?: BattleMapGrid;
 }
 
 /** `GET /campaigns/:campaignId/entities/:entityId/assets?perspective=…` */
@@ -65,6 +68,8 @@ export interface AssetView {
   readonly generator: { readonly provider: string; readonly model: string };
   readonly status: AssetStatus;
   readonly origin?: CampaignBootstrapAsset['origin'] | undefined;
+  /** A battle map's grid as the DM lined it up (docs/adr/0057-encounters-maps-loot.md §3). */
+  readonly grid?: BattleMapGrid | undefined;
 }
 
 /** `GET /campaigns/:campaignId/assets` (DM only): the lineage. */

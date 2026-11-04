@@ -95,15 +95,53 @@ export function playerOutcome(
   }
 }
 
+/** The traps a command found or disarmed (docs/adr/0057-encounters-maps-loot.md §6). */
+const trapChanges = (events: readonly KernelEvent[], change: 'found' | 'disarmed') =>
+  events.flatMap((event) =>
+    event.type === 'TrapChanged' && event.payload.change === change
+      ? [event.payload.trap.trapId]
+      : [],
+  );
+
 /** Combat outcomes (ADR 0015): the acting player's own rolls and their results, never the target's vitals. */
 function combatOutcome(
   commandType: KernelCommandType,
   events: readonly KernelEvent[],
 ): PlayerOutcome | undefined {
   switch (commandType) {
+    case 'SplitCoins':
+      return { kind: 'SplitCoins' };
+    case 'BuyItem':
+      return { kind: 'Trade', action: 'buy' };
+    case 'SellItem':
+      return { kind: 'Trade', action: 'sell' };
+    case 'StartCrafting':
+      return { kind: 'Crafting', action: 'start' };
+    case 'AbandonCrafting':
+      return { kind: 'Crafting', action: 'abandon' };
+    // A Search's or a Study's traps found, a trap disarmed (ADR 0057 §6); otherwise the rolls say.
+    case 'TakeAction': {
+      const found = trapChanges(events, 'found');
+      const [disarmed] = trapChanges(events, 'disarmed');
+      if (found.length === 0 && disarmed === undefined) return undefined;
+      return { kind: 'TakeAction', found, ...(disarmed ? { disarmed } : {}) };
+    }
     case 'MoveCombatant': {
-      const moved = events.findLast((event) => event.type === 'CombatantUpdated');
+      // The mover's own record, the last of it (a fall changes it again); a creature dragged or
+      // caught with it has its own.
+      const first = events.find((event) => event.type === 'CombatantUpdated');
+      if (first?.type !== 'CombatantUpdated') return undefined;
+      const moverId = first.payload.combatant.entityId;
+      const moved = events.findLast(
+        (event) =>
+          event.type === 'CombatantUpdated' && event.payload.combatant.entityId === moverId,
+      );
       if (moved?.type !== 'CombatantUpdated') return undefined;
+      // A trap it came onto, and those it noticed (docs/adr/0057-encounters-maps-loot.md §6).
+      const sprang = events.find(
+        (event) => event.type === 'TrapChanged' && event.payload.change === 'sprung',
+      );
+      const noticed = trapChanges(events, 'found');
       // Its height, a landing's check, a fall and the Prone they left (ADR 0049 §6–8).
       const { position, altitudeFt } = moved.payload.combatant;
       // A move's only check is a landing's.
@@ -126,6 +164,8 @@ function combatOutcome(
           ? { fell: { feet: fall.payload.fallFt, damage: fall.payload.amount } }
           : {}),
         ...(prone ? { prone: true as const } : {}),
+        ...(sprang?.type === 'TrapChanged' ? { trap: sprang.payload.trap.trapId } : {}),
+        ...(noticed.length > 0 ? { noticed } : {}),
         ...(events.some(
           (event) =>
             event.type === 'ReactionWindowOpened' && event.payload.window.trigger.kind === 'fall',

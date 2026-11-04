@@ -10,7 +10,7 @@ import type {
   ScenePresentationResponse,
 } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
-import { useCallback, useRef } from 'react';
+import { useCallback, useRef, useState } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
@@ -18,6 +18,7 @@ import { Board } from '../combat/board/board.tsx';
 import { NARROW, WIDE, useMedia } from '../combat/board/board-view.ts';
 import { InitiativeStrip } from '../combat/hud/initiative-strip.tsx';
 import { useCombatantLabels } from '../combat/labels.ts';
+import { marksReader, type ShownMark } from '../combat/use-marks.ts';
 import { formatWorldTime } from '../dm/world-time.ts';
 import { TABLE_PATH } from '../session/invitation-link.ts';
 import { useApprovedImage } from '../visual/approved-images.ts';
@@ -145,11 +146,22 @@ function BattleCast(props: Props & { readonly zoom: number; readonly focus: stri
       ? Promise.resolve(null)
       : api.get<ScenePresentationResponse>(`locations/${encodeURIComponent(place)}/scene`, signal),
   );
+  // The table's shared marks (ADR 0057 §5): a ping fades here as on every screen.
+  const [readMarks] = useState(() => marksReader());
+  const marks = useRead(props, 'marks', readMarks);
   const encounter = read?.encounter ?? null;
   if (!encounter) {
     return <TitleCard title={t('No fight right now')} subtitle={props.campaignName} />;
   }
-  return <Battle encounter={encounter} zoom={props.zoom} focus={props.focus} scene={scene} />;
+  return (
+    <Battle
+      encounter={encounter}
+      zoom={props.zoom}
+      focus={props.focus}
+      scene={scene}
+      marks={marks?.marks ?? []}
+    />
+  );
 }
 
 function Battle({
@@ -157,11 +169,13 @@ function Battle({
   zoom,
   focus,
   scene,
+  marks,
 }: {
   readonly encounter: NonNullable<EncounterResponse['encounter']>;
   readonly zoom: number;
   readonly focus: string | null;
   readonly scene: ScenePresentationResponse | null;
+  readonly marks: readonly ShownMark[];
 }) {
   const t = useT();
   const labelOf = useCombatantLabels(encounter);
@@ -195,6 +209,7 @@ function Battle({
           figureOf={figureOf}
           battleMap={fought && scene ? scene.location.battleMap : null}
           centreOn={centre ?? null}
+          marks={marks}
           view={{
             mode: wide ? 'tilted' : 'flat',
             zoom,

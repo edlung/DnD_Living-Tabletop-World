@@ -3,12 +3,14 @@ import { z } from 'zod';
 
 /** Item possession events and undo restores (docs/adr/0039-item-possession.md). */
 const slot = z.enum(EQUIP_SLOTS);
-const quantity = z.number().int().min(0).max(99);
+// A stack of coins shared out may hold more than a grant's 99 (docs/adr/0057-…md §7).
+const quantity = z.number().int().min(0).max(99_999);
 
 export const itemGrantedPayloadSchema = z
   .object({
     itemId: entityIdSchema,
-    holderId: entityIdSchema,
+    /** Null: treasure granted to a place, lying there (docs/adr/0057-encounters-maps-loot.md §7). */
+    holderId: entityIdSchema.nullable(),
     catalogId: itemCatalogIdSchema.nullable(),
     quantity: quantity.min(1),
     /** What a magic weapon, armor or shield is made on (docs/adr/0054-items-as-data.md §5). */
@@ -17,7 +19,17 @@ export const itemGrantedPayloadSchema = z
     charges: z.number().int().min(0).max(50).optional(),
     /** Given unidentified (§5). */
     unidentified: z.literal(true).optional(),
+    /** Given to a merchant as wares (docs/adr/0057-encounters-maps-loot.md §8). */
+    forSale: z.literal(true).optional(),
   })
+  .strict();
+
+/**
+ * A stack's count set anew: coins exchanged as they are shared out
+ * (docs/adr/0057-encounters-maps-loot.md §7); 0 leaves the stack spent.
+ */
+export const itemStackChangedPayloadSchema = z
+  .object({ itemId: entityIdSchema, holderId: entityIdSchema, quantity })
   .strict();
 
 /** A magic item's charges expended (docs/adr/0054-items-as-data.md §5): `left` of them after. */
@@ -137,6 +149,8 @@ export const itemTransferredPayloadSchema = z
     /** Used only to create the record when a placed world item is first picked up. */
     catalogId: itemCatalogIdSchema.nullable(),
     quantity: quantity.min(1),
+    /** Sold to a merchant: its wares now (docs/adr/0057-encounters-maps-loot.md §8). */
+    forSale: z.literal(true).optional(),
   })
   .strict();
 
@@ -152,6 +166,7 @@ const possessionValue = z
     saveDelta: z.number().int().min(-10).max(10).optional(),
     charges: z.number().int().min(0).max(50).optional(),
     unidentified: z.literal(true).optional(),
+    forSale: z.literal(true).optional(),
   })
   .strict();
 

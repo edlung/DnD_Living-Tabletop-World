@@ -1,4 +1,4 @@
-import type { InventoryResponse, ItemEntry } from '@ltw/contracts';
+import type { InventoryItem, InventoryResponse, ItemEntry } from '@ltw/contracts';
 import { itemEntry } from '@ltw/domain';
 import {
   equipmentIn,
@@ -129,24 +129,35 @@ export function entryIn(entry: ItemEntry, language: ReferenceLanguage): ItemEntr
 export const withSrdWords = (
   body: InventoryResponse,
   language: ReferenceLanguage = 'en',
-): InventoryResponse => ({
-  ...body,
-  items: body.items.map((item) => {
-    const catalog = item.catalog;
-    if (!catalog) return item;
-    const words = srdTextOf(catalog.itemId, language);
-    const entry = itemEntry(catalog.itemId);
-    const shown = entry ? entryIn(entry, language) : null;
-    const translated = shown !== null && shown !== entry;
-    return {
-      ...item,
-      catalog: {
-        ...catalog,
-        ...(words ? { text: words } : {}),
-        ...(translated
-          ? { name: shown.name, description: shown.description, untranslated: false }
-          : {}),
-      },
-    };
-  }),
-});
+): InventoryResponse => {
+  const worded = (item: InventoryItem) => wordedItem(item, language);
+  // The party's stash too (docs/adr/0057-encounters-maps-loot.md §7).
+  return {
+    ...body,
+    items: body.items.map(worded),
+    ...(body.stash ? { stash: body.stash.map(worded) } : {}),
+  };
+};
+
+/** One item with its SRD entry's words beside it, named in the campaign's language. */
+export function wordedItem<T extends InventoryItem>(
+  item: T,
+  language: ReferenceLanguage = 'en',
+): T {
+  const catalog = item.catalog;
+  if (!catalog) return item;
+  const words = srdTextOf(catalog.itemId, language);
+  const entry = itemEntry(catalog.itemId);
+  const shown = entry ? entryIn(entry, language) : null;
+  const translated = shown !== null && shown !== entry;
+  return {
+    ...item,
+    catalog: {
+      ...catalog,
+      ...(words ? { text: words } : {}),
+      ...(translated
+        ? { name: shown.name, description: shown.description, untranslated: false }
+        : {}),
+    },
+  };
+}

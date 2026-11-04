@@ -34,6 +34,8 @@ export interface Possession {
   readonly charges?: number;
   /** Its carrier has not learnt what it is (§5). */
   readonly unidentified?: true;
+  /** A merchant's wares, apart from its own things (docs/adr/0057-encounters-maps-loot.md §8). */
+  readonly forSale?: true;
 }
 
 export const possessionOf = (state: WorldState, itemId: string): Possession | undefined =>
@@ -46,6 +48,17 @@ export function entryOf(possession: Possession): ItemEntry | undefined {
     possession.baseCatalogId === undefined ? undefined : itemEntry(possession.baseCatalogId);
   return entry && base ? madeOn(entry, base) : entry;
 }
+
+/** The party's stash's holder (docs/adr/0057-encounters-maps-loot.md §7), from the contracts. */
+export { PARTY_STASH } from '@ltw/contracts';
+
+/**
+ * A member of the party, as items count it (docs/adr/0057-encounters-maps-loot.md §7): a
+ * character, as a fight takes the characters at a place for the party — never an NPC or a
+ * creature. Whether a player sits in its seat does not matter.
+ */
+export const isPartyCharacter = (state: WorldState, id: string): boolean =>
+  state.entities.get(id)?.kind === 'character';
 
 /** Item IDs a holder carries (worn or not), in ID order. */
 export function carriedBy(state: WorldState, holderId: string): string[] {

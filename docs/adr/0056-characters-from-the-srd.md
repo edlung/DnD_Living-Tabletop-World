@@ -300,3 +300,11 @@ curated.ts`): Revivify (dead within a minute, 1 Hit Point), Raise Dead (10 days,
 
 Preserves 1, 8 and 9: the builder proposes, the World Engine validates every sheet and every level
 and rolls every die; a player sees only their own character's choices.
+
+## Amendment 2026-11-03 (Stage 670f, ADR 0057 §9; owner approval `reviews/OWNER_FULL_GAME_2026-11-02.json`)
+
+§3's options gain how many may help on a crafting project (`craftingHelpers`): one, as the SRD has
+it, unless the DM allows up to four; options set before have none and mean one. The World Engine's
+character port also names a spell's level and name and an SRD entry's words in the campaign's
+language (`spell`, `itemWords`), for a scroll scribed and a thing made
+(docs/adr/0057-encounters-maps-loot.md, 670f notes).

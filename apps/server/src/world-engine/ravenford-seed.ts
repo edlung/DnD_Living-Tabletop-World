@@ -16,11 +16,17 @@ export const RAVENFORD_RU_FIXTURES_DIR = fileURLToPath(
   new URL('../../../../fixtures/ravenford-ru/', import.meta.url),
 );
 
+/** A seed script and its command-ID prefix, part of seeded history: never renamed. */
+export interface SeedFile {
+  readonly file: string;
+  readonly prefix: string;
+}
+
 /**
  * Seed scripts in order, each with its command-ID prefix. Prefixes are part
  * of seeded history (idempotency keys): never rename them.
  */
-const SEED_FILES = [
+export const RAVENFORD_SEED_FILES: readonly SeedFile[] = [
   { file: 'kernel-seed.json', prefix: 'seed' },
   { file: 'knowledge-seed.json', prefix: 'knowledge' },
   { file: 'memory-seed.json', prefix: 'memory' },
@@ -30,7 +36,7 @@ const SEED_FILES = [
   { file: 'combat-seed.json', prefix: 'combat' },
   { file: 'items-seed.json', prefix: 'items' },
   { file: 'table-seed.json', prefix: 'table' },
-] as const;
+];
 
 const seedSchema = z.object({
   campaignId: campaignIdSchema,
@@ -45,11 +51,16 @@ export interface RavenfordSeed {
   readonly submissions: readonly unknown[];
 }
 
-export async function loadRavenfordSeed(
-  directory = RAVENFORD_FIXTURES_DIR,
+export const loadRavenfordSeed = (directory = RAVENFORD_FIXTURES_DIR): Promise<RavenfordSeed> =>
+  loadSeed(directory, RAVENFORD_SEED_FILES);
+
+/** A ready adventure's seed scripts, in order, as one list of engine submissions. */
+export async function loadSeed(
+  directory: string,
+  files: readonly SeedFile[],
 ): Promise<RavenfordSeed> {
   const scripts = await Promise.all(
-    SEED_FILES.map(async ({ file, prefix }) => ({
+    files.map(async ({ file, prefix }) => ({
       prefix,
       seed: seedSchema.parse(JSON.parse(await readFile(join(directory, file), 'utf8'))),
     })),
@@ -61,7 +72,7 @@ export async function loadRavenfordSeed(
       ({ seed }) => seed.campaignId !== first.campaignId || seed.dmActorId !== first.dmActorId,
     )
   ) {
-    throw new Error('Ravenford seed files disagree on campaign or DM');
+    throw new Error(`the seed files of ${directory} disagree on campaign or DM`);
   }
   const dm: Actor = { actorId: first.dmActorId, kind: 'user' };
   return {

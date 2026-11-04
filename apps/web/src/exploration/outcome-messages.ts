@@ -3,6 +3,7 @@ import { readableLabel, type Translate } from '@ltw/ui';
 
 import { RESOURCE_NAMES } from '../character/feature-words.ts';
 import { isSliceSpellId } from '../character/words.ts';
+import { TRAP_WORDS } from '../rules/toolbox-words.ts';
 
 /**
  * The words of what happened. Every sentence is an English key the client dictionary
@@ -54,6 +55,11 @@ const ITEM_COMMANDS: ReadonlySet<string> = new Set([
   'GiveItem',
   'DropItem',
   'TakeItem',
+  'SplitCoins',
+  'BuyItem',
+  'SellItem',
+  'StartCrafting',
+  'AbandonCrafting',
 ]);
 
 const ITEM_DONE = {
@@ -194,7 +200,16 @@ export function outcomeMessage(t: Translate, outcome: PlayerOutcome | undefined)
       const prone =
         outcome.prone && outcome.landing?.success !== false ? t('You are Prone.') : null;
       const falling = outcome.falling ? t('You fall; a reaction may slow you.') : null;
-      return [moved, aloft, landing, fell, prone, falling]
+      // A trap it came onto, and those it noticed (docs/adr/0057-encounters-maps-loot.md §6).
+      const trapped = outcome.trap
+        ? t('A trap springs: {name}.', { name: t(TRAP_WORDS[outcome.trap]) })
+        : null;
+      const noticed = outcome.noticed?.length
+        ? t('You notice a trap: {name}.', {
+            name: outcome.noticed.map((id) => t(TRAP_WORDS[id])).join(', '),
+          })
+        : null;
+      return [moved, noticed, trapped, aloft, landing, fell, prone, falling]
         .filter((part) => part !== null)
         .join(' ');
     }
@@ -317,6 +332,22 @@ export function outcomeMessage(t: Translate, outcome: PlayerOutcome | undefined)
         : outcome.trigger === 'spell'
           ? t('You let the spell happen.')
           : t('You did not react.');
+    case 'SplitCoins':
+      return t('You shared the coins out. Your view has been refreshed.');
+    case 'Trade':
+      return outcome.action === 'buy'
+        ? t('You bought it, and paid. Your view has been refreshed.')
+        : t('You sold it, and were paid. Your view has been refreshed.');
+    case 'Crafting':
+      return outcome.action === 'start'
+        ? t('You began the work, and paid for the materials. Your view has been refreshed.')
+        : t('You gave the work up. Your view has been refreshed.');
+    case 'TakeAction':
+      return outcome.disarmed
+        ? t('You disarm the trap: {name}.', { name: t(TRAP_WORDS[outcome.disarmed]) })
+        : t('You find a trap: {name}.', {
+            name: outcome.found.map((id) => t(TRAP_WORDS[id])).join(', '),
+          });
     default:
       return t('Action resolved. Your view has been refreshed.');
   }

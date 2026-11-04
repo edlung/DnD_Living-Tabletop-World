@@ -31,10 +31,14 @@ const KIND_GLYPH = {
   ruling: 'game-master',
   fight: 'initiative',
   light: 'day',
+  terrain: 'map',
+  fog: 'fog',
   trap: 'falling',
   'mental-stress': 'thought',
   contagion: 'poisoned',
   hazard: 'weather',
+  travel: 'travel',
+  edit: 'replace',
 } as const;
 
 const UNDO_LABEL: Readonly<Record<DmHistoryEntry['kind'], string>> = {
@@ -42,6 +46,7 @@ const UNDO_LABEL: Readonly<Record<DmHistoryEntry['kind'], string>> = {
   substitution: 'Undo this action',
   world: 'Undo this change',
   hand: 'Undo this change',
+  edit: 'Undo this change',
 };
 
 /**

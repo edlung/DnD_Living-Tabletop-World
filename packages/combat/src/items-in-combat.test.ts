@@ -101,10 +101,11 @@ describe('items during an encounter', () => {
       actionUsed: false,
       bonusActionUsed: false,
     });
-    // A raider is no one to hand things to (a creature carries nothing).
+    // A creature carries now (docs/adr/0057-encounters-maps-loot.md §7), but the raider stands
+    // away from her: not beside her, it is not there to take it.
     expect(
       codeOf(await act(world, { type: 'GiveItem', itemId: 'gear-ale', toHolderId: RAIDER_1 })),
-    ).toBe('INVALID_ITEM');
+    ).toBe('NOT_PRESENT');
   });
 
   it('undoing a use restores the item, the sheet and the turn together', async () => {

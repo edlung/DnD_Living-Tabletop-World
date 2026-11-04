@@ -217,13 +217,15 @@ export function PerformNpc({
             </option>
           ))}
         </select>
-        <button
-          disabled={busy || characterId === '' || topicId === ''}
-          onClick={() => void perform({ kind: 'ask', topicId })}
-        >
-          <Glyph name="ask" />
-          {t('Answer the question')}
-        </button>
+        <div className="action-row">
+          <button
+            disabled={busy || characterId === '' || topicId === ''}
+            onClick={() => void perform({ kind: 'ask', topicId })}
+          >
+            <Glyph name="ask" />
+            {t('Answer the question')}
+          </button>
+        </div>
         {busy && (
           <p role="status" className="muted">
             {t('{npc} is replying…', { npc: npcName })}

@@ -8,7 +8,8 @@ import { possessionOf } from './records.ts';
  * Giving an item to a carrier (docs/adr/0039-item-possession.md, the DM's or a trusted process's),
  * and the refusals the DM's catalog asks before it makes the item (docs/adr/0054-items-as-data.md
  * §4–5): a carrier, a known entry, a base for a magic weapon, armor or shield, a quantity only of
- * what stacks.
+ * what stacks. Given to a place, it is treasure lying there for anyone to take
+ * (docs/adr/0057-encounters-maps-loot.md §7).
  */
 export function decideGrantItem(
   state: WorldState,
@@ -26,18 +27,35 @@ export function decideGrantItem(
   const base = baseOfGrant(entry, baseId);
   // A magic item comes with its charges full (docs/adr/0054-items-as-data.md §5).
   const charges = entry?.magic?.charges?.max;
-  return accept({
-    type: 'ItemGranted',
-    payload: {
-      itemId: command.itemId,
-      holderId: command.holderId,
-      catalogId,
-      quantity: command.quantity,
-      ...(base !== null && typeof base !== 'string' ? { baseCatalogId: base.itemId } : {}),
-      ...(charges === undefined ? {} : { charges }),
-      ...(command.unidentified ? { unidentified: true as const } : {}),
+  const lying = state.entities.get(command.holderId)?.kind === 'location';
+  return accept(
+    {
+      type: 'ItemGranted',
+      payload: {
+        itemId: command.itemId,
+        holderId: lying ? null : command.holderId,
+        catalogId,
+        quantity: command.quantity,
+        ...(base !== null && typeof base !== 'string' ? { baseCatalogId: base.itemId } : {}),
+        ...(charges === undefined ? {} : { charges }),
+        ...(command.unidentified ? { unidentified: true as const } : {}),
+        ...(command.forSale ? { forSale: true as const } : {}),
+      },
     },
-  });
+    ...(lying
+      ? [
+          {
+            type: 'EntityPlaced' as const,
+            payload: {
+              entityId: command.itemId,
+              locationId: command.holderId,
+              since: state.clock,
+              previousLocationId: thing.value.placement?.locationId ?? null,
+            },
+          },
+        ]
+      : []),
+  );
 }
 
 /**
@@ -52,8 +70,11 @@ export function grantRefusal(
   /** What a magic weapon, armor or shield is made on (docs/adr/0054-items-as-data.md §5). */
   baseCatalogId: string | null = null,
 ): (Decision & { ok: false }) | null {
-  const holder = carrier(state, holderId);
-  if (!holder.ok) return holder;
+  // A place takes treasure; anyone else must carry.
+  if (state.entities.get(holderId)?.kind !== 'location') {
+    const holder = carrier(state, holderId);
+    if (!holder.ok) return holder;
+  }
   const entry = catalogId === null ? undefined : itemEntry(catalogId);
   if (catalogId !== null && !entry)
     return reject('INVALID_ITEM', `Unknown catalog item "${catalogId}"`, { catalogId });

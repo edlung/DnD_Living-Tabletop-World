@@ -11,6 +11,8 @@ import { useCallback } from 'react';
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
 import { NpcProfile, type ProfileEditing } from '../authoring/npc-profile.tsx';
+import { NpcShop } from '../dm/npc-shop.tsx';
+import { ChangeByHand } from '../dm/editors/change-by-hand.tsx';
 import { PerformNpc } from '../dm/perform-npc.tsx';
 import { ContextActions } from '../exploration/context-actions.tsx';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
@@ -169,6 +171,7 @@ export function EntityDetails({
                 knowledge={knowledge}
                 canAct={canAct}
                 locked={locked}
+                revision={revision}
                 conversing={conversing}
                 onShowConversation={onShowConversation}
                 onRun={onRun}
@@ -185,6 +188,23 @@ export function EntityDetails({
           )}
           {effectivePerspective === 'DM' && kind === 'npc' && profileEditing && name !== null && (
             <NpcProfile entityId={entityId} name={name} editing={profileEditing} />
+          )}
+          {/* An NPC's shop (docs/adr/0057-encounters-maps-loot.md §8). */}
+          {effectivePerspective === 'DM' && kind === 'npc' && (
+            <NpcShop api={api} npcId={entityId} locked={locked} revision={revision} onRun={onRun} />
+          )}
+          {/* The DM's hand on it (docs/adr/0058-campaign-content.md §1); a character is the builder's. */}
+          {effectivePerspective === 'DM' && kind !== 'character' && name !== null && (
+            <ChangeByHand
+              api={api}
+              entity={{ entityId, kind, name }}
+              directory={directory}
+              revision={revision}
+              locked={locked}
+              onRun={(command) => {
+                onRun({ kind: 'command', command });
+              }}
+            />
           )}
           {effectivePerspective === 'DM' && kind === 'npc' && (
             <PerformNpc

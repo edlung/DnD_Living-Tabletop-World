@@ -36,15 +36,19 @@ import { CampaignActivationWorker } from './workshop/activation/worker.ts';
 import { startCampaignActivationLoop } from './workshop/activation/worker-loop.ts';
 import { PostgresCampaignInitialContentStore } from './campaigns/postgres-content.ts';
 import { PostgresCampaignPublication } from './campaigns/postgres-publication.ts';
+import { loadAdventureBooks, loadAdventurePictures } from './adventures/adventures.ts';
 import { createCampaignQuestBooks } from './campaigns/quest-books.ts';
-import { isCuratedRequest } from './images/curated-import.ts';
+import { isOwnRequest } from './images/own-requests.ts';
 import { loadCuratedSet } from './images/curated-set.ts';
 import { PostgresImageLedger, imageBudgetStatus } from './images/ledger.ts';
 import { loadQuestBook } from './quests/quest-book.ts';
 import { PostgresProposalStore } from './authoring/postgres-proposal-store.ts';
 import { PostgresChatStore } from './chat/postgres-chat-store.ts';
+import { PostgresMarkStore } from './marks/postgres-mark-store.ts';
 import { PostgresHandoutStore } from './handouts/postgres-handout-store.ts';
 import { PostgresDmNoteStore } from './dm/postgres-note-store.ts';
+import { PostgresSavedEncounterStore } from './combat/postgres-saved-encounter-store.ts';
+import { PostgresLibraryStore } from './library/postgres-library-store.ts';
 import { PostgresTableStateStore } from './table/postgres-table-state-store.ts';
 import { ReadyRegistry } from './table/table-state.ts';
 import { PostgresSubstitutionStore } from './dm/postgres-substitution-store.ts';
@@ -166,6 +170,9 @@ async function main(): Promise<void> {
     ru: await loadQuestBook(join(RAVENFORD_RU_FIXTURES_DIR, 'quests.json')),
   };
   const preparedEncounters = await loadPreparedEncounterBooks();
+  // Every other ready adventure's books, and each one's pictures (docs/adr/0058-campaign-content.md §5).
+  const adventures = await loadAdventureBooks();
+  const adventurePictures = await loadAdventurePictures();
   const draftImageRepository = signIn ? new PostgresDraftImageRepository(pool) : null;
   const draftImages = draftImageRepository
     ? {
@@ -201,10 +208,13 @@ async function main(): Promise<void> {
     dm: {
       substitutions: new PostgresSubstitutionStore(pool),
       notes: new PostgresDmNoteStore(pool),
+      encounters: new PostgresSavedEncounterStore(pool),
+      library: new PostgresLibraryStore(pool),
       clock: systemClock,
     },
     // The table's rolls, the DM's check requests and short rests (Stages 510, 530; 0025, 0026).
     chat: { store: new PostgresChatStore(pool), now: () => new Date().toISOString() },
+    marks: { store: new PostgresMarkStore(pool), now: () => new Date().toISOString() },
     handouts: { store: new PostgresHandoutStore(pool), now: () => new Date().toISOString() },
     lobby: {
       state: new PostgresTableStateStore(pool),
@@ -221,6 +231,8 @@ async function main(): Promise<void> {
     quests,
     questsByLanguage,
     preparedEncounters,
+    adventures,
+    adventurePictures,
     campaignQuests: createCampaignQuestBooks(initialContent),
     ...(signIn ? { signIn } : {}),
     ...(signIn
@@ -309,8 +321,9 @@ async function main(): Promise<void> {
     timeoutMs: config.assets.generationTimeoutMs,
     intervalMs: config.assets.workerIntervalMs,
     campaigns: () => PostgresAssetContentStore.campaignsWithAssetWork(pool),
-    // The curated import's requests are its own (ADR 0035 §3): never generated or paid for here.
-    skip: isCuratedRequest,
+    // The curated import's requests and the DM's uploads are the server's own (ADR 0035 §3,
+    // ADR 0057 §3): never generated or paid for here.
+    skip: isOwnRequest,
     logger,
   });
 

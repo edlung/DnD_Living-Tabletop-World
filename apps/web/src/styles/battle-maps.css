@@ -1,0 +1,80 @@
+/* A place's battle map from the DM's hand (images/battle-map-tools.tsx; docs/adr/0057-encounters-
+   maps-loot.md §3): the picture chosen through a button-like label over a hidden file field, and
+   the grid lined up over the picture in its own proportions. */
+.battle-map-upload,
+.battle-map-grid {
+  display: grid;
+  gap: 0.6rem;
+  max-width: 44rem;
+  margin: 1rem 0 0;
+}
+.battle-map-upload > p,
+.battle-map-grid > p {
+  margin: 0;
+}
+.file-button {
+  display: inline-flex;
+  align-items: center;
+  justify-self: start;
+  gap: 0.45rem;
+  min-height: 40px;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-control);
+  background: color-mix(in srgb, var(--text) 4%, transparent);
+  color: var(--text);
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+.file-button:hover {
+  border-color: color-mix(in srgb, var(--text) 48%, transparent);
+  background: color-mix(in srgb, var(--text) 9%, transparent);
+}
+/* The hidden field takes focus; its label shows where it is. */
+.file-button:has(input:focus-visible) {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px var(--teal-glow);
+}
+.file-button.is-busy {
+  cursor: progress;
+  opacity: 0.7;
+}
+.file-button .glyph {
+  width: 20px;
+  height: 20px;
+}
+.battle-map-grid-picture {
+  position: relative;
+  max-width: 40rem;
+}
+.battle-map-grid-picture img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-control);
+  user-select: none;
+}
+.battle-map-grid-lines {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-control);
+  background-image:
+    linear-gradient(
+      to right,
+      color-mix(in srgb, var(--gold-bright) 85%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--gold-bright) 85%, transparent) 1px,
+      transparent 1px
+    );
+  background-repeat: repeat;
+  pointer-events: none;
+}
+.battle-map-grid .builder-fields label {
+  display: grid;
+  gap: 0.3rem;
+}

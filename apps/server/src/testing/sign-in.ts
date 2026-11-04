@@ -24,9 +24,11 @@ import { buildLiveApp } from '../live/live-app.ts';
 import { createLogger, type Logger } from '../platform/logging/logger.ts';
 import { ManualTimers } from './live.ts';
 import {
+  ADVENTURE_BOOKS,
+  adventurePictures,
+  RAVENFORD_PREPARED,
   RAVENFORD_QUESTS,
   RAVENFORD_QUESTS_BY_LANGUAGE,
-  RAVENFORD_PREPARED,
   seededEngine,
   testAiGateway,
   testAssets,
@@ -216,6 +218,8 @@ export async function signInTable(
       quests: RAVENFORD_QUESTS,
       questsByLanguage: RAVENFORD_QUESTS_BY_LANGUAGE,
       preparedEncounters: RAVENFORD_PREPARED,
+      adventures: ADVENTURE_BOOKS,
+      adventurePictures: await adventurePictures(),
       engine,
       authenticator: personOrDisplay(
         sessionAuthenticator(credentials, clock),

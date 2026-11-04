@@ -6,7 +6,9 @@ import entities from '../../../../tests/e2e/fixtures/image-entities.json' with {
 import type { AssetContentStore } from '../assets/content-store.ts';
 import { ASSET_WORKER, AssetWorker } from '../assets/worker.ts';
 import { startAssetWorkerLoop } from '../assets/worker-loop.ts';
-import { importCuratedSet, isCuratedRequest } from '../images/curated-import.ts';
+import { importCuratedSet } from '../images/curated-import.ts';
+import { isOwnRequest } from '../images/own-requests.ts';
+import { UI_PARTY_CAMPAIGNS } from './ui-party-campaigns.ts';
 import {
   createCuratedImageGenerator,
   loadCuratedSet,
@@ -46,6 +48,8 @@ export const UI_IMAGE_WORKER_CAMPAIGNS: readonly string[] = [
   campaigns.tomasRu,
   campaigns.retry,
   campaigns.supersede,
+  // The worker runs beside the DM's upload and must leave its request alone (Stage 670b).
+  UI_PARTY_CAMPAIGNS.battleMap,
 ];
 
 /** Curated pictures the review campaigns hold as candidates: made, never approved. */
@@ -227,7 +231,7 @@ export function startUiImageWorker(
     timeoutMs: 10_000,
     intervalMs: 300,
     campaigns: () => Promise.resolve(UI_IMAGE_WORKER_CAMPAIGNS),
-    skip: isCuratedRequest,
+    skip: isOwnRequest,
     logger: silent,
   });
 }

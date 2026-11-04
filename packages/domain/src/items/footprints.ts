@@ -1,24 +1,10 @@
 import type { KernelEvent } from '../kernel/events.ts';
 import { entityChecked, facts } from '../kernel/fact-keys.ts';
 import type { Footprint } from '../kernel/facts.ts';
+import { craftingFootprint } from './crafting.ts';
+import type { ItemEventType } from './evolve.ts';
 
-type ItemEvent = Extract<
-  KernelEvent,
-  {
-    type:
-      | 'ItemGranted'
-      | 'ItemEquipped'
-      | 'ItemUnequipped'
-      | 'ItemUsed'
-      | 'ItemRecovered'
-      | 'ItemTransferred'
-      | 'ItemSplit'
-      | 'ItemAttuned'
-      | 'ItemChargesSpent'
-      | 'ItemChargesRegained'
-      | 'ItemIdentified';
-  }
->;
+type ItemEvent = Extract<KernelEvent, { type: ItemEventType }>;
 
 /**
  * Item footprints (docs/adr/0039-item-possession.md). Equip and unequip read and write the
@@ -28,12 +14,18 @@ type ItemEvent = Extract<
 export function itemFootprint(event: ItemEvent): Footprint {
   const clock = facts.clock();
   switch (event.type) {
+    case 'CraftingStarted':
+    case 'CraftingWorked':
+    case 'CraftingFinished':
+    case 'CraftingAbandoned':
+      return craftingFootprint(event);
     case 'ItemGranted':
       return {
         reads: [
           clock,
           ...entityChecked(event.payload.itemId),
-          ...entityChecked(event.payload.holderId),
+          // Treasure lying at a place has no holder: its place is the `EntityPlaced` beside it.
+          ...(event.payload.holderId === null ? [] : entityChecked(event.payload.holderId)),
           facts.possession(event.payload.itemId),
         ],
         writes: [facts.possession(event.payload.itemId)],
@@ -68,6 +60,7 @@ export function itemFootprint(event: ItemEvent): Footprint {
       };
     case 'ItemUsed':
     case 'ItemRecovered':
+    case 'ItemStackChanged':
       return {
         reads: [
           clock,

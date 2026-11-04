@@ -13,7 +13,12 @@ export const CLIENT_ROOTS = [
 const T_CALL = /\bt\(\s*(['"])((?:\\.|(?!\1).)*?)\1/gs;
 /** Sentence-like literals in constant tables: a capital, a space, and a sentence's worth of text. */
 const SENTENCE = /(?<![\w.])'((?:\\.|[^'\\\n])*?)'/g;
-const NOT_UI = new Set(['Missing application root']);
+/**
+ * One capitalised word as a table's value (`PUBLIC: 'Everyone',`): an option's word that reaches
+ * the screen through `t()` — "Everyone" and "A site" once showed in English on a Russian editor.
+ */
+const TABLE_WORD = /^\s+[\w']+: '([A-Z][a-z]+)',?$/gm;
+const NOT_UI = new Set(['Missing application root', 'Escape']);
 
 export function sources(dir: URL): string[] {
   const path = dir.pathname;
@@ -36,13 +41,14 @@ export function keysOf(file: string): string[] {
   for (const match of text.matchAll(SENTENCE)) {
     const literal = (match[1] ?? '').replace(/\\'/g, "'");
     if (
-      /^[A-Z][a-z]+ [A-Za-z]/.test(literal) &&
+      /^(?:[A-Z][a-z]+|An?) [A-Za-z]/.test(literal) &&
       /[a-z]{3}/.test(literal) &&
       !/^[A-Z][A-Za-z]+Error/.test(literal)
     ) {
       keys.add(literal);
     }
   }
+  for (const match of text.matchAll(TABLE_WORD)) keys.add(match[1] ?? '');
   return [...keys].filter((key) => !NOT_UI.has(key));
 }
 

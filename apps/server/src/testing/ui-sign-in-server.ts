@@ -14,14 +14,16 @@ import { createCampaignQuestBooks } from '../campaigns/quest-books.ts';
 import { buildLiveApp } from '../live/live-app.ts';
 import { createLogger } from '../platform/logging/logger.ts';
 import {
+  ADVENTURE_BOOKS,
+  adventurePictures,
+  MIDDLE_ENTROPY,
+  RAVENFORD_PREPARED,
   RAVENFORD_QUESTS,
   RAVENFORD_QUESTS_BY_LANGUAGE,
-  RAVENFORD_PREPARED,
   testAiGateway,
   testAssets,
   testAuthoring,
   testDm,
-  MIDDLE_ENTROPY,
 } from './ravenford-app.ts';
 import { seedDmInvitations, seedSignInCampaigns } from './ui-sign-in-campaigns.ts';
 import { SIGN_IN_ORIGIN, SIGN_IN_PORTS, signInSeed } from './ui-sign-in-links.ts';
@@ -110,6 +112,8 @@ const { app } = buildLiveApp({
   quests: RAVENFORD_QUESTS,
   questsByLanguage: RAVENFORD_QUESTS_BY_LANGUAGE,
   preparedEncounters: RAVENFORD_PREPARED,
+  adventures: ADVENTURE_BOOKS,
+  adventurePictures: await adventurePictures(),
   campaignQuests: createCampaignQuestBooks(activationFixture.initialContent),
   engine,
   authenticator: personOrDisplay(

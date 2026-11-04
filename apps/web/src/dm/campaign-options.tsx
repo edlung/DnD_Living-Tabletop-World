@@ -1,4 +1,10 @@
-import { CARRYING, HIT_POINTS_AT_LEVEL, LEVELS_BY, type CampaignOptions } from '@ltw/contracts';
+import {
+  CARRYING,
+  HIT_POINTS_AT_LEVEL,
+  LEVELS_BY,
+  MAX_CRAFT_HELPERS,
+  type CampaignOptions,
+} from '@ltw/contracts';
 import { useT } from '@ltw/ui';
 import { useId, useState } from 'react';
 
@@ -8,11 +14,13 @@ import { CARRYING_WORDS, HIT_POINT_WORDS, LEVEL_WORDS, OPTION_KEYS } from './opt
 import type { DmTableCommand } from './table-commands.ts';
 
 const LEVELS = Array.from({ length: 20 }, (_, index) => index + 1);
+const HELPERS = Array.from({ length: MAX_CRAFT_HELPERS }, (_, index) => index + 1);
 
 /**
  * The campaign's options on the DM's Session sheet (docs/adr/0056-characters-from-the-srd.md §3):
  * a new level's hit points, levels by experience or milestone, carrying shown or enforced, and the
- * level new characters start at, so one who joins later joins at the party's. Saved through the
+ * level new characters start at, so one who joins later joins at the party's, and how many may help
+ * on a crafting project (docs/adr/0057-encounters-maps-loot.md §9). Saved through the
  * World Engine; the DM's history undoes a change. Mounted again for each saved set it reads.
  */
 export function CampaignOptionsForm({
@@ -26,8 +34,10 @@ export function CampaignOptionsForm({
 }) {
   const t = useT();
   const ids = useId();
-  const [draft, setDraft] = useState<CampaignOptions>(options);
-  const changed = OPTION_KEYS.some((key) => draft[key] !== options[key]);
+  // Options set before Stage 670f have no helpers' count: one (docs/adr/0057-…md §9).
+  const saved = { ...options, craftingHelpers: options.craftingHelpers ?? 1 };
+  const [draft, setDraft] = useState<CampaignOptions>(saved);
+  const changed = OPTION_KEYS.some((key) => draft[key] !== saved[key]);
   const set = (change: Partial<CampaignOptions>) => {
     setDraft((before) => ({ ...before, ...change }));
   };
@@ -122,6 +132,26 @@ export function CampaignOptionsForm({
               {LEVELS.map((level) => (
                 <option key={level} value={level}>
                   {level}
+                </option>
+              ))}
+            </select>
+          )}
+        </Field>
+        <Field
+          label={t('Helpers on a crafting project')}
+          hint={t('One, as the SRD has it, unless you allow more.')}
+        >
+          {(control) => (
+            <select
+              {...control}
+              value={draft.craftingHelpers ?? 1}
+              onChange={(event) => {
+                set({ craftingHelpers: Number(event.target.value) });
+              }}
+            >
+              {HELPERS.map((count) => (
+                <option key={count} value={count}>
+                  {count === 1 ? t('One') : t('Up to {count}', { count })}
                 </option>
               ))}
             </select>

@@ -44,13 +44,14 @@ export function useMedia(query: string): boolean {
   );
 }
 
-export function useBoardView(): BoardView {
+/** `prefer`: the view a board opens in before anyone chooses — the builder's board is flat. */
+export function useBoardView(prefer?: BoardMode): BoardView {
   const wide = useMedia(WIDE);
   const narrow = useMedia(NARROW);
   const [chosen, setChosen] = useState<BoardMode | null>(null);
   const [step, setStep] = useState(ZOOMS.indexOf(1));
   return {
-    mode: chosen ?? (wide ? 'tilted' : 'flat'),
+    mode: chosen ?? prefer ?? (wide ? 'tilted' : 'flat'),
     zoom: narrow ? (ZOOMS[step] ?? 1) : 1,
     narrow,
     choose: setChosen,

@@ -2,6 +2,7 @@ import type {
   AssetAudience,
   AssetFailure,
   AssetMediaType,
+  BattleMapGrid,
   AssetPurpose,
   AssetStatus,
   AssetVariant,
@@ -66,6 +67,8 @@ export interface AssetRecord {
   readonly status: AssetStatus;
   /** Exact already-generated draft bytes; absent for ordinary external jobs. */
   readonly origin?: CampaignBootstrapAsset['origin'] | undefined;
+  /** A battle map's grid as the DM lined it up (docs/adr/0057-encounters-maps-loot.md §3). */
+  readonly grid?: BattleMapGrid | undefined;
 }
 
 export interface AssetState {

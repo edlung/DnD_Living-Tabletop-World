@@ -1,6 +1,13 @@
 import { assetFootprint, assetRestoredFacts } from '../assets/footprints.ts';
 import { combatFootprint } from '../combat/footprints.ts';
+import { isItemEvent } from '../items/evolve.ts';
 import { itemFootprint } from '../items/footprints.ts';
+import {
+  contentFootprint,
+  contentRestoredFacts,
+  isContentEvent,
+  isContentRestore,
+} from '../content/events.ts';
 import { chronicleFootprint } from '../chronicle/decide.ts';
 import { consideredCombatants } from '../combat/reactions.ts';
 import { attemptKey, insightKey, scopedKey, shownKey } from '../investigation/records.ts';
@@ -30,6 +37,8 @@ export interface Footprint {
 export function footprintOf(event: KernelEvent): Footprint {
   // Every event happens at the current world time, so it depends on the clock.
   const clock = facts.clock();
+  if (isItemEvent(event)) return itemFootprint(event);
+  if (isContentEvent(event)) return contentFootprint(event);
   switch (event.type) {
     case 'PreparedPartyEstablished':
       return {
@@ -288,6 +297,9 @@ export function footprintOf(event: KernelEvent): Footprint {
     case 'CombatEnded':
     case 'CombatOrderChanged':
     case 'LightSet':
+    case 'TerrainPainted':
+    case 'FogSet':
+    case 'TrapChanged':
     case 'StatBlockSet':
     case 'ActionTaken':
     case 'FeatureUsed':
@@ -362,6 +374,7 @@ export function footprintOf(event: KernelEvent): Footprint {
     case 'AssetRequestCancelled':
     case 'AssetRetracted':
     case 'AssetApproved':
+    case 'BattleMapAligned':
       return assetFootprint(event);
     case 'ChronicleGenerated':
       // A chapter rests on everything it tells (ADR 0024 §4).
@@ -370,19 +383,8 @@ export function footprintOf(event: KernelEvent): Footprint {
     case 'CampaignOptionsSet':
     case 'WeatherSet':
     case 'RelationshipChanged':
+    case 'MerchantSet':
       return tableFootprint(event, clock);
-    case 'ItemGranted':
-    case 'ItemEquipped':
-    case 'ItemUnequipped':
-    case 'ItemUsed':
-    case 'ItemRecovered':
-    case 'ItemTransferred':
-    case 'ItemSplit':
-    case 'ItemAttuned':
-    case 'ItemChargesSpent':
-    case 'ItemChargesRegained':
-    case 'ItemIdentified':
-      return itemFootprint(event);
     case 'AuthoringPremisesRecorded':
       // Reads only: what an authoring commit's legality rested on (ADR 0019 §2).
       return {
@@ -397,6 +399,7 @@ export function footprintOf(event: KernelEvent): Footprint {
 
 /** Facts a restore entry rewrites. Removing an entity or scene rewrites all its facts. */
 export function restoredFacts(restore: Restore): FactKey[] {
+  if (isContentRestore(restore)) return contentRestoredFacts(restore);
   switch (restore.fact) {
     case 'entity':
       return allEntityFacts(restore.entityId);
@@ -468,6 +471,10 @@ export function restoredFacts(restore: Restore): FactKey[] {
       return [facts.death(restore.entityId)];
     case 'portraitWish':
       return [facts.portraitWish(restore.characterId)];
+    case 'merchant':
+      return [facts.merchant(restore.npcId)];
+    case 'crafting':
+      return [facts.crafting(restore.projectId)];
     case 'chronicle':
       return [facts.chronicle(restore.chronicleId)];
     case 'possession':

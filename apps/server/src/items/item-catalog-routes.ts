@@ -170,6 +170,7 @@ export function registerItemCatalogRoutes(app: FastifyInstance, deps: RouteDepen
           quantity: body.quantity,
           ...(baseId === null ? {} : { baseCatalogId: baseId }),
           ...(body.unidentified ? { unidentified: true as const } : {}),
+          ...(body.forSale ? { forSale: true as const } : {}),
         },
       },
     ];

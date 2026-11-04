@@ -1,0 +1,194 @@
+/* The DM's hand on the board (combat/board/token-drag.ts; docs/adr/0057-encounters-maps-loot.md
+   §2): a square holding a token, or its name plate, is grabbed, and the square under a drag is lit
+   as a destination. */
+.board-square.is-draggable,
+.board-plate.is-draggable .token-plate {
+  cursor: grab;
+  touch-action: none;
+}
+.board-square.is-drop-target::before {
+  background: color-mix(in srgb, var(--gold) 30%, transparent);
+  box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--gold) 80%, transparent);
+}
+
+/* The DM's brush (combat/board/paint-stroke.ts, combat/paint-card.tsx; ADR 0057 §2): every square
+   takes it — a press paints one, a drag paints its stroke, lit as it goes. */
+.board-square.is-paintable {
+  cursor: crosshair;
+  touch-action: none;
+}
+.board-square.is-stroke::before {
+  background: color-mix(in srgb, var(--gold) 22%, transparent);
+  box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--gold) 70%, transparent);
+}
+.paint-brushes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 11rem), 1fr));
+  gap: 0.35rem 0.75rem;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.paint-brushes > legend {
+  margin: 0 0 0.35rem;
+  padding: 0;
+  font-weight: 700;
+}
+/* Control first, its words after it: every radio on one left edge. */
+.paint-brush {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.5rem;
+  min-height: 32px;
+}
+.paint-brush label {
+  margin: 0;
+}
+.paint-brush input[type='radio'],
+.paint-brush input[type='checkbox'] {
+  /* A pointer target of its own of at least 24 px (WCAG 2.5.8). */
+  width: 24px;
+  height: 24px;
+  margin: 0;
+}
+.paint-brush select {
+  flex: 1 1 100%;
+  min-width: 0;
+}
+/* A trap's or harmful ground's settings (combat/danger-brushes.tsx; ADR 0057 §6): under their own
+   brush, across the card, in line with the brush's words. */
+.paint-brush--open {
+  grid-column: 1 / -1;
+}
+.danger-options {
+  display: grid;
+  flex: 1 1 100%;
+  gap: 0.75rem;
+  min-width: 0;
+  padding: 0.25rem 0 0.5rem calc(24px + 0.5rem);
+}
+
+/* The fog of war (ADR 0057 §4): darkness on the players' and the display's boards, whose view leaves
+   out what lies under it; a veil the DM sees through, its figures above it. */
+.square-war-fog {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.square-war-fog--hidden {
+  background:
+    radial-gradient(
+      circle at 30% 30%,
+      color-mix(in srgb, var(--ink-700, #2a3138) 55%, transparent),
+      transparent 70%
+    ),
+    color-mix(in srgb, var(--ink-950) 94%, transparent);
+}
+.square-war-fog--veil {
+  background: repeating-linear-gradient(
+    45deg,
+    color-mix(in srgb, var(--ink-950) 55%, transparent) 0 5px,
+    color-mix(in srgb, var(--ink-950) 30%, transparent) 5px 10px
+  );
+}
+
+/* The viewer's own tools (combat/board-tools.tsx; ADR 0057 §5): the squares a laid area covers, the
+   ruler's start, and the ruler drawn to its end over the plane. */
+.board-square.in-template::before {
+  background: color-mix(in srgb, var(--warning, var(--gold-bright)) 28%, transparent);
+  box-shadow: inset 0 0 0 1px
+    color-mix(in srgb, var(--warning, var(--gold-bright)) 75%, transparent);
+}
+.board-square.is-ruler-start::before {
+  box-shadow: inset 0 0 0 2px var(--teal);
+}
+.board-ruler {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+.board-ruler line {
+  stroke: var(--teal);
+  stroke-width: calc(var(--cell) * 0.07);
+  stroke-linecap: round;
+}
+.board-ruler circle {
+  fill: var(--teal);
+}
+.tool-reading {
+  margin: 0;
+  color: var(--gold-bright);
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+}
+
+/* The table's shared marks (combat/board/board-marks.tsx; ADR 0057 §5): the DM's in gold, a
+   player's in the party's colour — a ping rings out and fades, the pointer stands on its square, a
+   stroke runs through its squares, a shown area outlines its own. Nothing here takes a press. */
+.board-marks {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+.board-marks .mark--dm {
+  --mark: var(--gold-bright);
+}
+.board-marks .mark--player {
+  --mark: var(--side-party);
+}
+.mark-stroke {
+  fill: none;
+  stroke: var(--mark);
+  stroke-width: calc(var(--cell) * 0.1);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 2px rgb(0 0 0 / 0.65));
+}
+.mark-area rect {
+  fill: color-mix(in srgb, var(--mark) 24%, transparent);
+  stroke: var(--mark);
+  stroke-width: 2;
+}
+.mark-pointer circle {
+  fill: none;
+  stroke: var(--mark);
+  stroke-width: calc(var(--cell) * 0.07);
+  filter: drop-shadow(0 0 3px rgb(0 0 0 / 0.7));
+}
+.mark-pointer .mark-pointer-dot {
+  fill: var(--mark);
+  stroke: none;
+}
+.mark-ping {
+  fill: color-mix(in srgb, var(--mark) 18%, transparent);
+  stroke: var(--mark);
+  stroke-width: calc(var(--cell) * 0.08);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: mark-ping 1.2s ease-out 3;
+}
+@keyframes mark-ping {
+  from {
+    transform: scale(0.45);
+    opacity: 1;
+  }
+  to {
+    transform: scale(1.1);
+    opacity: 0.4;
+  }
+}
+.mark-dm {
+  display: grid;
+  gap: 0.75rem;
+  justify-items: start;
+}

@@ -1,7 +1,7 @@
-import type { Square } from '@ltw/contracts';
+import type { Square } from './battlefield.ts';
 import { describe, expect, it } from 'vitest';
 
-import { inSpellArea, type SpellArea } from './areas.ts';
+import { inSpellArea, type SpellArea } from './geometry.ts';
 
 /** Spell areas on the grid (docs/adr/0052-spells-as-data.md §5), drawn as the squares they cover. */
 const CASTER: readonly Square[] = [{ x: 5, y: 5 }];

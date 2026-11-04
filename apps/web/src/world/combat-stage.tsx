@@ -1,10 +1,12 @@
-import type { EncounterView, PlayerAssetView } from '@ltw/contracts';
+import { HIDDEN_TURN, type EncounterView, type PlayerAssetView } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
 import { useEffect, useRef } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { useBoardView } from '../combat/board/board-view.ts';
 import { CombatPanel } from '../combat/combat-panel.tsx';
+import { useBrush } from '../combat/paint-card.tsx';
+import { useMarks } from '../combat/use-marks.ts';
 import { useCombatantLabels } from '../combat/labels.ts';
 import { askedWindowOf, ReactionPrompt } from '../combat/reaction-prompt.tsx';
 import { ReadiedCard } from '../combat/readied-card.tsx';
@@ -58,6 +60,10 @@ export function CombatStage({
 }) {
   const t = useT();
   const view = useBoardView();
+  // The DM's brush outlasts the battlefield's fresh start after each stroke (ADR 0057 §2).
+  const hand = useBrush();
+  // So do the table's shared marks (ADR 0057 §5): read here, they neither vanish nor replay.
+  const marks = useMarks(api);
   const window = encounter.reactionWindow;
   const asked = askedWindowOf(encounter, actorId) !== null;
   const myTurn =
@@ -65,9 +71,12 @@ export function CombatStage({
     encounter.currentCombatantId === actorId &&
     encounter.combatants.some((entry) => entry.entity.entityId === actorId);
   const labelOf = useCombatantLabels(encounter);
+  // A creature the fog of war hides takes the DM's turn, as far as the table can tell (ADR 0057 §4).
   const turn = myTurn
     ? t('Your turn')
-    : t("{name}'s turn", { name: labelOf(encounter.currentCombatantId) });
+    : encounter.currentCombatantId === HIDDEN_TURN
+      ? t('The DM’s turn')
+      : t("{name}'s turn", { name: labelOf(encounter.currentCombatantId) });
   const banner = useRef<HTMLParagraphElement>(null);
   const asking = useRef(asked);
   useEffect(() => {
@@ -152,6 +161,8 @@ export function CombatStage({
           imageOf={imageOf}
           figureOf={figureOf}
           battleMap={battleMap}
+          hand={hand}
+          marks={marks}
           onRun={onRun}
         />
       </div>

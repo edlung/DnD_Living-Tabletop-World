@@ -24,6 +24,9 @@ Read the current work order, ADR 0038, architecture invariants and the current s
 - `prompt.ts`, `edit-prompt.ts` and `rules-guide.ts` expose public rules only in system/schema.
   Private draft data belongs only in the owner-authorized user payload. Oversized requests fail
   honestly; never truncate content, change models or import a fixture into runtime.
+- The guide lists the whole SRD by ID (ADR 0058 §6): classes, spells, monsters, items, weapons.
+  `srd-monsters.ts` writes a bestiary creature's SRD stat block into a step's raw output before
+  the domain checks it (both workers); an ID the bestiary lacks refuses the step.
 - `runtime.ts` is implemented by the admitted AI factory. Real preparation sessions bind the
   immutable job mode and current fence. EDIT permits `edit`; GENERATE permits its seven stages.
   No raw adapter, credential, approval, model or accounting bypass belongs here.

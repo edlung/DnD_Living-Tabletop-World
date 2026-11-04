@@ -1,4 +1,4 @@
-import type { EncounterView, PlayerAssetView } from '@ltw/contracts';
+import { HIDDEN_TURN, type EncounterView, type PlayerAssetView } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
 import { useRef } from 'react';
 
@@ -28,7 +28,10 @@ export function InitiativeStrip({
   const labelOf = useCombatantLabels(encounter);
   const myTurn = self !== undefined && encounter.currentCombatantId === actorId;
   const window = encounter.reactionWindow;
-  const currentName = labelOf(encounter.currentCombatantId);
+  const currentName =
+    encounter.currentCombatantId === HIDDEN_TURN
+      ? t('the DM')
+      : labelOf(encounter.currentCombatantId);
   // A long order scrolls inside the band; its edges fade where more of it hides (Stage 605).
   const list = useRef<HTMLOListElement>(null);
   const edges = useScrollEdges(list, encounter.order.join(' '));
@@ -90,8 +93,12 @@ export function InitiativeStrip({
                       {combatant.initiative.total}
                     </span>
                   )}
-                  {number && !combatant.initiative && (
-                    <span className="initiative-number" aria-hidden="true">
+                  {/* Two Goblin Warriors are told apart even beside their Initiative totals. */}
+                  {number && (
+                    <span
+                      className={`initiative-number${combatant.initiative ? ' beside-total' : ''}`}
+                      aria-hidden="true"
+                    >
                       {number}
                     </span>
                   )}

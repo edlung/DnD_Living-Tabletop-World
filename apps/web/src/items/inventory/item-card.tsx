@@ -1,4 +1,9 @@
-import type { EquipSlot, InventoryItem, InventoryWeapon } from '@ltw/contracts';
+import {
+  PARTY_STASH,
+  type EquipSlot,
+  type InventoryItem,
+  type InventoryWeapon,
+} from '@ltw/contracts';
 import { readableLabel, useT, type Language } from '@ltw/ui';
 import { useId, useState } from 'react';
 
@@ -29,6 +34,7 @@ export function ItemCard({
   language,
   blocked,
   recipients,
+  stashable = false,
   attuning,
   onRun,
   onAttune,
@@ -43,6 +49,8 @@ export function ItemCard({
   readonly language: Language;
   readonly blocked: boolean;
   readonly recipients: readonly Recipient[];
+  /** The character keeps the party's stash with the others (ADR 0057 §7). */
+  readonly stashable?: boolean;
   /**
    * Who may change its attunement now (docs/adr/0054-items-as-data.md §5): its player in a Short
    * Rest, the DM any time; null: nobody.
@@ -355,6 +363,17 @@ export function ItemCard({
                 {t('Give')}
               </button>
             </span>
+          )}
+          {item.slot === null && stashable && (
+            <button
+              type="button"
+              disabled={blocked}
+              onClick={() => {
+                onRun({ type: 'GiveItem', itemId: item.itemId, toHolderId: PARTY_STASH, ...part });
+              }}
+            >
+              {t('Put in the stash')}
+            </button>
           )}
           {item.slot === null && (
             <button

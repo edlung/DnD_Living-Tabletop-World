@@ -207,7 +207,9 @@ export function choiceOfKind(kind: ImageKind): {
     : { choice: 'variant', state: kind.label };
 }
 
-export type ImageCommand = KernelCommandOf<'RequestAsset' | 'ApproveAsset' | 'RetractAsset'>;
+export type ImageCommand = KernelCommandOf<
+  'RequestAsset' | 'ApproveAsset' | 'RetractAsset' | 'AlignBattleMap'
+>;
 
 /** `RequestAsset` as the DM sends it: a purpose only when not an image, a note only when typed. */
 export function requestCommand(

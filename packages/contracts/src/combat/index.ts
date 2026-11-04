@@ -55,6 +55,7 @@ export {
   type ObjectMaterial,
   type ObjectSize,
   type StatBlock,
+  type StatBlockResponse,
 } from './stat-block.ts';
 export { addObjectCommandSchema } from './objects.ts';
 export {
@@ -84,6 +85,7 @@ export type {
   ReactionChoice,
   ReactionWindowView,
 } from './views.ts';
+export { HIDDEN_TURN } from './views.ts';
 export {
   SURPRISED_SIDES,
   preparedEncounterBookSchema,
@@ -96,6 +98,59 @@ export {
   type PreparedEncounterView,
   type StartedPreparedEncounterResponse,
 } from './prepared.ts';
+export {
+  MAX_SAVED_ENCOUNTERS,
+  encounterDifficultyRequestSchema,
+  savedEncounterRequestSchema,
+  savedFoeSchema,
+  type EncounterDifficultyResponse,
+  type EncounterDifficultyView,
+  type SavedEncounterRequest,
+  type SavedEncounterView,
+  type SavedEncountersResponse,
+  type SavedEncounterBlock,
+  type SavedFoe,
+  type SavedFoeView,
+} from './saved-encounters.ts';
+export {
+  MAX_PAINTED_SQUARES,
+  TERRAIN_PAINT_KINDS,
+  paintTerrainCommandSchema,
+  placeCombatantCommandSchema,
+  setFogCommandSchema,
+  terrainPaintSchema,
+  type TerrainPaint,
+} from './board-commands.ts';
+export { fogBattlefield, paintBattlefield, sameGround } from './terrain-paint.ts';
+export {
+  BOARD_HAZARDS,
+  BOARD_TRAP_IDS,
+  MAX_TRAP_SQUARES,
+  boardHazardSchema,
+  boardTrapSchema,
+  type BoardHazard,
+  type BoardHazardKind,
+  type BoardTrap,
+  type BoardTrapId,
+} from './battlefield.ts';
+export {
+  MARK_KINDS,
+  MAX_MARKS,
+  PING_MS,
+  markRequestSchema,
+  markSettingsSchema,
+  type MarkKind,
+  type MarkRequest,
+  type MarkView,
+  type MarksResponse,
+} from './marks.ts';
+export {
+  SQUARE_FT,
+  inSpellArea,
+  squareDistanceFt,
+  squaresInArea,
+  type SpellArea,
+} from './geometry.ts';
 export {
   CONTAGION_STEPS,
   TOOLBOX_COMMAND_TYPES,

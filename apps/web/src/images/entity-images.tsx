@@ -3,6 +3,7 @@ import { StatusPanel, useT } from '@ltw/ui';
 import { useId, useRef, useState } from 'react';
 
 import { Glyph } from '../visual/glyph.tsx';
+import { BattleMapGridEditor, BattleMapUpload } from './battle-map-tools.tsx';
 import { useDmImages } from './dm-images.ts';
 import { useFocusRecovery } from './focus-recovery.ts';
 import { ApprovedCard, CandidateCard, RequestRow, type Context } from './image-cards.tsx';
@@ -33,6 +34,8 @@ export function EntityImages({
   const images = useDmImages();
   const ids = useId();
   const [preset, setPreset] = useState<ReplacePreset | null>(null);
+  // The battle map whose grid the DM is lining up.
+  const [aligning, setAligning] = useState<string | null>(null);
   const section = useRef<HTMLElement>(null);
   const place = `details:${entityId}`;
   // A card the DM acted on leaves the list: focus goes to the next card, else the section.
@@ -88,10 +91,26 @@ export function EntityImages({
                       nonce: (preset?.nonce ?? 0) + 1,
                     });
                   }}
+                  onAlign={() => {
+                    setAligning(shown.asset.assetId);
+                  }}
                 />
               ))}
             </ul>
           )}
+          {mine.approved
+            .filter((shown) => shown.asset.assetId === aligning)
+            .map((shown) => (
+              <BattleMapGridEditor
+                key={shown.asset.assetId}
+                asset={shown.asset}
+                subject={context.full(kindWords(t, shown.asset))}
+                place={place}
+                onDone={() => {
+                  setAligning(null);
+                }}
+              />
+            ))}
           {mine.candidates.length > 0 && (
             <>
               <h4 className="dm-images-part">{t('Waiting for your approval')}</h4>
@@ -129,6 +148,9 @@ export function EntityImages({
             context={context}
             preset={preset}
           />
+          {kind === 'location' && (
+            <BattleMapUpload entityId={entityId} hasPicture={mine.canonical} />
+          )}
         </>
       )}
     </section>

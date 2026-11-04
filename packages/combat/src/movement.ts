@@ -16,6 +16,7 @@ import {
 import { gapFt } from '@ltw/rules';
 
 import { combatantEvent, encounterOf, isAlive, onTurn, placedOf, withTurn } from './battlefield.ts';
+import { groundHarm, groundWalked, noticedEvents, springTrap, walkDangers } from './board-traps.ts';
 import { sourceOf } from './condition-details.ts';
 import { landingEvents } from './falling.ts';
 import { carryRider } from './mounts.ts';
@@ -45,7 +46,8 @@ import {
  * (docs/adr/0049-space-and-movement.md §1–8). Difficult terrain costs double; standing up from
  * Prone costs half Speed, crawling an extra foot per foot instead. Leaving a hostile creature's
  * reach provokes an opportunity attack (docs/adr/0046-reactions-beyond-counterspell.md §2): the
- * move stops there while the window is open, and goes on after.
+ * move stops there while the window is open, and goes on after. Coming onto an armed trap stops the
+ * move there and springs it; harmful ground harms on the way (docs/adr/0057-…md §6).
  */
 type Move = Extract<CombatCommand, { type: 'MoveCombatant' }>;
 
@@ -179,8 +181,20 @@ function walk(
     );
   }
   const along = new Set(heldBy(state, encounter, mover.entityId).map((c) => c.entityId));
-  const stop = firstProvocation(state, encounter, mover, path, offered, along);
-  const walked = stop === null ? path : path.slice(0, stop.walked);
+  const provoked = firstProvocation(state, encounter, mover, path, offered, along);
+  // A trap on the way ends the move on it, or short of one the mover noticed ahead — before any
+  // reach further on (ADR 0057 §6).
+  const dangers = walkDangers(state, encounter, mover, path);
+  const early =
+    dangers.stop !== null && (provoked === null || dangers.stop.index < provoked.walked)
+      ? dangers.stop
+      : null;
+  const stop = early ? null : provoked;
+  const walked = early
+    ? path.slice(0, early.index + 1)
+    : stop === null
+      ? path
+      : path.slice(0, stop.walked);
   let usedFt = mover.turn.movementUsedFt + whole.standUpFt;
   let squeezed = mover.squeezed === true;
   let altitudeFt = mover.altitudeFt ?? 0;
@@ -217,6 +231,20 @@ function walk(
     const landed = landingEvents(dice, vitals);
     events.push(...landed.events);
     vitals = landed.vitals;
+  }
+  // The traps it noticed, harmful ground on the way, then the trap it came onto (ADR 0057 §6).
+  events.push(...noticedEvents(encounter, dangers, walked.length, mover.entityId));
+  let harmed = { vitals, events: [] as DraftEvent[], dead: false };
+  for (const hazard of groundWalked(state, encounter, mover, walked))
+    harmed = groundHarm(state, dice, harmed, hazard);
+  events.push(...harmed.events);
+  vitals = harmed.vitals;
+  if (early) {
+    if (early.sprung)
+      events.push(
+        ...springTrap(state, encounter, dice, early.sprung, moved, harmed.dead ? null : vitals),
+      );
+    return events;
   }
   if (stop === null && whole.fallFt > 0) {
     // Feather Fall's moment, or the ground now (§8).

@@ -88,6 +88,14 @@ export function planPath(
         passable,
       };
     });
+  // Known traps it keeps clear of on the way, and harmful ground it skirts where that costs no more
+  // (docs/adr/0057-encounters-maps-loot.md §6): advice only — the World Engine decides.
+  const trapped = new Set(
+    (encounter.battlefield.traps ?? [])
+      .filter((trap) => trap.disarmed !== true)
+      .flatMap((trap) => trap.squares.map(key)),
+  );
+  const harmful = new Set((encounter.battlefield.hazards ?? []).map(key));
   const inside = (square: Square) =>
     square.x >= 0 &&
     square.y >= 0 &&
@@ -107,6 +115,8 @@ export function planPath(
     readonly ground: number;
     /** Its height above that ground there: in the air, or underground. */
     readonly altitudeFt: number;
+    /** Squares of harmful ground it would stand on there. */
+    readonly risk: number;
   }
   /** What its space at `at` costs, stepping from ground `from`; null where it cannot be. */
   const fit = (at: Square, from: number, ending: boolean): Fit | null => {
@@ -126,7 +136,9 @@ export function planPath(
       );
       if (ending ? met.length > 0 : met.some((other) => !other.passable)) continue;
       const squeeze = span < whole ? SQUARE_FT : 0;
-      if (altitude !== 0) return { extra: squeeze, ground, altitudeFt: above };
+      if (altitude !== 0) return { extra: squeeze, ground, altitudeFt: above, risk: 0 };
+      if (!ending && space.some((square) => trapped.has(key(square)))) continue;
+      const risk = space.filter((square) => harmful.has(key(square))).length;
       const rough = met.length > 0 || space.some((square) => hard.has(key(square))) ? SQUARE_FT : 0;
       // A step may climb and swim at once, each foot its own cost.
       const climb = Math.abs(ground - from);
@@ -138,7 +150,7 @@ export function planPath(
         (climbing ? climb * (speeds.climb === undefined ? 2 : 1) : 0) +
         (swimming && speeds.swim === undefined ? SQUARE_FT : 0) +
         (crawl && !climbing ? SQUARE_FT : 0);
-      return { extra, ground, altitudeFt: 0 };
+      return { extra, ground, altitudeFt: 0, risk };
     }
     return null;
   };
@@ -149,6 +161,7 @@ export function planPath(
     readonly ground: number;
     readonly altitudeFt: number;
     readonly costFt: number;
+    readonly risk: number;
     readonly steps: number;
     readonly from: Node | null;
   }
@@ -158,13 +171,14 @@ export function planPath(
     ground: groundUnder(encounter, footprint(mover)),
     altitudeFt: altitude,
     costFt: 0,
+    risk: 0,
     steps: 0,
     from: null,
   };
   best.set(key(start.square), start);
   const open: Node[] = [start];
   while (open.length > 0) {
-    open.sort((a, b) => a.costFt - b.costFt || a.steps - b.steps);
+    open.sort((a, b) => a.costFt - b.costFt || a.risk - b.risk || a.steps - b.steps);
     const node = open.shift();
     if (!node) break;
     if (best.get(key(node.square)) !== node) continue;
@@ -188,11 +202,16 @@ export function planPath(
           ground: step.ground,
           altitudeFt: step.altitudeFt,
           costFt: node.costFt + SQUARE_FT + step.extra,
+          risk: node.risk + step.risk,
           steps: node.steps + 1,
           from: node,
         };
         const known = best.get(key(square));
-        if (!known || next.costFt < known.costFt) {
+        if (
+          !known ||
+          next.costFt < known.costFt ||
+          (next.costFt === known.costFt && next.risk < known.risk)
+        ) {
           best.set(key(square), next);
           open.push(next);
         }

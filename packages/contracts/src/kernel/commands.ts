@@ -5,6 +5,7 @@ import { createCharacterCommandSchema } from '../rules/character-choices.ts';
 import { setCampaignOptionsCommandSchema } from '../campaign/options.ts';
 
 import {
+  alignBattleMapCommandSchema,
   approveAssetCommandSchema,
   askPortraitCommandSchema,
   cancelAssetRequestCommandSchema,
@@ -23,11 +24,26 @@ import {
   giveItemCommandSchema,
   grantItemCommandSchema,
   identifyItemCommandSchema,
+  buyItemCommandSchema,
+  sellItemCommandSchema,
+  setMerchantCommandSchema,
+  splitCoinsCommandSchema,
   takeItemCommandSchema,
   unequipItemCommandSchema,
   useItemCommandSchema,
 } from '../items/commands.ts';
+import {
+  abandonCraftingCommandSchema,
+  startCraftingCommandSchema,
+  workDowntimeCommandSchema,
+} from '../items/crafting.ts';
 import { setWeatherCommandSchema } from '../visual/commands.ts';
+import {
+  setMapPinsCommandSchema,
+  setRouteCommandSchema,
+  travelCommandSchema,
+} from '../travel/travel.ts';
+import { setQuestCommandSchema, setQuestStepCommandSchema } from '../quest/hand-quests.ts';
 import { generateChronicleCommandSchema } from '../chronicle/commands.ts';
 import { applyAuthoringCommandSchema } from '../authoring/commands.ts';
 import {
@@ -50,6 +66,11 @@ import {
   formHypothesisCommandSchema,
   setDisclosureCommandSchema,
 } from '../investigation/commands.ts';
+import {
+  paintTerrainCommandSchema,
+  placeCombatantCommandSchema,
+  setFogCommandSchema,
+} from '../combat/board-commands.ts';
 import {
   addCombatantCommandSchema,
   adjustHitPointsCommandSchema,
@@ -118,6 +139,12 @@ export {
   type LocationType,
 } from './world-commands.ts';
 
+/** A ready adventure's content key: its quest book and prepared encounters (ADR 0058 §5). */
+export const adventureKeySchema = z
+  .string()
+  .regex(/^[a-z][a-z0-9]*(-[a-z0-9]+)*$/)
+  .max(40);
+
 /**
  * World Kernel commands (docs/adr/0007-world-kernel-model-and-event-store.md).
  * Schemas validate shape only; legality is decided by the World Engine.
@@ -131,6 +158,11 @@ const createCampaign = z
     startsAt: worldTimeSchema,
     /** Play language (ADR 0031); `en` when omitted. */
     language: languageSchema.optional(),
+    /**
+     * The ready adventure whose quest book and prepared encounters the campaign reads
+     * (docs/adr/0058-campaign-content.md §5); Ravenford's when omitted.
+     */
+    adventure: adventureKeySchema.optional(),
   })
   .strict();
 
@@ -202,6 +234,7 @@ export const kernelCommandSchema = z
     cancelAssetRequestCommandSchema,
     retractAssetCommandSchema,
     approveAssetCommandSchema,
+    alignBattleMapCommandSchema,
     setWeatherCommandSchema,
     generateChronicleCommandSchema,
     grantItemCommandSchema,
@@ -211,6 +244,18 @@ export const kernelCommandSchema = z
     giveItemCommandSchema,
     dropItemCommandSchema,
     takeItemCommandSchema,
+    splitCoinsCommandSchema,
+    setMerchantCommandSchema,
+    buyItemCommandSchema,
+    sellItemCommandSchema,
+    startCraftingCommandSchema,
+    abandonCraftingCommandSchema,
+    workDowntimeCommandSchema,
+    setMapPinsCommandSchema,
+    setRouteCommandSchema,
+    travelCommandSchema,
+    setQuestCommandSchema,
+    setQuestStepCommandSchema,
     attuneItemCommandSchema,
     identifyItemCommandSchema,
     dawnRechargeCommandSchema,
@@ -222,6 +267,9 @@ export const kernelCommandSchema = z
     removeCombatantCommandSchema,
     delayTurnCommandSchema,
     setInitiativeCommandSchema,
+    placeCombatantCommandSchema,
+    paintTerrainCommandSchema,
+    setFogCommandSchema,
     commandCreatureCommandSchema,
     addObjectCommandSchema,
     setLightCommandSchema,
@@ -293,6 +341,7 @@ export const KERNEL_COMMAND_TYPES = [
   'CancelAssetRequest',
   'RetractAsset',
   'ApproveAsset',
+  'AlignBattleMap',
   'SetWeather',
   'GenerateChronicle',
   'GrantItem',
@@ -302,6 +351,18 @@ export const KERNEL_COMMAND_TYPES = [
   'GiveItem',
   'DropItem',
   'TakeItem',
+  'SplitCoins',
+  'SetMerchant',
+  'BuyItem',
+  'SellItem',
+  'StartCrafting',
+  'AbandonCrafting',
+  'WorkDowntime',
+  'SetMapPins',
+  'SetRoute',
+  'Travel',
+  'SetQuest',
+  'SetQuestStep',
   'AttuneItem',
   'IdentifyItem',
   'DawnRecharge',
@@ -313,6 +374,9 @@ export const KERNEL_COMMAND_TYPES = [
   'RemoveCombatant',
   'DelayTurn',
   'SetInitiative',
+  'PlaceCombatant',
+  'PaintTerrain',
+  'SetFog',
   'CommandCreature',
   'AddObject',
   'SetLight',

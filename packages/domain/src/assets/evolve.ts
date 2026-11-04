@@ -20,7 +20,8 @@ type AssetEvent = Extract<
       | 'AssetJobFailed'
       | 'AssetRequestCancelled'
       | 'AssetRetracted'
-      | 'AssetApproved';
+      | 'AssetApproved'
+      | 'BattleMapAligned';
   }
 >;
 
@@ -141,6 +142,13 @@ export function applyAssetEvent(state: WorldState, event: AssetEvent): WorldStat
       return with_(state, {
         requests: withEntry(assets.requests, requestId, { ...request, cancelled: true }),
       });
+    }
+    case 'BattleMapAligned': {
+      const { assetId, grid } = event.payload;
+      const asset = assets.assets.get(assetId);
+      if (asset?.purpose !== 'battle-map')
+        throw new CorruptHistoryError(`asset ${assetId} is no battle map`);
+      return with_(state, { assets: withEntry(assets.assets, assetId, { ...asset, grid }) });
     }
     case 'AssetRetracted': {
       const { assetId, entityId, wasCanonical } = event.payload;

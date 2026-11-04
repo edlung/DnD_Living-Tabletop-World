@@ -1,0 +1,142 @@
+{
+  "campaignId": "hollowmere",
+  "dmActorId": "dm-hollowmere",
+  "commands": [
+    {
+      "type": "CreateCharacter",
+      "name": "Брин Эшдаун",
+      "choices": {
+        "invocations": [],
+        "cantrips": [],
+        "spells": [],
+        "spellbook": [],
+        "classId": "fighter",
+        "speciesId": "human",
+        "backgroundId": "soldier",
+        "abilities": {
+          "method": "standard-array",
+          "base": { "str": 15, "dex": 13, "con": 14, "int": 8, "wis": 12, "cha": 10 }
+        },
+        "increases": { "plus2": "str", "plus1": "con" },
+        "skills": ["perception", "survival"],
+        "moreSkills": ["insight"],
+        "expertise": [],
+        "tools": ["srd-dice-gaming-set"],
+        "languages": ["dwarvish", "halfling"],
+        "equipment": {
+          "classOption": "A",
+          "backgroundOption": "A",
+          "picks": ["srd-dice-gaming-set"]
+        },
+        "originFeat": "alert",
+        "fightingStyle": "defense",
+        "weaponMasteries": ["greatsword", "flail", "javelin"]
+      },
+      "locationId": "north-gate"
+    },
+    {
+      "type": "CreateCharacter",
+      "name": "Хеск Коулберд",
+      "choices": {
+        "invocations": [],
+        "cantrips": ["guidance", "sacred-flame", "spare-the-dying"],
+        "spells": ["bless", "cure-wounds", "guiding-bolt", "healing-word"],
+        "spellbook": [],
+        "classId": "cleric",
+        "speciesId": "dwarf",
+        "backgroundId": "acolyte",
+        "abilities": {
+          "method": "standard-array",
+          "base": { "str": 13, "dex": 10, "con": 14, "int": 8, "wis": 15, "cha": 12 }
+        },
+        "increases": { "plus2": "wis", "plus1": "cha" },
+        "skills": ["medicine", "persuasion"],
+        "moreSkills": [],
+        "expertise": [],
+        "tools": [],
+        "languages": ["dwarvish", "giant"],
+        "equipment": {
+          "classOption": "A",
+          "backgroundOption": "A",
+          "picks": ["srd-amulet-holy-symbol", "srd-amulet-holy-symbol"]
+        },
+        "order": "protector",
+        "weaponMasteries": [],
+        "magicInitiate": {
+          "list": "cleric",
+          "ability": "wis",
+          "cantrips": ["light", "thaumaturgy"],
+          "spell": "shield-of-faith"
+        }
+      },
+      "locationId": "north-gate"
+    },
+    {
+      "type": "CreateCharacter",
+      "name": "Рен Андербоу",
+      "choices": {
+        "invocations": [],
+        "cantrips": [],
+        "spells": [],
+        "spellbook": [],
+        "classId": "rogue",
+        "speciesId": "halfling",
+        "backgroundId": "criminal",
+        "abilities": {
+          "method": "standard-array",
+          "base": { "str": 8, "dex": 15, "con": 13, "int": 12, "wis": 14, "cha": 10 }
+        },
+        "increases": { "plus2": "dex", "plus1": "con" },
+        "skills": ["acrobatics", "perception", "investigation", "deception"],
+        "moreSkills": [],
+        "expertise": ["stealth", "perception"],
+        "tools": [],
+        "languages": ["halfling", "elvish", "goblin"],
+        "equipment": { "classOption": "A", "backgroundOption": "A", "picks": [] },
+        "weaponMasteries": ["dagger", "shortsword"]
+      },
+      "locationId": "north-gate"
+    },
+    {
+      "type": "CreateCharacter",
+      "name": "Лира Венн",
+      "choices": {
+        "invocations": [],
+        "cantrips": ["fire-bolt", "mage-hand", "light"],
+        "spells": ["magic-missile", "shield", "sleep", "mage-armor"],
+        "spellbook": [
+          "magic-missile",
+          "shield",
+          "sleep",
+          "detect-magic",
+          "mage-armor",
+          "burning-hands"
+        ],
+        "classId": "wizard",
+        "speciesId": "elf",
+        "speciesOption": "high elf",
+        "speciesAbility": "int",
+        "backgroundId": "sage",
+        "abilities": {
+          "method": "standard-array",
+          "base": { "str": 8, "dex": 14, "con": 13, "int": 15, "wis": 12, "cha": 10 }
+        },
+        "increases": { "plus2": "int", "plus1": "con" },
+        "skills": ["investigation", "insight"],
+        "moreSkills": ["perception"],
+        "expertise": [],
+        "tools": [],
+        "languages": ["elvish", "gnomish"],
+        "equipment": { "classOption": "A", "backgroundOption": "A", "picks": [] },
+        "weaponMasteries": [],
+        "magicInitiate": {
+          "list": "wizard",
+          "ability": "int",
+          "cantrips": ["minor-illusion", "ray-of-frost"],
+          "spell": "find-familiar"
+        }
+      },
+      "locationId": "north-gate"
+    }
+  ]
+}

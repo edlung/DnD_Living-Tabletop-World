@@ -33,6 +33,26 @@ describe('campaign initial plan', () => {
     expect(plan.quests[0]?.activation.subject).not.toBe(content.quests[0]?.activation.subject);
   });
 
+  it('takes a bestiary creature with the stat block the server wrote, as an NPC or a creature', () => {
+    // docs/adr/0058-campaign-content.md §6: the SRD's stat block, written before any plan.
+    const content = bellCampaign();
+    const ids = testCampaignIdentities(content);
+    const npc = content.entities.find((entity) => entity.kind === 'npc');
+    const place = content.entities.find((entity) => entity.kind === 'location');
+    if (!npc || !place) throw new Error('the fixture has an NPC and a place');
+    const unresolved = structuredClone(content);
+    for (const entity of unresolved.entities) {
+      if (entity.key === npc.key) {
+        entity.monster = 'bandit';
+        delete entity.statBlock;
+      }
+      if (entity.key === place.key) entity.monster = 'wolf';
+    }
+    const findings = buildCampaignPlan(unresolved, ids).findings.map((one) => [one.code, one.path]);
+    expect(findings).toContainEqual(['MONSTER_UNRESOLVED', `entities.${npc.key}.monster`]);
+    expect(findings).toContainEqual(['MONSTER_KIND', `entities.${place.key}.monster`]);
+  });
+
   it('orders location parents and knowledge dependencies deterministically', () => {
     const content = bellCampaign();
     const ids = testCampaignIdentities(content);

@@ -1,3 +1,4 @@
+import type { TerrainPaint } from '../combat/board-commands.ts';
 import type { Hazard, LightLevel } from '../combat/commands.ts';
 import type { ContagionStep, TrapId } from '../combat/toolbox.ts';
 import type { ContagionId } from '../rules/contagions.ts';
@@ -10,6 +11,7 @@ import type { RejectionCode } from '../kernel/results.ts';
 import type { EntityRef } from '../knowledge/views.ts';
 import type { Weather } from '../visual/commands.ts';
 import type { CampaignOptions } from '../campaign/options.ts';
+import type { TravelPace } from '../travel/travel.ts';
 
 /**
  * The DM's table tools of the live session (docs/adr/0033-live-session.md §6–7;
@@ -125,7 +127,18 @@ export interface DmWorldEntry extends DmHistoryCommon {
         readonly from: Weather | null;
         readonly to: Weather;
       }
-    | { readonly kind: 'options'; readonly from: CampaignOptions; readonly to: CampaignOptions };
+    | { readonly kind: 'options'; readonly from: CampaignOptions; readonly to: CampaignOptions }
+    /** A journey (docs/adr/0057-encounters-maps-loot.md §10): where, how fast, how long, and how
+     * many of extended travel's saves failed. */
+    | {
+        readonly kind: 'travel';
+        readonly from: EntityRef;
+        readonly to: EntityRef;
+        readonly pace: TravelPace;
+        readonly hours: number;
+        readonly days: number;
+        readonly failed: number;
+      };
 }
 
 /**
@@ -163,14 +176,21 @@ export interface DmHandEntry extends DmHistoryCommon {
         readonly characters: readonly EntityRef[];
       }
     | {
-        /** A running fight changed (ADR 0043 §2); the total for an initiative set. */
+        /**
+         * A running fight changed (ADR 0043 §2); the total for an initiative set. `placed`: the
+         * DM set a combatant down on another square (docs/adr/0057-…md §2).
+         */
         readonly kind: 'fight';
-        readonly change: 'joined' | 'left' | 'delayed' | 'initiative';
+        readonly change: 'joined' | 'left' | 'delayed' | 'initiative' | 'placed';
         readonly combatant: EntityRef;
         readonly total: number | null;
       }
     /** The fight's light set (docs/adr/0050-the-world-around.md §1). */
     | { readonly kind: 'light'; readonly ambient: LightLevel }
+    /** The DM's brush on the running fight's ground (docs/adr/0057-encounters-maps-loot.md §2). */
+    | { readonly kind: 'terrain'; readonly paint: TerrainPaint; readonly squares: number }
+    /** The fog of war laid or lifted (ADR 0057 §4). */
+    | { readonly kind: 'fog'; readonly hidden: boolean; readonly squares: number }
     /** The party exposed to the cold or the heat; how many hourly saves failed (§8). */
     | {
         readonly kind: 'hazard';
@@ -204,7 +224,37 @@ export interface DmHandEntry extends DmHistoryCommon {
   readonly reason: string | null;
 }
 
-export type DmHistoryEntry = DmAuthoringEntry | DmSubstitutionEntry | DmWorldEntry | DmHandEntry;
+/**
+ * The DM's changes by hand to the world's content (docs/adr/0058-campaign-content.md §1): a thing
+ * made, renamed, moved or gone; a clue, a piece of knowledge, a story object given; a creature's
+ * numbers; a shop, the map and its routes, days of downtime. Worded from the command itself.
+ */
+export const DM_EDIT_COMMAND_TYPES = [
+  'CreateEntity',
+  'UpdateEntityProfile',
+  'PlaceEntity',
+  'ChangeEntityStatus',
+  'AddClue',
+  'AddKnowledge',
+  'GrantItem',
+  'SetStatBlock',
+  'SetMerchant',
+  'SetMapPins',
+  'SetRoute',
+  'WorkDowntime',
+  'SetQuest',
+  'SetQuestStep',
+] as const satisfies readonly KernelCommandType[];
+export type DmEditCommandType = (typeof DM_EDIT_COMMAND_TYPES)[number];
+
+export interface DmEditEntry extends DmHistoryCommon {
+  readonly kind: 'edit';
+  /** The command as the DM submitted it, without the engine's recorded draws. */
+  readonly command: KernelCommandOf<DmEditCommandType>;
+}
+
+export type DmHistoryEntry =
+  DmAuthoringEntry | DmSubstitutionEntry | DmWorldEntry | DmHandEntry | DmEditEntry;
 
 /** `GET /campaigns/:campaignId/dm/history?perspective=DM[&before=<sequence>]` (DM only). */
 export interface DmHistoryResponse {

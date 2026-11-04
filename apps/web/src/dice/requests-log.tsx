@@ -14,6 +14,7 @@ import {
   rollMarks,
   subjectWords,
   sumWords,
+  tableResult,
 } from './words.ts';
 
 /**
@@ -150,6 +151,9 @@ export function RollLog() {
                   </p>
                 );
               })}
+              {tableResult(entry) !== null && (
+                <p className="dice-log-line dice-table-result">{tableResult(entry)}</p>
+              )}
               {!table.isDm && entry.rollId === table.rerollable && <RerollCheck entry={entry} />}
               {table.isDm && entry.entered && !entry.confirmed && (
                 <button

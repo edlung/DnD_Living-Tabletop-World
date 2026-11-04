@@ -6,6 +6,7 @@ import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
 import { formatWorldTime } from '../dm/world-time.ts';
 import { Glyph } from '../visual/glyph.tsx';
+import { HandQuestCards } from './hand-quest-cards.tsx';
 import { useRereadOn } from './use-world-data.ts';
 
 /**
@@ -29,11 +30,13 @@ export function JournalQuests({
   const { resource, reread } = useResource('quests', load);
   useRereadOn(revision, reread);
   if (resource.status !== 'ready') return null;
-  const { quests } = resource.value;
+  const { quests, handQuests } = resource.value;
   return (
     <section className="sheet-section" aria-labelledby={`${id}-title`}>
       <h3 id={`${id}-title`}>{t('Quests')}</h3>
-      {quests.length === 0 && <p className="muted">{t('No quest has begun yet.')}</p>}
+      {quests.length === 0 && handQuests.length === 0 && (
+        <p className="muted">{t('No quest has begun yet.')}</p>
+      )}
       {quests.map((quest, index) => {
         const done = quest.status === 'completed';
         return (
@@ -63,6 +66,8 @@ export function JournalQuests({
           </article>
         );
       })}
+      {/* The DM's quests by hand (docs/adr/0058-campaign-content.md §2). */}
+      <HandQuestCards quests={handQuests} />
     </section>
   );
 }

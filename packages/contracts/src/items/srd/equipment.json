@@ -115,7 +115,13 @@
       "mainhand",
       "offhand"
     ],
-    "weapon": "club"
+    "weapon": "club",
+    "craft": {
+      "tools": [
+        "srd-carpenters-tools",
+        "srd-woodcarvers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-dagger",
@@ -138,7 +144,12 @@
       "mainhand",
       "offhand"
     ],
-    "weapon": "dagger"
+    "weapon": "dagger",
+    "craft": {
+      "tools": [
+        "srd-smiths-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-greatclub",
@@ -160,7 +171,13 @@
     "slots": [
       "mainhand"
     ],
-    "weapon": "greatclub"
+    "weapon": "greatclub",
+    "craft": {
+      "tools": [
+        "srd-carpenters-tools",
+        "srd-woodcarvers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-handaxe",
@@ -183,7 +200,12 @@
       "mainhand",
       "offhand"
     ],
-    "weapon": "handaxe"
+    "weapon": "handaxe",
+    "craft": {
+      "tools": [
+        "srd-smiths-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-javelin",
@@ -205,7 +227,12 @@
     "slots": [
       "mainhand"
     ],
-    "weapon": "javelin"
+    "weapon": "javelin",
+    "craft": {
+      "tools": [
+        "srd-smiths-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-light-hammer",
@@ -228,7 +255,12 @@
       "mainhand",
       "offhand"
     ],
-    "weapon": "light-hammer"
+    "weapon": "light-hammer",
+    "craft": {
+      "tools": [
+        "srd-smiths-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-mace",
@@ -250,7 +282,12 @@
     "slots": [
       "mainhand"
     ],
-    "weapon": "mace"
+    "weapon": "mace",
+    "craft": {
+      "tools": [
+        "srd-smiths-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-quarterstaff",
@@ -272,7 +309,13 @@
     "slots": [
       "mainhand"
     ],
-    "weapon": "quarterstaff"
+    "weapon": "quarterstaff",
+    "craft": {
+      "tools": [
+        "srd-carpenters-tools",
+        "srd-woodcarvers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-sickle",
@@ -295,7 +338,12 @@
       "mainhand",
       "offhand"
     ],
-    "weapon": "sickle"
+    "weapon": "sickle",
+    "craft": {
+      "tools": [
+        "srd-smiths-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-spear",
@@ -317,7 +365,12 @@
     "slots": [
       "mainhand"
     ],
-    "weapon": "spear"
+    "weapon": "spear",
+    "craft": {
+      "tools": [
+        "srd-smiths-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-dart",
@@ -339,7 +392,12 @@
     "slots": [
       "mainhand"
     ],
-    "weapon": "dart"
+    "weapon": "dart",
+    "craft": {
+      "tools": [
+        "srd-woodcarvers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-light-crossbow",
@@ -361,7 +419,12 @@
     "slots": [
       "mainhand"
     ],
-    "weapon": "light-crossbow"
+    "weapon": "light-crossbow",
+    "craft": {
+      "tools": [
+        "srd-woodcarvers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-shortbow",
@@ -383,7 +446,12 @@
     "slots": [
       "mainhand"
     ],
-    "weapon": "shortbow"
+    "weapon": "shortbow",
+    "craft": {
+      "tools": [
+        "srd-woodcarvers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-sling",
@@ -405,7 +473,12 @@
     "slots": [
       "mainhand"
     ],
-    "weapon": "sling"
+    "weapon": "sling",
+    "craft": {
+      "tools": [
+        "srd-leatherworkers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-battleaxe",
@@ -427,7 +500,12 @@
     "slots": [
       "mainhand"
     ],
-    "weapon": "battleaxe"
+    "weapon": "battleaxe",
+    "craft": {
+      "tools": [
+        "srd-smiths-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-flail",
@@ -449,7 +527,12 @@
     "slots": [
       "mainhand"
     ],
-    "weapon": "flail"
+    "weapon": "flail",
+    "craft": {
+      "tools": [
+        "srd-smiths-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-glaive",
@@ -471,7 +554,12 @@
     "slots": [
       "mainhand"
     ],
-    "weapon": "glaive"
+    "weapon": "glaive",
+    "craft": {
+      "tools": [
+        "srd-smiths-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-greataxe",
@@ -493,7 +581,12 @@
     "slots": [
       "mainhand"
     ],
-    "weapon": "greataxe"
+    "weapon": "greataxe",
+    "craft": {
+      "tools": [
+        "srd-smiths-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-greatsword",
@@ -515,7 +608,12 @@
     "slots": [
       "mainhand"
     ],
-    "weapon": "greatsword"
+    "weapon": "greatsword",
+    "craft": {
+      "tools": [
+        "srd-smiths-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-halberd",
@@ -537,7 +635,12 @@
     "slots": [
       "mainhand"
     ],
-    "weapon": "halberd"
+    "weapon": "halberd",
+    "craft": {
+      "tools": [
+        "srd-smiths-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-lance",
@@ -559,7 +662,12 @@
     "slots": [
       "mainhand"
     ],
-    "weapon": "lance"
+    "weapon": "lance",
+    "craft": {
+      "tools": [
+        "srd-smiths-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-longsword",
@@ -581,7 +689,12 @@
     "slots": [
       "mainhand"
     ],
-    "weapon": "longsword"
+    "weapon": "longsword",
+    "craft": {
+      "tools": [
+        "srd-smiths-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-maul",
@@ -603,7 +716,12 @@
     "slots": [
       "mainhand"
     ],
-    "weapon": "maul"
+    "weapon": "maul",
+    "craft": {
+      "tools": [
+        "srd-smiths-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-morningstar",
@@ -625,7 +743,12 @@
     "slots": [
       "mainhand"
     ],
-    "weapon": "morningstar"
+    "weapon": "morningstar",
+    "craft": {
+      "tools": [
+        "srd-smiths-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-pike",
@@ -647,7 +770,12 @@
     "slots": [
       "mainhand"
     ],
-    "weapon": "pike"
+    "weapon": "pike",
+    "craft": {
+      "tools": [
+        "srd-smiths-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-rapier",
@@ -669,7 +797,12 @@
     "slots": [
       "mainhand"
     ],
-    "weapon": "rapier"
+    "weapon": "rapier",
+    "craft": {
+      "tools": [
+        "srd-smiths-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-scimitar",
@@ -692,7 +825,12 @@
       "mainhand",
       "offhand"
     ],
-    "weapon": "scimitar"
+    "weapon": "scimitar",
+    "craft": {
+      "tools": [
+        "srd-smiths-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-shortsword",
@@ -715,7 +853,12 @@
       "mainhand",
       "offhand"
     ],
-    "weapon": "shortsword"
+    "weapon": "shortsword",
+    "craft": {
+      "tools": [
+        "srd-smiths-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-trident",
@@ -737,7 +880,12 @@
     "slots": [
       "mainhand"
     ],
-    "weapon": "trident"
+    "weapon": "trident",
+    "craft": {
+      "tools": [
+        "srd-smiths-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-warhammer",
@@ -759,7 +907,12 @@
     "slots": [
       "mainhand"
     ],
-    "weapon": "warhammer"
+    "weapon": "warhammer",
+    "craft": {
+      "tools": [
+        "srd-smiths-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-war-pick",
@@ -781,7 +934,12 @@
     "slots": [
       "mainhand"
     ],
-    "weapon": "war-pick"
+    "weapon": "war-pick",
+    "craft": {
+      "tools": [
+        "srd-smiths-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-whip",
@@ -803,7 +961,12 @@
     "slots": [
       "mainhand"
     ],
-    "weapon": "whip"
+    "weapon": "whip",
+    "craft": {
+      "tools": [
+        "srd-leatherworkers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-blowgun",
@@ -825,7 +988,12 @@
     "slots": [
       "mainhand"
     ],
-    "weapon": "blowgun"
+    "weapon": "blowgun",
+    "craft": {
+      "tools": [
+        "srd-woodcarvers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-hand-crossbow",
@@ -848,7 +1016,12 @@
       "mainhand",
       "offhand"
     ],
-    "weapon": "hand-crossbow"
+    "weapon": "hand-crossbow",
+    "craft": {
+      "tools": [
+        "srd-woodcarvers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-heavy-crossbow",
@@ -870,7 +1043,12 @@
     "slots": [
       "mainhand"
     ],
-    "weapon": "heavy-crossbow"
+    "weapon": "heavy-crossbow",
+    "craft": {
+      "tools": [
+        "srd-woodcarvers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-longbow",
@@ -892,7 +1070,12 @@
     "slots": [
       "mainhand"
     ],
-    "weapon": "longbow"
+    "weapon": "longbow",
+    "craft": {
+      "tools": [
+        "srd-woodcarvers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-musket",
@@ -914,7 +1097,12 @@
     "slots": [
       "mainhand"
     ],
-    "weapon": "musket"
+    "weapon": "musket",
+    "craft": {
+      "tools": [
+        "srd-tinkers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-pistol",
@@ -936,7 +1124,12 @@
     "slots": [
       "mainhand"
     ],
-    "weapon": "pistol"
+    "weapon": "pistol",
+    "craft": {
+      "tools": [
+        "srd-tinkers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-padded-armor",
@@ -962,6 +1155,11 @@
       "baseAc": 11,
       "dexCap": null,
       "stealthDisadvantage": true
+    },
+    "craft": {
+      "tools": [
+        "srd-weavers-tools"
+      ]
     }
   },
   {
@@ -987,6 +1185,11 @@
     "armor": {
       "baseAc": 11,
       "dexCap": null
+    },
+    "craft": {
+      "tools": [
+        "srd-leatherworkers-tools"
+      ]
     }
   },
   {
@@ -1012,6 +1215,11 @@
     "armor": {
       "baseAc": 12,
       "dexCap": null
+    },
+    "craft": {
+      "tools": [
+        "srd-leatherworkers-tools"
+      ]
     }
   },
   {
@@ -1037,6 +1245,11 @@
     "armor": {
       "baseAc": 12,
       "dexCap": 2
+    },
+    "craft": {
+      "tools": [
+        "srd-leatherworkers-tools"
+      ]
     }
   },
   {
@@ -1062,6 +1275,11 @@
     "armor": {
       "baseAc": 13,
       "dexCap": 2
+    },
+    "craft": {
+      "tools": [
+        "srd-smiths-tools"
+      ]
     }
   },
   {
@@ -1088,6 +1306,11 @@
       "baseAc": 14,
       "dexCap": 2,
       "stealthDisadvantage": true
+    },
+    "craft": {
+      "tools": [
+        "srd-smiths-tools"
+      ]
     }
   },
   {
@@ -1113,6 +1336,11 @@
     "armor": {
       "baseAc": 14,
       "dexCap": 2
+    },
+    "craft": {
+      "tools": [
+        "srd-smiths-tools"
+      ]
     }
   },
   {
@@ -1139,6 +1367,11 @@
       "baseAc": 15,
       "dexCap": 2,
       "stealthDisadvantage": true
+    },
+    "craft": {
+      "tools": [
+        "srd-smiths-tools"
+      ]
     }
   },
   {
@@ -1165,6 +1398,11 @@
       "baseAc": 14,
       "dexCap": 0,
       "stealthDisadvantage": true
+    },
+    "craft": {
+      "tools": [
+        "srd-smiths-tools"
+      ]
     }
   },
   {
@@ -1192,6 +1430,11 @@
       "dexCap": 0,
       "strength": 13,
       "stealthDisadvantage": true
+    },
+    "craft": {
+      "tools": [
+        "srd-smiths-tools"
+      ]
     }
   },
   {
@@ -1219,6 +1462,11 @@
       "dexCap": 0,
       "strength": 15,
       "stealthDisadvantage": true
+    },
+    "craft": {
+      "tools": [
+        "srd-smiths-tools"
+      ]
     }
   },
   {
@@ -1246,6 +1494,11 @@
       "dexCap": 0,
       "strength": 15,
       "stealthDisadvantage": true
+    },
+    "craft": {
+      "tools": [
+        "srd-smiths-tools"
+      ]
     }
   },
   {
@@ -2277,6 +2530,11 @@
     "slots": [],
     "effect": {
       "kind": "narrative"
+    },
+    "craft": {
+      "tools": [
+        "srd-alchemists-supplies"
+      ]
     }
   },
   {
@@ -2299,6 +2557,11 @@
     "slots": [],
     "effect": {
       "kind": "narrative"
+    },
+    "craft": {
+      "tools": [
+        "srd-alchemists-supplies"
+      ]
     }
   },
   {
@@ -2319,7 +2582,12 @@
     "category": "gear",
     "stackable": true,
     "slots": [],
-    "ammunition": "arrow"
+    "ammunition": "arrow",
+    "craft": {
+      "tools": [
+        "srd-woodcarvers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-bolt",
@@ -2339,7 +2607,12 @@
     "category": "gear",
     "stackable": true,
     "slots": [],
-    "ammunition": "bolt"
+    "ammunition": "bolt",
+    "craft": {
+      "tools": [
+        "srd-woodcarvers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-firearm-bullet",
@@ -2359,7 +2632,12 @@
     "category": "gear",
     "stackable": true,
     "slots": [],
-    "ammunition": "firearm-bullet"
+    "ammunition": "firearm-bullet",
+    "craft": {
+      "tools": [
+        "srd-smiths-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-sling-bullet",
@@ -2379,7 +2657,12 @@
     "category": "gear",
     "stackable": true,
     "slots": [],
-    "ammunition": "bullet"
+    "ammunition": "bullet",
+    "craft": {
+      "tools": [
+        "srd-smiths-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-needle",
@@ -2399,7 +2682,12 @@
     "category": "gear",
     "stackable": true,
     "slots": [],
-    "ammunition": "needle"
+    "ammunition": "needle",
+    "craft": {
+      "tools": [
+        "srd-woodcarvers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-antitoxin",
@@ -2421,6 +2709,12 @@
     "slots": [],
     "effect": {
       "kind": "narrative"
+    },
+    "craft": {
+      "tools": [
+        "srd-brewers-supplies",
+        "srd-herbalism-kit"
+      ]
     }
   },
   {
@@ -2440,7 +2734,13 @@
     "look": "focus",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-jewelers-tools",
+        "srd-woodcarvers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-orb-arcane-focus",
@@ -2459,7 +2759,13 @@
     "look": "focus",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-jewelers-tools",
+        "srd-woodcarvers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-rod-arcane-focus",
@@ -2478,7 +2784,13 @@
     "look": "focus",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-jewelers-tools",
+        "srd-woodcarvers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-staff-arcane-focus",
@@ -2497,7 +2809,13 @@
     "look": "focus",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-jewelers-tools",
+        "srd-woodcarvers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-wand-arcane-focus",
@@ -2516,7 +2834,13 @@
     "look": "focus",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-jewelers-tools",
+        "srd-woodcarvers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-backpack",
@@ -2535,7 +2859,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-leatherworkers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-ball-bearings",
@@ -2554,7 +2883,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-smiths-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-barrel",
@@ -2573,7 +2907,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-carpenters-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-basket",
@@ -2592,7 +2931,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-weavers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-bedroll",
@@ -2611,7 +2955,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-weavers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-bell",
@@ -2630,7 +2979,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-tinkers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-blanket",
@@ -2649,7 +3003,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-weavers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-block-and-tackle",
@@ -2668,7 +3027,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-masons-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-book",
@@ -2706,7 +3070,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-glassblowers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-bucket",
@@ -2725,7 +3094,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-smiths-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-burglars-pack",
@@ -2763,7 +3137,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-smiths-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-candle",
@@ -2782,7 +3161,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": true,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-herbalism-kit"
+      ]
+    }
   },
   {
     "itemId": "srd-case-crossbow-bolt",
@@ -2801,7 +3185,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-leatherworkers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-case-map-or-scroll",
@@ -2820,7 +3209,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-leatherworkers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-chain",
@@ -2839,7 +3233,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-smiths-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-chest",
@@ -2858,7 +3257,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-carpenters-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-climbers-kit",
@@ -2877,7 +3281,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-cobblers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-clothes-fine",
@@ -2896,7 +3305,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-weavers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-clothes-travelers",
@@ -2915,7 +3329,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-weavers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-component-pouch",
@@ -2934,7 +3353,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-alchemists-supplies"
+      ]
+    }
   },
   {
     "itemId": "srd-costume",
@@ -2953,7 +3377,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-disguise-kit"
+      ]
+    }
   },
   {
     "itemId": "srd-crowbar",
@@ -2972,7 +3401,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-smiths-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-diplomats-pack",
@@ -3010,7 +3444,13 @@
     "look": "focus",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-painters-supplies",
+        "srd-woodcarvers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-wooden-staff-druidic-focus",
@@ -3029,7 +3469,13 @@
     "look": "focus",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-painters-supplies",
+        "srd-woodcarvers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-yew-wand-druidic-focus",
@@ -3048,7 +3494,13 @@
     "look": "focus",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-painters-supplies",
+        "srd-woodcarvers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-dungeoneers-pack",
@@ -3124,7 +3576,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-tinkers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-grappling-hook",
@@ -3143,7 +3600,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-smiths-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-healers-kit",
@@ -3162,7 +3624,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-herbalism-kit"
+      ]
+    }
   },
   {
     "itemId": "srd-amulet-holy-symbol",
@@ -3183,7 +3650,13 @@
     "stackable": false,
     "slots": [
       "neck"
-    ]
+    ],
+    "craft": {
+      "tools": [
+        "srd-jewelers-tools",
+        "srd-painters-supplies"
+      ]
+    }
   },
   {
     "itemId": "srd-emblem-holy-symbol",
@@ -3202,7 +3675,13 @@
     "look": "focus",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-jewelers-tools",
+        "srd-painters-supplies"
+      ]
+    }
   },
   {
     "itemId": "srd-reliquary-holy-symbol",
@@ -3221,7 +3700,13 @@
     "look": "focus",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-jewelers-tools",
+        "srd-painters-supplies"
+      ]
+    }
   },
   {
     "itemId": "srd-holy-water",
@@ -3262,7 +3747,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-tinkers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-ink",
@@ -3281,7 +3771,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": true,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-calligraphers-supplies"
+      ]
+    }
   },
   {
     "itemId": "srd-ink-pen",
@@ -3300,7 +3795,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-woodcarvers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-jug",
@@ -3319,7 +3819,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-potters-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-ladder",
@@ -3338,7 +3843,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-carpenters-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-lamp",
@@ -3357,7 +3867,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-potters-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-lantern-bullseye",
@@ -3376,7 +3891,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-tinkers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-lantern-hooded",
@@ -3395,7 +3915,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-tinkers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-lock",
@@ -3414,7 +3939,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-tinkers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-magnifying-glass",
@@ -3433,7 +3963,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-glassblowers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-manacles",
@@ -3452,7 +3987,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-tinkers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-map",
@@ -3471,7 +4011,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-cartographers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-mirror",
@@ -3490,7 +4035,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-tinkers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-net",
@@ -3509,7 +4059,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-weavers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-oil",
@@ -3531,6 +4086,11 @@
     "slots": [],
     "effect": {
       "kind": "narrative"
+    },
+    "craft": {
+      "tools": [
+        "srd-alchemists-supplies"
+      ]
     }
   },
   {
@@ -3550,7 +4110,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": true,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-alchemists-supplies"
+      ]
+    }
   },
   {
     "itemId": "srd-parchment",
@@ -3569,7 +4134,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": true,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-leatherworkers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-perfume",
@@ -3588,7 +4158,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-alchemists-supplies"
+      ]
+    }
   },
   {
     "itemId": "srd-poison-basic",
@@ -3610,6 +4185,11 @@
     "slots": [],
     "effect": {
       "kind": "narrative"
+    },
+    "craft": {
+      "tools": [
+        "srd-poisoners-kit"
+      ]
     }
   },
   {
@@ -3629,7 +4209,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-carpenters-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-pot-iron",
@@ -3648,7 +4233,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-smiths-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-potion-of-healing",
@@ -3678,6 +4268,13 @@
       "rarity": "common",
       "attunement": null,
       "text": "potions-of-healing"
+    },
+    "craft": {
+      "tools": [
+        "srd-herbalism-kit"
+      ],
+      "days": 1,
+      "materialsCp": 2500
     }
   },
   {
@@ -3697,7 +4294,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-leatherworkers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-priests-pack",
@@ -3735,7 +4337,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-leatherworkers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-ram-portable",
@@ -3754,7 +4361,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-carpenters-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-rations",
@@ -3776,6 +4388,11 @@
     "slots": [],
     "effect": {
       "kind": "narrative"
+    },
+    "craft": {
+      "tools": [
+        "srd-cooks-utensils"
+      ]
     }
   },
   {
@@ -3795,7 +4412,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-weavers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-rope",
@@ -3814,7 +4436,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-weavers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-sack",
@@ -3833,7 +4460,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-weavers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-scholars-pack",
@@ -3871,7 +4503,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-tinkers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-signal-whistle",
@@ -3890,7 +4527,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-tinkers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-spell-scroll-cantrip",
@@ -3953,7 +4595,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-smiths-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-spyglass",
@@ -3972,7 +4619,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-glassblowers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-string",
@@ -3991,7 +4643,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-weavers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-tent",
@@ -4010,7 +4667,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-weavers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-tinderbox",
@@ -4029,7 +4691,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-tinkers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-torch",
@@ -4048,7 +4715,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": true,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-carpenters-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-vial",
@@ -4067,7 +4739,12 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-glassblowers-tools"
+      ]
+    }
   },
   {
     "itemId": "srd-waterskin",
@@ -4086,6 +4763,11 @@
     "look": "gear",
     "category": "gear",
     "stackable": false,
-    "slots": []
+    "slots": [],
+    "craft": {
+      "tools": [
+        "srd-leatherworkers-tools"
+      ]
+    }
   }
 ]

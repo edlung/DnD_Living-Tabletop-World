@@ -11,9 +11,13 @@ import type { WorkshopDependencies } from '../workshop/service.ts';
 import type { CampaignQuestBooks } from '../campaigns/quest-books.ts';
 import { registerAccountRoutes } from '../accounts/account-routes.ts';
 import { registerChatRoutes, type ChatDependencies } from '../chat/chat-routes.ts';
+import { InMemoryMarkStore } from '../marks/mark-store.ts';
+import { registerMarkRoutes, type MarkDependencies } from '../marks/mark-routes.ts';
 import { InMemoryChatStore } from '../chat/chat-store.ts';
 import { registerHandoutRoutes, type HandoutDependencies } from '../handouts/handout-routes.ts';
 import { InMemoryHandoutStore } from '../handouts/handout-store.ts';
+import { registerLibraryRoutes } from '../library/library-routes.ts';
+import type { AdventureBooks, AdventurePictures } from '../adventures/adventures.ts';
 import { registerLobbyRoutes } from '../table/lobby-routes.ts';
 import { memoryLobby, type LobbyDependencies } from '../table/table-state.ts';
 import { registerDisplayRoutes } from '../display/display-routes.ts';
@@ -36,6 +40,7 @@ import type { Authenticator } from './auth.ts';
 import { sendError } from './errors.ts';
 import { registerAiRoutes, type AiRouteDependencies } from './routes/ai-routes.ts';
 import { registerAssetRoutes } from './routes/asset-routes.ts';
+import { registerBattleMapUploadRoutes } from '../images/battle-map-upload.ts';
 import { registerChronicleRoutes } from './routes/chronicle-routes.ts';
 import { registerCharacterRoutes } from './routes/character-routes.ts';
 import { registerAuthoringRoutes } from './routes/authoring-routes.ts';
@@ -46,8 +51,14 @@ import {
   type PreparedEncounterBooks,
 } from '../combat/prepared-encounters.ts';
 import { registerBestiaryRoutes } from '../combat/bestiary-routes.ts';
+import { registerSavedEncounterRoutes } from '../combat/saved-encounters.ts';
 import { registerAttuneRoutes } from '../items/attune-routes.ts';
 import { registerItemCatalogRoutes } from '../items/item-catalog-routes.ts';
+import { registerMerchantRoutes } from '../items/merchant-routes.ts';
+import { registerCraftingRoutes } from '../items/crafting-routes.ts';
+import { registerWorldMapRoutes } from '../travel/world-map-routes.ts';
+import { registerStatBlockRoutes } from '../editors/stat-block-routes.ts';
+import { registerObjectRoutes } from '../editors/object-routes.ts';
 import { registerRulesReferenceRoutes } from '../rules/reference-routes.ts';
 import { registerAdvancementRoutes } from '../characters/advancement-routes.ts';
 import { registerCopyRoutes } from '../characters/copy-routes.ts';
@@ -93,6 +104,10 @@ export interface AppDependencies {
    * in its language, so a campaign started from either template reads its own; `quests` otherwise.
    */
   readonly questsByLanguage?: Readonly<Partial<Record<Language, readonly QuestDefinition[]>>>;
+  /** Every ready adventure but Ravenford: its quests and prepared encounters (ADR 0058 §5). */
+  readonly adventures?: Readonly<Record<string, AdventureBooks>>;
+  /** Each ready adventure's curated pictures, imported into a new campaign (ADR 0035 §3). */
+  readonly adventurePictures?: AdventurePictures;
   /** Prepared encounters by language (Stage 605); none when absent. */
   readonly preparedEncounters?: PreparedEncounterBooks;
   /**
@@ -122,11 +137,18 @@ export interface AppDependencies {
   readonly lobby?: LobbyDependencies;
   /** Table talk (ADR 0044 §1): chat, whispers, the DM's word to one player; in memory when absent. */
   readonly chat?: ChatDependencies;
+  /** The table's shared marks on the board (ADR 0057 §5); in memory when absent. */
+  readonly marks?: MarkDependencies;
   /** Handouts (ADR 0044 §5): what the DM shows one player or the party; in memory when absent. */
   readonly handouts?: HandoutDependencies;
 }
 
 /** Table talk in memory: for compositions without a database. */
+export const memoryMarks = (): MarkDependencies => ({
+  store: new InMemoryMarkStore(),
+  now: () => new Date().toISOString(),
+});
+
 export const memoryChat = (): ChatDependencies => ({
   store: new InMemoryChatStore(),
   now: () => new Date().toISOString(),
@@ -199,8 +221,14 @@ export function buildApp(input: AppDependencies): FastifyInstance {
   registerSurroundingsRoutes(app, deps);
   registerEncounterRoutes(app, deps);
   registerPreparedEncounterRoutes(app, deps);
+  registerSavedEncounterRoutes(app, deps);
   registerBestiaryRoutes(app, deps);
   registerItemCatalogRoutes(app, deps);
+  registerMerchantRoutes(app, deps);
+  registerCraftingRoutes(app, deps);
+  registerWorldMapRoutes(app, deps);
+  registerStatBlockRoutes(app, deps);
+  registerObjectRoutes(app, deps);
   registerRulesReferenceRoutes(app, deps);
   registerCharacterCreationRoutes(app, deps);
   // One lobby for the routes that read it: the pause holds players' commands.
@@ -210,13 +238,17 @@ export function buildApp(input: AppDependencies): FastifyInstance {
   registerNpcRoutes(app, deps);
   registerAuthoringRoutes(app, deps);
   registerAssetRoutes(app, deps);
+  registerBattleMapUploadRoutes(app, deps);
   registerVisualRoutes(app, deps);
   registerChronicleRoutes(app, { ...deps, chronicleIds: deps.authoring.ids });
   registerQuestRoutes(app, deps);
   registerPresenceRoutes(app, { ...deps, presence: deps.presence ?? NOBODY_CONNECTED });
   registerLobbyRoutes(app, { ...deps, lobby, presence: deps.presence ?? NOBODY_CONNECTED });
   registerChatRoutes(app, { ...deps, chat: deps.chat ?? memoryChat() });
-  registerHandoutRoutes(app, { ...deps, handouts: deps.handouts ?? memoryHandouts() });
+  registerMarkRoutes(app, { ...deps, marks: deps.marks ?? memoryMarks() });
+  // One set of handouts for the handout routes and the DM's library that gives them (ADR 0058 §3).
+  const handouts = deps.handouts ?? memoryHandouts();
+  registerHandoutRoutes(app, { ...deps, handouts });
   registerDmRoutes(app, deps);
   registerUndoneRoutes(app, deps);
   // The roll and rest routes read the campaign's dice from the same table state (ADR 0044 §4).
@@ -225,6 +257,7 @@ export function buildApp(input: AppDependencies): FastifyInstance {
     diceOf: async (campaignId) => (await lobby.state.read(campaignId)).dice,
   };
   registerRollRoutes(app, { ...deps, table });
+  registerLibraryRoutes(app, { ...deps, handouts, table });
   registerRestRoutes(app, { ...deps, table });
   registerAdvancementRoutes(app, { ...deps, table });
   registerFeatureRoutes(app, deps);

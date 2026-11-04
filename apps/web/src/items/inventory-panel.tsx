@@ -13,11 +13,16 @@ import { Bag } from './inventory/bag.tsx';
 import { ItemCard } from './inventory/item-card.tsx';
 import { PaperDoll } from './inventory/paper-doll.tsx';
 import { PurseAndLoad } from './inventory/purse.tsx';
+import { ShareCoins } from './inventory/share-coins.tsx';
+import { CraftingSection } from './inventory/crafting.tsx';
+import { PartyStash } from './inventory/stash.tsx';
 import type { ItemCommandBody } from './item-command.ts';
 
 export interface Recipient {
   readonly entityId: string;
   readonly name: string;
+  /** A character may share the party's coins (ADR 0057 §7); absent: anyone. */
+  readonly kind?: 'character' | 'npc';
 }
 
 /**
@@ -118,6 +123,18 @@ export function InventoryPanel({
         capacityLb={inventory.capacityLb ?? null}
         loadSpeedFt={inventory.loadSpeedFt ?? null}
       />
+      {/* The party's coins shared out (docs/adr/0057-encounters-maps-loot.md §7). */}
+      {inventory.stash && (
+        <ShareCoins
+          items={inventory.items}
+          self={characterId}
+          members={recipients.filter((one) => one.kind !== 'npc')}
+          blocked={blocked || fighting}
+          onShare={(amongIds) => {
+            run({ type: 'SplitCoins', amongIds: [...amongIds] });
+          }}
+        />
+      )}
       {attunedCount > 0 && (
         <p className="field-hint">{t('Attuned to {count} of 3 items.', { count: attunedCount })}</p>
       )}
@@ -168,6 +185,7 @@ export function InventoryPanel({
                 language={language}
                 blocked={blocked}
                 recipients={recipients}
+                stashable={inventory.stash !== undefined}
                 attuning={attuning}
                 onRun={run}
                 canTaste={!blocked}
@@ -193,6 +211,25 @@ export function InventoryPanel({
             )}
           </div>
         </>
+      )}
+      {inventory.stash && (
+        <PartyStash
+          items={inventory.stash}
+          blocked={blocked || fighting}
+          onTake={(itemId) => {
+            run({ type: 'TakeItem', itemId });
+          }}
+        />
+      )}
+      {/* Crafting (docs/adr/0057-encounters-maps-loot.md §9): the character's own. */}
+      {canAct && (
+        <CraftingSection
+          api={api}
+          revision={revision}
+          characterId={characterId}
+          blocked={blocked || fighting}
+          onRun={run}
+        />
       )}
       <GiveItemForm api={api} holderId={characterId} locked={locked} />
     </div>

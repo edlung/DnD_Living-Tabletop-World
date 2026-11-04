@@ -115,9 +115,14 @@ export function registerKnowledgeRoutes(app: FastifyInstance, deps: RouteDepende
     });
     if (!ready) return reply;
     const { context } = ready;
+    const entities = knownEntities(context.state, context.perspective);
+    const { activeSceneId, scenes } = context.state;
+    const scene = activeSceneId === null ? undefined : scenes.get(activeSceneId);
+    const known = scene && entities.some((entity) => entity.entityId === scene.locationId);
     const body: KnownEntitiesResponse = {
       perspective: context.perspective.label,
-      entities: knownEntities(context.state, context.perspective),
+      entities,
+      ...(scene && known ? { scenePlaceId: scene.locationId } : {}),
     };
     return reply.send(body);
   });

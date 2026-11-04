@@ -27,6 +27,8 @@ export type ExplorationIntent =
       readonly kind: 'command';
       readonly command: ExplorationCommand | CombatUiCommand | DmWorldCommand | DmTableCommand;
       readonly standIn?: StandInReason;
+      /** The board shows what it did (the DM's brush): no notice unless the world refuses it. */
+      readonly quiet?: true;
     }
   | { readonly kind: 'talk'; readonly characterId: string; readonly npcId: string }
   | RestAction;
@@ -76,16 +78,21 @@ export function useAction(
     current.current = attempt;
     const request = new AbortController();
     controller.current = request;
+    const quiet = attempt.intent.kind === 'command' && attempt.intent.quiet === true;
     setState({
       status: 'busy',
-      notice: {
-        // A live NPC reply can take a while (ADR 0032, C): say what is being waited for.
-        message:
-          attempt.intent.kind === 'talk' ? t('Waiting for a reply…') : t('Resolving your action…'),
-      },
+      notice: quiet
+        ? null
+        : {
+            // A live NPC reply can take a while (ADR 0032, C): say what is being waited for.
+            message:
+              attempt.intent.kind === 'talk'
+                ? t('Waiting for a reply…')
+                : t('Resolving your action…'),
+          },
     });
     try {
-      let notice: ActionNotice;
+      let notice: ActionNotice | null;
       if (attempt.intent.kind === 'talk') {
         const intent = attempt.intent;
         const result = await api.post<NpcDialogueResponse>(
@@ -126,15 +133,17 @@ export function useAction(
         notice =
           result.status === 'rejected'
             ? { message: refusal(t, attempt.intent, result.code, result.message, toldAbout) }
-            : {
-                message: outcomeMessage(t, result.outcome),
-                ...(result.outcome ? { outcome: result.outcome } : {}),
-              };
+            : quiet
+              ? null
+              : {
+                  message: outcomeMessage(t, result.outcome),
+                  ...(result.outcome ? { outcome: result.outcome } : {}),
+                };
       }
       if (!isLive()) return;
       current.current = null;
       setState({ status: 'done', notice });
-      onResolved(notice.outcome);
+      onResolved(notice?.outcome);
     } catch (error) {
       if (isLive() && error instanceof ApiError && error.status >= 400 && error.status < 500) {
         current.current = null;

@@ -1,0 +1,1415 @@
+{
+  "campaignId": "hollowmere",
+  "dmActorId": "dm-hollowmere",
+  "commands": [
+    {
+      "type": "CreateEntity",
+      "entityId": "creature-a8fb7496",
+      "kind": "creature",
+      "name": "Goblin Raider",
+      "description": "A wiry goblin in a stolen sheepskin, a notched blade in one hand.",
+      "existsSince": null
+    },
+    {
+      "type": "SetStatBlock",
+      "entityId": "creature-a8fb7496",
+      "statBlock": {
+        "armorClass": 15,
+        "hitPoints": { "max": 10, "current": 10 },
+        "speedFt": 30,
+        "size": "small",
+        "senses": { "darkvision": 60 },
+        "abilities": { "str": 8, "dex": 15, "con": 10, "int": 10, "wis": 8, "cha": 8 },
+        "savingThrows": { "str": -1, "dex": 2, "con": 0, "int": 0, "wis": -1, "cha": -1 },
+        "initiativeBonus": 2,
+        "attacksPerAction": 1,
+        "attacks": [
+          {
+            "name": "Scimitar",
+            "bonus": 4,
+            "damage": { "count": 1, "sides": 6, "bonus": 2, "type": "slashing" },
+            "attackId": "scimitar",
+            "kind": "melee",
+            "reachFt": 5
+          },
+          {
+            "name": "Shortbow",
+            "bonus": 4,
+            "damage": { "count": 1, "sides": 6, "bonus": 2, "type": "piercing" },
+            "attackId": "shortbow",
+            "kind": "ranged",
+            "normalRangeFt": 80,
+            "longRangeFt": 320
+          }
+        ],
+        "challenge": { "rating": "1/4", "xp": 50 },
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "creature-876f6386",
+      "kind": "creature",
+      "name": "Goblin Raider",
+      "description": "A wiry goblin in a stolen sheepskin, a notched blade in one hand.",
+      "existsSince": null
+    },
+    {
+      "type": "SetStatBlock",
+      "entityId": "creature-876f6386",
+      "statBlock": {
+        "armorClass": 15,
+        "hitPoints": { "max": 10, "current": 10 },
+        "speedFt": 30,
+        "size": "small",
+        "senses": { "darkvision": 60 },
+        "abilities": { "str": 8, "dex": 15, "con": 10, "int": 10, "wis": 8, "cha": 8 },
+        "savingThrows": { "str": -1, "dex": 2, "con": 0, "int": 0, "wis": -1, "cha": -1 },
+        "initiativeBonus": 2,
+        "attacksPerAction": 1,
+        "attacks": [
+          {
+            "name": "Scimitar",
+            "bonus": 4,
+            "damage": { "count": 1, "sides": 6, "bonus": 2, "type": "slashing" },
+            "attackId": "scimitar",
+            "kind": "melee",
+            "reachFt": 5
+          },
+          {
+            "name": "Shortbow",
+            "bonus": 4,
+            "damage": { "count": 1, "sides": 6, "bonus": 2, "type": "piercing" },
+            "attackId": "shortbow",
+            "kind": "ranged",
+            "normalRangeFt": 80,
+            "longRangeFt": 320
+          }
+        ],
+        "challenge": { "rating": "1/4", "xp": 50 },
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "creature-f98219c2",
+      "kind": "creature",
+      "name": "Goblin Raider",
+      "description": "A wiry goblin in a stolen sheepskin, a notched blade in one hand.",
+      "existsSince": null
+    },
+    {
+      "type": "SetStatBlock",
+      "entityId": "creature-f98219c2",
+      "statBlock": {
+        "armorClass": 15,
+        "hitPoints": { "max": 10, "current": 10 },
+        "speedFt": 30,
+        "size": "small",
+        "senses": { "darkvision": 60 },
+        "abilities": { "str": 8, "dex": 15, "con": 10, "int": 10, "wis": 8, "cha": 8 },
+        "savingThrows": { "str": -1, "dex": 2, "con": 0, "int": 0, "wis": -1, "cha": -1 },
+        "initiativeBonus": 2,
+        "attacksPerAction": 1,
+        "attacks": [
+          {
+            "name": "Scimitar",
+            "bonus": 4,
+            "damage": { "count": 1, "sides": 6, "bonus": 2, "type": "slashing" },
+            "attackId": "scimitar",
+            "kind": "melee",
+            "reachFt": 5
+          },
+          {
+            "name": "Shortbow",
+            "bonus": 4,
+            "damage": { "count": 1, "sides": 6, "bonus": 2, "type": "piercing" },
+            "attackId": "shortbow",
+            "kind": "ranged",
+            "normalRangeFt": 80,
+            "longRangeFt": 320
+          }
+        ],
+        "challenge": { "rating": "1/4", "xp": 50 },
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "creature-adc15fea",
+      "kind": "creature",
+      "name": "Goblin Raider",
+      "description": "A wiry goblin in a stolen sheepskin, a notched blade in one hand.",
+      "existsSince": null
+    },
+    {
+      "type": "SetStatBlock",
+      "entityId": "creature-adc15fea",
+      "statBlock": {
+        "armorClass": 15,
+        "hitPoints": { "max": 10, "current": 10 },
+        "speedFt": 30,
+        "size": "small",
+        "senses": { "darkvision": 60 },
+        "abilities": { "str": 8, "dex": 15, "con": 10, "int": 10, "wis": 8, "cha": 8 },
+        "savingThrows": { "str": -1, "dex": 2, "con": 0, "int": 0, "wis": -1, "cha": -1 },
+        "initiativeBonus": 2,
+        "attacksPerAction": 1,
+        "attacks": [
+          {
+            "name": "Scimitar",
+            "bonus": 4,
+            "damage": { "count": 1, "sides": 6, "bonus": 2, "type": "slashing" },
+            "attackId": "scimitar",
+            "kind": "melee",
+            "reachFt": 5
+          },
+          {
+            "name": "Shortbow",
+            "bonus": 4,
+            "damage": { "count": 1, "sides": 6, "bonus": 2, "type": "piercing" },
+            "attackId": "shortbow",
+            "kind": "ranged",
+            "normalRangeFt": 80,
+            "longRangeFt": 320
+          }
+        ],
+        "challenge": { "rating": "1/4", "xp": 50 },
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "creature-e7c74248",
+      "kind": "creature",
+      "name": "Giant Rat",
+      "description": "A rat the size of a dog, slick with marsh-water.",
+      "existsSince": null
+    },
+    {
+      "type": "SetStatBlock",
+      "entityId": "creature-e7c74248",
+      "statBlock": {
+        "armorClass": 13,
+        "hitPoints": { "max": 7, "current": 7 },
+        "speedFt": 30,
+        "size": "small",
+        "speeds": { "climb": 30 },
+        "senses": { "darkvision": 60 },
+        "abilities": { "str": 7, "dex": 16, "con": 11, "int": 2, "wis": 10, "cha": 4 },
+        "savingThrows": { "str": -2, "dex": 5, "con": 0, "int": -4, "wis": 0, "cha": -3 },
+        "initiativeBonus": 3,
+        "attacksPerAction": 1,
+        "attacks": [
+          {
+            "name": "Bite",
+            "bonus": 5,
+            "damage": { "count": 1, "sides": 4, "bonus": 3, "type": "piercing" },
+            "attackId": "bite",
+            "kind": "melee",
+            "reachFt": 5
+          }
+        ],
+        "challenge": { "rating": "1/8", "xp": 25 },
+        "traits": { "packTactics": true },
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "creature-6d886ec8",
+      "kind": "creature",
+      "name": "Giant Rat",
+      "description": "A rat the size of a dog, slick with marsh-water.",
+      "existsSince": null
+    },
+    {
+      "type": "SetStatBlock",
+      "entityId": "creature-6d886ec8",
+      "statBlock": {
+        "armorClass": 13,
+        "hitPoints": { "max": 7, "current": 7 },
+        "speedFt": 30,
+        "size": "small",
+        "speeds": { "climb": 30 },
+        "senses": { "darkvision": 60 },
+        "abilities": { "str": 7, "dex": 16, "con": 11, "int": 2, "wis": 10, "cha": 4 },
+        "savingThrows": { "str": -2, "dex": 5, "con": 0, "int": -4, "wis": 0, "cha": -3 },
+        "initiativeBonus": 3,
+        "attacksPerAction": 1,
+        "attacks": [
+          {
+            "name": "Bite",
+            "bonus": 5,
+            "damage": { "count": 1, "sides": 4, "bonus": 3, "type": "piercing" },
+            "attackId": "bite",
+            "kind": "melee",
+            "reachFt": 5
+          }
+        ],
+        "challenge": { "rating": "1/8", "xp": 25 },
+        "traits": { "packTactics": true },
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "creature-10068970",
+      "kind": "creature",
+      "name": "Giant Rat",
+      "description": "A rat the size of a dog, slick with marsh-water.",
+      "existsSince": null
+    },
+    {
+      "type": "SetStatBlock",
+      "entityId": "creature-10068970",
+      "statBlock": {
+        "armorClass": 13,
+        "hitPoints": { "max": 7, "current": 7 },
+        "speedFt": 30,
+        "size": "small",
+        "speeds": { "climb": 30 },
+        "senses": { "darkvision": 60 },
+        "abilities": { "str": 7, "dex": 16, "con": 11, "int": 2, "wis": 10, "cha": 4 },
+        "savingThrows": { "str": -2, "dex": 5, "con": 0, "int": -4, "wis": 0, "cha": -3 },
+        "initiativeBonus": 3,
+        "attacksPerAction": 1,
+        "attacks": [
+          {
+            "name": "Bite",
+            "bonus": 5,
+            "damage": { "count": 1, "sides": 4, "bonus": 3, "type": "piercing" },
+            "attackId": "bite",
+            "kind": "melee",
+            "reachFt": 5
+          }
+        ],
+        "challenge": { "rating": "1/8", "xp": 25 },
+        "traits": { "packTactics": true },
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "creature-35d694bd",
+      "kind": "creature",
+      "name": "Giant Rat",
+      "description": "A rat the size of a dog, slick with marsh-water.",
+      "existsSince": null
+    },
+    {
+      "type": "SetStatBlock",
+      "entityId": "creature-35d694bd",
+      "statBlock": {
+        "armorClass": 13,
+        "hitPoints": { "max": 7, "current": 7 },
+        "speedFt": 30,
+        "size": "small",
+        "speeds": { "climb": 30 },
+        "senses": { "darkvision": 60 },
+        "abilities": { "str": 7, "dex": 16, "con": 11, "int": 2, "wis": 10, "cha": 4 },
+        "savingThrows": { "str": -2, "dex": 5, "con": 0, "int": -4, "wis": 0, "cha": -3 },
+        "initiativeBonus": 3,
+        "attacksPerAction": 1,
+        "attacks": [
+          {
+            "name": "Bite",
+            "bonus": 5,
+            "damage": { "count": 1, "sides": 4, "bonus": 3, "type": "piercing" },
+            "attackId": "bite",
+            "kind": "melee",
+            "reachFt": 5
+          }
+        ],
+        "challenge": { "rating": "1/8", "xp": 25 },
+        "traits": { "packTactics": true },
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "creature-74212878",
+      "kind": "creature",
+      "name": "Swarm of Rats",
+      "description": "A boiling carpet of rats pouring out of the gnawed floor.",
+      "existsSince": null
+    },
+    {
+      "type": "SetStatBlock",
+      "entityId": "creature-74212878",
+      "statBlock": {
+        "armorClass": 10,
+        "hitPoints": { "max": 14, "current": 14 },
+        "resistances": ["bludgeoning", "piercing", "slashing"],
+        "speedFt": 30,
+        "size": "medium",
+        "speeds": { "climb": 30 },
+        "senses": { "darkvision": 30 },
+        "abilities": { "str": 9, "dex": 11, "con": 9, "int": 2, "wis": 10, "cha": 3 },
+        "savingThrows": { "str": -1, "dex": 2, "con": -1, "int": -4, "wis": 0, "cha": -4 },
+        "initiativeBonus": 0,
+        "attacksPerAction": 1,
+        "attacks": [
+          {
+            "name": "Bites",
+            "bonus": 2,
+            "damage": { "count": 2, "sides": 4, "bonus": 0, "type": "piercing" },
+            "attackId": "bites",
+            "kind": "melee",
+            "reachFt": 5
+          }
+        ],
+        "challenge": { "rating": "1/4", "xp": 50 },
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "creature-b7e0f930",
+      "kind": "creature",
+      "name": "Drowned Villager",
+      "description": "A grey, swollen body in a reed-cutter’s smock, water running from its mouth.",
+      "existsSince": null
+    },
+    {
+      "type": "SetStatBlock",
+      "entityId": "creature-b7e0f930",
+      "statBlock": {
+        "armorClass": 8,
+        "hitPoints": { "max": 15, "current": 15 },
+        "immunities": ["poison"],
+        "conditionImmunities": ["poisoned"],
+        "speedFt": 20,
+        "size": "medium",
+        "senses": { "darkvision": 60 },
+        "abilities": { "str": 13, "dex": 6, "con": 16, "int": 3, "wis": 6, "cha": 5 },
+        "savingThrows": { "str": 1, "dex": -2, "con": 3, "int": -4, "wis": 0, "cha": -3 },
+        "initiativeBonus": -2,
+        "attacksPerAction": 1,
+        "attacks": [
+          {
+            "name": "Slam",
+            "bonus": 3,
+            "damage": { "count": 1, "sides": 8, "bonus": 1, "type": "bludgeoning" },
+            "attackId": "slam",
+            "kind": "melee",
+            "reachFt": 5
+          }
+        ],
+        "challenge": { "rating": "1/4", "xp": 50 },
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "creature-be684404",
+      "kind": "creature",
+      "name": "Drowned Villager",
+      "description": "A grey, swollen body in a reed-cutter’s smock, water running from its mouth.",
+      "existsSince": null
+    },
+    {
+      "type": "SetStatBlock",
+      "entityId": "creature-be684404",
+      "statBlock": {
+        "armorClass": 8,
+        "hitPoints": { "max": 15, "current": 15 },
+        "immunities": ["poison"],
+        "conditionImmunities": ["poisoned"],
+        "speedFt": 20,
+        "size": "medium",
+        "senses": { "darkvision": 60 },
+        "abilities": { "str": 13, "dex": 6, "con": 16, "int": 3, "wis": 6, "cha": 5 },
+        "savingThrows": { "str": 1, "dex": -2, "con": 3, "int": -4, "wis": 0, "cha": -3 },
+        "initiativeBonus": -2,
+        "attacksPerAction": 1,
+        "attacks": [
+          {
+            "name": "Slam",
+            "bonus": 3,
+            "damage": { "count": 1, "sides": 8, "bonus": 1, "type": "bludgeoning" },
+            "attackId": "slam",
+            "kind": "melee",
+            "reachFt": 5
+          }
+        ],
+        "challenge": { "rating": "1/4", "xp": 50 },
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "creature-917e4399",
+      "kind": "creature",
+      "name": "Drowned Villager",
+      "description": "A grey, swollen body in a reed-cutter’s smock, water running from its mouth.",
+      "existsSince": null
+    },
+    {
+      "type": "SetStatBlock",
+      "entityId": "creature-917e4399",
+      "statBlock": {
+        "armorClass": 8,
+        "hitPoints": { "max": 15, "current": 15 },
+        "immunities": ["poison"],
+        "conditionImmunities": ["poisoned"],
+        "speedFt": 20,
+        "size": "medium",
+        "senses": { "darkvision": 60 },
+        "abilities": { "str": 13, "dex": 6, "con": 16, "int": 3, "wis": 6, "cha": 5 },
+        "savingThrows": { "str": 1, "dex": -2, "con": 3, "int": -4, "wis": 0, "cha": -3 },
+        "initiativeBonus": -2,
+        "attacksPerAction": 1,
+        "attacks": [
+          {
+            "name": "Slam",
+            "bonus": 3,
+            "damage": { "count": 1, "sides": 8, "bonus": 1, "type": "bludgeoning" },
+            "attackId": "slam",
+            "kind": "melee",
+            "reachFt": 5
+          }
+        ],
+        "challenge": { "rating": "1/4", "xp": 50 },
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "creature-8e0e384c",
+      "kind": "creature",
+      "name": "Chapel Skeleton",
+      "description": "Old bones in the rags of a chapel guard, a rusted spear in their grip.",
+      "existsSince": null
+    },
+    {
+      "type": "SetStatBlock",
+      "entityId": "creature-8e0e384c",
+      "statBlock": {
+        "armorClass": 14,
+        "hitPoints": { "max": 13, "current": 13 },
+        "vulnerabilities": ["bludgeoning"],
+        "immunities": ["poison"],
+        "conditionImmunities": ["poisoned"],
+        "speedFt": 30,
+        "size": "medium",
+        "senses": { "darkvision": 60 },
+        "abilities": { "str": 10, "dex": 16, "con": 15, "int": 6, "wis": 8, "cha": 5 },
+        "savingThrows": { "str": 0, "dex": 3, "con": 2, "int": -2, "wis": -1, "cha": -3 },
+        "initiativeBonus": 3,
+        "attacksPerAction": 1,
+        "attacks": [
+          {
+            "name": "Shortsword",
+            "bonus": 5,
+            "damage": { "count": 1, "sides": 6, "bonus": 3, "type": "piercing" },
+            "attackId": "shortsword",
+            "kind": "melee",
+            "reachFt": 5
+          },
+          {
+            "name": "Shortbow",
+            "bonus": 5,
+            "damage": { "count": 1, "sides": 6, "bonus": 3, "type": "piercing" },
+            "attackId": "shortbow",
+            "kind": "ranged",
+            "normalRangeFt": 80,
+            "longRangeFt": 320
+          }
+        ],
+        "challenge": { "rating": "1/4", "xp": 50 },
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "creature-052e4965",
+      "kind": "creature",
+      "name": "Chapel Skeleton",
+      "description": "Old bones in the rags of a chapel guard, a rusted spear in their grip.",
+      "existsSince": null
+    },
+    {
+      "type": "SetStatBlock",
+      "entityId": "creature-052e4965",
+      "statBlock": {
+        "armorClass": 14,
+        "hitPoints": { "max": 13, "current": 13 },
+        "vulnerabilities": ["bludgeoning"],
+        "immunities": ["poison"],
+        "conditionImmunities": ["poisoned"],
+        "speedFt": 30,
+        "size": "medium",
+        "senses": { "darkvision": 60 },
+        "abilities": { "str": 10, "dex": 16, "con": 15, "int": 6, "wis": 8, "cha": 5 },
+        "savingThrows": { "str": 0, "dex": 3, "con": 2, "int": -2, "wis": -1, "cha": -3 },
+        "initiativeBonus": 3,
+        "attacksPerAction": 1,
+        "attacks": [
+          {
+            "name": "Shortsword",
+            "bonus": 5,
+            "damage": { "count": 1, "sides": 6, "bonus": 3, "type": "piercing" },
+            "attackId": "shortsword",
+            "kind": "melee",
+            "reachFt": 5
+          },
+          {
+            "name": "Shortbow",
+            "bonus": 5,
+            "damage": { "count": 1, "sides": 6, "bonus": 3, "type": "piercing" },
+            "attackId": "shortbow",
+            "kind": "ranged",
+            "normalRangeFt": 80,
+            "longRangeFt": 320
+          }
+        ],
+        "challenge": { "rating": "1/4", "xp": 50 },
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "creature-136c3004",
+      "kind": "creature",
+      "name": "Marsh Light",
+      "description": "A cold, pale light that hums faintly and leads travellers into deep water.",
+      "existsSince": null
+    },
+    {
+      "type": "SetStatBlock",
+      "entityId": "creature-136c3004",
+      "statBlock": {
+        "armorClass": 19,
+        "hitPoints": { "max": 27, "current": 27 },
+        "resistances": ["acid", "bludgeoning", "cold", "fire", "necrotic", "piercing", "slashing"],
+        "immunities": ["lightning", "poison"],
+        "conditionImmunities": [
+          "grappled",
+          "paralyzed",
+          "petrified",
+          "poisoned",
+          "prone",
+          "restrained",
+          "unconscious"
+        ],
+        "speedFt": 5,
+        "size": "tiny",
+        "speeds": { "fly": 50, "hover": true },
+        "senses": { "darkvision": 120 },
+        "abilities": { "str": 1, "dex": 28, "con": 10, "int": 13, "wis": 14, "cha": 11 },
+        "savingThrows": { "str": -5, "dex": 9, "con": 0, "int": 1, "wis": 2, "cha": 0 },
+        "initiativeBonus": 9,
+        "attacksPerAction": 1,
+        "attacks": [
+          {
+            "name": "Shock",
+            "bonus": 4,
+            "damage": { "count": 2, "sides": 8, "bonus": 2, "type": "lightning" },
+            "attackId": "shock",
+            "kind": "melee",
+            "reachFt": 5
+          }
+        ],
+        "challenge": { "rating": "2", "xp": 450 },
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "creature-404048a6",
+      "kind": "creature",
+      "name": "Giant Frog",
+      "description": "A frog as big as a calf, its tongue quick as a whip.",
+      "existsSince": null
+    },
+    {
+      "type": "SetStatBlock",
+      "entityId": "creature-404048a6",
+      "statBlock": {
+        "armorClass": 11,
+        "hitPoints": { "max": 18, "current": 18 },
+        "speedFt": 30,
+        "size": "medium",
+        "speeds": { "swim": 30 },
+        "senses": { "darkvision": 30 },
+        "abilities": { "str": 12, "dex": 13, "con": 11, "int": 2, "wis": 10, "cha": 3 },
+        "savingThrows": { "str": 1, "dex": 1, "con": 0, "int": -4, "wis": 0, "cha": -4 },
+        "initiativeBonus": 1,
+        "attacksPerAction": 1,
+        "attacks": [
+          {
+            "name": "Bite",
+            "bonus": 3,
+            "damage": { "count": 1, "sides": 6, "bonus": 2, "type": "piercing" },
+            "attackId": "bite",
+            "kind": "melee",
+            "reachFt": 5
+          }
+        ],
+        "challenge": { "rating": "1/4", "xp": 50 },
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "creature-fb440f54",
+      "kind": "creature",
+      "name": "Giant Frog",
+      "description": "A frog as big as a calf, its tongue quick as a whip.",
+      "existsSince": null
+    },
+    {
+      "type": "SetStatBlock",
+      "entityId": "creature-fb440f54",
+      "statBlock": {
+        "armorClass": 11,
+        "hitPoints": { "max": 18, "current": 18 },
+        "speedFt": 30,
+        "size": "medium",
+        "speeds": { "swim": 30 },
+        "senses": { "darkvision": 30 },
+        "abilities": { "str": 12, "dex": 13, "con": 11, "int": 2, "wis": 10, "cha": 3 },
+        "savingThrows": { "str": 1, "dex": 1, "con": 0, "int": -4, "wis": 0, "cha": -4 },
+        "initiativeBonus": 1,
+        "attacksPerAction": 1,
+        "attacks": [
+          {
+            "name": "Bite",
+            "bonus": 3,
+            "damage": { "count": 1, "sides": 6, "bonus": 2, "type": "piercing" },
+            "attackId": "bite",
+            "kind": "melee",
+            "reachFt": 5
+          }
+        ],
+        "challenge": { "rating": "1/4", "xp": 50 },
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "creature-e97ea2ef",
+      "kind": "creature",
+      "name": "Reed Cloak Smuggler",
+      "description": "A marsh-folk smuggler in a reed cloak, a short blade and a light crossbow at hand.",
+      "existsSince": null
+    },
+    {
+      "type": "SetStatBlock",
+      "entityId": "creature-e97ea2ef",
+      "statBlock": {
+        "armorClass": 12,
+        "hitPoints": { "max": 11, "current": 11 },
+        "speedFt": 30,
+        "size": "medium",
+        "abilities": { "str": 11, "dex": 12, "con": 12, "int": 10, "wis": 10, "cha": 10 },
+        "savingThrows": { "str": 0, "dex": 1, "con": 1, "int": 0, "wis": 0, "cha": 0 },
+        "initiativeBonus": 1,
+        "attacksPerAction": 1,
+        "attacks": [
+          {
+            "name": "Scimitar",
+            "bonus": 3,
+            "damage": { "count": 1, "sides": 6, "bonus": 1, "type": "slashing" },
+            "attackId": "scimitar",
+            "kind": "melee",
+            "reachFt": 5
+          },
+          {
+            "name": "Light Crossbow",
+            "bonus": 3,
+            "damage": { "count": 1, "sides": 8, "bonus": 1, "type": "piercing" },
+            "attackId": "light-crossbow",
+            "kind": "ranged",
+            "normalRangeFt": 80,
+            "longRangeFt": 320
+          }
+        ],
+        "challenge": { "rating": "1/8", "xp": 25 },
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "creature-123fadb5",
+      "kind": "creature",
+      "name": "Reed Cloak Smuggler",
+      "description": "A marsh-folk smuggler in a reed cloak, a short blade and a light crossbow at hand.",
+      "existsSince": null
+    },
+    {
+      "type": "SetStatBlock",
+      "entityId": "creature-123fadb5",
+      "statBlock": {
+        "armorClass": 12,
+        "hitPoints": { "max": 11, "current": 11 },
+        "speedFt": 30,
+        "size": "medium",
+        "abilities": { "str": 11, "dex": 12, "con": 12, "int": 10, "wis": 10, "cha": 10 },
+        "savingThrows": { "str": 0, "dex": 1, "con": 1, "int": 0, "wis": 0, "cha": 0 },
+        "initiativeBonus": 1,
+        "attacksPerAction": 1,
+        "attacks": [
+          {
+            "name": "Scimitar",
+            "bonus": 3,
+            "damage": { "count": 1, "sides": 6, "bonus": 1, "type": "slashing" },
+            "attackId": "scimitar",
+            "kind": "melee",
+            "reachFt": 5
+          },
+          {
+            "name": "Light Crossbow",
+            "bonus": 3,
+            "damage": { "count": 1, "sides": 8, "bonus": 1, "type": "piercing" },
+            "attackId": "light-crossbow",
+            "kind": "ranged",
+            "normalRangeFt": 80,
+            "longRangeFt": 320
+          }
+        ],
+        "challenge": { "rating": "1/8", "xp": 25 },
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "creature-079ed2de",
+      "kind": "creature",
+      "name": "Reed Cloak Smuggler",
+      "description": "A marsh-folk smuggler in a reed cloak, a short blade and a light crossbow at hand.",
+      "existsSince": null
+    },
+    {
+      "type": "SetStatBlock",
+      "entityId": "creature-079ed2de",
+      "statBlock": {
+        "armorClass": 12,
+        "hitPoints": { "max": 11, "current": 11 },
+        "speedFt": 30,
+        "size": "medium",
+        "abilities": { "str": 11, "dex": 12, "con": 12, "int": 10, "wis": 10, "cha": 10 },
+        "savingThrows": { "str": 0, "dex": 1, "con": 1, "int": 0, "wis": 0, "cha": 0 },
+        "initiativeBonus": 1,
+        "attacksPerAction": 1,
+        "attacks": [
+          {
+            "name": "Scimitar",
+            "bonus": 3,
+            "damage": { "count": 1, "sides": 6, "bonus": 1, "type": "slashing" },
+            "attackId": "scimitar",
+            "kind": "melee",
+            "reachFt": 5
+          },
+          {
+            "name": "Light Crossbow",
+            "bonus": 3,
+            "damage": { "count": 1, "sides": 8, "bonus": 1, "type": "piercing" },
+            "attackId": "light-crossbow",
+            "kind": "ranged",
+            "normalRangeFt": 80,
+            "longRangeFt": 320
+          }
+        ],
+        "challenge": { "rating": "1/8", "xp": 25 },
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "creature-a5d6d9a5",
+      "kind": "creature",
+      "name": "Reed Cloak Smuggler",
+      "description": "A marsh-folk smuggler in a reed cloak, a short blade and a light crossbow at hand.",
+      "existsSince": null
+    },
+    {
+      "type": "SetStatBlock",
+      "entityId": "creature-a5d6d9a5",
+      "statBlock": {
+        "armorClass": 12,
+        "hitPoints": { "max": 11, "current": 11 },
+        "speedFt": 30,
+        "size": "medium",
+        "abilities": { "str": 11, "dex": 12, "con": 12, "int": 10, "wis": 10, "cha": 10 },
+        "savingThrows": { "str": 0, "dex": 1, "con": 1, "int": 0, "wis": 0, "cha": 0 },
+        "initiativeBonus": 1,
+        "attacksPerAction": 1,
+        "attacks": [
+          {
+            "name": "Scimitar",
+            "bonus": 3,
+            "damage": { "count": 1, "sides": 6, "bonus": 1, "type": "slashing" },
+            "attackId": "scimitar",
+            "kind": "melee",
+            "reachFt": 5
+          },
+          {
+            "name": "Light Crossbow",
+            "bonus": 3,
+            "damage": { "count": 1, "sides": 8, "bonus": 1, "type": "piercing" },
+            "attackId": "light-crossbow",
+            "kind": "ranged",
+            "normalRangeFt": 80,
+            "longRangeFt": 320
+          }
+        ],
+        "challenge": { "rating": "1/8", "xp": 25 },
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "creature-31b25550",
+      "kind": "creature",
+      "name": "Reed Cloak Smuggler",
+      "description": "A marsh-folk smuggler in a reed cloak, a short blade and a light crossbow at hand.",
+      "existsSince": null
+    },
+    {
+      "type": "SetStatBlock",
+      "entityId": "creature-31b25550",
+      "statBlock": {
+        "armorClass": 12,
+        "hitPoints": { "max": 11, "current": 11 },
+        "speedFt": 30,
+        "size": "medium",
+        "abilities": { "str": 11, "dex": 12, "con": 12, "int": 10, "wis": 10, "cha": 10 },
+        "savingThrows": { "str": 0, "dex": 1, "con": 1, "int": 0, "wis": 0, "cha": 0 },
+        "initiativeBonus": 1,
+        "attacksPerAction": 1,
+        "attacks": [
+          {
+            "name": "Scimitar",
+            "bonus": 3,
+            "damage": { "count": 1, "sides": 6, "bonus": 1, "type": "slashing" },
+            "attackId": "scimitar",
+            "kind": "melee",
+            "reachFt": 5
+          },
+          {
+            "name": "Light Crossbow",
+            "bonus": 3,
+            "damage": { "count": 1, "sides": 8, "bonus": 1, "type": "piercing" },
+            "attackId": "light-crossbow",
+            "kind": "ranged",
+            "normalRangeFt": 80,
+            "longRangeFt": 320
+          }
+        ],
+        "challenge": { "rating": "1/8", "xp": 25 },
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "creature-f44353f4",
+      "kind": "creature",
+      "name": "Reed Cloak Lookout",
+      "description": "A sharp-eyed lookout with a longbow, perched among the mill’s beams.",
+      "existsSince": null
+    },
+    {
+      "type": "SetStatBlock",
+      "entityId": "creature-f44353f4",
+      "statBlock": {
+        "armorClass": 13,
+        "hitPoints": { "max": 16, "current": 16 },
+        "speedFt": 30,
+        "size": "medium",
+        "abilities": { "str": 11, "dex": 14, "con": 12, "int": 11, "wis": 13, "cha": 11 },
+        "savingThrows": { "str": 0, "dex": 2, "con": 1, "int": 0, "wis": 1, "cha": 0 },
+        "initiativeBonus": 2,
+        "attacksPerAction": 2,
+        "attacks": [
+          {
+            "name": "Shortsword",
+            "bonus": 4,
+            "damage": { "count": 1, "sides": 6, "bonus": 2, "type": "piercing" },
+            "attackId": "shortsword",
+            "kind": "melee",
+            "reachFt": 5
+          },
+          {
+            "name": "Longbow",
+            "bonus": 4,
+            "damage": { "count": 1, "sides": 8, "bonus": 2, "type": "piercing" },
+            "attackId": "longbow",
+            "kind": "ranged",
+            "normalRangeFt": 150,
+            "longRangeFt": 600
+          }
+        ],
+        "challenge": { "rating": "1/2", "xp": 100 },
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "creature-c086c930",
+      "kind": "creature",
+      "name": "Reed Cloak Lookout",
+      "description": "A sharp-eyed lookout with a longbow, perched among the mill’s beams.",
+      "existsSince": null
+    },
+    {
+      "type": "SetStatBlock",
+      "entityId": "creature-c086c930",
+      "statBlock": {
+        "armorClass": 13,
+        "hitPoints": { "max": 16, "current": 16 },
+        "speedFt": 30,
+        "size": "medium",
+        "abilities": { "str": 11, "dex": 14, "con": 12, "int": 11, "wis": 13, "cha": 11 },
+        "savingThrows": { "str": 0, "dex": 2, "con": 1, "int": 0, "wis": 1, "cha": 0 },
+        "initiativeBonus": 2,
+        "attacksPerAction": 2,
+        "attacks": [
+          {
+            "name": "Shortsword",
+            "bonus": 4,
+            "damage": { "count": 1, "sides": 6, "bonus": 2, "type": "piercing" },
+            "attackId": "shortsword",
+            "kind": "melee",
+            "reachFt": 5
+          },
+          {
+            "name": "Longbow",
+            "bonus": 4,
+            "damage": { "count": 1, "sides": 8, "bonus": 2, "type": "piercing" },
+            "attackId": "longbow",
+            "kind": "ranged",
+            "normalRangeFt": 150,
+            "longRangeFt": 600
+          }
+        ],
+        "challenge": { "rating": "1/2", "xp": 100 },
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "creature-3cd7f7db",
+      "kind": "creature",
+      "name": "Crypt Ghoul",
+      "description": "A grey, hairless thing crouched in the water, its nails long and black.",
+      "existsSince": null
+    },
+    {
+      "type": "SetStatBlock",
+      "entityId": "creature-3cd7f7db",
+      "statBlock": {
+        "armorClass": 12,
+        "hitPoints": { "max": 22, "current": 22 },
+        "immunities": ["poison"],
+        "conditionImmunities": ["charmed", "poisoned"],
+        "speedFt": 30,
+        "size": "medium",
+        "senses": { "darkvision": 60 },
+        "abilities": { "str": 13, "dex": 15, "con": 10, "int": 7, "wis": 10, "cha": 6 },
+        "savingThrows": { "str": 1, "dex": 2, "con": 0, "int": -2, "wis": 0, "cha": -2 },
+        "initiativeBonus": 2,
+        "attacksPerAction": 2,
+        "attacks": [
+          {
+            "name": "Bite",
+            "bonus": 4,
+            "damage": { "count": 1, "sides": 6, "bonus": 2, "type": "piercing" },
+            "extraDamage": [{ "count": 1, "sides": 6, "bonus": 0, "type": "necrotic" }],
+            "attackId": "bite",
+            "kind": "melee",
+            "reachFt": 5
+          },
+          {
+            "name": "Claw",
+            "bonus": 4,
+            "damage": { "count": 1, "sides": 4, "bonus": 2, "type": "slashing" },
+            "attackId": "claw",
+            "kind": "melee",
+            "reachFt": 5
+          }
+        ],
+        "challenge": { "rating": "1", "xp": 200 },
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "creature-f033ab0a",
+      "kind": "creature",
+      "name": "Crypt Ghoul",
+      "description": "A grey, hairless thing crouched in the water, its nails long and black.",
+      "existsSince": null
+    },
+    {
+      "type": "SetStatBlock",
+      "entityId": "creature-f033ab0a",
+      "statBlock": {
+        "armorClass": 12,
+        "hitPoints": { "max": 22, "current": 22 },
+        "immunities": ["poison"],
+        "conditionImmunities": ["charmed", "poisoned"],
+        "speedFt": 30,
+        "size": "medium",
+        "senses": { "darkvision": 60 },
+        "abilities": { "str": 13, "dex": 15, "con": 10, "int": 7, "wis": 10, "cha": 6 },
+        "savingThrows": { "str": 1, "dex": 2, "con": 0, "int": -2, "wis": 0, "cha": -2 },
+        "initiativeBonus": 2,
+        "attacksPerAction": 2,
+        "attacks": [
+          {
+            "name": "Bite",
+            "bonus": 4,
+            "damage": { "count": 1, "sides": 6, "bonus": 2, "type": "piercing" },
+            "extraDamage": [{ "count": 1, "sides": 6, "bonus": 0, "type": "necrotic" }],
+            "attackId": "bite",
+            "kind": "melee",
+            "reachFt": 5
+          },
+          {
+            "name": "Claw",
+            "bonus": 4,
+            "damage": { "count": 1, "sides": 4, "bonus": 2, "type": "slashing" },
+            "attackId": "claw",
+            "kind": "melee",
+            "reachFt": 5
+          }
+        ],
+        "challenge": { "rating": "1", "xp": 200 },
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "creature-9db43b94",
+      "kind": "creature",
+      "name": "Crypt Ghoul",
+      "description": "A grey, hairless thing crouched in the water, its nails long and black.",
+      "existsSince": null
+    },
+    {
+      "type": "SetStatBlock",
+      "entityId": "creature-9db43b94",
+      "statBlock": {
+        "armorClass": 12,
+        "hitPoints": { "max": 22, "current": 22 },
+        "immunities": ["poison"],
+        "conditionImmunities": ["charmed", "poisoned"],
+        "speedFt": 30,
+        "size": "medium",
+        "senses": { "darkvision": 60 },
+        "abilities": { "str": 13, "dex": 15, "con": 10, "int": 7, "wis": 10, "cha": 6 },
+        "savingThrows": { "str": 1, "dex": 2, "con": 0, "int": -2, "wis": 0, "cha": -2 },
+        "initiativeBonus": 2,
+        "attacksPerAction": 2,
+        "attacks": [
+          {
+            "name": "Bite",
+            "bonus": 4,
+            "damage": { "count": 1, "sides": 6, "bonus": 2, "type": "piercing" },
+            "extraDamage": [{ "count": 1, "sides": 6, "bonus": 0, "type": "necrotic" }],
+            "attackId": "bite",
+            "kind": "melee",
+            "reachFt": 5
+          },
+          {
+            "name": "Claw",
+            "bonus": 4,
+            "damage": { "count": 1, "sides": 4, "bonus": 2, "type": "slashing" },
+            "attackId": "claw",
+            "kind": "melee",
+            "reachFt": 5
+          }
+        ],
+        "challenge": { "rating": "1", "xp": 200 },
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "creature-04e362c6",
+      "kind": "creature",
+      "name": "Ashen Acolyte",
+      "description": "A hooded acolyte with ash smeared in a ring on the brow.",
+      "existsSince": null
+    },
+    {
+      "type": "SetStatBlock",
+      "entityId": "creature-04e362c6",
+      "statBlock": {
+        "armorClass": 12,
+        "hitPoints": { "max": 9, "current": 9 },
+        "speedFt": 30,
+        "size": "medium",
+        "abilities": { "str": 11, "dex": 12, "con": 10, "int": 10, "wis": 11, "cha": 10 },
+        "savingThrows": { "str": 0, "dex": 1, "con": 0, "int": 0, "wis": 2, "cha": 0 },
+        "initiativeBonus": 1,
+        "attacksPerAction": 1,
+        "attacks": [
+          {
+            "name": "Ritual Sickle",
+            "bonus": 3,
+            "damage": { "count": 1, "sides": 4, "bonus": 1, "type": "slashing" },
+            "extraDamage": [{ "count": 0, "sides": 4, "bonus": 1, "type": "necrotic" }],
+            "attackId": "ritual-sickle",
+            "kind": "melee",
+            "reachFt": 5
+          }
+        ],
+        "challenge": { "rating": "1/8", "xp": 25 },
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "creature-1b6489b4",
+      "kind": "creature",
+      "name": "Ashen Acolyte",
+      "description": "A hooded acolyte with ash smeared in a ring on the brow.",
+      "existsSince": null
+    },
+    {
+      "type": "SetStatBlock",
+      "entityId": "creature-1b6489b4",
+      "statBlock": {
+        "armorClass": 12,
+        "hitPoints": { "max": 9, "current": 9 },
+        "speedFt": 30,
+        "size": "medium",
+        "abilities": { "str": 11, "dex": 12, "con": 10, "int": 10, "wis": 11, "cha": 10 },
+        "savingThrows": { "str": 0, "dex": 1, "con": 0, "int": 0, "wis": 2, "cha": 0 },
+        "initiativeBonus": 1,
+        "attacksPerAction": 1,
+        "attacks": [
+          {
+            "name": "Ritual Sickle",
+            "bonus": 3,
+            "damage": { "count": 1, "sides": 4, "bonus": 1, "type": "slashing" },
+            "extraDamage": [{ "count": 0, "sides": 4, "bonus": 1, "type": "necrotic" }],
+            "attackId": "ritual-sickle",
+            "kind": "melee",
+            "reachFt": 5
+          }
+        ],
+        "challenge": { "rating": "1/8", "xp": 25 },
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "creature-2e3554f3",
+      "kind": "creature",
+      "name": "Drowned Knight",
+      "description": "A knight in green-crusted mail risen from the pool, cold light in the holes of its helm.",
+      "existsSince": null
+    },
+    {
+      "type": "SetStatBlock",
+      "entityId": "creature-2e3554f3",
+      "statBlock": {
+        "armorClass": 14,
+        "hitPoints": { "max": 82, "current": 82 },
+        "resistances": ["necrotic"],
+        "immunities": ["poison"],
+        "conditionImmunities": ["poisoned"],
+        "speedFt": 30,
+        "size": "medium",
+        "senses": { "darkvision": 60 },
+        "abilities": { "str": 15, "dex": 14, "con": 16, "int": 10, "wis": 13, "cha": 15 },
+        "savingThrows": { "str": 2, "dex": 2, "con": 3, "int": 0, "wis": 1, "cha": 2 },
+        "initiativeBonus": 4,
+        "attacksPerAction": 2,
+        "attacks": [
+          {
+            "name": "Necrotic Sword",
+            "bonus": 4,
+            "damage": { "count": 1, "sides": 8, "bonus": 2, "type": "slashing" },
+            "extraDamage": [{ "count": 1, "sides": 8, "bonus": 0, "type": "necrotic" }],
+            "attackId": "necrotic-sword",
+            "kind": "melee",
+            "reachFt": 5
+          },
+          {
+            "name": "Necrotic Bow",
+            "bonus": 4,
+            "damage": { "count": 1, "sides": 8, "bonus": 2, "type": "piercing" },
+            "extraDamage": [{ "count": 1, "sides": 8, "bonus": 0, "type": "necrotic" }],
+            "attackId": "necrotic-bow",
+            "kind": "ranged",
+            "normalRangeFt": 150,
+            "longRangeFt": 600
+          }
+        ],
+        "challenge": { "rating": "3", "xp": 700 },
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "creature-883736e6",
+      "kind": "creature",
+      "name": "Ashen Acolyte",
+      "description": "A hooded acolyte with ash smeared in a ring on the brow.",
+      "existsSince": null
+    },
+    {
+      "type": "SetStatBlock",
+      "entityId": "creature-883736e6",
+      "statBlock": {
+        "armorClass": 12,
+        "hitPoints": { "max": 9, "current": 9 },
+        "speedFt": 30,
+        "size": "medium",
+        "abilities": { "str": 11, "dex": 12, "con": 10, "int": 10, "wis": 11, "cha": 10 },
+        "savingThrows": { "str": 0, "dex": 1, "con": 0, "int": 0, "wis": 2, "cha": 0 },
+        "initiativeBonus": 1,
+        "attacksPerAction": 1,
+        "attacks": [
+          {
+            "name": "Ritual Sickle",
+            "bonus": 3,
+            "damage": { "count": 1, "sides": 4, "bonus": 1, "type": "slashing" },
+            "extraDamage": [{ "count": 0, "sides": 4, "bonus": 1, "type": "necrotic" }],
+            "attackId": "ritual-sickle",
+            "kind": "melee",
+            "reachFt": 5
+          }
+        ],
+        "challenge": { "rating": "1/8", "xp": 25 },
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "creature-c0e1d9b6",
+      "kind": "creature",
+      "name": "Ashen Acolyte",
+      "description": "A hooded acolyte with ash smeared in a ring on the brow.",
+      "existsSince": null
+    },
+    {
+      "type": "SetStatBlock",
+      "entityId": "creature-c0e1d9b6",
+      "statBlock": {
+        "armorClass": 12,
+        "hitPoints": { "max": 9, "current": 9 },
+        "speedFt": 30,
+        "size": "medium",
+        "abilities": { "str": 11, "dex": 12, "con": 10, "int": 10, "wis": 11, "cha": 10 },
+        "savingThrows": { "str": 0, "dex": 1, "con": 0, "int": 0, "wis": 2, "cha": 0 },
+        "initiativeBonus": 1,
+        "attacksPerAction": 1,
+        "attacks": [
+          {
+            "name": "Ritual Sickle",
+            "bonus": 3,
+            "damage": { "count": 1, "sides": 4, "bonus": 1, "type": "slashing" },
+            "extraDamage": [{ "count": 0, "sides": 4, "bonus": 1, "type": "necrotic" }],
+            "attackId": "ritual-sickle",
+            "kind": "melee",
+            "reachFt": 5
+          }
+        ],
+        "challenge": { "rating": "1/8", "xp": 25 },
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "type": "SetStatBlock",
+      "entityId": "kerra-reed",
+      "statBlock": {
+        "armorClass": 15,
+        "hitPoints": { "max": 52, "current": 52 },
+        "speedFt": 30,
+        "size": "medium",
+        "abilities": { "str": 15, "dex": 16, "con": 14, "int": 14, "wis": 11, "cha": 14 },
+        "savingThrows": { "str": 4, "dex": 5, "con": 2, "int": 2, "wis": 2, "cha": 2 },
+        "initiativeBonus": 3,
+        "attacksPerAction": 2,
+        "attacks": [
+          {
+            "name": "Scimitar",
+            "bonus": 5,
+            "damage": { "count": 1, "sides": 6, "bonus": 3, "type": "slashing" },
+            "attackId": "scimitar",
+            "kind": "melee",
+            "reachFt": 5
+          },
+          {
+            "name": "Pistol",
+            "bonus": 5,
+            "damage": { "count": 1, "sides": 10, "bonus": 3, "type": "piercing" },
+            "attackId": "pistol",
+            "kind": "ranged",
+            "normalRangeFt": 30,
+            "longRangeFt": 90
+          }
+        ],
+        "challenge": { "rating": "2", "xp": 450 },
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "type": "SetStatBlock",
+      "entityId": "npc-7c3e91a2",
+      "statBlock": {
+        "armorClass": 13,
+        "hitPoints": { "max": 44, "current": 44 },
+        "speedFt": 30,
+        "size": "medium",
+        "abilities": { "str": 11, "dex": 14, "con": 12, "int": 10, "wis": 14, "cha": 13 },
+        "savingThrows": { "str": 0, "dex": 2, "con": 1, "int": 0, "wis": 4, "cha": 1 },
+        "initiativeBonus": 2,
+        "attacksPerAction": 1,
+        "attacks": [
+          {
+            "name": "Pact Blade",
+            "bonus": 4,
+            "damage": { "count": 1, "sides": 8, "bonus": 2, "type": "slashing" },
+            "extraDamage": [{ "count": 2, "sides": 6, "bonus": 0, "type": "necrotic" }],
+            "attackId": "pact-blade",
+            "kind": "melee",
+            "reachFt": 5
+          }
+        ],
+        "challenge": { "rating": "2", "xp": 450 },
+        "spells": [],
+        "conditions": []
+      }
+    }
+  ]
+}

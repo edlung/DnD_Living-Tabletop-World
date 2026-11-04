@@ -94,7 +94,10 @@ function floodOut(data: Buffer, width: number, height: number): Buffer {
   return out;
 }
 
-async function shaped(bytes: Uint8Array, purpose: AssetPurpose): Promise<Sharp> {
+/** A battle map the DM uploads keeps its own shape: its grid is the DM's, not the 4:3 board's. */
+export type ReencodePurpose = AssetPurpose | 'uploaded-battle-map';
+
+async function shaped(bytes: Uint8Array, purpose: ReencodePurpose): Promise<Sharp> {
   if (purpose === 'figure') {
     // Scaled down first: the fill runs on the event loop, so it gets at most 1,536² pixels.
     const { data, info } = await open(bytes)
@@ -124,7 +127,7 @@ async function shaped(bytes: Uint8Array, purpose: AssetPurpose): Promise<Sharp> 
 /** Validates and re-encodes; anything that is not a PNG, JPEG or WebP image fails. */
 export async function reencodeImage(
   bytes: Uint8Array,
-  purpose: AssetPurpose,
+  purpose: ReencodePurpose,
   /** The stored limit; smaller only in tests. */
   maxBytes: number = MAX_STORED_BYTES,
 ): Promise<Uint8Array> {

@@ -1,7 +1,8 @@
 import { ASSET_SETTLING_COMMAND_TYPES, type KernelCommandType } from '@ltw/contracts';
 
 import { assetHoldBlockers } from '../../assets/hold.ts';
-import { purposeField } from '../../assets/records.ts';
+import { assetRestores } from '../../assets/undo.ts';
+import { contentRestores, isContentEvent } from '../../content/events.ts';
 
 import {
   accept,
@@ -171,6 +172,11 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
   };
 
   for (const event of events) {
+    // The map's pins and routes, the quests by hand (ADR 0057 §10, ADR 0058 §2).
+    if (isContentEvent(event)) {
+      restores.push(...contentRestores(event, before));
+      continue;
+    }
     switch (event.type) {
       case 'EntityCreated':
         restores.push({ fact: 'entity', entityId: event.payload.entityId, value: null });
@@ -325,6 +331,7 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
       case 'PremisesRecorded':
       case 'AuthoringPremisesRecorded':
       case 'ActionTaken':
+      case 'FeatureUsed':
       case 'AttackPerformed':
       case 'WeaponMasteryApplied':
       case 'SpellCast':
@@ -344,6 +351,9 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
       case 'CombatantUpdated':
       case 'CombatOrderChanged':
       case 'LightSet':
+      case 'TerrainPainted':
+      case 'FogSet':
+      case 'TrapChanged':
       case 'CombatEnded':
         restores.push({
           fact: 'encounter',
@@ -397,6 +407,7 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
       case 'ItemEquipped':
       case 'ItemUnequipped':
       case 'ItemUsed':
+      case 'ItemStackChanged':
       case 'ItemRecovered':
       case 'ItemTransferred':
       case 'ItemAttuned':
@@ -424,43 +435,31 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
           value: before.statBlocks.get(event.payload.entityId) ?? null,
         });
         break;
-      case 'AssetRequested': {
-        restores.push({ fact: 'assetRequest', requestId: event.payload.requestId, value: null });
-        // The wish it may have answered comes back (docs/adr/0056-characters-from-the-srd.md §5).
+      // An NPC's shop (docs/adr/0057-encounters-maps-loot.md §8).
+      case 'MerchantSet':
         restores.push({
-          fact: 'portraitWish',
-          characterId: event.payload.entityId,
-          value: before.portraitWishes.get(event.payload.entityId) ?? null,
+          fact: 'merchant',
+          npcId: event.payload.npcId,
+          value: before.merchants.get(event.payload.npcId) ?? null,
         });
         break;
-      }
+      // A crafting project (§9).
+      case 'CraftingStarted':
+      case 'CraftingWorked':
+      case 'CraftingFinished':
+      case 'CraftingAbandoned':
+        restores.push({
+          fact: 'crafting',
+          projectId: event.payload.projectId,
+          value: before.crafting.get(event.payload.projectId) ?? null,
+        });
+        break;
+      case 'AssetRequested':
       case 'PortraitAsked':
-        restores.push({
-          fact: 'portraitWish',
-          characterId: event.payload.characterId,
-          value: before.portraitWishes.get(event.payload.characterId) ?? null,
-        });
+      case 'AssetApproved':
+      case 'BattleMapAligned':
+        restores.push(...assetRestores(before, event));
         break;
-      case 'AssetApproved': {
-        const { assetId, entityId, previous, supersedes = [] } = event.payload;
-        // The approved asset and every picture it superseded go back as they were.
-        for (const id of [assetId, ...(previous === null ? [] : [previous]), ...supersedes]) {
-          const prior = before.assets.assets.get(id);
-          if (!prior) throw new Error(`asset ${id} missing before the undone approval`);
-          const { purpose, ...record } = structuredClone(prior);
-          restores.push({
-            fact: 'asset',
-            assetId: id,
-            value: { ...record, ...purposeField(purpose) },
-          });
-        }
-        restores.push({
-          fact: 'assetCanonical',
-          entityId,
-          value: before.assets.canonical.get(entityId) ?? null,
-        });
-        break;
-      }
       case 'AssetJobStarted':
       case 'AssetGenerated':
       case 'AssetJobFailed':
@@ -472,6 +471,11 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
       case 'CampaignCreated':
       case 'CommandUndone':
         throw new Error(`${event.type} is not undoable`);
+      default: {
+        // Every event type is named above: one left out would undo without restoring anything.
+        const unnamed: never = event;
+        throw new Error(`no undo restore for ${(unnamed as { type: string }).type}`);
+      }
     }
   }
 

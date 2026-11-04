@@ -1,0 +1,120 @@
+{
+  "$comment": "The Bells of Hollowmere quest book (ADR 0058 §5): written by scripts/adventures/hollowmere/build.ts.",
+  "quests": [
+    {
+      "questId": "widows-wagon",
+      "title": "The Widow’s Wagon",
+      "activation": {
+        "subject": "brisk-cargo",
+        "summary": "Agna Brisk hired us to take her wagon to Hollowmere."
+      },
+      "milestones": [
+        {
+          "kind": "survived-fight-at",
+          "stage": "ford-crossed",
+          "locationId": "willow-ford",
+          "summary": "We fought our way across the Willow Ford."
+        },
+        {
+          "kind": "reached",
+          "stage": "wagon-delivered",
+          "locationId": "hollowmere",
+          "summary": "We brought the wagon to Hollowmere."
+        },
+        {
+          "kind": "told-by",
+          "stage": "reeve-heard",
+          "informant": "hobb-fenwick",
+          "subject": "hollowmere-bell",
+          "summary": "The reeve told us why he stopped writing."
+        }
+      ],
+      "completion": "reeve-heard"
+    },
+    {
+      "questId": "bells-of-hollowmere",
+      "title": "The Bells of Hollowmere",
+      "activation": {
+        "subject": "hollowmere-bell",
+        "summary": "We learned that the bell of Hollowmere rings at midnight with no hand on its rope."
+      },
+      "milestones": [
+        {
+          "kind": "examined-at",
+          "stage": "tower-examined",
+          "locationId": "bell-tower",
+          "summary": "We examined the bell tower."
+        },
+        {
+          "kind": "hypothesized",
+          "stage": "bell-theory",
+          "subject": "hollowmere-bell",
+          "summary": "We formed a theory about who rings the bell."
+        },
+        {
+          "kind": "survived-fight-at",
+          "stage": "chapel-cleared",
+          "locationId": "drowned-chapel",
+          "summary": "We faced the dead at the Drowned Chapel."
+        },
+        {
+          "kind": "survived-fight-at",
+          "stage": "mill-faced",
+          "locationId": "sunken-mill",
+          "summary": "We faced the Reed Cloaks at the Sunken Mill."
+        },
+        {
+          "kind": "reached",
+          "stage": "way-down",
+          "locationId": "location-5b2e9c47",
+          "summary": "We found the way down beneath the chapel."
+        },
+        {
+          "kind": "survived-fight-at",
+          "stage": "bell-silenced",
+          "locationId": "location-c81f04da",
+          "summary": "We silenced the sunken bell."
+        },
+        {
+          "kind": "returned-to",
+          "stage": "word-brought",
+          "locationId": "hollowmere",
+          "after": "bell-silenced",
+          "summary": "We brought word back to Hollowmere."
+        }
+      ],
+      "completion": "word-brought"
+    },
+    {
+      "questId": "old-matthis",
+      "title": "The Missing Bell-Ringer",
+      "activation": {
+        "subject": "old-matthis",
+        "summary": "We learned that Old Matthis, the bell-ringer, is missing."
+      },
+      "milestones": [
+        {
+          "kind": "told-by",
+          "stage": "ilse-heard",
+          "informant": "sister-ilse",
+          "subject": "old-matthis",
+          "summary": "Sister Ilse told us where Matthis went."
+        },
+        {
+          "kind": "reached",
+          "stage": "matthis-found",
+          "locationId": "location-5b2e9c47",
+          "summary": "We found Old Matthis in the crypt."
+        },
+        {
+          "kind": "returned-to",
+          "stage": "matthis-home",
+          "locationId": "hollowmere",
+          "after": "matthis-found",
+          "summary": "We brought Old Matthis home."
+        }
+      ],
+      "completion": "matthis-home"
+    }
+  ]
+}

@@ -21,6 +21,7 @@
     "db:down": "docker compose down",
     "db:migrate": "pnpm --filter @ltw/server run db:migrate",
     "seed:ravenford": "pnpm --filter @ltw/server run seed:ravenford",
+    "adventures:build": "node --conditions=@ltw/source scripts/adventures/hollowmere/build.ts",
     "dev:server": "pnpm --filter @ltw/server run dev",
     "validate": "pnpm run format:check && pnpm run lint && pnpm run typecheck && pnpm run context-budget && pnpm run test && pnpm run build && pnpm run db:migrate && pnpm run seed:ravenford && pnpm run test:integration && pnpm run test:e2e",
     "validate:ci-local": "bash scripts/ci-local.sh",

@@ -1,8 +1,10 @@
 import { z } from 'zod';
 
+import type { BoardTrapId } from '../combat/battlefield.ts';
 import type { FeatureAct } from '../combat/features.ts';
 import type { ReactionId } from '../combat/reactions.ts';
 import { entityIdSchema, knowledgeIdSchema } from '../kernel/identifiers.ts';
+import type { EntityKind } from '../kernel/world-commands.ts';
 import { ITEM_PLAYER_COMMAND_TYPES } from '../items/commands.ts';
 import { knowledgeRelationSchema } from '../knowledge/commands.ts';
 import type { WeaponMastery } from '../rules/character-sheet.ts';
@@ -19,6 +21,16 @@ export const CLUE_METHODS = [...EXAMINE_METHODS, 'magic'] as const;
 export type ClueMethod = (typeof CLUE_METHODS)[number];
 /** Methods resolved by a skill check (one attempt per character, entity, method). */
 export const CHECK_METHODS: ReadonlySet<ExamineMethod> = new Set(['investigation', 'perception']);
+
+/**
+ * Where a clue of each method may lie (ADR 0012): a skill check's on an object (an item or a
+ * feature); a look's or Detect Magic's on anything one examines, a place or a person too.
+ */
+export function clueFits(kind: EntityKind, method: ClueMethod): boolean {
+  return (CHECK_METHODS as ReadonlySet<string>).has(method)
+    ? kind === 'item' || kind === 'feature'
+    : kind !== 'faction';
+}
 
 export const DISCLOSURES = ['WILLING', 'GUARDED'] as const;
 export type Disclosure = (typeof DISCLOSURES)[number];
@@ -164,6 +176,22 @@ export type PlayerOutcome =
       readonly prone?: true;
       /** It falls, and a reaction may slow the fall before it lands (§8). */
       readonly falling?: true;
+      /** The trap it came onto sprang (docs/adr/0057-encounters-maps-loot.md §6). */
+      readonly trap?: BoardTrapId;
+      /** Hidden traps its Passive Perception noticed on the way: it stops short of them (§6). */
+      readonly noticed?: readonly BoardTrapId[];
+    }
+  /** Coins shared out among the party (docs/adr/0057-encounters-maps-loot.md §7). */
+  | { readonly kind: 'SplitCoins' }
+  /** A thing bought from a merchant, or sold to one (docs/adr/0057-encounters-maps-loot.md §8). */
+  | { readonly kind: 'Trade'; readonly action: 'buy' | 'sell' }
+  /** A crafting project begun or given up (docs/adr/0057-encounters-maps-loot.md §9). */
+  | { readonly kind: 'Crafting'; readonly action: 'start' | 'abandon' }
+  | {
+      readonly kind: 'TakeAction';
+      /** The hidden traps a Search or a Study found, and the trap Utilize disarmed (ADR 0057 §6). */
+      readonly found: readonly BoardTrapId[];
+      readonly disarmed?: BoardTrapId;
     }
   | {
       readonly kind: 'Attack';

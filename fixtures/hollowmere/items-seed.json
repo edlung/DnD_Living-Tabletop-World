@@ -1,0 +1,112 @@
+{
+  "campaignId": "hollowmere",
+  "dmActorId": "dm-hollowmere",
+  "commands": [
+    {
+      "type": "CreateEntity",
+      "entityId": "item-17fe9455",
+      "kind": "item",
+      "name": "Flask of Holy Water",
+      "description": "Water blessed at Saint Odran’s shrine, stoppered with wax stamped with a bell.",
+      "existsSince": null
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-17fe9455",
+      "holderId": "sister-ilse",
+      "catalogId": "srd-holy-water",
+      "quantity": 3
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "item-2777541f",
+      "kind": "item",
+      "name": "Potion of Healing",
+      "description": "A red draught that glimmers when shaken.",
+      "existsSince": null
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-2777541f",
+      "holderId": "kerra-reed",
+      "catalogId": "srd-potion-of-healing",
+      "quantity": 2
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "item-30b9f50d",
+      "kind": "item",
+      "name": "Silver Pieces",
+      "description": "Silver paid for the Reed Cloaks’ night work.",
+      "existsSince": null
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-30b9f50d",
+      "holderId": "kerra-reed",
+      "catalogId": "srd-silver-piece",
+      "quantity": 40
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "item-2385d954",
+      "kind": "item",
+      "name": "Lantern of Revealing",
+      "description": "A hooded lantern of black iron whose steady flame shows what hides unseen.",
+      "existsSince": null
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-2385d954",
+      "holderId": "npc-7c3e91a2",
+      "catalogId": "srd-lantern-of-revealing",
+      "quantity": 1
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "item-95cc9f7c",
+      "kind": "item",
+      "name": "Grey Cloak",
+      "description": "A grey cloak, its hem stitched with a ring of ash-coloured thread.",
+      "existsSince": null
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-95cc9f7c",
+      "holderId": "npc-7c3e91a2",
+      "catalogId": "srd-cloak-of-protection",
+      "quantity": 1
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "item-2520d229",
+      "kind": "item",
+      "name": "Saint Odran’s Mace",
+      "description": "A knight’s mace with a head shaped like a closed bell, untarnished after thirty years in water.",
+      "existsSince": null
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-2520d229",
+      "holderId": "location-c81f04da",
+      "catalogId": "srd-weapon-plus-1",
+      "baseCatalogId": "srd-mace",
+      "quantity": 1
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "item-79d92f2f",
+      "kind": "item",
+      "name": "Potion of Greater Healing",
+      "description": "A deep red draught in a stoppered vial of old glass.",
+      "existsSince": null
+    },
+    {
+      "type": "GrantItem",
+      "itemId": "item-79d92f2f",
+      "holderId": "location-c81f04da",
+      "catalogId": "srd-potion-of-healing-greater",
+      "quantity": 1
+    }
+  ]
+}

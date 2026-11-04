@@ -181,10 +181,13 @@ export function ApprovedCard({
   shown,
   context,
   onReplace,
+  onAlign,
 }: {
   readonly shown: ShownImage;
   readonly context: Context;
   readonly onReplace: () => void;
+  /** A battle map's grid lined up (docs/adr/0057-encounters-maps-loot.md §3). */
+  readonly onAlign?: () => void;
 }) {
   const t = useT();
   const { waiting } = useWaiting();
@@ -216,7 +219,28 @@ export function ApprovedCard({
             <Glyph name="replace" />
             {t('Replace')}
           </button>
+          {onAlign && asset.purpose === 'battle-map' && (
+            <button
+              type="button"
+              aria-disabled={waiting || undefined}
+              aria-label={t('Line up the grid: {subject}', { subject: context.subject(what) })}
+              onClick={() => {
+                if (!waiting) onAlign();
+              }}
+            >
+              <Glyph name="map" />
+              {t('Line up the grid')}
+            </button>
+          )}
         </div>
+        {asset.grid && (
+          <p className="image-card-meta">
+            {t('The fight here takes {columns} × {rows} squares.', {
+              columns: asset.grid.columns,
+              rows: asset.grid.rows,
+            })}
+          </p>
+        )}
       </div>
     </li>
   );

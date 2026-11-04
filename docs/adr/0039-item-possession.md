@@ -80,3 +80,18 @@ holds for them alone (Stage 650d).
 §8's "weight is shown, never enforced" is now the campaign's option: shown by default, or enforced
 as SRD 5.2.1's Carrying Capacity says — a load past what Strength carries leaves a Speed of 5 ft,
 one past twice it a Speed of 0 (docs/adr/0056-characters-from-the-srd.md, 660e notes).
+
+## Amendment 2026-11-03 (Stage 670e, ADR 0057 §7; owner approval `reviews/OWNER_FULL_GAME_2026-11-02.json`)
+
+§7's holder is a character, an NPC or a creature, or the party's stash (`PARTY_STASH`, no entity);
+`GrantItem` to a place leaves the item lying there with no holder. What a creature or NPC that fell
+in a fight carried, unworn, lies where the fight was once it ends; coins shared out
+(`SplitCoins`) are minted anew in stacks that may hold more than 99
+(docs/adr/0057-encounters-maps-loot.md, 670e notes).
+
+## Amendment 2026-11-03 (Stage 670f, ADR 0057 §8; owner approval `reviews/OWNER_FULL_GAME_2026-11-02.json`)
+
+A possession may be a merchant's wares (`forSale`): set when the DM gives an NPC an item to sell
+or a merchant buys one, cleared when it changes hands otherwise. Coins spent in trade are pooled
+across the buyer's coinages and the change minted in its home coinage; coins paid add to the
+payee's stacks (docs/adr/0057-encounters-maps-loot.md, 670f notes).

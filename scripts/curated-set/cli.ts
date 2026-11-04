@@ -7,14 +7,17 @@ import sharp from 'sharp';
 import { floodOut, load, toSharp } from '../ui-kit/pixels.ts';
 
 /**
- * Usage: node scripts/curated-set/cli.ts <originals-dir> <generation-manifest.json> <out-dir>
- * Turns the GPT originals of the curated Ravenford set (ADR 0035) into WebP files and writes
+ * Usage: node scripts/curated-set/cli.ts <originals-dir> <generation-manifest.json> <out-dir> [set]
+ * Turns the GPT originals of a curated set (ADR 0035; Ravenford's, or an adventure's named by
+ * `set`, its items naming their `entityIds`) into WebP files and writes
  * <out-dir>/manifest.json with provenance. Processing is mechanical: resize, crop the battle map
  * to the grid's 4:3, black to alpha for figures.
  */
 interface GenerationItem {
   readonly name: string;
   readonly entity: string;
+  /** The fixture entity IDs the picture is of, where the generation names them itself. */
+  readonly entityIds?: readonly string[];
   readonly variant: 'reference' | 'derived';
   readonly label: string | null;
   readonly kind: 'portrait' | 'scene' | 'object' | 'map' | 'figure';
@@ -48,9 +51,9 @@ const CONCEPTS: Readonly<Record<string, string>> = {
   views: 'docs/design/stage-320/owner-concepts/07-player-and-dm-view.webp',
 };
 
-const [originals, generationPath, out] = process.argv.slice(2);
+const [originals, generationPath, out, setName = 'Ravenford'] = process.argv.slice(2);
 if (!originals || !generationPath || !out) {
-  console.error('usage: cli.ts <originals-dir> <generation-manifest.json> <out-dir>');
+  console.error('usage: cli.ts <originals-dir> <generation-manifest.json> <out-dir> [set name]');
   process.exit(2);
 }
 const items = JSON.parse(await readFile(generationPath, 'utf8')) as GenerationItem[];
@@ -104,7 +107,7 @@ for (const item of items) {
   await writeFile(join(out, file), data);
   entries.push({
     file,
-    entityIds: ENTITY_IDS[item.entity] ?? [item.entity],
+    entityIds: item.entityIds ?? ENTITY_IDS[item.entity] ?? [item.entity],
     variant: item.variant,
     label: item.label,
     purpose: purpose(item),
@@ -124,7 +127,7 @@ await writeFile(
   `${JSON.stringify(
     {
       about:
-        'The curated Ravenford set (ADR 0035): every picture made by an OpenAI image model through ' +
+        `The curated ${setName} set (ADR 0035): every picture made by an OpenAI image model through ` +
         "Codex CLI on the owner's ChatGPT subscription, in the owner's concept style (ADR 0034). " +
         'Processing is mechanical (scripts/curated-set). GPT originals are kept outside the repository.',
       generator: 'codex-cli/imagegen',

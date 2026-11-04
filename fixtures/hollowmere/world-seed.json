@@ -1,0 +1,348 @@
+{
+  "campaignId": "hollowmere",
+  "dmActorId": "dm-hollowmere",
+  "commands": [
+    {
+      "type": "CreateCampaign",
+      "name": "The Bells of Hollowmere",
+      "worldName": "Ravenford",
+      "startsAt": 28800,
+      "language": "en",
+      "adventure": "hollowmere"
+    },
+    {
+      "type": "SetCampaignOptions",
+      "options": {
+        "hitPointsAtLevel": "choice",
+        "levelsBy": "milestone",
+        "carrying": "shown",
+        "startingLevel": 1,
+        "craftingHelpers": 1
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "fenlands",
+      "kind": "location",
+      "name": "The Northern Fens",
+      "description": "Willow country and fen north of Ravenford: the Mill Road, Hollowmere and the Fogmarsh.",
+      "existsSince": null,
+      "location": { "type": "region", "parentId": null }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "ravenford",
+      "kind": "location",
+      "name": "Ravenford",
+      "description": "A trading town on the Old Trade Road, walled in grey river-stone.",
+      "existsSince": null,
+      "location": { "type": "settlement", "parentId": null }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "north-gate",
+      "kind": "location",
+      "name": "North Gate",
+      "description": "The town’s northern gate, where wagons bound for the marsh villages are loaded at dawn.",
+      "existsSince": null,
+      "location": { "type": "district", "parentId": "ravenford" }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "mill-road",
+      "kind": "location",
+      "name": "The Mill Road",
+      "description": "A rutted cart road from Ravenford north through willow country to the edge of the Fogmarsh.",
+      "existsSince": null,
+      "location": { "type": "route", "parentId": null }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "willow-ford",
+      "kind": "location",
+      "name": "The Willow Ford",
+      "description": "The Mill Road crosses the Sedge Brook here between leaning willows; the water runs knee-deep and cold.",
+      "existsSince": null,
+      "location": { "type": "site", "parentId": "mill-road" }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "hollowmere",
+      "kind": "location",
+      "name": "Hollowmere",
+      "description": "A village of reed-cutters and eel-fishers on stilts and causeways at the edge of the Fogmarsh. A stone bell tower leans over its green.",
+      "existsSince": null,
+      "location": { "type": "settlement", "parentId": null }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "reeves-hall",
+      "kind": "location",
+      "name": "The Reeve’s Hall",
+      "description": "A long timber hall under a turf roof, where the reeve keeps the village tallies and its lamp-oil.",
+      "existsSince": null,
+      "location": { "type": "building", "parentId": "hollowmere" }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "reeves-cellar",
+      "kind": "location",
+      "name": "The Hall’s Cellar",
+      "description": "A damp cellar of barrels and salt-sacks; something has gnawed up through the floor from below.",
+      "existsSince": null,
+      "location": { "type": "room", "parentId": "reeves-hall" }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "bell-tower",
+      "kind": "location",
+      "name": "The Bell Tower",
+      "description": "A squat stone tower older than the village, its bronze bell silent by day. The rope hangs within anyone’s reach.",
+      "existsSince": null,
+      "location": { "type": "building", "parentId": "hollowmere" }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "fogmarsh",
+      "kind": "location",
+      "name": "The Fogmarsh",
+      "description": "Reed-beds, black pools and drowned alders under a fog that rarely lifts. Lights move there at night.",
+      "existsSince": null,
+      "location": { "type": "region", "parentId": null }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "drowned-chapel",
+      "kind": "location",
+      "name": "The Drowned Chapel",
+      "description": "A chapel on a reedy islet, half sunk since the great flood; its doors are barred from the inside.",
+      "existsSince": null,
+      "location": { "type": "building", "parentId": "fogmarsh" }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "sunken-mill",
+      "kind": "location",
+      "name": "The Sunken Mill",
+      "description": "An old water-mill whose wheel stands in still water; flat boats are tied up beneath its floor.",
+      "existsSince": null,
+      "location": { "type": "building", "parentId": "fogmarsh" }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "location-5b2e9c47",
+      "kind": "location",
+      "name": "Flooded Crypt",
+      "description": "Stone stairs go down into black water and a vaulted crypt where the old saints were laid.",
+      "existsSince": null,
+      "location": { "type": "room", "parentId": "drowned-chapel" }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "location-c81f04da",
+      "kind": "location",
+      "name": "Chamber of the Sunken Bell",
+      "description": "A round chamber below the crypt where a second, older bell hangs over a pool, its clapper green with copper.",
+      "existsSince": null,
+      "location": { "type": "room", "parentId": "location-5b2e9c47" }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "agna-brisk",
+      "kind": "npc",
+      "name": "Agna Brisk",
+      "description": "A lamp-oil merchant’s widow, brisk as her name, with ink on her fingers and no patience for excuses.",
+      "existsSince": null,
+      "placement": { "locationId": "north-gate", "since": null }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "hobb-fenwick",
+      "kind": "npc",
+      "name": "Hobb Fenwick",
+      "description": "Hollowmere’s reeve, a heavy, tired man who counts everything twice and has slept badly since the bell began.",
+      "existsSince": null,
+      "placement": { "locationId": "reeves-hall", "since": null }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "sister-ilse",
+      "kind": "npc",
+      "name": "Sister Ilse",
+      "description": "Keeper of the drowned saint’s shrine, now kept in a fisher’s hut; sharp-eyed, devout and afraid of nothing living.",
+      "existsSince": null,
+      "placement": { "locationId": "hollowmere", "since": null }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "kerra-reed",
+      "kind": "npc",
+      "name": "Kerra Reed",
+      "description": "A ferrywoman in a cloak of woven reeds, a boat-hook on her shoulder; she knows every channel of the marsh.",
+      "existsSince": null,
+      "placement": { "locationId": "sunken-mill", "since": null }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "old-matthis",
+      "kind": "npc",
+      "name": "Old Matthis",
+      "description": "Hollowmere’s bell-ringer, white-bearded and half-deaf after fifty years of bells.",
+      "existsSince": null,
+      "placement": { "locationId": "location-5b2e9c47", "since": null }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "npc-7c3e91a2",
+      "kind": "npc",
+      "name": "Hooded Lantern-Bearer",
+      "description": "A gaunt figure in a grey hood carrying a lantern whose light never flickers.",
+      "existsSince": null,
+      "placement": { "locationId": "location-c81f04da", "since": null }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "faction-3d7a52e8",
+      "kind": "faction",
+      "name": "The Reed Cloaks",
+      "description": "Marsh-folk who move goods along the channels by night, untaxed and unasked.",
+      "existsSince": null
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "faction-a6c41f09",
+      "kind": "faction",
+      "name": "The Ashen Circle",
+      "description": "Hooded zealots who mark their deeds with a ring of ash.",
+      "existsSince": null
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "hollowmere-bell",
+      "kind": "feature",
+      "name": "The Hollowmere Bell",
+      "description": "A bronze bell green with age. Three nights running it rang at midnight with no hand on its rope.",
+      "existsSince": null,
+      "placement": { "locationId": "bell-tower", "since": null }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "feature-1e6b3d90",
+      "kind": "feature",
+      "name": "Bell Rope",
+      "description": "A thick hemp rope, frayed and stained green at the knot where it was mended.",
+      "existsSince": null,
+      "placement": { "locationId": "bell-tower", "since": null }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "feature-8a2f6c14",
+      "kind": "feature",
+      "name": "Churned Mud",
+      "description": "The bank of the ford is trampled by many small feet and scored where something was dragged.",
+      "existsSince": null,
+      "placement": { "locationId": "willow-ford", "since": null }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "feature-0d9b5e72",
+      "kind": "feature",
+      "name": "The Drowned Altar",
+      "description": "A stone altar standing in a hand’s depth of water, its carvings of bells worn smooth.",
+      "existsSince": null,
+      "placement": { "locationId": "drowned-chapel", "since": null }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "feature-f3c7a185",
+      "kind": "feature",
+      "name": "Cracked Floor-Slab",
+      "description": "A broad slab before the altar, cracked across, with a small bell carved in one corner.",
+      "existsSince": null,
+      "placement": { "locationId": "drowned-chapel", "since": null }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "feature-b57d2e3a",
+      "kind": "feature",
+      "name": "Marsh Lights",
+      "description": "Pale lights that drift over the reed-beds and draw back when approached.",
+      "existsSince": null,
+      "placement": { "locationId": "fogmarsh", "since": null }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "feature-6e0a4bd2",
+      "kind": "feature",
+      "name": "The Sunken Bell",
+      "description": "An ancient bell hung low over black water; when it moves, the water shivers before any sound comes.",
+      "existsSince": null,
+      "placement": { "locationId": "location-c81f04da", "since": null }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "brisk-cargo",
+      "kind": "item",
+      "name": "Wagon of Lamp-Oil and Salt",
+      "description": "A covered wagon of oil jars packed in straw and sacks of grey salt, with a patient mule in the shafts.",
+      "existsSince": null,
+      "placement": { "locationId": "north-gate", "since": null }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "item-4f8e2c61",
+      "kind": "item",
+      "name": "Tarred Ledger",
+      "description": "A ledger in a tarred cover, kept dry in an oilcloth; its last pages are in a hurried hand.",
+      "existsSince": null,
+      "placement": { "locationId": "sunken-mill", "since": null }
+    },
+    {
+      "type": "SetMapPins",
+      "regionId": "fenlands",
+      "pins": [
+        { "placeId": "ravenford", "x": 0.67, "y": 0.68 },
+        { "placeId": "willow-ford", "x": 0.53, "y": 0.49 },
+        { "placeId": "hollowmere", "x": 0.55, "y": 0.27 },
+        { "placeId": "drowned-chapel", "x": 0.34, "y": 0.1 },
+        { "placeId": "sunken-mill", "x": 0.76, "y": 0.16 }
+      ]
+    },
+    {
+      "type": "SetRoute",
+      "fromId": "ravenford",
+      "toId": "willow-ford",
+      "route": { "miles": 14, "terrain": "grassland", "road": true }
+    },
+    {
+      "type": "SetRoute",
+      "fromId": "willow-ford",
+      "toId": "hollowmere",
+      "route": { "miles": 16, "terrain": "grassland", "road": true }
+    },
+    {
+      "type": "SetRoute",
+      "fromId": "hollowmere",
+      "toId": "sunken-mill",
+      "route": { "miles": 3, "terrain": "swamp", "road": false }
+    },
+    {
+      "type": "SetRoute",
+      "fromId": "hollowmere",
+      "toId": "drowned-chapel",
+      "route": { "miles": 4, "terrain": "swamp", "road": false }
+    },
+    {
+      "type": "SetRoute",
+      "fromId": "sunken-mill",
+      "toId": "drowned-chapel",
+      "route": { "miles": 5, "terrain": "swamp", "road": false }
+    },
+    {
+      "type": "StartScene",
+      "sceneId": "hollowmere-departure",
+      "title": "A Wagon for Hollowmere",
+      "locationId": "north-gate"
+    }
+  ]
+}

@@ -28,6 +28,8 @@ const ALWAYS = [
   '/campaigns/ravenford/presence',
   // The table around a session (ADR 0043 §6).
   '/campaigns/ravenford/lobby',
+  // The world map (ADR 0057 §10).
+  '/campaigns/ravenford/world-map',
   // What the table's display shows (ADR 0042).
   '/campaigns/ravenford/display/cast ?',
 ];
@@ -55,11 +57,16 @@ describe('the coverage inventory', () => {
       // Table talk (ADR 0044 §1) and handouts (§5).
       '/campaigns/ravenford/chat',
       '/campaigns/ravenford/handouts',
+      // Crafting (ADR 0057 §9) and the table's shared marks on the board (§5).
+      '/campaigns/ravenford/crafting',
+      '/campaigns/ravenford/marks',
       '/campaigns/ravenford/surroundings',
       '/campaigns/ravenford/undone-actions',
       '/campaigns/ravenford/entities/mira-vale/context ?',
       '/campaigns/ravenford/entities/mira-vale/knowledge ?',
       '/campaigns/ravenford/entities/mira-vale/presentation ?',
+      // A focused merchant's shop (ADR 0057 §8).
+      '/campaigns/ravenford/merchants/mira-vale ?',
       '/campaigns/ravenford/locations/market-square/scene ?',
     ]);
     for (const view of views) {
@@ -82,11 +89,14 @@ describe('the coverage inventory', () => {
       '/campaigns/ravenford/rest',
       '/campaigns/ravenford/chat',
       '/campaigns/ravenford/handouts',
+      '/campaigns/ravenford/crafting',
+      '/campaigns/ravenford/marks',
       '/campaigns/ravenford/chronicle/suggestions',
       '/campaigns/ravenford/dm/history',
       '/campaigns/ravenford/assets',
       '/campaigns/ravenford/entities/mira-vale/knowledge ?',
       '/campaigns/ravenford/entities/mira-vale/presentation ?',
+      '/campaigns/ravenford/merchants/mira-vale ?',
     ]);
     const history = views.find((view) => view.url.includes('/dm/history'));
     expect(new URL(history?.url ?? '', 'http://test').searchParams.get('perspective')).toBe('DM');

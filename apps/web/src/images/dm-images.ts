@@ -36,8 +36,12 @@ import {
  * command's controls come back only once the lineage read after its answer shows what it did.
  */
 export interface DmImages {
+  /** The world's API: an upload goes through its own route (docs/adr/0057-…md §3). */
+  readonly api: WorldApi;
   readonly lineage: Resource<AssetLineageResponse | null>;
   readonly retryRead: () => void;
+  /** A background read of the lineage: what is shown stays meanwhile (after an upload). */
+  readonly reread: () => void;
   readonly command: ImageCommandState;
   /** A command is in flight, its answer was lost, or the list does not show its result yet. */
   readonly busy: boolean;
@@ -175,8 +179,10 @@ export function useDmImagesState(
   }
 
   return {
+    api,
     lineage,
     retryRead,
+    reread,
     command,
     busy: isBusy(command),
     run: (action) => {

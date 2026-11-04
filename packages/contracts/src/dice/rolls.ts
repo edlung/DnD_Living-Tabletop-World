@@ -10,7 +10,7 @@ import { ABILITIES, SKILLS, type Ability, type Skill } from '../rules/character-
  */
 export const DIE_SIDES = [4, 6, 8, 10, 12, 20, 100] as const;
 export type DieSides = (typeof DIE_SIDES)[number];
-const dieSides = z.union([
+export const dieSidesSchema = z.union([
   z.literal(4),
   z.literal(6),
   z.literal(8),
@@ -55,7 +55,7 @@ export interface RollGroup {
   readonly autoFail?: true;
 }
 
-/** What a roll was for, in tokens the client words (never free text, never a target's ID). */
+/** What a roll was for: tokens the client words, a random table's words, never a target's ID. */
 export type RollSubject =
   | {
       readonly kind: 'attack';
@@ -73,7 +73,12 @@ export type RollSubject =
   | { readonly kind: 'death-save' }
   | { readonly kind: 'initiative' }
   | { readonly kind: 'hit-die' }
-  | { readonly kind: 'dice' };
+  | { readonly kind: 'dice' }
+  /**
+   * A roll on one of the DM's random tables (docs/adr/0058-campaign-content.md §4): the one subject
+   * with free text, the DM's own words for the table and the result its die brought.
+   */
+  | { readonly kind: 'table'; readonly name: string; readonly result: string };
 
 export interface RollEntry {
   /** Stable across reads: `world:<sequence>` or `table:<id>`. */
@@ -142,7 +147,7 @@ export const tableRollRequestSchema = z.discriminatedUnion('kind', [
       /** The acting character; absent for the DM rolling as the DM. */
       characterId: entityIdSchema.optional(),
       dice: z
-        .array(z.object({ count: z.number().int().min(1).max(10), sides: dieSides }).strict())
+        .array(z.object({ count: z.number().int().min(1).max(10), sides: dieSidesSchema }).strict())
         .min(1)
         .max(4),
       modifier: z.number().int().min(-30).max(30),

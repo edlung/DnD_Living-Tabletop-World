@@ -22,6 +22,10 @@ import { EMPTY_EPISTEMICS, type EpistemicState } from '../contradiction/records.
 import { EMPTY_INVESTIGATION, type InvestigationState } from '../investigation/records.ts';
 import type { KnowledgeRecord } from '../knowledge/records.ts';
 import type { MemoryRecord, SessionRecord } from '../memory/records.ts';
+import type { MerchantRecord } from '../items/trade.ts';
+import type { CraftProject } from '../items/crafting.ts';
+import type { MapPin, RouteRecord } from '../travel/map.ts';
+import type { HandQuest } from '@ltw/contracts';
 
 /**
  * Canonical World Kernel state: the fold of a campaign's event stream
@@ -37,6 +41,8 @@ export interface CampaignState {
   readonly dmActorId: string;
   /** The play language (ADR 0031); `en` for every history that never recorded one. */
   readonly language: Language;
+  /** The ready adventure whose books it reads (ADR 0058 §5); null: Ravenford's. */
+  readonly adventure: string | null;
   /** The DM's options (docs/adr/0056-characters-from-the-srd.md §3); the defaults until set. */
   readonly options: CampaignOptions;
 }
@@ -139,6 +145,16 @@ export interface WorldState {
   readonly deaths: ReadonlyMap<string, DeathRecord>;
   /** A character's ID → the portrait its player asked for, until the DM requests one (§5). */
   readonly portraitWishes: ReadonlyMap<string, string>;
+  /** An NPC's ID → its shop (docs/adr/0057-encounters-maps-loot.md §8); absent: no merchant. */
+  readonly merchants: ReadonlyMap<string, MerchantRecord>;
+  /** A project's ID → the crafting under way (docs/adr/0057-encounters-maps-loot.md §9). */
+  readonly crafting: ReadonlyMap<string, CraftProject>;
+  /** A region's ID → the places its map shows (docs/adr/0057-encounters-maps-loot.md §10). */
+  readonly mapPins: ReadonlyMap<string, readonly MapPin[]>;
+  /** A pair of places (`routeKey`) → the route between them (§10). */
+  readonly routes: ReadonlyMap<string, RouteRecord>;
+  /** A quest's ID → the DM's quest by hand (docs/adr/0058-campaign-content.md §2). */
+  readonly handQuests: ReadonlyMap<string, HandQuest>;
 }
 
 export const EMPTY_WORLD_STATE: WorldState = {
@@ -169,6 +185,11 @@ export const EMPTY_WORLD_STATE: WorldState = {
   possessions: new Map(),
   deaths: new Map(),
   portraitWishes: new Map(),
+  merchants: new Map(),
+  crafting: new Map(),
+  mapPins: new Map(),
+  routes: new Map(),
+  handQuests: new Map(),
 };
 
 /** Kinds that occupy a location. Locations nest via `parentId`; factions are abstract. */

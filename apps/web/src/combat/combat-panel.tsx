@@ -1,4 +1,9 @@
-import type { EncounterView, PlayerAssetView, Square } from '@ltw/contracts';
+import {
+  MAX_PAINTED_SQUARES,
+  type EncounterView,
+  type PlayerAssetView,
+  type Square,
+} from '@ltw/contracts';
 import { useT } from '@ltw/ui';
 import { useEffect, useId, useMemo, useRef, useState, type KeyboardEvent } from 'react';
 
@@ -10,6 +15,14 @@ import { ActiveCard } from './hud/active-card.tsx';
 import { InitiativeStrip } from './hud/initiative-strip.tsx';
 import { BoardLegend, CombatantCard, MoveDetails } from './hud/side-panel.tsx';
 import { CommandedTurn } from './commanded-turn.tsx';
+import { DmSquareCard } from './dm-hand.tsx';
+import { PaintCard, type Brush, type BrushHand } from './paint-card.tsx';
+import { DEFAULT_AREA, templateSquares, ToolCard, type Tool } from './board-tools.tsx';
+import { MarkCard } from './mark-card.tsx';
+import { CreatureGoods } from './creature-goods.tsx';
+import { dangersOf, trapState } from './board/dangers.ts';
+import type { Marks } from './use-marks.ts';
+import { footprint } from './board/footprint.ts';
 import { TurnTray, type TrayChoice } from './hud/turn-tray.tsx';
 import { occupantAt, squareMoves } from './move-options.ts';
 import { useCombatantLabels } from './labels.ts';
@@ -44,6 +57,8 @@ export function CombatPanel({
   imageOf,
   figureOf,
   battleMap,
+  hand,
+  marks,
   onRun,
 }: {
   readonly api: WorldApi;
@@ -57,10 +72,23 @@ export function CombatPanel({
   readonly imageOf: (entityId: string) => PlayerAssetView | null;
   readonly figureOf: (entityId: string) => PlayerAssetView | null;
   readonly battleMap: PlayerAssetView | null;
+  /** The DM's brush, kept by the stage (ADR 0057 §2). */
+  readonly hand: BrushHand;
+  /** The table's shared marks, kept by the stage (ADR 0057 §5). */
+  readonly marks: Marks;
   readonly onRun: (intent: ExplorationIntent) => void;
 }) {
   const t = useT();
   const [focus, setFocus] = useState<Focus | null>(null);
+  // The DM's hand (docs/adr/0057-…md §2): the combatant chosen last, set down on a square next.
+  const dm = actorId === null;
+  const [held, setHeld] = useState<string | null>(null);
+  // The DM's brush (ADR 0057 §2), kept by the stage across the board's fresh starts.
+  const [brushState, setBrushState] = hand;
+  const { painting, brush } = brushState;
+  const setBrush = (next: Brush) => {
+    setBrushState((state) => ({ ...state, brush: next }));
+  };
   const section = useRef<HTMLElement>(null);
   const panel = useRef<HTMLElement>(null);
   const ids = useId();
@@ -76,7 +104,16 @@ export function CombatPanel({
     encounter.reactionWindow === null &&
     encounter.combatants.find((entry) => entry.entity.entityId === encounter.currentCombatantId)
       ?.commandedBy?.entityId === actorId;
-  const moverId = commanding ? encounter.currentCombatantId : actorId;
+  // On a creature's own turn the DM moves it as its rules allow (a character is its player's).
+  const dmMover =
+    dm &&
+    held !== null &&
+    held === encounter.currentCombatantId &&
+    encounter.combatants.find((entry) => entry.entity.entityId === held)?.entity.kind !==
+      'character'
+      ? held
+      : null;
+  const moverId = commanding ? encounter.currentCombatantId : (dmMover ?? actorId);
   const picked =
     focus?.kind === 'combatant'
       ? (encounter.combatants.find((entry) => entry.entity.entityId === focus.id) ?? null)
@@ -86,6 +123,14 @@ export function CombatPanel({
     focus?.kind === 'square' && moverId !== null
       ? squareMoves(encounter, moverId, focus.square)
       : [];
+  const place = (entityId: string, square: Square) => {
+    // A token let go over its own space stays where it is.
+    if (occupantAt(encounter, square)?.entity.entityId === entityId) return;
+    onRun({
+      kind: 'command',
+      command: { type: 'PlaceCombatant', combatantId: entityId, position: { ...square } },
+    });
+  };
   const { resource, retry } = useTargetContext(
     api,
     picked && actorId !== null ? picked.entity.entityId : null,
@@ -103,8 +148,47 @@ export function CombatPanel({
   useEffect(() => {
     if (chosen !== '') panel.current?.focus({ preventScroll: true });
   }, [chosen]);
+  // The board starts afresh after each stroke: the keyboard is back on the square it painted.
+  useEffect(() => {
+    const { last } = brushState;
+    if (!brushState.painting || !last) return;
+    section.current
+      ?.querySelector<HTMLElement>(
+        `.board-square[data-x="${String(last.x)}"][data-y="${String(last.y)}"]`,
+      )
+      ?.focus({ preventScroll: true });
+    // Only as the board mounts: later strokes keep focus where the DM put it.
+  }, []);
+  // The viewer's own ruler and spell's area (ADR 0057 §5): a press on the board serves the tool.
+  const [tool, setTool] = useState<Tool>(null);
+  // The table's shared marks (ADR 0057 §5): the DM always marks, players when the DM allows.
+  const mayMark = dm || (marks.value?.playersMayMark ?? false);
+  // The DM takes the players' marking back: a player's marks go out of hand.
+  if (!mayMark && tool?.kind === 'mark') setTool(null);
+  const casterView = dm
+    ? encounter.combatants.find((entry) => entry.entity.entityId === held)
+    : self;
+  const caster = casterView ? footprint(casterView) : [];
+  const template = templateSquares(tool, caster, encounter.battlefield);
   const pick = (square: Square) => {
+    if (tool?.kind === 'measure') {
+      setTool(
+        tool.from === null || tool.to !== null
+          ? { kind: 'measure', from: square, to: null }
+          : { ...tool, to: square },
+      );
+      return;
+    }
+    if (tool?.kind === 'area') {
+      setTool({ ...tool, toward: square });
+      return;
+    }
+    if (tool?.kind === 'mark') {
+      marks.lay({ kind: tool.mode === 'pointer' ? 'pointer' : 'ping', square });
+      return;
+    }
     const occupant = occupantAt(encounter, square);
+    if (dm && occupant) setHeld(occupant.entity.entityId);
     setFocus(
       occupant ? { kind: 'combatant', id: occupant.entity.entityId } : { kind: 'square', square },
     );
@@ -116,11 +200,78 @@ export function CombatPanel({
     setFocus(null);
     square?.focus({ preventScroll: true });
   };
+  const stroke = (squares: readonly Square[]) => {
+    setBrushState((state) => ({ ...state, last: squares.at(-1) ?? state.last }));
+    const stroked = squares.slice(0, MAX_PAINTED_SQUARES).map((square) => ({ ...square }));
+    onRun({
+      kind: 'command',
+      quiet: true,
+      command:
+        brush.kind === 'fog'
+          ? { type: 'SetFog', squares: stroked, hidden: brush.hidden }
+          : { type: 'PaintTerrain', squares: stroked, paint: brush },
+    });
+  };
+  const brushOff = () => {
+    setBrushState((state) => ({ ...state, painting: false }));
+    section.current?.querySelector<HTMLElement>('.board-controls [aria-pressed="true"]')?.focus();
+  };
+  const toolOff = () => {
+    setTool(null);
+    section.current?.querySelector<HTMLElement>('.board-controls [aria-pressed="true"]')?.focus();
+  };
+  const toggle = (next: Exclude<Tool, null>) => {
+    setFocus(null);
+    setBrushState((state) => ({ ...state, painting: false }));
+    setTool((current) => (current?.kind === next.kind ? null : next));
+  };
   const onKeyDown = (event: KeyboardEvent) => {
-    if (event.key !== 'Escape' || focus === null || event.defaultPrevented) return;
+    if (event.key !== 'Escape' || event.defaultPrevented) return;
+    if (tool !== null) {
+      event.preventDefault();
+      toolOff();
+      return;
+    }
+    if (painting) {
+      event.preventDefault();
+      brushOff();
+      return;
+    }
+    if (focus === null) return;
     event.preventDefault();
     close();
   };
+  // A trap the party knows of on the chosen square, and its disarming on the viewer's own turn
+  // within 5 ft (docs/adr/0057-encounters-maps-loot.md §6): Utilize, the World Engine decides.
+  const trapHere =
+    focus?.kind === 'square'
+      ? dangersOf(encounter.battlefield).traps.get(
+          `${String(focus.square.x)},${String(focus.square.y)}`,
+        )
+      : undefined;
+  const reach = (trap: NonNullable<typeof trapHere>) =>
+    self !== undefined &&
+    footprint(self).some((mine) =>
+      trap.squares.some((one) => Math.max(Math.abs(one.x - mine.x), Math.abs(one.y - mine.y)) <= 1),
+    );
+  const disarm =
+    mayAct &&
+    trapHere &&
+    focus?.kind === 'square' &&
+    trapState(trapHere) === 'set' &&
+    reach(trapHere)
+      ? () => {
+          onRun({
+            kind: 'command',
+            command: {
+              type: 'TakeAction',
+              combatantId: actorId,
+              action: 'utilize',
+              square: { ...focus.square },
+            },
+          });
+        }
+      : undefined;
   const choice: TrayChoice =
     focus?.kind === 'square'
       ? { kind: 'square', moves }
@@ -128,13 +279,68 @@ export function CombatPanel({
         ? { kind: 'combatant', target: picked, actions: options }
         : { kind: 'none' };
   const side =
-    focus?.kind === 'square' && actorId !== null ? (
+    tool?.kind === 'mark' ? (
+      <MarkCard
+        mode={tool.mode}
+        dm={dm}
+        marks={marks}
+        panel={panel}
+        onMode={(mode) => {
+          setTool({ kind: 'mark', mode });
+        }}
+        onClose={toolOff}
+      />
+    ) : tool !== null ? (
+      <ToolCard
+        tool={tool}
+        covered={template?.size ?? 0}
+        hasCaster={caster.length > 0}
+        panel={panel}
+        onTool={setTool}
+        onShare={
+          mayMark && template
+            ? () => {
+                marks.lay({
+                  kind: 'area',
+                  squares: [...template].map((id) => {
+                    const [x = 0, y = 0] = id.split(',').map(Number);
+                    return { x, y };
+                  }),
+                });
+              }
+            : undefined
+        }
+        onClose={toolOff}
+      />
+    ) : dm && painting ? (
+      <PaintCard
+        brush={brush}
+        locked={locked}
+        panel={panel}
+        onBrush={setBrush}
+        onClose={brushOff}
+      />
+    ) : focus?.kind === 'square' && dm ? (
+      <DmSquareCard
+        encounter={encounter}
+        square={focus.square}
+        held={held}
+        moves={moves}
+        labelOf={labelOf}
+        locked={locked}
+        panel={panel}
+        onRun={onRun}
+        onClose={close}
+      />
+    ) : focus?.kind === 'square' && actorId !== null ? (
       <MoveDetails
         square={focus.square}
         moves={moves}
         prone={self?.conditions.includes('prone') ?? false}
         riding={self?.mountedOn !== undefined && !commanding}
         myTurn={myTurn || commanding}
+        trap={trapHere}
+        onDisarm={disarm}
         panel={panel}
         onClose={close}
       />
@@ -158,7 +364,11 @@ export function CombatPanel({
         image={imageOf(picked.entity.entityId)}
         panel={panel}
         onClose={close}
-      />
+      >
+        {dm && picked.entity.kind !== 'character' && picked.object === undefined && (
+          <CreatureGoods api={api} entityId={picked.entity.entityId} locked={locked} />
+        )}
+      </CombatantCard>
     ) : (
       <BoardLegend encounter={encounter} isDm={actorId === null} />
     );
@@ -185,6 +395,50 @@ export function CombatPanel({
         battleMap={battleMap}
         view={view}
         onPick={pick}
+        fogView={dm ? 'veil' : 'hidden'}
+        ruler={tool?.kind === 'measure' && tool.from ? { from: tool.from, to: tool.to } : null}
+        {...(template ? { template } : {})}
+        marks={marks.value?.marks ?? []}
+        {...(tool?.kind === 'mark' && tool.mode === 'draw'
+          ? {
+              draw: (squares: readonly Square[]) => {
+                const [first] = squares;
+                if (squares.length > 1) marks.lay({ kind: 'stroke', squares });
+                else if (first) marks.lay({ kind: 'ping', square: first });
+              },
+            }
+          : {})}
+        tools={{
+          measuring: tool?.kind === 'measure',
+          laying: tool?.kind === 'area',
+          marking: tool?.kind === 'mark',
+          onMark: mayMark
+            ? () => {
+                toggle({ kind: 'mark', mode: 'ping' });
+              }
+            : undefined,
+          onMeasure: () => {
+            toggle({ kind: 'measure', from: null, to: null });
+          },
+          onArea: () => {
+            toggle({ kind: 'area', spec: DEFAULT_AREA, toward: null });
+          },
+        }}
+        {...(dm
+          ? {
+              // A tool in hand: a drag on the board measures or lays, never moves a token.
+              ...(tool === null ? { onDropToken: place } : {}),
+              paint: {
+                on: painting,
+                onToggle: () => {
+                  setFocus(null);
+                  setTool(null);
+                  setBrushState((state) => ({ ...state, painting: !state.painting }));
+                },
+                onStroke: stroke,
+              },
+            }
+          : {})}
       />
       <div className="combat-side">{side}</div>
       {mayAct && (

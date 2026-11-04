@@ -119,6 +119,13 @@ export function validateEntities(context: PlanContext): void {
         `${path}.statBlock`,
         'Stat blocks belong to NPCs or creatures',
       );
+    if (entity.monster !== undefined && entity.kind !== 'npc' && entity.kind !== 'creature')
+      error(
+        context,
+        'MONSTER_KIND',
+        `${path}.monster`,
+        'A bestiary creature is an NPC or creature',
+      );
     if (entity.kind === 'character' && !entity.sheet)
       missing(
         context,

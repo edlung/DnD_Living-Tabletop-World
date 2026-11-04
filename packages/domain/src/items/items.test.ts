@@ -84,7 +84,8 @@ describe('GrantItem', () => {
   it.each([
     ['an unknown catalog ID', { itemId: 'cloak', catalogId: 'sword-of-truth' }],
     ['a stack of a single item', { itemId: 'cloak', catalogId: 'caravan-cloak', quantity: 2 }],
-    ['a non-carrier holder', { itemId: 'cloak', holderId: 'inn' }],
+    // A place takes treasure (docs/adr/0057-encounters-maps-loot.md §7); an item carries nothing.
+    ['a non-carrier holder', { itemId: 'cloak', holderId: 'letter' }],
     ['a non-item', { itemId: 'friend' }],
   ])('refuses %s', async (_label, patch) => {
     const result = await harness.submit({ type: 'GrantItem', holderId: 'hero', ...patch });

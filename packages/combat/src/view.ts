@@ -1,12 +1,15 @@
 import {
+  HIDDEN_TURN,
   effectiveMaximum,
   type ConditionNoteView,
   type EncounterCombatantView,
   type EncounterView,
+  type Battlefield,
 } from '@ltw/contracts';
 import {
   combatantOf,
   currentCombatant,
+  hiddenByFog,
   knownEntityIds,
   projectionPartyMemberIds,
   type ResolvedPerspective,
@@ -85,152 +88,167 @@ export function encounterView(
       ...(save ? { save: { ability: save.ability, dc: save.dc } } : {}),
     }));
 
-  const combatants = encounter.combatants.map((combatant): EncounterCombatantView => {
-    const entity = state.entities.get(combatant.entityId);
-    const vitals = vitalsOf(state, combatant.entityId);
-    if (!entity || !vitals) throw new Error(`combatant ${combatant.entityId} lacks canonical data`);
-    const hp = hitPoints(vitals);
-    // A creature a party character commands (ADR 0044 §7) is the party's to know, as its own.
-    const commander = combatant.commandedBy ?? null;
-    const commanded = commander !== null && (dm || party.has(commander));
-    const showHp =
-      dm || commanded || (vitals.kind === 'character' && party.has(combatant.entityId));
-    const { roll, modifier, total, surprised } = combatant.initiative;
-    const thing = vitals.kind === 'creature' ? vitals.block.object : undefined;
-    return {
-      entity: {
-        entityId: entity.entityId,
-        kind: entity.kind,
-        name: knows(entity.entityId) ? entity.name : null,
-      },
-      side: combatant.side,
-      position: { x: combatant.position.x, y: combatant.position.y },
-      // Its size and a squeeze, as anyone looking sees (docs/adr/0049-space-and-movement.md §1, §4).
-      ...(sizeOf(vitals) === 'medium' ? {} : { size: sizeOf(vitals) }),
-      ...(combatant.squeezed === true ? { squeezed: true as const } : {}),
-      ...(combatant.altitudeFt === undefined ? {} : { altitudeFt: combatant.altitudeFt }),
-      ...(speedsOf(vitals).fly === undefined ? {} : { flies: true as const }),
-      // The creature it rides, as anyone sees (§10).
-      ...(combatant.mountedOn === undefined ? {} : { mountedOn: named(combatant.mountedOn) }),
-      // A Druid's Wild Shape form, as anyone sees it (docs/adr/0056-…md §5).
-      ...(vitals.kind === 'character' && vitals.sheet.shape
-        ? { form: formName(vitals.sheet.shape.formId, language) }
-        : {}),
-      // Its speeds beside walking, as its hit points: the party's and the DM's to know (§5).
-      ...(showHp && Object.keys(speedsOf(vitals)).length > 0 ? { speeds: speedsOf(vitals) } : {}),
-      // Its breath under water, the same way (docs/adr/0050-the-world-around.md §8).
-      ...(showHp && combatant.breath
-        ? { breath: { roundsLeft: combatant.breath.roundsLeft } }
-        : {}),
-      // Its legendary actions' attacks, the DM's (docs/adr/0053-monsters-as-data.md §4).
-      ...(dm && vitals.kind === 'creature' && vitals.block.legendary
-        ? {
-            legendary: {
-              usesLeft: vitals.block.legendary.uses - (combatant.legendaryUsed ?? 0),
-              attacks: vitals.block.legendary.attacks.map((attackId) => ({
-                attackId,
-                name:
-                  vitals.block.attacks.find((attack) => attack.attackId === attackId)?.name ??
+  // The fog of war (docs/adr/0057-encounters-maps-loot.md §4): what it hides, only the DM sees.
+  const fogged = (entityId: string) => !dm && !ours.has(entityId) && hiddenByFog(state, entityId);
+  const fog = new Set(
+    (encounter.battlefield.fog ?? []).map(({ x, y }) => `${String(x)},${String(y)}`),
+  );
+  const seen = <T extends { readonly x: number; readonly y: number }>(list: readonly T[]) =>
+    dm ? list : list.filter(({ x, y }) => !fog.has(`${String(x)},${String(y)}`));
+  const combatants = encounter.combatants
+    .filter((combatant) => !fogged(combatant.entityId))
+    .map((combatant): EncounterCombatantView => {
+      const entity = state.entities.get(combatant.entityId);
+      const vitals = vitalsOf(state, combatant.entityId);
+      if (!entity || !vitals)
+        throw new Error(`combatant ${combatant.entityId} lacks canonical data`);
+      const hp = hitPoints(vitals);
+      // A creature a party character commands (ADR 0044 §7) is the party's to know, as its own.
+      const commander = combatant.commandedBy ?? null;
+      const commanded = commander !== null && (dm || party.has(commander));
+      const showHp =
+        dm || commanded || (vitals.kind === 'character' && party.has(combatant.entityId));
+      const { roll, modifier, total, surprised } = combatant.initiative;
+      const thing = vitals.kind === 'creature' ? vitals.block.object : undefined;
+      return {
+        entity: {
+          entityId: entity.entityId,
+          kind: entity.kind,
+          name: knows(entity.entityId) ? entity.name : null,
+        },
+        side: combatant.side,
+        position: { x: combatant.position.x, y: combatant.position.y },
+        // Its size and a squeeze, as anyone looking sees (docs/adr/0049-space-and-movement.md §1, §4).
+        ...(sizeOf(vitals) === 'medium' ? {} : { size: sizeOf(vitals) }),
+        ...(combatant.squeezed === true ? { squeezed: true as const } : {}),
+        ...(combatant.altitudeFt === undefined ? {} : { altitudeFt: combatant.altitudeFt }),
+        ...(speedsOf(vitals).fly === undefined ? {} : { flies: true as const }),
+        // The creature it rides, as anyone sees (§10).
+        ...(combatant.mountedOn === undefined ? {} : { mountedOn: named(combatant.mountedOn) }),
+        // A Druid's Wild Shape form, as anyone sees it (docs/adr/0056-…md §5).
+        ...(vitals.kind === 'character' && vitals.sheet.shape
+          ? { form: formName(vitals.sheet.shape.formId, language) }
+          : {}),
+        // Its speeds beside walking, as its hit points: the party's and the DM's to know (§5).
+        ...(showHp && Object.keys(speedsOf(vitals)).length > 0 ? { speeds: speedsOf(vitals) } : {}),
+        // Its breath under water, the same way (docs/adr/0050-the-world-around.md §8).
+        ...(showHp && combatant.breath
+          ? { breath: { roundsLeft: combatant.breath.roundsLeft } }
+          : {}),
+        // Its legendary actions' attacks, the DM's (docs/adr/0053-monsters-as-data.md §4).
+        ...(dm && vitals.kind === 'creature' && vitals.block.legendary
+          ? {
+              legendary: {
+                usesLeft: vitals.block.legendary.uses - (combatant.legendaryUsed ?? 0),
+                attacks: vitals.block.legendary.attacks.map((attackId) => ({
                   attackId,
+                  name:
+                    vitals.block.attacks.find((attack) => attack.attackId === attackId)?.name ??
+                    attackId,
+                })),
+              },
+            }
+          : {}),
+        // Its attacks, for the player whose character commands it to pick (docs/adr/0056-…md §5).
+        ...(commanded && vitals.kind === 'creature' && vitals.block.attacks.length > 0
+          ? {
+              attacks: vitals.block.attacks.map(({ attackId, name, kind }) => ({
+                attackId,
+                name,
+                kind,
               })),
-            },
-          }
-        : {}),
-      // Its attacks, for the player whose character commands it to pick (docs/adr/0056-…md §5).
-      ...(commanded && vitals.kind === 'creature' && vitals.block.attacks.length > 0
-        ? {
-            attacks: vitals.block.attacks.map(({ attackId, name, kind }) => ({
-              attackId,
-              name,
-              kind,
-            })),
-          }
-        : {}),
-      // Its actions with a save, the DM's to run (docs/adr/0053-monsters-as-data.md §2), and its
-      // commander's player's.
-      ...((dm || commanded) && vitals.kind === 'creature' && vitals.block.saveActions
-        ? {
-            creatureActions: vitals.block.saveActions.map((action) => {
-              const used = combatant.used?.find((one) => one.actionId === action.actionId);
-              return {
-                actionId: action.actionId,
-                name: action.name,
-                ready:
-                  !(combatant.spent ?? []).includes(action.actionId) &&
-                  (action.perDay === null || (used?.count ?? 0) < action.perDay),
-                aim: action.area === null ? ('creature' as const) : ('square' as const),
-                ...(action.recharge === null ? {} : { recharge: action.recharge }),
-                ...(action.inMultiattack === true ? { inMultiattack: true as const } : {}),
-                ...(action.perDay === null ? {} : { usesLeft: action.perDay - (used?.count ?? 0) }),
-              };
-            }),
-          }
-        : {}),
-      // Its senses, the same way (docs/adr/0050-the-world-around.md §2).
-      ...(showHp && Object.keys(sensesOf(vitals)).length > 0 ? { senses: sensesOf(vitals) } : {}),
-      // Knocked out, it is down as the dying are (docs/adr/0048-hit-points.md §4).
-      state:
-        entity.status !== 'active'
-          ? 'dead'
-          : hp.current === 0 || (knockedOutOf(vitals) && has(vitals, 'unconscious'))
-            ? 'down'
-            : 'up',
-      conditions: [...conditionsOf(vitals)],
-      ...(exhaustionOf(vitals) > 0 ? { exhaustion: exhaustionOf(vitals) } : {}),
-      ...(notesOf(combatant).length > 0 ? { conditionNotes: notesOf(combatant) } : {}),
-      ...(showHp
-        ? {
-            hitPoints: {
-              current: hp.current,
-              max: effectiveMaximum(hp),
-              ...(hp.temporary === undefined ? {} : { temporary: hp.temporary }),
-            },
-          }
-        : {}),
-      ...(commanded
-        ? {
-            commandedBy: {
-              entityId: commander,
-              name:
-                dm || known.has(commander) ? (state.entities.get(commander)?.name ?? null) : null,
-            },
-          }
-        : {}),
-      // The attack it readied: the DM's to see, and its own player's (ADR 0046 §5).
-      ...(combatant.turn.readied && (dm || combatant.entityId === holder)
-        ? {
-            readied: {
-              target: named(combatant.turn.readied.targetId),
-              attackId: combatant.turn.readied.attackId,
-              trigger: combatant.turn.readied.trigger,
-            },
-          }
-        : {}),
-      ...(dm && thing === undefined
-        ? { initiative: { roll, modifier, total, ...(surprised ? { surprised } : {}) } }
-        : {}),
-      // An object (docs/adr/0048-hit-points.md §5): what it is made of shows; it has no turn.
-      ...(thing === undefined ? {} : { object: { material: thing.material, size: thing.size } }),
-    };
-  });
+            }
+          : {}),
+        // Its actions with a save, the DM's to run (docs/adr/0053-monsters-as-data.md §2), and its
+        // commander's player's.
+        ...((dm || commanded) && vitals.kind === 'creature' && vitals.block.saveActions
+          ? {
+              creatureActions: vitals.block.saveActions.map((action) => {
+                const used = combatant.used?.find((one) => one.actionId === action.actionId);
+                return {
+                  actionId: action.actionId,
+                  name: action.name,
+                  ready:
+                    !(combatant.spent ?? []).includes(action.actionId) &&
+                    (action.perDay === null || (used?.count ?? 0) < action.perDay),
+                  aim: action.area === null ? ('creature' as const) : ('square' as const),
+                  ...(action.recharge === null ? {} : { recharge: action.recharge }),
+                  ...(action.inMultiattack === true ? { inMultiattack: true as const } : {}),
+                  ...(action.perDay === null
+                    ? {}
+                    : { usesLeft: action.perDay - (used?.count ?? 0) }),
+                };
+              }),
+            }
+          : {}),
+        // Its senses, the same way (docs/adr/0050-the-world-around.md §2).
+        ...(showHp && Object.keys(sensesOf(vitals)).length > 0 ? { senses: sensesOf(vitals) } : {}),
+        // Knocked out, it is down as the dying are (docs/adr/0048-hit-points.md §4).
+        state:
+          entity.status !== 'active'
+            ? 'dead'
+            : hp.current === 0 || (knockedOutOf(vitals) && has(vitals, 'unconscious'))
+              ? 'down'
+              : 'up',
+        conditions: [...conditionsOf(vitals)],
+        ...(exhaustionOf(vitals) > 0 ? { exhaustion: exhaustionOf(vitals) } : {}),
+        ...(notesOf(combatant).length > 0 ? { conditionNotes: notesOf(combatant) } : {}),
+        ...(showHp
+          ? {
+              hitPoints: {
+                current: hp.current,
+                max: effectiveMaximum(hp),
+                ...(hp.temporary === undefined ? {} : { temporary: hp.temporary }),
+              },
+            }
+          : {}),
+        ...(commanded
+          ? {
+              commandedBy: {
+                entityId: commander,
+                name:
+                  dm || known.has(commander) ? (state.entities.get(commander)?.name ?? null) : null,
+              },
+            }
+          : {}),
+        // The attack it readied: the DM's to see, and its own player's (ADR 0046 §5).
+        ...(combatant.turn.readied && (dm || combatant.entityId === holder)
+          ? {
+              readied: {
+                target: named(combatant.turn.readied.targetId),
+                attackId: combatant.turn.readied.attackId,
+                trigger: combatant.turn.readied.trigger,
+              },
+            }
+          : {}),
+        ...(dm && thing === undefined
+          ? { initiative: { roll, modifier, total, ...(surprised ? { surprised } : {}) } }
+          : {}),
+        // An object (docs/adr/0048-hit-points.md §5): what it is made of shows; it has no turn.
+        ...(thing === undefined ? {} : { object: { material: thing.material, size: thing.size } }),
+      };
+    });
   const { battlefield } = encounter;
   return {
     encounterId: encounter.encounterId,
     locationId: encounter.locationId,
     round: encounter.round,
-    currentCombatantId: current.entityId,
-    order: encounter.combatants.map((c) => c.entityId),
+    currentCombatantId: fogged(current.entityId) ? HIDDEN_TURN : current.entityId,
+    order: encounter.combatants.map((c) => c.entityId).filter((id) => !fogged(id)),
     battlefield: {
       width: battlefield.width,
       height: battlefield.height,
-      difficult: battlefield.difficult.map(({ x, y }) => ({ x, y })),
-      cover: battlefield.cover.map(({ x, y, level }) => ({ x, y, level })),
+      // Under the fog the players see no ground: only that it is hidden.
+      difficult: seen(battlefield.difficult).map(({ x, y }) => ({ x, y })),
+      cover: seen(battlefield.cover).map(({ x, y, level }) => ({ x, y, level })),
       // Walls, water and the ground's heights (docs/adr/0049-space-and-movement.md §4–6), when the
       // battlefield has any.
-      ...(battlefield.walls ? { walls: battlefield.walls.map(({ x, y }) => ({ x, y })) } : {}),
+      ...(battlefield.walls
+        ? { walls: seen(battlefield.walls).map(({ x, y }) => ({ x, y })) }
+        : {}),
       ...(battlefield.water
         ? {
-            water: battlefield.water.map(({ x, y, deep }) => ({
+            water: seen(battlefield.water).map(({ x, y, deep }) => ({
               x,
               y,
               ...(deep === true ? { deep } : {}),
@@ -238,19 +256,35 @@ export function encounterView(
           }
         : {}),
       ...(battlefield.ground
-        ? { ground: battlefield.ground.map(({ x, y, ft }) => ({ x, y, ft })) }
+        ? { ground: seen(battlefield.ground).map(({ x, y, ft }) => ({ x, y, ft })) }
         : {}),
       // Its light and its fog (docs/adr/0050-the-world-around.md §1), as everyone at the table sees.
       ...(battlefield.ambient ? { ambient: battlefield.ambient } : {}),
       ...(battlefield.light
-        ? { light: battlefield.light.map(({ x, y, level }) => ({ x, y, level })) }
+        ? { light: seen(battlefield.light).map(({ x, y, level }) => ({ x, y, level })) }
         : {}),
       ...(battlefield.obscured
         ? {
-            obscured: battlefield.obscured.map(({ x, y, heavy }) => ({
+            obscured: seen(battlefield.obscured).map(({ x, y, heavy }) => ({
               x,
               y,
               ...(heavy === true ? { heavy } : {}),
+            })),
+          }
+        : {}),
+      // The fog of war itself: where it lies is everyone's to see (ADR 0057 §4).
+      ...(battlefield.fog && battlefield.fog.length > 0
+        ? { fog: battlefield.fog.map(({ x, y }) => ({ x, y })) }
+        : {}),
+      // Its traps and harmful ground (ADR 0057 §6): a hidden trap is the DM's until it is found
+      // or springs; under the fog the table sees neither.
+      ...traps(battlefield.traps, dm, seen),
+      ...(battlefield.hazards
+        ? {
+            hazards: seen(battlefield.hazards).map(({ x, y, hazard }) => ({
+              x,
+              y,
+              hazard: structuredClone(hazard),
             })),
           }
         : {}),
@@ -259,6 +293,25 @@ export function encounterView(
     reactionWindow: reactionWindowView(state, { dm, holder, known }),
     ...(dm ? difficultyOf(state, encounter) : {}),
   };
+}
+
+/** The traps a viewer sees (ADR 0057 §6): all for the DM; for the table, those known and in sight. */
+function traps(
+  list: Battlefield['traps'],
+  dm: boolean,
+  seen: <T extends { readonly x: number; readonly y: number }>(
+    squares: readonly T[],
+  ) => readonly T[],
+): Pick<Battlefield, 'traps'> {
+  if (!list) return {};
+  const shown = list
+    .filter((trap) => dm || !trap.hidden || trap.found === true)
+    .map((trap) => ({
+      ...structuredClone(trap),
+      squares: seen(trap.squares).map(({ x, y }) => ({ x, y })),
+    }))
+    .filter((trap) => trap.squares.length > 0);
+  return { traps: shown };
 }
 
 /**

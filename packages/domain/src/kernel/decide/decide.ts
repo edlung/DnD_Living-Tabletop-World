@@ -9,6 +9,7 @@ import { poolDice } from '../../combat/port.ts';
 import { decideSetClaim } from '../../contradiction/decide.ts';
 import { withContradictions } from '../../contradiction/detect.ts';
 import {
+  decideAlignBattleMap,
   decideApproveAsset,
   decideCancelAssetRequest,
   decideCompleteAssetJob,
@@ -66,6 +67,15 @@ import {
   decideEndScene,
   decideStartScene,
 } from './world.ts';
+import { decideSplitCoins } from '../../items/coins.ts';
+import { decideBuyItem, decideSellItem, decideSetMerchant } from '../../items/trade.ts';
+import {
+  decideAbandonCrafting,
+  decideStartCrafting,
+  decideWorkDowntime,
+} from '../../items/crafting-decide.ts';
+import { decideSetMapPins, decideSetRoute } from '../../travel/map.ts';
+import { decideSetQuest, decideSetQuestStep } from '../../quest/hand-quests.ts';
 
 /**
  * Routes a resolved, authorized command to its pure decision function, then
@@ -206,6 +216,28 @@ function route(context: DecisionContext, command: ResolvedCommand): Decision {
       return decideUseItem(state, command);
     case 'GiveItem':
       return decideGiveItem(state, command);
+    case 'SplitCoins':
+      return decideSplitCoins(state, command);
+    case 'SetMerchant':
+      return decideSetMerchant(state, command);
+    case 'BuyItem':
+      return decideBuyItem(state, command);
+    case 'SellItem':
+      return decideSellItem(state, command);
+    case 'StartCrafting':
+      return decideStartCrafting(context, command);
+    case 'AbandonCrafting':
+      return decideAbandonCrafting(state, command);
+    case 'WorkDowntime':
+      return decideWorkDowntime(context, command);
+    case 'SetMapPins':
+      return decideSetMapPins(state, command);
+    case 'SetRoute':
+      return decideSetRoute(state, command);
+    case 'SetQuest':
+      return decideSetQuest(state, command);
+    case 'SetQuestStep':
+      return decideSetQuestStep(state, command);
     case 'DropItem':
       return decideDropItem(state, command);
     case 'TakeItem':
@@ -224,6 +256,8 @@ function route(context: DecisionContext, command: ResolvedCommand): Decision {
       return decideRetractAsset(state, command);
     case 'ApproveAsset':
       return decideApproveAsset(state, command);
+    case 'AlignBattleMap':
+      return decideAlignBattleMap(state, command);
     case 'SetWeather':
       return decideSetWeather(state, command);
     case 'SetCampaignOptions':
@@ -254,6 +288,9 @@ function route(context: DecisionContext, command: ResolvedCommand): Decision {
     case 'RemoveCombatant':
     case 'DelayTurn':
     case 'SetInitiative':
+    case 'PlaceCombatant':
+    case 'PaintTerrain':
+    case 'SetFog':
     case 'CommandCreature':
     case 'AddObject':
     case 'SetLight':
@@ -261,7 +298,8 @@ function route(context: DecisionContext, command: ResolvedCommand): Decision {
     case 'SpringTrap':
     case 'InflictMentalStress':
     case 'InfectWithContagion':
-    case 'ContagionCourse': {
+    case 'ContagionCourse':
+    case 'Travel': {
       if (!context.combat) throw new Error(`${command.type} needs the combat engine port`);
       // A condition by hand stored before Stage 640f carries no resolution.
       const entropy = 'resolution' in command ? command.resolution.entropy : [];

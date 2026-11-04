@@ -1,0 +1,170 @@
+/* The world map and travel in the Places sheet (travel/*.tsx; docs/adr/0057-encounters-maps-loot.md
+   §10): the region's picture with its pinned places over the routes, the routes in words, and the
+   DM's journey and map editor. */
+.world-map {
+  display: grid;
+  gap: 0.75rem;
+}
+.map-canvas {
+  position: relative;
+  width: 100%;
+  /* Large enough to read, never the whole sheet on a wide screen. */
+  max-width: 48rem;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  background: var(--ink-950);
+}
+.map-art,
+.map-routes,
+.map-hit {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.map-art {
+  object-fit: cover;
+}
+.map-canvas--pinning .map-hit {
+  cursor: crosshair;
+}
+.map-route-casing {
+  stroke: color-mix(in srgb, var(--ink-950) 70%, transparent);
+  stroke-width: 6;
+  stroke-linecap: round;
+}
+.map-route {
+  stroke: var(--gold-bright);
+  stroke-width: 2.5;
+  stroke-dasharray: 7 6;
+  stroke-linecap: round;
+}
+.map-route--road {
+  stroke-dasharray: none;
+}
+/* A pin: its dot on the place, its name beside it; 32 px to touch. */
+.map-pin {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  min-height: 32px;
+  max-width: 45%;
+  padding: 0 0.5rem 0 0;
+  border: 0;
+  background: none;
+  color: var(--text);
+  transform: translate(-10px, -50%);
+}
+.map-pin--left {
+  flex-direction: row-reverse;
+  padding: 0 0 0 0.5rem;
+  transform: translate(calc(-100% + 10px), -50%);
+}
+.map-pin-dot {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--ink-950);
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--gold) 40%, transparent);
+}
+.map-pin--here .map-pin-dot {
+  background: var(--teal);
+  box-shadow: 0 0 0 4px var(--teal-glow);
+}
+.map-pin-name {
+  min-width: 0;
+  overflow: hidden;
+  padding: 0 0.375rem;
+  border-radius: 4px;
+  /* A dark plate keeps the name legible on any picture. */
+  background: color-mix(in srgb, var(--ink-950) 78%, transparent);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.map-pin:focus-visible .map-pin-dot {
+  outline: 2px solid var(--gold-bright);
+  outline-offset: 2px;
+}
+.map-route-list {
+  display: grid;
+  gap: 0.25rem;
+  margin: 0;
+  padding-left: 1.25rem;
+}
+/* The DM's disclosures keep their marker (a flex summary would hide it); the glyph sits in line. */
+.travel-form > summary,
+.map-editor > summary {
+  min-height: 32px;
+  line-height: 32px;
+  cursor: pointer;
+}
+.travel-form > summary::marker,
+.map-editor > summary::marker {
+  color: var(--gold);
+}
+.travel-form > summary .glyph {
+  display: inline-block;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+/* A form a readable width, never the sheet's. */
+.travel-form .hand-form,
+.map-editor .hand-form {
+  max-width: 40rem;
+}
+/* A route's two places side by side only where long names fit. */
+.route-form .hand-row {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+}
+.travel-form[open] > summary,
+.map-editor[open] > summary {
+  margin-bottom: 0.5rem;
+}
+.travel-paces,
+.route-form {
+  display: grid;
+  gap: 0.5rem;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.travel-paces legend,
+.route-form legend {
+  margin-bottom: 0.25rem;
+  padding: 0;
+  font-weight: 600;
+}
+.travel-pace {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: 0.5rem;
+  min-height: 32px;
+}
+.travel-pace input {
+  margin-top: 0.2rem;
+}
+.travel-hours input,
+.map-axis input {
+  max-width: 8rem;
+}
+.travel-sum {
+  margin: 0;
+}
+.map-pin-row {
+  align-items: end;
+}
+.route-form .checkbox-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 32px;
+}

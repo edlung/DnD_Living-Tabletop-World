@@ -4,6 +4,7 @@ import type { ItemEntry } from './schema.ts';
 export const GEAR_ITEMS: readonly ItemEntry[] = [
   {
     itemId: 'caravan-cloak',
+    craft: { tools: ['srd-weavers-tools'] },
     category: 'gear',
     name: { ru: 'Плащ караванщика', en: 'Caravan cloak' },
     description: {
@@ -17,6 +18,7 @@ export const GEAR_ITEMS: readonly ItemEntry[] = [
   },
   {
     itemId: 'hooded-cowl',
+    craft: { tools: ['srd-weavers-tools'] },
     category: 'gear',
     name: { ru: 'Капюшон с вышивкой', en: 'Embroidered cowl' },
     description: {
@@ -30,6 +32,7 @@ export const GEAR_ITEMS: readonly ItemEntry[] = [
   },
   {
     itemId: 'road-boots',
+    craft: { tools: ['srd-cobblers-tools'] },
     category: 'gear',
     name: { ru: 'Дорожные сапоги', en: 'Road boots' },
     description: {
@@ -43,6 +46,7 @@ export const GEAR_ITEMS: readonly ItemEntry[] = [
   },
   {
     itemId: 'archer-gloves',
+    craft: { tools: ['srd-leatherworkers-tools'] },
     category: 'gear',
     name: { ru: 'Перчатки лучника', en: "Archer's gloves" },
     description: {
@@ -56,6 +60,7 @@ export const GEAR_ITEMS: readonly ItemEntry[] = [
   },
   {
     itemId: 'stag-pendant',
+    craft: { tools: ['srd-jewelers-tools'] },
     category: 'gear',
     name: { ru: 'Подвеска с оленем', en: 'Stag pendant' },
     description: {
@@ -69,6 +74,7 @@ export const GEAR_ITEMS: readonly ItemEntry[] = [
   },
   {
     itemId: 'guild-signet',
+    craft: { tools: ['srd-jewelers-tools'] },
     category: 'gear',
     name: { ru: 'Печатка гильдии', en: 'Guild signet' },
     description: {
@@ -82,6 +88,7 @@ export const GEAR_ITEMS: readonly ItemEntry[] = [
   },
   {
     itemId: 'hemp-rope',
+    craft: { tools: ['srd-weavers-tools'] },
     category: 'gear',
     name: { ru: 'Пеньковая верёвка', en: 'Hemp rope' },
     description: { ru: 'Пятьдесят футов крепкой верёвки.', en: 'Fifty feet of strong rope.' },
@@ -92,6 +99,7 @@ export const GEAR_ITEMS: readonly ItemEntry[] = [
   },
   {
     itemId: 'oil-lantern',
+    craft: { tools: ['srd-tinkers-tools'] },
     category: 'gear',
     name: { ru: 'Масляный фонарь', en: 'Oil lantern' },
     description: {
@@ -157,6 +165,7 @@ export const GEAR_ITEMS: readonly ItemEntry[] = [
   },
   {
     itemId: 'pitch-torch',
+    craft: { tools: ['srd-carpenters-tools'] },
     category: 'gear',
     name: { ru: 'Смоляной факел', en: 'Pitch torch' },
     description: {
@@ -170,6 +179,7 @@ export const GEAR_ITEMS: readonly ItemEntry[] = [
   },
   {
     itemId: 'tallow-candle',
+    craft: { tools: ['srd-herbalism-kit'] },
     category: 'gear',
     name: { ru: 'Сальная свеча', en: 'Tallow candle' },
     description: { ru: 'Коптит, но светит.', en: 'It smokes, but it lights.' },
@@ -180,6 +190,7 @@ export const GEAR_ITEMS: readonly ItemEntry[] = [
   },
   {
     itemId: 'padded-cap',
+    craft: { tools: ['srd-weavers-tools'] },
     category: 'gear',
     name: { ru: 'Стёганая шапка', en: 'Padded cap' },
     description: {

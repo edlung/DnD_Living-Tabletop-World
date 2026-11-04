@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { itemCatalogIdSchema } from '../items/schema.ts';
 import { characterSheetSchema } from '../rules/character-sheet.ts';
 import { statBlockSchema } from '../combat/stat-block.ts';
+import { srdIdSchema } from '../srd/catalog.ts';
 import { ENTITY_KINDS, ENTITY_STATUSES, LOCATION_TYPES } from '../kernel/world-commands.ts';
 import { worldTimeSchema } from '../kernel/world-time.ts';
 import { KNOWLEDGE_TYPES, KNOWLEDGE_RELATION_TYPES } from '../knowledge/commands.ts';
@@ -53,6 +54,11 @@ export const campaignEntitySchema = z
       .optional(),
     sheet: characterSheetSchema.optional(),
     statBlock: statBlockSchema.optional(),
+    /**
+     * A person or creature from the SRD's bestiary by its ID (docs/adr/0058-campaign-content.md
+     * §6): the server writes its stat block from the SRD, whatever `statBlock` said.
+     */
+    monster: srdIdSchema.optional(),
   })
   .strict();
 /**

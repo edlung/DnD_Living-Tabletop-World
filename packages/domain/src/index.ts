@@ -105,6 +105,11 @@ export {
 export { campaignSession } from './knowledge/session.ts';
 export { characterSheetView } from './character/view.ts';
 export { carriedWeightLb, inventoryView } from './items/view.ts';
+export { merchantOffer } from './items/trade-view.ts';
+export { craftingView, type CraftingView } from './items/crafting-view.ts';
+export type { CraftProject } from './items/crafting.ts';
+export { worldMapView } from './travel/map-view.ts';
+export { handQuestsView } from './quest/hand-quests.ts';
 export { grantRefusal } from './items/decide.ts';
 export { baseOfGrant, itemEntry, madeOn } from './items/catalog.ts';
 export {
@@ -166,6 +171,7 @@ export {
   type EncounterState,
   type TurnRecord,
 } from './combat/records.ts';
+export { hiddenByFog } from './combat/fog.ts';
 export {
   REACTION_WINDOW_ID_INDEX,
   candidateReactions,

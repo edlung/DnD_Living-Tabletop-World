@@ -1,6 +1,7 @@
 import type { CombatCommand, CombatPort, Decision, DecisionContext, Dice } from '@ltw/domain';
 
 import { decideTakeAction } from './actions.ts';
+import { decidePlaceCombatant } from './board-hand.ts';
 import { decideAttack } from './attack.ts';
 import { decideCommandCreature } from './commanded.ts';
 import {
@@ -22,6 +23,7 @@ import { decideUseFeature } from './features.ts';
 import { decideInflictMentalStress, decideSpringTrap } from './toolbox.ts';
 import { decideContagionCourse, decideInfectWithContagion } from './contagions.ts';
 import { decideSetLight } from './light.ts';
+import { decidePaintTerrain, decideSetFog } from './terrain-paint.ts';
 import { decideMove } from './movement.ts';
 import { ridersAfter } from './mounts.ts';
 import { decideAddObject } from './objects.ts';
@@ -36,6 +38,7 @@ import { decideEndCombat, decideStartCombat } from './start-end.ts';
 import { summonsAfter } from './summons.ts';
 import { shapesAfter } from './wild-shape.ts';
 import { decideEndTurn } from './turns.ts';
+import { decideTravel } from './travel.ts';
 
 /**
  * The Combat Engine (docs/adr/0015-combat-engine.md): the domain's
@@ -103,12 +106,18 @@ function decideCommand(context: DecisionContext, command: CombatCommand, dice: D
       return decideDelayTurn(context, command, dice);
     case 'SetInitiative':
       return decideSetInitiative(context, command);
+    case 'PlaceCombatant':
+      return decidePlaceCombatant(context, command);
     case 'CommandCreature':
       return decideCommandCreature(context, command);
     case 'AddObject':
       return decideAddObject(context, command);
     case 'SetLight':
       return decideSetLight(context, command);
+    case 'PaintTerrain':
+      return decidePaintTerrain(context, command);
+    case 'SetFog':
+      return decideSetFog(context, command);
     case 'ExposeToHazard':
       return decideExposeToHazard(context, command, dice);
     case 'SpringTrap':
@@ -119,5 +128,7 @@ function decideCommand(context: DecisionContext, command: CombatCommand, dice: D
       return decideInfectWithContagion(context, command, dice);
     case 'ContagionCourse':
       return decideContagionCourse(context, command, dice);
+    case 'Travel':
+      return decideTravel(context, command, dice);
   }
 }

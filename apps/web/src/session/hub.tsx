@@ -19,10 +19,31 @@ type Load =
   | { readonly kind: 'ready'; readonly account: AccountResponse }
   | { readonly kind: 'failed' };
 
-/** Ready adventures; each title goes through `t()` like every other word on the page. */
-const TEMPLATES: readonly { readonly template: CampaignTemplate; readonly title: string }[] = [
-  { template: 'ravenford-en', title: 'The Missing Caravan, in English' },
-  { template: 'ravenford-ru', title: 'The Missing Caravan, in Russian' },
+/**
+ * Ready adventures (docs/adr/0058-campaign-content.md §5), each in both languages; the words go
+ * through `t()` like every other word on the page.
+ */
+const ADVENTURES: readonly {
+  readonly title: string;
+  readonly about: string;
+  readonly copies: readonly { readonly template: CampaignTemplate; readonly language: string }[];
+}[] = [
+  {
+    title: 'The Bells of Hollowmere',
+    about: 'For a new party: levels 1 to 5 by milestones, four ready-made characters or your own.',
+    copies: [
+      { template: 'hollowmere-en', language: 'In English' },
+      { template: 'hollowmere-ru', language: 'In Russian' },
+    ],
+  },
+  {
+    title: 'The Missing Caravan',
+    about: 'A one-shot for a party of level 15.',
+    copies: [
+      { template: 'ravenford-en', language: 'In English' },
+      { template: 'ravenford-ru', language: 'In Russian' },
+    ],
+  },
 ];
 
 /** The hub's page: the key art behind a wider glass panel with the emblem and the wordmark. */
@@ -122,7 +143,7 @@ export function Hub({
           )}
         </p>
       ) : (
-        <ul className="hub-campaigns">
+        <ul className="hub-campaigns" aria-labelledby="hub-title">
           {account.campaigns.map((campaign) => (
             <CampaignCard
               key={campaign.campaignId}
@@ -142,19 +163,31 @@ export function Hub({
             'A fresh copy of a ready adventure with you as its DM; invite your players from the Players sheet.',
           )}
         </p>
-        <div className="hub-templates">
-          {TEMPLATES.map((entry) => (
-            <button
-              key={entry.template}
-              type="button"
-              disabled={busy !== null}
-              onClick={() => void run(entry.template, () => onCreate(entry.template))}
-            >
-              <Glyph name="chronicle" />
-              {busy === entry.template ? t('Preparing the adventure…') : t(entry.title)}
-            </button>
+        <ul className="hub-adventures" aria-labelledby="hub-new">
+          {ADVENTURES.map((adventure) => (
+            <li key={adventure.title} className="hub-adventure">
+              <h4>{t(adventure.title)}</h4>
+              <p className="muted">{t(adventure.about)}</p>
+              <div className="hub-templates">
+                {adventure.copies.map((entry) => (
+                  <button
+                    key={entry.template}
+                    type="button"
+                    disabled={busy !== null}
+                    aria-label={t('{language}: {adventure}', {
+                      language: t(entry.language),
+                      adventure: t(adventure.title),
+                    })}
+                    onClick={() => void run(entry.template, () => onCreate(entry.template))}
+                  >
+                    <Glyph name="chronicle" />
+                    {busy === entry.template ? t('Preparing the adventure…') : t(entry.language)}
+                  </button>
+                ))}
+              </div>
+            </li>
           ))}
-        </div>
+        </ul>
       </section>
       <AccountSettings transport={transport} account={account} onRenamed={reload} />
       <div className="action-row">

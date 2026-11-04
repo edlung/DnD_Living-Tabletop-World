@@ -1,4 +1,5 @@
 import type { EntityState, WorldState } from '../kernel/state.ts';
+import { hiddenByFog } from '../combat/fog.ts';
 
 /**
  * What an acting character perceives right now (docs/adr/0012-context-engine.md
@@ -31,7 +32,9 @@ export function perceivedEntityIds(state: WorldState, actingCharacterId: string)
       if (carrier === actingCharacterId) perceived.add(entity.entityId);
       continue;
     }
-    if (entity.placement?.locationId === here) perceived.add(entity.entityId);
+    // A creature the fog of war hides is not seen (docs/adr/0057-encounters-maps-loot.md §4).
+    if (entity.placement?.locationId === here && !hiddenByFog(state, entity.entityId))
+      perceived.add(entity.entityId);
     if (entity.kind === 'location' && entity.location?.parentId === here) {
       perceived.add(entity.entityId);
     }

@@ -30,6 +30,10 @@ import { credentialsOf } from '../http/request-context.ts';
 import { clientGroup } from '../platform/net/addresses.ts';
 import type { AccountLimits } from './account-limits.ts';
 import type { AccountStore } from './account-store.ts';
+import type { AdventurePictures } from '../adventures/adventures.ts';
+import type { AssetContentStore } from '../assets/content-store.ts';
+import type { LibraryStore } from '../library/library-store.ts';
+import type { Logger } from '../platform/logging/logger.ts';
 import {
   ACCOUNT_SESSION_MS,
   accountOf,
@@ -55,6 +59,12 @@ export interface AccountRouteDependencies {
     readonly accounts: AccountStore;
     readonly accountLimits: AccountLimits;
   };
+  /** The DM's library, where a ready adventure's handouts and tables are copied (ADR 0058 §5). */
+  readonly dm?: { readonly library: LibraryStore };
+  /** A ready adventure's curated pictures and where their bytes go (ADR 0035 §3). */
+  readonly adventurePictures?: AdventurePictures;
+  readonly assets?: { readonly contents: AssetContentStore };
+  readonly logger?: Logger;
 }
 
 const params = z.object({ campaignId: campaignIdSchema }).strict();
@@ -256,9 +266,16 @@ export function registerAccountRoutes(app: FastifyInstance, deps: AccountRouteDe
     const dmSeats = (await accounts.seats(accountId)).filter((seat) => seat.role === 'dm');
     if (dmSeats.length >= MAX_TEMPLATE_CAMPAIGNS) return conflict(reply, request, 'campaign-limit');
     if (!accountLimits.campaign(accountId)) return sendError(reply, request, 'RATE_LIMITED');
+    const { adventurePictures, assets, logger } = deps;
     const created = await createFromTemplate(
       deps.engine,
-      deps.signIn,
+      {
+        ...deps.signIn,
+        ...(deps.dm ? { library: deps.dm.library } : {}),
+        ...(adventurePictures && assets && logger
+          ? { pictures: { sets: adventurePictures, contents: assets.contents, logger } }
+          : {}),
+      },
       accountId,
       body.data.template,
     );

@@ -28,6 +28,31 @@ export const UI_PARTY_CAMPAIGNS = {
   conditions: 'ui-conditions',
   /** The actions beside Attack and Magic (Stage 640). */
   actions: 'ui-actions',
+  /** The DM's encounter builder and hand on the board (Stage 670). */
+  encounters: 'ui-encounters',
+  /** The DM's brush on a running fight's ground (Stage 670b). */
+  terrain: 'ui-terrain',
+  /** The DM's own battle map and its grid, with the curated pictures (Stage 670b). */
+  battleMap: 'ui-battle-map',
+  /** The viewer's ruler and spell's area on the board (Stage 670c). */
+  boardTools: 'ui-board-tools',
+  /** The table's shared marks on the board (Stage 670c). */
+  marks: 'ui-marks',
+  /** Traps and harmful ground on the board (Stage 670d). */
+  traps: 'ui-traps',
+  /** A trap noticed and disarmed (Stage 670d, part 2). */
+  trapsFound: 'ui-traps-found',
+  /** What a fallen foe carried, taken after the fight (Stage 670e). */
+  lootFight: 'ui-loot-fight',
+  /** The world map, its routes and a journey (Stage 670g). */
+  travel: 'ui-travel',
+  travelRu: 'ui-travel-ru',
+  /** The DM's editors without AI (Stage 680a). */
+  editors: 'ui-editors',
+  editorsRu: 'ui-editors-ru',
+  /** The DM's library: kept handouts and random tables (Stage 680b). */
+  library: 'ui-library',
+  libraryRu: 'ui-library-ru',
 } as const;
 
 const PARTY = ['elowen-starwhisper', 'brann-ironvale', 'tamsin-quickfoot', 'maren-ashby'];
@@ -46,6 +71,20 @@ export async function seedUiPartyCampaigns(engine: WorldEngine): Promise<void> {
     [UI_PARTY_CAMPAIGNS.commanded, 'en'],
     [UI_PARTY_CAMPAIGNS.conditions, 'en'],
     [UI_PARTY_CAMPAIGNS.actions, 'en'],
+    [UI_PARTY_CAMPAIGNS.encounters, 'en'],
+    [UI_PARTY_CAMPAIGNS.terrain, 'en'],
+    [UI_PARTY_CAMPAIGNS.battleMap, 'en'],
+    [UI_PARTY_CAMPAIGNS.boardTools, 'en'],
+    [UI_PARTY_CAMPAIGNS.marks, 'en'],
+    [UI_PARTY_CAMPAIGNS.traps, 'en'],
+    [UI_PARTY_CAMPAIGNS.trapsFound, 'en'],
+    [UI_PARTY_CAMPAIGNS.lootFight, 'en'],
+    [UI_PARTY_CAMPAIGNS.travel, 'en'],
+    [UI_PARTY_CAMPAIGNS.travelRu, 'ru'],
+    [UI_PARTY_CAMPAIGNS.editors, 'en'],
+    [UI_PARTY_CAMPAIGNS.editorsRu, 'ru'],
+    [UI_PARTY_CAMPAIGNS.library, 'en'],
+    [UI_PARTY_CAMPAIGNS.libraryRu, 'ru'],
   ] as const) {
     const seed = await loadRavenfordSeed(language === 'ru' ? RAVENFORD_RU_FIXTURES_DIR : undefined);
     for (const input of seed.submissions) {

@@ -86,7 +86,7 @@ test('a continuity warning must be accepted before the proposal can be confirmed
   await enterAsDm(page, AUTHORING_CAMPAIGNS.warning);
   await propose(page);
   await review(page).getByText('Edit proposal', { exact: true }).click();
-  await page.getByLabel('Name', { exact: true }).fill('Mira Vale');
+  await review(page).getByLabel('Name', { exact: true }).fill('Mira Vale');
   await review(page).getByRole('button', { name: 'Apply changes' }).click();
   await expect(review(page).getByText('revision 2')).toBeVisible();
 
@@ -97,7 +97,7 @@ test('a continuity warning must be accepted before the proposal can be confirmed
   await expect(confirm(page)).toBeEnabled();
   // Editing again recomputes the preview and clears the earlier acknowledgement.
   await review(page).getByText('Edit proposal', { exact: true }).click();
-  await page.getByLabel('Name', { exact: true }).fill('Tomas Reed');
+  await review(page).getByLabel('Name', { exact: true }).fill('Tomas Reed');
   await review(page).getByRole('button', { name: 'Apply changes' }).click();
   await expect(review(page).getByText('revision 3')).toBeVisible();
   await expect(review(page).getByRole('group', { name: /Warnings you must accept/ })).toHaveCount(

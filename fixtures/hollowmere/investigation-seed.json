@@ -1,0 +1,82 @@
+{
+  "campaignId": "hollowmere",
+  "dmActorId": "dm-hollowmere",
+  "commands": [
+    {
+      "type": "AddClue",
+      "clueId": "clue-ford-tracks",
+      "entityId": "feature-8a2f6c14",
+      "method": "perception",
+      "dc": 10,
+      "statement": "Small clawed feet, and the drag of something heavy, lead off the road toward the marsh.",
+      "subjects": ["willow-ford", "fogmarsh"]
+    },
+    {
+      "type": "AddClue",
+      "clueId": "clue-bell-rope",
+      "entityId": "feature-1e6b3d90",
+      "method": "inspect",
+      "statement": "The rope was cut and knotted again with reed twine in a ferryman’s hitch.",
+      "subjects": ["hollowmere-bell", "faction-3d7a52e8"]
+    },
+    {
+      "type": "AddClue",
+      "clueId": "clue-rope-verdigris",
+      "entityId": "feature-1e6b3d90",
+      "method": "investigation",
+      "dc": 12,
+      "statement": "The green on the knot is verdigris, as from old copper kept a long time in water.",
+      "subjects": ["hollowmere-bell", "drowned-chapel"]
+    },
+    {
+      "type": "AddClue",
+      "clueId": "clue-bell-echo",
+      "entityId": "hollowmere-bell",
+      "method": "magic",
+      "statement": "A faint necromantic echo clings to the bronze, as if a second bell rang far below.",
+      "subjects": ["hollowmere-bell"]
+    },
+    {
+      "type": "AddClue",
+      "clueId": "clue-cellar-tunnel",
+      "entityId": "reeves-cellar",
+      "method": "inspect",
+      "statement": "The hole in the floor opens on a flooded tunnel that smells of the marsh.",
+      "subjects": ["reeves-cellar", "fogmarsh"]
+    },
+    {
+      "type": "AddClue",
+      "clueId": "clue-marsh-channel",
+      "entityId": "feature-b57d2e3a",
+      "method": "perception",
+      "dc": 12,
+      "statement": "Beneath the lights a narrow channel is cut through the reeds toward the chapel, poled not long ago.",
+      "subjects": ["fogmarsh", "drowned-chapel"]
+    },
+    {
+      "type": "AddClue",
+      "clueId": "clue-altar-necromancy",
+      "entityId": "feature-0d9b5e72",
+      "method": "magic",
+      "statement": "Necromancy lingers on the altar, strongest toward the cracked slab before it.",
+      "subjects": ["drowned-chapel", "feature-f3c7a185"]
+    },
+    {
+      "type": "AddClue",
+      "clueId": "clue-slab-stair",
+      "entityId": "feature-f3c7a185",
+      "method": "investigation",
+      "dc": 13,
+      "statement": "The slab lifts when the carved bell is pressed; a stair goes down into dark water.",
+      "subjects": ["drowned-chapel", "feature-f3c7a185"]
+    },
+    {
+      "type": "AddClue",
+      "clueId": "clue-ledger",
+      "entityId": "item-4f8e2c61",
+      "method": "inspect",
+      "statement": "Payments from “the Lantern” in silver; “cargo” carried by night to “the stair under the saint”.",
+      "subjects": ["faction-3d7a52e8", "npc-7c3e91a2", "drowned-chapel"]
+    }
+  ]
+}

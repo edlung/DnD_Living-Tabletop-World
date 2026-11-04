@@ -26,6 +26,19 @@ change the perspective cannot read.
   the asset lineage `assets` (Stage 330 part B: the DM's image controls follow the asset worker;
   the route takes no perspective and answers the campaign's DM only); no lower perspective covers
   either, the DM's own included.
+- An acting character, the DM and a paired display also cover `marks` (the table's shared marks,
+  ADR 0057 §5, `src/marks/`): the route answers every member and the display, and a mark is the
+  table's, so it signals nothing a perspective may not read. A ping's end changes the view, so the
+  screens drop it on the server's clock as well as their own.
+- Every perspective covers `world-map` (ADR 0057 §10, `src/travel/world-map-routes.ts`): the regions,
+  places and routes it knows, so a hidden place or its road never shows there.
+- An acting character and the DM also cover `crafting` (ADR 0057 §9, `src/items/crafting-routes.ts`):
+  the DM's every project; a character's own, what it can make, and the party here it knows that
+  could help, so a hidden character never shows there.
+- With a focus, an acting character and the DM also cover `merchants/<focus>` (a merchant's shop,
+  ADR 0057 §8, `src/items/merchant-routes.ts`): its wares, prices and the character's purse change
+  in no other view. The route answers the DM and a character at the merchant's place that knows
+  it; anything else, a non-merchant included, is a 404 fingerprinted as its status.
 - Messages are the fixed `ready`/`changed`/`closed` frames and a comment heartbeat
   (`stream.ts`); never put world content, a credential, an event position or a version in them.
 - Tests: `live-isolation.test.ts` (every non-DM perspective and the hidden sentinel stay silent on

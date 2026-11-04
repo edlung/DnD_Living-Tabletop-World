@@ -36,4 +36,24 @@ describe('openGroundStart', () => {
     expect(combatants.every((c) => c.position.y <= 11 && c.position.x <= 15)).toBe(true);
     expect(combatants.find((c) => c.entityId === 'foe-6')?.position).toEqual({ x: 12, y: 1 });
   });
+
+  it('lays the sides out on a battle map’s own field (ADR 0057 §3)', () => {
+    const foes = Array.from({ length: 5 }, (_, index) => ({
+      entityId: `foe-${String(index)}`,
+      side: 'hostile' as const,
+    }));
+    const combatants = openGroundStart([{ entityId: 'a', side: 'party' }, ...foes], {
+      width: 10,
+      height: 7,
+    });
+    // Seven rows hold four a column; the fifth foe starts the next, still on the field.
+    expect(combatants.map((c) => c.position)).toEqual([
+      { x: 2, y: 1 },
+      { x: 5, y: 1 },
+      { x: 5, y: 3 },
+      { x: 5, y: 5 },
+      { x: 5, y: 7 },
+      { x: 6, y: 1 },
+    ]);
+  });
 });

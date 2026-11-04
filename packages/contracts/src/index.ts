@@ -40,6 +40,7 @@ export {
   ENTITY_STATUSES,
   KERNEL_COMMAND_TYPES,
   LOCATION_TYPES,
+  adventureKeySchema,
   kernelCommandSchema,
   kernelCommandTypeSchema,
   type EntityKind,
@@ -126,6 +127,9 @@ export {
   type DmUndoBlocker,
   type DmWorldEntry,
   type DmHandEntry,
+  DM_EDIT_COMMAND_TYPES,
+  type DmEditCommandType,
+  type DmEditEntry,
   MAX_DM_NOTES,
   dmNoteRequestSchema,
   type DmNoteRequest,
@@ -248,6 +252,7 @@ export {
 } from './ai-gateway/relevance.ts';
 export {
   CHECK_METHODS,
+  clueFits,
   CLUE_METHODS,
   DISCLOSURES,
   EXAMINE_METHODS,
@@ -374,6 +379,7 @@ export {
   assetIdSchema,
   assetLabelSchema,
   assetRequestIdSchema,
+  battleMapGridSchema,
   contentHashSchema,
   type AssetAudience,
   type AssetFailure,
@@ -382,6 +388,7 @@ export {
   type AssetRequestStatus,
   type AssetStatus,
   type AssetVariant,
+  type BattleMapGrid,
 } from './assets/commands.ts';
 export {
   QUEST_MILESTONE_KINDS,
@@ -394,6 +401,14 @@ export {
   type QuestMilestoneKind,
 } from './quest/definitions.ts';
 export type { QuestListResponse, QuestTransitionView, QuestView } from './quest/views.ts';
+export {
+  MAX_QUEST_STEPS,
+  handQuestSchema,
+  setQuestCommandSchema,
+  setQuestStepCommandSchema,
+  type HandQuest,
+  type HandQuestView,
+} from './quest/hand-quests.ts';
 export {
   CHRONICLE_LIMITS,
   chronicleEntryKeySchema,
@@ -439,49 +454,7 @@ export * from './campaign/index.ts';
 export * from './dice/rolls.ts';
 export * from './session/lobby.ts';
 
-export {
-  EQUIP_SLOTS,
-  ITEM_CATEGORIES,
-  armorWeight,
-  itemCatalogIdSchema,
-  ITEM_LOOKS,
-  ITEM_RARITIES,
-  itemEffectSchema,
-  itemEntrySchema,
-  itemMagicSchema,
-  type EquipSlot,
-  type ItemCategory,
-  type ItemEffect,
-  type ItemEntry,
-  type ItemLook,
-  type ItemMagic,
-  type ItemRarity,
-} from './items/schema.ts';
-export { ITEM_CATALOG, catalogEntry, isCatalogItemId } from './items/catalog.ts';
-export {
-  attuneRequestSchema,
-  catalogItemIdSchema,
-  identifyRequestSchema,
-  type IdentifiedResponse,
-  giveCatalogItemRequestSchema,
-  type AttuneRequest,
-  type AttunedResponse,
-  type GiveCatalogItemRequest,
-  type GivenCatalogItemResponse,
-  type ItemCatalogEntryResponse,
-  type ItemCatalogListing,
-  type ItemCatalogResponse,
-} from './items/catalog-api.ts';
-export {
-  ITEM_PLAYER_COMMAND_TYPES,
-  dropItemCommandSchema,
-  equipItemCommandSchema,
-  giveItemCommandSchema,
-  grantItemCommandSchema,
-  takeItemCommandSchema,
-  unequipItemCommandSchema,
-  useItemCommandSchema,
-} from './items/commands.ts';
-export type { InventoryItem, InventoryResponse, InventoryWeapon } from './items/views.ts';
+export * from './items/index.ts';
+export * from './travel/travel.ts';
 export * from './play/index.ts';
 export * from './srd/index.ts';

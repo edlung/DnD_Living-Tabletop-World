@@ -101,6 +101,28 @@ export function handChange(
       };
     case 'SetLight':
       return { change: { kind: 'light', ambient: command.ambient }, reason: null };
+    case 'SetFog':
+      return {
+        change: {
+          kind: 'fog',
+          hidden: command.hidden,
+          squares: new Set(
+            command.squares.map((square) => `${String(square.x)},${String(square.y)}`),
+          ).size,
+        },
+        reason: null,
+      };
+    case 'PaintTerrain':
+      return {
+        change: {
+          kind: 'terrain',
+          paint: command.paint,
+          squares: new Set(
+            command.squares.map((square) => `${String(square.x)},${String(square.y)}`),
+          ).size,
+        },
+        reason: null,
+      };
     // The Gameplay Toolbox (docs/adr/0055-rules-reference-and-toolbox.md §4): no reason asked.
     case 'SpringTrap':
       return {
@@ -130,6 +152,17 @@ export function handChange(
           target: ref(command.targetId),
           contagionId: command.contagionId,
           step: command.type === 'InfectWithContagion' ? 'infect' : command.step,
+        },
+        reason: null,
+      };
+    // The DM's hand on the board (docs/adr/0057-encounters-maps-loot.md §2).
+    case 'PlaceCombatant':
+      return {
+        change: {
+          kind: 'fight',
+          change: 'placed',
+          combatant: ref(command.combatantId),
+          total: null,
         },
         reason: null,
       };

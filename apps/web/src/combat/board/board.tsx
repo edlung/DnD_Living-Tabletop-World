@@ -1,9 +1,9 @@
-import type { EncounterView, PlayerAssetView, Square } from '@ltw/contracts';
+import { squareDistanceFt, type Square } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
-import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from 'react';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
 
 import { BoardControls } from './board-controls.tsx';
-import type { BoardView } from './board-view.ts';
+import type { BoardProps } from './board-props.ts';
 import {
   boardLayout,
   fitCell,
@@ -12,16 +12,20 @@ import {
   squareCenter,
   TILT,
   uprightTransform,
-  type Size,
 } from './geometry.ts';
 import { useScrollEdges } from '../../visual/scroll-edges.ts';
-import type { LabelOf } from '../labels.ts';
 import { BoardGround } from './board-ground.tsx';
+import { BoardMarks } from './board-marks.tsx';
+import { DangerMarks } from './board-dangers.tsx';
+import { dangersOf } from './dangers.ts';
 import { BoardPlates } from './plates.tsx';
 import { squareName } from './square-name.ts';
 import { TerrainCard } from './terrain-card.tsx';
 import { footprint, spanOf } from './footprint.ts';
 import { CoverPiece, Token } from './token.tsx';
+import { usePaintStroke } from './paint-stroke.ts';
+import { useTokenDrag } from './token-drag.ts';
+import { useSpace } from './use-space.ts';
 
 const key = (square: { readonly x: number; readonly y: number }) =>
   `${String(square.x)},${String(square.y)}`;
@@ -29,30 +33,6 @@ const key = (square: { readonly x: number; readonly y: number }) =>
 /** A raised square's or a pit's mark in its corner: "+10", "−10"; none on level ground. */
 const heightMark = (ft: number): string | undefined =>
   ft === 0 ? undefined : ft > 0 ? `+${String(ft)}` : `−${String(-ft)}`;
-
-/** The space the board is given, as laid out by the stylesheet for this width. */
-function useSpace(): [React.RefObject<HTMLDivElement | null>, Size | null] {
-  const ref = useRef<HTMLDivElement>(null);
-  const [space, setSpace] = useState<Size | null>(null);
-  useLayoutEffect(() => {
-    const element = ref.current;
-    if (!element) return;
-    const measure = () => {
-      const width = element.clientWidth;
-      const height = element.clientHeight;
-      setSpace((known) =>
-        known?.width === width && known.height === height ? known : { width, height },
-      );
-    };
-    measure();
-    const observer = new ResizeObserver(measure);
-    observer.observe(element);
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-  return [ref, space];
-}
 
 type StageStyle = CSSProperties & {
   readonly '--cell': string;
@@ -83,40 +63,38 @@ export function Board({
   battleMap,
   view,
   onPick,
+  onDropToken,
+  paint,
+  fogView = 'hidden',
+  ruler = null,
+  template,
+  tools,
+  marks,
+  draw,
   centreOn = null,
   moverId = selfId,
-}: {
-  readonly encounter: Pick<EncounterView, 'battlefield' | 'combatants'>;
-  readonly labelOf: LabelOf;
-  /** Only a live encounter has an active turn; prepared layouts omit it. */
-  readonly currentCombatantId?: string | null;
-  readonly selfId: string | null;
-  readonly selected: Square | null;
-  /** The advisory route to the selected square, without the mover's own square. */
-  readonly path: readonly Square[];
-  /**
-   * Whose route `path` is: the viewer's, or a creature it commands on that creature's turn
-   * (docs/adr/0044-online-play.md §7). Absent: the viewer's.
-   */
-  readonly moverId?: string | null;
-  /** Combatants a previewed area spell would affect, as the server listed them. */
-  readonly affected: ReadonlySet<string>;
-  readonly imageOf: (entityId: string) => PlayerAssetView | null;
-  /** A combatant's approved tabletop figure (ADR 0035 §4), when the place's presentation has it. */
-  readonly figureOf: (entityId: string) => PlayerAssetView | null;
-  /** The encounter's place's approved battle map: the ground under the grid when there is one. */
-  readonly battleMap: PlayerAssetView | null;
-  readonly view: BoardView;
-  readonly onPick: (square: Square) => void;
-  /** A square to keep in view when the board scrolls (the table's screen follows the fight). */
-  readonly centreOn?: Square | null;
-}) {
+}: BoardProps) {
   const t = useT();
   const [area, space] = useSpace();
   const viewport = useRef<HTMLDivElement>(null);
   // The square the pointer is over and the one keyboard focus is on: the terrain card reads it.
   const [pointed, setPointed] = useState<Square | null>(null);
   const [focused, setFocused] = useState<Square | null>(null);
+  // The DM's brush, or a mark being drawn: a press or a drag goes to it, never to a choice.
+  const strokeTo = paint?.on === true ? paint.onStroke : draw;
+  const painting = strokeTo !== undefined;
+  const drag = useTokenDrag(painting ? undefined : onDropToken);
+  const stroke = usePaintStroke(strokeTo);
+  const press = strokeTo
+    ? (square: Square) => {
+        strokeTo([square]);
+      }
+    : onPick;
+  const pointedAt = new Set(
+    (marks ?? [])
+      .filter((mark) => mark.kind === 'pointer' && mark.square)
+      .map((mark) => (mark.square ? key(mark.square) : '')),
+  );
   const { width, height, difficult, cover } = encounter.battlefield;
   const grid = { width, height };
   const tilt = view.mode === 'tilted' ? TILT : null;
@@ -136,6 +114,10 @@ export function Board({
   const fog = new Map(
     (encounter.battlefield.obscured ?? []).map((o) => [key(o), o.heavy === true] as const),
   );
+  // Traps and harmful ground (ADR 0057 §6), as the viewer's projection has them.
+  const dangers = dangersOf(encounter.battlefield);
+  // The fog of war (ADR 0057 §4), apart from the fog that obscures (ADR 0050 §1).
+  const warFog = new Set((encounter.battlefield.fog ?? []).map(key));
   const coverAt = new Map(cover.map((entry) => [key(entry), entry.level]));
   // Every square a combatant fills names it; its figure stands on its north-west square, as big
   // as its space (docs/adr/0049-space-and-movement.md §1).
@@ -221,9 +203,17 @@ export function Board({
         walk.has(id) ? 'on-path' : '',
         destination && key(destination) === id ? 'is-destination' : '',
         inArea ? 'in-area' : '',
+        template?.has(id) ? 'in-template' : '',
+        ruler && key(ruler.from) === id ? 'is-ruler-start' : '',
         isSelected ? 'is-selected' : '',
         // Lit as under the pointer while the pointer is on its combatant's plate, too.
         pointed !== null && key(pointed) === id ? 'is-pointed' : '',
+        // The DM drags tokens: a square with one is grabbed, the square under the drag lit.
+        drag.enabled && occupant ? 'is-draggable' : '',
+        drag.target !== null && key(drag.target) === id ? 'is-drop-target' : '',
+        // The DM's brush: every square takes it, the stroke under way lit.
+        painting ? 'is-paintable' : '',
+        stroke.isLit(square) ? 'is-stroke' : '',
       ];
       squares.push(
         <button
@@ -231,6 +221,8 @@ export function Board({
           type="button"
           className={classes.filter(Boolean).join(' ')}
           style={{ '--x': x, '--y': y } as CSSProperties}
+          data-x={x}
+          data-y={y}
           data-height={heightMark(heights.get(id) ?? 0)}
           aria-label={squareName(t, square, {
             occupant,
@@ -249,12 +241,22 @@ export function Board({
             groundFt: heights.get(id) ?? 0,
             light: lit.get(id) ?? ambient,
             obscured: fog.has(id) ? (fog.get(id) ? 'heavy' : 'light') : 'none',
+            fogged: warFog.has(id),
+            rulerFt: ruler ? squareDistanceFt(ruler.from, square) : null,
+            pointer: pointedAt.has(id),
+            trap: dangers.traps.get(id),
+            hazard: dangers.hazards.get(id),
             cover: level,
             inArea,
           })}
           aria-pressed={isSelected}
           onClick={() => {
-            onPick(square);
+            press(square);
+          }}
+          onPointerDown={(event) => {
+            if (painting) stroke.start(square, event);
+            // A mount's square drags the mount, its rider carried (ADR 0049 §10).
+            else if (occupant) drag.start(occupant.entity.entityId, event);
           }}
           onPointerEnter={() => {
             point(square, true);
@@ -281,6 +283,10 @@ export function Board({
                 .join(' ')}
               aria-hidden="true"
             />
+          )}
+          <DangerMarks trap={dangers.traps.get(id)} hazard={dangers.hazards.get(id)} />
+          {warFog.has(id) && (
+            <span className={`square-war-fog square-war-fog--${fogView}`} aria-hidden="true" />
           )}
           {level && <CoverPiece level={level} />}
           {occupant && anchor && (
@@ -318,9 +324,11 @@ export function Board({
   }
   const route = mover && path.length > 0 ? [mover.position, ...path] : [];
   const looked = pointed ?? focused ?? selected;
+  // The ruler's far end: where it was set, else where the pointer or the keyboard is.
+  const rulerEnd = ruler ? (ruler.to ?? pointed ?? focused) : null;
   return (
     <div className={`board board--${view.mode}`} ref={area}>
-      <BoardControls view={view} />
+      <BoardControls view={view} {...(paint ? { paint } : {})} {...(tools ? { tools } : {})} />
       {looked && (
         <TerrainCard
           square={looked}
@@ -329,6 +337,8 @@ export function Board({
           wall={walls.has(key(looked))}
           water={water.has(key(looked)) ? (water.get(key(looked)) ? 'deep' : 'shallow') : null}
           groundFt={heights.get(key(looked)) ?? 0}
+          trap={dangers.traps.get(key(looked))}
+          hazard={dangers.hazards.get(key(looked))}
         />
       )}
       <div
@@ -349,7 +359,7 @@ export function Board({
               gridTemplateColumns: `repeat(${String(width)}, var(--cell))`,
             }}
           >
-            <BoardGround map={battleMap} />
+            <BoardGround map={battleMap} cell={cell} />
             {squares}
             {route.length > 1 && (
               <svg
@@ -367,13 +377,34 @@ export function Board({
                 />
               </svg>
             )}
+            {rulerEnd && ruler && (
+              <svg
+                className="board-ruler"
+                aria-hidden="true"
+                viewBox={`0 0 ${String(layout.plane.width)} ${String(layout.plane.height)}`}
+              >
+                <line
+                  x1={squareCenter(ruler.from, cell).x}
+                  y1={squareCenter(ruler.from, cell).y}
+                  x2={squareCenter(rulerEnd, cell).x}
+                  y2={squareCenter(rulerEnd, cell).y}
+                />
+                <circle
+                  cx={squareCenter(rulerEnd, cell).x}
+                  cy={squareCenter(rulerEnd, cell).y}
+                  r={cell * 0.16}
+                />
+              </svg>
+            )}
+            {marks && <BoardMarks marks={marks} cell={cell} layout={layout} />}
           </div>
           <BoardPlates
             encounter={encounter}
             layout={layout}
             labelOf={labelOf}
-            onPick={onPick}
+            onPick={press}
             onPoint={point}
+            {...(drag.enabled ? { onPress: drag.start } : {})}
           />
         </div>
       </div>

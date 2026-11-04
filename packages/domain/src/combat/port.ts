@@ -12,7 +12,8 @@ export interface Dice {
   roll(sides: number): number;
 }
 
-export type CombatCommand = KernelCommandOf<CombatCommandType> & {
+/** The combat engine's commands, a journey's among them (docs/adr/0057-…md §10): it rolls saves. */
+export type CombatCommand = KernelCommandOf<CombatCommandType | 'Travel'> & {
   readonly resolution?: Resolution;
   readonly encounterId?: string;
 };

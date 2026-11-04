@@ -1,0 +1,82 @@
+{
+  "campaignId": "hollowmere",
+  "dmActorId": "dm-hollowmere",
+  "commands": [
+    {
+      "type": "AddClue",
+      "clueId": "clue-ford-tracks",
+      "entityId": "feature-8a2f6c14",
+      "method": "perception",
+      "dc": 10,
+      "statement": "Следы маленьких когтистых ног и борозда от чего-то тяжёлого уходят с дороги к топи.",
+      "subjects": ["willow-ford", "fogmarsh"]
+    },
+    {
+      "type": "AddClue",
+      "clueId": "clue-bell-rope",
+      "entityId": "feature-1e6b3d90",
+      "method": "inspect",
+      "statement": "Верёвку перерезали и снова связали тростниковой бечёвкой — узлом перевозчиков.",
+      "subjects": ["hollowmere-bell", "faction-3d7a52e8"]
+    },
+    {
+      "type": "AddClue",
+      "clueId": "clue-rope-verdigris",
+      "entityId": "feature-1e6b3d90",
+      "method": "investigation",
+      "dc": 12,
+      "statement": "Зелень на узле — медная патина, как от старой меди, долго пролежавшей в воде.",
+      "subjects": ["hollowmere-bell", "drowned-chapel"]
+    },
+    {
+      "type": "AddClue",
+      "clueId": "clue-bell-echo",
+      "entityId": "hollowmere-bell",
+      "method": "magic",
+      "statement": "На бронзе лежит слабый некромантический отзвук, будто далеко внизу звонит второй колокол.",
+      "subjects": ["hollowmere-bell"]
+    },
+    {
+      "type": "AddClue",
+      "clueId": "clue-cellar-tunnel",
+      "entityId": "reeves-cellar",
+      "method": "inspect",
+      "statement": "Дыра в полу ведёт в затопленный лаз, пахнущий болотом.",
+      "subjects": ["reeves-cellar", "fogmarsh"]
+    },
+    {
+      "type": "AddClue",
+      "clueId": "clue-marsh-channel",
+      "entityId": "feature-b57d2e3a",
+      "method": "perception",
+      "dc": 12,
+      "statement": "Под огнями в тростнике прорублена узкая протока к часовне; по ней недавно ходили на шесте.",
+      "subjects": ["fogmarsh", "drowned-chapel"]
+    },
+    {
+      "type": "AddClue",
+      "clueId": "clue-altar-necromancy",
+      "entityId": "feature-0d9b5e72",
+      "method": "magic",
+      "statement": "На алтаре держится некромантия, сильнее всего — у треснувшей плиты перед ним.",
+      "subjects": ["drowned-chapel", "feature-f3c7a185"]
+    },
+    {
+      "type": "AddClue",
+      "clueId": "clue-slab-stair",
+      "entityId": "feature-f3c7a185",
+      "method": "investigation",
+      "dc": 13,
+      "statement": "Плита поднимается, если нажать на вырезанный колокол; вниз, в тёмную воду, ведёт лестница.",
+      "subjects": ["drowned-chapel", "feature-f3c7a185"]
+    },
+    {
+      "type": "AddClue",
+      "clueId": "clue-ledger",
+      "entityId": "item-4f8e2c61",
+      "method": "inspect",
+      "statement": "Плата от «Фонаря» серебром; «груз» ночью доставлен к «лестнице под святым».",
+      "subjects": ["faction-3d7a52e8", "npc-7c3e91a2", "drowned-chapel"]
+    }
+  ]
+}

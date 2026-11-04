@@ -19,6 +19,8 @@ export function recipientsOf(
     )
     .flatMap((entity) => {
       const name = directory.find((known) => known.entityId === entity.entityId)?.name;
-      return name ? [{ entityId: entity.entityId, name }] : [];
+      return name
+        ? [{ entityId: entity.entityId, name, kind: entity.kind === 'npc' ? 'npc' : 'character' }]
+        : [];
     });
 }

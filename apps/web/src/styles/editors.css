@@ -1,0 +1,41 @@
+/*
+ * The DM's editors without AI (docs/adr/0058-campaign-content.md §1): "Make by hand" in the Add
+ * sheet and "Change by hand" on a thing's card. A form keeps a readable width, never the sheet's.
+ */
+.make-by-hand > .account-field,
+.make-by-hand .editor-form {
+  max-width: 40rem;
+}
+/* Two fields side by side only where a long place name or option fits beside its chevron. */
+.editor-form .hand-row {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+}
+/* A choice and its button: the button its own width at the field's foot, below it when narrow. */
+.change-move,
+.change-status {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+.change-move > .account-field,
+.change-status > .account-field {
+  flex: 1 1 12rem;
+}
+/* A thing's numbers: the form's own heading, not the browser's groove frame. */
+.change-numbers {
+  display: grid;
+  gap: 0.5rem;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.change-numbers legend {
+  margin-bottom: 0.3rem;
+  padding: 0;
+  font-weight: 600;
+}
+.change-numbers .hand-row {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 6rem), 1fr));
+  align-items: end;
+}

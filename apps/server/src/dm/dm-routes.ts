@@ -19,6 +19,8 @@ import { authenticate, parseInput, type RouteDependencies } from '../http/reques
 import { httpCommandId } from '../http/routes/command-routes.ts';
 import { dmHistoryPage } from './history.ts';
 import { registerDmNoteRoutes } from './note-routes.ts';
+import type { SavedEncounterStore } from '../combat/saved-encounter-store.ts';
+import type { LibraryStore } from '../library/library-store.ts';
 import type { DmNoteStore } from './note-store.ts';
 import {
   sameSubstitution,
@@ -37,6 +39,10 @@ export interface DmDependencies {
   readonly substitutions: SubstitutionStore;
   /** The DM's notes (ADR 0043 §5). */
   readonly notes: DmNoteStore;
+  /** The DM's saved encounters (docs/adr/0057-encounters-maps-loot.md §1). */
+  readonly encounters: SavedEncounterStore;
+  /** The DM's library: kept handouts and random tables (docs/adr/0058-campaign-content.md §3–4). */
+  readonly library: LibraryStore;
   readonly clock: WallClock;
 }
 

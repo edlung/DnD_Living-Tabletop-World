@@ -1,10 +1,19 @@
-import type { SpellAreaShape, Square } from '@ltw/contracts';
+import type { SpellAreaShape } from '../srd/spell-mechanics.ts';
+import type { Square } from './battlefield.ts';
 
-import { squareDistanceFt } from './combat.ts';
-import { SQUARE_FT } from './grid.ts';
+/** A square of the battlefield is 5 feet a side (docs/adr/0011-ruleset-srd-5-2.md). */
+export const SQUARE_FT = 5;
+
+/** Feet between two squares on the ground: every step 5 ft, diagonals too (ADR 0011). */
+export const squareDistanceFt = (
+  a: { readonly x: number; readonly y: number },
+  b: { readonly x: number; readonly y: number },
+): number => SQUARE_FT * Math.max(Math.abs(a.x - b.x), Math.abs(a.y - b.y));
 
 /**
- * The squares a spell's area covers on the grid (docs/adr/0052-spells-as-data.md §5; SRD 5.2.1,
+ * The board's geometry, shared by the rules and every board (docs/adr/0057-encounters-maps-
+ * loot.md §5): the squares a spell's area covers on the grid (docs/adr/0052-spells-as-data.md §5;
+ * SRD 5.2.1,
  * "Area of Effect"). A sphere or cylinder: within its radius of its point, as the grid counts.
  * A cube on a point: its squares around that point. From the caster, toward a chosen square: a
  * cone (as wide as it is far), a line (its width), a cube (its face on the caster's side). An
@@ -76,4 +85,18 @@ export function inSpellArea(
   // A cone: within its length from its point, inside its angle.
   if (out <= -EDGE || out > size + EDGE) return false;
   return Math.atan2(across, Math.max(along, EDGE)) <= CONE_HALF_ANGLE + EDGE;
+}
+
+/** Every square of a field an area covers, row by row: what a board draws for a template. */
+export function squaresInArea(
+  area: SpellArea,
+  caster: readonly Square[],
+  toward: Square | null,
+  field: { readonly width: number; readonly height: number },
+): Square[] {
+  const squares: Square[] = [];
+  for (let y = 0; y < field.height; y += 1)
+    for (let x = 0; x < field.width; x += 1)
+      if (inSpellArea(area, caster, toward, { x, y })) squares.push({ x, y });
+  return squares;
 }

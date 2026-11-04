@@ -1,7 +1,8 @@
 import { CorruptHistoryError } from '../kernel/corrupt-history.ts';
-import type { RecordedEvent, Restore } from '../kernel/events.ts';
+import type { KernelEventType, RecordedEvent, Restore } from '../kernel/events.ts';
 import { withEntry, withoutEntry } from '../kernel/maps.ts';
 import type { WorldState } from '../kernel/state.ts';
+import { applyCraftingEvent, applyCraftingRestore } from './crafting.ts';
 import { possessionOf, type Possession } from './records.ts';
 
 /** Fold and undo restore of item possession (docs/adr/0039-item-possession.md). */
@@ -25,6 +26,7 @@ const rebuilt = (
     readonly saveDelta?: number | undefined;
     readonly charges?: number | undefined;
     readonly unidentified?: boolean | undefined;
+    readonly forSale?: boolean | undefined;
   },
 ): Possession => ({
   catalogId: core.catalogId,
@@ -37,6 +39,7 @@ const rebuilt = (
   ...(more.saveDelta ? { saveDelta: more.saveDelta } : {}),
   ...(more.charges === undefined ? {} : { charges: more.charges }),
   ...(more.unidentified === true ? { unidentified: true as const } : {}),
+  ...(more.forSale === true ? { forSale: true as const } : {}),
 });
 
 const put = (state: WorldState, itemId: string, value: Possession): WorldState => ({
@@ -93,6 +96,15 @@ export function applyItemUsed(state: WorldState, event: Ev<'ItemUsed'>): WorldSt
   return put(state, itemId, { ...current, quantity: remaining });
 }
 
+/** A stack's count set anew as coins are exchanged (docs/adr/0057-encounters-maps-loot.md §7). */
+function applyItemStackChanged(state: WorldState, event: Ev<'ItemStackChanged'>): WorldState {
+  const { itemId, holderId, quantity } = event.payload;
+  const current = mustHold(state, itemId);
+  if (current.holderId !== holderId || current.slot !== null)
+    throw new CorruptHistoryError(`item ${itemId} is not ${holderId}'s to change`);
+  return put(state, itemId, { ...current, quantity });
+}
+
 export function applyItemRecovered(state: WorldState, event: Ev<'ItemRecovered'>): WorldState {
   const { itemId, holderId, recovered, quantity } = event.payload;
   const current = mustHold(state, itemId);
@@ -106,13 +118,14 @@ export function applyItemTransferred(state: WorldState, event: Ev<'ItemTransferr
   const current = possessionOf(state, itemId);
   if (current && (current.holderId !== from || current.slot !== null))
     throw new CorruptHistoryError(`item ${itemId} was not carried by ${from ?? 'nobody'}`);
-  return put(
-    state,
-    itemId,
-    current
-      ? { ...current, holderId: to }
-      : { catalogId, holderId: to, quantity, slot: null, acDelta: 0 },
-  );
+  // A thing changing hands is wares only when sold to a merchant (ADR 0057 §8).
+  const { forSale } = event.payload;
+  const moved: Possession = current
+    ? { ...current, holderId: to }
+    : { catalogId, holderId: to, quantity, slot: null, acDelta: 0 };
+  const rest: Possession = { ...moved };
+  delete (rest as { forSale?: true }).forSale;
+  return put(state, itemId, forSale ? { ...rest, forSale: true } : rest);
 }
 
 export function applyItemSplit(state: WorldState, event: Ev<'ItemSplit'>): WorldState {
@@ -134,8 +147,9 @@ export function applyItemSplit(state: WorldState, event: Ev<'ItemSplit'>): World
 
 export function applyItemRestore(
   state: WorldState,
-  restore: Extract<Restore, { fact: 'possession' }>,
+  restore: Extract<Restore, { fact: 'possession' | 'crafting' }>,
 ): WorldState {
+  if (restore.fact === 'crafting') return applyCraftingRestore(state, restore);
   if (restore.value === null)
     return { ...state, possessions: withoutEntry(state.possessions, restore.itemId) };
   return put(state, restore.itemId, rebuilt(restore.value, restore.value));
@@ -170,4 +184,67 @@ export function applyItemIdentified(state: WorldState, event: Ev<'ItemIdentified
   if (current.holderId !== holderId || current.unidentified !== true)
     throw new CorruptHistoryError(`item ${itemId} was not unidentified`);
   return put(state, itemId, rebuilt(current, { ...current, unidentified: false }));
+}
+
+/**
+ * The item events (docs/adr/0039-item-possession.md), crafting's among them (docs/adr/0057-
+ * encounters-maps-loot.md §9), folded each by its own rule.
+ */
+const ITEM_EVENT_TYPES = [
+  'ItemGranted',
+  'ItemEquipped',
+  'ItemUnequipped',
+  'ItemUsed',
+  'ItemStackChanged',
+  'ItemAttuned',
+  'ItemChargesSpent',
+  'ItemChargesRegained',
+  'ItemIdentified',
+  'ItemRecovered',
+  'ItemTransferred',
+  'ItemSplit',
+  'CraftingStarted',
+  'CraftingWorked',
+  'CraftingFinished',
+  'CraftingAbandoned',
+] as const satisfies readonly KernelEventType[];
+export type ItemEventType = (typeof ITEM_EVENT_TYPES)[number];
+const ITEM_EVENTS: ReadonlySet<string> = new Set(ITEM_EVENT_TYPES);
+
+export const isItemEvent = <T extends { readonly type: string }>(
+  event: T,
+): event is Extract<T, { type: ItemEventType }> => ITEM_EVENTS.has(event.type);
+
+export function applyItemEvent(state: WorldState, event: Ev<ItemEventType>): WorldState {
+  switch (event.type) {
+    case 'CraftingStarted':
+    case 'CraftingWorked':
+    case 'CraftingFinished':
+    case 'CraftingAbandoned':
+      return applyCraftingEvent(state, event);
+    case 'ItemGranted':
+      return applyItemGranted(state, event);
+    case 'ItemEquipped':
+      return applyItemEquipped(state, event);
+    case 'ItemUnequipped':
+      return applyItemUnequipped(state, event);
+    case 'ItemUsed':
+      return applyItemUsed(state, event);
+    case 'ItemStackChanged':
+      return applyItemStackChanged(state, event);
+    case 'ItemAttuned':
+      return applyItemAttuned(state, event);
+    case 'ItemChargesSpent':
+      return applyItemChargesSpent(state, event);
+    case 'ItemChargesRegained':
+      return applyItemChargesRegained(state, event);
+    case 'ItemIdentified':
+      return applyItemIdentified(state, event);
+    case 'ItemRecovered':
+      return applyItemRecovered(state, event);
+    case 'ItemTransferred':
+      return applyItemTransferred(state, event);
+    case 'ItemSplit':
+      return applyItemSplit(state, event);
+  }
 }

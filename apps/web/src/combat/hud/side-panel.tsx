@@ -3,9 +3,10 @@ import type {
   EncounterView,
   PlayerAssetView,
   Square,
+  BoardTrap,
 } from '@ltw/contracts';
 import { readableLabel, useT } from '@ltw/ui';
-import type { Ref } from 'react';
+import type { ReactNode, Ref } from 'react';
 
 import { Glyph } from '../../visual/glyph.tsx';
 import { IconButton } from '../../visual/icon-button.tsx';
@@ -17,6 +18,7 @@ import { sideWords, stateWords, temporaryWords } from '../hit-point-words.ts';
 import { useCombatantLabels } from '../labels.ts';
 import type { MoveOption } from '../move-options.ts';
 import { moveDetail } from '../move-words.ts';
+import { trapWords } from '../board/square-name.ts';
 
 /**
  * The side panel at rest (docs/STAGE_320_DESIGN.md §5.5): how to read the board — what the
@@ -140,11 +142,16 @@ export function MoveDetails({
   prone,
   riding = false,
   myTurn,
+  trap,
+  onDisarm,
   panel,
   onClose,
 }: {
   readonly square: Square;
   readonly moves: readonly MoveOption[];
+  /** A trap the party knows of on the square, and its disarming within reach (ADR 0057 §6). */
+  readonly trap?: BoardTrap | undefined;
+  readonly onDisarm?: (() => void) | undefined;
   /** The mover lies Prone: walking stands it up first. */
   readonly prone: boolean;
   /** The mover rides (docs/adr/0049-space-and-movement.md §10): its mount carries it. */
@@ -198,6 +205,20 @@ export function MoveDetails({
           ))}
         </ul>
       )}
+      {trap && (
+        <p className="side-trap">
+          <Glyph name="warning" />
+          <span>{trapWords(t, trap)}</span>
+        </p>
+      )}
+      {onDisarm && (
+        <div className="action-row">
+          <button type="button" className="primary-button" onClick={onDisarm}>
+            <Glyph name="utilize" />
+            {t('Disarm the trap')}
+          </button>
+        </div>
+      )}
     </section>
   );
 }
@@ -209,6 +230,7 @@ export function CombatantCard({
   image,
   panel,
   onClose,
+  children,
 }: {
   readonly combatant: EncounterCombatantView;
   /** Its name, or "Unidentified creature N" (`combat/labels.ts`). */
@@ -216,6 +238,8 @@ export function CombatantCard({
   readonly image: PlayerAssetView | null;
   readonly panel: Ref<HTMLElement>;
   readonly onClose: () => void;
+  /** What it carries, for the DM (docs/adr/0057-encounters-maps-loot.md §7). */
+  readonly children?: ReactNode;
 }) {
   const t = useT();
   return (
@@ -270,6 +294,7 @@ export function CombatantCard({
       <p className="muted">
         {t('The DM acts for creatures with the Encounter tools (suggested turn).')}
       </p>
+      {children}
     </section>
   );
 }

@@ -104,6 +104,7 @@
 
 /* The battle map: the place's approved top-down picture under the grid */
 .board-ground--map {
+  overflow: hidden;
   background: var(--ink-900);
 }
 .board-map {
@@ -115,6 +116,17 @@
   border-radius: inherit;
   object-fit: cover;
   user-select: none;
+}
+/* A map whose grid the DM lined up (ADR 0057 §3): at its own pixels, scaled from its corner so that
+   each of its cells lies under a square; the ground clips what lies beyond the field. */
+.board-map--aligned {
+  inset: auto;
+  width: auto;
+  max-width: none;
+  height: auto;
+  border-radius: 0;
+  object-fit: fill;
+  transform-origin: 0 0;
 }
 
 /* The scene: who has a figure stands in the lower third above the name plate */

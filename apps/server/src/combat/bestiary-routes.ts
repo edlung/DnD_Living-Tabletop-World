@@ -26,6 +26,7 @@ import { statusOf } from '../http/command-status.ts';
 import { dmCampaignState } from '../http/dm-campaign.ts';
 import { sendError } from '../http/errors.ts';
 import { authenticate, parseInput, type RouteDependencies } from '../http/request-context.ts';
+import { httpCommandId } from '../http/routes/command-routes.ts';
 
 /**
  * The DM's bestiary (docs/adr/0053-monsters-as-data.md §3): the SRD's 330 stat blocks, found on the
@@ -104,11 +105,16 @@ export function registerBestiaryRoutes(app: FastifyInstance, deps: RouteDependen
     if (!state) return reply;
     const monster = srdMonster(path.monsterId);
     const block = srdMonsterBlock(path.monsterId);
-    const locationId = placeOf(state);
+    // In a fight at the fight's place; else where the DM said, or where the party is.
+    const locationId =
+      state.encounter && body.square
+        ? state.encounter.locationId
+        : (body.locationId ?? placeOf(state));
     if (!monster || !block || !locationId) return sendError(reply, request, 'NOT_FOUND');
     // An opaque id from the request: a retry names the same creature (ADR 0037's opaque ids).
     const entityId = `creature-${createHash('sha256').update(`${path.campaignId}:${body.requestId}`).digest('hex').slice(0, 8)}`;
-    const prefix = `bestiary.${body.requestId}`;
+    // The DM's own command IDs, as the table's: the DM's history lists them (ADR 0058 §1).
+    const prefix = httpCommandId(actor.actorId, `bestiary.${body.requestId}`);
     const commands = [
       {
         commandId: `${prefix}.create`,

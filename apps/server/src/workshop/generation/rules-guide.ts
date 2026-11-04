@@ -1,10 +1,23 @@
-import { CLASS_IDS, CONDITIONS, ITEM_CATALOG, SKILLS, SPELL_IDS, WEAPON_IDS } from '@ltw/contracts';
-import { SPELLS, spellSlotsFor, WEAPONS } from '@ltw/rules';
+import {
+  CLASS_IDS,
+  CONDITIONS,
+  FIGHTING_STYLES,
+  ITEM_CATALOG,
+  SKILLS,
+  WEAPON_IDS,
+} from '@ltw/contracts';
+import { SRD_ITEM_CATALOG } from '@ltw/contracts/srd-items';
+import { SRD_MONSTERS, SRD_SPELLS, spellSlotsFor, WEAPONS } from '@ltw/rules';
 
-/** Public rules only: this cacheable text contains no owner, seed, fixture or generated story. */
+/**
+ * Public rules only: this cacheable text contains no owner, seed, fixture or generated story. The
+ * SRD 5.2.1 as the game holds it (docs/adr/0058-campaign-content.md §6): its classes, spells,
+ * weapons, items and monsters by ID, every check the World Engine's as before.
+ */
 export const CAMPAIGN_RULES_GUIDE = [
-  'Supported rules are a narrow SRD 5.2.1 slice, not the complete game.',
-  'Character sheets use only ranger or wizard classes, total class levels equal brief.partyLevel.',
+  'Supported rules are the SRD 5.2.1: its twelve classes, spells, weapons, equipment, magic items and',
+  'monsters, listed below by ID. Name only listed IDs; anything else stays narrative, or incomplete for assessment.',
+  'Character sheets use the listed classes; total class levels equal brief.partyLevel.',
   'Prepare exactly brief.partySize distinct character seats, each with a complete sheet and initial placement.',
   'A seat is not a controller, player account, membership or played character history.',
   'A narrative profession or appearance does not grant another class, spell, weapon, skill or feature.',
@@ -12,13 +25,16 @@ export const CAMPAIGN_RULES_GUIDE = [
   'Every sheet has all six ability scores, HP current<=max, AC, speed in multiples of 5 feet, saves,',
   'skills {proficient,expertise}, attacksPerAction, weapons, spellSlots {max,expended}, spellcasting,',
   'conditions and concentration. Expertise is a subset of proficiency; fresh seats use full HP,',
-  'zero expended slots, no conditions and null concentration. Optional fightingStyle is archery only.',
-  'Spell slot rows always contain nine integers (levels 1 through 9). For multiclass slots,',
-  'caster level = wizard levels + ceil(ranger levels/2), then use the wizard row at that level.',
-  'Ranger casting ability is wis; wizard is int. magic-initiate is an available casting source,',
-  'not a class. List only supported spells for which the prepared level has slots; do not invent cantrips.',
-  'A freeCasts grant must name a spell in the same source, used<=perLongRest.',
-  'Longbow is the only character weapon; a wizard without a weapon must not be given invented attacks.',
+  'zero expended slots, no conditions and null concentration. An optional fightingStyle is one of fightingStyles.',
+  'Spell slot rows always contain nine integers (levels 1 through 9); slotsByClassAndLevel gives one class.',
+  'For multiclass slots, caster level = bard, cleric, druid, sorcerer and wizard levels + ceil((paladin +',
+  'ranger levels)/2), then use the wizard row at that level.',
+  'Casting abilities: bard, paladin, sorcerer, warlock cha; cleric, druid, ranger wis; wizard int.',
+  'magic-initiate and species are casting sources, not classes. List only spells of the source’s list whose',
+  'level has slots, or cantrips; a freeCasts grant names a spell in the same source, used<=perLongRest.',
+  'A sheet’s weapons are listed weapon IDs; a character without one must not be given invented attacks.',
+  'An NPC or creature from the SRD bestiary names its monster ID (monster): the server writes its stat block',
+  'from the SRD. Write statBlock by hand only for one the bestiary lacks.',
   'NPC/creature combatants use statBlock (not a character sheet): AC, HP, speed, abilities,',
   'six numeric savingThrows, initiativeBonus, attacksPerAction, attacks, spells, conditions.',
   'A monster attack supplies attackId/name/kind/bonus/damage; melee needs reachFt, ranged needs',
@@ -33,18 +49,21 @@ export const CAMPAIGN_RULES_GUIDE = [
   'placement and a possessions row {item,holder,catalog?,quantity}; a catalog ID is optional (a unique story',
   'object has none) and must be one of the listed ones. Only a stackable catalog item has quantity above 1.',
   'Items start carried, never worn. An item lying in a place is a placed entity with no possessions row.',
+  'Lists (an ID spells its English name): spells [id, level, classes], monsters [id, challenge rating],',
+  'itemCatalog [id, category, stackable].',
   JSON.stringify({
-    itemCatalog: ITEM_CATALOG.map((entry) => ({
-      id: entry.itemId,
-      category: entry.category,
-      name: entry.name.en,
-      stackable: entry.stackable,
-    })),
     classes: CLASS_IDS,
     skills: SKILLS,
     conditions: CONDITIONS,
+    fightingStyles: FIGHTING_STYLES,
     weapons: Object.fromEntries(WEAPON_IDS.map((key) => [key, WEAPONS[key]])),
-    spells: Object.fromEntries(SPELL_IDS.map((key) => [key, SPELLS[key]])),
+    spells: SRD_SPELLS.map((spell) => [spell.spellId, spell.level, spell.classes]),
+    monsters: SRD_MONSTERS.map((monster) => [monster.monsterId, monster.challenge.rating]),
+    itemCatalog: [...ITEM_CATALOG, ...SRD_ITEM_CATALOG].map((entry) => [
+      entry.itemId,
+      entry.category,
+      entry.stackable,
+    ]),
     slotsByClassAndLevel: Object.fromEntries(
       CLASS_IDS.map((classId) => [
         classId,

@@ -35,6 +35,9 @@ import '../../apps/web/src/i18n/ru-items.ts';
 import '../../apps/web/src/i18n/ru-character.ts';
 import '../../apps/web/src/i18n/ru-dice.ts';
 import '../../apps/web/src/i18n/ru-inventory.ts';
+import '../../apps/web/src/i18n/ru-travel.ts';
+import '../../apps/web/src/i18n/ru-editors.ts';
+import '../../apps/web/src/i18n/ru-library.ts';
 import '../../apps/web/src/i18n/ru-rest.ts';
 import '../../apps/web/src/i18n/ru-rules.ts';
 import '../../apps/web/src/i18n/ru-accounts.ts';
@@ -50,6 +53,7 @@ import '../../apps/web/src/i18n/ru-space.ts';
 import '../../apps/web/src/i18n/ru-builder.ts';
 import '../../apps/web/src/i18n/ru-features.ts';
 import '../../apps/web/src/i18n/ru-summons.ts';
+import '../../apps/web/src/i18n/ru-encounters.ts';
 import '../../apps/web/src/i18n/ru-native.ts';
 
 /**

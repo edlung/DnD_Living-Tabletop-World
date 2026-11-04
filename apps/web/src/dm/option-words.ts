@@ -19,7 +19,13 @@ export const CARRYING_WORDS: Readonly<Record<CampaignOptions['carrying'], string
   enforced: 'Enforced',
 };
 
-export const OPTION_KEYS = ['hitPointsAtLevel', 'levelsBy', 'carrying', 'startingLevel'] as const;
+export const OPTION_KEYS = [
+  'hitPointsAtLevel',
+  'levelsBy',
+  'carrying',
+  'startingLevel',
+  'craftingHelpers',
+] as const;
 
 /** Each option as the history tells it changed. */
 const CHANGED_WORDS = {
@@ -34,15 +40,17 @@ const CHANGED_WORDS = {
 
 /** The options' changes from one set to another, in words. */
 export function optionChanges(t: Translate, from: CampaignOptions, to: CampaignOptions): string {
-  return OPTION_KEYS.filter((key) => from[key] !== to[key])
+  return OPTION_KEYS.filter((key) => (from[key] ?? 1) !== (to[key] ?? 1))
     .map((key) =>
-      key === 'startingLevel'
-        ? t('new characters at level {level}', { level: to.startingLevel })
-        : key === 'hitPointsAtLevel'
-          ? t(CHANGED_WORDS.hitPointsAtLevel[to.hitPointsAtLevel])
-          : key === 'levelsBy'
-            ? t(CHANGED_WORDS.levelsBy[to.levelsBy])
-            : t(CHANGED_WORDS.carrying[to.carrying]),
+      key === 'craftingHelpers'
+        ? t('up to {count} helpers on a crafting project', { count: to.craftingHelpers ?? 1 })
+        : key === 'startingLevel'
+          ? t('new characters at level {level}', { level: to.startingLevel })
+          : key === 'hitPointsAtLevel'
+            ? t(CHANGED_WORDS.hitPointsAtLevel[to.hitPointsAtLevel])
+            : key === 'levelsBy'
+              ? t(CHANGED_WORDS.levelsBy[to.levelsBy])
+              : t(CHANGED_WORDS.carrying[to.carrying]),
     )
     .join('; ');
 }

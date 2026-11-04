@@ -57,7 +57,13 @@ export const changePasswordRequestSchema = z
 export const renameRequestSchema = z.object({ displayName: displayNameSchema }).strict();
 
 /** Ready adventures a campaign starts from. */
-export const CAMPAIGN_TEMPLATES = ['ravenford-en', 'ravenford-ru'] as const;
+/** The ready adventures in each language (docs/adr/0058-campaign-content.md §5). */
+export const CAMPAIGN_TEMPLATES = [
+  'ravenford-en',
+  'ravenford-ru',
+  'hollowmere-en',
+  'hollowmere-ru',
+] as const;
 export type CampaignTemplate = (typeof CAMPAIGN_TEMPLATES)[number];
 
 /** `POST /account/campaigns`: a new campaign from a ready adventure, the account its DM. */

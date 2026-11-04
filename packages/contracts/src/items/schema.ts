@@ -197,6 +197,19 @@ export const itemEntrySchema = z
      * and-toolbox.md §6); an SRD entry's.
      */
     look: z.enum(ITEM_LOOKS).optional(),
+    /**
+     * How it is made (SRD 5.2.1 "Crafting Nonmagical Items"; docs/adr/0057-encounters-maps-loot.md
+     * §9): the tools that make it, any one of them; the days and materials apiece where they are
+     * not the rule's (a Potion of Healing: 1 day, 25 GP).
+     */
+    craft: z
+      .object({
+        tools: z.array(itemCatalogIdSchema).min(1).max(2),
+        days: z.number().int().min(1).max(365).optional(),
+        materialsCp: z.number().int().min(1).max(100_000_000).optional(),
+      })
+      .strict()
+      .optional(),
   })
   .strict()
   .superRefine((entry, context) => {

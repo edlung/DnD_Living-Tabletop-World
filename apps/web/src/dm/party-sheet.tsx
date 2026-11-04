@@ -10,9 +10,10 @@ import { useCallback, useId, useState, type SubmitEvent } from 'react';
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
 import { AskForCheck } from '../dice/check-forms.tsx';
-import { GiveHandout } from '../handouts/handouts.tsx';
 import { Field } from '../session/account-forms.tsx';
 import { Glyph } from '../visual/glyph.tsx';
+import { TableHandouts } from '../library/kept-handouts.tsx';
+import { DowntimeCard } from './downtime-card.tsx';
 import { PartyAdvancement } from '../builder/party-advancement.tsx';
 import { useRereadOn } from '../world/use-world-data.ts';
 import { PartyCard } from './party-card.tsx';
@@ -110,6 +111,7 @@ export function PartySheet({
           />
         )}
         <AskForCheck characters={characters.map((entry) => entry.character)} />
+        <DowntimeCard api={api} revision={revision} locked={locked} onRun={onRun} />
         <ToolboxForms
           characters={characters.map((entry) => entry.character)}
           locked={locked}
@@ -123,7 +125,8 @@ export function PartySheet({
           locked={locked}
           onRun={onRun}
         />
-        <GiveHandout
+        <TableHandouts
+          api={api}
           characters={characters.map((entry) => entry.character)}
           directory={directory}
         />

@@ -4,6 +4,7 @@ import {
   buildApp,
   credentialHeaderOf,
   memoryChat,
+  memoryMarks,
   memoryHandouts,
   memoryTable,
   type AppDependencies,
@@ -48,6 +49,8 @@ export function buildLiveApp(
     lobby: deps.lobby ?? memoryLobby(),
     // And one chat, so a message signals its readers (ADR 0044 §1).
     chat: deps.chat ?? memoryChat(),
+    // And one set of marks, so a ping reaches every board (ADR 0057 §5).
+    marks: deps.marks ?? memoryMarks(),
     // And one set of handouts, so a new one signals its readers (ADR 0044 §5).
     handouts: deps.handouts ?? memoryHandouts(),
     presence: registry,

@@ -3,7 +3,8 @@ import { fileURLToPath } from 'node:url';
 
 import { parseEquipmentTables } from './equipment.ts';
 import { parseToolsAndGear } from './gear.ts';
-import { catalogEntryOf } from './item-catalog.ts';
+import { craftTools } from './craft-tools.ts';
+import { catalogEntryOf, SRD_ID_PREFIX } from './item-catalog.ts';
 import { magicCatalogEntries } from './magic-catalog.ts';
 import { magicItemRows, parseMagicItems } from './magic-items.ts';
 import { deriveMonsterMechanics } from './monster-mechanics.ts';
@@ -64,7 +65,8 @@ write('monster-blocks.json', bestiary.map(deriveMonsterMechanics));
 // The equipment (docs/adr/0054-items-as-data.md §1–2): its text, and the catalog's entries.
 const equipment = [...parseEquipmentTables(dir), ...parseToolsAndGear(dir)];
 write('equipment.json', equipment);
-const equipmentCatalog = equipment.map(catalogEntryOf);
+const tools = craftTools(equipment, SRD_ID_PREFIX);
+const equipmentCatalog = equipment.map((item) => catalogEntryOf(item, tools.get(item.itemId)));
 write('equipment.json', equipmentCatalog, 'packages/contracts/src/items/srd');
 // The magic items (§5): their text, and their catalog entries, "+1, +2, or +3" three of them.
 const magicItems = [...parseMagicItems(magicItemRows(dir))].sort(byId('itemId'));

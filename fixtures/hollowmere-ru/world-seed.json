@@ -1,0 +1,348 @@
+{
+  "campaignId": "hollowmere",
+  "dmActorId": "dm-hollowmere",
+  "commands": [
+    {
+      "type": "CreateCampaign",
+      "name": "Холлоумир: колокола в тумане",
+      "worldName": "Равенфорд",
+      "startsAt": 28800,
+      "language": "ru",
+      "adventure": "hollowmere"
+    },
+    {
+      "type": "SetCampaignOptions",
+      "options": {
+        "hitPointsAtLevel": "choice",
+        "levelsBy": "milestone",
+        "carrying": "shown",
+        "startingLevel": 1,
+        "craftingHelpers": 1
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "fenlands",
+      "kind": "location",
+      "name": "Северные топи",
+      "description": "Ивовый край и топи к северу от Равенфорда: Мельничная дорога, Холлоумир и Туманная топь.",
+      "existsSince": null,
+      "location": { "type": "region", "parentId": null }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "ravenford",
+      "kind": "location",
+      "name": "Равенфорд",
+      "description": "Торговый город на Старой Торговой дороге, обнесённый стеной из серого речного камня.",
+      "existsSince": null,
+      "location": { "type": "settlement", "parentId": null }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "north-gate",
+      "kind": "location",
+      "name": "Северные ворота",
+      "description": "Северные ворота города: на рассвете здесь грузят повозки, идущие в деревни у топи.",
+      "existsSince": null,
+      "location": { "type": "district", "parentId": "ravenford" }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "mill-road",
+      "kind": "location",
+      "name": "Мельничная дорога",
+      "description": "Разбитая колёсами дорога от Равенфорда на север, через ивняк, к краю Туманной топи.",
+      "existsSince": null,
+      "location": { "type": "route", "parentId": null }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "willow-ford",
+      "kind": "location",
+      "name": "Ивовый брод",
+      "description": "Здесь Мельничная дорога пересекает Осоковый ручей между склонёнными ивами; вода по колено и холодная.",
+      "existsSince": null,
+      "location": { "type": "site", "parentId": "mill-road" }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "hollowmere",
+      "kind": "location",
+      "name": "Холлоумир",
+      "description": "Деревня тростниковых резчиков и ловцов угрей на сваях и гатях у края Туманной топи. Над лужайкой кренится каменная колокольня.",
+      "existsSince": null,
+      "location": { "type": "settlement", "parentId": null }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "reeves-hall",
+      "kind": "location",
+      "name": "Дом старосты",
+      "description": "Длинный бревенчатый дом под дёрновой крышей: здесь староста хранит деревенские счёты и лампадное масло.",
+      "existsSince": null,
+      "location": { "type": "building", "parentId": "hollowmere" }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "reeves-cellar",
+      "kind": "location",
+      "name": "Погреб старосты",
+      "description": "Сырой погреб с бочками и мешками соли; кто-то прогрыз пол снизу.",
+      "existsSince": null,
+      "location": { "type": "room", "parentId": "reeves-hall" }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "bell-tower",
+      "kind": "location",
+      "name": "Колокольня",
+      "description": "Приземистая каменная башня старше самой деревни; днём её бронзовый колокол молчит. Верёвка висит так низко, что дотянется любой.",
+      "existsSince": null,
+      "location": { "type": "building", "parentId": "hollowmere" }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "fogmarsh",
+      "kind": "location",
+      "name": "Туманная топь",
+      "description": "Тростник, чёрные омуты и утонувшие ольхи под туманом, который редко рассеивается. Ночью там бродят огни.",
+      "existsSince": null,
+      "location": { "type": "region", "parentId": null }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "drowned-chapel",
+      "kind": "location",
+      "name": "Затонувшая часовня",
+      "description": "Часовня на островке среди тростника, наполовину ушедшая в воду после большого наводнения; двери заперты изнутри.",
+      "existsSince": null,
+      "location": { "type": "building", "parentId": "fogmarsh" }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "sunken-mill",
+      "kind": "location",
+      "name": "Затопленная мельница",
+      "description": "Старая водяная мельница: колесо стоит в стоячей воде, под полом привязаны плоскодонки.",
+      "existsSince": null,
+      "location": { "type": "building", "parentId": "fogmarsh" }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "location-5b2e9c47",
+      "kind": "location",
+      "name": "Затопленный склеп",
+      "description": "Каменные ступени уходят в чёрную воду, к сводчатому склепу, где хоронили древних святых.",
+      "existsSince": null,
+      "location": { "type": "room", "parentId": "drowned-chapel" }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "location-c81f04da",
+      "kind": "location",
+      "name": "Зал утонувшего колокола",
+      "description": "Круглый зал под склепом: над омутом висит второй, более древний колокол, его язык позеленел от меди.",
+      "existsSince": null,
+      "location": { "type": "room", "parentId": "location-5b2e9c47" }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "agna-brisk",
+      "kind": "npc",
+      "name": "Агна Бриск",
+      "description": "Вдова торговца лампадным маслом: деловитая, пальцы в чернилах, оправданий не терпит.",
+      "existsSince": null,
+      "placement": { "locationId": "north-gate", "since": null }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "hobb-fenwick",
+      "kind": "npc",
+      "name": "Хобб Фенвик",
+      "description": "Староста Холлоумира: грузный, усталый, всё пересчитывает дважды и плохо спит с тех пор, как зазвонил колокол.",
+      "existsSince": null,
+      "placement": { "locationId": "reeves-hall", "since": null }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "sister-ilse",
+      "kind": "npc",
+      "name": "Сестра Ильзе",
+      "description": "Хранительница святыни утонувшего святого, которую теперь держат в рыбацкой хижине; зоркая, набожная и не боится ничего живого.",
+      "existsSince": null,
+      "placement": { "locationId": "hollowmere", "since": null }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "kerra-reed",
+      "kind": "npc",
+      "name": "Керра Рид",
+      "description": "Перевозчица в плаще из плетёного тростника, с багром на плече; знает каждую протоку топи.",
+      "existsSince": null,
+      "placement": { "locationId": "sunken-mill", "since": null }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "old-matthis",
+      "kind": "npc",
+      "name": "Старый Маттис",
+      "description": "Звонарь Холлоумира: белобородый, полуглухой после полувека колоколов.",
+      "existsSince": null,
+      "placement": { "locationId": "location-5b2e9c47", "since": null }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "npc-7c3e91a2",
+      "kind": "npc",
+      "name": "Фонарщик в капюшоне",
+      "description": "Тощая фигура в сером капюшоне; в руке фонарь, чей свет никогда не дрожит.",
+      "existsSince": null,
+      "placement": { "locationId": "location-c81f04da", "since": null }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "faction-3d7a52e8",
+      "kind": "faction",
+      "name": "Тростниковые плащи",
+      "description": "Жители топи, что ночами возят грузы по протокам, без пошлин и без вопросов.",
+      "existsSince": null
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "faction-a6c41f09",
+      "kind": "faction",
+      "name": "Пепельный круг",
+      "description": "Фанатики в капюшонах, отмечающие свои дела кольцом из пепла.",
+      "existsSince": null
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "hollowmere-bell",
+      "kind": "feature",
+      "name": "Колокол Холлоумира",
+      "description": "Бронзовый колокол, позеленевший от времени. Три ночи подряд он звонил в полночь, хотя верёвку никто не тянул.",
+      "existsSince": null,
+      "placement": { "locationId": "bell-tower", "since": null }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "feature-1e6b3d90",
+      "kind": "feature",
+      "name": "Верёвка колокола",
+      "description": "Толстая пеньковая верёвка, разлохмаченная и позеленевшая там, где её связали узлом.",
+      "existsSince": null,
+      "placement": { "locationId": "bell-tower", "since": null }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "feature-8a2f6c14",
+      "kind": "feature",
+      "name": "Взрытая грязь",
+      "description": "Берег у брода истоптан множеством маленьких ног и изборождён там, где что-то волокли.",
+      "existsSince": null,
+      "placement": { "locationId": "willow-ford", "since": null }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "feature-0d9b5e72",
+      "kind": "feature",
+      "name": "Затонувший алтарь",
+      "description": "Каменный алтарь стоит в воде глубиной в ладонь; резные колокола на нём стёрлись до гладкости.",
+      "existsSince": null,
+      "placement": { "locationId": "drowned-chapel", "since": null }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "feature-f3c7a185",
+      "kind": "feature",
+      "name": "Треснувшая плита",
+      "description": "Широкая плита перед алтарём, треснувшая поперёк; в одном углу вырезан маленький колокол.",
+      "existsSince": null,
+      "placement": { "locationId": "drowned-chapel", "since": null }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "feature-b57d2e3a",
+      "kind": "feature",
+      "name": "Болотные огни",
+      "description": "Бледные огни плывут над тростником и отступают, если к ним подойти.",
+      "existsSince": null,
+      "placement": { "locationId": "fogmarsh", "since": null }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "feature-6e0a4bd2",
+      "kind": "feature",
+      "name": "Утонувший колокол",
+      "description": "Древний колокол низко висит над чёрной водой; когда он качается, вода вздрагивает раньше, чем приходит звук.",
+      "existsSince": null,
+      "placement": { "locationId": "location-c81f04da", "since": null }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "brisk-cargo",
+      "kind": "item",
+      "name": "Повозка с маслом и солью",
+      "description": "Крытая повозка: кувшины с маслом в соломе и мешки серой соли; в оглоблях терпеливый мул.",
+      "existsSince": null,
+      "placement": { "locationId": "north-gate", "since": null }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "item-4f8e2c61",
+      "kind": "item",
+      "name": "Просмолённая книга счетов",
+      "description": "Книга счетов в просмолённой обложке, завёрнутая в промасленную ткань; последние страницы исписаны торопливой рукой.",
+      "existsSince": null,
+      "placement": { "locationId": "sunken-mill", "since": null }
+    },
+    {
+      "type": "SetMapPins",
+      "regionId": "fenlands",
+      "pins": [
+        { "placeId": "ravenford", "x": 0.67, "y": 0.68 },
+        { "placeId": "willow-ford", "x": 0.53, "y": 0.49 },
+        { "placeId": "hollowmere", "x": 0.55, "y": 0.27 },
+        { "placeId": "drowned-chapel", "x": 0.34, "y": 0.1 },
+        { "placeId": "sunken-mill", "x": 0.76, "y": 0.16 }
+      ]
+    },
+    {
+      "type": "SetRoute",
+      "fromId": "ravenford",
+      "toId": "willow-ford",
+      "route": { "miles": 14, "terrain": "grassland", "road": true }
+    },
+    {
+      "type": "SetRoute",
+      "fromId": "willow-ford",
+      "toId": "hollowmere",
+      "route": { "miles": 16, "terrain": "grassland", "road": true }
+    },
+    {
+      "type": "SetRoute",
+      "fromId": "hollowmere",
+      "toId": "sunken-mill",
+      "route": { "miles": 3, "terrain": "swamp", "road": false }
+    },
+    {
+      "type": "SetRoute",
+      "fromId": "hollowmere",
+      "toId": "drowned-chapel",
+      "route": { "miles": 4, "terrain": "swamp", "road": false }
+    },
+    {
+      "type": "SetRoute",
+      "fromId": "sunken-mill",
+      "toId": "drowned-chapel",
+      "route": { "miles": 5, "terrain": "swamp", "road": false }
+    },
+    {
+      "type": "StartScene",
+      "sceneId": "hollowmere-departure",
+      "title": "Повозка в Холлоумир",
+      "locationId": "north-gate"
+    }
+  ]
+}

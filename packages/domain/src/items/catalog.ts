@@ -9,6 +9,13 @@ export const itemEntry = (catalogId: string): ItemEntry | undefined =>
   catalogEntry(catalogId) ?? srdItemEntry(catalogId);
 
 /**
+ * How a thing is made (docs/adr/0057-encounters-maps-loot.md §9): its entry's tools, or, for one of
+ * Ravenford's weapons, those of the SRD weapon it fights as. Undefined: no tool makes it.
+ */
+export const craftOf = (entry: ItemEntry): ItemEntry['craft'] =>
+  entry.craft ?? (entry.weapon ? srdItemEntry(`srd-${entry.weapon}`)?.craft : undefined);
+
+/**
  * A magic weapon, armor, shield or ammunition made on its base (docs/adr/0054-items-as-data.md §5):
  * the base's kind, slots, stack, weight, armor and weapon; the magic entry's name, words and magic;
  * the worth of both.

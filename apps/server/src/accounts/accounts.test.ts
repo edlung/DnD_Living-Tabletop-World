@@ -1,6 +1,13 @@
 import { randomBytes } from 'node:crypto';
 
-import type { AccountResponse, EnteredCampaignResponse, QuestListResponse } from '@ltw/contracts';
+import type {
+  AccountResponse,
+  DmLibraryResponse,
+  EnteredCampaignResponse,
+  KnownEntitiesResponse,
+  PreparedEncounterListResponse,
+  QuestListResponse,
+} from '@ltw/contracts';
 import type { LightMyRequestResponse } from 'fastify';
 import { describe, expect, it } from 'vitest';
 
@@ -338,6 +345,56 @@ describe('accounts', () => {
     // The DM of the new campaign invites as any DM does.
     const { token } = await table.invite(session, 'elowen-starwhisper', campaignId);
     expect((await table.redeem(token)).statusCode).toBe(200);
+  });
+
+  it('creates a campaign from The Bells of Hollowmere that reads its own books and library', async () => {
+    // docs/adr/0058-campaign-content.md §5: a second ready adventure, for levels 1 to 5.
+    const table = await signInTable();
+    const { account } = await joinedAccount(table);
+    const created = await table.send(
+      'POST',
+      '/account/campaigns',
+      { cookie: account },
+      { template: 'hollowmere-en' },
+    );
+    expect(created.statusCode).toBe(201);
+    const { campaignId } = created.json<EnteredCampaignResponse>();
+    const state = (await table.engine.load(campaignId))?.state;
+    expect(state?.campaign).toMatchObject({ language: 'en', adventure: 'hollowmere' });
+    // Four ready-made characters, every seat free for the DM's invitations.
+    const characters = [...(state?.entities.values() ?? [])].filter(
+      (one) => one.kind === 'character',
+    );
+    expect(characters.map((one) => one.name).sort()).toEqual([
+      'Bryn Ashdown',
+      'Hesk Coalbeard',
+      'Lyra Venn',
+      'Wren Underbough',
+    ]);
+    expect(state?.roster.size).toBe(0);
+    // Its GPT pictures, approved by its DM: Hollowmere's own, and Ravenford's North Gate it opens at.
+    expect(state?.assets.canonical.has('hollowmere')).toBe(true);
+    expect(state?.assets.canonical.has('north-gate')).toBe(true);
+    const cookie = cookieOf(created, 'ltw_session') ?? '';
+    const read = (path: string) =>
+      table.send('GET', `/campaigns/${campaignId}/${path}`, { cookie });
+    // Its DM opens where its scene is played: Ravenford's North Gate, not Ravenford's square.
+    const directory = (await read('entities?perspective=DM')).json<KnownEntitiesResponse>();
+    expect(directory.scenePlaceId).toBe('north-gate');
+    // Its quests and prepared encounters, not Ravenford's.
+    const quests = (await read('quests?perspective=DM')).json<QuestListResponse>().quests;
+    expect(quests.map((quest) => quest.title)).toContain('The Widow’s Wagon');
+    expect(quests.map((quest) => quest.title)).not.toContain('The Missing Caravan');
+    const prepared = (await read('encounters/prepared')).json<PreparedEncounterListResponse>();
+    expect(prepared.encounters.map((one) => one.title)).toContain('Ambush at the Willow Ford');
+    // Its DM's library: the handouts and the tables it was written with.
+    const library = (await read('dm/library')).json<DmLibraryResponse>();
+    expect(library.handouts.map((one) => one.title)).toContain('A letter of hire');
+    expect(library.tables.map((one) => one.name)).toEqual([
+      'The Mill Road',
+      'Fog on the marsh',
+      'Talk in Hollowmere',
+    ]);
   });
 
   it('stops at ten campaigns of its own', async () => {

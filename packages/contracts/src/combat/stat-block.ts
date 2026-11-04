@@ -233,3 +233,9 @@ export type StatBlock = z.infer<typeof statBlockSchema>;
 export const setStatBlockCommandSchema = z
   .object({ type: z.literal('SetStatBlock'), entityId: entityIdSchema, statBlock: statBlockSchema })
   .strict();
+
+/** `GET …/entities/:entityId/stat-block` (DM only): a block for the DM's editor (ADR 0058 §1). */
+export interface StatBlockResponse {
+  readonly entityId: string;
+  readonly statBlock: StatBlock;
+}

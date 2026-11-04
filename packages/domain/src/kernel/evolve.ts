@@ -5,7 +5,7 @@ import { applyCharacterSheetSet } from '../character/character.ts';
 import {
   applyCombatEnded,
   applyCombatOrderChanged,
-  applyLightSet,
+  applyBattlefieldEvent,
   applyCombatRecord,
   applyCombatRestore,
   applyCombatStarted,
@@ -56,20 +56,14 @@ import {
   withoutAnsweredWish,
 } from '../assets/portrait-wishes.ts';
 import { applyChronicleGenerated, applyChronicleRestore } from '../chronicle/decide.ts';
+import { applyItemEvent, applyItemRestore, isItemEvent } from '../items/evolve.ts';
 import {
-  applyItemEquipped,
-  applyItemAttuned,
-  applyItemChargesRegained,
-  applyItemChargesSpent,
-  applyItemIdentified,
-  applyItemGranted,
-  applyItemRestore,
-  applyItemSplit,
-  applyItemTransferred,
-  applyItemUnequipped,
-  applyItemRecovered,
-  applyItemUsed,
-} from '../items/evolve.ts';
+  applyContentEvent,
+  applyContentRestore,
+  isContentEvent,
+  isContentRestore,
+} from '../content/events.ts';
+import { applyMerchantRestore, applyMerchantSet } from '../items/trade.ts';
 import { applyRelationshipChanged, applyRelationshipRestore } from '../relationships/evolve.ts';
 import { CorruptHistoryError } from './corrupt-history.ts';
 import type { RecordedEvent, Restore } from './events.ts';
@@ -112,10 +106,14 @@ export function evolve(state: WorldState, event: RecordedEvent): WorldState {
 }
 
 function apply(state: WorldState, event: RecordedEvent): WorldState {
+  // Possession and crafting (docs/adr/0039-item-possession.md, 0057 §9).
+  if (isItemEvent(event)) return applyItemEvent(state, event);
+  if (isContentEvent(event)) return applyContentEvent(state, event);
   switch (event.type) {
     case 'CampaignCreated': {
       if (state.campaign !== null) throw new CorruptHistoryError('campaign created twice');
-      const { campaignId, name, worldName, startsAt, dmActorId, language } = event.payload;
+      const { campaignId, name, worldName, startsAt, dmActorId, language, adventure } =
+        event.payload;
       return {
         ...state,
         campaign: {
@@ -125,6 +123,7 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
           startsAt,
           dmActorId,
           language: language ?? DEFAULT_LANGUAGE,
+          adventure: adventure ?? null,
           options: DEFAULT_CAMPAIGN_OPTIONS,
         },
         clock: startsAt,
@@ -237,7 +236,10 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
     case 'CombatOrderChanged':
       return applyCombatOrderChanged(state, event);
     case 'LightSet':
-      return applyLightSet(state, event);
+    case 'TerrainPainted':
+    case 'FogSet':
+    case 'TrapChanged':
+      return applyBattlefieldEvent(state, event);
     case 'StatBlockSet':
       return applyStatBlockSet(state, event);
     case 'ActionTaken':
@@ -271,28 +273,6 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
       return applyReactionWindowResumed(state, event);
     case 'RelationshipChanged':
       return applyRelationshipChanged(state, event);
-    case 'ItemGranted':
-      return applyItemGranted(state, event);
-    case 'ItemEquipped':
-      return applyItemEquipped(state, event);
-    case 'ItemUnequipped':
-      return applyItemUnequipped(state, event);
-    case 'ItemUsed':
-      return applyItemUsed(state, event);
-    case 'ItemAttuned':
-      return applyItemAttuned(state, event);
-    case 'ItemChargesSpent':
-      return applyItemChargesSpent(state, event);
-    case 'ItemChargesRegained':
-      return applyItemChargesRegained(state, event);
-    case 'ItemIdentified':
-      return applyItemIdentified(state, event);
-    case 'ItemRecovered':
-      return applyItemRecovered(state, event);
-    case 'ItemTransferred':
-      return applyItemTransferred(state, event);
-    case 'ItemSplit':
-      return applyItemSplit(state, event);
     case 'WeatherSet':
       return applyWeatherSet(state, event);
     case 'CampaignOptionsSet':
@@ -308,6 +288,8 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
       return withoutAnsweredWish(applyAssetEvent(state, event), event);
     case 'PortraitAsked':
       return applyPortraitAsked(state, event);
+    case 'MerchantSet':
+      return applyMerchantSet(state, event);
     case 'AssetAdopted':
     case 'AssetJobStarted':
     case 'AssetGenerated':
@@ -315,6 +297,7 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
     case 'AssetRequestCancelled':
     case 'AssetRetracted':
     case 'AssetApproved':
+    case 'BattleMapAligned':
       return applyAssetEvent(state, event);
     case 'AuthoringPremisesRecorded':
       // Reads only (ADR 0019 §2): the entities it names must exist.
@@ -335,21 +318,21 @@ function applyUndo(
   const ordered = [...event.payload.restores].sort(
     (a, b) => Number(!isRemoval(a)) - Number(!isRemoval(b)),
   );
-  let next = ordered.reduce(applyRestore, state);
-  next = {
+  const next = ordered.reduce(applyRestore, state);
+  return {
     ...next,
     commands: withEntry(next.commands, target.commandId, {
       ...target,
       undoneBy: event.causation.commandId,
     }),
   };
-  return next;
 }
 
 const isRemoval = (restore: Restore) =>
   restore.fact === 'entity' || restore.fact === 'scene' || restore.fact === 'session';
 
 function applyRestore(state: WorldState, restore: Restore): WorldState {
+  if (isContentRestore(restore)) return applyContentRestore(state, restore);
   switch (restore.fact) {
     case 'entity':
       requireEntity(state, restore.entityId);
@@ -433,6 +416,7 @@ function applyRestore(state: WorldState, restore: Restore): WorldState {
     case 'relationship':
       return applyRelationshipRestore(state, restore);
     case 'possession':
+    case 'crafting':
       return applyItemRestore(state, restore);
     case 'assetRequest':
     case 'asset':
@@ -446,6 +430,8 @@ function applyRestore(state: WorldState, restore: Restore): WorldState {
       return applyDeathRestore(state, restore);
     case 'portraitWish':
       return applyPortraitWishRestore(state, restore);
+    case 'merchant':
+      return applyMerchantRestore(state, restore);
     case 'chronicle':
       return applyChronicleRestore(state, restore);
   }

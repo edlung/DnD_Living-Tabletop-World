@@ -218,6 +218,37 @@ application on 4313.
   screen) and `several-characters` (a second character for a player) on sign-in campaigns of their
   own (`sign-in-campaigns.json`). A buzz is counted by replacing `navigator.vibrate` in an init
   script. A persona sign-in does not survive a reload: re-enter the world after `reload()`.
+- Encounters, maps and loot (Stage 670, ADR 0057): `encounters.spec.ts` builds, saves and starts
+  an encounter, sets a goblin down by its plate and a square, drags another by its plate, and moves
+  a foe on its turn (owns `ui-encounters`; the characters' turns end by commands sent through
+  `page.request`). An occupied square at the board's far edge lies under its own plate: press the
+  plate (`.board-plate`), as a person does, rather than the square. `paint-terrain.spec.ts` (owns
+  `ui-terrain`) starts its fight through the saved-encounter routes with `page.request`, then paints
+  by presses, a stroke and the brush card, and reads the DM's history.
+  `battle-map.spec.ts` (owns `ui-battle-map`: a party campaign with the curated pictures, and the
+  test asset worker runs on it) uploads a map drawn on a canvas, lines its grid up and starts a fight
+  on the road; the map's place on the flat board is measured against the plane.
+  `board-tools.spec.ts` (owns `ui-board-tools`) measures and lays areas as a player; nothing of it
+  may reach the DM's board. `marks.spec.ts` (owns `ui-marks`) lays the table's marks as the DM and,
+  once allowed, as a player, and reads each on the other's board without a refresh; a ping fades in
+  4 s, so a ping is checked on its author's board only and the other screen is checked with the
+  marks that stand (the pointer, a stroke, an area). `traps.spec.ts` (owns `ui-traps`) lays a
+  hidden pit and fire with the brush on flat boards (a name plate covers the square below a token
+  on either view; lay what is pressed clear of plates), then walks Elowen onto the pit: a path
+  that ties around a trap may pass it by, so the journey ends its move on the trap's square. Its
+  second journey (owns `ui-traps-found`) has Elowen notice hidden darts as she heads for them; her
+  route may come beside them diagonally, so it reads where she stopped from the fight.
+  `loot.spec.ts` owns `ui-loot` (an item campaign: treasure, the stash) and `ui-loot-fight` (a
+  party campaign: a goblin's gold after the fight). A thing lying at a place shows to the player
+  as "Unidentified item" until looked at: pick it up by that name.
+  `trade.spec.ts` owns `ui-trade` (an item campaign: Elowen with twenty crowns more). The DM's give
+  route answers the ware's name; the journey trades by that name, never a guessed one.
+  `crafting.spec.ts` owns `ui-craft` and `ui-craft-ru` (item campaigns: Elowen knows and carries the
+  Herbalism Kit and the calligrapher's supplies, with thirty crowns more; Brann knows the kit).
+  `travel.spec.ts` owns `ui-travel` and `ui-travel-ru` (party campaigns: the party on the Old Trade
+  Road, no map yet); the journey pins places by their across and down fields, not by clicking.
+  `editors.spec.ts` owns `ui-editors` and `ui-editors-ru` (party campaigns on the Old Trade Road);
+  a creature made from the bestiary lists two edits (made, its numbers): take the newest.
 - Native apps (ADR 0070, `native-shell.spec.ts`): a stand-in shell installed with `addInitScript`
   records what the page posts, and the journey speaks for the shell with `ltw-native` events; it owns
   the `native` sign-in campaign. The apps themselves are checked on the simulator and the emulator.

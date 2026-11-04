@@ -10,6 +10,7 @@ import {
   assetIdSchema,
   assetLabelSchema,
   assetRequestIdSchema,
+  battleMapGridSchema,
   contentHashSchema,
   entityIdSchema,
 } from '@ltw/contracts';
@@ -94,6 +95,11 @@ export const assetRetractedPayloadSchema = z
   .object({ assetId: assetIdSchema, entityId: entityIdSchema, wasCanonical: z.boolean() })
   .strict();
 
+/** A battle map's grid lined up by the DM (docs/adr/0057-encounters-maps-loot.md §3). */
+export const battleMapAlignedPayloadSchema = z
+  .object({ assetId: assetIdSchema, grid: battleMapGridSchema })
+  .strict();
+
 /**
  * An approval as version 2 wrote it (Stages 150 to 330 part B): only a reference superseded
  * anything, the canonical reference it replaced (`previous`). Read alike, with nothing else
@@ -142,6 +148,7 @@ const assetRecordSchema = z
     generator,
     status: z.enum(ASSET_STATUSES),
     origin: bootstrapAssetOriginSchema.optional(),
+    grid: battleMapGridSchema.optional(),
   })
   .strict();
 

@@ -4,7 +4,7 @@ import type { WorldState } from '../kernel/state.ts';
 import type { ResolvedPerspective } from '../knowledge/perspective.ts';
 import { entityRef } from '../knowledge/projection.ts';
 import { itemEntry } from './catalog.ts';
-import { carriedBy, entryOf, possessionOf } from './records.ts';
+import { PARTY_STASH, carriedBy, entryOf, isPartyCharacter, possessionOf } from './records.ts';
 
 /**
  * What a character carries, for the DM or for that character's own perspective
@@ -19,68 +19,87 @@ export function inventoryView(
   const dm = perspective.kind === 'DM';
   if (!dm && (perspective.kind !== 'CHARACTER' || perspective.holderId !== entityId)) return null;
   const holder = state.entities.get(entityId);
-  if (holder?.kind !== 'character' && holder?.kind !== 'npc') return null;
-  const items: InventoryItem[] = [];
-  for (const itemId of carriedBy(state, entityId)) {
-    const possession = possessionOf(state, itemId);
-    const entity = state.entities.get(itemId);
-    if (!possession || entity?.status !== 'active') continue;
-    // A magic one made on a base, with the base's numbers (docs/adr/0054-items-as-data.md §5).
-    const entry = entryOf(possession);
-    // Unidentified, its carrier sees what it looks like (§5): a base's look, or an unknown thing.
-    const unknown = !dm && possession.unidentified === true;
-    const base =
-      possession.baseCatalogId === undefined ? undefined : itemEntry(possession.baseCatalogId);
-    const seen = unknown ? (base ?? (entry ? unknownMagic(entry) : undefined)) : entry;
-    items.push({
-      itemId,
-      name: entity.name,
-      description: entity.description,
-      quantity: possession.quantity,
-      slot: possession.slot,
-      attuned: possession.attuned === true,
-      unidentified: possession.unidentified === true,
-      // Its charges: told once it is known, or to the DM (§5).
-      charges:
-        !unknown && possession.charges !== undefined && entry?.magic?.charges
-          ? { left: possession.charges, max: entry.magic.charges.max }
-          : null,
-      catalog: seen
-        ? {
-            itemId: seen.itemId,
-            category: seen.category,
-            name: { ru: seen.name.ru, en: seen.name.en },
-            description: { ru: seen.description.ru, en: seen.description.en },
-            weightLb: seen.weightLb,
-            slots: [...seen.slots],
-            effect: seen.effect ? { ...seen.effect } : null,
-            valueCp: seen.valueCp,
-            armor: seen.armor ? { baseAc: seen.armor.baseAc, dexCap: seen.armor.dexCap } : null,
-            shieldBonus: seen.shieldBonus ?? null,
-            weapon: seen.weapon ?? null,
-            source: seen.source ?? null,
-            look: seen.look ?? null,
-            untranslated: seen.untranslated === true,
-            // The SRD's words come from the server (`@ltw/rules`), which the domain cannot read.
-            text: null,
-            magic: seen.magic
-              ? {
-                  rarity: seen.magic.rarity,
-                  attunement: seen.magic.attunement,
-                  bonus: seen.magic.bonus ? { ...seen.magic.bonus } : null,
-                  // A curse: the DM's, or its carrier's once attuned.
-                  cursed: seen.magic.cursed === true && (dm || possession.attuned === true),
-                }
-              : null,
-          }
-        : null,
-    });
-  }
+  // A creature's things are the DM's to see until it falls (ADR 0057 §7).
+  const creature = dm && holder?.kind === 'creature';
+  if (holder?.kind !== 'character' && holder?.kind !== 'npc' && !creature) return null;
+  const items = carriedBy(state, entityId).flatMap((itemId) => {
+    const one = inventoryItem(state, dm, itemId);
+    return one ? [one] : [];
+  });
+  // The party's stash, for a member of the party (docs/adr/0057-encounters-maps-loot.md §7).
+  const stash = isPartyCharacter(state, entityId)
+    ? carriedBy(state, PARTY_STASH).flatMap((itemId) => {
+        const one = inventoryItem(state, dm, itemId);
+        return one ? [one] : [];
+      })
+    : null;
   return {
     perspective: perspective.label,
     entity: entityRef(state, entityId),
     items,
+    ...(stash ? { stash } : {}),
     totalWeightLb: carriedWeightLb(state, entityId),
+  };
+}
+
+/** One item as its viewer may know it: a magic one's base, an unidentified one's look (§5). */
+export function inventoryItem(
+  state: WorldState,
+  dm: boolean,
+  itemId: string,
+): InventoryItem | null {
+  const possession = possessionOf(state, itemId);
+  const entity = state.entities.get(itemId);
+  if (!possession || entity?.status !== 'active') return null;
+  // A magic one made on a base, with the base's numbers (docs/adr/0054-items-as-data.md §5).
+  const entry = entryOf(possession);
+  // Unidentified, its carrier sees what it looks like (§5): a base's look, or an unknown thing.
+  const unknown = !dm && possession.unidentified === true;
+  const base =
+    possession.baseCatalogId === undefined ? undefined : itemEntry(possession.baseCatalogId);
+  const seen = unknown ? (base ?? (entry ? unknownMagic(entry) : undefined)) : entry;
+  return {
+    itemId,
+    name: entity.name,
+    description: entity.description,
+    quantity: possession.quantity,
+    slot: possession.slot,
+    attuned: possession.attuned === true,
+    unidentified: possession.unidentified === true,
+    // Its charges: told once it is known, or to the DM (§5).
+    charges:
+      !unknown && possession.charges !== undefined && entry?.magic?.charges
+        ? { left: possession.charges, max: entry.magic.charges.max }
+        : null,
+    catalog: seen
+      ? {
+          itemId: seen.itemId,
+          category: seen.category,
+          name: { ru: seen.name.ru, en: seen.name.en },
+          description: { ru: seen.description.ru, en: seen.description.en },
+          weightLb: seen.weightLb,
+          slots: [...seen.slots],
+          effect: seen.effect ? { ...seen.effect } : null,
+          valueCp: seen.valueCp,
+          armor: seen.armor ? { baseAc: seen.armor.baseAc, dexCap: seen.armor.dexCap } : null,
+          shieldBonus: seen.shieldBonus ?? null,
+          weapon: seen.weapon ?? null,
+          source: seen.source ?? null,
+          look: seen.look ?? null,
+          untranslated: seen.untranslated === true,
+          // The SRD's words come from the server (`@ltw/rules`), which the domain cannot read.
+          text: null,
+          magic: seen.magic
+            ? {
+                rarity: seen.magic.rarity,
+                attunement: seen.magic.attunement,
+                bonus: seen.magic.bonus ? { ...seen.magic.bonus } : null,
+                // A curse: the DM's, or its carrier's once attuned.
+                cursed: seen.magic.cursed === true && (dm || possession.attuned === true),
+              }
+            : null,
+        }
+      : null,
   };
 }
 

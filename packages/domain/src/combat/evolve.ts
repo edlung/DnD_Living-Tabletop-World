@@ -1,3 +1,5 @@
+import { fogBattlefield, paintBattlefield, type Battlefield } from '@ltw/contracts';
+
 import { CorruptHistoryError } from '../kernel/corrupt-history.ts';
 import type { RecordedEvent, Restore } from '../kernel/events.ts';
 import { withEntry, withoutEntry } from '../kernel/maps.ts';
@@ -66,6 +68,73 @@ export function applyLightSet(state: WorldState, event: EventOf<'LightSet'>): Wo
     encounter: {
       ...encounter,
       battlefield: { ...encounter.battlefield, ambient: event.payload.ambient },
+    },
+  };
+}
+
+/** The fight's light, ground and fog as the DM sets them (ADR 0050 §1; ADR 0057 §2, §4). */
+export function applyBattlefieldEvent(
+  state: WorldState,
+  event: EventOf<'LightSet' | 'TerrainPainted' | 'FogSet' | 'TrapChanged'>,
+): WorldState {
+  if (event.type === 'LightSet') return applyLightSet(state, event);
+  if (event.type === 'TerrainPainted') return applyTerrainPainted(state, event);
+  if (event.type === 'TrapChanged') return applyTrapChanged(state, event);
+  // The fog of war laid or lifted (docs/adr/0057-encounters-maps-loot.md §4).
+  const encounter = requireEncounter(state, 'fog');
+  if (encounter.encounterId !== event.payload.encounterId) {
+    throw new CorruptHistoryError('fog for another fight');
+  }
+  const { squares, hidden } = event.payload;
+  return {
+    ...state,
+    encounter: {
+      ...encounter,
+      battlefield: fogBattlefield(encounter.battlefield, squares, hidden),
+    },
+  };
+}
+
+/**
+ * A trap that sprang, was found or disarmed (docs/adr/0057-encounters-maps-loot.md §6): the trap on
+ * the square becomes the event's, and the rubble or the open pit it leaves lies on its squares.
+ */
+function applyTrapChanged(state: WorldState, event: EventOf<'TrapChanged'>): WorldState {
+  const encounter = requireEncounter(state, 'trap');
+  if (encounter.encounterId !== event.payload.encounterId) {
+    throw new CorruptHistoryError('a trap of another fight');
+  }
+  const { square, trap, rubble, pitFt } = event.payload;
+  const traps = encounter.battlefield.traps ?? [];
+  const at = traps.findIndex((one) =>
+    one.squares.some(({ x, y }) => x === square.x && y === square.y),
+  );
+  if (at < 0) throw new CorruptHistoryError('no trap on that square');
+  let battlefield: Battlefield = {
+    ...encounter.battlefield,
+    traps: traps.map((one, index) => (index === at ? trap : one)),
+  };
+  if (rubble) battlefield = paintBattlefield(battlefield, trap.squares, { kind: 'difficult' });
+  if (pitFt !== undefined)
+    battlefield = paintBattlefield(battlefield, trap.squares, { kind: 'ground', ft: -pitFt });
+  return { ...state, encounter: { ...encounter, battlefield } };
+}
+
+/** The DM's brush on the fight's ground (docs/adr/0057-encounters-maps-loot.md §2). */
+export function applyTerrainPainted(
+  state: WorldState,
+  event: EventOf<'TerrainPainted'>,
+): WorldState {
+  const encounter = requireEncounter(state, 'terrain');
+  if (encounter.encounterId !== event.payload.encounterId) {
+    throw new CorruptHistoryError('terrain for another fight');
+  }
+  const { squares, paint } = event.payload;
+  return {
+    ...state,
+    encounter: {
+      ...encounter,
+      battlefield: paintBattlefield(encounter.battlefield, squares, paint),
     },
   };
 }
