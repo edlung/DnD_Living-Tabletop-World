@@ -19,6 +19,8 @@ const RESULTS = ['Wolves', 'A pedlar', 'Bandits'];
 /** Names of this run's own: a retry finds the first run's letter and table beside its own. */
 const LETTER = `A letter, unsigned ${randomUUID().slice(0, 4)}`;
 const ROAD = `Road encounters ${randomUUID().slice(0, 4)}`;
+/** A throw on a loaded runner: the engine's load and the landing are bounded, its timers slow. */
+const LANDS = { timeout: 30_000 };
 
 test('the DM keeps a letter for later, changes it, and gives it to the party', async ({
   browser,
@@ -92,15 +94,20 @@ test('the DM writes a random table and rolls it, for the DM alone and for the ta
   const playerLog = player.locator('#sheet-dice').getByRole('region', { name: 'Recent rolls' });
   const dmLog = dm.locator('#sheet-dice').getByRole('region', { name: 'Recent rolls' });
   await road.getByRole('button', { name: `Roll for me: ${ROAD}` }).click();
+  // The log lists a roll once its dice have landed, the table's result on the plate.
+  await expect(dm.locator('.dice-plate .dice-table-result')).toBeVisible(LANDS);
   const secret = dmLog.getByRole('listitem').filter({ hasText: `Table: ${ROAD}` });
-  await expect(secret).toHaveCount(1);
+  await expect(secret).toHaveCount(1, LANDS);
   await expect(secret).toContainText('Hidden');
   expect(RESULTS).toContain((await secret.locator('.dice-table-result').textContent()) ?? '');
   await road.getByRole('button', { name: `Roll for the table: ${ROAD}` }).click();
-  await expect(dmLog.getByRole('listitem').filter({ hasText: `Table: ${ROAD}` })).toHaveCount(2);
+  await expect(dmLog.getByRole('listitem').filter({ hasText: `Table: ${ROAD}` })).toHaveCount(
+    2,
+    LANDS,
+  );
   const shown = playerLog.getByRole('listitem').filter({ hasText: `Table: ${ROAD}` });
   // Only the roll for the table reaches the player, its result with it.
-  await expect(shown).toHaveCount(1);
+  await expect(shown).toHaveCount(1, LANDS);
   const said = (await shown.locator('.dice-table-result').textContent()) ?? '';
   expect(RESULTS).toContain(said);
 });
