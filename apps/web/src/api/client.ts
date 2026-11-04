@@ -1,4 +1,4 @@
-import type { SessionResponse } from '@ltw/contracts';
+import type { SessionResponse, TrackView } from '@ltw/contracts';
 
 /** Mounted identity metadata, never a credential or a fresh cookie probe. */
 export interface GameSignOutGuard {
@@ -201,5 +201,65 @@ export class WorldApi {
       throw this.failure(0);
     }
     return blob;
+  }
+
+  /**
+   * Where a screen's audio reads one of the DM's tracks (docs/adr/0059-atmosphere.md §3): its
+   * address on this server, which the browser's audio asks a range at a time with the session's
+   * cookie; with a development persona, whose token no audio element sends, the whole track as a
+   * blob (the caller revokes it).
+   */
+  async trackSource(trackId: string, signal: AbortSignal): Promise<string> {
+    const path = `music/${encodeURIComponent(trackId)}`;
+    if (this.connection.kind === 'session') {
+      return `/api/campaigns/${encodeURIComponent(this.connection.campaignId)}/${path}`;
+    }
+    const response = await this.response(path, signal, false);
+    return URL.createObjectURL(await response.blob());
+  }
+
+  /**
+   * A track's bytes as they are, the DM's upload (ADR 0059 §3), given two minutes for a slow line:
+   * the track added, or why not — not a sound file, the campaign's thirty, or a failure.
+   */
+  async uploadTrack(
+    file: Blob,
+    title: string,
+    requestId: string,
+    signal: AbortSignal,
+  ): Promise<TrackView | 'audio' | 'limit' | 'failed'> {
+    const credential = credentialOptions(this.connection);
+    const query = new URLSearchParams({ title, requestId }).toString();
+    let response: Response;
+    try {
+      // Called unbound, as `fetch` must be.
+      const transport = this.transport;
+      response = await transport(
+        `/api/campaigns/${encodeURIComponent(this.connection.campaignId)}/music?${query}`,
+        {
+          method: 'POST',
+          body: file,
+          signal: AbortSignal.any([signal, AbortSignal.timeout(120_000)]),
+          headers: { ...credential.headers, 'Content-Type': 'application/octet-stream' },
+          cache: 'no-store',
+          credentials: credential.credentials,
+          redirect: 'error',
+        },
+      );
+    } catch {
+      return 'failed';
+    }
+    if (this.connection.kind === 'session' && response.status === 401) {
+      this.connection.onSignedOut();
+    }
+    try {
+      const data = (await response.json()) as { reason?: unknown } & Partial<TrackView>;
+      if (response.status === 201 && typeof data.trackId === 'string') return data as TrackView;
+      if (data.reason === 'audio') return 'audio';
+      if (data.reason === 'limit') return 'limit';
+    } catch {
+      // No body to read: a failure like any other.
+    }
+    return 'failed';
   }
 }

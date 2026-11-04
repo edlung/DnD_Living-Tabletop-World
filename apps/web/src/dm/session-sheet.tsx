@@ -15,6 +15,7 @@ import { useSignInKind } from '../session/sign-in-kind.ts';
 import { Glyph } from '../visual/glyph.tsx';
 import { useRereadOn } from '../world/use-world-data.ts';
 import { CampaignOptionsForm } from './campaign-options.tsx';
+import { MusicPanel } from './music-panel.tsx';
 import { SoundChoice } from './sound-choice.tsx';
 import type { DmTableCommand } from './table-commands.ts';
 
@@ -80,45 +81,55 @@ export function SessionSheet({
   };
   return (
     <div className="session-sheet">
-      {ended !== null && table.session === null && (
-        <div className="tool-group session-ended" role="status">
-          <p>
-            {ended === '' ? t('The session is over.') : `${t('The session is over.')} ${ended}`}
-          </p>
-          <button type="button" className="primary-button" onClick={onWriteChapter}>
-            <Glyph name="chronicle" />
-            {t('Write the chapter')}
-          </button>
-        </div>
-      )}
-      {table.session === null ? (
-        <StartForm
+      {/* The session itself and its music, one column: the table's own controls beside it. */}
+      <div className="session-main">
+        {ended !== null && table.session === null && (
+          <div className="tool-group session-ended" role="status">
+            <p>
+              {ended === '' ? t('The session is over.') : `${t('The session is over.')} ${ended}`}
+            </p>
+            <button type="button" className="primary-button" onClick={onWriteChapter}>
+              <Glyph name="chronicle" />
+              {t('Write the chapter')}
+            </button>
+          </div>
+        )}
+        {table.session === null ? (
+          <StartForm
+            api={api}
+            locked={locked}
+            onStart={(title, mode) => {
+              setEnded(null);
+              void change({ mode }).then(() => {
+                onRun({ type: 'StartSession', title });
+              });
+            }}
+          />
+        ) : (
+          <Running
+            title={table.session.title}
+            sessionId={table.session.sessionId}
+            mode={table.mode}
+            paused={table.paused}
+            locked={locked}
+            api={api}
+            onPause={(paused) => void change({ paused })}
+            onEnd={(sessionId) => {
+              void change({ paused: false }).then(() => {
+                onRun({ type: 'EndSession', sessionId });
+              });
+            }}
+            onEnded={setEnded}
+          />
+        )}
+        {/* The DM's music (ADR 0059 §3): where the ambience plays, from the same moment. */}
+        <MusicPanel
           api={api}
-          locked={locked}
-          onStart={(title, mode) => {
-            setEnded(null);
-            void change({ mode }).then(() => {
-              onRun({ type: 'StartSession', title });
-            });
-          }}
+          revision={revision + round}
+          music={table.sound.music}
+          onChange={(music) => change({ music })}
         />
-      ) : (
-        <Running
-          title={table.session.title}
-          sessionId={table.session.sessionId}
-          mode={table.mode}
-          paused={table.paused}
-          locked={locked}
-          api={api}
-          onPause={(paused) => void change({ paused })}
-          onEnd={(sessionId) => {
-            void change({ paused: false }).then(() => {
-              onRun({ type: 'EndSession', sessionId });
-            });
-          }}
-          onEnded={setEnded}
-        />
-      )}
+      </div>
       <section className="tool-group lobby" aria-labelledby={`${ids}-lobby`}>
         <h3 id={`${ids}-lobby`}>
           <Glyph name="party" />

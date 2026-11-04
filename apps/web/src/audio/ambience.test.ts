@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { AmbiencePlayer, FADE_SECONDS } from './ambience.ts';
+import { AmbiencePlayer, DUCKED, FADE_SECONDS } from './ambience.ts';
 import { chirps, crackles, raindrops } from './schedule.ts';
 import { FakeAudioContext as Context, Gain, RATE } from './testing/fake-audio.ts';
 
@@ -98,12 +98,18 @@ describe('the table’s ambience', () => {
     expect(context.nodes).toHaveLength(built);
   });
 
-  it('sits at half the dice’s loudness at this screen’s volume', () => {
+  it('sits at half the dice’s loudness at this screen’s volume, lower beneath music', () => {
     const { out, context, ambience } = player();
-    const level = context.nodes.find((node): node is Gain => node.outputs.includes(out));
+    const duck = context.nodes.find((node): node is Gain => node.outputs.includes(out));
+    const level = context.nodes.find(
+      (node): node is Gain => duck !== undefined && node.outputs.includes(duck),
+    );
     expect(level?.gain.value).toBe(0);
     ambience.volume(0.8);
     expect(level?.gain.events).toEqual([{ kind: 'target', value: 0.4, at: 0 }]);
+    ambience.duck(true);
+    ambience.duck(false);
+    expect(duck?.gain.events.map((event) => event.value)).toEqual([DUCKED, 1]);
   });
 
   it('skips what a sleeping screen missed and plays on from now', () => {

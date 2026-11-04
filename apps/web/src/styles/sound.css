@@ -39,3 +39,48 @@
 .lobby-sound .muted {
   margin: 4px 0 0;
 }
+
+/* The DM's music (dm/music-panel.tsx, ADR 0059 §3): what plays, the tracks, adding one. */
+.music-panel {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+}
+.music-now {
+  display: grid;
+  gap: 4px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-panel);
+}
+.music-now p,
+.music-panel > .muted {
+  margin: 0;
+}
+.music-list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.music-row {
+  display: grid;
+  gap: 4px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-panel);
+}
+.music-row-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 8px;
+  min-width: 0;
+}
+.music-row-head strong {
+  overflow-wrap: anywhere;
+}
+.music-panel .action-row {
+  margin: 0;
+}

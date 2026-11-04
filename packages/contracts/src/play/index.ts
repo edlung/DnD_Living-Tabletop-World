@@ -5,6 +5,7 @@
  */
 export * from '../display/display.ts';
 export * from '../display/sound.ts';
+export * from '../display/music.ts';
 export * from '../chat/chat.ts';
 export * from './handouts.ts';
 export * from './library.ts';

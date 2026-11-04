@@ -2,7 +2,7 @@ import { useT } from '@ltw/ui';
 import { useState, type Ref } from 'react';
 
 import type { LiveStatus } from '../api/live.ts';
-import { SoundOnButton } from '../audio/table-sound.tsx';
+import { SoundOnButton } from '../audio/sound-on.tsx';
 import { GuideButton, GuideDialog } from '../guide/guide.tsx';
 import { AccountButton } from '../session/account-menu.tsx';
 import { ConnectionBadge } from '../session/live-status.tsx';

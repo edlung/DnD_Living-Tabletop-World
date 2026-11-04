@@ -1,17 +1,29 @@
-import { FRESH_SOUND, ambienceChoiceSchema, type TableDice, type TableMode } from '@ltw/contracts';
+import {
+  FRESH_SOUND,
+  ambienceChoiceSchema,
+  musicPlayingSchema,
+  type TableDice,
+  type TableMode,
+  type TableSound,
+} from '@ltw/contracts';
 import type pg from 'pg';
 
 import { FRESH_TABLE, type TableState, type TableStateStore } from './table-state.ts';
 
 /**
  * The table's state on PostgreSQL (migrations 0029, 0031, 0037): one row per campaign, replaced
- * whole. A row written before 0037 has no sound: it reads as a fresh table's.
+ * whole. A row written before 0037 has no sound, and one before 690c no music: each reads as a
+ * fresh table's.
  */
-const soundOf = (value: unknown) => {
-  const ambience = ambienceChoiceSchema.safeParse(
-    typeof value === 'object' && value !== null ? (value as { ambience?: unknown }).ambience : null,
-  );
-  return ambience.success ? { ambience: ambience.data } : FRESH_SOUND;
+const soundOf = (value: unknown): TableSound => {
+  const sound =
+    typeof value === 'object' && value !== null ? (value as Record<string, unknown>) : {};
+  const ambience = ambienceChoiceSchema.safeParse(sound['ambience']);
+  const music = musicPlayingSchema.safeParse(sound['music']);
+  return {
+    ambience: ambience.success ? ambience.data : FRESH_SOUND.ambience,
+    music: music.success ? music.data : null,
+  };
 };
 
 export class PostgresTableStateStore implements TableStateStore {

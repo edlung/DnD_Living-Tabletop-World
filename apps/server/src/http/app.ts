@@ -19,6 +19,8 @@ import { InMemoryHandoutStore } from '../handouts/handout-store.ts';
 import { registerLibraryRoutes } from '../library/library-routes.ts';
 import type { AdventureBooks, AdventurePictures } from '../adventures/adventures.ts';
 import { registerLobbyRoutes } from '../table/lobby-routes.ts';
+import { registerMusicRoutes } from '../music/music-routes.ts';
+import { InMemoryTrackStore, type TrackStore } from '../music/track-store.ts';
 import { memoryLobby, type LobbyDependencies } from '../table/table-state.ts';
 import { registerDisplayRoutes } from '../display/display-routes.ts';
 import { registerTableLinkRoutes } from '../display/table-links.ts';
@@ -141,6 +143,8 @@ export interface AppDependencies {
   readonly marks?: MarkDependencies;
   /** Handouts (ADR 0044 §5): what the DM shows one player or the party; in memory when absent. */
   readonly handouts?: HandoutDependencies;
+  /** The DM's music (docs/adr/0059-atmosphere.md §3); in memory when absent. */
+  readonly music?: TrackStore;
 }
 
 /** Table talk in memory: for compositions without a database. */
@@ -243,7 +247,15 @@ export function buildApp(input: AppDependencies): FastifyInstance {
   registerChronicleRoutes(app, { ...deps, chronicleIds: deps.authoring.ids });
   registerQuestRoutes(app, deps);
   registerPresenceRoutes(app, { ...deps, presence: deps.presence ?? NOBODY_CONNECTED });
-  registerLobbyRoutes(app, { ...deps, lobby, presence: deps.presence ?? NOBODY_CONNECTED });
+  // One set of tracks for the music's routes and the lobby that plays them (ADR 0059 §3).
+  const music = deps.music ?? new InMemoryTrackStore();
+  registerLobbyRoutes(app, {
+    ...deps,
+    lobby,
+    music,
+    presence: deps.presence ?? NOBODY_CONNECTED,
+  });
+  registerMusicRoutes(app, { ...deps, lobby, music });
   registerChatRoutes(app, { ...deps, chat: deps.chat ?? memoryChat() });
   registerMarkRoutes(app, { ...deps, marks: deps.marks ?? memoryMarks() });
   // One set of handouts for the handout routes and the DM's library that gives them (ADR 0058 §3).

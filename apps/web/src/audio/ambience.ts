@@ -8,6 +8,8 @@ export const FADE_SECONDS = 1.5;
 const AHEAD_SECONDS = 2.5;
 /** The ambience sits beneath the dice: its loudest is half of theirs. */
 const LEVEL = 0.5;
+/** Beneath the DM's music, the ambience keeps a third of its loudness. */
+export const DUCKED = 0.35;
 
 /**
  * The table's ambience on one screen (docs/adr/0059-atmosphere.md §1): one soundscape at a time,
@@ -18,6 +20,8 @@ const LEVEL = 0.5;
 export class AmbiencePlayer {
   readonly #context: BaseAudioContext;
   readonly #out: GainNode;
+  /** Lower beneath the DM's music. */
+  readonly #duck: GainNode;
   readonly #kit: NoiseKit;
   #playing: Soundscape | null = null;
   #filledUntil = 0;
@@ -27,7 +31,8 @@ export class AmbiencePlayer {
     this.#context = context;
     this.#out = context.createGain();
     this.#out.gain.value = 0;
-    this.#out.connect(out);
+    this.#duck = context.createGain();
+    this.#out.connect(this.#duck).connect(out);
     this.#kit = noiseKit(context);
   }
 
@@ -60,6 +65,11 @@ export class AmbiencePlayer {
   /** This screen's volume, 0–1, eased so that a slider never clicks. */
   volume(volume: number): void {
     this.#out.gain.setTargetAtTime(volume * LEVEL, this.#context.currentTime, 0.1);
+  }
+
+  /** Lower beneath the DM's music, or back, over half a second or so. */
+  duck(on: boolean): void {
+    this.#duck.gain.setTargetAtTime(on ? DUCKED : 1, this.#context.currentTime, 0.25);
   }
 
   /** Plays the windows due: up to a few seconds from now; a screen that slept skips what it missed. */

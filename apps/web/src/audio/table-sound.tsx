@@ -6,42 +6,29 @@ import {
   type ScenePresentationResponse,
   type SceneSound,
 } from '@ltw/contracts';
-import { useT } from '@ltw/ui';
-import { useCallback, useEffect, useSyncExternalStore } from 'react';
+import { useCallback, useEffect } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
-import { onSoundChange, soundOut, soundRunning, unlockAudio } from '../dice/audio.ts';
+import { soundOut } from '../dice/audio.ts';
 import { useDiceSettings } from '../dice/settings.ts';
 import { useRereadOn } from '../world/use-world-data.ts';
 import { AmbiencePlayer } from './ambience.ts';
+import { useSoundRunning, useWaitForSound } from './sound-on.tsx';
 
 /** One player a page: a screen plays the table's ambience once, wherever it is asked from. */
 let player: AmbiencePlayer | null = null;
+/** The DM's music plays: the ambience sits lower beneath it (ADR 0059 §3). */
+let ducked = false;
 
-/** Whether the table's sound waits on this page for a press: "Sound on" shows while it does. */
-let waiting = false;
-const waitListeners = new Set<() => void>();
-
-function wait(next: boolean): void {
-  if (waiting === next) return;
-  waiting = next;
-  for (const listener of waitListeners) listener();
+/** Lowers the ambience beneath the music, or brings it back. */
+export function duckAmbience(on: boolean): void {
+  ducked = on;
+  player?.duck(on);
 }
-
-const onWait = (listener: () => void) => {
-  waitListeners.add(listener);
-  return () => {
-    waitListeners.delete(listener);
-  };
-};
 
 /** Twice a second the player plays the moments due. */
 const FILL_MS = 500;
-
-/** Whether sound runs on this screen: a press unlocked it and the browser lets it play. */
-export const useSoundRunning = (): boolean =>
-  useSyncExternalStore(onSoundChange, soundRunning, () => false);
 
 /**
  * The place of the scene being played, as this screen's perspective knows it, for a screen that
@@ -90,7 +77,10 @@ function useAmbience(ambience: Ambience | null, volume: number, running: boolean
   useEffect(() => {
     const out = running ? soundOut() : null;
     if (!out) return;
-    player ??= new AmbiencePlayer(out.context, out.out);
+    if (!player) {
+      player = new AmbiencePlayer(out.context, out.out);
+      player.duck(ducked);
+    }
     player.volume(volume);
     player.play(ambience);
   }, [ambience, volume, running]);
@@ -109,32 +99,6 @@ function useAmbience(ambience: Ambience | null, volume: number, running: boolean
       player?.play(null);
     },
     [],
-  );
-}
-
-/** Whether the table's sound waits on this page for its first press. */
-export function useSoundWaiting(): boolean {
-  const wanted = useSyncExternalStore(
-    onWait,
-    () => waiting,
-    () => false,
-  );
-  const running = useSoundRunning();
-  return wanted && !running;
-}
-
-/**
- * The one "Sound on" (ADR 0059 §6): a browser plays only after a press, so while the table's sound
- * waits for one on this page, this button shows in the world's top bar (the table's screen has it
- * in its quiet corner) and goes once sound runs.
- */
-export function SoundOnButton({ className }: { readonly className: string }) {
-  const t = useT();
-  if (!useSoundWaiting()) return null;
-  return (
-    <button type="button" className={className} onClick={unlockAudio}>
-      {t('Sound on')}
-    </button>
   );
 }
 
@@ -161,13 +125,7 @@ export function TableAmbience({
   const scene = useSceneSound(api, refresh, placeId, on && running && choice === 'scene');
   const heard = on ? ambienceFor(choice, scene) : null;
   useAmbience(heard, settings.atmosphereVolume, running);
-  const asking = on;
-  useEffect(() => {
-    wait(asking);
-    return () => {
-      wait(false);
-    };
-  }, [asking]);
+  useWaitForSound('ambience', on);
   // What plays, for tests to read: hidden, so it never takes a share of the screen's layout.
   return (
     <div

@@ -1,7 +1,7 @@
 import { useT } from '@ltw/ui';
 import { useEffect, useState } from 'react';
 
-import { useSoundWaiting } from '../audio/table-sound.tsx';
+import { useSoundWaiting } from '../audio/sound-on.tsx';
 import { unlockAudio } from '../dice/audio.ts';
 import { changeDiceSettings, useDiceSettings } from '../dice/settings.ts';
 

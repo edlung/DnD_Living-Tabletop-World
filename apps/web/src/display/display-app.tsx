@@ -10,6 +10,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { WorldApi, type Connection } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
 import { useScreenAwake } from '../alerts/screen.ts';
+import { TableMusic } from '../audio/table-music.tsx';
 import { TableAmbience } from '../audio/table-sound.tsx';
 import { onForgetAsked, reportToHost } from '../native/tv-report.ts';
 import { useLiveSession } from '../session/use-live-session.ts';
@@ -259,7 +260,8 @@ function DisplayStage({
   );
   const lobby = useResource('display-lobby', loadLobby);
   useRereadOn(live.refresh, lobby.reread);
-  const choice = lobby.resource.status === 'ready' ? lobby.resource.value.sound.ambience : null;
+  const table = lobby.resource.status === 'ready' ? lobby.resource.value : null;
+  const choice = table?.sound.ambience ?? null;
   return (
     <ApprovedImagesContext.Provider value={images}>
       <main
@@ -294,6 +296,7 @@ function DisplayStage({
           </div>
         )}
         <TableAmbience api={api} refresh={live.refresh} choice={choice} placeId={scenePlaceId} />
+        <TableMusic api={api} music={table?.sound.music ?? null} />
         <DisplayCorner name={session.name} onForget={onForget} />
       </main>
     </ApprovedImagesContext.Provider>

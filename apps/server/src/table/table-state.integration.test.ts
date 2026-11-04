@@ -30,7 +30,7 @@ describe('PostgresTableStateStore', () => {
         paused: true,
         absent: ['brann-ironvale'],
         dice: 'physical',
-        sound: { ambience: 'rain' },
+        sound: { ambience: 'rain', music: null },
       },
       '2026-11-02T10:00:00.000Z',
     );
@@ -41,7 +41,15 @@ describe('PostgresTableStateStore', () => {
         paused: false,
         absent: ['brann-ironvale', 'maren-ashby'],
         dice: 'app',
-        sound: { ambience: 'none' },
+        sound: {
+          ambience: 'none',
+          music: {
+            trackId: '3f1d6a2e-9c4b-4e1a-8f3d-2b7c9e5a1d40',
+            repeat: true,
+            startedAt: null,
+            pausedAt: 42.5,
+          },
+        },
       },
       '2026-11-02T10:05:00.000Z',
     );
@@ -50,8 +58,16 @@ describe('PostgresTableStateStore', () => {
       paused: false,
       absent: ['brann-ironvale', 'maren-ashby'],
       dice: 'app',
-      // The table's sound (migration 0037): the ambience the DM chose.
-      sound: { ambience: 'none' },
+      // The table's sound (migration 0037): the ambience the DM chose, the track paused where it was.
+      sound: {
+        ambience: 'none',
+        music: {
+          trackId: '3f1d6a2e-9c4b-4e1a-8f3d-2b7c9e5a1d40',
+          repeat: true,
+          startedAt: null,
+          pausedAt: 42.5,
+        },
+      },
     });
     expect(await store.read('other-table')).toEqual(FRESH_TABLE);
   });

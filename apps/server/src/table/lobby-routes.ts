@@ -2,6 +2,7 @@ import {
   campaignIdSchema,
   lobbyChangeRequestSchema,
   lobbyReadyRequestSchema,
+  musicAfter,
   type LobbyResponse,
 } from '@ltw/contracts';
 import { campaignOptions } from '@ltw/domain';
@@ -12,17 +13,21 @@ import { sendError } from '../http/errors.ts';
 import { withBody, withPerspective, type RouteDependencies } from '../http/request-context.ts';
 import { presenceView } from '../live/presence.ts';
 import type { PresenceSource } from '../live/registry.ts';
+import type { TrackStore } from '../music/track-store.ts';
 import type { LobbyDependencies } from './table-state.ts';
 
 /**
  * A session's lobby (docs/adr/0043-dm-screen.md §6), in the ADR 0009 order: who is here (the
  * perspective's own characters, as presence lists them), who said "ready" for the session to
- * come, whose player is absent; the table's mode and whether the DM paused it. A player says
- * "ready" for their own character; the DM changes the rest.
+ * come, whose player is absent; the table's mode and whether the DM paused it; what the table
+ * hears (docs/adr/0059-atmosphere.md). A player says "ready" for their own character; the DM
+ * changes the rest.
  */
 export interface LobbyRouteDependencies extends RouteDependencies {
   readonly lobby: LobbyDependencies;
   readonly presence: PresenceSource;
+  /** The DM's tracks: a track played must be one of the campaign's. */
+  readonly music: TrackStore;
 }
 
 const params = z.object({ campaignId: campaignIdSchema }).strict();
@@ -88,17 +93,34 @@ export function registerLobbyRoutes(app: FastifyInstance, deps: LobbyRouteDepend
       if (body.absent.absent) absent.add(body.absent.characterId);
       else absent.delete(body.absent.characterId);
     }
+    if (
+      body.music?.action === 'play' &&
+      !(await deps.music.get(path.campaignId, body.music.trackId))
+    )
+      return sendError(reply, request, 'NOT_FOUND');
+    const now = lobby.now();
     const next = {
       mode: body.mode ?? before.mode,
       paused: body.paused ?? before.paused,
       absent: [...absent].sort(),
       dice: body.dice ?? before.dice,
-      sound:
-        body.ambience === undefined ? before.sound : { ...before.sound, ambience: body.ambience },
+      sound: {
+        ambience: body.ambience ?? before.sound.ambience,
+        music:
+          body.music === undefined
+            ? before.sound.music
+            : musicAfter(before.sound.music, body.music, Date.parse(now)),
+      },
     };
-    await lobby.state.write(path.campaignId, next, lobby.now());
+    await lobby.state.write(path.campaignId, next, now);
     request.log.info(
-      { mode: next.mode, paused: next.paused, dice: next.dice, ambience: next.sound.ambience },
+      {
+        mode: next.mode,
+        paused: next.paused,
+        dice: next.dice,
+        ambience: next.sound.ambience,
+        music: body.music?.action ?? null,
+      },
       'table changed',
     );
     return reply.code(204).send();

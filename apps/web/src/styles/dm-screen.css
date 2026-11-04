@@ -330,6 +330,12 @@
   align-items: start;
   gap: 1rem;
 }
+.session-main {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+  min-width: 0;
+}
 .session-sheet h3 {
   display: flex;
   align-items: center;

@@ -3,6 +3,7 @@ import { useState, type ReactNode } from 'react';
 
 import { TableAsks } from '../alerts/table-asks.tsx';
 import type { WorldApi } from '../api/client.ts';
+import { TableMusic } from '../audio/table-music.tsx';
 import { TableAmbience } from '../audio/table-sound.tsx';
 import { ChronicleBook } from '../chronicle/chronicle-book.tsx';
 import { RollAnnouncer } from '../dice/announcer.tsx';
@@ -123,12 +124,15 @@ export function WorldOverlays({
       />
       <DiceStage onAnnounce={setAnnounced} />
       {table?.online && (
-        <TableAmbience
-          api={api}
-          refresh={revision}
-          choice={table.sound?.ambience ?? null}
-          placeId={scenePlaceId}
-        />
+        <>
+          <TableAmbience
+            api={api}
+            refresh={revision}
+            choice={table.sound?.ambience ?? null}
+            placeId={scenePlaceId}
+          />
+          <TableMusic api={api} music={table.sound?.music ?? null} />
+        </>
       )}
     </>
   );

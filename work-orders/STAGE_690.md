@@ -16,7 +16,9 @@ Authority: owner approval 2026-11-02 (`reviews/OWNER_FULL_GAME_2026-11-02.json`)
   (a hidden result, such as a check against a DC the player does not know, has no sound); the
   table's screen hears them with its big dice (690d).
 - 690c — The DM's music: tracks uploaded, listed, deleted, private to the campaign; played once or on
-  repeat, paused, resumed, stopped, in step on every screen that plays the ambience.
+  repeat, paused, resumed, stopped, in step on every screen that plays the ambience. Done: migration
+  0038; `server/src/music/`; the Session sheet's Music beside the session's own controls; the TV and
+  online screens play it by the server's clock, the ambience lower beneath it.
 - 690d — The screen's moments: fades between casts, the place's title card, big dice over the cast.
 
 ## Checks at each sub-stage

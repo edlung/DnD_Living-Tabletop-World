@@ -100,18 +100,21 @@ describe('the lobby', () => {
     const choose = (ambience: string, perspective = 'DM', token: string = TOKENS.dm) =>
       post(app, `${BASE}/lobby?perspective=${perspective}`, { ambience }, token);
     // By the scene, until the DM chooses.
-    expect((await lobby('PLAYER', TOKENS.player)).sound).toEqual({ ambience: 'scene' });
+    expect((await lobby('PLAYER', TOKENS.player)).sound).toEqual({
+      ambience: 'scene',
+      music: null,
+    });
     expect((await choose('rain')).statusCode).toBe(204);
-    expect((await lobby('PLAYER', TOKENS.player)).sound).toEqual({ ambience: 'rain' });
+    expect((await lobby('PLAYER', TOKENS.player)).sound).toEqual({ ambience: 'rain', music: null });
     // A change of something else keeps it.
     expect(
       (await post(app, `${BASE}/lobby?perspective=DM`, { paused: true }, TOKENS.dm)).statusCode,
     ).toBe(204);
-    expect((await lobby('DM', TOKENS.dm)).sound).toEqual({ ambience: 'rain' });
+    expect((await lobby('DM', TOKENS.dm)).sound).toEqual({ ambience: 'rain', music: null });
     // A player does not choose it, and no soundscape the table lacks is taken.
     expect((await choose('fire', 'PLAYER', TOKENS.player)).statusCode).toBe(403);
     expect((await choose('thunder')).statusCode).toBe(400);
     expect((await choose('none')).statusCode).toBe(204);
-    expect((await lobby('DM', TOKENS.dm)).sound).toEqual({ ambience: 'none' });
+    expect((await lobby('DM', TOKENS.dm)).sound).toEqual({ ambience: 'none', music: null });
   });
 });

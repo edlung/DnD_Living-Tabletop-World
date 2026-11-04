@@ -128,3 +128,98 @@ test('the table hears what the DM chooses, on the TV and online on every screen'
   await expect(dice.getByLabel('Volume of the table’s sound', { exact: true })).toBeDisabled();
   await expect(sound(tv)).toHaveAttribute('data-ambience', 'night');
 });
+
+/** Two seconds of a quiet tone as a WAV, 16-bit, 8 kHz: a track the browser plays. */
+function tone(): Buffer {
+  const rate = 8000;
+  const samples = rate * 2;
+  const data = Buffer.alloc(samples * 2);
+  for (let i = 0; i < samples; i += 1) {
+    data.writeInt16LE(Math.round(Math.sin((2 * Math.PI * 440 * i) / rate) * 3000), i * 2);
+  }
+  const header = Buffer.alloc(44);
+  header.write('RIFF', 0, 'ascii');
+  header.writeUInt32LE(36 + data.length, 4);
+  header.write('WAVEfmt ', 8, 'ascii');
+  header.writeUInt32LE(16, 16);
+  header.writeUInt16LE(1, 20);
+  header.writeUInt16LE(1, 22);
+  header.writeUInt32LE(rate, 24);
+  header.writeUInt32LE(rate * 2, 28);
+  header.writeUInt16LE(2, 32);
+  header.writeUInt16LE(16, 34);
+  header.write('data', 36, 'ascii');
+  header.writeUInt32LE(data.length, 40);
+  return Buffer.concat([header, data]);
+}
+
+test('the DM’s music plays on the TV from the moment the DM plays it', async ({ browser }) => {
+  test.setTimeout(150_000);
+  const campaign = SIGN_IN_CAMPAIGNS.music;
+  const tv = await freshPage(browser);
+  await tv.goto('/display');
+  const code = tv.locator('.display-code');
+  await expect(code).toHaveText(/^[A-HJKMNP-Z2-9]{4} [A-HJKMNP-Z2-9]{4}$/);
+  const dm = await freshPage(browser);
+  await joinAsDm(dm, campaign);
+  await openSheet(dm, 'Table screen');
+  const screens = dm.locator('#sheet-screen');
+  await screens.getByLabel('The screen’s code', { exact: true }).fill(await code.innerText());
+  await screens.getByRole('button', { name: 'Pair', exact: true }).click();
+  await expect(tv.locator('main.display')).toHaveAttribute('data-cast', 'scene');
+  await soundOn(tv).click();
+  const music = tv.locator('.table-music');
+  await expect(music).toHaveAttribute('data-music', 'none');
+
+  // The DM adds a track from a file; a file that is no sound is refused.
+  await openSheet(dm, 'Session');
+  const panel = dm.locator('#sheet-session').getByRole('region', { name: 'Music', exact: true });
+  await expect(panel).toContainText('No tracks yet.');
+  const file = panel.getByLabel('Add a track', { exact: true });
+  await file.setInputFiles({
+    name: 'notes.mp3',
+    mimeType: 'audio/mpeg',
+    buffer: Buffer.from('not a song'),
+  });
+  await expect(panel.getByRole('alert')).toHaveText(
+    'This file is not an MP3, OGG, M4A or WAV sound.',
+  );
+  await file.setInputFiles({ name: 'Tavern song.wav', mimeType: 'audio/wav', buffer: tone() });
+  const tracks = panel.getByRole('list', { name: 'Tracks' });
+  await expect(tracks.getByRole('listitem')).toHaveCount(1);
+  await expect(tracks).toContainText('Tavern song');
+  await expectAccessible(dm, 'the DM’s music');
+
+  // Played on repeat, it plays on the TV; paused, resumed, stopped there too.
+  await tracks.getByRole('button', { name: 'Play on repeat: Tavern song', exact: true }).click();
+  await expect(panel.getByRole('status')).toHaveText('Playing: Tavern song · on repeat');
+  await expect(music).toHaveAttribute('data-music', 'playing');
+  await panel.getByRole('button', { name: 'Pause', exact: true }).click();
+  await expect(panel.getByRole('status')).toHaveText('Paused: Tavern song · on repeat');
+  await expect(music).toHaveAttribute('data-music', 'paused');
+  await panel.getByRole('button', { name: 'Resume', exact: true }).click();
+  await expect(music).toHaveAttribute('data-music', 'playing');
+  // Online, it plays on the DM's own screen too.
+  const online = await dm.evaluate(
+    (path) =>
+      fetch(path, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ mode: 'online' }),
+      }).then((response) => response.status),
+    `/api/campaigns/${campaign}/lobby?perspective=DM`,
+  );
+  expect(online).toBe(204);
+  await expect(dm.locator('.table-music')).toHaveAttribute('data-music', 'playing');
+  await panel.getByRole('button', { name: 'Stop', exact: true }).click();
+  await expect(music).toHaveAttribute('data-music', 'none');
+  await expect(dm.locator('.table-music')).toHaveAttribute('data-music', 'none');
+
+  // Deleting asks first; kept, it stays; deleted, it goes.
+  await tracks.getByRole('button', { name: 'Delete: Tavern song', exact: true }).click();
+  await panel.getByRole('button', { name: 'Keep', exact: true }).click();
+  await expect(tracks.getByRole('listitem')).toHaveCount(1);
+  await tracks.getByRole('button', { name: 'Delete: Tavern song', exact: true }).click();
+  await panel.getByRole('button', { name: 'Delete', exact: true }).click();
+  await expect(panel).toContainText('No tracks yet.');
+});

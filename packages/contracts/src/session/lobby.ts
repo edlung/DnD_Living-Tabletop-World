@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 import type { CampaignOptions } from '../campaign/options.ts';
+import { musicChangeSchema } from '../display/music.ts';
 import { ambienceChoiceSchema, type TableSound } from '../display/sound.ts';
 import { entityIdSchema } from '../kernel/identifiers.ts';
 import type { EntityRef } from '../knowledge/views.ts';
@@ -57,5 +58,7 @@ export const lobbyChangeRequestSchema = z
     absent: z.object({ characterId: entityIdSchema, absent: z.boolean() }).strict().optional(),
     /** The table's ambience: one, none, or by the scene (ADR 0059 §1). */
     ambience: ambienceChoiceSchema.optional(),
+    /** The DM's music: a track played, paused, resumed or stopped (ADR 0059 §3). */
+    music: musicChangeSchema.optional(),
   })
   .strict();

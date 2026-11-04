@@ -2,6 +2,7 @@ import { z } from 'zod';
 
 import type { Weather } from '../visual/commands.ts';
 import type { PlaceSetting } from '../visual/views.ts';
+import type { MusicPlaying } from './music.ts';
 
 /**
  * The table's sound (docs/adr/0059-atmosphere.md §1, §3): five soundscapes synthesized in the
@@ -18,9 +19,11 @@ export const ambienceChoiceSchema = z.enum(AMBIENCE_CHOICES);
 /** What the table hears, as its state keeps it. */
 export interface TableSound {
   readonly ambience: AmbienceChoice;
+  /** The DM's track playing or paused (ADR 0059 §3); null when none. */
+  readonly music: MusicPlaying | null;
 }
 
-export const FRESH_SOUND: TableSound = { ambience: 'scene' };
+export const FRESH_SOUND: TableSound = { ambience: 'scene', music: null };
 
 /** What a scene says about its sound: as the screen's perspective sees the place. */
 export interface SceneSound {

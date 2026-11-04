@@ -25,9 +25,16 @@
    whose roll plate shows it), with the dice's sound switch.
 3. **The DM's music.** The DM uploads their own tracks (MP3, OGG, M4A or WAV, up to 15 MB each, at
    most 30 a campaign), kept beside the world and private to the campaign: its members and its
-   paired displays may play them, nobody else. The DM plays one, once or on repeat, pauses, resumes
-   and stops it; it plays where the ambience plays, from the same moment (a screen that opens late
-   starts where the track is), the ambience quieter beneath it.
+   paired displays may play them, nobody else. What a file is, its first bytes say, whatever the
+   browser called it. The DM plays one, once or on repeat, pauses, resumes and stops it; it plays
+   where the ambience plays, from the same moment (a screen that opens late starts where the track
+   is), the ambience quieter beneath it. The table's state keeps when the track started (or where it
+   paused), a clock route of its own answers with the server's time (never a watched view: it
+   changes every moment), and each screen reads the track's length from
+   the sound itself; a screen more than a second off seeks back into step. A screen's audio reads
+   the track from this server a range at a time (the page's policy allows no `blob:` media), with
+   the session's cookie; a development persona's screen, whose token no audio element sends, reads
+   the whole track first. Deleting the track that plays stops the music.
 4. **Scene transitions and title cards.** The table's screen fades from one cast to the next; when
    the scene cast's place changes it shows that place's title card — its name, the day and hour, the
    weather — over its picture for a few seconds. The DM's own title cast stays as it is.
@@ -45,8 +52,9 @@
 
 - The table's state gains its sound: the ambience chosen (690a) and the track playing (its ID,
   whether it repeats, when it started or where it paused; 690c) — migration 0037 adds the column,
-  beside the world like the table's mode; the tracks are a store of their own, in a migration of
-  their own.
+  beside the world like the table's mode. The tracks are a store of their own (migration 0038), up
+  to 450 MB a campaign, kept uncompressed so a range reads alone: the database's backups grow with
+  them.
 - A scene's presentation says where its place is (`setting`: indoors, town or wild), from what the
   perspective knows of the place and the places it lies in — the sound's only new reading of the
   world.
