@@ -1,0 +1,625 @@
+{
+  "capturedAt": "2026-11-08T11:25:07.435Z",
+  "campaigns": 10,
+  "totals": {
+    "sessions": 80,
+    "scenes": 240,
+    "heroes": 80,
+    "npcs": 93,
+    "locations": 103,
+    "clues": 149,
+    "handouts": 81,
+    "encounters": 30
+  },
+  "variants": 60,
+  "maxVariantBytes": 375662,
+  "maxSourceLines": 290,
+  "maxStringCharacters": 1031,
+  "sceneWords": {
+    "min": 108,
+    "max": 142
+  },
+  "humanPlaytest": "NOT_RUN",
+  "rows": [
+    {
+      "slug": "small-banner",
+      "title": "Знамя размером с ладонь",
+      "audience": "12+",
+      "sessions": 8,
+      "scenes": 24,
+      "heroes": 8,
+      "npcs": 10,
+      "locations": 9,
+      "clues": 14,
+      "handouts": 8,
+      "encounters": 3,
+      "duration": "150 минут: вступление и напоминание 15, три сцены по 35, перерыв 10 после второй сцены, закрытие и личный итог 20",
+      "wordsPerScene": {
+        "method": "whitespace-separated words",
+        "min": 113,
+        "max": 130
+      },
+      "maxStringCharacters": 958,
+      "maxSourceLines": 273,
+      "sourceSha256": "f5e546d1d5b8a822522e556c02693abe0817ba78fd7c093c30de38550568e6de",
+      "variants": [
+        {
+          "players": 3,
+          "bytes": 316882,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 4,
+          "bytes": 327142,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 5,
+          "bytes": 332346,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 6,
+          "bytes": 342823,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 7,
+          "bytes": 353082,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 8,
+          "bytes": 363841,
+          "readiness": "READY",
+          "findings": []
+        }
+      ]
+    },
+    {
+      "slug": "dungeon-sanctuary",
+      "title": "Подземелье для тех, кто устал быть чудовищем",
+      "audience": "12+",
+      "sessions": 8,
+      "scenes": 24,
+      "heroes": 8,
+      "npcs": 10,
+      "locations": 11,
+      "clues": 16,
+      "handouts": 8,
+      "encounters": 3,
+      "duration": "150 минут: 10 минут начала и повтора, сцены 35 + 40 + 40 минут, перерыв 10 минут, завершение 15 минут.",
+      "wordsPerScene": {
+        "method": "whitespace-separated words",
+        "min": 115,
+        "max": 130
+      },
+      "maxStringCharacters": 1011,
+      "maxSourceLines": 272,
+      "sourceSha256": "e977800d98be258f6ba958a6b4222038627a323e8ec8bb33e43a64e80624fba0",
+      "variants": [
+        {
+          "players": 3,
+          "bytes": 327061,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 4,
+          "bytes": 337784,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 5,
+          "bytes": 343274,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 6,
+          "bytes": 353859,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 7,
+          "bytes": 364730,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 8,
+          "bytes": 375662,
+          "readiness": "READY",
+          "findings": []
+        }
+      ]
+    },
+    {
+      "slug": "storm-kitchen",
+      "title": "Кухня на краю грозы",
+      "audience": "12+",
+      "sessions": 8,
+      "scenes": 24,
+      "heroes": 8,
+      "npcs": 8,
+      "locations": 10,
+      "clues": 18,
+      "handouts": 8,
+      "encounters": 3,
+      "duration": "150 минут: 10 минут входа или пересказа, три сцены по 40 минут, 10 минут перерыва после второй сцены и 10 минут завершения.",
+      "wordsPerScene": {
+        "method": "whitespace-separated words",
+        "min": 113,
+        "max": 124
+      },
+      "maxStringCharacters": 944,
+      "maxSourceLines": 238,
+      "sourceSha256": "2320324f00bcef11acd3c8ed00e4fd9b9efe9ff2124287a3875ce7e72cf3a21e",
+      "variants": [
+        {
+          "players": 3,
+          "bytes": 317454,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 4,
+          "bytes": 327736,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 5,
+          "bytes": 332654,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 6,
+          "bytes": 343087,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 7,
+          "bytes": 353659,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 8,
+          "bytes": 364201,
+          "readiness": "READY",
+          "findings": []
+        }
+      ]
+    },
+    {
+      "slug": "dragon-retirement",
+      "title": "Дракон уходит на покой",
+      "audience": "12+",
+      "sessions": 8,
+      "scenes": 24,
+      "heroes": 8,
+      "npcs": 9,
+      "locations": 10,
+      "clues": 14,
+      "handouts": 8,
+      "encounters": 3,
+      "duration": "150 минут: 15 минут начала и повторения, три сцены по 35 минут, перерыв 10 минут и завершение 20 минут. Для 7–8 игроков обсуждения идут одновременно малыми группами, затем возвращаются к общему столу.",
+      "wordsPerScene": {
+        "method": "whitespace-separated words",
+        "min": 111,
+        "max": 128
+      },
+      "maxStringCharacters": 950,
+      "maxSourceLines": 255,
+      "sourceSha256": "d48da0cd549f73a73e6379cab54e7231478c6260731f45474a09a1785962815f",
+      "variants": [
+        {
+          "players": 3,
+          "bytes": 299107,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 4,
+          "bytes": 309658,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 5,
+          "bytes": 314860,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 6,
+          "bytes": 325409,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 7,
+          "bytes": 335919,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 8,
+          "bytes": 346433,
+          "readiness": "READY",
+          "findings": []
+        }
+      ]
+    },
+    {
+      "slug": "impossible-fair",
+      "title": "Ярмарка невозможных ремёсел",
+      "audience": "12+",
+      "sessions": 8,
+      "scenes": 24,
+      "heroes": 8,
+      "npcs": 9,
+      "locations": 11,
+      "clues": 14,
+      "handouts": 8,
+      "encounters": 3,
+      "duration": "180 минут: 10 минут открытия и итогов прошлого вечера, три сцены по 45 минут, перерыв 15 минут после второй сцены, 20 минут завершения. Дополнительная необязательная схватка заменяет часть своей сцены, а не удлиняет вечер.",
+      "wordsPerScene": {
+        "method": "whitespace-separated words",
+        "min": 118,
+        "max": 132
+      },
+      "maxStringCharacters": 983,
+      "maxSourceLines": 255,
+      "sourceSha256": "569ff0c22d19b443cecb4e2580dd402f050924fda2dea024e3a5fb31a5a3c73d",
+      "variants": [
+        {
+          "players": 3,
+          "bytes": 324582,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 4,
+          "bytes": 334983,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 5,
+          "bytes": 340136,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 6,
+          "bytes": 350619,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 7,
+          "bytes": 361210,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 8,
+          "bytes": 371910,
+          "readiness": "READY",
+          "findings": []
+        }
+      ]
+    },
+    {
+      "slug": "unwritten-god",
+      "title": "Бог с чистой страницы",
+      "audience": "14+",
+      "sessions": 8,
+      "scenes": 24,
+      "heroes": 8,
+      "npcs": 9,
+      "locations": 10,
+      "clues": 16,
+      "handouts": 8,
+      "encounters": 3,
+      "duration": "180 минут: 15 минут на открытие и пересказ, три сцены по 45 минут, 10 минут перерыва, 20 минут на последствия и закрытие. Внутри истории восемь встреч занимают три дня; переходы времени объявляет DM.",
+      "wordsPerScene": {
+        "method": "whitespace-separated words",
+        "min": 116,
+        "max": 142
+      },
+      "maxStringCharacters": 1003,
+      "maxSourceLines": 256,
+      "sourceSha256": "0defc1ef0ec98553b294a81cc95c3350b6a4986e721cfebcc2e08c722b71b1fa",
+      "variants": [
+        {
+          "players": 3,
+          "bytes": 305177,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 4,
+          "bytes": 314847,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 5,
+          "bytes": 319609,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 6,
+          "bytes": 329444,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 7,
+          "bytes": 339362,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 8,
+          "bytes": 349271,
+          "readiness": "READY",
+          "findings": []
+        }
+      ]
+    },
+    {
+      "slug": "basalt-bloom",
+      "title": "Цветение базальта",
+      "audience": "12+",
+      "sessions": 8,
+      "scenes": 24,
+      "heroes": 8,
+      "npcs": 8,
+      "locations": 11,
+      "clues": 14,
+      "handouts": 8,
+      "encounters": 3,
+      "duration": "3 часа: вступление или повторение 15 минут, три сцены по 45 минут, перерыв 10 минут, завершение 20 минут.",
+      "wordsPerScene": {
+        "method": "whitespace-separated words",
+        "min": 119,
+        "max": 134
+      },
+      "maxStringCharacters": 1031,
+      "maxSourceLines": 238,
+      "sourceSha256": "622006242f1e1c12bc2b43b3ce527998d63a1cc4f0a9d1e41b8fccb21c5c4b8e",
+      "variants": [
+        {
+          "players": 3,
+          "bytes": 301618,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 4,
+          "bytes": 312187,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 5,
+          "bytes": 317475,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 6,
+          "bytes": 327809,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 7,
+          "bytes": 338299,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 8,
+          "bytes": 348887,
+          "readiness": "READY",
+          "findings": []
+        }
+      ]
+    },
+    {
+      "slug": "three-magicless-days",
+      "title": "Выходные у заклинаний",
+      "audience": "12+",
+      "sessions": 8,
+      "scenes": 24,
+      "heroes": 8,
+      "npcs": 10,
+      "locations": 10,
+      "clues": 14,
+      "handouts": 8,
+      "encounters": 3,
+      "duration": "150 минут: вступление и повторение 10, три сцены по 40, перерыв 10, завершение 10. Восемь встреч охватывают три дня внутри истории.",
+      "wordsPerScene": {
+        "method": "whitespace-separated words",
+        "min": 108,
+        "max": 118
+      },
+      "maxStringCharacters": 896,
+      "maxSourceLines": 272,
+      "sourceSha256": "cdd366d21e6e553b0f0a393f19070d608c0c1a5390486a61979a9ccbe604ecac",
+      "variants": [
+        {
+          "players": 3,
+          "bytes": 309304,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 4,
+          "bytes": 319564,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 5,
+          "bytes": 324598,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 6,
+          "bytes": 334906,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 7,
+          "bytes": 345199,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 8,
+          "bytes": 355618,
+          "readiness": "READY",
+          "findings": []
+        }
+      ]
+    },
+    {
+      "slug": "mountain-wedding",
+      "title": "Свадьба двух гор",
+      "audience": "12+",
+      "sessions": 8,
+      "scenes": 24,
+      "heroes": 8,
+      "npcs": 9,
+      "locations": 11,
+      "clues": 15,
+      "handouts": 8,
+      "encounters": 3,
+      "duration": "180 минут: вступление и повторение 15, три сцены по 45, перерыв 15, завершение 15.",
+      "wordsPerScene": {
+        "method": "whitespace-separated words",
+        "min": 113,
+        "max": 129
+      },
+      "maxStringCharacters": 962,
+      "maxSourceLines": 255,
+      "sourceSha256": "96a0dd76d6a5cbbd32c1c00651ef02fedd374d1bad8d3ff17c4c27f44df8a694",
+      "variants": [
+        {
+          "players": 3,
+          "bytes": 287664,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 4,
+          "bytes": 297449,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 5,
+          "bytes": 302318,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 6,
+          "bytes": 312146,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 7,
+          "bytes": 322086,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 8,
+          "bytes": 332014,
+          "readiness": "READY",
+          "findings": []
+        }
+      ]
+    },
+    {
+      "slug": "familiar-school",
+      "title": "Школа перепутанных фамильяров",
+      "audience": "12+",
+      "sessions": 8,
+      "scenes": 24,
+      "heroes": 8,
+      "npcs": 11,
+      "locations": 10,
+      "clues": 14,
+      "handouts": 9,
+      "encounters": 3,
+      "duration": "180 минут: 15 минут открытия и воспоминаний, три сцены по 45 минут, перерыв 10 минут и завершение 20 минут. Необязательное столкновение заменяет часть своей сцены.",
+      "wordsPerScene": {
+        "method": "whitespace-separated words",
+        "min": 108,
+        "max": 124
+      },
+      "maxStringCharacters": 900,
+      "maxSourceLines": 290,
+      "sourceSha256": "ed79bc0d26b6a2fcb8770536c06b318dd4b617997c8aaaebff602ec3685692fc",
+      "variants": [
+        {
+          "players": 3,
+          "bytes": 319800,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 4,
+          "bytes": 330173,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 5,
+          "bytes": 335258,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 6,
+          "bytes": 345610,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 7,
+          "bytes": 356103,
+          "readiness": "READY",
+          "findings": []
+        },
+        {
+          "players": 8,
+          "bytes": 366698,
+          "readiness": "READY",
+          "findings": []
+        }
+      ]
+    }
+  ]
+}

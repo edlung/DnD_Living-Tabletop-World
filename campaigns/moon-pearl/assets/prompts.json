@@ -1,0 +1,430 @@
+{
+  "tool": "built-in imagegen",
+  "style": "Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+  "images": [
+    {
+      "id": "cover",
+      "file": "cover.png",
+      "kind": "scene",
+      "transparent": false,
+      "prompt": "Use case: illustration-story. Asset: full-page environment illustration for Тайна Лунной Жемчужины. Wide 3:2 cinematic establishing cover. A magnificent original city inside many transparent vaulted bubbles on the seafloor, connected by dry glass galleries; pearl-white museum, coral gardens, theatre and giant empty nautilus-shell pavilion. Foreground a small warmly lit covered boat in a canal inside a dry arch, three tiny travellers seen from behind. A huge gentle manta passes far above outside. A glowing pearl motif reflected subtly in the dome. Leave upper left relatively calm for separately overlaid title. This image reveals no culprit or treasure location. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+      "originalFile": "exec-0b894864-be07-471d-af13-33b29343260c.png",
+      "generatedAt": "2026-11-08",
+      "references": []
+    },
+    {
+      "id": "museum",
+      "file": "museum.png",
+      "kind": "scene",
+      "transparent": false,
+      "prompt": "Use case: illustration-story. Asset: full-page environment illustration for Тайна Лунной Жемчужины. Wide 3:2 interior of the Museum of the First Voice, ivory stairs, low display cabinets, a small pearlescent spherical exhibit on a brass stand with an acoustic horn, translucent ocean ceiling and a manta silhouette. Cheerful festival decorations half prepared. Do not make the exhibit visibly fake or add secret clues. No central characters. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+      "originalFile": "exec-3dad7c96-dabb-43e6-a089-2d2c3b797732.png",
+      "generatedAt": "2026-11-08",
+      "references": []
+    },
+    {
+      "id": "quay",
+      "file": "quay.png",
+      "kind": "scene",
+      "transparent": false,
+      "prompt": "Use case: illustration-story. Asset: full-page environment illustration for Тайна Лунной Жемчужины. Wide 3:2 dry seaside quay under a huge transparent underwater vault. Calm canal inside, little jetties and railings, three tide-shaped brass bollards, warm lanterns, baskets and benches. A small covered blue boat docked. Sea outside arches rich with fish, ordinary air inside. Inviting and navigable. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+      "originalFile": "exec-b5f53f1d-a213-4887-8193-6f00a771e5d7.png",
+      "generatedAt": "2026-11-08",
+      "references": []
+    },
+    {
+      "id": "boat",
+      "file": "boat.png",
+      "kind": "scene",
+      "transparent": false,
+      "prompt": "Use case: illustration-story. Asset: full-page environment illustration for Тайна Лунной Жемчужины. Wide 3:2 intimate interior of the blue covered boat Listen to the Sea, cosy wood cabin, three chairs and a spare bench, round table with three blank smooth memory stones, small closed stove, brass listening tubes, soup cups. Through the window a luminous underwater city beyond a dry canal arch. No text or people. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+      "originalFile": "exec-e7263d92-5a7a-4d50-826a-06005352bbd9.png",
+      "generatedAt": "2026-11-08",
+      "references": []
+    },
+    {
+      "id": "market",
+      "file": "market.png",
+      "kind": "scene",
+      "transparent": false,
+      "prompt": "Use case: illustration-story. Asset: full-page environment illustration for Тайна Лунной Жемчужины. Wide 3:2 spectacular lively Ebb Market inside dry vault, awnings of old sails, pearl-white stalls, shell-shaped buns, baskets on pulleys, wooden bridges over shallow canal, anthropomorphic sea-folk and ordinary air-breathing humans mingling. Little funny empty-box stall. No readable signs, no plot evidence. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+      "originalFile": "exec-b49a337f-129a-4586-b3e9-b972481e7aa1.png",
+      "generatedAt": "2026-11-08",
+      "references": []
+    },
+    {
+      "id": "reef",
+      "file": "reef.png",
+      "kind": "scene",
+      "transparent": false,
+      "prompt": "Use case: illustration-story. Asset: full-page environment illustration for Тайна Лунной Жемчужины. Wide 3:2 quiet listening coral garden. Dry indoor garden terrace with benches, brass acoustic bowls and simple tubes on a table. Huge transparent wall overlooks living coral towers in teal seawater; sunlight patterns, warm peach flowers inside. Scientific curiosity and poetic calm, not psychedelic. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+      "originalFile": "exec-b1b2a43f-0acc-4132-8345-6d83d4707729.png",
+      "generatedAt": "2026-11-08",
+      "references": []
+    },
+    {
+      "id": "theatre",
+      "file": "theatre.png",
+      "kind": "scene",
+      "transparent": false,
+      "prompt": "Use case: illustration-story. Asset: full-page environment illustration for Тайна Лунной Жемчужины. Wide 3:2 theatrical auditorium under a clear sea dome, eight distinct draped curtains in blue coral gold ivory, stage with paper waves, dry backstage workbench, shallow round saltwater pool adjacent to directors chair, whimsical eight drumsticks in a holder. No portrait, no text, joyful rehearsal setting. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+      "originalFile": "exec-99565960-9b25-467e-b0df-60ff7f8ba97b.png",
+      "generatedAt": "2026-11-08",
+      "references": []
+    },
+    {
+      "id": "glass",
+      "file": "glass.png",
+      "kind": "scene",
+      "transparent": false,
+      "prompt": "Use case: illustration-story. Asset: full-page environment illustration for Тайна Лунной Жемчужины. Wide 3:2 safe dry glassmaker courtyard, cool translucent seashell replicas displayed on ivory workbenches, brass magnifiers, glass rods neatly stored, enclosed warm kiln behind protective screen far away, hanging coloured lenses casting bright circles. Human-scale workshop; no secrets, no hot glass handled by children. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+      "originalFile": "exec-51349701-c2ec-4190-b1e2-9dad2fd3048a.png",
+      "generatedAt": "2026-11-08",
+      "references": []
+    },
+    {
+      "id": "archive",
+      "file": "archive.png",
+      "kind": "scene",
+      "transparent": false,
+      "prompt": "Use case: illustration-story. Asset: full-page environment illustration for Тайна Лунной Жемчужины. Wide 3:2 Archive of Unhurried Affairs. Dry pearl-white vaulted room, indigo shelves, scrolls and books without readable words, broad low accessible table, coral-coloured bookmarks, short rolling ladder. Through wide glass window a serene sea turtle swims outside. Magical natural light, rich detail. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+      "originalFile": "exec-2da87f3a-eefd-4aaa-83d8-24f188e48f64.png",
+      "generatedAt": "2026-11-08",
+      "references": []
+    },
+    {
+      "id": "wreck",
+      "file": "wreck.png",
+      "kind": "scene",
+      "transparent": false,
+      "prompt": "Edit the supplied illustrated workshop scene. Preserve the beautiful dry underwater architecture, mosaic of many hands, intact stair and ocean light, gouache texture and palette. Remove ALL people and animals inside the room, and remove the large physical pearl and its stand from the table completely. The original pearl is not in this location. Replace the foreground with a modest empty wooden workbench, closed old working ledger and a simple small recording-cylinder cabinet (no luminous sphere anywhere). No physical treasure, no letters or captions. Make the architecture and mosaic the main subject, atmospheric quiet archaeological wonder. Fish outside the glass may remain. Keep 3:2 landscape composition.",
+      "originalFile": "exec-a24dac55-e3f2-4d77-886f-94529e95e53a.png",
+      "generatedAt": "2026-11-08",
+      "references": [
+        {
+          "file": "references/wreck-draft.png",
+          "sha256": "696b207e7b1eaf63a8ee4ff727f9fc0f6185d57ee597bbb896b39f8f13306ecb",
+          "role": "edit target; rejected draft included an out-of-place artifact"
+        }
+      ],
+      "initialPrompt": "Use case: illustration-story. Asset: full-page environment illustration for Тайна Лунной Жемчужины. Wide 3:2 first-city workshop, old stone building below modern sea city reached by intact dry stair with railings. Stable luminous dry air hall behind reinforced glass, faded abstract mosaic of many hands making a pearl, modest wooden recording-cylinder cabinet, sunbeams through seawater beyond window. Archaeological wonder, no skeletons, no destruction or horror, no hidden culprit. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming."
+    },
+    {
+      "id": "nautilus",
+      "file": "nautilus.png",
+      "kind": "scene",
+      "transparent": false,
+      "prompt": "Use case: illustration-story. Asset: full-page environment illustration for Тайна Лунной Жемчужины. Wide 3:2 grand auction pavilion inside a gigantic ancient EMPTY nautilus shell, not a live animal. Dry spiral galleries, mother-of-pearl ribs, soft coral velvet seats, brass lamps and sealed anonymous storage crates behind a lattice at one side. Clear multiple exits and an open public desk. Elegant intriguing atmosphere, no villain portrait or readable lot labels. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+      "originalFile": "exec-b0eb00dd-2aec-4a92-abcd-4df37b961f98.png",
+      "generatedAt": "2026-11-08",
+      "references": []
+    },
+    {
+      "id": "passage",
+      "file": "passage.png",
+      "kind": "scene",
+      "transparent": false,
+      "prompt": "Use case: illustration-story. Asset: full-page environment illustration for Тайна Лунной Жемчужины. Wide 3:2 awe-inspiring transparent city gallery with broad dry walkway, strong brass ribs, railings and a safe dry refuge alcove with benches. Outside the intact glass an immense curling ocean current sweeps sunlight and fish overhead. Warm lantern inside, calm safe space, no cracks, no flooded interior, no endangered children. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+      "originalFile": "exec-c1c0efec-5823-4ff1-9547-93d1bdf63a98.png",
+      "generatedAt": "2026-11-08",
+      "references": []
+    },
+    {
+      "id": "commons",
+      "file": "commons.png",
+      "kind": "scene",
+      "transparent": false,
+      "prompt": "Use case: illustration-story. Asset: full-page environment illustration for Тайна Лунной Жемчужины. Wide 3:2 public square beneath a vast circular ocean window. Low amphitheatre steps, accessible little platform, tables with blank paper and small chairs, flower planters, diverse residents arriving. Pearl ivory and deep turquoise, celebratory but open-ended, no mandatory crowd triumph or text. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+      "originalFile": "exec-8b800e93-30d8-4db7-a610-6adf1c68e565.png",
+      "generatedAt": "2026-11-08",
+      "references": []
+    },
+    {
+      "id": "home",
+      "file": "home.png",
+      "kind": "scene",
+      "transparent": false,
+      "prompt": "Use case: illustration-story. Asset: full-page environment illustration for Тайна Лунной Жемчужины. Wide 3:2 intimate closing still life, cabin of blue covered boat at evening. Three personal cups, one little glass keepsake case, blank smooth memory stones with abstract marks, folded coral ribbon, small shell chime. Soft city lights beyond window, enormous calm blue sea, feeling of friendship after a long journey. No people, no written ending, no treasure implying an enforced outcome. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+      "originalFile": "exec-4fed68a4-15b3-4f97-a1ce-665a245d4e81.png",
+      "generatedAt": "2026-11-08",
+      "references": []
+    },
+    {
+      "id": "toren",
+      "file": "toren.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Use case: illustration-story. Asset: selectable hero portrait, vertical 2:3, full head and hands within generous frame, three-quarter body, quiet abstract ocean architectural background. Character: Торен Риф. Коренастый дварф с медной бородой, бирюзовым плащом и круглым щитом с волной. На поясе простая серебристая звёздочка. Warm capable expression, individual personality, clear silhouette and natural anatomy. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+      "originalFile": "exec-95949749-f19c-4357-b5c1-d8bf2a1f72dc.png",
+      "generatedAt": "2026-11-08",
+      "references": []
+    },
+    {
+      "id": "leya",
+      "file": "leya.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Use case: illustration-story. Asset: selectable hero portrait, vertical 2:3, full head and hands within generous frame, three-quarter body, quiet abstract ocean architectural background. Character: Лея Скат. Полурослик с тёмной косой, коралловой курткой и сумкой для находок. На шее маленький пустой стеклянный футляр. Warm capable expression, individual personality, clear silhouette and natural anatomy. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+      "originalFile": "exec-6ffabff1-ff5c-45ee-a70c-70c311199f55.png",
+      "generatedAt": "2026-11-08",
+      "references": []
+    },
+    {
+      "id": "amalia",
+      "file": "amalia.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Use case: illustration-story. Asset: selectable hero portrait, vertical 2:3, full head and hands within generous frame, three-quarter body, quiet abstract ocean architectural background. Character: Амалия Морева. Взрослая женщина с тёплой смуглой кожей, волнистыми тёмными волосами и синим дорожным платьем. На посохе маленький ракушечный колокольчик. Warm capable expression, individual personality, clear silhouette and natural anatomy. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+      "originalFile": "exec-5f1e149c-2e21-4c28-8094-cb33058d04a6.png",
+      "generatedAt": "2026-11-08",
+      "references": []
+    },
+    {
+      "id": "emil",
+      "file": "emil.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Use case: illustration-story. Asset: selectable hero portrait, vertical 2:3, full head and hands within generous frame, three-quarter body, quiet abstract ocean architectural background. Character: Эмиль Стеклосвет. Эльф с короткими серебристыми волосами, круглой оправой очков и тёмно-синим жилетом. В руках латунная рамка с цветной линзой. Warm capable expression, individual personality, clear silhouette and natural anatomy. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+      "originalFile": "exec-a25fc77e-be77-4bf5-ae81-4ffc035b2dc8.png",
+      "generatedAt": "2026-11-08",
+      "references": []
+    },
+    {
+      "id": "nora",
+      "file": "nora.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Use case: illustration-story. Asset: vertical 2:3 character portrait, entire head and hands within generous frame, distinctive silhouette, quiet atmospheric background suggesting their workplace. Character: Капитан Нора Волнорез. Пожилая женщина с серебряными волосами, синим капитанским пальто, золотыми пуговицами и доброй морщинкой у глаз. Show only public appearance, no hidden motives or evidence. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+      "originalFile": "exec-c21b81e3-20af-4b61-ac4e-dda7902e6419.png",
+      "generatedAt": "2026-11-08",
+      "references": []
+    },
+    {
+      "id": "elma",
+      "file": "elma.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Use case: illustration-story. Asset: vertical 2:3 character portrait, entire head and hands within generous frame, distinctive silhouette, quiet atmospheric background suggesting their workplace. Character: Эльма Ракит. Высокая женщина с каштановой косой, белым музейным жакетом и бирюзовыми перчатками. Show only public appearance, no hidden motives or evidence. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+      "originalFile": "exec-9c031b7b-61f6-4eba-be29-ae9e37a277d2.png",
+      "generatedAt": "2026-11-08",
+      "references": []
+    },
+    {
+      "id": "lucien",
+      "file": "lucien.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Use case: illustration-story. Asset: vertical 2:3 character portrait, entire head and hands within generous frame, distinctive silhouette, quiet atmospheric background suggesting their workplace. Character: Люсьен Коралл. Ухоженный мужчина с узкими усами, винным бархатным сюртуком и золотой заколкой в форме коралла. Show only public appearance, no hidden motives or evidence. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+      "originalFile": "exec-f06f8147-8a48-4565-bf8e-bb192d6f6126.png",
+      "generatedAt": "2026-11-08",
+      "references": []
+    },
+    {
+      "id": "bubo",
+      "file": "bubo.png",
+      "kind": "cutout",
+      "transparent": true,
+      "prompt": "Use case: illustration-story. Asset: isolated complete friendly crab character cutout, square canvas, truly transparent background, no ground plane, no cast shadow, all legs and pincers inside frame. Character: Бубо. Маленький кораллово-красный краб с синей почтовой сумкой, круглыми глазами и белой фуражкой. Show only public appearance, no hidden motives or evidence. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+      "originalFile": "exec-130e5033-e5ae-44f9-ae5f-67edc29ce3b5.png",
+      "generatedAt": "2026-11-08",
+      "references": []
+    },
+    {
+      "id": "dora",
+      "file": "dora.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Use case: illustration-story. Asset: vertical 2:3 character portrait, entire head and hands within generous frame, distinctive silhouette, quiet atmospheric background suggesting their workplace. Character: Дора Стеклянница. Дварфийка с тёмной кожей, белыми короткими кудрями, медными очками и абрикосовым рабочим фартуком. Show only public appearance, no hidden motives or evidence. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+      "originalFile": "exec-c951b8d4-8615-40b0-afb9-773739bc730e.png",
+      "generatedAt": "2026-11-08",
+      "references": []
+    },
+    {
+      "id": "ostin",
+      "file": "ostin.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Use case: illustration-story. Asset: vertical 2:3 character portrait, entire head and hands within generous frame, distinctive silhouette, quiet atmospheric background suggesting their workplace. Character: Остин Восемь-Пауз. Сиреневый осьминог с маленьким золотым жилетом и восемью выразительными руками; сидит у круглого бассейна. Show only public appearance, no hidden motives or evidence. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+      "originalFile": "exec-d4c2156d-5f8a-4a86-8de6-19139550d865.png",
+      "generatedAt": "2026-11-08",
+      "references": []
+    },
+    {
+      "id": "vella",
+      "file": "vella.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Use case: illustration-story. Asset: vertical 2:3 character portrait, entire head and hands within generous frame, distinctive silhouette, quiet atmospheric background suggesting their workplace. Character: Велла Листоплав. Добродушная морская саламандра с бирюзовой кожей, коралловыми наружными жабрами и соломенной садовой шляпой. Show only public appearance, no hidden motives or evidence. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+      "originalFile": "exec-07088573-5a93-4c11-afb3-8afc246eaedb.png",
+      "generatedAt": "2026-11-08",
+      "references": []
+    },
+    {
+      "id": "ur",
+      "file": "ur.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Use case: illustration-story. Asset: vertical 2:3 character portrait, entire head and hands within generous frame, distinctive silhouette, quiet atmospheric background suggesting their workplace. Character: Архивариус Ур. Пожилой черепахообразный житель в чернильном жилете, с круглыми очками и закладкой на запястье. Show only public appearance, no hidden motives or evidence. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+      "originalFile": "exec-2a55d406-84a4-445a-9a8c-937586a7076a.png",
+      "generatedAt": "2026-11-08",
+      "references": []
+    },
+    {
+      "id": "iris",
+      "file": "iris.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Use case: illustration-story. Asset: vertical 2:3 character portrait, entire head and hands within generous frame, distinctive silhouette, quiet atmospheric background suggesting their workplace. Character: Ирис Береговая. Женщина с тёмными короткими волосами, перламутровым плащом и коралловой лентой на папке. Show only public appearance, no hidden motives or evidence. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+      "originalFile": "exec-4b8292cd-bdb6-410f-b34d-afae04b97b1f.png",
+      "generatedAt": "2026-11-08",
+      "references": []
+    },
+    {
+      "id": "fold-crab",
+      "file": "fold-crab.png",
+      "kind": "cutout",
+      "transparent": true,
+      "prompt": "Use case: illustration-story. Asset: isolated full-body service automaton token, square canvas, genuinely transparent background, no floor, no shadow. A small charming mechanical crab folded from thick ivory nautical chart paper, abstract blue contour lines with NO letters, soft rounded folded pincers, brass split-pin joints, warm glass eyes, small blank permit slot. Entire creature and every leg comfortably inside frame. Toylike and reparable, no weapons, no menace. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+      "originalFile": "exec-fe643878-dfbc-47a9-9f1e-da8ec3c3585c.png",
+      "generatedAt": "2026-11-08",
+      "references": []
+    },
+    {
+      "id": "pass",
+      "file": "pass.png",
+      "kind": "item",
+      "transparent": false,
+      "prompt": "Use case: illustration-story. Asset: collectible prop card art, square canvas, one object centred with generous whitespace, ivory paper background, soft studio-like daylight. A small mother-of-pearl visitor pass on a coral ribbon, three wave-shaped embossed marks, blank inset for a name, elegant practical handcrafted object. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+      "originalFile": "exec-9fb68f23-5ad1-4985-8082-ada20af2f1f5.png",
+      "generatedAt": "2026-11-08",
+      "references": []
+    },
+    {
+      "id": "lens",
+      "file": "lens.png",
+      "kind": "item",
+      "transparent": false,
+      "prompt": "Use case: illustration-story. Asset: collectible prop card art, square canvas, one object centred with generous whitespace, ivory paper background, soft studio-like daylight. A brass folding magnifier with a round pale blue lens and a little ivory handle, tactile workshop tool, tiny scratches, no numbers. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+      "originalFile": "exec-5ac8b9fb-03c4-4f86-a42f-8bb26cfe3d04.png",
+      "generatedAt": "2026-11-08",
+      "references": []
+    },
+    {
+      "id": "chime",
+      "file": "chime.png",
+      "kind": "item",
+      "transparent": false,
+      "prompt": "Use case: illustration-story. Asset: collectible prop card art, square canvas, one object centred with generous whitespace, ivory paper background, soft studio-like daylight. A delicate tiny chime made from three different pale seashells and coral thread, each shell distinct, natural asymmetry, gentle warm reflected light. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+      "originalFile": "exec-40a521b0-6e0c-4785-a0a5-a4854ea2cc17.png",
+      "generatedAt": "2026-11-08",
+      "references": []
+    },
+    {
+      "id": "case",
+      "file": "case.png",
+      "kind": "item",
+      "transparent": false,
+      "prompt": "Use case: illustration-story. Asset: collectible prop card art, square canvas, one object centred with generous whitespace, ivory paper background, soft studio-like daylight. An EMPTY small oval glass keepsake case with thin brass edges, hinged lid open, deep blue velvet lining. Its emptiness is purposeful and beautiful. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+      "originalFile": "exec-41e5f477-f193-4016-a2e0-8dcfe3b2ecf5.png",
+      "generatedAt": "2026-11-08",
+      "references": []
+    },
+    {
+      "id": "ribbon",
+      "file": "ribbon.png",
+      "kind": "item",
+      "transparent": false,
+      "prompt": "Use case: illustration-story. Asset: collectible prop card art, square canvas, one object centred with generous whitespace, ivory paper background, soft studio-like daylight. A loose coil of coral-peach fabric ribbon with three small blank mother-of-pearl tags, ends curling naturally, handmade celebration memento, no writing. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+      "originalFile": "exec-fe78e110-fcf9-4e7a-9ed5-94526a7667de.png",
+      "generatedAt": "2026-11-08",
+      "references": []
+    },
+    {
+      "id": "pearl",
+      "file": "pearl.png",
+      "kind": "item",
+      "transparent": false,
+      "prompt": "Use case: illustration-story. Asset: square standalone artifact card, one object only on ivory paper background. A beautiful luminous mother-of-pearl sphere mounted on a small brass cradle, its solid base engraved with seven connected abstract wave marks; a small hand-cranked acoustic recording horn attached at the side, clearly a crafted musical archive, not a living creature. No writing, no people, no scenery, no other treasure. Generous whitespace. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+      "originalFile": "exec-154996e0-1a76-4f56-803c-138dbba0e99a.png",
+      "generatedAt": "2026-11-08",
+      "references": []
+    },
+    {
+      "id": "glass-copy",
+      "file": "glass-copy.png",
+      "kind": "item",
+      "transparent": false,
+      "prompt": "Use case: illustration-story. Asset: object illustration for an original family tabletop adventure. Square 1:1. A single teaching glass replica of a pearl-white musical archive sphere, the size of a grapefruit, sitting on a soft coral-coloured cloth on a workshop table; the sphere is smooth pale glass with a faint casting seam near the base, and on its small glass foot a tiny engraved mark of three rays; beside it a folded brass loupe. Match the attached reference pictures exactly in medium and palette: tactile gouache and coloured-pencil storybook painting with subtle paper grain, deep ultramarine and luminous teal, pearl ivory, coral peach and restrained warm gold; elegant composition, intricate believable handcrafted detail. No people. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "exec-8ec94e72-e4a1-49a8-a8c3-fade1e86e21a.png",
+      "generatedAt": "2026-11-13",
+      "references": [
+        "case.png",
+        "lens.png"
+      ]
+    },
+    {
+      "id": "tide-calendar",
+      "file": "tide-calendar.png",
+      "kind": "item",
+      "transparent": false,
+      "prompt": "Use case: illustration-story. Asset: collectible prop card art for an original family tabletop adventure, square 1:1, one object centred with generous whitespace on an ivory paper background, soft studio-like daylight. A brass tide calendar: a round pocket-sized brass disc like a large compass case, its lid open, inside a rotating dial of mother-of-pearl with small engraved wave marks around the rim and three tiny movable coral-coloured pegs; a short blue cord loop. The dial carries only abstract wave and moon marks, nothing readable. Match the attached reference pictures exactly in medium and palette: tactile gouache and coloured-pencil storybook painting with subtle paper grain, deep ultramarine and luminous teal, pearl ivory, coral peach and restrained warm gold; elegant composition, intricate believable handcrafted detail. No people. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "exec-e341213b-50af-48e5-a0df-8620ef2823c6.png",
+      "generatedAt": "2026-11-13",
+      "references": [
+        "pass.png",
+        "ribbon.png"
+      ]
+    },
+    {
+      "id": "courier-tag",
+      "file": "courier-tag.png",
+      "kind": "item",
+      "transparent": false,
+      "prompt": "Use case: illustration-story. Asset: collectible prop card art for an original family tabletop adventure, square 1:1, one object centred with generous whitespace on an ivory paper background, soft studio-like daylight. A small courier guild parcel tag: a rectangle of thick cream card with rounded corners, a punched hole with a short blue string, a stamped mark of a tiny stylised crab carrying a satchel, and a smear of blue wax; the card is blank apart from the crab stamp and two abstract scribbled lines that do not read as letters. Match the attached reference pictures exactly in medium and palette: tactile gouache and coloured-pencil storybook painting with subtle paper grain, deep ultramarine and luminous teal, pearl ivory, coral peach and restrained warm gold; elegant composition, intricate believable handcrafted detail. No people. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "exec-c2d66ea1-3db0-4d65-bdad-8b352604f224.png",
+      "generatedAt": "2026-11-13",
+      "references": [
+        "pass.png",
+        "ribbon.png"
+      ]
+    },
+    {
+      "id": "brass-pointer",
+      "file": "brass-pointer.png",
+      "kind": "cutout",
+      "transparent": true,
+      "prompt": "Use case: illustration-story. Asset: standalone game figure for an original family tabletop adventure, square 1:1, the whole object isolated on a fully transparent background (PNG with alpha), no ground, no shadow, no backdrop. A whimsical animated auctioneer's pointer: a slim brass rod as tall as a child, topped with a small mother-of-pearl hand with one pointing finger, a coral tassel below the hand, the rod slightly bent as if alive and hovering upright; friendly, not scary. Match the attached reference figure exactly in medium and palette: tactile gouache and coloured-pencil storybook painting, pearl ivory, coral peach, warm brass gold and touches of teal. No text, no lettering, no logos, no watermark, no border.",
+      "originalFile": "exec-73fbb1e2-c876-40ef-b674-d0ee74a6c1c0.png",
+      "generatedAt": "2026-11-13",
+      "references": [
+        "fold-crab.png"
+      ]
+    },
+    {
+      "id": "pinna",
+      "file": "pinna.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Use case: illustration-story. Asset: vertical 2:3 (1024 by 1536) character portrait, entire head and hands within generous frame, distinctive silhouette, quiet atmospheric background suggesting their workplace. Character: Служитель Пинна, the dry, polite steward of an auction pavilion built inside a gigantic empty nautilus shell. A thin elderly human man in a mother-of-pearl waistcoat, a small brass gavel hanging on a cord around his neck, a thick schedule ledger under one arm, neatly combed grey hair, an attentive unhurried face; behind him soft spiral mother-of-pearl ribs and brass lamps of the auction hall. Show only public appearance, no hidden motives or evidence. Match the attached reference portraits exactly in medium, palette and framing: original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no franchise references. No text, no lettering, no watermark, no border. The interior is a stable dry air space with ordinary air, seawater visible outside transparent vaults; the character is not swimming.",
+      "originalFile": "exec-cc2eaf72-6584-45d1-8c04-8efbd13a01c2.png",
+      "generatedAt": "2026-11-13",
+      "references": [
+        "ur.png",
+        "lucien.png"
+      ]
+    },
+    {
+      "id": "timokha",
+      "file": "timokha.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Use case: illustration-story. Asset: vertical 2:3 (1024 by 1536) character portrait, entire head and hands within generous frame, distinctive silhouette, quiet atmospheric background suggesting their workplace. Character: Тимоха Окунь, a lanky teenage errand boy at an underwater market: an oversized fisherman's jacket with rolled sleeves, scraped knees under short trousers, a courier's satchel across the shoulder, tousled hair, a quick friendly uncertain grin; behind him the awnings of old sails and lantern-lit stalls of the market under a transparent vault. Show only public appearance, no hidden motives or evidence. Match the attached reference portraits exactly in medium, palette and framing: original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no franchise references. No text, no lettering, no watermark, no border. The interior is a stable dry air space with ordinary air, seawater visible outside transparent vaults; the character is not swimming.",
+      "originalFile": "exec-b13b4fbe-ae65-4201-b51e-2a45b5983c87.png",
+      "generatedAt": "2026-11-13",
+      "references": [
+        "leya.png",
+        "bubo.png"
+      ]
+    }
+  ]
+}

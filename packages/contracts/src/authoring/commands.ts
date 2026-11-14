@@ -26,9 +26,11 @@ import { setRelationshipCommandSchema } from '../relationships/commands.ts';
  */
 export const proposableCommandSchema = z
   .discriminatedUnion('type', [
-    createEntityCommandSchema,
+    // An NPC's manner of speech is the campaign's or the DM's by hand, never proposed
+    // (docs/adr/0020-npc-intelligence.md, amendment 2026-11-14).
+    createEntityCommandSchema.omit({ manner: true }),
     placeEntityCommandSchema,
-    updateEntityProfileCommandSchema,
+    updateEntityProfileCommandSchema.omit({ manner: true }),
     changeEntityStatusCommandSchema,
     advanceWorldTimeCommandSchema,
     addKnowledgeCommandSchema,

@@ -1,0 +1,1875 @@
+{
+ "id": "mountain-wedding",
+ "title": "Свадьба двух гор",
+ "genre": "Мифическое фэнтези",
+ "audience": "12+",
+ "pitch": "Гора Арема и пик Торвен решили пожениться и впервые за столетие тронулись с места: восемь больших шагов навстречу друг другу, до Высокого разлома, где их вершины коснутся. Вы — ходоки на их склонах: идёте туда, куда горы сами не видят, ставите ленту там, где должна сесть стопа, и подаёте общий знак. Но каменный исполин Ломан растёт, вклиниваясь в чужой шаг, и становится выше с каждым украденным шагом. На столе лежит дорожка шагов: сколько пролётов осталось между вершинами и насколько вырос тот, кто их крадёт.",
+ "tone": "Величие движущихся вершин, камень под ладонями, ветер на гребне; хвастливый исполин, которому страшно стоять низко; тёплый юмор без унижения.",
+ "duration": "8 сессий; Около трёх часов: повторение и дорожка шагов 10 минут, подготовка шага 75, перерыв 15, шаг 75, конец вечера 5. В вечер 1 сцены 70 и 80, в вечер 8 — 60 и 90.",
+ "cover": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/cover.webp",
+ "defaultVariant": "4-players",
+ "variants": [
+  {
+   "id": "3-players",
+   "players": 3,
+   "label": "3 игрока",
+   "file": "packages/3-players.json",
+   "digest": "3dd81e113362066c556dda5479ef0b3110198fda8040254a208ef5b7aed4fe82"
+  },
+  {
+   "id": "4-players",
+   "players": 4,
+   "label": "4 игрока",
+   "file": "packages/4-players.json",
+   "digest": "565faaf06bc877a6ca4bacba5219424b62821dcfc9ea1440e8dee16a45ffa8b8"
+  },
+  {
+   "id": "5-players",
+   "players": 5,
+   "label": "5 игроков",
+   "file": "packages/5-players.json",
+   "digest": "901cf8e3edce89247e0f891a65989ca3e8b22caf5142005bc27df11c1b68b0b9"
+  },
+  {
+   "id": "6-players",
+   "players": 6,
+   "label": "6 игроков",
+   "file": "packages/6-players.json",
+   "digest": "989d0e46aaee2c6b36434748a6cbb86fb6fe31bff717a8d4f56da27878710a9c"
+  },
+  {
+   "id": "7-players",
+   "players": 7,
+   "label": "7 игроков",
+   "file": "packages/7-players.json",
+   "digest": "7567274086ae4f97ea7f2ce412ed7053bf4a95f7df7239e2d09b50c5f0f736d7"
+  },
+  {
+   "id": "8-players",
+   "players": 8,
+   "label": "8 игроков",
+   "file": "packages/8-players.json",
+   "digest": "57120cff9673ad80ff61ef658c86f6575864ff92f092876133cc9f45708b0da9"
+  }
+ ],
+ "generator": "codex-cli imagegen",
+ "pictures": [
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/copper-crown.webp",
+   "sha256": "7f3d6b2e736e72f84c578e5dcab797c62ffd830cffe835cb8657dae7f76b021a",
+   "originalSha256": "d1c0538d5a9c133fb7e6378c722fac5f70a801afc348517bfc792993397bf935",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as copper-crown.png in the current directory.\nWide landscape establishing view, 3:2. The Copper Crown: a vast ring of red and silver mountains around a high basin, wide ledges joined by exposed stone roots like braided ropes of rock, two of the mountains subtly faced toward each other like a couple, a deep rift between their summits, clouds threading through the ring. No people in focus.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "copper-crown"
+    ],
+    "4-players": [
+     "copper-crown"
+    ],
+    "5-players": [
+     "copper-crown"
+    ],
+    "6-players": [
+     "copper-crown"
+    ],
+    "7-players": [
+     "copper-crown"
+    ],
+    "8-players": [
+     "copper-crown"
+    ]
+   },
+   "file": "copper-crown.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/heel-terrace.webp",
+   "sha256": "e057d191869decee6808e1146b68fda598ecab6db68e3c2c75047936f0e2e09f",
+   "originalSha256": "273d2fa1cc40d50b1b8f6739cf6a47f265f1ce5848e2de3353356ccbd0c35a52",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as heel-terrace.png in the current directory.\nLandscape scene, 3:2. The Heel Terrace: a broad lower ledge at the foot of a red sandstone mountain with flat natural steps, above it a sheer cliff wall in which a huge, calm, closed-eyed face is carved by nature into the rock. Tiny travellers with packs stand on the steps, rope coils, prayer ribbons tied to a cairn, wind.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "heel-terrace"
+    ],
+    "4-players": [
+     "heel-terrace"
+    ],
+    "5-players": [
+     "heel-terrace"
+    ],
+    "6-players": [
+     "heel-terrace"
+    ],
+    "7-players": [
+     "heel-terrace"
+    ],
+    "8-players": [
+     "heel-terrace"
+    ]
+   },
+   "file": "heel-terrace.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/red-shoulder.webp",
+   "sha256": "36221ae61ffffcb7bb9c84882a7dcbd9f96107f6209408b1d45229a952f08052",
+   "originalSha256": "3e0430b26154c26b1a1ab01f3672f45d3362cbc4aedc57e1f65bdfec82bcff6c",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as red-shoulder.png in the current directory.\nLandscape scene, 3:2. The Red Shoulder: a tilted red sandstone slope of a living mountain cut by deep folds and grooves, the whole slope turning slowly like a shoulder, an empty outer ledge jutting like an outstretched elbow over a drop. Two tiny climbers roped together cross a fold, dust sliding, wind.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "red-shoulder"
+    ],
+    "4-players": [
+     "red-shoulder"
+    ],
+    "5-players": [
+     "red-shoulder"
+    ],
+    "6-players": [
+     "red-shoulder"
+    ],
+    "7-players": [
+     "red-shoulder"
+    ],
+    "8-players": [
+     "red-shoulder"
+    ]
+   },
+   "file": "red-shoulder.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/silver-rib.webp",
+   "sha256": "66fce983ad3401fd447d84492b5a14d5dc2f875b868a0ed6c588498c81e2fa87",
+   "originalSha256": "7fd2370b807ca51b96b3d5d489cbd9b38c6efe8aa4b1eced8c12d098bcb267c4",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as silver-rib.png in the current directory.\nLandscape scene, 3:2. The Silver Rib: a long silver granite ridge of a living mountain with transverse flat platforms like ribs, a bright white quartz stripe running along it visible from far away, snow streamers, a small figure signalling with a long ribbon from one platform to a distant red mountain.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "silver-rib"
+    ],
+    "4-players": [
+     "silver-rib"
+    ],
+    "5-players": [
+     "silver-rib"
+    ],
+    "6-players": [
+     "silver-rib"
+    ],
+    "7-players": [
+     "silver-rib"
+    ],
+    "8-players": [
+     "silver-rib"
+    ]
+   },
+   "file": "silver-rib.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/dry-throat.webp",
+   "sha256": "b0e61368bb7e1eb159c598725c4b257d9825afdf0f0b11d836d19049c3c4d202",
+   "originalSha256": "6546672c09b74fdcd9fa878738bc8e8c9e6ca421df3e677e0706d521fbbe7d63",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as dry-throat.png in the current directory.\nLandscape scene, 3:2. The Dry Throat: an open sandy ravine between stone walls with low overhangs and passages, the sandy floor covered with many enormous round stone footprints in a strange uneven pattern, little whirls of dust dancing in the air, a crouching adventurer measuring a footprint with a staff.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "dry-throat"
+    ],
+    "4-players": [
+     "dry-throat"
+    ],
+    "5-players": [
+     "dry-throat"
+    ],
+    "6-players": [
+     "dry-throat"
+    ],
+    "7-players": [
+     "dry-throat"
+    ],
+    "8-players": [
+     "dry-throat"
+    ]
+   },
+   "file": "dry-throat.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/knee-amphitheatre.webp",
+   "sha256": "9b6ce004ef7414f8c23b2ccb7d9d08dba28be8bee46f29ae1a45a6d9995ffa16",
+   "originalSha256": "8c482f5b4aeff41886d0da6d25c78c47ca3a5c804d880f6eaaaaa95d91a37491",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as knee-amphitheatre.png in the current directory.\nLandscape scene, 3:2. The Knee Amphitheatre: a semicircle of natural rock terraces around a smooth round bowl, the rim shaped like the bent knee of a giant; in the bowl the low hunched grey stone giant with a flat slab across his shoulders walks on four supports, seen from the terraces by small hidden figures.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "knee-amphitheatre"
+    ],
+    "4-players": [
+     "knee-amphitheatre"
+    ],
+    "5-players": [
+     "knee-amphitheatre"
+    ],
+    "6-players": [
+     "knee-amphitheatre"
+    ],
+    "7-players": [
+     "knee-amphitheatre"
+    ],
+    "8-players": [
+     "knee-amphitheatre"
+    ]
+   },
+   "file": "knee-amphitheatre.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/tilted-bridge.webp",
+   "sha256": "7152c06c0d62e9a2dba5c27c4cf9b0fb13a628d8e8129af2d71477cb1d3c4aeb",
+   "originalSha256": "0c504504fa31020b3d9d35eb09ada08d9083a1804315b237ac9afb8926b57908",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as tilted-bridge.png in the current directory.\nLandscape scene, 3:2. The Tilted Bridge: a natural stone arch over a shallow chasm, wide and flat on one side and knife-sharp on the other, small winged stone gargoyle-like shapes perched on the arch, two adventurers balancing across with arms out, wind and loose pebbles falling.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "tilted-bridge"
+    ],
+    "4-players": [
+     "tilted-bridge"
+    ],
+    "5-players": [
+     "tilted-bridge"
+    ],
+    "6-players": [
+     "tilted-bridge"
+    ],
+    "7-players": [
+     "tilted-bridge"
+    ],
+    "8-players": [
+     "tilted-bridge"
+    ]
+   },
+   "file": "tilted-bridge.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/open-ring.webp",
+   "sha256": "53d558e7f3ae35bad1fbf3b29e4cc68f749ddf2fc544e2d03445d046c227385b",
+   "originalSha256": "b4d15f35a819f26c368cf68481a9d6a6b7798b55bcd63d5a271996c8044a2410",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as open-ring.png in the current directory.\nLandscape scene, 3:2. The Open Ring: an almost circular high plateau with exits east and west, a scatter of standing slabs forming an island in the centre, two mountain slopes visible at the edges, a sense of a stage set for a dance, long afternoon shadows, wind-blown grass.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "open-ring"
+    ],
+    "4-players": [
+     "open-ring"
+    ],
+    "5-players": [
+     "open-ring"
+    ],
+    "6-players": [
+     "open-ring"
+    ],
+    "7-players": [
+     "open-ring"
+    ],
+    "8-players": [
+     "open-ring"
+    ]
+   },
+   "file": "open-ring.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/high-cleft.webp",
+   "sha256": "ee17b73ebb2a7b35e314516a63a2ebfa97046bf525850597af2c01f2f8349d78",
+   "originalSha256": "1173423dade54492c6dd9147979e868aee5428dcd6b0cf4940ad13c63de4a86b",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as high-cleft.png in the current directory.\nWide landscape, 3:2. The High Cleft: the narrow gap between two mountain summits, red on the left and silver on the right, with wide side shelves, a bottomless rift below with mist, the two summits leaning toward each other almost touching, tiny figures on the shelves with ropes and banners, sunset light, dramatic wind.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "high-cleft"
+    ],
+    "4-players": [
+     "high-cleft"
+    ],
+    "5-players": [
+     "high-cleft"
+    ],
+    "6-players": [
+     "high-cleft"
+    ],
+    "7-players": [
+     "high-cleft"
+    ],
+    "8-players": [
+     "high-cleft"
+    ]
+   },
+   "file": "high-cleft.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/two-foot-circle.webp",
+   "sha256": "3e4da2cf1b6719ccd80500c9c909fafce0db4350ddf1a1c3b99642ac10ef68d8",
+   "originalSha256": "d3cdda7bd3da00574439c83a5338e36c08f76fa9db2b7a3f58de8f9a1e741114",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as two-foot-circle.png in the current directory.\nLandscape scene, 3:2. The Circle of Two Feet: a low round valley where red sandstone and silver granite foothills meet almost touching, wildflowers and a small spring between them, villagers' ribbons on poles, a peaceful festive feeling, gentle evening light.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "two-foot-circle"
+    ],
+    "4-players": [
+     "two-foot-circle"
+    ],
+    "5-players": [
+     "two-foot-circle"
+    ],
+    "6-players": [
+     "two-foot-circle"
+    ],
+    "7-players": [
+     "two-foot-circle"
+    ],
+    "8-players": [
+     "two-foot-circle"
+    ]
+   },
+   "file": "two-foot-circle.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/walker-house.webp",
+   "sha256": "09dd518b9cc521d2b4531559a9d4f73094771d08f180913ed8157568c1305329",
+   "originalSha256": "6d625670d5b1babd7d522edddb3eb988bc671d615ffffefd557f8ff7d6fc323f",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as walker-house.png in the current directory.\nLandscape scene, 3:2. The Walkers' House: a small stone house with a turf roof on a motionless rock outcrop, on its wall simple ropes, ribbons and painted sketches of mountain slopes, a lantern, a bench with boots and climbing gear, the two great mountains in the background. Warm homely light.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "walker-house"
+    ],
+    "4-players": [
+     "walker-house"
+    ],
+    "5-players": [
+     "walker-house"
+    ],
+    "6-players": [
+     "walker-house"
+    ],
+    "7-players": [
+     "walker-house"
+    ],
+    "8-players": [
+     "walker-house"
+    ]
+   },
+   "file": "walker-house.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/mira.webp",
+   "sha256": "d6ef8346838a2f85f9c0bc247ec1b06edee1ada38b78b7736106d6f83238b5bf",
+   "originalSha256": "01f4d6716faef05a2a0f16698f52ce3b6ef025e9ded3116c46474cd3dc121d59",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as mira.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Ognyana Wide Step, an 18-year-old young woman fighter and mountain walker: sturdy, tanned, short dark braids, a short red cloak, a simple round shield on her back, a short sword, boots with mismatched laces, wind in her hair, a bold grin. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "mira"
+    ],
+    "4-players": [
+     "mira"
+    ],
+    "5-players": [
+     "mira"
+    ],
+    "6-players": [
+     "mira"
+    ],
+    "7-players": [
+     "mira"
+    ],
+    "8-players": [
+     "mira"
+    ]
+   },
+   "file": "mira.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/yar.webp",
+   "sha256": "5511193cea94d1e15ba797d27c6284757d4d9564b571ffce91a5850bf9daec9f",
+   "originalSha256": "74e8ccd3d2c7c98f051aef33f12a05c64a417edbdb380645685f85d83fa0cdcd",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as yar.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Yar Leafmeasure, a 17-year-old young man rogue and scout: lean, freckled, messy straw-blond hair, a green jacket with big pockets, a charcoal pencil behind his ear, a folding wooden slate on a strap, a dagger, attentive narrowed eyes. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "yar"
+    ],
+    "4-players": [
+     "yar"
+    ],
+    "5-players": [
+     "yar"
+    ],
+    "6-players": [
+     "yar"
+    ],
+    "7-players": [
+     "yar"
+    ],
+    "8-players": [
+     "yar"
+    ]
+   },
+   "file": "yar.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/seva.webp",
+   "sha256": "cd830e8d2a01deaf3991659a72dd94ad4642fe6e7ca9e27f978ec2655ad526c6",
+   "originalSha256": "4e3dbc7fae06a9e333072c54d33998a0d99fbcb55da73f8e0519462f65542507",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as seva.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Seva Clear Palm, a 32-year-old woman cleric: calm, olive skin, black hair in a low knot, a grey travelling waistcoat over a linen robe, a small copper open-palm holy symbol, many coloured threads around her wrists, a light mace, gentle steady gaze. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "seva"
+    ],
+    "4-players": [
+     "seva"
+    ],
+    "5-players": [
+     "seva"
+    ],
+    "6-players": [
+     "seva"
+    ],
+    "7-players": [
+     "seva"
+    ],
+    "8-players": [
+     "seva"
+    ]
+   },
+   "file": "seva.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/lina.webp",
+   "sha256": "111a92366ce376e8b2979fe93ca590d1b3d6260a57c7f4778fc5b75e1795fb02",
+   "originalSha256": "624ed4244bc0f3a3f0558260f541a6fdcde96eb53b152723140d5f284ae80623",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as lina.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Lina Quartz Chalk, a 24-year-old woman wizard: pale, round spectacles, a blue knitted cap over ginger curls, a cloth pouch of chalk on her belt, chalky fingers, a short wooden wand, a lively curious face. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "lina"
+    ],
+    "5-players": [
+     "lina"
+    ],
+    "6-players": [
+     "lina"
+    ],
+    "7-players": [
+     "lina"
+    ],
+    "8-players": [
+     "lina"
+    ]
+   },
+   "file": "lina.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/borin.webp",
+   "sha256": "b01c9d9483b7de45f79862467a2474df8b19e34c1f08308dc89e83c819fbbb92",
+   "originalSha256": "fea67f7639565537b9e5879f807008f0cc328217430dddf8f464fc957820066b",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as borin.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Borin Quiet Cliff, a 41-year-old man fighter: broad, bearded, weathered brown skin, quiet soft leather gear, a worn gauntlet embroidered with a seagull, a hand axe and a longsword, a calm, few-words expression. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "borin"
+    ],
+    "6-players": [
+     "borin"
+    ],
+    "7-players": [
+     "borin"
+    ],
+    "8-players": [
+     "borin"
+    ]
+   },
+   "file": "borin.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/tessa.webp",
+   "sha256": "dbc8b1011a329335920f93ee04ddb9cf58772aa306cc8e2ad080d65d8d62ff0f",
+   "originalSha256": "ded9c5ccc04172bc98d959e52b93dbc9a738337cfba977a8ee47bf4959d41e54",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as tessa.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Tessa Swallow Turn, a 16-year-old girl rogue: small and quick, dark skin, short curly hair, a bright yellow scarf streaming in the wind, soft boots, two wooden clothes pegs clipped to her sleeve, a sling, a mischievous look. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "tessa"
+    ],
+    "7-players": [
+     "tessa"
+    ],
+    "8-players": [
+     "tessa"
+    ]
+   },
+   "file": "tessa.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/odar.webp",
+   "sha256": "f472925dc3ab2d819b1f8b1e82dac0ad1d97363dc4031f053fed7b89427aef21",
+   "originalSha256": "5cac710562b676eea87f44ddb22c4c9a7d2008cafb6bd60d3f1edf056cb3755c",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as odar.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Odar Warm Stone, a 55-year-old man cleric: tall and thin, a long white braid, kind lined face, a red travelling bag across his body, a neat wooden mug hanging from his belt, a sun-and-stone holy symbol, a quarterstaff. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "odar"
+    ],
+    "8-players": [
+     "odar"
+    ]
+   },
+   "file": "odar.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/niva.webp",
+   "sha256": "c12b6e951796fe4ba7a569e52374db52a91dbba5d2b2b8901a62a6bff554019d",
+   "originalSha256": "1da1207177a77d850d3ad0feed7b13d55a4890b9b8e2e31715e46ccc51f274cc",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as niva.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Niva Seventh Line, a 20-year-old woman wizard: East Asian features, long straight black hair tied with string, a dappled grey-green cloak, a string of smooth pebbles used as markers, a staff, a thoughtful measuring look. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [],
+    "8-players": [
+     "niva"
+    ]
+   },
+   "file": "niva.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/arema.webp",
+   "sha256": "fbab2becd7c7ae0527362d173db115fbc9a109dc4772125c9ab8a58d263e4342",
+   "originalSha256": "d40668950061edab9265cd4c57784e18db430f4b0f150d86e00803f5c5b06670",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as arema.png in the current directory.\nPortrait-style illustration, vertical 2:3. Arema, a living red sandstone mountain: a huge warm red slope with broad stone brows and a calm feminine face emerging from the rock face, eyes half-closed, ledges like folded shoulders, wildflowers and tiny ribbons tied on her slopes, wind and clouds, gentle and ancient. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "yar.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "arema"
+    ],
+    "4-players": [
+     "arema"
+    ],
+    "5-players": [
+     "arema"
+    ],
+    "6-players": [
+     "arema"
+    ],
+    "7-players": [
+     "arema"
+    ],
+    "8-players": [
+     "arema"
+    ]
+   },
+   "file": "arema.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/torven.webp",
+   "sha256": "c32198908d2b314b3b8612776e34a8a8e25a2f7b5ada4c6cc179d360525f52e4",
+   "originalSha256": "3058e318daf2f6ebe1dbfe0f53522f965621cea0fb16e9ace993fe3f7e6c715d",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as torven.png in the current directory.\nPortrait-style illustration, vertical 2:3. Torven, a living silver granite peak: a tall silver mountain with a bright quartz stripe across it like a sash and a calm masculine face under an overhanging stone brow, snow banners streaming, dignified and patient. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "yar.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "torven"
+    ],
+    "4-players": [
+     "torven"
+    ],
+    "5-players": [
+     "torven"
+    ],
+    "6-players": [
+     "torven"
+    ],
+    "7-players": [
+     "torven"
+    ],
+    "8-players": [
+     "torven"
+    ]
+   },
+   "file": "torven.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/loman.webp",
+   "sha256": "2bcc4b944f909c001dee5bf8a3a4b586fa59f9f7b076a3fd61ddb51682d170ad",
+   "originalSha256": "45022150d8aba8a68aa06fe1112586399c3bfb74bbd3b212dd7b959eb490a4b2",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as loman.png in the current directory.\nPortrait-style illustration, vertical 2:3. Loman, a colossal stone giant made of slanting stacked slabs: back, arms and left leg of red stone; right leg and a tall thin top made of patchy stolen stone, red crumbs mixed with silver quartz; long arms, flat palms, standing tall and boastful against the sky, a slight lean onto his left leg. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "yar.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "loman"
+    ],
+    "4-players": [
+     "loman"
+    ],
+    "5-players": [
+     "loman"
+    ],
+    "6-players": [
+     "loman"
+    ],
+    "7-players": [
+     "loman"
+    ],
+    "8-players": [
+     "loman"
+    ]
+   },
+   "file": "loman.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/esha.webp",
+   "sha256": "f67dbc373e8dd3b2b5f4617495c18db80185e8964d8b4df9ebd6960f2600013a",
+   "originalSha256": "43347ee937b8c6982ec33de934f8e825f81a583831ae0853f3220f53fb310ba0",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as esha.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Esha Torn Rhythm, a 19-year-old young woman walker: wiry, a white headband, worn knee pads, three long ribbons hanging from her belt, scraped hands, restless eyes, mid-gesture as if counting a beat. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "yar.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "esha"
+    ],
+    "4-players": [
+     "esha"
+    ],
+    "5-players": [
+     "esha"
+    ],
+    "6-players": [
+     "esha"
+    ],
+    "7-players": [
+     "esha"
+    ],
+    "8-players": [
+     "esha"
+    ]
+   },
+   "file": "esha.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/irdo.webp",
+   "sha256": "7116ae0300e6c4e04e2920d58f238bc8cdb52889a52fc99c2f942df14b3268aa",
+   "originalSha256": "068c39bd7e5224c6e3007f51fb7ea94758c7e2c119d8a7e423b0882d8e5604e9",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as irdo.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Irdo Two Loops, a 54-year-old man, master of the walkers: short grey beard, a wide-brimmed hat, a coil of rope over his shoulder always folded into an open loop, a sun-creased friendly face. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "yar.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "irdo"
+    ],
+    "4-players": [
+     "irdo"
+    ],
+    "5-players": [
+     "irdo"
+    ],
+    "6-players": [
+     "irdo"
+    ],
+    "7-players": [
+     "irdo"
+    ],
+    "8-players": [
+     "irdo"
+    ]
+   },
+   "file": "irdo.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/nemi.webp",
+   "sha256": "a656a48d3bb5c387c743413f6790d18af6aaa5f0d1d0574d700dbcec2aef09c7",
+   "originalSha256": "f06662161362a046dfdd62c500bf71c07f82ca84040ce64797636cf265394c94",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as nemi.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Nemi Long Line, a 16-year-old girl surveyor: wide sleeves, a drawing board on a strap, chalk behind her ear, ink-smudged fingers, a serious concentrated expression. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "yar.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "nemi"
+    ],
+    "4-players": [
+     "nemi"
+    ],
+    "5-players": [
+     "nemi"
+    ],
+    "6-players": [
+     "nemi"
+    ],
+    "7-players": [
+     "nemi"
+    ],
+    "8-players": [
+     "nemi"
+    ]
+   },
+   "file": "nemi.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/saff.webp",
+   "sha256": "e3a077f3ae12cfb96d62c36fb8b8487dc8a39b3860262f7a89008367a15f8f4a",
+   "originalSha256": "24263b6f62273145a7cb71114337baff2e0a89d94af44413b6f1579e5117b3fa",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as saff.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Saff Striped Sleeve, a 37-year-old man walker of the silver peak: striped sleeves, a short braid, a small mirror button flashing on his collar, a confident signaller's stance with a ribbon pole. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "yar.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "saff"
+    ],
+    "4-players": [
+     "saff"
+    ],
+    "5-players": [
+     "saff"
+    ],
+    "6-players": [
+     "saff"
+    ],
+    "7-players": [
+     "saff"
+    ],
+    "8-players": [
+     "saff"
+    ]
+   },
+   "file": "saff.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/vek.webp",
+   "sha256": "d4324e09a17091306b04cb226456e2e198ed821f46ec304f4288b7add5ff4d76",
+   "originalSha256": "1f47dfb0658e2e5158b0c9e3434b0dead7681d0391d06c60d33c4e52f2853c23",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as vek.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Vek Flat, a 72-year-old small stone person: short, with a broad flat stone back like a slab, grey lichen-spotted skin, eyes set high at the top edge of his face, slow and wise, sitting on a rock. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "yar.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "vek"
+    ],
+    "4-players": [
+     "vek"
+    ],
+    "5-players": [
+     "vek"
+    ],
+    "6-players": [
+     "vek"
+    ],
+    "7-players": [
+     "vek"
+    ],
+    "8-players": [
+     "vek"
+    ]
+   },
+   "file": "vek.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/runa.webp",
+   "sha256": "9d5b0b0e4269debc0f04a8d3e456719a455a2a4afb0a400b6da0fb2c9ca6421c",
+   "originalSha256": "21a97fbc64b97d929d4d9ae72baa0bc8893ec6093ba14099be91c6a79f334bcd",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as runa.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Runa Compass Point, a 29-year-old woman from the valley: a green cloak with large white patches sewn on, a long travelling staff, short auburn hair, an open friendly face. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "yar.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "runa"
+    ],
+    "4-players": [
+     "runa"
+    ],
+    "5-players": [
+     "runa"
+    ],
+    "6-players": [
+     "runa"
+    ],
+    "7-players": [
+     "runa"
+    ],
+    "8-players": [
+     "runa"
+    ]
+   },
+   "file": "runa.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/heel-crumb.webp",
+   "sha256": "bb1d8bfa5cec73efbe53bea80ba5cb2b23ed44274575d7217ef63afdbb45cdc9",
+   "originalSha256": "2421d28f8bb6b540472571b886a5e8627392c199d8969831e81878606c6ec1b9",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as heel-crumb.png in the current directory.\nItem illustration, single object or small group centered on a plain warm parchment backdrop, square 1:1: a small warm red pebble the size of a fingernail, rough on one side and smooth on the other, glowing faintly, resting on an open palm. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "red-shoulder.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "heel-crumb"
+    ],
+    "4-players": [
+     "heel-crumb"
+    ],
+    "5-players": [
+     "heel-crumb"
+    ],
+    "6-players": [
+     "heel-crumb"
+    ],
+    "7-players": [
+     "heel-crumb"
+    ],
+    "8-players": [
+     "heel-crumb"
+    ]
+   },
+   "file": "heel-crumb.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/yar-slate.webp",
+   "sha256": "30e9b0e23fd84913a14477a1bb7fa26084be1efa8357ed71b7103928a69ff06a",
+   "originalSha256": "4daf292fbe18272376b5304e2a04a5bb948d872543105e521f2aeaffada07a3e",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as yar-slate.png in the current directory.\nItem illustration, single object or small group centered on a plain warm parchment backdrop, square 1:1: a folding slate of two lime-wood leaves on a leather strap, thin paper stretched inside, a charcoal pencil tied to the strap, a dark charcoal smudge on the left leaf. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "red-shoulder.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "yar-slate"
+    ],
+    "4-players": [
+     "yar-slate"
+    ],
+    "5-players": [
+     "yar-slate"
+    ],
+    "6-players": [
+     "yar-slate"
+    ],
+    "7-players": [
+     "yar-slate"
+    ],
+    "8-players": [
+     "yar-slate"
+    ]
+   },
+   "file": "yar-slate.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/walker-ribbons.webp",
+   "sha256": "edd3ae648bbcfd422c46d489c49defb8e215ac3de6075451fe6e2fd495efdd84",
+   "originalSha256": "1c2c9299d2fa5e3fbfcfbe821d8baa1c5c81ead1e6086d1b67b073d7c849bdf5",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as walker-ribbons.png in the current directory.\nItem illustration, single object or small group centered on a plain warm parchment backdrop, square 1:1: a bundle of long ribbons on wooden batons, red, grey, white and striped, ends sewn so each can be raised, stretched sideways or folded in two. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "red-shoulder.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "walker-ribbons"
+    ],
+    "4-players": [
+     "walker-ribbons"
+    ],
+    "5-players": [
+     "walker-ribbons"
+    ],
+    "6-players": [
+     "walker-ribbons"
+    ],
+    "7-players": [
+     "walker-ribbons"
+    ],
+    "8-players": [
+     "walker-ribbons"
+    ]
+   },
+   "file": "walker-ribbons.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/loop-rope.webp",
+   "sha256": "4b3a8fc8efc9ffb86456687430ef0aed7e80c786752f61fdae707fdfe4fdbee0",
+   "originalSha256": "f8e26217db5c870154ac96cab1458c90e196cc9ecf9e1cb2ebbccc66ebf6245d",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as loop-rope.png in the current directory.\nItem illustration, single object centered on a plain warm parchment backdrop, square 1:1: a neatly coiled thick light hemp climbing rope, one end finished with a small flat bowline loop lying open on top of the coil, like a climber's rope, the middle worn smooth by stone. Clearly a climbing rope, nothing else. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "red-shoulder.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "loop-rope"
+    ],
+    "4-players": [
+     "loop-rope"
+    ],
+    "5-players": [
+     "loop-rope"
+    ],
+    "6-players": [
+     "loop-rope"
+    ],
+    "7-players": [
+     "loop-rope"
+    ],
+    "8-players": [
+     "loop-rope"
+    ]
+   },
+   "file": "loop-rope.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/esha-drawing.webp",
+   "sha256": "5315824bf99cb219025e7aec324e8e5e4fcb2dfd869b81ff7e81b1f0e854a31d",
+   "originalSha256": "242c63cbe552e580a015de94aabc8646071ba70769a96c85af40473681c58262",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as esha-drawing.png in the current directory.\nItem illustration, single object or small group centered on a plain warm parchment backdrop, square 1:1: a small wooden board lying on a rock with a charcoal sketch of a long horizontal figure on four sticks and an arrow toward scree lines, a few lines of scribbles (not readable). No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "red-shoulder.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "esha-drawing"
+    ],
+    "4-players": [
+     "esha-drawing"
+    ],
+    "5-players": [
+     "esha-drawing"
+    ],
+    "6-players": [
+     "esha-drawing"
+    ],
+    "7-players": [
+     "esha-drawing"
+    ],
+    "8-players": [
+     "esha-drawing"
+    ]
+   },
+   "file": "esha-drawing.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/quartz-splinter.webp",
+   "sha256": "469a210acb232f8c0a85eadd5f8101a58c9eb51342e8a27778fec5a95b0b7d41",
+   "originalSha256": "f734fcd0345145edef0c4017862d11c2f0d9530f1d90f5309eea589341a59273",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as quartz-splinter.png in the current directory.\nItem illustration, single object or small group centered on a plain warm parchment backdrop, square 1:1: a clear quartz splinter the size of a finger with a thin bright vein inside, glowing cold white in sunlight. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "red-shoulder.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "quartz-splinter"
+    ],
+    "4-players": [
+     "quartz-splinter"
+    ],
+    "5-players": [
+     "quartz-splinter"
+    ],
+    "6-players": [
+     "quartz-splinter"
+    ],
+    "7-players": [
+     "quartz-splinter"
+    ],
+    "8-players": [
+     "quartz-splinter"
+    ]
+   },
+   "file": "quartz-splinter.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/whistling-chip.webp",
+   "sha256": "bf2f96cce026d545841817fc6ba7d9a19dd112abc5f60c8b344c50ded5f062f4",
+   "originalSha256": "329db2830dd33d05d78ed03c527b97f3a61318327a9c7e058863c42ec39aa36b",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as whistling-chip.png in the current directory.\nItem illustration, single object or small group centered on a plain warm parchment backdrop, square 1:1: a palm-sized stone chip, one half red sandstone and one half silver granite, a thin crack packed with red and silver crumbs between them, wind lines showing it whistles. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "red-shoulder.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "whistling-chip"
+    ],
+    "4-players": [
+     "whistling-chip"
+    ],
+    "5-players": [
+     "whistling-chip"
+    ],
+    "6-players": [
+     "whistling-chip"
+    ],
+    "7-players": [
+     "whistling-chip"
+    ],
+    "8-players": [
+     "whistling-chip"
+    ]
+   },
+   "file": "whistling-chip.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/nemi-map.webp",
+   "sha256": "979fa3c6f8d733d25e88e0c0c7a6c2c063e448b78be65b56dbe443c743252754",
+   "originalSha256": "7546a9606099540be0c6c4e6e0029b938ab236a10c9d69b1a7e44100fd7dc492",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as nemi-map.png in the current directory.\nItem illustration, single object or small group centered on a plain warm parchment backdrop, square 1:1: a long sheet on wooden battens drawn with fine slope lines, small circles ringed in chalk and tiny marks (no readable text). No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "red-shoulder.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "nemi-map"
+    ],
+    "4-players": [
+     "nemi-map"
+    ],
+    "5-players": [
+     "nemi-map"
+    ],
+    "6-players": [
+     "nemi-map"
+    ],
+    "7-players": [
+     "nemi-map"
+    ],
+    "8-players": [
+     "nemi-map"
+    ]
+   },
+   "file": "nemi-map.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/lower-arcs.webp",
+   "sha256": "1b13c811cf2e3f44a143c457cbb2240a5137ba5b6b5cc3b6e00c105250abe40d",
+   "originalSha256": "1f3f6c681747181219797349d124bcba0cc048af28ee1039c78d38a304b84878",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as lower-arcs.png in the current directory.\nItem illustration, single object or small group centered on a plain warm parchment backdrop, square 1:1: a grey cloth pouch open beside smooth red and silver pebbles laid out in two arcs, each arc graded from small to large. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "red-shoulder.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "lower-arcs"
+    ],
+    "4-players": [
+     "lower-arcs"
+    ],
+    "5-players": [
+     "lower-arcs"
+    ],
+    "6-players": [
+     "lower-arcs"
+    ],
+    "7-players": [
+     "lower-arcs"
+    ],
+    "8-players": [
+     "lower-arcs"
+    ]
+   },
+   "file": "lower-arcs.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/signal-stones.webp",
+   "sha256": "3deef2fde4f5ab604029d47c40483f9ded385058f7530dc9fe267a6fe05254ae",
+   "originalSha256": "f0ac61d3f7351c1c43558d70abc39336d3b5c2b8f3d14a54ac74dd4bb69ee76d",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as signal-stones.png in the current directory.\nItem illustration, single object or small group centered on a plain warm parchment backdrop, square 1:1: two flat stones the size of a large palm, each with a hole for a ribbon, one red with crumbs, one silver with a quartz vein, ribbons threaded through. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "red-shoulder.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "signal-stones"
+    ],
+    "4-players": [
+     "signal-stones"
+    ],
+    "5-players": [
+     "signal-stones"
+    ],
+    "6-players": [
+     "signal-stones"
+    ],
+    "7-players": [
+     "signal-stones"
+    ],
+    "8-players": [
+     "signal-stones"
+    ]
+   },
+   "file": "signal-stones.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/token-dust.webp",
+   "sha256": "ac24135d64e729e26501e8b2b949dc0539f2f0f2e0c36e385b0b32d75090415f",
+   "originalSha256": "3855bf2b234e8f67905752db0c57900aad8170718df97586131221217abb3353",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as token-dust.png in the current directory.\nGame token figure on a fully transparent background, top three-quarter view, no ground shadow. A small winged whirl of red and silver dust shaped like a mischievous imp, two pebbles for eyes.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "red-shoulder.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "throat-dust-foe-1",
+     "throat-dust-foe-2",
+     "throat-dust-foe-3"
+    ],
+    "4-players": [
+     "throat-dust-foe-1",
+     "throat-dust-foe-2",
+     "throat-dust-foe-3",
+     "throat-dust-foe-4"
+    ],
+    "5-players": [
+     "throat-dust-foe-1",
+     "throat-dust-foe-2",
+     "throat-dust-foe-3",
+     "throat-dust-foe-4",
+     "throat-dust-foe-5"
+    ],
+    "6-players": [
+     "throat-dust-foe-1",
+     "throat-dust-foe-2",
+     "throat-dust-foe-3",
+     "throat-dust-foe-4",
+     "throat-dust-foe-5",
+     "throat-dust-foe-6"
+    ],
+    "7-players": [
+     "throat-dust-foe-1",
+     "throat-dust-foe-2",
+     "throat-dust-foe-3",
+     "throat-dust-foe-4",
+     "throat-dust-foe-5",
+     "throat-dust-foe-6",
+     "throat-dust-foe-7"
+    ],
+    "8-players": [
+     "throat-dust-foe-1",
+     "throat-dust-foe-2",
+     "throat-dust-foe-3",
+     "throat-dust-foe-4",
+     "throat-dust-foe-5",
+     "throat-dust-foe-6",
+     "throat-dust-foe-7",
+     "throat-dust-foe-8"
+    ]
+   },
+   "file": "token-dust.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/token-dust.webp",
+   "sha256": "ac24135d64e729e26501e8b2b949dc0539f2f0f2e0c36e385b0b32d75090415f",
+   "originalSha256": "3855bf2b234e8f67905752db0c57900aad8170718df97586131221217abb3353",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as token-dust.png in the current directory.\nGame token figure on a fully transparent background, top three-quarter view, no ground shadow. A small winged whirl of red and silver dust shaped like a mischievous imp, two pebbles for eyes.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "red-shoulder.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "throat-dust-foe-1",
+     "throat-dust-foe-2",
+     "throat-dust-foe-3"
+    ],
+    "4-players": [
+     "throat-dust-foe-1",
+     "throat-dust-foe-2",
+     "throat-dust-foe-3",
+     "throat-dust-foe-4"
+    ],
+    "5-players": [
+     "throat-dust-foe-1",
+     "throat-dust-foe-2",
+     "throat-dust-foe-3",
+     "throat-dust-foe-4",
+     "throat-dust-foe-5"
+    ],
+    "6-players": [
+     "throat-dust-foe-1",
+     "throat-dust-foe-2",
+     "throat-dust-foe-3",
+     "throat-dust-foe-4",
+     "throat-dust-foe-5",
+     "throat-dust-foe-6"
+    ],
+    "7-players": [
+     "throat-dust-foe-1",
+     "throat-dust-foe-2",
+     "throat-dust-foe-3",
+     "throat-dust-foe-4",
+     "throat-dust-foe-5",
+     "throat-dust-foe-6",
+     "throat-dust-foe-7"
+    ],
+    "8-players": [
+     "throat-dust-foe-1",
+     "throat-dust-foe-2",
+     "throat-dust-foe-3",
+     "throat-dust-foe-4",
+     "throat-dust-foe-5",
+     "throat-dust-foe-6",
+     "throat-dust-foe-7",
+     "throat-dust-foe-8"
+    ]
+   },
+   "file": "token-dust--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "token-dust.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/token-chip.webp",
+   "sha256": "f4671cbe83f602cc72f5d814dfcb949d006dc258232abb8591fabd23f3a954ba",
+   "originalSha256": "1a4682b4217bd7334f0c0c12b73164ba7a7ac1a8f714d40eac2af78de82f2be3",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as token-chip.png in the current directory.\nGame token figure on a fully transparent background, top three-quarter view, no ground shadow. A hunched wingless stone creature the size of a ram made of a single stolen slab, one side red sandstone and the other silver granite, stubby stone legs.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "red-shoulder.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "bridge-chips-foe-1"
+    ],
+    "4-players": [
+     "bridge-chips-foe-1"
+    ],
+    "5-players": [
+     "bridge-chips-foe-1"
+    ],
+    "6-players": [
+     "bridge-chips-foe-1",
+     "bridge-chips-foe-2"
+    ],
+    "7-players": [
+     "bridge-chips-foe-1",
+     "bridge-chips-foe-2"
+    ],
+    "8-players": [
+     "bridge-chips-foe-1",
+     "bridge-chips-foe-2"
+    ]
+   },
+   "file": "token-chip.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/token-chip.webp",
+   "sha256": "f4671cbe83f602cc72f5d814dfcb949d006dc258232abb8591fabd23f3a954ba",
+   "originalSha256": "1a4682b4217bd7334f0c0c12b73164ba7a7ac1a8f714d40eac2af78de82f2be3",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as token-chip.png in the current directory.\nGame token figure on a fully transparent background, top three-quarter view, no ground shadow. A hunched wingless stone creature the size of a ram made of a single stolen slab, one side red sandstone and the other silver granite, stubby stone legs.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "red-shoulder.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "bridge-chips-foe-1"
+    ],
+    "4-players": [
+     "bridge-chips-foe-1"
+    ],
+    "5-players": [
+     "bridge-chips-foe-1"
+    ],
+    "6-players": [
+     "bridge-chips-foe-1",
+     "bridge-chips-foe-2"
+    ],
+    "7-players": [
+     "bridge-chips-foe-1",
+     "bridge-chips-foe-2"
+    ],
+    "8-players": [
+     "bridge-chips-foe-1",
+     "bridge-chips-foe-2"
+    ]
+   },
+   "file": "token-chip--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "token-chip.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/token-winged-chip.webp",
+   "sha256": "c34325c5e88905b22f87fa4af7e0972eb4c0d26a2e59fce06c7ef6c1ed170219",
+   "originalSha256": "c20d5c4b4aaa507dd551f41da140e481971557d7b4595079d462807dbc9148c5",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as token-winged-chip.png in the current directory.\nGame token figure on a fully transparent background, top three-quarter view, no ground shadow. A winged stone creature the size of a ram, one side red and one side silver granite, rough stone wings spread, clawed feet.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "red-shoulder.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "shoulder-wind-foe-1"
+    ],
+    "4-players": [
+     "shoulder-wind-foe-1"
+    ],
+    "5-players": [
+     "shoulder-wind-foe-1"
+    ],
+    "6-players": [
+     "shoulder-wind-foe-1",
+     "shoulder-wind-foe-2"
+    ],
+    "7-players": [
+     "shoulder-wind-foe-1",
+     "shoulder-wind-foe-2"
+    ],
+    "8-players": [
+     "shoulder-wind-foe-1",
+     "shoulder-wind-foe-2"
+    ]
+   },
+   "file": "token-winged-chip.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/token-winged-chip.webp",
+   "sha256": "c34325c5e88905b22f87fa4af7e0972eb4c0d26a2e59fce06c7ef6c1ed170219",
+   "originalSha256": "c20d5c4b4aaa507dd551f41da140e481971557d7b4595079d462807dbc9148c5",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as token-winged-chip.png in the current directory.\nGame token figure on a fully transparent background, top three-quarter view, no ground shadow. A winged stone creature the size of a ram, one side red and one side silver granite, rough stone wings spread, clawed feet.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "red-shoulder.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "shoulder-wind-foe-1"
+    ],
+    "4-players": [
+     "shoulder-wind-foe-1"
+    ],
+    "5-players": [
+     "shoulder-wind-foe-1"
+    ],
+    "6-players": [
+     "shoulder-wind-foe-1",
+     "shoulder-wind-foe-2"
+    ],
+    "7-players": [
+     "shoulder-wind-foe-1",
+     "shoulder-wind-foe-2"
+    ],
+    "8-players": [
+     "shoulder-wind-foe-1",
+     "shoulder-wind-foe-2"
+    ]
+   },
+   "file": "token-winged-chip--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "token-winged-chip.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/token-loman-top.webp",
+   "sha256": "b2475613843ae555a8479c0fe674cc6cea199a937b82e1837a3d6352288e56c2",
+   "originalSha256": "46d0ace3997d7aaaa0e194a7f00abba983ce17d62d44fb0f799567454d686c5a",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as token-loman-top.png in the current directory.\nGame token figure on a fully transparent background, top three-quarter view, no ground shadow. A hill-tall stone giant torso and limbs built of patchy stolen slabs, red crumbs mixed with silver quartz, a glowing whistling seam at the right knee, long arms raising a slab.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "red-shoulder.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "last-touch-boss"
+    ],
+    "4-players": [
+     "last-touch-boss"
+    ],
+    "5-players": [
+     "last-touch-boss"
+    ],
+    "6-players": [
+     "last-touch-boss"
+    ],
+    "7-players": [
+     "last-touch-boss"
+    ],
+    "8-players": [
+     "last-touch-boss"
+    ]
+   },
+   "file": "token-loman-top.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/runtime/token-loman-top.webp",
+   "sha256": "b2475613843ae555a8479c0fe674cc6cea199a937b82e1837a3d6352288e56c2",
+   "originalSha256": "46d0ace3997d7aaaa0e194a7f00abba983ce17d62d44fb0f799567454d686c5a",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as token-loman-top.png in the current directory.\nGame token figure on a fully transparent background, top three-quarter view, no ground shadow. A hill-tall stone giant torso and limbs built of patchy stolen slabs, red crumbs mixed with silver quartz, a glowing whistling seam at the right knee, long arms raising a slab.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "red-shoulder.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "last-touch-boss"
+    ],
+    "4-players": [
+     "last-touch-boss"
+    ],
+    "5-players": [
+     "last-touch-boss"
+    ],
+    "6-players": [
+     "last-touch-boss"
+    ],
+    "7-players": [
+     "last-touch-boss"
+    ],
+    "8-players": [
+     "last-touch-boss"
+    ]
+   },
+   "file": "token-loman-top--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "token-loman-top.webp"
+  },
+  {
+   "file": "dry-throat--map.webp",
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/battle-maps/dry-throat.webp",
+   "sha256": "cb6a3120c3f5033fd500f4b8d93892dd4ceb4a8a3d4a0e132c46309e80d2d99f",
+   "originalSha256": "9ab73aea5a2cda3da03ea096d666b90f34d5b1a407afe4d8d3fe9f015470bac9",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as mountain-wedding--dry-throat.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Сухой зев» — Расселина с песчаным дном и низким навесом между ногами гор; в песке лежат следы каменных ног.\n\nThe first reference image is the exact layout of the playable field: a 18 by 12 square grid drawn in the middle of the canvas filling it. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Поле 18×12. Запад — песчаное дно зева, где стоят ходоки, тёплый шершавый камень по стенам. Середина — низкий навес, труднопроходимая полоса: через неё только ползком, два низких прохода. Под навесом лежат низкие следы: четыре плоских отпечатка, царапина от плиты и трещина колена с красной и серебряной крошкой. Восток — выходная полка и борозда осыпи с мелким правым следом. Свист ветра гуляет по навесу, песок мелко шуршит под ладонями.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/mountain-wedding--dry-throat.layout.png",
+    "dry-throat.png"
+   ],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "dry-throat.webp",
+   "subjects": {
+    "3-players": [
+     "dry-throat"
+    ],
+    "4-players": [
+     "dry-throat"
+    ],
+    "5-players": [
+     "dry-throat"
+    ],
+    "6-players": [
+     "dry-throat"
+    ],
+    "7-players": [
+     "dry-throat"
+    ],
+    "8-players": [
+     "dry-throat"
+    ]
+   }
+  },
+  {
+   "file": "tilted-bridge--map.webp",
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/battle-maps/tilted-bridge.webp",
+   "sha256": "3b804a1b2b59efbd475d29bee144b14d7887f2852d5b7a4a1ee262043a73a147",
+   "originalSha256": "919eeafc0beb8084caf3f4739f22c99974853153c51e812396237abdaa052c57",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as mountain-wedding--tilted-bridge.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Косой мост» — Природная каменная дуга над неглубокой расщелиной, широкая с одного края и острая с другого.\n\nThe first reference image is the exact layout of the playable field: a 18 by 12 square grid drawn in the middle of the canvas filling it. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Поле 18×12. Запад — ближний широкий конец дуги, где стоят ходоки и точка общего знака. Середина — расщелина, труднопроходимая полоса, с двумя переходами: каменная дуга, острая с одного края, и упавшая плита. У переходов есть укрытия. Восток — дальний широкий конец (главная постановка; за краем поля под ним лежит низкий Ломан) и внутренняя полка в северо-восточном углу: ступени, широкая неровная полоса под острым краем. Ветер свистит в швах дуги; камень под ладонями холодный и крошится.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/mountain-wedding--tilted-bridge.layout.png",
+    "tilted-bridge.png"
+   ],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "tilted-bridge.webp",
+   "subjects": {
+    "3-players": [
+     "tilted-bridge"
+    ],
+    "4-players": [
+     "tilted-bridge"
+    ],
+    "5-players": [
+     "tilted-bridge"
+    ],
+    "6-players": [
+     "tilted-bridge"
+    ],
+    "7-players": [
+     "tilted-bridge"
+    ],
+    "8-players": [
+     "tilted-bridge"
+    ]
+   }
+  },
+  {
+   "file": "red-shoulder--map.webp",
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/battle-maps/red-shoulder.webp",
+   "sha256": "2049d5c921b5ec4cc93ff8c19993dfcbacecb684b46a844254de9dcc636b525d",
+   "originalSha256": "33673105ec464dc9f945a5974a09dfc7457fd160087907d51cc3ca91bd9dfa8d",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as mountain-wedding--red-shoulder.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Красное плечо» — Наклонный склон Аремы, прорезанный глубокими складками; пустой наружный выступ похож на вытянутый локоть.\n\nThe first reference image is the exact layout of the playable field: a 22 by 6 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Поле 22×6, гребень на ветру. Длинные края — внутренние складки, труднопроходимые, но безопасные для упавших. Укрытия — каменные зубья по гребню. Посередине седловина, неровная полоса. Ходоки входят с востока (подножие плеча), вершина на западе. Камень под ладонями тёплый и гудит; ветер свистит в зубьях и рвёт ленты с камней.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/mountain-wedding--red-shoulder.layout.png",
+    "red-shoulder.png"
+   ],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "red-shoulder.webp",
+   "subjects": {
+    "3-players": [
+     "red-shoulder"
+    ],
+    "4-players": [
+     "red-shoulder"
+    ],
+    "5-players": [
+     "red-shoulder"
+    ],
+    "6-players": [
+     "red-shoulder"
+    ],
+    "7-players": [
+     "red-shoulder"
+    ],
+    "8-players": [
+     "red-shoulder"
+    ]
+   }
+  },
+  {
+   "file": "high-cleft--map.webp",
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/battle-maps/high-cleft.webp",
+   "sha256": "9fc01c1afb329ffe4c390edb55f63a632f8eb66e7a439f96173383ef92949b3d",
+   "originalSha256": "266ba9b4997bc79eef2e97d38637f38aea6e72f452f0bb8ef6568e87243676a3",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as mountain-wedding--high-cleft.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Высокий разлом» — Узкий разлом между вершинами; к восьмому шагу вершины нависают над ним, и между ними остаётся щель шириной в шаг.\n\nThe first reference image is the exact layout of the playable field: a 22 by 6 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Поле 22×6, столбцы с запада, ряды с севера. Столбцы 11–12 — щель касания, труднопроходимая. Западная вершина Аремы: красный сигнальный камень — столбец 4, ряд 1; отсюда из разлома вылезает Верхушка. Восточная вершина Торвена: серебряный камень — столбец 20, ряд 6. Общий камень — столбец 14, ряд 3, в её досягаемости, когда она в щели. Клетка зова — столбец 13, ряд 1, над Ломаном. Длинные края — внутренние складки. Ветер один на двоих и свистит в швах, небо между вершинами сжимается в полосу.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/mountain-wedding--high-cleft.layout.png",
+    "high-cleft.png"
+   ],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "high-cleft.webp",
+   "subjects": {
+    "3-players": [
+     "high-cleft"
+    ],
+    "4-players": [
+     "high-cleft"
+    ],
+    "5-players": [
+     "high-cleft"
+    ],
+    "6-players": [
+     "high-cleft"
+    ],
+    "7-players": [
+     "high-cleft"
+    ],
+    "8-players": [
+     "high-cleft"
+    ]
+   }
+  }
+ ]
+}

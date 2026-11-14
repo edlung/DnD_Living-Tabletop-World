@@ -1,0 +1,54 @@
+{
+  "completedAt": "2026-11-08T11:17:51.255192+00:00",
+  "scope": "Local content only; no DB, provider call or real activation",
+  "build": {
+    "status": "PASS",
+    "variants": 50,
+    "readiness": "READY",
+    "findings": 0,
+    "log": "build.log"
+  },
+  "tests": {
+    "status": "PASS",
+    "passed": 52,
+    "files": 3,
+    "log": "tests.log"
+  },
+  "typescript": {
+    "status": "PASS",
+    "log": "typecheck.log"
+  },
+  "eslint": {
+    "status": "PASS",
+    "log": "lint.log"
+  },
+  "contextBudget": {
+    "status": "PASS",
+    "activeFiles": 19,
+    "log": "context-budget.log"
+  },
+  "layout": {
+    "status": "PASS",
+    "pages": 190,
+    "states": 800,
+    "widths": [1440, 768, 390, 320],
+    "errors": 0,
+    "warnings": 0,
+    "titleFindings": 0,
+    "log": "layout.log"
+  },
+  "originality": {
+    "status": "PASS_WITH_STATED_SCOPE",
+    "worlds": 53,
+    "neighborSceneFiles": 155,
+    "neighborScenes": 930,
+    "matched18WordSequences": 0,
+    "log": "originality.log"
+  },
+  "humanPlaytest": "NOT_RUN",
+  "ownerAcceptance": "NOT_CLAIMED",
+  "format": {
+    "status": "PASS",
+    "log": "format.log"
+  }
+}

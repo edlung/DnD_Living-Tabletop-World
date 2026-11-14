@@ -8,6 +8,16 @@ by Playwright: Vite on 4310 and the real seeded HTTP application on 4311 (develo
 personas), and for production sign-in a second Vite on 4312 in front of the invitation-mode
 application on 4313.
 
+Family campaign delivery (`work-orders/FAMILY_CAMPAIGN_2026-11-08.md`):
+`workshop-package-import.spec.ts` owns the empty `package-import` owner fixture and verifies a
+real content-file upload, invalid input, preview, uncertain response/retry and one OWNER revision.
+`acorn-package-import.spec.ts` owns the separate `acorn-import` fixture and verifies the second authored campaign through the same real upload flow.
+`pearl-package-import.spec.ts` owns `pearl-import` and verifies Moon Pearl with its own owner,
+including a read-only preview, exact retry and four-width layout/accessibility checks.
+`resize-feedback.spec.ts` reads `ui-combat-preview`, resizes through desktop/tablet/phone widths
+and captures native `window.error` ResizeObserver messages as well as Playwright page errors.
+It changes no world state; keep its window listener, since `pageerror` misses these messages.
+
 - `apps/server/src/testing/ui-server.ts` composes the real World Engine and dev
   personas over deterministic in-memory storage. No external AI provider runs.
 - These are browser journeys through real HTTP projections, not mocked domain

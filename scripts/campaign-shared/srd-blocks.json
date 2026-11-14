@@ -1,0 +1,12302 @@
+{
+"air-elemental": {
+"block": {
+"abilities": {
+"cha": 6,
+"con": 14,
+"dex": 20,
+"int": 6,
+"str": 14,
+"wis": 10
+},
+"armorClass": 15,
+"attacks": [
+{
+"attackId": "thunderous-slam",
+"bonus": 8,
+"damage": {
+"bonus": 5,
+"count": 2,
+"sides": 8,
+"type": "thunder"
+},
+"kind": "melee",
+"name": "Thunderous Slam",
+"reachFt": 10
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 90,
+"max": 90
+},
+"initiativeBonus": 5,
+"savingThrows": {
+"cha": -2,
+"con": 2,
+"dex": 5,
+"int": -2,
+"str": 2,
+"wis": 0
+},
+"speedFt": 10,
+"spells": []
+},
+"cr": 5.0,
+"xp": 1800
+},
+"allosaurus": {
+"block": {
+"abilities": {
+"cha": 5,
+"con": 17,
+"dex": 13,
+"int": 2,
+"str": 19,
+"wis": 12
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 6,
+"damage": {
+"bonus": 4,
+"count": 2,
+"sides": 10,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+},
+{
+"attackId": "claws",
+"bonus": 6,
+"damage": {
+"bonus": 4,
+"count": 1,
+"sides": 8,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Claws",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 51,
+"max": 51
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": -3,
+"con": 3,
+"dex": 1,
+"int": -4,
+"str": 4,
+"wis": 1
+},
+"speedFt": 60,
+"spells": []
+},
+"cr": 2.0,
+"xp": 450
+},
+"animated-armor": {
+"block": {
+"abilities": {
+"cha": 1,
+"con": 13,
+"dex": 11,
+"int": 1,
+"str": 14,
+"wis": 3
+},
+"armorClass": 18,
+"attacks": [
+{
+"attackId": "slam",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 6,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Slam",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 33,
+"max": 33
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": -5,
+"con": 1,
+"dex": 0,
+"int": -5,
+"str": 2,
+"wis": -4
+},
+"speedFt": 25,
+"spells": []
+},
+"cr": 1.0,
+"xp": 200
+},
+"animated-flying-sword": {
+"block": {
+"abilities": {
+"cha": 1,
+"con": 11,
+"dex": 15,
+"int": 1,
+"str": 12,
+"wis": 5
+},
+"armorClass": 17,
+"attacks": [
+{
+"attackId": "slash",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 8,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Slash",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 14,
+"max": 14
+},
+"initiativeBonus": 4,
+"savingThrows": {
+"cha": -5,
+"con": 0,
+"dex": 4,
+"int": -5,
+"str": 1,
+"wis": -3
+},
+"speedFt": 5,
+"spells": []
+},
+"cr": 0.25,
+"xp": 50
+},
+"animated-rug-of-smothering": {
+"block": {
+"abilities": {
+"cha": 1,
+"con": 10,
+"dex": 14,
+"int": 1,
+"str": 17,
+"wis": 3
+},
+"armorClass": 12,
+"attacks": [
+{
+"attackId": "smother",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 2,
+"sides": 6,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Smother",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 27,
+"max": 27
+},
+"initiativeBonus": 4,
+"savingThrows": {
+"cha": -5,
+"con": 0,
+"dex": 2,
+"int": -5,
+"str": 3,
+"wis": -4
+},
+"speedFt": 10,
+"spells": []
+},
+"cr": 2.0,
+"xp": 450
+},
+"ankheg": {
+"block": {
+"abilities": {
+"cha": 6,
+"con": 14,
+"dex": 11,
+"int": 1,
+"str": 17,
+"wis": 13
+},
+"armorClass": 14,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 2,
+"sides": 6,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 45,
+"max": 45
+},
+"initiativeBonus": 0,
+"savingThrows": {
+"cha": -2,
+"con": 2,
+"dex": 0,
+"int": -5,
+"str": 3,
+"wis": 1
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 2.0,
+"xp": 450
+},
+"ankylosaurus": {
+"block": {
+"abilities": {
+"cha": 5,
+"con": 15,
+"dex": 11,
+"int": 2,
+"str": 19,
+"wis": 12
+},
+"armorClass": 15,
+"attacks": [
+{
+"attackId": "tail",
+"bonus": 6,
+"damage": {
+"bonus": 4,
+"count": 1,
+"sides": 10,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Tail",
+"reachFt": 10
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 68,
+"max": 68
+},
+"initiativeBonus": 0,
+"savingThrows": {
+"cha": -3,
+"con": 2,
+"dex": 0,
+"int": -4,
+"str": 6,
+"wis": 1
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 3.0,
+"xp": 700
+},
+"ape": {
+"block": {
+"abilities": {
+"cha": 7,
+"con": 14,
+"dex": 14,
+"int": 6,
+"str": 16,
+"wis": 12
+},
+"armorClass": 12,
+"attacks": [
+{
+"attackId": "fist",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 4,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Fist",
+"reachFt": 5
+},
+{
+"attackId": "rock",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 2,
+"sides": 6,
+"type": "bludgeoning"
+},
+"kind": "ranged",
+"longRangeFt": 50,
+"name": "Rock",
+"normalRangeFt": 25
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 19,
+"max": 19
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": -2,
+"con": 2,
+"dex": 2,
+"int": -2,
+"str": 3,
+"wis": 1
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 0.5,
+"xp": 100
+},
+"archelon": {
+"block": {
+"abilities": {
+"cha": 6,
+"con": 13,
+"dex": 16,
+"int": 4,
+"str": 18,
+"wis": 14
+},
+"armorClass": 17,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 6,
+"damage": {
+"bonus": 4,
+"count": 3,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 90,
+"max": 90
+},
+"initiativeBonus": 3,
+"savingThrows": {
+"cha": -2,
+"con": 1,
+"dex": 3,
+"int": -3,
+"str": 4,
+"wis": 2
+},
+"speedFt": 20,
+"spells": []
+},
+"cr": 4.0,
+"xp": 1100
+},
+"awakened-shrub": {
+"block": {
+"abilities": {
+"cha": 6,
+"con": 11,
+"dex": 8,
+"int": 10,
+"str": 3,
+"wis": 10
+},
+"armorClass": 9,
+"attacks": [
+{
+"attackId": "rake",
+"bonus": 1,
+"damage": {
+"bonus": 1,
+"count": 0,
+"sides": 4,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Rake",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 10,
+"max": 10
+},
+"initiativeBonus": -1,
+"savingThrows": {
+"cha": -2,
+"con": 0,
+"dex": -1,
+"int": 0,
+"str": -4,
+"wis": 0
+},
+"speedFt": 20,
+"spells": []
+},
+"cr": 0.0,
+"xp": 10
+},
+"awakened-tree": {
+"block": {
+"abilities": {
+"cha": 7,
+"con": 15,
+"dex": 6,
+"int": 10,
+"str": 19,
+"wis": 10
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "slam",
+"bonus": 6,
+"damage": {
+"bonus": 4,
+"count": 3,
+"sides": 6,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Slam",
+"reachFt": 10
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 59,
+"max": 59
+},
+"initiativeBonus": -2,
+"savingThrows": {
+"cha": -2,
+"con": 2,
+"dex": -2,
+"int": 0,
+"str": 4,
+"wis": 0
+},
+"speedFt": 20,
+"spells": []
+},
+"cr": 2.0,
+"xp": 450
+},
+"axe-beak": {
+"block": {
+"abilities": {
+"cha": 5,
+"con": 12,
+"dex": 12,
+"int": 2,
+"str": 14,
+"wis": 10
+},
+"armorClass": 11,
+"attacks": [
+{
+"attackId": "beak",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 8,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Beak",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 19,
+"max": 19
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": -3,
+"con": 1,
+"dex": 1,
+"int": -4,
+"str": 2,
+"wis": 0
+},
+"speedFt": 50,
+"spells": []
+},
+"cr": 0.25,
+"xp": 50
+},
+"azer-sentinel": {
+"block": {
+"abilities": {
+"cha": 10,
+"con": 15,
+"dex": 12,
+"int": 12,
+"str": 17,
+"wis": 13
+},
+"armorClass": 17,
+"attacks": [
+{
+"attackId": "burning-hammer",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 10,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Burning Hammer",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 39,
+"max": 39
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": 0,
+"con": 4,
+"dex": 1,
+"int": 1,
+"str": 3,
+"wis": 1
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 2.0,
+"xp": 450
+},
+"baboon": {
+"block": {
+"abilities": {
+"cha": 6,
+"con": 11,
+"dex": 14,
+"int": 4,
+"str": 8,
+"wis": 12
+},
+"armorClass": 12,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 1,
+"damage": {
+"bonus": -1,
+"count": 1,
+"sides": 4,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 3,
+"max": 3
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": -2,
+"con": 0,
+"dex": 2,
+"int": -3,
+"str": -1,
+"wis": 1
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 0.0,
+"xp": 10
+},
+"badger": {
+"block": {
+"abilities": {
+"cha": 5,
+"con": 16,
+"dex": 11,
+"int": 2,
+"str": 10,
+"wis": 12
+},
+"armorClass": 11,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 2,
+"damage": {
+"bonus": 1,
+"count": 0,
+"sides": 4,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 5,
+"max": 5
+},
+"initiativeBonus": 0,
+"savingThrows": {
+"cha": -3,
+"con": 3,
+"dex": 0,
+"int": -4,
+"str": 0,
+"wis": 1
+},
+"speedFt": 20,
+"spells": []
+},
+"cr": 0.0,
+"xp": 10
+},
+"bandit": {
+"block": {
+"abilities": {
+"cha": 10,
+"con": 12,
+"dex": 12,
+"int": 10,
+"str": 11,
+"wis": 10
+},
+"armorClass": 12,
+"attacks": [
+{
+"attackId": "scimitar",
+"bonus": 3,
+"damage": {
+"bonus": 1,
+"count": 1,
+"sides": 6,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Scimitar",
+"reachFt": 5
+},
+{
+"attackId": "light-crossbow",
+"bonus": 3,
+"damage": {
+"bonus": 1,
+"count": 1,
+"sides": 8,
+"type": "piercing"
+},
+"kind": "ranged",
+"longRangeFt": 320,
+"name": "Light Crossbow",
+"normalRangeFt": 80
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 11,
+"max": 11
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": 0,
+"con": 1,
+"dex": 1,
+"int": 0,
+"str": 0,
+"wis": 0
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 0.125,
+"xp": 25
+},
+"bandit-captain": {
+"block": {
+"abilities": {
+"cha": 14,
+"con": 14,
+"dex": 16,
+"int": 14,
+"str": 15,
+"wis": 11
+},
+"armorClass": 15,
+"attacks": [
+{
+"attackId": "scimitar",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 6,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Scimitar",
+"reachFt": 5
+},
+{
+"attackId": "pistol",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 10,
+"type": "piercing"
+},
+"kind": "ranged",
+"longRangeFt": 90,
+"name": "Pistol",
+"normalRangeFt": 30
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 52,
+"max": 52
+},
+"initiativeBonus": 3,
+"savingThrows": {
+"cha": 2,
+"con": 2,
+"dex": 5,
+"int": 2,
+"str": 4,
+"wis": 2
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 2.0,
+"xp": 450
+},
+"barbed-devil": {
+"block": {
+"abilities": {
+"cha": 14,
+"con": 18,
+"dex": 17,
+"int": 12,
+"str": 16,
+"wis": 14
+},
+"armorClass": 15,
+"attacks": [
+{
+"attackId": "claws",
+"bonus": 6,
+"damage": {
+"bonus": 3,
+"count": 2,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Claws",
+"reachFt": 5
+},
+{
+"attackId": "tail",
+"bonus": 6,
+"damage": {
+"bonus": 3,
+"count": 2,
+"sides": 10,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Tail",
+"reachFt": 10
+},
+{
+"attackId": "hurl-flame",
+"bonus": 5,
+"damage": {
+"bonus": 0,
+"count": 5,
+"sides": 6,
+"type": "fire"
+},
+"kind": "ranged",
+"longRangeFt": 150,
+"name": "Hurl Flame",
+"normalRangeFt": 150
+}
+],
+"attacksPerAction": 4,
+"conditions": [],
+"hitPoints": {
+"current": 110,
+"max": 110
+},
+"initiativeBonus": 3,
+"savingThrows": {
+"cha": 5,
+"con": 7,
+"dex": 3,
+"int": 1,
+"str": 6,
+"wis": 5
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 5.0,
+"xp": 1800
+},
+"basilisk": {
+"block": {
+"abilities": {
+"cha": 7,
+"con": 15,
+"dex": 8,
+"int": 2,
+"str": 16,
+"wis": 8
+},
+"armorClass": 15,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 2,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 52,
+"max": 52
+},
+"initiativeBonus": -1,
+"savingThrows": {
+"cha": -2,
+"con": 2,
+"dex": -1,
+"int": -4,
+"str": 3,
+"wis": -1
+},
+"speedFt": 20,
+"spells": []
+},
+"cr": 3.0,
+"xp": 700
+},
+"bat": {
+"block": {
+"abilities": {
+"cha": 4,
+"con": 8,
+"dex": 15,
+"int": 2,
+"str": 2,
+"wis": 12
+},
+"armorClass": 12,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 4,
+"damage": {
+"bonus": 1,
+"count": 0,
+"sides": 4,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 1,
+"max": 1
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": -3,
+"con": -1,
+"dex": 2,
+"int": -4,
+"str": -4,
+"wis": 1
+},
+"speedFt": 5,
+"spells": []
+},
+"cr": 0.0,
+"xp": 10
+},
+"bearded-devil": {
+"block": {
+"abilities": {
+"cha": 14,
+"con": 15,
+"dex": 15,
+"int": 9,
+"str": 16,
+"wis": 11
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "beard",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 8,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Beard",
+"reachFt": 5
+},
+{
+"attackId": "infernal-glaive",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 10,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Infernal Glaive",
+"reachFt": 10
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 58,
+"max": 58
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": 4,
+"con": 4,
+"dex": 2,
+"int": -1,
+"str": 5,
+"wis": 0
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 3.0,
+"xp": 700
+},
+"berserker": {
+"block": {
+"abilities": {
+"cha": 9,
+"con": 17,
+"dex": 12,
+"int": 9,
+"str": 16,
+"wis": 11
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "greataxe",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 12,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Greataxe",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 67,
+"max": 67
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": -1,
+"con": 3,
+"dex": 1,
+"int": -1,
+"str": 3,
+"wis": 0
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 2.0,
+"xp": 450
+},
+"black-bear": {
+"block": {
+"abilities": {
+"cha": 7,
+"con": 14,
+"dex": 12,
+"int": 2,
+"str": 15,
+"wis": 12
+},
+"armorClass": 11,
+"attacks": [
+{
+"attackId": "rend",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 6,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Rend",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 19,
+"max": 19
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": -2,
+"con": 2,
+"dex": 1,
+"int": -4,
+"str": 2,
+"wis": 1
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 0.5,
+"xp": 100
+},
+"black-dragon-wyrmling": {
+"block": {
+"abilities": {
+"cha": 13,
+"con": 13,
+"dex": 14,
+"int": 10,
+"str": 15,
+"wis": 11
+},
+"armorClass": 17,
+"attacks": [
+{
+"attackId": "rend",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 6,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Rend",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 33,
+"max": 33
+},
+"initiativeBonus": 4,
+"savingThrows": {
+"cha": 1,
+"con": 1,
+"dex": 4,
+"int": 0,
+"str": 2,
+"wis": 2
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 2.0,
+"xp": 450
+},
+"black-pudding": {
+"block": {
+"abilities": {
+"cha": 1,
+"con": 16,
+"dex": 5,
+"int": 1,
+"str": 16,
+"wis": 6
+},
+"armorClass": 7,
+"attacks": [
+{
+"attackId": "dissolving-pseudopod",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 4,
+"sides": 6,
+"type": "acid"
+},
+"kind": "melee",
+"name": "Dissolving Pseudopod",
+"reachFt": 10
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 68,
+"max": 68
+},
+"initiativeBonus": -3,
+"savingThrows": {
+"cha": -5,
+"con": 3,
+"dex": -3,
+"int": -5,
+"str": 3,
+"wis": -2
+},
+"speedFt": 20,
+"spells": []
+},
+"cr": 4.0,
+"xp": 1100
+},
+"blink-dog": {
+"block": {
+"abilities": {
+"cha": 11,
+"con": 12,
+"dex": 17,
+"int": 10,
+"str": 12,
+"wis": 13
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 4,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 22,
+"max": 22
+},
+"initiativeBonus": 3,
+"savingThrows": {
+"cha": 0,
+"con": 1,
+"dex": 3,
+"int": 0,
+"str": 1,
+"wis": 1
+},
+"speedFt": 40,
+"spells": []
+},
+"cr": 0.25,
+"xp": 50
+},
+"blood-hawk": {
+"block": {
+"abilities": {
+"cha": 5,
+"con": 10,
+"dex": 14,
+"int": 3,
+"str": 6,
+"wis": 14
+},
+"armorClass": 12,
+"attacks": [
+{
+"attackId": "beak",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 4,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Beak",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 7,
+"max": 7
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": -3,
+"con": 0,
+"dex": 2,
+"int": -4,
+"str": -2,
+"wis": 2
+},
+"speedFt": 10,
+"spells": []
+},
+"cr": 0.125,
+"xp": 25
+},
+"blue-dragon-wyrmling": {
+"block": {
+"abilities": {
+"cha": 15,
+"con": 15,
+"dex": 10,
+"int": 12,
+"str": 17,
+"wis": 11
+},
+"armorClass": 17,
+"attacks": [
+{
+"attackId": "rend",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 10,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Rend",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 65,
+"max": 65
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": 2,
+"con": 2,
+"dex": 2,
+"int": 1,
+"str": 3,
+"wis": 2
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 3.0,
+"xp": 700
+},
+"boar": {
+"block": {
+"abilities": {
+"cha": 5,
+"con": 14,
+"dex": 11,
+"int": 2,
+"str": 13,
+"wis": 9
+},
+"armorClass": 11,
+"attacks": [
+{
+"attackId": "gore",
+"bonus": 3,
+"damage": {
+"bonus": 1,
+"count": 1,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Gore",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 13,
+"max": 13
+},
+"initiativeBonus": 0,
+"savingThrows": {
+"cha": -3,
+"con": 2,
+"dex": 0,
+"int": -4,
+"str": 1,
+"wis": -1
+},
+"speedFt": 40,
+"spells": []
+},
+"cr": 0.25,
+"xp": 50
+},
+"brass-dragon-wyrmling": {
+"block": {
+"abilities": {
+"cha": 13,
+"con": 13,
+"dex": 10,
+"int": 10,
+"str": 15,
+"wis": 11
+},
+"armorClass": 15,
+"attacks": [
+{
+"attackId": "rend",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 10,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Rend",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 22,
+"max": 22
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": 1,
+"con": 1,
+"dex": 2,
+"int": 0,
+"str": 2,
+"wis": 2
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 1.0,
+"xp": 200
+},
+"bronze-dragon-wyrmling": {
+"block": {
+"abilities": {
+"cha": 15,
+"con": 15,
+"dex": 10,
+"int": 12,
+"str": 17,
+"wis": 11
+},
+"armorClass": 15,
+"attacks": [
+{
+"attackId": "rend",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 10,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Rend",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 39,
+"max": 39
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": 2,
+"con": 2,
+"dex": 2,
+"int": 1,
+"str": 3,
+"wis": 2
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 2.0,
+"xp": 450
+},
+"brown-bear": {
+"block": {
+"abilities": {
+"cha": 7,
+"con": 15,
+"dex": 12,
+"int": 2,
+"str": 17,
+"wis": 13
+},
+"armorClass": 11,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 8,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+},
+{
+"attackId": "claw",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 4,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Claw",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 22,
+"max": 22
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": -2,
+"con": 2,
+"dex": 1,
+"int": -4,
+"str": 3,
+"wis": 1
+},
+"speedFt": 40,
+"spells": []
+},
+"cr": 1.0,
+"xp": 200
+},
+"bugbear-stalker": {
+"block": {
+"abilities": {
+"cha": 11,
+"con": 14,
+"dex": 14,
+"int": 11,
+"str": 17,
+"wis": 12
+},
+"armorClass": 15,
+"attacks": [
+{
+"attackId": "javelin",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 3,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Javelin",
+"reachFt": 10
+},
+{
+"attackId": "javelin-ranged",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 3,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "ranged",
+"longRangeFt": 120,
+"name": "Javelin",
+"normalRangeFt": 30
+},
+{
+"attackId": "morningstar",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 2,
+"sides": 8,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Morningstar",
+"reachFt": 10
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 65,
+"max": 65
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": 0,
+"con": 4,
+"dex": 2,
+"int": 0,
+"str": 3,
+"wis": 3
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 3.0,
+"xp": 700
+},
+"bugbear-warrior": {
+"block": {
+"abilities": {
+"cha": 9,
+"con": 13,
+"dex": 14,
+"int": 8,
+"str": 15,
+"wis": 11
+},
+"armorClass": 14,
+"attacks": [
+{
+"attackId": "grab",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 2,
+"sides": 6,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Grab",
+"reachFt": 10
+},
+{
+"attackId": "light-hammer",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 3,
+"sides": 4,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Light Hammer",
+"reachFt": 10
+},
+{
+"attackId": "light-hammer-ranged",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 3,
+"sides": 4,
+"type": "bludgeoning"
+},
+"kind": "ranged",
+"longRangeFt": 60,
+"name": "Light Hammer",
+"normalRangeFt": 20
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 33,
+"max": 33
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": -1,
+"con": 1,
+"dex": 2,
+"int": -1,
+"str": 2,
+"wis": 0
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 1.0,
+"xp": 200
+},
+"bulette": {
+"block": {
+"abilities": {
+"cha": 5,
+"con": 21,
+"dex": 11,
+"int": 2,
+"str": 19,
+"wis": 10
+},
+"armorClass": 17,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 7,
+"damage": {
+"bonus": 4,
+"count": 2,
+"sides": 12,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 94,
+"max": 94
+},
+"initiativeBonus": 0,
+"savingThrows": {
+"cha": -3,
+"con": 5,
+"dex": 0,
+"int": -4,
+"str": 4,
+"wis": 0
+},
+"speedFt": 40,
+"spells": []
+},
+"cr": 5.0,
+"xp": 1800
+},
+"camel": {
+"block": {
+"abilities": {
+"cha": 5,
+"con": 17,
+"dex": 8,
+"int": 2,
+"str": 15,
+"wis": 11
+},
+"armorClass": 10,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 4,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 17,
+"max": 17
+},
+"initiativeBonus": -1,
+"savingThrows": {
+"cha": -3,
+"con": 5,
+"dex": -1,
+"int": -4,
+"str": 2,
+"wis": 0
+},
+"speedFt": 50,
+"spells": []
+},
+"cr": 0.125,
+"xp": 25
+},
+"cat": {
+"block": {
+"abilities": {
+"cha": 7,
+"con": 10,
+"dex": 15,
+"int": 3,
+"str": 3,
+"wis": 12
+},
+"armorClass": 12,
+"attacks": [
+{
+"attackId": "scratch",
+"bonus": 4,
+"damage": {
+"bonus": 1,
+"count": 0,
+"sides": 4,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Scratch",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 2,
+"max": 2
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": -2,
+"con": 0,
+"dex": 4,
+"int": -4,
+"str": -4,
+"wis": 1
+},
+"speedFt": 40,
+"spells": []
+},
+"cr": 0.0,
+"xp": 10
+},
+"centaur-trooper": {
+"block": {
+"abilities": {
+"cha": 11,
+"con": 14,
+"dex": 14,
+"int": 9,
+"str": 18,
+"wis": 13
+},
+"armorClass": 16,
+"attacks": [
+{
+"attackId": "pike",
+"bonus": 6,
+"damage": {
+"bonus": 4,
+"count": 1,
+"sides": 10,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Pike",
+"reachFt": 10
+},
+{
+"attackId": "longbow",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 8,
+"type": "piercing"
+},
+"kind": "ranged",
+"longRangeFt": 600,
+"name": "Longbow",
+"normalRangeFt": 150
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 45,
+"max": 45
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": 0,
+"con": 2,
+"dex": 2,
+"int": -1,
+"str": 4,
+"wis": 1
+},
+"speedFt": 50,
+"spells": []
+},
+"cr": 2.0,
+"xp": 450
+},
+"chuul": {
+"block": {
+"abilities": {
+"cha": 5,
+"con": 16,
+"dex": 10,
+"int": 5,
+"str": 19,
+"wis": 11
+},
+"armorClass": 16,
+"attacks": [
+{
+"attackId": "pincer",
+"bonus": 6,
+"damage": {
+"bonus": 4,
+"count": 1,
+"sides": 10,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Pincer",
+"reachFt": 10
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 76,
+"max": 76
+},
+"initiativeBonus": 0,
+"savingThrows": {
+"cha": -3,
+"con": 3,
+"dex": 0,
+"int": -3,
+"str": 4,
+"wis": 0
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 4.0,
+"xp": 1100
+},
+"cockatrice": {
+"block": {
+"abilities": {
+"cha": 5,
+"con": 12,
+"dex": 12,
+"int": 2,
+"str": 6,
+"wis": 13
+},
+"armorClass": 11,
+"attacks": [
+{
+"attackId": "petrifying-bite",
+"bonus": 3,
+"damage": {
+"bonus": 1,
+"count": 1,
+"sides": 4,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Petrifying Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 22,
+"max": 22
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": -3,
+"con": 1,
+"dex": 1,
+"int": -4,
+"str": -2,
+"wis": 1
+},
+"speedFt": 20,
+"spells": []
+},
+"cr": 0.5,
+"xp": 100
+},
+"commoner": {
+"block": {
+"abilities": {
+"cha": 10,
+"con": 10,
+"dex": 10,
+"int": 10,
+"str": 10,
+"wis": 10
+},
+"armorClass": 10,
+"attacks": [
+{
+"attackId": "club",
+"bonus": 2,
+"damage": {
+"bonus": 0,
+"count": 1,
+"sides": 4,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Club",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 4,
+"max": 4
+},
+"initiativeBonus": 0,
+"savingThrows": {
+"cha": 0,
+"con": 0,
+"dex": 0,
+"int": 0,
+"str": 0,
+"wis": 0
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 0.0,
+"xp": 10
+},
+"constrictor-snake": {
+"block": {
+"abilities": {
+"cha": 3,
+"con": 12,
+"dex": 14,
+"int": 1,
+"str": 15,
+"wis": 10
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 8,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 13,
+"max": 13
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": -4,
+"con": 1,
+"dex": 2,
+"int": -5,
+"str": 2,
+"wis": 0
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 0.25,
+"xp": 50
+},
+"copper-dragon-wyrmling": {
+"block": {
+"abilities": {
+"cha": 13,
+"con": 13,
+"dex": 12,
+"int": 14,
+"str": 15,
+"wis": 11
+},
+"armorClass": 16,
+"attacks": [
+{
+"attackId": "rend",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 10,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Rend",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 22,
+"max": 22
+},
+"initiativeBonus": 3,
+"savingThrows": {
+"cha": 1,
+"con": 1,
+"dex": 3,
+"int": 2,
+"str": 2,
+"wis": 2
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 1.0,
+"xp": 200
+},
+"couatl": {
+"block": {
+"abilities": {
+"cha": 18,
+"con": 17,
+"dex": 20,
+"int": 18,
+"str": 16,
+"wis": 20
+},
+"armorClass": 19,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 7,
+"damage": {
+"bonus": 5,
+"count": 1,
+"sides": 12,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 60,
+"max": 60
+},
+"initiativeBonus": 5,
+"savingThrows": {
+"cha": 4,
+"con": 5,
+"dex": 5,
+"int": 4,
+"str": 3,
+"wis": 7
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 4.0,
+"xp": 1100
+},
+"crab": {
+"block": {
+"abilities": {
+"cha": 2,
+"con": 12,
+"dex": 11,
+"int": 1,
+"str": 6,
+"wis": 8
+},
+"armorClass": 11,
+"attacks": [
+{
+"attackId": "claw",
+"bonus": 2,
+"damage": {
+"bonus": 1,
+"count": 0,
+"sides": 4,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Claw",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 3,
+"max": 3
+},
+"initiativeBonus": 0,
+"savingThrows": {
+"cha": -4,
+"con": 1,
+"dex": 0,
+"int": -5,
+"str": -2,
+"wis": -1
+},
+"speedFt": 20,
+"spells": []
+},
+"cr": 0.0,
+"xp": 10
+},
+"crocodile": {
+"block": {
+"abilities": {
+"cha": 5,
+"con": 13,
+"dex": 10,
+"int": 2,
+"str": 15,
+"wis": 10
+},
+"armorClass": 12,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 8,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 13,
+"max": 13
+},
+"initiativeBonus": 0,
+"savingThrows": {
+"cha": -3,
+"con": 3,
+"dex": 0,
+"int": -4,
+"str": 2,
+"wis": 0
+},
+"speedFt": 20,
+"spells": []
+},
+"cr": 0.5,
+"xp": 100
+},
+"cultist": {
+"block": {
+"abilities": {
+"cha": 10,
+"con": 10,
+"dex": 12,
+"int": 10,
+"str": 11,
+"wis": 11
+},
+"armorClass": 12,
+"attacks": [
+{
+"attackId": "ritual-sickle",
+"bonus": 3,
+"damage": {
+"bonus": 1,
+"count": 1,
+"sides": 4,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Ritual Sickle",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 9,
+"max": 9
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": 0,
+"con": 0,
+"dex": 1,
+"int": 0,
+"str": 0,
+"wis": 2
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 0.125,
+"xp": 25
+},
+"cultist-fanatic": {
+"block": {
+"abilities": {
+"cha": 13,
+"con": 12,
+"dex": 14,
+"int": 10,
+"str": 11,
+"wis": 14
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "pact-blade",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 8,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Pact Blade",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 44,
+"max": 44
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": 1,
+"con": 1,
+"dex": 2,
+"int": 0,
+"str": 0,
+"wis": 4
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 2.0,
+"xp": 450
+},
+"darkmantle": {
+"block": {
+"abilities": {
+"cha": 5,
+"con": 13,
+"dex": 12,
+"int": 2,
+"str": 16,
+"wis": 10
+},
+"armorClass": 11,
+"attacks": [
+{
+"attackId": "crush",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 6,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Crush",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 22,
+"max": 22
+},
+"initiativeBonus": 3,
+"savingThrows": {
+"cha": -3,
+"con": 1,
+"dex": 1,
+"int": -4,
+"str": 3,
+"wis": 0
+},
+"speedFt": 10,
+"spells": []
+},
+"cr": 0.5,
+"xp": 100
+},
+"death-dog": {
+"block": {
+"abilities": {
+"cha": 6,
+"con": 14,
+"dex": 14,
+"int": 3,
+"str": 15,
+"wis": 13
+},
+"armorClass": 12,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 4,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 39,
+"max": 39
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": -2,
+"con": 2,
+"dex": 2,
+"int": -4,
+"str": 2,
+"wis": 1
+},
+"speedFt": 40,
+"spells": []
+},
+"cr": 1.0,
+"xp": 200
+},
+"deer": {
+"block": {
+"abilities": {
+"cha": 5,
+"con": 11,
+"dex": 16,
+"int": 2,
+"str": 11,
+"wis": 14
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "ram",
+"bonus": 2,
+"damage": {
+"bonus": 0,
+"count": 1,
+"sides": 4,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Ram",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 4,
+"max": 4
+},
+"initiativeBonus": 3,
+"savingThrows": {
+"cha": -3,
+"con": 0,
+"dex": 3,
+"int": -4,
+"str": 0,
+"wis": 2
+},
+"speedFt": 50,
+"spells": []
+},
+"cr": 0.0,
+"xp": 10
+},
+"dire-wolf": {
+"block": {
+"abilities": {
+"cha": 7,
+"con": 15,
+"dex": 15,
+"int": 3,
+"str": 17,
+"wis": 12
+},
+"armorClass": 14,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 10,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 22,
+"max": 22
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": -2,
+"con": 2,
+"dex": 2,
+"int": -4,
+"str": 3,
+"wis": 1
+},
+"speedFt": 50,
+"spells": []
+},
+"cr": 1.0,
+"xp": 200
+},
+"doppelganger": {
+"block": {
+"abilities": {
+"cha": 14,
+"con": 14,
+"dex": 18,
+"int": 11,
+"str": 11,
+"wis": 12
+},
+"armorClass": 14,
+"attacks": [
+{
+"attackId": "slam",
+"bonus": 6,
+"damage": {
+"bonus": 4,
+"count": 2,
+"sides": 6,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Slam",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 52,
+"max": 52
+},
+"initiativeBonus": 4,
+"savingThrows": {
+"cha": 2,
+"con": 2,
+"dex": 4,
+"int": 0,
+"str": 0,
+"wis": 1
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 3.0,
+"xp": 700
+},
+"draft-horse": {
+"block": {
+"abilities": {
+"cha": 7,
+"con": 15,
+"dex": 10,
+"int": 2,
+"str": 18,
+"wis": 11
+},
+"armorClass": 10,
+"attacks": [
+{
+"attackId": "hooves",
+"bonus": 6,
+"damage": {
+"bonus": 4,
+"count": 1,
+"sides": 4,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Hooves",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 15,
+"max": 15
+},
+"initiativeBonus": 0,
+"savingThrows": {
+"cha": -2,
+"con": 2,
+"dex": 0,
+"int": -4,
+"str": 4,
+"wis": 0
+},
+"speedFt": 40,
+"spells": []
+},
+"cr": 0.25,
+"xp": 50
+},
+"dretch": {
+"block": {
+"abilities": {
+"cha": 3,
+"con": 12,
+"dex": 11,
+"int": 5,
+"str": 12,
+"wis": 8
+},
+"armorClass": 11,
+"attacks": [
+{
+"attackId": "rend",
+"bonus": 3,
+"damage": {
+"bonus": 1,
+"count": 1,
+"sides": 6,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Rend",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 18,
+"max": 18
+},
+"initiativeBonus": 0,
+"savingThrows": {
+"cha": -4,
+"con": 1,
+"dex": 0,
+"int": -3,
+"str": 1,
+"wis": -1
+},
+"speedFt": 20,
+"spells": []
+},
+"cr": 0.25,
+"xp": 50
+},
+"druid": {
+"block": {
+"abilities": {
+"cha": 11,
+"con": 13,
+"dex": 12,
+"int": 12,
+"str": 10,
+"wis": 16
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "vine-staff",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 8,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Vine Staff",
+"reachFt": 5
+},
+{
+"attackId": "verdant-wisp",
+"bonus": 5,
+"damage": {
+"bonus": 0,
+"count": 3,
+"sides": 6,
+"type": "radiant"
+},
+"kind": "ranged",
+"longRangeFt": 90,
+"name": "Verdant Wisp",
+"normalRangeFt": 90
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 44,
+"max": 44
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": 0,
+"con": 1,
+"dex": 1,
+"int": 1,
+"str": 0,
+"wis": 3
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 2.0,
+"xp": 450
+},
+"dryad": {
+"block": {
+"abilities": {
+"cha": 18,
+"con": 11,
+"dex": 12,
+"int": 14,
+"str": 10,
+"wis": 15
+},
+"armorClass": 16,
+"attacks": [
+{
+"attackId": "vine-lash",
+"bonus": 6,
+"damage": {
+"bonus": 4,
+"count": 1,
+"sides": 8,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Vine Lash",
+"reachFt": 10
+},
+{
+"attackId": "thorn-burst",
+"bonus": 6,
+"damage": {
+"bonus": 4,
+"count": 1,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "ranged",
+"longRangeFt": 60,
+"name": "Thorn Burst",
+"normalRangeFt": 60
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 22,
+"max": 22
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": 4,
+"con": 0,
+"dex": 1,
+"int": 2,
+"str": 0,
+"wis": 2
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 1.0,
+"xp": 200
+},
+"dust-mephit": {
+"block": {
+"abilities": {
+"cha": 10,
+"con": 10,
+"dex": 14,
+"int": 9,
+"str": 5,
+"wis": 11
+},
+"armorClass": 12,
+"attacks": [
+{
+"attackId": "claw",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 4,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Claw",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 17,
+"max": 17
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": 0,
+"con": 0,
+"dex": 2,
+"int": -1,
+"str": -3,
+"wis": 0
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 0.5,
+"xp": 100
+},
+"eagle": {
+"block": {
+"abilities": {
+"cha": 7,
+"con": 12,
+"dex": 15,
+"int": 2,
+"str": 6,
+"wis": 14
+},
+"armorClass": 12,
+"attacks": [
+{
+"attackId": "talons",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 4,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Talons",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 4,
+"max": 4
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": -2,
+"con": 1,
+"dex": 2,
+"int": -4,
+"str": -2,
+"wis": 2
+},
+"speedFt": 10,
+"spells": []
+},
+"cr": 0.0,
+"xp": 10
+},
+"earth-elemental": {
+"block": {
+"abilities": {
+"cha": 5,
+"con": 20,
+"dex": 8,
+"int": 5,
+"str": 20,
+"wis": 10
+},
+"armorClass": 17,
+"attacks": [
+{
+"attackId": "slam",
+"bonus": 8,
+"damage": {
+"bonus": 5,
+"count": 2,
+"sides": 8,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Slam",
+"reachFt": 10
+},
+{
+"attackId": "rock-launch",
+"bonus": 8,
+"damage": {
+"bonus": 5,
+"count": 1,
+"sides": 6,
+"type": "bludgeoning"
+},
+"kind": "ranged",
+"longRangeFt": 60,
+"name": "Rock Launch",
+"normalRangeFt": 60
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 147,
+"max": 147
+},
+"initiativeBonus": -1,
+"savingThrows": {
+"cha": -3,
+"con": 5,
+"dex": -1,
+"int": -3,
+"str": 5,
+"wis": 0
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 5.0,
+"xp": 1800
+},
+"elephant": {
+"block": {
+"abilities": {
+"cha": 6,
+"con": 17,
+"dex": 9,
+"int": 3,
+"str": 22,
+"wis": 11
+},
+"armorClass": 12,
+"attacks": [
+{
+"attackId": "gore",
+"bonus": 8,
+"damage": {
+"bonus": 6,
+"count": 2,
+"sides": 8,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Gore",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 76,
+"max": 76
+},
+"initiativeBonus": -1,
+"savingThrows": {
+"cha": -2,
+"con": 3,
+"dex": -1,
+"int": -4,
+"str": 6,
+"wis": 0
+},
+"speedFt": 40,
+"spells": []
+},
+"cr": 4.0,
+"xp": 1100
+},
+"elk": {
+"block": {
+"abilities": {
+"cha": 6,
+"con": 11,
+"dex": 10,
+"int": 2,
+"str": 16,
+"wis": 10
+},
+"armorClass": 10,
+"attacks": [
+{
+"attackId": "ram",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 6,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Ram",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 11,
+"max": 11
+},
+"initiativeBonus": 0,
+"savingThrows": {
+"cha": -2,
+"con": 0,
+"dex": 0,
+"int": -4,
+"str": 3,
+"wis": 0
+},
+"speedFt": 50,
+"spells": []
+},
+"cr": 0.25,
+"xp": 50
+},
+"ettercap": {
+"block": {
+"abilities": {
+"cha": 8,
+"con": 13,
+"dex": 15,
+"int": 7,
+"str": 14,
+"wis": 12
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+},
+{
+"attackId": "claw",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 2,
+"sides": 4,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Claw",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 44,
+"max": 44
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": -1,
+"con": 1,
+"dex": 2,
+"int": -2,
+"str": 2,
+"wis": 1
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 2.0,
+"xp": 450
+},
+"ettin": {
+"block": {
+"abilities": {
+"cha": 8,
+"con": 17,
+"dex": 8,
+"int": 6,
+"str": 21,
+"wis": 10
+},
+"armorClass": 12,
+"attacks": [
+{
+"attackId": "battleaxe",
+"bonus": 7,
+"damage": {
+"bonus": 5,
+"count": 2,
+"sides": 8,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Battleaxe",
+"reachFt": 5
+},
+{
+"attackId": "morningstar",
+"bonus": 7,
+"damage": {
+"bonus": 5,
+"count": 2,
+"sides": 8,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Morningstar",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 85,
+"max": 85
+},
+"initiativeBonus": -1,
+"savingThrows": {
+"cha": -1,
+"con": 3,
+"dex": -1,
+"int": -2,
+"str": 5,
+"wis": 0
+},
+"speedFt": 40,
+"spells": []
+},
+"cr": 4.0,
+"xp": 1100
+},
+"fire-elemental": {
+"block": {
+"abilities": {
+"cha": 7,
+"con": 16,
+"dex": 17,
+"int": 6,
+"str": 10,
+"wis": 10
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "burn",
+"bonus": 6,
+"damage": {
+"bonus": 3,
+"count": 2,
+"sides": 6,
+"type": "fire"
+},
+"kind": "melee",
+"name": "Burn",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 93,
+"max": 93
+},
+"initiativeBonus": 3,
+"savingThrows": {
+"cha": -2,
+"con": 3,
+"dex": 3,
+"int": -2,
+"str": 0,
+"wis": 0
+},
+"speedFt": 50,
+"spells": []
+},
+"cr": 5.0,
+"xp": 1800
+},
+"flesh-golem": {
+"block": {
+"abilities": {
+"cha": 5,
+"con": 18,
+"dex": 9,
+"int": 6,
+"str": 19,
+"wis": 10
+},
+"armorClass": 9,
+"attacks": [
+{
+"attackId": "slam",
+"bonus": 7,
+"damage": {
+"bonus": 4,
+"count": 2,
+"sides": 8,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Slam",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 127,
+"max": 127
+},
+"initiativeBonus": -1,
+"savingThrows": {
+"cha": -3,
+"con": 4,
+"dex": -1,
+"int": -2,
+"str": 4,
+"wis": 0
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 5.0,
+"xp": 1800
+},
+"flying-snake": {
+"block": {
+"abilities": {
+"cha": 5,
+"con": 11,
+"dex": 15,
+"int": 2,
+"str": 4,
+"wis": 12
+},
+"armorClass": 14,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 4,
+"damage": {
+"bonus": 1,
+"count": 0,
+"sides": 4,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 5,
+"max": 5
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": -3,
+"con": 0,
+"dex": 2,
+"int": -4,
+"str": -3,
+"wis": 1
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 0.125,
+"xp": 25
+},
+"frog": {
+"block": {
+"abilities": {
+"cha": 3,
+"con": 8,
+"dex": 13,
+"int": 1,
+"str": 1,
+"wis": 8
+},
+"armorClass": 11,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 3,
+"damage": {
+"bonus": 1,
+"count": 0,
+"sides": 4,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 1,
+"max": 1
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": -4,
+"con": -1,
+"dex": 1,
+"int": -5,
+"str": -5,
+"wis": -1
+},
+"speedFt": 20,
+"spells": []
+},
+"cr": 0.0,
+"xp": 10
+},
+"gargoyle": {
+"block": {
+"abilities": {
+"cha": 7,
+"con": 16,
+"dex": 11,
+"int": 6,
+"str": 15,
+"wis": 11
+},
+"armorClass": 15,
+"attacks": [
+{
+"attackId": "claw",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 2,
+"sides": 4,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Claw",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 67,
+"max": 67
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": -2,
+"con": 3,
+"dex": 0,
+"int": -2,
+"str": 2,
+"wis": 0
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 2.0,
+"xp": 450
+},
+"gelatinous-cube": {
+"block": {
+"abilities": {
+"cha": 1,
+"con": 20,
+"dex": 3,
+"int": 1,
+"str": 14,
+"wis": 6
+},
+"armorClass": 6,
+"attacks": [
+{
+"attackId": "pseudopod",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 3,
+"sides": 6,
+"type": "acid"
+},
+"kind": "melee",
+"name": "Pseudopod",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 63,
+"max": 63
+},
+"initiativeBonus": -4,
+"savingThrows": {
+"cha": -5,
+"con": 5,
+"dex": -4,
+"int": -5,
+"str": 2,
+"wis": -2
+},
+"speedFt": 15,
+"spells": []
+},
+"cr": 2.0,
+"xp": 450
+},
+"ghast": {
+"block": {
+"abilities": {
+"cha": 8,
+"con": 10,
+"dex": 17,
+"int": 11,
+"str": 16,
+"wis": 10
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 8,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+},
+{
+"attackId": "claw",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 2,
+"sides": 6,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Claw",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 36,
+"max": 36
+},
+"initiativeBonus": 3,
+"savingThrows": {
+"cha": -1,
+"con": 0,
+"dex": 3,
+"int": 0,
+"str": 3,
+"wis": 2
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 2.0,
+"xp": 450
+},
+"ghost": {
+"block": {
+"abilities": {
+"cha": 17,
+"con": 10,
+"dex": 13,
+"int": 10,
+"str": 7,
+"wis": 12
+},
+"armorClass": 11,
+"attacks": [
+{
+"attackId": "withering-touch",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 3,
+"sides": 10,
+"type": "necrotic"
+},
+"kind": "melee",
+"name": "Withering Touch",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 45,
+"max": 45
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": 3,
+"con": 0,
+"dex": 1,
+"int": 0,
+"str": -2,
+"wis": 1
+},
+"speedFt": 5,
+"spells": []
+},
+"cr": 4.0,
+"xp": 1100
+},
+"ghoul": {
+"block": {
+"abilities": {
+"cha": 6,
+"con": 10,
+"dex": 15,
+"int": 7,
+"str": 13,
+"wis": 10
+},
+"armorClass": 12,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+},
+{
+"attackId": "claw",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 4,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Claw",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 22,
+"max": 22
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": -2,
+"con": 0,
+"dex": 2,
+"int": -2,
+"str": 1,
+"wis": 0
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 1.0,
+"xp": 200
+},
+"giant-badger": {
+"block": {
+"abilities": {
+"cha": 5,
+"con": 17,
+"dex": 10,
+"int": 2,
+"str": 13,
+"wis": 12
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 3,
+"damage": {
+"bonus": 1,
+"count": 2,
+"sides": 4,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 15,
+"max": 15
+},
+"initiativeBonus": 0,
+"savingThrows": {
+"cha": -3,
+"con": 3,
+"dex": 0,
+"int": -4,
+"str": 1,
+"wis": 1
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 0.25,
+"xp": 50
+},
+"giant-bat": {
+"block": {
+"abilities": {
+"cha": 6,
+"con": 11,
+"dex": 16,
+"int": 2,
+"str": 15,
+"wis": 12
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 22,
+"max": 22
+},
+"initiativeBonus": 3,
+"savingThrows": {
+"cha": -2,
+"con": 0,
+"dex": 3,
+"int": -4,
+"str": 2,
+"wis": 1
+},
+"speedFt": 10,
+"spells": []
+},
+"cr": 0.25,
+"xp": 50
+},
+"giant-boar": {
+"block": {
+"abilities": {
+"cha": 5,
+"con": 16,
+"dex": 10,
+"int": 2,
+"str": 17,
+"wis": 7
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "gore",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 2,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Gore",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 42,
+"max": 42
+},
+"initiativeBonus": 0,
+"savingThrows": {
+"cha": -3,
+"con": 3,
+"dex": 0,
+"int": -4,
+"str": 5,
+"wis": -2
+},
+"speedFt": 40,
+"spells": []
+},
+"cr": 2.0,
+"xp": 450
+},
+"giant-centipede": {
+"block": {
+"abilities": {
+"cha": 3,
+"con": 12,
+"dex": 14,
+"int": 1,
+"str": 5,
+"wis": 7
+},
+"armorClass": 14,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 4,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 9,
+"max": 9
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": -4,
+"con": 1,
+"dex": 2,
+"int": -5,
+"str": -3,
+"wis": -2
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 0.25,
+"xp": 50
+},
+"giant-constrictor-snake": {
+"block": {
+"abilities": {
+"cha": 3,
+"con": 12,
+"dex": 14,
+"int": 1,
+"str": 19,
+"wis": 10
+},
+"armorClass": 12,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 6,
+"damage": {
+"bonus": 4,
+"count": 2,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 10
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 60,
+"max": 60
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": -4,
+"con": 1,
+"dex": 2,
+"int": -5,
+"str": 4,
+"wis": 0
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 2.0,
+"xp": 450
+},
+"giant-crab": {
+"block": {
+"abilities": {
+"cha": 3,
+"con": 11,
+"dex": 13,
+"int": 1,
+"str": 13,
+"wis": 9
+},
+"armorClass": 15,
+"attacks": [
+{
+"attackId": "claw",
+"bonus": 3,
+"damage": {
+"bonus": 1,
+"count": 1,
+"sides": 6,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Claw",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 13,
+"max": 13
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": -4,
+"con": 0,
+"dex": 1,
+"int": -5,
+"str": 1,
+"wis": -1
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 0.125,
+"xp": 25
+},
+"giant-crocodile": {
+"block": {
+"abilities": {
+"cha": 7,
+"con": 17,
+"dex": 9,
+"int": 2,
+"str": 21,
+"wis": 10
+},
+"armorClass": 14,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 8,
+"damage": {
+"bonus": 5,
+"count": 3,
+"sides": 10,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+},
+{
+"attackId": "tail",
+"bonus": 8,
+"damage": {
+"bonus": 5,
+"count": 3,
+"sides": 8,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Tail",
+"reachFt": 10
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 85,
+"max": 85
+},
+"initiativeBonus": -1,
+"savingThrows": {
+"cha": -2,
+"con": 3,
+"dex": -1,
+"int": -4,
+"str": 5,
+"wis": 0
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 5.0,
+"xp": 1800
+},
+"giant-eagle": {
+"block": {
+"abilities": {
+"cha": 10,
+"con": 13,
+"dex": 17,
+"int": 8,
+"str": 16,
+"wis": 14
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "rend",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 4,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Rend",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 26,
+"max": 26
+},
+"initiativeBonus": 3,
+"savingThrows": {
+"cha": 0,
+"con": 1,
+"dex": 3,
+"int": -1,
+"str": 3,
+"wis": 2
+},
+"speedFt": 10,
+"spells": []
+},
+"cr": 1.0,
+"xp": 200
+},
+"giant-elk": {
+"block": {
+"abilities": {
+"cha": 10,
+"con": 14,
+"dex": 18,
+"int": 7,
+"str": 19,
+"wis": 14
+},
+"armorClass": 14,
+"attacks": [
+{
+"attackId": "ram",
+"bonus": 6,
+"damage": {
+"bonus": 4,
+"count": 2,
+"sides": 6,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Ram",
+"reachFt": 10
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 42,
+"max": 42
+},
+"initiativeBonus": 6,
+"savingThrows": {
+"cha": 0,
+"con": 2,
+"dex": 6,
+"int": -2,
+"str": 6,
+"wis": 2
+},
+"speedFt": 60,
+"spells": []
+},
+"cr": 2.0,
+"xp": 450
+},
+"giant-fire-beetle": {
+"block": {
+"abilities": {
+"cha": 3,
+"con": 12,
+"dex": 10,
+"int": 1,
+"str": 8,
+"wis": 7
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 1,
+"damage": {
+"bonus": 1,
+"count": 0,
+"sides": 4,
+"type": "fire"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 4,
+"max": 4
+},
+"initiativeBonus": 0,
+"savingThrows": {
+"cha": -4,
+"con": 1,
+"dex": 0,
+"int": -5,
+"str": -1,
+"wis": -2
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 0.0,
+"xp": 10
+},
+"giant-frog": {
+"block": {
+"abilities": {
+"cha": 3,
+"con": 11,
+"dex": 13,
+"int": 2,
+"str": 12,
+"wis": 10
+},
+"armorClass": 11,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 3,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 18,
+"max": 18
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": -4,
+"con": 0,
+"dex": 1,
+"int": -4,
+"str": 1,
+"wis": 0
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 0.25,
+"xp": 50
+},
+"giant-goat": {
+"block": {
+"abilities": {
+"cha": 6,
+"con": 12,
+"dex": 13,
+"int": 3,
+"str": 17,
+"wis": 12
+},
+"armorClass": 11,
+"attacks": [
+{
+"attackId": "ram",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 6,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Ram",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 19,
+"max": 19
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": -2,
+"con": 1,
+"dex": 1,
+"int": -4,
+"str": 5,
+"wis": 1
+},
+"speedFt": 40,
+"spells": []
+},
+"cr": 0.5,
+"xp": 100
+},
+"giant-hyena": {
+"block": {
+"abilities": {
+"cha": 7,
+"con": 14,
+"dex": 14,
+"int": 2,
+"str": 16,
+"wis": 12
+},
+"armorClass": 12,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 2,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 45,
+"max": 45
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": -2,
+"con": 2,
+"dex": 2,
+"int": -4,
+"str": 3,
+"wis": 1
+},
+"speedFt": 50,
+"spells": []
+},
+"cr": 1.0,
+"xp": 200
+},
+"giant-lizard": {
+"block": {
+"abilities": {
+"cha": 5,
+"con": 13,
+"dex": 12,
+"int": 2,
+"str": 15,
+"wis": 10
+},
+"armorClass": 12,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 8,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 19,
+"max": 19
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": -3,
+"con": 1,
+"dex": 3,
+"int": -4,
+"str": 2,
+"wis": 0
+},
+"speedFt": 40,
+"spells": []
+},
+"cr": 0.25,
+"xp": 50
+},
+"giant-octopus": {
+"block": {
+"abilities": {
+"cha": 4,
+"con": 13,
+"dex": 13,
+"int": 5,
+"str": 17,
+"wis": 10
+},
+"armorClass": 11,
+"attacks": [
+{
+"attackId": "tentacles",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 2,
+"sides": 6,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Tentacles",
+"reachFt": 10
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 45,
+"max": 45
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": -3,
+"con": 1,
+"dex": 1,
+"int": -3,
+"str": 3,
+"wis": 0
+},
+"speedFt": 10,
+"spells": []
+},
+"cr": 1.0,
+"xp": 200
+},
+"giant-owl": {
+"block": {
+"abilities": {
+"cha": 10,
+"con": 12,
+"dex": 15,
+"int": 10,
+"str": 13,
+"wis": 14
+},
+"armorClass": 12,
+"attacks": [
+{
+"attackId": "talons",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 10,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Talons",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 19,
+"max": 19
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": 0,
+"con": 1,
+"dex": 2,
+"int": 0,
+"str": 1,
+"wis": 4
+},
+"speedFt": 5,
+"spells": []
+},
+"cr": 0.25,
+"xp": 50
+},
+"giant-rat": {
+"block": {
+"abilities": {
+"cha": 4,
+"con": 11,
+"dex": 16,
+"int": 2,
+"str": 7,
+"wis": 10
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 4,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 7,
+"max": 7
+},
+"initiativeBonus": 3,
+"savingThrows": {
+"cha": -3,
+"con": 0,
+"dex": 5,
+"int": -4,
+"str": -2,
+"wis": 0
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 0.125,
+"xp": 25
+},
+"giant-scorpion": {
+"block": {
+"abilities": {
+"cha": 3,
+"con": 15,
+"dex": 13,
+"int": 1,
+"str": 16,
+"wis": 9
+},
+"armorClass": 15,
+"attacks": [
+{
+"attackId": "claw",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 6,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Claw",
+"reachFt": 5
+},
+{
+"attackId": "sting",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 8,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Sting",
+"reachFt": 5
+}
+],
+"attacksPerAction": 3,
+"conditions": [],
+"hitPoints": {
+"current": 52,
+"max": 52
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": -4,
+"con": 2,
+"dex": 1,
+"int": -5,
+"str": 3,
+"wis": -1
+},
+"speedFt": 40,
+"spells": []
+},
+"cr": 3.0,
+"xp": 700
+},
+"giant-seahorse": {
+"block": {
+"abilities": {
+"cha": 5,
+"con": 11,
+"dex": 12,
+"int": 2,
+"str": 15,
+"wis": 12
+},
+"armorClass": 14,
+"attacks": [
+{
+"attackId": "ram",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 2,
+"sides": 6,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Ram",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 16,
+"max": 16
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": -3,
+"con": 0,
+"dex": 1,
+"int": -4,
+"str": 2,
+"wis": 1
+},
+"speedFt": 5,
+"spells": []
+},
+"cr": 0.5,
+"xp": 100
+},
+"giant-shark": {
+"block": {
+"abilities": {
+"cha": 5,
+"con": 21,
+"dex": 11,
+"int": 1,
+"str": 23,
+"wis": 10
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 9,
+"damage": {
+"bonus": 6,
+"count": 3,
+"sides": 10,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 92,
+"max": 92
+},
+"initiativeBonus": 3,
+"savingThrows": {
+"cha": -3,
+"con": 5,
+"dex": 0,
+"int": -5,
+"str": 6,
+"wis": 0
+},
+"speedFt": 5,
+"spells": []
+},
+"cr": 5.0,
+"xp": 1800
+},
+"giant-spider": {
+"block": {
+"abilities": {
+"cha": 4,
+"con": 12,
+"dex": 16,
+"int": 2,
+"str": 14,
+"wis": 11
+},
+"armorClass": 14,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 8,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 26,
+"max": 26
+},
+"initiativeBonus": 3,
+"savingThrows": {
+"cha": -3,
+"con": 1,
+"dex": 3,
+"int": -4,
+"str": 2,
+"wis": 0
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 1.0,
+"xp": 200
+},
+"giant-toad": {
+"block": {
+"abilities": {
+"cha": 3,
+"con": 13,
+"dex": 13,
+"int": 2,
+"str": 15,
+"wis": 10
+},
+"armorClass": 11,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 39,
+"max": 39
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": -4,
+"con": 1,
+"dex": 1,
+"int": -4,
+"str": 2,
+"wis": 0
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 1.0,
+"xp": 200
+},
+"giant-venomous-snake": {
+"block": {
+"abilities": {
+"cha": 3,
+"con": 13,
+"dex": 18,
+"int": 2,
+"str": 10,
+"wis": 10
+},
+"armorClass": 14,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 6,
+"damage": {
+"bonus": 4,
+"count": 1,
+"sides": 4,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 10
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 11,
+"max": 11
+},
+"initiativeBonus": 4,
+"savingThrows": {
+"cha": -4,
+"con": 1,
+"dex": 4,
+"int": -4,
+"str": 0,
+"wis": 0
+},
+"speedFt": 40,
+"spells": []
+},
+"cr": 0.25,
+"xp": 50
+},
+"giant-vulture": {
+"block": {
+"abilities": {
+"cha": 7,
+"con": 16,
+"dex": 10,
+"int": 6,
+"str": 15,
+"wis": 12
+},
+"armorClass": 10,
+"attacks": [
+{
+"attackId": "gouge",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 2,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Gouge",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 25,
+"max": 25
+},
+"initiativeBonus": 0,
+"savingThrows": {
+"cha": -2,
+"con": 3,
+"dex": 0,
+"int": -2,
+"str": 2,
+"wis": 1
+},
+"speedFt": 10,
+"spells": []
+},
+"cr": 1.0,
+"xp": 200
+},
+"giant-wasp": {
+"block": {
+"abilities": {
+"cha": 3,
+"con": 10,
+"dex": 14,
+"int": 1,
+"str": 10,
+"wis": 10
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "sting",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Sting",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 22,
+"max": 22
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": -4,
+"con": 0,
+"dex": 2,
+"int": -5,
+"str": 0,
+"wis": 0
+},
+"speedFt": 10,
+"spells": []
+},
+"cr": 0.5,
+"xp": 100
+},
+"giant-weasel": {
+"block": {
+"abilities": {
+"cha": 5,
+"con": 10,
+"dex": 17,
+"int": 4,
+"str": 11,
+"wis": 12
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 4,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 9,
+"max": 9
+},
+"initiativeBonus": 3,
+"savingThrows": {
+"cha": -3,
+"con": 0,
+"dex": 3,
+"int": -3,
+"str": 0,
+"wis": 1
+},
+"speedFt": 40,
+"spells": []
+},
+"cr": 0.125,
+"xp": 25
+},
+"giant-wolf-spider": {
+"block": {
+"abilities": {
+"cha": 4,
+"con": 13,
+"dex": 16,
+"int": 3,
+"str": 12,
+"wis": 12
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 4,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 11,
+"max": 11
+},
+"initiativeBonus": 3,
+"savingThrows": {
+"cha": -3,
+"con": 1,
+"dex": 3,
+"int": -4,
+"str": 1,
+"wis": 1
+},
+"speedFt": 40,
+"spells": []
+},
+"cr": 0.25,
+"xp": 50
+},
+"gibbering-mouther": {
+"block": {
+"abilities": {
+"cha": 6,
+"con": 16,
+"dex": 8,
+"int": 3,
+"str": 10,
+"wis": 10
+},
+"armorClass": 9,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 2,
+"damage": {
+"bonus": 0,
+"count": 2,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 52,
+"max": 52
+},
+"initiativeBonus": -1,
+"savingThrows": {
+"cha": -2,
+"con": 3,
+"dex": -1,
+"int": -4,
+"str": 0,
+"wis": 0
+},
+"speedFt": 20,
+"spells": []
+},
+"cr": 2.0,
+"xp": 450
+},
+"gladiator": {
+"block": {
+"abilities": {
+"cha": 15,
+"con": 16,
+"dex": 15,
+"int": 10,
+"str": 18,
+"wis": 12
+},
+"armorClass": 16,
+"attacks": [
+{
+"attackId": "spear",
+"bonus": 7,
+"damage": {
+"bonus": 4,
+"count": 2,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Spear",
+"reachFt": 5
+},
+{
+"attackId": "spear-ranged",
+"bonus": 7,
+"damage": {
+"bonus": 4,
+"count": 2,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "ranged",
+"longRangeFt": 60,
+"name": "Spear",
+"normalRangeFt": 20
+}
+],
+"attacksPerAction": 3,
+"conditions": [],
+"hitPoints": {
+"current": 112,
+"max": 112
+},
+"initiativeBonus": 5,
+"savingThrows": {
+"cha": 2,
+"con": 6,
+"dex": 5,
+"int": 0,
+"str": 7,
+"wis": 4
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 5.0,
+"xp": 1800
+},
+"gnoll-warrior": {
+"block": {
+"abilities": {
+"cha": 7,
+"con": 11,
+"dex": 12,
+"int": 6,
+"str": 14,
+"wis": 10
+},
+"armorClass": 15,
+"attacks": [
+{
+"attackId": "rend",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Rend",
+"reachFt": 5
+},
+{
+"attackId": "bone-bow",
+"bonus": 3,
+"damage": {
+"bonus": 1,
+"count": 1,
+"sides": 10,
+"type": "piercing"
+},
+"kind": "ranged",
+"longRangeFt": 600,
+"name": "Bone Bow",
+"normalRangeFt": 150
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 27,
+"max": 27
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": -2,
+"con": 0,
+"dex": 1,
+"int": -2,
+"str": 2,
+"wis": 0
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 0.5,
+"xp": 100
+},
+"goat": {
+"block": {
+"abilities": {
+"cha": 5,
+"con": 11,
+"dex": 10,
+"int": 2,
+"str": 11,
+"wis": 10
+},
+"armorClass": 10,
+"attacks": [
+{
+"attackId": "ram",
+"bonus": 2,
+"damage": {
+"bonus": 1,
+"count": 0,
+"sides": 4,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Ram",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 4,
+"max": 4
+},
+"initiativeBonus": 0,
+"savingThrows": {
+"cha": -3,
+"con": 0,
+"dex": 0,
+"int": -4,
+"str": 2,
+"wis": 0
+},
+"speedFt": 40,
+"spells": []
+},
+"cr": 0.0,
+"xp": 10
+},
+"goblin-boss": {
+"block": {
+"abilities": {
+"cha": 10,
+"con": 10,
+"dex": 15,
+"int": 10,
+"str": 10,
+"wis": 8
+},
+"armorClass": 17,
+"attacks": [
+{
+"attackId": "scimitar",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 6,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Scimitar",
+"reachFt": 5
+},
+{
+"attackId": "shortbow",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "ranged",
+"longRangeFt": 320,
+"name": "Shortbow",
+"normalRangeFt": 80
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 21,
+"max": 21
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": 0,
+"con": 0,
+"dex": 2,
+"int": 0,
+"str": 0,
+"wis": -1
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 1.0,
+"xp": 200
+},
+"goblin-minion": {
+"block": {
+"abilities": {
+"cha": 8,
+"con": 10,
+"dex": 15,
+"int": 10,
+"str": 8,
+"wis": 8
+},
+"armorClass": 12,
+"attacks": [
+{
+"attackId": "dagger",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 4,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Dagger",
+"reachFt": 5
+},
+{
+"attackId": "dagger-ranged",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 4,
+"type": "piercing"
+},
+"kind": "ranged",
+"longRangeFt": 60,
+"name": "Dagger",
+"normalRangeFt": 20
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 7,
+"max": 7
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": -1,
+"con": 0,
+"dex": 2,
+"int": 0,
+"str": -1,
+"wis": -1
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 0.125,
+"xp": 25
+},
+"goblin-warrior": {
+"block": {
+"abilities": {
+"cha": 8,
+"con": 10,
+"dex": 15,
+"int": 10,
+"str": 8,
+"wis": 8
+},
+"armorClass": 15,
+"attacks": [
+{
+"attackId": "scimitar",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 6,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Scimitar",
+"reachFt": 5
+},
+{
+"attackId": "shortbow",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "ranged",
+"longRangeFt": 320,
+"name": "Shortbow",
+"normalRangeFt": 80
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 10,
+"max": 10
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": -1,
+"con": 0,
+"dex": 2,
+"int": 0,
+"str": -1,
+"wis": -1
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 0.25,
+"xp": 50
+},
+"gold-dragon-wyrmling": {
+"block": {
+"abilities": {
+"cha": 16,
+"con": 17,
+"dex": 14,
+"int": 14,
+"str": 19,
+"wis": 11
+},
+"armorClass": 17,
+"attacks": [
+{
+"attackId": "rend",
+"bonus": 6,
+"damage": {
+"bonus": 4,
+"count": 1,
+"sides": 10,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Rend",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 60,
+"max": 60
+},
+"initiativeBonus": 4,
+"savingThrows": {
+"cha": 3,
+"con": 3,
+"dex": 4,
+"int": 2,
+"str": 4,
+"wis": 2
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 3.0,
+"xp": 700
+},
+"gorgon": {
+"block": {
+"abilities": {
+"cha": 7,
+"con": 18,
+"dex": 11,
+"int": 2,
+"str": 20,
+"wis": 12
+},
+"armorClass": 19,
+"attacks": [
+{
+"attackId": "gore",
+"bonus": 8,
+"damage": {
+"bonus": 5,
+"count": 2,
+"sides": 12,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Gore",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 114,
+"max": 114
+},
+"initiativeBonus": 0,
+"savingThrows": {
+"cha": -2,
+"con": 4,
+"dex": 0,
+"int": -4,
+"str": 5,
+"wis": 1
+},
+"speedFt": 40,
+"spells": []
+},
+"cr": 5.0,
+"xp": 1800
+},
+"gray-ooze": {
+"block": {
+"abilities": {
+"cha": 2,
+"con": 16,
+"dex": 6,
+"int": 1,
+"str": 12,
+"wis": 6
+},
+"armorClass": 9,
+"attacks": [
+{
+"attackId": "pseudopod",
+"bonus": 3,
+"damage": {
+"bonus": 1,
+"count": 2,
+"sides": 8,
+"type": "acid"
+},
+"kind": "melee",
+"name": "Pseudopod",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 22,
+"max": 22
+},
+"initiativeBonus": -2,
+"savingThrows": {
+"cha": -4,
+"con": 3,
+"dex": -2,
+"int": -5,
+"str": 1,
+"wis": -2
+},
+"speedFt": 10,
+"spells": []
+},
+"cr": 0.5,
+"xp": 100
+},
+"green-dragon-wyrmling": {
+"block": {
+"abilities": {
+"cha": 13,
+"con": 13,
+"dex": 12,
+"int": 14,
+"str": 15,
+"wis": 11
+},
+"armorClass": 17,
+"attacks": [
+{
+"attackId": "rend",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 10,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Rend",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 38,
+"max": 38
+},
+"initiativeBonus": 3,
+"savingThrows": {
+"cha": 1,
+"con": 1,
+"dex": 3,
+"int": 2,
+"str": 2,
+"wis": 2
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 2.0,
+"xp": 450
+},
+"green-hag": {
+"block": {
+"abilities": {
+"cha": 14,
+"con": 16,
+"dex": 12,
+"int": 13,
+"str": 18,
+"wis": 14
+},
+"armorClass": 17,
+"attacks": [
+{
+"attackId": "claw",
+"bonus": 6,
+"damage": {
+"bonus": 4,
+"count": 1,
+"sides": 8,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Claw",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 82,
+"max": 82
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": 2,
+"con": 3,
+"dex": 1,
+"int": 1,
+"str": 4,
+"wis": 2
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 3.0,
+"xp": 700
+},
+"grick": {
+"block": {
+"abilities": {
+"cha": 5,
+"con": 11,
+"dex": 14,
+"int": 3,
+"str": 14,
+"wis": 14
+},
+"armorClass": 14,
+"attacks": [
+{
+"attackId": "beak",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 2,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Beak",
+"reachFt": 5
+},
+{
+"attackId": "tentacles",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 10,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Tentacles",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 54,
+"max": 54
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": -3,
+"con": 0,
+"dex": 2,
+"int": -4,
+"str": 2,
+"wis": 2
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 2.0,
+"xp": 450
+},
+"griffon": {
+"block": {
+"abilities": {
+"cha": 8,
+"con": 16,
+"dex": 15,
+"int": 2,
+"str": 18,
+"wis": 13
+},
+"armorClass": 12,
+"attacks": [
+{
+"attackId": "rend",
+"bonus": 6,
+"damage": {
+"bonus": 4,
+"count": 1,
+"sides": 8,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Rend",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 59,
+"max": 59
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": -1,
+"con": 3,
+"dex": 2,
+"int": -4,
+"str": 4,
+"wis": 1
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 2.0,
+"xp": 450
+},
+"grimlock": {
+"block": {
+"abilities": {
+"cha": 6,
+"con": 12,
+"dex": 12,
+"int": 9,
+"str": 16,
+"wis": 8
+},
+"armorClass": 11,
+"attacks": [
+{
+"attackId": "bone-cudgel",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 6,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Bone Cudgel",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 11,
+"max": 11
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": -2,
+"con": 1,
+"dex": 1,
+"int": -1,
+"str": 3,
+"wis": -1
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 0.25,
+"xp": 50
+},
+"guard": {
+"block": {
+"abilities": {
+"cha": 10,
+"con": 12,
+"dex": 12,
+"int": 10,
+"str": 13,
+"wis": 11
+},
+"armorClass": 16,
+"attacks": [
+{
+"attackId": "spear",
+"bonus": 3,
+"damage": {
+"bonus": 1,
+"count": 1,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Spear",
+"reachFt": 5
+},
+{
+"attackId": "spear-ranged",
+"bonus": 3,
+"damage": {
+"bonus": 1,
+"count": 1,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "ranged",
+"longRangeFt": 60,
+"name": "Spear",
+"normalRangeFt": 20
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 11,
+"max": 11
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": 0,
+"con": 1,
+"dex": 1,
+"int": 0,
+"str": 1,
+"wis": 0
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 0.125,
+"xp": 25
+},
+"guard-captain": {
+"block": {
+"abilities": {
+"cha": 13,
+"con": 16,
+"dex": 14,
+"int": 12,
+"str": 18,
+"wis": 14
+},
+"armorClass": 18,
+"attacks": [
+{
+"attackId": "javelin",
+"bonus": 6,
+"damage": {
+"bonus": 4,
+"count": 3,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Javelin",
+"reachFt": 5
+},
+{
+"attackId": "javelin-ranged",
+"bonus": 6,
+"damage": {
+"bonus": 4,
+"count": 3,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "ranged",
+"longRangeFt": 120,
+"name": "Javelin",
+"normalRangeFt": 30
+},
+{
+"attackId": "longsword",
+"bonus": 6,
+"damage": {
+"bonus": 4,
+"count": 2,
+"sides": 10,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Longsword",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 75,
+"max": 75
+},
+"initiativeBonus": 4,
+"savingThrows": {
+"cha": 1,
+"con": 3,
+"dex": 2,
+"int": 1,
+"str": 4,
+"wis": 2
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 4.0,
+"xp": 1100
+},
+"half-dragon": {
+"block": {
+"abilities": {
+"cha": 14,
+"con": 16,
+"dex": 14,
+"int": 10,
+"str": 19,
+"wis": 15
+},
+"armorClass": 18,
+"attacks": [
+{
+"attackId": "claw",
+"bonus": 7,
+"damage": {
+"bonus": 4,
+"count": 1,
+"sides": 4,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Claw",
+"reachFt": 10
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 105,
+"max": 105
+},
+"initiativeBonus": 5,
+"savingThrows": {
+"cha": 2,
+"con": 3,
+"dex": 5,
+"int": 0,
+"str": 4,
+"wis": 5
+},
+"speedFt": 40,
+"spells": []
+},
+"cr": 5.0,
+"xp": 1800
+},
+"harpy": {
+"block": {
+"abilities": {
+"cha": 13,
+"con": 12,
+"dex": 13,
+"int": 7,
+"str": 12,
+"wis": 10
+},
+"armorClass": 11,
+"attacks": [
+{
+"attackId": "claw",
+"bonus": 3,
+"damage": {
+"bonus": 1,
+"count": 2,
+"sides": 4,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Claw",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 38,
+"max": 38
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": 1,
+"con": 1,
+"dex": 1,
+"int": -2,
+"str": 1,
+"wis": 0
+},
+"speedFt": 20,
+"spells": []
+},
+"cr": 1.0,
+"xp": 200
+},
+"hawk": {
+"block": {
+"abilities": {
+"cha": 6,
+"con": 8,
+"dex": 16,
+"int": 2,
+"str": 5,
+"wis": 14
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "talons",
+"bonus": 5,
+"damage": {
+"bonus": 1,
+"count": 0,
+"sides": 4,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Talons",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 1,
+"max": 1
+},
+"initiativeBonus": 3,
+"savingThrows": {
+"cha": -2,
+"con": -1,
+"dex": 3,
+"int": -4,
+"str": -3,
+"wis": 2
+},
+"speedFt": 10,
+"spells": []
+},
+"cr": 0.0,
+"xp": 10
+},
+"hell-hound": {
+"block": {
+"abilities": {
+"cha": 6,
+"con": 14,
+"dex": 12,
+"int": 6,
+"str": 17,
+"wis": 13
+},
+"armorClass": 15,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 8,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 58,
+"max": 58
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": -2,
+"con": 2,
+"dex": 1,
+"int": -2,
+"str": 3,
+"wis": 1
+},
+"speedFt": 50,
+"spells": []
+},
+"cr": 3.0,
+"xp": 700
+},
+"hill-giant": {
+"block": {
+"abilities": {
+"cha": 6,
+"con": 19,
+"dex": 8,
+"int": 5,
+"str": 21,
+"wis": 9
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "tree-club",
+"bonus": 8,
+"damage": {
+"bonus": 5,
+"count": 3,
+"sides": 8,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Tree Club",
+"reachFt": 10
+},
+{
+"attackId": "trash-lob",
+"bonus": 8,
+"damage": {
+"bonus": 5,
+"count": 2,
+"sides": 10,
+"type": "bludgeoning"
+},
+"kind": "ranged",
+"longRangeFt": 240,
+"name": "Trash Lob",
+"normalRangeFt": 60
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 105,
+"max": 105
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": -2,
+"con": 4,
+"dex": -1,
+"int": -3,
+"str": 5,
+"wis": -1
+},
+"speedFt": 40,
+"spells": []
+},
+"cr": 5.0,
+"xp": 1800
+},
+"hippogriff": {
+"block": {
+"abilities": {
+"cha": 8,
+"con": 13,
+"dex": 13,
+"int": 2,
+"str": 17,
+"wis": 12
+},
+"armorClass": 11,
+"attacks": [
+{
+"attackId": "rend",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 8,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Rend",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 26,
+"max": 26
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": -1,
+"con": 1,
+"dex": 1,
+"int": -4,
+"str": 3,
+"wis": 1
+},
+"speedFt": 40,
+"spells": []
+},
+"cr": 1.0,
+"xp": 200
+},
+"hippopotamus": {
+"block": {
+"abilities": {
+"cha": 4,
+"con": 15,
+"dex": 7,
+"int": 2,
+"str": 21,
+"wis": 12
+},
+"armorClass": 14,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 7,
+"damage": {
+"bonus": 5,
+"count": 2,
+"sides": 10,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 82,
+"max": 82
+},
+"initiativeBonus": -2,
+"savingThrows": {
+"cha": -3,
+"con": 2,
+"dex": -2,
+"int": -4,
+"str": 7,
+"wis": 1
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 4.0,
+"xp": 1100
+},
+"hobgoblin-captain": {
+"block": {
+"abilities": {
+"cha": 13,
+"con": 14,
+"dex": 14,
+"int": 12,
+"str": 15,
+"wis": 10
+},
+"armorClass": 17,
+"attacks": [
+{
+"attackId": "greatsword",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 2,
+"sides": 6,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Greatsword",
+"reachFt": 5
+},
+{
+"attackId": "longbow",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 8,
+"type": "piercing"
+},
+"kind": "ranged",
+"longRangeFt": 600,
+"name": "Longbow",
+"normalRangeFt": 150
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 58,
+"max": 58
+},
+"initiativeBonus": 4,
+"savingThrows": {
+"cha": 1,
+"con": 2,
+"dex": 2,
+"int": 1,
+"str": 2,
+"wis": 0
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 3.0,
+"xp": 700
+},
+"hobgoblin-warrior": {
+"block": {
+"abilities": {
+"cha": 9,
+"con": 12,
+"dex": 12,
+"int": 10,
+"str": 13,
+"wis": 10
+},
+"armorClass": 18,
+"attacks": [
+{
+"attackId": "longsword",
+"bonus": 3,
+"damage": {
+"bonus": 1,
+"count": 2,
+"sides": 10,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Longsword",
+"reachFt": 5
+},
+{
+"attackId": "longbow",
+"bonus": 3,
+"damage": {
+"bonus": 1,
+"count": 1,
+"sides": 8,
+"type": "piercing"
+},
+"kind": "ranged",
+"longRangeFt": 600,
+"name": "Longbow",
+"normalRangeFt": 150
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 11,
+"max": 11
+},
+"initiativeBonus": 3,
+"savingThrows": {
+"cha": -1,
+"con": 1,
+"dex": 1,
+"int": 0,
+"str": 1,
+"wis": 0
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 0.5,
+"xp": 100
+},
+"homunculus": {
+"block": {
+"abilities": {
+"cha": 7,
+"con": 14,
+"dex": 15,
+"int": 10,
+"str": 4,
+"wis": 10
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 4,
+"damage": {
+"bonus": 1,
+"count": 0,
+"sides": 4,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 4,
+"max": 4
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": 0,
+"con": 2,
+"dex": 2,
+"int": 0,
+"str": -3,
+"wis": 2
+},
+"speedFt": 20,
+"spells": []
+},
+"cr": 0.0,
+"xp": 10
+},
+"hunter-shark": {
+"block": {
+"abilities": {
+"cha": 4,
+"con": 15,
+"dex": 14,
+"int": 1,
+"str": 18,
+"wis": 10
+},
+"armorClass": 12,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 6,
+"damage": {
+"bonus": 4,
+"count": 3,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 45,
+"max": 45
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": -3,
+"con": 2,
+"dex": 2,
+"int": -5,
+"str": 4,
+"wis": 0
+},
+"speedFt": 5,
+"spells": []
+},
+"cr": 2.0,
+"xp": 450
+},
+"hyena": {
+"block": {
+"abilities": {
+"cha": 5,
+"con": 12,
+"dex": 13,
+"int": 2,
+"str": 11,
+"wis": 12
+},
+"armorClass": 11,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 2,
+"damage": {
+"bonus": 0,
+"count": 1,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 5,
+"max": 5
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": -3,
+"con": 1,
+"dex": 1,
+"int": -4,
+"str": 0,
+"wis": 1
+},
+"speedFt": 50,
+"spells": []
+},
+"cr": 0.0,
+"xp": 10
+},
+"ice-mephit": {
+"block": {
+"abilities": {
+"cha": 12,
+"con": 10,
+"dex": 13,
+"int": 9,
+"str": 7,
+"wis": 11
+},
+"armorClass": 11,
+"attacks": [
+{
+"attackId": "claw",
+"bonus": 3,
+"damage": {
+"bonus": 1,
+"count": 1,
+"sides": 4,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Claw",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 21,
+"max": 21
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": 1,
+"con": 0,
+"dex": 1,
+"int": -1,
+"str": -2,
+"wis": 0
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 0.5,
+"xp": 100
+},
+"imp": {
+"block": {
+"abilities": {
+"cha": 14,
+"con": 13,
+"dex": 17,
+"int": 11,
+"str": 6,
+"wis": 12
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "sting",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Sting",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 21,
+"max": 21
+},
+"initiativeBonus": 3,
+"savingThrows": {
+"cha": 2,
+"con": 1,
+"dex": 3,
+"int": 0,
+"str": -2,
+"wis": 1
+},
+"speedFt": 20,
+"spells": []
+},
+"cr": 1.0,
+"xp": 200
+},
+"incubus": {
+"block": {
+"abilities": {
+"cha": 20,
+"con": 13,
+"dex": 17,
+"int": 15,
+"str": 8,
+"wis": 12
+},
+"armorClass": 15,
+"attacks": [
+{
+"attackId": "restless-touch",
+"bonus": 7,
+"damage": {
+"bonus": 5,
+"count": 3,
+"sides": 6,
+"type": "psychic"
+},
+"kind": "melee",
+"name": "Restless Touch",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 66,
+"max": 66
+},
+"initiativeBonus": 3,
+"savingThrows": {
+"cha": 5,
+"con": 1,
+"dex": 3,
+"int": 2,
+"str": -1,
+"wis": 1
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 4.0,
+"xp": 1100
+},
+"jackal": {
+"block": {
+"abilities": {
+"cha": 6,
+"con": 11,
+"dex": 15,
+"int": 3,
+"str": 8,
+"wis": 12
+},
+"armorClass": 12,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 1,
+"damage": {
+"bonus": -1,
+"count": 1,
+"sides": 4,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 3,
+"max": 3
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": -2,
+"con": 0,
+"dex": 2,
+"int": -4,
+"str": -1,
+"wis": 1
+},
+"speedFt": 40,
+"spells": []
+},
+"cr": 0.0,
+"xp": 10
+},
+"killer-whale": {
+"block": {
+"abilities": {
+"cha": 7,
+"con": 13,
+"dex": 14,
+"int": 3,
+"str": 19,
+"wis": 12
+},
+"armorClass": 12,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 6,
+"damage": {
+"bonus": 4,
+"count": 5,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 90,
+"max": 90
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": -2,
+"con": 1,
+"dex": 2,
+"int": -4,
+"str": 4,
+"wis": 1
+},
+"speedFt": 5,
+"spells": []
+},
+"cr": 3.0,
+"xp": 700
+},
+"knight": {
+"block": {
+"abilities": {
+"cha": 15,
+"con": 14,
+"dex": 11,
+"int": 11,
+"str": 16,
+"wis": 11
+},
+"armorClass": 18,
+"attacks": [
+{
+"attackId": "greatsword",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 2,
+"sides": 6,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Greatsword",
+"reachFt": 5
+},
+{
+"attackId": "heavy-crossbow",
+"bonus": 2,
+"damage": {
+"bonus": 0,
+"count": 2,
+"sides": 10,
+"type": "piercing"
+},
+"kind": "ranged",
+"longRangeFt": 400,
+"name": "Heavy Crossbow",
+"normalRangeFt": 100
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 52,
+"max": 52
+},
+"initiativeBonus": 0,
+"savingThrows": {
+"cha": 2,
+"con": 4,
+"dex": 0,
+"int": 0,
+"str": 3,
+"wis": 2
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 3.0,
+"xp": 700
+},
+"kobold-warrior": {
+"block": {
+"abilities": {
+"cha": 8,
+"con": 9,
+"dex": 15,
+"int": 8,
+"str": 7,
+"wis": 7
+},
+"armorClass": 14,
+"attacks": [
+{
+"attackId": "dagger",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 4,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Dagger",
+"reachFt": 5
+},
+{
+"attackId": "dagger-ranged",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 4,
+"type": "piercing"
+},
+"kind": "ranged",
+"longRangeFt": 60,
+"name": "Dagger",
+"normalRangeFt": 20
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 7,
+"max": 7
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": -1,
+"con": -1,
+"dex": 2,
+"int": -1,
+"str": -2,
+"wis": -2
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 0.125,
+"xp": 25
+},
+"lamia": {
+"block": {
+"abilities": {
+"cha": 16,
+"con": 15,
+"dex": 13,
+"int": 14,
+"str": 16,
+"wis": 15
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "claw",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 8,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Claw",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 97,
+"max": 97
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": 3,
+"con": 2,
+"dex": 1,
+"int": 2,
+"str": 3,
+"wis": 2
+},
+"speedFt": 40,
+"spells": []
+},
+"cr": 4.0,
+"xp": 1100
+},
+"lemure": {
+"block": {
+"abilities": {
+"cha": 3,
+"con": 11,
+"dex": 5,
+"int": 1,
+"str": 10,
+"wis": 11
+},
+"armorClass": 9,
+"attacks": [
+{
+"attackId": "vile-slime",
+"bonus": 2,
+"damage": {
+"bonus": 0,
+"count": 1,
+"sides": 4,
+"type": "poison"
+},
+"kind": "melee",
+"name": "Vile Slime",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 9,
+"max": 9
+},
+"initiativeBonus": -3,
+"savingThrows": {
+"cha": -4,
+"con": 0,
+"dex": -3,
+"int": -5,
+"str": 0,
+"wis": 0
+},
+"speedFt": 20,
+"spells": []
+},
+"cr": 0.0,
+"xp": 10
+},
+"lion": {
+"block": {
+"abilities": {
+"cha": 8,
+"con": 11,
+"dex": 15,
+"int": 3,
+"str": 17,
+"wis": 12
+},
+"armorClass": 12,
+"attacks": [
+{
+"attackId": "rend",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 8,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Rend",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 22,
+"max": 22
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": -1,
+"con": 0,
+"dex": 2,
+"int": -4,
+"str": 3,
+"wis": 1
+},
+"speedFt": 50,
+"spells": []
+},
+"cr": 1.0,
+"xp": 200
+},
+"lizard": {
+"block": {
+"abilities": {
+"cha": 3,
+"con": 10,
+"dex": 11,
+"int": 1,
+"str": 2,
+"wis": 8
+},
+"armorClass": 10,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 2,
+"damage": {
+"bonus": 1,
+"count": 0,
+"sides": 4,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 2,
+"max": 2
+},
+"initiativeBonus": 0,
+"savingThrows": {
+"cha": -4,
+"con": 0,
+"dex": 0,
+"int": -5,
+"str": -4,
+"wis": -1
+},
+"speedFt": 20,
+"spells": []
+},
+"cr": 0.0,
+"xp": 10
+},
+"magma-mephit": {
+"block": {
+"abilities": {
+"cha": 10,
+"con": 12,
+"dex": 12,
+"int": 7,
+"str": 8,
+"wis": 10
+},
+"armorClass": 11,
+"attacks": [
+{
+"attackId": "claw",
+"bonus": 3,
+"damage": {
+"bonus": 1,
+"count": 1,
+"sides": 4,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Claw",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 18,
+"max": 18
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": 0,
+"con": 1,
+"dex": 1,
+"int": -2,
+"str": -1,
+"wis": 0
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 0.5,
+"xp": 100
+},
+"magmin": {
+"block": {
+"abilities": {
+"cha": 10,
+"con": 12,
+"dex": 15,
+"int": 8,
+"str": 7,
+"wis": 11
+},
+"armorClass": 14,
+"attacks": [
+{
+"attackId": "touch",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 2,
+"sides": 4,
+"type": "fire"
+},
+"kind": "melee",
+"name": "Touch",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 13,
+"max": 13
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": 0,
+"con": 1,
+"dex": 2,
+"int": -1,
+"str": -2,
+"wis": 0
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 0.5,
+"xp": 100
+},
+"manticore": {
+"block": {
+"abilities": {
+"cha": 8,
+"con": 17,
+"dex": 16,
+"int": 7,
+"str": 17,
+"wis": 12
+},
+"armorClass": 14,
+"attacks": [
+{
+"attackId": "rend",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 8,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Rend",
+"reachFt": 5
+},
+{
+"attackId": "tail-spike",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 8,
+"type": "piercing"
+},
+"kind": "ranged",
+"longRangeFt": 200,
+"name": "Tail Spike",
+"normalRangeFt": 100
+}
+],
+"attacksPerAction": 3,
+"conditions": [],
+"hitPoints": {
+"current": 68,
+"max": 68
+},
+"initiativeBonus": 3,
+"savingThrows": {
+"cha": -1,
+"con": 3,
+"dex": 3,
+"int": -2,
+"str": 3,
+"wis": 1
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 3.0,
+"xp": 700
+},
+"mastiff": {
+"block": {
+"abilities": {
+"cha": 7,
+"con": 12,
+"dex": 14,
+"int": 3,
+"str": 13,
+"wis": 12
+},
+"armorClass": 12,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 3,
+"damage": {
+"bonus": 1,
+"count": 1,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 5,
+"max": 5
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": -2,
+"con": 1,
+"dex": 2,
+"int": -4,
+"str": 1,
+"wis": 3
+},
+"speedFt": 40,
+"spells": []
+},
+"cr": 0.125,
+"xp": 25
+},
+"merfolk-skirmisher": {
+"block": {
+"abilities": {
+"cha": 12,
+"con": 12,
+"dex": 13,
+"int": 11,
+"str": 10,
+"wis": 14
+},
+"armorClass": 11,
+"attacks": [
+{
+"attackId": "ocean-spear",
+"bonus": 2,
+"damage": {
+"bonus": 0,
+"count": 1,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Ocean Spear",
+"reachFt": 5
+},
+{
+"attackId": "ocean-spear-ranged",
+"bonus": 2,
+"damage": {
+"bonus": 0,
+"count": 1,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "ranged",
+"longRangeFt": 60,
+"name": "Ocean Spear",
+"normalRangeFt": 20
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 11,
+"max": 11
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": 1,
+"con": 1,
+"dex": 1,
+"int": 0,
+"str": 0,
+"wis": 2
+},
+"speedFt": 10,
+"spells": []
+},
+"cr": 0.125,
+"xp": 25
+},
+"merrow": {
+"block": {
+"abilities": {
+"cha": 9,
+"con": 15,
+"dex": 15,
+"int": 8,
+"str": 18,
+"wis": 10
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 6,
+"damage": {
+"bonus": 4,
+"count": 1,
+"sides": 4,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+},
+{
+"attackId": "claw",
+"bonus": 6,
+"damage": {
+"bonus": 4,
+"count": 2,
+"sides": 4,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Claw",
+"reachFt": 5
+},
+{
+"attackId": "harpoon",
+"bonus": 6,
+"damage": {
+"bonus": 4,
+"count": 2,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Harpoon",
+"reachFt": 5
+},
+{
+"attackId": "harpoon-ranged",
+"bonus": 6,
+"damage": {
+"bonus": 4,
+"count": 2,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "ranged",
+"longRangeFt": 60,
+"name": "Harpoon",
+"normalRangeFt": 20
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 45,
+"max": 45
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": -1,
+"con": 2,
+"dex": 2,
+"int": -1,
+"str": 4,
+"wis": 0
+},
+"speedFt": 10,
+"spells": []
+},
+"cr": 2.0,
+"xp": 450
+},
+"mimic": {
+"block": {
+"abilities": {
+"cha": 8,
+"con": 15,
+"dex": 12,
+"int": 5,
+"str": 17,
+"wis": 13
+},
+"armorClass": 12,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 8,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+},
+{
+"attackId": "pseudopod",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 8,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Pseudopod",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 58,
+"max": 58
+},
+"initiativeBonus": 3,
+"savingThrows": {
+"cha": -1,
+"con": 2,
+"dex": 1,
+"int": -3,
+"str": 3,
+"wis": 1
+},
+"speedFt": 20,
+"spells": []
+},
+"cr": 2.0,
+"xp": 450
+},
+"minotaur-of-baphomet": {
+"block": {
+"abilities": {
+"cha": 9,
+"con": 16,
+"dex": 11,
+"int": 6,
+"str": 18,
+"wis": 16
+},
+"armorClass": 14,
+"attacks": [
+{
+"attackId": "abyssal-glaive",
+"bonus": 6,
+"damage": {
+"bonus": 4,
+"count": 1,
+"sides": 12,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Abyssal Glaive",
+"reachFt": 10
+},
+{
+"attackId": "gore",
+"bonus": 6,
+"damage": {
+"bonus": 4,
+"count": 4,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Gore",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 85,
+"max": 85
+},
+"initiativeBonus": 0,
+"savingThrows": {
+"cha": -1,
+"con": 3,
+"dex": 0,
+"int": -2,
+"str": 4,
+"wis": 3
+},
+"speedFt": 40,
+"spells": []
+},
+"cr": 3.0,
+"xp": 700
+},
+"minotaur-skeleton": {
+"block": {
+"abilities": {
+"cha": 5,
+"con": 15,
+"dex": 11,
+"int": 6,
+"str": 18,
+"wis": 8
+},
+"armorClass": 12,
+"attacks": [
+{
+"attackId": "gore",
+"bonus": 6,
+"damage": {
+"bonus": 4,
+"count": 2,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Gore",
+"reachFt": 5
+},
+{
+"attackId": "slam",
+"bonus": 6,
+"damage": {
+"bonus": 4,
+"count": 2,
+"sides": 10,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Slam",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 45,
+"max": 45
+},
+"initiativeBonus": 0,
+"savingThrows": {
+"cha": -3,
+"con": 2,
+"dex": 0,
+"int": -2,
+"str": 4,
+"wis": -1
+},
+"speedFt": 40,
+"spells": []
+},
+"cr": 2.0,
+"xp": 450
+},
+"mule": {
+"block": {
+"abilities": {
+"cha": 5,
+"con": 13,
+"dex": 10,
+"int": 2,
+"str": 14,
+"wis": 10
+},
+"armorClass": 10,
+"attacks": [
+{
+"attackId": "hooves",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 4,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Hooves",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 11,
+"max": 11
+},
+"initiativeBonus": 0,
+"savingThrows": {
+"cha": -3,
+"con": 1,
+"dex": 0,
+"int": -4,
+"str": 4,
+"wis": 0
+},
+"speedFt": 40,
+"spells": []
+},
+"cr": 0.125,
+"xp": 25
+},
+"mummy": {
+"block": {
+"abilities": {
+"cha": 12,
+"con": 15,
+"dex": 8,
+"int": 6,
+"str": 16,
+"wis": 12
+},
+"armorClass": 11,
+"attacks": [
+{
+"attackId": "rotting-fist",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 10,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Rotting Fist",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 58,
+"max": 58
+},
+"initiativeBonus": -1,
+"savingThrows": {
+"cha": 1,
+"con": 2,
+"dex": -1,
+"int": -2,
+"str": 3,
+"wis": 3
+},
+"speedFt": 20,
+"spells": []
+},
+"cr": 3.0,
+"xp": 700
+},
+"night-hag": {
+"block": {
+"abilities": {
+"cha": 16,
+"con": 16,
+"dex": 15,
+"int": 16,
+"str": 18,
+"wis": 14
+},
+"armorClass": 17,
+"attacks": [
+{
+"attackId": "claw",
+"bonus": 7,
+"damage": {
+"bonus": 4,
+"count": 2,
+"sides": 8,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Claw",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 112,
+"max": 112
+},
+"initiativeBonus": 5,
+"savingThrows": {
+"cha": 3,
+"con": 3,
+"dex": 2,
+"int": 3,
+"str": 4,
+"wis": 2
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 5.0,
+"xp": 1800
+},
+"nightmare": {
+"block": {
+"abilities": {
+"cha": 15,
+"con": 16,
+"dex": 15,
+"int": 10,
+"str": 18,
+"wis": 13
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "hooves",
+"bonus": 6,
+"damage": {
+"bonus": 4,
+"count": 2,
+"sides": 8,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Hooves",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 68,
+"max": 68
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": 2,
+"con": 3,
+"dex": 2,
+"int": 0,
+"str": 4,
+"wis": 1
+},
+"speedFt": 60,
+"spells": []
+},
+"cr": 3.0,
+"xp": 700
+},
+"noble": {
+"block": {
+"abilities": {
+"cha": 16,
+"con": 11,
+"dex": 12,
+"int": 12,
+"str": 11,
+"wis": 14
+},
+"armorClass": 15,
+"attacks": [
+{
+"attackId": "rapier",
+"bonus": 3,
+"damage": {
+"bonus": 1,
+"count": 1,
+"sides": 8,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Rapier",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 9,
+"max": 9
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": 3,
+"con": 0,
+"dex": 1,
+"int": 1,
+"str": 0,
+"wis": 2
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 0.125,
+"xp": 25
+},
+"ochre-jelly": {
+"block": {
+"abilities": {
+"cha": 1,
+"con": 14,
+"dex": 6,
+"int": 2,
+"str": 15,
+"wis": 6
+},
+"armorClass": 8,
+"attacks": [
+{
+"attackId": "pseudopod",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 3,
+"sides": 6,
+"type": "acid"
+},
+"kind": "melee",
+"name": "Pseudopod",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 52,
+"max": 52
+},
+"initiativeBonus": -2,
+"savingThrows": {
+"cha": -5,
+"con": 2,
+"dex": -2,
+"int": -4,
+"str": 2,
+"wis": -2
+},
+"speedFt": 20,
+"spells": []
+},
+"cr": 2.0,
+"xp": 450
+},
+"octopus": {
+"block": {
+"abilities": {
+"cha": 4,
+"con": 11,
+"dex": 15,
+"int": 3,
+"str": 4,
+"wis": 10
+},
+"armorClass": 12,
+"attacks": [
+{
+"attackId": "tentacles",
+"bonus": 4,
+"damage": {
+"bonus": 1,
+"count": 0,
+"sides": 4,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Tentacles",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 3,
+"max": 3
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": -3,
+"con": 0,
+"dex": 2,
+"int": -4,
+"str": -3,
+"wis": 0
+},
+"speedFt": 5,
+"spells": []
+},
+"cr": 0.0,
+"xp": 10
+},
+"ogre": {
+"block": {
+"abilities": {
+"cha": 7,
+"con": 16,
+"dex": 8,
+"int": 5,
+"str": 19,
+"wis": 7
+},
+"armorClass": 11,
+"attacks": [
+{
+"attackId": "greatclub",
+"bonus": 6,
+"damage": {
+"bonus": 4,
+"count": 2,
+"sides": 8,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Greatclub",
+"reachFt": 5
+},
+{
+"attackId": "javelin",
+"bonus": 6,
+"damage": {
+"bonus": 4,
+"count": 2,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Javelin",
+"reachFt": 5
+},
+{
+"attackId": "javelin-ranged",
+"bonus": 6,
+"damage": {
+"bonus": 4,
+"count": 2,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "ranged",
+"longRangeFt": 120,
+"name": "Javelin",
+"normalRangeFt": 30
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 68,
+"max": 68
+},
+"initiativeBonus": -1,
+"savingThrows": {
+"cha": -2,
+"con": 3,
+"dex": -1,
+"int": -3,
+"str": 4,
+"wis": -2
+},
+"speedFt": 40,
+"spells": []
+},
+"cr": 2.0,
+"xp": 450
+},
+"ogre-zombie": {
+"block": {
+"abilities": {
+"cha": 5,
+"con": 18,
+"dex": 6,
+"int": 3,
+"str": 19,
+"wis": 6
+},
+"armorClass": 8,
+"attacks": [
+{
+"attackId": "slam",
+"bonus": 6,
+"damage": {
+"bonus": 4,
+"count": 2,
+"sides": 8,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Slam",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 85,
+"max": 85
+},
+"initiativeBonus": -2,
+"savingThrows": {
+"cha": -3,
+"con": 4,
+"dex": -2,
+"int": -4,
+"str": 4,
+"wis": 0
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 2.0,
+"xp": 450
+},
+"otyugh": {
+"block": {
+"abilities": {
+"cha": 6,
+"con": 19,
+"dex": 11,
+"int": 6,
+"str": 16,
+"wis": 13
+},
+"armorClass": 14,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 6,
+"damage": {
+"bonus": 3,
+"count": 2,
+"sides": 8,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+},
+{
+"attackId": "tentacle",
+"bonus": 6,
+"damage": {
+"bonus": 3,
+"count": 2,
+"sides": 8,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Tentacle",
+"reachFt": 10
+}
+],
+"attacksPerAction": 3,
+"conditions": [],
+"hitPoints": {
+"current": 104,
+"max": 104
+},
+"initiativeBonus": 0,
+"savingThrows": {
+"cha": -2,
+"con": 7,
+"dex": 0,
+"int": -2,
+"str": 3,
+"wis": 1
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 5.0,
+"xp": 1800
+},
+"owl": {
+"block": {
+"abilities": {
+"cha": 7,
+"con": 8,
+"dex": 13,
+"int": 2,
+"str": 3,
+"wis": 12
+},
+"armorClass": 11,
+"attacks": [
+{
+"attackId": "talons",
+"bonus": 3,
+"damage": {
+"bonus": 1,
+"count": 0,
+"sides": 4,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Talons",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 1,
+"max": 1
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": -2,
+"con": -1,
+"dex": 1,
+"int": -4,
+"str": -4,
+"wis": 1
+},
+"speedFt": 5,
+"spells": []
+},
+"cr": 0.0,
+"xp": 10
+},
+"owlbear": {
+"block": {
+"abilities": {
+"cha": 7,
+"con": 17,
+"dex": 12,
+"int": 3,
+"str": 20,
+"wis": 12
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "rend",
+"bonus": 7,
+"damage": {
+"bonus": 5,
+"count": 2,
+"sides": 8,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Rend",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 59,
+"max": 59
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": -2,
+"con": 3,
+"dex": 1,
+"int": -4,
+"str": 5,
+"wis": 1
+},
+"speedFt": 40,
+"spells": []
+},
+"cr": 3.0,
+"xp": 700
+},
+"panther": {
+"block": {
+"abilities": {
+"cha": 7,
+"con": 10,
+"dex": 16,
+"int": 3,
+"str": 14,
+"wis": 14
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "rend",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 6,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Rend",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 13,
+"max": 13
+},
+"initiativeBonus": 3,
+"savingThrows": {
+"cha": -2,
+"con": 0,
+"dex": 3,
+"int": -4,
+"str": 2,
+"wis": 2
+},
+"speedFt": 50,
+"spells": []
+},
+"cr": 0.25,
+"xp": 50
+},
+"pegasus": {
+"block": {
+"abilities": {
+"cha": 13,
+"con": 16,
+"dex": 15,
+"int": 10,
+"str": 18,
+"wis": 15
+},
+"armorClass": 12,
+"attacks": [
+{
+"attackId": "hooves",
+"bonus": 6,
+"damage": {
+"bonus": 4,
+"count": 1,
+"sides": 6,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Hooves",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 59,
+"max": 59
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": 3,
+"con": 5,
+"dex": 4,
+"int": 0,
+"str": 4,
+"wis": 4
+},
+"speedFt": 60,
+"spells": []
+},
+"cr": 2.0,
+"xp": 450
+},
+"phase-spider": {
+"block": {
+"abilities": {
+"cha": 6,
+"con": 12,
+"dex": 16,
+"int": 6,
+"str": 15,
+"wis": 10
+},
+"armorClass": 14,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 10,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 45,
+"max": 45
+},
+"initiativeBonus": 3,
+"savingThrows": {
+"cha": -2,
+"con": 1,
+"dex": 3,
+"int": -2,
+"str": 2,
+"wis": 0
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 3.0,
+"xp": 700
+},
+"piranha": {
+"block": {
+"abilities": {
+"cha": 2,
+"con": 9,
+"dex": 16,
+"int": 1,
+"str": 2,
+"wis": 7
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 5,
+"damage": {
+"bonus": 1,
+"count": 0,
+"sides": 4,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 1,
+"max": 1
+},
+"initiativeBonus": 3,
+"savingThrows": {
+"cha": -4,
+"con": -1,
+"dex": 3,
+"int": -5,
+"str": -4,
+"wis": -2
+},
+"speedFt": 5,
+"spells": []
+},
+"cr": 0.0,
+"xp": 10
+},
+"pirate": {
+"block": {
+"abilities": {
+"cha": 14,
+"con": 12,
+"dex": 16,
+"int": 8,
+"str": 10,
+"wis": 12
+},
+"armorClass": 14,
+"attacks": [
+{
+"attackId": "dagger",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 4,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Dagger",
+"reachFt": 5
+},
+{
+"attackId": "dagger-ranged",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 4,
+"type": "piercing"
+},
+"kind": "ranged",
+"longRangeFt": 60,
+"name": "Dagger",
+"normalRangeFt": 20
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 33,
+"max": 33
+},
+"initiativeBonus": 5,
+"savingThrows": {
+"cha": 4,
+"con": 1,
+"dex": 5,
+"int": -1,
+"str": 0,
+"wis": 1
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 1.0,
+"xp": 200
+},
+"plesiosaurus": {
+"block": {
+"abilities": {
+"cha": 5,
+"con": 16,
+"dex": 15,
+"int": 2,
+"str": 18,
+"wis": 12
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 6,
+"damage": {
+"bonus": 4,
+"count": 2,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 10
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 68,
+"max": 68
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": -3,
+"con": 3,
+"dex": 2,
+"int": -4,
+"str": 4,
+"wis": 1
+},
+"speedFt": 20,
+"spells": []
+},
+"cr": 2.0,
+"xp": 450
+},
+"polar-bear": {
+"block": {
+"abilities": {
+"cha": 7,
+"con": 16,
+"dex": 14,
+"int": 2,
+"str": 20,
+"wis": 13
+},
+"armorClass": 12,
+"attacks": [
+{
+"attackId": "rend",
+"bonus": 7,
+"damage": {
+"bonus": 5,
+"count": 1,
+"sides": 8,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Rend",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 42,
+"max": 42
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": -2,
+"con": 3,
+"dex": 2,
+"int": -4,
+"str": 5,
+"wis": 1
+},
+"speedFt": 40,
+"spells": []
+},
+"cr": 2.0,
+"xp": 450
+},
+"pony": {
+"block": {
+"abilities": {
+"cha": 7,
+"con": 13,
+"dex": 10,
+"int": 2,
+"str": 15,
+"wis": 11
+},
+"armorClass": 10,
+"attacks": [
+{
+"attackId": "hooves",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 4,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Hooves",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 11,
+"max": 11
+},
+"initiativeBonus": 0,
+"savingThrows": {
+"cha": -2,
+"con": 1,
+"dex": 0,
+"int": -4,
+"str": 4,
+"wis": 0
+},
+"speedFt": 40,
+"spells": []
+},
+"cr": 0.125,
+"xp": 25
+},
+"priest": {
+"block": {
+"abilities": {
+"cha": 13,
+"con": 12,
+"dex": 10,
+"int": 13,
+"str": 16,
+"wis": 16
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "mace",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 6,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Mace",
+"reachFt": 5
+},
+{
+"attackId": "radiant-flame",
+"bonus": 5,
+"damage": {
+"bonus": 0,
+"count": 2,
+"sides": 10,
+"type": "radiant"
+},
+"kind": "ranged",
+"longRangeFt": 60,
+"name": "Radiant Flame",
+"normalRangeFt": 60
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 38,
+"max": 38
+},
+"initiativeBonus": 0,
+"savingThrows": {
+"cha": 1,
+"con": 1,
+"dex": 0,
+"int": 1,
+"str": 3,
+"wis": 3
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 2.0,
+"xp": 450
+},
+"priest-acolyte": {
+"block": {
+"abilities": {
+"cha": 11,
+"con": 12,
+"dex": 10,
+"int": 10,
+"str": 14,
+"wis": 14
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "mace",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 6,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Mace",
+"reachFt": 5
+},
+{
+"attackId": "radiant-flame",
+"bonus": 4,
+"damage": {
+"bonus": 0,
+"count": 2,
+"sides": 6,
+"type": "radiant"
+},
+"kind": "ranged",
+"longRangeFt": 60,
+"name": "Radiant Flame",
+"normalRangeFt": 60
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 11,
+"max": 11
+},
+"initiativeBonus": 0,
+"savingThrows": {
+"cha": 0,
+"con": 1,
+"dex": 0,
+"int": 0,
+"str": 2,
+"wis": 2
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 0.25,
+"xp": 50
+},
+"pseudodragon": {
+"block": {
+"abilities": {
+"cha": 10,
+"con": 13,
+"dex": 15,
+"int": 10,
+"str": 6,
+"wis": 12
+},
+"armorClass": 14,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 4,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 10,
+"max": 10
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": 0,
+"con": 1,
+"dex": 2,
+"int": 0,
+"str": -2,
+"wis": 1
+},
+"speedFt": 15,
+"spells": []
+},
+"cr": 0.25,
+"xp": 50
+},
+"pteranodon": {
+"block": {
+"abilities": {
+"cha": 5,
+"con": 10,
+"dex": 15,
+"int": 2,
+"str": 12,
+"wis": 9
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 8,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 13,
+"max": 13
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": -3,
+"con": 0,
+"dex": 2,
+"int": -4,
+"str": 1,
+"wis": -1
+},
+"speedFt": 10,
+"spells": []
+},
+"cr": 0.25,
+"xp": 50
+},
+"quasit": {
+"block": {
+"abilities": {
+"cha": 10,
+"con": 10,
+"dex": 17,
+"int": 7,
+"str": 5,
+"wis": 10
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "rend",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 4,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Rend",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 25,
+"max": 25
+},
+"initiativeBonus": 3,
+"savingThrows": {
+"cha": 0,
+"con": 0,
+"dex": 3,
+"int": -2,
+"str": -3,
+"wis": 0
+},
+"speedFt": 40,
+"spells": []
+},
+"cr": 1.0,
+"xp": 200
+},
+"rat": {
+"block": {
+"abilities": {
+"cha": 4,
+"con": 9,
+"dex": 11,
+"int": 2,
+"str": 2,
+"wis": 10
+},
+"armorClass": 10,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 2,
+"damage": {
+"bonus": 1,
+"count": 0,
+"sides": 4,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 1,
+"max": 1
+},
+"initiativeBonus": 0,
+"savingThrows": {
+"cha": -3,
+"con": -1,
+"dex": 0,
+"int": -4,
+"str": -4,
+"wis": 0
+},
+"speedFt": 20,
+"spells": []
+},
+"cr": 0.0,
+"xp": 10
+},
+"raven": {
+"block": {
+"abilities": {
+"cha": 6,
+"con": 10,
+"dex": 14,
+"int": 5,
+"str": 2,
+"wis": 13
+},
+"armorClass": 12,
+"attacks": [
+{
+"attackId": "beak",
+"bonus": 4,
+"damage": {
+"bonus": 1,
+"count": 0,
+"sides": 4,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Beak",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 2,
+"max": 2
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": -2,
+"con": 0,
+"dex": 2,
+"int": -3,
+"str": -4,
+"wis": 1
+},
+"speedFt": 10,
+"spells": []
+},
+"cr": 0.0,
+"xp": 10
+},
+"red-dragon-wyrmling": {
+"block": {
+"abilities": {
+"cha": 15,
+"con": 17,
+"dex": 10,
+"int": 12,
+"str": 19,
+"wis": 11
+},
+"armorClass": 17,
+"attacks": [
+{
+"attackId": "rend",
+"bonus": 6,
+"damage": {
+"bonus": 4,
+"count": 1,
+"sides": 10,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Rend",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 75,
+"max": 75
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": 2,
+"con": 3,
+"dex": 2,
+"int": 1,
+"str": 4,
+"wis": 2
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 4.0,
+"xp": 1100
+},
+"reef-shark": {
+"block": {
+"abilities": {
+"cha": 4,
+"con": 13,
+"dex": 15,
+"int": 1,
+"str": 14,
+"wis": 10
+},
+"armorClass": 12,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 2,
+"sides": 4,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 22,
+"max": 22
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": -3,
+"con": 1,
+"dex": 2,
+"int": -5,
+"str": 2,
+"wis": 0
+},
+"speedFt": 5,
+"spells": []
+},
+"cr": 0.5,
+"xp": 100
+},
+"rhinoceros": {
+"block": {
+"abilities": {
+"cha": 6,
+"con": 15,
+"dex": 8,
+"int": 2,
+"str": 21,
+"wis": 12
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "gore",
+"bonus": 7,
+"damage": {
+"bonus": 5,
+"count": 2,
+"sides": 8,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Gore",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 45,
+"max": 45
+},
+"initiativeBonus": -1,
+"savingThrows": {
+"cha": -2,
+"con": 2,
+"dex": -1,
+"int": -4,
+"str": 5,
+"wis": 1
+},
+"speedFt": 40,
+"spells": []
+},
+"cr": 2.0,
+"xp": 450
+},
+"riding-horse": {
+"block": {
+"abilities": {
+"cha": 7,
+"con": 12,
+"dex": 13,
+"int": 2,
+"str": 16,
+"wis": 11
+},
+"armorClass": 11,
+"attacks": [
+{
+"attackId": "hooves",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 8,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Hooves",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 13,
+"max": 13
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": -2,
+"con": 1,
+"dex": 1,
+"int": -4,
+"str": 3,
+"wis": 0
+},
+"speedFt": 60,
+"spells": []
+},
+"cr": 0.25,
+"xp": 50
+},
+"roper": {
+"block": {
+"abilities": {
+"cha": 6,
+"con": 17,
+"dex": 8,
+"int": 7,
+"str": 18,
+"wis": 16
+},
+"armorClass": 20,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 7,
+"damage": {
+"bonus": 4,
+"count": 3,
+"sides": 8,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 4,
+"conditions": [],
+"hitPoints": {
+"current": 93,
+"max": 93
+},
+"initiativeBonus": 5,
+"savingThrows": {
+"cha": -2,
+"con": 3,
+"dex": -1,
+"int": -2,
+"str": 4,
+"wis": 3
+},
+"speedFt": 10,
+"spells": []
+},
+"cr": 5.0,
+"xp": 1800
+},
+"rust-monster": {
+"block": {
+"abilities": {
+"cha": 6,
+"con": 13,
+"dex": 12,
+"int": 2,
+"str": 13,
+"wis": 13
+},
+"armorClass": 14,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 3,
+"damage": {
+"bonus": 1,
+"count": 1,
+"sides": 8,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 33,
+"max": 33
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": -2,
+"con": 1,
+"dex": 1,
+"int": -4,
+"str": 1,
+"wis": 1
+},
+"speedFt": 40,
+"spells": []
+},
+"cr": 0.5,
+"xp": 100
+},
+"saber-toothed-tiger": {
+"block": {
+"abilities": {
+"cha": 8,
+"con": 15,
+"dex": 17,
+"int": 3,
+"str": 18,
+"wis": 12
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "rend",
+"bonus": 6,
+"damage": {
+"bonus": 4,
+"count": 2,
+"sides": 6,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Rend",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 52,
+"max": 52
+},
+"initiativeBonus": 3,
+"savingThrows": {
+"cha": -1,
+"con": 2,
+"dex": 5,
+"int": -4,
+"str": 6,
+"wis": 1
+},
+"speedFt": 40,
+"spells": []
+},
+"cr": 2.0,
+"xp": 450
+},
+"sahuagin-warrior": {
+"block": {
+"abilities": {
+"cha": 9,
+"con": 12,
+"dex": 11,
+"int": 12,
+"str": 13,
+"wis": 13
+},
+"armorClass": 12,
+"attacks": [
+{
+"attackId": "claw",
+"bonus": 3,
+"damage": {
+"bonus": 1,
+"count": 1,
+"sides": 6,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Claw",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 22,
+"max": 22
+},
+"initiativeBonus": 0,
+"savingThrows": {
+"cha": -1,
+"con": 1,
+"dex": 0,
+"int": 1,
+"str": 1,
+"wis": 1
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 0.5,
+"xp": 100
+},
+"salamander": {
+"block": {
+"abilities": {
+"cha": 12,
+"con": 15,
+"dex": 14,
+"int": 11,
+"str": 18,
+"wis": 10
+},
+"armorClass": 15,
+"attacks": [
+{
+"attackId": "flame-spear",
+"bonus": 7,
+"damage": {
+"bonus": 4,
+"count": 2,
+"sides": 8,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Flame Spear",
+"reachFt": 5
+},
+{
+"attackId": "flame-spear-ranged",
+"bonus": 7,
+"damage": {
+"bonus": 4,
+"count": 2,
+"sides": 8,
+"type": "piercing"
+},
+"kind": "ranged",
+"longRangeFt": 60,
+"name": "Flame Spear",
+"normalRangeFt": 20
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 90,
+"max": 90
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": 1,
+"con": 2,
+"dex": 2,
+"int": 0,
+"str": 4,
+"wis": 0
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 5.0,
+"xp": 1800
+},
+"satyr": {
+"block": {
+"abilities": {
+"cha": 14,
+"con": 11,
+"dex": 16,
+"int": 12,
+"str": 12,
+"wis": 10
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "hooves",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 4,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Hooves",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 31,
+"max": 31
+},
+"initiativeBonus": 3,
+"savingThrows": {
+"cha": 2,
+"con": 0,
+"dex": 3,
+"int": 1,
+"str": 1,
+"wis": 0
+},
+"speedFt": 40,
+"spells": []
+},
+"cr": 0.5,
+"xp": 100
+},
+"scorpion": {
+"block": {
+"abilities": {
+"cha": 2,
+"con": 8,
+"dex": 11,
+"int": 1,
+"str": 2,
+"wis": 8
+},
+"armorClass": 11,
+"attacks": [
+{
+"attackId": "sting",
+"bonus": 2,
+"damage": {
+"bonus": 1,
+"count": 0,
+"sides": 4,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Sting",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 1,
+"max": 1
+},
+"initiativeBonus": 0,
+"savingThrows": {
+"cha": -4,
+"con": -1,
+"dex": 0,
+"int": -5,
+"str": -4,
+"wis": -1
+},
+"speedFt": 10,
+"spells": []
+},
+"cr": 0.0,
+"xp": 10
+},
+"scout": {
+"block": {
+"abilities": {
+"cha": 11,
+"con": 12,
+"dex": 14,
+"int": 11,
+"str": 11,
+"wis": 13
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "shortsword",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Shortsword",
+"reachFt": 5
+},
+{
+"attackId": "longbow",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 8,
+"type": "piercing"
+},
+"kind": "ranged",
+"longRangeFt": 600,
+"name": "Longbow",
+"normalRangeFt": 150
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 16,
+"max": 16
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": 0,
+"con": 1,
+"dex": 2,
+"int": 0,
+"str": 0,
+"wis": 1
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 0.5,
+"xp": 100
+},
+"sea-hag": {
+"block": {
+"abilities": {
+"cha": 13,
+"con": 16,
+"dex": 13,
+"int": 12,
+"str": 16,
+"wis": 12
+},
+"armorClass": 14,
+"attacks": [
+{
+"attackId": "claw",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 2,
+"sides": 6,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Claw",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 52,
+"max": 52
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": 1,
+"con": 3,
+"dex": 1,
+"int": 1,
+"str": 3,
+"wis": 1
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 2.0,
+"xp": 450
+},
+"shadow": {
+"block": {
+"abilities": {
+"cha": 8,
+"con": 13,
+"dex": 14,
+"int": 6,
+"str": 6,
+"wis": 10
+},
+"armorClass": 12,
+"attacks": [
+{
+"attackId": "draining-swipe",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 6,
+"type": "necrotic"
+},
+"kind": "melee",
+"name": "Draining Swipe",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 27,
+"max": 27
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": -1,
+"con": 1,
+"dex": 2,
+"int": -2,
+"str": -2,
+"wis": 0
+},
+"speedFt": 40,
+"spells": []
+},
+"cr": 0.5,
+"xp": 100
+},
+"shambling-mound": {
+"block": {
+"abilities": {
+"cha": 5,
+"con": 16,
+"dex": 8,
+"int": 5,
+"str": 18,
+"wis": 10
+},
+"armorClass": 15,
+"attacks": [
+{
+"attackId": "charged-tendril",
+"bonus": 7,
+"damage": {
+"bonus": 4,
+"count": 1,
+"sides": 6,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Charged Tendril",
+"reachFt": 10
+}
+],
+"attacksPerAction": 3,
+"conditions": [],
+"hitPoints": {
+"current": 110,
+"max": 110
+},
+"initiativeBonus": -1,
+"savingThrows": {
+"cha": -3,
+"con": 3,
+"dex": -1,
+"int": -3,
+"str": 4,
+"wis": 0
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 5.0,
+"xp": 1800
+},
+"silver-dragon-wyrmling": {
+"block": {
+"abilities": {
+"cha": 15,
+"con": 17,
+"dex": 10,
+"int": 12,
+"str": 19,
+"wis": 11
+},
+"armorClass": 17,
+"attacks": [
+{
+"attackId": "rend",
+"bonus": 6,
+"damage": {
+"bonus": 4,
+"count": 1,
+"sides": 10,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Rend",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 45,
+"max": 45
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": 2,
+"con": 3,
+"dex": 2,
+"int": 1,
+"str": 4,
+"wis": 2
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 2.0,
+"xp": 450
+},
+"skeleton": {
+"block": {
+"abilities": {
+"cha": 5,
+"con": 15,
+"dex": 16,
+"int": 6,
+"str": 10,
+"wis": 8
+},
+"armorClass": 14,
+"attacks": [
+{
+"attackId": "shortsword",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Shortsword",
+"reachFt": 5
+},
+{
+"attackId": "shortbow",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "ranged",
+"longRangeFt": 320,
+"name": "Shortbow",
+"normalRangeFt": 80
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 13,
+"max": 13
+},
+"initiativeBonus": 3,
+"savingThrows": {
+"cha": -3,
+"con": 2,
+"dex": 3,
+"int": -2,
+"str": 0,
+"wis": -1
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 0.25,
+"xp": 50
+},
+"specter": {
+"block": {
+"abilities": {
+"cha": 11,
+"con": 11,
+"dex": 14,
+"int": 10,
+"str": 1,
+"wis": 10
+},
+"armorClass": 12,
+"attacks": [
+{
+"attackId": "life-drain",
+"bonus": 4,
+"damage": {
+"bonus": 0,
+"count": 2,
+"sides": 6,
+"type": "necrotic"
+},
+"kind": "melee",
+"name": "Life Drain",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 22,
+"max": 22
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": 0,
+"con": 0,
+"dex": 2,
+"int": 0,
+"str": -5,
+"wis": 0
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 1.0,
+"xp": 200
+},
+"sphinx-of-wonder": {
+"block": {
+"abilities": {
+"cha": 11,
+"con": 13,
+"dex": 17,
+"int": 15,
+"str": 6,
+"wis": 12
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "rend",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 4,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Rend",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 24,
+"max": 24
+},
+"initiativeBonus": 3,
+"savingThrows": {
+"cha": 0,
+"con": 1,
+"dex": 3,
+"int": 2,
+"str": -2,
+"wis": 1
+},
+"speedFt": 20,
+"spells": []
+},
+"cr": 1.0,
+"xp": 200
+},
+"spider": {
+"block": {
+"abilities": {
+"cha": 2,
+"con": 8,
+"dex": 14,
+"int": 1,
+"str": 2,
+"wis": 10
+},
+"armorClass": 12,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 4,
+"damage": {
+"bonus": 1,
+"count": 0,
+"sides": 4,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 1,
+"max": 1
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": -4,
+"con": -1,
+"dex": 2,
+"int": -5,
+"str": -4,
+"wis": 0
+},
+"speedFt": 20,
+"spells": []
+},
+"cr": 0.0,
+"xp": 10
+},
+"sprite": {
+"block": {
+"abilities": {
+"cha": 11,
+"con": 10,
+"dex": 18,
+"int": 14,
+"str": 3,
+"wis": 13
+},
+"armorClass": 15,
+"attacks": [
+{
+"attackId": "needle-sword",
+"bonus": 6,
+"damage": {
+"bonus": 4,
+"count": 1,
+"sides": 4,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Needle Sword",
+"reachFt": 5
+},
+{
+"attackId": "enchanting-bow",
+"bonus": 6,
+"damage": {
+"bonus": 1,
+"count": 0,
+"sides": 4,
+"type": "piercing"
+},
+"kind": "ranged",
+"longRangeFt": 160,
+"name": "Enchanting Bow",
+"normalRangeFt": 40
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 10,
+"max": 10
+},
+"initiativeBonus": 4,
+"savingThrows": {
+"cha": 0,
+"con": 0,
+"dex": 4,
+"int": 2,
+"str": -4,
+"wis": 1
+},
+"speedFt": 10,
+"spells": []
+},
+"cr": 0.25,
+"xp": 50
+},
+"spy": {
+"block": {
+"abilities": {
+"cha": 16,
+"con": 10,
+"dex": 15,
+"int": 12,
+"str": 10,
+"wis": 14
+},
+"armorClass": 12,
+"attacks": [
+{
+"attackId": "shortsword",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Shortsword",
+"reachFt": 5
+},
+{
+"attackId": "hand-crossbow",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "ranged",
+"longRangeFt": 120,
+"name": "Hand Crossbow",
+"normalRangeFt": 30
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 27,
+"max": 27
+},
+"initiativeBonus": 4,
+"savingThrows": {
+"cha": 3,
+"con": 0,
+"dex": 2,
+"int": 1,
+"str": 0,
+"wis": 2
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 1.0,
+"xp": 200
+},
+"steam-mephit": {
+"block": {
+"abilities": {
+"cha": 12,
+"con": 10,
+"dex": 11,
+"int": 11,
+"str": 5,
+"wis": 10
+},
+"armorClass": 10,
+"attacks": [
+{
+"attackId": "claw",
+"bonus": 2,
+"damage": {
+"bonus": 0,
+"count": 1,
+"sides": 4,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Claw",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 17,
+"max": 17
+},
+"initiativeBonus": 0,
+"savingThrows": {
+"cha": 1,
+"con": 0,
+"dex": 0,
+"int": 0,
+"str": -3,
+"wis": 0
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 0.25,
+"xp": 50
+},
+"stirge": {
+"block": {
+"abilities": {
+"cha": 6,
+"con": 11,
+"dex": 16,
+"int": 2,
+"str": 4,
+"wis": 8
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "proboscis",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Proboscis",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 5,
+"max": 5
+},
+"initiativeBonus": 3,
+"savingThrows": {
+"cha": -2,
+"con": 0,
+"dex": 3,
+"int": -4,
+"str": -3,
+"wis": -1
+},
+"speedFt": 10,
+"spells": []
+},
+"cr": 0.125,
+"xp": 25
+},
+"succubus": {
+"block": {
+"abilities": {
+"cha": 20,
+"con": 13,
+"dex": 17,
+"int": 15,
+"str": 8,
+"wis": 12
+},
+"armorClass": 15,
+"attacks": [
+{
+"attackId": "fiendish-touch",
+"bonus": 7,
+"damage": {
+"bonus": 5,
+"count": 2,
+"sides": 10,
+"type": "psychic"
+},
+"kind": "melee",
+"name": "Fiendish Touch",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 71,
+"max": 71
+},
+"initiativeBonus": 3,
+"savingThrows": {
+"cha": 5,
+"con": 1,
+"dex": 3,
+"int": 2,
+"str": -1,
+"wis": 1
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 4.0,
+"xp": 1100
+},
+"swarm-of-bats": {
+"block": {
+"abilities": {
+"cha": 4,
+"con": 10,
+"dex": 15,
+"int": 2,
+"str": 5,
+"wis": 12
+},
+"armorClass": 12,
+"attacks": [
+{
+"attackId": "bites",
+"bonus": 4,
+"damage": {
+"bonus": 0,
+"count": 2,
+"sides": 4,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bites",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 11,
+"max": 11
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": -3,
+"con": 0,
+"dex": 2,
+"int": -4,
+"str": -3,
+"wis": 1
+},
+"speedFt": 5,
+"spells": []
+},
+"cr": 0.25,
+"xp": 50
+},
+"swarm-of-crawling-claws": {
+"block": {
+"abilities": {
+"cha": 4,
+"con": 11,
+"dex": 14,
+"int": 5,
+"str": 14,
+"wis": 10
+},
+"armorClass": 12,
+"attacks": [
+{
+"attackId": "swarm-of-grasping-hands",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 4,
+"sides": 8,
+"type": "necrotic"
+},
+"kind": "melee",
+"name": "Swarm of Grasping Hands",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 49,
+"max": 49
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": -3,
+"con": 0,
+"dex": 2,
+"int": -3,
+"str": 2,
+"wis": 0
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 3.0,
+"xp": 700
+},
+"swarm-of-insects": {
+"block": {
+"abilities": {
+"cha": 1,
+"con": 14,
+"dex": 13,
+"int": 1,
+"str": 3,
+"wis": 7
+},
+"armorClass": 11,
+"attacks": [
+{
+"attackId": "bites",
+"bonus": 3,
+"damage": {
+"bonus": 1,
+"count": 2,
+"sides": 4,
+"type": "poison"
+},
+"kind": "melee",
+"name": "Bites",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 19,
+"max": 19
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": -5,
+"con": 2,
+"dex": 1,
+"int": -5,
+"str": -4,
+"wis": -2
+},
+"speedFt": 20,
+"spells": []
+},
+"cr": 0.5,
+"xp": 100
+},
+"swarm-of-piranhas": {
+"block": {
+"abilities": {
+"cha": 2,
+"con": 9,
+"dex": 16,
+"int": 1,
+"str": 13,
+"wis": 7
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "bites",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 2,
+"sides": 4,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bites",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 28,
+"max": 28
+},
+"initiativeBonus": 3,
+"savingThrows": {
+"cha": -4,
+"con": -1,
+"dex": 3,
+"int": -5,
+"str": 1,
+"wis": -2
+},
+"speedFt": 5,
+"spells": []
+},
+"cr": 1.0,
+"xp": 200
+},
+"swarm-of-rats": {
+"block": {
+"abilities": {
+"cha": 3,
+"con": 9,
+"dex": 11,
+"int": 2,
+"str": 9,
+"wis": 10
+},
+"armorClass": 10,
+"attacks": [
+{
+"attackId": "bites",
+"bonus": 2,
+"damage": {
+"bonus": 0,
+"count": 2,
+"sides": 4,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bites",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 14,
+"max": 14
+},
+"initiativeBonus": 0,
+"savingThrows": {
+"cha": -4,
+"con": -1,
+"dex": 2,
+"int": -4,
+"str": -1,
+"wis": 0
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 0.25,
+"xp": 50
+},
+"swarm-of-ravens": {
+"block": {
+"abilities": {
+"cha": 6,
+"con": 12,
+"dex": 14,
+"int": 5,
+"str": 6,
+"wis": 12
+},
+"armorClass": 12,
+"attacks": [
+{
+"attackId": "beaks",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Beaks",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 11,
+"max": 11
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": -2,
+"con": 1,
+"dex": 2,
+"int": -3,
+"str": -2,
+"wis": 1
+},
+"speedFt": 10,
+"spells": []
+},
+"cr": 0.25,
+"xp": 50
+},
+"swarm-of-venomous-snakes": {
+"block": {
+"abilities": {
+"cha": 3,
+"con": 11,
+"dex": 18,
+"int": 1,
+"str": 8,
+"wis": 10
+},
+"armorClass": 14,
+"attacks": [
+{
+"attackId": "bites",
+"bonus": 6,
+"damage": {
+"bonus": 4,
+"count": 1,
+"sides": 8,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bites",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 36,
+"max": 36
+},
+"initiativeBonus": 4,
+"savingThrows": {
+"cha": -4,
+"con": 0,
+"dex": 4,
+"int": -5,
+"str": -1,
+"wis": 0
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 2.0,
+"xp": 450
+},
+"tiger": {
+"block": {
+"abilities": {
+"cha": 8,
+"con": 14,
+"dex": 16,
+"int": 3,
+"str": 17,
+"wis": 12
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "rend",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 2,
+"sides": 6,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Rend",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 30,
+"max": 30
+},
+"initiativeBonus": 3,
+"savingThrows": {
+"cha": -1,
+"con": 2,
+"dex": 3,
+"int": -4,
+"str": 3,
+"wis": 1
+},
+"speedFt": 40,
+"spells": []
+},
+"cr": 1.0,
+"xp": 200
+},
+"tough": {
+"block": {
+"abilities": {
+"cha": 11,
+"con": 14,
+"dex": 12,
+"int": 10,
+"str": 15,
+"wis": 10
+},
+"armorClass": 12,
+"attacks": [
+{
+"attackId": "mace",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 6,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Mace",
+"reachFt": 5
+},
+{
+"attackId": "heavy-crossbow",
+"bonus": 3,
+"damage": {
+"bonus": 1,
+"count": 1,
+"sides": 10,
+"type": "piercing"
+},
+"kind": "ranged",
+"longRangeFt": 400,
+"name": "Heavy Crossbow",
+"normalRangeFt": 100
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 32,
+"max": 32
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": 0,
+"con": 2,
+"dex": 1,
+"int": 0,
+"str": 2,
+"wis": 0
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 0.5,
+"xp": 100
+},
+"tough-boss": {
+"block": {
+"abilities": {
+"cha": 11,
+"con": 16,
+"dex": 14,
+"int": 11,
+"str": 17,
+"wis": 10
+},
+"armorClass": 16,
+"attacks": [
+{
+"attackId": "warhammer",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 2,
+"sides": 8,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Warhammer",
+"reachFt": 5
+},
+{
+"attackId": "heavy-crossbow",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 2,
+"sides": 10,
+"type": "piercing"
+},
+"kind": "ranged",
+"longRangeFt": 400,
+"name": "Heavy Crossbow",
+"normalRangeFt": 100
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 82,
+"max": 82
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": 2,
+"con": 5,
+"dex": 2,
+"int": 0,
+"str": 5,
+"wis": 0
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 4.0,
+"xp": 1100
+},
+"triceratops": {
+"block": {
+"abilities": {
+"cha": 5,
+"con": 17,
+"dex": 9,
+"int": 2,
+"str": 22,
+"wis": 11
+},
+"armorClass": 14,
+"attacks": [
+{
+"attackId": "gore",
+"bonus": 9,
+"damage": {
+"bonus": 6,
+"count": 2,
+"sides": 12,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Gore",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 114,
+"max": 114
+},
+"initiativeBonus": -1,
+"savingThrows": {
+"cha": -3,
+"con": 3,
+"dex": -1,
+"int": -4,
+"str": 6,
+"wis": 0
+},
+"speedFt": 50,
+"spells": []
+},
+"cr": 5.0,
+"xp": 1800
+},
+"troll": {
+"block": {
+"abilities": {
+"cha": 7,
+"con": 20,
+"dex": 13,
+"int": 7,
+"str": 18,
+"wis": 9
+},
+"armorClass": 15,
+"attacks": [
+{
+"attackId": "rend",
+"bonus": 7,
+"damage": {
+"bonus": 4,
+"count": 2,
+"sides": 6,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Rend",
+"reachFt": 10
+}
+],
+"attacksPerAction": 3,
+"conditions": [],
+"hitPoints": {
+"current": 94,
+"max": 94
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": -2,
+"con": 5,
+"dex": 1,
+"int": -2,
+"str": 4,
+"wis": -1
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 5.0,
+"xp": 1800
+},
+"troll-limb": {
+"block": {
+"abilities": {
+"cha": 1,
+"con": 10,
+"dex": 12,
+"int": 1,
+"str": 18,
+"wis": 9
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "rend",
+"bonus": 6,
+"damage": {
+"bonus": 4,
+"count": 2,
+"sides": 4,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Rend",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 14,
+"max": 14
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": -5,
+"con": 0,
+"dex": 1,
+"int": -5,
+"str": 4,
+"wis": -1
+},
+"speedFt": 20,
+"spells": []
+},
+"cr": 0.5,
+"xp": 100
+},
+"unicorn": {
+"block": {
+"abilities": {
+"cha": 16,
+"con": 15,
+"dex": 14,
+"int": 11,
+"str": 18,
+"wis": 17
+},
+"armorClass": 12,
+"attacks": [
+{
+"attackId": "hooves",
+"bonus": 7,
+"damage": {
+"bonus": 4,
+"count": 2,
+"sides": 6,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Hooves",
+"reachFt": 5
+},
+{
+"attackId": "radiant-horn",
+"bonus": 7,
+"damage": {
+"bonus": 4,
+"count": 1,
+"sides": 10,
+"type": "radiant"
+},
+"kind": "melee",
+"name": "Radiant Horn",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 97,
+"max": 97
+},
+"initiativeBonus": 8,
+"savingThrows": {
+"cha": 3,
+"con": 2,
+"dex": 2,
+"int": 0,
+"str": 4,
+"wis": 3
+},
+"speedFt": 50,
+"spells": []
+},
+"cr": 5.0,
+"xp": 1800
+},
+"vampire-familiar": {
+"block": {
+"abilities": {
+"cha": 14,
+"con": 15,
+"dex": 16,
+"int": 10,
+"str": 17,
+"wis": 10
+},
+"armorClass": 15,
+"attacks": [
+{
+"attackId": "umbral-dagger",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 4,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Umbral Dagger",
+"reachFt": 5
+},
+{
+"attackId": "umbral-dagger-ranged",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 4,
+"type": "piercing"
+},
+"kind": "ranged",
+"longRangeFt": 60,
+"name": "Umbral Dagger",
+"normalRangeFt": 20
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 65,
+"max": 65
+},
+"initiativeBonus": 5,
+"savingThrows": {
+"cha": 2,
+"con": 2,
+"dex": 5,
+"int": 0,
+"str": 3,
+"wis": 2
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 3.0,
+"xp": 700
+},
+"vampire-spawn": {
+"block": {
+"abilities": {
+"cha": 12,
+"con": 16,
+"dex": 16,
+"int": 11,
+"str": 16,
+"wis": 10
+},
+"armorClass": 16,
+"attacks": [
+{
+"attackId": "claw",
+"bonus": 6,
+"damage": {
+"bonus": 3,
+"count": 2,
+"sides": 4,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Claw",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 90,
+"max": 90
+},
+"initiativeBonus": 3,
+"savingThrows": {
+"cha": 1,
+"con": 3,
+"dex": 6,
+"int": 0,
+"str": 3,
+"wis": 3
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 5.0,
+"xp": 1800
+},
+"venomous-snake": {
+"block": {
+"abilities": {
+"cha": 3,
+"con": 11,
+"dex": 15,
+"int": 1,
+"str": 2,
+"wis": 10
+},
+"armorClass": 12,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 4,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 5,
+"max": 5
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": -4,
+"con": 0,
+"dex": 2,
+"int": -5,
+"str": -4,
+"wis": 0
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 0.125,
+"xp": 25
+},
+"violet-fungus": {
+"block": {
+"abilities": {
+"cha": 1,
+"con": 10,
+"dex": 1,
+"int": 1,
+"str": 3,
+"wis": 3
+},
+"armorClass": 5,
+"attacks": [
+{
+"attackId": "rotting-touch",
+"bonus": 2,
+"damage": {
+"bonus": 0,
+"count": 1,
+"sides": 8,
+"type": "necrotic"
+},
+"kind": "melee",
+"name": "Rotting Touch",
+"reachFt": 10
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 18,
+"max": 18
+},
+"initiativeBonus": -5,
+"savingThrows": {
+"cha": -5,
+"con": 0,
+"dex": -5,
+"int": -5,
+"str": -4,
+"wis": -4
+},
+"speedFt": 5,
+"spells": []
+},
+"cr": 0.25,
+"xp": 50
+},
+"vulture": {
+"block": {
+"abilities": {
+"cha": 4,
+"con": 13,
+"dex": 10,
+"int": 2,
+"str": 7,
+"wis": 12
+},
+"armorClass": 10,
+"attacks": [
+{
+"attackId": "beak",
+"bonus": 2,
+"damage": {
+"bonus": 0,
+"count": 1,
+"sides": 4,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Beak",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 5,
+"max": 5
+},
+"initiativeBonus": 0,
+"savingThrows": {
+"cha": -3,
+"con": 1,
+"dex": 0,
+"int": -4,
+"str": -2,
+"wis": 1
+},
+"speedFt": 10,
+"spells": []
+},
+"cr": 0.0,
+"xp": 10
+},
+"warhorse": {
+"block": {
+"abilities": {
+"cha": 7,
+"con": 13,
+"dex": 12,
+"int": 2,
+"str": 18,
+"wis": 12
+},
+"armorClass": 11,
+"attacks": [
+{
+"attackId": "hooves",
+"bonus": 6,
+"damage": {
+"bonus": 4,
+"count": 2,
+"sides": 4,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Hooves",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 19,
+"max": 19
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": -2,
+"con": 1,
+"dex": 1,
+"int": -4,
+"str": 4,
+"wis": 3
+},
+"speedFt": 60,
+"spells": []
+},
+"cr": 0.5,
+"xp": 100
+},
+"warhorse-skeleton": {
+"block": {
+"abilities": {
+"cha": 5,
+"con": 15,
+"dex": 12,
+"int": 2,
+"str": 18,
+"wis": 8
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "hooves",
+"bonus": 6,
+"damage": {
+"bonus": 4,
+"count": 1,
+"sides": 6,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Hooves",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 22,
+"max": 22
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": -3,
+"con": 2,
+"dex": 1,
+"int": -4,
+"str": 4,
+"wis": -1
+},
+"speedFt": 60,
+"spells": []
+},
+"cr": 0.5,
+"xp": 100
+},
+"warrior-infantry": {
+"block": {
+"abilities": {
+"cha": 8,
+"con": 11,
+"dex": 11,
+"int": 8,
+"str": 13,
+"wis": 11
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "spear",
+"bonus": 3,
+"damage": {
+"bonus": 1,
+"count": 1,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Spear",
+"reachFt": 5
+},
+{
+"attackId": "spear-ranged",
+"bonus": 3,
+"damage": {
+"bonus": 1,
+"count": 1,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "ranged",
+"longRangeFt": 60,
+"name": "Spear",
+"normalRangeFt": 20
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 9,
+"max": 9
+},
+"initiativeBonus": 0,
+"savingThrows": {
+"cha": -1,
+"con": 0,
+"dex": 0,
+"int": -1,
+"str": 1,
+"wis": 0
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 0.125,
+"xp": 25
+},
+"warrior-veteran": {
+"block": {
+"abilities": {
+"cha": 10,
+"con": 14,
+"dex": 13,
+"int": 10,
+"str": 16,
+"wis": 11
+},
+"armorClass": 17,
+"attacks": [
+{
+"attackId": "greatsword",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 2,
+"sides": 6,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Greatsword",
+"reachFt": 5
+},
+{
+"attackId": "heavy-crossbow",
+"bonus": 3,
+"damage": {
+"bonus": 1,
+"count": 2,
+"sides": 10,
+"type": "piercing"
+},
+"kind": "ranged",
+"longRangeFt": 400,
+"name": "Heavy Crossbow",
+"normalRangeFt": 100
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 65,
+"max": 65
+},
+"initiativeBonus": 3,
+"savingThrows": {
+"cha": 0,
+"con": 2,
+"dex": 1,
+"int": 0,
+"str": 3,
+"wis": 0
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 3.0,
+"xp": 700
+},
+"water-elemental": {
+"block": {
+"abilities": {
+"cha": 8,
+"con": 18,
+"dex": 14,
+"int": 5,
+"str": 18,
+"wis": 10
+},
+"armorClass": 14,
+"attacks": [
+{
+"attackId": "slam",
+"bonus": 7,
+"damage": {
+"bonus": 4,
+"count": 2,
+"sides": 8,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Slam",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 114,
+"max": 114
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": -1,
+"con": 4,
+"dex": 2,
+"int": -3,
+"str": 4,
+"wis": 0
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 5.0,
+"xp": 1800
+},
+"weasel": {
+"block": {
+"abilities": {
+"cha": 3,
+"con": 8,
+"dex": 16,
+"int": 2,
+"str": 3,
+"wis": 12
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 5,
+"damage": {
+"bonus": 1,
+"count": 0,
+"sides": 4,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 1,
+"max": 1
+},
+"initiativeBonus": 3,
+"savingThrows": {
+"cha": -4,
+"con": -1,
+"dex": 3,
+"int": -4,
+"str": -4,
+"wis": 1
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 0.0,
+"xp": 10
+},
+"werebear": {
+"block": {
+"abilities": {
+"cha": 12,
+"con": 17,
+"dex": 10,
+"int": 11,
+"str": 19,
+"wis": 12
+},
+"armorClass": 15,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 7,
+"damage": {
+"bonus": 4,
+"count": 2,
+"sides": 12,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+},
+{
+"attackId": "handaxe",
+"bonus": 7,
+"damage": {
+"bonus": 4,
+"count": 3,
+"sides": 6,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Handaxe",
+"reachFt": 5
+},
+{
+"attackId": "handaxe-ranged",
+"bonus": 7,
+"damage": {
+"bonus": 4,
+"count": 3,
+"sides": 6,
+"type": "slashing"
+},
+"kind": "ranged",
+"longRangeFt": 60,
+"name": "Handaxe",
+"normalRangeFt": 20
+},
+{
+"attackId": "rend",
+"bonus": 7,
+"damage": {
+"bonus": 4,
+"count": 2,
+"sides": 8,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Rend",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 135,
+"max": 135
+},
+"initiativeBonus": 3,
+"savingThrows": {
+"cha": 1,
+"con": 3,
+"dex": 0,
+"int": 0,
+"str": 4,
+"wis": 1
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 5.0,
+"xp": 1800
+},
+"wereboar": {
+"block": {
+"abilities": {
+"cha": 8,
+"con": 15,
+"dex": 10,
+"int": 10,
+"str": 17,
+"wis": 11
+},
+"armorClass": 15,
+"attacks": [
+{
+"attackId": "gore",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 2,
+"sides": 8,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Gore",
+"reachFt": 5
+},
+{
+"attackId": "javelin",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 3,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Javelin",
+"reachFt": 5
+},
+{
+"attackId": "javelin-ranged",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 3,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "ranged",
+"longRangeFt": 120,
+"name": "Javelin",
+"normalRangeFt": 30
+},
+{
+"attackId": "tusk",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 2,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Tusk",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 97,
+"max": 97
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": -1,
+"con": 2,
+"dex": 0,
+"int": 0,
+"str": 3,
+"wis": 0
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 4.0,
+"xp": 1100
+},
+"wererat": {
+"block": {
+"abilities": {
+"cha": 8,
+"con": 12,
+"dex": 16,
+"int": 11,
+"str": 10,
+"wis": 10
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 2,
+"sides": 4,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+},
+{
+"attackId": "scratch",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 6,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Scratch",
+"reachFt": 5
+},
+{
+"attackId": "hand-crossbow",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "ranged",
+"longRangeFt": 120,
+"name": "Hand Crossbow",
+"normalRangeFt": 30
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 60,
+"max": 60
+},
+"initiativeBonus": 3,
+"savingThrows": {
+"cha": -1,
+"con": 1,
+"dex": 3,
+"int": 0,
+"str": 0,
+"wis": 0
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 2.0,
+"xp": 450
+},
+"weretiger": {
+"block": {
+"abilities": {
+"cha": 11,
+"con": 16,
+"dex": 15,
+"int": 10,
+"str": 17,
+"wis": 13
+},
+"armorClass": 12,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 2,
+"sides": 8,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+},
+{
+"attackId": "scratch",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 2,
+"sides": 6,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Scratch",
+"reachFt": 5
+},
+{
+"attackId": "longbow",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 2,
+"sides": 8,
+"type": "piercing"
+},
+"kind": "ranged",
+"longRangeFt": 600,
+"name": "Longbow",
+"normalRangeFt": 150
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 120,
+"max": 120
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": 0,
+"con": 3,
+"dex": 2,
+"int": 0,
+"str": 3,
+"wis": 1
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 4.0,
+"xp": 1100
+},
+"werewolf": {
+"block": {
+"abilities": {
+"cha": 10,
+"con": 14,
+"dex": 14,
+"int": 10,
+"str": 16,
+"wis": 11
+},
+"armorClass": 15,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 2,
+"sides": 8,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+},
+{
+"attackId": "scratch",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 2,
+"sides": 6,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Scratch",
+"reachFt": 5
+},
+{
+"attackId": "longbow",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 2,
+"sides": 8,
+"type": "piercing"
+},
+"kind": "ranged",
+"longRangeFt": 600,
+"name": "Longbow",
+"normalRangeFt": 150
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 71,
+"max": 71
+},
+"initiativeBonus": 4,
+"savingThrows": {
+"cha": 0,
+"con": 2,
+"dex": 2,
+"int": 0,
+"str": 3,
+"wis": 0
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 3.0,
+"xp": 700
+},
+"white-dragon-wyrmling": {
+"block": {
+"abilities": {
+"cha": 11,
+"con": 14,
+"dex": 10,
+"int": 5,
+"str": 14,
+"wis": 10
+},
+"armorClass": 16,
+"attacks": [
+{
+"attackId": "rend",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 8,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Rend",
+"reachFt": 5
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 32,
+"max": 32
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": 0,
+"con": 2,
+"dex": 2,
+"int": -3,
+"str": 2,
+"wis": 2
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 2.0,
+"xp": 450
+},
+"wight": {
+"block": {
+"abilities": {
+"cha": 15,
+"con": 16,
+"dex": 14,
+"int": 10,
+"str": 15,
+"wis": 13
+},
+"armorClass": 14,
+"attacks": [
+{
+"attackId": "necrotic-sword",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 8,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Necrotic Sword",
+"reachFt": 5
+},
+{
+"attackId": "necrotic-bow",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 8,
+"type": "piercing"
+},
+"kind": "ranged",
+"longRangeFt": 600,
+"name": "Necrotic Bow",
+"normalRangeFt": 150
+}
+],
+"attacksPerAction": 2,
+"conditions": [],
+"hitPoints": {
+"current": 82,
+"max": 82
+},
+"initiativeBonus": 4,
+"savingThrows": {
+"cha": 2,
+"con": 3,
+"dex": 2,
+"int": 0,
+"str": 2,
+"wis": 1
+},
+"speedFt": 30,
+"spells": []
+},
+"cr": 3.0,
+"xp": 700
+},
+"will-o-wisp": {
+"block": {
+"abilities": {
+"cha": 11,
+"con": 10,
+"dex": 28,
+"int": 13,
+"str": 1,
+"wis": 14
+},
+"armorClass": 19,
+"attacks": [
+{
+"attackId": "shock",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 2,
+"sides": 8,
+"type": "lightning"
+},
+"kind": "melee",
+"name": "Shock",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 27,
+"max": 27
+},
+"initiativeBonus": 9,
+"savingThrows": {
+"cha": 0,
+"con": 0,
+"dex": 9,
+"int": 1,
+"str": -5,
+"wis": 2
+},
+"speedFt": 5,
+"spells": []
+},
+"cr": 2.0,
+"xp": 450
+},
+"winter-wolf": {
+"block": {
+"abilities": {
+"cha": 8,
+"con": 14,
+"dex": 13,
+"int": 7,
+"str": 18,
+"wis": 12
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 6,
+"damage": {
+"bonus": 4,
+"count": 2,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 75,
+"max": 75
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": -1,
+"con": 2,
+"dex": 1,
+"int": -2,
+"str": 4,
+"wis": 1
+},
+"speedFt": 50,
+"spells": []
+},
+"cr": 3.0,
+"xp": 700
+},
+"wolf": {
+"block": {
+"abilities": {
+"cha": 6,
+"con": 12,
+"dex": 15,
+"int": 3,
+"str": 14,
+"wis": 12
+},
+"armorClass": 12,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 4,
+"damage": {
+"bonus": 2,
+"count": 1,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 11,
+"max": 11
+},
+"initiativeBonus": 2,
+"savingThrows": {
+"cha": -2,
+"con": 1,
+"dex": 2,
+"int": -4,
+"str": 2,
+"wis": 1
+},
+"speedFt": 40,
+"spells": []
+},
+"cr": 0.25,
+"xp": 50
+},
+"worg": {
+"block": {
+"abilities": {
+"cha": 8,
+"con": 13,
+"dex": 13,
+"int": 7,
+"str": 16,
+"wis": 11
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 5,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 8,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 26,
+"max": 26
+},
+"initiativeBonus": 1,
+"savingThrows": {
+"cha": -1,
+"con": 1,
+"dex": 1,
+"int": -2,
+"str": 3,
+"wis": 0
+},
+"speedFt": 50,
+"spells": []
+},
+"cr": 0.5,
+"xp": 100
+},
+"wraith": {
+"block": {
+"abilities": {
+"cha": 15,
+"con": 16,
+"dex": 16,
+"int": 12,
+"str": 6,
+"wis": 14
+},
+"armorClass": 13,
+"attacks": [
+{
+"attackId": "life-drain",
+"bonus": 6,
+"damage": {
+"bonus": 3,
+"count": 4,
+"sides": 8,
+"type": "necrotic"
+},
+"kind": "melee",
+"name": "Life Drain",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 67,
+"max": 67
+},
+"initiativeBonus": 3,
+"savingThrows": {
+"cha": 2,
+"con": 3,
+"dex": 3,
+"int": 1,
+"str": -2,
+"wis": 2
+},
+"speedFt": 5,
+"spells": []
+},
+"cr": 5.0,
+"xp": 1800
+},
+"xorn": {
+"block": {
+"abilities": {
+"cha": 11,
+"con": 22,
+"dex": 10,
+"int": 11,
+"str": 17,
+"wis": 10
+},
+"armorClass": 19,
+"attacks": [
+{
+"attackId": "bite",
+"bonus": 6,
+"damage": {
+"bonus": 3,
+"count": 4,
+"sides": 6,
+"type": "piercing"
+},
+"kind": "melee",
+"name": "Bite",
+"reachFt": 5
+},
+{
+"attackId": "claw",
+"bonus": 6,
+"damage": {
+"bonus": 3,
+"count": 1,
+"sides": 10,
+"type": "slashing"
+},
+"kind": "melee",
+"name": "Claw",
+"reachFt": 5
+}
+],
+"attacksPerAction": 4,
+"conditions": [],
+"hitPoints": {
+"current": 84,
+"max": 84
+},
+"initiativeBonus": 0,
+"savingThrows": {
+"cha": 0,
+"con": 6,
+"dex": 0,
+"int": 0,
+"str": 3,
+"wis": 0
+},
+"speedFt": 20,
+"spells": []
+},
+"cr": 5.0,
+"xp": 1800
+},
+"zombie": {
+"block": {
+"abilities": {
+"cha": 5,
+"con": 16,
+"dex": 6,
+"int": 3,
+"str": 13,
+"wis": 6
+},
+"armorClass": 8,
+"attacks": [
+{
+"attackId": "slam",
+"bonus": 3,
+"damage": {
+"bonus": 1,
+"count": 1,
+"sides": 8,
+"type": "bludgeoning"
+},
+"kind": "melee",
+"name": "Slam",
+"reachFt": 5
+}
+],
+"attacksPerAction": 1,
+"conditions": [],
+"hitPoints": {
+"current": 15,
+"max": 15
+},
+"initiativeBonus": -2,
+"savingThrows": {
+"cha": -3,
+"con": 3,
+"dex": -2,
+"int": -4,
+"str": 1,
+"wis": 0
+},
+"speedFt": 20,
+"spells": []
+},
+"cr": 0.25,
+"xp": 50
+}
+}

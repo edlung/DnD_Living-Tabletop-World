@@ -1,0 +1,620 @@
+{
+ "tool": "Codex CLI image generation on the owner ChatGPT subscription (CODEX_HOME=~/.codex-review-cli codex exec -i <references>)",
+ "style": "Match one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+ "images": [
+  {
+   "id": "cover",
+   "file": "cover.png",
+   "kind": "cover",
+   "transparent": false,
+   "prompt": "Generate one image and save it as cover.png in the current directory.\nUse case: illustration-story. Asset: full-page campaign cover, landscape 3:2 (1536 by 1024). Subject: the start of a great air regatta through an archipelago of floating stone islands above a bright ocean of clouds. Eight small racing sail-gliders with differently coloured sails surge away from a cliffside harbour of wooden piers and starting cables; one cream-and-coral glider in the foreground banks hard as a sudden gust snaps a white start ribbon free; on the pier behind, a large slate board chalked with columns of times and a bronze starting bell. In the far distance a colossal natural ring of rock shaped like a crown floats on the horizon, and an island hangs at a tilt with waterfalls falling sideways along a natural seam of the wind. Pilots are small but readable, leaning into the wind.\n\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/cover.png",
+   "generatedAt": "2026-11-13",
+   "references": []
+  },
+  {
+   "id": "azure-rift",
+   "file": "azure-rift.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as azure-rift.png in the current directory.\nUse case: illustration-story. Asset: location illustration, landscape 3:2 (1536 by 1024), an establishing view a game master shows when the party arrives. Place: the Azure Rift, an archipelago of floating stone islands above a luminous ocean of clouds; natural seams of wind visibly bend waterfalls, flocks of birds and drifting sails at different angles; islands at different tilts, some upside-down relative to others, small racing gliders far away for scale. No readable writing on boards or signs: chalk marks are abstract strokes.\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/azure-rift.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "port-helium",
+   "file": "port-helium.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as port-helium.png in the current directory.\nUse case: illustration-story. Asset: location illustration, landscape 3:2 (1536 by 1024), an establishing view a game master shows when the party arrives. Place: Port Helium, the starting harbour of the regatta on a cliff-island: eight wooden mooring berths with taut starting cables, an open registration desk under a striped awning, a long shared crew workbench with tools and spare sails, a large slate results board covered with chalked columns of times, a bronze starting bell on a post; crews preparing small sail-gliders. No readable writing on boards or signs: chalk marks are abstract strokes.\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/port-helium.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "upside-quay",
+   "file": "upside-quay.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as upside-quay.png in the current directory.\nUse case: illustration-story. Asset: location illustration, landscape 3:2 (1536 by 1024), an establishing view a game master shows when the party arrives. Place: the Upside-Down Quay, two wooden landing decks facing each other sole to sole across a gap of open sky, one hanging upside down above the other, with safety lines strung between them and red-and-white striped checkpoint posts; a glider landing on the inverted deck, ropes and chalk marks on the posts. No readable writing on boards or signs: chalk marks are abstract strokes.\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/upside-quay.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "lattice-crossing",
+   "file": "lattice-crossing.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as lattice-crossing.png in the current directory.\nUse case: illustration-story. Asset: location illustration, landscape 3:2 (1536 by 1024), an establishing view a game master shows when the party arrives. Place: the Triple Crossing, three natural stone arches that intersect above empty sky, each with its own direction of gravity, so travellers walk on them at different angles; a flat neutral rest platform with a wind sock where the courses meet; gliders threading the arches. No readable writing on boards or signs: chalk marks are abstract strokes.\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/lattice-crossing.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "glass-shoals",
+   "file": "glass-shoals.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as glass-shoals.png in the current directory.\nUse case: illustration-story. Asset: location illustration, landscape 3:2 (1536 by 1024), an establishing view a game master shows when the party arrives. Place: the Glass Shoals, transparent crystal-clear rock plates floating at the edge of a sandy island, reflecting sails with a strange delay so that ghost reflections lag behind the real gliders; measured step marks painted along the sandy edges, small pennant flags marking safe pockets. No readable writing on boards or signs: chalk marks are abstract strokes.\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/glass-shoals.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "wind-school",
+   "file": "wind-school.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as wind-school.png in the current directory.\nUse case: illustration-story. Asset: location illustration, landscape 3:2 (1536 by 1024), an establishing view a game master shows when the party arrives. Place: the School of Winds, a navigators' academy of pale stone and timber on a flat mountainside, its corridors opening onto the walls of neighbouring rooms at impossible angles; an open courtyard with wind vanes, a lecture under the sky and a technical inspection line of racing gliders with chalked inspection tags. No readable writing on boards or signs: chalk marks are abstract strokes.\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/wind-school.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "hollow-summit",
+   "file": "hollow-summit.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as hollow-summit.png in the current directory.\nUse case: illustration-story. Asset: location illustration, landscape 3:2 (1536 by 1024), an establishing view a game master shows when the party arrives. Place: the Hollow Summit, a stone mountain hollow inside, seen from within: three great breaches show bright clouds outside, narrow ledges spiral along the inner wall, natural air tunnels glow with sunlight, a glider flying through the vast interior. No readable writing on boards or signs: chalk marks are abstract strokes.\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/hollow-summit.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "judges-terrace",
+   "file": "judges-terrace.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as judges-terrace.png in the current directory.\nUse case: illustration-story. Asset: location illustration, landscape 3:2 (1536 by 1024), an establishing view a game master shows when the party arrives. Place: the Judges' Terrace, an open stone platform before the final stage: a big slate results board with chalked times, witness tables with ledgers and chalk boxes, judges' pennants, a view down onto the outer circle of the final course and the distant ring of rock. No readable writing on boards or signs: chalk marks are abstract strokes.\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/judges-terrace.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "crown-ring",
+   "file": "crown-ring.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as crown-ring.png in the current directory.\nUse case: illustration-story. Asset: location illustration, landscape 3:2 (1536 by 1024), an establishing view a game master shows when the party arrives. Place: the Crown Ring, an enormous natural ring of rock shaped like a crown floating in the sky, three gaps in its rim forming the finishing gates marked with long coral ribbons, a broad lower platform below as finish line and award ground with a crowd, racing gliders streaking toward the gates. No readable writing on boards or signs: chalk marks are abstract strokes.\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/crown-ring.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "signpost-fork",
+   "file": "signpost-fork.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as signpost-fork.png in the current directory.\nUse case: illustration-story. Asset: location illustration, landscape 3:2 (1536 by 1024), an establishing view a game master shows when the party arrives. Match the attached reference pictures exactly in medium, palette and brushwork. Place: the Fork of Seven Signs, a wide crossing of wind currents in open sky with seven carved stone signpost pillars of the sky Atlas standing on a floating stone platform, their stone arrows turned in different directions; four air corridors branch away between islands, one leading toward a distant hollow mountain; racing gliders approaching. No readable writing.\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/signpost-fork.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "port-helium.png"
+   ],
+   "reveal": 5
+  },
+  {
+   "id": "hero-alta",
+   "file": "hero-alta.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as hero-alta.png in the current directory.\nUse case: illustration-story. Asset: vertical 2:3 (1024 by 1536) character portrait, entire head and hands within generous frame, distinctive silhouette, quiet atmospheric background of the sky regatta. Show only public appearance, no hidden motives or evidence. Match the attached reference picture exactly in medium, palette and brushwork. Character: Альта Ренн, 29, captain of a small racing glider and protector of her crew: a sturdy woman pilot in a short blue cloak, gloves with copper clasps, a white streak of hair at the temple, a calm confident look, a coiled glider tow line on her shoulder.\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/hero-alta.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "hero-lis",
+   "file": "hero-lis.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as hero-lis.png in the current directory.\nUse case: illustration-story. Asset: vertical 2:3 (1024 by 1536) character portrait, entire head and hands within generous frame, distinctive silhouette, quiet atmospheric background of the sky regatta. Show only public appearance, no hidden motives or evidence. Match the attached reference picture exactly in medium, palette and brushwork. Character: Лис Тарен, 24, cartographer of shortcuts and scout of the moorings: a wiry young man with fingers stained with turquoise ink, a short jacket with many pockets full of rolled maps, soft boots, a sly quick smile.\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/hero-lis.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "hero-yara",
+   "file": "hero-yara.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as hero-yara.png in the current directory.\nUse case: illustration-story. Asset: vertical 2:3 (1024 by 1536) character portrait, entire head and hands within generous frame, distinctive silhouette, quiet atmospheric background of the sky regatta. Show only public appearance, no hidden motives or evidence. Match the attached reference pictures exactly in medium, palette, brushwork and portrait framing, but give this character their own clearly distinct face, build and hair. Character: Яра Вей, 32, keeper of travel vows and healer: a tall broad-shouldered woman with light olive skin, straight ash-blond hair pulled into a tight low bun, a calm square face with a few freckles, grey eyes; a grey travelling waistcoat over light clothes, a small tongueless bell on a cord, a satchel of bandages; standing very still with folded hands. No curly hair, no red scarf.\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/hero-yara.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "hero-sev.png"
+   ]
+  },
+  {
+   "id": "hero-brin",
+   "file": "hero-brin.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as hero-brin.png in the current directory.\nUse case: illustration-story. Asset: vertical 2:3 (1024 by 1536) character portrait, entire head and hands within generous frame, distinctive silhouette, quiet atmospheric background of the sky regatta. Show only public appearance, no hidden motives or evidence. Match the attached reference picture exactly in medium, palette and brushwork. Character: Брин Орт, 27, a young wizard explorer of sky geometry: round spectacles on a cord, a stick of white chalk in his chest pocket, a folding wooden set square, sleeves dusty with chalk, curious intent eyes.\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/hero-brin.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "hero-ruta",
+   "file": "hero-ruta.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as hero-ruta.png in the current directory.\nUse case: illustration-story. Asset: vertical 2:3 (1024 by 1536) character portrait, entire head and hands within generous frame, distinctive silhouette, quiet atmospheric background of the sky regatta. Show only public appearance, no hidden motives or evidence. Match the attached reference picture exactly in medium, palette and brushwork. Character: Рута Кель, 38, rigger and guide across stone seams: a strong woman with a wide belt of carabiners, braided bracelets of old rope, hair under a red kerchief, rope burns on calloused hands, a wry grin.\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/hero-ruta.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "hero-iskra",
+   "file": "hero-iskra.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as hero-iskra.png in the current directory.\nUse case: illustration-story. Asset: vertical 2:3 (1024 by 1536) character portrait, entire head and hands within generous frame, distinctive silhouette, quiet atmospheric background of the sky regatta. Show only public appearance, no hidden motives or evidence. Match the attached reference picture exactly in medium, palette and brushwork. Character: Искра Ним, 22, go-between among crews and collector of rumours: a lively young woman with a yellow ribbon on her sleeve, a notebook of multicoloured pages, an earring shaped like a tiny sail, mid-gesture as if telling a story.\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/hero-iskra.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "hero-sev",
+   "file": "hero-sev.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as hero-sev.png in the current directory.\nUse case: illustration-story. Asset: vertical 2:3 (1024 by 1536) character portrait, entire head and hands within generous frame, distinctive silhouette, quiet atmospheric background of the sky regatta. Show only public appearance, no hidden motives or evidence. Match the attached reference picture exactly in medium, palette and brushwork. Character: Сев Аран, 45, field medic and keeper of the roll call: a broad kindly man with a silver beard, a green apron with travel pockets, a string of wooden tally tokens for counting passengers, steady patient eyes.\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/hero-sev.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "hero-meya",
+   "file": "hero-meya.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as hero-meya.png in the current directory.\nUse case: illustration-story. Asset: vertical 2:3 (1024 by 1536) character portrait, entire head and hands within generous frame, distinctive silhouette, quiet atmospheric background of the sky regatta. Show only public appearance, no hidden motives or evidence. Match the attached reference pictures exactly in medium, palette, brushwork and portrait framing, but give this character their own clearly distinct face, build and hair. Character: Мея Сол, 31, mage of sound instruments and explorer of reflections: a slender East Asian woman with a sharp black bob cut at the jaw and straight fringe, a narrow thoughtful face, small copper tubes on a belt like a set of pipes, a cloak lined with the colour of evening cloud; head tilted, listening, one hand raised near her ear. No curly hair.\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/hero-meya.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "hero-sev.png"
+   ]
+  },
+  {
+   "id": "vesta-ron",
+   "file": "vesta-ron.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as vesta-ron.png in the current directory.\nUse case: illustration-story. Asset: vertical 2:3 (1024 by 1536) character portrait, entire head and hands within generous frame, distinctive silhouette, quiet atmospheric background of the sky regatta. Show only public appearance, no hidden motives or evidence. Match the attached reference pictures exactly in medium, palette, brushwork and portrait framing. Character: Веста Рон, 54, the regatta dispatcher at Port Helium: a brisk woman with a long grey braid, ink-stained sleeves, a heavy ring of mooring keys at her belt, a stick of white chalk tucked behind each ear, a signal flag in hand; behind her the slate results board and starting cables.\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/vesta-ron.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "hero-sev.png"
+   ]
+  },
+  {
+   "id": "orin-kelm",
+   "file": "orin-kelm.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as orin-kelm.png in the current directory.\nUse case: illustration-story. Asset: vertical 2:3 (1024 by 1536) character portrait, entire head and hands within generous frame, distinctive silhouette, quiet atmospheric background of the sky regatta. Show only public appearance, no hidden motives or evidence. Match the attached reference pictures exactly in medium, palette, brushwork and portrait framing. Character: Орин Кельм, 47, a left-handed mechanic who keeps the signposts: a weathered man in a patched waistcoat, four sticks of chalk on cords at his wrists (white, yellow, red, green), holding a chisel in his left hand; behind him the inverted landing deck and striped checkpoint posts.\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/orin-kelm.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "hero-sev.png"
+   ]
+  },
+  {
+   "id": "daria-varr",
+   "file": "daria-varr.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as daria-varr.png in the current directory.\nUse case: illustration-story. Asset: vertical 2:3 (1024 by 1536) character portrait, entire head and hands within generous frame, distinctive silhouette, quiet atmospheric background of the sky regatta. Show only public appearance, no hidden motives or evidence. Match the attached reference pictures exactly in medium, palette, brushwork and portrait framing. Character: Дария Варр, 34, the leading rival captain: a poised confident woman in a white racing coat with a mended collar, a battered map case with worn edges, a sealed white envelope at her belt with a red wax seal; a proud competitive half-smile; her white glider behind her.\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/daria-varr.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "hero-sev.png"
+   ]
+  },
+  {
+   "id": "neri-ayren",
+   "file": "neri-ayren.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as neri-ayren.png in the current directory.\nUse case: illustration-story. Asset: vertical 2:3 (1024 by 1536) character portrait, entire head and hands within generous frame, distinctive silhouette, quiet atmospheric background of the sky regatta. Show only public appearance, no hidden motives or evidence. Match the attached reference pictures exactly in medium, palette, brushwork and portrait framing. Character: Нери Айрен, 26, a daring young racer: short dark hair, a long red racing ribbon tied at her arm and fluttering in the wind, a wooden counting frame with beads on her belt, a fierce stubborn look; her vermilion glider behind her.\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/neri-ayren.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "hero-sev.png"
+   ]
+  },
+  {
+   "id": "gedda-ayren",
+   "file": "gedda-ayren.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as gedda-ayren.png in the current directory.\nUse case: illustration-story. Asset: vertical 2:3 (1024 by 1536) character portrait, entire head and hands within generous frame, distinctive silhouette, quiet atmospheric background of the sky regatta. Show only public appearance, no hidden motives or evidence. Match the attached reference pictures exactly in medium, palette, brushwork and portrait framing, but give this character their own clearly distinct face, build and hair. Character: Гедда Айрен, 58, a retired racer who now teaches at the School of Winds: a lean wiry woman with deep brown skin, close-cropped iron-grey hair, a thin pale scar across one eyebrow, high cheekbones, a guarded unsmiling face; a walking cane, a large folding wooden set square under her arm, a plain working waistcoat; behind her the courtyard of wind vanes. She must look clearly different from other older women: no long hair, no braid, no smile.\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/gedda-ayren.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "hero-sev.png"
+   ]
+  },
+  {
+   "id": "naim-rosh",
+   "file": "naim-rosh.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as naim-rosh.png in the current directory.\nUse case: illustration-story. Asset: vertical 2:3 (1024 by 1536) character portrait, entire head and hands within generous frame, distinctive silhouette, quiet atmospheric background of the sky regatta. Show only public appearance, no hidden motives or evidence. Match the attached reference pictures exactly in medium, palette, brushwork and portrait framing. Character: Наим Рош, 41, a surveyor of the Glass Shoals: smoky tinted spectacles, a tall measuring pole with a faded strip of red pennant tied to it, a small hourglass on a cord around his neck, a patient quiet face; transparent crystal plates and sandy edge behind him.\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/naim-rosh.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "hero-sev.png"
+   ]
+  },
+  {
+   "id": "feya-lann",
+   "file": "feya-lann.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as feya-lann.png in the current directory.\nUse case: illustration-story. Asset: vertical 2:3 (1024 by 1536) character portrait, entire head and hands within generous frame, distinctive silhouette, quiet atmospheric background of the sky regatta. Show only public appearance, no hidden motives or evidence. Match the attached reference pictures exactly in medium, palette, brushwork and portrait framing, but give this character their own clearly distinct face, build and hair. Character: Фея Ланн, 62, the chalk-maker and teacher of the School of Winds: a short plump round-faced woman with rosy cheeks, round wire spectacles, a frizzy cloud of white hair piled in a messy bun with a pencil and a chalk stick stuck in it, a mischievous grin; a cane topped with small wind arrows, a long working coat with wide pockets dusted with blue and white chalk; jars of coloured chalk pigment behind her. Clearly different from a thin long-haired woman.\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/feya-lann.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "hero-sev.png"
+   ]
+  },
+  {
+   "id": "tobel-ist",
+   "file": "tobel-ist.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as tobel-ist.png in the current directory.\nUse case: illustration-story. Asset: vertical 2:3 (1024 by 1536) character portrait, entire head and hands within generous frame, distinctive silhouette, quiet atmospheric background of the sky regatta. Show only public appearance, no hidden motives or evidence. Match the attached reference pictures exactly in medium, palette, brushwork and portrait framing. Character: Тобель Ист, 61, the chief judge of the regatta: a dignified stern man in a dark judge's robe, a brass measuring ruler, a slim brass chalk holder clipped to his chest, immaculate white leather gloves on both hands; the judges' terrace and results board behind him. Gloves are plain and clean.\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/tobel-ist.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "hero-sev.png"
+   ]
+  },
+  {
+   "id": "gorran-tal",
+   "file": "gorran-tal.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as gorran-tal.png in the current directory.\nUse case: illustration-story. Asset: vertical 2:3 (1024 by 1536) character portrait, entire head and hands within generous frame, distinctive silhouette, quiet atmospheric background of the sky regatta. Show only public appearance, no hidden motives or evidence. Match the attached reference pictures exactly in medium, palette, brushwork and portrait framing. Character: Горран Таль, 44, captain of the cloud raiders of the brig Magpie: a rugged grinning raider in a leather coat patched with pieces of other ships' sails, a boarding hook over his shoulder, a silver whistle on a chain, wind-blown hair; a dark-sailed brig in the clouds behind him. Adventurous rogue, not gory.\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/gorran-tal.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "hero-sev.png"
+   ]
+  },
+  {
+   "id": "sarosh-ved",
+   "file": "sarosh-ved.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as sarosh-ved.png in the current directory.\nUse case: illustration-story. Asset: vertical 2:3 (1024 by 1536) character portrait, entire head and hands within generous frame, distinctive silhouette, quiet atmospheric background of the sky regatta. Show only public appearance, no hidden motives or evidence. Match the attached reference pictures exactly in medium, palette, brushwork and portrait framing, but give this character their own clearly distinct face, build and hair. Character: Сарош Ведь, 50, captain of the racing glider Night Moth: a lean man, bald head, a neat black beard, a long dark violet coat, a brass night-glass telescope on a strap, a reserved watchful expression; a dark violet sail behind him.\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/sarosh-ved.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "hero-sev.png"
+   ]
+  },
+  {
+   "id": "selva-prim",
+   "file": "selva-prim.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as selva-prim.png in the current directory.\nUse case: illustration-story. Asset: vertical 2:3 (1024 by 1536) character portrait, entire head and hands within generous frame, distinctive silhouette, quiet atmospheric background of the sky regatta. Show only public appearance, no hidden motives or evidence. Match the attached reference pictures exactly in medium, palette, brushwork and portrait framing, but give this character their own clearly distinct face, build and hair. Character: Сельва Прим, 23, captain of the glider Grey Jay and a former student of the School of Winds: a young woman with short ginger hair and many freckles, a grey-blue student jacket with chalk-dusted cuffs, a small notebook on a cord around her neck, eager and a little nervous; a grey-blue sail behind her.\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/selva-prim.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "hero-sev.png"
+   ]
+  },
+  {
+   "id": "tisa-horn",
+   "file": "tisa-horn.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as tisa-horn.png in the current directory.\nUse case: illustration-story. Asset: vertical 2:3 (1024 by 1536) character portrait, entire head and hands within generous frame, distinctive silhouette, quiet atmospheric background of the sky regatta. Show only public appearance, no hidden motives or evidence. Match the attached reference pictures exactly in medium, palette, brushwork and portrait framing, but give this character their own clearly distinct face, build and hair. Character: Тиса Хорн, 37, captain of the glider Three Feathers: a tall woman with a long black plait with three feathers braided into it, a quilted green flying vest, a calm hawk-like gaze, arms folded; a green sail with three feather marks behind her.\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/tisa-horn.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "hero-sev.png"
+   ]
+  },
+  {
+   "id": "galt-rudoy",
+   "file": "galt-rudoy.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as galt-rudoy.png in the current directory.\nUse case: illustration-story. Asset: vertical 2:3 (1024 by 1536) character portrait, entire head and hands within generous frame, distinctive silhouette, quiet atmospheric background of the sky regatta. Show only public appearance, no hidden motives or evidence. Match the attached reference pictures exactly in medium, palette, brushwork and portrait framing, but give this character their own clearly distinct face, build and hair. Character: Гальт Рудой, 66, captain of the old glider Copper Ruff: a stout old man with a huge copper-red moustache, an old-fashioned copper flying helmet with ear flaps, an unlit pipe in his teeth, a jolly stubborn face; a copper-coloured patched sail behind him.\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/galt-rudoy.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "hero-sev.png"
+   ]
+  },
+  {
+   "id": "stage-board",
+   "file": "stage-board.png",
+   "kind": "item",
+   "transparent": false,
+   "prompt": "Generate one image and save it as stage-board.png in the current directory.\nUse case: illustration-story. Asset: collectible prop card art for a tabletop adventure, square 1:1 (1024 by 1024), one object centred with generous whitespace on a pale sky-blue and cream paper background, soft daylight. Match the attached reference pictures exactly in medium, palette and brushwork. No people. Object: the regatta stage board: a large slate board in a heavy oak frame with eight horizontal rows each marked by a coloured stripe on the left edge, columns of abstract white chalk strokes (not readable), a wooden tray of white chalk sticks and a rag.\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/stage-board.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "port-helium.png"
+   ]
+  },
+  {
+   "id": "start-bells",
+   "file": "start-bells.png",
+   "kind": "item",
+   "transparent": false,
+   "prompt": "Generate one image and save it as start-bells.png in the current directory.\nUse case: illustration-story. Asset: collectible prop card art for a tabletop adventure, square 1:1 (1024 by 1024), one object centred with generous whitespace on a pale sky-blue and cream paper background, soft daylight. Match the attached reference pictures exactly in medium, palette and brushwork. No people. Object: two bronze starting bells hanging side by side from one wooden beam, one bell's rope tied with a long white ribbon.\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/start-bells.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "port-helium.png"
+   ]
+  },
+  {
+   "id": "captain-ribbons",
+   "file": "captain-ribbons.png",
+   "kind": "item",
+   "transparent": false,
+   "prompt": "Generate one image and save it as captain-ribbons.png in the current directory.\nUse case: illustration-story. Asset: collectible prop card art for a tabletop adventure, square 1:1 (1024 by 1024), one object centred with generous whitespace on a pale sky-blue and cream paper background, soft daylight. Match the attached reference pictures exactly in medium, palette and brushwork. No people. Object: a bundle of long white silk ribbons, each with a small embroidered coloured emblem of a racing crew at one end, loosely coiled and fluttering.\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/captain-ribbons.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "port-helium.png"
+   ]
+  },
+  {
+   "id": "spare-harness",
+   "file": "spare-harness.png",
+   "kind": "item",
+   "transparent": false,
+   "prompt": "Generate one image and save it as spare-harness.png in the current directory.\nUse case: illustration-story. Asset: collectible prop card art for a tabletop adventure, square 1:1 (1024 by 1024), one object centred with generous whitespace on a pale sky-blue and cream paper background, soft daylight. Match the attached reference pictures exactly in medium, palette and brushwork. No people. Object: a spare climbing harness: a braided rope in red sheathing with two brass carabiners and a padded strap, neatly coiled.\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/spare-harness.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "port-helium.png"
+   ]
+  },
+  {
+   "id": "brass-chalk-holder",
+   "file": "brass-chalk-holder.png",
+   "kind": "item",
+   "transparent": false,
+   "prompt": "Generate one image and save it as brass-chalk-holder.png in the current directory.\nUse case: illustration-story. Asset: collectible prop card art for a tabletop adventure, square 1:1 (1024 by 1024), one object centred with generous whitespace on a pale sky-blue and cream paper background, soft daylight. Match the attached reference pictures exactly in medium, palette and brushwork. No people. Object: a slim brass chalk holder like a long pencil case with a spring clip, three small notches cut into the clip, a stub of azure chalk in its tip.\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/brass-chalk-holder.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "port-helium.png"
+   ],
+   "reveal": 5
+  },
+  {
+   "id": "atlas-signpost",
+   "file": "atlas-signpost.png",
+   "kind": "item",
+   "transparent": false,
+   "prompt": "Generate one image and save it as atlas-signpost.png in the current directory.\nUse case: illustration-story. Asset: collectible prop card art for a tabletop adventure, square 1:1 (1024 by 1024), one object centred with generous whitespace on a pale sky-blue and cream paper background, soft daylight. Match the attached reference pictures exactly in medium, palette and brushwork. No people. Object: a carved stone signpost of the sky Atlas: a short weathered stone pillar with a rotating stone arrow on top, the arrowhead painted with azure chalk that holds tiny green sparkles, a small brass pivot.\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/atlas-signpost.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "port-helium.png"
+   ]
+  },
+  {
+   "id": "chalk-ledger-book",
+   "file": "chalk-ledger-book.png",
+   "kind": "item",
+   "transparent": false,
+   "prompt": "Generate one image and save it as chalk-ledger-book.png in the current directory.\nUse case: illustration-story. Asset: collectible prop card art for a tabletop adventure, square 1:1 (1024 by 1024), one object centred with generous whitespace on a pale sky-blue and cream paper background, soft daylight. Match the attached reference pictures exactly in medium, palette and brushwork. No people. Object: a thick ledger book with pages edged in azure chalk dust, its binding tied with a cord and a wax seal of the judges' college, a quill tucked under the cord.\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/chalk-ledger-book.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "port-helium.png"
+   ]
+  },
+  {
+   "id": "white-packet",
+   "file": "white-packet.png",
+   "kind": "item",
+   "transparent": false,
+   "prompt": "Generate one image and save it as white-packet.png in the current directory.\nUse case: illustration-story. Asset: collectible prop card art for a tabletop adventure, square 1:1 (1024 by 1024), one object centred with generous whitespace on a pale sky-blue and cream paper background, soft daylight. Match the attached reference pictures exactly in medium, palette and brushwork. No people. Object: a heavy white captain's envelope sealed with a large red judges' wax seal, a corner slightly bent.\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/white-packet.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "port-helium.png"
+   ]
+  },
+  {
+   "id": "red-pennant-strip",
+   "file": "red-pennant-strip.png",
+   "kind": "item",
+   "transparent": false,
+   "prompt": "Generate one image and save it as red-pennant-strip.png in the current directory.\nUse case: illustration-story. Asset: collectible prop card art for a tabletop adventure, square 1:1 (1024 by 1024), one object centred with generous whitespace on a pale sky-blue and cream paper background, soft daylight. Match the attached reference pictures exactly in medium, palette and brushwork. No people. Object: a faded red pennant strip with a frayed edge, tied with twine to a section of a wooden measuring pole.\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/red-pennant-strip.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "port-helium.png"
+   ]
+  },
+  {
+   "id": "sign-chalk-stub",
+   "file": "sign-chalk-stub.png",
+   "kind": "item",
+   "transparent": false,
+   "prompt": "Generate one image and save it as sign-chalk-stub.png in the current directory.\nUse case: illustration-story. Asset: collectible prop card art for a tabletop adventure, square 1:1 (1024 by 1024), one object centred with generous whitespace on a pale sky-blue and cream paper background, soft daylight. Match the attached reference pictures exactly in medium, palette and brushwork. No people. Object: a short broken stub of azure chalk glittering with tiny green sparkles, three small dents pressed into one side, lying on a scrap of grey cloth.\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/sign-chalk-stub.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "port-helium.png"
+   ]
+  },
+  {
+   "id": "prize-chest",
+   "file": "prize-chest.png",
+   "kind": "item",
+   "transparent": false,
+   "prompt": "Generate one image and save it as prize-chest.png in the current directory.\nUse case: illustration-story. Asset: collectible prop card art for a tabletop adventure, square 1:1 (1024 by 1024), one object centred with generous whitespace on a pale sky-blue and cream paper background, soft daylight. Match the attached reference pictures exactly in medium, palette and brushwork. No people. Object: an iron-and-copper bound prize chest with a judges' seal, its lid open, revealing grey sackcloth bags of plain sand instead of coins.\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/prize-chest.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "port-helium.png"
+   ]
+  },
+  {
+   "id": "judge-glove",
+   "file": "judge-glove.png",
+   "kind": "item",
+   "transparent": false,
+   "prompt": "Generate one image and save it as judge-glove.png in the current directory.\nUse case: illustration-story. Asset: collectible prop card art for a tabletop adventure, square 1:1 (1024 by 1024), one object centred with generous whitespace on a pale sky-blue and cream paper background, soft daylight. Match the attached reference pictures exactly in medium, palette and brushwork. No people. Object: a single white leather glove with a brass button at the cuff, the fingertips of the glove dusted with azure chalk that glitters with tiny green sparkles.\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/judge-glove.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "port-helium.png"
+   ],
+   "reveal": 8
+  },
+  {
+   "id": "token-raider",
+   "file": "token-raider.png",
+   "kind": "token",
+   "transparent": true,
+   "prompt": "Generate one image and save it as token-pirate.png in the current directory.\nUse case: illustration-story. Asset: standalone game figure, square 1:1 (1024 by 1024), the whole figure isolated on a fully transparent background (PNG with alpha), no ground, no shadow, no backdrop, full body readable at small size. Match the attached reference pictures exactly in medium, palette and brushwork. Figure: a cloud raider deckhand: a wiry sky pirate in a patched leather vest and sailcloth bandana, a cutlass in hand and a coil of rope on the shoulder, ready stance; adventurous, not gory.\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/token-raider.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "port-helium.png"
+   ],
+   "srd": "bandit"
+  },
+  {
+   "id": "token-lookout",
+   "file": "token-lookout.png",
+   "kind": "token",
+   "transparent": true,
+   "prompt": "Generate one image and save it as token-lookout.png in the current directory.\nUse case: illustration-story. Asset: standalone game figure, square 1:1 (1024 by 1024), the whole figure isolated on a fully transparent background (PNG with alpha), no ground, no shadow, no backdrop, full body readable at small size. Match the attached reference pictures exactly in medium, palette and brushwork. Figure: a lookout of the cloud raiders: a lean sky pirate archer in a patched hooded sailcloth jacket and goggles pushed up on the forehead, a long bow drawn, a quiver of arrows with coral fletching, one foot on a coil of rope as if balancing on a yard; adventurous, not gory.\n\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/token-lookout.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "port-helium.png"
+   ],
+   "srd": "scout"
+  },
+  {
+   "id": "token-giant-eagle",
+   "file": "token-giant-eagle.png",
+   "kind": "token",
+   "transparent": true,
+   "prompt": "Generate one image and save it as token-giant-eagle.png in the current directory.\nUse case: illustration-story. Asset: standalone game figure, square 1:1 (1024 by 1024), the whole figure isolated on a fully transparent background (PNG with alpha), no ground, no shadow, no backdrop, full body readable at small size. Match the attached reference pictures exactly in medium, palette and brushwork. Figure: a giant eagle of the sky islands, wings spread wide in a diving pose, golden-brown plumage with pale cream underwings, fierce but noble.\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/token-giant-eagle.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "port-helium.png"
+   ],
+   "srd": "giant-eagle"
+  },
+  {
+   "id": "token-bandit-captain",
+   "file": "token-bandit-captain.png",
+   "kind": "token",
+   "transparent": true,
+   "prompt": "Generate one image and save it as token-bandit-captain.png in the current directory.\nUse case: illustration-story. Asset: standalone game figure, square 1:1 (1024 by 1024), the whole figure isolated on a fully transparent background (PNG with alpha), no ground, no shadow, no backdrop, full body readable at small size. Match the attached reference pictures exactly in medium, palette and brushwork. Figure: Горран Таль, captain of the cloud raiders: a rugged raider captain in a leather coat patched with pieces of sails, a boarding hook in one hand and a cutlass in the other, a silver whistle on a chain; adventurous, not gory.\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "sky-archipelago-2026-11-13/out/token-bandit-captain.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "port-helium.png"
+   ],
+   "srd": "bandit-captain",
+   "reveal": 6
+  }
+ ]
+}

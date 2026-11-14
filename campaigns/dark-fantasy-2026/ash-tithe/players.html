@@ -1,0 +1,311 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Десятина пепельных рыцарей — игрокам</title><style>:root {
+  color-scheme: light;
+  font-family: Georgia, 'Times New Roman', serif;
+  color: #202f3b;
+  background: #f4f0e8;
+  font-size: 18px;
+  line-height: 1.65;
+  --line: #c5c5ba;
+  --ink: #163e50;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+header,
+main,
+footer {
+  width: min(1200px, calc(100% - 64px));
+  margin-inline: auto;
+}
+header {
+  padding-block: 64px 32px;
+  border-bottom: 1px solid var(--line);
+}
+main {
+  display: grid;
+  gap: 32px;
+  padding-block: 32px 64px;
+}
+footer {
+  border-top: 1px solid var(--line);
+  padding-block: 24px 48px;
+  font:
+    14px/1.6 system-ui,
+    sans-serif;
+}
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+  text-wrap: balance;
+}
+h1 {
+  font-size: clamp(2rem, 5vw, 3.8rem);
+  max-width: 20ch;
+  margin: 16px 0 24px;
+  font-weight: 500;
+}
+h2 {
+  font-size: 1.65rem;
+  margin: 0 0 16px;
+  font-weight: 500;
+}
+h3 {
+  font-size: 1.15rem;
+  margin: 24px 0 8px;
+}
+p {
+  max-width: 70ch;
+  margin: 0 0 16px;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+p:last-child,
+ul:last-child {
+  margin-bottom: 0;
+}
+ul,
+ol {
+  padding-left: 24px;
+  margin-block: 0 16px;
+  max-width: 75ch;
+}
+li {
+  margin-block: 8px;
+}
+a {
+  color: var(--ink);
+  text-underline-offset: 4px;
+  overflow-wrap: anywhere;
+}
+a:hover {
+  color: #7c3919;
+}
+a:focus-visible,
+summary:focus-visible {
+  outline: 3px solid #a84919;
+  outline-offset: 4px;
+}
+nav,
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+}
+nav a,
+.actions a,
+.card-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font:
+    16px/1.5 system-ui,
+    sans-serif;
+}
+.eyebrow {
+  font:
+    700 13px/1.6 system-ui,
+    sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #495c65;
+}
+.lead {
+  font-size: 1.3rem;
+  max-width: 60ch;
+}
+.panel {
+  border: 1px solid var(--line);
+  padding: 32px;
+  background: #fffcf6;
+  min-width: 0;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: 24px;
+  align-items: start;
+}
+.ribbon {
+  border-left: 4px solid #ab6a35;
+  padding: 16px 24px;
+  background: #e8e0d1;
+}
+.adult {
+  color: #773424;
+  font-weight: 700;
+}
+.read-aloud {
+  border-left: 4px solid #748d91;
+  padding: 16px 24px;
+  background: #eaf0ee;
+  font-style: italic;
+}
+.scene + .scene {
+  margin-top: 32px;
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+}
+.meta {
+  font:
+    16px/1.6 system-ui,
+    sans-serif;
+  color: #495c65;
+}
+.map {
+  max-width: 700px;
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid #495c65;
+  background: white;
+}
+.map text {
+  font:
+    bold 13px system-ui,
+    sans-serif;
+}
+.map-title {
+  font:
+    16px/1.5 system-ui,
+    sans-serif;
+}
+.skip {
+  position: absolute;
+  top: -100px;
+  padding: 16px;
+  background: white;
+}
+.skip:focus {
+  top: 0;
+}
+details {
+  border-top: 1px solid var(--line);
+  padding-block: 16px;
+}
+summary {
+  min-height: 44px;
+  cursor: pointer;
+  font-weight: 700;
+}
+details > div {
+  margin-top: 16px;
+}
+.handout {
+  max-width: 75ch;
+  border: 2px solid #8c9a9d;
+  padding: 32px;
+  background: white;
+}
+@media (max-width: 600px) {
+  :root {
+    font-size: 17px;
+  }
+  header,
+  main,
+  footer {
+    width: calc(100% - 32px);
+  }
+  header {
+    padding-top: 32px;
+  }
+  .panel,
+  .handout {
+    padding: 24px;
+  }
+  .grid {
+    gap: 16px;
+  }
+}
+@media print {
+  :root {
+    color: #000;
+    background: #fff;
+    font-size: 11pt;
+  }
+  header,
+  main,
+  footer {
+    width: 100%;
+  }
+  nav,
+  .actions,
+  .skip {
+    display: none;
+  }
+  header {
+    padding: 0 0 16px;
+  }
+  .panel {
+    background: white;
+    padding: 16px;
+    break-inside: avoid;
+  }
+  .scene {
+    break-inside: avoid;
+  }
+  .grid {
+    display: block;
+  }
+  .grid > * {
+    margin-block: 16px;
+  }
+  a {
+    color: black;
+  }
+}
+
+/* Pictures of reworked campaigns (assets/manifest.json); campaigns without art have none. */
+img.art {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 0 1rem;
+  border-radius: 12px;
+}
+img.art.cover {
+  aspect-ratio: 3 / 2;
+  max-height: 60vh;
+  object-fit: cover;
+}
+img.art.portrait {
+  max-width: 320px;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+}
+img.art.token {
+  max-width: 180px;
+  border-radius: 0;
+}
+.tokens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.section-title {
+  margin: 2rem 0 1rem;
+}
+.faces {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0 0 1rem;
+}
+.faces figure {
+  width: 96px;
+  margin: 0;
+  text-align: center;
+  font-size: 0.85rem;
+}
+img.art.thumb,
+img.art.thumb.portrait {
+  width: 96px;
+  max-width: 96px;
+  aspect-ratio: 2 / 3;
+  margin: 0 0 0.25rem;
+  border-radius: 8px;
+}
+</style></head><body><a class="skip" href="#main">К содержанию</a><header><div class="eyebrow">Тёмное фэнтези о деревенском сопротивлении и цене убежища · 18+ · 3–7 игроков</div><h1>Десятина пепельных рыцарей — игрокам</h1></header><main id="main"><div class="lead"><p>Пепельные рыцари требуют от Низины трёх меж больше тепла, чем могут дать её очаги. Семеро соседей способны укрыть дворы, вывести пленников и соединить разобщённые ячейки сопротивления. До Сведения очагов остаётся восемь игровых встреч: удастся ли деревням сохранить хотя бы одну свободную зиму?</p></div><section class="panel"><h2>Мир и начало</h2><p>Низина трёх меж — три деревни среди известковых полей, терновника и остывших обжиговых ям. После завоевания рыцари привязали домашний огонь к своим пустым доспехам. Они забирают хлеб, работу и жар; название «десятина» давно не обозначает долю. Повседневные умения, договорённости между соседями и простая магия очага здесь важнее родословной. Правила обычного фэнтези; все герои начинают на третьем уровне.</p><p>На площади Лисьего Брода стоят три пустых доспеха. Из каждого тихо сыплется тёплый пепел. Перед ними — последний общий хлеб и десять холодных корзин. Рыцарь кладёт ладонь на булку: «Сегодняшняя доля принята. Вчерашняя ещё нет». За вашей спиной хозяйка тушит печь, хотя снаружи уже лежит иней. Кто-то должен решить, где этой ночью останется огонь.</p></section><section class="panel"><h2>Перед первой сессией</h2><p>Выберите героев в рамках состава, согласованного с ведущим. Подготовленные листы используют классы воина, плута, жреца и волшебника 3-го уровня. Жанровые профессии и названия меняют описание, но не дают дополнительных автоматических умений.</p><p>Решения принадлежат вам. Можно спорить, искать иной путь, отступать и договариваться. Сообщите ведущему о нежелательных темах; пауза и смена описания доступны без объяснений.</p><ul><li>Оккупация и принудительный труд</li><li>Солидарность без идеализации</li><li>Голод и распределение достатка</li><li>Ограниченная победа и ответственность за обещания</li></ul><ul><li>Только для взрослых 18+. Все именованные люди в кампании совершеннолетние; семьи и зависимые жители остаются за кадром, если столу так спокойнее.</li><li>Не разыгрывать сексуальное насилие, пытки или подробности увечий. Плен означает принудительный труд, холод и лишение выбора; тяжёлые последствия описывать кратко.</li><li>В начале согласовать линии и затемнения, знак паузы и возможность пропустить реплику без объяснения. При паузе изменить содержание сцены, не наказывать ресурсы.</li><li>Здесь только вымышленные магические помехи обряду. Не превращать сцены в обучение реальной диверсии, изготовлению оружия или скрытному насилию.</li></ul></section><div class="grid"><article class="panel"><div class="eyebrow">31 лет · воин · уровень 3</div><h2>Лада Мезень</h2><p>Защитница дворов</p><p>Широкий платок поверх кольчуги, щит с потёртой хлебной меткой.</p><p>Вы остались в Лисьем Броде после распуска деревенской стражи. Люди ждут защиты, которой нельзя обещать всем сразу.</p><h3>Связь</h3><p>Иль однажды вынес ваш щит из закрытого двора; Марта укрыла вас после отказа служить рыцарям.</p><h3>В центре внимания</h3><p>Назовите человека, у которого сначала спросите согласия, прежде чем защищать его двор.</p><h3>Личный вопрос</h3><p>Когда защита дома становится приказом его хозяевам?</p></article><article class="panel"><div class="eyebrow">26 лет · плут · уровень 3</div><h2>Иль Вяз</h2><p>Гончар и связной</p><p>Глина под ногтями, вязаная накидка и маленькая дорожная миска.</p><p>Вы знаете дороги между деревнями и умеете чинить посуду. Вас просят доставлять обещания, которые другие дают слишком легко.</p><h3>Связь</h3><p>Лада доверила вам свой щит; Марта всегда оставляет место для вашей миски.</p><h3>В центре внимания</h3><p>Выберите форму гостевого сосуда и человека, которому объясните его смысл без тайного знака.</p><h3>Личный вопрос</h3><p>Какое обещание вы откажетесь передавать, даже если оно удобно друзьям?</p></article><article class="panel"><div class="eyebrow">44 лет · жрец · уровень 3</div><h2>Марта Тихолист</h2><p>Хранительница домашнего огня</p><p>Седая прядь, шерстяные рукавицы, запах сухого можжевельника.</p><p>Ваша вера начинается с места у печи. Вы не знаете, способен ли общий огонь выдержать столько чужого страха.</p><h3>Связь</h3><p>Лада защищала вашу дверь; Иль сделал миску, из которой ели все трое.</p><h3>В центре внимания</h3><p>Попросите хозяина рассказать о его огне; освящение не заменяет согласия.</p><h3>Личный вопрос</h3><p>Кому вы позволите отказать в гостеприимстве и всё же останетесь рядом?</p></article><article class="panel"><div class="eyebrow">35 лет · волшебник · уровень 3</div><h2>Терен Клин</h2><p>Исследователь печных чудес</p><p>Пятна сажи на рукавах, медная рамка без стекла.</p><p>Вы привыкли думать, что всякое заклятие можно изучить спокойно. Теперь люди ждут ответа раньше, чем появится уверенность.</p><h3>Связь</h3><p>Марта спорит с вами о разнице между теплом и верой; Иль проверяет ваши догадки своими руками.</p><h3>В центре внимания</h3><p>Покажите простой опыт с огнём и попросите другого героя назвать возможную ошибку.</p><h3>Личный вопрос</h3><p>Как вы объясните границу собственного знания, не оставив людей без надежды?</p></article><article class="panel"><div class="eyebrow">52 лет · воин · уровень 3</div><h2>Зорна Круча</h2><p>Пастушка и защитница путников</p><p>Тёплый плащ с выгоревшим плечом, посох и короткий меч.</p><p>Вы привели в Брод уцелевшее стадо. Корма хватит либо ему, либо нескольким чужим дворам.</p><h3>Связь</h3><p>Лада научила вас держать общий строй, а Марта знает имена ваших пропавших соседей.</p><h3>В центре внимания</h3><p>Предложите трудовой обмен там, где остальные видят только сдачу или захват.</p><h3>Личный вопрос</h3><p>Сколько чужих решений вы готовы принять, прежде чем уйти своим путём?</p></article><article class="panel"><div class="eyebrow">23 лет · плут · уровень 3</div><h2>Ост Лыко</h2><p>Мастер ремней и переносных вещей</p><p>Перевязь из разноцветных лоскутов, лёгкие сапоги и аккуратные ножны.</p><p>Ваши руки умеют быстро освобождать зажатые застёжки. Вы хотите, чтобы хотя бы одна полезная вещь была сделана для свободного человека.</p><h3>Связь</h3><p>Иль учил вас гончарному делу; Лада носит ремень вашей работы.</p><h3>В центре внимания</h3><p>Передайте кому-нибудь полезную вещь без просьбы о будущей услуге.</p><h3>Личный вопрос</h3><p>Что вы сделаете для спасённого человека, который не хочет вступать в сопротивление?</p></article><article class="panel"><div class="eyebrow">61 лет · жрец · уровень 3</div><h2>Даня Лев</h2><p>Певец приюта</p><p>Тихий голос, тяжёлая сумка с чашками, истёртый дорожный посох.</p><p>Вы помните жизнь без рыцарей, но не хотите превращать прошлое в приказ молодым взрослым.</p><h3>Связь</h3><p>Марта доверяет вам её дом; Зорна когда-то привела к вам замёрзших путников.</p><h3>В центре внимания</h3><p>Спросите одного из освобождённых, какой будущий обычай он хочет придумать сам.</p><h3>Личный вопрос</h3><p>Как сохранить прошлое, оставив другим право построить иной дом?</p></article></div></main><footer>Living Tabletop World · Авторская коллекция · 2026</footer></body></html>

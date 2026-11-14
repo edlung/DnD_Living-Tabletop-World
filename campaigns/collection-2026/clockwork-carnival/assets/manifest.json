@@ -1,0 +1,1070 @@
+{
+  "about": "Original artwork for Карнавал Заводных Масок. PNG originals from OpenAI image generation through Codex CLI; WebP conversions preserve content and alpha. No project provider was called.",
+  "generator": "codex-cli-imagegen",
+  "assets": [
+    {
+      "id": "cover",
+      "title": "Карнавал Заводных Масок",
+      "file": "cover.png",
+      "runtimeFile": "runtime/cover.webp",
+      "sha256": "af7428f38f0ba11010772bc668c5173c62d0227db1d4238d7b1e2ecc18640a69",
+      "runtimeSha256": "af8b75044d373084b40c2c0cd2d350d027070e431887b6b13f8d2793f00cf8cb",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "clockwork-carnival-2026-11-14/out/cover.png",
+      "revealFromEvening": 0,
+      "subjects": [],
+      "kind": "cover",
+      "prompt": "Generate one image and save it as cover.png in the current directory.\nWide landscape key art, 3:2. A huge walking casino the size of a town hall, a tiered wedding-cake palace of copper, teal lacquer and striped awnings, strides along a festive fairground road on eight tall jointed copper legs with visible gears at the knees and ankles. Bunting and ribbons trail from its balconies, masked guests wave from windows, a red lacquered clockwork goose bows on a turntable above the main gate. Far ahead on the horizon, a low copper boundary line of posts and a toll arch marks a border. In the foreground, at a ribbon market with stalls and a painted wagon, a small mixed crew of eight adventurers (two armoured fighters, two nimble rogues, two clerics with holy symbols, two wizards) stand looking up as the giant foot lands just beside the stalls, cups and hats flying. Late afternoon golden light, sense of scale and comic grandeur.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks, a red lacquered clockwork goose. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "tin-noon-road",
+      "title": "Тракт Жестяного Полдня",
+      "file": "tin-noon-road.png",
+      "runtimeFile": "runtime/tin-noon-road.webp",
+      "sha256": "4b49cf34ca6a848b702d2ea55b3a08f093ace369f45ddfaf1d8935a605358bb1",
+      "runtimeSha256": "deb7138a659536d70639f5251e8cd1826bc7502ee3089f9a9ec18d9ed07fe66f",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "clockwork-carnival-2026-11-14/out/tin-noon-road.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "tin-noon-road"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as tin-noon-road.png in the current directory.\nWide landscape establishing view, 3:2. The Tin Noon Road: a long festive fairground road winding between green rolling hills, where small travelling buildings walk on mechanical legs — a teahouse on stilts, a bowing bandstand, a striped tent on wheels — bowing to each other at a bend. Giant round copper footprints of a walking casino are pressed deep into the road beside boot prints and cart tracks. Ahead the road forks: one branch dips into a narrow windless copper-coloured ravine. Far off on the horizon a line of green copper boundary posts. Bunting everywhere, bright midday light. No goose.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks. Show a red clockwork goose only when the prompt asks for it. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "ribbon-market",
+      "title": "Ленточный торжок",
+      "file": "ribbon-market.png",
+      "runtimeFile": "runtime/ribbon-market.webp",
+      "sha256": "d06b5265f4a43d93a80d82b93d58462d45ae8165dd66656620c7d671afe26077",
+      "runtimeSha256": "fb74aa210691e7fe2cba37c30925026ebb1ab8db8026206e16a0c5a30d0dad9c",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "clockwork-carnival-2026-11-14/out/ribbon-market.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "ribbon-market"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as ribbon-market.png in the current directory.\nLandscape scene, 3:2. The Ribbon Market: a lively travelling market of stalls on wheels rolling slowly behind a walking casino, coloured ribbons streaming from poles to show the wind, a big brass teapot stall with mismatched tables where people meet. Wanted posters with blank portrait frames are nailed to a post by the teapot. At the end of the rows stands a carved charter post with a painted ribbon. In the middle, a painted crew wagon with a pinboard covered in cut-out paper gears. Behind, huge copper legs of the casino stride past. Warm afternoon light. No goose.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks. Show a red clockwork goose only when the prompt asks for it. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "coat-gate",
+      "title": "Ворота Почтенных Пальто",
+      "file": "coat-gate.png",
+      "runtimeFile": "runtime/coat-gate.webp",
+      "sha256": "3690b4b6ec379222830932b3565fd79cb75e4c101deb14e3181b9840e3843cdb",
+      "runtimeSha256": "bdf574dc34b9fa2eb99df13f20dc38dcfbdb8d67638683bf8de1eebf0a048bc0",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "clockwork-carnival-2026-11-14/out/coat-gate.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "coat-gate"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as coat-gate.png in the current directory.\nLandscape scene, 3:2. The Gate of Respectable Coats: the grand front entrance of a walking casino, an arch built of stacked top hats and bowlers in brass, polite brass coat stands that bow to arriving guests, and a staircase whose steps shift and re-level themselves as the building walks. A stern doorman in a buttoned livery watches masked guests queue. Lantern glow, copper and teal lacquer.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks, a red lacquered clockwork goose. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "echo-salon",
+      "title": "Салон Позолоченного Эха",
+      "file": "echo-salon.png",
+      "runtimeFile": "runtime/echo-salon.webp",
+      "sha256": "dc17c95e048655df3cdfbf678bfe80834249a230e741210974b0843fb925bb48",
+      "runtimeSha256": "9b4a794f1d2414626c1459fafbc9fe6302019e026704fdf457115fa9e7361665",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "clockwork-carnival-2026-11-14/out/echo-salon.png",
+      "revealFromEvening": 2,
+      "subjects": [
+        "echo-salon"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as echo-salon.png in the current directory.\nLandscape interior, 3:2. The Salon of Gilded Echo: a round velvet gaming salon inside a walking casino, green baize tables with silly puzzle games of wits (no cards with marks, no money), a gilded domed ceiling shaped like an ear trumpet, masked guests laughing, a plump showman host in a waistcoat embroidered with gears holding court on a small round echo dais. Against the wall a board hung with small brass service gears, and a glass display nest on a pedestal, empty. Chandeliers swing slightly as the building walks. No goose.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks. Show a red clockwork goose only when the prompt asks for it. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "mask-laundry",
+      "title": "Прачечная добродетелей",
+      "file": "mask-laundry.png",
+      "runtimeFile": "runtime/mask-laundry.webp",
+      "sha256": "6fa35b1862005a881b84adf2f1594e7550cfcf8c0b51a09f058499a15de2de36",
+      "runtimeSha256": "6d1c1baa9ddcf49a524bea43e66f57b6f9c05659ec21583d23166502c2f174e9",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "clockwork-carnival-2026-11-14/out/mask-laundry.png",
+      "revealFromEvening": 3,
+      "subjects": [
+        "mask-laundry"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as mask-laundry.png in the current directory.\nLandscape interior, 3:2. The Laundry of Virtues: a steamy back room of a walking casino where ceremonial half-masks hang drying over tubs of glittering foam, some masks sneezing little puffs of confetti, rows of hooks with blank paper tags, a mangle with brass gears, ribbons and lace drying on lines, a young seamstress with pins in her mouth fitting a mask on a dummy head. Soft mint and cream palette with copper pipes. No goose.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks. Show a red clockwork goose only when the prompt asks for it. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "copper-till",
+      "title": "Медная касса",
+      "file": "copper-till.png",
+      "runtimeFile": "runtime/copper-till.webp",
+      "sha256": "7c28f0d24e6a18045f0d73ccd0a1494079581c40fcf32370a5c1ef35c19fa6b5",
+      "runtimeSha256": "4b654882fc147f7c562e55206adcffa5e51018407a72b4635f13f84981e5eb32",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "clockwork-carnival-2026-11-14/out/copper-till.png",
+      "revealFromEvening": 4,
+      "subjects": [
+        "copper-till"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as copper-till.png in the current directory.\nLandscape interior, 3:2. The Copper Till: the counting room of a walking casino, a wide polished counter with a small enquiry window, shelves of coloured tin cash boxes, a huge gear-driven abacus on the wall, a white tin strongbox for staff wages, and in a locked brass cradle chained to the wall a red lacquered clockwork goose cassette. A tired bookkeeper with sleeve garters bends over a ledger. Warm lamp light.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks, a red lacquered clockwork goose. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "folded-gallery",
+      "title": "Складная галерея",
+      "file": "folded-gallery.png",
+      "runtimeFile": "runtime/folded-gallery.webp",
+      "sha256": "aebc61b28bb29703ca528dd4599b3af8c3e6b19a68b2312919b3fd95d8ea9806",
+      "runtimeSha256": "45bef2787a25df5e066e1643c818d4cc350f168b33f13ed68caaca6b4ea5ca44",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "clockwork-carnival-2026-11-14/out/folded-gallery.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "folded-gallery"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as folded-gallery.png in the current directory.\nLandscape interior, 3:2. The Folding Gallery: a long corridor inside a walking casino whose walls fold and unfold like an accordion screen of lacquered panels and mirrors, mechanical ushers made of varnished slats standing in niches, a practice wall covered with old chalk marks and outlines of a goose on a turntable, an elderly mechanic with a monocle and oil can inspecting a hinge.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks, a red lacquered clockwork goose. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "prize-square",
+      "title": "Площадка Последнего Реверанса",
+      "file": "prize-square.png",
+      "runtimeFile": "runtime/prize-square.webp",
+      "sha256": "41ebd5f948d4298ae8aa38dd57b8a79fe7c50dd246f95fd5e36d3477a7197b44",
+      "runtimeSha256": "b835ed3ab67f97c2c40dc30d3e3d4f4fc57d997527d8464d1ad1428d003c1ef5",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "clockwork-carnival-2026-11-14/out/prize-square.png",
+      "revealFromEvening": 7,
+      "subjects": [
+        "prize-square"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as prize-square.png in the current directory.\nLandscape scene, 3:2. The Square of the Last Curtsy: the open ceremonial deck on top of a walking casino, a round turntable stage under a striped canopy where a red lacquered clockwork goose is displayed spinning, rows of masked guests applauding, prize ribbons fluttering from a rail, the whole building tilting slightly mid-step, the fairground far below. Festive evening light and lanterns.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks, a red lacquered clockwork goose. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "parasol-landing",
+      "title": "Причал Зонтичных Корзин",
+      "file": "parasol-landing.png",
+      "runtimeFile": "runtime/parasol-landing.webp",
+      "sha256": "444b41a93c53c56e830aa2659c9ccf00d0f80ead97b89419f86143a999cb2529",
+      "runtimeSha256": "8daf1f79b9a87093646e37a42d1f7e1252d277b38d5aca2ac42d21117a3677c9",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "clockwork-carnival-2026-11-14/out/parasol-landing.png",
+      "revealFromEvening": 5,
+      "subjects": [
+        "parasol-landing"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as parasol-landing.png in the current directory.\nLandscape scene, 3:2. The Parasol Basket Landing: a wooden landing platform at the rear of a walking casino, where wicker baskets hang under giant striped parasols that float like balloons, ropes and pulleys, a sturdy basket pilot woman in goggles and a leather apron checking ropes. Behind the platform two huge copper rear legs of the casino with round knee hatches. Ribbons show the wind. Late afternoon light. No goose.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks. Show a red clockwork goose only when the prompt asks for it. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "casino-legs",
+      "title": "Ноги казино",
+      "file": "casino-legs.png",
+      "runtimeFile": "runtime/casino-legs.webp",
+      "sha256": "a0bdfbe82d713fe16ac3c0b0b062856b8665fe2821a4b2f54b249483ccb7cdf1",
+      "runtimeSha256": "51e28ef1dd8398689f76f06710968c663b5ad83fba890de8fba06b5f0fba7922",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "clockwork-carnival-2026-11-14/out/casino-legs.png",
+      "revealFromEvening": 6,
+      "subjects": [
+        "casino-legs"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as casino-legs.png in the current directory.\nVertical-feel interior in landscape 3:2. Inside one hollow copper leg of a walking casino: a tall tilted shaft with an iron ladder up the middle, safety nets stretched along riveted copper walls, an oil niche halfway with cans and a big crank handle, at the top a round knee hatch ringed by huge clicking gears, at the bottom a round ankle hatch with daylight and grass showing through as the foot lands. Shafts of dusty light, oil sheen, sense of motion and tilt. No people, no goose.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks. Show a red clockwork goose only when the prompt asks for it. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "copper-boundary",
+      "title": "Медный Рубеж",
+      "file": "copper-boundary.png",
+      "runtimeFile": "runtime/copper-boundary.webp",
+      "sha256": "b42243ddc6928f454a9c14c79884a3aeed39269cd449b352237cc48ec627004e",
+      "runtimeSha256": "316f3fd7e26e246956e72a2e8ea4e2288337955ed9343d44ba62a78b82c94a7f",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "clockwork-carnival-2026-11-14/out/copper-boundary.png",
+      "revealFromEvening": 8,
+      "subjects": [
+        "copper-boundary"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as copper-boundary.png in the current directory.\nWide landscape, 3:2. The Copper Boundary: a long low rampart of weathered green copper plates running straight across a fairground road and grassy plain; on the rampart a single tall post with a blank weathered plaque. On the near side a cheerful camp of market wagons, ribbons and lanterns; on the far side an empty windswept heath under a big sky. In the distance a walking casino on copper legs approaches the rampart at dusk, lanterns lit. No goose, no lettering.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks. Show a red clockwork goose only when the prompt asks for it. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "vera-buckles",
+      "title": "Злата Две Пряжки",
+      "file": "vera-buckles.png",
+      "runtimeFile": "runtime/vera-buckles.webp",
+      "sha256": "6db6efee5aaa0e12854ce61efb1d4bed893030dec3d50ace964cc7aa7c9deabe",
+      "runtimeSha256": "12d3309d7e59586cbc085b7638392285f9abba269e3eb38dc8b38bbc7db27d27",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "clockwork-carnival-2026-11-14/out/vera-buckles.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "vera-buckles"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as hero-zlata.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Zlata Two Buckles, a 28-year-old woman fighter, former ceremonial casino guard: broad shoulders, dark brown skin, short cropped black hair, an immaculate tailored teal jacket over a steel breastplate, heavy boots, a wide tea-brown leather belt with two brass buckles pointing different ways and a carabiner, a longsword at her hip. Calm, dependable half-smile. No goose unless described.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks. Show a red clockwork goose only when the prompt asks for it. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "miro-fanfare",
+      "title": "Миро Фанфарон",
+      "file": "miro-fanfare.png",
+      "runtimeFile": "runtime/miro-fanfare.webp",
+      "sha256": "1e2444b8379c190da554f1463853b548ca203a6977e04bbc2018a50c4e8e1ec3",
+      "runtimeSha256": "8c263d3256ac1d9674c2333527279cab5dbe377e735cf9f0e316589a01b82dd1",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "clockwork-carnival-2026-11-14/out/miro-fanfare.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "miro-fanfare"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as hero-miro.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Miro Fanfare, a 24-year-old young man rogue and showman: pale skin, curly chestnut hair, thin moustache, a short dashing cape covered with a dozen fake medals, a blue winner's ribbon embroidered with a trumpet tied with a bow, a slim rapier, an over-practised charming grin. No goose unless described.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks. Show a red clockwork goose only when the prompt asks for it. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "yasna-thimble",
+      "title": "Ясна Напёрсток",
+      "file": "yasna-thimble.png",
+      "runtimeFile": "runtime/yasna-thimble.webp",
+      "sha256": "027e077f4cb00ab31c93f70d515f15ee593604e15080368dc9a92ede8a85700e",
+      "runtimeSha256": "34009358d3fe0c27e37d34855bfd7cfa56775832c0bb9ad1c816ac04d7def119",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "clockwork-carnival-2026-11-14/out/yasna-thimble.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "yasna-thimble"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as hero-yasna.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Yasna Thimble, a 31-year-old woman cleric of Small Promises: olive skin, freckles, auburn braid wound around her head, warm quilted waistcoat over a cream robe, a silver thimble on a cord as her holy symbol, a notebook with wide margins and a pencil behind her ear, a light mace. Kind but shrewd eyes. No goose unless described.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks. Show a red clockwork goose only when the prompt asks for it. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "boris-fold",
+      "title": "Борис Складень",
+      "file": "boris-fold.png",
+      "runtimeFile": "runtime/boris-fold.webp",
+      "sha256": "c18fd72ac2edd584e85680c30322af038d36e53672fe78d68e8a632cc16af73d",
+      "runtimeSha256": "69e9f258aac6763a3a9d5ed706a174de3ece4f95056f10992d034e64c42c2d78",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "clockwork-carnival-2026-11-14/out/boris-fold.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "boris-fold"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as hero-boris.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Boris Fold, a 35-year-old man wizard of court illusions: tall and lanky, pale, balding with a fringe of grey-brown hair, spectacles with mismatched temples, chalk dust on his cuffs, a paper butterfly perched on his shoulder like a secretary, a checked notebook with a quill on the cover under his arm, a plain wooden staff. Earnest, absent-minded look. No goose unless described.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks. Show a red clockwork goose only when the prompt asks for it. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "polina-step",
+      "title": "Полина Шаг-в-Шаг",
+      "file": "polina-step.png",
+      "runtimeFile": "runtime/polina-step.webp",
+      "sha256": "ffcb4c0040473127ada8cc8f2567ff33d73a615baad74794137f8a0cea9b9611",
+      "runtimeSha256": "006f5d286eb668505128e34e285c9cebded638549c11e3073df97a623cdb3098",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "clockwork-carnival-2026-11-14/out/polina-step.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "polina-step"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as hero-polina.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Polina Step-in-Step, a 27-year-old woman fighter and acrobat: wiry and athletic, East Asian features, black hair in a high ponytail, striped sleeves, soft boots, a long red meeting-point ribbon wound around her arm, a blue winner's ribbon embroidered with striped footprints, a short sword and a buckler. Mid-motion, ready to leap. No goose unless described.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks. Show a red clockwork goose only when the prompt asks for it. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "tim-lace",
+      "title": "Тим Кружевник",
+      "file": "tim-lace.png",
+      "runtimeFile": "runtime/tim-lace.webp",
+      "sha256": "8c4563d1d3f56f08cf0bbc306c0bb409b496a7e69e96f6c35ec7c83d0f10d6d1",
+      "runtimeSha256": "f34842f9c89740d727996664cb0ad6b95cdde86cf1f18fa4ec9e6ef5dc7f85a1",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "clockwork-carnival-2026-11-14/out/tim-lace.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "tim-lace"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as hero-tim.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Tim Lace, a 23-year-old young man rogue and diplomat: slight build, light brown skin, neat side-parted black hair, fingerless lace gloves, a fan of calling cards in one hand, a dagger in a fancy sheath, a velvet waistcoat. Sly polite smile. No goose unless described.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks. Show a red clockwork goose only when the prompt asks for it. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "elda-bell",
+      "title": "Эльда Бубенчик",
+      "file": "elda-bell.png",
+      "runtimeFile": "runtime/elda-bell.webp",
+      "sha256": "44906bd99faa385727297b3fd3c961558441ff26dab34ddb505139cf9cff16a4",
+      "runtimeSha256": "f68aff5443b00b1986975764ea06460a197aed9238b2a1c53742b3c110028f7e",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "clockwork-carnival-2026-11-14/out/elda-bell.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "elda-bell"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as hero-elda.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Elda Bell, a 40-year-old woman cleric and peacemaker: plump, rosy, grey-streaked blonde hair, a very wide-brimmed hat with a single small silent bell, a robe with many pockets bulging with lost trinkets, a sun holy symbol, a quarterstaff. Motherly, unflappable expression. No goose unless described.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks. Show a red clockwork goose only when the prompt asks for it. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "gleb-pocket",
+      "title": "Глеб Кармашек",
+      "file": "gleb-pocket.png",
+      "runtimeFile": "runtime/gleb-pocket.webp",
+      "sha256": "f0d38f65c84f268eec1578c168a802b1f0eb109a6f2d5ea5497110fd9244899d",
+      "runtimeSha256": "380420766772c4bdf3acef2604bf56e00be839645060d280445d5aab8679625d",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "clockwork-carnival-2026-11-14/out/gleb-pocket.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "gleb-pocket"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as hero-gleb.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Gleb Pocket, a 26-year-old young man wizard and prop master: stocky, ruddy, messy red hair, a short robe with enormous ordinary pockets full of props, a silk flower on his lapel that blooms when he blushes, blushing now, holding a wand. Shy enthusiasm. No goose unless described.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks. Show a red clockwork goose only when the prompt asks for it. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "octavian-blam",
+      "title": "Октавиан Блям",
+      "file": "octavian-blam.png",
+      "runtimeFile": "runtime/octavian-blam.webp",
+      "sha256": "cc7cb6190ef82771b4fa26dda81dc791ef5f386abed4ae19c898cf9a3872a597",
+      "runtimeSha256": "af4236fd4a7baee94bc123a19d1844022162c715d913ee46eeb6c134804ecc3a",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "clockwork-carnival-2026-11-14/out/octavian-blam.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "octavian-blam"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as octavian-blam.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Octavian Blam, 54, the plump vain owner of a walking casino: golden tailcoat, waistcoat embroidered with gears, moustache shaped like two brackets, a cane topped with a tiny applauding brass fist, a smug showman's smile, lantern-lit salon backdrop. No goose unless described.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks. Show a red clockwork goose only when the prompt asks for it. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "boris-fold.png"
+      ]
+    },
+    {
+      "id": "bibi-count",
+      "title": "Биби Счёткина",
+      "file": "bibi-count.png",
+      "runtimeFile": "runtime/bibi-count.webp",
+      "sha256": "35a42b9ff04a190a0eabe3ea499cf14393e074738632591ceeef0414153b1c3d",
+      "runtimeSha256": "7aea4c4a1f77dd90f5c0587ea69f43c4aa55b0be9a0902188b12885abc4017d8",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "clockwork-carnival-2026-11-14/out/bibi-count.png",
+      "revealFromEvening": 3,
+      "subjects": [
+        "bibi-count"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as bibi-count.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Bibi Count, 39, a tired precise casino cashier: lilac sleeve protectors, earrings made of abacus beads, a very neat cup of tea in hand, a brass key shaped like a goose beak on a chain at her neck, hair in a tidy bun, dry knowing look. Backdrop of shelves of tin cash boxes. No goose unless described.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks. Show a red clockwork goose only when the prompt asks for it. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "boris-fold.png"
+      ]
+    },
+    {
+      "id": "serafima-bant",
+      "title": "Серафима Фальшбантик",
+      "file": "serafima-bant.png",
+      "runtimeFile": "runtime/serafima-bant.webp",
+      "sha256": "4dc31543188a66a35bbe7709f5fdbcb85858de99d9caaac46ce2f5fcbf678b0a",
+      "runtimeSha256": "e57fb5e48ef7e3cd81c6e08831993857a7e36fcb68a0aa2eb086897424c69843",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "clockwork-carnival-2026-11-14/out/serafima-bant.png",
+      "revealFromEvening": 2,
+      "subjects": [
+        "serafima-bant"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as serafima-bant.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Serafima Falsebow, 32, leader of a rival crew of tricksters: big green bow in her hair, a travelling cloak, a basket of identical papier-mache cucumbers, sharp fox-like grin, dark hair, confident pose. No goose unless described.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks. Show a red clockwork goose only when the prompt asks for it. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "boris-fold.png"
+      ]
+    },
+    {
+      "id": "bronk-button",
+      "title": "Бронк Пуговица",
+      "file": "bronk-button.png",
+      "runtimeFile": "runtime/bronk-button.webp",
+      "sha256": "e0baca873285976c479a59287b3a77ce956bd5cb85943a8175200460362c9aa8",
+      "runtimeSha256": "7c83a9be1d883a8f3cc963022009ac0855ea54518244fd94ba0672806b925ed5",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "clockwork-carnival-2026-11-14/out/bronk-button.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "bronk-button"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as bronk-button.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Bronk Button, 46, a very tall dignified casino doorman: tiny cap on a huge head, buttoned livery coat, a spare button on a little chain, grey sideburns, stern but decent face. Backdrop of an arch of brass hats. No goose unless described.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks. Show a red clockwork goose only when the prompt asks for it. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "boris-fold.png"
+      ]
+    },
+    {
+      "id": "tesha-needle",
+      "title": "Теша Иголкина",
+      "file": "tesha-needle.png",
+      "runtimeFile": "runtime/tesha-needle.webp",
+      "sha256": "d9c5fcfd0e08966c3fa0b0702f7b8565494e8f88da82039534a613c62469c46f",
+      "runtimeSha256": "bde169249af9c1d564fb8c270278d2f5c9500db131a724769c78dc17a65443aa",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "clockwork-carnival-2026-11-14/out/tesha-needle.png",
+      "revealFromEvening": 3,
+      "subjects": [
+        "tesha-needle"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as tesha-needle.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Tesha Needle, 29, a casino mask seamstress: a belt hung with coloured threads, protective goggles pushed up, a hat with clothes-pegs stuck in it instead of feathers, pins in her mouth, curly brown hair, amused eyes, a half-finished cream mask in her hands. No goose unless described.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks. Show a red clockwork goose only when the prompt asks for it. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "boris-fold.png"
+      ]
+    },
+    {
+      "id": "pafnuty-loop",
+      "title": "Пафнутий Петля",
+      "file": "pafnuty-loop.png",
+      "runtimeFile": "runtime/pafnuty-loop.webp",
+      "sha256": "ae45a8e55404869f4c06d573608d7c57d0204bdc59601561077fcd4e2e2fc217",
+      "runtimeSha256": "c6a6bee9851548e092b7ca174911a1925ed4cab47cfe12ff2acba91ec28c240b",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "clockwork-carnival-2026-11-14/out/pafnuty-loop.png",
+      "revealFromEvening": 5,
+      "subjects": [
+        "pafnuty-loop"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as pafnuty-loop.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Pafnuty Loop, 61, the casino's old mechanic of folding walls and legs: square grey beard, a folding pointer, a frock coat the colour of an old mirror, a monocle, oil-stained fingers, proud and prickly expression. No goose unless described.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks. Show a red clockwork goose only when the prompt asks for it. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "boris-fold.png"
+      ]
+    },
+    {
+      "id": "marta-arc",
+      "title": "Марта Дуга",
+      "file": "marta-arc.png",
+      "runtimeFile": "runtime/marta-arc.webp",
+      "sha256": "79bca3b5020fbbe06943d4b7012946cc4888c17a5e62da2ba2c84919e99eba74",
+      "runtimeSha256": "c449babd67c682626712b4f6c526c21e281dd17960ac88afc6270eb155628c6d",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "clockwork-carnival-2026-11-14/out/marta-arc.png",
+      "revealFromEvening": 4,
+      "subjects": [
+        "marta-arc"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as marta-arc.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Marta Arc, 43, a sturdy basket pilot of floating parasol baskets: a scarf printed with clouds, flying goggles on her forehead, thick dry mittens, weathered tanned face, practical no-nonsense look, rope coiled on her shoulder. No goose unless described.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks. Show a red clockwork goose only when the prompt asks for it. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "boris-fold.png"
+      ]
+    },
+    {
+      "id": "felix-skip",
+      "title": "Феликс Перескок",
+      "file": "felix-skip.png",
+      "runtimeFile": "runtime/felix-skip.webp",
+      "sha256": "0df151430a4de2d9b8381e1c6ec743f7b9cc64ee8727ea3ccd629d4b673bf6d0",
+      "runtimeSha256": "d1ef24e2ce6ade77b6fee41c7e7bc47c5a7e39eddb9a32de956b482f3dee98c0",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "clockwork-carnival-2026-11-14/out/felix-skip.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "felix-skip"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as felix-skip.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Felix Skip, 25, a likeable young prize winner: thin, sandy hair, open warm smile, a plain simple coat with a long blue winner's ribbon embroidered with a hare jumping over a fence, a flat cardboard prize box with a gold rim under his arm. No goose unless described.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks. Show a red clockwork goose only when the prompt asks for it. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "boris-fold.png"
+      ]
+    },
+    {
+      "id": "agrippina-net",
+      "title": "Агриппина Сачок",
+      "file": "agrippina-net.png",
+      "runtimeFile": "runtime/agrippina-net.webp",
+      "sha256": "c06d41d6cd7b9046347d8d5ae5d07427f954fe3f3ba289d7227217e2ce03976e",
+      "runtimeSha256": "3065c507655b735ac20f7c2800753308fc5103c30f040d3b9a184361006b78ee",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "clockwork-carnival-2026-11-14/out/agrippina-net.png",
+      "revealFromEvening": 6,
+      "subjects": [
+        "agrippina-net"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as agrippina-net.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Agrippina Net, 44, captain of the bounty catchers: a tall lady in a pith helmet with a veil, a belt hung with brass specimen tags, a butterfly-style catching net with a copper rim, a net-launcher on her back, amused hunter's poise, quilted jacket. No goose unless described.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks. Show a red clockwork goose only when the prompt asks for it. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "boris-fold.png"
+      ]
+    },
+    {
+      "id": "grusha-mill",
+      "title": "Груша Мельникова",
+      "file": "grusha-mill.png",
+      "runtimeFile": "runtime/grusha-mill.webp",
+      "sha256": "ab61d75ff4957bccb882a5f666f6e993c4171e5469e3eb5a9658ad1614aad2d9",
+      "runtimeSha256": "56586bc3ddf9e0b1a7e59d9ec77777a59068900493d6dcab3648f4b279df0d8d",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "clockwork-carnival-2026-11-14/out/grusha-mill.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "grusha-mill"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as grusha-mill.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Grusha Mill, 15, a miller's girl and contest winner: flour on her nose, braids, a blue winner's ribbon embroidered with a windmill, a basket of pies, cheeky impatient grin. No goose unless described.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks. Show a red clockwork goose only when the prompt asks for it. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "boris-fold.png"
+      ]
+    },
+    {
+      "id": "gear-pad",
+      "title": "Блокнот листов шестерён",
+      "file": "gear-pad.png",
+      "runtimeFile": "runtime/gear-pad.webp",
+      "sha256": "55ba57264327e10e1fd6d789374de1ccb6017aad41861be3efc8532a696ada12",
+      "runtimeSha256": "52f310f68ef2841388fe9668698955aa72c12613e2f59bfbaa571c6b977107c0",
+      "width": 1254,
+      "height": 1254,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "clockwork-carnival-2026-11-14/out/gear-pad.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "gear-pad"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as gear-pad.png in the current directory.\nItem illustration, single object centered on a plain warm parchment backdrop, square 1:1. A worn checked notebook with a quill embossed on the cover, lying open to a page of hand-drawn interlocking cog wheels with blank lines beside them, one cog drawn slightly crooked. No readable writing. No goose unless described.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks. Show a red clockwork goose only when the prompt asks for it. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "copper-till.png"
+      ]
+    },
+    {
+      "id": "buckle-harness",
+      "title": "Пояс с двумя пряжками",
+      "file": "buckle-harness.png",
+      "runtimeFile": "runtime/buckle-harness.webp",
+      "sha256": "610f392c04dc4408dc7b5208986c072c65e189bf724bd6b02c7cc2a6c00321aa",
+      "runtimeSha256": "e64baa4384d08d482df85bf649c3cc8c6040b88e1cd057409ebaef2bc6873357",
+      "width": 1254,
+      "height": 1254,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "clockwork-carnival-2026-11-14/out/buckle-harness.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "buckle-harness"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as buckle-harness.png in the current directory.\nItem illustration, single object on plain parchment backdrop, square 1:1. A wide tea-brown leather belt with two brass buckles that face in different directions, a steel carabiner attached. No goose unless described.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks. Show a red clockwork goose only when the prompt asks for it. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "copper-till.png"
+      ]
+    },
+    {
+      "id": "wanted-board",
+      "title": "Листок розыска у чайницы",
+      "file": "wanted-board.png",
+      "runtimeFile": "runtime/wanted-board.webp",
+      "sha256": "553728e6266870a135f96d3810d30760daeea2329a7c74559b738c894ad4b608",
+      "runtimeSha256": "ee3a0d552f46f30e945df344546bdf6f6df9c81e36257731ab184b9a5479a004",
+      "width": 1254,
+      "height": 1254,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "clockwork-carnival-2026-11-14/out/wanted-board.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "wanted-board"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as wanted-board.png in the current directory.\nItem illustration, single object on plain backdrop, square 1:1. A yellow heavy-paper wanted poster nailed with brass goose-headed tacks to a wooden post, with a small red goose stamp at the top, rows of blank portrait frames and blank lines (no readable text), a flourish signature mark. No goose unless described.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks. Show a red clockwork goose only when the prompt asks for it. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "copper-till.png"
+      ]
+    },
+    {
+      "id": "red-goose",
+      "title": "Красный гусь",
+      "file": "red-goose.png",
+      "runtimeFile": "runtime/red-goose.webp",
+      "sha256": "a3cbc4e37751f81943a13ea544d96e4857e9a54ee18398df134703321296ca12",
+      "runtimeSha256": "72fff85e87dc498da9ec0923fe88697f2ec0a08fcf4988472a3397cdf164f325",
+      "width": 1254,
+      "height": 1254,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "clockwork-carnival-2026-11-14/out/red-goose.png",
+      "revealFromEvening": 3,
+      "subjects": [
+        "red-goose"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as red-goose.png in the current directory.\nItem illustration, single object on plain backdrop, square 1:1. A red lacquered clockwork goose casket the size of a lamb, deep sealing-wax red with brass gear joints, a locked brass beak, a chip on the left wing and a scratch on the beak, a narrow slot in the tail, standing in a round copper nest. No goose unless described.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks. Show a red clockwork goose only when the prompt asks for it. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "copper-till.png"
+      ]
+    },
+    {
+      "id": "brass-eggs",
+      "title": "Девять медных яиц",
+      "file": "brass-eggs.png",
+      "runtimeFile": "runtime/brass-eggs.webp",
+      "sha256": "02db6278c45284a9896bb6c49b97aa0708e0d587a23a313c28daa473cdb4c38e",
+      "runtimeSha256": "68e750ebb1102e30a6b7cac884e25a4b309996802f3cc0b47ac9e09d4d721eb9",
+      "width": 1254,
+      "height": 1254,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "clockwork-carnival-2026-11-14/out/brass-eggs.png",
+      "revealFromEvening": 3,
+      "subjects": [
+        "brass-eggs"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as brass-eggs.png in the current directory.\nItem illustration, objects on plain backdrop, square 1:1. Nine heavy fist-sized brass eggs, each stamped with a small goose profile, arranged in a velvet-lined tray, warm metallic shine. No goose unless described.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks. Show a red clockwork goose only when the prompt asks for it. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "copper-till.png"
+      ]
+    },
+    {
+      "id": "staff-gears",
+      "title": "Служебные шестерёнки",
+      "file": "staff-gears.png",
+      "runtimeFile": "runtime/staff-gears.webp",
+      "sha256": "99e8c195e560a987ca1d11793d5bc6485e1c06bc38184ba2ef5df5ac89b7cdd5",
+      "runtimeSha256": "bc6b0a983c7018afdefe7521e339242abd858ce4b08069d8d3d52edcb2288507",
+      "width": 1254,
+      "height": 1254,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "clockwork-carnival-2026-11-14/out/staff-gears.png",
+      "revealFromEvening": 2,
+      "subjects": [
+        "staff-gears"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as staff-gears.png in the current directory.\nItem illustration, objects on plain backdrop, square 1:1. Several brass service cogs stamped with a goose profile, each hanging on its own cord, hung on small hooks on a teal lacquered board. No goose unless described.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks. Show a red clockwork goose only when the prompt asks for it. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "copper-till.png"
+      ]
+    },
+    {
+      "id": "virtue-masks",
+      "title": "Маски Бережливости и Почтительности",
+      "file": "virtue-masks.png",
+      "runtimeFile": "runtime/virtue-masks.webp",
+      "sha256": "e2d67a260dcd2283307844365e70b70194bb579ee0bb1b28ea7462a7a5a005b1",
+      "runtimeSha256": "25b4a4ae65af8b12334873175997b5d1f2f738075ce365d8a635300166a80bd2",
+      "width": 1254,
+      "height": 1254,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "clockwork-carnival-2026-11-14/out/virtue-masks.png",
+      "revealFromEvening": 3,
+      "subjects": [
+        "virtue-masks"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as virtue-masks.png in the current directory.\nItem illustration, objects on plain backdrop, square 1:1. Two grey half-masks with pursed disapproving lips (masks of Thrift) and two pink half-masks with a gentle bowing expression (masks of Deference), cloth tags sewn on their ribbons, hanging on brass hooks. No goose unless described.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks. Show a red clockwork goose only when the prompt asks for it. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "copper-till.png"
+      ]
+    },
+    {
+      "id": "beak-key",
+      "title": "Клюв-ключ",
+      "file": "beak-key.png",
+      "runtimeFile": "runtime/beak-key.webp",
+      "sha256": "48a611d292c1e321bbcbdb80e79a4974b0b52c7505e128e6485d8147acaad871",
+      "runtimeSha256": "71e534e9f657064e9e5acbacb6844526007e43e201d3340b828cdecf9d60f6c9",
+      "width": 1254,
+      "height": 1254,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "clockwork-carnival-2026-11-14/out/beak-key.png",
+      "revealFromEvening": 4,
+      "subjects": [
+        "beak-key"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as beak-key.png in the current directory.\nItem illustration, single object on plain backdrop, square 1:1. A brass key shaped like a goose beak, with teeth instead of a tongue, on a fine chain. No goose unless described.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks. Show a red clockwork goose only when the prompt asks for it. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "copper-till.png"
+      ]
+    },
+    {
+      "id": "hatch-crank",
+      "title": "Вороток лодыжки",
+      "file": "hatch-crank.png",
+      "runtimeFile": "runtime/hatch-crank.webp",
+      "sha256": "7a30d3c393be5b0f2bb25f3c5c7be627187448273f27178b8c660f8878de3cc6",
+      "runtimeSha256": "90392e7167f0af1bec7b4f2979db72438adbc41406a4067cb1d91507d69111cb",
+      "width": 1254,
+      "height": 1254,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "clockwork-carnival-2026-11-14/out/hatch-crank.png",
+      "revealFromEvening": 6,
+      "subjects": [
+        "hatch-crank"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as hatch-crank.png in the current directory.\nItem illustration, single object on plain backdrop, square 1:1. A heavy brass crank handle with a square socket on one end, glossy with dark oil, lying in an oily copper niche. No goose unless described.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks. Show a red clockwork goose only when the prompt asks for it. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "copper-till.png"
+      ]
+    },
+    {
+      "id": "rehearsal-goose",
+      "title": "Репетиционный гусь",
+      "file": "rehearsal-goose.png",
+      "runtimeFile": "runtime/rehearsal-goose.webp",
+      "sha256": "f3ab7223213b68b8608ca6fcadf0f603c99bcc5888f143511b63471681f3fe28",
+      "runtimeSha256": "e178afb222eb3a87eb1f7e6e4c0d24c64b163e4c53501c61382b557e2520d261",
+      "width": 1254,
+      "height": 1254,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "clockwork-carnival-2026-11-14/out/rehearsal-goose.png",
+      "revealFromEvening": 7,
+      "subjects": [
+        "rehearsal-goose"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as rehearsal-goose.png in the current directory.\nItem illustration, single object on plain backdrop, square 1:1. A pale washed-out pinkish-red twin of a clockwork goose casket, no chips and no scratches, its open back showing nine wooden eggs painted to look like brass. No goose unless described.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks. Show a red clockwork goose only when the prompt asks for it. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "copper-till.png"
+      ]
+    },
+    {
+      "id": "hare-ribbon",
+      "title": "Лента с зайцем",
+      "file": "hare-ribbon.png",
+      "runtimeFile": "runtime/hare-ribbon.webp",
+      "sha256": "bea9f668bc11fffd0bba01ce8c3df68ac79347cbc384bd8e8faff2f26414198f",
+      "runtimeSha256": "ece0b66cd50ef6c2fffb5cda3598e23da8a1fc9d87ad9f1f6531cd5b5578c017",
+      "width": 1254,
+      "height": 1254,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "clockwork-carnival-2026-11-14/out/hare-ribbon.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "hare-ribbon"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as hare-ribbon.png in the current directory.\nItem illustration, single object on plain backdrop, square 1:1. A long blue silk winner's ribbon with a hand-embroidered hare jumping over a fence, stitches slightly uneven, pinned to the lapel of a plain coat. No letters. No goose unless described.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks. Show a red clockwork goose only when the prompt asks for it. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "copper-till.png"
+      ]
+    },
+    {
+      "id": "prize-box",
+      "title": "Плоская призовая коробка",
+      "file": "prize-box.png",
+      "runtimeFile": "runtime/prize-box.webp",
+      "sha256": "a97e717d8dede204b00cac6c7ba6f9ae2f35bd1ad4017c5107688e0f249f5d7e",
+      "runtimeSha256": "0e8aaab92d57be56c7359302507ac88553892967e8f1725ddc63aa66683e03b1",
+      "width": 1254,
+      "height": 1254,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "clockwork-carnival-2026-11-14/out/prize-box.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "prize-box"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as prize-box.png in the current directory.\nItem illustration, single object on plain backdrop, square 1:1. A flat stiff cardboard prize box the size of a tray, with a gold rim; on the lid a worn-away painted trophy cup. No goose unless described.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks. Show a red clockwork goose only when the prompt asks for it. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "copper-till.png"
+      ]
+    },
+    {
+      "id": "token-catcher",
+      "title": "token-catcher",
+      "file": "token-catcher.png",
+      "runtimeFile": "runtime/token-catcher.webp",
+      "sha256": "2ad7eae31616551f8e5e40cd94ca6a7da554b714ce349fff96f56102b8128a40",
+      "runtimeSha256": "99d1cc4ed7690c5e99f5b8e98694e4f8c7432d525c18be0c4c83fb939e12e295",
+      "width": 1199,
+      "height": 1312,
+      "alpha": true,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "clockwork-carnival-2026-11-14/out/token-catcher.png",
+      "revealFromEvening": 6,
+      "subjects": [
+        "shin-nets-foe-1",
+        "shin-nets-foe-2",
+        "shin-nets-foe-3",
+        "rubezh-step-foe-1",
+        "rubezh-step-foe-2"
+      ],
+      "kind": "token",
+      "srd": "tough",
+      "prompt": "Generate one image and save it as token-catcher.png in the current directory.\nGame token figure on a fully transparent background, full body, top three-quarter view, no ground shadow. A burly bounty catcher in a quilted jacket with a hundred pockets, holding a long-handled catching net, brass specimen tags on the belt. Clean silhouette.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks. Show a red clockwork goose only when the prompt asks for it. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "copper-till.png"
+      ]
+    },
+    {
+      "id": "token-usher",
+      "title": "token-usher",
+      "file": "token-usher.png",
+      "runtimeFile": "runtime/token-usher.webp",
+      "sha256": "7dd54cb49982812738d5b5b54e1d7acfa11ad01111da393f9875a365194e6656",
+      "runtimeSha256": "dba98e42b4aad6831ca3a94cfd821883928384c8ee93d3f04e8fa0b8947f6e1e",
+      "width": 1199,
+      "height": 1312,
+      "alpha": true,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "clockwork-carnival-2026-11-14/out/token-usher.png",
+      "revealFromEvening": 2,
+      "subjects": [
+        "wound-ushers-foe-1",
+        "wound-ushers-foe-2"
+      ],
+      "kind": "token",
+      "srd": "animated-armor",
+      "prompt": "Generate one image and save it as token-usher.png in the current directory.\nGame token figure on a fully transparent background, full body, top three-quarter view, no ground shadow. An animated empty suit of parade armour in a braided livery tabard, a brass cog on the chest, visor politely half-open with darkness inside, bowing slightly before striking.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks. Show a red clockwork goose only when the prompt asks for it. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "copper-till.png"
+      ]
+    },
+    {
+      "id": "token-net-captain",
+      "title": "token-net-captain",
+      "file": "token-net-captain.png",
+      "runtimeFile": "runtime/token-net-captain.webp",
+      "sha256": "d9bd65a20523844038aa9cea702b8cfe1bff9d08ba93e08c90c07fe38dcdc5bb",
+      "runtimeSha256": "90189839670184eb306b953a0eca8bb171bc4e30f46fc6af9181a8f86b2e9753",
+      "width": 1024,
+      "height": 1536,
+      "alpha": true,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "clockwork-carnival-2026-11-14/out/token-net-captain.png",
+      "revealFromEvening": 6,
+      "subjects": [
+        "rubezh-step-boss"
+      ],
+      "kind": "token",
+      "srd": "bandit-captain",
+      "prompt": "Generate one image and save it as token-net-captain.png in the current directory.\nGame token figure on a fully transparent background, full body, top three-quarter view, no ground shadow. Agrippina Net, a tall lady captain of bounty catchers in a pith helmet with a veil, a copper-rimmed catching net raised, a net-launcher on her back.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks. Show a red clockwork goose only when the prompt asks for it. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "copper-till.png"
+      ]
+    }
+  ]
+}

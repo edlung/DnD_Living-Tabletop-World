@@ -1,0 +1,41 @@
+{
+ "about": "Top-down battle maps (OpenAI image generation through Codex CLI), each drawn over its fight grid and cut to it; originals in ~/Documents/living-tabletop-world-art/.",
+ "maps": [
+  {
+   "location": "echo-salon",
+   "encounter": "wound-ushers",
+   "grid": [
+    18,
+    12
+   ],
+   "file": "echo-salon.webp",
+   "sha256": "a8e050cd797b38e06a374a165742c4210c8b84ed37c366064fcf39447cca6c7f",
+   "originalSha256": "1eeca5bb8b2c6043e001d0c55d9b8d0c923b825fe2be5b1ba3de59b66243e175",
+   "originalFile": "battle-maps-2026-11-14/out/clockwork-carnival--echo-salon.png",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as clockwork-carnival--echo-salon.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Салон Позолоченного Эха» — Круглая гостиная с бархатными столами, бесплатными играми в нелепые доводы и потолком, повторяющим самый торжественный комплимент. У стены — доска заводки, где по утрам висят служебные шестерёнки, и стеклянное гнездо для показа фонда.\n\nThe first reference image is the exact layout of the playable field: a 18 by 12 square grid drawn in the middle of the canvas filling it. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Круглый салон Позолоченного Эха: бархатные столы по кольцу (укрытие, их можно опрокинуть), в центре круглый помост эха — всё, что сказано на нём, потолок повторяет на весь зал. У западной стены доска заводки с рядами служебных шестерёнок на крючках. Двери салона — единственный путь вынести шестерёнки. Гости завтракают за дальними столами и разбегаются при первом ударе.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks. Show a red clockwork goose only when the prompt asks for it. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/clockwork-carnival--echo-salon.layout.png",
+    "echo-salon.png"
+   ]
+  },
+  {
+   "location": "casino-legs",
+   "encounter": "shin-nets",
+   "grid": [
+    6,
+    18
+   ],
+   "file": "casino-legs.webp",
+   "sha256": "d99a29c675df3aac00c2ccb74722363714726c60b03d37d693580de47699274d",
+   "originalSha256": "3cee88a469290bae5bd5edef5a8ffd8d582ebf0f3f643eb27c2eac7216f9d8b4",
+   "originalFile": "battle-maps-2026-11-14/out/clockwork-carnival--casino-legs.png",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as clockwork-carnival--casino-legs.png in the current directory.\n\nA tabletop battle map, portrait 2:3, seen straight from above (orthographic top-down), of this place: «Ноги казино» — Восемь медных ног в два ряда. Каждая — полая шахта с лестницей и страховочными сетками: наверху коленный люк, внизу люк лодыжки над ступнёй. Пахнет маслом, колено щёлкает шестернями на каждом шаге.\n\nThe first reference image is the exact layout of the playable field: a 6 by 18 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Шахта ноги: лестница посередине, нога стоит, крена нет. Масляная ниша на середине шахты — укрытие и место воротка. По стенам страховочные сетки; в них не падают, а мягко зависают. Южный край поля — коленный люк (выход наверх), северный — люк лодыжки (куда ловцы тянут героя). Пахнет маслом, колено изредка щёлкает шестернями, но шахту не кренит.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated comic-fantasy caper for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, lively theatrical staging like a stage play caught mid-scene, warm festive lantern light; palette of polished copper and brass, lacquer goose red, carnival teal and mint, cream masks and ivory ribbons, with deep plum-brown shadows. Recurring details: gears and cogs, festive half-masks. Show a red clockwork goose only when the prompt asks for it. Mischief, wit and warm humanity; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/clockwork-carnival--casino-legs.layout.png",
+    "casino-legs.png"
+   ]
+  }
+ ]
+}

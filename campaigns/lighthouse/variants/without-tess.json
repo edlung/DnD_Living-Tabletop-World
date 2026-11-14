@@ -1,0 +1,3297 @@
+{
+  "schemaVersion": 1,
+  "brief": {
+    "intent": "В Фонарной Гавани перестаёт гаснуть вечерняя звезда. Затем замолкают колокола, яблоки перестают созревать, а знакомые дороги ведут на вчерашние острова. Трое друзей получают дом-корабль «Чайник» и берутся вернуть миру завтрашний день.",
+    "setting": "Оригинальный архипелаг над облачным морем.",
+    "tone": "Чудеса, любопытство, тёплый юмор, честные трудные решения. Опасность приключенческая; никаких жестоких подробностей, пыток, гибели детей или неизбежной жертвы спутника.",
+    "duration": "12 вечеров по 2,5–3,5 часа с паузой каждые 40–50 минут. Каждый вечер делится на три законченных отрезка; можно сыграть за 24 короткие встречи.",
+    "partySize": 3,
+    "partyLevel": 3,
+    "include": [
+      "3 игрока и взрослый ведущий",
+      "Свободный порядок островов",
+      "Мирные решения",
+      "Личный эпилог каждому",
+      "Точки отдыха внутри вечера"
+    ],
+    "exclude": [
+      "Обязательная жертва спутника",
+      "Насилие над детьми",
+      "Единственная улика за броском",
+      "Скрытые домашние правила"
+    ]
+  },
+  "world": {
+    "name": "Маяк Между Ветрами",
+    "worldName": "Острова Между Ветрами",
+    "language": "ru",
+    "startsAt": 64800,
+    "startLocation": "harbor",
+    "weather": "clear",
+    "opening": "Над Фонарной Гаванью зажигают бумажные звёзды. Ваш общий стол ждёт пирога. Вдруг все огни замирают, а из-под скатерти высовывается латунный лис с украденной булочкой. «Технический вопрос, — звенит он. — Завтра у вас свободно? Оно, кажется, сломалось»."
+  },
+  "entities": [
+    {
+      "key": "winds",
+      "kind": "location",
+      "name": "Острова Между Ветрами",
+      "description": "Острова дрейфуют над облачным морем. Между ними ходят парусные дома и почтовые киты.",
+      "status": "active",
+      "existsSince": null,
+      "location": {
+        "type": "region",
+        "parent": null
+      }
+    },
+    {
+      "key": "harbor",
+      "kind": "location",
+      "name": "Фонарная Гавань",
+      "description": "Медные крыши, пироги с грушей, тёплые фонари и пристань над розовыми облаками.",
+      "status": "active",
+      "existsSince": null,
+      "location": {
+        "type": "settlement",
+        "parent": "winds"
+      }
+    },
+    {
+      "key": "ship",
+      "kind": "location",
+      "name": "Дом-корабль «Чайник»",
+      "description": "Небольшой летающий дом с медной крышей, заплатой на парусе и круглой янтарной лампой. Внутри пахнет чаем и деревом.",
+      "status": "active",
+      "existsSince": null,
+      "location": {
+        "type": "site",
+        "parent": "winds"
+      }
+    },
+    {
+      "key": "orchard",
+      "kind": "location",
+      "name": "Сад На Спине Черепахи",
+      "description": "Яблоневые террасы, стеклянные ручьи и старая черепаха, на панцире которой растёт сад.",
+      "status": "active",
+      "existsSince": null,
+      "location": {
+        "type": "site",
+        "parent": "winds"
+      }
+    },
+    {
+      "key": "library",
+      "kind": "location",
+      "name": "Библиотека Приливов",
+      "description": "Книги приплывают к читателям в бумажных лодочках, а в неглубоком бассейне отражаются дневные звёзды.",
+      "status": "active",
+      "existsSince": null,
+      "location": {
+        "type": "building",
+        "parent": "winds"
+      }
+    },
+    {
+      "key": "market",
+      "kind": "location",
+      "name": "Зеркальный Базар",
+      "description": "Зеркала показывают другие времена года. Здесь торгуют ветром, лентами и историями с ясной ценой.",
+      "status": "active",
+      "existsSince": null,
+      "location": {
+        "type": "settlement",
+        "parent": "winds"
+      }
+    },
+    {
+      "key": "forge",
+      "kind": "location",
+      "name": "Облачная Кузница",
+      "description": "В скальной арке вращаются медные ветроколы. Шёлковые паруса несут инструменты от верстака к верстаку.",
+      "status": "active",
+      "existsSince": null,
+      "location": {
+        "type": "building",
+        "parent": "winds"
+      }
+    },
+    {
+      "key": "observatory",
+      "kind": "location",
+      "name": "Обсерватория На Ките",
+      "description": "Белая башенка и телескоп на широкой спине спокойного небесного кита Омба.",
+      "status": "active",
+      "existsSince": null,
+      "location": {
+        "type": "building",
+        "parent": "winds"
+      }
+    },
+    {
+      "key": "bells",
+      "kind": "location",
+      "name": "Город Слушающих Колоколов",
+      "description": "На мостах звенят ленты и маленькие колокольчики. На площади стоят четыре больших колокола разной формы.",
+      "status": "active",
+      "existsSince": null,
+      "location": {
+        "type": "settlement",
+        "parent": "winds"
+      }
+    },
+    {
+      "key": "winter",
+      "kind": "location",
+      "name": "Дворец Неподвижной Минуты",
+      "description": "Тихая стеклянная оранжерея. Между веткой и полом висит золотой лист, у окна накрыт чай на двоих.",
+      "status": "active",
+      "existsSince": null,
+      "location": {
+        "type": "building",
+        "parent": "winds"
+      }
+    },
+    {
+      "key": "lighthouse",
+      "kind": "location",
+      "name": "Маяк Между Ветрами",
+      "description": "Каменная башня с прозрачным куполом и четырьмя латунными кольцами. К широкому двору ведёт мост с фонарями.",
+      "status": "active",
+      "existsSince": null,
+      "location": {
+        "type": "building",
+        "parent": "winds"
+      }
+    },
+    {
+      "key": "finn",
+      "kind": "character",
+      "name": "Финн Меднолист",
+      "description": "Молодой взрослый широкоплечий дворф с медной кудрявой бородой, индиговой курткой, круглым щитом с листом и тёплой улыбкой. Защитник и любитель больших идей.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "harbor",
+        "since": null
+      },
+      "sheet": {
+        "classes": [
+          {
+            "classId": "fighter",
+            "level": 3
+          }
+        ],
+        "abilities": {
+          "str": 16,
+          "dex": 12,
+          "con": 16,
+          "int": 10,
+          "wis": 12,
+          "cha": 10
+        },
+        "hitPoints": {
+          "max": 31,
+          "current": 31
+        },
+        "armorClass": 11,
+        "speedFt": 30,
+        "savingThrows": [
+          "str",
+          "con"
+        ],
+        "skills": {
+          "proficient": [
+            "athletics",
+            "perception",
+            "survival"
+          ],
+          "expertise": []
+        },
+        "attacksPerAction": 1,
+        "weapons": [
+          "longsword",
+          "handaxe"
+        ],
+        "spellSlots": {
+          "max": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "expended": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "spellcasting": [],
+        "conditions": [],
+        "concentration": null
+      }
+    },
+    {
+      "key": "asya",
+      "kind": "character",
+      "name": "Ася Вереск",
+      "description": "Взрослая женщина с тёмной кожей, длинной серебристой косой, зелёно-бирюзовым плащом, кожаной сумкой семян и простым деревянным посохом. Целительница, садовница и собеседница.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "harbor",
+        "since": null
+      },
+      "sheet": {
+        "classes": [
+          {
+            "classId": "cleric",
+            "level": 3
+          }
+        ],
+        "abilities": {
+          "str": 12,
+          "dex": 12,
+          "con": 14,
+          "int": 10,
+          "wis": 16,
+          "cha": 14
+        },
+        "hitPoints": {
+          "max": 24,
+          "current": 24
+        },
+        "armorClass": 11,
+        "speedFt": 30,
+        "savingThrows": [
+          "wis",
+          "cha"
+        ],
+        "skills": {
+          "proficient": [
+            "insight",
+            "medicine",
+            "persuasion",
+            "nature"
+          ],
+          "expertise": []
+        },
+        "attacksPerAction": 1,
+        "weapons": [
+          "quarterstaff"
+        ],
+        "spellSlots": {
+          "max": [
+            4,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "expended": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "spellcasting": [
+          {
+            "source": "cleric",
+            "ability": "wis",
+            "spells": [
+              "healing-word",
+              "detect-magic"
+            ]
+          }
+        ],
+        "conditions": [],
+        "concentration": null
+      }
+    },
+    {
+      "key": "mika",
+      "kind": "character",
+      "name": "Мика Переплёт",
+      "description": "Взрослый гном с круглыми очками, вишнёвым беретом, светлым пальто с индиговыми манжетами и книгой со множеством бумажных закладок. Запасной герой: исследователь магии и карт.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "harbor",
+        "since": null
+      },
+      "sheet": {
+        "classes": [
+          {
+            "classId": "wizard",
+            "level": 3
+          }
+        ],
+        "abilities": {
+          "str": 8,
+          "dex": 14,
+          "con": 14,
+          "int": 16,
+          "wis": 12,
+          "cha": 12
+        },
+        "hitPoints": {
+          "max": 20,
+          "current": 20
+        },
+        "armorClass": 12,
+        "speedFt": 30,
+        "savingThrows": [
+          "int",
+          "wis"
+        ],
+        "skills": {
+          "proficient": [
+            "arcana",
+            "investigation",
+            "history"
+          ],
+          "expertise": []
+        },
+        "attacksPerAction": 1,
+        "weapons": [
+          "quarterstaff"
+        ],
+        "spellSlots": {
+          "max": [
+            4,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "expended": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "spellcasting": [
+          {
+            "source": "wizard",
+            "ability": "int",
+            "spells": [
+              "detect-magic",
+              "misty-step"
+            ]
+          }
+        ],
+        "conditions": [],
+        "concentration": null
+      }
+    },
+    {
+      "key": "runa",
+      "kind": "npc",
+      "name": "Капитан Руна Чайная",
+      "description": "Пожилая капитан с серебряными волосами, янтарными очками на цепочке и большим индиговым пальто; пахнет чаем и апельсинами. Хозяйка «Чайника» умеет чинить паруса и помнит множество островных дорог.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "harbor",
+        "since": null
+      }
+    },
+    {
+      "key": "spool",
+      "kind": "npc",
+      "name": "Шпуль",
+      "description": "Маленький латунный механический лис с бирюзовыми стеклянными глазами, одним медным ухом и хвостом-кисточкой. Любопытный почтовый лис звенит тремя разными нотами и собирает смешные человеческие выражения.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "harbor",
+        "since": null
+      }
+    },
+    {
+      "key": "pom",
+      "kind": "npc",
+      "name": "Пом, садовник черепахи",
+      "description": "Коренастый гном в шляпе из листьев, с лейкой и карманами, полными яблочных косточек. Ухаживает за садами и говорит о медленных вещах с большим воодушевлением.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "orchard",
+        "since": null
+      }
+    },
+    {
+      "key": "saffra",
+      "kind": "npc",
+      "name": "Сафра Лист",
+      "description": "Высокая взрослая библиотекарша с тёмной косой, накидкой цвета морской волны и бумажными корабликами в карманах. Хранит книги так, чтобы их можно было найти и вернуть, а не спрятать навсегда.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "library",
+        "since": null
+      }
+    },
+    {
+      "key": "vey",
+      "kind": "npc",
+      "name": "Вей Три Кармана",
+      "description": "Лисоподобный взрослый торговец в сиреневом жилете, монокль и ровно три огромных кармана. Торгует историями и отражениями; условия сделки всегда произносит вслух.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "market",
+        "since": null
+      }
+    },
+    {
+      "key": "ilyr",
+      "kind": "npc",
+      "name": "Мастер Ильер",
+      "description": "Высокий мастер с протезом кисти из дерева и латуни, медным фартуком и мягкими защитными очками. Может починить почти любую вещь, если хозяин объяснит, чего хочет от неё.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "forge",
+        "since": null
+      }
+    },
+    {
+      "key": "omb",
+      "kind": "npc",
+      "name": "Омб, почтовый кит",
+      "description": "Огромный спокойный небесный кит; на спине обсерватория, сад и надёжный причал. Возит почту и наблюдателей звёзд. Отвечает медленно и с сухим юмором.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "observatory",
+        "since": null
+      }
+    },
+    {
+      "key": "kanto",
+      "kind": "npc",
+      "name": "Канто, настройщик колоколов",
+      "description": "Крупная говорящая птица-секретарь в аккуратном синем жилете, несёт камертон и смешно строгую папку. Собирает жителей на совет и старается дать слово даже тихим.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "bells",
+        "since": null
+      }
+    },
+    {
+      "key": "severin",
+      "kind": "npc",
+      "name": "Северин, хранитель Атласа",
+      "description": "Взрослый мужчина с волнистыми серебристо-чёрными волосами, круглыми очками, индиговым пальто с медными застёжками и перчатками. Картограф, чьи старые карты до сих пор висят в капитанских каютах.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "winter",
+        "since": null
+      }
+    },
+    {
+      "key": "e-festival-loop",
+      "kind": "feature",
+      "name": "Квитанция праздника",
+      "description": "Чернила на квитанции то блестят, то высыхают.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "harbor",
+        "since": null
+      }
+    },
+    {
+      "key": "e-harbor-log",
+      "kind": "feature",
+      "name": "Журнал пристани",
+      "description": "Открытый журнал рейсов с медной закладкой.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "harbor",
+        "since": null
+      }
+    },
+    {
+      "key": "e-courier-label",
+      "kind": "feature",
+      "name": "Паспорт курьера",
+      "description": "Открытая карточка с рисунком лиса и пустой кассеты.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "ship",
+        "since": null
+      }
+    },
+    {
+      "key": "e-route-plate",
+      "kind": "feature",
+      "name": "Маршрутная пластина",
+      "description": "На пластине старая прямая линия и свежая карандашная дуга.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "ship",
+        "since": null
+      }
+    },
+    {
+      "key": "e-growth-ring",
+      "kind": "feature",
+      "name": "Водяной датчик",
+      "description": "Медное кольцо в стеклянном желобе.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "orchard",
+        "since": null
+      }
+    },
+    {
+      "key": "e-water-route",
+      "kind": "feature",
+      "name": "Старый поливочный желоб",
+      "description": "Открытый деревянный желоб лежит рядом с работающим каналом.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "orchard",
+        "since": null
+      }
+    },
+    {
+      "key": "e-one-minute-protocol",
+      "kind": "feature",
+      "name": "Протокол одной минуты",
+      "description": "Старая бумага с двумя подписями и одной явно указанной длительностью.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "library",
+        "since": null
+      }
+    },
+    {
+      "key": "e-witness-copies",
+      "kind": "feature",
+      "name": "Показания капитанов",
+      "description": "Три копии записей с именами и датами.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "library",
+        "since": null
+      }
+    },
+    {
+      "key": "e-missing-updates",
+      "kind": "feature",
+      "name": "Реестр правок",
+      "description": "В толстом журнале после одной даты оставлены пустые строки.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "library",
+        "since": null
+      }
+    },
+    {
+      "key": "e-unfiltered-mirror",
+      "kind": "feature",
+      "name": "Пустая зеркальная рама",
+      "description": "Медная рама отражает мастерскую без наложенной картинки.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "market",
+        "since": null
+      }
+    },
+    {
+      "key": "e-cargo-route",
+      "kind": "feature",
+      "name": "Грузовая схема",
+      "description": "На рабочей схеме отмечены паром и мастерская.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "market",
+        "since": null
+      }
+    },
+    {
+      "key": "e-four-inputs",
+      "kind": "feature",
+      "name": "Учебный пульт",
+      "description": "Четыре раздельных входа с ясными значками.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "forge",
+        "since": null
+      }
+    },
+    {
+      "key": "e-safe-disconnect",
+      "kind": "feature",
+      "name": "Схема отключения",
+      "description": "Прозрачная накладка с простым ручным тормозом.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "forge",
+        "since": null
+      }
+    },
+    {
+      "key": "e-moving-stars",
+      "kind": "feature",
+      "name": "Два звёздных снимка",
+      "description": "Пара снимков одного участка неба с отмеченными датами.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "observatory",
+        "since": null
+      }
+    },
+    {
+      "key": "e-rescue-route",
+      "kind": "feature",
+      "name": "Почтовый журнал Омба",
+      "description": "Открытый журнал рейсов с рисунком шторма.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "observatory",
+        "since": null
+      }
+    },
+    {
+      "key": "e-separate-voices",
+      "kind": "feature",
+      "name": "Пульт колоколов",
+      "description": "Четыре кнопки связаны одной съёмной перемычкой.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "bells",
+        "since": null
+      }
+    },
+    {
+      "key": "e-bell-order",
+      "kind": "feature",
+      "name": "Карточки мелодии",
+      "description": "Лист, волна, звезда, колокол и три простых условия.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "bells",
+        "since": null
+      }
+    },
+    {
+      "key": "e-captain-addendum",
+      "kind": "feature",
+      "name": "Копия капитанского письма",
+      "description": "Старая копия письма вложена в реестр картографа.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "winter",
+        "since": null
+      }
+    },
+    {
+      "key": "e-extension-register",
+      "kind": "feature",
+      "name": "Журнал продлений",
+      "description": "Открытый реестр с последовательными датами.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "winter",
+        "since": null
+      }
+    },
+    {
+      "key": "e-manual-door",
+      "kind": "feature",
+      "name": "Ручка прохода",
+      "description": "Обычная рабочая ручка рядом с панелью отражения.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "winter",
+        "since": null
+      }
+    },
+    {
+      "key": "e-courier-proof",
+      "kind": "feature",
+      "name": "Схема питания",
+      "description": "Чертёж ветровых колец с отдельной маленькой кассетой.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "winter",
+        "since": null
+      }
+    },
+    {
+      "key": "e-lighthouse-controls",
+      "kind": "feature",
+      "name": "Пульт четырёх ветров",
+      "description": "Четыре поста и окно для нового ввода.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "lighthouse",
+        "since": null
+      }
+    },
+    {
+      "key": "seed",
+      "kind": "item",
+      "name": "Семя-домик",
+      "description": "Орешек в маленьком медном горшочке; под крышкой уютно светится лист.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "orchard",
+        "since": null
+      }
+    },
+    {
+      "key": "mirror",
+      "kind": "item",
+      "name": "Честное зеркало",
+      "description": "Небольшое круглое зеркало в медной раме с бирюзовой ручкой.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "market",
+        "since": null
+      }
+    },
+    {
+      "key": "bridge",
+      "kind": "item",
+      "name": "Перемычка четырёх ветров",
+      "description": "Четыре медных гнезда соединены прозрачными трубками, внутри мерцает воздух.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "forge",
+        "since": null
+      }
+    },
+    {
+      "key": "tuning",
+      "kind": "item",
+      "name": "Камертон четырёх голосов",
+      "description": "Латунный камертон с четырьмя разными по форме подвесками.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "bells",
+        "since": null
+      }
+    },
+    {
+      "key": "notebook",
+      "kind": "item",
+      "name": "Тетрадь завтрашних дорог",
+      "description": "Книга в индиговой ткани с медными уголками и пустыми кремовыми страницами.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "ship",
+        "since": null
+      }
+    },
+    {
+      "key": "finn-gear-1",
+      "kind": "item",
+      "name": "Дорожная куртка Финна",
+      "description": "Дорожная куртка Финна",
+      "status": "active",
+      "existsSince": null
+    },
+    {
+      "key": "finn-gear-2",
+      "kind": "item",
+      "name": "Щит с медным листом",
+      "description": "Щит с медным листом",
+      "status": "active",
+      "existsSince": null
+    },
+    {
+      "key": "finn-gear-3",
+      "kind": "item",
+      "name": "Страховочная верёвка",
+      "description": "Страховочная верёвка",
+      "status": "active",
+      "existsSince": null
+    },
+    {
+      "key": "finn-gear-4",
+      "kind": "item",
+      "name": "Лесной бальзам",
+      "description": "Лесной бальзам",
+      "status": "active",
+      "existsSince": null
+    },
+    {
+      "key": "asya-gear-1",
+      "kind": "item",
+      "name": "Дорожная куртка Аси",
+      "description": "Дорожная куртка Аси",
+      "status": "active",
+      "existsSince": null
+    },
+    {
+      "key": "asya-gear-2",
+      "kind": "item",
+      "name": "Сумка травницы",
+      "description": "Сумка травницы",
+      "status": "active",
+      "existsSince": null
+    },
+    {
+      "key": "asya-gear-3",
+      "kind": "item",
+      "name": "Лесной бальзам",
+      "description": "Лесной бальзам",
+      "status": "active",
+      "existsSince": null
+    },
+    {
+      "key": "mika-gear-1",
+      "kind": "item",
+      "name": "Картографические инструменты",
+      "description": "Картографические инструменты",
+      "status": "active",
+      "existsSince": null
+    },
+    {
+      "key": "mika-gear-2",
+      "kind": "item",
+      "name": "Лесной бальзам",
+      "description": "Лесной бальзам",
+      "status": "active",
+      "existsSince": null
+    },
+    {
+      "key": "dock-keeper-a",
+      "kind": "creature",
+      "name": "Смотритель причала",
+      "description": "Латунный служебный автомат с мягкими упорами. Перед движением подаёт предупреждающий сигнал.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "harbor",
+        "since": null
+      },
+      "statBlock": {
+        "armorClass": 11,
+        "hitPoints": {
+          "max": 10,
+          "current": 10
+        },
+        "speedFt": 20,
+        "abilities": {
+          "str": 12,
+          "dex": 10,
+          "con": 12,
+          "int": 6,
+          "wis": 10,
+          "cha": 8
+        },
+        "savingThrows": {
+          "str": 1,
+          "dex": 0,
+          "con": 1,
+          "int": -2,
+          "wis": 0,
+          "cha": -1
+        },
+        "initiativeBonus": 0,
+        "attacksPerAction": 1,
+        "attacks": [
+          {
+            "attackId": "padded-arm",
+            "name": "Мягкий упор",
+            "kind": "melee",
+            "bonus": 2,
+            "reachFt": 5,
+            "damage": {
+              "count": 1,
+              "sides": 4,
+              "bonus": 1,
+              "type": "bludgeoning"
+            }
+          }
+        ],
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "key": "dock-keeper-b",
+      "kind": "creature",
+      "name": "Помощник смотрителя",
+      "description": "Латунный служебный автомат с мягкими упорами. Перед движением подаёт предупреждающий сигнал.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "harbor",
+        "since": null
+      },
+      "statBlock": {
+        "armorClass": 11,
+        "hitPoints": {
+          "max": 10,
+          "current": 10
+        },
+        "speedFt": 20,
+        "abilities": {
+          "str": 12,
+          "dex": 10,
+          "con": 12,
+          "int": 6,
+          "wis": 10,
+          "cha": 8
+        },
+        "savingThrows": {
+          "str": 1,
+          "dex": 0,
+          "con": 1,
+          "int": -2,
+          "wis": 0,
+          "cha": -1
+        },
+        "initiativeBonus": 0,
+        "attacksPerAction": 1,
+        "attacks": [
+          {
+            "attackId": "padded-arm",
+            "name": "Мягкий упор",
+            "kind": "melee",
+            "bonus": 2,
+            "reachFt": 5,
+            "damage": {
+              "count": 1,
+              "sides": 4,
+              "bonus": 1,
+              "type": "bludgeoning"
+            }
+          }
+        ],
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "key": "repairer",
+      "kind": "creature",
+      "name": "Латунный ремонтник",
+      "description": "Латунный служебный автомат с мягкими упорами. Перед движением подаёт предупреждающий сигнал.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "forge",
+        "since": null
+      },
+      "statBlock": {
+        "armorClass": 12,
+        "hitPoints": {
+          "max": 22,
+          "current": 22
+        },
+        "speedFt": 20,
+        "abilities": {
+          "str": 12,
+          "dex": 10,
+          "con": 12,
+          "int": 6,
+          "wis": 10,
+          "cha": 8
+        },
+        "savingThrows": {
+          "str": 1,
+          "dex": 0,
+          "con": 1,
+          "int": -2,
+          "wis": 0,
+          "cha": -1
+        },
+        "initiativeBonus": 0,
+        "attacksPerAction": 1,
+        "attacks": [
+          {
+            "attackId": "padded-arm",
+            "name": "Мягкий упор",
+            "kind": "melee",
+            "bonus": 3,
+            "reachFt": 5,
+            "damage": {
+              "count": 1,
+              "sides": 4,
+              "bonus": 1,
+              "type": "bludgeoning"
+            }
+          }
+        ],
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "key": "repeat-guardian",
+      "kind": "creature",
+      "name": "Страж повторения",
+      "description": "Латунный служебный автомат с мягкими упорами. Перед движением подаёт предупреждающий сигнал.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "lighthouse",
+        "since": null
+      },
+      "statBlock": {
+        "armorClass": 13,
+        "hitPoints": {
+          "max": 32,
+          "current": 32
+        },
+        "speedFt": 20,
+        "abilities": {
+          "str": 12,
+          "dex": 10,
+          "con": 12,
+          "int": 6,
+          "wis": 10,
+          "cha": 8
+        },
+        "savingThrows": {
+          "str": 1,
+          "dex": 0,
+          "con": 1,
+          "int": -2,
+          "wis": 0,
+          "cha": -1
+        },
+        "initiativeBonus": 0,
+        "attacksPerAction": 1,
+        "attacks": [
+          {
+            "attackId": "padded-arm",
+            "name": "Мягкий упор",
+            "kind": "melee",
+            "bonus": 3,
+            "reachFt": 5,
+            "damage": {
+              "count": 1,
+              "sides": 4,
+              "bonus": 1,
+              "type": "bludgeoning"
+            }
+          }
+        ],
+        "spells": [],
+        "conditions": []
+      }
+    }
+  ],
+  "party": [
+    "finn",
+    "asya",
+    "mika"
+  ],
+  "knowledge": [
+    {
+      "key": "public-harbor",
+      "scope": {
+        "kind": "PUBLIC"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Фонарная Гавань — город над облаками. Капитан Руна пригласила друзей на праздник у пристани.",
+      "subjects": [
+        "winds",
+        "harbor",
+        "runa"
+      ],
+      "knownSince": null,
+      "relations": []
+    },
+    {
+      "key": "party-opening",
+      "scope": {
+        "kind": "PARTY"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Вы давно знакомы и пришли на праздник вместе. Руна пригласила вас к общему столу; рядом пришвартован дом-корабль «Чайник».",
+      "subjects": [
+        "finn",
+        "asya",
+        "mika",
+        "runa",
+        "harbor",
+        "ship"
+      ],
+      "knownSince": null,
+      "relations": []
+    },
+    {
+      "key": "truth-1",
+      "scope": {
+        "kind": "WORLD_TRUTH"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "Маяк сравнивает живые пути между островами с Атласом. Его четыре кольца отвечают за течение, рост, голоса и направление. Он должен принимать свежие наблюдения жителей.",
+      "subjects": [
+        "severin",
+        "lighthouse"
+      ],
+      "knownSince": null,
+      "relations": []
+    },
+    {
+      "key": "truth-2",
+      "scope": {
+        "kind": "WORLD_TRUTH"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "После шторма семь лет назад картограф Северин включил режим Сохранённой минуты: карта стала образцом, которому мир обязан соответствовать. Временная защита действительно спасла тогда пристань, но теперь удерживает перемены.",
+      "subjects": [
+        "severin",
+        "lighthouse"
+      ],
+      "knownSince": null,
+      "relations": []
+    },
+    {
+      "key": "truth-3",
+      "scope": {
+        "kind": "WORLD_TRUTH"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "Руна подписала первый протокол вместе с Северином. Она знала о временной задержке, но не о продлении; свой стыд она скрывает, а свою помощь предлагает искренне.",
+      "subjects": [
+        "severin",
+        "lighthouse"
+      ],
+      "knownSince": null,
+      "relations": []
+    },
+    {
+      "key": "truth-4",
+      "scope": {
+        "kind": "WORLD_TRUTH"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "Северин удерживает режим из страха снова ошибиться. Он не хочет власти или чужой боли; он ошибочно считает, что никто не согласится взять ответственность за подвижный мир.",
+      "subjects": [
+        "severin",
+        "lighthouse"
+      ],
+      "knownSince": null,
+      "relations": []
+    },
+    {
+      "key": "truth-5",
+      "scope": {
+        "kind": "WORLD_TRUTH"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "Шпуль — служебный курьер Маяка. Он несёт пустую кассету для новых записей, а не батарею. Его память и жизнь никогда не являются ценой запуска.",
+      "subjects": [
+        "severin",
+        "lighthouse"
+      ],
+      "knownSince": null,
+      "relations": []
+    },
+    {
+      "key": "truth-6",
+      "scope": {
+        "kind": "WORLD_TRUTH"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "Кольца можно перенастроить на живые свидетельства, разделить их работу между местными фонарями или сохранить короткую добровольную сезонную паузу. Ни один способ не требует смерти, стирания памяти или предательства.",
+      "subjects": [
+        "severin",
+        "lighthouse"
+      ],
+      "knownSince": null,
+      "relations": []
+    },
+    {
+      "key": "truth-7",
+      "scope": {
+        "kind": "WORLD_TRUTH"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "Мир не разрушится по реальному таймеру. Если герои отступят, маяк удержит острова на безопасных якорных стоянках: часть путей закроется, и история продолжится с меньшего масштаба.",
+      "subjects": [
+        "severin",
+        "lighthouse"
+      ],
+      "knownSince": null,
+      "relations": []
+    },
+    {
+      "key": "runa-knows-1",
+      "scope": {
+        "kind": "NPC",
+        "holder": "runa"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Северин живёт в стеклянном дворце; адрес есть в старых почтовых книгах.",
+      "subjects": [
+        "runa"
+      ],
+      "attributedTo": "runa",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "runa-knows-2",
+      "scope": {
+        "kind": "NPC",
+        "holder": "runa"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Семь лет назад она подписала временную остановку маршрута; продления не видела.",
+      "subjects": [
+        "runa"
+      ],
+      "attributedTo": "runa",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "GUARDED"
+    },
+    {
+      "key": "runa-knows-3",
+      "scope": {
+        "kind": "NPC",
+        "holder": "runa"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Чтобы маяк слушал острова, ему нужны свежие наблюдения, а не редкие драгоценности.",
+      "subjects": [
+        "runa"
+      ],
+      "attributedTo": "runa",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "runa-private",
+      "scope": {
+        "kind": "NPC",
+        "holder": "runa"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "Стыдится подписи под старым протоколом. При прямом вопросе признаётся; не нужна успешная проверка.",
+      "subjects": [
+        "runa"
+      ],
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "GUARDED"
+    },
+    {
+      "key": "runa-direction",
+      "scope": {
+        "kind": "DM"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Вернуть кораблю экипаж, а себе — смелость говорить неприятную правду. Не командует героями и не решает загадки за них. Отдаёт корабль в пользование, остаётся связной в гавани. Открыто делится маршрутами с вечера 1. О подписи говорит после найденного протокола или при честном прямом разговоре.",
+      "subjects": [
+        "runa"
+      ],
+      "knownSince": null,
+      "relations": []
+    },
+    {
+      "key": "spool-knows-1",
+      "scope": {
+        "kind": "NPC",
+        "holder": "spool"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Носит пустую кассету для записи наблюдений.",
+      "subjects": [
+        "spool"
+      ],
+      "attributedTo": "spool",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "spool-knows-2",
+      "scope": {
+        "kind": "NPC",
+        "holder": "spool"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Умеет повторить три коротких звука, но не знает, что они означают.",
+      "subjects": [
+        "spool"
+      ],
+      "attributedTo": "spool",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "spool-knows-3",
+      "scope": {
+        "kind": "NPC",
+        "holder": "spool"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Его прежний маршрут заканчивался у Маяка.",
+      "subjects": [
+        "spool"
+      ],
+      "attributedTo": "spool",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "spool-private",
+      "scope": {
+        "kind": "NPC",
+        "holder": "spool"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "На внутренней крышке написано «курьер, не источник питания». Этот факт можно узнать без разборки и риска.",
+      "subjects": [
+        "spool"
+      ],
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "GUARDED"
+    },
+    {
+      "key": "spool-direction",
+      "scope": {
+        "kind": "DM"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Выбрать собственный адрес, а не всегда доставлять чужие письма. Не боевая единица, не бессмертная отмычка и не носитель всех ответов. Просит разрешения перед тем, как что-то взять. О пустой кассете говорит в вечере 2; надпись показывает по просьбе. Его личность не является тайным злодеем.",
+      "subjects": [
+        "spool"
+      ],
+      "knownSince": null,
+      "relations": []
+    },
+    {
+      "key": "pom-knows-1",
+      "scope": {
+        "kind": "NPC",
+        "holder": "pom"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Плоды перестали зреть после появления одинакового кольца на водяном датчике.",
+      "subjects": [
+        "pom"
+      ],
+      "attributedTo": "pom",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "pom-knows-2",
+      "scope": {
+        "kind": "NPC",
+        "holder": "pom"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Рост возвращается, когда канал получает воду по новому руслу.",
+      "subjects": [
+        "pom"
+      ],
+      "attributedTo": "pom",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "pom-knows-3",
+      "scope": {
+        "kind": "NPC",
+        "holder": "pom"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "В библиотеке хранятся прежние версии схем.",
+      "subjects": [
+        "pom"
+      ],
+      "attributedTo": "pom",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "pom-private",
+      "scope": {
+        "kind": "NPC",
+        "holder": "pom"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "Боится, что его собственный новый сорт окажется никому не нужен.",
+      "subjects": [
+        "pom"
+      ],
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "GUARDED"
+    },
+    {
+      "key": "pom-direction",
+      "scope": {
+        "kind": "DM"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Чтобы сад снова рос, не торопя старую черепаху. Не отдаст росток тому, кто обещает командовать черепахой; предложит совместную заботу. Данные открыты; о страхе говорит тому, кто спросит о его работе.",
+      "subjects": [
+        "pom"
+      ],
+      "knownSince": null,
+      "relations": []
+    },
+    {
+      "key": "saffra-knows-1",
+      "scope": {
+        "kind": "NPC",
+        "holder": "saffra"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Протокол разрешал остановку ровно на одну минуту.",
+      "subjects": [
+        "saffra"
+      ],
+      "attributedTo": "saffra",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "saffra-knows-2",
+      "scope": {
+        "kind": "NPC",
+        "holder": "saffra"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Ежегодные правки перестали приходить шесть лет назад.",
+      "subjects": [
+        "saffra"
+      ],
+      "attributedTo": "saffra",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "saffra-knows-3",
+      "scope": {
+        "kind": "NPC",
+        "holder": "saffra"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Три разных очевидца описывают спасение кораблей через новый путь.",
+      "subjects": [
+        "saffra"
+      ],
+      "attributedTo": "saffra",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "saffra-private",
+      "scope": {
+        "kind": "NPC",
+        "holder": "saffra"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "Раньше она принимала печать за доказательство истинности; теперь отмечает источник каждого рассказа.",
+      "subjects": [
+        "saffra"
+      ],
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "GUARDED"
+    },
+    {
+      "key": "saffra-direction",
+      "scope": {
+        "kind": "DM"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Сохранить разные свидетельства, даже если они противоречат её любимой версии. Не даст уничтожить оригинал, но бесплатно сделает копию и прочитает текст вслух. Все три документа доступны после помощи с бумажными лодками или простой просьбы.",
+      "subjects": [
+        "saffra"
+      ],
+      "knownSince": null,
+      "relations": []
+    },
+    {
+      "key": "vey-knows-1",
+      "scope": {
+        "kind": "NPC",
+        "holder": "vey"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "В зеркале мастерской виден новый маршрут к Кузнице.",
+      "subjects": [
+        "vey"
+      ],
+      "attributedTo": "vey",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "vey-knows-2",
+      "scope": {
+        "kind": "NPC",
+        "holder": "vey"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Пустая рамка отражает настоящее без исправлений.",
+      "subjects": [
+        "vey"
+      ],
+      "attributedTo": "vey",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "vey-knows-3",
+      "scope": {
+        "kind": "NPC",
+        "holder": "vey"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Северин покупал здесь стекло, но не говорил о целях.",
+      "subjects": [
+        "vey"
+      ],
+      "attributedTo": "vey",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "vey-private",
+      "scope": {
+        "kind": "NPC",
+        "holder": "vey"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "Прячет собственное неудачное изобретение — зеркало, показывающее только добрые поступки продавца.",
+      "subjects": [
+        "vey"
+      ],
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "GUARDED"
+    },
+    {
+      "key": "vey-direction",
+      "scope": {
+        "kind": "DM"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Совершить сделку, которую потом будут пересказывать с удовольствием. Не забирает настоящие воспоминания, имена или свободу. Обмен — рассказ, работа, монеты либо вежливый отказ. Маршрут можно получить у грузчиков бесплатно; сделка не обязательна.",
+      "subjects": [
+        "vey"
+      ],
+      "knownSince": null,
+      "relations": []
+    },
+    {
+      "key": "ilyr-knows-1",
+      "scope": {
+        "kind": "NPC",
+        "holder": "ilyr"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Кольца маяка принимают независимые сигналы.",
+      "subjects": [
+        "ilyr"
+      ],
+      "attributedTo": "ilyr",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "ilyr-knows-2",
+      "scope": {
+        "kind": "NPC",
+        "holder": "ilyr"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Распределённая сеть медленнее единого маяка, зато один отказ не останавливает всё.",
+      "subjects": [
+        "ilyr"
+      ],
+      "attributedTo": "ilyr",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "ilyr-knows-3",
+      "scope": {
+        "kind": "NPC",
+        "holder": "ilyr"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Для аварийной остановки надо сначала отсоединить источник сравнения.",
+      "subjects": [
+        "ilyr"
+      ],
+      "attributedTo": "ilyr",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "ilyr-private",
+      "scope": {
+        "kind": "NPC",
+        "holder": "ilyr"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "Гордится своим прототипом, но прямо признаёт, что его никто ещё не испытывал на целом архипелаге.",
+      "subjects": [
+        "ilyr"
+      ],
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "GUARDED"
+    },
+    {
+      "key": "ilyr-direction",
+      "scope": {
+        "kind": "DM"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Построить систему, которую смогут чинить другие. Не строит единственную чудесную кнопку, которая решит чужое согласие. Объясняет риски каждого плана без проверки навыка.",
+      "subjects": [
+        "ilyr"
+      ],
+      "knownSince": null,
+      "relations": []
+    },
+    {
+      "key": "omb-knows-1",
+      "scope": {
+        "kind": "NPC",
+        "holder": "omb"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Звёзды и острова всё время немного меняют положение.",
+      "subjects": [
+        "omb"
+      ],
+      "attributedTo": "omb",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "omb-knows-2",
+      "scope": {
+        "kind": "NPC",
+        "holder": "omb"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Руна спасла корабли, открыв новый путь; первоначальная неподвижная карта была неточной.",
+      "subjects": [
+        "omb"
+      ],
+      "attributedTo": "omb",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "omb-knows-3",
+      "scope": {
+        "kind": "NPC",
+        "holder": "omb"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Дворец виден с высокой дуги его маршрута.",
+      "subjects": [
+        "omb"
+      ],
+      "attributedTo": "omb",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "omb-private",
+      "scope": {
+        "kind": "NPC",
+        "holder": "omb"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "Ему дорог старый маршрут, хотя новый удобнее; он понимает страх Северина, но не оправдывает принуждение.",
+      "subjects": [
+        "omb"
+      ],
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "GUARDED"
+    },
+    {
+      "key": "omb-direction",
+      "scope": {
+        "kind": "DM"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Продолжать ходить своим путём, не превращаясь в неподвижный остров. Не телепортирует к ответу; может безопасно отвезти по известному маршруту. Рассказывает при совместном наблюдении, без требования выиграть бой.",
+      "subjects": [
+        "omb"
+      ],
+      "knownSince": null,
+      "relations": []
+    },
+    {
+      "key": "kanto-knows-1",
+      "scope": {
+        "kind": "NPC",
+        "holder": "kanto"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Каждый колокол слышен в своей части города.",
+      "subjects": [
+        "kanto"
+      ],
+      "attributedTo": "kanto",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "kanto-knows-2",
+      "scope": {
+        "kind": "NPC",
+        "holder": "kanto"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Последняя настройка велела всем колоколам повторять один тон.",
+      "subjects": [
+        "kanto"
+      ],
+      "attributedTo": "kanto",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "kanto-knows-3",
+      "scope": {
+        "kind": "NPC",
+        "holder": "kanto"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Отдельные голоса могут звучать по очереди, сохраняя общую мелодию.",
+      "subjects": [
+        "kanto"
+      ],
+      "attributedTo": "kanto",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "kanto-private",
+      "scope": {
+        "kind": "NPC",
+        "holder": "kanto"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "Сам иногда любит порядок больше, чем неудобные вопросы; признает это, если ему покажут.",
+      "subjects": [
+        "kanto"
+      ],
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "GUARDED"
+    },
+    {
+      "key": "kanto-direction",
+      "scope": {
+        "kind": "DM"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Услышать решение города, а не самый громкий голос. Не принимает красноречие одного героя за согласие всего города. Открытые протоколы и демонстрация; никакого тайного правильного мнения.",
+      "subjects": [
+        "kanto"
+      ],
+      "knownSince": null,
+      "relations": []
+    },
+    {
+      "key": "severin-knows-1",
+      "scope": {
+        "kind": "NPC",
+        "holder": "severin"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Сам продлевал режим Сохранённой минуты.",
+      "subjects": [
+        "severin"
+      ],
+      "attributedTo": "severin",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "GUARDED"
+    },
+    {
+      "key": "severin-knows-2",
+      "scope": {
+        "kind": "NPC",
+        "holder": "severin"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Единый Атлас должен снова принимать новые наблюдения.",
+      "subjects": [
+        "severin"
+      ],
+      "attributedTo": "severin",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "GUARDED"
+    },
+    {
+      "key": "severin-knows-3",
+      "scope": {
+        "kind": "NPC",
+        "holder": "severin"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Вход на мост маяка открывается вручную и не требует его тела, памяти или личного предмета.",
+      "subjects": [
+        "severin"
+      ],
+      "attributedTo": "severin",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "GUARDED"
+    },
+    {
+      "key": "severin-private",
+      "scope": {
+        "kind": "NPC",
+        "holder": "severin"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "Сохранил чайный стол того дня, когда Руна ещё верила ему без вопросов. Друг жив и может уйти или остаться по собственному желанию.",
+      "subjects": [
+        "severin"
+      ],
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "GUARDED"
+    },
+    {
+      "key": "severin-direction",
+      "scope": {
+        "kind": "DM"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Быть уверенным, что следующая ошибка не причинит никому беды. Ему можно сочувствовать и одновременно отказать в праве управлять всеми. Прощение и должность не обязательны. Признаётся при предъявлении протокола, при разговоре о последствиях или после осмотра рычага. Проверка убеждения не блокирует правду.",
+      "subjects": [
+        "severin"
+      ],
+      "knownSince": null,
+      "relations": []
+    }
+  ],
+  "relationships": [
+    {
+      "npc": "runa",
+      "attitude": "FRIENDLY"
+    },
+    {
+      "npc": "spool",
+      "attitude": "FRIENDLY"
+    },
+    {
+      "npc": "pom",
+      "attitude": "FRIENDLY"
+    },
+    {
+      "npc": "saffra",
+      "attitude": "FRIENDLY"
+    },
+    {
+      "npc": "vey",
+      "attitude": "FRIENDLY"
+    },
+    {
+      "npc": "ilyr",
+      "attitude": "FRIENDLY"
+    },
+    {
+      "npc": "omb",
+      "attitude": "FRIENDLY"
+    },
+    {
+      "npc": "kanto",
+      "attitude": "FRIENDLY"
+    },
+    {
+      "npc": "severin",
+      "attitude": "WARY"
+    }
+  ],
+  "possessions": [
+    {
+      "item": "finn-gear-1",
+      "holder": "finn",
+      "catalog": "traveller-jerkin",
+      "quantity": 1
+    },
+    {
+      "item": "finn-gear-2",
+      "holder": "finn",
+      "catalog": "oak-buckler",
+      "quantity": 1
+    },
+    {
+      "item": "finn-gear-3",
+      "holder": "finn",
+      "catalog": "hemp-rope",
+      "quantity": 1
+    },
+    {
+      "item": "finn-gear-4",
+      "holder": "finn",
+      "catalog": "woodland-balm",
+      "quantity": 1
+    },
+    {
+      "item": "asya-gear-1",
+      "holder": "asya",
+      "catalog": "traveller-jerkin",
+      "quantity": 1
+    },
+    {
+      "item": "asya-gear-2",
+      "holder": "asya",
+      "catalog": "herbalist-pouch",
+      "quantity": 1
+    },
+    {
+      "item": "asya-gear-3",
+      "holder": "asya",
+      "catalog": "woodland-balm",
+      "quantity": 1
+    },
+    {
+      "item": "mika-gear-1",
+      "holder": "mika",
+      "catalog": "cartographer-tools",
+      "quantity": 1
+    },
+    {
+      "item": "mika-gear-2",
+      "holder": "mika",
+      "catalog": "woodland-balm",
+      "quantity": 1
+    }
+  ],
+  "clues": [
+    {
+      "key": "festival-loop",
+      "entity": "e-festival-loop",
+      "method": "inspect",
+      "statement": "Фонарь, остывание пирога и чернила повторяют один короткий отрезок; дело не только в изображении.",
+      "subjects": [
+        "harbor"
+      ]
+    },
+    {
+      "key": "harbor-log",
+      "entity": "e-harbor-log",
+      "method": "inspect",
+      "statement": "Задержки отмечены на нескольких островах. Руна предлагает проверить сад, библиотеку и базар.",
+      "subjects": [
+        "orchard",
+        "library",
+        "market",
+        "runa"
+      ]
+    },
+    {
+      "key": "courier-label",
+      "entity": "e-courier-label",
+      "method": "inspect",
+      "statement": "Шпуль — курьер. Его кассета хранит копии наблюдений; она не служит источником питания.",
+      "subjects": [
+        "spool"
+      ]
+    },
+    {
+      "key": "route-plate",
+      "entity": "e-route-plate",
+      "method": "inspect",
+      "statement": "Острова дрейфуют: наблюдение сегодняшнего ветра точнее неподвижной старой линии.",
+      "subjects": [
+        "ship",
+        "orchard",
+        "library",
+        "market"
+      ]
+    },
+    {
+      "key": "growth-ring",
+      "entity": "e-growth-ring",
+      "method": "inspect",
+      "statement": "Вода разворачивается у датчика, сверяющего течение со старой схемой.",
+      "subjects": [
+        "orchard"
+      ]
+    },
+    {
+      "key": "water-route",
+      "entity": "e-water-route",
+      "method": "inspect",
+      "statement": "Воду можно направить в обход датчика, не двигая черепаху и не повреждая деревья.",
+      "subjects": [
+        "orchard",
+        "pom"
+      ]
+    },
+    {
+      "key": "one-minute-protocol",
+      "entity": "e-one-minute-protocol",
+      "method": "inspect",
+      "statement": "Руна и Северин разрешили остановить маршрут ровно на одну минуту во время шторма семь лет назад.",
+      "subjects": [
+        "runa",
+        "severin"
+      ]
+    },
+    {
+      "key": "witness-copies",
+      "entity": "e-witness-copies",
+      "method": "inspect",
+      "statement": "Капитаны вышли по новому проходу Руны. Омб видел спасение; официальная открытка приписывает всё старой карте.",
+      "subjects": [
+        "runa",
+        "omb",
+        "observatory"
+      ]
+    },
+    {
+      "key": "missing-updates",
+      "entity": "e-missing-updates",
+      "method": "inspect",
+      "statement": "Шесть лет в Атлас не поступают новые правки. Сафра хранит адреса Омба, Кузницы и Зеркального Базара.",
+      "subjects": [
+        "observatory",
+        "forge",
+        "market"
+      ]
+    },
+    {
+      "key": "unfiltered-mirror",
+      "entity": "e-unfiltered-mirror",
+      "method": "inspect",
+      "statement": "Старое отражение можно отличить от настоящего вида по звуку и краю рамы; повернуть панель безопасно.",
+      "subjects": [
+        "market",
+        "vey"
+      ]
+    },
+    {
+      "key": "cargo-route",
+      "entity": "e-cargo-route",
+      "method": "inspect",
+      "statement": "Грузовой паром идёт в Облачную Кузницу; Северин заказывал стекло, но заказ не указывает его целей.",
+      "subjects": [
+        "forge",
+        "ilyr",
+        "severin"
+      ]
+    },
+    {
+      "key": "four-inputs",
+      "entity": "e-four-inputs",
+      "method": "inspect",
+      "statement": "Кольца отвечают за течение, рост, голоса и направление. Они принимают независимые свежие сигналы.",
+      "subjects": [
+        "lighthouse",
+        "ilyr"
+      ]
+    },
+    {
+      "key": "safe-disconnect",
+      "entity": "e-safe-disconnect",
+      "method": "inspect",
+      "statement": "Сначала удержать кольца, затем отсоединить старую карту сравнения, потом проверять новый сигнал. Есть запасной ручной режим.",
+      "subjects": [
+        "lighthouse",
+        "ilyr"
+      ]
+    },
+    {
+      "key": "moving-stars",
+      "entity": "e-moving-stars",
+      "method": "inspect",
+      "statement": "Звёзды и острова меняют положение; свежий снимок даёт направление к стеклянному дворцу.",
+      "subjects": [
+        "winter",
+        "observatory"
+      ]
+    },
+    {
+      "key": "rescue-route",
+      "entity": "e-rescue-route",
+      "method": "inspect",
+      "statement": "Омб видел: остановка удержала причал, а новый проход Руны позволил кораблям выйти. Нужны были оба действия.",
+      "subjects": [
+        "omb",
+        "runa",
+        "harbor"
+      ]
+    },
+    {
+      "key": "separate-voices",
+      "entity": "e-separate-voices",
+      "method": "inspect",
+      "statement": "Принудительный общий тон подавляет отдельные каналы. Их можно разъединить и выбрать расписание.",
+      "subjects": [
+        "bells",
+        "kanto"
+      ]
+    },
+    {
+      "key": "bell-order",
+      "entity": "e-bell-order",
+      "method": "inspect",
+      "statement": "Лист раньше волны; звезда сразу после волны; колокол после звезды. Ручное расписание возможно без мелодии.",
+      "subjects": [
+        "bells"
+      ]
+    },
+    {
+      "key": "captain-addendum",
+      "entity": "e-captain-addendum",
+      "method": "inspect",
+      "statement": "В старом письме Руна соглашается на временную защиту и просит вернуть обновление карты после выхода кораблей. Последующие продления в письме не согласованы.",
+      "subjects": [
+        "runa",
+        "severin",
+        "winter"
+      ]
+    },
+    {
+      "key": "extension-register",
+      "entity": "e-extension-register",
+      "method": "inspect",
+      "statement": "Северин сам продлевал режим Сохранённой минуты. Система удерживает изменения ради совпадения со старым Атласом.",
+      "subjects": [
+        "severin",
+        "lighthouse"
+      ]
+    },
+    {
+      "key": "manual-door",
+      "entity": "e-manual-door",
+      "method": "inspect",
+      "statement": "Ручка открывает настоящий мост к Маяку. Личный ключ или согласие хранителя не являются техническим условием.",
+      "subjects": [
+        "lighthouse",
+        "winter"
+      ]
+    },
+    {
+      "key": "courier-proof",
+      "entity": "e-courier-proof",
+      "method": "inspect",
+      "statement": "Маяк питается ветром. Кассета только передаёт записи; Шпуль не нужен как источник энергии или жертва.",
+      "subjects": [
+        "lighthouse",
+        "spool"
+      ]
+    },
+    {
+      "key": "lighthouse-controls",
+      "entity": "e-lighthouse-controls",
+      "method": "inspect",
+      "statement": "После отключения старого сравнения можно проверить один канал, затем подключить выбранный общий или местный режим с ручной остановкой.",
+      "subjects": [
+        "lighthouse"
+      ]
+    }
+  ],
+  "conflicts": [
+    {
+      "key": "living-map",
+      "title": "Карта и живой мир",
+      "description": "Острова меняются, но общий механизм удерживает старую схему.",
+      "actors": [
+        "severin",
+        "runa",
+        "ilyr"
+      ],
+      "stakes": "Свободные пути, понятная ответственность и возможность исправлять ошибки."
+    },
+    {
+      "key": "whose-voice",
+      "title": "Чьё завтра",
+      "description": "Жители хотят разного ритма и ищут способ слышать друг друга.",
+      "actors": [
+        "kanto",
+        "pom",
+        "omb",
+        "vey"
+      ],
+      "stakes": "Общее решение без исчезновения отдельных голосов."
+    }
+  ],
+  "situations": [
+    {
+      "key": "festival",
+      "title": "Вечер, который забыл закончиться",
+      "location": "harbor",
+      "description": "Подружить героев, дать им собственный маленький успех и заметить сбой времени. Фонарики поднимаются над крышами, будто кто-то отпускает в небо тёплые яблоки. Пекарь хлопает ладонями: «Последний пирог!» И тут же повторяет: «Последний пирог!» Один и тот же фонарик трижды пролетает мимо трубы. Под вашим столом звякает лис. Во рту у него булочка, а на морде — выражение крайне ответственного служащего.",
+      "hooks": [
+        "Подружить героев, дать им собственный маленький успех и заметить сбой времени."
+      ],
+      "participants": [
+        "runa",
+        "spool"
+      ],
+      "clueKeys": [
+        "festival-loop",
+        "harbor-log"
+      ],
+      "approaches": [
+        "Знакомиться с горожанами",
+        "Участвовать в состязании",
+        "Тихо наблюдать",
+        "Проследить за фонарём",
+        "Сравнить часы и квитанцию",
+        "Расспросить пекаря и Руну",
+        "Объяснить временную ошибку и показать часы",
+        "Переставить ярлыки при участии грузчиков",
+        "Провести необязательный бой «Смотрители причала»"
+      ],
+      "developments": [
+        {
+          "if": "Герои помогли смотрителям без боя",
+          "then": "На прощание те аккуратно загружают припасы и называют экипаж «временными специалистами по завтра»."
+        },
+        {
+          "if": "Герои предпочли остаться на празднике",
+          "then": "Позвольте им закончить вечер. Утром Руна приносит письмо от садовника; задача ждёт, никто не погибает."
+        }
+      ]
+    },
+    {
+      "key": "first-flight",
+      "title": "Дом, который выбрал дорогу",
+      "location": "ship",
+      "description": "Сделать корабль общим домом; научить совместным решениям и открыть свободный выбор маршрута. «Чайник» скрипит, как уютное кресло. На крыше посвистывает маленькая труба. Вы снимаете последний канат — и пристань остаётся внизу. Облако касается окна, словно заглядывает в гости. Шпуль торжественно кладёт на стол три гайки: «Команда укомплектована. Осталось выяснить, какая гайка капитан».",
+      "hooks": [
+        "Сделать корабль общим домом; научить совместным решениям и открыть свободный выбор маршрута."
+      ],
+      "participants": [
+        "spool"
+      ],
+      "clueKeys": [
+        "courier-label",
+        "route-plate"
+      ],
+      "approaches": [
+        "Обустройство каюты",
+        "Название корабельного правила",
+        "Первый общий завтрак",
+        "Испытать маршрут маленьким предметом",
+        "Попросить помощь проходящего парома",
+        "Нарисовать собственный обход",
+        "Записать первый звук путешествия",
+        "Проверить устройство с согласия Шпуля",
+        "Ответить на письмо садовника"
+      ],
+      "developments": [
+        {
+          "if": "Команда проверила новый путь",
+          "then": "Позже сможет привести собственное наблюдение на совете, даже если пропустит часть островов."
+        },
+        {
+          "if": "Команда выбирает другой остров",
+          "then": "Перейдите к нужной главе; письмо Пома остаётся доступным, а его сад переживёт ожидание."
+        }
+      ]
+    },
+    {
+      "key": "orchard",
+      "title": "Яблоко, которое не хотело становиться завтраком",
+      "location": "orchard",
+      "description": "Показать конкретную цену неподвижности и дать первую полезную альтернативу старой схеме. Черепаха открывает один глаз. «Если вы за яблоками, — говорит она, — вчера они были почти готовы». Пом тихо добавляет: «И позавчера тоже». По стеклянному желобу бежит вода, доходит до медного кольца — и той же каплей возвращается назад.",
+      "hooks": [
+        "Показать конкретную цену неподвижности и дать первую полезную альтернативу старой схеме."
+      ],
+      "participants": [
+        "pom"
+      ],
+      "clueKeys": [
+        "growth-ring",
+        "water-route"
+      ],
+      "approaches": [
+        "Осмотр каналов",
+        "Разговор с черепахой",
+        "Помощь Пому с корзинами",
+        "Проложить обходной канал",
+        "Полить деревья вместе с жителями",
+        "Договориться с маленькой тучей",
+        "Разделить плод и записать наблюдение",
+        "Отнести плод как доказательство",
+        "Остаться до следующего созревания"
+      ],
+      "developments": [
+        {
+          "if": "Сад получил устойчивый полив",
+          "then": "На совет прибывает корзина нового сорта, названного игроками."
+        },
+        {
+          "if": "Герои лишь собрали сведения и ушли",
+          "then": "Пом сам организует ручной полив и просит в финале долгосрочное решение; он не обвиняет детей."
+        }
+      ]
+    },
+    {
+      "key": "library",
+      "title": "Книга с двумя правдивыми концами",
+      "location": "library",
+      "description": "Научить различать документ, свидетельство и догадку; получить честный поворот о подписи Руны. Книга подплывает к вам в бумажной лодочке. За ней вторая — в точно такой же. На обложках одинаковая дата, но первая сухая, а вторая пахнет дождём. «Прекрасно, — говорит Сафра. — Сегодня история сама пришла сравнить показания».",
+      "hooks": [
+        "Научить различать документ, свидетельство и догадку; получить честный поворот о подписи Руны."
+      ],
+      "participants": [
+        "saffra"
+      ],
+      "clueKeys": [
+        "one-minute-protocol",
+        "witness-copies",
+        "missing-updates"
+      ],
+      "approaches": [
+        "Спасти бумажный караван",
+        "Сразу попросить документы",
+        "Просмотреть старые карты",
+        "Сопоставить даты и источник",
+        "Написать Руне прямой вопрос",
+        "Найти очевидца — кита Омба",
+        "Оставить несколько проверяемых версий",
+        "Добавить новое наблюдение",
+        "Отложить вывод и взять копии"
+      ],
+      "developments": [
+        {
+          "if": "Герои сразу спрашивают Руну",
+          "then": "Она признаётся сейчас. Вечер 9 станет обсуждением ответственности, а не повторным искусственным разоблачением."
+        },
+        {
+          "if": "Герои скрыли копии от Руны",
+          "then": "Она не читает их мысли. Признание ждёт разговора или совета."
+        }
+      ]
+    },
+    {
+      "key": "market",
+      "title": "Цена хорошей истории",
+      "location": "market",
+      "description": "Дать весёлый социальный вечер, пространство личному выбору Тэс и полезный инструмент без обязательной платы воспоминаниями. В одном зеркале идёт снег, в другом жарят каштаны, а третье отражает только тех, кто ещё не завтракал. «Редчайшая точность!» — уверяет продавец. Вей раскрывает три кармана: из первого выглядывает ветер, из второго — счёт, из третьего — носовой платок, которым очень гордятся первые два.",
+      "hooks": [
+        "Дать весёлый социальный вечер, пространство личному выбору Тэс и полезный инструмент без обязательной платы воспоминаниями."
+      ],
+      "participants": [
+        "vey"
+      ],
+      "clueKeys": [
+        "unfiltered-mirror",
+        "cargo-route"
+      ],
+      "approaches": [
+        "Рассказать историю вместе",
+        "Помочь на пристани",
+        "Договориться о прокате",
+        "Отказаться и идти дальше",
+        "Повернуть зеркало",
+        "Послушать реальный звук",
+        "Сравнить независимое отражение",
+        "Назвать всех соавторов",
+        "Выбрать общее имя маршрута",
+        "Взять славу себе и принять реакцию"
+      ],
+      "developments": [
+        {
+          "if": "Условия сделки соблюдены",
+          "then": "Вей пришлёт отражатель для совета, не потребовав нового платежа."
+        },
+        {
+          "if": "Герои нарушили обещание вернуть прокат",
+          "then": "Он попросит возврат или объяснение. Это конкретный незакрытый долг, не проклятие и не потеря пути к финалу."
+        }
+      ]
+    },
+    {
+      "key": "forge",
+      "title": "Мост, который собирают вместе",
+      "location": "forge",
+      "description": "Повернуть расследование к решению; дать совместную инженерную сцену и честно назвать альтернативы финала. Молот бьёт по наковальне — и звук опаздывает на целую секунду. Мастер Ильер ловит его ухом, словно муху. «Сначала думал, инструмент устал. Теперь подозреваю, что устало правило». За его спиной вращается мост, у которого пока нет середины.",
+      "hooks": [
+        "Повернуть расследование к решению; дать совместную инженерную сцену и честно назвать альтернативы финала."
+      ],
+      "participants": [
+        "ilyr"
+      ],
+      "clueKeys": [
+        "four-inputs",
+        "safe-disconnect"
+      ],
+      "approaches": [
+        "Показать находки",
+        "Провести собственный опыт",
+        "Спросить о разных решениях",
+        "Собрать временный мост",
+        "Перевезти деталь на люльке",
+        "Обойти по нижней площадке",
+        "Перевести автомат на ручной режим",
+        "Согласовать новый шаблон",
+        "Необязательная схватка «Ремонтник»",
+        "Обсудить планы финала"
+      ],
+      "developments": [
+        {
+          "if": "Герои договорились о проверяемом плане",
+          "then": "Ильер подготовит нужные детали; это помощь с монтажом, а не автоматическая победа."
+        },
+        {
+          "if": "Герои ещё не выбрали устройство будущего",
+          "then": "Так и должно быть: у жителей тоже будет голос. Мастер выдаёт универсальную перемычку."
+        }
+      ]
+    },
+    {
+      "key": "observatory",
+      "title": "Почта для большой звезды",
+      "location": "observatory",
+      "description": "Дать чувство огромного мира, проверить прошлое и найти путь к дворцу без единственного ключа. Остров под вами медленно поднимается. Потом вы понимаете, что это спина. Ещё позже — что глаза у этого острова добрые. «Почта слева, чай справа, — гудит Омб. — На звёзды смотреть можно в любом направлении. Только не ставьте кружки на телескоп».",
+      "hooks": [
+        "Дать чувство огромного мира, проверить прошлое и найти путь к дворцу без единственного ключа."
+      ],
+      "participants": [
+        "omb"
+      ],
+      "clueKeys": [
+        "moving-stars",
+        "rescue-route"
+      ],
+      "approaches": [
+        "Разобрать почту",
+        "Познакомиться с Омбом",
+        "Посмотреть на мир сверху",
+        "Сравнить наблюдения",
+        "Расспросить очевидца",
+        "Проверить карту собственным полётом",
+        "Помочь сохранить важное место",
+        "Предложить новый обычай",
+        "Спросить о страхе Северина"
+      ],
+      "developments": [
+        {
+          "if": "Помогли почте",
+          "then": "На совет своевременно приходят ответы союзников."
+        },
+        {
+          "if": "Главу пропустили",
+          "then": "Координаты есть у Сафры и в грузовом журнале Руны; свидетельство шторма можно получить письмом."
+        }
+      ]
+    },
+    {
+      "key": "bells",
+      "title": "Город, который говорил хором",
+      "location": "bells",
+      "description": "Разыграть содержательную музыкальную загадку без проверки слуха; дать всем троим равное право на решение. Четыре колокола бьют — и получается один длинный звук. На площади торговка начинает фразу, садовник её продолжает, а почтальон заканчивает совсем о другом. Канто поправляет жилет: «У нас чудесное единство. Только никто не может заказать свой суп».",
+      "hooks": [
+        "Разыграть содержательную музыкальную загадку без проверки слуха; дать всем троим равное право на решение."
+      ],
+      "participants": [
+        "kanto"
+      ],
+      "clueKeys": [
+        "separate-voices",
+        "bell-order"
+      ],
+      "approaches": [
+        "Слушать жителей",
+        "Осмотреть пульт",
+        "Сразу попробовать новый порядок",
+        "Расположить карточки по условиям",
+        "Попросить Канто показать пример",
+        "Отключить общий тон и назначить временное расписание",
+        "Добавить тихий сигнал",
+        "Развести расписание",
+        "Оставить кварталу собственный порядок"
+      ],
+      "developments": [
+        {
+          "if": "Учтено тихое окно",
+          "then": "Сторож пришлёт записку благодарности и первым увидит безопасный подход к Маяку."
+        },
+        {
+          "if": "Решение временное",
+          "then": "Канто предложит на совете срок пересмотра; несовершенное решение остаётся честным."
+        }
+      ]
+    },
+    {
+      "key": "council",
+      "title": "Свободное место за столом",
+      "location": "harbor",
+      "description": "Вернуть последствия прошлых решений, завершить поворот Руны и подготовить собственный план партии. В гавани пахнет тем самым пирогом, но стол стал длиннее. На нём яблоки, письма, камертон и несколько пустых мест. Руна снимает капитанскую шляпу. «Сегодня я хочу сначала ответить. Потом — слушать».",
+      "hooks": [
+        "Вернуть последствия прошлых решений, завершить поворот Руны и подготовить собственный план партии."
+      ],
+      "participants": [
+        "runa"
+      ],
+      "clueKeys": [],
+      "approaches": [
+        "Показать улики",
+        "Пригласить союзника",
+        "Обсудить ещё неизвестное",
+        "Попросить публичного признания",
+        "Принять помощь с ограничениями",
+        "Сохранить дистанцию",
+        "Отложить разговор",
+        "Выбрать проект",
+        "Оставить два варианта до осмотра",
+        "Предложить гибрид",
+        "Сначала защитить гавань и отложить запуск"
+      ],
+      "developments": [
+        {
+          "if": "Руне доверили ограниченную роль",
+          "then": "Она обеспечивает связь и принимает проверку; не управляет финалом."
+        },
+        {
+          "if": "Её отстранили",
+          "then": "Связь ведёт доброволец, а Руна помогает с припасами вне совета."
+        }
+      ]
+    },
+    {
+      "key": "winter",
+      "title": "Чай в неподвижной минуте",
+      "location": "winter",
+      "description": "Встретить человека за системой, дать возможность несогласия и получить доступ к финалу без обязательного боя или прощения. Золотой лист висит в воздухе. На столе две чашки; над одной застыл пар. Северин встаёт, будто ждал не вас, а точного времени вашего прихода. Потом смотрит на Шпуля и впервые теряет готовые слова. «Я всё собирался написать. Присядете?»",
+      "hooks": [
+        "Встретить человека за системой, дать возможность несогласия и получить доступ к финалу без обязательного боя или прощения."
+      ],
+      "participants": [
+        "severin"
+      ],
+      "clueKeys": [
+        "extension-register",
+        "manual-door",
+        "courier-proof",
+        "captain-addendum"
+      ],
+      "approaches": [
+        "Осмотреть журнал",
+        "Прямо назвать последствия",
+        "Отказаться от чая и пройти к мосту",
+        "Предложить ограниченную помощь",
+        "Отстранить хранителя",
+        "Обсудить риски и проверку",
+        "Прервать разговор",
+        "Взять копию наблюдений",
+        "Пригласить Северина только как специалиста",
+        "Оставить ему письмо вместо примирения"
+      ],
+      "developments": [
+        {
+          "if": "Северин приглашён помогать",
+          "then": "Он ждёт команды на конкретную операцию и признаёт ведущую роль героев."
+        },
+        {
+          "if": "Северин отстранён",
+          "then": "Он передаёт схему, оставляет доступ открытым и не становится тайным финальным боссом."
+        }
+      ]
+    },
+    {
+      "key": "lighthouse",
+      "title": "Маяк Между Ветрами",
+      "location": "lighthouse",
+      "description": "Дать каждому герою незаменимое действие и воплотить выбранное устройство мира с видимыми последствиями. Четыре огромных кольца идут в разные стороны, но каждый раз возвращаются к одной отметке. Внизу облака стоят неподвижно. На пульте горит всего одно слово: «Повторить». Рядом есть чистое окно для нового ввода. В нём отражаются ваши лица.",
+      "hooks": [
+        "Дать каждому герою незаменимое действие и воплотить выбранное устройство мира с видимыми последствиями."
+      ],
+      "participants": [
+        "severin"
+      ],
+      "clueKeys": [
+        "lighthouse-controls"
+      ],
+      "approaches": [
+        "Использовать схему Ильера",
+        "Привлечь согласившихся союзников",
+        "Остановить один канал для пробы",
+        "Перевести стража на новый шаблон",
+        "Обойти через обслуживающую площадку",
+        "Необязательный бой «Страж повторения»",
+        "Обновляемый общий Маяк",
+        "Распределённая сеть фонарей",
+        "Ограниченная добровольная пауза",
+        "Собственный проверяемый гибрид"
+      ],
+      "developments": [
+        {
+          "if": "Общий Маяк обновлён",
+          "then": "Дороги быстро открываются. Появляется обязанность регулярно собирать сведения и менять хранителей."
+        },
+        {
+          "if": "Создана сеть фонарей",
+          "then": "Первые рейсы длиннее, каждый остров выбирает свой ритм. Никто больше не может остановить весь мир одной картой."
+        },
+        {
+          "if": "Согласована короткая пауза",
+          "then": "Один участок отдыхает до оговорённого часа. Остальной архипелаг движется; дату выключения выполняют в эпилоге."
+        },
+        {
+          "if": "Выбрана безопасная стоянка",
+          "then": "Часть дальних путей остаётся закрыта. Гавань и жители в безопасности; следующий небольшой опыт становится продолжением истории."
+        }
+      ]
+    },
+    {
+      "key": "homecoming",
+      "title": "Адрес, которого не было на карте",
+      "location": "harbor",
+      "description": "Показать последствия и дать каждому закончить личную историю; оставить не обязательный крючок, а чувство прожитого путешествия. Пекарь выносит пирог и говорит: «Последний!» На этот раз он не повторяется. За знакомым столом стоят ваши стулья. На одном — потёртая карта. На другом — маленький конверт без адреса. У причала ждёт «Чайник», и теперь его огонёк легко узнать среди сотен других.",
+      "hooks": [
+        "Показать последствия и дать каждому закончить личную историю; оставить не обязательный крючок, а чувство прожитого путешествия."
+      ],
+      "participants": [
+        "runa",
+        "spool"
+      ],
+      "clueKeys": [],
+      "approaches": [
+        "Ответить союзнику",
+        "Исправить незакрытое обещание",
+        "Просто послушать последствия",
+        "Завершить личную мечту",
+        "Выбрать новое направление",
+        "Оставить часть истории открытой",
+        "Оставить корабль общим домом",
+        "Открыть его для новых путешественников",
+        "Поставить на постоянную стоянку",
+        "Выбрать другой адрес вместе со Шпулем"
+      ],
+      "developments": [
+        {
+          "if": "Северин остался ограниченным специалистом",
+          "then": "Приходит карта с открыто указанными сомнениями и просьбой её проверить."
+        },
+        {
+          "if": "Северин отстранён",
+          "then": "Приходит простая открытка из учебного путешествия. Ответ необязателен."
+        },
+        {
+          "if": "Была выбрана короткая пауза",
+          "then": "Покажите её завершение в назначенный час: обещание об ограничении действительно выполнено."
+        }
+      ]
+    }
+  ],
+  "encounters": [
+    {
+      "key": "dock-keepers",
+      "title": "Смотрители причала",
+      "location": "harbor",
+      "trigger": "Только если игроки выбрали бой после предупреждения. Мирные пути: билет на сегодня, ручной рычаг, служебный вход.",
+      "battlefield": {
+        "width": 10,
+        "height": 8,
+        "difficult": [
+          {
+            "x": 4,
+            "y": 3
+          },
+          {
+            "x": 4,
+            "y": 4
+          }
+        ],
+        "cover": [
+          {
+            "x": 6,
+            "y": 2,
+            "level": "half"
+          },
+          {
+            "x": 6,
+            "y": 5,
+            "level": "half"
+          }
+        ]
+      },
+      "combatants": [
+        {
+          "entity": "finn",
+          "side": "party",
+          "position": {
+            "x": 1,
+            "y": 2
+          }
+        },
+        {
+          "entity": "asya",
+          "side": "party",
+          "position": {
+            "x": 1,
+            "y": 3
+          }
+        },
+        {
+          "entity": "mika",
+          "side": "party",
+          "position": {
+            "x": 1,
+            "y": 4
+          }
+        },
+        {
+          "entity": "dock-keeper-a",
+          "side": "hostile",
+          "position": {
+            "x": 8,
+            "y": 2
+          }
+        },
+        {
+          "entity": "dock-keeper-b",
+          "side": "hostile",
+          "position": {
+            "x": 8,
+            "y": 5
+          }
+        }
+      ]
+    },
+    {
+      "key": "workshop-repairer",
+      "title": "Ремонтник старой схемы",
+      "location": "forge",
+      "trigger": "Необязательный бой при попытке автомата вернуть мост к старой форме. Можно снять шаблон, отключить питание или обойти.",
+      "battlefield": {
+        "width": 10,
+        "height": 8,
+        "difficult": [
+          {
+            "x": 4,
+            "y": 3
+          },
+          {
+            "x": 4,
+            "y": 4
+          }
+        ],
+        "cover": [
+          {
+            "x": 6,
+            "y": 2,
+            "level": "half"
+          },
+          {
+            "x": 6,
+            "y": 5,
+            "level": "half"
+          }
+        ]
+      },
+      "combatants": [
+        {
+          "entity": "finn",
+          "side": "party",
+          "position": {
+            "x": 1,
+            "y": 2
+          }
+        },
+        {
+          "entity": "asya",
+          "side": "party",
+          "position": {
+            "x": 1,
+            "y": 3
+          }
+        },
+        {
+          "entity": "mika",
+          "side": "party",
+          "position": {
+            "x": 1,
+            "y": 4
+          }
+        },
+        {
+          "entity": "repairer",
+          "side": "hostile",
+          "position": {
+            "x": 8,
+            "y": 2
+          }
+        }
+      ]
+    },
+    {
+      "key": "last-guardian",
+      "title": "Страж повторения",
+      "location": "lighthouse",
+      "trigger": "Необязательная защита старого шаблона. Новая схема, ручное отключение и обход остаются доступны. Победа не выбирает финал.",
+      "battlefield": {
+        "width": 10,
+        "height": 8,
+        "difficult": [
+          {
+            "x": 4,
+            "y": 3
+          },
+          {
+            "x": 4,
+            "y": 4
+          }
+        ],
+        "cover": [
+          {
+            "x": 6,
+            "y": 2,
+            "level": "half"
+          },
+          {
+            "x": 6,
+            "y": 5,
+            "level": "half"
+          }
+        ]
+      },
+      "combatants": [
+        {
+          "entity": "finn",
+          "side": "party",
+          "position": {
+            "x": 1,
+            "y": 2
+          }
+        },
+        {
+          "entity": "asya",
+          "side": "party",
+          "position": {
+            "x": 1,
+            "y": 3
+          }
+        },
+        {
+          "entity": "mika",
+          "side": "party",
+          "position": {
+            "x": 1,
+            "y": 4
+          }
+        },
+        {
+          "entity": "repeat-guardian",
+          "side": "hostile",
+          "position": {
+            "x": 8,
+            "y": 2
+          }
+        }
+      ]
+    }
+  ],
+  "quests": [
+    {
+      "questId": "opening-inquiry",
+      "title": "Что случилось с вечером?",
+      "activation": {
+        "subject": "ship",
+        "summary": "Исследовать странности праздника и познакомиться с кораблём."
+      },
+      "milestones": [
+        {
+          "kind": "examined-at",
+          "stage": "looked",
+          "locationId": "harbor",
+          "summary": "Осмотрены детали праздника."
+        },
+        {
+          "kind": "reached",
+          "stage": "aboard",
+          "locationId": "ship",
+          "summary": "Герои поднялись на «Чайник»."
+        }
+      ],
+      "completion": "aboard"
+    },
+    {
+      "questId": "compare-records",
+      "title": "Сравнить свидетельства",
+      "activation": {
+        "subject": "library",
+        "summary": "Найти старые документы и сравнить версии."
+      },
+      "milestones": [
+        {
+          "kind": "examined-at",
+          "stage": "read",
+          "locationId": "library",
+          "summary": "Осмотрены библиотечные документы."
+        },
+        {
+          "kind": "shown-to",
+          "stage": "asked",
+          "npcId": "runa",
+          "subject": "runa",
+          "after": "read",
+          "summary": "Сведения показаны Руне; её ответ ещё нужно оценить."
+        }
+      ],
+      "completion": "asked"
+    },
+    {
+      "questId": "understand-rings",
+      "title": "Как устроен Маяк",
+      "activation": {
+        "subject": "forge",
+        "summary": "Выяснить способы безопасного ремонта."
+      },
+      "milestones": [
+        {
+          "kind": "examined-at",
+          "stage": "studied",
+          "locationId": "forge",
+          "summary": "Осмотрены схемы Кузницы."
+        },
+        {
+          "kind": "returned-to",
+          "stage": "shared",
+          "locationId": "harbor",
+          "after": "studied",
+          "summary": "Герои вернулись в гавань со сведениями о ремонте."
+        }
+      ],
+      "completion": "shared"
+    },
+    {
+      "questId": "lighthouse-fieldwork",
+      "title": "У Маяка",
+      "activation": {
+        "subject": "lighthouse",
+        "summary": "Проверить механизм и сообщить о наблюдениях."
+      },
+      "milestones": [
+        {
+          "kind": "reached",
+          "stage": "arrived",
+          "locationId": "lighthouse",
+          "summary": "Достигнут Маяк."
+        },
+        {
+          "kind": "examined-at",
+          "stage": "observed",
+          "locationId": "lighthouse",
+          "summary": "Осмотрен пульт Маяка; результат запуска определяется действиями."
+        },
+        {
+          "kind": "shown-to",
+          "stage": "reported",
+          "npcId": "runa",
+          "subject": "lighthouse",
+          "after": "observed",
+          "summary": "Сведения о Маяке показаны Руне. Итог мира записывает ведущий по реальным событиям."
+        }
+      ],
+      "completion": "reported"
+    }
+  ],
+  "visuals": [
+    {
+      "entity": "winds",
+      "purpose": "image",
+      "description": "Острова дрейфуют над облачным морем. Между ними ходят парусные дома и почтовые киты.",
+      "style": "Живописная гуашь, индиго, бирюза, медь и янтарный свет. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "harbor",
+      "purpose": "image",
+      "description": "Медные крыши, пироги с грушей, тёплые фонари и пристань над розовыми облаками.",
+      "style": "Живописная гуашь, индиго, бирюза, медь и янтарный свет. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "ship",
+      "purpose": "image",
+      "description": "Небольшой летающий дом с медной крышей, заплатой на парусе и круглой янтарной лампой. Внутри пахнет чаем и деревом.",
+      "style": "Живописная гуашь, индиго, бирюза, медь и янтарный свет. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "orchard",
+      "purpose": "image",
+      "description": "Яблоневые террасы, стеклянные ручьи и старая черепаха, на панцире которой растёт сад.",
+      "style": "Живописная гуашь, индиго, бирюза, медь и янтарный свет. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "library",
+      "purpose": "image",
+      "description": "Книги приплывают к читателям в бумажных лодочках, а в неглубоком бассейне отражаются дневные звёзды.",
+      "style": "Живописная гуашь, индиго, бирюза, медь и янтарный свет. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "market",
+      "purpose": "image",
+      "description": "Зеркала показывают другие времена года. Здесь торгуют ветром, лентами и историями с ясной ценой.",
+      "style": "Живописная гуашь, индиго, бирюза, медь и янтарный свет. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "forge",
+      "purpose": "image",
+      "description": "В скальной арке вращаются медные ветроколы. Шёлковые паруса несут инструменты от верстака к верстаку.",
+      "style": "Живописная гуашь, индиго, бирюза, медь и янтарный свет. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "observatory",
+      "purpose": "image",
+      "description": "Белая башенка и телескоп на широкой спине спокойного небесного кита Омба.",
+      "style": "Живописная гуашь, индиго, бирюза, медь и янтарный свет. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "bells",
+      "purpose": "image",
+      "description": "На мостах звенят ленты и маленькие колокольчики. На площади стоят четыре больших колокола разной формы.",
+      "style": "Живописная гуашь, индиго, бирюза, медь и янтарный свет. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "winter",
+      "purpose": "image",
+      "description": "Тихая стеклянная оранжерея. Между веткой и полом висит золотой лист, у окна накрыт чай на двоих.",
+      "style": "Живописная гуашь, индиго, бирюза, медь и янтарный свет. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "lighthouse",
+      "purpose": "image",
+      "description": "Каменная башня с прозрачным куполом и четырьмя латунными кольцами. К широкому двору ведёт мост с фонарями.",
+      "style": "Живописная гуашь, индиго, бирюза, медь и янтарный свет. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "finn",
+      "purpose": "image",
+      "description": "Молодой взрослый широкоплечий дворф с медной кудрявой бородой, индиговой курткой, круглым щитом с листом и тёплой улыбкой. Защитник и любитель больших идей.",
+      "style": "Живописная гуашь, индиго, бирюза, медь и янтарный свет. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "asya",
+      "purpose": "image",
+      "description": "Взрослая женщина с тёмной кожей, длинной серебристой косой, зелёно-бирюзовым плащом, кожаной сумкой семян и простым деревянным посохом. Целительница, садовница и собеседница.",
+      "style": "Живописная гуашь, индиго, бирюза, медь и янтарный свет. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "mika",
+      "purpose": "image",
+      "description": "Взрослый гном с круглыми очками, вишнёвым беретом, светлым пальто с индиговыми манжетами и книгой со множеством бумажных закладок. Запасной герой: исследователь магии и карт.",
+      "style": "Живописная гуашь, индиго, бирюза, медь и янтарный свет. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "runa",
+      "purpose": "image",
+      "description": "Пожилая капитан с серебряными волосами, янтарными очками на цепочке и большим индиговым пальто; пахнет чаем и апельсинами. Хозяйка «Чайника» умеет чинить паруса и помнит множество островных дорог.",
+      "style": "Живописная гуашь, индиго, бирюза, медь и янтарный свет. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "spool",
+      "purpose": "image",
+      "description": "Маленький латунный механический лис с бирюзовыми стеклянными глазами, одним медным ухом и хвостом-кисточкой. Любопытный почтовый лис звенит тремя разными нотами и собирает смешные человеческие выражения.",
+      "style": "Живописная гуашь, индиго, бирюза, медь и янтарный свет. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "pom",
+      "purpose": "image",
+      "description": "Коренастый гном в шляпе из листьев, с лейкой и карманами, полными яблочных косточек. Ухаживает за садами и говорит о медленных вещах с большим воодушевлением.",
+      "style": "Живописная гуашь, индиго, бирюза, медь и янтарный свет. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "saffra",
+      "purpose": "image",
+      "description": "Высокая взрослая библиотекарша с тёмной косой, накидкой цвета морской волны и бумажными корабликами в карманах. Хранит книги так, чтобы их можно было найти и вернуть, а не спрятать навсегда.",
+      "style": "Живописная гуашь, индиго, бирюза, медь и янтарный свет. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "vey",
+      "purpose": "image",
+      "description": "Лисоподобный взрослый торговец в сиреневом жилете, монокль и ровно три огромных кармана. Торгует историями и отражениями; условия сделки всегда произносит вслух.",
+      "style": "Живописная гуашь, индиго, бирюза, медь и янтарный свет. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "ilyr",
+      "purpose": "image",
+      "description": "Высокий мастер с протезом кисти из дерева и латуни, медным фартуком и мягкими защитными очками. Может починить почти любую вещь, если хозяин объяснит, чего хочет от неё.",
+      "style": "Живописная гуашь, индиго, бирюза, медь и янтарный свет. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "omb",
+      "purpose": "image",
+      "description": "Огромный спокойный небесный кит; на спине обсерватория, сад и надёжный причал. Возит почту и наблюдателей звёзд. Отвечает медленно и с сухим юмором.",
+      "style": "Живописная гуашь, индиго, бирюза, медь и янтарный свет. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "kanto",
+      "purpose": "image",
+      "description": "Крупная говорящая птица-секретарь в аккуратном синем жилете, несёт камертон и смешно строгую папку. Собирает жителей на совет и старается дать слово даже тихим.",
+      "style": "Живописная гуашь, индиго, бирюза, медь и янтарный свет. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "severin",
+      "purpose": "image",
+      "description": "Взрослый мужчина с волнистыми серебристо-чёрными волосами, круглыми очками, индиговым пальто с медными застёжками и перчатками. Картограф, чьи старые карты до сих пор висят в капитанских каютах.",
+      "style": "Живописная гуашь, индиго, бирюза, медь и янтарный свет. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "seed",
+      "purpose": "image",
+      "description": "Орешек в маленьком медном горшочке; под крышкой уютно светится лист.",
+      "style": "Живописная гуашь, индиго, бирюза, медь и янтарный свет. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "mirror",
+      "purpose": "image",
+      "description": "Небольшое круглое зеркало в медной раме с бирюзовой ручкой.",
+      "style": "Живописная гуашь, индиго, бирюза, медь и янтарный свет. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "bridge",
+      "purpose": "image",
+      "description": "Четыре медных гнезда соединены прозрачными трубками, внутри мерцает воздух.",
+      "style": "Живописная гуашь, индиго, бирюза, медь и янтарный свет. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "tuning",
+      "purpose": "image",
+      "description": "Латунный камертон с четырьмя разными по форме подвесками.",
+      "style": "Живописная гуашь, индиго, бирюза, медь и янтарный свет. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "notebook",
+      "purpose": "image",
+      "description": "Книга в индиговой ткани с медными уголками и пустыми кремовыми страницами.",
+      "style": "Живописная гуашь, индиго, бирюза, медь и янтарный свет. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "dock-keeper-a",
+      "purpose": "image",
+      "description": "Латунный служебный автомат с мягкими упорами. Перед движением подаёт предупреждающий сигнал.",
+      "style": "Живописная гуашь, индиго, бирюза, медь и янтарный свет. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "dock-keeper-b",
+      "purpose": "image",
+      "description": "Латунный служебный автомат с мягкими упорами. Перед движением подаёт предупреждающий сигнал.",
+      "style": "Живописная гуашь, индиго, бирюза, медь и янтарный свет. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "repairer",
+      "purpose": "image",
+      "description": "Латунный служебный автомат с мягкими упорами. Перед движением подаёт предупреждающий сигнал.",
+      "style": "Живописная гуашь, индиго, бирюза, медь и янтарный свет. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "repeat-guardian",
+      "purpose": "image",
+      "description": "Латунный служебный автомат с мягкими упорами. Перед движением подаёт предупреждающий сигнал.",
+      "style": "Живописная гуашь, индиго, бирюза, медь и янтарный свет. Без надписей, тайных мотивов и подсказок к загадкам."
+    }
+  ],
+  "firstSession": [
+    "Ваш стол на празднике. Попросите каждого назвать подарок для общего стола и одну причину доверять соседу. Предложите три развлечения: придумать созвездие из фонарей, поймать улетевшую салфетку, обменяться нелепой историей с пекарем. Каждый игрок выбирает одно. Любая разумная попытка удаётся; это знакомство с заявкой действия, не экзамен. Неудача: Застенчивому игроку дайте выбрать картинку или жест; не заставляйте говорить голосом героя.",
+    "Три одинаковых звона. Фонарь повторяет свой путь. На столе лежит квитанция, на которой чернила то высыхают, то вновь блестят. Пекарь помнит повтор, а часы у причала показывают маленькое медное кольцо. Дайте увидеть все три наблюдения. Шпуль пытается вернуть булочку, но не помнит, взял её один раз или три. Неудача: Фонарь уходит на крышу, откуда его снимает дворник. Он сам приносит повторяющуюся квитанцию; потеряно только время внутри истории.",
+    "Пристань и маленький выбор. Два заводных смотрителя загородили проход: грузовой билет датирован завтра, а завтра для них не существует. Они не злые и предупреждают прежде, чем толкаться. Герои могут написать временный билет «сегодня», перевести смотрителей на ручной режим либо выбрать короткую учебную схватку. Руна предлагает «Чайник», чтобы проверить соседние острова. Неудача: Смотрители выталкивают героев на безопасную площадь и возвращаются к воротам. Руна открывает служебный вход, после чего можно попробовать другой подход."
+  ],
+  "laterOutline": [
+    "Вечер 2. Дом, который выбрал дорогу. Сделать корабль общим домом; научить совместным решениям и открыть свободный выбор маршрута. Корабль — общая сцена и способ путешествия, не самостоятельная боевая подсистема. Перемещение и открытия фиксируйте только после заявок игроков.",
+    "Вечер 3. Яблоко, которое не хотело становиться завтраком. Показать конкретную цену неподвижности и дать первую полезную альтернативу старой схеме. Вывод «новый путь помогает» ещё не раскрывает личность виновника. Сад не должен превращаться в лекцию о правильном отношении к переменам: дайте самим заметить закономерность.",
+    "Вечер 4. Книга с двумя правдивыми концами. Научить различать документ, свидетельство и догадку; получить честный поворот о подписи Руны. В NPC-контекст Сафры входят только доступные ей документы, не внутренний мотив Северина. Печать не означает истину, а противоречие не доказывает злой умысел.",
+    "Вечер 5. Цена хорошей истории. Дать весёлый социальный вечер, пространство личному выбору Тэс и полезный инструмент без обязательной платы воспоминаниями. Не используйте тайные трактовки договора и «неосторожно названное имя». Веселье должно вознаграждать участие, а не учить молчать.",
+    "Вечер 6. Мост, который собирают вместе. Повернуть расследование к решению; дать совместную инженерную сцену и честно назвать альтернативы финала. Особые предметы здесь сюжетные. Не добавляйте скрытых бонусов, нового заклинания или автоматического урона. Ручное действие с механизмом оформляет ведущий по существующим правилам.",
+    "Вечер 7. Почта для большой звезды. Дать чувство огромного мира, проверить прошлое и найти путь к дворцу без единственного ключа. Не делайте Омба всезнающим. Он видел шторм и звёзды, но не знает сегодняшних мыслей Северина.",
+    "Вечер 8. Город, который говорил хором. Разыграть содержательную музыкальную загадку без проверки слуха; дать всем троим равное право на решение. Не измеряйте реальный слух, быстроту чтения и умение петь. Загадка должна проверять идею, а не возрастные возможности.",
+    "Вечер 9. Свободное место за столом. Вернуть последствия прошлых решений, завершить поворот Руны и подготовить собственный план партии. Совет не должен стать часовой сценой NPC между собой. Реплики союзников короткие, решения и вопросы — у игроков. Запишите реальные решения в журнал, не применяйте будущий финал.",
+    "Вечер 10. Чай в неподвижной минуте. Встретить человека за системой, дать возможность несогласия и получить доступ к финалу без обязательного боя или прощения. Не объясняйте ошибку болезнью и не обещайте мгновенное исправление характера. Сочувствие, доверие, прощение и должность — разные решения.",
+    "Вечер 11. Маяк Между Ветрами. Дать каждому герою незаменимое действие и воплотить выбранное устройство мира с видимыми последствиями. Четыре кольца не требуют четырёх игроков: ролей три, а наблюдения повторно используются. Победу фиксируйте только после реальных действий; квестовый журнал может отметить доклад и проверку, но не объявлять выбранную политическую модель правильной.",
+    "Вечер 12. Адрес, которого не было на карте. Показать последствия и дать каждому закончить личную историю; оставить не обязательный крючок, а чувство прожитого путешествия. Это развязка, а не рекламный ролик следующего сезона. Дайте героям прожить результат. Спросите каждого, какую открытку он хочет сохранить на память."
+  ]
+}

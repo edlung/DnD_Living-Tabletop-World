@@ -37,6 +37,20 @@ export type EntityStatus = (typeof ENTITY_STATUSES)[number];
 export const entityNameSchema = z.string().trim().min(1).max(120);
 const description = z.string().trim().max(4000);
 
+/**
+ * An NPC's public manner of speech (docs/adr/0020-npc-intelligence.md, amendment 2026-11-14): one
+ * short line of plain text on how it talks, which NPC dialogue gives the model. Public: it never
+ * holds a secret or a plot fact. NPCs only (the World Engine and the campaign plan check the kind).
+ */
+export const NPC_MANNER_MAX = 200;
+export const npcMannerSchema = z
+  .string()
+  .trim()
+  .min(1)
+  .max(NPC_MANNER_MAX)
+  // One line of plain text: no control characters, no line or paragraph separators.
+  .refine((manner) => !/[\p{Cc}\u2028\u2029]/u.test(manner), 'must be one line of plain text');
+
 export const createEntityCommandSchema = z
   .object({
     type: z.literal('CreateEntity'),
@@ -44,6 +58,8 @@ export const createEntityCommandSchema = z
     kind: z.enum(ENTITY_KINDS),
     name: entityNameSchema,
     description: description.optional(),
+    /** An NPC's public manner of speech (ADR 0020 amendment 2026-11-14); NPCs only. */
+    manner: npcMannerSchema.optional(),
     /** World time the entity began to exist; `null` = before recorded history. */
     existsSince: worldTimeSchema.nullable(),
     /** Required exactly when `kind` is `location`. */
@@ -69,6 +85,8 @@ export const updateEntityProfileCommandSchema = z
     entityId: entityIdSchema,
     name: entityNameSchema.optional(),
     description: description.optional(),
+    /** An NPC's manner of speech; `''` clears it. NPCs only. */
+    manner: npcMannerSchema.or(z.literal('')).optional(),
   })
   .strict();
 
@@ -99,6 +117,7 @@ export function worldCommandIssue(command: {
   readonly to?: unknown;
   readonly name?: unknown;
   readonly description?: unknown;
+  readonly manner?: unknown;
 }): string | null {
   if (
     command.type === 'AdvanceWorldTime' &&
@@ -109,9 +128,10 @@ export function worldCommandIssue(command: {
   if (
     command.type === 'UpdateEntityProfile' &&
     command.name === undefined &&
-    command.description === undefined
+    command.description === undefined &&
+    command.manner === undefined
   ) {
-    return 'provide "name" and/or "description"';
+    return 'provide "name", "description" and/or "manner"';
   }
   return null;
 }

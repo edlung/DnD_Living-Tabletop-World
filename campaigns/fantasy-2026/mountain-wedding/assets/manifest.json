@@ -1,0 +1,1021 @@
+{
+  "about": "Original artwork for Свадьба двух гор. PNG originals from OpenAI image generation through Codex CLI; WebP conversions preserve content and alpha. No project provider was called.",
+  "generator": "codex-cli-imagegen",
+  "assets": [
+    {
+      "id": "cover",
+      "title": "Свадьба двух гор",
+      "file": "cover.png",
+      "runtimeFile": "runtime/cover.webp",
+      "sha256": "814cae890d693a3abe743ec074793761a7b743f09a7531d736d8f7e1dbae4395",
+      "runtimeSha256": "abcb1514dd3e9ef7c67a1c5aa6e44bfae1c4dfa4ef4dbbe449f626dbe1aee5b6",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "mountain-wedding-2026-11-14/out/cover.png",
+      "revealFromEvening": 0,
+      "subjects": [],
+      "kind": "cover",
+      "prompt": "Generate one image and save it as cover.png in the current directory.\nWide landscape key art, 3:2. Two colossal living mountains take their first step toward each other across a high valley: on the left Arema, a warm red sandstone mountain with a gentle feminine silhouette of shoulders and folded slopes, on the right Torven, a tall silver granite peak with a quartz stripe like a sash; their lower slopes lift like enormous feet, rock dust and wind streaming. Between them a deep rift. Behind them, crouched low, a third, rougher grey stone giant with a flat slab of rock across its shoulders tries to step into the same movement. On a red shoulder ledge in the foreground, a tiny group of eight adventurers (two fighters, two rogues, two clerics, two wizards) with ropes and ribbons hold on and point the way. Morning gold light, ribbons and snow banners streaming in the wind.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "copper-crown",
+      "title": "Медный Венец",
+      "file": "copper-crown.png",
+      "runtimeFile": "runtime/copper-crown.webp",
+      "sha256": "d1c0538d5a9c133fb7e6378c722fac5f70a801afc348517bfc792993397bf935",
+      "runtimeSha256": "7f3d6b2e736e72f84c578e5dcab797c62ffd830cffe835cb8657dae7f76b021a",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "mountain-wedding-2026-11-14/out/copper-crown.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "copper-crown"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as copper-crown.png in the current directory.\nWide landscape establishing view, 3:2. The Copper Crown: a vast ring of red and silver mountains around a high basin, wide ledges joined by exposed stone roots like braided ropes of rock, two of the mountains subtly faced toward each other like a couple, a deep rift between their summits, clouds threading through the ring. No people in focus.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "heel-terrace",
+      "title": "Пяточная терраса",
+      "file": "heel-terrace.png",
+      "runtimeFile": "runtime/heel-terrace.webp",
+      "sha256": "273d2fa1cc40d50b1b8f6739cf6a47f265f1ce5848e2de3353356ccbd0c35a52",
+      "runtimeSha256": "e057d191869decee6808e1146b68fda598ecab6db68e3c2c75047936f0e2e09f",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "mountain-wedding-2026-11-14/out/heel-terrace.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "heel-terrace"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as heel-terrace.png in the current directory.\nLandscape scene, 3:2. The Heel Terrace: a broad lower ledge at the foot of a red sandstone mountain with flat natural steps, above it a sheer cliff wall in which a huge, calm, closed-eyed face is carved by nature into the rock. Tiny travellers with packs stand on the steps, rope coils, prayer ribbons tied to a cairn, wind.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "red-shoulder",
+      "title": "Красное плечо",
+      "file": "red-shoulder.png",
+      "runtimeFile": "runtime/red-shoulder.webp",
+      "sha256": "3e0430b26154c26b1a1ab01f3672f45d3362cbc4aedc57e1f65bdfec82bcff6c",
+      "runtimeSha256": "36221ae61ffffcb7bb9c84882a7dcbd9f96107f6209408b1d45229a952f08052",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "mountain-wedding-2026-11-14/out/red-shoulder.png",
+      "revealFromEvening": 7,
+      "subjects": [
+        "red-shoulder"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as red-shoulder.png in the current directory.\nLandscape scene, 3:2. The Red Shoulder: a tilted red sandstone slope of a living mountain cut by deep folds and grooves, the whole slope turning slowly like a shoulder, an empty outer ledge jutting like an outstretched elbow over a drop. Two tiny climbers roped together cross a fold, dust sliding, wind.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "silver-rib",
+      "title": "Серебряное ребро",
+      "file": "silver-rib.png",
+      "runtimeFile": "runtime/silver-rib.webp",
+      "sha256": "7fd2370b807ca51b96b3d5d489cbd9b38c6efe8aa4b1eced8c12d098bcb267c4",
+      "runtimeSha256": "66fce983ad3401fd447d84492b5a14d5dc2f875b868a0ed6c588498c81e2fa87",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "mountain-wedding-2026-11-14/out/silver-rib.png",
+      "revealFromEvening": 3,
+      "subjects": [
+        "silver-rib"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as silver-rib.png in the current directory.\nLandscape scene, 3:2. The Silver Rib: a long silver granite ridge of a living mountain with transverse flat platforms like ribs, a bright white quartz stripe running along it visible from far away, snow streamers, a small figure signalling with a long ribbon from one platform to a distant red mountain.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "dry-throat",
+      "title": "Сухой зев",
+      "file": "dry-throat.png",
+      "runtimeFile": "runtime/dry-throat.webp",
+      "sha256": "6546672c09b74fdcd9fa878738bc8e8c9e6ca421df3e677e0706d521fbbe7d63",
+      "runtimeSha256": "b0e61368bb7e1eb159c598725c4b257d9825afdf0f0b11d836d19049c3c4d202",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "mountain-wedding-2026-11-14/out/dry-throat.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "dry-throat"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as dry-throat.png in the current directory.\nLandscape scene, 3:2. The Dry Throat: an open sandy ravine between stone walls with low overhangs and passages, the sandy floor covered with many enormous round stone footprints in a strange uneven pattern, little whirls of dust dancing in the air, a crouching adventurer measuring a footprint with a staff.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "knee-amphitheatre",
+      "title": "Коленный амфитеатр",
+      "file": "knee-amphitheatre.png",
+      "runtimeFile": "runtime/knee-amphitheatre.webp",
+      "sha256": "8c482f5b4aeff41886d0da6d25c78c47ca3a5c804d880f6eaaaaa95d91a37491",
+      "runtimeSha256": "9b6ce004ef7414f8c23b2ccb7d9d08dba28be8bee46f29ae1a45a6d9995ffa16",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "mountain-wedding-2026-11-14/out/knee-amphitheatre.png",
+      "revealFromEvening": 4,
+      "subjects": [
+        "knee-amphitheatre"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as knee-amphitheatre.png in the current directory.\nLandscape scene, 3:2. The Knee Amphitheatre: a semicircle of natural rock terraces around a smooth round bowl, the rim shaped like the bent knee of a giant; in the bowl the low hunched grey stone giant with a flat slab across his shoulders walks on four supports, seen from the terraces by small hidden figures.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "tilted-bridge",
+      "title": "Косой мост",
+      "file": "tilted-bridge.png",
+      "runtimeFile": "runtime/tilted-bridge.webp",
+      "sha256": "0c504504fa31020b3d9d35eb09ada08d9083a1804315b237ac9afb8926b57908",
+      "runtimeSha256": "7152c06c0d62e9a2dba5c27c4cf9b0fb13a628d8e8129af2d71477cb1d3c4aeb",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "mountain-wedding-2026-11-14/out/tilted-bridge.png",
+      "revealFromEvening": 5,
+      "subjects": [
+        "tilted-bridge"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as tilted-bridge.png in the current directory.\nLandscape scene, 3:2. The Tilted Bridge: a natural stone arch over a shallow chasm, wide and flat on one side and knife-sharp on the other, small winged stone gargoyle-like shapes perched on the arch, two adventurers balancing across with arms out, wind and loose pebbles falling.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "open-ring",
+      "title": "Разомкнутое кольцо",
+      "file": "open-ring.png",
+      "runtimeFile": "runtime/open-ring.webp",
+      "sha256": "b4d15f35a819f26c368cf68481a9d6a6b7798b55bcd63d5a271996c8044a2410",
+      "runtimeSha256": "53d558e7f3ae35bad1fbf3b29e4cc68f749ddf2fc544e2d03445d046c227385b",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "mountain-wedding-2026-11-14/out/open-ring.png",
+      "revealFromEvening": 6,
+      "subjects": [
+        "open-ring"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as open-ring.png in the current directory.\nLandscape scene, 3:2. The Open Ring: an almost circular high plateau with exits east and west, a scatter of standing slabs forming an island in the centre, two mountain slopes visible at the edges, a sense of a stage set for a dance, long afternoon shadows, wind-blown grass.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "high-cleft",
+      "title": "Высокий разлом",
+      "file": "high-cleft.png",
+      "runtimeFile": "runtime/high-cleft.webp",
+      "sha256": "1173423dade54492c6dd9147979e868aee5428dcd6b0cf4940ad13c63de4a86b",
+      "runtimeSha256": "ee17b73ebb2a7b35e314516a63a2ebfa97046bf525850597af2c01f2f8349d78",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "mountain-wedding-2026-11-14/out/high-cleft.png",
+      "revealFromEvening": 8,
+      "subjects": [
+        "high-cleft"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as high-cleft.png in the current directory.\nWide landscape, 3:2. The High Cleft: the narrow gap between two mountain summits, red on the left and silver on the right, with wide side shelves, a bottomless rift below with mist, the two summits leaning toward each other almost touching, tiny figures on the shelves with ropes and banners, sunset light, dramatic wind.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "two-foot-circle",
+      "title": "Круг двух подножий",
+      "file": "two-foot-circle.png",
+      "runtimeFile": "runtime/two-foot-circle.webp",
+      "sha256": "d3cdda7bd3da00574439c83a5338e36c08f76fa9db2b7a3f58de8f9a1e741114",
+      "runtimeSha256": "3e4da2cf1b6719ccd80500c9c909fafce0db4350ddf1a1c3b99642ac10ef68d8",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "mountain-wedding-2026-11-14/out/two-foot-circle.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "two-foot-circle"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as two-foot-circle.png in the current directory.\nLandscape scene, 3:2. The Circle of Two Feet: a low round valley where red sandstone and silver granite foothills meet almost touching, wildflowers and a small spring between them, villagers' ribbons on poles, a peaceful festive feeling, gentle evening light.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "walker-house",
+      "title": "Дом ходоков",
+      "file": "walker-house.png",
+      "runtimeFile": "runtime/walker-house.webp",
+      "sha256": "6d625670d5b1babd7d522edddb3eb988bc671d615ffffefd557f8ff7d6fc323f",
+      "runtimeSha256": "09dd518b9cc521d2b4531559a9d4f73094771d08f180913ed8157568c1305329",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "mountain-wedding-2026-11-14/out/walker-house.png",
+      "revealFromEvening": 2,
+      "subjects": [
+        "walker-house"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as walker-house.png in the current directory.\nLandscape scene, 3:2. The Walkers' House: a small stone house with a turf roof on a motionless rock outcrop, on its wall simple ropes, ribbons and painted sketches of mountain slopes, a lantern, a bench with boots and climbing gear, the two great mountains in the background. Warm homely light.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "mira",
+      "title": "Огняна Широкий Шаг",
+      "file": "mira.png",
+      "runtimeFile": "runtime/mira.webp",
+      "sha256": "01f4d6716faef05a2a0f16698f52ce3b6ef025e9ded3116c46474cd3dc121d59",
+      "runtimeSha256": "d6ef8346838a2f85f9c0bc247ec1b06edee1ada38b78b7736106d6f83238b5bf",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "mountain-wedding-2026-11-14/out/mira.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "mira"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as mira.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Ognyana Wide Step, an 18-year-old young woman fighter and mountain walker: sturdy, tanned, short dark braids, a short red cloak, a simple round shield on her back, a short sword, boots with mismatched laces, wind in her hair, a bold grin. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "yar",
+      "title": "Яр Листомер",
+      "file": "yar.png",
+      "runtimeFile": "runtime/yar.webp",
+      "sha256": "74e8ccd3d2c7c98f051aef33f12a05c64a417edbdb380645685f85d83fa0cdcd",
+      "runtimeSha256": "5511193cea94d1e15ba797d27c6284757d4d9564b571ffce91a5850bf9daec9f",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "mountain-wedding-2026-11-14/out/yar.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "yar"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as yar.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Yar Leafmeasure, a 17-year-old young man rogue and scout: lean, freckled, messy straw-blond hair, a green jacket with big pockets, a charcoal pencil behind his ear, a folding wooden slate on a strap, a dagger, attentive narrowed eyes. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "seva",
+      "title": "Сева Ясная Ладонь",
+      "file": "seva.png",
+      "runtimeFile": "runtime/seva.webp",
+      "sha256": "4e3dbc7fae06a9e333072c54d33998a0d99fbcb55da73f8e0519462f65542507",
+      "runtimeSha256": "cd830e8d2a01deaf3991659a72dd94ad4642fe6e7ca9e27f978ec2655ad526c6",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "mountain-wedding-2026-11-14/out/seva.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "seva"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as seva.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Seva Clear Palm, a 32-year-old woman cleric: calm, olive skin, black hair in a low knot, a grey travelling waistcoat over a linen robe, a small copper open-palm holy symbol, many coloured threads around her wrists, a light mace, gentle steady gaze. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "lina",
+      "title": "Лина Кварцевый Мел",
+      "file": "lina.png",
+      "runtimeFile": "runtime/lina.webp",
+      "sha256": "624ed4244bc0f3a3f0558260f541a6fdcde96eb53b152723140d5f284ae80623",
+      "runtimeSha256": "111a92366ce376e8b2979fe93ca590d1b3d6260a57c7f4778fc5b75e1795fb02",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "mountain-wedding-2026-11-14/out/lina.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "lina"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as lina.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Lina Quartz Chalk, a 24-year-old woman wizard: pale, round spectacles, a blue knitted cap over ginger curls, a cloth pouch of chalk on her belt, chalky fingers, a short wooden wand, a lively curious face. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "borin",
+      "title": "Борин Тихий Утёс",
+      "file": "borin.png",
+      "runtimeFile": "runtime/borin.webp",
+      "sha256": "fea67f7639565537b9e5879f807008f0cc328217430dddf8f464fc957820066b",
+      "runtimeSha256": "b01c9d9483b7de45f79862467a2474df8b19e34c1f08308dc89e83c819fbbb92",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "mountain-wedding-2026-11-14/out/borin.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "borin"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as borin.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Borin Quiet Cliff, a 41-year-old man fighter: broad, bearded, weathered brown skin, quiet soft leather gear, a worn gauntlet embroidered with a seagull, a hand axe and a longsword, a calm, few-words expression. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "tessa",
+      "title": "Тесса Ласточкин Поворот",
+      "file": "tessa.png",
+      "runtimeFile": "runtime/tessa.webp",
+      "sha256": "ded9c5ccc04172bc98d959e52b93dbc9a738337cfba977a8ee47bf4959d41e54",
+      "runtimeSha256": "dbc8b1011a329335920f93ee04ddb9cf58772aa306cc8e2ad080d65d8d62ff0f",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "mountain-wedding-2026-11-14/out/tessa.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "tessa"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as tessa.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Tessa Swallow Turn, a 16-year-old girl rogue: small and quick, dark skin, short curly hair, a bright yellow scarf streaming in the wind, soft boots, two wooden clothes pegs clipped to her sleeve, a sling, a mischievous look. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "odar",
+      "title": "Одар Тёплый Камень",
+      "file": "odar.png",
+      "runtimeFile": "runtime/odar.webp",
+      "sha256": "5cac710562b676eea87f44ddb22c4c9a7d2008cafb6bd60d3f1edf056cb3755c",
+      "runtimeSha256": "f472925dc3ab2d819b1f8b1e82dac0ad1d97363dc4031f053fed7b89427aef21",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "mountain-wedding-2026-11-14/out/odar.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "odar"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as odar.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Odar Warm Stone, a 55-year-old man cleric: tall and thin, a long white braid, kind lined face, a red travelling bag across his body, a neat wooden mug hanging from his belt, a sun-and-stone holy symbol, a quarterstaff. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "niva",
+      "title": "Нива Седьмая Линия",
+      "file": "niva.png",
+      "runtimeFile": "runtime/niva.webp",
+      "sha256": "1da1207177a77d850d3ad0feed7b13d55a4890b9b8e2e31715e46ccc51f274cc",
+      "runtimeSha256": "c12b6e951796fe4ba7a569e52374db52a91dbba5d2b2b8901a62a6bff554019d",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "mountain-wedding-2026-11-14/out/niva.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "niva"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as niva.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Niva Seventh Line, a 20-year-old woman wizard: East Asian features, long straight black hair tied with string, a dappled grey-green cloak, a string of smooth pebbles used as markers, a staff, a thoughtful measuring look. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "arema",
+      "title": "Арема",
+      "file": "arema.png",
+      "runtimeFile": "runtime/arema.webp",
+      "sha256": "d40668950061edab9265cd4c57784e18db430f4b0f150d86e00803f5c5b06670",
+      "runtimeSha256": "fbab2becd7c7ae0527362d173db115fbc9a109dc4772125c9ab8a58d263e4342",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "mountain-wedding-2026-11-14/out/arema.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "arema"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as arema.png in the current directory.\nPortrait-style illustration, vertical 2:3. Arema, a living red sandstone mountain: a huge warm red slope with broad stone brows and a calm feminine face emerging from the rock face, eyes half-closed, ledges like folded shoulders, wildflowers and tiny ribbons tied on her slopes, wind and clouds, gentle and ancient. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "yar.png"
+      ]
+    },
+    {
+      "id": "torven",
+      "title": "Торвен",
+      "file": "torven.png",
+      "runtimeFile": "runtime/torven.webp",
+      "sha256": "3058e318daf2f6ebe1dbfe0f53522f965621cea0fb16e9ace993fe3f7e6c715d",
+      "runtimeSha256": "c32198908d2b314b3b8612776e34a8a8e25a2f7b5ada4c6cc179d360525f52e4",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "mountain-wedding-2026-11-14/out/torven.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "torven"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as torven.png in the current directory.\nPortrait-style illustration, vertical 2:3. Torven, a living silver granite peak: a tall silver mountain with a bright quartz stripe across it like a sash and a calm masculine face under an overhanging stone brow, snow banners streaming, dignified and patient. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "yar.png"
+      ]
+    },
+    {
+      "id": "loman",
+      "title": "Ломан",
+      "file": "loman.png",
+      "runtimeFile": "runtime/loman.webp",
+      "sha256": "45022150d8aba8a68aa06fe1112586399c3bfb74bbd3b212dd7b959eb490a4b2",
+      "runtimeSha256": "2bcc4b944f909c001dee5bf8a3a4b586fa59f9f7b076a3fd61ddb51682d170ad",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "mountain-wedding-2026-11-14/out/loman.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "loman"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as loman.png in the current directory.\nPortrait-style illustration, vertical 2:3. Loman, a colossal stone giant made of slanting stacked slabs: back, arms and left leg of red stone; right leg and a tall thin top made of patchy stolen stone, red crumbs mixed with silver quartz; long arms, flat palms, standing tall and boastful against the sky, a slight lean onto his left leg. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "yar.png"
+      ]
+    },
+    {
+      "id": "esha",
+      "title": "Эша Рваный Ритм",
+      "file": "esha.png",
+      "runtimeFile": "runtime/esha.webp",
+      "sha256": "43347ee937b8c6982ec33de934f8e825f81a583831ae0853f3220f53fb310ba0",
+      "runtimeSha256": "f67dbc373e8dd3b2b5f4617495c18db80185e8964d8b4df9ebd6960f2600013a",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "mountain-wedding-2026-11-14/out/esha.png",
+      "revealFromEvening": 2,
+      "subjects": [
+        "esha"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as esha.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Esha Torn Rhythm, a 19-year-old young woman walker: wiry, a white headband, worn knee pads, three long ribbons hanging from her belt, scraped hands, restless eyes, mid-gesture as if counting a beat. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "yar.png"
+      ]
+    },
+    {
+      "id": "irdo",
+      "title": "Ирдо Две Петли",
+      "file": "irdo.png",
+      "runtimeFile": "runtime/irdo.webp",
+      "sha256": "068c39bd7e5224c6e3007f51fb7ea94758c7e2c119d8a7e423b0882d8e5604e9",
+      "runtimeSha256": "7116ae0300e6c4e04e2920d58f238bc8cdb52889a52fc99c2f942df14b3268aa",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "mountain-wedding-2026-11-14/out/irdo.png",
+      "revealFromEvening": 2,
+      "subjects": [
+        "irdo"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as irdo.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Irdo Two Loops, a 54-year-old man, master of the walkers: short grey beard, a wide-brimmed hat, a coil of rope over his shoulder always folded into an open loop, a sun-creased friendly face. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "yar.png"
+      ]
+    },
+    {
+      "id": "nemi",
+      "title": "Неми Длинная Черта",
+      "file": "nemi.png",
+      "runtimeFile": "runtime/nemi.webp",
+      "sha256": "f06662161362a046dfdd62c500bf71c07f82ca84040ce64797636cf265394c94",
+      "runtimeSha256": "a656a48d3bb5c387c743413f6790d18af6aaa5f0d1d0574d700dbcec2aef09c7",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "mountain-wedding-2026-11-14/out/nemi.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "nemi"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as nemi.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Nemi Long Line, a 16-year-old girl surveyor: wide sleeves, a drawing board on a strap, chalk behind her ear, ink-smudged fingers, a serious concentrated expression. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "yar.png"
+      ]
+    },
+    {
+      "id": "saff",
+      "title": "Сафф Полосатый Рукав",
+      "file": "saff.png",
+      "runtimeFile": "runtime/saff.webp",
+      "sha256": "24263b6f62273145a7cb71114337baff2e0a89d94af44413b6f1579e5117b3fa",
+      "runtimeSha256": "e3a077f3ae12cfb96d62c36fb8b8487dc8a39b3860262f7a89008367a15f8f4a",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "mountain-wedding-2026-11-14/out/saff.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "saff"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as saff.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Saff Striped Sleeve, a 37-year-old man walker of the silver peak: striped sleeves, a short braid, a small mirror button flashing on his collar, a confident signaller's stance with a ribbon pole. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "yar.png"
+      ]
+    },
+    {
+      "id": "vek",
+      "title": "Век Плоский",
+      "file": "vek.png",
+      "runtimeFile": "runtime/vek.webp",
+      "sha256": "1f47dfb0658e2e5158b0c9e3434b0dead7681d0391d06c60d33c4e52f2853c23",
+      "runtimeSha256": "d4324e09a17091306b04cb226456e2e198ed821f46ec304f4288b7add5ff4d76",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "mountain-wedding-2026-11-14/out/vek.png",
+      "revealFromEvening": 6,
+      "subjects": [
+        "vek"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as vek.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Vek Flat, a 72-year-old small stone person: short, with a broad flat stone back like a slab, grey lichen-spotted skin, eyes set high at the top edge of his face, slow and wise, sitting on a rock. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "yar.png"
+      ]
+    },
+    {
+      "id": "runa",
+      "title": "Руна Сторона Света",
+      "file": "runa.png",
+      "runtimeFile": "runtime/runa.webp",
+      "sha256": "21a97fbc64b97d929d4d9ae72baa0bc8893ec6093ba14099be91c6a79f334bcd",
+      "runtimeSha256": "9d5b0b0e4269debc0f04a8d3e456719a455a2a4afb0a400b6da0fb2c9ca6421c",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "mountain-wedding-2026-11-14/out/runa.png",
+      "revealFromEvening": 6,
+      "subjects": [
+        "runa"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as runa.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Runa Compass Point, a 29-year-old woman from the valley: a green cloak with large white patches sewn on, a long travelling staff, short auburn hair, an open friendly face. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "yar.png"
+      ]
+    },
+    {
+      "id": "heel-crumb",
+      "title": "Красная крошка с пятки",
+      "file": "heel-crumb.png",
+      "runtimeFile": "runtime/heel-crumb.webp",
+      "sha256": "2421d28f8bb6b540472571b886a5e8627392c199d8969831e81878606c6ec1b9",
+      "runtimeSha256": "bb1d8bfa5cec73efbe53bea80ba5cb2b23ed44274575d7217ef63afdbb45cdc9",
+      "width": 1254,
+      "height": 1254,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "mountain-wedding-2026-11-14/out/heel-crumb.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "heel-crumb"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as heel-crumb.png in the current directory.\nItem illustration, single object or small group centered on a plain warm parchment backdrop, square 1:1: a small warm red pebble the size of a fingernail, rough on one side and smooth on the other, glowing faintly, resting on an open palm. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "red-shoulder.png"
+      ]
+    },
+    {
+      "id": "yar-slate",
+      "title": "Складная дощечка Яра",
+      "file": "yar-slate.png",
+      "runtimeFile": "runtime/yar-slate.webp",
+      "sha256": "4daf292fbe18272376b5304e2a04a5bb948d872543105e521f2aeaffada07a3e",
+      "runtimeSha256": "30e9b0e23fd84913a14477a1bb7fa26084be1efa8357ed71b7103928a69ff06a",
+      "width": 1254,
+      "height": 1254,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "mountain-wedding-2026-11-14/out/yar-slate.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "yar-slate"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as yar-slate.png in the current directory.\nItem illustration, single object or small group centered on a plain warm parchment backdrop, square 1:1: a folding slate of two lime-wood leaves on a leather strap, thin paper stretched inside, a charcoal pencil tied to the strap, a dark charcoal smudge on the left leaf. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "red-shoulder.png"
+      ]
+    },
+    {
+      "id": "walker-ribbons",
+      "title": "Ленты ходоков",
+      "file": "walker-ribbons.png",
+      "runtimeFile": "runtime/walker-ribbons.webp",
+      "sha256": "1c2c9299d2fa5e3fbfcfbe821d8baa1c5c81ead1e6086d1b67b073d7c849bdf5",
+      "runtimeSha256": "edd3ae648bbcfd422c46d489c49defb8e215ac3de6075451fe6e2fd495efdd84",
+      "width": 1254,
+      "height": 1254,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "mountain-wedding-2026-11-14/out/walker-ribbons.png",
+      "revealFromEvening": 2,
+      "subjects": [
+        "walker-ribbons"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as walker-ribbons.png in the current directory.\nItem illustration, single object or small group centered on a plain warm parchment backdrop, square 1:1: a bundle of long ribbons on wooden batons, red, grey, white and striped, ends sewn so each can be raised, stretched sideways or folded in two. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "red-shoulder.png"
+      ]
+    },
+    {
+      "id": "loop-rope",
+      "title": "Верёвка с открытой петлёй",
+      "file": "loop-rope.png",
+      "runtimeFile": "runtime/loop-rope.webp",
+      "sha256": "f8e26217db5c870154ac96cab1458c90e196cc9ecf9e1cb2ebbccc66ebf6245d",
+      "runtimeSha256": "4b3a8fc8efc9ffb86456687430ef0aed7e80c786752f61fdae707fdfe4fdbee0",
+      "width": 1254,
+      "height": 1254,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "mountain-wedding-2026-11-14/out/loop-rope.png",
+      "revealFromEvening": 2,
+      "subjects": [
+        "loop-rope"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as loop-rope.png in the current directory.\nItem illustration, single object centered on a plain warm parchment backdrop, square 1:1: a neatly coiled thick light hemp climbing rope, one end finished with a small flat bowline loop lying open on top of the coil, like a climber's rope, the middle worn smooth by stone. Clearly a climbing rope, nothing else. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "red-shoulder.png"
+      ]
+    },
+    {
+      "id": "esha-drawing",
+      "title": "Рисунок Эши",
+      "file": "esha-drawing.png",
+      "runtimeFile": "runtime/esha-drawing.webp",
+      "sha256": "242c63cbe552e580a015de94aabc8646071ba70769a96c85af40473681c58262",
+      "runtimeSha256": "5315824bf99cb219025e7aec324e8e5e4fcb2dfd869b81ff7e81b1f0e854a31d",
+      "width": 1254,
+      "height": 1254,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "mountain-wedding-2026-11-14/out/esha-drawing.png",
+      "revealFromEvening": 2,
+      "subjects": [
+        "esha-drawing"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as esha-drawing.png in the current directory.\nItem illustration, single object or small group centered on a plain warm parchment backdrop, square 1:1: a small wooden board lying on a rock with a charcoal sketch of a long horizontal figure on four sticks and an arrow toward scree lines, a few lines of scribbles (not readable). No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "red-shoulder.png"
+      ]
+    },
+    {
+      "id": "quartz-splinter",
+      "title": "Кварцевая щепка Торвена",
+      "file": "quartz-splinter.png",
+      "runtimeFile": "runtime/quartz-splinter.webp",
+      "sha256": "f734fcd0345145edef0c4017862d11c2f0d9530f1d90f5309eea589341a59273",
+      "runtimeSha256": "469a210acb232f8c0a85eadd5f8101a58c9eb51342e8a27778fec5a95b0b7d41",
+      "width": 1254,
+      "height": 1254,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "mountain-wedding-2026-11-14/out/quartz-splinter.png",
+      "revealFromEvening": 3,
+      "subjects": [
+        "quartz-splinter"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as quartz-splinter.png in the current directory.\nItem illustration, single object or small group centered on a plain warm parchment backdrop, square 1:1: a clear quartz splinter the size of a finger with a thin bright vein inside, glowing cold white in sunlight. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "red-shoulder.png"
+      ]
+    },
+    {
+      "id": "whistling-chip",
+      "title": "Свистящий осколок",
+      "file": "whistling-chip.png",
+      "runtimeFile": "runtime/whistling-chip.webp",
+      "sha256": "329db2830dd33d05d78ed03c527b97f3a61318327a9c7e058863c42ec39aa36b",
+      "runtimeSha256": "bf2f96cce026d545841817fc6ba7d9a19dd112abc5f60c8b344c50ded5f062f4",
+      "width": 1254,
+      "height": 1254,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "mountain-wedding-2026-11-14/out/whistling-chip.png",
+      "revealFromEvening": 4,
+      "subjects": [
+        "whistling-chip"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as whistling-chip.png in the current directory.\nItem illustration, single object or small group centered on a plain warm parchment backdrop, square 1:1: a palm-sized stone chip, one half red sandstone and one half silver granite, a thin crack packed with red and silver crumbs between them, wind lines showing it whistles. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "red-shoulder.png"
+      ]
+    },
+    {
+      "id": "nemi-map",
+      "title": "Карта вторых постановок",
+      "file": "nemi-map.png",
+      "runtimeFile": "runtime/nemi-map.webp",
+      "sha256": "7546a9606099540be0c6c4e6e0029b938ab236a10c9d69b1a7e44100fd7dc492",
+      "runtimeSha256": "979fa3c6f8d733d25e88e0c0c7a6c2c063e448b78be65b56dbe443c743252754",
+      "width": 1254,
+      "height": 1254,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "mountain-wedding-2026-11-14/out/nemi-map.png",
+      "revealFromEvening": 5,
+      "subjects": [
+        "nemi-map"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as nemi-map.png in the current directory.\nItem illustration, single object or small group centered on a plain warm parchment backdrop, square 1:1: a long sheet on wooden battens drawn with fine slope lines, small circles ringed in chalk and tiny marks (no readable text). No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "red-shoulder.png"
+      ]
+    },
+    {
+      "id": "lower-arcs",
+      "title": "Две дуги Руны",
+      "file": "lower-arcs.png",
+      "runtimeFile": "runtime/lower-arcs.webp",
+      "sha256": "1f3f6c681747181219797349d124bcba0cc048af28ee1039c78d38a304b84878",
+      "runtimeSha256": "1b13c811cf2e3f44a143c457cbb2240a5137ba5b6b5cc3b6e00c105250abe40d",
+      "width": 1254,
+      "height": 1254,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "mountain-wedding-2026-11-14/out/lower-arcs.png",
+      "revealFromEvening": 6,
+      "subjects": [
+        "lower-arcs"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as lower-arcs.png in the current directory.\nItem illustration, single object or small group centered on a plain warm parchment backdrop, square 1:1: a grey cloth pouch open beside smooth red and silver pebbles laid out in two arcs, each arc graded from small to large. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "red-shoulder.png"
+      ]
+    },
+    {
+      "id": "signal-stones",
+      "title": "Сигнальные камни",
+      "file": "signal-stones.png",
+      "runtimeFile": "runtime/signal-stones.webp",
+      "sha256": "f0ac61d3f7351c1c43558d70abc39336d3b5c2b8f3d14a54ac74dd4bb69ee76d",
+      "runtimeSha256": "3deef2fde4f5ab604029d47c40483f9ded385058f7530dc9fe267a6fe05254ae",
+      "width": 1254,
+      "height": 1254,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "mountain-wedding-2026-11-14/out/signal-stones.png",
+      "revealFromEvening": 7,
+      "subjects": [
+        "signal-stones"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as signal-stones.png in the current directory.\nItem illustration, single object or small group centered on a plain warm parchment backdrop, square 1:1: two flat stones the size of a large palm, each with a hole for a ribbon, one red with crumbs, one silver with a quartz vein, ribbons threaded through. No text.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "red-shoulder.png"
+      ]
+    },
+    {
+      "id": "token-dust",
+      "title": "token-dust",
+      "file": "token-dust.png",
+      "runtimeFile": "runtime/token-dust.webp",
+      "sha256": "3855bf2b234e8f67905752db0c57900aad8170718df97586131221217abb3353",
+      "runtimeSha256": "ac24135d64e729e26501e8b2b949dc0539f2f0f2e0c36e385b0b32d75090415f",
+      "width": 1254,
+      "height": 1254,
+      "alpha": true,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "mountain-wedding-2026-11-14/out/token-dust.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "throat-dust-foe-1",
+        "throat-dust-foe-2",
+        "throat-dust-foe-3",
+        "throat-dust-foe-4"
+      ],
+      "kind": "token",
+      "srd": "dust-mephit",
+      "prompt": "Generate one image and save it as token-dust.png in the current directory.\nGame token figure on a fully transparent background, top three-quarter view, no ground shadow. A small winged whirl of red and silver dust shaped like a mischievous imp, two pebbles for eyes.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "red-shoulder.png"
+      ]
+    },
+    {
+      "id": "token-chip",
+      "title": "token-chip",
+      "file": "token-chip.png",
+      "runtimeFile": "runtime/token-chip.webp",
+      "sha256": "1a4682b4217bd7334f0c0c12b73164ba7a7ac1a8f714d40eac2af78de82f2be3",
+      "runtimeSha256": "f4671cbe83f602cc72f5d814dfcb949d006dc258232abb8591fabd23f3a954ba",
+      "width": 1402,
+      "height": 1122,
+      "alpha": true,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "mountain-wedding-2026-11-14/out/token-chip.png",
+      "revealFromEvening": 5,
+      "subjects": [
+        "bridge-chips-foe-1"
+      ],
+      "kind": "token",
+      "srd": "animated-armor",
+      "prompt": "Generate one image and save it as token-chip.png in the current directory.\nGame token figure on a fully transparent background, top three-quarter view, no ground shadow. A hunched wingless stone creature the size of a ram made of a single stolen slab, one side red sandstone and the other silver granite, stubby stone legs.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "red-shoulder.png"
+      ]
+    },
+    {
+      "id": "token-winged-chip",
+      "title": "token-winged-chip",
+      "file": "token-winged-chip.png",
+      "runtimeFile": "runtime/token-winged-chip.webp",
+      "sha256": "c20d5c4b4aaa507dd551f41da140e481971557d7b4595079d462807dbc9148c5",
+      "runtimeSha256": "c34325c5e88905b22f87fa4af7e0972eb4c0d26a2e59fce06c7ef6c1ed170219",
+      "width": 1470,
+      "height": 1070,
+      "alpha": true,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "mountain-wedding-2026-11-14/out/token-winged-chip.png",
+      "revealFromEvening": 7,
+      "subjects": [
+        "shoulder-wind-foe-1"
+      ],
+      "kind": "token",
+      "srd": "gargoyle",
+      "prompt": "Generate one image and save it as token-winged-chip.png in the current directory.\nGame token figure on a fully transparent background, top three-quarter view, no ground shadow. A winged stone creature the size of a ram, one side red and one side silver granite, rough stone wings spread, clawed feet.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "red-shoulder.png"
+      ]
+    },
+    {
+      "id": "token-loman-top",
+      "title": "token-loman-top",
+      "file": "token-loman-top.png",
+      "runtimeFile": "runtime/token-loman-top.webp",
+      "sha256": "46d0ace3997d7aaaa0e194a7f00abba983ce17d62d44fb0f799567454d686c5a",
+      "runtimeSha256": "b2475613843ae555a8479c0fe674cc6cea199a937b82e1837a3d6352288e56c2",
+      "width": 1220,
+      "height": 1289,
+      "alpha": true,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "mountain-wedding-2026-11-14/out/token-loman-top.png",
+      "revealFromEvening": 8,
+      "subjects": [
+        "last-touch-boss"
+      ],
+      "kind": "token",
+      "srd": "ogre",
+      "prompt": "Generate one image and save it as token-loman-top.png in the current directory.\nGame token figure on a fully transparent background, top three-quarter view, no ground shadow. A hill-tall stone giant torso and limbs built of patchy stolen slabs, red crumbs mixed with silver quartz, a glowing whistling seam at the right knee, long arms raising a slab.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "red-shoulder.png"
+      ]
+    }
+  ]
+}

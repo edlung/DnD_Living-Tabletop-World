@@ -1,0 +1,1906 @@
+{
+  "capturedAt": "2026-11-08T11:27:16.270063+00:00",
+  "method": "Raw final source strings, whitespace normalized, checked in recursive package text and parsed HTML text. Structural IDs remain unchanged. Optional hero profiles are checked in the player book; smaller packages intentionally omit extra seats. This checks content retention, not story quality or authorization.",
+  "packageFiles": 70,
+  "bookFiles": 191,
+  "failures": [],
+  "campaigns": [
+    {
+      "slug": "basalt-bloom",
+      "packages": [
+        {
+          "file": "campaigns/fantasy-2026/basalt-bloom/package.json",
+          "sha256": "91e2849b064e27b8be08cf97b921369ec64a516e7fae26bbd3ddfdb22893e4b3",
+          "expectedFields": 525,
+          "matchedFields": 525,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/basalt-bloom/variants/3-players.json",
+          "sha256": "5c7d6ec7da91d2850bc77e11427f384fdbc9963f0e470477838a0330a3d8dfff",
+          "expectedFields": 525,
+          "matchedFields": 525,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/basalt-bloom/variants/4-players.json",
+          "sha256": "91e2849b064e27b8be08cf97b921369ec64a516e7fae26bbd3ddfdb22893e4b3",
+          "expectedFields": 525,
+          "matchedFields": 525,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/basalt-bloom/variants/5-players.json",
+          "sha256": "8db6f5e1a217e4d7ebbe6ddc81a333eebfb944bef449faf9e31a09b49c1ead31",
+          "expectedFields": 525,
+          "matchedFields": 525,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/basalt-bloom/variants/6-players.json",
+          "sha256": "d170ca082742d2b862ee755cb52177e5766ad0ea4c065fd5b8e45504e516c57f",
+          "expectedFields": 525,
+          "matchedFields": 525,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/basalt-bloom/variants/7-players.json",
+          "sha256": "b2af3e40d8dc0c7b718df78f49e768723a8dff7db5ae1f509fda1c73986911a6",
+          "expectedFields": 525,
+          "matchedFields": 525,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/basalt-bloom/variants/8-players.json",
+          "sha256": "c968084f8f1ebbae536f36f0178e375a26c2f631d271d62e83fd29bd56771b6b",
+          "expectedFields": 525,
+          "matchedFields": 525,
+          "missingFields": []
+        }
+      ],
+      "books": [
+        {
+          "file": "campaigns/fantasy-2026/basalt-bloom/session-1.html",
+          "sha256": "547ef4fae14ba680b0c0f16866cfec1e2cce8a640f3e05c69aee5baecd58284f",
+          "expectedFields": 35,
+          "matchedFields": 35,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/basalt-bloom/session-2.html",
+          "sha256": "8b3781da3ed6dcc4e7e16eebabfd6126f3674f371b8db2ca4a819ede79e1e4ca",
+          "expectedFields": 34,
+          "matchedFields": 34,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/basalt-bloom/session-3.html",
+          "sha256": "aa32550fb06945c492264fca3a3b446152c83cd99ecbe11ae7ca4f96e5f373ed",
+          "expectedFields": 34,
+          "matchedFields": 34,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/basalt-bloom/session-4.html",
+          "sha256": "fd4afc37c66015ddd4d7cd2c274a225af4be4b7d1723faa1d3cd0813b18abed6",
+          "expectedFields": 34,
+          "matchedFields": 34,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/basalt-bloom/session-5.html",
+          "sha256": "14d5873d000ab283466003135d267064efc1a17bf4d8c1df0e06fc0449146a82",
+          "expectedFields": 34,
+          "matchedFields": 34,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/basalt-bloom/session-6.html",
+          "sha256": "0c432f199ae3b546a926ab1562bc10c2f7eef879fb7fae35eac3689e168a2f6e",
+          "expectedFields": 34,
+          "matchedFields": 34,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/basalt-bloom/session-7.html",
+          "sha256": "81ea6be4d7b4f1915cf2fb9b6c70510e0d4f3a5c7be73607cc15ee68eb4a0704",
+          "expectedFields": 34,
+          "matchedFields": 34,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/basalt-bloom/session-8.html",
+          "sha256": "0da01130e07564f83687a0971f1043b48c3807933f2b4a786d21f6c6de921e7f",
+          "expectedFields": 36,
+          "matchedFields": 36,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/basalt-bloom/handouts/first-path-note.html",
+          "sha256": "78223f7b9d0e879f1c3d68db18806c3a9169529580ba3acfa61b28967de39186",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/basalt-bloom/handouts/river-comparison.html",
+          "sha256": "98f91a4e082426f288234f3fab4caa401a0a777c7ee07b09840443d98a57466b",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/basalt-bloom/handouts/thread-comparison.html",
+          "sha256": "89dad7e357119bb899b69d9b0af6c0dd04fdf03892774b2b6f73c9a576090af1",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/basalt-bloom/handouts/support-comparison.html",
+          "sha256": "5a4e95b590f50f65c650a686133406797b3c2e354c1b2efabaa8b41d8acc4363",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/basalt-bloom/handouts/field-protocol.html",
+          "sha256": "c8690524b940d1afc8a20e0b8f8ac4bd836ea09ccf4938914f704f9cfa0efc92",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/basalt-bloom/handouts/post-card.html",
+          "sha256": "6d3f4bc8f7df48d76ea223bcbe9cdb795c387c5a01b5113294fe452cdfe84d24",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/basalt-bloom/handouts/two-view-strip.html",
+          "sha256": "85bb37825fa73e76b1d81373696449ba730f56f640cd70770d56fbd25053fec1",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/basalt-bloom/handouts/honest-atlas-leaf.html",
+          "sha256": "b975caadd55f60393bd174900f63ce6f0c0ed1ef09f04d243c893be886f96fb8",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/basalt-bloom/index.html",
+          "sha256": "b53a85b619353cfa0d99ab78fff1ab3d626e7ca0f2aeb86839193af084af1ccc",
+          "expectedFields": 162,
+          "matchedFields": 162,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/basalt-bloom/maps.html",
+          "sha256": "d2fbe3bdaa13f53add9cdd5893c3b218fbbb836c37d0039b39e1383a80dd75c7",
+          "expectedFields": 24,
+          "matchedFields": 24,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/basalt-bloom/players.html",
+          "sha256": "9c7ed618bb4650a4be029ca92332808e20da95a11ca69e233dd96f0607f44f88",
+          "expectedFields": 75,
+          "matchedFields": 75,
+          "missingFields": []
+        }
+      ]
+    },
+    {
+      "slug": "dragon-retirement",
+      "packages": [
+        {
+          "file": "campaigns/fantasy-2026/dragon-retirement/package.json",
+          "sha256": "c3ea168014f190ff4bb685f0505063e1005a86ea804acc465f4bebcd15ed1bf2",
+          "expectedFields": 541,
+          "matchedFields": 541,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dragon-retirement/variants/3-players.json",
+          "sha256": "151b2a4921cd9b9201d35e882cbd53c28f0f83bcc9a1c2c98926a97b2d6bb8b9",
+          "expectedFields": 541,
+          "matchedFields": 541,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dragon-retirement/variants/4-players.json",
+          "sha256": "c3ea168014f190ff4bb685f0505063e1005a86ea804acc465f4bebcd15ed1bf2",
+          "expectedFields": 541,
+          "matchedFields": 541,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dragon-retirement/variants/5-players.json",
+          "sha256": "e61fda30a5f2ed57019a14cd3e60d92e9a5e6dfa73707cf65040549c23bf300f",
+          "expectedFields": 541,
+          "matchedFields": 541,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dragon-retirement/variants/6-players.json",
+          "sha256": "de6f0fc0427b3c0fbf2e3f04d83b54f03b562ee2b391a42d462075e382a1aac7",
+          "expectedFields": 541,
+          "matchedFields": 541,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dragon-retirement/variants/7-players.json",
+          "sha256": "a49b61c9003553790fe10c4fec3801d00300919fe1c76c437e3e28d4a17ec174",
+          "expectedFields": 541,
+          "matchedFields": 541,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dragon-retirement/variants/8-players.json",
+          "sha256": "84368439bdfc73c7a7dedbcc9ec232c1f671e2cdfa98d0b598724758b5dfc9be",
+          "expectedFields": 541,
+          "matchedFields": 541,
+          "missingFields": []
+        }
+      ],
+      "books": [
+        {
+          "file": "campaigns/fantasy-2026/dragon-retirement/session-1.html",
+          "sha256": "8f92b4e11c8738b1cdd65fc3015b25cf514ab1ce313f25b99f5e05b58840cbc2",
+          "expectedFields": 35,
+          "matchedFields": 35,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dragon-retirement/session-2.html",
+          "sha256": "7a2fda86fbe13c38f129b4a4f76644460a1b17d7cb94a1e2788db10319d0caab",
+          "expectedFields": 35,
+          "matchedFields": 35,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dragon-retirement/session-3.html",
+          "sha256": "0d4fb48eb8dc2bd5a04b3d6767d52128b7129152436cdc56f025154c6cb29dc7",
+          "expectedFields": 35,
+          "matchedFields": 35,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dragon-retirement/session-4.html",
+          "sha256": "2c61917c7f046ba9609c3e82d305cf2f7fc1792ebcec0d9d2da178b24472ef32",
+          "expectedFields": 35,
+          "matchedFields": 35,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dragon-retirement/session-5.html",
+          "sha256": "9d7c18f6b149381b707061976218bb4294ae8c5df50341930213d50aad668b41",
+          "expectedFields": 35,
+          "matchedFields": 35,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dragon-retirement/session-6.html",
+          "sha256": "d2c4199946b496873c0246413f788c45f23b38d13cfe8a027736d1867f2a156e",
+          "expectedFields": 35,
+          "matchedFields": 35,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dragon-retirement/session-7.html",
+          "sha256": "8a35f9d4cb260a901516b34d7992b1fb5c27f9d776742e68e4879f2df3126e62",
+          "expectedFields": 37,
+          "matchedFields": 37,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dragon-retirement/session-8.html",
+          "sha256": "019574079698b186261fb372a4d1cfe253a52eef93a284eb8ec303d89e540cd7",
+          "expectedFields": 37,
+          "matchedFields": 37,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dragon-retirement/handouts/retirement-letter.html",
+          "sha256": "ebc32d66f8f86675cbcd94c72a47fc8b5a97a935fd7df88504dd54c253b0d1f0",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dragon-retirement/handouts/ground-walking-card.html",
+          "sha256": "6b22941fd3d9e67df89aed65fedd40410b5be3ccee4b4167d06334c1730d3d3f",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dragon-retirement/handouts/burdash-words.html",
+          "sha256": "3d8604cab1afdf001056632306e5d8ae4a1b70b7f212dd55f6c2c765bf90a200",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dragon-retirement/handouts/guarantee-ticket.html",
+          "sha256": "bf531846ee713059873da5b0eeac4e3567abe9fd856388c7f80766b4b9fe4a5a",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dragon-retirement/handouts/lissa-testimony.html",
+          "sha256": "8466316003ce207edd8a6e34978eab2b8f928be7077cb1821391b8287f0a26d2",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dragon-retirement/handouts/crown-route-card.html",
+          "sha256": "1ac22a613f531d971f58a17c01a68fa21b3887876889e2bec943910454fc89c1",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dragon-retirement/handouts/limited-help-card.html",
+          "sha256": "0702ae06d58f6520ddde89c7d7f3341f16c8dadba1601cda8567612b24dcc6ee",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dragon-retirement/handouts/next-ordinary-day.html",
+          "sha256": "0d55fc9fd7f948d9e569ef4387b0c77ab9e4bc7db2b28f879afca2e62ad5a9e8",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dragon-retirement/index.html",
+          "sha256": "679f072e66534261c95425d6472da7582f0c6b401dfcac0c01ad60fd9243a3a5",
+          "expectedFields": 169,
+          "matchedFields": 169,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dragon-retirement/maps.html",
+          "sha256": "0c578df28ff18e3b7dbd81a70c9c86c79c10578ff19d8298b210ba178d64c383",
+          "expectedFields": 24,
+          "matchedFields": 24,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dragon-retirement/players.html",
+          "sha256": "abab06ecd63b7ea7844269eb6b9436f57f8930082b3408aca8f1670523824470",
+          "expectedFields": 75,
+          "matchedFields": 75,
+          "missingFields": []
+        }
+      ]
+    },
+    {
+      "slug": "dungeon-sanctuary",
+      "packages": [
+        {
+          "file": "campaigns/fantasy-2026/dungeon-sanctuary/package.json",
+          "sha256": "59ebf0f2451bb11e7c11548aa2343483506afa66712ffc45b918ef5b14ea57a1",
+          "expectedFields": 575,
+          "matchedFields": 575,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dungeon-sanctuary/variants/3-players.json",
+          "sha256": "a50a39a4cdd9190a3c86ea30efe9b0f6ce63868c44adbcc3a4517e155e47a4ad",
+          "expectedFields": 575,
+          "matchedFields": 575,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dungeon-sanctuary/variants/4-players.json",
+          "sha256": "59ebf0f2451bb11e7c11548aa2343483506afa66712ffc45b918ef5b14ea57a1",
+          "expectedFields": 575,
+          "matchedFields": 575,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dungeon-sanctuary/variants/5-players.json",
+          "sha256": "e5110a5f7fc76bbfb7dffdd29b7ca610500da26e0752e2fafc52665dace11988",
+          "expectedFields": 575,
+          "matchedFields": 575,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dungeon-sanctuary/variants/6-players.json",
+          "sha256": "e01c56e627264ed3c678d6a58a178c17b6cd3978b8aa6abd4f8a12176a1d8ed6",
+          "expectedFields": 575,
+          "matchedFields": 575,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dungeon-sanctuary/variants/7-players.json",
+          "sha256": "91e148351e5317d16bd3dff4be1fa8189aad0783f9e8e81036048c435e56ea5c",
+          "expectedFields": 575,
+          "matchedFields": 575,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dungeon-sanctuary/variants/8-players.json",
+          "sha256": "d9f578e809ea229b8edc1656862d7327c7541e42c6ac18482e43f0c2da7b6797",
+          "expectedFields": 575,
+          "matchedFields": 575,
+          "missingFields": []
+        }
+      ],
+      "books": [
+        {
+          "file": "campaigns/fantasy-2026/dungeon-sanctuary/session-1.html",
+          "sha256": "ebe7357d24b5d2f6b483f29da62fdeb9d1906f4794c90589eaf1ad3776f28486",
+          "expectedFields": 36,
+          "matchedFields": 36,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dungeon-sanctuary/session-2.html",
+          "sha256": "c4bbe75d1df18c1e9ffe5575543d1e0c2fdbce3f427f61690c768324d20013d6",
+          "expectedFields": 36,
+          "matchedFields": 36,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dungeon-sanctuary/session-3.html",
+          "sha256": "394dc510db1e80604893fe0d12dfdf5f4ad922b27b0e01beb0322804e7461f42",
+          "expectedFields": 36,
+          "matchedFields": 36,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dungeon-sanctuary/session-4.html",
+          "sha256": "3483ac52767c173fd0db922c3fa2aa12d1a48e732045c4cbaf2d8fcbce122dfc",
+          "expectedFields": 37,
+          "matchedFields": 37,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dungeon-sanctuary/session-5.html",
+          "sha256": "129362e70bb07854fffb0b84e42a1c69328297c8446b295789cab27f5bff955a",
+          "expectedFields": 36,
+          "matchedFields": 36,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dungeon-sanctuary/session-6.html",
+          "sha256": "b69fa256439263e2c68af4cf0ffa8783ed484b5b4977f004a5d5c385179decca",
+          "expectedFields": 37,
+          "matchedFields": 37,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dungeon-sanctuary/session-7.html",
+          "sha256": "f16a6d8c32afaf7660e7cc91442b2feb361bd2cacafbbdead86411ee8f59398f",
+          "expectedFields": 39,
+          "matchedFields": 39,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dungeon-sanctuary/session-8.html",
+          "sha256": "cb334c05b5795068e0f897b19421faecbd751cfeb3462f8f4147de490af7b82c",
+          "expectedFields": 40,
+          "matchedFields": 40,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dungeon-sanctuary/handouts/resident-invitation.html",
+          "sha256": "e08e1f9328a4da47c6363dc8078cb336ce43f8700c88427c67ff2406d5d8cb9e",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dungeon-sanctuary/handouts/needs-sheet.html",
+          "sha256": "2471dc73e2ccd3b3f3cd511ec9996040eeb7e29cffed594b8c46b7330919f100",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dungeon-sanctuary/handouts/path-legend.html",
+          "sha256": "79d1d35f171e945633e209f46fd7990f441d0e2e43157789e151ee2de55e5a28",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dungeon-sanctuary/handouts/short-shift.html",
+          "sha256": "0699052877855ae49d442d4f784ae424b589b965e4bfc80b8b8cfac0e7867e3e",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dungeon-sanctuary/handouts/inspection-letter.html",
+          "sha256": "a1fb8c9a6b1cb2f6b3ebf418d8d0dabeb3a9d89e065b6ef1369e7218a20dd85a",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dungeon-sanctuary/handouts/stop-card.html",
+          "sha256": "265167fad3d750c126963d3279107d4d928fdbd4c630a40881e085cfdd40e846",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dungeon-sanctuary/handouts/trial-invitation.html",
+          "sha256": "8dbbb26cd6627b64274bfef6d94d48d56b1cbe062bc3ed096603b0bf3d144e06",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dungeon-sanctuary/handouts/tomorrow-note.html",
+          "sha256": "4f384628a969a7f281e3a89420da4fd6b413aa7ba3fa13a0e36b957edd86d3db",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dungeon-sanctuary/index.html",
+          "sha256": "c3e3fc07e1019b996926b37e55c3d73c955ead7e3e679099384c7608556ca18f",
+          "expectedFields": 182,
+          "matchedFields": 182,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dungeon-sanctuary/maps.html",
+          "sha256": "cc10a25e3672e84ffeec4c2e32634143c7e7cce859376999637499ba66ba4a11",
+          "expectedFields": 24,
+          "matchedFields": 24,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/dungeon-sanctuary/players.html",
+          "sha256": "35efd3355b69c6ac13374d9cc6cc2b6609fe0eded62e56808a258515fef15f81",
+          "expectedFields": 76,
+          "matchedFields": 76,
+          "missingFields": []
+        }
+      ]
+    },
+    {
+      "slug": "familiar-school",
+      "packages": [
+        {
+          "file": "campaigns/fantasy-2026/familiar-school/package.json",
+          "sha256": "e182d12d4e2b2e6504d402f0bbfd1a7fcbe538a9fabb1bd5968033aeb587c922",
+          "expectedFields": 566,
+          "matchedFields": 566,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/familiar-school/variants/3-players.json",
+          "sha256": "657ad0962ecf92ee22b54c16a2b5a15cd81fef765261377eb1e5fa95e95a5712",
+          "expectedFields": 566,
+          "matchedFields": 566,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/familiar-school/variants/4-players.json",
+          "sha256": "e182d12d4e2b2e6504d402f0bbfd1a7fcbe538a9fabb1bd5968033aeb587c922",
+          "expectedFields": 566,
+          "matchedFields": 566,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/familiar-school/variants/5-players.json",
+          "sha256": "ff95d3e1144225bd327de2ec93fd4e5ed858a1f3ec2dbeab5811e268a1b7155a",
+          "expectedFields": 566,
+          "matchedFields": 566,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/familiar-school/variants/6-players.json",
+          "sha256": "95db68b8b2fc40c57c2dd8a4093929d9cbc359ffecaa4d129c74b4b961736cdc",
+          "expectedFields": 566,
+          "matchedFields": 566,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/familiar-school/variants/7-players.json",
+          "sha256": "b96dd60bf6393bd1f27df30694c72cf4edc937d4a498db2de3c3f8d3f3378918",
+          "expectedFields": 566,
+          "matchedFields": 566,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/familiar-school/variants/8-players.json",
+          "sha256": "8857f7c75e6154c8e37726f317d2ed36564381153dda745108c95f212ae944fa",
+          "expectedFields": 566,
+          "matchedFields": 566,
+          "missingFields": []
+        }
+      ],
+      "books": [
+        {
+          "file": "campaigns/fantasy-2026/familiar-school/session-1.html",
+          "sha256": "4c0458bc4e5d88aba7ee189485c1bd66fb9f4cd7b2746f7c4595bedd140dd33b",
+          "expectedFields": 35,
+          "matchedFields": 35,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/familiar-school/session-2.html",
+          "sha256": "b99707957e63bcce490f8364f39999c3edf3fffffc955258862baaedd2575700",
+          "expectedFields": 35,
+          "matchedFields": 35,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/familiar-school/session-3.html",
+          "sha256": "06b5cea0c9fda10324cfa1972942a943f72206d53b2413d8aa239f921ac42fcb",
+          "expectedFields": 35,
+          "matchedFields": 35,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/familiar-school/session-4.html",
+          "sha256": "01c1b0a80dbc0fedebdcb368949392760f916813e31510fff467b43c84e6428e",
+          "expectedFields": 35,
+          "matchedFields": 35,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/familiar-school/session-5.html",
+          "sha256": "60bd2a912a487430ef15e0761e2192ef2f78390c1414c14e784efecdd04dc0a6",
+          "expectedFields": 35,
+          "matchedFields": 35,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/familiar-school/session-6.html",
+          "sha256": "a360dc8e5177b92c2300d8443c3ed615d92e0d1f8a06fd9736fd4d7f01471137",
+          "expectedFields": 35,
+          "matchedFields": 35,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/familiar-school/session-7.html",
+          "sha256": "0820607de330837f9dc3fe6910c29741645e539c1193c8115e71988e742a7d5d",
+          "expectedFields": 35,
+          "matchedFields": 35,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/familiar-school/session-8.html",
+          "sha256": "03dc749806fe90033ed2524889b42606a4d2401dd07dbf1125770573e237540a",
+          "expectedFields": 39,
+          "matchedFields": 39,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/familiar-school/handouts/field-plan.html",
+          "sha256": "15c25b36885facd26ff632ad5238a05586509eb23e8737266063647639904b9d",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/familiar-school/handouts/yard-sign.html",
+          "sha256": "49fc68584d9380ff78a96d15c78248993a368518fbe90d852b5f989444c89a6f",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/familiar-school/handouts/folding-frame.html",
+          "sha256": "37c438e41e0f6ffa137b1f2d7f96c3dcbba77342207417de7c19481c93e62a95",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/familiar-school/handouts/hold-order.html",
+          "sha256": "2432f1a24bb49cfd10a3f35378b78ea6a4f6da30a5f417bd51118d034751ce47",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/familiar-school/handouts/shella-note.html",
+          "sha256": "29c775d4ba0853d94af82db390b5792e98fef4ba656c10573148f06012ff6501",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/familiar-school/handouts/two-answers.html",
+          "sha256": "ee308928970a1a31f44f226730e1452689839aeda2ed7fe460e040ce3dd1dc67",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/familiar-school/handouts/plain-flags.html",
+          "sha256": "89bfecbc48f464148718ee321aeb4ef31951078d6f5168f4b06e0deba4bcb493",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/familiar-school/handouts/camp-list.html",
+          "sha256": "25dcbf7bd708964f3051fa41625f713dd4211ff2cee4108f6c705a460cb28841",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/familiar-school/handouts/next-field-day.html",
+          "sha256": "5a9f2dd505a4f652a183a74a41b65fecc135752795942e86a3f71841738e4244",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/familiar-school/index.html",
+          "sha256": "7f63f2403e13ca390a2330c2a0099084509e47cc4930b11772544047b65fdca1",
+          "expectedFields": 193,
+          "matchedFields": 193,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/familiar-school/maps.html",
+          "sha256": "9b7495ce039ffe746baf14087f1d8cf15fb41037775a15e4bd13000ad46cd0d3",
+          "expectedFields": 24,
+          "matchedFields": 24,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/familiar-school/players.html",
+          "sha256": "92c2a02a45c4d2fc01f7481d042dc6da689fb10c683339c81a1e7a730db04228",
+          "expectedFields": 75,
+          "matchedFields": 75,
+          "missingFields": []
+        }
+      ]
+    },
+    {
+      "slug": "impossible-fair",
+      "packages": [
+        {
+          "file": "campaigns/fantasy-2026/impossible-fair/package.json",
+          "sha256": "bcd498a17fe788b73236a9db93e9efedb4a5f5098b0de2a0200476ac15c7d352",
+          "expectedFields": 552,
+          "matchedFields": 552,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/impossible-fair/variants/3-players.json",
+          "sha256": "d7ba73cd26dc0fbaedc9b7054b56fc325dd11cee03d8f1ebabbbdbd0244a5e3e",
+          "expectedFields": 552,
+          "matchedFields": 552,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/impossible-fair/variants/4-players.json",
+          "sha256": "bcd498a17fe788b73236a9db93e9efedb4a5f5098b0de2a0200476ac15c7d352",
+          "expectedFields": 552,
+          "matchedFields": 552,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/impossible-fair/variants/5-players.json",
+          "sha256": "a3bb3dcdaf494ab5a119ddd1f6453544670446aca712662397c49e54dd6cf708",
+          "expectedFields": 552,
+          "matchedFields": 552,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/impossible-fair/variants/6-players.json",
+          "sha256": "c4db240ef4726e85b7d30db64d18cd182b7670d1c80c72ae199afd65a107356c",
+          "expectedFields": 552,
+          "matchedFields": 552,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/impossible-fair/variants/7-players.json",
+          "sha256": "5c2010b9a9c4f5ae2ea862702933a7bd32422a6b0e5556839a23873d4f84f23a",
+          "expectedFields": 552,
+          "matchedFields": 552,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/impossible-fair/variants/8-players.json",
+          "sha256": "9f0413afbe0cbf03a5fadb14fe0a5be141f61dda4cbbeef4493bfb026b372929",
+          "expectedFields": 552,
+          "matchedFields": 552,
+          "missingFields": []
+        }
+      ],
+      "books": [
+        {
+          "file": "campaigns/fantasy-2026/impossible-fair/session-1.html",
+          "sha256": "dbff8f189579b86bab510fc1398ed2ff6d260ea8fa02e2162245fdf725c39867",
+          "expectedFields": 34,
+          "matchedFields": 34,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/impossible-fair/session-2.html",
+          "sha256": "c68d06e6fc848264d71a8df20ad143a4da3d505a23731a49f94594d379cd1126",
+          "expectedFields": 34,
+          "matchedFields": 34,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/impossible-fair/session-3.html",
+          "sha256": "6e2e44218c611ed5cf303a47be119707cd6f1a1abad70ba369d9fff28cc30b47",
+          "expectedFields": 34,
+          "matchedFields": 34,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/impossible-fair/session-4.html",
+          "sha256": "6927bc4db95a0ccb227383ed54f60d10b019fd326bce082a955cc614804b049d",
+          "expectedFields": 35,
+          "matchedFields": 35,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/impossible-fair/session-5.html",
+          "sha256": "7a410eda9531e6c39ae3913c3988177d51f6f1454f772a6e2c9fd3d754714caa",
+          "expectedFields": 37,
+          "matchedFields": 37,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/impossible-fair/session-6.html",
+          "sha256": "65d42159317b487a0388f9ccff400023103fae129c3369fc8e89ada763b23b5e",
+          "expectedFields": 34,
+          "matchedFields": 34,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/impossible-fair/session-7.html",
+          "sha256": "dfa32bf1ce4e9c6c805cff13339c3c617c7f96c3b12c6e5cfa69cb9e84c5a0c4",
+          "expectedFields": 34,
+          "matchedFields": 34,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/impossible-fair/session-8.html",
+          "sha256": "04f94770e2fc38448603745402d8aa9f1645766d1a23cc94d8a899fe9fdc366a",
+          "expectedFields": 45,
+          "matchedFields": 45,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/impossible-fair/handouts/blank-stall-card.html",
+          "sha256": "16764ae1cc890bd028b824e4ac30240c23e8ecdeb10d857c3debfc6e6cd1f325",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/impossible-fair/handouts/needs-before-patterns.html",
+          "sha256": "19e710356843fbd148daca689b0b396983a0f2131566a95a81e7fcc3fb6d22ad",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/impossible-fair/handouts/honest-comparison.html",
+          "sha256": "61da2819cbecd0f4f3df02372e2c7d8f5180de7f4500c9ccefdb6e00e584b031",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/impossible-fair/handouts/two-views-note.html",
+          "sha256": "0478c1099ed4353562441c00910342b470084925b8cae402e77bafc7160feccd",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/impossible-fair/handouts/two-real-orders.html",
+          "sha256": "33c834dde8675089ef94b86a5e1c556a407bb4a9a050efb2c9c1202ecda9433a",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/impossible-fair/handouts/commission-card.html",
+          "sha256": "060c93c2056455a2ba965e4d4f6546186821534b7e4f9013013368a8058f39a4",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/impossible-fair/handouts/use-and-care.html",
+          "sha256": "ffe5a6e3adb63e48abb9643254b767ad32395b1be7b734b754131a1e01e0ce6a",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/impossible-fair/handouts/handover-receipt.html",
+          "sha256": "10f472d0a1c5347882dec50e2427f500b2864385d24cd16fd0710ca75063080b",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/impossible-fair/index.html",
+          "sha256": "36b00281929aa6f854d9afe6d06ac7b48434ef9585907b4c3f930180f29447e9",
+          "expectedFields": 177,
+          "matchedFields": 177,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/impossible-fair/maps.html",
+          "sha256": "4ed0bf8962a4b013901bee8188b915a8699bddf4b6821993fd8aec6a81c97a9a",
+          "expectedFields": 24,
+          "matchedFields": 24,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/impossible-fair/players.html",
+          "sha256": "41e74b6dfc5e299a990c51d69ad1d348bad0b0530635c1fb2859f3b1f242952d",
+          "expectedFields": 76,
+          "matchedFields": 76,
+          "missingFields": []
+        }
+      ]
+    },
+    {
+      "slug": "mountain-wedding",
+      "packages": [
+        {
+          "file": "campaigns/fantasy-2026/mountain-wedding/package.json",
+          "sha256": "86db896d910c79df93830cf849568bf42cc649a20e9be3fb8ad5579414cf71bb",
+          "expectedFields": 537,
+          "matchedFields": 537,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/mountain-wedding/variants/3-players.json",
+          "sha256": "42317fd88391386a88080fbdb03bb18b490668ea769d5cf5777b4f22badf0460",
+          "expectedFields": 537,
+          "matchedFields": 537,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/mountain-wedding/variants/4-players.json",
+          "sha256": "86db896d910c79df93830cf849568bf42cc649a20e9be3fb8ad5579414cf71bb",
+          "expectedFields": 537,
+          "matchedFields": 537,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/mountain-wedding/variants/5-players.json",
+          "sha256": "77984157f98cde71a8a1362201cdfc78317ec4657fde3a8996d35940c6a850c8",
+          "expectedFields": 537,
+          "matchedFields": 537,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/mountain-wedding/variants/6-players.json",
+          "sha256": "12c51b2a857543edea593c546c0ad4816e25597de8ed2fa0f9f67bfc785f34f2",
+          "expectedFields": 537,
+          "matchedFields": 537,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/mountain-wedding/variants/7-players.json",
+          "sha256": "7ad5915bc10db9aec8430421b055acb5c16e568b5d26e604dd44b435c4fe91fe",
+          "expectedFields": 537,
+          "matchedFields": 537,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/mountain-wedding/variants/8-players.json",
+          "sha256": "45171ff1a31dc08f47758283e387e8e08d9be9777abcdc0427cd740adfdf45ee",
+          "expectedFields": 537,
+          "matchedFields": 537,
+          "missingFields": []
+        }
+      ],
+      "books": [
+        {
+          "file": "campaigns/fantasy-2026/mountain-wedding/session-1.html",
+          "sha256": "418825702d9fbee42cb20c4e1ba19a01e511753525d0cfd67404ec5a0c7530ab",
+          "expectedFields": 34,
+          "matchedFields": 34,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/mountain-wedding/session-2.html",
+          "sha256": "d4cc85d48709a35e1c21e6012be56011c69931b2f24e34c2f919736c2f4a0f3e",
+          "expectedFields": 34,
+          "matchedFields": 34,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/mountain-wedding/session-3.html",
+          "sha256": "36b9c7d8223eeacb7b61eae539846e7844011c2a05c70bf20d43022ca5488957",
+          "expectedFields": 34,
+          "matchedFields": 34,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/mountain-wedding/session-4.html",
+          "sha256": "d47576fde9c50c3011861c60bb66a192be5205c68c1760a90187ea8f2c1fca7a",
+          "expectedFields": 34,
+          "matchedFields": 34,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/mountain-wedding/session-5.html",
+          "sha256": "98c1b4cab980e2ac27db105621f454246a9bfa2d025d6f09b1b95e482a664204",
+          "expectedFields": 34,
+          "matchedFields": 34,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/mountain-wedding/session-6.html",
+          "sha256": "990bcc5af6beb9e2007e41936d277ff6eb5cb380c752319027c4b7fe3d5b18a2",
+          "expectedFields": 34,
+          "matchedFields": 34,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/mountain-wedding/session-7.html",
+          "sha256": "1763c39c5f70d5740e422d6b00243f2ff4694422f128e4a30dcd75a3253cbc6b",
+          "expectedFields": 34,
+          "matchedFields": 34,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/mountain-wedding/session-8.html",
+          "sha256": "c1858333295e36e764691405a761b6786ab0602faa02838b8983ff3bf545ac10",
+          "expectedFields": 36,
+          "matchedFields": 36,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/mountain-wedding/handouts/h-first-step.html",
+          "sha256": "fe7bc6a57288595a466044a74c54c4b3a9e957d747173b0835f9e61b2aae2b5c",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/mountain-wedding/handouts/h-eshas-drawing.html",
+          "sha256": "7513952fcc803291173a319790d91cf56be816aac9b914bd565715b355ed57be",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/mountain-wedding/handouts/h-three-messages.html",
+          "sha256": "ad57dbecc62df2ad85df4dc6cbf11a92916d86d4d2155fc28e80fa2cfad76c81",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/mountain-wedding/handouts/h-lomans-words.html",
+          "sha256": "c0c9a2ccdb7fbd2535ab2065ac187a09e27c4b4ddb2ff8e5741fdf66a221e96e",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/mountain-wedding/handouts/h-three-routes.html",
+          "sha256": "c1c7ad08126854ac5d3edb6eed125f4dfb888127416ca8773e6b969d3807c086",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/mountain-wedding/handouts/h-open-circle.html",
+          "sha256": "e865ee4f72b649c7fcf7c3e5be7f1a68761ec2866607b4ad7b238b88ca098f4a",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/mountain-wedding/handouts/h-final-sequence.html",
+          "sha256": "144496559675f9a8797e7d483243d569a55718e6abc45c53119f69debf66295a",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/mountain-wedding/handouts/h-after-step.html",
+          "sha256": "6db2ecc0b67f47544478afe56fa40c013dea9dfd5a7e80154a43ef227d0b41eb",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/mountain-wedding/index.html",
+          "sha256": "06185a45395715b63da329a50b1577f01a88fe75285697cdd49761368cc3bade",
+          "expectedFields": 171,
+          "matchedFields": 171,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/mountain-wedding/maps.html",
+          "sha256": "6bf80972e0ec4e3b1c0ac18278dccee4fe6ce576b69f4674e1dd5569cbac0185",
+          "expectedFields": 24,
+          "matchedFields": 24,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/mountain-wedding/players.html",
+          "sha256": "c8238c6fe976c0f1698c12046fcf0b13226e549a7709f6f696b806c3f024ab4a",
+          "expectedFields": 75,
+          "matchedFields": 75,
+          "missingFields": []
+        }
+      ]
+    },
+    {
+      "slug": "small-banner",
+      "packages": [
+        {
+          "file": "campaigns/fantasy-2026/small-banner/package.json",
+          "sha256": "2cfe0dae9ca0761420c77e50ba95369e4b10a8e37a834cd0a025715a12dca0d4",
+          "expectedFields": 541,
+          "matchedFields": 541,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/small-banner/variants/3-players.json",
+          "sha256": "c46c044ec7f87b396c3aef37b11527a3a61ac4848be2e96f7834b16ded4eb10b",
+          "expectedFields": 541,
+          "matchedFields": 541,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/small-banner/variants/4-players.json",
+          "sha256": "2cfe0dae9ca0761420c77e50ba95369e4b10a8e37a834cd0a025715a12dca0d4",
+          "expectedFields": 541,
+          "matchedFields": 541,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/small-banner/variants/5-players.json",
+          "sha256": "2cadfe1369f5bbe3121075111f3e5b3a7fe6003e28d6c4a6cd14271ad186e72f",
+          "expectedFields": 541,
+          "matchedFields": 541,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/small-banner/variants/6-players.json",
+          "sha256": "30182ff89b97911cc11f88fdce18ca057c4cb4d7b4e2224f7e7f28e2be467145",
+          "expectedFields": 541,
+          "matchedFields": 541,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/small-banner/variants/7-players.json",
+          "sha256": "e05990a3e98eabc26502b53ba391a425bf8492b6907300a9118a889028dce087",
+          "expectedFields": 541,
+          "matchedFields": 541,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/small-banner/variants/8-players.json",
+          "sha256": "826e0a788b22fe2b7bc7bbf81d639fe3eb7f9afecee44f592e5bf119040f3317",
+          "expectedFields": 541,
+          "matchedFields": 541,
+          "missingFields": []
+        }
+      ],
+      "books": [
+        {
+          "file": "campaigns/fantasy-2026/small-banner/session-1.html",
+          "sha256": "a0eb2f2f4939253ba15d4fd17e52c13fb5da83384fa59ae23f4f3f37b2877e40",
+          "expectedFields": 35,
+          "matchedFields": 35,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/small-banner/session-2.html",
+          "sha256": "61ce1e7f9210de0e2745cddf2a29b1cb6f05e8a11b692cd38bfbc45f0e55945a",
+          "expectedFields": 35,
+          "matchedFields": 35,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/small-banner/session-3.html",
+          "sha256": "cf9df77e98ea8188fc27479cba52c84f18a51f3af01241a78a5c0ee3e7c56972",
+          "expectedFields": 35,
+          "matchedFields": 35,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/small-banner/session-4.html",
+          "sha256": "4d976ec32b2ebd51bf58ba9743acb91246d6361908964d3a70dc57b38b4160ac",
+          "expectedFields": 35,
+          "matchedFields": 35,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/small-banner/session-5.html",
+          "sha256": "04e386eaf86428dddf5a4543778f09be20e001a98d1296581655b7111871fffd",
+          "expectedFields": 35,
+          "matchedFields": 35,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/small-banner/session-6.html",
+          "sha256": "27e2b58ea4f5ec6d488e8aaf0ed7ba7be5944eba5d4e1e72f40279a672a38fa4",
+          "expectedFields": 35,
+          "matchedFields": 35,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/small-banner/session-7.html",
+          "sha256": "c6ab7ee2ce60d945fe52322bc949b44a890b7169cad1c960e62d0cab4ee3bd7e",
+          "expectedFields": 35,
+          "matchedFields": 35,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/small-banner/session-8.html",
+          "sha256": "34adda47bc67cfb6248a510e2aa60ccc43756b5f2792fd8c0860850165b1f985",
+          "expectedFields": 37,
+          "matchedFields": 37,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/small-banner/handouts/guest-rights.html",
+          "sha256": "4a75be4129ec81e2d9c4643359b853b759f8dfe17dc228b5672dd6401c416fa7",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/small-banner/handouts/rope-notes.html",
+          "sha256": "0108c55ba5cd2bbd41b0eeed24470f14175ae13e7ca1e648be498ef87bc935bb",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/small-banner/handouts/cupboard-exits.html",
+          "sha256": "a5879ded6514d5581593ef4c205724f0dd6779cc4f860c196cae2aa339bfd978",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/small-banner/handouts/moving-order.html",
+          "sha256": "303f4180d27318b1314c968edc9f2eca108efc30e743ea8a62e40b6fb549d2c5",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/small-banner/handouts/moth-care.html",
+          "sha256": "20a21d4008f112d5edc16028f481c652f58e6794010651b9c9012d3dc5411932",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/small-banner/handouts/cargo-card.html",
+          "sha256": "021a84d8b8c5b661359393cf5e83bcf61719dd434b3e8a3e504a08b8258854e2",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/small-banner/handouts/landing-agreement.html",
+          "sha256": "b1e491862a1acf14fb8cf4e7785a16bcb60a22cbe13889c17b6793ea799e0d5a",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/small-banner/handouts/final-promise.html",
+          "sha256": "ebe1a45b7128d27f0514b5a0d08294bcd71098f03bf524e25b1973b440043dc4",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/small-banner/index.html",
+          "sha256": "387206b84b36c00680629cee801987572382223df130a7e9734d8306e6626a96",
+          "expectedFields": 171,
+          "matchedFields": 171,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/small-banner/maps.html",
+          "sha256": "457cd0a2877c46150b9fe91e80601b1a4c1aede4f1832aa8b9fe8f42a5815056",
+          "expectedFields": 24,
+          "matchedFields": 24,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/small-banner/players.html",
+          "sha256": "ccf97c59bd3b91be810ca0bc371b9a0b17a850a7de3fc94202069dd768912346",
+          "expectedFields": 73,
+          "matchedFields": 73,
+          "missingFields": []
+        }
+      ]
+    },
+    {
+      "slug": "storm-kitchen",
+      "packages": [
+        {
+          "file": "campaigns/fantasy-2026/storm-kitchen/package.json",
+          "sha256": "761c03c1c73f408c03de3631f5b47f7cea836964f803e58fc695fd2097b650ab",
+          "expectedFields": 580,
+          "matchedFields": 580,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/storm-kitchen/variants/3-players.json",
+          "sha256": "fcaf0a4ac2f1bcb0b5ffa0b31c630fcc2220a38add7d2fa06871392bd3c9d122",
+          "expectedFields": 580,
+          "matchedFields": 580,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/storm-kitchen/variants/4-players.json",
+          "sha256": "761c03c1c73f408c03de3631f5b47f7cea836964f803e58fc695fd2097b650ab",
+          "expectedFields": 580,
+          "matchedFields": 580,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/storm-kitchen/variants/5-players.json",
+          "sha256": "1e38a51fe07047a49cb4800569b7d388bebbef57c1c0d25100a429b895e2d69c",
+          "expectedFields": 580,
+          "matchedFields": 580,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/storm-kitchen/variants/6-players.json",
+          "sha256": "64becaff159ef248412f3712441edd5b921c80d81ccf8f1d59e60dd11ab2e333",
+          "expectedFields": 580,
+          "matchedFields": 580,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/storm-kitchen/variants/7-players.json",
+          "sha256": "4faf4da0d1ad1da88d6daea114ee4b7780dfd7c6f0a89ea45510f49c6648775c",
+          "expectedFields": 580,
+          "matchedFields": 580,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/storm-kitchen/variants/8-players.json",
+          "sha256": "6368bd90bd91aa65729a40de70f2b1e13db7de5b650a48eb267a5c7a94894c49",
+          "expectedFields": 580,
+          "matchedFields": 580,
+          "missingFields": []
+        }
+      ],
+      "books": [
+        {
+          "file": "campaigns/fantasy-2026/storm-kitchen/session-1.html",
+          "sha256": "12631317e22b67b3558d2f8272564752e1c7093f56df883839f5aa13ee2e7731",
+          "expectedFields": 38,
+          "matchedFields": 38,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/storm-kitchen/session-2.html",
+          "sha256": "9583be8ef6b2b489b5e8cf96717360178fbef6fae65c6d85f6ad0162ab305174",
+          "expectedFields": 39,
+          "matchedFields": 39,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/storm-kitchen/session-3.html",
+          "sha256": "18a4a68007756eb1908f6bd0323ede581c6f957969d4a5b0906e3bbfd8a870ce",
+          "expectedFields": 39,
+          "matchedFields": 39,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/storm-kitchen/session-4.html",
+          "sha256": "2a19afbd9a6cc9d84d87c78f2fd8894a05fe689edc68a7cc142981b37dbbded2",
+          "expectedFields": 39,
+          "matchedFields": 39,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/storm-kitchen/session-5.html",
+          "sha256": "de9887137f7d17a69c8089246f5da59927cba48696532490007a6ad287fc1cf2",
+          "expectedFields": 39,
+          "matchedFields": 39,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/storm-kitchen/session-6.html",
+          "sha256": "17ea8f95a3ad539499b2b9bdf885d56a8c7db9324607d67bbb59e521578c17b4",
+          "expectedFields": 40,
+          "matchedFields": 40,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/storm-kitchen/session-7.html",
+          "sha256": "2e9801a5617750f5e5197790d19b25c71ed7a98e81f648ac2ac168c435e44c93",
+          "expectedFields": 40,
+          "matchedFields": 40,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/storm-kitchen/session-8.html",
+          "sha256": "9c6910d1524be7f8ce77e4dcacf74aecd0229bf2fd015546e2940fc45132a1ad",
+          "expectedFields": 42,
+          "matchedFields": 42,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/storm-kitchen/handouts/guest-card.html",
+          "sha256": "57abd38fb52db0b718ab76aef8ad719d0ba857cae48f2d6148d494afe43aff3e",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/storm-kitchen/handouts/ingredient-card.html",
+          "sha256": "cfc6afaa293c1e647e367d1f2f0b8127d3ef25b3fdadf3c47f16e2c50783e1bf",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/storm-kitchen/handouts/pressure-card.html",
+          "sha256": "b43a9ae82cc781b2a92deaaed7150a3aefb2941bafd014a9be2461369350e585",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/storm-kitchen/handouts/different-tastes.html",
+          "sha256": "70484e685c1c7fbcf8cf4a3e7a2f792ad929191e2aa4ddcfc917e4808694d3fa",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/storm-kitchen/handouts/pantry-card.html",
+          "sha256": "f36d66d40953a211f2173453a0e7e1c4163b3da2f7a15c34d3b3d69f0a4b65ec",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/storm-kitchen/handouts/recipe-card.html",
+          "sha256": "2dcfaea8e200de9917716ba61eda0b52101ee3ac7a355bb2a69457ed36957062",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/storm-kitchen/handouts/service-card.html",
+          "sha256": "e50b0d936a78e643d515654f301d618679b65cefa9bc42e19b82d4600d8cbe61",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/storm-kitchen/handouts/aftertaste-card.html",
+          "sha256": "f36cc23adb2f1b70eaf0872fd2c4d3b64644e7f7bc36a670f59a86b6684b234a",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/storm-kitchen/index.html",
+          "sha256": "cbf0e90fd2a85882296f8c75e124b551a3bc5964b95f802b448b4c0e82f958c7",
+          "expectedFields": 160,
+          "matchedFields": 160,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/storm-kitchen/maps.html",
+          "sha256": "a7c67d73e2a193f95eee6fa70556cf122dadbecbcc88510d2a495bf20d6e277e",
+          "expectedFields": 24,
+          "matchedFields": 24,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/storm-kitchen/players.html",
+          "sha256": "50aab843ba96a66ba2514ee26e0dfa5dabd480ab3bc891bb437cd9c30c420f45",
+          "expectedFields": 75,
+          "matchedFields": 75,
+          "missingFields": []
+        }
+      ]
+    },
+    {
+      "slug": "three-magicless-days",
+      "packages": [
+        {
+          "file": "campaigns/fantasy-2026/three-magicless-days/package.json",
+          "sha256": "2dc0e569cad71e8240c4eadd76ee9bd8b5aec15f4bf5ebdaae1ac700a5e23975",
+          "expectedFields": 541,
+          "matchedFields": 541,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/three-magicless-days/variants/3-players.json",
+          "sha256": "6c478655e791b01766a0ee5b9b8789d99758189936c11eec9f07e87669a4b5c1",
+          "expectedFields": 541,
+          "matchedFields": 541,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/three-magicless-days/variants/4-players.json",
+          "sha256": "2dc0e569cad71e8240c4eadd76ee9bd8b5aec15f4bf5ebdaae1ac700a5e23975",
+          "expectedFields": 541,
+          "matchedFields": 541,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/three-magicless-days/variants/5-players.json",
+          "sha256": "107384517bd4917ebf8a3d028933959a33c068faf4d6c02d0d91e75c35751fb8",
+          "expectedFields": 541,
+          "matchedFields": 541,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/three-magicless-days/variants/6-players.json",
+          "sha256": "2b468f45f39404a7f09c76052794b4f1ea5c3afdcca43b49530c78de46504e81",
+          "expectedFields": 541,
+          "matchedFields": 541,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/three-magicless-days/variants/7-players.json",
+          "sha256": "ae509d5065cafe4e13ed438fddc181babb059f9afa7b4a37d756630cd5b0fbee",
+          "expectedFields": 541,
+          "matchedFields": 541,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/three-magicless-days/variants/8-players.json",
+          "sha256": "c5778a99710bb089f0112c766c536119c927947c324aef08534f1fd00615d1f3",
+          "expectedFields": 541,
+          "matchedFields": 541,
+          "missingFields": []
+        }
+      ],
+      "books": [
+        {
+          "file": "campaigns/fantasy-2026/three-magicless-days/session-1.html",
+          "sha256": "1097b8b1c57c2436dd73c3ea1c7359e3dfb222a94f19cd8439e8c85dae6af94d",
+          "expectedFields": 34,
+          "matchedFields": 34,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/three-magicless-days/session-2.html",
+          "sha256": "24391cc7b9d54955044b7c1ca7a94bdf0068f75009d46a2556f0eea1303ad97f",
+          "expectedFields": 34,
+          "matchedFields": 34,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/three-magicless-days/session-3.html",
+          "sha256": "1c3d9156025646b00bd719ac5e55f14871eb9031abed3436a2421dd5a16aa1b5",
+          "expectedFields": 34,
+          "matchedFields": 34,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/three-magicless-days/session-4.html",
+          "sha256": "1c06a5ba4718910537aa1f573c05dce62b55adedce5cabbc4799d0f375e643ec",
+          "expectedFields": 34,
+          "matchedFields": 34,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/three-magicless-days/session-5.html",
+          "sha256": "2b9b330a77a7f6ca8ea5daaefe7286427b8407eb5f3aa5e09197c24ac81fa2b2",
+          "expectedFields": 34,
+          "matchedFields": 34,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/three-magicless-days/session-6.html",
+          "sha256": "324584aac46530f6309d008144fbe5b4a4711bab063107bf7574784cb3484545",
+          "expectedFields": 34,
+          "matchedFields": 34,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/three-magicless-days/session-7.html",
+          "sha256": "fec9177123249ba4cd7542d5f8ba94657a8a4f6c6af02da4149dd171556e050f",
+          "expectedFields": 34,
+          "matchedFields": 34,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/three-magicless-days/session-8.html",
+          "sha256": "e418a79a289c3d52e22755a690bdd3993bc92d53976b558ace3ac243f797e055",
+          "expectedFields": 36,
+          "matchedFields": 36,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/three-magicless-days/handouts/holiday-notice.html",
+          "sha256": "7b7dc7ea886bac04ef5367142d7614e11ccacc120ccc78e3f95fd352dbe75391",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/three-magicless-days/handouts/service-card.html",
+          "sha256": "9006400ba9913a91e2258a0acea206089d099789472ba575ee92b8afe91808ca",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/three-magicless-days/handouts/cloak-card.html",
+          "sha256": "3ef556d24b4f21e7c418d352e9cf0812fb1b20b4c93ef607d9ad5a7d9350035c",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/three-magicless-days/handouts/arrival-windows.html",
+          "sha256": "0b97774c6d2b06a948b235ef3710596c58ba3994e70d304abfde5323f95e48f0",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/three-magicless-days/handouts/shift-ribbon.html",
+          "sha256": "5fa991f6dd99b93ef85e7cdd8f6bf1cd7b5025dd29bdce8a87c69660f117d164",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/three-magicless-days/handouts/kolet-offer.html",
+          "sha256": "c6d231deb9f694c2e271e2886a4ad0fdab9678ae3b3a436419a00b14d1392730",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/three-magicless-days/handouts/chosen-program.html",
+          "sha256": "13b956c1ff10366a021bde95dbcd0ccc80c6f8e48254a9f16e9c0aeb9d6610c0",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/three-magicless-days/handouts/tomorrow-card.html",
+          "sha256": "64e9a8b003d1a8bf904b136b1adba61fb92bb6e5627041390b6a0be4d72dea2b",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/three-magicless-days/index.html",
+          "sha256": "0a3a13b486f2aaa9c44dfdbd21a2f4f2d43847fc1de442fca8cc05eeffee35bb",
+          "expectedFields": 179,
+          "matchedFields": 179,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/three-magicless-days/maps.html",
+          "sha256": "ae8dfd036235708bcf3adc3f782ddba66d3331fe7f4f7befedbb380e23b7bbcf",
+          "expectedFields": 24,
+          "matchedFields": 24,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/three-magicless-days/players.html",
+          "sha256": "6fa59c291dc3fbd865eec86cc2c8f5ddd11c83ba66f73e2937fc260f6db9db21",
+          "expectedFields": 75,
+          "matchedFields": 75,
+          "missingFields": []
+        }
+      ]
+    },
+    {
+      "slug": "unwritten-god",
+      "packages": [
+        {
+          "file": "campaigns/fantasy-2026/unwritten-god/package.json",
+          "sha256": "4ec502b54151126149a32b9f79049baf78b10868416b26625315879288d90de6",
+          "expectedFields": 543,
+          "matchedFields": 543,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/unwritten-god/variants/3-players.json",
+          "sha256": "2a6f132cdb08db20f6f9c8cefce461f69d497049a5b5f4493e2bf8bf4f2ddf40",
+          "expectedFields": 543,
+          "matchedFields": 543,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/unwritten-god/variants/4-players.json",
+          "sha256": "4ec502b54151126149a32b9f79049baf78b10868416b26625315879288d90de6",
+          "expectedFields": 543,
+          "matchedFields": 543,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/unwritten-god/variants/5-players.json",
+          "sha256": "f91fa10bcad636efcbfb2808990fc52250cfa2e098cc78c1f6d7d9d47dc69b88",
+          "expectedFields": 543,
+          "matchedFields": 543,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/unwritten-god/variants/6-players.json",
+          "sha256": "6174578a9bcfbcd6ee04437e42b38e04f542e3eb3666826b44b5ef23f04f8e09",
+          "expectedFields": 543,
+          "matchedFields": 543,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/unwritten-god/variants/7-players.json",
+          "sha256": "443d2800bbcb371811574bb584244a3ef13543d63c04d31f148a1a40874c41b9",
+          "expectedFields": 543,
+          "matchedFields": 543,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/unwritten-god/variants/8-players.json",
+          "sha256": "583f564669e71c433e1f8d0f458ea1ae0d89a1cd2e3d89be9976fcd1306cab89",
+          "expectedFields": 543,
+          "matchedFields": 543,
+          "missingFields": []
+        }
+      ],
+      "books": [
+        {
+          "file": "campaigns/fantasy-2026/unwritten-god/session-1.html",
+          "sha256": "e3303c368fb262022bf1a09ee2a969d40a1fdf39e334042ab1b65d7737e85724",
+          "expectedFields": 34,
+          "matchedFields": 34,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/unwritten-god/session-2.html",
+          "sha256": "29bc69f7c708c5c970c5bf45dc47779a89f786c91a5062dfcfb7e0afc86d1e1b",
+          "expectedFields": 34,
+          "matchedFields": 34,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/unwritten-god/session-3.html",
+          "sha256": "8eec117c72c4880e3c7e1ddf49b151b838a8c4b2875719d6069833af55956cb1",
+          "expectedFields": 34,
+          "matchedFields": 34,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/unwritten-god/session-4.html",
+          "sha256": "b33c3aa7bdbae185a5fc346d10e24e6363c65f0b7c3adcbbea5a143831746d0c",
+          "expectedFields": 36,
+          "matchedFields": 36,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/unwritten-god/session-5.html",
+          "sha256": "47eba4b4cefb0b7d82d1ee1ca4d05bba2551fdc8dc77ffd838672987b445cde5",
+          "expectedFields": 34,
+          "matchedFields": 34,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/unwritten-god/session-6.html",
+          "sha256": "5d24bf9bd4b7d835d5f4ad0a92bc14a081adf7c99acbd60fa0acf6ddd16fbf9e",
+          "expectedFields": 34,
+          "matchedFields": 34,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/unwritten-god/session-7.html",
+          "sha256": "cc64fa40f2161f7a184fe6a7988b0bdbc84713d20447f0435cd20d9f2eea64ad",
+          "expectedFields": 34,
+          "matchedFields": 34,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/unwritten-god/session-8.html",
+          "sha256": "c1e25a58a9100478da0cb3e6684ad28db035e7bef7eee02a7ab09e9326c156f4",
+          "expectedFields": 36,
+          "matchedFields": 36,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/unwritten-god/handouts/call-paper.html",
+          "sha256": "7d23ebc6c7bd6f86657a0c3d40be36cbf6c4dbd698c4447404d18495850aaa1d",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/unwritten-god/handouts/lamp-record.html",
+          "sha256": "cf34baaf4dc14b62e851f9b682d14bdc5765234ecbe9605820a4af0522dcb1cd",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/unwritten-god/handouts/grove-strip.html",
+          "sha256": "b5881a527348505ef8652a99b2c57e41a2dbbe716d428ea4f5c2383b2210f17b",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/unwritten-god/handouts/whale-observation.html",
+          "sha256": "327c2076cc0d529ae33c272ef6375076eaaa39e06998708dae884fad4ed943f6",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/unwritten-god/handouts/signal-cloth.html",
+          "sha256": "716fa77cbb3695be808c9f374992e4dee6ad35f258b614f8f373f235b8ad32c6",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/unwritten-god/handouts/light-directions.html",
+          "sha256": "35b476cf5cf09ebfa6a51ec1d28861584f3aa7d0e9324e9e1b8355b62bf3647c",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/unwritten-god/handouts/maw-soundings.html",
+          "sha256": "22e21a64cc53c3964f26dd836de71c42a938f86757d5812d582c0962ddd61190",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/unwritten-god/handouts/shown-request.html",
+          "sha256": "cafadb4f75130f2c1c9c5bee55495ebf3cfacea30b0650eac3121d9e178c7624",
+          "expectedFields": 1,
+          "matchedFields": 1,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/unwritten-god/index.html",
+          "sha256": "cfd7753d0553bcfa78e2d1c11415488cde0d4c8e9981ab293f753df3680991aa",
+          "expectedFields": 171,
+          "matchedFields": 171,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/unwritten-god/maps.html",
+          "sha256": "d2d40f997c161e2a5fe6e0e13a9bf0f79846fe51d7b134f11bce42e993b94288",
+          "expectedFields": 24,
+          "matchedFields": 24,
+          "missingFields": []
+        },
+        {
+          "file": "campaigns/fantasy-2026/unwritten-god/players.html",
+          "sha256": "bb3b4df123abbbe9a734b9de3923cc76dbac1e54423f992e6c524f63e66f5040",
+          "expectedFields": 75,
+          "matchedFields": 75,
+          "missingFields": []
+        }
+      ]
+    }
+  ]
+}

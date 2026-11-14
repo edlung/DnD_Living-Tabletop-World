@@ -29,6 +29,9 @@ import { attitudeOf } from '../relationships/records.ts';
  * (non-canonical, read by the caller from the reply traces); what it told, per
  * the speaker's scope (party members share it), never counting what this
  * exchange's own command shares.
+ *
+ * How it talks (ADR 0020 amendment 2026-11-14): its own public manner of speech, one authored line
+ * from its profile, and never its description.
  */
 export interface DialogueEntity {
   readonly entityId: string;
@@ -53,6 +56,11 @@ export interface TellableLine extends DialogueLine {
 
 export interface NpcDialogueContext {
   readonly npc: DialogueEntity;
+  /**
+   * Its public manner of speech, one line, or null when it has none (ADR 0020 amendment
+   * 2026-11-14): how it talks, never what it knows. Traced as `manner#<npcId>`.
+   */
+  readonly manner: string | null;
   readonly speaker: DialogueEntity;
   /**
    * Whether it has spoken with this character before this exchange: an `InformationShared`,
@@ -204,6 +212,7 @@ export function npcDialogueContext(
 
   return {
     npc: entity(npcId) ?? { entityId: npcId, kind: 'npc', name: null },
+    manner: npc.manner ?? null,
     speaker: {
       entityId: speaker.character.entityId,
       kind: speaker.character.kind,
@@ -303,6 +312,7 @@ export function dialogueSourceIds(context: NpcDialogueContext): string[] {
   return unique([
     'world#clock',
     `relationship#${context.npc.entityId}`,
+    ...(context.manner === null ? [] : [`manner#${context.npc.entityId}`]),
     ...entities,
     ...lines,
     ...met,

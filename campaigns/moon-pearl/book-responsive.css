@@ -1,0 +1,148 @@
+@media (max-width: 900px) {
+  .heroes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .hero {
+    min-height: 640px;
+  }
+  .hero-copy {
+    padding: 32px;
+  }
+}
+@media (max-width: 600px) {
+  .shell {
+    width: calc(100% - 32px);
+  }
+  .hero {
+    min-height: 680px;
+  }
+  .hero-copy {
+    padding: 24px;
+    gap: 24px;
+  }
+  .hero-copy h1 {
+    font-size: 36px;
+  }
+  .hero::after {
+    background: linear-gradient(
+      0deg,
+      rgba(6, 16, 25, 0.98),
+      rgba(6, 16, 25, 0.87) 58%,
+      rgba(6, 16, 25, 0.1)
+    );
+  }
+  .hero > img {
+    object-position: 60% center;
+  }
+  .pair,
+  .heroes {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .heroes .portrait {
+    max-height: 480px;
+    object-position: center 20%;
+  }
+  .quote {
+    padding: 24px;
+  }
+  .handout {
+    padding: 24px;
+  }
+  .section {
+    margin-top: 48px;
+  }
+  .actions .button {
+    width: 100%;
+  }
+  .brand {
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+@media print {
+  :root {
+    color-scheme: light;
+  }
+  body {
+    background: white;
+    color: #152431;
+    font-size: 11pt;
+  }
+  .shell {
+    width: 100%;
+  }
+  .top,
+  .footer,
+  .actions,
+  .skip,
+  .no-print {
+    display: none;
+  }
+  h1 {
+    font-size: 28pt !important;
+  }
+  h2 {
+    font-size: 22pt;
+  }
+  h3 {
+    font-size: 17pt;
+  }
+  .meta,
+  .muted,
+  .eyebrow,
+  a {
+    color: #35454c;
+  }
+  .note,
+  .quote,
+  .card,
+  details {
+    background: white;
+    color: #152431;
+    border-color: #77868c;
+  }
+  .note strong,
+  .scene h3 {
+    color: #35454c;
+  }
+  .quote {
+    font-size: 13pt;
+  }
+  .banner {
+    max-height: 70mm;
+  }
+  .section {
+    margin-top: 24px;
+  }
+  .card,
+  .handout,
+  .token {
+    break-inside: avoid;
+  }
+  .handout {
+    background: white;
+    border-color: #77868c;
+  }
+  .token img {
+    width: 28mm;
+    height: 28mm;
+  }
+  .pair,
+  .heroes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .hero {
+    min-height: 180mm;
+  }
+  .hero-copy {
+    color: white;
+  }
+  @page {
+    margin: 16mm;
+  }
+}

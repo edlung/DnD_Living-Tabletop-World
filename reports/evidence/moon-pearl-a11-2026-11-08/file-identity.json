@@ -1,0 +1,277 @@
+{
+  "note": "Final local A11/A12 delivery identity; shared root files include other authors work. Excludes itself.",
+  "files": [
+    {
+      "path": ".prettierignore",
+      "sha256": "a5656aaa05da8555eec553761e206637471b7a06f9f595269b05896ec3268435"
+    },
+    {
+      "path": "campaigns/moon-pearl/AGENTS.md",
+      "sha256": "cd8120ee2a3209a5fb2192120a92c843b1e3d4dcb03069bdffd6704c4fd7f89b"
+    },
+    {
+      "path": "campaigns/moon-pearl/README.md",
+      "sha256": "df972970a2a6c9c429030e991d72eeecb641860c4638ae3d302183ea2d054fe9"
+    },
+    {
+      "path": "campaigns/moon-pearl/assets/manifest.json",
+      "sha256": "83139003866bc86ef3c4e6b52a5328e401c580969f8aaf0017d27b9f99e8155c"
+    },
+    {
+      "path": "campaigns/moon-pearl/guide.html",
+      "sha256": "c786b5bc98bc15e3051e459c1a9423ec116e88abbbf90dc010d98e0646f2c257"
+    },
+    {
+      "path": "campaigns/moon-pearl/handouts/handout-wave.html",
+      "sha256": "e373ebfd97810510d46f726e1ca5ef61ba4cec7ad2bfcc06aa1693d7f079665c"
+    },
+    {
+      "path": "campaigns/moon-pearl/handouts.html",
+      "sha256": "58fb01e1b2f8b2a8fe2f4236107e8b576f823a56eeeb8816caed61720972aca1"
+    },
+    {
+      "path": "campaigns/moon-pearl/maps.html",
+      "sha256": "9b5dc76b1f5fc2467e64f6543d6b70d690bb21d7061a7645a681b356b7607dad"
+    },
+    {
+      "path": "campaigns/moon-pearl/package.json",
+      "sha256": "4c0d5319d4ebb37811f5b54b24202e907fab3ad50bde23efefefe6177fb4706f"
+    },
+    {
+      "path": "campaigns/moon-pearl/sessions/10.html",
+      "sha256": "766d19176bfce3d9e72da882e5a4974eaef78f4e42eb2d184d10eda37dc5be89"
+    },
+    {
+      "path": "campaigns/moon-pearl/sessions/11.html",
+      "sha256": "a3a568ef16a199955f484c87c93c727e92500926151b15f38c6255469bc25a52"
+    },
+    {
+      "path": "campaigns/moon-pearl/source/act-4.json",
+      "sha256": "61391c392cf33ef6f78ab58d2dcc47ebe63ca1d75f163281b1b75fbe06b2213c"
+    },
+    {
+      "path": "campaigns/moon-pearl/source/handouts.json",
+      "sha256": "9f5d541888caf263dfaca5a44e50cc647b7711cd32a956881f4bf23096171124"
+    },
+    {
+      "path": "campaigns/moon-pearl/source/world.json",
+      "sha256": "8f7415337a7a97ef601298724dff42c01f338d4b976764859849cbd2ae6caa0e"
+    },
+    {
+      "path": "campaigns/moon-pearl/tokens.html",
+      "sha256": "db972c738535db70ed98cee6871e67db644c8ba94d0ac0f3f76ec75ef812d3a7"
+    },
+    {
+      "path": "campaigns/moon-pearl/variants/four-players.json",
+      "sha256": "77edd5d95dc90ccb20932c8d13cfad07dfa39c314f8af76ffa67ced9e7f2d00e"
+    },
+    {
+      "path": "campaigns/moon-pearl/variants/without-amalia.json",
+      "sha256": "d4df2b56d1a4aa3a80352948b3efeec08ebbcdc3d967f24ef855e0d5acb46962"
+    },
+    {
+      "path": "campaigns/moon-pearl/variants/without-leya.json",
+      "sha256": "d7d8095ed13bc5bbd7932e6e4db5f842e84a519486a99af1ac484272b9e192aa"
+    },
+    {
+      "path": "campaigns/moon-pearl/variants/without-toren.json",
+      "sha256": "43a878e3e784dcbfd8dcaa1710f79ab1ba9d5bec8cff3f40a0f2c78b24b26a32"
+    },
+    {
+      "path": "docs/AI_CONTEXT_MAP.md",
+      "sha256": "a205c4e6e297845ab3f06685e1bca1ee52db5e6f39adda2979d2c285cfa5445e"
+    },
+    {
+      "path": "docs/PROJECT_WORKFLOW.md",
+      "sha256": "fb5e917f8289c13b2bde46f09d0f98ec8b20e882bd045b2f4b308553a9ffe7cb"
+    },
+    {
+      "path": "handoffs/MOON_PEARL_A11_REVISION_2026-11-08.md",
+      "sha256": "e2ab8e5b76711d2ae0dd0088e1e0250d1b4a7647112daed1bb573879bd447347"
+    },
+    {
+      "path": "reports/MOON_PEARL_A11_REVISION_2026-11-08.md",
+      "sha256": "43def3ce2a4b232d7625da323e1d994568ba0de8ae83cffaf19f50131a29f5dd"
+    },
+    {
+      "path": "reports/evidence/moon-pearl-a11-2026-11-08/AGENTS.md",
+      "sha256": "c12a4bfe8997303996a1d140f93dfac08c2a5179f786a459eba3f7513f273bcd"
+    },
+    {
+      "path": "reports/evidence/moon-pearl-a11-2026-11-08/before.json",
+      "sha256": "45e7c6f4e5e3de8df13b95a433e033fd818a37370335be0ac4ceea61a1f5886a"
+    },
+    {
+      "path": "reports/evidence/moon-pearl-a11-2026-11-08/delta.json",
+      "sha256": "6f7365c9999f2a00bdda6e205923fb4ffaf67b703b89afa54ef4af570901c5e2"
+    },
+    {
+      "path": "reports/evidence/moon-pearl-a11-2026-11-08/measurements/audit-harness.mjs",
+      "sha256": "d5f80fdc1339e4595202467db34cb228610b7e2718e86c7d66a5a576c87da1b9"
+    },
+    {
+      "path": "reports/evidence/moon-pearl-a11-2026-11-08/measurements/cargo-build.log",
+      "sha256": "d58419fdfa44d1d1bae660cf99b12cb12536ae477aabec743f8a939a77d4b451"
+    },
+    {
+      "path": "reports/evidence/moon-pearl-a11-2026-11-08/measurements/cargo-import.log",
+      "sha256": "b6cf8d4440d9176e564c6fc562963e16215bd204cb6fab32c89acc70d384c79b"
+    },
+    {
+      "path": "reports/evidence/moon-pearl-a11-2026-11-08/measurements/cargo-layout.json",
+      "sha256": "5b20d5548779dd7503f201b41d9a625a1eabb680e859af6d26ce9c6a50cacc8b"
+    },
+    {
+      "path": "reports/evidence/moon-pearl-a11-2026-11-08/measurements/cargo-tests.log",
+      "sha256": "a69ae414a972506a103b22c48ad7e3e2aca7eff0c57cab3f702f1edf351999fa"
+    },
+    {
+      "path": "reports/evidence/moon-pearl-a11-2026-11-08/measurements/context.log",
+      "sha256": "a8df71d40d790b2c3e4faf3188c236d8149c62455fd6d81c972460cc55067551"
+    },
+    {
+      "path": "reports/evidence/moon-pearl-a11-2026-11-08/measurements/detail-harness.mjs",
+      "sha256": "1b95b643e6c4342418217dc505d9b702e1f2a78279f4c98e1e8fe675a9a031ed"
+    },
+    {
+      "path": "reports/evidence/moon-pearl-a11-2026-11-08/measurements/final-build.log",
+      "sha256": "d58419fdfa44d1d1bae660cf99b12cb12536ae477aabec743f8a939a77d4b451"
+    },
+    {
+      "path": "reports/evidence/moon-pearl-a11-2026-11-08/measurements/final-format.log",
+      "sha256": "17aa973d3f004560237d9a95171210b0671deff23d61628eecf7322ff5938f20"
+    },
+    {
+      "path": "reports/evidence/moon-pearl-a11-2026-11-08/measurements/final-guide-layout.json",
+      "sha256": "5b7bb4c673b72f3cc596afd1d14f580eb36e2d9d0acd817aa45a6a3b8c794b0e"
+    },
+    {
+      "path": "reports/evidence/moon-pearl-a11-2026-11-08/measurements/final-import.log",
+      "sha256": "ea32ed7785ced46f1fa096a57d65e303bb45d2bb8fcaa5aa15c55680ba5e333c"
+    },
+    {
+      "path": "reports/evidence/moon-pearl-a11-2026-11-08/measurements/final-tests.log",
+      "sha256": "4adf428321e0a4d32cd7d57ce28c7c22b14f75906576c8a02771eb7863cd1a18"
+    },
+    {
+      "path": "reports/evidence/moon-pearl-a11-2026-11-08/measurements/format.log",
+      "sha256": "17aa973d3f004560237d9a95171210b0671deff23d61628eecf7322ff5938f20"
+    },
+    {
+      "path": "reports/evidence/moon-pearl-a11-2026-11-08/measurements/light-build.log",
+      "sha256": "d58419fdfa44d1d1bae660cf99b12cb12536ae477aabec743f8a939a77d4b451"
+    },
+    {
+      "path": "reports/evidence/moon-pearl-a11-2026-11-08/measurements/light-import.log",
+      "sha256": "ac747bf9ec3bcd2be903f47cc1a1eeab271b7bf1115d4f06d164fd28e218c08f"
+    },
+    {
+      "path": "reports/evidence/moon-pearl-a11-2026-11-08/measurements/light-layout.json",
+      "sha256": "5b20d5548779dd7503f201b41d9a625a1eabb680e859af6d26ce9c6a50cacc8b"
+    },
+    {
+      "path": "reports/evidence/moon-pearl-a11-2026-11-08/measurements/light-tests.log",
+      "sha256": "5997c45f39254097615860b7b2c56ae6259e1a7fcfe0f1c90f2195724ab169f7"
+    },
+    {
+      "path": "reports/evidence/moon-pearl-a11-2026-11-08/measurements/lint.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reports/evidence/moon-pearl-a11-2026-11-08/measurements/native-import-1440.json",
+      "sha256": "0be8ea0f9859a92b8225c478dc3696d891056350b4d137bd31b65715f92aafd1"
+    },
+    {
+      "path": "reports/evidence/moon-pearl-a11-2026-11-08/measurements/native-import-320.json",
+      "sha256": "0be8ea0f9859a92b8225c478dc3696d891056350b4d137bd31b65715f92aafd1"
+    },
+    {
+      "path": "reports/evidence/moon-pearl-a11-2026-11-08/measurements/native-import-390.json",
+      "sha256": "0be8ea0f9859a92b8225c478dc3696d891056350b4d137bd31b65715f92aafd1"
+    },
+    {
+      "path": "reports/evidence/moon-pearl-a11-2026-11-08/measurements/native-import-768.json",
+      "sha256": "0be8ea0f9859a92b8225c478dc3696d891056350b4d137bd31b65715f92aafd1"
+    },
+    {
+      "path": "reports/evidence/moon-pearl-a11-2026-11-08/measurements/regression-before.log",
+      "sha256": "1fde908c46173f17c243f9471c6c3abd97853a6dab7790b99d9b8b13bdc0b755"
+    },
+    {
+      "path": "reports/evidence/moon-pearl-a11-2026-11-08/measurements/typecheck.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reports/evidence/moon-pearl-a11-2026-11-08/rejected-cargo-draft/act-4.json",
+      "sha256": "3e2f162168c45c43b20e803433db39bdc234442871a89747771a8798e0d87040"
+    },
+    {
+      "path": "reports/evidence/moon-pearl-a11-2026-11-08/rejected-cargo-draft/handouts.json",
+      "sha256": "b631e66fe6b39e7088694dbd8e2b0695a81ba4ab6a793c153580690c60fa1182"
+    },
+    {
+      "path": "reports/evidence/moon-pearl-a11-2026-11-08/rejected-cargo-draft/preliminary-report.md",
+      "sha256": "fea23e9d5b970805684651a8294dc3483c9d63e26db2f13613cecf937f0ea9d7"
+    },
+    {
+      "path": "reports/evidence/moon-pearl-a11-2026-11-08/rejected-cargo-draft/status.json",
+      "sha256": "fdbbe678254e043563b247866628fb717e32af86d88b1d687a79368a5495715b"
+    },
+    {
+      "path": "reports/evidence/moon-pearl-a11-2026-11-08/screens/festival-phone.png",
+      "sha256": "0458a92e2fded35618a4d55812e1e91e68ff810e80d94557ea8fe4fa9e74b42a"
+    },
+    {
+      "path": "reports/evidence/moon-pearl-a11-2026-11-08/screens/light-card-narrow.png",
+      "sha256": "04f154ed98d33f2eaf3131ea9de4e0480a6f073405602375b54bd48f846d8626"
+    },
+    {
+      "path": "reports/evidence/moon-pearl-a11-2026-11-08/screens/light-card-tablet.png",
+      "sha256": "61f5621ade83dc0ac4223c99aac6b57c9b2f23f707baddf0a2390ee1ab2578e4"
+    },
+    {
+      "path": "reports/evidence/moon-pearl-a11-2026-11-08/screens/light-desktop.png",
+      "sha256": "e14dd7e797d692f5225597b455e78006e27e40fcb21cfe6196864c1f472a0e4a"
+    },
+    {
+      "path": "reports/evidence/moon-pearl-a11-2026-11-08/screens/native-import-1440.png",
+      "sha256": "b13db37fe2bc782ca16cca92bf8df44bfef684f960601432657acd46108f4e93"
+    },
+    {
+      "path": "reports/evidence/moon-pearl-a11-2026-11-08/screens/native-import-320.png",
+      "sha256": "0a0540c6070dd7cc72bc973eb3e04eb210452c0c213bddb3a236cfe568042ccb"
+    },
+    {
+      "path": "reports/evidence/moon-pearl-a11-2026-11-08/screens/native-import-390.png",
+      "sha256": "ce246147249a59db49457ab20dd06a92c558a3de17687e58d5418ff0872d7399"
+    },
+    {
+      "path": "reports/evidence/moon-pearl-a11-2026-11-08/screens/native-import-768.png",
+      "sha256": "72321dab7be0ba235c1665ba6546848beb262d2c3f759808a2053838331af84f"
+    },
+    {
+      "path": "reports/evidence/moon-pearl-a11-2026-11-08/verification.json",
+      "sha256": "51386bbdaf93a57f9aee35ba9c36e8af60865bd116d8fa04fdc8242b4d005f5d"
+    },
+    {
+      "path": "scripts/moon-pearl/AGENTS.md",
+      "sha256": "1513984cba7241b9da2c7081aa244e92cd3ceaad662b3e22f8400c26a24fe732"
+    },
+    {
+      "path": "scripts/moon-pearl/encounters.ts",
+      "sha256": "ef3ddfea2036bf9ce1ea9e2404875bec017126af4259c9d9a3b3a25a9205e55c"
+    },
+    {
+      "path": "scripts/moon-pearl/play.test.ts",
+      "sha256": "695ff1e61d4a015b359ce730720290cf2aff3c0d2868f2cc384da9037147d55c"
+    },
+    {
+      "path": "scripts/moon-pearl/render-maps.ts",
+      "sha256": "d2742bdf0892d73dc2439bab45f18a443b5bab9b9a2ca0218480149a45f73cef"
+    },
+    {
+      "path": "work-orders/MOON_PEARL_A11_REVISION_2026-11-08.md",
+      "sha256": "b899f36c2db9a0e335e5bd347dd1d26749a7e9e0ec2b61e7480f96ebab9cbf0d"
+    }
+  ]
+}

@@ -50,6 +50,7 @@ export {
   type KernelCommandType,
   type LocationType,
 } from './kernel/commands.ts';
+export { NPC_MANNER_MAX, npcMannerSchema } from './kernel/world-commands.ts';
 export {
   REJECTION_CODES,
   type CommandAccepted,

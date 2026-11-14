@@ -4,7 +4,13 @@ import { itemCatalogIdSchema } from '../items/schema.ts';
 import { characterSheetSchema } from '../rules/character-sheet.ts';
 import { statBlockSchema } from '../combat/stat-block.ts';
 import { srdIdSchema } from '../srd/catalog.ts';
-import { ENTITY_KINDS, ENTITY_STATUSES, LOCATION_TYPES } from '../kernel/world-commands.ts';
+import {
+  ENTITY_KINDS,
+  ENTITY_STATUSES,
+  LOCATION_TYPES,
+  NPC_MANNER_MAX,
+  npcMannerSchema,
+} from '../kernel/world-commands.ts';
 import { worldTimeSchema } from '../kernel/world-time.ts';
 import { KNOWLEDGE_TYPES, KNOWLEDGE_RELATION_TYPES } from '../knowledge/commands.ts';
 import { languageSchema } from '../language/language.ts';
@@ -42,6 +48,12 @@ export const campaignEntitySchema = z
     kind: z.enum(ENTITY_KINDS),
     name: title,
     description: text,
+    /**
+     * An NPC's public manner of speech, one line (docs/adr/0020-npc-intelligence.md, amendment
+     * 2026-11-14): NPC dialogue gives it to the model as how it talks. Never a secret, a plot fact
+     * or the description. NPCs only: the plan refuses it on any other kind (`MANNER_KIND`).
+     */
+    manner: npcMannerSchema.optional(),
     status: z.enum(ENTITY_STATUSES),
     existsSince: worldTimeSchema.nullable(),
     location: z
@@ -61,6 +73,24 @@ export const campaignEntitySchema = z
     monster: srdIdSchema.optional(),
   })
   .strict();
+/**
+ * Free authored text about how an NPC talks as a package `manner`: trimmed, folded to one line and,
+ * when longer than the limit, cut at the last sentence end that fits (else at the last word).
+ * Undefined when nothing is left. For campaign tools; the schema still checks the result.
+ */
+export function toNpcManner(text: string | undefined): string | undefined {
+  const line = (text ?? '')
+    .replace(/[\p{Cc}\u2028\u2029]+/gu, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+  if (line.length <= NPC_MANNER_MAX) return line === '' ? undefined : line;
+  const head = line.slice(0, NPC_MANNER_MAX);
+  const sentence = /^.*[.!?…](?=\s|$)/u.exec(head)?.[0];
+  if (sentence !== undefined && sentence.length >= NPC_MANNER_MAX / 4) return sentence.trim();
+  const word = head.slice(0, head.lastIndexOf(' ')).replace(/[\s,;:—–-]+$/u, '');
+  return word === '' ? head : `${word}…`;
+}
+
 /**
  * What a character or NPC carries when the campaign starts (docs/adr/0039-item-possession.md):
  * an `item` entity (no placement) with its starting holder and, optionally, the catalog entry it

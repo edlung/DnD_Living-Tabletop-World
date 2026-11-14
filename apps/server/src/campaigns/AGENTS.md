@@ -40,3 +40,5 @@ confirmed source and recovery protocol.
   activation rows, immutable initial content, campaign/draft bytes and event history
   together; see `deploy/RUNBOOK.md`§3/§5. Event replay alone does not verify those
   private source tables or recover the selected encoded bytes.
+
+- `encounter-books.ts` reads the frozen scenario only after DM authorization. Verify the canonical scenario digest; missing or mismatched books never fall back to Ravenford. The prepared shortcut supports party/hostile encounters; mixed-side encounters use manual combat tools.

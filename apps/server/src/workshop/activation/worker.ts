@@ -3,6 +3,7 @@ import { randomUUID } from 'node:crypto';
 import { fingerprintOf } from '@ltw/domain';
 
 import { contentHashOf } from '../../assets/content-store.ts';
+import { importCuratedSet } from '../../images/curated-import.ts';
 import { imageDigest, imageSlotKey } from '../images/manifest.ts';
 import { frozenActivationDigestsValid } from './digests.ts';
 import { activationCommandMatches } from './proof.ts';
@@ -137,12 +138,44 @@ export class CampaignActivationWorker {
       const published = await repository.publish(lease, proof);
       if (!published && active() && (await repository.renew(lease)))
         throw new ActivationFailure('ACTIVATION_PUBLICATION_INCOMPLETE', true);
+      const dmActorId = snapshot.state.campaign?.dmActorId;
+      if (published && dmActorId) await this.#importLibraryPictures(record, dmActorId);
     } catch (error) {
       await this.#recordFailure(lease, error);
     } finally {
       live = false;
       clearInterval(heartbeat);
       if (renewal.pending) await renewal.pending;
+    }
+  }
+  /**
+   * A library campaign's pictures, after it is published: real asset commands as its DM, as a
+   * template's pictures are (docs/adr/0058 §5). A picture that fails leaves the campaign without
+   * it, never unpublished; the import is idempotent, so running it again only adds what is missing.
+   */
+  async #importLibraryPictures(record: StoredCampaignActivation, dmActorId: string) {
+    const pictures = this.#deps.libraryPictures;
+    if (!pictures) return;
+    try {
+      const found = pictures.library.picturesFor(record.frozen.revision);
+      if (!found) return;
+      const summary = await importCuratedSet(
+        {
+          engine: this.#deps.bootstrap,
+          contents: this.#deps.contents,
+          set: found.set,
+          logger: pictures.logger,
+          reason: `${found.title}: original art from the campaign library`,
+        },
+        record.campaignId,
+        { kind: 'user', actorId: dmActorId },
+      );
+      pictures.logger.info({ campaignId: record.campaignId, ...summary }, 'library pictures');
+    } catch (error) {
+      pictures.logger.warn(
+        { err: error, campaignId: record.campaignId },
+        'a library picture was not imported',
+      );
     }
   }
   async #recordFailure(lease: ActivationLease, error: unknown) {

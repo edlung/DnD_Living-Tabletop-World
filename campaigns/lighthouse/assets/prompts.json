@@ -1,0 +1,193 @@
+{
+  "tool": "built-in imagegen",
+  "style": "Original premium illustrated tabletop adventure art, painterly gouache and watercolor edges with richly detailed tactile wood, brass, linen and colored glass. Sophisticated cinematic fantasy animation environment painting, credible architecture and beautiful atmospheric depth, emotionally warm and wondrous, appealing to children and adults. Deep indigo, teal, amber lamplight, copper and parchment cream, small coral accents. No existing franchise, no text, no logos, no watermark, no UI, no lettering, no horror, no violence. Wide landscape 3:2.",
+  "images": [
+    {
+      "id": "cover",
+      "file": "cover.png",
+      "prompt": "Key art for an original family fantasy campaign called The Lighthouse Between Winds (DO NOT render any title). A vast archipelago of floating rocky islands above an ocean of luminous dusk clouds. A graceful stone lighthouse rises from a distant island, four immense brass orbital rings around its glass lantern dome. In the foreground, a small seaworthy flying timber houseboat with a copper roof and chimney, one cream sail with a teal patch, one round amber lantern; its warm lit windows promise a home. The ship sails from lower left toward the lighthouse in the upper right, wondrous bridges, tiny waterfalls and stars receding into mist. Big beautiful readable silhouettes and inviting detail. No people in close-up. A compelling cinematic cover with breathing room in the upper left.",
+      "originalFile": "exec-2ef134ae-5460-4fec-9746-42fcee599644.png"
+    },
+    {
+      "id": "harbor",
+      "file": "harbor.png",
+      "prompt": "A playable establishing scene: the floating island town Lantern Harbor on festival evening, seen at street level across a broad cobbled plaza. Warm crooked timber houses, copper roofs, fabric awnings, suspended amber lanterns, a tiny pastry stall, a public fountain, arched gate to a distant airship dock. Beyond the quay an ocean of pink and blue clouds and floating islands. A few small friendly adult townsfolk at the edges; unobstructed center for players to imagine standing in the scene. A little flying houseboat at the dock has a copper roof, chimney, one cream sail with teal patch and round amber lantern. The town feels inhabited, not a theme park. No secret symbols or puzzle solutions.",
+      "originalFile": "exec-4c2f61aa-bc33-496d-b489-4798459c0586.png"
+    },
+    {
+      "id": "ship",
+      "file": "ship.png",
+      "prompt": "Interior of a tiny flying houseboat: a warmly lit timber cabin with a large oval window overlooking a vast cloud sea, a brass kettle steaming on a compact stove, three mismatched chairs around a round map table, folded teal blankets, drawers for travel treasures and a hammock. A small brass mechanical fox with turquoise glass eyes, one copper ear and an articulated tail sits beside a basket. No visible readable map text. The room is a real cozy home between adventures; composition creates a welcoming playable scene.",
+      "originalFile": "exec-6077e1ea-9850-4373-8a27-60aa02e7340a.png"
+    },
+    {
+      "id": "orchard",
+      "file": "orchard.png",
+      "prompt": "A spectacular floating orchard island at golden morning, ancient apple trees with spiralling copper wind chimes and luminous amber fruit, little rope bridges linking mossy terraces above clouds. A vast friendly tortoise with a garden growing on its shell sleeps beside a broken water wheel. Elegant glass irrigation channels and a broad grassy clearing with a picnic cloth. Wondrous scale, no peril, no people in foreground.",
+      "originalFile": "exec-4d622b32-00a1-4e17-ae82-b571dfe34475.png"
+    },
+    {
+      "id": "library",
+      "file": "library.png",
+      "prompt": "The Library of Tides, a magnificent circular hall cut into a floating pearl-white rock. Curving bookcases and brass ladders surround a shallow mirror-like pool that reflects stars in daytime. Small paper boats carry books along narrow turquoise channels. Arched windows look onto drifting clouds; warm reading lamps and a broad accessible walkway. A huge gentle sky whale visible far beyond one window. Books have no readable letters. Dreamlike but credible architecture.",
+      "originalFile": "exec-82e9753a-58e8-4dca-ad78-374520587175.png"
+    },
+    {
+      "id": "market",
+      "file": "market.png",
+      "prompt": "The Mirror Bazaar at blue hour, a playful sophisticated open air market built on interlocking floating stone terraces. Tall freestanding mirrors in ornate copper frames reflect harmless alternate seasonal scenery, stalls sell bottled breezes, folded kites and ribbon spools. Indigo canvas roofs, strings of soft amber lamps, mosaic paving, distant cloud sea. Elegant clear central path, no sinister faces, no puzzle codes, only tiny adult background silhouettes.",
+      "originalFile": "exec-e9c6e3e7-4daa-4b6d-9a29-41aa21c66f82.png"
+    },
+    {
+      "id": "forge",
+      "file": "forge.png",
+      "prompt": "The Cloud Forge, a spectacular open-air brass and stone workshop built inside the curved hollow of a floating basalt island. Immense copper wind wheels, suspended silk sails, brilliant turquoise harmless plasma in a contained furnace, amber work lamps, tool benches and broad safe stone bridges with railings. Clouds stream through the background arches. No people foreground. Breathtaking industrial fantasy craftsmanship with a coherent sense of scale.",
+      "originalFile": "exec-6ebec3a7-b813-426c-a5fb-13762567fdad.png"
+    },
+    {
+      "id": "observatory",
+      "file": "observatory.png",
+      "prompt": "The Observatory on the Back of a Sky Whale. A vast serene cobalt whale floats through a starry dusk ocean of clouds, its curved back supporting a small white observatory with brass telescope and warm windows, a wooden landing jetty and a hanging garden. Seen from a nearby low flight angle so the observatory and the whale's gentle eye are both readable. Tiny cream-sailed timber houseboat approaching in the distance. Magical natural majesty, completely peaceful and safe.",
+      "originalFile": "exec-bf26b1cc-7a47-4af3-b485-192338e1b139.png"
+    },
+    {
+      "id": "bells",
+      "file": "bells.png",
+      "prompt": "The City of Listening Bells: a sunlit floating island city with tall slender copper bell towers, bridges between tiled roofs, hundreds of little hanging bells and ribbons stirring in gentle wind. A broad circular plaza surrounds four differently shaped big bells on a low wooden stage. Misty pink morning clouds below, warm ochre plaster and teal patina, no writing and no visual solution code. Lived-in, witty details, sophisticated painted fantasy.",
+      "originalFile": "exec-dee29bd1-1223-4469-80db-234e9f9423f2.png"
+    },
+    {
+      "id": "winter",
+      "file": "winter.png",
+      "prompt": "The Palace of the Still Minute, a poignant quiet winter glass conservatory on a floating island, viewed from inside a tall arched entrance. Frost flowers on huge glass panes, a marble floor, one suspended golden leaf frozen halfway to the floor, a tea table set for two adults, enormous brass clockwork with no visible numbers. Cold blue silver light balanced by a single warm amber desk lamp, wistful but not frightening. No people, no ghost or death imagery.",
+      "originalFile": "exec-340bb39c-58e1-4d95-84a6-3f41c6c9c75b.png"
+    },
+    {
+      "id": "lighthouse",
+      "file": "lighthouse-v2.png",
+      "prompt": "The great Lighthouse Between Winds at the campaign climax, a beautiful stone tower on a small floating island over an indigo cloud sea. Four huge brass rings surround its glass lantern dome. A broad stone arrival bridge with solid railings leads into an open circular machinery court, four approachable copper control podiums surround an empty central platform. Storm clouds in the far distance with a warm dawn break, dramatic hope, no characters, no disaster or violence. No text, no puzzle answers.",
+      "originalFile": "exec-0e2d31ec-1583-44d8-91bc-9937fbdb9f98.png",
+      "editOf": {
+        "file": "lighthouse.png",
+        "originalFile": "exec-2547f620-b7fa-4318-bf60-d6cafa6e88c8.png"
+      },
+      "editPrompt": "Edit target: the attached lighthouse environment painting. Preserve the entire beautiful composition, stone tower, glass lantern dome, sunset, colors, brushwork, floating island, entry bridge, all four control desks and the atmosphere. One precise correction: the story requires EXACTLY FOUR distinct large brass orbital rings encircling the glass lantern dome, but the target visibly has only three. Add a fourth complete brass ring, elegantly spaced so that all FOUR rings are easy to count, with four separate circular mounting joints down the vertical left support. Keep their believable perspective and physical construction. Slightly enlarge the space occupied by the rings if needed without covering the dome. Do not change the number of control desks (four). No text, no symbols, no people, no added features elsewhere. Final landscape aspect ratio 3:2, same premium gouache fantasy environment art and resolution."
+    },
+    {
+      "id": "dawn",
+      "file": "dawn.png",
+      "prompt": "An emotionally triumphant quiet epilogue scene. Lantern Harbor on the morning after a wonderful journey, floating islands in peach sunrise clouds, open windows and fresh greenery. A small timber flying houseboat with copper roof, chimney, cream sail with one teal patch and round amber lantern rests at the quay. In the far distance a stone lighthouse with four brass orbital rings shines softly. Three empty chairs and a fourth rocking chair sit around a little breakfast table on the dock. The world feels larger and welcoming; no words, no people in foreground.",
+      "originalFile": "exec-7caf3893-d07c-47b9-98db-19f13276e9ee.png"
+    },
+    {
+      "id": "finn",
+      "file": "finn.png",
+      "prompt": "Original fantasy tabletop hero portrait, three-quarter full body with generous space around silhouette. Finn Copperleaf, a young adult stocky dwarf man with curly copper beard, warm expressive face, indigo travel coat over practical light armor, round wooden shield embossed with one copper leaf, sheathed short sword, a few carpentry tools. Confident kind protector, no aggressive pose. Standing by a warm harbor wall with softly blurred lanterns, painterly sophisticated fantasy, teal amber copper palette, tactile materials. No text, no logo, no watermark. Portrait 2:3.",
+      "originalFile": "exec-16e78dfc-9089-455a-86ff-5c137bb88192.png"
+    },
+    {
+      "id": "tess",
+      "file": "tess.png",
+      "prompt": "Original fantasy tabletop hero portrait, three-quarter full body with generous space around silhouette. Tess Quickstitch, an adult human woman in her twenties, short dark curls, curious mischievous intelligent eyes, a coral scarf, teal practical travel vest and trousers, belt with colorful thread spools and small safe crafting tools, soft boots, a sheathed rapier. Agile explorer and inventor, not a thief stereotype. Warm harbor wall and softly blurred lanterns, sophisticated painterly gouache fantasy, teal indigo amber copper, tactile cloth. No text no logos no watermark. Portrait 2:3.",
+      "originalFile": "exec-d1509cfe-c551-4ab0-a88d-83c541e5d4b4.png"
+    },
+    {
+      "id": "asya",
+      "file": "asya.png",
+      "prompt": "Original fantasy tabletop hero portrait, three-quarter full body with generous space around silhouette. Asya Heather, an adult half-elven woman about forty with dark brown skin, long silver braid, subtle pointed ears, calm lively face, green-teal hooded travelling cloak over practical linen clothes, leather seed satchel, simple wooden walking staff, a tiny sprig with white blossoms in one hand. Healer and gardener with quiet strength, not saintly or sexualized. Warm harbor wall and softly blurred lanterns, sophisticated painterly gouache fantasy, teal indigo amber copper, tactile cloth. No text no logos no watermark. Portrait 2:3.",
+      "originalFile": "exec-440c5cf2-2934-4f8c-9d3f-15c32198e74c.png"
+    },
+    {
+      "id": "mika",
+      "file": "mika.png",
+      "prompt": "Original fantasy tabletop hero portrait, three-quarter full body with generous space around silhouette. Mika Bookbinder, adult gnome cartographer with round spectacles, cherry-red beret, tousled dark hair, cream travel coat with indigo cuffs, a thick book filled with colorful paper tabs and a plain wooden staff. Thoughtful, slightly absent-minded and friendly, clever adult rather than child. Warm harbor wall and softly blurred lanterns, sophisticated painterly gouache fantasy, teal indigo amber copper, tactile paper and cloth. No readable book text no logos no watermark. Portrait 2:3.",
+      "originalFile": "exec-a8b23bed-fd8e-491d-a09b-e18fce14014b.png"
+    },
+    {
+      "id": "runa",
+      "file": "runa.png",
+      "prompt": "Portrait 2:3. Runa Tea, a capable elderly woman skyship captain with silver hair swept into a practical bun, amber spectacles on a chain, a large indigo captain's coat with brass buttons, teal scarf, weathered kind face with a wry smile, holding a ceramic teacup. Seated comfortably at the dock of a floating island harbor, warm lantern blurred background, original sophisticated painterly gouache fantasy, copper amber teal indigo and cream palette, tactile wood and cloth. Clearly adult elderly heroine, warm but not saccharine. No text logos watermark.",
+      "originalFile": "exec-29784029-e12c-43de-8b70-0cdad1770155.png"
+    },
+    {
+      "id": "severin",
+      "file": "severin.png",
+      "prompt": "Portrait 2:3. Severin, an original fantasy cartographer in his fifties, wavy salt-and-pepper silver-black hair, round brass spectacles, indigo long coat with copper clasps, practical gloves, holding a rolled map with no readable marks. Attentive tired intelligent face, dignified and approachable, not sinister, no villain symbols. Background a softly blurred frost-glass conservatory with one warm amber desk lamp. Sophisticated painterly gouache illustration, tactile brass linen paper, teal indigo copper cream. No text logos watermark.",
+      "originalFile": "exec-0099eaba-097b-4364-81f5-b5c57e87feb9.png"
+    },
+    {
+      "id": "spool",
+      "file": "spool.png",
+      "transparent": true,
+      "prompt": "A single original mechanical fox companion, full body, centered, transparent background. Small elegant brass automaton with turquoise glass eyes, one distinctive copper ear, articulated long tail ending in a soft copper brush, delicate clockwork joints, warm curious expression and triangular fox ears. Sitting with one paw slightly raised as if asking a question. Tactile exquisite brass and enamel, painterly premium fantasy illustration, precise readable silhouette, no ground plane, no cast backdrop, no frame, no text, no logos, no weapons. Real alpha transparency.",
+      "originalFile": "exec-08312b77-e81a-4b2a-a15d-eee20aa3872d.png"
+    },
+    {
+      "id": "pom",
+      "file": "pom.png",
+      "prompt": "Portrait 2:3 of Pom, a stocky adult gnome gardener with weathered cheerful face, leaf-shaped broad hat, indigo linen overalls, a copper watering can and apple seeds in his pockets. Standing in a luminous floating orchard; softly blurred amber fruit and teal glass irrigation channels. Original premium painterly gouache fantasy with tactile materials, cozy but sophisticated, copper amber teal indigo palette. No text, no watermark.",
+      "originalFile": "exec-af1c5115-c4ef-4f9c-9458-a4804cdfd758.png"
+    },
+    {
+      "id": "saffra",
+      "file": "saffra.png",
+      "prompt": "Portrait 2:3 of Saffra, a tall adult human librarian with a long dark braid and intelligent calm face, flowing sea-teal practical robe with indigo trim, holding a small paper boat carrying a book. Softly blurred circular pearl-stone library with waterways and brass reading lamps behind her. Original premium painterly gouache fantasy, rich tactile paper cloth brass, amber teal indigo cream palette. No readable text, no watermark.",
+      "originalFile": "exec-bb59923e-40bf-4b23-b289-8c351f0ff76f.png"
+    },
+    {
+      "id": "vey",
+      "file": "vey.png",
+      "prompt": "Portrait 2:3 of Vey Three Pockets, an adult anthropomorphic red fox merchant, witty dignified expression, lavender waistcoat with exactly three large visibly separate pockets, brass monocle, teal cravat, holding a tiny empty copper mirror frame. Softly blurred whimsical floating market with copper mirrors and indigo awnings. Original premium painterly gouache fantasy, amber teal indigo copper palette, very expressive but not cartoonishly evil. No text, no watermark.",
+      "originalFile": "exec-42e0c253-6bae-4d69-a95f-20fbc8a99156.png"
+    },
+    {
+      "id": "ilyr",
+      "file": "ilyr.png",
+      "prompt": "Portrait 2:3 of Ilyr, an adult tall fantasy craftsperson with a kind thoughtful face, dark tied-back hair, a clearly visible beautifully articulated wooden-and-brass prosthetic left hand, copper work apron, soft protective goggles resting on forehead, holding a simple four-way connector. Cloud forge softly blurred behind, teal sky through stone arches and amber work lamps. Original premium painterly gouache fantasy with tactile materials, indigo teal copper amber palette. No text no watermark.",
+      "originalFile": "exec-a7383cde-d3e2-4ed3-b5bd-9ea99c985809.png"
+    },
+    {
+      "id": "kanto",
+      "file": "kanto.png",
+      "prompt": "Portrait 2:3 of Kanto, an adult anthropomorphic secretary bird, tall elegant grey-and-white plumage, expressive observant eyes, long black feather crest, neat indigo-blue waistcoat and teal bow tie, holding a small brass tuning fork and a closed plain folder. Warm bell-city plaza softly blurred behind. Gently funny dignified town coordinator, no human hands or extra limbs; wing tips hold props plausibly. Original premium painterly gouache fantasy, copper amber teal indigo. No text no watermark.",
+      "originalFile": "exec-3768fbc4-95cb-4bb9-9ba0-dd540812e422.png"
+    },
+    {
+      "id": "seed",
+      "file": "seed.png",
+      "prompt": "Square original fantasy inventory item illustration. A single precious walnut-like seed resting in a tiny open hammered copper pot, a delicate glowing green leaf sprouting inside, a simple teal ribbon around the pot. Macro still life on dark indigo linen with warm amber light, painterly gouache, exquisite tactile handmade copper and botanical detail, a clear readable silhouette and generous margin, no extra unrelated objects. No text no watermark.",
+      "originalFile": "exec-fbdb549f-4e52-4b05-80bf-87d71a316ecc.png"
+    },
+    {
+      "id": "mirror",
+      "file": "mirror.png",
+      "prompt": "Square original fantasy inventory item illustration. A single handheld round honest mirror, plain beautifully crafted copper frame and short turquoise enamel handle, clean pale silver reflective glass showing only a soft white cloud. Resting on dark indigo linen, warm amber side lighting, painterly premium gouache with tactile brass enamel and cloth, generous margins, simple readable silhouette. No person in reflection, no secrets or symbols, no text no watermark.",
+      "originalFile": "exec-485b12e2-00d1-47d0-9b69-88581bf28237.png"
+    },
+    {
+      "id": "bridge",
+      "file": "bridge.png",
+      "prompt": "Square original fantasy inventory item illustration. A single compact four-way brass connector with exactly four round copper sockets and curved transparent glass tubes joining them, a tiny ribbon of teal air glowing inside, practical handmade engineering with small screws. Resting on dark indigo linen in amber side light. Painterly premium gouache, tactile metal and glass, readable silhouette, generous margins. No text or symbols, no watermark.",
+      "originalFile": "exec-d34508eb-ead3-4881-ac1d-9f7a293a6b43.png"
+    },
+    {
+      "id": "tuning",
+      "file": "tuning.png",
+      "prompt": "Square original fantasy inventory item illustration. One elegant brass tuning fork with four small separate hanging charms: a leaf, a wave, a star and a tiny bell. The charms are visibly different shapes, not letters. Warm copper frame and teal ribbon, resting on dark indigo linen, amber side light, original premium painterly gouache fantasy, beautifully crafted tactile metal, generous margins. No written text, no watermark.",
+      "originalFile": "exec-405278c8-1e59-4708-86ca-0efa05b056db.png"
+    },
+    {
+      "id": "notebook",
+      "file": "notebook.png",
+      "prompt": "Square original fantasy inventory item illustration. A single travel notebook open to completely blank cream pages, indigo cloth cover, small copper corner protectors, teal ribbon bookmark, a plain pencil alongside it. Slight overhead three-quarter view on dark indigo linen, warm amber light. Original premium painterly gouache fantasy with exquisite tactile paper and cloth. No marks or writing on pages, no watermark.",
+      "originalFile": "exec-927e7e1e-958b-45e6-ad82-8cc4f121246d.png"
+    },
+    {
+      "id": "automaton",
+      "file": "automaton.png",
+      "transparent": true,
+      "prompt": "Single original friendly fantasy maintenance automaton, full body centered on transparent background. Compact rounded brass body, two sturdy feet, two arms ending in broad padded leather bumpers, two round turquoise glass eyes, small copper cap, visible removable template plate on its side but no symbols or text. Built for moving crates and repairs, slightly stubborn attentive posture, no weapon, no threatening spikes. Premium painterly gouache illustration with tactile brass, copper and leather, clear silhouette and generous transparent margin, no shadow backdrop no text no watermark. Real alpha transparency.",
+      "originalFile": "exec-084b08aa-cb37-4124-b239-6353cb3a9eab.png"
+    }
+  ]
+}

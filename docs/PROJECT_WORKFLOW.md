@@ -2,6 +2,15 @@
 
 Updated 2026-10-15. The owner's current AGENTS instructions take precedence over older process banners.
 
+## Current request — campaign library release, 2026-11-14
+
+- Owner: «Давай закроем все пробелы» (after the eight reworked campaigns were found to lack drawn
+  battle maps, the NPC manner of speech in the game's AI, pictures that travel with a campaign, and
+  a place on the server); answers: amend ADR 0020, a pull request into `main`, then deploy (asked
+  again before it runs). Scope `work-orders/CAMPAIGN_LIBRARY_RELEASE_2026-11-14.md`; branch
+  `claude/campaign-library` from `97e136fe`; report `reports/CAMPAIGN_LIBRARY_RELEASE_2026-11-14.md`.
+- Status: implemented and checked locally; pull request and deploy follow the owner's word.
+
 ## Current request — native apps, 2026-11-02
 
 - Owner: «разработать iOS и Android приложение для игроков, чтобы оно мэтчилось с проектом + iOS и
@@ -13,6 +22,112 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   rules program (Milestone B, `wip/stage-640`) continues on its own.
 - Status: Stage 700 (700a–e) complete, report `reports/STAGE_700_COMPLETION.md`, install guide
   `docs/NATIVE_APPS_INSTALL.md`; awaiting the owner's merge decision. Not deployed.
+
+## Current request — ten fantasy campaigns for 3–8 players, 2026-11-08
+
+- Scope `work-orders/FANTASY_TEN_2026-11-08.md`; ten original Russian fantasy campaigns,
+  each with a dedicated owner-requested GPT-6 Astra / max author. Every campaign supports
+  all party sizes 3–8 plus DM and mixed teenage/adult play at 12+ or 14+.
+- Isolated sources/books `campaigns/fantasy-2026/`, tools `scripts/fantasy-campaigns/`;
+  cross-session comparison `campaigns/fantasy-2026/DISTINCTNESS.md`. Preserve concurrent work.
+- Delivered locally: 80 sessions, 60 READY party variants, 41 passing scoped tests and
+  192 HTML pages checked at four widths. Report `reports/FANTASY_TEN_2026-11-08.md`;
+  handoff `handoffs/FANTASY_TEN_2026-11-08.md`. Human play acceptance remains pending.
+  No deployment, publication, provider generation job or real activation was performed.
+
+## Current request — ten dark fantasy campaigns, 2026-11-08
+
+- Scope `work-orders/DARK_FANTASY_TEN_2026-11-08.md`; ten original Russian dark fantasy
+  campaigns, 3–7 players plus DM, four mixed teenage/adult 14+ stories and six 18+ stories.
+  Each has a separate owner-requested GPT-6 Astra / max author.
+- Separate sources/books `campaigns/dark-fantasy-2026/` and tools `scripts/dark-fantasy/`.
+  Owner's primary criterion: distinct plots across sessions. Compare current source and
+  thread updates; record narrative engines in `campaigns/dark-fantasy-2026/DESIGN_MATRIX.md`.
+- Complete local delivery: 50 READY variants, 80 sessions / 240 scenes, 70 heroes; 52 tests
+  and 800 layout states passed. Report `reports/DARK_FANTASY_TEN_2026-11-08.md`; handoff
+  `handoffs/DARK_FANTASY_TEN_2026-11-08.md`. Human playtesting/owner acceptance not claimed.
+  No deployment, publication, provider generation job, real activation, DB mutation or new stage.
+
+## Current request — ten detective noir campaigns, 2026-11-08
+
+- Scope `work-orders/NOIR_TEN_2026-11-08.md`; ten original Russian adult campaigns for 3–8
+  players plus DM, each written by its own owner-requested GPT-6 Astra / max agent.
+- Isolated collection `campaigns/noir-2026/` and tools `scripts/noir-campaigns/`; comparison
+  register `campaigns/noir-2026/DISTINCTNESS.md`. Other sessions' edits are preserved.
+- Local delivery complete: 10 campaigns, 80 sessions, 60 READY variants, 41 passing tests;
+  186 HTML pages passed all four layout widths. Report `reports/NOIR_TEN_2026-11-08.md`
+  and handoff `handoffs/NOIR_TEN_2026-11-08.md` record exact scope and evidence.
+- No human playtest, deployment, publication, provider job or real activation.
+
+## Current request — ten distinct campaigns, 2026-11-08
+
+- Owner requests ten additional campaigns in different genres for larger tables, including
+  several 21+, with a dedicated GPT-6 Astra max-effort agent for each. This specific request
+  overrides older single-model defaults within `work-orders/TEN_CAMPAIGNS_2026-11-08.md`.
+- Primary clarification: plots must not resemble campaigns being made in the other session.
+  Compare family, mixed-ages, fantasy, dark-fantasy and noir plots; `campaigns/collection-2026/DISTINCTNESS.md`.
+- Local delivery complete: ten campaigns, 80 sessions, 34 READY variants, 41 passing checks;
+  183 pages passed layout review. `reports/TEN_CAMPAIGNS_2026-11-08.md` and
+  `handoffs/TEN_CAMPAIGNS_2026-11-08.md` record evidence and human-playtest limits.
+  Content is in `campaigns/collection-2026/`, tools in `scripts/campaign-collection/`.
+  Preserve the parallel session's source and application changes.
+  No deployment, publication, real activation, provider call or new numbered stage is authorized.
+
+## Current request — ten additional campaigns for 3–7 players, 2026-11-08
+
+- Scope: `work-orders/MIXED_TEN_CAMPAIGNS_2026-11-08.md`; separate from concurrent
+  `collection-2026`, Lighthouse, Acorn Express and Moon Pearl work. Each campaign is assigned
+  to its own requested GPT-6 Astra / max agent by the owner's explicit instruction.
+- Owner priority: plots must differ from the other sessions. Comparison register:
+  `campaigns/mixed-ages-2026/ORIGINALITY.md`. Eight mixed teen/adult campaigns and two older-teen
+  genre campaigns, eight sessions each, five 3–7-player variants. Delivery complete: all 50
+  variants READY, 80 native checks PASS, local books verified at four widths. Catalogue:
+  `campaigns/mixed-ages-2026/index.html`; report `reports/MIXED_TEN_CAMPAIGNS_2026-11-08.md`,
+  handoff `handoffs/MIXED_TEN_CAMPAIGNS_2026-11-08.md`. No human playtest or owner acceptance
+  is inferred; no new numbered stage, deployment, publication or real activation is authorized.
+
+## Current request — third complete campaign, 2026-11-08
+
+- Owner request: «Давай еще кампанию». Scope: `work-orders/MOON_PEARL_2026-11-08.md`.
+- «Тайна Лунной Жемчужины»: `campaigns/moon-pearl/index.html`; standalone underwater
+  mystery for one adult DM and three players, twelve evenings, 34 selected illustrations,
+  five READY native party variants and a complete 42-page local book. Scoped verification is
+  complete; full browser regression passes 247 tests. Shared global unit/lint/format failures
+  in concurrent collections are recorded honestly in `reports/MOON_PEARL_2026-11-08.md`.
+  Handoff: `handoffs/MOON_PEARL_2026-11-08.md`; real family play acceptance remains pending.
+- Latest focused A11/A12 revision replaces the weather-scene automata with tide-light observation;
+  two optional encounters remain. All five variants and the book were rebuilt and checked.
+  Current addendum: `reports/MOON_PEARL_A11_REVISION_2026-11-08.md`; its evidence preserves the
+  rejected intermediate cargo scene and the initial delivery. No saved game was changed.
+- The owner's originality follow-up authorized the specific Acorn F2 content revision:
+  `work-orders/ACORN_ORIGINALITY_REVISION_2026-11-08.md`, report of the same name. Its early
+  voluntary letter, open experiment, practical station handover and reversible final outing
+  replace the repeated confession/council structure. Art and old evidence are preserved.
+- Preserve Lighthouse, prior evidence and concurrent collection work. No new numbered stage,
+  production dependency, provider call, deployment or real activation is authorized.
+
+## Current request — second complete campaign, 2026-11-08
+
+- Owner goal: «Сделай еще одну захватывающую кампанию полтностью». Scope:
+  `work-orders/ACORN_EXPRESS_2026-11-08.md`; the established one-adult-DM / three-player
+  preferences carry forward. No new numbered product stage.
+- «Экспресс “Тысяча Желудей”»: `campaigns/acorn-express/index.html`, twelve complete evenings,
+  a separate native package with all party variants and 31 original illustrations. The earlier
+  Lighthouse pack and its evidence remain intact. Report: `reports/ACORN_EXPRESS_2026-11-08.md`;
+  handoff: `handoffs/ACORN_EXPRESS_2026-11-08.md`. Human play acceptance and real activation
+  remain separate from technical verification.
+
+## Current request — family campaign, 2026-11-08
+
+- Owner goal: a complete illustrated adventure for one adult DM and three players, including
+  ages 8 and 14, with wonder, mysteries, humour and an affecting ending; fix encountered issues.
+  Scope: `work-orders/FAMILY_CAMPAIGN_2026-11-08.md`. This content delivery does not start a new
+  numbered product stage.
+- «Маяк Между Ветрами»: `campaigns/lighthouse/index.html`, twelve evenings, native campaign
+  package and thirty selected original illustrations. Start/import instructions are in its README.
+  Report: `reports/FAMILY_CAMPAIGN_2026-11-08.md`; handoff:
+  `handoffs/FAMILY_CAMPAIGN_2026-11-08.md`. Technical verification is recorded there; family play
+  acceptance, real campaign activation and deployment are not inferred from automated checks.
 
 ## Current request — product completion, 2026-11-01
 

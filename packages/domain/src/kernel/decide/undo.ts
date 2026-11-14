@@ -190,11 +190,11 @@ function restoresFor(events: readonly RecordedEvent[], before: WorldState): Rest
         break;
       case 'EntityProfileUpdated': {
         if (removedEntities.has(event.payload.entityId)) break;
-        const { name, description } = entityBefore(event.payload.entityId);
+        const { name, description, manner } = entityBefore(event.payload.entityId);
         restores.push({
           fact: 'entity.profile',
           entityId: event.payload.entityId,
-          value: { name, description },
+          value: { name, description, ...(manner ? { manner } : {}) },
         });
         break;
       }

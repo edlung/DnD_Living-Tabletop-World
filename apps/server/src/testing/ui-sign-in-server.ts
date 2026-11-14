@@ -11,6 +11,7 @@ import type { SignInDependencies } from '../auth/sign-in.ts';
 import { evidenceHasher } from '../auth/tokens.ts';
 import { PublishedEventStore } from '../campaigns/published-event-store.ts';
 import { createCampaignQuestBooks } from '../campaigns/quest-books.ts';
+import { createCampaignEncounterBooks } from '../campaigns/encounter-books.ts';
 import { buildLiveApp } from '../live/live-app.ts';
 import { createLogger } from '../platform/logging/logger.ts';
 import {
@@ -115,6 +116,7 @@ const { app } = buildLiveApp({
   adventures: ADVENTURE_BOOKS,
   adventurePictures: await adventurePictures(),
   campaignQuests: createCampaignQuestBooks(activationFixture.initialContent),
+  campaignEncounters: createCampaignEncounterBooks(activationFixture.initialContent),
   engine,
   authenticator: personOrDisplay(
     sessionAuthenticator(credentials, systemAuthClock),

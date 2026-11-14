@@ -43,6 +43,17 @@ COPY fixtures/ravenford-ru /out/fixtures/ravenford-ru
 # The starter adventure (docs/adr/0058-campaign-content.md §5): its seeds, books, library, pictures.
 COPY fixtures/hollowmere /out/fixtures/hollowmere
 COPY fixtures/hollowmere-ru /out/fixtures/hollowmere-ru
+# The campaign library (docs/adr/0058, notes of 2026-11-14): its packages, and only the pictures
+# its library.json files name, at the same paths under the campaigns' own assets.
+COPY fixtures/campaign-library /out/fixtures/campaign-library
+COPY campaigns /tmp/campaigns
+RUN node -e "const fs=require('fs'),path=require('path');const root='/out/fixtures/campaign-library';\
+for (const id of JSON.parse(fs.readFileSync(root+'/index.json','utf8')).campaigns) {\
+  const l=JSON.parse(fs.readFileSync(path.join(root,id,'library.json'),'utf8'));\
+  for (const rel of new Set([l.cover,...l.pictures.map((p)=>p.source)])) {\
+    const to=path.join('/out',rel);fs.mkdirSync(path.dirname(to),{recursive:true});\
+    fs.copyFileSync(path.join('/tmp',rel),to);}}" \
+ && rm -rf /tmp/campaigns
 
 # Production dependencies of the server and its workspace packages only.
 FROM pnpm AS prod-deps

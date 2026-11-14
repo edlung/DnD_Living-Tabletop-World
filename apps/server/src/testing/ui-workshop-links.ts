@@ -2,6 +2,10 @@ import { createHmac } from 'node:crypto';
 
 /** Per-run fixtures only; no invitation credential is written to disk or logged. */
 export const WORKSHOP_FIXTURES = [
+  'package-import',
+  'library',
+  'acorn-import',
+  'pearl-import',
   'journey',
   'private-a',
   'private-b',

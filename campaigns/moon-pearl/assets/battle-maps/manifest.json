@@ -1,0 +1,59 @@
+{
+ "about": "Top-down battle maps (OpenAI image generation through Codex CLI), each drawn over its fight grid and cut to it; originals in ~/Documents/living-tabletop-world-art/.",
+ "maps": [
+  {
+   "location": "glass",
+   "encounter": "paper-reception",
+   "grid": [
+    14,
+    10
+   ],
+   "file": "glass.webp",
+   "sha256": "6f6d256ba2f0c05ad4d84f0ae8ffc79d65a47d5933916f0f398d0b97462596bb",
+   "originalSha256": "809c27e4ce452f31e70bc002760b80d915c962aacbecf55103e3a6f1375717c8",
+   "originalFile": "battle-maps-2026-11-14/out/moon-pearl--glass.png",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as moon-pearl--glass.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Стеклянный Двор» — Светлая мастерская с остывшими образцами, защищённой печью и столом под увеличительными стёклами. Готовые копии ракушек лежат отдельно от ещё горячих изделий.\n\nThe first reference image is the exact layout of the playable field: a 14 by 10 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nOriginal premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+   "references": [
+    "ref/moon-pearl--glass.layout.png",
+    "glass.png"
+   ]
+  },
+  {
+   "location": "quay",
+   "encounter": "quay-chase",
+   "grid": [
+    18,
+    10
+   ],
+   "file": "quay.webp",
+   "sha256": "e358abe3f386be77cbf8547dea59b49f0f7f60d38737552166285cdae716b9f1",
+   "originalSha256": "0f1c5547ce979fb45ff5c68bc66d9b9e578279b275f3bcbeb96e9c4f7619c1e4",
+   "originalFile": "battle-maps-2026-11-14/out/moon-pearl--quay.png",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as moon-pearl--quay.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Причал Трёх Приливов» — Сухая набережная под стеклянной аркой. Лодки ходят по открытому внутри свода каналу; за дальним концом причала Южный шлюз, чьи ворота в полдень уходят за свод. Верёвочные ограждения и широкие ступени позволяют спокойно садиться на борт.\n\nThe first reference image is the exact layout of the playable field: a 18 by 10 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nOriginal premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+   "references": [
+    "ref/moon-pearl--quay.layout.png",
+    "quay.png"
+   ]
+  },
+  {
+   "location": "nautilus",
+   "encounter": "auction-hall",
+   "grid": [
+    18,
+    10
+   ],
+   "file": "nautilus.webp",
+   "sha256": "fdeb61cd9c7a16c9a56858e8e89ead32a373c7ddcee2f5a6d8285a9a369e8dc4",
+   "originalSha256": "5f671fcd47fb37c9ff4aa85775dba5baadf24856e60231c23f175523b933ffab",
+   "originalFile": "battle-maps-2026-11-14/out/moon-pearl--nautilus.png",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as moon-pearl--nautilus.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Зал Наутилуса» — Павильон в огромной пустой древней раковине, не живое животное. Спиральные сухие галереи соединяют зал торгов, склад и открытую террасу. Посетителей встречает служитель с книгой расписания.\n\nThe first reference image is the exact layout of the playable field: a 18 by 10 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nOriginal premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+   "references": [
+    "ref/moon-pearl--nautilus.layout.png",
+    "nautilus.png"
+   ]
+  }
+ ]
+}

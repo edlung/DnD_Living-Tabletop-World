@@ -1,0 +1,101 @@
+{
+  "configurationEvidence": "Explicit native spawn_agent requests; not provider response attestation or application generation jobs",
+  "authors": [
+    {
+      "slug": "bellwether-hollow",
+      "task": "/root/bellwether_hollow",
+      "modelRequested": "gpt-6-astra",
+      "reasoningEffortRequested": "max",
+      "status": "source-complete",
+      "authorCompletionSha256": "662d755570a976b59a5e54c569b836c0779fae5f761618bf2b33daf785e5ec73",
+      "deliveredSourceSha256": "6de50eb3426012678494e5e1f2eebbf91e0c9b3dc2251238b17432a02feccbef"
+    },
+    {
+      "slug": "thorn-abbey",
+      "task": "/root/thorn_abbey",
+      "modelRequested": "gpt-6-astra",
+      "reasoningEffortRequested": "max",
+      "status": "source-complete",
+      "authorCompletionSha256": "2893a0f9030a6ff8ed62779e59e5ca44bdd828d2a5d191bfc7bcaf85c54b0c77",
+      "deliveredSourceSha256": "a3e4bca25634989b3c8b10752ab9bdc2bd0dcd2a0c8ff91f5e6e40ad1d08918f"
+    },
+    {
+      "slug": "lantern-mere",
+      "task": "/root/lantern_mere",
+      "modelRequested": "gpt-6-astra",
+      "reasoningEffortRequested": "max",
+      "status": "source-complete-after-F1-and-temporal-clue-fix",
+      "authorCompletionSha256": "5920aeba697589173fe580d83b35c3c253926294c5759a88d9810fa7a113553d",
+      "deliveredSourceSha256": "1eb37d9291a670691c46f3d21c70eafeadb59c6c930ecf6cdd378d66b25369be",
+      "previousAuthorCompletionSha256": "0d740eea831864eec82ac49fc3c43d4cae747573b2edf9650d0e8931219efc01"
+    },
+    {
+      "slug": "winter-orchard",
+      "task": "/root/winter_orchard",
+      "modelRequested": "gpt-6-astra",
+      "reasoningEffortRequested": "max",
+      "status": "source-complete",
+      "authorCompletionSha256": "8230338b98d3e41850e8d593f8445cb7782b8124d86e4f8856e4b549b315c36f",
+      "deliveredSourceSha256": "cd6d16ee6d86e46c103712cfa4a1b9d2512633cf17da5d6da2fe3c3e930e85e2"
+    },
+    {
+      "slug": "ash-tithe",
+      "task": "/root/ash_tithe",
+      "modelRequested": "gpt-6-astra",
+      "reasoningEffortRequested": "max",
+      "status": "source-complete",
+      "authorCompletionSha256": "9843f47db186cca37cc4779300d276937a150214d83978b4cf237c0c3533b770",
+      "deliveredSourceSha256": "ab057bacf77ed2c68a6b993efe84c9eca17989532393475a31c063183434b9a7"
+    },
+    {
+      "slug": "marrow-crown",
+      "task": "/root/marrow_crown",
+      "modelRequested": "gpt-6-astra",
+      "reasoningEffortRequested": "max",
+      "status": "source-complete",
+      "authorCompletionSha256": "4529cd39aec026e569c6a5a96465d365d3c6237052e1febb1a2ed284fc38aadc",
+      "deliveredSourceSha256": "82e996e4573ca0210fcff5e6094d2df8a52044a5d7440f71b83023fafb0701ae",
+      "authorManifestSha256": "64024261de689f83010c5b5c0b9a16081bee213470e438bc4ce3ad884e645921"
+    },
+    {
+      "slug": "salt-widows",
+      "task": "/root/salt_widows",
+      "modelRequested": "gpt-6-astra",
+      "reasoningEffortRequested": "max",
+      "status": "source-complete-after-A10",
+      "authorCompletionSha256": "55b065183be0ee7113d1f8ff5ccdf368c9151e99ef5501b56dfce16ed434b5f4",
+      "deliveredSourceSha256": "55b065183be0ee7113d1f8ff5ccdf368c9151e99ef5501b56dfce16ed434b5f4"
+    },
+    {
+      "slug": "black-sun-forge",
+      "task": "/root/black_sun_forge",
+      "modelRequested": "gpt-6-astra",
+      "reasoningEffortRequested": "max",
+      "status": "source-complete",
+      "authorCompletionSha256": "448cc03d5ce5ebcc87de0b6986627f266cdade7aca80e9d9841b392cb9c7c391",
+      "deliveredSourceSha256": "02eebb88a547bbf83c86c5cd6ab3ee9daf606c1180269e7f57d15881a61379a9",
+      "authorNamedHashListSha256": "3d7b508d465aa4fac3895ec7e9ccfd1d5598fb6c4db845e8f446c9804e3cf3f9",
+      "authorNamedHashListAlgorithm": "Sorted basename, space, file SHA256, LF"
+    },
+    {
+      "slug": "moth-court",
+      "task": "/root/moth_court",
+      "modelRequested": "gpt-6-astra",
+      "reasoningEffortRequested": "max",
+      "status": "source-complete",
+      "authorCompletionSha256": "6be5b93dd54318e0c902635401d6f9bb5e6f9e4deada8932957c0a58712fa7a0",
+      "deliveredSourceSha256": "6be5b93dd54318e0c902635401d6f9bb5e6f9e4deada8932957c0a58712fa7a0"
+    },
+    {
+      "slug": "last-ferryman",
+      "task": "/root/last_ferryman",
+      "modelRequested": "gpt-6-astra",
+      "reasoningEffortRequested": "max",
+      "status": "source-complete",
+      "authorCompletionSha256": "7f688736cff5a052b3b223a532ff3e2da88bbcd276148d6f30d484a5c29ee924",
+      "deliveredSourceSha256": "7f688736cff5a052b3b223a532ff3e2da88bbcd276148d6f30d484a5c29ee924"
+    }
+  ],
+  "updatedAt": "2026-11-08T11:11:57.002768+00:00",
+  "sourceDigestAlgorithm": "Sort JSON basenames; concatenate UTF-8 filename, NUL, exact file bytes; SHA-256. An optional authorManifestSha256 uses sorted per-file hex SHA256, two spaces, basename and LF."
+}

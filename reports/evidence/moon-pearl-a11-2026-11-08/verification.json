@@ -1,0 +1,94 @@
+{
+  "date": "2026-11-08",
+  "scope": "Moon Pearl A11/A12 tide-light revision",
+  "status": "PASS_SCOPED_IMPLEMENTATION",
+  "packages": [
+    {
+      "path": "campaigns/moon-pearl/package.json",
+      "sha256": "4c0d5319d4ebb37811f5b54b24202e907fab3ad50bde23efefefe6177fb4706f",
+      "encounters": 2
+    },
+    {
+      "path": "campaigns/moon-pearl/variants/four-players.json",
+      "sha256": "77edd5d95dc90ccb20932c8d13cfad07dfa39c314f8af76ffa67ced9e7f2d00e",
+      "encounters": 2
+    },
+    {
+      "path": "campaigns/moon-pearl/variants/without-amalia.json",
+      "sha256": "d4df2b56d1a4aa3a80352948b3efeec08ebbcdc3d967f24ef855e0d5acb46962",
+      "encounters": 2
+    },
+    {
+      "path": "campaigns/moon-pearl/variants/without-leya.json",
+      "sha256": "d7d8095ed13bc5bbd7932e6e4db5f842e84a519486a99af1ac484272b9e192aa",
+      "encounters": 2
+    },
+    {
+      "path": "campaigns/moon-pearl/variants/without-toren.json",
+      "sha256": "43a878e3e784dcbfd8dcaa1710f79ab1ba9d5bec8cff3f40a0f2c78b24b26a32",
+      "encounters": 2
+    }
+  ],
+  "compiler": {
+    "allReady": true,
+    "findings": 0
+  },
+  "tests": {
+    "passed": 9,
+    "files": 4,
+    "removedEncounterStart": 404,
+    "rejectedStartChangesVersion": false,
+    "initialRegressionFailedAsExpected": true
+  },
+  "nativeImport": {
+    "passed": 1,
+    "retryAndReload": true,
+    "auditedWidths": [1440, 768, 390, 320]
+  },
+  "layout": {
+    "finalScenePages": 7,
+    "measurements": 28,
+    "finalTruthGuideRetest": 4,
+    "nonInfoFindings": 0,
+    "axeViolations": 0,
+    "duplicateTitles": 0,
+    "visuallyInspectedWidths": [1440, 768, 390, 320]
+  },
+  "scopedChecks": {
+    "typescript": "PASS",
+    "eslint": "PASS",
+    "prettier": "PASS",
+    "contextBudget": {
+      "activeFiles": 1902,
+      "overTarget": 0,
+      "overHardLimit": 0
+    }
+  },
+  "preservation": {
+    "protectedFiles": 352,
+    "artFiles": 72,
+    "unchanged": true
+  },
+  "intermediateDraft": "rejected-cargo-draft/ is not current playable content",
+  "cleanup": {
+    "localBookServerStopped": true
+  },
+  "notRepeated": [
+    "full repository unit suite",
+    "full browser suite",
+    "PostgreSQL integration suite"
+  ],
+  "notPerformed": [
+    "human family playtest",
+    "real saved-campaign activation",
+    "paid provider generation",
+    "deployment"
+  ],
+  "independentOriginalityRetest": {
+    "A11": "VERIFIED_FIXED",
+    "A12": "VERIFIED_FIXED",
+    "evidence": "reports/evidence/campaign-originality-followup-2026-11-08/a11-a12-final-retest.json",
+    "sha256": "11798b5f94ba3f6b096d0ce6dd248ddc8e96138b76c6133aa27ca7d9c31b155d",
+    "scope": "Specific repeated scene mechanisms only; not a universal originality guarantee"
+  }
+}

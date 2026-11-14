@@ -18,6 +18,7 @@ import { clientGroup } from '../platform/net/addresses.ts';
 import { workshopCookie, workshopCookieValues } from './cookies.ts';
 import { authorizeWorkshop, workshopPrincipal, workshopSignedOut } from './access.ts';
 import { WORKSHOP_SESSION_MS, type WorkshopDependencies } from './service.ts';
+import { registerCampaignLibraryRoutes } from './library-routes.ts';
 import { registerCampaignPackageRoutes } from './packages/routes.ts';
 import { registerCampaignGenerationRoutes } from './generation/routes.ts';
 import { registerCampaignEditRequestRoutes } from './generation/edit-routes.ts';
@@ -151,6 +152,7 @@ export function registerWorkshopRoutes(app: FastifyInstance, deps: WorkshopDepen
     return draft ? reply.send(draft) : sendError(reply, request, 'NOT_FOUND');
   });
 
+  if (deps.library) registerCampaignLibraryRoutes(app, deps, deps.library);
   if (deps.packages) {
     registerCampaignPackageRoutes(app, deps, deps.packages);
     registerCampaignPreviewRoutes(app, deps, deps.packages, deps.images?.repository);

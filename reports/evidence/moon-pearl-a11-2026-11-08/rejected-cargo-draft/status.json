@@ -1,0 +1,9 @@
+{
+  "status": "REJECTED_EDITORIAL_DRAFT",
+  "reason": "A12: three cargo outcomes repeat Small Banner. Not delivered as the final follow-up.",
+  "files": {
+    "preliminary-report.md": "fea23e9d5b970805684651a8294dc3483c9d63e26db2f13613cecf937f0ea9d7",
+    "handouts.json": "b631e66fe6b39e7088694dbd8e2b0695a81ba4ab6a793c153580690c60fa1182",
+    "act-4.json": "3e2f162168c45c43b20e803433db39bdc234442871a89747771a8798e0d87040"
+  }
+}

@@ -63,6 +63,11 @@ export interface EntityState {
   readonly kind: EntityKind;
   readonly name: string;
   readonly description: string;
+  /**
+   * An NPC's public manner of speech, present only when it has one (ADR 0020 amendment
+   * 2026-11-14). NPC dialogue gives it to the model; nothing else reads it.
+   */
+  readonly manner?: string;
   readonly existsSince: number | null;
   readonly location: LocationInfo | null;
   readonly placement: Placement | null;

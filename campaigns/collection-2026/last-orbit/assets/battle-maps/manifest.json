@@ -1,0 +1,59 @@
+{
+ "about": "Top-down battle maps (OpenAI image generation through Codex CLI), each drawn over its fight grid and cut to it; originals in ~/Documents/living-tabletop-world-art/.",
+ "maps": [
+  {
+   "location": "block-b",
+   "encounter": "block-search",
+   "grid": [
+    18,
+    7
+   ],
+   "file": "block-b.webp",
+   "sha256": "bb9d81269f427668e7670d43df6b10ffaa0ab2b97ad81dcc295650dd6398bbb4",
+   "originalSha256": "6d59905fc8ee3aa681a53c7c37d5ea4f5000db176b7cf2ff67f24ed8e41f9e57",
+   "originalFile": "battle-maps-2026-11-14/out/last-orbit--block-b.png",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as last-orbit--block-b.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Блок Б» — Коридор камер на рядах заклёпок: двери с номерами, ночники, сетка перекличек на стене у входа. Здесь живёт экипаж, здесь утром и вечером читают номера. Соседнее крыло — блок А. Западная дверь ведёт в коридор Тихого лазарета, восточные ворота — к Палубе грузовых смен.\n\nThe first reference image is the exact layout of the playable field: a 18 by 7 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Коридор камер на рядах заклёпок, 18 клеток в длину и 7 в ширину. Двери камер в нишах вдоль северной и южной стен дают укрытие три четверти. Посередине вытащенные койки и тележки с бельём — трудная местность. Экипаж стоит на западе у двери к лазарету, охрана входит с востока от ворот блока. Ночники горят синим, на стене у входа висит сетка перекличек с карандашными палочками.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/last-orbit--block-b.layout.png",
+    "block-b.png"
+   ]
+  },
+  {
+   "location": "airlock-three",
+   "encounter": "locker-three",
+   "grid": [
+    12,
+    6
+   ],
+   "file": "airlock-three.webp",
+   "sha256": "551191da31a49cad1caabcf40671edf0d9b0384ce0727e4488cd07894b71f213",
+   "originalSha256": "6dca97407ba24fd6f5804fa9f4c60431f58f89e3a87b03e263724f625b24c507",
+   "originalFile": "battle-maps-2026-11-14/out/last-orbit--airlock-three.png",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as last-orbit--airlock-three.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Шлюз 3» — Камера между Прощальным причалом и Палубой грузовых смен: внутренняя дверь, стойки скафандров, шкафчики баллонов с бирками, изолятор в предшлюзе и внешний люк с круглым окошком. Через окошко видна обшивка. Пол в шланговых решётках, везде иней от вентиляции.\n\nThe first reference image is the exact layout of the playable field: a 12 by 6 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Камера шлюза 3, 12×6. Стойки скафандров вдоль северной и южной стен дают укрытие три четверти. Посередине решётка слива и тянущиеся шланги — трудная местность. Запад — внутренняя дверь, откуда входит экипаж. Восток — внешний люк с круглым окошком, за ним видны обшивка, заклёпки и страховочные кольца, по которым идти в последний вечер. Иней на шлангах, шкафчики баллонов с мелом на бирках в восточном краю.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/last-orbit--airlock-three.layout.png",
+    "airlock-three.png"
+   ]
+  },
+  {
+   "location": "outer-hull",
+   "encounter": "hull-walk",
+   "grid": [
+    12,
+    6
+   ],
+   "file": "outer-hull.webp",
+   "sha256": "e88bda2b7605c3fd43f85f2cf2005a24c9207505a973c0ac5237db0692ab2162",
+   "originalSha256": "5ce7f65b2e2e5033a2dd12344175187ff902451613e559638177e44af2401a53",
+   "originalFile": "battle-maps-2026-11-14/out/last-orbit--outer-hull.png",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as last-orbit--outer-hull.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Внешняя обшивка кольца» — Снаружи: ряды заклёпок, страховочные кольца через каждые три шага, рёбра жёсткости, несколько сорванных листов. Сверху — три окна Стеклянного обхода, снизу — край кольца и облака Кордеи. В двенадцати шагах восточнее шлюза 3 стоит мачта шлюпов и грузовой шлюп «Иней». Тишина полная; слышно только своё дыхание в скафандре.\n\nThe first reference image is the exact layout of the playable field: a 12 by 6 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): ПОЛЕ (столбец/ряд): 12 столбцов с запада на восток, 6 рядов с севера на юг; диагональ стоит 1 клетку. Запад: внешний люк шлюза 3 в западном краю рядов 3–4. Восток: мачта «Инея» — столбцы 11–12, её поручень по всем рядам считается кольцом; люк шлюпа — 12/3 и 12/4; люк шлюза 4 — 12/1. От столбца 1 до клетки люка — 11 клеток, и ещё 1 — на борт. Север, над рядом 1: Окно 1 над столбцами 3–4, Окно 2 над 6–7, Окно 3 над 9–10. Рёбра жёсткости — клетки 3/1, 6/1, 9/1, на них не встать; кто южнее ребра в его столбце, тот в укрытии три четверти (+5 к КБ) от окна над ним. Кольца — в столбцах 1, 4, 7, 10 каждого ряда. Сорванные листы — трудные клетки 5/3, 5/4, 8/3, 8/4: шаг на них стоит 2. Юг, под рядом 6: край кольца и облака Кордеи. КЛЕТКИ: клетка с кольцом и клетка мачты держат двоих (два героя или герой и его спутник), любая другая — одного. Сквозь союзников проходить можно; сквозь конвоира и Каю — нет, и снос перед ними останавливается; оглушённый или упавший до 0 конвоир висит под кольцом и клетку освобождает. Толчок (Атлетика против Атлетики или Акробатики) сдвигает на 1 клетку, не пристёгнутого — ещё и сносит; конвоира или Каю у поручня мачты — на 1 клетку по столбцу 12, без сноса. ТАЩИТ\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/last-orbit--outer-hull.layout.png",
+    "outer-hull.png"
+   ]
+  }
+ ]
+}

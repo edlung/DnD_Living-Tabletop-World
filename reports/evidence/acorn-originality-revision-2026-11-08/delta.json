@@ -1,0 +1,153 @@
+{
+  "baselineFiles": 149,
+  "currentFiles": 150,
+  "changedOrAdded": [
+    {
+      "path": "campaigns/acorn-express/AGENTS.md",
+      "before": "d94614929d850324a8ff376d87a01836946958e42e2eb6c36ca46328b2a51678",
+      "after": "e9403076aa4681797f67217857527bc9e809a7465ce2983d49c42b71d355cb60"
+    },
+    {
+      "path": "campaigns/acorn-express/README.md",
+      "before": "b0bcaaa5c909c67067d985450a939caaeb7787b944d0991138b97bdcb3d5e230",
+      "after": "d1bf64b32a6acabf9400df9c90788b805ab45167071620008262b9de8cee064b"
+    },
+    {
+      "path": "campaigns/acorn-express/guide.html",
+      "before": "edaa463808fa3dd1c61d928f60e7d68814ba0ed556f67674a24dfa9f3ee63d0f",
+      "after": "ac78a4dc381f6c1a0f0a0d361c9a7f81038ce6ad82607a4c8ea8212a74abdd85"
+    },
+    {
+      "path": "campaigns/acorn-express/handouts.html",
+      "before": "79e44cba1a8cad419f39d75cd9bfe91d975d27ecf9db68612dd44be4dd997b02",
+      "after": "811225ed50795d723a2dc767d608e90c98711e80033062a4ad19d2241182ed97"
+    },
+    {
+      "path": "campaigns/acorn-express/handouts/handout-correction.html",
+      "before": null,
+      "after": "5061262fb0c81c5f7a4ceb2507ae9e3270703574329fad321da3f671aa127a2c"
+    },
+    {
+      "path": "campaigns/acorn-express/handouts/handout-futures.html",
+      "before": "8bdf948004e50f172d2a08be7108dff73d77a56e4d785dd407462ece56cb8888",
+      "after": "d137c6fad32dd45fe9cd48dbcd7858c1cdf6ebad480c2ff12445b6b4ea7e5ea3"
+    },
+    {
+      "path": "campaigns/acorn-express/handouts/handout-help.html",
+      "before": "da473d4dc61b231f5cd72a5efdf1d11af7058962229a773ad54dcfb5d2afda50",
+      "after": "e28033022ec9b762f2e4511dbe1e47c453ae08eb5f22785e1975cd608c438d5e"
+    },
+    {
+      "path": "campaigns/acorn-express/handouts/handout-report.html",
+      "before": "647a9172af2397d530da2aa286cf820335463bd9074a4515d7c161eb99409f56",
+      "after": "091597cca5bac48bda7f5c761ac219b3e8a77dbc9adc3f900c44a44a0e1e896f"
+    },
+    {
+      "path": "campaigns/acorn-express/maps.html",
+      "before": "8dd15c996938d8b425e04660474089e250d9feabbe69c312c66c422b4840603d",
+      "after": "04ed0145269e794ba83d15c1a6b07783068b02a8ee7435585edec590c66c7a5d"
+    },
+    {
+      "path": "campaigns/acorn-express/package.json",
+      "before": "4019738d56aeba1fa36a05d356717263369658f83d2a371a804522359f0f4e85",
+      "after": "4c4e9bedee67899c277dcb3a4ae5c64bf26f0147992de95869519e2c70f37f50"
+    },
+    {
+      "path": "campaigns/acorn-express/sessions/02.html",
+      "before": "72b5410dee0bf032c94f1280b3045fe97b463f2fd2322cb7b46b4a1bcc41962e",
+      "after": "e1ea45e988082304eb53f4bd1d260069efbe50173197d5d7e03ba0e26ef74e7e"
+    },
+    {
+      "path": "campaigns/acorn-express/sessions/05.html",
+      "before": "c4f02b5dbe0572e3793de0ec87d8f17404640e61531c8ace3dc07e2a981463c1",
+      "after": "1e36e1e2a72a685f341ac1dd85ac643fc1cf50ba718340a99ea0d29ea64e5afe"
+    },
+    {
+      "path": "campaigns/acorn-express/sessions/06.html",
+      "before": "15601fff7992890bfc1058eec5a1fb6727197ae7c5825566e51c26c31dec82ef",
+      "after": "8c9c5990eaae22e5749ee9c71445790270dd0011859adf1cd39ba97a54f0b6f6"
+    },
+    {
+      "path": "campaigns/acorn-express/sessions/09.html",
+      "before": "5fc6d6c401871d0093701daa085eba5e42f3ee810c88f1a8771e63614bc981c2",
+      "after": "1210121b02e52fcb525712bc4afeed1532e843ac5dc39baf5ad38566dba0edaf"
+    },
+    {
+      "path": "campaigns/acorn-express/sessions/10.html",
+      "before": "ae86581e29452f18b109803a55c374be3c7883096be88f5e497d075523e895fa",
+      "after": "bfaf616cac193b774f958a84dfa67ada55598d6b680c0a2c7f7f0ecd413efa7a"
+    },
+    {
+      "path": "campaigns/acorn-express/sessions/11.html",
+      "before": "d8340f7ecbe4fad5133c2fa43bf6751bef539ebe54f06875ce6e79995db1cff1",
+      "after": "06eea5ad9a66ad3eff37db6829bd4e2a832ff79060e4819cd768a005e75b44b6"
+    },
+    {
+      "path": "campaigns/acorn-express/source/act-1.json",
+      "before": "2e8a1b133c5646e69c81713a94b3854ac31533c980c3b9c7fd57aeaf9a756a1f",
+      "after": "279732af1ed75bab08886ba98aa2a61690393ae9a5807b200920977607fa72fb"
+    },
+    {
+      "path": "campaigns/acorn-express/source/act-2.json",
+      "before": "167b5e729fefc4c98fbf002006570ea8e84807a0107259f279d24c047ffe01a1",
+      "after": "d89a4b77de8f6bf22f2b16edf5bb0ada707957158ef39ad20d5d4b9f82f43a78"
+    },
+    {
+      "path": "campaigns/acorn-express/source/act-3.json",
+      "before": "6ace4ba80b4c0f67773e7dd5dac020dcd2028c3c6956288bf4cbe310d37e6c51",
+      "after": "5b80b1f58ae1da39aa15d291580cbc271d7417af33c789fe6f0f7f994f543df2"
+    },
+    {
+      "path": "campaigns/acorn-express/source/act-4.json",
+      "before": "671a55e1a5de2aee5159c46b7df7774fe8927cc021823c711c01978326adb22b",
+      "after": "df794281e3e7369b9f05cc9e0dc6ebdb69167acc6ed60bd7d04c8652a7449c01"
+    },
+    {
+      "path": "campaigns/acorn-express/source/cast.json",
+      "before": "f39ee345a2c8878443ef1f654d504eabab054ad7530e36cc977cf8d9245f3abd",
+      "after": "5d1a21a61713656df07142ad65aca3942b1743537cc06880ded08e21599920ef"
+    },
+    {
+      "path": "campaigns/acorn-express/source/clues.json",
+      "before": "3c505ad5753b29b64741680d317f9715c89583b297ffae3000756bc40e26fc92",
+      "after": "9e23e34c71d1c609f383feecbf46f196e4e06baab7c2dacabf60a4ae341bac51"
+    },
+    {
+      "path": "campaigns/acorn-express/source/handouts.json",
+      "before": "f768d9b0c14c5bbbbc0746ac512094c6c198251f90264876d4f2666f237b0dfe",
+      "after": "c66030fd2fb2c467078e0b22ba47f92963d6358fd8d6902de8a1921953a64e13"
+    },
+    {
+      "path": "campaigns/acorn-express/source/world.json",
+      "before": "4d4718c7c95a72a49f839186bd1299c8735c44fcd4014fcd3ec607d957499b3a",
+      "after": "10e151a9a29680f734b9b1f08d0a906c7720df1f900846c0e4ab7643d226466c"
+    },
+    {
+      "path": "campaigns/acorn-express/variants/four-players.json",
+      "before": "8f0f98adeb8fa26fdd2cdc9dfbb9c4b0a6c8fb9daa1c806c3e547fc9ffdf2031",
+      "after": "bb6805117c9590c3d491ed56b9ab07a71e6813c23e6ef0775a5dd28229bf2010"
+    },
+    {
+      "path": "campaigns/acorn-express/variants/without-boris.json",
+      "before": "0326084f850b79780df774f94b3bac24ea5304bff456a264d089ffd966620436",
+      "after": "fc29c6f24408b2d84e5a994f37fb98004bcf1781a98979538e391fa336fd034d"
+    },
+    {
+      "path": "campaigns/acorn-express/variants/without-nika.json",
+      "before": "d9c1101d90edafa7a8daf22e3f85e7b1baf70f177425248a489b7ea9baaea5e4",
+      "after": "4cf0bc25e3db5605376f28da0fba76631fbe28fb8a45c700ea5ce2b1e3c247f2"
+    },
+    {
+      "path": "campaigns/acorn-express/variants/without-yara.json",
+      "before": "76d71b2feb93478ddceecbb3d7d22908853cc8bc22d01c72dad435e42cb3fb9f",
+      "after": "320a80bd37162aa7e797d1f2c9b7c992868a3a3d9a3afb561565cdbf28792382"
+    },
+    {
+      "path": "scripts/acorn-express/render.ts",
+      "before": "e78a22b6d8bcab198e71640040648e4ecfb302c7a6117b535da420acad80e3a6",
+      "after": "e0b874fa682e1bac6b053beef203b209ef3b31a23ba56ddf41f39425edd028f5"
+    }
+  ],
+  "unchangedCount": 121,
+  "unchangedArtFiles": 66
+}

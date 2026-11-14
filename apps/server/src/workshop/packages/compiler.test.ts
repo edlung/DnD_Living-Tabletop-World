@@ -36,6 +36,23 @@ describe('isolated campaign materialization', () => {
     expect(JSON.stringify(result.snapshot?.history)).not.toContain('ravenford');
     expect(await assessCampaignRevision(input, ownerId)).toEqual(result.assessment);
   });
+  it("gives a package NPC's manner of speech to the world NPC (ADR 0020 amendment 2026-11-14)", async () => {
+    const input = revision();
+    const npc = input.content.entities.find((entity) => entity.kind === 'npc');
+    if (!npc) throw new Error('missing NPC');
+    npc.manner = 'Speaks briefly, as if reading out an order.';
+    const result = await materializeCampaign(
+      { ...input, digest: campaignContentDigest(input.content, input.identities) },
+      ownerId,
+    );
+    expect(result.assessment.readiness).toBe('READY');
+    const entityId = input.identities.entities[npc.key] ?? '';
+    expect(result.snapshot?.state.entities.get(entityId)?.manner).toBe(npc.manner);
+    const others = [...(result.snapshot?.state.entities.values() ?? [])].filter(
+      (entity) => entity.entityId !== entityId,
+    );
+    expect(others.some((entity) => entity.manner !== undefined)).toBe(false);
+  });
   it('validates prepared fights in isolated branches and rejects illegal cells without starting one', async () => {
     const input = revision();
     expect(input.content.encounters.length).toBeGreaterThan(0);

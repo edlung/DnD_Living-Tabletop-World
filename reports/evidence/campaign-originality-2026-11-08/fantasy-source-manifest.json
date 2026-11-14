@@ -1,0 +1,210 @@
+{
+  "recordedAtUtc": "2026-11-08T09:12:47.167201+00:00",
+  "note": "Hash inventory at completion; source files may have changed after initial reading. Narrative judgement is scoped in fantasy.md.",
+  "files": [
+    {
+      "path": "campaigns/fantasy-2026/small-banner/source/cast.json",
+      "sha256": "3413316462c59ac2aa7c8dd687bac54a335062cab605e87a05b445acf2aa1c5d",
+      "bytes": 31961,
+      "mtimeUtc": "2026-11-08T09:12:41.247608+00:00"
+    },
+    {
+      "path": "campaigns/fantasy-2026/small-banner/source/sessions-1.json",
+      "sha256": "1f21b31ea78269b8dab5ea4407768e4d3151391cd53145224f52980b0781be73",
+      "bytes": 26979,
+      "mtimeUtc": "2026-11-08T08:58:06.748702+00:00"
+    },
+    {
+      "path": "campaigns/fantasy-2026/small-banner/source/sessions-2.json",
+      "sha256": "1f00e713a67fdd0703e0826b0c4c2aec14712b4877f3eabcc1a17f8c6f6d6bb6",
+      "bytes": 27340,
+      "mtimeUtc": "2026-11-08T09:01:11.337027+00:00"
+    },
+    {
+      "path": "campaigns/fantasy-2026/small-banner/source/sessions-3.json",
+      "sha256": "dc358eb714179a40d5acbfdd5b247484d671b2ff70b0c7adaa8d8d60ab6afde3",
+      "bytes": 27742,
+      "mtimeUtc": "2026-11-08T09:04:32.801909+00:00"
+    },
+    {
+      "path": "campaigns/fantasy-2026/small-banner/source/sessions-4.json",
+      "sha256": "38cc320216903e09f0e0d28fbe5c0974f8f700266563f6a0130ee36033ba6e31",
+      "bytes": 31522,
+      "mtimeUtc": "2026-11-08T09:12:41.249572+00:00"
+    },
+    {
+      "path": "campaigns/fantasy-2026/small-banner/source/world.json",
+      "sha256": "71e3d780912df0139aa30c69c867dc04b93d30ca177ad5c116c8f09a96eb29fb",
+      "bytes": 24618,
+      "mtimeUtc": "2026-11-08T09:12:41.246799+00:00"
+    },
+    {
+      "path": "campaigns/fantasy-2026/dungeon-sanctuary/source/cast.json",
+      "sha256": "aa6c17304c7f04d72951a63d01c7d0ac8ed7c59cb5eba90aa21f898a6e8e81e3",
+      "bytes": 34130,
+      "mtimeUtc": "2026-11-08T08:50:44.557235+00:00"
+    },
+    {
+      "path": "campaigns/fantasy-2026/dungeon-sanctuary/source/sessions-1.json",
+      "sha256": "6afdf03b9f41da0a51512ce46b72fabb9a49a3e83bd679f237e80f94ba6e5824",
+      "bytes": 26285,
+      "mtimeUtc": "2026-11-08T08:57:17.939439+00:00"
+    },
+    {
+      "path": "campaigns/fantasy-2026/dungeon-sanctuary/source/sessions-2.json",
+      "sha256": "2c1c42a3e565237ddd3acfc55babd3c7d5742da582cb23458ecb4bb3e3bb0ff8",
+      "bytes": 27411,
+      "mtimeUtc": "2026-11-08T09:00:15.050757+00:00"
+    },
+    {
+      "path": "campaigns/fantasy-2026/dungeon-sanctuary/source/sessions-3.json",
+      "sha256": "257e0d1dcf8c3dca12ff69be55cb24668128d6bb68668af3518dc5e61045fb6c",
+      "bytes": 28643,
+      "mtimeUtc": "2026-11-08T09:03:31.069553+00:00"
+    },
+    {
+      "path": "campaigns/fantasy-2026/dungeon-sanctuary/source/sessions-4.json",
+      "sha256": "390cbebfa9fac18407751b4fab22683ce0d8e258267aa36243416afc7013fad5",
+      "bytes": 31470,
+      "mtimeUtc": "2026-11-08T09:08:49.926898+00:00"
+    },
+    {
+      "path": "campaigns/fantasy-2026/dungeon-sanctuary/source/world.json",
+      "sha256": "28fc810950367118222d3bf70acfe6f949392239a936a5418d75f5287a36050b",
+      "bytes": 22793,
+      "mtimeUtc": "2026-11-08T08:45:31.697772+00:00"
+    },
+    {
+      "path": "campaigns/fantasy-2026/storm-kitchen/source/cast.json",
+      "sha256": "95c3cfa4e4faf0d7e466b2c18809c76ed8ac08bfa462cf2f7736018d87480139",
+      "bytes": 25725,
+      "mtimeUtc": "2026-11-08T09:12:38.787736+00:00"
+    },
+    {
+      "path": "campaigns/fantasy-2026/storm-kitchen/source/sessions-1.json",
+      "sha256": "7faa9eaf31bfe590a6d032c58d5bfaf5fbb4f3106fd6591e83d6796929382d20",
+      "bytes": 25099,
+      "mtimeUtc": "2026-11-08T08:59:31.580139+00:00"
+    },
+    {
+      "path": "campaigns/fantasy-2026/storm-kitchen/source/sessions-2.json",
+      "sha256": "06049f3f7ada72d1dfa7ba7675770cd6d08b882828093d3cb960e048960bba49",
+      "bytes": 26934,
+      "mtimeUtc": "2026-11-08T09:11:04.583181+00:00"
+    },
+    {
+      "path": "campaigns/fantasy-2026/storm-kitchen/source/sessions-3.json",
+      "sha256": "3d8eb953270244c7c4969731ddad76962a4ad932ce4b90c403552b9193b2919d",
+      "bytes": 28055,
+      "mtimeUtc": "2026-11-08T09:11:04.583680+00:00"
+    },
+    {
+      "path": "campaigns/fantasy-2026/storm-kitchen/source/sessions-4.json",
+      "sha256": "c3bf7de931488869b208bfbb56a1dd4f9296b6344d8cfe17d8f9f3250ca142d6",
+      "bytes": 29210,
+      "mtimeUtc": "2026-11-08T09:07:48.114715+00:00"
+    },
+    {
+      "path": "campaigns/fantasy-2026/storm-kitchen/source/world.json",
+      "sha256": "19af22561223ea2b1d7b79b45efa3587ed767ac70857f35777899ebee3e72905",
+      "bytes": 24094,
+      "mtimeUtc": "2026-11-08T09:11:04.582597+00:00"
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/source/cast.json",
+      "sha256": "2ebdc6f0cf17551a636910f519586e1fa48d056426d016f3d196c41d007c1aff",
+      "bytes": 26504,
+      "mtimeUtc": "2026-11-08T08:58:37.635232+00:00"
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/source/sessions-1.json",
+      "sha256": "6d09e50d86ecde9960fdf067da50b10ddbc1ed5884b180aa53e653de278a6371",
+      "bytes": 26883,
+      "mtimeUtc": "2026-11-08T09:10:26.938279+00:00"
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/source/sessions-2.json",
+      "sha256": "fa3915916220b0cdfecb190dc19f95f1a570b15ce97fc3269f6e0c7a8f492655",
+      "bytes": 27169,
+      "mtimeUtc": "2026-11-08T09:10:26.938683+00:00"
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/source/sessions-3.json",
+      "sha256": "9f448058df32d4e0225e092e94b3062ed3f8c0ed93568ad8526b10cb01f25504",
+      "bytes": 27641,
+      "mtimeUtc": "2026-11-08T09:10:26.939295+00:00"
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/source/sessions-4.json",
+      "sha256": "dfe5429b22ffb409fbbc49a841c65e44181690665168dd3b2a5df236966d88b6",
+      "bytes": 29515,
+      "mtimeUtc": "2026-11-08T09:10:26.939644+00:00"
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/source/world.json",
+      "sha256": "ad388c04c4c23484012bf59ae708f81d255598e1f0c88db74971b4d8e63226f9",
+      "bytes": 27053,
+      "mtimeUtc": "2026-11-08T09:09:12.244918+00:00"
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/source/cast.json",
+      "sha256": "142711e2f3d225e5e3dcd0a9f86fb3cbd19f14c2aa061219e74844808d8b00d3",
+      "bytes": 33636,
+      "mtimeUtc": "2026-11-08T09:09:46.891409+00:00"
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/source/sessions-1.json",
+      "sha256": "79ec5e74fc66211c5ec1825e8bf964bcc6f07c1c9e6c41dcce3224133c47c050",
+      "bytes": 27740,
+      "mtimeUtc": "2026-11-08T09:09:46.894050+00:00"
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/source/sessions-2.json",
+      "sha256": "def7b813845ddbd6ecff35bc203fc5244065d2c8ffd703ad8c3e5145a0723530",
+      "bytes": 27888,
+      "mtimeUtc": "2026-11-08T09:09:46.894515+00:00"
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/source/sessions-3.json",
+      "sha256": "2ecf4cd8074a843e2cded68f39abee9f9f8164d194e43a59d16a10d27b9b42e5",
+      "bytes": 28320,
+      "mtimeUtc": "2026-11-08T09:09:46.894906+00:00"
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/source/sessions-4.json",
+      "sha256": "62dabaea39d36ba57a6fcb7760f7ca938cb43facef122bf29878187589046997",
+      "bytes": 31037,
+      "mtimeUtc": "2026-11-08T09:09:46.895526+00:00"
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/source/world.json",
+      "sha256": "caeb8782d452f3377003f3b8f1ea8c96c223efa79de32963af6facafc926807e",
+      "bytes": 29424,
+      "mtimeUtc": "2026-11-08T09:09:46.896094+00:00"
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/source/cast.json",
+      "sha256": "826618f99a693ba7adea70295a35d92a82433f44c5805d074007544272854bde",
+      "bytes": 25268,
+      "mtimeUtc": "2026-11-08T08:58:50.209237+00:00"
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/source/sessions-1.json",
+      "sha256": "47f3477c5f082197f51e84963f87fe5840da59ab52e0ccb3598b7f0552169d50",
+      "bytes": 25999,
+      "mtimeUtc": "2026-11-08T09:03:37.016356+00:00"
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/source/sessions-2.json",
+      "sha256": "c040cbf7a6e4408fcf1fa1690d4f0a26bad13ae3e52004e0370f1332388672af",
+      "bytes": 27378,
+      "mtimeUtc": "2026-11-08T09:06:44.736942+00:00"
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/source/world.json",
+      "sha256": "394bd06575af5175585623b86d4b2b13a6def75a26fbd1e7e88c21efb99e986e",
+      "bytes": 24391,
+      "mtimeUtc": "2026-11-08T08:58:50.208764+00:00"
+    }
+  ]
+}

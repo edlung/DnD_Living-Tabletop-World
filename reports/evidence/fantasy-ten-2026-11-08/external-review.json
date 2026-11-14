@@ -1,0 +1,15 @@
+{
+  "recordedAt": "2026-11-08T11:35:02.987562+00:00",
+  "sourceThreadId": "01a1ba6a-452e-7da3-bf3b-783d20df072e",
+  "transport": "Incoming codex_delegation message; no outbound message was sent by this session",
+  "reportedEditorialScope": "All ten campaigns: core sessions 1–8, choices and consequences",
+  "reportedResult": "No new concrete plot repetitions; A1 and earlier findings closed",
+  "reportedDeliveryObservation": "At 2026-11-08T11:15Z, source string comparison missed 20 storm-kitchen plays and one consequence, plus mountain-wedding plays 2.1, 5.1 and 8.1; familiar-school had not yet been built.",
+  "resolution": "The named strings differed by readable ID-to-title substitution. That substitution was made explicit in source, preserving the exact loaded content and structural IDs. All ten were rebuilt. Final raw-source concordance passes for 70 package files and 191 HTML files.",
+  "evidence": [
+    "source-label-normalization.json",
+    "concordance.json",
+    "tests.json"
+  ],
+  "limitation": "This records the received editorial review and our final technical resolution. It is not a human playtest or provider-model attestation."
+}

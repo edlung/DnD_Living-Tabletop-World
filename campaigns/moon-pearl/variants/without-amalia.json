@@ -1,0 +1,4468 @@
+{
+  "schemaVersion": 1,
+  "brief": {
+    "intent": "В день Праздника Первого Голоса знаменитая Лунная Жемчужина внезапно умолкает, а в витрине стоит красивая стеклянная подделка. Трое друзей идут по следу через город под морем, где приливы каждый день закрывают и открывают галереи, а к каждому месту ведут разные пути. Чем больше голосов они слышат, тем труднее верить красивой истории на музейной табличке.",
+    "setting": "Оригинальный подводный город с сухими воздушными галереями, ремеслом, музыкальным архивом и морскими соседями.",
+    "tone": "Чудесное морское расследование, озорные представления, погоня наперегонки с приливом и хитрый план на шумных торгах. Есть риск опоздать и цена ошибок, но нет безысходности, смертей и обязательной жертвы.",
+    "duration": "12 вечеров: десять по 150 минут, финал на торгах 180 минут (можно разделить на две встречи), короткий последний вечер 90 минут. Три эпизода за вечер, паузы между эпизодами. Любую главу можно продолжить в другой день, сохранив найденное.",
+    "partySize": 3,
+    "partyLevel": 3,
+    "include": [
+      "3 игрока и взрослый ведущий",
+      "Свободный порядок расследования",
+      "Мирные решения",
+      "Финал, который решают действия на торгах",
+      "Точки отдыха внутри вечера"
+    ],
+    "exclude": [
+      "Обязательная жертва спутника",
+      "Насилие над детьми",
+      "Единственная улика за броском",
+      "Скрытые домашние правила"
+    ]
+  },
+  "world": {
+    "name": "Тайна Лунной Жемчужины",
+    "worldName": "Перламутр",
+    "language": "ru",
+    "startsAt": 61200,
+    "startLocation": "museum",
+    "weather": "clear",
+    "opening": "Поздний день в Музее Первого Голоса. За несколько минут до прихода героев куратор Эльма проверила центральный экспонат: знакомой песни нет. Она пока закрыла зал для общей репетиции. Трое друзей пришли вместе по приглашению капитана Норы; праздник ещё не начинался, оригинал не найден и никого публично не обвинили."
+  },
+  "entities": [
+    {
+      "key": "sea",
+      "kind": "location",
+      "name": "Лазурная Впадина",
+      "description": "Город Перламутр стоит под прозрачными сводами среди кораллов. Сухие галереи с обычным воздухом соединяют кварталы; море за стеклом остаётся огромным и прекрасным.",
+      "status": "active",
+      "existsSince": null,
+      "location": {
+        "type": "region",
+        "parent": null
+      }
+    },
+    {
+      "key": "museum",
+      "kind": "location",
+      "name": "Музей Первого Голоса",
+      "description": "Белые лестницы, перламутровые стены и низкие витрины. Над залом проплывают скаты. У центрального экспоната есть ручной акустический рожок и табличка об истории города.",
+      "status": "active",
+      "existsSince": null,
+      "location": {
+        "type": "building",
+        "parent": "sea"
+      }
+    },
+    {
+      "key": "quay",
+      "kind": "location",
+      "name": "Причал Трёх Приливов",
+      "description": "Сухая набережная под стеклянной аркой. Лодки ходят по открытому внутри свода каналу; за дальним концом причала Южный шлюз, чьи ворота в полдень уходят за свод. Верёвочные ограждения и широкие ступени позволяют спокойно садиться на борт.",
+      "status": "active",
+      "existsSince": null,
+      "location": {
+        "type": "settlement",
+        "parent": "sea"
+      }
+    },
+    {
+      "key": "boat",
+      "kind": "location",
+      "name": "Лодка «Слушай море»",
+      "description": "Небольшая крытая лодка с печкой, столом на троих, запасной скамьёй и медными слуховыми трубками. Общий дом путешественников; её действительное положение отмечает ведущий.",
+      "status": "active",
+      "existsSince": null,
+      "location": {
+        "type": "building",
+        "parent": "sea"
+      }
+    },
+    {
+      "key": "market",
+      "kind": "location",
+      "name": "Рынок Отлива",
+      "description": "Навесы из старых парусов, рыбки в стеклянных фонарях и пирожки в форме ракушек. Над мостиками висят корзины с посылками, а на площади всегда спорят о правильной цене пустой коробки.",
+      "status": "active",
+      "existsSince": null,
+      "location": {
+        "type": "settlement",
+        "parent": "sea"
+      }
+    },
+    {
+      "key": "reef",
+      "kind": "location",
+      "name": "Сад Слушающих Кораллов",
+      "description": "Воздушная оранжерея у большого рифового окна. Кораллы снаружи передают колебания в медные чаши внутри. На скамьях лежат простые слуховые трубки; это сад для наблюдений, не чтения мыслей.",
+      "status": "active",
+      "existsSince": null,
+      "location": {
+        "type": "site",
+        "parent": "sea"
+      }
+    },
+    {
+      "key": "theatre",
+      "kind": "location",
+      "name": "Театр Восьми Занавесов",
+      "description": "Овальная сцена, восемь разноцветных занавесов и сухая мастерская под ней. Театр стоит у солёного бассейна: директор-осьминог может удобно работать и в воде, и рядом со зрителями.",
+      "status": "active",
+      "existsSince": null,
+      "location": {
+        "type": "building",
+        "parent": "sea"
+      }
+    },
+    {
+      "key": "glass",
+      "kind": "location",
+      "name": "Стеклянный Двор",
+      "description": "Светлая мастерская с остывшими образцами, защищённой печью и столом под увеличительными стёклами. Готовые копии ракушек лежат отдельно от ещё горячих изделий.",
+      "status": "active",
+      "existsSince": null,
+      "location": {
+        "type": "building",
+        "parent": "sea"
+      }
+    },
+    {
+      "key": "archive",
+      "kind": "location",
+      "name": "Архив Неспешных Дел",
+      "description": "Высокие сухие полки, каталожные лесенки и большое окно на медленно проплывающих черепах. В центре низкий стол: документы можно читать, рисовать или слушать вслух.",
+      "status": "active",
+      "existsSince": null,
+      "location": {
+        "type": "building",
+        "parent": "sea"
+      }
+    },
+    {
+      "key": "wreck",
+      "kind": "location",
+      "name": "Первая Мастерская",
+      "description": "Старое здание опустилось ниже современного города. Укреплённая лестница ведёт в проверенный сухой воздушный зал, где сохранились рабочая мозаика, шкаф и обычный аварийный выход.",
+      "status": "active",
+      "existsSince": null,
+      "location": {
+        "type": "site",
+        "parent": "sea"
+      }
+    },
+    {
+      "key": "nautilus",
+      "kind": "location",
+      "name": "Зал Наутилуса",
+      "description": "Павильон в огромной пустой древней раковине, не живое животное. Спиральные сухие галереи соединяют зал торгов, склад и открытую террасу. Посетителей встречает служитель с книгой расписания.",
+      "status": "active",
+      "existsSince": null,
+      "location": {
+        "type": "building",
+        "parent": "sea"
+      }
+    },
+    {
+      "key": "passage",
+      "kind": "location",
+      "name": "Галерея Большой Волны",
+      "description": "Широкий прозрачный коридор со скамьями и боковыми сухими убежищами. Снаружи видна приливная волна; при сильном течении закрывают движение тележек, но воздух и свод сохраняются.",
+      "status": "active",
+      "existsSince": null,
+      "location": {
+        "type": "site",
+        "parent": "sea"
+      }
+    },
+    {
+      "key": "commons",
+      "kind": "location",
+      "name": "Площадь Общего Звука",
+      "description": "Ступенчатая площадь под круглым окном на море. Есть низкий помост, места для спокойного разговора и стол, куда любой житель может положить предложение о будущем города.",
+      "status": "active",
+      "existsSince": null,
+      "location": {
+        "type": "settlement",
+        "parent": "sea"
+      }
+    },
+    {
+      "key": "toren",
+      "kind": "character",
+      "name": "Торен Риф",
+      "description": "Коренастый дварф с медной бородой, бирюзовым плащом и круглым щитом с волной. На поясе простая серебристая звёздочка. Защитник и бывший праздничный акробат.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "museum",
+        "since": null
+      },
+      "sheet": {
+        "classes": [
+          {
+            "classId": "fighter",
+            "level": 3
+          }
+        ],
+        "abilities": {
+          "str": 16,
+          "dex": 12,
+          "con": 16,
+          "int": 10,
+          "wis": 12,
+          "cha": 10
+        },
+        "hitPoints": {
+          "max": 31,
+          "current": 31
+        },
+        "armorClass": 11,
+        "speedFt": 30,
+        "savingThrows": [
+          "str",
+          "con"
+        ],
+        "skills": {
+          "proficient": [
+            "athletics",
+            "perception",
+            "survival"
+          ],
+          "expertise": []
+        },
+        "attacksPerAction": 1,
+        "weapons": [
+          "longsword",
+          "handaxe"
+        ],
+        "spellSlots": {
+          "max": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "expended": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "spellcasting": [],
+        "conditions": [],
+        "concentration": null
+      }
+    },
+    {
+      "key": "leya",
+      "kind": "character",
+      "name": "Лея Скат",
+      "description": "Полурослик с тёмной косой, коралловой курткой и сумкой для находок. На шее маленький пустой стеклянный футляр. Ловкая искательница сокровищ.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "museum",
+        "since": null
+      },
+      "sheet": {
+        "classes": [
+          {
+            "classId": "rogue",
+            "level": 3
+          }
+        ],
+        "abilities": {
+          "str": 10,
+          "dex": 16,
+          "con": 14,
+          "int": 14,
+          "wis": 12,
+          "cha": 12
+        },
+        "hitPoints": {
+          "max": 24,
+          "current": 24
+        },
+        "armorClass": 13,
+        "speedFt": 30,
+        "savingThrows": [
+          "dex",
+          "int"
+        ],
+        "skills": {
+          "proficient": [
+            "investigation",
+            "stealth",
+            "sleight-of-hand",
+            "acrobatics"
+          ],
+          "expertise": [
+            "investigation",
+            "stealth"
+          ]
+        },
+        "attacksPerAction": 1,
+        "weapons": [
+          "rapier",
+          "shortbow"
+        ],
+        "spellSlots": {
+          "max": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "expended": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "spellcasting": [],
+        "conditions": [],
+        "concentration": null
+      }
+    },
+    {
+      "key": "emil",
+      "kind": "character",
+      "name": "Эмиль Стеклосвет",
+      "description": "Эльф с короткими серебристыми волосами, круглой оправой очков и тёмно-синим жилетом. В руках латунная рамка с цветной линзой. Маг и ученик оптической мастерской.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "museum",
+        "since": null
+      },
+      "sheet": {
+        "classes": [
+          {
+            "classId": "wizard",
+            "level": 3
+          }
+        ],
+        "abilities": {
+          "str": 8,
+          "dex": 14,
+          "con": 14,
+          "int": 16,
+          "wis": 12,
+          "cha": 12
+        },
+        "hitPoints": {
+          "max": 20,
+          "current": 20
+        },
+        "armorClass": 12,
+        "speedFt": 30,
+        "savingThrows": [
+          "int",
+          "wis"
+        ],
+        "skills": {
+          "proficient": [
+            "arcana",
+            "investigation",
+            "history"
+          ],
+          "expertise": []
+        },
+        "attacksPerAction": 1,
+        "weapons": [
+          "quarterstaff"
+        ],
+        "spellSlots": {
+          "max": [
+            4,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "expended": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "spellcasting": [
+          {
+            "source": "wizard",
+            "ability": "int",
+            "spells": [
+              "detect-magic",
+              "misty-step"
+            ]
+          }
+        ],
+        "conditions": [],
+        "concentration": null
+      }
+    },
+    {
+      "key": "nora",
+      "kind": "npc",
+      "name": "Капитан Нора Волнорез",
+      "description": "Пожилая женщина с серебряными волосами, синим капитанским пальто, золотыми пуговицами и доброй морщинкой у глаз. Водит лодку «Слушай море» и знает безопасные сухие пути.",
+      "manner": "Спокойно, с короткими морскими сравнениями: «Сперва посмотрим, куда течёт, потом гребём». Любую тревогу переводит на язык воды и лодки.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "quay",
+        "since": null
+      }
+    },
+    {
+      "key": "elma",
+      "kind": "npc",
+      "name": "Эльма Ракит",
+      "description": "Высокая женщина с каштановой косой, белым музейным жакетом и бирюзовыми перчатками. Куратор Первого Голоса, умеет рассказывать даже о пустой подставке.",
+      "manner": "Взвешенно, но слишком быстро, когда волнуется; поправляет очки, которых не носит.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "museum",
+        "since": null
+      }
+    },
+    {
+      "key": "lucien",
+      "kind": "npc",
+      "name": "Люсьен Коралл",
+      "description": "Ухоженный мужчина с узкими усами, винным бархатным сюртуком и золотой заколкой в форме коралла. Коллекционер, спонсор праздника, любит безупречные витрины.",
+      "manner": "Учтиво и любезно, с паузой перед словом «исключительный»; никогда не повышает голос.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "nautilus",
+        "since": null
+      }
+    },
+    {
+      "key": "bubo",
+      "kind": "npc",
+      "name": "Бубо",
+      "description": "Маленький кораллово-красный краб с синей почтовой сумкой, круглыми глазами и белой фуражкой. Разносит посылки; выдаёт себе новые должности на пустых бирках.",
+      "manner": "Серьёзные короткие объявления о смешных мелочах: «Посылка обошла лужу. Почта довольна».",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "market",
+        "since": null
+      }
+    },
+    {
+      "key": "dora",
+      "kind": "npc",
+      "name": "Дора Стеклянница",
+      "description": "Дварфийка с тёмной кожей, белыми короткими кудрями, медными очками и абрикосовым рабочим фартуком. Делает честные копии для учёбы, чтобы дети могли потрогать редкие формы.",
+      "manner": "Сначала предлагает посмотреть, потом объясняет двумя точными словами.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "glass",
+        "since": null
+      }
+    },
+    {
+      "key": "ostin",
+      "kind": "npc",
+      "name": "Остин Восемь-Пауз",
+      "description": "Сиреневый осьминог с маленьким золотым жилетом и восемью выразительными руками; сидит у круглого бассейна. Директор театра, музыкант и мастер неожиданных пауз.",
+      "manner": "Торжественно объявляет пустяк; четыре руки аплодируют двум, пока ещё две ищут палочку.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "theatre",
+        "since": null
+      }
+    },
+    {
+      "key": "vella",
+      "kind": "npc",
+      "name": "Велла Листоплав",
+      "description": "Добродушная морская саламандра с бирюзовой кожей, коралловыми наружными жабрами и соломенной садовой шляпой. Ухаживает за слушающими кораллами, любит аккуратные опыты.",
+      "manner": "Вопросом приглашает к наблюдению: «А если постучать с другой стороны?»",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "reef",
+        "since": null
+      }
+    },
+    {
+      "key": "ur",
+      "kind": "npc",
+      "name": "Архивариус Ур",
+      "description": "Пожилой черепахообразный житель в чернильном жилете, с круглыми очками и закладкой на запястье. Хранит бумаги медленно, находит нужную быстро.",
+      "manner": "Короткая сухая шутка после долгой паузы: «Срочно — это тоже дата. Плохая».",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "archive",
+        "since": null
+      }
+    },
+    {
+      "key": "iris",
+      "kind": "npc",
+      "name": "Ирис Береговая",
+      "description": "Женщина с тёмными короткими волосами, перламутровым плащом и коралловой лентой на папке. Ведёт открытые собрания кварталов и хранит заверенные копии городских бумаг.",
+      "manner": "Ясно: «Что мы знаем? Чего просим? Кто возьмётся?»",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "commons",
+        "since": null
+      }
+    },
+    {
+      "key": "pinna",
+      "kind": "npc",
+      "name": "Служитель Пинна",
+      "description": "Худой пожилой человек в перламутровом жилете, с латунным молотком на шнурке и книгой расписания под мышкой. Служитель Наутилуса: принимает лоты, ведёт каталог и торги.",
+      "manner": "Всё считает до трёх: «Раз — заявление. Два — опись. Три — подпись». Сух, вежлив, никогда не повышает голос.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "nautilus",
+        "since": null
+      }
+    },
+    {
+      "key": "timokha",
+      "kind": "npc",
+      "name": "Тимоха Окунь",
+      "description": "Долговязый подросток в великоватой рыбацкой куртке, с ободранными коленками и сумкой разносчика через плечо. Берётся на рынке за любые поручения: отнести, принести, выбросить.",
+      "manner": "Тараторит, перескакивает с одного на другое и шмыгает носом.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "market",
+        "since": null
+      }
+    },
+    {
+      "key": "e-glass-seam",
+      "kind": "feature",
+      "name": "Шов на основании",
+      "description": "На основании центрального экспоната заметен тонкий литейный шов и знак из трёх лучей.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "museum",
+        "since": null
+      }
+    },
+    {
+      "key": "e-acceptance",
+      "kind": "feature",
+      "name": "Журнал приёмки",
+      "description": "На столе лежит журнал вчерашней перевозки витрин с подписью куратора.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "museum",
+        "since": null
+      }
+    },
+    {
+      "key": "e-closed-curtains",
+      "kind": "feature",
+      "name": "Запись причального смотрителя",
+      "description": "Вчерашняя страница журнала содержит заметку о музыке у лоджии.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "quay",
+        "since": null
+      }
+    },
+    {
+      "key": "e-ferry-log",
+      "kind": "feature",
+      "name": "Книга прохода тележек",
+      "description": "На стойке лежит открытая книга с вчерашними часами прохода.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "quay",
+        "since": null
+      }
+    },
+    {
+      "key": "e-crate-route",
+      "kind": "feature",
+      "name": "Синяя грузовая петля",
+      "description": "У весов сохранилась отрезанная бирка с синей шнуровкой и номером 7.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "market",
+        "since": null
+      }
+    },
+    {
+      "key": "e-weigh-slip",
+      "kind": "feature",
+      "name": "Весовая квитанция",
+      "description": "В рыночной книге под копиркой сохранилась квитанция на музыкальную раковину.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "market",
+        "since": null
+      }
+    },
+    {
+      "key": "e-echo-map",
+      "kind": "feature",
+      "name": "Схема слуховых труб",
+      "description": "На стене сада нарисованы соединения труб между лоджией, причалом и чашами.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "reef",
+        "since": null
+      }
+    },
+    {
+      "key": "e-repeat-cough",
+      "kind": "feature",
+      "name": "Вчерашний журнал опыта",
+      "description": "У медных чаш лежит журнал Веллы с двумя рядами одинаковых отметок.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "reef",
+        "since": null
+      }
+    },
+    {
+      "key": "e-trial-cylinder",
+      "kind": "feature",
+      "name": "Пробный валик речи",
+      "description": "В шкафу театра хранится датированный полугодом ранее валик с записью Люсьена.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "theatre",
+        "since": null
+      }
+    },
+    {
+      "key": "e-playback-switch",
+      "kind": "feature",
+      "name": "Механизм повторения",
+      "description": "У учебного проигрывателя есть заводная ручка и рычажок возврата.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "theatre",
+        "since": null
+      }
+    },
+    {
+      "key": "e-commission",
+      "kind": "feature",
+      "name": "Заказ на учебную копию",
+      "description": "Под стеклом на столе лежит квитанция с рисунком сферического экспоната.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "glass",
+        "since": null
+      }
+    },
+    {
+      "key": "e-makers-mark",
+      "kind": "feature",
+      "name": "Образец клейма",
+      "description": "Рядом лежат холодный стеклянный образец и старая зарисовка музейного основания.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "glass",
+        "since": null
+      }
+    },
+    {
+      "key": "e-charter",
+      "kind": "feature",
+      "name": "Хартия семи кварталов",
+      "description": "В открытой папке хранится хартия с печатями первых мастерских.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "archive",
+        "since": null
+      }
+    },
+    {
+      "key": "e-catalogue",
+      "kind": "feature",
+      "name": "Полная музейная опись",
+      "description": "В описи рядом с рисунком Жемчужины перечислены знак, масса и действующий хранитель.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "archive",
+        "since": null
+      }
+    },
+    {
+      "key": "e-mosaic",
+      "kind": "feature",
+      "name": "Мозаика многих рук",
+      "description": "На стене Первой Мастерской уцелела мозаика рук разных мастеров и рядом подписанная рабочая книга.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "wreck",
+        "since": null
+      }
+    },
+    {
+      "key": "e-first-voices",
+      "kind": "feature",
+      "name": "Тренировочный валик открытия",
+      "description": "В сухом шкафу лежит старый тренировочный валик с репетиции открытия и пометкой о согласии участников.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "wreck",
+        "since": null
+      }
+    },
+    {
+      "key": "e-lot-receipt",
+      "kind": "feature",
+      "name": "Приёмная книга лота",
+      "description": "На публичной стойке склада лежит вчерашняя приёмная книга.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "nautilus",
+        "since": null
+      }
+    },
+    {
+      "key": "e-pearl-mark",
+      "kind": "feature",
+      "name": "Карточка осмотра основания",
+      "description": "В приёмной книге лота № 7 вклеена вчерашняя зарисовка перламутрового основания с семью соединёнными волнами.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "nautilus",
+        "since": null
+      }
+    },
+    {
+      "key": "e-tide-plan",
+      "kind": "feature",
+      "name": "Приливный календарь",
+      "description": "На входе в галерею вывешен действующий календарь приливов и режим прохода.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "passage",
+        "since": null
+      }
+    },
+    {
+      "key": "e-shelter-plan",
+      "kind": "feature",
+      "name": "Схема сухих ниш",
+      "description": "На стене простой план с несколькими боковыми площадками и запасным выходом.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "passage",
+        "since": null
+      }
+    },
+    {
+      "key": "e-courier-trail",
+      "kind": "feature",
+      "name": "Пустой ящик артели",
+      "description": "У выхода в Нижнюю галерею стоит пустой ящик со штампом Первой Мастерской и свежей биркой почтовой артели Бубо.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "wreck",
+        "since": null
+      }
+    },
+    {
+      "key": "e-drop-order",
+      "kind": "feature",
+      "name": "Поручение курьеру",
+      "description": "У решётки Южного шлюза Тимоха держит сложенную записку с оттиском коралловой печати.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "quay",
+        "since": null
+      }
+    },
+    {
+      "key": "e-hammer-rule",
+      "kind": "feature",
+      "name": "Правило молотка",
+      "description": "На кафедре служителя привинчена латунная табличка с мелкими строчками.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "nautilus",
+        "since": null
+      }
+    },
+    {
+      "key": "pass",
+      "kind": "item",
+      "name": "Пропуск слушателя",
+      "description": "Перламутровая пластинка на коралловой ленте с тремя волнами и пустым местом для имени.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "museum",
+        "since": null
+      }
+    },
+    {
+      "key": "lens",
+      "kind": "item",
+      "name": "Лупа Доры",
+      "description": "Складная латунная лупа с бледно-голубым стеклом и короткой светлой ручкой.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "glass",
+        "since": null
+      }
+    },
+    {
+      "key": "chime",
+      "kind": "item",
+      "name": "Колокольчик тихой партии",
+      "description": "Три разные ракушки на коралловой нити; каждая звучит чуть иначе.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "theatre",
+        "since": null
+      }
+    },
+    {
+      "key": "case",
+      "kind": "item",
+      "name": "Футляр для будущей находки",
+      "description": "Маленький пустой стеклянный футляр с латунным ободком и синей подкладкой.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "market",
+        "since": null
+      }
+    },
+    {
+      "key": "ribbon",
+      "kind": "item",
+      "name": "Лента общего голоса",
+      "description": "Коралловая тканевая лента с тремя маленькими перламутровыми бирками.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "commons",
+        "since": null
+      }
+    },
+    {
+      "key": "pearl",
+      "kind": "item",
+      "name": "Лунная Жемчужина",
+      "description": "Перламутровый музыкальный архив с цельным основанием и знаком семи соединённых волн. Рядом ручной рожок для записи и воспроизведения. Внутри хранится песня открытия города, записанная первыми мастерами.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "nautilus",
+        "since": null
+      }
+    },
+    {
+      "key": "tide-calendar",
+      "kind": "item",
+      "name": "Приливный календарь Норы",
+      "description": "Лист плотной бумаги в клетку, сложенный вчетверо, с пятнами супа на углу. По строкам — городские дни, по столбцам — галереи; синим отмечены часы закрытия, звёздочкой — вечера большой воды.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "quay",
+        "since": null
+      }
+    },
+    {
+      "key": "courier-tag",
+      "kind": "item",
+      "name": "Бирка почтовой артели",
+      "description": "Синяя картонная бирка с рисунком краба в фуражке и надписью: «Три тубуса чертежей. Получатель — Архив Неспешных Дел. Заказ архивариуса Ура». Привязана к пустому ящику со штампом Первой Мастерской.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "wreck",
+        "since": null
+      }
+    },
+    {
+      "key": "glass-copy",
+      "kind": "item",
+      "name": "Стеклянная копия Доры",
+      "description": "Гладкая перламутровая на вид стеклянная сфера с тонким литейным швом и клеймом из трёх лучей на основании. Тяжёлая, прохладная, совсем молчаливая.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "museum",
+        "since": null
+      }
+    },
+    {
+      "key": "toren-gear-1",
+      "kind": "item",
+      "name": "Дорожная куртка Торена",
+      "description": "Дорожная куртка Торена",
+      "status": "active",
+      "existsSince": null
+    },
+    {
+      "key": "toren-gear-2",
+      "kind": "item",
+      "name": "Щит с волной",
+      "description": "Щит с волной",
+      "status": "active",
+      "existsSince": null
+    },
+    {
+      "key": "toren-gear-3",
+      "kind": "item",
+      "name": "Страховочная верёвка",
+      "description": "Страховочная верёвка",
+      "status": "active",
+      "existsSince": null
+    },
+    {
+      "key": "toren-gear-4",
+      "kind": "item",
+      "name": "Лесной бальзам",
+      "description": "Лесной бальзам",
+      "status": "active",
+      "existsSince": null
+    },
+    {
+      "key": "leya-gear-1",
+      "kind": "item",
+      "name": "Дорожная куртка Леи",
+      "description": "Дорожная куртка Леи",
+      "status": "active",
+      "existsSince": null
+    },
+    {
+      "key": "leya-gear-2",
+      "kind": "item",
+      "name": "Набор тонких инструментов",
+      "description": "Набор тонких инструментов",
+      "status": "active",
+      "existsSince": null
+    },
+    {
+      "key": "leya-gear-3",
+      "kind": "item",
+      "name": "Лесной бальзам",
+      "description": "Лесной бальзам",
+      "status": "active",
+      "existsSince": null
+    },
+    {
+      "key": "emil-gear-1",
+      "kind": "item",
+      "name": "Картографические инструменты",
+      "description": "Картографические инструменты",
+      "status": "active",
+      "existsSince": null
+    },
+    {
+      "key": "emil-gear-2",
+      "kind": "item",
+      "name": "Лесной бальзам",
+      "description": "Лесной бальзам",
+      "status": "active",
+      "existsSince": null
+    },
+    {
+      "key": "paper-reception-foe-1",
+      "kind": "creature",
+      "name": "Краб приёмки 1",
+      "description": "Складной краб из плотной навигационной бумаги с латунными шарнирами и мягкими клешнями. Перед тем как схватить, щёлкает и показывает пустую бирку.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "glass",
+        "since": null
+      },
+      "statBlock": {
+        "armorClass": 15,
+        "hitPoints": {
+          "max": 13,
+          "current": 13
+        },
+        "speedFt": 30,
+        "abilities": {
+          "str": 13,
+          "dex": 13,
+          "con": 11,
+          "int": 1,
+          "wis": 9,
+          "cha": 3
+        },
+        "savingThrows": {
+          "str": 1,
+          "dex": 1,
+          "con": 0,
+          "int": -5,
+          "wis": -1,
+          "cha": -4
+        },
+        "initiativeBonus": 1,
+        "attacksPerAction": 1,
+        "attacks": [
+          {
+            "attackId": "claw",
+            "name": "Коготь",
+            "kind": "melee",
+            "bonus": 3,
+            "reachFt": 5,
+            "damage": {
+              "count": 1,
+              "sides": 6,
+              "bonus": 1,
+              "type": "bludgeoning"
+            }
+          }
+        ],
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "key": "paper-reception-foe-2",
+      "kind": "creature",
+      "name": "Краб приёмки 2",
+      "description": "Складной краб из плотной навигационной бумаги с латунными шарнирами и мягкими клешнями. Перед тем как схватить, щёлкает и показывает пустую бирку.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "glass",
+        "since": null
+      },
+      "statBlock": {
+        "armorClass": 15,
+        "hitPoints": {
+          "max": 13,
+          "current": 13
+        },
+        "speedFt": 30,
+        "abilities": {
+          "str": 13,
+          "dex": 13,
+          "con": 11,
+          "int": 1,
+          "wis": 9,
+          "cha": 3
+        },
+        "savingThrows": {
+          "str": 1,
+          "dex": 1,
+          "con": 0,
+          "int": -5,
+          "wis": -1,
+          "cha": -4
+        },
+        "initiativeBonus": 1,
+        "attacksPerAction": 1,
+        "attacks": [
+          {
+            "attackId": "claw",
+            "name": "Коготь",
+            "kind": "melee",
+            "bonus": 3,
+            "reachFt": 5,
+            "damage": {
+              "count": 1,
+              "sides": 6,
+              "bonus": 1,
+              "type": "bludgeoning"
+            }
+          }
+        ],
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "key": "quay-chase-foe-1",
+      "kind": "creature",
+      "name": "Краб-грузчик 1",
+      "description": "Портовый краб-грузчик: латунный панцирь, ролики вместо задних ног, клешни обмотаны канатом, чтобы не царапать ящики. Везёт то, что ему привязали, и не спрашивает зачем.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "quay",
+        "since": null
+      },
+      "statBlock": {
+        "armorClass": 15,
+        "hitPoints": {
+          "max": 13,
+          "current": 13
+        },
+        "speedFt": 30,
+        "abilities": {
+          "str": 13,
+          "dex": 13,
+          "con": 11,
+          "int": 1,
+          "wis": 9,
+          "cha": 3
+        },
+        "savingThrows": {
+          "str": 1,
+          "dex": 1,
+          "con": 0,
+          "int": -5,
+          "wis": -1,
+          "cha": -4
+        },
+        "initiativeBonus": 1,
+        "attacksPerAction": 1,
+        "attacks": [
+          {
+            "attackId": "claw",
+            "name": "Коготь",
+            "kind": "melee",
+            "bonus": 3,
+            "reachFt": 5,
+            "damage": {
+              "count": 1,
+              "sides": 6,
+              "bonus": 1,
+              "type": "bludgeoning"
+            }
+          }
+        ],
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "key": "quay-chase-foe-2",
+      "kind": "creature",
+      "name": "Краб-грузчик 2",
+      "description": "Портовый краб-грузчик: латунный панцирь, ролики вместо задних ног, клешни обмотаны канатом, чтобы не царапать ящики. Везёт то, что ему привязали, и не спрашивает зачем.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "quay",
+        "since": null
+      },
+      "statBlock": {
+        "armorClass": 15,
+        "hitPoints": {
+          "max": 13,
+          "current": 13
+        },
+        "speedFt": 30,
+        "abilities": {
+          "str": 13,
+          "dex": 13,
+          "con": 11,
+          "int": 1,
+          "wis": 9,
+          "cha": 3
+        },
+        "savingThrows": {
+          "str": 1,
+          "dex": 1,
+          "con": 0,
+          "int": -5,
+          "wis": -1,
+          "cha": -4
+        },
+        "initiativeBonus": 1,
+        "attacksPerAction": 1,
+        "attacks": [
+          {
+            "attackId": "claw",
+            "name": "Коготь",
+            "kind": "melee",
+            "bonus": 3,
+            "reachFt": 5,
+            "damage": {
+              "count": 1,
+              "sides": 6,
+              "bonus": 1,
+              "type": "bludgeoning"
+            }
+          }
+        ],
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "key": "quay-chase-foe-3",
+      "kind": "creature",
+      "name": "Крабик-подручный 1",
+      "description": "Крабик-подручный размером с чайную чашку, сложенный из квитанций. Сам почти ничего не может, но цепляется за шнурки и подолы и пищит, зовя старших.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "quay",
+        "since": null
+      },
+      "statBlock": {
+        "armorClass": 9,
+        "hitPoints": {
+          "max": 9,
+          "current": 9
+        },
+        "speedFt": 20,
+        "abilities": {
+          "str": 10,
+          "dex": 5,
+          "con": 11,
+          "int": 1,
+          "wis": 11,
+          "cha": 3
+        },
+        "savingThrows": {
+          "str": 0,
+          "dex": -3,
+          "con": 0,
+          "int": -5,
+          "wis": 0,
+          "cha": -4
+        },
+        "initiativeBonus": -3,
+        "attacksPerAction": 1,
+        "attacks": [
+          {
+            "attackId": "vile-slime",
+            "name": "Мерзкая слизь",
+            "kind": "melee",
+            "bonus": 2,
+            "reachFt": 5,
+            "damage": {
+              "count": 1,
+              "sides": 4,
+              "bonus": 0,
+              "type": "poison"
+            }
+          }
+        ],
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "key": "quay-chase-foe-4",
+      "kind": "creature",
+      "name": "Крабик-подручный 2",
+      "description": "Крабик-подручный размером с чайную чашку, сложенный из квитанций. Сам почти ничего не может, но цепляется за шнурки и подолы и пищит, зовя старших.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "quay",
+        "since": null
+      },
+      "statBlock": {
+        "armorClass": 9,
+        "hitPoints": {
+          "max": 9,
+          "current": 9
+        },
+        "speedFt": 20,
+        "abilities": {
+          "str": 10,
+          "dex": 5,
+          "con": 11,
+          "int": 1,
+          "wis": 11,
+          "cha": 3
+        },
+        "savingThrows": {
+          "str": 0,
+          "dex": -3,
+          "con": 0,
+          "int": -5,
+          "wis": 0,
+          "cha": -4
+        },
+        "initiativeBonus": -3,
+        "attacksPerAction": 1,
+        "attacks": [
+          {
+            "attackId": "vile-slime",
+            "name": "Мерзкая слизь",
+            "kind": "melee",
+            "bonus": 2,
+            "reachFt": 5,
+            "damage": {
+              "count": 1,
+              "sides": 4,
+              "bonus": 0,
+              "type": "poison"
+            }
+          }
+        ],
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "key": "auction-hall-foe-1",
+      "kind": "creature",
+      "name": "Складской краб 1",
+      "description": "Складской краб Наутилуса: перламутровый панцирь с номером лота на спине, широкие клешни-зажимы. Держит то, что ему велели держать, пока ему не покажут другой приказ.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "nautilus",
+        "since": null
+      },
+      "statBlock": {
+        "armorClass": 15,
+        "hitPoints": {
+          "max": 13,
+          "current": 13
+        },
+        "speedFt": 30,
+        "abilities": {
+          "str": 13,
+          "dex": 13,
+          "con": 11,
+          "int": 1,
+          "wis": 9,
+          "cha": 3
+        },
+        "savingThrows": {
+          "str": 1,
+          "dex": 1,
+          "con": 0,
+          "int": -5,
+          "wis": -1,
+          "cha": -4
+        },
+        "initiativeBonus": 1,
+        "attacksPerAction": 1,
+        "attacks": [
+          {
+            "attackId": "claw",
+            "name": "Коготь",
+            "kind": "melee",
+            "bonus": 3,
+            "reachFt": 5,
+            "damage": {
+              "count": 1,
+              "sides": 6,
+              "bonus": 1,
+              "type": "bludgeoning"
+            }
+          }
+        ],
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "key": "auction-hall-foe-2",
+      "kind": "creature",
+      "name": "Складской краб 2",
+      "description": "Складской краб Наутилуса: перламутровый панцирь с номером лота на спине, широкие клешни-зажимы. Держит то, что ему велели держать, пока ему не покажут другой приказ.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "nautilus",
+        "since": null
+      },
+      "statBlock": {
+        "armorClass": 15,
+        "hitPoints": {
+          "max": 13,
+          "current": 13
+        },
+        "speedFt": 30,
+        "abilities": {
+          "str": 13,
+          "dex": 13,
+          "con": 11,
+          "int": 1,
+          "wis": 9,
+          "cha": 3
+        },
+        "savingThrows": {
+          "str": 1,
+          "dex": 1,
+          "con": 0,
+          "int": -5,
+          "wis": -1,
+          "cha": -4
+        },
+        "initiativeBonus": 1,
+        "attacksPerAction": 1,
+        "attacks": [
+          {
+            "attackId": "claw",
+            "name": "Коготь",
+            "kind": "melee",
+            "bonus": 3,
+            "reachFt": 5,
+            "damage": {
+              "count": 1,
+              "sides": 6,
+              "bonus": 1,
+              "type": "bludgeoning"
+            }
+          }
+        ],
+        "spells": [],
+        "conditions": []
+      }
+    },
+    {
+      "key": "auction-hall-boss",
+      "kind": "creature",
+      "name": "Латунная указка",
+      "description": "Указка распорядителя торгов: тонкий латунный стержень в рост ребёнка с перламутровой ладонью на конце. Летает над рядами, тычет пальцем и всё время что-то показывает; сама по себе она безвредна, пока ей есть на что указывать.",
+      "status": "active",
+      "existsSince": null,
+      "placement": {
+        "location": "nautilus",
+        "since": null
+      },
+      "statBlock": {
+        "armorClass": 17,
+        "hitPoints": {
+          "max": 14,
+          "current": 14
+        },
+        "speedFt": 5,
+        "abilities": {
+          "str": 12,
+          "dex": 15,
+          "con": 11,
+          "int": 1,
+          "wis": 5,
+          "cha": 1
+        },
+        "savingThrows": {
+          "str": 1,
+          "dex": 4,
+          "con": 0,
+          "int": -5,
+          "wis": -3,
+          "cha": -5
+        },
+        "initiativeBonus": 4,
+        "attacksPerAction": 1,
+        "attacks": [
+          {
+            "attackId": "slash",
+            "name": "Рубящий удар",
+            "kind": "melee",
+            "bonus": 4,
+            "reachFt": 5,
+            "damage": {
+              "count": 1,
+              "sides": 8,
+              "bonus": 2,
+              "type": "slashing"
+            }
+          }
+        ],
+        "spells": [],
+        "conditions": []
+      }
+    }
+  ],
+  "party": [
+    "toren",
+    "leya",
+    "emil"
+  ],
+  "knowledge": [
+    {
+      "key": "public-city",
+      "scope": {
+        "kind": "PUBLIC"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Перламутр стоит под прозрачными морскими сводами. В сухих галереях обычный воздух. Капитан Нора пригласила друзей в Музей Первого Голоса.",
+      "subjects": [
+        "sea",
+        "museum",
+        "nora"
+      ],
+      "knownSince": null,
+      "relations": []
+    },
+    {
+      "key": "party-opening",
+      "scope": {
+        "kind": "PARTY"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Вы давно знакомы и пришли вместе по приглашению Норы на подготовку Праздника Первого Голоса. Общая лодочная каюта ждёт вас у причала.",
+      "subjects": [
+        "toren",
+        "leya",
+        "emil",
+        "nora",
+        "museum",
+        "boat"
+      ],
+      "knownSince": null,
+      "relations": []
+    },
+    {
+      "key": "truth-1",
+      "scope": {
+        "kind": "WORLD_TRUTH"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "Лунная Жемчужина — созданный первыми жителями музыкальный архив, а не живое существо. Она хранит только звуки, добровольно произнесённые перед открытым рожком при включённой записи. Она не читает мысли, не определяет ложь и не восстанавливает непроизнесённое прошлое. Копия воспроизведения может быть смонтирована или включена в другое время.",
+      "subjects": [
+        "lucien",
+        "pearl",
+        "museum"
+      ],
+      "knownSince": null,
+      "relations": []
+    },
+    {
+      "key": "truth-2",
+      "scope": {
+        "kind": "WORLD_TRUTH"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "Пять дней назад Люсьен Коралл заказал Доре честную стеклянную копию для учебной выставки. Позавчера получил её; вчера в 16:00, имея доступ помощника по перевозке витрин, заменил оригинал копией. Эльма подписала приёмку закрытого футляра, не сверив клеймо. Её ошибка облегчила кражу, но она не участвовала в сговоре.",
+      "subjects": [
+        "lucien",
+        "pearl",
+        "museum"
+      ],
+      "knownSince": null,
+      "relations": []
+    },
+    {
+      "key": "truth-3",
+      "scope": {
+        "kind": "WORLD_TRUTH"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "Вчера в 16:00 из окна лоджии Люсьена звучала запись его прежней речи. Он хотел, чтобы его считали находящимся дома. На записи дважды встречается один и тот же кашель и скрип стула. Звуковое совпадение опровергает уверенность свидетелей, но само по себе не доказывает, кто переставил предмет.",
+      "subjects": [
+        "lucien",
+        "pearl",
+        "museum"
+      ],
+      "knownSince": null,
+      "relations": []
+    },
+    {
+      "key": "truth-4",
+      "scope": {
+        "kind": "WORLD_TRUTH"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "Люсьен вывез оригинал под видом личной музыкальной раковины через Рынок Отлива. Он хранится в опечатанном лоте № 7 на складе Наутилуса; по правилу Наутилуса опечатанный лот открывают только под лампой зала в вечер торгов. По каталогу торги назначены на вечер Лунной воды, восьмой городской день: в вечера большой воды к раковине открыт один путь, и чужих там мало.",
+      "subjects": [
+        "lucien",
+        "pearl",
+        "museum"
+      ],
+      "knownSince": null,
+      "relations": []
+    },
+    {
+      "key": "truth-5",
+      "scope": {
+        "kind": "WORLD_TRUTH"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "Люсьен хочет продать лот подставному покупателю в синем плаще, которым управляет из частной ложи через слуховую трубку, а потом объявить, что сам спас редкую вещь. Тогда в бумагах она станет его покупкой.",
+      "subjects": [
+        "lucien",
+        "pearl",
+        "museum"
+      ],
+      "knownSince": null,
+      "relations": []
+    },
+    {
+      "key": "truth-6",
+      "scope": {
+        "kind": "WORLD_TRUTH"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "Когда герои подбираются близко (после седьмого вечера), Люсьен запирает лоджию, отпускает лодку и прячется в ложе номер три Наутилуса; для города он исчез. Владелец лота вправе перенести торги на ближайший вечер большой воды, и он делает это. Служитель Пинна запечатывает ящик заявлений: в такой вечер всё говорят только в зале.",
+      "subjects": [
+        "lucien",
+        "pearl",
+        "museum"
+      ],
+      "knownSince": null,
+      "relations": []
+    },
+    {
+      "key": "truth-7",
+      "scope": {
+        "kind": "WORLD_TRUTH"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "Стеклянная копия с клеймом Доры в музейной витрине выдаёт подмену. Утром дня торгов Люсьен запиской у склада Наутилуса, с половиной платы вперёд и обещанием второй половины у ящика № 7, нанимает юного разносчика Тимоху Окуня забрать её из музея по поддельной заявке на ремонт и опустить в Южный шлюз за причалом до полудня, когда ворота уходят за свод. Тимоха думает, что выбрасывает старую лампу. Он уходит с рынка в 11:05, у причала в 11:30, крабы-грузчики доводят коробку до решётки к 11:45.",
+      "subjects": [
+        "lucien",
+        "pearl",
+        "museum"
+      ],
+      "knownSince": null,
+      "relations": []
+    },
+    {
+      "key": "truth-8",
+      "scope": {
+        "kind": "WORLD_TRUTH"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "Пустой ящик с биркой почтовой артели Бубо у Нижней галереи — честный груз: позавчера артель по заказу Ура вынесла из Первой Мастерской три тубуса чертежей в архив. Слух грузчиков о вывезенном сокровище ложен; артель к подмене непричастна.",
+      "subjects": [
+        "lucien",
+        "pearl",
+        "museum"
+      ],
+      "knownSince": null,
+      "relations": []
+    },
+    {
+      "key": "truth-9",
+      "scope": {
+        "kind": "WORLD_TRUTH"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "На кафедре Наутилуса действует правило молотка: если до третьего удара предъявлена хартия общины на предмет и знак под лампой совпадает с описью, служитель обязан остановить молоток и спросить зал; пока зал требует остановиться, лот не продают. Хартия в архиве: Жемчужина передана общине, частная продажа требует её согласия. Это правила вымышленного города.",
+      "subjects": [
+        "lucien",
+        "pearl",
+        "museum"
+      ],
+      "knownSince": null,
+      "relations": []
+    },
+    {
+      "key": "truth-10",
+      "scope": {
+        "kind": "WORLD_TRUTH"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "Внутри Жемчужины хранится настоящая песня открытия. В ней молодая Нора запинается на первом слове, мастера говорят «Ничего. Сначала», и песню начинают снова все вместе. Нора уверена, что её запинку стёрли; Люсьен не знает, что она там есть. В Первой Мастерской лежит лишь тренировочный валик с репетиции.",
+      "subjects": [
+        "lucien",
+        "pearl",
+        "museum"
+      ],
+      "knownSince": null,
+      "relations": []
+    },
+    {
+      "key": "truth-11",
+      "scope": {
+        "kind": "WORLD_TRUTH"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "Старая музейная табличка ошибочно приписывает создание Жемчужины одному архитектору. Рабочая мозаика и подписанная книга показывают совместный труд многих жителей.",
+      "subjects": [
+        "lucien",
+        "pearl",
+        "museum"
+      ],
+      "knownSince": null,
+      "relations": []
+    },
+    {
+      "key": "truth-12",
+      "scope": {
+        "kind": "WORLD_TRUTH"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "Приливы ходят по расписанию и ничего не ломают. В сухих сводах обычный воздух; в нишах можно переждать любую воду. Опасность кампании — опоздать; утонуть здесь нельзя.",
+      "subjects": [
+        "lucien",
+        "pearl",
+        "museum"
+      ],
+      "knownSince": null,
+      "relations": []
+    },
+    {
+      "key": "nora-knows-1",
+      "scope": {
+        "kind": "NPC",
+        "holder": "nora"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Вчера в 16:00 у лоджии Люсьена звучала его речь; сама Нора видела лишь закрытые занавеси.",
+      "subjects": [
+        "nora"
+      ],
+      "attributedTo": "nora",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "nora-knows-2",
+      "scope": {
+        "kind": "NPC",
+        "holder": "nora"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Она ведёт приливный календарь: знает, какие галереи и когда закрывает вода и когда приходит вечер большой воды.",
+      "subjects": [
+        "nora"
+      ],
+      "attributedTo": "nora",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "nora-knows-3",
+      "scope": {
+        "kind": "NPC",
+        "holder": "nora"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "В молодости она помогала в Первой Мастерской, держала рожок и записала голос на репетиции с согласия.",
+      "subjects": [
+        "nora"
+      ],
+      "attributedTo": "nora",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "nora-knows-4",
+      "scope": {
+        "kind": "NPC",
+        "holder": "nora"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "В Галерее Большой Волны есть сухие ниши, где можно спокойно дождаться открытия пути.",
+      "subjects": [
+        "nora"
+      ],
+      "attributedTo": "nora",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "nora-private",
+      "scope": {
+        "kind": "NPC",
+        "holder": "nora"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "Она помнит, как запнулась на первом слове песни открытия, и уверена, что на настоящей записи её голоса нет.",
+      "subjects": [
+        "nora"
+      ],
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "GUARDED"
+    },
+    {
+      "key": "nora-direction",
+      "scope": {
+        "kind": "DM"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Услышать город целиком, а не только самый громкий голос. Не решает расследование за героев, не уводит их в опасность ради эффектного кадра. После репетиции в Первой Мастерской; полностью — когда песню открытия слышит зал торгов.",
+      "subjects": [
+        "nora"
+      ],
+      "knownSince": null,
+      "relations": []
+    },
+    {
+      "key": "elma-knows-1",
+      "scope": {
+        "kind": "NPC",
+        "holder": "elma"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Вчера Люсьен помогал с перевозкой витрин и имел доступ к футляру.",
+      "subjects": [
+        "elma"
+      ],
+      "attributedTo": "elma",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "GUARDED"
+    },
+    {
+      "key": "elma-knows-2",
+      "scope": {
+        "kind": "NPC",
+        "holder": "elma"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Она подписала приёмку закрытого футляра, не сверив клеймо внутри.",
+      "subjects": [
+        "elma"
+      ],
+      "attributedTo": "elma",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "GUARDED"
+    },
+    {
+      "key": "elma-knows-3",
+      "scope": {
+        "kind": "NPC",
+        "holder": "elma"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Сегодня в 16:50 рожок центрального экспоната не дал ожидаемую песню; вчера вечером контрольного прослушивания не было.",
+      "subjects": [
+        "elma"
+      ],
+      "attributedTo": "elma",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "GUARDED"
+    },
+    {
+      "key": "elma-private",
+      "scope": {
+        "kind": "NPC",
+        "holder": "elma"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "Она боялась выглядеть недоверчивой к щедрому коллекционеру и пропустила обычную сверку.",
+      "subjects": [
+        "elma"
+      ],
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "GUARDED"
+    },
+    {
+      "key": "elma-direction",
+      "scope": {
+        "kind": "DM"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Вернуть архив и признать свою конкретную ошибку до того, как обвинит невиновного. Не прячет основные документы за проверкой харизмы и не назначает героев виновными. Если спросить о порядке приёмки; при сочувствии говорит лично, иначе оставляет письменное признание процедуры.",
+      "subjects": [
+        "elma"
+      ],
+      "knownSince": null,
+      "relations": []
+    },
+    {
+      "key": "lucien-knows-1",
+      "scope": {
+        "kind": "NPC",
+        "holder": "lucien"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Он заказал Доре учебную копию и получил её позавчера.",
+      "subjects": [
+        "lucien"
+      ],
+      "attributedTo": "lucien",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "GUARDED"
+    },
+    {
+      "key": "lucien-knows-2",
+      "scope": {
+        "kind": "NPC",
+        "holder": "lucien"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Вчера включил дома старую речь, пока сам находился в музее.",
+      "subjects": [
+        "lucien"
+      ],
+      "attributedTo": "lucien",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "GUARDED"
+    },
+    {
+      "key": "lucien-knows-3",
+      "scope": {
+        "kind": "NPC",
+        "holder": "lucien"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Настоящий архив хранится в лоте № 7 Наутилуса; он намерен продать его без согласия общины.",
+      "subjects": [
+        "lucien"
+      ],
+      "attributedTo": "lucien",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "GUARDED"
+    },
+    {
+      "key": "lucien-knows-4",
+      "scope": {
+        "kind": "NPC",
+        "holder": "lucien"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Стеклянная копия с клеймом Доры стоит в музейной витрине и может выдать подмену.",
+      "subjects": [
+        "lucien"
+      ],
+      "attributedTo": "lucien",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "GUARDED"
+    },
+    {
+      "key": "lucien-private",
+      "scope": {
+        "kind": "NPC",
+        "holder": "lucien"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "Он сам заменил оригинал стеклом и вывез его по своей накладной; если герои подберутся близко, он спрячется в частной ложе Наутилуса и будет торговаться через слуховую трубку.",
+      "subjects": [
+        "lucien"
+      ],
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "GUARDED"
+    },
+    {
+      "key": "lucien-direction",
+      "scope": {
+        "kind": "DM"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Стать единственным человеком, которому приписывают спасение редкого сокровища: продать лот подставному покупателю и потом «найти» вещь как свою находку. Его страх забвения объясняет поступок, но не делает подмену допустимой. Он хитрит и прячется, но не угрожает детям и не причиняет вреда. Голос из ложи звучит на торгах; сам он выходит из ложи после того, как зал слышит запись. Признание не требуется для действий героев.",
+      "subjects": [
+        "lucien"
+      ],
+      "knownSince": null,
+      "relations": []
+    },
+    {
+      "key": "bubo-knows-1",
+      "scope": {
+        "kind": "NPC",
+        "holder": "bubo"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Вчера в 16:20 он видел личный ящик Люсьена на рыночной весовой площадке.",
+      "subjects": [
+        "bubo"
+      ],
+      "attributedTo": "bubo",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "bubo-knows-2",
+      "scope": {
+        "kind": "NPC",
+        "holder": "bubo"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "На ящике была синяя шнуровка и номер 7; копия квитанции лежит в рыночной книге.",
+      "subjects": [
+        "bubo"
+      ],
+      "attributedTo": "bubo",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "bubo-knows-3",
+      "scope": {
+        "kind": "NPC",
+        "holder": "bubo"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Позавчера его артель по заказу архивариуса Ура вынесла из Первой Мастерской три тубуса чертежей в архив.",
+      "subjects": [
+        "bubo"
+      ],
+      "attributedTo": "bubo",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "bubo-knows-4",
+      "scope": {
+        "kind": "NPC",
+        "holder": "bubo"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Служители Наутилуса принимают посетителей через парадную дверь по расписанию.",
+      "subjects": [
+        "bubo"
+      ],
+      "attributedTo": "bubo",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "bubo-private",
+      "scope": {
+        "kind": "NPC",
+        "holder": "bubo"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "Он мечтает о настоящей латунной табличке «Проводник», но стесняется, что сам не может её прочитать.",
+      "subjects": [
+        "bubo"
+      ],
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "GUARDED"
+    },
+    {
+      "key": "bubo-direction",
+      "scope": {
+        "kind": "DM"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Доставить хоть одну важную вещь без чужого указательного пальца над головой. Не обязан становиться талисманом команды или рисковать собой; может отказаться от поручения. Когда игроки предлагают помощь без насмешки, снимают подозрение с его артели или спрашивают, как назвать его работу.",
+      "subjects": [
+        "bubo"
+      ],
+      "knownSince": null,
+      "relations": []
+    },
+    {
+      "key": "dora-knows-1",
+      "scope": {
+        "kind": "NPC",
+        "holder": "dora"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Люсьен заказал учебную копию пять дней назад и забрал её позавчера.",
+      "subjects": [
+        "dora"
+      ],
+      "attributedTo": "dora",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "dora-knows-2",
+      "scope": {
+        "kind": "NPC",
+        "holder": "dora"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "На внутреннем основании её изделий всегда есть маленькая насечка из трёх лучей.",
+      "subjects": [
+        "dora"
+      ],
+      "attributedTo": "dora",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "dora-knows-3",
+      "scope": {
+        "kind": "NPC",
+        "holder": "dora"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Подлинная Жемчужина имеет знак семи соединённых волн, записанный в старом каталоге.",
+      "subjects": [
+        "dora"
+      ],
+      "attributedTo": "dora",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "dora-private",
+      "scope": {
+        "kind": "NPC",
+        "holder": "dora"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "Она хотела участвовать в празднике, но решила, что мастера копий не пригласят на сцену.",
+      "subjects": [
+        "dora"
+      ],
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "GUARDED"
+    },
+    {
+      "key": "dora-direction",
+      "scope": {
+        "kind": "DM"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Защитить мастерство от подозрения, что всякая копия — обман. Не допускает игроков к горячей печи; все опыты ведут на холодных образцах. Когда герои отличат полезную копию от подмены или предложат показать её работу.",
+      "subjects": [
+        "dora"
+      ],
+      "knownSince": null,
+      "relations": []
+    },
+    {
+      "key": "ostin-knows-1",
+      "scope": {
+        "kind": "NPC",
+        "holder": "ostin"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Полгода назад записывал речь Люсьена; в начале слышны один кашель и скрип стула.",
+      "subjects": [
+        "ostin"
+      ],
+      "attributedTo": "ostin",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "ostin-knows-2",
+      "scope": {
+        "kind": "NPC",
+        "holder": "ostin"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "В театре хранится пробный валик той речи с датой и старой записью в книге; Люсьен получил отдельную копию после записи.",
+      "subjects": [
+        "ostin"
+      ],
+      "attributedTo": "ostin",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "ostin-knows-3",
+      "scope": {
+        "kind": "NPC",
+        "holder": "ostin"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Воспроизведение можно включить в любом месте; слышимый голос не доказывает присутствие говорящего.",
+      "subjects": [
+        "ostin"
+      ],
+      "attributedTo": "ostin",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "ostin-private",
+      "scope": {
+        "kind": "NPC",
+        "holder": "ostin"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "Он любит чинить записывающие механизмы больше, чем дирижировать, и боится, что это делает его плохим директором.",
+      "subjects": [
+        "ostin"
+      ],
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "GUARDED"
+    },
+    {
+      "key": "ostin-direction",
+      "scope": {
+        "kind": "DM"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Показать, как устроен звук, и позволить себе любить мастерскую не меньше большой сцены. Не заставляет выступать и не сообщает то, чего не видел. Когда герои заинтересуются устройством, а не только громким эффектом.",
+      "subjects": [
+        "ostin"
+      ],
+      "knownSince": null,
+      "relations": []
+    },
+    {
+      "key": "vella-knows-1",
+      "scope": {
+        "kind": "NPC",
+        "holder": "vella"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Звук от лоджии проходит к причалу по медной трубе, а эхо в саду меняет направление.",
+      "subjects": [
+        "vella"
+      ],
+      "attributedTo": "vella",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "vella-knows-2",
+      "scope": {
+        "kind": "NPC",
+        "holder": "vella"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Вчера при проверке трубы она дважды услышала одинаковый кашель с одинаковым скрипом.",
+      "subjects": [
+        "vella"
+      ],
+      "attributedTo": "vella",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "vella-knows-3",
+      "scope": {
+        "kind": "NPC",
+        "holder": "vella"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "На столе лежит её вчерашний журнал опыта с отметками времени.",
+      "subjects": [
+        "vella"
+      ],
+      "attributedTo": "vella",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "vella-private",
+      "scope": {
+        "kind": "NPC",
+        "holder": "vella"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "Она дала туристу красивое, но неверное объяснение эха и теперь готовит исправленную табличку.",
+      "subjects": [
+        "vella"
+      ],
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "GUARDED"
+    },
+    {
+      "key": "vella-direction",
+      "scope": {
+        "kind": "DM"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Чтобы люди сначала проверяли звук, а потом рассказывали невероятное. Кораллы не допрашивают мысли и не записывают разговоры без устройства. Когда герои сами проверят опыт или спокойно поправят её предположение.",
+      "subjects": [
+        "vella"
+      ],
+      "knownSince": null,
+      "relations": []
+    },
+    {
+      "key": "ur-knows-1",
+      "scope": {
+        "kind": "NPC",
+        "holder": "ur"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Хартия передаёт Жемчужину общине; частная продажа требует общего согласия.",
+      "subjects": [
+        "ur"
+      ],
+      "attributedTo": "ur",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "ur-knows-2",
+      "scope": {
+        "kind": "NPC",
+        "holder": "ur"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "В музейной описи нет записи о передаче оригинала Люсьену.",
+      "subjects": [
+        "ur"
+      ],
+      "attributedTo": "ur",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "ur-knows-3",
+      "scope": {
+        "kind": "NPC",
+        "holder": "ur"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Полная книга первых мастеров и схема прохода к Первой Мастерской находятся в открытом каталоге.",
+      "subjects": [
+        "ur"
+      ],
+      "attributedTo": "ur",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "ur-knows-4",
+      "scope": {
+        "kind": "NPC",
+        "holder": "ur"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Позавчера он заказал почтовой артели вынести из Первой Мастерской три тубуса старых чертежей для выставки.",
+      "subjects": [
+        "ur"
+      ],
+      "attributedTo": "ur",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "ur-private",
+      "scope": {
+        "kind": "NPC",
+        "holder": "ur"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "Ему нравилась короткая музейная подпись, и он долго не замечал, сколько имён из неё исчезло.",
+      "subjects": [
+        "ur"
+      ],
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "GUARDED"
+    },
+    {
+      "key": "ur-direction",
+      "scope": {
+        "kind": "DM"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Сделать архив доступным людям, которые не любят длинные страницы. Не прячет важные сведения за экзаменом по чтению. Если спросить, почему архив не поправил музей раньше.",
+      "subjects": [
+        "ur"
+      ],
+      "knownSince": null,
+      "relations": []
+    },
+    {
+      "key": "iris-knows-1",
+      "scope": {
+        "kind": "NPC",
+        "holder": "iris"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Общинную вещь нельзя продать частным решением; хартия хранится в архиве, заверенная копия есть у неё в папке.",
+      "subjects": [
+        "iris"
+      ],
+      "attributedTo": "iris",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "iris-knows-2",
+      "scope": {
+        "kind": "NPC",
+        "holder": "iris"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "В Наутилусе действует правило молотка: предъявленная до третьего удара хартия с совпавшим знаком останавливает лот.",
+      "subjects": [
+        "iris"
+      ],
+      "attributedTo": "iris",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "iris-knows-3",
+      "scope": {
+        "kind": "NPC",
+        "holder": "iris"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "На собраниях принимают слово, письмо и рисунок; не обязательно говорить со сцены.",
+      "subjects": [
+        "iris"
+      ],
+      "attributedTo": "iris",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "iris-private",
+      "scope": {
+        "kind": "NPC",
+        "holder": "iris"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "Она боится затянуть собрание и иногда слишком быстро подводит итог.",
+      "subjects": [
+        "iris"
+      ],
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "GUARDED"
+    },
+    {
+      "key": "iris-direction",
+      "scope": {
+        "kind": "DM"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Чтобы общинная вещь не ушла частным решением и чтобы в зале услышали тех, кто обычно молчит. Не ведёт торги, не командует залом и не заменяет решение игроков монологом; она один голос с бумагой. Когда герои попросят её прийти на торги или дослушать тихого участника.",
+      "subjects": [
+        "iris"
+      ],
+      "knownSince": null,
+      "relations": []
+    },
+    {
+      "key": "pinna-knows-1",
+      "scope": {
+        "kind": "NPC",
+        "holder": "pinna"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Вчера в 16:40 он принял от Люсьена лот № 7 как частную музыкальную раковину по заявлению отправителя.",
+      "subjects": [
+        "pinna"
+      ],
+      "attributedTo": "pinna",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "pinna-knows-2",
+      "scope": {
+        "kind": "NPC",
+        "holder": "pinna"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Опечатанный лот открывают только под лампой зала в вечер торгов.",
+      "subjects": [
+        "pinna"
+      ],
+      "attributedTo": "pinna",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "pinna-knows-3",
+      "scope": {
+        "kind": "NPC",
+        "holder": "pinna"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Правило молотка: хартия общины и совпавший знак до третьего удара обязывают его остановиться и спросить зал.",
+      "subjects": [
+        "pinna"
+      ],
+      "attributedTo": "pinna",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "pinna-knows-4",
+      "scope": {
+        "kind": "NPC",
+        "holder": "pinna"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "По обычаю зала у музыкального лота на втором ударе открывают рожок.",
+      "subjects": [
+        "pinna"
+      ],
+      "attributedTo": "pinna",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "pinna-private",
+      "scope": {
+        "kind": "NPC",
+        "holder": "pinna"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "Он ни разу сам не проверял право отправителя и боится однажды продать чужое.",
+      "subjects": [
+        "pinna"
+      ],
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "GUARDED"
+    },
+    {
+      "key": "pinna-direction",
+      "scope": {
+        "kind": "DM"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Чтобы торги шли по правилам и ни один лот не ушёл с ошибкой в книге. Не нарушает правило молотка ни ради спонсора, ни ради героев и не открывает опечатанный лот до вечера торгов. Когда герои положат хартию на кафедру или спросят, кто проверял право на лот № 7.",
+      "subjects": [
+        "pinna"
+      ],
+      "knownSince": null,
+      "relations": []
+    },
+    {
+      "key": "timokha-knows-1",
+      "scope": {
+        "kind": "NPC",
+        "holder": "timokha"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Иногда ему оставляют поручения запиской у склада Наутилуса, вместе с платой; заказчиков он в лицо не видел.",
+      "subjects": [
+        "timokha"
+      ],
+      "attributedTo": "timokha",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "timokha-knows-2",
+      "scope": {
+        "kind": "NPC",
+        "holder": "timokha"
+      },
+      "knowledgeType": "TESTIMONY",
+      "statement": "Рынок, мостки над рыбным рядом и причал он знает лучше многих взрослых.",
+      "subjects": [
+        "timokha"
+      ],
+      "attributedTo": "timokha",
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "WILLING"
+    },
+    {
+      "key": "timokha-private",
+      "scope": {
+        "kind": "NPC",
+        "holder": "timokha"
+      },
+      "knowledgeType": "SECRET",
+      "statement": "Он побаивается воды и никому в этом не признаётся.",
+      "subjects": [
+        "timokha"
+      ],
+      "knownSince": null,
+      "relations": [],
+      "disclosure": "GUARDED"
+    },
+    {
+      "key": "timokha-direction",
+      "scope": {
+        "kind": "DM"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Заработать на собственную лодку и чтобы взрослые хоть раз отнеслись к нему всерьёз. Не вор по замыслу; герои не обязаны его наказывать, и ему не грозит ничего страшнее стыда. Когда с ним говорят без крика или показывают карточку экспоната.",
+      "subjects": [
+        "timokha"
+      ],
+      "knownSince": null,
+      "relations": []
+    }
+  ],
+  "relationships": [
+    {
+      "npc": "nora",
+      "attitude": "FRIENDLY"
+    },
+    {
+      "npc": "elma",
+      "attitude": "FRIENDLY"
+    },
+    {
+      "npc": "lucien",
+      "attitude": "WARY"
+    },
+    {
+      "npc": "bubo",
+      "attitude": "FRIENDLY"
+    },
+    {
+      "npc": "dora",
+      "attitude": "FRIENDLY"
+    },
+    {
+      "npc": "ostin",
+      "attitude": "FRIENDLY"
+    },
+    {
+      "npc": "vella",
+      "attitude": "FRIENDLY"
+    },
+    {
+      "npc": "ur",
+      "attitude": "FRIENDLY"
+    },
+    {
+      "npc": "iris",
+      "attitude": "FRIENDLY"
+    },
+    {
+      "npc": "pinna",
+      "attitude": "FRIENDLY"
+    },
+    {
+      "npc": "timokha",
+      "attitude": "FRIENDLY"
+    }
+  ],
+  "possessions": [
+    {
+      "item": "toren-gear-1",
+      "holder": "toren",
+      "catalog": "traveller-jerkin",
+      "quantity": 1
+    },
+    {
+      "item": "toren-gear-2",
+      "holder": "toren",
+      "catalog": "oak-buckler",
+      "quantity": 1
+    },
+    {
+      "item": "toren-gear-3",
+      "holder": "toren",
+      "catalog": "hemp-rope",
+      "quantity": 1
+    },
+    {
+      "item": "toren-gear-4",
+      "holder": "toren",
+      "catalog": "woodland-balm",
+      "quantity": 1
+    },
+    {
+      "item": "leya-gear-1",
+      "holder": "leya",
+      "catalog": "traveller-jerkin",
+      "quantity": 1
+    },
+    {
+      "item": "leya-gear-2",
+      "holder": "leya",
+      "catalog": "thieves-picks",
+      "quantity": 1
+    },
+    {
+      "item": "leya-gear-3",
+      "holder": "leya",
+      "catalog": "woodland-balm",
+      "quantity": 1
+    },
+    {
+      "item": "emil-gear-1",
+      "holder": "emil",
+      "catalog": "cartographer-tools",
+      "quantity": 1
+    },
+    {
+      "item": "emil-gear-2",
+      "holder": "emil",
+      "catalog": "woodland-balm",
+      "quantity": 1
+    }
+  ],
+  "clues": [
+    {
+      "key": "glass-seam",
+      "entity": "e-glass-seam",
+      "method": "inspect",
+      "statement": "В витрине стоит стеклянное изделие с литейным швом; оно не соответствует описанию цельной Жемчужины в музейной карточке.",
+      "subjects": [
+        "museum"
+      ]
+    },
+    {
+      "key": "acceptance",
+      "entity": "e-acceptance",
+      "method": "inspect",
+      "statement": "Вчера в 16:00 Люсьен имел доступ к футляру; Эльма приняла закрытый футляр без сверки клейма. В журнале нет передачи оригинала в его собственность.",
+      "subjects": [
+        "elma",
+        "lucien",
+        "museum"
+      ]
+    },
+    {
+      "key": "closed-curtains",
+      "entity": "e-closed-curtains",
+      "method": "inspect",
+      "statement": "Смотритель слышал речь Люсьена около 16:00, но отметил закрытые занавеси и прямо написал, что человека не видел.",
+      "subjects": [
+        "quay",
+        "lucien"
+      ]
+    },
+    {
+      "key": "ferry-log",
+      "entity": "e-ferry-log",
+      "method": "inspect",
+      "statement": "В 15:55 тележка с личным знаком Люсьена направилась от его дома к музею; в 16:15 та же тележка шла к рынку. Кто её толкал, в книге не записано.",
+      "subjects": [
+        "quay",
+        "museum",
+        "market",
+        "lucien"
+      ]
+    },
+    {
+      "key": "crate-route",
+      "entity": "e-crate-route",
+      "method": "inspect",
+      "statement": "Бирка от вчерашнего ящика указывает отправителем Люсьена, получателем склад Наутилуса и номер 7. Это адрес груза, не доказательство его содержимого.",
+      "subjects": [
+        "market",
+        "nautilus",
+        "lucien"
+      ]
+    },
+    {
+      "key": "weigh-slip",
+      "entity": "e-weigh-slip",
+      "method": "inspect",
+      "statement": "Вчера в 16:20 ящик Люсьена прошёл весы как личная музыкальная раковина; масса предмета без упаковки совпадает с массой оригинала в музейном каталоге.",
+      "subjects": [
+        "market",
+        "lucien",
+        "museum"
+      ]
+    },
+    {
+      "key": "echo-map",
+      "entity": "e-echo-map",
+      "method": "inspect",
+      "statement": "Голос из лоджии можно услышать у причала; направление эха в саду не показывает местонахождение говорящего.",
+      "subjects": [
+        "reef",
+        "quay"
+      ]
+    },
+    {
+      "key": "repeat-cough",
+      "entity": "e-repeat-cough",
+      "method": "inspect",
+      "statement": "Вчера в 15:50 и 16:00 Велла отметила одинаковую последовательность: кашель, скрип, пауза, фраза. Она записала совпадение, но не видела источник.",
+      "subjects": [
+        "vella",
+        "reef"
+      ]
+    },
+    {
+      "key": "trial-cylinder",
+      "entity": "e-trial-cylinder",
+      "method": "inspect",
+      "statement": "На старой записи перед речью Люсьена звучат те же кашель, скрип и пауза, которые отмечены вчера у лоджии. Валик существовал задолго до подмены.",
+      "subjects": [
+        "ostin",
+        "lucien",
+        "theatre"
+      ]
+    },
+    {
+      "key": "playback-switch",
+      "entity": "e-playback-switch",
+      "method": "inspect",
+      "statement": "Проигрыватель повторяет готовый звук после ухода говорящего. Запись не свидетельствует о его нынешнем присутствии и не подтверждает правдивость слов.",
+      "subjects": [
+        "theatre"
+      ]
+    },
+    {
+      "key": "commission",
+      "entity": "e-commission",
+      "method": "inspect",
+      "statement": "Пять дней назад Люсьен заказал Доре учебную копию Жемчужины. Позавчера получил её с указанным назначением; заказ не разрешает подмену оригинала.",
+      "subjects": [
+        "dora",
+        "lucien",
+        "glass"
+      ]
+    },
+    {
+      "key": "makers-mark",
+      "entity": "e-makers-mark",
+      "method": "inspect",
+      "statement": "Три луча — клеймо учебных копий Доры; семь соединённых волн — знак оригинала. Сравнение проверяет предмет, но не определяет виновного само по себе.",
+      "subjects": [
+        "dora",
+        "museum",
+        "glass"
+      ]
+    },
+    {
+      "key": "charter",
+      "entity": "e-charter",
+      "method": "inspect",
+      "statement": "Создатели передали Жемчужину общине. Частная продажа требует решения общины; такого решения в приложенной книге нет.",
+      "subjects": [
+        "archive",
+        "museum",
+        "commons"
+      ]
+    },
+    {
+      "key": "catalogue",
+      "entity": "e-catalogue",
+      "method": "inspect",
+      "statement": "Оригинал числится за общиной под хранением музея. Записей о дарении или продаже Люсьену нет; краткая выставочная подпись не заменяет опись.",
+      "subjects": [
+        "archive",
+        "museum",
+        "lucien"
+      ]
+    },
+    {
+      "key": "mosaic",
+      "entity": "e-mosaic",
+      "method": "inspect",
+      "statement": "В книге перечислены создатели из семи кварталов: мастера стекла, металла, сводов и музыки. Прославленный архитектор был одним из них.",
+      "subjects": [
+        "wreck",
+        "museum"
+      ]
+    },
+    {
+      "key": "first-voices",
+      "entity": "e-first-voices",
+      "method": "inspect",
+      "statement": "На репетиции слышны добровольные голоса разных мастеров, включая молодую Нору: она запинается, затем спрашивает «Можно я попробую ещё раз?». Это проба; сама песня открытия хранится в Жемчужине.",
+      "subjects": [
+        "wreck",
+        "nora"
+      ]
+    },
+    {
+      "key": "lot-receipt",
+      "entity": "e-lot-receipt",
+      "method": "inspect",
+      "statement": "Вчера в 16:40 служитель принял от Люсьена лот № 7 как частную музыкальную раковину. Проверку права заменило заявление отправителя. Лот опечатан и открывается только под лампой зала в вечер торгов.",
+      "subjects": [
+        "nautilus",
+        "lucien"
+      ]
+    },
+    {
+      "key": "pearl-mark",
+      "entity": "e-pearl-mark",
+      "method": "inspect",
+      "statement": "На вчерашней карточке лота № 7 изображён знак семи волн; материал и масса совпадают с музейной описью оригинала. Текущий предмет нужно сверить отдельно, если его уже перемещали.",
+      "subjects": [
+        "nautilus",
+        "museum"
+      ]
+    },
+    {
+      "key": "tide-plan",
+      "entity": "e-tide-plan",
+      "method": "inspect",
+      "statement": "В вечер большой воды закрывают Общественный переход, Нижнюю галерею и лодочный канал; к Наутилусу ведёт только эта галерея. При сильной волне прямой коридор закрывают, люди ждут в сухих нишах.",
+      "subjects": [
+        "passage"
+      ]
+    },
+    {
+      "key": "shelter-plan",
+      "entity": "e-shelter-plan",
+      "method": "inspect",
+      "statement": "У галереи есть сухие убежища и запасной путь к площади. В них можно переждать прилив вместе с вещами, не выбирая между человеком и архивом.",
+      "subjects": [
+        "passage",
+        "commons"
+      ]
+    },
+    {
+      "key": "courier-trail",
+      "entity": "e-courier-trail",
+      "method": "inspect",
+      "statement": "Бирка артели называет груз: три тубуса чертежей для Архива Неспешных Дел по заказу архивариуса Ура. Внутри ящика вмятины от длинных трубок, круглого гнезда для шара нет.",
+      "subjects": [
+        "wreck",
+        "bubo",
+        "ur",
+        "archive",
+        "courier-tag"
+      ]
+    },
+    {
+      "key": "drop-order",
+      "entity": "e-drop-order",
+      "method": "inspect",
+      "statement": "Записка поручает курьеру опустить коробку с синей шнуровкой в Южный шлюз до полудня, не открывая её; вторая половина платы ждёт у ящика № 7 в Наутилусе. Печать оттиснута коралловой заколкой, такой же, как у Люсьена.",
+      "subjects": [
+        "quay",
+        "lucien",
+        "museum",
+        "glass-copy"
+      ]
+    },
+    {
+      "key": "hammer-rule",
+      "entity": "e-hammer-rule",
+      "method": "inspect",
+      "statement": "Если до третьего удара молотка в зал предъявлена хартия общины на предмет лота и знак под лампой совпадает с описью, служитель обязан остановить молоток и спросить зал. Пока зал требует остановиться, лот не продают.",
+      "subjects": [
+        "nautilus",
+        "commons"
+      ]
+    }
+  ],
+  "conflicts": [
+    {
+      "key": "swapped-archive",
+      "title": "Подмена в музее",
+      "description": "Люсьен заменил общий музыкальный архив стеклянной копией и выставил оригинал как личный лот.",
+      "actors": [
+        "lucien",
+        "elma",
+        "dora"
+      ],
+      "stakes": "Возврат, проверяемая ответственность и возможность исправления."
+    },
+    {
+      "key": "many-makers",
+      "title": "Чьи имена останутся",
+      "description": "Короткая музейная подпись скрывает совместный труд создателей архива.",
+      "actors": [
+        "nora",
+        "ur",
+        "iris",
+        "elma"
+      ],
+      "stakes": "Доступная общая история и согласованное будущее выставки."
+    }
+  ],
+  "situations": [
+    {
+      "key": "silent-pearl",
+      "title": "Песня, которая не началась",
+      "location": "museum",
+      "description": "Познакомить героев через маленькое общее дело, обнаружить подмену на открытии и выбрать первый адрес расследования. Над белой лестницей проплывает скат величиной с парус. За стеклом — море, под ногами — сухой тёплый камень. Куратор трижды поворачивает ручку рожка. Вместо песни слышно только её неловкое покашливание. «Пожалуйста, скажите, что это репетиция тишины», — просит она. На подставке мерцает безупречная круглая жемчужина.",
+      "hooks": [
+        "Познакомить героев через маленькое общее дело, обнаружить подмену на открытии и выбрать первый адрес расследования."
+      ],
+      "participants": [
+        "elma"
+      ],
+      "clueKeys": [
+        "glass-seam",
+        "acceptance"
+      ],
+      "approaches": [
+        "Помочь руками и придумать название новой гирлянде.",
+        "Попросить короткую экскурсию по музею.",
+        "Сразу спросить Эльму, что случилось до вашего прихода.",
+        "Сравнить основание с карточкой экспоната.",
+        "Проверить отдельно рожок и отдельно сферу.",
+        "Спросить, кто брал футляр и когда его проверяли.",
+        "Взять копии карточки и журнала и идти к причалу.",
+        "Найти мастерскую по клейму трёх лучей.",
+        "Пойти по маршруту тележки прямо на рынок."
+      ],
+      "developments": [
+        {
+          "if": "Помогли Эльме признать ошибку",
+          "then": "Она сама готовит копию журнала и в девятом вечере первой прибегает к героям, когда копия пропадёт."
+        },
+        {
+          "if": "Сразу назвали Люсьена вором вслух",
+          "then": "Слух доходит до Люсьена раньше, чем бумаги до героев. Он становится осторожнее, но порядок событий не меняется; у героя будет возможность уточнить слова."
+        },
+        {
+          "if": "Захотели забрать копию с собой",
+          "then": "Эльма не отдаёт: «Улика остаётся в музее, под ключом. У меня хоть что-то должно быть заперто правильно». Копия остаётся в витрине до девятого вечера."
+        }
+      ]
+    },
+    {
+      "key": "voice-behind-curtains",
+      "title": "Голос за закрытой занавесью",
+      "location": "quay",
+      "description": "Дать героям общий дом и приливный календарь, научиться отличать услышанный голос от увиденного человека. На причале пахнет тёплым хлебом и мокрой верёвкой. «Лодка готова. Суп тоже. Одновременно они бывают готовы редко», — говорит Нора. Над каналом тянется медная труба, и чей-то смех приходит из неё с неожиданной стороны.",
+      "hooks": [
+        "Дать героям общий дом и приливный календарь, научиться отличать услышанный голос от увиденного человека."
+      ],
+      "participants": [
+        "nora"
+      ],
+      "clueKeys": [
+        "closed-curtains",
+        "ferry-log"
+      ],
+      "approaches": [
+        "Сделать каюту удобной для всех.",
+        "Разобраться в календаре и найти сегодняшний закрытый путь.",
+        "Исследовать свистящую слуховую трубку.",
+        "Спросить каждого, что именно он наблюдал.",
+        "Осмотреть книгу тележек и не гадать о том, кто толкал.",
+        "Поспешить в сад, пока открыт путь через рынок.",
+        "Проверить гипотезу с ширмой.",
+        "Успеть на рынок до вечерней воды.",
+        "Заночевать на лодке и выйти утром по открытому пути."
+      ],
+      "developments": [
+        {
+          "if": "Уточнили показание без насмешки",
+          "then": "Торговка хлебом потом сама поправляет соседей: «Я слышала, а не видела». На торгах она может оказаться в зале на стороне героев."
+        },
+        {
+          "if": "Сразу поверили алиби",
+          "then": "Записи остаются у героев. В саду и театре повторный кашель даст повод пересмотреть мнение без наказания."
+        },
+        {
+          "if": "Заночевали на лодке",
+          "then": "Начинается второй городской день. Отметьте в календаре: вечером большая вода, к раковине открыт один путь — это хорошо видно из сада."
+        }
+      ]
+    },
+    {
+      "key": "blue-crate",
+      "title": "Коробка, которая стоила слишком много",
+      "location": "market",
+      "description": "Пройти по материальному следу груза, подружиться с Бубо и получить адрес Наутилуса и дату торгов. На Рынке Отлива продают пирожки, похожие на ракушки, и ракушки, подозрительно похожие на пирожки. Маленький краб держит пустую коробку обеими клешнями. «Осторожно. Внутри место для очень важного», — предупреждает он.",
+      "hooks": [
+        "Пройти по материальному следу груза, подружиться с Бубо и получить адрес Наутилуса и дату торгов."
+      ],
+      "participants": [
+        "bubo",
+        "pinna"
+      ],
+      "clueKeys": [
+        "crate-route",
+        "weigh-slip"
+      ],
+      "approaches": [
+        "Удержать стойку, позвав товарища.",
+        "Перехватить лёгкую коробку или направить её в корзину.",
+        "Остановить поток людей и договориться с продавцами.",
+        "Сравнить вес с музейной карточкой.",
+        "Попросить Бубо нарисовать только то, что он видел.",
+        "Отделить рыночную шутку от полезной квитанции.",
+        "Сходить в Наутилус, увидеть каталог и оставить заявление.",
+        "Отправить письмо служителю через Бубо и собирать доказательства дальше.",
+        "Выбрать сад, театр или Стеклянный Двор по открытому сейчас пути."
+      ],
+      "developments": [
+        {
+          "if": "Попросили Бубо о посильной помощи",
+          "then": "Он доставляет письмо и приносит настоящий ответ. В восьмом вечере его доверие к героям станет важным, когда на ящике найдут бирку его артели."
+        },
+        {
+          "if": "Оставили заявление в Наутилусе",
+          "then": "На лоте пометка «спорный». В зале торгов Пинна вспомнит героев и выслушает их быстрее."
+        },
+        {
+          "if": "Отложили Наутилус",
+          "then": "Ничего не потеряно: адрес и дата есть в каталоге. Срок движется только с городскими днями; отмечайте их в календаре."
+        }
+      ]
+    },
+    {
+      "key": "listening-garden",
+      "title": "Сад, который слышит сбоку",
+      "location": "reef",
+      "description": "Превратить проверку алиби в игру с наблюдениями и впервые увидеть вечер большой воды из рифового окна. За стеклом раскрываются кораллы, похожие на ладони. Велла приставляет к одной чаше ухо, к другой — садовую шляпу. «Шляпа слушает терпеливее. Но пока ничего полезного не сказала». Из правой трубы доносится стук, хотя молоточек лежит слева.",
+      "hooks": [
+        "Превратить проверку алиби в игру с наблюдениями и впервые увидеть вечер большой воды из рифового окна."
+      ],
+      "participants": [
+        "vella"
+      ],
+      "clueKeys": [
+        "echo-map",
+        "repeat-cough"
+      ],
+      "approaches": [
+        "Постучать и проследить трубу на рисунке.",
+        "Закрыть один путь и сравнить результат.",
+        "Посмотреть опыт без звука, по движению полоски.",
+        "Сопоставить ритм с тем, что уже известно.",
+        "Попробовать самим дважды кашлянуть одинаково.",
+        "Попросить у Веллы адрес старой театральной записи.",
+        "Найти в календаре единственный путь к Наутилусу в вечер большой воды.",
+        "Доделать тихий уголок сада и придумать подпись к опыту.",
+        "Остаться у окна и просто смотреть на большую воду."
+      ],
+      "developments": [
+        {
+          "if": "Исправили табличку вместе",
+          "then": "Велла благодарит героев за точность. В вечер торгов она придёт в зал и подтвердит свой журнал, если её позовут."
+        },
+        {
+          "if": "Разобрались с гулом галерей",
+          "then": "В девятом и десятом вечерах игроки уже знают, как звучит закрывающаяся галерея; дайте им слышать это и в погоне."
+        },
+        {
+          "if": "Пропустили сад",
+          "then": "Журнал можно получить копией через Нору; театр остаётся отдельным входом в проверку алиби."
+        }
+      ]
+    },
+    {
+      "key": "eight-curtains",
+      "title": "Аплодисменты в пустом зале",
+      "location": "theatre",
+      "description": "Найти источник звука без человека, сравнить старую запись с журналом Веллы и разрушить ложное алиби. За дверью театра раздаются громкие аплодисменты. Вы открываете её — и видите пустые кресла. В бассейне Остин держит семь палочек. Восьмая зажата у него под жилетом. «Публика сегодня очень пунктуальна. Жаль, что механическая». На балконе медленно вращается заводное колесо.",
+      "hooks": [
+        "Найти источник звука без человека, сравнить старую запись с журналом Веллы и разрушить ложное алиби."
+      ],
+      "participants": [
+        "ostin"
+      ],
+      "clueKeys": [
+        "trial-cylinder",
+        "playback-switch"
+      ],
+      "approaches": [
+        "Осмотреть пустые кресла и сравнить услышанное с видимым.",
+        "Проследить трубу до шкафа с колесом.",
+        "Спросить Остина о расписании и происхождении записи.",
+        "Сравнить фоновые звуки на старой записи и в журнале Веллы.",
+        "Проверить повтор за ширмой.",
+        "Нарисовать на листе цепочку: доступ, ящик, запись.",
+        "Пригласить свидетеля и дать ему услышать валик.",
+        "Взять копию записи и колокольчик.",
+        "Выбрать по календарю следующий адрес: Дора или архив."
+      ],
+      "developments": [
+        {
+          "if": "Разрушили ложное алиби",
+          "then": "В зале торгов Люсьен уже не сможет сказать «я был дома»; ему останется спорить только о праве на вещь."
+        },
+        {
+          "if": "Поддержали Остина в любви к механизмам",
+          "then": "В последнем вечере он сам предложит настроить рожок для записи Норы."
+        },
+        {
+          "if": "Отказались звать свидетеля",
+          "then": "Копия валика и страница книги остаются у героев; публичной демонстрации не требуется."
+        }
+      ]
+    },
+    {
+      "key": "honest-copy",
+      "title": "Честная копия",
+      "location": "glass",
+      "description": "Связать копию с заказом Люсьена, отличить честное ремесло от обмана и понять, почему стеклянная копия — важная улика. На стенах Стеклянного Двора бегают цветные круги. Дора кладёт рядом две ракушки. «Эту сделало море. Эту — я. Обе можно любить. Только подписывать надо правильно». В дальнем углу бумажный краб очень старательно охраняет пустую подставку.",
+      "hooks": [
+        "Связать копию с заказом Люсьена, отличить честное ремесло от обмана и понять, почему стеклянная копия — важная улика."
+      ],
+      "participants": [
+        "dora"
+      ],
+      "clueKeys": [
+        "commission",
+        "makers-mark"
+      ],
+      "approaches": [
+        "Рассмотреть мир через разные линзы.",
+        "Сравнить честную копию и форму подлинника.",
+        "Сразу спросить о заказе и назначении образца.",
+        "Сравнить копию с музейной зарисовкой.",
+        "Составить список признаков подлинника для осмотра под лампой.",
+        "Попросить Дору прийти на торги и подтвердить клеймо.",
+        "Попросить Дору подтвердить перенос своим знаком.",
+        "Оформить образцы на проверочном столе и пройти после отметки.",
+        "Выбрать бой «Бумажная приёмка» или отключение рычагом."
+      ],
+      "developments": [
+        {
+          "if": "Уточнили обвинение и поверили Доре",
+          "then": "Она придёт на торги и подтвердит клеймо копии и знак подлинника под лампой."
+        },
+        {
+          "if": "Повредили крабов",
+          "then": "Ремонт занимает время и материалы; герои могут помочь. Дора запомнит, кто помогал чинить, а кто ушёл."
+        },
+        {
+          "if": "Поняли ценность копии как улики",
+          "then": "В девятом вечере игроки сразу поймут, зачем кто-то хочет её утопить."
+        }
+      ]
+    },
+    {
+      "key": "names-in-margin",
+      "title": "Имена на полях",
+      "location": "archive",
+      "description": "Установить общинное право на архив, открыть забытую историю создателей и успеть спланировать спуск в Первую Мастерскую до вечерней воды. Ур ставит песочные часы на бок. «Теперь они не торопят». На столе лежит маленькая карточка с одним знаменитым именем и большая книга, из которой торчат десятки закладок. За стеклом морская черепаха проплывает с такой важностью, будто тоже пришла за справкой.",
+      "hooks": [
+        "Установить общинное право на архив, открыть забытую историю создателей и успеть спланировать спуск в Первую Мастерскую до вечерней воды."
+      ],
+      "participants": [
+        "ur"
+      ],
+      "clueKeys": [
+        "charter",
+        "catalogue"
+      ],
+      "approaches": [
+        "Искать по рисунку, названию или дате.",
+        "Попросить Ура прочитать нужные строки вслух.",
+        "Сравнить короткую подпись и полную книгу.",
+        "Составить короткое заявление с хартией и описью.",
+        "Сообщить Ирис и попросить её прийти на торги.",
+        "Держать бумаги при себе до вечера торгов.",
+        "Пригласить Нору спуститься в Первую Мастерскую.",
+        "Успеть к лестнице до вечерней воды.",
+        "Сделать набросок новой подписи с полными именами."
+      ],
+      "developments": [
+        {
+          "if": "Написали Ирис",
+          "then": "Ирис придёт в зал торгов с хартией. Она не ведёт торги и не командует залом, а говорит как один из голосов."
+        },
+        {
+          "if": "Решили оставить старую легенду",
+          "then": "Мастера и их дети в зале торгов могут возразить; дайте им голос без карикатурного осуждения героев."
+        },
+        {
+          "if": "Не пошли в Мастерскую",
+          "then": "Полная книга остаётся опорой совместного авторства, но ложный след восьмого вечера придёт к героям на рынке: Бубо сам принесёт новость."
+        }
+      ]
+    },
+    {
+      "key": "first-workshop",
+      "title": "Бирка на пустом ящике",
+      "location": "wreck",
+      "description": "Спуститься к истокам города, увидеть мозаику многих рук, разобраться с ложным следом против артели Бубо и встретить перелом: Люсьен исчез, торги перенесены. Лестница спускается ниже новых фонарей. За целым стеклом медленно кружатся серебряные рыбы. В сухом старом зале на мозаике много рук держат одну круглую форму. Нора касается перил. «Вот здесь я впервые поняла, что у меня дрожат колени. Как у лодки на первой волне. И всё равно можно идти».",
+      "hooks": [
+        "Спуститься к истокам города, увидеть мозаику многих рук, разобраться с ложным следом против артели Бубо и встретить перелом: Люсьен исчез, торги перенесены."
+      ],
+      "participants": [
+        "nora",
+        "bubo"
+      ],
+      "clueKeys": [
+        "mosaic",
+        "first-voices",
+        "courier-trail"
+      ],
+      "approaches": [
+        "Сверить старый указатель с новой схемой.",
+        "Освободить площадку вместе.",
+        "Выбрать короткий маршрут, чтобы успеть до пяти.",
+        "Выбрать на мозаике незаметную работу.",
+        "Прослушать репетицию открытия.",
+        "Поговорить с Норой или дать ей спокойно помолчать.",
+        "Показать бирку Бубо или отнести её Уру в архив.",
+        "Поверить слуху и сообщить о нём Эльме.",
+        "Сразу решать, как успеть к торгам завтра вечером."
+      ],
+      "developments": [
+        {
+          "if": "Сняли подозрение с артели",
+          "then": "Бубо рисует на своей бирке новую должность: «проводник». В погоне он покажет короткий путь через рынок и подаст знак крабам причала."
+        },
+        {
+          "if": "Поверили слуху",
+          "then": "Бубо обижен, артель не помогает в погоне. Извиниться можно в любой момент; без извинения в последнем вечере его табличку вешают без героев."
+        },
+        {
+          "if": "Пригласили Нору в Мастерскую",
+          "then": "Она услышала свою репетицию и сказала, что на настоящей записи её нет. Это убеждение станет главным мгновением торгов."
+        }
+      ]
+    },
+    {
+      "key": "nautilus-operation",
+      "title": "Погоня за копией",
+      "location": "quay",
+      "description": "Узнать, кто и куда унёс стеклянную копию, выбрать путь с рынка к причалу по приливному календарю и успеть до полудня. Утро дня торгов. Лодка «Слушай море» стоит у рыбного пирса рынка: Нора привела её сюда ночью, отсюда ближе к Наутилусу. По мосткам бежит Эльма, без перчаток, с растрёпанной косой. «Её нет. Копии нет. Унесли из витрины по бумаге. По красивой бумаге с кораллом».",
+      "hooks": [
+        "Узнать, кто и куда унёс стеклянную копию, выбрать путь с рынка к причалу по приливному календарю и успеть до полудня."
+      ],
+      "participants": [
+        "elma",
+        "bubo",
+        "nora",
+        "timokha"
+      ],
+      "clueKeys": [
+        "drop-order"
+      ],
+      "approaches": [
+        "Расспросить Эльму и торговку, как выглядел юноша.",
+        "Сразу выбрать путь к причалу.",
+        "Открыть календарь и посчитать минуты до полудня.",
+        "Рвануть по Набережной до 11:20.",
+        "Пробиваться по мосткам над рыбным рядом.",
+        "Плыть каналом на лодке Норы.",
+        "Поговорить с Тимохой и показать карточку экспоната.",
+        "Остановить крабов биркой, квитанцией, сигналом Бубо или лодкой Норы.",
+        "Выбрать бой «Копия уходит в воду»."
+      ],
+      "developments": [
+        {
+          "if": "Успели, копия цела",
+          "then": "В зале торгов возможна подмена: копию можно поставить на подставку вместо Жемчужины."
+        },
+        {
+          "if": "Копия со сколом",
+          "then": "Подмена возможна, но под лампой скол заметен: бросок на подмену в одиннадцатом вечере труднее на 2."
+        },
+        {
+          "if": "Копия ушла за свод",
+          "then": "Подмены не будет. Остаются поручение с печатью, квитанция Доры и Тимоха; на торгах решают правило молотка и голоса зала."
+        },
+        {
+          "if": "Поговорили с Тимохой по-доброму",
+          "then": "Он придёт в зал торгов и расскажет вслух про записку у склада и плату: половину вперёд, половину у ящика № 7. Это один голос зала за героев."
+        }
+      ]
+    },
+    {
+      "key": "great-wave",
+      "title": "Волна над головой",
+      "location": "passage",
+      "description": "Пройти единственным открытым путём к раковине в вечер большой воды, переждать волну в нише, увидеть оптическое чудо и выбрать обход, а по дороге составить план трёх ролей. Море над галереей темнеет, затем поднимает целую стену серебряной воды. Стекло остаётся целым. Смотритель поднимает ладонь: «Тележкам стоять. Людям — в сухие ниши». За прозрачным сводом проходит такая огромная волна, что на миг кажется: весь город держит вдох. Но в галерее можно дышать спокойно.",
+      "hooks": [
+        "Пройти единственным открытым путём к раковине в вечер большой воды, переждать волну в нише, увидеть оптическое чудо и выбрать обход, а по дороге составить план трёх ролей."
+      ],
+      "participants": [
+        "nora"
+      ],
+      "clueKeys": [
+        "tide-plan",
+        "shelter-plan"
+      ],
+      "approaches": [
+        "Помочь людям дойти до ниш.",
+        "Проверить коробку с копией и бумаги.",
+        "Спросить смотрителя, когда откроют прямой коридор.",
+        "Сравнить свои наблюдения и менять одно условие за раз.",
+        "Нарисовать три состояния света или три разных впечатления.",
+        "Просто смотреть и придумать имя волне.",
+        "Подняться служебной лестницей.",
+        "Попросить подъёмник у смотрителя.",
+        "Заполнить карточку плана и распределить роли."
+      ],
+      "developments": [
+        {
+          "if": "Помогали людям в галерее",
+          "then": "Смотритель даёт подъёмник, а несколько рассаженных ими жителей окажутся в зале и запомнят героев."
+        },
+        {
+          "if": "Придумали имя волне",
+          "then": "Нора записывает его в лодочный журнал; в последнем вечере журнал откроют на этой строке."
+        },
+        {
+          "if": "Шли лестницей с копией",
+          "then": "Если бросок не удался и игрок выбрал скол, подмена в зале труднее на 2."
+        },
+        {
+          "if": "Не составили план",
+          "then": "Торги не ждут. В зале роли придётся выбирать на ходу; первый бросок одиннадцатого вечера делается с помехой."
+        }
+      ]
+    },
+    {
+      "key": "common-voice",
+      "title": "Аукцион под раковиной",
+      "location": "nautilus",
+      "description": "Исполнить план трёх ролей на торгах, услышать вместе с залом голос города и узнать, у кого Жемчужина, когда падает молоток. Стены Наутилуса закручиваются вверх огромной светлой спиралью. Под потолком звенят бокалы. Внизу служитель Пинна поднимает молоток и считает: «Раз. Два. Три. Продано». Лот № 5 уходит к даме в зелёной шляпе. До лота № 7 осталась одна карточка.",
+      "hooks": [
+        "Исполнить план трёх ролей на торгах, услышать вместе с залом голос города и узнать, у кого Жемчужина, когда падает молоток."
+      ],
+      "participants": [
+        "lucien",
+        "pinna",
+        "elma",
+        "nora",
+        "iris",
+        "dora",
+        "timokha"
+      ],
+      "clueKeys": [
+        "lot-receipt",
+        "pearl-mark",
+        "hammer-rule"
+      ],
+      "approaches": [
+        "Записаться на осмотр под лампой.",
+        "Сверить бумаги с Эльмой или Ирис.",
+        "Проследить слуховую трубку до ложи номер три.",
+        "Проверить знак под лампой.",
+        "Положить хартию и цепочку на кафедру.",
+        "Провести подмену копией или сорвать лот.",
+        "Открыть рожок самим, если Жемчужина у героев.",
+        "Предложить залу новое место для Жемчужины.",
+        "Подойти к Норе или к Люсьену после записи."
+      ],
+      "developments": [
+        {
+          "if": "Правило молотка: хартия и семь волн на кафедре до «Три»",
+          "then": "Пинна останавливает молоток и спрашивает зал. Лот снят, Жемчужину передают Эльме, место ей зал выбирает по предложению героев. Если герои успели и подменить, они отдают настоящую Жемчужину открыто."
+        },
+        {
+          "if": "Зал встал: правило не сработало, но три заработанных голоса и обращение героя к залу",
+          "then": "После песни жители встают, и Пинна не продаёт при стоящем зале. Лот снят голосом города. Люсьен уходит из ложи пешком; утром Жемчужину несут туда, куда решил зал."
+        },
+        {
+          "if": "Подмена удалась, а правило и зал не сработали",
+          "then": "Молоток падает на стеклянную копию, подставной покупатель получает стекло. Жемчужина у героев. Пинна требует объяснений перед залом; зал выслушивает и сам решает, куда её нести."
+        },
+        {
+          "if": "Ничего не сработало: «Три» за ложу номер три",
+          "then": "Жемчужина у Люсьена. Силой её никто не отнимает. В последнем вечере выбранное героями место ждёт её с копией, если она уцелела, и репетицией из Мастерской; придёт ли Люсьен, решают его разговор с Норой и прошлые поступки героев."
+        }
+      ]
+    },
+    {
+      "key": "after-the-song",
+      "title": "Настоящий голос",
+      "location": "quay",
+      "description": "Показать короткий вечер последствий: Жемчужина на новом месте, одна настоящая строка Норы, имя волны в журнале, должность Бубо на табличке и по одному вопросу каждому герою. Утро после большой воды. Галереи открыты все до одной, по каналу снова ходят лодки. На причале пахнет хлебом. Нора ставит на стол лодочный журнал и кастрюлю. «Суп готов. Лодка готова. И, кажется, я тоже».",
+      "hooks": [
+        "Показать короткий вечер последствий: Жемчужина на новом месте, одна настоящая строка Норы, имя волны в журнале, должность Бубо на табличке и по одному вопросу каждому герою."
+      ],
+      "participants": [
+        "nora",
+        "bubo",
+        "ostin",
+        "elma",
+        "dora",
+        "iris"
+      ],
+      "clueKeys": [],
+      "approaches": [
+        "Прочитать табличку Бубо вслух.",
+        "Помочь Эльме проверить имена на подписи.",
+        "Потрогать честную копию Доры.",
+        "Послушать строку Норы.",
+        "Самому сказать что-нибудь в рожок.",
+        "Помочь Остину закрыть рожок и подписать запись.",
+        "Расписаться в журнале рядом с именем волны.",
+        "Поговорить с Люсьеном, если он пришёл.",
+        "Просто сидеть в лодке и слушать."
+      ],
+      "developments": [
+        {
+          "if": "Жемчужина у города",
+          "then": "Она стоит на выбранном месте с новой подписью и копией Доры рядом; строку Норы записали прямо в неё."
+        },
+        {
+          "if": "Жемчужина у Люсьена",
+          "then": "Место ждёт с копией, если уцелела, и репетицией; строку Норы записали на валик Остина. Придёт ли Люсьен на причал, решает ведущий по прошлым разговорам героев с ним."
+        },
+        {
+          "if": "Герои извинились перед Бубо или сразу ему поверили",
+          "then": "Табличку «Проводник» вешают вместе с героями; иначе Бубо приходит с ней один и показывает её издалека."
+        }
+      ]
+    }
+  ],
+  "encounters": [
+    {
+      "key": "paper-reception",
+      "title": "Бумажная приёмка",
+      "location": "glass",
+      "trigger": "Вечер 6, служебный проход Стеклянного Двора. Два складных краба приняли переносимые образцы за неоформленный груз и преграждают путь. Бой начинается только если игроки его выбрали. Цель: Пронести образцы и сравнительную карточку в сухой проход, не разбив ни одной копии. Разбитый образец уже не доказательство. Мирный путь: Дора показывает свой знак мастерской; герои кладут образец на проверочный стол и ждут отметки; или кто-то дотягивается до рычага «приёмка закрыта» у двери. Любой из трёх путей кончает спор без боя. Тактика: Крабы щёлкают и тянут клешни к тому, кто несёт образец, и не трогают пустые руки. Схваченный образец они относят на стол приёмки, а не ломают. Как только кто-то из них сложен или рычаг опущен, второй садится и ждёт.",
+      "battlefield": {
+        "width": 14,
+        "height": 10,
+        "difficult": [],
+        "cover": [
+          {
+            "x": 4,
+            "y": 1,
+            "level": "half"
+          },
+          {
+            "x": 4,
+            "y": 2,
+            "level": "half"
+          },
+          {
+            "x": 4,
+            "y": 4,
+            "level": "half"
+          },
+          {
+            "x": 4,
+            "y": 5,
+            "level": "half"
+          },
+          {
+            "x": 4,
+            "y": 6,
+            "level": "half"
+          },
+          {
+            "x": 4,
+            "y": 7,
+            "level": "half"
+          },
+          {
+            "x": 8,
+            "y": 1,
+            "level": "half"
+          },
+          {
+            "x": 8,
+            "y": 2,
+            "level": "half"
+          },
+          {
+            "x": 8,
+            "y": 3,
+            "level": "half"
+          },
+          {
+            "x": 8,
+            "y": 4,
+            "level": "half"
+          },
+          {
+            "x": 8,
+            "y": 5,
+            "level": "half"
+          },
+          {
+            "x": 8,
+            "y": 7,
+            "level": "half"
+          },
+          {
+            "x": 8,
+            "y": 8,
+            "level": "half"
+          }
+        ]
+      },
+      "combatants": [
+        {
+          "entity": "toren",
+          "side": "party",
+          "position": {
+            "x": 0,
+            "y": 4
+          }
+        },
+        {
+          "entity": "leya",
+          "side": "party",
+          "position": {
+            "x": 0,
+            "y": 5
+          }
+        },
+        {
+          "entity": "emil",
+          "side": "party",
+          "position": {
+            "x": 0,
+            "y": 3
+          }
+        },
+        {
+          "entity": "paper-reception-foe-1",
+          "side": "hostile",
+          "position": {
+            "x": 13,
+            "y": 4
+          }
+        },
+        {
+          "entity": "paper-reception-foe-2",
+          "side": "hostile",
+          "position": {
+            "x": 13,
+            "y": 5
+          }
+        }
+      ]
+    },
+    {
+      "key": "quay-chase",
+      "title": "Копия уходит в воду",
+      "location": "quay",
+      "trigger": "Вечер 9, Причал Трёх Приливов, между 11:30 и полуднем: в полдень ворота Южного шлюза откроются, и всё, что стоит у решётки, уйдёт за свод вместе с водой. Тимоха уже сдал ящик со стеклянной копией латунным крабам-грузчикам и стоит у перил, крича, что ему заплатили выбросить старую лампу; крабы катят ящик к решётке. Бой начинается только если игроки его выбрали. Цель: Снять ящик с копией с грузовых крабов до того, как он окажется за решёткой шлюза. Копия внутри хрупкая: кто хватает ящик, тот бережёт его. Мирный путь: Показать крабам бирку почтовой артели или квитанцию Доры: груз чужой, и они останавливаются. Убедить Тимоху карточкой экспоната: он сам кричит крабам «стоп» и отдаёт поручение с печатью. Попросить Нору подвести лодку к решётке со стороны канала и принять ящик, когда крабы его отпустят. Тактика: Два латунных грузчика везут ящик к воде по прямой и не дерутся первыми: клешни у них для того, кто держится за ящик. Крабики-подручные цепляются за ноги и мешают бежать, но сами падают от любого толчка. Ящик движется на пять футов за ход грузчика; у решётки шлюза бой кончается в любом случае: либо ящик у героев, либо он за решёткой, и дальше решают часы прилива.",
+      "battlefield": {
+        "width": 18,
+        "height": 10,
+        "difficult": [
+          {
+            "x": 11,
+            "y": 3
+          },
+          {
+            "x": 4,
+            "y": 4
+          },
+          {
+            "x": 11,
+            "y": 1
+          }
+        ],
+        "cover": [
+          {
+            "x": 10,
+            "y": 3,
+            "level": "half"
+          },
+          {
+            "x": 10,
+            "y": 4,
+            "level": "half"
+          },
+          {
+            "x": 10,
+            "y": 5,
+            "level": "half"
+          },
+          {
+            "x": 11,
+            "y": 5,
+            "level": "half"
+          },
+          {
+            "x": 12,
+            "y": 5,
+            "level": "half"
+          },
+          {
+            "x": 13,
+            "y": 5,
+            "level": "half"
+          },
+          {
+            "x": 11,
+            "y": 7,
+            "level": "half"
+          },
+          {
+            "x": 11,
+            "y": 8,
+            "level": "half"
+          },
+          {
+            "x": 11,
+            "y": 9,
+            "level": "half"
+          },
+          {
+            "x": 8,
+            "y": 8,
+            "level": "half"
+          },
+          {
+            "x": 8,
+            "y": 9,
+            "level": "half"
+          },
+          {
+            "x": 3,
+            "y": 3,
+            "level": "half"
+          },
+          {
+            "x": 3,
+            "y": 4,
+            "level": "half"
+          },
+          {
+            "x": 5,
+            "y": 8,
+            "level": "half"
+          },
+          {
+            "x": 6,
+            "y": 8,
+            "level": "half"
+          },
+          {
+            "x": 7,
+            "y": 8,
+            "level": "half"
+          }
+        ]
+      },
+      "combatants": [
+        {
+          "entity": "toren",
+          "side": "party",
+          "position": {
+            "x": 17,
+            "y": 4
+          }
+        },
+        {
+          "entity": "leya",
+          "side": "party",
+          "position": {
+            "x": 17,
+            "y": 5
+          }
+        },
+        {
+          "entity": "emil",
+          "side": "party",
+          "position": {
+            "x": 17,
+            "y": 3
+          }
+        },
+        {
+          "entity": "quay-chase-foe-1",
+          "side": "hostile",
+          "position": {
+            "x": 0,
+            "y": 4
+          }
+        },
+        {
+          "entity": "quay-chase-foe-2",
+          "side": "hostile",
+          "position": {
+            "x": 0,
+            "y": 5
+          }
+        },
+        {
+          "entity": "quay-chase-foe-3",
+          "side": "hostile",
+          "position": {
+            "x": 0,
+            "y": 3
+          }
+        },
+        {
+          "entity": "quay-chase-foe-4",
+          "side": "hostile",
+          "position": {
+            "x": 0,
+            "y": 6
+          }
+        }
+      ]
+    },
+    {
+      "key": "auction-hall",
+      "title": "Указка распорядителя",
+      "location": "nautilus",
+      "trigger": "Вечер 11, спиральная галерея Зала Наутилуса во время торгов. Если план героев раскрыт шумно, распорядитель поднимает латунную указку, и складские крабы получают приказ отнести лот № 7 в запертый склад раньше удара молотка. Бой начинается только если игроки его выбрали. Цель: Не дать унести Жемчужину из зала, пока звучит запись первых мастеров, или самим добраться до открытого рожка. Победа — не сложенные крабы, а предмет, оставшийся на виду у всего зала. Мирный путь: Предъявить служителю хартию и знак семи волн, подтверждённый под лампой: по правилу молотка спорный лот остаётся на столе без броска. Включить запись раньше, чем крабы дойдут до склада: зал сам потребует остановиться. Попросить Ирис произнести слово представителя общины. Тактика: Указка летает над рядами и указывает крабам цель; пока она в воздухе, крабы идут к лоту кратчайшим путём и не отвлекаются на героев. Сложенная указка оставляет крабов стоять там, где их застали. Крабы зажимают, но не бьют того, кто держит Жемчужину двумя руками.",
+      "battlefield": {
+        "width": 18,
+        "height": 10,
+        "difficult": [],
+        "cover": [
+          {
+            "x": 3,
+            "y": 1,
+            "level": "half"
+          },
+          {
+            "x": 3,
+            "y": 2,
+            "level": "half"
+          },
+          {
+            "x": 3,
+            "y": 4,
+            "level": "half"
+          },
+          {
+            "x": 3,
+            "y": 5,
+            "level": "half"
+          },
+          {
+            "x": 3,
+            "y": 6,
+            "level": "half"
+          },
+          {
+            "x": 3,
+            "y": 7,
+            "level": "half"
+          },
+          {
+            "x": 7,
+            "y": 1,
+            "level": "half"
+          },
+          {
+            "x": 7,
+            "y": 2,
+            "level": "half"
+          },
+          {
+            "x": 7,
+            "y": 4,
+            "level": "half"
+          },
+          {
+            "x": 7,
+            "y": 5,
+            "level": "half"
+          },
+          {
+            "x": 7,
+            "y": 6,
+            "level": "half"
+          },
+          {
+            "x": 7,
+            "y": 7,
+            "level": "half"
+          },
+          {
+            "x": 7,
+            "y": 8,
+            "level": "half"
+          },
+          {
+            "x": 10,
+            "y": 2,
+            "level": "half"
+          },
+          {
+            "x": 10,
+            "y": 3,
+            "level": "half"
+          },
+          {
+            "x": 10,
+            "y": 4,
+            "level": "half"
+          },
+          {
+            "x": 10,
+            "y": 6,
+            "level": "half"
+          },
+          {
+            "x": 10,
+            "y": 7,
+            "level": "half"
+          },
+          {
+            "x": 10,
+            "y": 8,
+            "level": "half"
+          },
+          {
+            "x": 13,
+            "y": 1,
+            "level": "half"
+          },
+          {
+            "x": 13,
+            "y": 2,
+            "level": "half"
+          },
+          {
+            "x": 13,
+            "y": 4,
+            "level": "half"
+          },
+          {
+            "x": 13,
+            "y": 5,
+            "level": "half"
+          },
+          {
+            "x": 13,
+            "y": 6,
+            "level": "half"
+          },
+          {
+            "x": 13,
+            "y": 7,
+            "level": "half"
+          }
+        ]
+      },
+      "combatants": [
+        {
+          "entity": "toren",
+          "side": "party",
+          "position": {
+            "x": 17,
+            "y": 4
+          }
+        },
+        {
+          "entity": "leya",
+          "side": "party",
+          "position": {
+            "x": 17,
+            "y": 5
+          }
+        },
+        {
+          "entity": "emil",
+          "side": "party",
+          "position": {
+            "x": 17,
+            "y": 3
+          }
+        },
+        {
+          "entity": "auction-hall-foe-1",
+          "side": "hostile",
+          "position": {
+            "x": 0,
+            "y": 4
+          }
+        },
+        {
+          "entity": "auction-hall-foe-2",
+          "side": "hostile",
+          "position": {
+            "x": 0,
+            "y": 5
+          }
+        },
+        {
+          "entity": "auction-hall-boss",
+          "side": "hostile",
+          "position": {
+            "x": 0,
+            "y": 3
+          }
+        }
+      ]
+    }
+  ],
+  "quests": [
+    {
+      "questId": "museum-comparison",
+      "title": "Два основания",
+      "activation": {
+        "subject": "museum",
+        "summary": "Сравнить экспонат с описанием и найти сведения о перевозке."
+      },
+      "milestones": [
+        {
+          "kind": "examined-at",
+          "stage": "examined",
+          "locationId": "museum",
+          "summary": "Осмотрены музейные детали."
+        },
+        {
+          "kind": "reached",
+          "stage": "quay",
+          "locationId": "quay",
+          "summary": "Герои пришли к причалу; выводы делают сами."
+        }
+      ],
+      "completion": "quay"
+    },
+    {
+      "questId": "sound-comparison",
+      "title": "Повторённый голос",
+      "activation": {
+        "subject": "reef",
+        "summary": "Сопоставить наблюдения и старую запись."
+      },
+      "milestones": [
+        {
+          "kind": "examined-at",
+          "stage": "read",
+          "locationId": "reef",
+          "summary": "Осмотрены схема и журнал сада."
+        },
+        {
+          "kind": "shown-to",
+          "stage": "asked",
+          "npcId": "ostin",
+          "subject": "reef",
+          "after": "read",
+          "summary": "Сведения показаны Остину; сравнение не объявляет виновного автоматически."
+        }
+      ],
+      "completion": "asked"
+    },
+    {
+      "questId": "first-makers",
+      "title": "Полная история",
+      "activation": {
+        "subject": "wreck",
+        "summary": "Осмотреть старую мастерскую и принести наблюдения."
+      },
+      "milestones": [
+        {
+          "kind": "examined-at",
+          "stage": "studied",
+          "locationId": "wreck",
+          "summary": "Осмотрены материалы мастерской."
+        },
+        {
+          "kind": "returned-to",
+          "stage": "shared",
+          "locationId": "boat",
+          "after": "studied",
+          "summary": "Герои вернулись к общему столу с тем, что узнали в Первой Мастерской."
+        }
+      ],
+      "completion": "shared"
+    },
+    {
+      "questId": "courier-trail",
+      "title": "Чужая бирка",
+      "activation": {
+        "subject": "courier-tag",
+        "summary": "Понять, что везла почтовая артель, прежде чем кого-то подозревать."
+      },
+      "milestones": [
+        {
+          "kind": "examined-at",
+          "stage": "read",
+          "locationId": "wreck",
+          "summary": "Осмотрена бирка артели в Первой Мастерской; что она значит, решают герои."
+        },
+        {
+          "kind": "shown-to",
+          "stage": "archive",
+          "npcId": "ur",
+          "subject": "courier-tag",
+          "after": "read",
+          "summary": "Бирка показана Уру в архиве."
+        },
+        {
+          "kind": "shown-to",
+          "stage": "market",
+          "npcId": "bubo",
+          "subject": "courier-tag",
+          "after": "read",
+          "summary": "Бирка показана Бубо на рынке."
+        }
+      ],
+      "completion": "read"
+    },
+    {
+      "questId": "glass-copy-chase",
+      "title": "Копия наперегонки с водой",
+      "activation": {
+        "subject": "glass-copy",
+        "summary": "Догнать ящик со стеклянной копией до того, как в полдень откроются ворота шлюза."
+      },
+      "milestones": [
+        {
+          "kind": "examined-at",
+          "stage": "order",
+          "locationId": "quay",
+          "summary": "Найдено поручение курьеру; где копия сейчас, решает погоня."
+        },
+        {
+          "kind": "returned-to",
+          "stage": "safe",
+          "locationId": "boat",
+          "after": "order",
+          "summary": "Герои вернулись на лодку; цела ли копия, записывает ведущий."
+        }
+      ],
+      "completion": "safe"
+    },
+    {
+      "questId": "lot-comparison",
+      "title": "Осмотр лота",
+      "activation": {
+        "subject": "nautilus",
+        "summary": "Сверить предмет и представить наблюдения."
+      },
+      "milestones": [
+        {
+          "kind": "reached",
+          "stage": "arrived",
+          "locationId": "nautilus",
+          "summary": "Достигнут Наутилус."
+        },
+        {
+          "kind": "examined-at",
+          "stage": "observed",
+          "locationId": "nautilus",
+          "summary": "Осмотрены лот и приёмная книга; возврат ещё не считается выполненным."
+        },
+        {
+          "kind": "shown-to",
+          "stage": "reported",
+          "npcId": "iris",
+          "subject": "nautilus",
+          "after": "observed",
+          "summary": "Наблюдения показаны Ирис. Владение, ответственность и итог оформляются после реальных решений."
+        }
+      ],
+      "completion": "reported"
+    }
+  ],
+  "visuals": [
+    {
+      "entity": "sea",
+      "purpose": "image",
+      "description": "Город Перламутр стоит под прозрачными сводами среди кораллов. Сухие галереи с обычным воздухом соединяют кварталы; море за стеклом остаётся огромным и прекрасным.",
+      "style": "Живописная гуашь и цветной карандаш, ультрамарин, бирюза, перламутр, коралловый и тёплое золото; сухие галереи под прозрачными морскими сводами. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "museum",
+      "purpose": "image",
+      "description": "Белые лестницы, перламутровые стены и низкие витрины. Над залом проплывают скаты. У центрального экспоната есть ручной акустический рожок и табличка об истории города.",
+      "style": "Живописная гуашь и цветной карандаш, ультрамарин, бирюза, перламутр, коралловый и тёплое золото; сухие галереи под прозрачными морскими сводами. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "quay",
+      "purpose": "image",
+      "description": "Сухая набережная под стеклянной аркой. Лодки ходят по открытому внутри свода каналу; за дальним концом причала Южный шлюз, чьи ворота в полдень уходят за свод. Верёвочные ограждения и широкие ступени позволяют спокойно садиться на борт.",
+      "style": "Живописная гуашь и цветной карандаш, ультрамарин, бирюза, перламутр, коралловый и тёплое золото; сухие галереи под прозрачными морскими сводами. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "boat",
+      "purpose": "image",
+      "description": "Небольшая крытая лодка с печкой, столом на троих, запасной скамьёй и медными слуховыми трубками. Общий дом путешественников; её действительное положение отмечает ведущий.",
+      "style": "Живописная гуашь и цветной карандаш, ультрамарин, бирюза, перламутр, коралловый и тёплое золото; сухие галереи под прозрачными морскими сводами. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "market",
+      "purpose": "image",
+      "description": "Навесы из старых парусов, рыбки в стеклянных фонарях и пирожки в форме ракушек. Над мостиками висят корзины с посылками, а на площади всегда спорят о правильной цене пустой коробки.",
+      "style": "Живописная гуашь и цветной карандаш, ультрамарин, бирюза, перламутр, коралловый и тёплое золото; сухие галереи под прозрачными морскими сводами. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "reef",
+      "purpose": "image",
+      "description": "Воздушная оранжерея у большого рифового окна. Кораллы снаружи передают колебания в медные чаши внутри. На скамьях лежат простые слуховые трубки; это сад для наблюдений, не чтения мыслей.",
+      "style": "Живописная гуашь и цветной карандаш, ультрамарин, бирюза, перламутр, коралловый и тёплое золото; сухие галереи под прозрачными морскими сводами. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "theatre",
+      "purpose": "image",
+      "description": "Овальная сцена, восемь разноцветных занавесов и сухая мастерская под ней. Театр стоит у солёного бассейна: директор-осьминог может удобно работать и в воде, и рядом со зрителями.",
+      "style": "Живописная гуашь и цветной карандаш, ультрамарин, бирюза, перламутр, коралловый и тёплое золото; сухие галереи под прозрачными морскими сводами. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "glass",
+      "purpose": "image",
+      "description": "Светлая мастерская с остывшими образцами, защищённой печью и столом под увеличительными стёклами. Готовые копии ракушек лежат отдельно от ещё горячих изделий.",
+      "style": "Живописная гуашь и цветной карандаш, ультрамарин, бирюза, перламутр, коралловый и тёплое золото; сухие галереи под прозрачными морскими сводами. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "archive",
+      "purpose": "image",
+      "description": "Высокие сухие полки, каталожные лесенки и большое окно на медленно проплывающих черепах. В центре низкий стол: документы можно читать, рисовать или слушать вслух.",
+      "style": "Живописная гуашь и цветной карандаш, ультрамарин, бирюза, перламутр, коралловый и тёплое золото; сухие галереи под прозрачными морскими сводами. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "wreck",
+      "purpose": "image",
+      "description": "Старое здание опустилось ниже современного города. Укреплённая лестница ведёт в проверенный сухой воздушный зал, где сохранились рабочая мозаика, шкаф и обычный аварийный выход.",
+      "style": "Живописная гуашь и цветной карандаш, ультрамарин, бирюза, перламутр, коралловый и тёплое золото; сухие галереи под прозрачными морскими сводами. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "nautilus",
+      "purpose": "image",
+      "description": "Павильон в огромной пустой древней раковине, не живое животное. Спиральные сухие галереи соединяют зал торгов, склад и открытую террасу. Посетителей встречает служитель с книгой расписания.",
+      "style": "Живописная гуашь и цветной карандаш, ультрамарин, бирюза, перламутр, коралловый и тёплое золото; сухие галереи под прозрачными морскими сводами. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "passage",
+      "purpose": "image",
+      "description": "Широкий прозрачный коридор со скамьями и боковыми сухими убежищами. Снаружи видна приливная волна; при сильном течении закрывают движение тележек, но воздух и свод сохраняются.",
+      "style": "Живописная гуашь и цветной карандаш, ультрамарин, бирюза, перламутр, коралловый и тёплое золото; сухие галереи под прозрачными морскими сводами. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "commons",
+      "purpose": "image",
+      "description": "Ступенчатая площадь под круглым окном на море. Есть низкий помост, места для спокойного разговора и стол, куда любой житель может положить предложение о будущем города.",
+      "style": "Живописная гуашь и цветной карандаш, ультрамарин, бирюза, перламутр, коралловый и тёплое золото; сухие галереи под прозрачными морскими сводами. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "toren",
+      "purpose": "image",
+      "description": "Коренастый дварф с медной бородой, бирюзовым плащом и круглым щитом с волной. На поясе простая серебристая звёздочка. Защитник и бывший праздничный акробат.",
+      "style": "Живописная гуашь и цветной карандаш, ультрамарин, бирюза, перламутр, коралловый и тёплое золото; сухие галереи под прозрачными морскими сводами. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "leya",
+      "purpose": "image",
+      "description": "Полурослик с тёмной косой, коралловой курткой и сумкой для находок. На шее маленький пустой стеклянный футляр. Ловкая искательница сокровищ.",
+      "style": "Живописная гуашь и цветной карандаш, ультрамарин, бирюза, перламутр, коралловый и тёплое золото; сухие галереи под прозрачными морскими сводами. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "emil",
+      "purpose": "image",
+      "description": "Эльф с короткими серебристыми волосами, круглой оправой очков и тёмно-синим жилетом. В руках латунная рамка с цветной линзой. Маг и ученик оптической мастерской.",
+      "style": "Живописная гуашь и цветной карандаш, ультрамарин, бирюза, перламутр, коралловый и тёплое золото; сухие галереи под прозрачными морскими сводами. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "nora",
+      "purpose": "image",
+      "description": "Пожилая женщина с серебряными волосами, синим капитанским пальто, золотыми пуговицами и доброй морщинкой у глаз. Водит лодку «Слушай море» и знает безопасные сухие пути.",
+      "style": "Живописная гуашь и цветной карандаш, ультрамарин, бирюза, перламутр, коралловый и тёплое золото; сухие галереи под прозрачными морскими сводами. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "elma",
+      "purpose": "image",
+      "description": "Высокая женщина с каштановой косой, белым музейным жакетом и бирюзовыми перчатками. Куратор Первого Голоса, умеет рассказывать даже о пустой подставке.",
+      "style": "Живописная гуашь и цветной карандаш, ультрамарин, бирюза, перламутр, коралловый и тёплое золото; сухие галереи под прозрачными морскими сводами. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "lucien",
+      "purpose": "image",
+      "description": "Ухоженный мужчина с узкими усами, винным бархатным сюртуком и золотой заколкой в форме коралла. Коллекционер, спонсор праздника, любит безупречные витрины.",
+      "style": "Живописная гуашь и цветной карандаш, ультрамарин, бирюза, перламутр, коралловый и тёплое золото; сухие галереи под прозрачными морскими сводами. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "bubo",
+      "purpose": "image",
+      "description": "Маленький кораллово-красный краб с синей почтовой сумкой, круглыми глазами и белой фуражкой. Разносит посылки; выдаёт себе новые должности на пустых бирках.",
+      "style": "Живописная гуашь и цветной карандаш, ультрамарин, бирюза, перламутр, коралловый и тёплое золото; сухие галереи под прозрачными морскими сводами. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "dora",
+      "purpose": "image",
+      "description": "Дварфийка с тёмной кожей, белыми короткими кудрями, медными очками и абрикосовым рабочим фартуком. Делает честные копии для учёбы, чтобы дети могли потрогать редкие формы.",
+      "style": "Живописная гуашь и цветной карандаш, ультрамарин, бирюза, перламутр, коралловый и тёплое золото; сухие галереи под прозрачными морскими сводами. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "ostin",
+      "purpose": "image",
+      "description": "Сиреневый осьминог с маленьким золотым жилетом и восемью выразительными руками; сидит у круглого бассейна. Директор театра, музыкант и мастер неожиданных пауз.",
+      "style": "Живописная гуашь и цветной карандаш, ультрамарин, бирюза, перламутр, коралловый и тёплое золото; сухие галереи под прозрачными морскими сводами. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "vella",
+      "purpose": "image",
+      "description": "Добродушная морская саламандра с бирюзовой кожей, коралловыми наружными жабрами и соломенной садовой шляпой. Ухаживает за слушающими кораллами, любит аккуратные опыты.",
+      "style": "Живописная гуашь и цветной карандаш, ультрамарин, бирюза, перламутр, коралловый и тёплое золото; сухие галереи под прозрачными морскими сводами. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "ur",
+      "purpose": "image",
+      "description": "Пожилой черепахообразный житель в чернильном жилете, с круглыми очками и закладкой на запястье. Хранит бумаги медленно, находит нужную быстро.",
+      "style": "Живописная гуашь и цветной карандаш, ультрамарин, бирюза, перламутр, коралловый и тёплое золото; сухие галереи под прозрачными морскими сводами. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "iris",
+      "purpose": "image",
+      "description": "Женщина с тёмными короткими волосами, перламутровым плащом и коралловой лентой на папке. Ведёт открытые собрания кварталов и хранит заверенные копии городских бумаг.",
+      "style": "Живописная гуашь и цветной карандаш, ультрамарин, бирюза, перламутр, коралловый и тёплое золото; сухие галереи под прозрачными морскими сводами. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "pinna",
+      "purpose": "image",
+      "description": "Худой пожилой человек в перламутровом жилете, с латунным молотком на шнурке и книгой расписания под мышкой. Служитель Наутилуса: принимает лоты, ведёт каталог и торги.",
+      "style": "Живописная гуашь и цветной карандаш, ультрамарин, бирюза, перламутр, коралловый и тёплое золото; сухие галереи под прозрачными морскими сводами. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "timokha",
+      "purpose": "image",
+      "description": "Долговязый подросток в великоватой рыбацкой куртке, с ободранными коленками и сумкой разносчика через плечо. Берётся на рынке за любые поручения: отнести, принести, выбросить.",
+      "style": "Живописная гуашь и цветной карандаш, ультрамарин, бирюза, перламутр, коралловый и тёплое золото; сухие галереи под прозрачными морскими сводами. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "pass",
+      "purpose": "image",
+      "description": "Перламутровая пластинка на коралловой ленте с тремя волнами и пустым местом для имени.",
+      "style": "Живописная гуашь и цветной карандаш, ультрамарин, бирюза, перламутр, коралловый и тёплое золото; сухие галереи под прозрачными морскими сводами. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "lens",
+      "purpose": "image",
+      "description": "Складная латунная лупа с бледно-голубым стеклом и короткой светлой ручкой.",
+      "style": "Живописная гуашь и цветной карандаш, ультрамарин, бирюза, перламутр, коралловый и тёплое золото; сухие галереи под прозрачными морскими сводами. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "chime",
+      "purpose": "image",
+      "description": "Три разные ракушки на коралловой нити; каждая звучит чуть иначе.",
+      "style": "Живописная гуашь и цветной карандаш, ультрамарин, бирюза, перламутр, коралловый и тёплое золото; сухие галереи под прозрачными морскими сводами. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "case",
+      "purpose": "image",
+      "description": "Маленький пустой стеклянный футляр с латунным ободком и синей подкладкой.",
+      "style": "Живописная гуашь и цветной карандаш, ультрамарин, бирюза, перламутр, коралловый и тёплое золото; сухие галереи под прозрачными морскими сводами. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "ribbon",
+      "purpose": "image",
+      "description": "Коралловая тканевая лента с тремя маленькими перламутровыми бирками.",
+      "style": "Живописная гуашь и цветной карандаш, ультрамарин, бирюза, перламутр, коралловый и тёплое золото; сухие галереи под прозрачными морскими сводами. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "pearl",
+      "purpose": "image",
+      "description": "Перламутровый музыкальный архив с цельным основанием и знаком семи соединённых волн. Рядом ручной рожок для записи и воспроизведения. Внутри хранится песня открытия города, записанная первыми мастерами.",
+      "style": "Живописная гуашь и цветной карандаш, ультрамарин, бирюза, перламутр, коралловый и тёплое золото; сухие галереи под прозрачными морскими сводами. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "tide-calendar",
+      "purpose": "image",
+      "description": "Лист плотной бумаги в клетку, сложенный вчетверо, с пятнами супа на углу. По строкам — городские дни, по столбцам — галереи; синим отмечены часы закрытия, звёздочкой — вечера большой воды.",
+      "style": "Живописная гуашь и цветной карандаш, ультрамарин, бирюза, перламутр, коралловый и тёплое золото; сухие галереи под прозрачными морскими сводами. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "courier-tag",
+      "purpose": "image",
+      "description": "Синяя картонная бирка с рисунком краба в фуражке и надписью: «Три тубуса чертежей. Получатель — Архив Неспешных Дел. Заказ архивариуса Ура». Привязана к пустому ящику со штампом Первой Мастерской.",
+      "style": "Живописная гуашь и цветной карандаш, ультрамарин, бирюза, перламутр, коралловый и тёплое золото; сухие галереи под прозрачными морскими сводами. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "glass-copy",
+      "purpose": "image",
+      "description": "Гладкая перламутровая на вид стеклянная сфера с тонким литейным швом и клеймом из трёх лучей на основании. Тяжёлая, прохладная, совсем молчаливая.",
+      "style": "Живописная гуашь и цветной карандаш, ультрамарин, бирюза, перламутр, коралловый и тёплое золото; сухие галереи под прозрачными морскими сводами. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "paper-reception-foe-1",
+      "purpose": "image",
+      "description": "Складной краб из плотной навигационной бумаги с латунными шарнирами и мягкими клешнями. Перед тем как схватить, щёлкает и показывает пустую бирку.",
+      "style": "Живописная гуашь и цветной карандаш, ультрамарин, бирюза, перламутр, коралловый и тёплое золото; сухие галереи под прозрачными морскими сводами. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "paper-reception-foe-2",
+      "purpose": "image",
+      "description": "Складной краб из плотной навигационной бумаги с латунными шарнирами и мягкими клешнями. Перед тем как схватить, щёлкает и показывает пустую бирку.",
+      "style": "Живописная гуашь и цветной карандаш, ультрамарин, бирюза, перламутр, коралловый и тёплое золото; сухие галереи под прозрачными морскими сводами. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "quay-chase-foe-1",
+      "purpose": "image",
+      "description": "Портовый краб-грузчик: латунный панцирь, ролики вместо задних ног, клешни обмотаны канатом, чтобы не царапать ящики. Везёт то, что ему привязали, и не спрашивает зачем.",
+      "style": "Живописная гуашь и цветной карандаш, ультрамарин, бирюза, перламутр, коралловый и тёплое золото; сухие галереи под прозрачными морскими сводами. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "quay-chase-foe-2",
+      "purpose": "image",
+      "description": "Портовый краб-грузчик: латунный панцирь, ролики вместо задних ног, клешни обмотаны канатом, чтобы не царапать ящики. Везёт то, что ему привязали, и не спрашивает зачем.",
+      "style": "Живописная гуашь и цветной карандаш, ультрамарин, бирюза, перламутр, коралловый и тёплое золото; сухие галереи под прозрачными морскими сводами. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "quay-chase-foe-3",
+      "purpose": "image",
+      "description": "Крабик-подручный размером с чайную чашку, сложенный из квитанций. Сам почти ничего не может, но цепляется за шнурки и подолы и пищит, зовя старших.",
+      "style": "Живописная гуашь и цветной карандаш, ультрамарин, бирюза, перламутр, коралловый и тёплое золото; сухие галереи под прозрачными морскими сводами. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "quay-chase-foe-4",
+      "purpose": "image",
+      "description": "Крабик-подручный размером с чайную чашку, сложенный из квитанций. Сам почти ничего не может, но цепляется за шнурки и подолы и пищит, зовя старших.",
+      "style": "Живописная гуашь и цветной карандаш, ультрамарин, бирюза, перламутр, коралловый и тёплое золото; сухие галереи под прозрачными морскими сводами. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "auction-hall-foe-1",
+      "purpose": "image",
+      "description": "Складской краб Наутилуса: перламутровый панцирь с номером лота на спине, широкие клешни-зажимы. Держит то, что ему велели держать, пока ему не покажут другой приказ.",
+      "style": "Живописная гуашь и цветной карандаш, ультрамарин, бирюза, перламутр, коралловый и тёплое золото; сухие галереи под прозрачными морскими сводами. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "auction-hall-foe-2",
+      "purpose": "image",
+      "description": "Складской краб Наутилуса: перламутровый панцирь с номером лота на спине, широкие клешни-зажимы. Держит то, что ему велели держать, пока ему не покажут другой приказ.",
+      "style": "Живописная гуашь и цветной карандаш, ультрамарин, бирюза, перламутр, коралловый и тёплое золото; сухие галереи под прозрачными морскими сводами. Без надписей, тайных мотивов и подсказок к загадкам."
+    },
+    {
+      "entity": "auction-hall-boss",
+      "purpose": "image",
+      "description": "Указка распорядителя торгов: тонкий латунный стержень в рост ребёнка с перламутровой ладонью на конце. Летает над рядами, тычет пальцем и всё время что-то показывает; сама по себе она безвредна, пока ей есть на что указывать.",
+      "style": "Живописная гуашь и цветной карандаш, ультрамарин, бирюза, перламутр, коралловый и тёплое золото; сухие галереи под прозрачными морскими сводами. Без надписей, тайных мотивов и подсказок к загадкам."
+    }
+  ],
+  "firstSession": [
+    "Три гостя и слишком длинная гирлянда. Эльма встречает друзей у входа раньше других посетителей и поправляет очки, которых не носит. «Вы от Норы? Прекрасно. Значит, умеете держать конец верёвки, это у неё первое правило дружбы». Попросите каждого игрока назвать вещь, которую герой принёс, и одно общее дело с соседом. Затем помощники не могут развесить праздничную гирлянду из ракушек: один конец зацепился за дверную ручку, второй лежит под низкой скамьёй, середина провисает до пола. Пусть герои придумают способ вместе: переставить скамью, придержать конец, сделать петлю, украсить низкую стойку для малышей. Броска не нужно, достаточно понятной идеи. Эльма выдаёт пропуски слушателей и вписывает имена. Когда гирлянда висит, она начинает говорить слишком быстро: «Это, конечно, мелочь, рожок, наверное, отсырел, хотя он никогда не сырел, сорок лет не сырел…» Потом выдыхает: «Простите. Экспонат молчит уже десять минут. Я не знаю почему. Посмотрите со мной?» Спасать город она не просит — только посмотреть вместе. Если игрокам интереснее праздник, начните с экскурсии: странное основание заметно и на ней. Неудача: Гирлянду вешают ниже, и она становится украшением для самых маленьких посетителей. Эльма благодарит именно за это: «Дети смотрят снизу. Вы первые об этом подумали».",
+    "Красивое не значит подлинное. Дайте карточку экспоната. Эльма открывает витрину в бирюзовых перчатках и держит сферу над мягкой подкладкой. «Смотрите сколько угодно. Трогать — только палочкой. Это не правило, это моя нервная система». Опишите видимое сразу, без проверки: гладкий блеск, тонкий литейный шов у основания, три луча вместо семи соединённых волн из карточки. Герои могут сравнить рисунок, постучать холодной деревянной палочкой, спросить о материале. Знание стекла не требуется: при сравнении видно, что описание не совпадает. Рожок исправен: на учебном валике слышен короткий звон, значит молчит именно предмет. Обнаружение магии работает по листу, но вора не называет. Когда группа называет различие, Эльма бледнеет: «Семь волн. Здесь должно быть семь волн. Это… стекло. Красивое, честное стекло, и совсем не наше». Если кто-то предлагает разбить сферу, скажите заранее: все детали уже видны, а целая копия пригодится как улика. Эльма запирает её обратно на ключ: «Пусть стоит. Она теперь свидетель, а свидетелей не прячут в подвал». Запомните это: копия остаётся в музейной витрине. Неудача: Эльма сама подносит лампу и кладёт рядом два рисунка. Если сфера повреждена, осколки основания сохраняют клеймо из трёх лучей; улика не пропадает.",
+    "Подпись под закрытым футляром. Эльма достаёт журнал приёмки и кладёт так, чтобы видели все. Вчера в 16:00 Люсьен Коралл, спонсор праздника, помогал переносить витрины; после этого она подписала приёмку закрытого футляра. «Всё было как обычно», — начинает она и тут же поправляет невидимые очки. — «Нет. Не как обычно. Обычно я открываю футляр и смотрю на клеймо. Вчера не открыла. Он так любезно держал дверь, что проверять было… неловко». Признание следует из прямого вопроса, броска не нужно. На полях журнала отмечен путь тележки через причал к рынку. Герои выбирают первый адрес: причал, где вчера будто бы слышали Люсьена дома; мастерская с клеймом трёх лучей; рынок по маршруту тележки. Эльма просит не называть никого вором, пока нет бумаг: «Если вы правы, бумаги вас догонят. Если нет — слова уже не догонишь». Это просьба, не запрет. Если команда всё же объявляет кражу вслух, музей закрывает зал и сообщает о подмене без имени. Если герои не хотят брать дело, Эльма пишет обычное заявление и просит передать Норе карточку экспоната — Нора всё равно ждёт их у причала. Неудача: Если разговор превратился в ссору, помощник куратора выдаёт письменную копию журнала. Эльма остаётся настороженной, но дверь музея для героев открыта."
+  ],
+  "laterOutline": [
+    "Вечер 2. Голос за закрытой занавесью. Дать героям общий дом и приливный календарь, научиться отличать услышанный голос от увиденного человека. Приливный календарь — простая шкала давления. Строка — городской день; в ней указано, какие галереи и в какие часы закрыты. Двигают календарь ночёвки и долгие дела. Обычная вода делает путь длиннее; звёздочка — вечер большой воды, когда к Наутилусу открыта только Галерея Большой Волны. Ориентир темпа: вечера 1–2 — первый день, 3–4 — второй, 5–6 — третий, 7–8 — четвёртый, 9–11 — пятый. Нора знает воду. О подмене она узнаёт от героев.",
+    "Вечер 3. Коробка, которая стоила слишком много. Пройти по материальному следу груза, подружиться с Бубо и получить адрес Наутилуса и дату торгов. Бирка существовала вчера. Письма и ответы появляются только после действий игроков. Правило «лот открывают только под лампой зала» действует с самого начала и объясняет, почему Жемчужину нельзя забрать раньше торгов. Пинна в этом вечере появляется, только если герои пошли в Наутилус. По календарю второго дня до 13:00 закрыты и Переход под парусами, и Коралловая арка: в театр и в сад с рынка сегодня можно только после обеда.",
+    "Вечер 4. Сад, который слышит сбоку. Превратить проверку алиби в игру с наблюдениями и впервые увидеть вечер большой воды из рифового окна. Кораллы не всеведущий диктофон: они передают колебания, а вчерашние сведения существуют в конкретном журнале. Вечер большой воды здесь показан заранее, чтобы в девятом–одиннадцатом вечерах игроки понимали правило одного пути без объяснений.",
+    "Вечер 5. Аплодисменты в пустом зале. Найти источник звука без человека, сравнить старую запись с журналом Веллы и разрушить ложное алиби. Остин знает устройство и прошлую запись. Не давайте ему знание о подмене или содержимом ящика, пока герои не рассказали. Приливы здесь работают как маршрут: из театра к Стеклянному Двору ведёт Улица мастерских, к рынку — Переход под парусами; смотрите, какая из них закрыта сейчас.",
+    "Вечер 6. Честная копия. Связать копию с заказом Люсьена, отличить честное ремесло от обмана и понять, почему стеклянная копия — важная улика. Лупа и сувениры не дают скрытых бонусов. Дора изначально здесь; крабам даны только поддерживаемые статблоки. Встреча «Бумажная приёмка» — первая из трёх необязательных; две другие ждут на причале и в зале Наутилуса. Мысль Доры о копии как подписи под поступком — опора девятого вечера: проговорите её вслух.",
+    "Вечер 7. Имена на полях. Установить общинное право на архив, открыть забытую историю создателей и успеть спланировать спуск в Первую Мастерскую до вечерней воды. Не превращайте вечер в настоящее юридическое консультирование: правила Перламутра вымышлены. Ур знает про хартию, опись и то, что за два дня до начала истории сам заказал почтовой артели вынести из Мастерской старые чертежи; об этом он скажет, только если его спросят в восьмом вечере.",
+    "Вечер 8. Бирка на пустом ящике. Спуститься к истокам города, увидеть мозаику многих рук, разобраться с ложным следом против артели Бубо и встретить перелом: Люсьен исчез, торги перенесены. Перелом кампании. Люсьен понял, что герои близко, перенёс лот на ближайший вечер большой воды и скрылся; служитель больше не отвечает на заявления и ждёт всё в зале. Ложный след честный: бирка настоящая, артель действительно несла груз, только чертежи. Ничего не меняйте в нём ради драмы. Если вечер 8 пришёлся на другой день, торги переносятся на ближайшую звёздочку календаря. Часы девятого–одиннадцатого вечеров не меняются: читайте строку того дня как строку пятого (Набережная 11:20–12:30, шлюз в полдень, большая вода с 17:30).",
+    "Вечер 9. Погоня за копией. Узнать, кто и куда унёс стеклянную копию, выбрать путь с рынка к причалу по приливному календарю и успеть до полудня. Расписание курьера (только для ведущего): 11:05 уходит с рынка по мосткам, 11:30 у причала грузит коробку на крабов, 11:45 крабы у края решётки, 12:00 ворота открываются. Тимоху наняли запиской у склада Наутилуса: половина платы лежала в записке, вторую обещали у ящика № 7. Заказчика он не видел и думал, что выбрасывает лампу. Поручение отдал Люсьен: клеймо Доры в музее выдаёт подмену. Встреча «Копия уходит в воду» — вторая необязательная и кончается у решётки шлюза; никто не падает в море.",
+    "Вечер 10. Волна над головой. Пройти единственным открытым путём к раковине в вечер большой воды, переждать волну в нише, увидеть оптическое чудо и выбрать обход, а по дороге составить план трёх ролей. Прилив и свет мешают дороге к торгам, но ничего не ломают. Боя в галерее нет. Свет не шифр основателей и не улика. Время в зале считайте от того, каким путём поднялись: подъёмник даёт полчаса на подготовку, лестница — около десяти минут.",
+    "Вечер 11. Аукцион под раковиной. Исполнить план трёх ролей на торгах, услышать вместе с залом голос города и узнать, у кого Жемчужина, когда падает молоток. Финал — сами торги: без собрания, голосования и протокола. Счёт молотка и старшинство итогов записаны в проверках второго и третьего эпизода; держите их перед глазами. Ирис приходит, только если ей написали в седьмом вечере. Все четыре итога достижимы: без хартии и без трёх заработанных голосов решает подмена, а без удачной подмены — Люсьен. Голоса зала считайте только заработанные, по списку в проверке первого эпизода. Встреча «Указка распорядителя» — третья необязательная. Люсьен не знал, что на записи есть Нора: дайте ему это мгновение, но не превращайте его в прощение.",
+    "Вечер 12. Настоящий голос. Показать короткий вечер последствий: Жемчужина на новом месте, одна настоящая строка Норы, имя волны в журнале, должность Бубо на табличке и по одному вопросу каждому герою. Это не круг итогов и не подведение результатов. Каждый вопрос героя задавайте в своём месте сцены, одному герою, и принимайте любой ответ, в том числе «не знаю». Лента Ирис может просто висеть на подставке Жемчужины: её надписи — то, что игроки захотят нарисовать."
+  ]
+}

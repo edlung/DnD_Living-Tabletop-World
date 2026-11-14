@@ -1,0 +1,46 @@
+[
+  {
+    "width": 1440,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x40, 14.4px x20, 11.2px x4"
+      }
+    ]
+  },
+  {
+    "width": 768,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x40, 14.4px x20, 11.2px x4"
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x40, 14.4px x20, 11.2px x4"
+      }
+    ]
+  },
+  {
+    "width": 320,
+    "findings": [
+      {
+        "level": "info",
+        "rule": "off-scale-spacing",
+        "where": "main",
+        "detail": "7.2px x40, 14.4px x20, 11.2px x4"
+      }
+    ]
+  }
+]

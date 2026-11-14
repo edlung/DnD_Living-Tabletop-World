@@ -91,6 +91,7 @@ export function buildCampaignPlan(
         kind: entity.kind,
         name: entity.name,
         description: entity.description,
+        ...(entity.manner !== undefined ? { manner: entity.manner } : {}),
         existsSince: entity.existsSince,
         ...(entity.location
           ? {

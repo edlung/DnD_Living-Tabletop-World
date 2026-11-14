@@ -30,6 +30,8 @@ export interface CuratedImportDeps {
   readonly contents: AssetContentStore;
   readonly set: CuratedSet;
   readonly logger: Logger;
+  /** Explicit source recorded by an offline curated-set operator; legacy reason otherwise. */
+  readonly reason?: string;
 }
 
 export interface CuratedImportSummary {
@@ -126,7 +128,7 @@ export async function importCuratedSet(
       commandId,
       campaignId,
       actor: dm,
-      reason: CURATED_REASON,
+      reason: deps.reason ?? CURATED_REASON,
       command,
     });
     if (result.status === 'rejected') {

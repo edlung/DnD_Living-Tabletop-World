@@ -1,0 +1,122 @@
+{
+  "changes": [
+    {
+      "path": "campaigns/moon-pearl/AGENTS.md",
+      "before": "dde7b5f87adac8b0d0f2b70c380321295441241c748350268eacbeb8d9838942",
+      "after": "cd8120ee2a3209a5fb2192120a92c843b1e3d4dcb03069bdffd6704c4fd7f89b"
+    },
+    {
+      "path": "campaigns/moon-pearl/README.md",
+      "before": "a04c3060a5819387dd68461b40ff563344649430cd51c19f2257d4a37355df7c",
+      "after": "df972970a2a6c9c429030e991d72eeecb641860c4638ae3d302183ea2d054fe9"
+    },
+    {
+      "path": "campaigns/moon-pearl/assets/manifest.json",
+      "before": "1516ebef0315634c0a8b7b70e09d5dd54ba5a4be8c33551f2685c07ae1eb72f3",
+      "after": "83139003866bc86ef3c4e6b52a5328e401c580969f8aaf0017d27b9f99e8155c"
+    },
+    {
+      "path": "campaigns/moon-pearl/guide.html",
+      "before": "a6b4e436eb5ca5fa1cf35d533290268a697bdbb040509d6c5908d05c0254c31b",
+      "after": "c786b5bc98bc15e3051e459c1a9423ec116e88abbbf90dc010d98e0646f2c257"
+    },
+    {
+      "path": "campaigns/moon-pearl/handouts.html",
+      "before": "bc571c1fa6b07772fd52ee336852f1508c1756f3ea273fd4c59996a701054ca7",
+      "after": "58fb01e1b2f8b2a8fe2f4236107e8b576f823a56eeeb8816caed61720972aca1"
+    },
+    {
+      "path": "campaigns/moon-pearl/handouts/handout-wave.html",
+      "before": "89bf24106bc59564a916ccec7d234e214b131804c66a62907c2ecd07dee3b691",
+      "after": "e373ebfd97810510d46f726e1ca5ef61ba4cec7ad2bfcc06aa1693d7f079665c"
+    },
+    {
+      "path": "campaigns/moon-pearl/maps.html",
+      "before": "7978ae02133adc76a2ae832c99e71bccdbfb482d29d95169f73b240871619c97",
+      "after": "9b5dc76b1f5fc2467e64f6543d6b70d690bb21d7061a7645a681b356b7607dad"
+    },
+    {
+      "path": "campaigns/moon-pearl/maps/route-confusion.svg",
+      "before": "55e23bf989809db51f708f4cb69b942e6b2a8511ef9e86d884b572baaad5ac98",
+      "after": null
+    },
+    {
+      "path": "campaigns/moon-pearl/package.json",
+      "before": "e12711076e298aad9195c39dec219078fa70744c1903e2c82159735698e740c4",
+      "after": "4c0d5319d4ebb37811f5b54b24202e907fab3ad50bde23efefefe6177fb4706f"
+    },
+    {
+      "path": "campaigns/moon-pearl/sessions/10.html",
+      "before": "ebfb3abca8f17acfb23b8b570ae9e0e0677b593960a64dc907a21d50b3abff9f",
+      "after": "766d19176bfce3d9e72da882e5a4974eaef78f4e42eb2d184d10eda37dc5be89"
+    },
+    {
+      "path": "campaigns/moon-pearl/sessions/11.html",
+      "before": "07b9a4fb3a9fa8a208121e78388fa8850bfdbfd86076c0d0a0f4e174739ecca7",
+      "after": "a3a568ef16a199955f484c87c93c727e92500926151b15f38c6255469bc25a52"
+    },
+    {
+      "path": "campaigns/moon-pearl/source/act-4.json",
+      "before": "ab7fa9bd83edbf564a087040f378fcb1ed7cffeda04e08126ce4633a47ca0eb7",
+      "after": "61391c392cf33ef6f78ab58d2dcc47ebe63ca1d75f163281b1b75fbe06b2213c"
+    },
+    {
+      "path": "campaigns/moon-pearl/source/handouts.json",
+      "before": "fe020e913d503bf62d4f6c587e5be9f9ae597c603149943dbebe3edc4115e069",
+      "after": "9f5d541888caf263dfaca5a44e50cc647b7711cd32a956881f4bf23096171124"
+    },
+    {
+      "path": "campaigns/moon-pearl/source/world.json",
+      "before": "8fa24ef256918ba635012d0037bdd4c29c9d1a1d1ff9267ed01fef7eecf245a9",
+      "after": "8f7415337a7a97ef601298724dff42c01f338d4b976764859849cbd2ae6caa0e"
+    },
+    {
+      "path": "campaigns/moon-pearl/tokens.html",
+      "before": "74c1c19783f8e7350ace1938a45df4ac2caace37665f3887178308d59504207a",
+      "after": "db972c738535db70ed98cee6871e67db644c8ba94d0ac0f3f76ec75ef812d3a7"
+    },
+    {
+      "path": "campaigns/moon-pearl/variants/four-players.json",
+      "before": "4adccc6ee2cf3f469ed80536435c4384cc78b226ac879dfaa3e0ec8a009777fc",
+      "after": "77edd5d95dc90ccb20932c8d13cfad07dfa39c314f8af76ffa67ced9e7f2d00e"
+    },
+    {
+      "path": "campaigns/moon-pearl/variants/without-amalia.json",
+      "before": "3fba39a74576a498af5c83c9364cc4d2227be68cceea972e8e16a817cb4e900c",
+      "after": "d4df2b56d1a4aa3a80352948b3efeec08ebbcdc3d967f24ef855e0d5acb46962"
+    },
+    {
+      "path": "campaigns/moon-pearl/variants/without-leya.json",
+      "before": "a2bd90d82028236172397ca76f349b6f9bd05b18ac2cf036f9d51f35b02b967a",
+      "after": "d7d8095ed13bc5bbd7932e6e4db5f842e84a519486a99af1ac484272b9e192aa"
+    },
+    {
+      "path": "campaigns/moon-pearl/variants/without-toren.json",
+      "before": "2fa3fac0b440000e29de15fbcc137b9526e4545ba66054f2c1cb56b022b71107",
+      "after": "43a878e3e784dcbfd8dcaa1710f79ab1ba9d5bec8cff3f40a0f2c78b24b26a32"
+    },
+    {
+      "path": "scripts/moon-pearl/AGENTS.md",
+      "before": "0f4dcedf94585bf4a2cb2c74af1214baf7899ebd5f0e17dd8c8dd5466c42c97f",
+      "after": "1513984cba7241b9da2c7081aa244e92cd3ceaad662b3e22f8400c26a24fe732"
+    },
+    {
+      "path": "scripts/moon-pearl/encounters.ts",
+      "before": "072001a708bca3cec0b92528a3f47aa0b8ac0e10134f202649b36a51f4b18991",
+      "after": "ef3ddfea2036bf9ce1ea9e2404875bec017126af4259c9d9a3b3a25a9205e55c"
+    },
+    {
+      "path": "scripts/moon-pearl/play.test.ts",
+      "before": "d516969f0b551438dd7a7260f5352cdc70e29804c3aff84f619af98839c70dd6",
+      "after": "695ff1e61d4a015b359ce730720290cf2aff3c0d2868f2cc384da9037147d55c"
+    },
+    {
+      "path": "scripts/moon-pearl/render-maps.ts",
+      "before": "b522c40d890384c59021b9cf183d5514039cb06fe15ad34f061429ca5849d428",
+      "after": "d2742bdf0892d73dc2439bab45f18a443b5bab9b9a2ca0218480149a45f73cef"
+    }
+  ],
+  "protectedFilesUnchanged": 352,
+  "artOriginalsDerivativesAndProvenanceFilesUnchanged": 72,
+  "oldEvidenceNotRewritten": true
+}

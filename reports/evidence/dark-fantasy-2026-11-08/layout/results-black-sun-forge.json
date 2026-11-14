@@ -1,0 +1,388 @@
+{
+  "pageCount": 19,
+  "errors": 0,
+  "warnings": 0,
+  "titleFindings": [],
+  "results": [
+    {
+      "path": "black-sun-forge/index.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/maps.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/players.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/session-1.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/session-2.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/session-3.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/session-4.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/session-5.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/session-6.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/session-7.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/session-8.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/handouts/bowl-warning.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/handouts/iven-instruction.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/handouts/lower-route.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/handouts/otta-sequence.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/handouts/shift-order.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/handouts/six-breaths.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/handouts/summons.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/handouts/three-operations.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/index.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/maps.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/players.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/session-1.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/session-2.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/session-3.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/session-4.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/session-5.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/session-6.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/session-7.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/session-8.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/handouts/bowl-warning.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/handouts/iven-instruction.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/handouts/lower-route.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/handouts/otta-sequence.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/handouts/shift-order.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/handouts/six-breaths.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/handouts/summons.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/handouts/three-operations.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/index.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/maps.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/players.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/session-1.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/session-2.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/session-3.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/session-4.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/session-5.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/session-6.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/session-7.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/session-8.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/handouts/bowl-warning.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/handouts/iven-instruction.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/handouts/lower-route.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/handouts/otta-sequence.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/handouts/shift-order.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/handouts/six-breaths.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/handouts/summons.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/handouts/three-operations.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/index.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/maps.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/players.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/session-1.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/session-2.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/session-3.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/session-4.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/session-5.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/session-6.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/session-7.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/session-8.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/handouts/bowl-warning.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/handouts/iven-instruction.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/handouts/lower-route.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/handouts/otta-sequence.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/handouts/shift-order.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/handouts/six-breaths.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/handouts/summons.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "black-sun-forge/handouts/three-operations.html",
+      "width": 320,
+      "findings": []
+    }
+  ]
+}

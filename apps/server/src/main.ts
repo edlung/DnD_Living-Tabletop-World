@@ -37,6 +37,8 @@ import { startCampaignActivationLoop } from './workshop/activation/worker-loop.t
 import { PostgresCampaignInitialContentStore } from './campaigns/postgres-content.ts';
 import { PostgresCampaignPublication } from './campaigns/postgres-publication.ts';
 import { loadAdventureBooks, loadAdventurePictures } from './adventures/adventures.ts';
+import { createCampaignEncounterBooks } from './campaigns/encounter-books.ts';
+import { loadCampaignLibrary } from './campaigns/library.ts';
 import { createCampaignQuestBooks } from './campaigns/quest-books.ts';
 import { isOwnRequest } from './images/own-requests.ts';
 import { loadCuratedSet } from './images/curated-set.ts';
@@ -176,6 +178,8 @@ async function main(): Promise<void> {
   // Every other ready adventure's books, and each one's pictures (docs/adr/0058-campaign-content.md §5).
   const adventures = await loadAdventureBooks();
   const adventurePictures = await loadAdventurePictures();
+  // The authored campaigns the workshop offers, their pictures checked once here.
+  const campaignLibrary = await loadCampaignLibrary();
   const draftImageRepository = signIn ? new PostgresDraftImageRepository(pool) : null;
   const draftImages = draftImageRepository
     ? {
@@ -192,6 +196,7 @@ async function main(): Promise<void> {
           contents,
           draftImages: draftImageRepository,
           bootstrap: createRawWorldEngine(pool),
+          libraryPictures: { library: campaignLibrary, logger },
         }
       : null;
   const activationWorker = activation ? new CampaignActivationWorker(activation) : null;
@@ -243,6 +248,7 @@ async function main(): Promise<void> {
     adventures,
     adventurePictures,
     campaignQuests: createCampaignQuestBooks(initialContent),
+    campaignEncounters: createCampaignEncounterBooks(initialContent),
     ...(signIn ? { signIn } : {}),
     ...(signIn
       ? {
@@ -279,6 +285,7 @@ async function main(): Promise<void> {
                 }
               : {}),
             ...(activation ? { activation, campaignEntry: { engine, signIn } } : {}),
+            library: campaignLibrary,
             publicOrigin: signIn.publicOrigin,
             clock: signIn.clock,
             limits: signIn.limits,

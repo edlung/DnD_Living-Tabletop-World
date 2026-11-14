@@ -1,0 +1,691 @@
+{
+  "checkedAtUtc": "2026-11-08T09:10:17.902438+00:00",
+  "files": [
+    {
+      "path": "campaigns/acorn-express/source/act-1.json",
+      "sha256": "2e8a1b133c5646e69c81713a94b3854ac31533c980c3b9c7fd57aeaf9a756a1f",
+      "bytes": 36480
+    },
+    {
+      "path": "campaigns/acorn-express/source/act-2.json",
+      "sha256": "167b5e729fefc4c98fbf002006570ea8e84807a0107259f279d24c047ffe01a1",
+      "bytes": 38386
+    },
+    {
+      "path": "campaigns/acorn-express/source/act-3.json",
+      "sha256": "6ace4ba80b4c0f67773e7dd5dac020dcd2028c3c6956288bf4cbe310d37e6c51",
+      "bytes": 41449
+    },
+    {
+      "path": "campaigns/acorn-express/source/act-4.json",
+      "sha256": "671a55e1a5de2aee5159c46b7df7774fe8927cc021823c711c01978326adb22b",
+      "bytes": 43134
+    },
+    {
+      "path": "campaigns/acorn-express/source/cast.json",
+      "sha256": "f39ee345a2c8878443ef1f654d504eabab054ad7530e36cc977cf8d9245f3abd",
+      "bytes": 35653
+    },
+    {
+      "path": "campaigns/acorn-express/source/clues.json",
+      "sha256": "3c505ad5753b29b64741680d317f9715c89583b297ffae3000756bc40e26fc92",
+      "bytes": 13832
+    },
+    {
+      "path": "campaigns/acorn-express/source/handouts.json",
+      "sha256": "f768d9b0c14c5bbbbc0746ac512094c6c198251f90264876d4f2666f237b0dfe",
+      "bytes": 13043
+    },
+    {
+      "path": "campaigns/acorn-express/source/items.json",
+      "sha256": "d35aa16ab54a2968141dcfba5febd3bf4fe75bf85bef54116d8d8204fb409df6",
+      "bytes": 4546
+    },
+    {
+      "path": "campaigns/acorn-express/source/world.json",
+      "sha256": "4d4718c7c95a72a49f839186bd1299c8735c44fcd4014fcd3ec607d957499b3a",
+      "bytes": 18946
+    },
+    {
+      "path": "campaigns/collection-2026/last-orbit/source/world.json",
+      "sha256": "086374cb107e41649adc935c856989d3fddc424c8172a2f6969e4c8bcf9a558d",
+      "bytes": 24652
+    },
+    {
+      "path": "campaigns/collection-2026/salt-meridian/source/cast.json",
+      "sha256": "5666ba4fc55dac9a0d0c1a2c41f40f5256e3a53fcbe4958355f2e483f4a4921b",
+      "bytes": 28675
+    },
+    {
+      "path": "campaigns/collection-2026/salt-meridian/source/clues.json",
+      "sha256": "2de6572b55055296a09e976df706e189ef56448cb65578c358f376724b99f537",
+      "bytes": 18867
+    },
+    {
+      "path": "campaigns/collection-2026/salt-meridian/source/encounters.json",
+      "sha256": "a77dcfdf513cc314d3d618d43fbff9ec6efade1916df015170a1098a5be28d14",
+      "bytes": 8997
+    },
+    {
+      "path": "campaigns/collection-2026/salt-meridian/source/handouts.json",
+      "sha256": "3526a8a757f25e2d5e9c8202475b14e0afa331b41bf1e3a63c252722bfcdd30a",
+      "bytes": 6951
+    },
+    {
+      "path": "campaigns/collection-2026/salt-meridian/source/sessions-1.json",
+      "sha256": "57843881671c550d4759968c324877974fafb280f6dc9fadc118bec4b182df61",
+      "bytes": 26854
+    },
+    {
+      "path": "campaigns/collection-2026/salt-meridian/source/sessions-2.json",
+      "sha256": "8dc625c3e035952f78fd3cc89bf7bafda2742afcacbcbeb361671e4bee3fc1a6",
+      "bytes": 26557
+    },
+    {
+      "path": "campaigns/collection-2026/salt-meridian/source/sessions-3.json",
+      "sha256": "61fb5c6b8ccd69530caf8def345b47787df1fe826353ba5bfc7501faead30fc3",
+      "bytes": 27849
+    },
+    {
+      "path": "campaigns/collection-2026/salt-meridian/source/sessions-4.json",
+      "sha256": "6828f0f3de5265fed8507a99cc7484670101bf3cd9ee67dadcc113726c0e6a8b",
+      "bytes": 30442
+    },
+    {
+      "path": "campaigns/collection-2026/salt-meridian/source/world.json",
+      "sha256": "8afb71da0686122862a6791e817e4e2abfa784b3a0791ff3b165750a92b8114a",
+      "bytes": 23983
+    },
+    {
+      "path": "campaigns/collection-2026/sky-archipelago/source/cast.json",
+      "sha256": "43f7ca2de411dc6cc1ec41842d95917f9cb9f41f45ff238f709c39ca181104d9",
+      "bytes": 26204
+    },
+    {
+      "path": "campaigns/collection-2026/sky-archipelago/source/clues.json",
+      "sha256": "9e3e192c6c9125fb4959a548808a5ebc2b9cfb2199ce66f34877019f32827e8f",
+      "bytes": 22047
+    },
+    {
+      "path": "campaigns/collection-2026/sky-archipelago/source/encounters.json",
+      "sha256": "8726e1494b93d04ab9a83166e62f80691c72acb1cf7a2061375b4c2e7667fd3b",
+      "bytes": 11219
+    },
+    {
+      "path": "campaigns/collection-2026/sky-archipelago/source/handouts.json",
+      "sha256": "a754423a866f6f158adebdf4e1c5982b36ea13bdd0a47be861d02b937f46624d",
+      "bytes": 8085
+    },
+    {
+      "path": "campaigns/collection-2026/sky-archipelago/source/sessions-1.json",
+      "sha256": "65fc52a04c03b4f7dbc4b9f7207ecd004c9ca879efa8552caaa32ab83208f4ae",
+      "bytes": 25476
+    },
+    {
+      "path": "campaigns/collection-2026/sky-archipelago/source/sessions-2.json",
+      "sha256": "4b93da0740d4f79915c52a520fc0beaff9b347a5146f2a1e389cca70806d2286",
+      "bytes": 25913
+    },
+    {
+      "path": "campaigns/collection-2026/sky-archipelago/source/sessions-3.json",
+      "sha256": "b8db40c552f219351c4106ff456d7ef505477f5dd16499ae758d3d5d0a13e7b4",
+      "bytes": 27522
+    },
+    {
+      "path": "campaigns/collection-2026/sky-archipelago/source/sessions-4.json",
+      "sha256": "5b904c3698c3b211b02e3f8d086d0fab97702efa5a3d7cd8f90f95337adf35ff",
+      "bytes": 30958
+    },
+    {
+      "path": "campaigns/collection-2026/sky-archipelago/source/world.json",
+      "sha256": "fd3329f7d69425be4117f76cae2df579aa6acac6b4490cd945b3ec83b3c8a1db",
+      "bytes": 23233
+    },
+    {
+      "path": "campaigns/collection-2026/velvet-ledger/source/cast.json",
+      "sha256": "712f6f1c557829d45743231cb0a8f5ecd0bd935ae4d4129938b706548c76cf44",
+      "bytes": 30219
+    },
+    {
+      "path": "campaigns/collection-2026/velvet-ledger/source/clues.json",
+      "sha256": "179dcdc665c6d59e70433003140eaa03ae8c0a292ca63175904cc47293513e37",
+      "bytes": 20491
+    },
+    {
+      "path": "campaigns/collection-2026/velvet-ledger/source/encounters.json",
+      "sha256": "277a9cd7b2341bf178b731201ef42149b61534813de8b28589d0a64cbed47fa7",
+      "bytes": 10819
+    },
+    {
+      "path": "campaigns/collection-2026/velvet-ledger/source/handouts.json",
+      "sha256": "6312921e5f28c01dad3843f9fe324cdf545e93a902ea144e71b44220e2858314",
+      "bytes": 7926
+    },
+    {
+      "path": "campaigns/collection-2026/velvet-ledger/source/sessions-1.json",
+      "sha256": "1001fd6bee1a11f39394c2a02d6bbb4a5defa4220c26d807fa87e8f7fda01592",
+      "bytes": 25368
+    },
+    {
+      "path": "campaigns/collection-2026/velvet-ledger/source/sessions-2.json",
+      "sha256": "2badd2d1fc32da432838e94dbf12dbc64cc2af5b33afe5cfa9a166989e594859",
+      "bytes": 27515
+    },
+    {
+      "path": "campaigns/collection-2026/velvet-ledger/source/sessions-3.json",
+      "sha256": "a58d6159bf0136aae4e6b9dc22132fc55f48fc8473a1c611d1ee7cee0259758e",
+      "bytes": 28293
+    },
+    {
+      "path": "campaigns/collection-2026/velvet-ledger/source/sessions-4.json",
+      "sha256": "39d12c4571341ce20be6be2b0c66de302874f7b0adb4ee609ed6ac85cdce213a",
+      "bytes": 29881
+    },
+    {
+      "path": "campaigns/collection-2026/velvet-ledger/source/world.json",
+      "sha256": "6c8ddf805dfdacb5d71b3e105231b73f9ada3f6bc8cc4c0ed3677fd2a00103e1",
+      "bytes": 22783
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/source/cast.json",
+      "sha256": "2ebdc6f0cf17551a636910f519586e1fa48d056426d016f3d196c41d007c1aff",
+      "bytes": 26504
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/source/clues.json",
+      "sha256": "03623751b2facbb23ccf0cc29a343c7fbc41ad49f5d3b9989def590e26306cc4",
+      "bytes": 22995
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/source/encounters.json",
+      "sha256": "1cb54abf312d68eef0d7f469e31b47d186cd7b51a1ff223f01e41be792f62419",
+      "bytes": 8059
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/source/handouts.json",
+      "sha256": "512acb695e09d467fb84d2eb97792d3d218ba486f7a5e8ead79d77347b6011e8",
+      "bytes": 6771
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/source/sessions-1.json",
+      "sha256": "db190e90afaca4874a7b6e5ae976f52f075beaeda473657b1e645f27f09bceae",
+      "bytes": 26642
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/source/sessions-2.json",
+      "sha256": "bb427ba5d6eb57e3fc33b9e0cf266a08bb22a36a596e30ccd6b17a181785dcf4",
+      "bytes": 26994
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/source/sessions-3.json",
+      "sha256": "d814ea9e552f863f76951c639e49fc0cb64b461e306c4299682197b9d925989d",
+      "bytes": 27555
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/source/sessions-4.json",
+      "sha256": "12ba186b4cf1b10d15ea0bef6ab38ecdf4d7f484e10f2745c44ca59a0db6db20",
+      "bytes": 29358
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/source/world.json",
+      "sha256": "ad388c04c4c23484012bf59ae708f81d255598e1f0c88db74971b4d8e63226f9",
+      "bytes": 27053
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/source/cast.json",
+      "sha256": "142711e2f3d225e5e3dcd0a9f86fb3cbd19f14c2aa061219e74844808d8b00d3",
+      "bytes": 33636
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/source/clues.json",
+      "sha256": "1a0be57f49aecc1e90f1ed135f05f1914521c2bf8221318b6c5255a9841cac11",
+      "bytes": 22922
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/source/encounters.json",
+      "sha256": "1759b8e4a5d2289110a128eebcb8098a5730f164bf6c656c039ba79272d48781",
+      "bytes": 9509
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/source/handouts.json",
+      "sha256": "b74e3af1c1d941ea90cfef58b33a5ee7142dede67d389ca0d791606ed8f3f69d",
+      "bytes": 6936
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/source/sessions-1.json",
+      "sha256": "79ec5e74fc66211c5ec1825e8bf964bcc6f07c1c9e6c41dcce3224133c47c050",
+      "bytes": 27740
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/source/sessions-2.json",
+      "sha256": "def7b813845ddbd6ecff35bc203fc5244065d2c8ffd703ad8c3e5145a0723530",
+      "bytes": 27888
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/source/sessions-3.json",
+      "sha256": "2ecf4cd8074a843e2cded68f39abee9f9f8164d194e43a59d16a10d27b9b42e5",
+      "bytes": 28320
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/source/sessions-4.json",
+      "sha256": "62dabaea39d36ba57a6fcb7760f7ca938cb43facef122bf29878187589046997",
+      "bytes": 31037
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/source/world.json",
+      "sha256": "caeb8782d452f3377003f3b8f1ea8c96c223efa79de32963af6facafc926807e",
+      "bytes": 29424
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/source/cast.json",
+      "sha256": "826618f99a693ba7adea70295a35d92a82433f44c5805d074007544272854bde",
+      "bytes": 25268
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/source/clues.json",
+      "sha256": "3fd5f15b2385d009cb2e3df56e582a9e7d63b88824524f2b375bed95742d745e",
+      "bytes": 20158
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/source/encounters.json",
+      "sha256": "3bd396c9e52e9d6d123d6af939d7db3fe50b2c343a87b2054c338950b8faac1c",
+      "bytes": 8562
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/source/handouts.json",
+      "sha256": "cb7d0bd4a541e71855af869d27b5597136232fae44f03ba8f0edb70b87a16512",
+      "bytes": 6314
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/source/sessions-1.json",
+      "sha256": "47f3477c5f082197f51e84963f87fe5840da59ab52e0ccb3598b7f0552169d50",
+      "bytes": 25999
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/source/sessions-2.json",
+      "sha256": "c040cbf7a6e4408fcf1fa1690d4f0a26bad13ae3e52004e0370f1332388672af",
+      "bytes": 27378
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/source/sessions-3.json",
+      "sha256": "7e7121a5f87a3ee78a27575c0d260ba637038903191a548297310492d6236723",
+      "bytes": 28769
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/source/world.json",
+      "sha256": "394bd06575af5175585623b86d4b2b13a6def75a26fbd1e7e88c21efb99e986e",
+      "bytes": 24391
+    },
+    {
+      "path": "campaigns/fantasy-2026/dungeon-sanctuary/source/cast.json",
+      "sha256": "aa6c17304c7f04d72951a63d01c7d0ac8ed7c59cb5eba90aa21f898a6e8e81e3",
+      "bytes": 34130
+    },
+    {
+      "path": "campaigns/fantasy-2026/dungeon-sanctuary/source/clues.json",
+      "sha256": "b54c7c7e4e9d43e44dfbf7fd29fa42fe6d9ab9aa22b4999c35a57b85b0a28f06",
+      "bytes": 25020
+    },
+    {
+      "path": "campaigns/fantasy-2026/dungeon-sanctuary/source/encounters.json",
+      "sha256": "89772d059e2c4ba87d33107512ec3dc3d7bf6eed16302c05c16c32a58c2b7688",
+      "bytes": 11453
+    },
+    {
+      "path": "campaigns/fantasy-2026/dungeon-sanctuary/source/handouts.json",
+      "sha256": "07a30538ec9f8fcf49b7e9fd40bb8f03b42c2b8901b98cc1abd038a4b7aad367",
+      "bytes": 6505
+    },
+    {
+      "path": "campaigns/fantasy-2026/dungeon-sanctuary/source/sessions-1.json",
+      "sha256": "6afdf03b9f41da0a51512ce46b72fabb9a49a3e83bd679f237e80f94ba6e5824",
+      "bytes": 26285
+    },
+    {
+      "path": "campaigns/fantasy-2026/dungeon-sanctuary/source/sessions-2.json",
+      "sha256": "2c1c42a3e565237ddd3acfc55babd3c7d5742da582cb23458ecb4bb3e3bb0ff8",
+      "bytes": 27411
+    },
+    {
+      "path": "campaigns/fantasy-2026/dungeon-sanctuary/source/sessions-3.json",
+      "sha256": "257e0d1dcf8c3dca12ff69be55cb24668128d6bb68668af3518dc5e61045fb6c",
+      "bytes": 28643
+    },
+    {
+      "path": "campaigns/fantasy-2026/dungeon-sanctuary/source/sessions-4.json",
+      "sha256": "390cbebfa9fac18407751b4fab22683ce0d8e258267aa36243416afc7013fad5",
+      "bytes": 31470
+    },
+    {
+      "path": "campaigns/fantasy-2026/dungeon-sanctuary/source/world.json",
+      "sha256": "28fc810950367118222d3bf70acfe6f949392239a936a5418d75f5287a36050b",
+      "bytes": 22793
+    },
+    {
+      "path": "campaigns/fantasy-2026/small-banner/source/cast.json",
+      "sha256": "212fc9c7794ab17bb483b6ca889cfc325629bfae4a0060ec1bbf5d81c183b53b",
+      "bytes": 31720
+    },
+    {
+      "path": "campaigns/fantasy-2026/small-banner/source/clues.json",
+      "sha256": "16680a1c45b9ecf011d408da2032bd788b9a42501b1c5850aefcd81faf0f1ffd",
+      "bytes": 18880
+    },
+    {
+      "path": "campaigns/fantasy-2026/small-banner/source/encounters.json",
+      "sha256": "189433c271ca0d65a5bb20944ad253aa0841019c7708ff15b30588b4065acd92",
+      "bytes": 9108
+    },
+    {
+      "path": "campaigns/fantasy-2026/small-banner/source/handouts.json",
+      "sha256": "5a873966c82758d3696819157bdfad4f39fc69ea66aa0dcccbf72ce1bcbae501",
+      "bytes": 6721
+    },
+    {
+      "path": "campaigns/fantasy-2026/small-banner/source/sessions-1.json",
+      "sha256": "1f21b31ea78269b8dab5ea4407768e4d3151391cd53145224f52980b0781be73",
+      "bytes": 26979
+    },
+    {
+      "path": "campaigns/fantasy-2026/small-banner/source/sessions-2.json",
+      "sha256": "1f00e713a67fdd0703e0826b0c4c2aec14712b4877f3eabcc1a17f8c6f6d6bb6",
+      "bytes": 27340
+    },
+    {
+      "path": "campaigns/fantasy-2026/small-banner/source/sessions-3.json",
+      "sha256": "dc358eb714179a40d5acbfdd5b247484d671b2ff70b0c7adaa8d8d60ab6afde3",
+      "bytes": 27742
+    },
+    {
+      "path": "campaigns/fantasy-2026/small-banner/source/sessions-4.json",
+      "sha256": "7c68d99e5ee429ad9f1775564bc6f7a75938e705a1f332377358d893afac73df",
+      "bytes": 31312
+    },
+    {
+      "path": "campaigns/fantasy-2026/small-banner/source/world.json",
+      "sha256": "17258ae410bbc694dd80dc8abd79fb326e37709d93b590a408cb643320f6591e",
+      "bytes": 24503
+    },
+    {
+      "path": "campaigns/fantasy-2026/storm-kitchen/source/cast.json",
+      "sha256": "da106f3987a6747d6f1fe34cbf7bb8e0fad718f7d2b325bab3d636b8169bc195",
+      "bytes": 25721
+    },
+    {
+      "path": "campaigns/fantasy-2026/storm-kitchen/source/clues.json",
+      "sha256": "b3b9089b601df4c985810eb58e93f79e1e8b0d774ae7d2dbc584ba5affe14aeb",
+      "bytes": 24651
+    },
+    {
+      "path": "campaigns/fantasy-2026/storm-kitchen/source/encounters.json",
+      "sha256": "d852422fe2a83a2adb457188fd66071493b466557044f3793c7de455c46bd2be",
+      "bytes": 11887
+    },
+    {
+      "path": "campaigns/fantasy-2026/storm-kitchen/source/handouts.json",
+      "sha256": "aaecfa81c57a6125499a2bb5cb9d790afb2827b0874d36f482836cecc7e64ab5",
+      "bytes": 8947
+    },
+    {
+      "path": "campaigns/fantasy-2026/storm-kitchen/source/sessions-1.json",
+      "sha256": "7faa9eaf31bfe590a6d032c58d5bfaf5fbb4f3106fd6591e83d6796929382d20",
+      "bytes": 25099
+    },
+    {
+      "path": "campaigns/fantasy-2026/storm-kitchen/source/sessions-2.json",
+      "sha256": "eb42f3895712746b469c50be1e5bb5ccd55fa2a02b30031e7ed2b972931bc670",
+      "bytes": 26374
+    },
+    {
+      "path": "campaigns/fantasy-2026/storm-kitchen/source/sessions-3.json",
+      "sha256": "cd689ad34976a2c82552693b4f036200d95f1293fedce69f188b7c5df111a2fc",
+      "bytes": 27633
+    },
+    {
+      "path": "campaigns/fantasy-2026/storm-kitchen/source/sessions-4.json",
+      "sha256": "c3bf7de931488869b208bfbb56a1dd4f9296b6344d8cfe17d8f9f3250ca142d6",
+      "bytes": 29210
+    },
+    {
+      "path": "campaigns/fantasy-2026/storm-kitchen/source/world.json",
+      "sha256": "e2ef8f55b924a9582e18ab71145a6903be4c12f77d0b0a37f6d4cd9e75cf5b68",
+      "bytes": 23878
+    },
+    {
+      "path": "campaigns/lighthouse/source/act-1.json",
+      "sha256": "366d747dc3aa9951a4a13caf47da46bdc50fe4be69d1925350f5b8bc761cc9bb",
+      "bytes": 23454
+    },
+    {
+      "path": "campaigns/lighthouse/source/act-2.json",
+      "sha256": "49074f3b58e8d47102f4999984edb6bf0862c299e1ac04fda8567574ecfd8699",
+      "bytes": 23330
+    },
+    {
+      "path": "campaigns/lighthouse/source/act-3.json",
+      "sha256": "592d7c349cc4e1abf65993dd35157ae510fae5d54e7caf43169293b5c3cef7aa",
+      "bytes": 22806
+    },
+    {
+      "path": "campaigns/lighthouse/source/act-4.json",
+      "sha256": "7ae8fef74e038c50af26c55bbdc7b4b81b60e9002c4c3656de936dbff455a767",
+      "bytes": 26108
+    },
+    {
+      "path": "campaigns/lighthouse/source/cast.json",
+      "sha256": "f175a97379ff7f5f3b16f9e3a6f2527547d62eb7ac00f7ca31d3dc8f034de582",
+      "bytes": 24794
+    },
+    {
+      "path": "campaigns/lighthouse/source/clues.json",
+      "sha256": "9e46ad4ecdccb09969a3f0128e0c887a452758e24810161bcb6cff564e32741a",
+      "bytes": 10940
+    },
+    {
+      "path": "campaigns/lighthouse/source/handouts.json",
+      "sha256": "9beab5cb85ffe83431c31ae1db28de1d831974d3dabb5c2033a41086a99f92c8",
+      "bytes": 9361
+    },
+    {
+      "path": "campaigns/lighthouse/source/items.json",
+      "sha256": "599e24c082653f466f8f3aab7a736d4c1b0537b283dd9dca6d26d8171f3e27c7",
+      "bytes": 3782
+    },
+    {
+      "path": "campaigns/lighthouse/source/world.json",
+      "sha256": "6be88605c8132c9c0c7af0e7d18b91636e95ee43bb1d84c9e7190d1a8c450770",
+      "bytes": 12094
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/museum-midnight/source/cast.json",
+      "sha256": "3c57a9e9fd4e2ce550fc97fb42aa81e8f68931fdacaaf37e31092d07ed8d6a20",
+      "bytes": 26880
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/museum-midnight/source/clues.json",
+      "sha256": "2dc8f482962d0b133dbe053fe7556d9171a72ad40abebb0b38774bd559ac70fb",
+      "bytes": 22050
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/museum-midnight/source/encounters.json",
+      "sha256": "26e93ae11ba3646390b15c392fe147b290308b26f455af13020f2525ca23448b",
+      "bytes": 9134
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/museum-midnight/source/handouts.json",
+      "sha256": "17d121fb5db4e3e29ec3e500a32c437663eb1c202084df49bab57449c1e1db51",
+      "bytes": 7203
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/museum-midnight/source/sessions-1.json",
+      "sha256": "f1ee1e221002930f4edefe3d051305818f77bbfb206c8f78e3574ddbf1c15720",
+      "bytes": 26617
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/museum-midnight/source/sessions-2.json",
+      "sha256": "822084301b83b96fc9d5d84b787a37c583e09c63f0ba3618eddec4b382fa2391",
+      "bytes": 27789
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/museum-midnight/source/sessions-3.json",
+      "sha256": "bd29f797f9acba1be444decb4ec1ec14057f86d7d90768a004f8a13dcfba9e5b",
+      "bytes": 27863
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/museum-midnight/source/sessions-4.json",
+      "sha256": "e269dfaaad1b7fc189bc4cb4593b70b93ca1a9b3bd41ed4c466d997c90242770",
+      "bytes": 29846
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/museum-midnight/source/world.json",
+      "sha256": "aefc5fc7f9c486891ed72543d74b7aafbfbeafb11485ebf01b00d0089fbaffc2",
+      "bytes": 24039
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/rain-bureau/source/cast.json",
+      "sha256": "14552e9278afd834290977610d5c68f0390219f6829dab9c44bcf1fad805ba40",
+      "bytes": 24995
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/rain-bureau/source/clues.json",
+      "sha256": "6415043fc1c0921c19053a73eae9e81cbea7d6b3be720e6f8591bc0335db0a02",
+      "bytes": 20679
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/rain-bureau/source/encounters.json",
+      "sha256": "2e0b48f7939460d1c322317e2109e7f28fb874d31be9f23de8587d35eb29864b",
+      "bytes": 7808
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/rain-bureau/source/handouts.json",
+      "sha256": "5a86296860665e4386ebd21cd38d5e791ad63055b420adc6347043b84855dbdb",
+      "bytes": 6472
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/rain-bureau/source/sessions-1.json",
+      "sha256": "57595cad139f0f3124bf75af3b55445430def9955a57ba4ae5016e25fb24b840",
+      "bytes": 24395
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/rain-bureau/source/sessions-2.json",
+      "sha256": "9d9f79b4d8a59e7f8e77e337fc764e153d7a0c4530f96990070e2ff7f808ffd3",
+      "bytes": 25312
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/rain-bureau/source/sessions-3.json",
+      "sha256": "031f9f3c2a5b515db38fff68c027e65ce024f9baee03786e715db07f6d3ad93c",
+      "bytes": 25739
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/rain-bureau/source/sessions-4.json",
+      "sha256": "b4d550d67c131140a01f321dc35b9d7347a4274177f3acee3261555af3059aec",
+      "bytes": 27112
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/rain-bureau/source/world.json",
+      "sha256": "e1d2da414f785f981c9e4570f4aba0cc643517ca460b9928f354934d261bd88a",
+      "bytes": 26136
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/red-dune-post/source/cast.json",
+      "sha256": "8bd2c84846e744b944c7e95c006103ed43787002184d831d96c20a839bcd51c9",
+      "bytes": 29056
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/red-dune-post/source/clues.json",
+      "sha256": "f366bfc096b3084bf9d07770b5687a3b680c91c447821c7437630acd1d790cbc",
+      "bytes": 19133
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/red-dune-post/source/encounters.json",
+      "sha256": "64a3003fa6023e551662e8143c25b4c32b1705217440661dd7b4967322518f7e",
+      "bytes": 9166
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/red-dune-post/source/handouts.json",
+      "sha256": "eea6f884c61771d2613f777d4c3955b5f31727e890ded82be907437b67ea477c",
+      "bytes": 9555
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/red-dune-post/source/sessions-1.json",
+      "sha256": "da22d5f166d1c3c49631fe4a00c30e19b16b61a6092ed7962f39a34b7e7cc25c",
+      "bytes": 26887
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/red-dune-post/source/sessions-2.json",
+      "sha256": "0fc2940fb2b3b06bc7d0587d44d0ed0345797368ca6ff6c55138cbccafaeefa4",
+      "bytes": 26912
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/red-dune-post/source/sessions-3.json",
+      "sha256": "cc0a11cfd3e21fc69aced95bc70e21e760199b71c0702a93f9e9c2396444aac1",
+      "bytes": 27105
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/red-dune-post/source/sessions-4.json",
+      "sha256": "ded8a194f9eddc95a1183bdb3e9a81970cbb95a2da51dd27afaef03dcea4acc6",
+      "bytes": 28939
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/red-dune-post/source/world.json",
+      "sha256": "6f866658f0a41d7efde7e1c9b263fdb1d530fc86550ac5792414414a2a9bf8be",
+      "bytes": 24075
+    },
+    {
+      "path": "campaigns/moon-pearl/source/act-1.json",
+      "sha256": "cea1f169b6314d1ac8d802a22aa59d1f4416737114e37b7b4c5cc21061392aab",
+      "bytes": 36057
+    },
+    {
+      "path": "campaigns/moon-pearl/source/act-2.json",
+      "sha256": "53e00fa23b87ccfe4eef1c599b351eb9bfc3f46ef9a983add87e32aeeb88c0df",
+      "bytes": 35462
+    },
+    {
+      "path": "campaigns/moon-pearl/source/act-3.json",
+      "sha256": "8b548b409b722d8e0deb699446fb4ca38bda2fcff904f2fd105e1a73ce8a2ac8",
+      "bytes": 37283
+    },
+    {
+      "path": "campaigns/moon-pearl/source/act-4.json",
+      "sha256": "045f7b958f36a526e332dcbe521666d68d6a061e642adb30b918858c0590d838",
+      "bytes": 43668
+    },
+    {
+      "path": "campaigns/moon-pearl/source/cast.json",
+      "sha256": "bfe2ba563726d7eb63a840f8773c046881ec77ea43563b80cb830f3ce6b67a96",
+      "bytes": 28235
+    },
+    {
+      "path": "campaigns/moon-pearl/source/clues.json",
+      "sha256": "d189e069f93db07ad9fde68f0a07984dab64b0999921e65eb609fafe2f530f8c",
+      "bytes": 14046
+    },
+    {
+      "path": "campaigns/moon-pearl/source/handouts.json",
+      "sha256": "27d39cf1da29ea3aaec4db1d9b6c0e616c0729eee6b98c851504b1ecc3b88ec2",
+      "bytes": 14208
+    },
+    {
+      "path": "campaigns/moon-pearl/source/items.json",
+      "sha256": "fdf0f6e5e201b5d460f37d4c1e1ee9fb5d50444d1592d0a5af59c3490106a9f3",
+      "bytes": 5532
+    },
+    {
+      "path": "campaigns/moon-pearl/source/world.json",
+      "sha256": "b1dc8343ddbc695ac29ae233ae45011f05af4e51b4d3cdc525772b8e299cc975",
+      "bytes": 21925
+    },
+    {
+      "path": "campaigns/noir-2026/rain-check/source/world.json",
+      "sha256": "1ecb6ea5ccdda835589890bad8eeeb83a2580968ec653a35ead0fa7596a15b1a",
+      "bytes": 23991
+    },
+    {
+      "path": "campaigns/noir-2026/white-ash/source/world.json",
+      "sha256": "b7d84ed5386af16be53d9a3ecb2ab9eaf845f60289e69cf5faef53c90ce4b7ef",
+      "bytes": 24402
+    }
+  ],
+  "crossCampaignDuplicates": []
+}

@@ -6,6 +6,32 @@ registerRussian({
   Activation: 'Запуск',
   // A scenario node's effect (an item's is "What it does").
   Effect: 'Эффект',
+  'Generate a campaign or import a prepared package below.':
+    'Подготовьте кампанию во вкладке «Генерация» или загрузите готовый пакет ниже.',
+  'Import a prepared campaign': 'Загрузить готовую кампанию',
+  'Ready campaigns': 'Готовые кампании',
+  'Pick a campaign and the number of players. Its pictures, figures and battle maps arrive when the campaign starts.':
+    'Выберите кампанию и число игроков. Иллюстрации, фигуры и карты боёв появятся, когда кампания будет запущена.',
+  'Loading the library…': 'Загружаем библиотеку…',
+  'The campaign could not be loaded. Try again.':
+    'Не удалось загрузить кампанию. Попробуйте ещё раз.',
+  'Pictures: {count}': 'Иллюстраций: {count}',
+  'Choose «{title}»': 'Выбрать «{title}»',
+  Choose: 'Выбрать',
+  'Choose a campaign JSON file. Review it here before saving. Starting the campaign is a separate step.':
+    'Выберите JSON-файл кампании и проверьте его перед сохранением. Запуск кампании — отдельный шаг.',
+  'Campaign package file': 'Файл кампании',
+  'Reading the package…': 'Читаем файл кампании…',
+  'Choose a valid campaign package up to 512 KiB. Exported revisions are not package files.':
+    'Выберите корректный пакет кампании размером до 512 КиБ. Экспорт версии сценария не является пакетом.',
+  'Retry original package save': 'Повторить сохранение этого пакета',
+  'Save package to this draft': 'Сохранить пакет в этот черновик',
+  'Clear selected package': 'Убрать выбранный пакет',
+  'The save could not be confirmed. Retry keeps the same package and request.':
+    'Сохранение пока не подтверждено. Повтор использует тот же пакет и запрос.',
+  'This draft already changed. Reload its saved content; the file will not overwrite it.':
+    'Черновик уже изменился. Загрузите сохранённое содержимое; файл не перезапишет его.',
+
   Opening: 'Завязка',
   'Campaign brief': 'Замысел кампании',
   Situations: 'Ситуации',

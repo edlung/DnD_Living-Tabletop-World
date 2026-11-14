@@ -1,0 +1,1024 @@
+{
+  "about": "Original artwork for Корона из чужих костей. PNG originals from OpenAI image generation through Codex CLI; WebP conversions preserve content and alpha. No project provider was called.",
+  "generator": "codex-cli-imagegen",
+  "assets": [
+    {
+      "id": "cover",
+      "title": "Корона из чужих костей",
+      "file": "cover.png",
+      "runtimeFile": "runtime/cover.webp",
+      "sha256": "6ca7779062850751c169e166ba46b70bf3f7a7cef381369a5b1d9585d208edf5",
+      "runtimeSha256": "6fdcffb423323fa358f25bef993dd8265cc7ece0ec0f3127b951a05ff59a75f6",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "marrow-crown-2026-11-14/out/cover.png",
+      "revealFromEvening": 0,
+      "subjects": [],
+      "kind": "cover",
+      "prompt": "Generate one image and save it as cover.png in the current directory.\nWide landscape key art, 3:2. A colossal half-living titan of bone lies along a salt canyon at dawn, its ribcage like a ruined cathedral, salt crust on its ancient white bones. In its side a great bone mouth slowly splits open at sunrise, warm breath steaming out. At the threshold, small against it, a party of seven adventurers with torches, ropes, a stretcher and packs: two fighters, two rogues, two clerics with holy symbols, one wizard. Deep inside the opening a faint red marrow glow hints at a crown-like lattice. Cold dawn sky, torchlight, dread and awe.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "olom",
+      "title": "Полуживой Олом",
+      "file": "olom.png",
+      "runtimeFile": "runtime/olom.webp",
+      "sha256": "e700abfb9b208b819f8ba160827ba9e9634a9185715055fafee3edd48d71bdc5",
+      "runtimeSha256": "7e9355643b056991812fe9ea140722a3dbf2ac10b82a92b43ba8cadfd85d480c",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "marrow-crown-2026-11-14/out/olom.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "olom"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as olom.png in the current directory.\nWide landscape establishing view, 3:2. The half-living titan Olom lies in a salt gorge, an immense skeleton half-buried in white salt, faint warm wind rising from its ribs like breath, inner walls moving slowly visible through gaps, dusk light. No people in focus.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "salt-mouth",
+      "title": "Соляной рот",
+      "file": "salt-mouth.png",
+      "runtimeFile": "runtime/salt-mouth.webp",
+      "sha256": "2109aca3f6d6af44ef84031efe8c72d2b01b509517783ebbc3941049df0f9163",
+      "runtimeSha256": "89e635b14f71137cb07d75189ccccce71fa977e19be1a54f730eb5d7bd63def1",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "marrow-crown-2026-11-14/out/salt-mouth.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "salt-mouth"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as salt-mouth.png in the current directory.\nLandscape scene, 3:2. The Salt Mouth: a wide entrance high above a salt gorge, a hard lip of bone forming a ledge for a small party, a stretcher and a wooden spare chest, evening sky outside and the first white pillars of bone receding into darkness inside, torches being lit.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "hanging-teeth",
+      "title": "Висячие зубья",
+      "file": "hanging-teeth.png",
+      "runtimeFile": "runtime/hanging-teeth.webp",
+      "sha256": "a6746707eeea7d69276903378e8b4cc2d374b58626297eff59fb64ad783a5762",
+      "runtimeSha256": "0f72e2b497dda071338df4e39955e0994008f15fd5dd0fd922536f6f28756a09",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "marrow-crown-2026-11-14/out/hanging-teeth.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "hanging-teeth"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as hanging-teeth.png in the current directory.\nLandscape scene, 3:2. The Hanging Teeth: heavy white bone pillars hang like teeth over dry dust, a wide lower path between them, old rope loops climbing to a narrow upper ledge, torchlight throwing long shadows, a sense of something waiting.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "breath-stairs",
+      "title": "Лестница дыхания",
+      "file": "breath-stairs.png",
+      "runtimeFile": "runtime/breath-stairs.webp",
+      "sha256": "02bf2eea7d0992c979de4052e01c9a894db61c02b8f800166fbf2e95670bed39",
+      "runtimeSha256": "905c9e49c7d0a886f239b77ff4262d5e208aba992da1ca97acd2df779cd0dd2d",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "marrow-crown-2026-11-14/out/breath-stairs.png",
+      "revealFromEvening": 2,
+      "subjects": [
+        "breath-stairs"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as breath-stairs.png in the current directory.\nLandscape scene, 3:2. The Breath Stairs: a cascade of tilted bone ledges along a warm shaft, pale bands on the walls rising and falling with the breathing wind to show the edges of usable platforms, climbers roped together with torches, steam.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "blind-lake",
+      "title": "Нижняя вода",
+      "file": "blind-lake.png",
+      "runtimeFile": "runtime/blind-lake.webp",
+      "sha256": "0d67802e3283c2d696fd7c54f3e16da3a811cb0170977f214bcafb0d1c8237de",
+      "runtimeSha256": "f35b0e41cf2858036582e271924de6f25fe6566c4776cd19a943b27616a22a6f",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "marrow-crown-2026-11-14/out/blind-lake.png",
+      "revealFromEvening": 3,
+      "subjects": [
+        "blind-lake"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as blind-lake.png in the current directory.\nLandscape scene, 3:2. The Lower Water: a dark still underground lake around a low spit, floating fibrous mats like islands slowly drifting apart, a longer solid shore along the wall, a single lantern reflected in black water, bioluminescent marrow-red specks under the surface.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "folds-camp",
+      "title": "Складчатый бивак",
+      "file": "folds-camp.png",
+      "runtimeFile": "runtime/folds-camp.webp",
+      "sha256": "f4685002dc49ce2230ab020da48c4b1c438a5fbbc6d5edfb48cff17681c435e2",
+      "runtimeSha256": "e0b2826f5ab904777910f9b85aca450431b9c8def21930a318f0ec06c7e40812",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "marrow-crown-2026-11-14/out/folds-camp.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "folds-camp"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as folds-camp.png in the current directory.\nLandscape scene, 3:2. The Fold Camp: under an overhanging fold of bone, two weathered canvas tents and an empty cargo frame of a lost expedition, a cold campfire ring, a short path toward a lake spit, eerie quiet, torchlight.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "echo-pocket",
+      "title": "Карман эха",
+      "file": "echo-pocket.png",
+      "runtimeFile": "runtime/echo-pocket.webp",
+      "sha256": "e5003460e8d9d80ad3b46cfb5e71c4ad4ccf0e31ec19f57105d4e04841066ef8",
+      "runtimeSha256": "7c50126e13d2b84109263ced489324aa922ebcf68dab5d077b14344ee2c549e5",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "marrow-crown-2026-11-14/out/echo-pocket.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "echo-pocket"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as echo-pocket.png in the current directory.\nLandscape scene, 3:2. The Echo Pocket: a dry cavity with a black stone floor and three narrow crawlways, a thin band of daylight falling over the far crawlway, sound-wave-like ripples suggested in dust, a lone figure listening with a hand to the wall.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "rib-forest",
+      "title": "Рёберный лес",
+      "file": "rib-forest.png",
+      "runtimeFile": "runtime/rib-forest.webp",
+      "sha256": "eba4810d90a903dcb9925a08d6e149d3428043d5316b20a69a690ffbb8a30d76",
+      "runtimeSha256": "da8a455c9919a09a42d473f8e3aa14f798bc0df4bb945969a7e752859ab9f4b6",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "marrow-crown-2026-11-14/out/rib-forest.png",
+      "revealFromEvening": 4,
+      "subjects": [
+        "rib-forest"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as rib-forest.png in the current directory.\nLandscape scene, 3:2. The Rib Forest: countless white bone arches hiding one another like a forest of ribs, dark stone stripes on the floor, soft mounds of dust between the arches, two wide trails circling a central narrow pass, torches glimmering far away, something tall and thin barely visible between the arches.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "red-turn",
+      "title": "Алый поворот",
+      "file": "red-turn.png",
+      "runtimeFile": "runtime/red-turn.webp",
+      "sha256": "8addc6169cc80f229c2751ad530e74b83c9b79079baea1471eda3dddd1f0cb67",
+      "runtimeSha256": "cc4052069489c256269f823b104ce4e7bc44ee516f1f82650cf8aeb571d20554",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "marrow-crown-2026-11-14/out/red-turn.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "red-turn"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as red-turn.png in the current directory.\nLandscape scene, 3:2. The Scarlet Turn: two translucent membrane walls glowing deep red slowly closing and opening around a steep bend, a protective ledge on either side, a wide gap below and a narrow upper rim, adventurers silhouetted against the red light.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "cradle-crown",
+      "title": "Колыбель венца",
+      "file": "cradle-crown.png",
+      "runtimeFile": "runtime/cradle-crown.webp",
+      "sha256": "eab66249c951d0e3929de11113b1258e83804a71e7d8d3515c48b3291832f0eb",
+      "runtimeSha256": "e9400225e7009aedbeb8624c2b0684206fd11ef54889c48357e9939bd9d2a051",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "marrow-crown-2026-11-14/out/cradle-crown.png",
+      "revealFromEvening": 5,
+      "subjects": [
+        "cradle-crown"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as cradle-crown.png in the current directory.\nLandscape scene, 3:2. The Cradle of the Crown: under a low vault a white lattice crown the size of a stretcher made of fused bones and fine roots, held by thin branching tendrils over a dark hollow, faint red marrow glow pulsing inside it, a dry platform at the edge, an oblique passage into the depths. Unsettling, beautiful, no faces.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "rough-throat",
+      "title": "Шероховатый провал",
+      "file": "rough-throat.png",
+      "runtimeFile": "runtime/rough-throat.webp",
+      "sha256": "027fda0ae1ae0ffff5450abc8421fc03068a8af376c74fc8f04aca0eb7178cc2",
+      "runtimeSha256": "bbba39366b8f39037babba97c990bb989f07d86e591c196fe745779dc84c6be3",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "marrow-crown-2026-11-14/out/rough-throat.png",
+      "revealFromEvening": 6,
+      "subjects": [
+        "rough-throat"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as rough-throat.png in the current directory.\nLandscape scene, 3:2. The Rough Throat: a wide sloping chute ending in rough bone surfaces that slowly grind against each other, dust falling, a narrow crawlway in a side wall leading into dry darkness, a rope stretched toward it, torches.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "sun-fissure",
+      "title": "Световая щель",
+      "file": "sun-fissure.png",
+      "runtimeFile": "runtime/sun-fissure.webp",
+      "sha256": "33fb3759b3533115b72edf2fe4fc8e7cef73e456d4b539d0c82c04fd1c425a9a",
+      "runtimeSha256": "6a793adf35fad7c6b393c4fbc99d8dd18db46f9473bf69ab348b28caadd192fc",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "marrow-crown-2026-11-14/out/sun-fissure.png",
+      "revealFromEvening": 7,
+      "subjects": [
+        "sun-fissure"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as sun-fissure.png in the current directory.\nLandscape scene, 3:2. The Sun Fissure: a narrow slanted exit opening onto an outer salt ledge with blinding daylight beyond, a person turning sideways to squeeze through with a soft bundle, a rigid cargo frame clearly too wide for the opening, relief and exhaustion.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "irma-skol",
+      "title": "Ирма Скол",
+      "file": "irma-skol.png",
+      "runtimeFile": "runtime/irma-skol.webp",
+      "sha256": "a15f30213557353144b2c3cd06b3277ef2993836489f67917b2fc4203a217368",
+      "runtimeSha256": "ff8cd10c4ec36c80f7ff5694ba76d75a6b27698819df9f9b22032c9551c789ef",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "marrow-crown-2026-11-14/out/irma-skol.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "irma-skol"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as irma-skol.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Irma Skol, a 34-year-old woman fighter: short-cropped hair, scarred weathered face, a wool collar, a belt hung with many faded knots, a forged grappling hook and a coil of knotted rope over her shoulder, a sword, torchlight. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "fedor-nev",
+      "title": "Федор Нев",
+      "file": "fedor-nev.png",
+      "runtimeFile": "runtime/fedor-nev.webp",
+      "sha256": "f53872291aad5cf9b864ce42d3470269234823a086b9392f7a37d6abf4964dec",
+      "runtimeSha256": "00f4ea3dde8f8680a35952f3d684363be3ec416173f17566764a121864ffde16",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "marrow-crown-2026-11-14/out/fedor-nev.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "fedor-nev"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as fedor-nev.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Fedor Nev, a 41-year-old man rogue: lean, grey stubble, a dusty cloak, flat chalk sticks in his fingers, a small mirror in a dark wooden frame, a dagger, watchful eyes, torchlight. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "lada-vey",
+      "title": "Янина Вей",
+      "file": "lada-vey.png",
+      "runtimeFile": "runtime/lada-vey.webp",
+      "sha256": "cbb764ef59ad8e82405dbf0c8c430446ea17b35027d0199e4f355c90a7c107b9",
+      "runtimeSha256": "bc9db83d3be5fae80aa87286fa7933f4b9f067b7048fd930b5d783145fbb643e",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "marrow-crown-2026-11-14/out/lada-vey.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "lada-vey"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as lada-vey.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Yanina Vey, a 29-year-old woman cleric: dark travelling clothes, sleeves with simple stitching, holding an empty elbow-long wooden case lined with salt, her holy symbol is a small flat disk of white salt-stone on a cord (no cross, no real-world religious symbol), grave calm face, torchlight. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "nika-torn",
+      "title": "Ксана Торн",
+      "file": "nika-torn.png",
+      "runtimeFile": "runtime/nika-torn.webp",
+      "sha256": "c6ea0e0d7398b4f2120a6a939393814d35e5997954fcab9c08a36e15cdc28793",
+      "runtimeSha256": "9635b2e09b5f6f6085d2e59b89b3cad952dd31c97c7938dc9d207695776388ce",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "marrow-crown-2026-11-14/out/nika-torn.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "nika-torn"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as nika-torn.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Ksana Torn, a 24-year-old woman wizard: gloves dusted with chalk, a folding board of blank sheets, sharp thoughtful face, dark hair tied back, a short staff, cold light from a cantrip. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "yar-osok",
+      "title": "Яр Осок",
+      "file": "yar-osok.png",
+      "runtimeFile": "runtime/yar-osok.webp",
+      "sha256": "cd7e37bc140172b525133ca8b9196af56a8ac0d7aefa2f270598051c0d9b632b",
+      "runtimeSha256": "100ad1583b6a22cad28a309bd2a95c02db4a9dc1d2f2a5f9713a6c83dcbf8ae4",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "marrow-crown-2026-11-14/out/yar-osok.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "yar-osok"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as yar-osok.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Yar Osok, a 38-year-old man fighter and porter: broad, a wide soft belt, a mended carrying frame on his back, a tidy bundle of dry socks tied to it, a mace, steady kind face. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "sana-mel",
+      "title": "Сана Мель",
+      "file": "sana-mel.png",
+      "runtimeFile": "runtime/sana-mel.webp",
+      "sha256": "7c9e26d8b1b32ff438cbf4de92ad0b67c6c2a4d13fecafae5b29578498eaf5dc",
+      "runtimeSha256": "cb8b088c7a0271bb36f95f355086b651cb1f36da0dd7fc6a6ef4bd4cd35fcc39",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "marrow-crown-2026-11-14/out/sana-mel.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "sana-mel"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as sana-mel.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Sana Mel, a 56-year-old woman rogue: grey braid, a leather apron over a travelling jacket, smooth clay beads, quick knowing eyes, a short blade. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "oles-kray",
+      "title": "Олесь Край",
+      "file": "oles-kray.png",
+      "runtimeFile": "runtime/oles-kray.webp",
+      "sha256": "e3ee7381a4db0219cdc62ce082f310fcc3077a1a5cfe61bff70d070d671aafe0",
+      "runtimeSha256": "b2af32b4dba372718c6af15becd848ebc431a57cf5f6045246c9e2a234c472f7",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "marrow-crown-2026-11-14/out/oles-kray.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "oles-kray"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as oles-kray.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Oles Kray, a 27-year-old man cleric: a plain cloak with a strip of pale cloth, a closed unadorned lantern, earnest tired face, a staff. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "dara-vey",
+      "title": "Дара Вей",
+      "file": "dara-vey.png",
+      "runtimeFile": "runtime/dara-vey.webp",
+      "sha256": "d5861b0d69c36fb2073b6caa1e0edfd21ea95807a313b614d7ddd8244623962b",
+      "runtimeSha256": "d0e2b574b80a29dd36975d73d1ec9023d9b6c94f64de5a1331aae18bcc4b5c87",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "marrow-crown-2026-11-14/out/dara-vey.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "dara-vey"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as dara-vey.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Dara Vey, a 46-year-old woman expedition patron: dark wool jacket, salt-crusted hands, beside a cart with bundles of supplies and an empty stone chest, a determined grieving face. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "fedor-nev.png"
+      ]
+    },
+    {
+      "id": "osvin-glod",
+      "title": "Освин Глод",
+      "file": "osvin-glod.png",
+      "runtimeFile": "runtime/osvin-glod.webp",
+      "sha256": "00a643c713c6a23d54d6f54fe16c59f1bad25ceb2f1963c0c68c6a85d2121556",
+      "runtimeSha256": "b99d685ea6d6687836690ff72bb5bf272d9ef06edbd7c9f234a5c0225977f4c3",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "marrow-crown-2026-11-14/out/osvin-glod.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "osvin-glod"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as osvin-glod.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Osvin Glod, a 62-year-old short man rope-master: one white eyebrow, old rope loops on his belt folded by length, a lantern in a net, wry wary look. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "fedor-nev.png"
+      ]
+    },
+    {
+      "id": "ista-ruchey",
+      "title": "Иста Ручей",
+      "file": "ista-ruchey.png",
+      "runtimeFile": "runtime/ista-ruchey.webp",
+      "sha256": "8ceb211b15209292655df14bb9b35fdd2cb1e8e543b942c431afa82841585978",
+      "runtimeSha256": "09ebe9cf2555d652381e2a3c2f6928c3ac8eb0b03889470fe1bca467f27f037e",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "marrow-crown-2026-11-14/out/ista-ruchey.png",
+      "revealFromEvening": 2,
+      "subjects": [
+        "ista-ruchey"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as ista-ruchey.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Ista Ruchey, a 33-year-old wiry woman: a short pole, strips of dry cloth on her sleeves, empty sacks on her back, alert eyes, dark water behind her. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "fedor-nev.png"
+      ]
+    },
+    {
+      "id": "mark-lnik",
+      "title": "Марк Льник",
+      "file": "mark-lnik.png",
+      "runtimeFile": "runtime/mark-lnik.webp",
+      "sha256": "17b54beb3290b5baf219df0cf0eeb25c1e9ff533ca107b6d01578043f9863332",
+      "runtimeSha256": "3f7c4104b88305029d80c91b190714c262c4fee78046997e49667bd7c3e51777",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "marrow-crown-2026-11-14/out/mark-lnik.png",
+      "revealFromEvening": 3,
+      "subjects": [
+        "mark-lnik"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as mark-lnik.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Mark Lnik, a 39-year-old man: a neatly darned cloak among rolls of wool, a dismantled wide frame nearby, two tallow lamps, an intense hungry look. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "fedor-nev.png"
+      ]
+    },
+    {
+      "id": "tikhon-kern",
+      "title": "Тихон Керн",
+      "file": "tikhon-kern.png",
+      "runtimeFile": "runtime/tikhon-kern.webp",
+      "sha256": "838ee978482178cd3b4dd2ca14428d0fb9c9f5a2bda90f266b295c3895caa6ae",
+      "runtimeSha256": "5214adf2882b5ce381161259aa2fa7c6070ec9ad5499f89f65fdbf6e8b791f6f",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "marrow-crown-2026-11-14/out/tikhon-kern.png",
+      "revealFromEvening": 4,
+      "subjects": [
+        "tikhon-kern"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as tikhon-kern.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Tikhon Kern, a 28-year-old young man guide: a spool of short cord, chalk stripes on his shoulders, a lamp with cracked glass, nervous brave face. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "fedor-nev.png"
+      ]
+    },
+    {
+      "id": "runa-ast",
+      "title": "Устина Аст",
+      "file": "runa-ast.png",
+      "runtimeFile": "runtime/runa-ast.webp",
+      "sha256": "94e07aeb10a77f2220a7e220e32caa9116aa29bcd72255eb07c6be98e4afd6a7",
+      "runtimeSha256": "ff987ab17c46f2ed2cba93573b73835c3af6907511d6161704e76a1c0aed10db",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "marrow-crown-2026-11-14/out/runa-ast.png",
+      "revealFromEvening": 4,
+      "subjects": [
+        "runa-ast"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as runa-ast.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Ustina Ast, a 44-year-old tall woman: a high collar, a small pouch at her hip held protectively, worn soft pads on her straps, a guarded secretive look, faint warmth glow from the pouch. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "fedor-nev.png"
+      ]
+    },
+    {
+      "id": "erna-vey",
+      "title": "Эрна Вей",
+      "file": "erna-vey.png",
+      "runtimeFile": "runtime/erna-vey.webp",
+      "sha256": "911f1a475aa592ced16cde5b651a83f2cae08c329df89ebcbf4bdfd2fa89c08d",
+      "runtimeSha256": "17852744b11f479aec427801492a5e07df5180bddbb6e2479fc262da20644d91",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "marrow-crown-2026-11-14/out/erna-vey.png",
+      "revealFromEvening": 4,
+      "subjects": [
+        "erna-vey"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as erna-vey.png in the current directory.\nPortrait-style illustration, vertical 2:3. Erna Vey, the voice of a dead woman: one smooth separate arc of a white bone lattice sways apart from the rest in a dark vault, a faint warm glow along it, the barest suggestion of an old woman's profile in the light and shadow, no body, eerie and tender. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "fedor-nev.png"
+      ]
+    },
+    {
+      "id": "veda-sot",
+      "title": "Веда Соть",
+      "file": "veda-sot.png",
+      "runtimeFile": "runtime/veda-sot.webp",
+      "sha256": "5482d9058bc1cd19f11b5d4676d0746a5e34fb900e761431accccc3094cf25ad",
+      "runtimeSha256": "9dd741e6254a893496ac5082a5dc7d7a7b290698f9451324e36fe073db729b2f",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "marrow-crown-2026-11-14/out/veda-sot.png",
+      "revealFromEvening": 6,
+      "subjects": [
+        "veda-sot"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as veda-sot.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Veda Sot, a 51-year-old woman sitting on a black stone floor in a dry cloak, a wide bag beside her with the rim of a clay vessel showing, listening with tilted head, thin daylight band above. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "fedor-nev.png"
+      ]
+    },
+    {
+      "id": "stas-rebets",
+      "title": "Стась Ребец",
+      "file": "stas-rebets.png",
+      "runtimeFile": "runtime/stas-rebets.webp",
+      "sha256": "c0ee2acd2a64f53142be284586c6179091298653b18ae24406c3eac584c3f5e5",
+      "runtimeSha256": "3925089a2e1866a739d809acb8dee6f3f4127e23551e3025ef26a72fea7b2d86",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "marrow-crown-2026-11-14/out/stas-rebets.png",
+      "revealFromEvening": 7,
+      "subjects": [
+        "stas-rebets"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as stas-rebets.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Stas Rebets, a 36-year-old man seen from below against a band of daylight in a narrow fissure, a lantern, a coil of rope and a bundle of empty covers, leaning down to call. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "fedor-nev.png"
+      ]
+    },
+    {
+      "id": "irma-hook",
+      "title": "Крюк Ирмы",
+      "file": "irma-hook.png",
+      "runtimeFile": "runtime/irma-hook.webp",
+      "sha256": "aa9b0cbfc6c3d11197484408ebbe1bcb4111cbe5e5c41d267fb04f6366bcb870",
+      "runtimeSha256": "c75354e0121a2c02131cdb867667cbec8df62c02e3aae311a4de1aa5f0885af8",
+      "width": 1254,
+      "height": 1254,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "marrow-crown-2026-11-14/out/irma-hook.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "irma-hook"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as irma-hook.png in the current directory.\nItem illustration, single object or small group centered on a plain dark parchment backdrop, square 1:1: a forged three-pronged grappling hook polished at the bends, a long rope with many knots, some knots faded almost into the fibre. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "cradle-crown.png"
+      ]
+    },
+    {
+      "id": "fedor-mirror",
+      "title": "Зеркальце Федора",
+      "file": "fedor-mirror.png",
+      "runtimeFile": "runtime/fedor-mirror.webp",
+      "sha256": "e7e988a1859d74ba3c8ff62914cb58274b4064e02d9bc46fa5fb14ba8133fbc3",
+      "runtimeSha256": "e6168e540c66f71cee8d5e3bf547e5f3b6d99a79af98307674c230bd184ee827",
+      "width": 1254,
+      "height": 1254,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "marrow-crown-2026-11-14/out/fedor-mirror.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "fedor-mirror"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as fedor-mirror.png in the current directory.\nItem illustration, single object or small group centered on a plain dark parchment backdrop, square 1:1: a small round palm-sized mirror in a dark wooden frame worn smooth, glass slightly cloudy at the edge, catching torchlight. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "cradle-crown.png"
+      ]
+    },
+    {
+      "id": "farewell-case",
+      "title": "Футляр Янины",
+      "file": "farewell-case.png",
+      "runtimeFile": "runtime/farewell-case.webp",
+      "sha256": "8fa38cb4fb0cf98223802fceabce6f5b80f286c88be02a15d8caecf2351749b0",
+      "runtimeSha256": "f63b61c59cbe5258c2a476351a33fdd1eebb4f3c41ac44d655bca30f7fc40853",
+      "width": 1254,
+      "height": 1254,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "marrow-crown-2026-11-14/out/farewell-case.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "farewell-case"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as farewell-case.png in the current directory.\nItem illustration, single object or small group centered on a plain dark parchment backdrop, square 1:1: an elbow-long wooden case with a tight lid on a leather loop, open to show a packed layer of coarse grey salt inside, a dark stripe where hands held it. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "cradle-crown.png"
+      ]
+    },
+    {
+      "id": "fat-lamp",
+      "title": "Сальная лампа Марка",
+      "file": "fat-lamp.png",
+      "runtimeFile": "runtime/fat-lamp.webp",
+      "sha256": "b7e5b70315e5920f1496590ea7df738e0fb53f3ab68938dcb2846c244d9d225b",
+      "runtimeSha256": "8cc8a65213627d74d706bc270615ca27d893e66d93b44d5075b02c837be27e19",
+      "width": 1254,
+      "height": 1254,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "marrow-crown-2026-11-14/out/fat-lamp.png",
+      "revealFromEvening": 3,
+      "subjects": [
+        "fat-lamp"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as fat-lamp.png in the current directory.\nItem illustration, single object or small group centered on a plain dark parchment backdrop, square 1:1: a copper lamp with a round reservoir and a sooty narrow neck burning a steady yellow flame, a stamp of two crossed lines on its side. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "cradle-crown.png"
+      ]
+    },
+    {
+      "id": "turn-shard",
+      "title": "Тёплый осколок",
+      "file": "turn-shard.png",
+      "runtimeFile": "runtime/turn-shard.webp",
+      "sha256": "2a54d907910dc466a68a93e634b236f6eaa6503d7a556c1f0dd4b413217e6e56",
+      "runtimeSha256": "bac139b2eedb65e2e3514bb17304b7989563235834201e88c5a47f16a018a78e",
+      "width": 1254,
+      "height": 1254,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "marrow-crown-2026-11-14/out/turn-shard.png",
+      "revealFromEvening": 4,
+      "subjects": [
+        "turn-shard"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as turn-shard.png in the current directory.\nItem illustration, single object or small group centered on a plain dark parchment backdrop, square 1:1: a thumbnail-sized white bone shard, smooth on one side and porous on the other, faint warmth shimmer around it, in a small open pouch. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "cradle-crown.png"
+      ]
+    },
+    {
+      "id": "erna-bone",
+      "title": "Кость Эрны",
+      "file": "erna-bone.png",
+      "runtimeFile": "runtime/erna-bone.webp",
+      "sha256": "f8cd0bbdb0fb3b6429245ad9b59811fcda8da31673316c6f2bf578e06809ad83",
+      "runtimeSha256": "15a312868496b56a9feca841a1f23831e7b5f414b49f4bc4788b6ae9d3ccde63",
+      "width": 1254,
+      "height": 1254,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "marrow-crown-2026-11-14/out/erna-bone.png",
+      "revealFromEvening": 5,
+      "subjects": [
+        "erna-bone"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as erna-bone.png in the current directory.\nItem illustration, single object or small group centered on a plain dark parchment backdrop, square 1:1: a smooth white curved bone arc as long as a forearm with a clean cut at one end, light and hollow, faint warm glow. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "cradle-crown.png"
+      ]
+    },
+    {
+      "id": "crown-seed",
+      "title": "Зерно венца",
+      "file": "crown-seed.png",
+      "runtimeFile": "runtime/crown-seed.webp",
+      "sha256": "d054ddc5198c62ab94bdb57b2343a90ad76d2a36489a998427a1c1727282f8e6",
+      "runtimeSha256": "0bb87890f61ed1c952018d7c24a5abe3708e66862de8d2f281326d810aa2b0c3",
+      "width": 1254,
+      "height": 1254,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "marrow-crown-2026-11-14/out/crown-seed.png",
+      "revealFromEvening": 5,
+      "subjects": [
+        "crown-seed"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as crown-seed.png in the current directory.\nItem illustration, single object or small group centered on a plain dark parchment backdrop, square 1:1: a fist-sized white seed in a thin translucent shell hanging on a fine thread between bones, faintly warm glow, unsettling. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "cradle-crown.png"
+      ]
+    },
+    {
+      "id": "erna-cord",
+      "title": "Шнур Эрны",
+      "file": "erna-cord.png",
+      "runtimeFile": "runtime/erna-cord.webp",
+      "sha256": "9662dbfd7446831b98ad4db8c056d7cece2089e03f3755deca21685f888f08e5",
+      "runtimeSha256": "d366a7f3becd05a6c9c4613e8a1d7ce12cd3a32553a015458cefd49ae9ffcb4c",
+      "width": 1254,
+      "height": 1254,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "marrow-crown-2026-11-14/out/erna-cord.png",
+      "revealFromEvening": 5,
+      "subjects": [
+        "erna-cord"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as erna-cord.png in the current directory.\nItem illustration, single object or small group centered on a plain dark parchment backdrop, square 1:1: a strong braided cord with eight knots, seven cut away leaving frayed stubs, one tight knot remaining, lying on a sack with rations and torches. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "cradle-crown.png"
+      ]
+    },
+    {
+      "id": "walker-splinter",
+      "title": "Щепа Идущего",
+      "file": "walker-splinter.png",
+      "runtimeFile": "runtime/walker-splinter.webp",
+      "sha256": "8d92e9abe442b16eb7b3ff82ad2dda9609f547b491370a3231355df0820f2648",
+      "runtimeSha256": "12c2eaa755126084e79a593f7bbd2518769eb9a09c8716f31bd0bf29f6655c65",
+      "width": 1254,
+      "height": 1254,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "marrow-crown-2026-11-14/out/walker-splinter.png",
+      "revealFromEvening": 6,
+      "subjects": [
+        "walker-splinter"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as walker-splinter.png in the current directory.\nItem illustration, single object or small group centered on a plain dark parchment backdrop, square 1:1: a palm-sized dry segment of a long shell, light and brittle like old reed, sharp edges. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "cradle-crown.png"
+      ]
+    },
+    {
+      "id": "stas-rope",
+      "title": "Верёвка Стася",
+      "file": "stas-rope.png",
+      "runtimeFile": "runtime/stas-rope.webp",
+      "sha256": "5b216235d14b7cec35c6a6833883a605da764fcaf73f1bc898dce6850383bbf6",
+      "runtimeSha256": "9fe9664ed5720a81a48a6e1b336c0bde4c25216fd41e763669072ef3142b0d9c",
+      "width": 1254,
+      "height": 1254,
+      "alpha": false,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "marrow-crown-2026-11-14/out/stas-rope.png",
+      "revealFromEvening": 7,
+      "subjects": [
+        "stas-rope"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as stas-rope.png in the current directory.\nItem illustration, single object centered on a plain dark parchment backdrop, square 1:1: a heavy coil of black tarred climbing rope lying flat, its end finished with a small flat bowline knot lying on top of the coil; clearly a climbing rope, nothing else. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "cradle-crown.png"
+      ]
+    },
+    {
+      "id": "token-hollowed",
+      "title": "token-hollowed",
+      "file": "token-hollowed.png",
+      "runtimeFile": "runtime/token-hollowed.webp",
+      "sha256": "547b1fedf419287f93759f9ebae6d0b6f5044ad84a4046a465fa60850478147c",
+      "runtimeSha256": "953aade41e1d04aee953f263ea4be12cdc044d0d5a8e2f0f880c67fb60c089ee",
+      "width": 1254,
+      "height": 1254,
+      "alpha": true,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "marrow-crown-2026-11-14/out/token-hollowed.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "teeth-hollowed-foe-1",
+        "teeth-hollowed-foe-2",
+        "forest-hollowed-foe-1",
+        "forest-hollowed-foe-2"
+      ],
+      "kind": "token",
+      "srd": "ghoul",
+      "prompt": "Generate one image and save it as token-hollowed.png in the current directory.\nGame token figure on a fully transparent background, top three-quarter view, no ground shadow. A hollowed dead explorer in an old expedition jacket, dry and light, faint white threads at the seams, reaching hands, no gore.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "cradle-crown.png"
+      ]
+    },
+    {
+      "id": "token-spinner",
+      "title": "token-spinner",
+      "file": "token-spinner.png",
+      "runtimeFile": "runtime/token-spinner.webp",
+      "sha256": "ef7067f20ec369ba5987fabdbc102b614af1c1549371e9745c3f01025d657e5f",
+      "runtimeSha256": "2c6f1c24d9db4965f46b11907be53a18ed1fbe7ea26b7791d7b93ee490248926",
+      "width": 1254,
+      "height": 1254,
+      "alpha": true,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "marrow-crown-2026-11-14/out/token-spinner.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "camp-spinners-foe-1",
+        "camp-spinners-foe-2",
+        "fissure-spinners-foe-1",
+        "fissure-spinners-foe-2"
+      ],
+      "kind": "token",
+      "srd": "giant-spider",
+      "prompt": "Generate one image and save it as token-spinner.png in the current directory.\nGame token figure on a fully transparent background, top three-quarter view, no ground shadow. A pale long-legged spider-like creature the size of a pony, sallow belly, glistening greasy web strands.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "cradle-crown.png"
+      ]
+    },
+    {
+      "id": "token-follower",
+      "title": "token-follower",
+      "file": "token-follower.png",
+      "runtimeFile": "runtime/token-follower.webp",
+      "sha256": "38346a0e367829aaa99ce892135e60188b4f0251f11621caa291a7175bc38ddf",
+      "runtimeSha256": "93cd9389542cdc4992a58e00b8f46a2be26c17eb36776413bcf723ce6112afcc",
+      "width": 1536,
+      "height": 1024,
+      "alpha": true,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "marrow-crown-2026-11-14/out/token-follower.png",
+      "revealFromEvening": 6,
+      "subjects": [
+        "throat-follower-boss"
+      ],
+      "kind": "token",
+      "srd": "ogre",
+      "prompt": "Generate one image and save it as token-follower.png in the current directory.\nGame token figure on a fully transparent background, top three-quarter view, no ground shadow. A long dry segmented shell like a spine, its front a beak ringed by four thin bone fingers, crawling.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "cradle-crown.png"
+      ]
+    },
+    {
+      "id": "token-nest",
+      "title": "token-nest",
+      "file": "token-nest.png",
+      "runtimeFile": "runtime/token-nest.webp",
+      "sha256": "d2ef62470a6c22213b9388cbd328b0ee4c285f20a7f130a7e0236f2d273b3ed7",
+      "runtimeSha256": "7907f9eb09ab170cfe9238128305a23baf93b2c8b8046e727550eea0f883d6f5",
+      "width": 1254,
+      "height": 1254,
+      "alpha": true,
+      "generated": "2026-11-14",
+      "source": "codex-cli imagegen",
+      "originalFile": "marrow-crown-2026-11-14/out/token-nest.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "seam-nest-boss"
+      ],
+      "kind": "token",
+      "srd": "ogre-zombie",
+      "prompt": "Generate one image and save it as token-nest.png in the current directory.\nGame token figure on a fully transparent background, top three-quarter view, no ground shadow. A heavy pale body on three folded bone legs with two whip-like roots and a wide maw, on its back a white bone lattice crown with a faint red marrow bowl beneath.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png",
+        "cradle-crown.png"
+      ]
+    }
+  ]
+}

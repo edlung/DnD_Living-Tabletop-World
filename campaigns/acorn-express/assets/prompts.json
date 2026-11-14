@@ -1,0 +1,285 @@
+{
+  "tool": "built-in imagegen",
+  "style": "Original premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+  "images": [
+    {
+      "id": "cover",
+      "file": "cover.png",
+      "kind": "scene",
+      "transparent": false,
+      "prompt": "Wide landscape 3:2 cover illustration. A magnificent chestnut-red steam train with jade roofs and warmly lit wooden carriages winds along a root-built viaduct through an immense amber forest at sunset. Trees rise like cathedrals; far below a river mirrors firefly lights and tiny village windows. A distant gentle walking hill shaped like an ancient deer carries living trees on its back, almost blending into the landscape. The train is small enough to show the breathtaking scale but beautifully legible. Open sky upper left for an external book title, but draw NO text. Grand promise of a railway journey, intimate warm windows, original world.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+      "originalFile": "exec-490fc7a4-8e69-446d-aaa5-ca9a5052e775.png",
+      "generatedAt": "2026-11-08"
+    },
+    {
+      "id": "station",
+      "file": "station.png",
+      "kind": "scene",
+      "transparent": false,
+      "prompt": "Wide landscape 3:2. Heather Station at morning: an exuberant woodland railway terminal inside a vast hollow living oak, chestnut-red locomotive with jade roof at the platform, cream glass canopy, luggage carts, hanging ferns, bunting made from leaves, pastry stall and absurdly neat umbrella rack. A waist-high open wooden cargo cradle with curved interior padding sits near the foreground, its door unharmed, no animal inside. Welcoming busy atmosphere, tiny anonymous adult travellers, clear accessible platform, exquisite architecture. No signs with letters.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+      "originalFile": "exec-113179c6-0593-402e-8fa9-838b2f1541ee.png",
+      "generatedAt": "2026-11-08"
+    },
+    {
+      "id": "train",
+      "file": "train.png",
+      "kind": "scene",
+      "transparent": false,
+      "prompt": "Wide landscape 3:2. The comfortable observation carriage of the same woodland train: polished chestnut timber, jade velvet curved benches, cream wool blankets, brass railings, a small dining table, shelves with botanical cups and a route board made of blank wooden shapes. Broad glass windows frame golden forest rushing past, late-afternoon light. Three empty passenger seats invite the viewer into the journey. A safe connecting door at the far end. Cozy but spacious, no people, no readable writing.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+      "originalFile": "exec-4c460ae4-4832-41fd-bf8f-e477d455935a.png",
+      "generatedAt": "2026-11-08"
+    },
+    {
+      "id": "bridge",
+      "file": "bridge.png",
+      "kind": "scene",
+      "transparent": false,
+      "prompt": "Wide landscape 3:2. A woodland rail bridge grown between enormous roots above a shallow bright stream. The track crosses a graceful arc; a walking maintenance path with ropes runs alongside. Bird nests hang safely away from the rails, giant blue bellflowers bend in the breeze, exposed joints show where a small repair is needed. Morning mist and golden sunbeams, inviting exploration, no collapse, no characters. View from the safe near bank showing the whole navigable bridge.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+      "originalFile": "exec-4298367f-967f-4af5-bb46-5a360c1adb65.png",
+      "generatedAt": "2026-11-08"
+    },
+    {
+      "id": "raincity",
+      "file": "raincity.png",
+      "kind": "scene",
+      "transparent": false,
+      "prompt": "Wide landscape 3:2. A river town called Umbrella City, built on timber piers beneath enormous overlapping leaf-shaped umbrellas. Jade canals, red ochre houses, a broad wooden waterwheel, covered market with fruit and ceramic stalls, bobbing otter-shaped little boats. Gentle sparkling rain, reflections of cream lanterns, elegant whimsical engineering. Several tiny adult townsfolk in raincoats; no focal hero, no text. Warm and wondrous, fresh spring colors.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+      "originalFile": "exec-c0273d72-ad87-407e-94c1-0fc818aa6413.png",
+      "generatedAt": "2026-11-08"
+    },
+    {
+      "id": "honey",
+      "file": "honey.png",
+      "kind": "scene",
+      "transparent": false,
+      "prompt": "Wide landscape 3:2. An underground honey station in a luminous limestone cavern: translucent amber honeycomb vaults, moss paths, soft glowing mushrooms, a wooden rail platform, clay jars on curved shelves, a round table for tea. Friendly large fuzzy bees fly high and peacefully near flowers; no threatening swarm. A mole-sized low doorway and a small mechanical lift reveal habitation. Honey light contrasts with cool turquoise cave water; opulent tactile detail, no people, no writing.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+      "originalFile": "exec-f3da0d3d-de64-4ce2-b342-26f527b9f9c2.png",
+      "generatedAt": "2026-11-08"
+    },
+    {
+      "id": "theatre",
+      "file": "theatre.png",
+      "kind": "scene",
+      "transparent": false,
+      "prompt": "Wide landscape 3:2. The Theatre of a Thousand Wings, an open-air woodland stage beneath luminous silk sails and huge branching trees. Hundreds of tiny glowing moths form a loose constellation over the stage, unoccupied instruments made from seed pods and polished wood, curved benches upholstered with moss, ribbons and soft lanterns. Twilight lilac, honey gold and jade. A practical backstage walkway is visible. Exuberant festival magic without depicting any giant humanoid performers or text.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+      "originalFile": "exec-411bf9d6-3886-4173-9a35-af76773f7a55.png",
+      "generatedAt": "2026-11-08"
+    },
+    {
+      "id": "glass",
+      "file": "glass.png",
+      "kind": "scene",
+      "transparent": false,
+      "prompt": "Wide landscape 3:2. A beautiful but overly orderly conservatory at night, large jade iron ribs and crystal glass panes, symmetrical planters, botanical desks and copper irrigation. At the center stands an EMPTY transparent bell-shaped plant enclosure with an open door and soft soil, visibly not a torture device. A busy worktable holds botanical sketches with NO readable letters. The light is restrained cool green and warm cream, suggestive mystery rather than horror. Safe walkways, no people.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+      "originalFile": "exec-04f53d74-533e-4aec-8f13-bfe868a3aee3.png",
+      "generatedAt": "2026-11-08"
+    },
+    {
+      "id": "post",
+      "file": "post.png",
+      "kind": "scene",
+      "transparent": false,
+      "prompt": "Wide landscape 3:2. A midnight railway post office among giant roots: cream lanterns, deep red mail carriages, tiny acorn-shaped letterboxes, sorting racks, ribbons carrying sealed letters, an open service terrace beside the track. Warm windows in a wet dark forest, a patchwork awning catches rain. Three empty chairs around a dispatch table and a large blank route board. Tender, bustling anticipation without visible people, no readable writing.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+      "originalFile": "exec-aee69fc5-47c3-4870-899c-c0818f528440.png",
+      "generatedAt": "2026-11-08"
+    },
+    {
+      "id": "valley",
+      "file": "valley.png",
+      "kind": "scene",
+      "transparent": false,
+      "prompt": "Wide landscape 3:2. Dawn in the Valley That Walks. An enormous peaceful ancient forest guardian, shaped like a long-legged stag made of bark, moss and earth, rests in a meadow with a grove of mature trees on its broad back. Gentle ancient eyes and weathered wooden antlers; its size is shown by a tiny empty rail halt and red train in the distance. Waterfalls and mist behind, green ferns and amber birches. The guardian is alive, dignified, not a monster. Emotionally overwhelming discovery, no letters.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+      "originalFile": "exec-0db17398-e35a-4ff0-a219-1b329d490f04.png",
+      "generatedAt": "2026-11-08"
+    },
+    {
+      "id": "storm",
+      "file": "storm.png",
+      "kind": "scene",
+      "transparent": false,
+      "prompt": "Wide landscape 3:2. The chestnut-red woodland express with jade carriage roofs crosses a high curved timber trestle during a dramatic summer rainstorm. Huge wet leaves, silver rain ribbons, clouds opening with warm sunlight ahead. Service platforms and sturdy safety railings clearly visible, a separate jade private carriage on the near siding, a folded mechanical maintenance crane. No derailment or injured people. Dynamic sweeping composition promising a rescue and clever action, not catastrophe.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+      "originalFile": "exec-4dbe92b0-2537-4e9d-acdb-8e3d19738373.png",
+      "generatedAt": "2026-11-08"
+    },
+    {
+      "id": "garden",
+      "file": "garden.png",
+      "kind": "scene",
+      "transparent": false,
+      "prompt": "Wide landscape 3:2. The Clearing of First Roots, an extraordinary meadow at the meeting of three landscapes: a river town glimpsed on the left, a quiet wild valley beyond, and a small railway spur on the right. At the center fresh dark soil, shallow clean water channels, blossoming low saplings and three smooth stepping stones. Golden rain clearing at sunset. Leave the planting site EMPTY so no ending is predetermined. Hopeful spacious finale setting, no magical machinery, no words.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+      "originalFile": "exec-888c8aaa-524d-47ac-bdfb-d53d4b303c34.png",
+      "generatedAt": "2026-11-08"
+    },
+    {
+      "id": "home",
+      "file": "home.png",
+      "kind": "scene",
+      "transparent": false,
+      "prompt": "Wide landscape 3:2. A tender final evening back at Heather Station: the same chestnut-red train with jade roof rests beneath the old oak, a long shared table is set with three distinct handmade cups, blankets and a bowl of honey cakes. Warm window lights, a small empty place beside a window for a friend, fireflies and new green shoots beside the rails. No characters and no chosen giant-tree ending depicted: this picture supports different farewells and homecomings. Rich cream, jade and amber, intimate cinematic calm.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+      "originalFile": "exec-3622babf-6653-4b0c-9ae4-f79cd68687a5.png",
+      "generatedAt": "2026-11-08"
+    },
+    {
+      "id": "boris",
+      "file": "boris.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Full-body character portrait, vertical 2:3. Boris Stoneleaf, a friendly adult dwarf railway apprentice adventurer, sturdy and broad, warm brown skin, short curly dark hair and a neatly braided small beard. Russet work coat, cream shirt, jade scarf, well-worn travel boots, a wooden buckler painted with a simple leaf and a practical sheathed short sword. A small repaired toy wagon in one hand. Open, slightly shy smile; capable but gentle, no combat pose. Entire head, feet and equipment visible, soft pale cream botanical background.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+      "originalFile": "exec-eb454519-de9d-439a-8a11-700a4f08227f.png",
+      "generatedAt": "2026-11-08"
+    },
+    {
+      "id": "nika",
+      "file": "nika.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Full-body character portrait, vertical 2:3. Nika Heather, an adult halfling courier and clever adventurer, medium-brown skin, curly black bob, bright attentive eyes, red ochre short jacket, navy trousers, jade mail satchel, soft boots, a practical leather belt with small lock tools and a safely sheathed rapier. She studies a folded blank ticket with a mischievous thoughtful smile, not stealing. Original appealing silhouette, full body including feet, pale cream botanical background.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+      "originalFile": "exec-46d0fcb4-2e11-4efa-9ab3-de3da844bd4b.png",
+      "generatedAt": "2026-11-08"
+    },
+    {
+      "id": "yara",
+      "file": "yara.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Full-body character portrait, vertical 2:3. Yara Lungwort, a confident adult human field healer and wandering poet, olive skin, wavy auburn hair braided over one shoulder, jade long travel coat over cream linen, berry-red sash, comfortable boots, ceramic beads and a practical herbal shoulder bag. Holds a visibly repaired ceramic cup and a smooth wooden walking staff. Kind but firm expression, contemporary emotional realism in a fantasy world, not sexualized. Full body, pale cream botanical background.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+      "originalFile": "exec-c7389898-d434-4557-8467-aea31e5e240b.png",
+      "generatedAt": "2026-11-08"
+    },
+    {
+      "id": "oren",
+      "file": "oren.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Full-body character portrait, vertical 2:3. Oren Spark, an adult elf weather apprentice wizard, slim, fair freckled face, unruly copper hair, pointed ears, round spectacles, indigo vest under a jade rain cape, cream shirt, red socks visible above boots. Holds a modest wooden staff with a glass raindrop charm and a closed sketchbook. Enthusiastic, slightly distracted, not a powerful elder. Full body, hands and feet clear, pale cream botanical background.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+      "originalFile": "exec-5ced65fd-b201-4e4a-927f-1060457fc3b8.png",
+      "generatedAt": "2026-11-08"
+    },
+    {
+      "id": "marfa",
+      "file": "marfa.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Full-body NPC portrait, vertical 2:3. Marfa Shov, an older stout human railway conductor, warm brown skin, silver hair in a thick bun, plum uniform coat with cream piping, jade waistcoat, brass whistle on a ribbon, sturdy practical shoes. One hand holds a ticket punch; the other delicately carries a completely ordinary umbrella as if it were a very important passenger. Wry patient smile, authority and kindness, dignified original face. Full body, soft cream paper background, no written badges.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+      "originalFile": "exec-872a8db2-24fd-4de8-929c-ab60df0b2efd.png",
+      "generatedAt": "2026-11-08"
+    },
+    {
+      "id": "ri",
+      "file": "ri.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Full-body NPC portrait, vertical 2:3. Ri, an adult anthropomorphic pine-marten courier, slim upright body, rich chestnut fur, cream throat patch, lively dark eyes, red ochre scarf and jade messenger vest with a canvas satchel. Fluffy tail fully in frame; a tiny jam stain on one paw, hands openly spread in an honest explanation. Expressive but not a fox, no armour, no weapon. Appealing woodland storybook style, cream paper background.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+      "originalFile": "exec-1c395ff9-b766-4c93-8fcc-603f8393c79a.png",
+      "generatedAt": "2026-11-08"
+    },
+    {
+      "id": "iva",
+      "file": "iva.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Full-body NPC portrait, vertical 2:3. Doctor Iva Rowan, an older elf botanist with brown skin, long silver hair in a loose braid, slim spectacles, cream laboratory apron over a deep jade walking dress and red ochre boots. Holds a magnifying lens and a closed pressed-flower journal; a berry-red pencil behind her ear. Thoughtful face showing regret and courage, not sinister. Scientific field equipment, no magic staff. Full body, pale cream paper background.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+      "originalFile": "exec-58bd48da-5a5b-4e64-a67b-098f7083a20a.png",
+      "generatedAt": "2026-11-08"
+    },
+    {
+      "id": "velt",
+      "file": "velt.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Full-body NPC portrait, vertical 2:3. Adrian Velt, a middle-aged human railway investor, light olive skin, groomed dark hair threaded with silver, a short neat moustache, elegant teal travelling coat, warm grey trousers, cream gloves, polished but muddy boots. Carries a closed leather accounts book and a modest wool scarf knitted by someone close. Reserved determined expression with visible fatigue, believable sympathetic antagonist, not evil-looking or extravagant. Full body, pale cream paper background.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+      "originalFile": "exec-447c95da-e9e9-490d-a78d-29fc58495711.png",
+      "generatedAt": "2026-11-08"
+    },
+    {
+      "id": "moroshka",
+      "file": "moroshka.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Full-body NPC portrait, vertical 2:3. Grandmother Cloudberry, an elderly anthropomorphic mole beekeeper, soft charcoal fur, tiny gentle eyes behind round amber spectacles, rosy snout, stout round silhouette. Wears a cream apron over a mulberry-red knitted cardigan and jade skirt, carries a little clay honey pot and a twig spoon. Two friendly fluffy bees rest on her hat. Cozy grandmotherly strength, funny but dignified, full body and paws visible, cream paper background.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+      "originalFile": "exec-1d048514-b0e7-44ee-9d09-1b5a91a0d713.png",
+      "generatedAt": "2026-11-08"
+    },
+    {
+      "id": "kapel",
+      "file": "kapel.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Full-body NPC portrait, vertical 2:3. Kapel, an adult anthropomorphic river-otter boatwright, sleek dark brown fur, cream muzzle, expressive whiskers, rolled-up jade sleeves, red ochre canvas overalls and a sturdy tool belt. Holds a smooth wooden waterwheel paddle and a measuring cord, confident practical grin. Broad otter tail visible, no weapons, no glasses, full body and feet in frame, pale cream paper background.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+      "originalFile": "exec-144d04b6-7445-4f31-b3cf-6f407b58a67a.png",
+      "generatedAt": "2026-11-08"
+    },
+    {
+      "id": "sol",
+      "file": "sol.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Full-body NPC portrait, vertical 2:3. Sol, an elegant adult anthropomorphic green grasshopper theatre musician, slender upright figure, folded translucent wings, expressive bright eyes, deep red waistcoat and cream silk cravat. Holds a beautiful tiny violin made from a polished seed pod; one long antenna curls slightly. Joyful proud posture, anatomically coherent insect character, friendly not creepy, entire silhouette visible against cream paper.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+      "originalFile": "exec-1fe7b8f6-b939-458a-a442-cade1848604a.png",
+      "generatedAt": "2026-11-08"
+    },
+    {
+      "id": "tosh",
+      "file": "tosh.png",
+      "kind": "cutout",
+      "transparent": true,
+      "prompt": "Square 1:1 full-body cutout on a truly transparent background. Tosh, an original adorable living forest seed creature, about the size of a spaniel: a small deer-like quadruped made of soft warm chestnut bark and velvety jade moss, a softly glowing amber patch on the belly, large gentle dark eyes, two tiny branch antlers each with a few fresh green leaves, fern-shaped tail, four clearly formed little wooden hooves. Curious slight head tilt. Not a toy, not robotic, not a dangerous monster; tactile life and personality. Entire creature centered, no ground, no props, no writing, clean semitransparent fur/leaf edges.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+      "originalFile": "exec-96d41b7d-c7c4-461a-8d87-bdcc420c6f5e.png",
+      "generatedAt": "2026-11-08"
+    },
+    {
+      "id": "gardener",
+      "file": "gardener.png",
+      "kind": "cutout",
+      "transparent": true,
+      "prompt": "Square 1:1 full-body cutout on a truly transparent background. A whimsical maintenance garden automaton for a woodland railway: a round beetle-shaped copper shell, jade ceramic panels, six short wooden articulated legs, two gentle amber lens eyes, small padded pincers for carrying plant pots, a tiny folded watering spout. A practical benign machine that can get confused, not a military robot. Original charming design, entire silhouette, no ground, no shadow plate, no text.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+      "originalFile": "exec-630e8890-718a-4756-8f26-de6b5928e55c.png",
+      "generatedAt": "2026-11-08"
+    },
+    {
+      "id": "ticket",
+      "file": "ticket.png",
+      "kind": "item",
+      "transparent": false,
+      "prompt": "Square 1:1 object illustration. A beautiful cream railway ticket with a completely blank date window and an embossed simple acorn symbol, jade edges, red wax seal and a little red cord. Show both the ticket and the wooden ticket punch beside it on soft cream paper. NO letters or numerals. Exquisite tactile paper fibers; story prop, not a user interface.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+      "originalFile": "exec-ecadcc55-fc2c-490c-8ad2-80cab70b327e.png",
+      "generatedAt": "2026-11-08"
+    },
+    {
+      "id": "lantern",
+      "file": "lantern.png",
+      "kind": "item",
+      "transparent": false,
+      "prompt": "Square 1:1 object illustration. A hand-carried woodland firefly lantern: curved dark wicker frame, softly glowing green-gold fireflies behind translucent glass, an open tiny hatch so insects can leave, jade fabric handle with a red thread mend. Warm small halo on pale cream paper, exquisitely detailed and inviting, no letters.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+      "originalFile": "exec-a673b2fd-9252-4476-8be4-e552b485a86e.png",
+      "generatedAt": "2026-11-08"
+    },
+    {
+      "id": "cloak",
+      "file": "cloak.png",
+      "kind": "item",
+      "transparent": false,
+      "prompt": "Square 1:1 object illustration. A travel cloak made of lovingly stitched patches of jade, cream, rust red and muted indigo cloth. The clasp is a smooth wooden leaf; the lining has pockets for small keepsakes, one with a tiny pressed flower. Neatly draped as a complete garment with a clear hood, no human wearing it. Warm cream background, tactile embroidered fabric, no writing.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+      "originalFile": "exec-dee69e37-fd9f-42b6-9bde-a0cd511617ef.png",
+      "generatedAt": "2026-11-08"
+    },
+    {
+      "id": "cup",
+      "file": "cup.png",
+      "kind": "item",
+      "transparent": false,
+      "prompt": "Square 1:1 object illustration. A small portable garden growing in a broad repaired cream ceramic teacup, its crack mended with golden resin. Soft dark earth, three distinct tiny seedlings, a jade handle and a little wooden saucer. A thoughtful handmade field experiment, not a magical cure or a potion. Soft cream background, lush miniature detail, no text.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+      "originalFile": "exec-baecff1b-af18-4561-8217-f110c29eeaf6.png",
+      "generatedAt": "2026-11-08"
+    },
+    {
+      "id": "acorn",
+      "file": "acorn.png",
+      "kind": "item",
+      "transparent": false,
+      "prompt": "Square 1:1 object illustration. A hollow polished wooden acorn-shaped letterbox keepsake, palm-sized, hinged copper cap open to show a folded blank cream letter tied with a jade thread. Beside it a tiny red wax seal with a leaf impression. Rich chestnut grain, tactile delicate craft, pale cream paper background, no writing or numerals.\nOriginal premium family tabletop adventure illustration. Lush hand-painted gouache and colored-pencil grain on subtly textured paper, cinematic depth, exquisite tactile wood, leaves, wool and glass. A distinctive woodland railway world: chestnut red, jade green, soft cream, honey amber and misty lilac. Richly layered, elegant and emotionally warm, adventurous for children and adults; believable construction and expressive natural forms. No existing franchise, no lettering, no text, no logo, no watermark, no UI, no horror, no violence.",
+      "originalFile": "exec-9c047454-da9d-4fa1-b565-a0793fa48f45.png",
+      "generatedAt": "2026-11-08"
+    }
+  ]
+}

@@ -1,0 +1,148 @@
+import { randomUUID } from 'node:crypto';
+import { describe, expect, it } from 'vitest';
+import type {
+  KnowledgeListResponse,
+  PreparedEncounterListResponse,
+} from '../../packages/contracts/src/index.ts';
+import { collectionPlayFixture, gatherParty } from './play-fixture.ts';
+import { foesAt } from './encounters.ts';
+import { SLUGS, loadSource } from './source.ts';
+import { caseRecords } from './detective.ts';
+
+// These plot facts are explicitly unknown to the named NPC; even negated spoilers must stay out.
+const unknownFacts: Record<string, { name: string; fragments: string[] }[]> = {
+  'last-round': [{ name: 'Лада Ветрова', fragments: ['продавленный черновик'] }],
+  'seventh-negative': [{ name: 'Вера Корс', fragments: ['сохранившемся седьмом негативе'] }],
+  'room-608': [{ name: 'Зинаида Таль', fragments: ['Нина увидела её из коридора'] }],
+  'counterfeit-spring': [{ name: 'Тамара Ситник', fragments: ['продаже Раисе под чужим именем'] }],
+};
+
+describe.each(SLUGS)('%s real in-memory play', (slug) => {
+  it('activates eight seats, keeps initial secrets private and reveals clues through legal inspection', async () => {
+    const source = await loadSource(slug);
+    const f = await collectionPlayFixture(source);
+    try {
+      const hero = source.cast.heroes[0];
+      if (!hero) throw new Error('Missing lead hero');
+      const initial = await f.send(
+        '/knowledge?perspective=PLAYER',
+        undefined,
+        'collection-test-player',
+      );
+      expect(initial.statusCode, initial.body).toBe(200);
+      const initialStatements = (initial.json() as KnowledgeListResponse).knowledge.map(
+        (record) => record.statement,
+      );
+      for (const secret of source.world.truth) expect(initialStatements).not.toContain(secret);
+      for (const note of caseRecords(source))
+        expect(initialStatements).not.toContain(note.statement);
+      for (const npc of source.cast.npcs) expect(initialStatements).not.toContain(npc.secret);
+      for (const clue of source.clues) expect(initialStatements).not.toContain(clue.statement);
+      for (const npc of source.cast.npcs) {
+        const own = await f.send(`/knowledge?perspective=NPC:${f.id(npc.key)}`);
+        expect(own.statusCode, own.body).toBe(200);
+        const statements = (own.json() as KnowledgeListResponse).knowledge.map(
+          (record) => record.statement,
+        );
+        expect(statements).toContain(npc.secret);
+        const unknown = unknownFacts[slug]?.find((fact) => fact.name === npc.name);
+        if (unknown) {
+          for (const fragment of unknown.fragments)
+            expect(statements.join('\n')).not.toContain(fragment);
+        }
+        for (const other of source.cast.npcs.filter((n) => n.key !== npc.key))
+          expect(statements).not.toContain(other.secret);
+      }
+      expect(
+        (await f.send('/encounters/prepared', undefined, 'collection-test-outsider')).statusCode,
+      ).toBe(404);
+      expect(
+        (await f.send('/encounters/prepared', undefined, 'collection-test-player')).statusCode,
+      ).toBe(403);
+      for (const clue of source.clues) {
+        const moved = await f.engine.execute({
+          campaignId: f.campaignId,
+          commandId: `visit.${clue.key}`,
+          actor: f.dm,
+          command: {
+            type: 'PlaceEntity',
+            entityId: f.id(hero.key),
+            locationId: f.id(clue.location),
+          },
+        });
+        expect(moved.status === 'accepted' || ('code' in moved && moved.code === 'NO_EFFECT')).toBe(
+          true,
+        );
+        const examined = await f.send(
+          '/commands',
+          {
+            commandId: `inspect.${clue.key}`,
+            command: {
+              type: 'ExamineEntity',
+              characterId: f.id(hero.key),
+              entityId: f.id(`e-${clue.key}`),
+              method: 'inspect',
+            },
+          },
+          'collection-test-player',
+        );
+        expect(examined.statusCode, examined.body).toBe(200);
+        const known = await f.send(
+          '/knowledge?perspective=PLAYER',
+          undefined,
+          'collection-test-player',
+        );
+        expect(
+          (known.json() as KnowledgeListResponse).knowledge.map((record) => record.statement),
+          clue.key,
+        ).toContain(clue.statement);
+      }
+      await gatherParty(f, source, 8, 0);
+      const listed = await f.send('/encounters/prepared');
+      expect(listed.statusCode).toBe(200);
+      const encounters = (listed.json() as PreparedEncounterListResponse).encounters;
+      expect(encounters).toHaveLength(source.encounters.length);
+      expect(encounters[0]?.party).toHaveLength(8);
+      const request = { requestId: randomUUID() };
+      const started = await f.send('/encounters/prepared/scenario-1/start', request);
+      expect(started.statusCode, started.body).toBe(200);
+      const once = await f.engine.load(f.campaignId);
+      const first = source.encounters[0];
+      if (!first) throw new Error(`${slug}: no encounter`);
+      expect(once?.state.encounter?.combatants.length).toBe(8 + foesAt(first, 8));
+      expect((await f.send('/encounters/prepared/scenario-1/start', request)).statusCode).toBe(200);
+      expect((await f.engine.load(f.campaignId))?.state.version).toBe(once?.state.version);
+    } finally {
+      await f.app.close();
+    }
+  }, 30000);
+
+  it('starts every optional encounter with the three-player core and no absent hero', async () => {
+    const source = await loadSource(slug);
+    for (let index = 0; index < source.encounters.length; index++) {
+      const f = await collectionPlayFixture(source, 3);
+      try {
+        const denied = await f.send(
+          `/encounters/prepared/scenario-${index + 1}/start`,
+          { requestId: randomUUID() },
+          'collection-test-player',
+        );
+        expect(denied.statusCode).toBe(403);
+        expect((await f.engine.load(f.campaignId))?.state.encounter).toBeNull();
+        await gatherParty(f, source, 3, index);
+        const result = await f.send(`/encounters/prepared/scenario-${index + 1}/start`, {
+          requestId: randomUUID(),
+        });
+        expect(result.statusCode, result.body).toBe(200);
+        const state = (await f.engine.load(f.campaignId))?.state;
+        const encounter = source.encounters[index];
+        if (!encounter) throw new Error(`${slug}: no encounter ${index + 1}`);
+        expect(state?.encounter?.combatants.length).toBe(3 + foesAt(encounter, 3));
+        for (const omitted of source.cast.heroes.slice(3))
+          expect(f.saved.content.entities.some((e) => e.key === omitted.key)).toBe(false);
+      } finally {
+        await f.app.close();
+      }
+    }
+  }, 30000);
+});

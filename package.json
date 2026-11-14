@@ -32,7 +32,22 @@
     "ai:operator": "pnpm --filter @ltw/server run ai:operator",
     "auth:operator": "pnpm --filter @ltw/server run auth:operator",
     "workshop:operator": "pnpm --filter @ltw/server run workshop:operator",
-    "images:smoke": "node --conditions=@ltw/source apps/server/src/testing/image-smoke.ts"
+    "images:smoke": "node --conditions=@ltw/source apps/server/src/testing/image-smoke.ts",
+    "lighthouse:build": "node --conditions=@ltw/source scripts/lighthouse/build.ts",
+    "lighthouse:book": "node --conditions=@ltw/source scripts/lighthouse/render.ts",
+    "lighthouse:art": "node --input-type=module -e \"import('./scripts/lighthouse/assets.ts').then(m => m.prepareAssets())\"",
+    "lighthouse:check": "vitest run --project unit scripts/lighthouse",
+    "lighthouse:import-art": "node --conditions=@ltw/source scripts/lighthouse/import-art.ts",
+    "acorn:build": "node --conditions=@ltw/source scripts/acorn-express/build.ts",
+    "acorn:book": "node --conditions=@ltw/source scripts/acorn-express/render.ts",
+    "acorn:art": "node --input-type=module -e \"import('./scripts/acorn-express/assets.ts').then(m => m.prepareAssets())\"",
+    "acorn:check": "vitest run --project unit scripts/acorn-express",
+    "acorn:import-art": "node --conditions=@ltw/source scripts/acorn-express/import-art.ts",
+    "pearl:build": "node --conditions=@ltw/source scripts/moon-pearl/build.ts",
+    "pearl:book": "node --conditions=@ltw/source scripts/moon-pearl/render.ts",
+    "pearl:art": "node --input-type=module -e \"import('./scripts/moon-pearl/assets.ts').then(m => m.prepareAssets())\"",
+    "pearl:check": "vitest run --project unit scripts/moon-pearl",
+    "pearl:import-art": "node --conditions=@ltw/source scripts/moon-pearl/import-art.ts"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.13.0",

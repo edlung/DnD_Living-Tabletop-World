@@ -1,0 +1,427 @@
+{
+  "method": "24 consecutive lowercase Unicode word tokens; all source JSON string fields; same-campaign matches excluded",
+  "windows": 60682,
+  "sharedWindows": 19,
+  "examples": [
+    {
+      "words": "по 12 hp 4 3 по 14 hp 5 3 по 16 hp 6 4 по 18 hp 7 5 по 20 hp у",
+      "locations": [
+        [
+          "campaigns/dark-fantasy-2026/lantern-mere",
+          "campaigns/dark-fantasy-2026/lantern-mere/source/encounters.json",
+          "/0/scaling"
+        ],
+        [
+          "campaigns/dark-fantasy-2026/thorn-abbey",
+          "campaigns/dark-fantasy-2026/thorn-abbey/source/encounters.json",
+          "/0/scaling"
+        ],
+        [
+          "campaigns/dark-fantasy-2026/thorn-abbey",
+          "campaigns/dark-fantasy-2026/thorn-abbey/source/encounters.json",
+          "/2/scaling"
+        ]
+      ]
+    },
+    {
+      "words": "12 hp 4 3 по 14 hp 5 3 по 16 hp 6 4 по 18 hp 7 5 по 20 hp у всех",
+      "locations": [
+        [
+          "campaigns/dark-fantasy-2026/lantern-mere",
+          "campaigns/dark-fantasy-2026/lantern-mere/source/encounters.json",
+          "/0/scaling"
+        ],
+        [
+          "campaigns/dark-fantasy-2026/thorn-abbey",
+          "campaigns/dark-fantasy-2026/thorn-abbey/source/encounters.json",
+          "/0/scaling"
+        ],
+        [
+          "campaigns/dark-fantasy-2026/thorn-abbey",
+          "campaigns/dark-fantasy-2026/thorn-abbey/source/encounters.json",
+          "/2/scaling"
+        ],
+        [
+          "campaigns/mixed-ages-2026/rain-bureau",
+          "campaigns/mixed-ages-2026/rain-bureau/source/encounters.json",
+          "/0/scaling"
+        ]
+      ]
+    },
+    {
+      "words": "hp 4 3 по 14 hp 5 3 по 16 hp 6 4 по 18 hp 7 5 по 20 hp у всех ac",
+      "locations": [
+        [
+          "campaigns/dark-fantasy-2026/lantern-mere",
+          "campaigns/dark-fantasy-2026/lantern-mere/source/encounters.json",
+          "/0/scaling"
+        ],
+        [
+          "campaigns/dark-fantasy-2026/thorn-abbey",
+          "campaigns/dark-fantasy-2026/thorn-abbey/source/encounters.json",
+          "/0/scaling"
+        ],
+        [
+          "campaigns/dark-fantasy-2026/thorn-abbey",
+          "campaigns/dark-fantasy-2026/thorn-abbey/source/encounters.json",
+          "/2/scaling"
+        ],
+        [
+          "campaigns/mixed-ages-2026/rain-bureau",
+          "campaigns/mixed-ages-2026/rain-bureau/source/encounters.json",
+          "/0/scaling"
+        ]
+      ]
+    },
+    {
+      "words": "4 3 по 14 hp 5 3 по 16 hp 6 4 по 18 hp 7 5 по 20 hp у всех ac 12",
+      "locations": [
+        [
+          "campaigns/dark-fantasy-2026/lantern-mere",
+          "campaigns/dark-fantasy-2026/lantern-mere/source/encounters.json",
+          "/0/scaling"
+        ],
+        [
+          "campaigns/dark-fantasy-2026/thorn-abbey",
+          "campaigns/dark-fantasy-2026/thorn-abbey/source/encounters.json",
+          "/0/scaling"
+        ],
+        [
+          "campaigns/dark-fantasy-2026/thorn-abbey",
+          "campaigns/dark-fantasy-2026/thorn-abbey/source/encounters.json",
+          "/2/scaling"
+        ],
+        [
+          "campaigns/mixed-ages-2026/rain-bureau",
+          "campaigns/mixed-ages-2026/rain-bureau/source/encounters.json",
+          "/0/scaling"
+        ],
+        [
+          "campaigns/mixed-ages-2026/red-dune-post",
+          "campaigns/mixed-ages-2026/red-dune-post/source/encounters.json",
+          "/0/scaling"
+        ]
+      ]
+    },
+    {
+      "words": "по 12 hp 4 3 по 14 hp 5 3 по 16 hp 6 4 по 18 hp 7 5 по 20 hp ac",
+      "locations": [
+        [
+          "campaigns/dark-fantasy-2026/lantern-mere",
+          "campaigns/dark-fantasy-2026/lantern-mere/source/encounters.json",
+          "/1/scaling"
+        ],
+        [
+          "campaigns/dark-fantasy-2026/thorn-abbey",
+          "campaigns/dark-fantasy-2026/thorn-abbey/source/encounters.json",
+          "/1/scaling"
+        ],
+        [
+          "campaigns/mixed-ages-2026/rain-bureau",
+          "campaigns/mixed-ages-2026/rain-bureau/source/encounters.json",
+          "/2/scaling"
+        ]
+      ]
+    },
+    {
+      "words": "12 hp 4 3 по 14 hp 5 3 по 16 hp 6 4 по 18 hp 7 5 по 20 hp ac 12",
+      "locations": [
+        [
+          "campaigns/dark-fantasy-2026/lantern-mere",
+          "campaigns/dark-fantasy-2026/lantern-mere/source/encounters.json",
+          "/1/scaling"
+        ],
+        [
+          "campaigns/dark-fantasy-2026/thorn-abbey",
+          "campaigns/dark-fantasy-2026/thorn-abbey/source/encounters.json",
+          "/1/scaling"
+        ],
+        [
+          "campaigns/mixed-ages-2026/rain-bureau",
+          "campaigns/mixed-ages-2026/rain-bureau/source/encounters.json",
+          "/2/scaling"
+        ]
+      ]
+    },
+    {
+      "words": "hp 4 3 по 14 hp 5 3 по 16 hp 6 4 по 18 hp 7 5 по 20 hp ac 12 один",
+      "locations": [
+        [
+          "campaigns/dark-fantasy-2026/lantern-mere",
+          "campaigns/dark-fantasy-2026/lantern-mere/source/encounters.json",
+          "/1/scaling"
+        ],
+        [
+          "campaigns/dark-fantasy-2026/thorn-abbey",
+          "campaigns/dark-fantasy-2026/thorn-abbey/source/encounters.json",
+          "/1/scaling"
+        ]
+      ]
+    },
+    {
+      "words": "3 по 14 hp 5 3 по 16 hp 6 4 по 18 hp 7 5 по 20 hp у всех ac 12 один",
+      "locations": [
+        [
+          "campaigns/dark-fantasy-2026/lantern-mere",
+          "campaigns/dark-fantasy-2026/lantern-mere/source/encounters.json",
+          "/0/scaling"
+        ],
+        [
+          "campaigns/dark-fantasy-2026/thorn-abbey",
+          "campaigns/dark-fantasy-2026/thorn-abbey/source/encounters.json",
+          "/2/scaling"
+        ]
+      ]
+    },
+    {
+      "words": "по 12 hp 4 3 по 14 5 3 по 16 6 4 по 18 7 5 по 20 у всех ac 12 одна",
+      "locations": [
+        [
+          "campaigns/dark-fantasy-2026/bellwether-hollow",
+          "campaigns/dark-fantasy-2026/bellwether-hollow/source/encounters.json",
+          "/0/scaling"
+        ],
+        [
+          "campaigns/mixed-ages-2026/museum-midnight",
+          "campaigns/mixed-ages-2026/museum-midnight/source/encounters.json",
+          "/0/scaling"
+        ],
+        [
+          "campaigns/mixed-ages-2026/museum-midnight",
+          "campaigns/mixed-ages-2026/museum-midnight/source/encounters.json",
+          "/1/scaling"
+        ],
+        [
+          "campaigns/mixed-ages-2026/museum-midnight",
+          "campaigns/mixed-ages-2026/museum-midnight/source/encounters.json",
+          "/2/scaling"
+        ]
+      ]
+    },
+    {
+      "words": "12 hp 4 3 по 14 5 3 по 16 6 4 по 18 7 5 по 20 у всех ac 12 одна ближняя",
+      "locations": [
+        [
+          "campaigns/dark-fantasy-2026/bellwether-hollow",
+          "campaigns/dark-fantasy-2026/bellwether-hollow/source/encounters.json",
+          "/0/scaling"
+        ],
+        [
+          "campaigns/mixed-ages-2026/museum-midnight",
+          "campaigns/mixed-ages-2026/museum-midnight/source/encounters.json",
+          "/0/scaling"
+        ],
+        [
+          "campaigns/mixed-ages-2026/museum-midnight",
+          "campaigns/mixed-ages-2026/museum-midnight/source/encounters.json",
+          "/1/scaling"
+        ],
+        [
+          "campaigns/mixed-ages-2026/museum-midnight",
+          "campaigns/mixed-ages-2026/museum-midnight/source/encounters.json",
+          "/2/scaling"
+        ]
+      ]
+    },
+    {
+      "words": "hp 4 3 по 14 5 3 по 16 6 4 по 18 7 5 по 20 у всех ac 12 одна ближняя атака",
+      "locations": [
+        [
+          "campaigns/dark-fantasy-2026/bellwether-hollow",
+          "campaigns/dark-fantasy-2026/bellwether-hollow/source/encounters.json",
+          "/0/scaling"
+        ],
+        [
+          "campaigns/mixed-ages-2026/museum-midnight",
+          "campaigns/mixed-ages-2026/museum-midnight/source/encounters.json",
+          "/0/scaling"
+        ],
+        [
+          "campaigns/mixed-ages-2026/museum-midnight",
+          "campaigns/mixed-ages-2026/museum-midnight/source/encounters.json",
+          "/1/scaling"
+        ],
+        [
+          "campaigns/mixed-ages-2026/museum-midnight",
+          "campaigns/mixed-ages-2026/museum-midnight/source/encounters.json",
+          "/2/scaling"
+        ]
+      ]
+    },
+    {
+      "words": "4 3 по 14 5 3 по 16 6 4 по 18 7 5 по 20 у всех ac 12 одна ближняя атака 3",
+      "locations": [
+        [
+          "campaigns/dark-fantasy-2026/bellwether-hollow",
+          "campaigns/dark-fantasy-2026/bellwether-hollow/source/encounters.json",
+          "/0/scaling"
+        ],
+        [
+          "campaigns/mixed-ages-2026/museum-midnight",
+          "campaigns/mixed-ages-2026/museum-midnight/source/encounters.json",
+          "/0/scaling"
+        ],
+        [
+          "campaigns/mixed-ages-2026/museum-midnight",
+          "campaigns/mixed-ages-2026/museum-midnight/source/encounters.json",
+          "/1/scaling"
+        ],
+        [
+          "campaigns/mixed-ages-2026/museum-midnight",
+          "campaigns/mixed-ages-2026/museum-midnight/source/encounters.json",
+          "/2/scaling"
+        ]
+      ]
+    },
+    {
+      "words": "3 по 14 5 3 по 16 6 4 по 18 7 5 по 20 у всех ac 12 одна ближняя атака 3 урон",
+      "locations": [
+        [
+          "campaigns/dark-fantasy-2026/bellwether-hollow",
+          "campaigns/dark-fantasy-2026/bellwether-hollow/source/encounters.json",
+          "/0/scaling"
+        ],
+        [
+          "campaigns/mixed-ages-2026/museum-midnight",
+          "campaigns/mixed-ages-2026/museum-midnight/source/encounters.json",
+          "/0/scaling"
+        ],
+        [
+          "campaigns/mixed-ages-2026/museum-midnight",
+          "campaigns/mixed-ages-2026/museum-midnight/source/encounters.json",
+          "/1/scaling"
+        ],
+        [
+          "campaigns/mixed-ages-2026/museum-midnight",
+          "campaigns/mixed-ages-2026/museum-midnight/source/encounters.json",
+          "/2/scaling"
+        ]
+      ]
+    },
+    {
+      "words": "по 14 5 3 по 16 6 4 по 18 7 5 по 20 у всех ac 12 одна ближняя атака 3 урон 1d4",
+      "locations": [
+        [
+          "campaigns/dark-fantasy-2026/bellwether-hollow",
+          "campaigns/dark-fantasy-2026/bellwether-hollow/source/encounters.json",
+          "/0/scaling"
+        ],
+        [
+          "campaigns/mixed-ages-2026/museum-midnight",
+          "campaigns/mixed-ages-2026/museum-midnight/source/encounters.json",
+          "/0/scaling"
+        ],
+        [
+          "campaigns/mixed-ages-2026/museum-midnight",
+          "campaigns/mixed-ages-2026/museum-midnight/source/encounters.json",
+          "/1/scaling"
+        ],
+        [
+          "campaigns/mixed-ages-2026/museum-midnight",
+          "campaigns/mixed-ages-2026/museum-midnight/source/encounters.json",
+          "/2/scaling"
+        ]
+      ]
+    },
+    {
+      "words": "14 5 3 по 16 6 4 по 18 7 5 по 20 у всех ac 12 одна ближняя атака 3 урон 1d4 1",
+      "locations": [
+        [
+          "campaigns/dark-fantasy-2026/bellwether-hollow",
+          "campaigns/dark-fantasy-2026/bellwether-hollow/source/encounters.json",
+          "/0/scaling"
+        ],
+        [
+          "campaigns/mixed-ages-2026/museum-midnight",
+          "campaigns/mixed-ages-2026/museum-midnight/source/encounters.json",
+          "/0/scaling"
+        ],
+        [
+          "campaigns/mixed-ages-2026/museum-midnight",
+          "campaigns/mixed-ages-2026/museum-midnight/source/encounters.json",
+          "/1/scaling"
+        ],
+        [
+          "campaigns/mixed-ages-2026/museum-midnight",
+          "campaigns/mixed-ages-2026/museum-midnight/source/encounters.json",
+          "/2/scaling"
+        ]
+      ]
+    },
+    {
+      "words": "5 3 по 16 6 4 по 18 7 5 по 20 у всех ac 12 одна ближняя атака 3 урон 1d4 1 при",
+      "locations": [
+        [
+          "campaigns/dark-fantasy-2026/bellwether-hollow",
+          "campaigns/dark-fantasy-2026/bellwether-hollow/source/encounters.json",
+          "/0/scaling"
+        ],
+        [
+          "campaigns/mixed-ages-2026/museum-midnight",
+          "campaigns/mixed-ages-2026/museum-midnight/source/encounters.json",
+          "/0/scaling"
+        ],
+        [
+          "campaigns/mixed-ages-2026/museum-midnight",
+          "campaigns/mixed-ages-2026/museum-midnight/source/encounters.json",
+          "/2/scaling"
+        ]
+      ]
+    },
+    {
+      "words": "3 по 16 6 4 по 18 7 5 по 20 у всех ac 12 одна ближняя атака 3 урон 1d4 1 при 3",
+      "locations": [
+        [
+          "campaigns/dark-fantasy-2026/bellwether-hollow",
+          "campaigns/dark-fantasy-2026/bellwether-hollow/source/encounters.json",
+          "/0/scaling"
+        ],
+        [
+          "campaigns/mixed-ages-2026/museum-midnight",
+          "campaigns/mixed-ages-2026/museum-midnight/source/encounters.json",
+          "/0/scaling"
+        ],
+        [
+          "campaigns/mixed-ages-2026/museum-midnight",
+          "campaigns/mixed-ages-2026/museum-midnight/source/encounters.json",
+          "/2/scaling"
+        ]
+      ]
+    },
+    {
+      "words": "по 16 6 4 по 18 7 5 по 20 у всех ac 12 одна ближняя атака 3 урон 1d4 1 при 3 игроках",
+      "locations": [
+        [
+          "campaigns/dark-fantasy-2026/bellwether-hollow",
+          "campaigns/dark-fantasy-2026/bellwether-hollow/source/encounters.json",
+          "/0/scaling"
+        ],
+        [
+          "campaigns/mixed-ages-2026/museum-midnight",
+          "campaigns/mixed-ages-2026/museum-midnight/source/encounters.json",
+          "/0/scaling"
+        ],
+        [
+          "campaigns/mixed-ages-2026/museum-midnight",
+          "campaigns/mixed-ages-2026/museum-midnight/source/encounters.json",
+          "/2/scaling"
+        ]
+      ]
+    },
+    {
+      "words": "3 по 14 hp 5 3 по 16 hp 6 4 по 18 hp 7 5 по 20 hp у всех ac 12 и",
+      "locations": [
+        [
+          "campaigns/dark-fantasy-2026/thorn-abbey",
+          "campaigns/dark-fantasy-2026/thorn-abbey/source/encounters.json",
+          "/0/scaling"
+        ],
+        [
+          "campaigns/mixed-ages-2026/rain-bureau",
+          "campaigns/mixed-ages-2026/rain-bureau/source/encounters.json",
+          "/0/scaling"
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "capturedAt": "2026-11-08T11:32:25.367Z",
+  "scope": "FANTASY_TEN_2026-11-08; local content and isolated verification only",
+  "commands": [
+    {
+      "command": "node --conditions=@ltw/source scripts/fantasy-campaigns/build.ts && node --conditions=@ltw/source scripts/fantasy-campaigns/render.ts",
+      "result": {
+        "chunk_id": "ff6582",
+        "wall_time_seconds": 3.156151375,
+        "exit_code": 0,
+        "original_token_count": 265,
+        "output": "small-banner: 6 variants READY\ndungeon-sanctuary: 6 variants READY\nstorm-kitchen: 6 variants READY\ndragon-retirement: 6 variants READY\nimpossible-fair: 6 variants READY\nunwritten-god: 6 variants READY\nbasalt-bloom: 6 variants READY\nthree-magicless-days: 6 variants READY\nmountain-wedding: 6 variants READY\nfamiliar-school: 6 variants READY\nsmall-banner: local books, player export, handouts and maps rendered\ndungeon-sanctuary: local books, player export, handouts and maps rendered\nstorm-kitchen: local books, player export, handouts and maps rendered\ndragon-retirement: local books, player export, handouts and maps rendered\nimpossible-fair: local books, player export, handouts and maps rendered\nunwritten-god: local books, player export, handouts and maps rendered\nbasalt-bloom: local books, player export, handouts and maps rendered\nthree-magicless-days: local books, player export, handouts and maps rendered\nmountain-wedding: local books, player export, handouts and maps rendered\nfamiliar-school: local books, player export, handouts and maps rendered\n"
+      }
+    },
+    {
+      "command": "pnpm exec eslint scripts/fantasy-campaigns --max-warnings=0",
+      "result": {
+        "chunk_id": "65bd1c",
+        "wall_time_seconds": 3.018421458,
+        "exit_code": 0,
+        "original_token_count": 0,
+        "output": ""
+      }
+    },
+    {
+      "command": "pnpm exec tsc -p scripts/fantasy-campaigns/tsconfig.json",
+      "result": {
+        "chunk_id": "0607b5",
+        "wall_time_seconds": 4.0423895,
+        "exit_code": 0,
+        "original_token_count": 0,
+        "output": ""
+      }
+    },
+    {
+      "command": "pnpm context-budget",
+      "result": {
+        "chunk_id": "a5523d",
+        "wall_time_seconds": 0.972812583,
+        "exit_code": 0,
+        "original_token_count": 29,
+        "output": "$ node scripts/context-budget/cli.ts\ncontext-budget: 1903 active files checked, 0 over target, 0 over hard limit\n"
+      }
+    },
+    {
+      "command": "pnpm exec vitest run --project unit scripts/fantasy-campaigns --reporter=json --outputFile=reports/evidence/fantasy-ten-2026-11-08/tests.json",
+      "result": {
+        "chunk_id": "d9a543",
+        "wall_time_seconds": 6.905655,
+        "exit_code": 0,
+        "original_token_count": 35,
+        "output": "JSON report written to /Users/oleksandr/Documents/living-tabletop-world-dev-pack-v1.2/reports/evidence/fantasy-ten-2026-11-08/tests.json\n"
+      }
+    },
+    {
+      "command": "pnpm exec prettier --check scripts/fantasy-campaigns campaigns/fantasy-2026 work-orders/FANTASY_TEN_2026-11-08.md",
+      "result": {
+        "chunk_id": "630926",
+        "wall_time_seconds": 0.914610375,
+        "exit_code": 0,
+        "original_token_count": 17,
+        "output": "Checking formatting...\nAll matched files use Prettier code style!\n"
+      }
+    },
+    {
+      "command": "node scripts/fantasy-campaigns/distinctness.ts",
+      "result": {
+        "chunk_id": "f6c120",
+        "wall_time_seconds": 0.008240042,
+        "exit_code": 0,
+        "original_token_count": 26,
+        "output": "53 available campaign fingerprints; 0 exact duplicate premise/truth passages involving this collection.\n"
+      }
+    },
+    {
+      "command": "python3 scripts/fantasy-campaigns/concordance.py",
+      "exitCode": 0,
+      "summary": "70 package files and 191 book/handout files; no missing source fields"
+    },
+    {
+      "command": "node scripts/fantasy-campaigns/audit.ts /Users/oleksandr/.agents/skills/ui-layout-audit/audit.mjs",
+      "exitCode": 0,
+      "summary": "192 pages, 768 states; 0 layout findings, browser errors, missing links or duplicate titles; network routes blocked"
+    },
+    {
+      "command": "pnpm exec prettier --check reports/FANTASY_TEN_2026-11-08.md handoffs/FANTASY_TEN_2026-11-08.md",
+      "exitCode": 0,
+      "summary": "Both final documents pass formatting"
+    }
+  ],
+  "manualVisualReview": {
+    "screenshots": 28,
+    "widths": [
+      1440,
+      768,
+      390,
+      320
+    ],
+    "surfaces": [
+      "catalog",
+      "DM book",
+      "session",
+      "player book",
+      "maps page",
+      "map detail",
+      "hero detail"
+    ],
+    "findings": []
+  },
+  "limits": [
+    "No human playtest",
+    "No database migration or seed",
+    "No production activation, deployment or publication",
+    "No provider-model attestation",
+    "No full pnpm validate"
+  ],
+  "browserEnvironment": "Initial sandbox launch failed with macOS MachPort permission denial; approved out-of-sandbox local Chromium reruns succeeded."
+}

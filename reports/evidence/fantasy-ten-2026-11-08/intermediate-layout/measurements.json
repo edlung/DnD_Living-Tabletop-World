@@ -1,0 +1,77 @@
+{
+  "states": 12,
+  "results": [
+    {
+      "slug": "unwritten-god",
+      "file": "index.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "slug": "basalt-bloom",
+      "file": "maps.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "slug": "three-magicless-days",
+      "file": "players.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "slug": "unwritten-god",
+      "file": "index.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "slug": "basalt-bloom",
+      "file": "maps.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "slug": "three-magicless-days",
+      "file": "players.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "slug": "unwritten-god",
+      "file": "index.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "slug": "basalt-bloom",
+      "file": "maps.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "slug": "three-magicless-days",
+      "file": "players.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "slug": "unwritten-god",
+      "file": "index.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "slug": "basalt-bloom",
+      "file": "maps.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "slug": "three-magicless-days",
+      "file": "players.html",
+      "width": 320,
+      "findings": []
+    }
+  ]
+}

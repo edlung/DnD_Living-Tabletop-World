@@ -134,6 +134,27 @@
 - The library and the tables are stores beside the world (migrations), the DM's alone; a roll and a
   given handout are the table's as before.
 
+## Notes from the implementation (the campaign library, 2026-11-14)
+
+- Owner request 2026-11-14 («Давай закроем все пробелы»; scope
+  `work-orders/CAMPAIGN_LIBRARY_RELEASE_2026-11-14.md`): the authored campaigns reworked to the
+  owner's standard reach the product. The workshop lists them; a DM picks one and a party variant
+  into an empty draft, where it is previewed and saved exactly as a package file is (the same
+  revision route, the same compiler and checks). Starting it is the ordinary activation.
+- `fixtures/campaign-library/` (written by `scripts/campaign-library/build.ts` from `campaigns/`) holds
+  each campaign's packages and `library.json`: its variants with the SHA-256 of each package's
+  canonical JSON, and its pictures bound by package key per variant. The pictures stay in the
+  campaigns' own `assets/` (runtime WebP and `battle-maps/`); the server reads and checks every one
+  against its SHA-256 at start and refuses a library whose packages or pictures changed.
+- Routes (a signed-in workshop owner, reads only): `GET /workshop/library`,
+  `GET /workshop/library/:campaignId/cover`, `GET /workshop/library/:campaignId/packages/:variantId`.
+- Pictures travel with the campaign as a template's do (§5): when an activation publishes a campaign
+  whose frozen revision is, in canonical form, one of the library's packages, the activation worker
+  imports its pictures through the curated import's commands as its DM — references for places,
+  people and objects, a `figure` for each foe, and a `battle-map` for each place a prepared fight
+  happens (a GPT top-down map drawn over that fight's grid and cut to it). An edited package is not
+  recognised and gets none; a picture that fails is logged and leaves the campaign published.
+
 ## Invariants affected
 
 Preserves 1, 8 and 9: every change to the world is the World Engine's, every die its own; a player

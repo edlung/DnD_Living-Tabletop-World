@@ -1,0 +1,76 @@
+{
+  "transport": "Native Codex collaboration.spawn_agent; one dedicated author per campaign",
+  "providerAttestation": "Not exposed; requested configuration is recorded, not an application generation job",
+  "authors": [
+    {
+      "slug": "small-banner",
+      "agentPath": "/root/small_banner",
+      "threadId": "01a1ba51-9f10-72c0-83f9-ac1e9cff0eb4",
+      "modelRequested": "gpt-6-astra",
+      "effortRequested": "max"
+    },
+    {
+      "slug": "dungeon-sanctuary",
+      "agentPath": "/root/dungeon_sanctuary",
+      "threadId": "01a1ba51-e15a-7710-a203-7647cb3c1acf",
+      "modelRequested": "gpt-6-astra",
+      "effortRequested": "max"
+    },
+    {
+      "slug": "storm-kitchen",
+      "agentPath": "/root/storm_kitchen",
+      "threadId": "01a1ba52-25e8-7ea0-9f78-7cff23446426",
+      "modelRequested": "gpt-6-astra",
+      "effortRequested": "max"
+    },
+    {
+      "slug": "dragon-retirement",
+      "agentPath": "/root/dragon_retirement",
+      "threadId": "01a1ba6f-730b-7b83-ba80-ce3f5c44c731",
+      "modelRequested": "gpt-6-astra",
+      "effortRequested": "max"
+    },
+    {
+      "slug": "impossible-fair",
+      "agentPath": "/root/impossible_fair",
+      "threadId": "01a1ba71-7d9d-78c0-81d1-0992f2b04995",
+      "modelRequested": "gpt-6-astra",
+      "effortRequested": "max"
+    },
+    {
+      "slug": "unwritten-god",
+      "agentPath": "/root/unwritten_god",
+      "threadId": "01a1ba81-d70a-7830-85d6-06391e9617de",
+      "modelRequested": "gpt-6-astra",
+      "effortRequested": "max"
+    },
+    {
+      "slug": "basalt-bloom",
+      "agentPath": "/root/basalt_bloom",
+      "threadId": "01a1ba8b-f72f-7ea3-b130-5c56b309ce0c",
+      "modelRequested": "gpt-6-astra",
+      "effortRequested": "max"
+    },
+    {
+      "slug": "three-magicless-days",
+      "agentPath": "/root/three_magicless_days",
+      "threadId": "01a1ba93-6f07-7a11-83c7-2e06362ad413",
+      "modelRequested": "gpt-6-astra",
+      "effortRequested": "max"
+    },
+    {
+      "slug": "mountain-wedding",
+      "agentPath": "/root/mountain_wedding",
+      "threadId": "01a1bab8-c5c5-7d02-a753-24c418aa7aed",
+      "modelRequested": "gpt-6-astra",
+      "effortRequested": "max"
+    },
+    {
+      "slug": "familiar-school",
+      "agentPath": "/root/familiar_school",
+      "threadId": "01a1baba-a517-7780-8bb7-13d7e34c1dad",
+      "modelRequested": "gpt-6-astra",
+      "effortRequested": "max"
+    }
+  ]
+}

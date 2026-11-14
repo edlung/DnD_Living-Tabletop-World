@@ -12,6 +12,9 @@
 !fixtures/ravenford-ru
 !fixtures/hollowmere
 !fixtures/hollowmere-ru
+!fixtures/campaign-library
+!campaigns/**/assets/runtime/*.webp
+!campaigns/**/assets/battle-maps/*.webp
 !deploy/server/start.sh
 !deploy/proxy/Caddyfile
 !deploy/proxy/trust

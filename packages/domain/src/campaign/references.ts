@@ -110,6 +110,8 @@ export function validateEntities(context: PlanContext): void {
         `${path}.existsSince`,
         'An initial entity cannot begin after the campaign starts',
       );
+    if (entity.manner !== undefined && entity.kind !== 'npc')
+      error(context, 'MANNER_KIND', `${path}.manner`, 'A manner of speech belongs to an NPC');
     if (entity.sheet && entity.kind !== 'character')
       error(context, 'SHEET_KIND', `${path}.sheet`, 'Character sheets belong to characters');
     if (entity.statBlock && entity.kind !== 'npc' && entity.kind !== 'creature')

@@ -1,0 +1,11 @@
+[
+  {
+    "path": "guide.html",
+    "focus": {
+      "tag": "A",
+      "text": "К содержанию",
+      "outline": "rgb(148, 62, 56) solid 3px",
+      "visible": true
+    }
+  }
+]

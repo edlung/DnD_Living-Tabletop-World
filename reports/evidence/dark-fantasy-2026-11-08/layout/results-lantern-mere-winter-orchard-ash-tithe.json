@@ -1,0 +1,1148 @@
+{
+  "pageCount": 57,
+  "errors": 0,
+  "warnings": 0,
+  "titleFindings": [],
+  "results": [
+    {
+      "path": "lantern-mere/index.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/maps.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/players.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/session-1.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/session-2.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/session-3.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/session-4.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/session-5.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/session-6.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/session-7.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/session-8.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/handouts/blank-postcard.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/handouts/elina-original.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/handouts/ferry-test.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/handouts/garden-note.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/handouts/observation-page.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/handouts/quay-note.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/handouts/sena-request.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/handouts/witness-promise.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/index.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/maps.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/players.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/session-1.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/session-2.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/session-3.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/session-4.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/session-5.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/session-6.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/session-7.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/session-8.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/handouts/aftercare-list.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/handouts/circle-leaflet.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/handouts/graft-diagram.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/handouts/lamp-promise.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/handouts/patient-cards.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/handouts/silk-term.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/handouts/silver-warning.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/handouts/three-bowls-note.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/index.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/maps.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/players.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/session-1.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/session-2.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/session-3.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/session-4.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/session-5.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/session-6.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/session-7.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/session-8.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/handouts/guest-fire-practice.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/handouts/shared-pledge.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/handouts/three-stations.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/handouts/tithe-voice.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/handouts/trail-choice.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/handouts/winter-terms.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/handouts/winter-voices.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/handouts/workers-choices.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/index.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/maps.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/players.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/session-1.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/session-2.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/session-3.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/session-4.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/session-5.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/session-6.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/session-7.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/session-8.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/handouts/blank-postcard.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/handouts/elina-original.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/handouts/ferry-test.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/handouts/garden-note.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/handouts/observation-page.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/handouts/quay-note.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/handouts/sena-request.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/handouts/witness-promise.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/index.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/maps.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/players.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/session-1.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/session-2.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/session-3.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/session-4.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/session-5.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/session-6.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/session-7.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/session-8.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/handouts/aftercare-list.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/handouts/circle-leaflet.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/handouts/graft-diagram.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/handouts/lamp-promise.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/handouts/patient-cards.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/handouts/silk-term.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/handouts/silver-warning.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/handouts/three-bowls-note.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/index.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/maps.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/players.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/session-1.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/session-2.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/session-3.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/session-4.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/session-5.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/session-6.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/session-7.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/session-8.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/handouts/guest-fire-practice.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/handouts/shared-pledge.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/handouts/three-stations.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/handouts/tithe-voice.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/handouts/trail-choice.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/handouts/winter-terms.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/handouts/winter-voices.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/handouts/workers-choices.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/index.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/maps.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/players.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/session-1.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/session-2.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/session-3.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/session-4.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/session-5.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/session-6.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/session-7.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/session-8.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/handouts/blank-postcard.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/handouts/elina-original.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/handouts/ferry-test.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/handouts/garden-note.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/handouts/observation-page.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/handouts/quay-note.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/handouts/sena-request.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/handouts/witness-promise.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/index.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/maps.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/players.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/session-1.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/session-2.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/session-3.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/session-4.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/session-5.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/session-6.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/session-7.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/session-8.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/handouts/aftercare-list.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/handouts/circle-leaflet.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/handouts/graft-diagram.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/handouts/lamp-promise.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/handouts/patient-cards.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/handouts/silk-term.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/handouts/silver-warning.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/handouts/three-bowls-note.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/index.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/maps.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/players.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/session-1.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/session-2.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/session-3.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/session-4.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/session-5.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/session-6.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/session-7.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/session-8.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/handouts/guest-fire-practice.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/handouts/shared-pledge.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/handouts/three-stations.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/handouts/tithe-voice.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/handouts/trail-choice.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/handouts/winter-terms.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/handouts/winter-voices.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/handouts/workers-choices.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/index.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/maps.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/players.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/session-1.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/session-2.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/session-3.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/session-4.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/session-5.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/session-6.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/session-7.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/session-8.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/handouts/blank-postcard.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/handouts/elina-original.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/handouts/ferry-test.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/handouts/garden-note.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/handouts/observation-page.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/handouts/quay-note.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/handouts/sena-request.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "lantern-mere/handouts/witness-promise.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/index.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/maps.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/players.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/session-1.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/session-2.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/session-3.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/session-4.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/session-5.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/session-6.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/session-7.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/session-8.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/handouts/aftercare-list.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/handouts/circle-leaflet.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/handouts/graft-diagram.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/handouts/lamp-promise.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/handouts/patient-cards.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/handouts/silk-term.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/handouts/silver-warning.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "winter-orchard/handouts/three-bowls-note.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/index.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/maps.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/players.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/session-1.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/session-2.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/session-3.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/session-4.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/session-5.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/session-6.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/session-7.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/session-8.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/handouts/guest-fire-practice.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/handouts/shared-pledge.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/handouts/three-stations.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/handouts/tithe-voice.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/handouts/trail-choice.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/handouts/winter-terms.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/handouts/winter-voices.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "ash-tithe/handouts/workers-choices.html",
+      "width": 320,
+      "findings": []
+    }
+  ]
+}

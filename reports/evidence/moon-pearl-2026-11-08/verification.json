@@ -1,0 +1,184 @@
+{
+  "date": "2026-11-08",
+  "baselineCommit": "e69c3290ca34cbde4a837591bfb477b899581142",
+  "scopedStatus": "PASS",
+  "wholeCheckoutStatus": "PARTIAL",
+  "checks": [
+    {
+      "command": "pnpm pearl:build",
+      "status": "PASS",
+      "variants": 5,
+      "readiness": "READY"
+    },
+    {
+      "command": "pnpm pearl:book",
+      "status": "PASS",
+      "htmlPages": 42
+    },
+    {
+      "command": "pnpm pearl:check",
+      "status": "PASS",
+      "tests": 9,
+      "files": 4
+    },
+    {
+      "command": "pnpm acorn:check (after revision)",
+      "status": "PASS",
+      "tests": 9,
+      "files": 4
+    },
+    {
+      "command": "pnpm lighthouse:check",
+      "status": "PASS",
+      "tests": 9,
+      "files": 4
+    },
+    {
+      "command": "pnpm test:e2e",
+      "status": "PASS",
+      "tests": 247,
+      "minutes": 11.7
+    },
+    {
+      "command": "native Moon package import plus audit",
+      "status": "PASS",
+      "tests": 1,
+      "widths": [1440, 768, 390, 320]
+    },
+    {
+      "command": "native Acorn package import after revision plus audit",
+      "status": "PASS",
+      "tests": 1,
+      "widths": [1440, 768, 390, 320]
+    },
+    {
+      "command": "pnpm typecheck (global retest)",
+      "status": "PASS"
+    },
+    {
+      "command": "scoped tsc, eslint and prettier",
+      "status": "PASS"
+    },
+    {
+      "command": "pnpm context-budget",
+      "status": "PASS",
+      "activeFiles": 1894,
+      "overTarget": 0,
+      "overHardLimit": 0
+    },
+    {
+      "command": "pnpm build",
+      "status": "PASS",
+      "warning": "Existing Vite chunk above 500 kB"
+    },
+    {
+      "command": "migrations on dedicated database, twice",
+      "status": "PASS",
+      "firstApplied": 32,
+      "secondApplied": 0
+    },
+    {
+      "command": "seed Ravenford on dedicated database, twice",
+      "status": "PASS",
+      "firstAccepted": 188,
+      "secondDuplicates": 188,
+      "firstPictures": 51,
+      "secondPicturesPresent": 51,
+      "versionUnchanged": 415
+    },
+    {
+      "command": "pnpm test:integration",
+      "status": "FAIL",
+      "passed": 368,
+      "failed": 1,
+      "reason": "One gate03-retest2 regression timed out at 30 seconds; cleanup called pool.end twice"
+    },
+    {
+      "command": "same integration file --maxWorkers=2, unchanged timeouts",
+      "status": "PASS",
+      "tests": 2
+    },
+    {
+      "command": "pnpm test (global retest)",
+      "status": "FAIL",
+      "passed": 3672,
+      "failed": 126,
+      "filesFailed": 12,
+      "scope": "Concurrent collections and their computed-import architecture failures"
+    },
+    {
+      "command": "pnpm lint (global retest)",
+      "status": "FAIL",
+      "errors": 2,
+      "scope": "scripts/noir-campaigns/phrases.ts"
+    },
+    {
+      "command": "pnpm format:check (global retest)",
+      "status": "FAIL",
+      "flaggedFiles": 124,
+      "scope": "Concurrent collections and audit evidence"
+    }
+  ],
+  "packages": [
+    {
+      "path": "campaigns/moon-pearl/package.json",
+      "sha256": "e12711076e298aad9195c39dec219078fa70744c1903e2c82159735698e740c4"
+    },
+    {
+      "path": "campaigns/moon-pearl/variants/four-players.json",
+      "sha256": "4adccc6ee2cf3f469ed80536435c4384cc78b226ac879dfaa3e0ec8a009777fc"
+    },
+    {
+      "path": "campaigns/moon-pearl/variants/without-amalia.json",
+      "sha256": "3fba39a74576a498af5c83c9364cc4d2227be68cceea972e8e16a817cb4e900c"
+    },
+    {
+      "path": "campaigns/moon-pearl/variants/without-leya.json",
+      "sha256": "a2bd90d82028236172397ca76f349b6f9bd05b18ac2cf036f9d51f35b02b967a"
+    },
+    {
+      "path": "campaigns/moon-pearl/variants/without-toren.json",
+      "sha256": "2fa3fac0b440000e29de15fbcc137b9526e4545ba66054f2c1cb56b022b71107"
+    }
+  ],
+  "layout": {
+    "widths": [1440, 768, 390, 320],
+    "moonPages": 42,
+    "initialMeasurements": 168,
+    "theatreRetestMeasurements": 16,
+    "mapRetestMeasurements": 4,
+    "nonInfoFindings": 0,
+    "axeViolations": 0,
+    "duplicateTitles": 0,
+    "acornRevisedPages": 42,
+    "acornMeasurements": 168,
+    "bookTheme": "light",
+    "nativeWorkshopTheme": "dark",
+    "screensVisuallyInspected": true,
+    "keyboardFocus": {
+      "element": "skip link",
+      "visible": true,
+      "outline": "3px solid"
+    }
+  },
+  "art": {
+    "selected": 34,
+    "originalFormat": "PNG",
+    "runtimeFormat": "WebP",
+    "generator": "built-in image_gen.imagegen",
+    "modelVersion": "not disclosed by tool",
+    "referenceHashesVerified": 1
+  },
+  "cleanup": {
+    "dedicatedDatabase": "ltw_moon_pearl_check_20261108",
+    "dedicatedDatabaseDropped": true,
+    "serversStopped": true
+  },
+  "notPerformed": [
+    "human family playtest",
+    "physical printer output",
+    "real saved campaign activation",
+    "production deployment",
+    "paid project-provider generation"
+  ]
+}
