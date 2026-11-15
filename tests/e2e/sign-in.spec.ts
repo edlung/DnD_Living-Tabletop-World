@@ -1,5 +1,6 @@
 import { expect, test, type Page } from '@playwright/test';
 
+import { readsQuiet } from './support/live.ts';
 import { dockButton, openSheet } from './support/shell.ts';
 import {
   SIGN_IN_CAMPAIGNS,
@@ -99,7 +100,7 @@ test('the DM invites, the player joins and plays, and revocation signs the playe
 
   // Quiet: no read of the player's is pending (each read is followed by one more 1.5 s later),
   // so only the live stream can carry the news: no other request reaches the server meanwhile.
-  await player.waitForTimeout(3_000);
+  await readsQuiet([player]);
   let reads = 0;
   let accountReads = 0;
   player.on('request', (request) => {

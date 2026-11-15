@@ -33,7 +33,8 @@ const silent = createLogger({ service: 'ui-image-journeys', level: 'silent' });
  * - `battle`: the curated set and the Old Trade Road ambush on Elowen's turn;
  * - `tomas` (and `retry`, for a second journey): the curated set, Tomas Reed (no picture yet) at
  *   Market Square beside Elowen, and a request the curated generator could not answer (failed,
- *   `UNAVAILABLE`). The test server's asset worker answers the DM's requests here with the
+ *   `UNAVAILABLE`): North Gate in snow, whose picture these campaigns' set leaves out
+ *   (`UNMADE`). The test server's asset worker answers the DM's requests here with the
  *   placeholder generator;
  * - `review`: the curated set with two pictures made but not yet approved (candidates), one
  *   request waiting for the image generator, one being generated and one failed. No worker runs
@@ -54,6 +55,21 @@ export const UI_IMAGE_WORKER_CAMPAIGNS: readonly string[] = [
 
 /** Curated pictures the review campaigns hold as candidates: made, never approved. */
 const HELD = ['captain-thorne--figure.webp', 'north-gate--night.webp'];
+
+/**
+ * The picture the failed request's campaigns never had: the shipped set has held a snowy North
+ * Gate since Ravenford's art P2, so these campaigns get the set without it — neither imported
+ * nor known to their curated generator — and their request for it fails as it did before.
+ */
+const UNMADE = 'north-gate--snow.webp';
+
+const without = (set: CuratedSet, files: readonly string[]): CuratedSet => {
+  const entries = set.entries.filter((entry) => !files.includes(entry.file));
+  if (set.entries.length - entries.length !== files.length) {
+    throw new Error(`UI image journeys: the curated set lacks one of ${files.join(', ')}`);
+  }
+  return { ...set, entries };
+};
 
 type Command = Readonly<Record<string, unknown>> & { readonly type: string };
 
@@ -139,7 +155,7 @@ async function seedReview(
       made.push(`${commandId}#0`);
     }
   }
-  // The set holds no snowy North Gate: that request fails as UNAVAILABLE, as without a budget.
+  // This set holds no snowy North Gate: that request fails as UNAVAILABLE, as without a budget.
   const snow = await requestVariant(engine, campaignId, 'north-gate', 'snow');
   await curatedRun(engine, contents, set, campaignId, [...made, snow]);
   if (waiting) await requestVariant(engine, campaignId, 'captain-thorne', 'wounded');
@@ -157,8 +173,8 @@ export async function seedUiImageJourneys(
   engine: WorldEngine,
   contents: AssetContentStore,
 ): Promise<void> {
-  const set = await loadCuratedSet();
-  const importInto = (campaignId: string, from: CuratedSet = set) =>
+  const shipped = await loadCuratedSet();
+  const importInto = (campaignId: string, from: CuratedSet = shipped) =>
     importCuratedSet({ engine, contents, set: from, logger: silent }, campaignId, DM);
   const languages = [
     { ru: false, site: campaigns.site, battle: campaigns.battle },
@@ -175,6 +191,8 @@ export async function seedUiImageJourneys(
     await seedCombatCampaign(engine, battle, 'started', ru ? RAVENFORD_RU_FIXTURES_DIR : undefined);
     await importInto(battle);
   }
+  // From here on: the set without the snowy North Gate, for the request that fails.
+  const set = without(shipped, [UNMADE]);
   for (const [campaignId, ru] of [
     [campaigns.tomas, false],
     [campaigns.tomasRu, true],
@@ -192,7 +210,7 @@ export async function seedUiImageJourneys(
       existsSince: null,
       placement: { locationId: 'market-square', since: null },
     });
-    await importInto(campaignId);
+    await importInto(campaignId, set);
     await curatedRun(engine, contents, set, campaignId, [
       await requestVariant(engine, campaignId, 'north-gate', 'snow'),
     ]);
@@ -207,10 +225,7 @@ export async function seedUiImageJourneys(
   ];
   for (const campaignId of reviews) {
     await seedRavenford(engine, campaignId, campaignId === campaigns.reviewRu);
-    await importInto(campaignId, {
-      ...set,
-      entries: set.entries.filter((entry) => !HELD.includes(entry.file)),
-    });
+    await importInto(campaignId, without(set, HELD));
     await seedReview(engine, contents, set, campaignId, campaignId !== campaigns.keyboard);
   }
 }

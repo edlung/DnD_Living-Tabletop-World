@@ -13,3 +13,7 @@ channel, date, the GPT original's SHA-256 and the mechanical processing recipe.
 - UI-kit pictures state nothing about the world. Never use one in place of an approved world image
   (places, people, objects come from the asset API); see `docs/STAGE_320_DESIGN.md` §4.
 - Binary files: do not load them into context; read the manifest instead.
+- A new folder or glob in `visual/ui-kit.ts` keeps the literal shape of the others: on the dev
+  server `vite.config.ts` writes each glob out as its URL map from the manifest (one module
+  request per picture on every page load slowed every browser journey) and stops on a glob it
+  does not recognise. A picture added while the dev server runs shows after a restart.
