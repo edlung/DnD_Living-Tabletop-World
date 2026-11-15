@@ -9,7 +9,14 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   a place on the server); answers: amend ADR 0020, a pull request into `main`, then deploy (asked
   again before it runs). Scope `work-orders/CAMPAIGN_LIBRARY_RELEASE_2026-11-14.md`; branch
   `claude/campaign-library` from `97e136fe`; report `reports/CAMPAIGN_LIBRARY_RELEASE_2026-11-14.md`.
-- Status: implemented and checked locally; pull request and deploy follow the owner's word.
+- Status: done. Merged on the owner's word as PR 30 (`eed57594`, CI 8/8 green) and deployed to
+  the VPS on 2026-11-15 (tag `eed5759496ea`, previous `ad652e2b5383`; protected dump
+  `ltw-predeploy-20261115T050601Z.dump`; no migrations). Live check on the deployed site with a
+  test workshop owner: the library's eight cards and covers, «Дождь по страховому случаю» for four
+  saved READY, a text-only start, the DM's entry, all 48 bound pictures arrived, the roof fight on
+  its battle map; AI and image spend 0. The test owner and the test campaign's DM sessions were
+  revoked afterwards on the owner's word (their drafts stay, without access). Next, the owner's:
+  the family playtest and the v1.0 tag.
 
 ## Current request — native apps, 2026-11-02
 
