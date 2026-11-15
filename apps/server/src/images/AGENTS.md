@@ -46,6 +46,7 @@ selection and future exact-byte adoption do not call or re-encode the provider.
 | Orphaned reservations: listing, the operator's settlement, one request's charges    | `ledger-operator.ts` (migration `0012_…`)       |
 | The curated set: manifest schema, hash check, `curated` generator                   | `curated-set.ts`                                |
 | Importing the curated set through real commands, idempotently                       | `curated-import.ts`                             |
+| A ready-made character's picture named by its seed command, bound in each copy      | `seed-entities.ts`                              |
 | The live smoke (`pnpm images:smoke`): Tomas's portrait end to end over HTTP         | `../testing/image-smoke.ts`, `image-smoke/`     |
 
 Configuration (`src/platform/config/config.ts`, `.env.example`):
