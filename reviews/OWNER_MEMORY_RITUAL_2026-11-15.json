@@ -13,6 +13,7 @@
   },
   "authorizedStages": ["710"],
   "authorization": "Stage 710 on 2026-11-15: «Да, этап 710», answered to the question «Начинать этап 710 («Ранее…» и глава вечера)?» after the plan was shown, typed by the owner in the planning session; the session that started it relayed the same word given there («Да, начать 710»). It covers Stage 710 alone, in its own pull request; no merge, no deployment",
+  "howToProceed": "«Нет, спрашивать»: the owner's answer of 2026-11-15, typed in the working session after Stage 710's pull request, to «Идти по этапам 720–760 подряд, без вопроса перед каждым?». Each later stage is asked for before it starts. A word relayed from another session the same day («Часть 1 подряд») was not recorded or acted on.",
   "plan": "docs/MEMORY_RITUAL_PLAN.md; draft work order work-orders/STAGE_710.md",
   "delegation": "None recorded. The session's defaults are marked (S) in the plan's decisions and stay the owner's to overrule; every stage starts on the owner's word.",
   "askedAtTheTime": "Starting each stage, merges into main, deployments, native builds on the family's devices, the place for off-host backup copies.",
