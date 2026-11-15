@@ -57,6 +57,9 @@ It changes no world state; keep its window listener, since `pageerror` misses th
   no "Spoken, not a recorded fact." (`ai-feedback.spec.ts`, `dm-tools.spec.ts`).
 - Live session (`live-*.spec.ts`, ADR 0033): two browsers share each campaign of
   `fixtures/live-campaigns.json` (`ui-live-campaigns.ts`) and never press "Refresh world".
+  A journey that needs a page quiet before it counts requests waits with `readsQuiet`
+  (`support/live.ts`: no read for 3 s), never a fixed pause: on a hosted runner the trailing
+  re-reads of a slow load were still due after one (`sign-in.spec.ts`, `sign-in-tabs.spec.ts`).
   The live stream never ends while a page lives, so response-body collectors skip it
   (`isLiveStream` in `support/session.ts`); its frames are held to the fixed grammar by the
   server tests. Only the stream's transport is touched: the reconnect journey cuts the open
@@ -194,9 +197,11 @@ It changes no world state; keep its window listener, since `pageerror` misses th
   the Abandoned Caravan Site among the objects), `battle` (the ambush on Elowen's turn), `review`
   (curated candidates not yet approved, a request waiting, one being generated, one failed; no
   worker, so these stay; read-only) and `tomas`/`retry` (Tomas Reed with no picture at Market
-  Square, a failed request). The UI server's asset worker runs with the placeholder generator for
-  `tomas`, `tomasRu` and `retry` only. `images-curated.spec.ts` (the curated scene, figures
-  standing and inside medallions, the battle map, an object's plate; read-only),
+  Square, a failed request). The failed request is North Gate in snow: the review, `tomas` and
+  `retry` campaigns get the curated set without `north-gate--snow.webp` (`UNMADE`), so a picture
+  added to the shipped set never answers it. The UI server's asset worker runs with the placeholder
+  generator for `tomas`, `tomasRu` and `retry` only. `images-curated.spec.ts` (the curated scene,
+  figures standing and inside medallions, the battle map, an object's plate; read-only),
   `images-dm.spec.ts` (request with a note, generate again, discard, approve, replace, a figure;
   the player sees nothing of a candidate — page, presentation, bytes by hash, every API body —
   and the approved picture through the live signal; try again from the Images sheet; Russian),
@@ -256,7 +261,8 @@ It changes no world state; keep its window listener, since `pageerror` misses th
   `crafting.spec.ts` owns `ui-craft` and `ui-craft-ru` (item campaigns: Elowen knows and carries the
   Herbalism Kit and the calligrapher's supplies, with thirty crowns more; Brann knows the kit).
   `travel.spec.ts` owns `ui-travel` and `ui-travel-ru` (party campaigns: the party on the Old Trade
-  Road, no map yet); the journey pins places by their across and down fields, not by clicking.
+  Road, no map yet — seeded without `town-seed.json`, which ships the map of the surroundings); the
+  journey pins places by their across and down fields, not by clicking.
   `editors.spec.ts` owns `ui-editors` and `ui-editors-ru` (party campaigns on the Old Trade Road);
   a creature made from the bestiary lists two edits (made, its numbers): take the newest.
 - Native apps (ADR 0070, `native-shell.spec.ts`): a stand-in shell installed with `addInitScript`
