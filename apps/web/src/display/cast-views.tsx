@@ -28,6 +28,7 @@ import { QrCode } from '../visual/qr-code.tsx';
 import { textureUrl } from '../visual/ui-kit.ts';
 import { newestPartyChapter } from '../chronicle/book-chapters.ts';
 import { Previously } from '../chronicle/previously.tsx';
+import { StarsCast } from '../ritual/stars-cast.tsx';
 import { useRereadOn } from '../world/use-world-data.ts';
 import { DiceFaces } from './big-roll.tsx';
 import { PlaceCard } from './place-card.tsx';
@@ -60,6 +61,8 @@ export function CastView(props: Props) {
       return <TitleCard title={cast.title} subtitle={cast.subtitle} />;
     case 'chronicle':
       return <ChronicleCast {...props} />;
+    case 'stars':
+      return <StarsCast api={props.api} refresh={props.refresh} />;
     case 'picture':
       return <PictureCast {...props} entityId={cast.entityId} />;
     case 'join':

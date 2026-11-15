@@ -100,6 +100,7 @@ import './styles/rest.css';
 import './styles/rules.css';
 import './styles/workshop.css';
 import './styles/ritual.css';
+import './styles/stars.css';
 import './styles/print.css';
 
 // An invitation link's token leaves the address before anything is requested or rendered

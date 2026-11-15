@@ -169,6 +169,15 @@ export const MOVED_TABLES: readonly MovedTable[] = [
     owner: byCampaign,
   },
   {
+    name: 'ltw_session_reflections',
+    kind: 'state',
+    where: campaign,
+    key: ['campaign_id', 'session_id', 'author_id'],
+    order: 'session_id, author_id',
+    batch: ROWS,
+    owner: byCampaign,
+  },
+  {
     name: 'ltw_handouts',
     kind: 'append',
     where: campaign,

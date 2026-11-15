@@ -344,7 +344,14 @@
   margin: 0;
 }
 .session-status:empty {
-  display: none;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+.session-running {
+  position: relative;
 }
 .session-ended p:focus-visible {
   outline: 2px solid var(--gold-bright);

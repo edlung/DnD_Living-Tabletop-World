@@ -456,6 +456,7 @@ export type {
 export * from './campaign/index.ts';
 export * from './dice/rolls.ts';
 export * from './session/lobby.ts';
+export * from './session/reflections.ts';
 
 export * from './items/index.ts';
 export * from './travel/travel.ts';

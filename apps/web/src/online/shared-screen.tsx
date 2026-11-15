@@ -18,7 +18,7 @@ import type { Shell } from '../shell/use-shell.ts';
  * with "Previously…" (docs/adr/0071-memory-and-ritual.md §1.4) — but not on a reload into a table
  * already online, where what is shown is not news. The join card never shows here.
  */
-const SHOWN: ReadonlySet<string> = new Set(['picture', 'title', 'chronicle']);
+const SHOWN: ReadonlySet<string> = new Set(['picture', 'title', 'chronicle', 'stars']);
 
 export function SharedScreenSheet({
   api,

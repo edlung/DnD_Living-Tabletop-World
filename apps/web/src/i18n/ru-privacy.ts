@@ -14,8 +14,8 @@ registerRussian({
     'Учётная запись: логин, который вы выбрали, хэш пароля (сам пароль — никогда) и имя, которое видит стол. Ни почты, ни телефона.',
   'Your campaigns: which ones you sit in, your characters, and each campaign’s story as it is played.':
     'Кампании: в каких вы играете, ваши персонажи и история каждой кампании по мере игры.',
-  'What you write and roll: your chat messages and your dice rolls.':
-    'Что вы пишете и бросаете: ваши сообщения в чате и броски кубиков.',
+  'What you write and roll: your chat messages, your dice rolls, and the star and the wish you write when an evening ends (the table reads your star; your wish is for the DM alone).':
+    'Что вы пишете и бросаете: ваши сообщения в чате, броски кубиков, а также звезду и пожелание, которые вы пишете в конце вечера (звезду видит весь стол, пожелание — только мастер).',
   'Your sign-ins: when each began and when it ends, to keep you signed in. Cookies hold these sign-ins and nothing else.':
     'Входы: когда каждый начался и когда закончится — чтобы вы оставались в игре. Cookie хранят только эти входы.',
   Why: 'Зачем',
@@ -34,8 +34,8 @@ registerRussian({
   'The game counts nothing about you for anyone else, shows no advertising and loads nothing from other sites.':
     'Игра ничего не считает о вас для других, не показывает рекламу и ничего не загружает с чужих сайтов.',
   'Your copy, and deleting your account': 'Копия ваших данных и удаление учётной записи',
-  'On your account’s page, “Download my data” saves a copy: your account, your sign-ins and, in each campaign, your characters, your messages and your rolls. “Delete my account” forgets your login, your name and your password and signs you out everywhere; your characters stay in their campaigns’ story. A DM’s account is deleted by the server’s operator, so that no campaign loses its DM.':
-    'На странице учётной записи «Скачать мои данные» сохраняет копию: учётную запись, входы и в каждой кампании ваших персонажей, сообщения и броски. «Удалить учётную запись» забывает ваш логин, имя и пароль и выводит вас отовсюду; персонажи остаются в истории своих кампаний. Учётную запись мастера удаляет оператор сервера, чтобы ни одна кампания не осталась без мастера.',
+  'On your account’s page, “Download my data” saves a copy: your account, your sign-ins and, in each campaign, your characters, your messages, your rolls, and your stars and wishes. “Delete my account” forgets your login, your name and your password and signs you out everywhere; your characters stay in their campaigns’ story. A DM’s account is deleted by the server’s operator, so that no campaign loses its DM.':
+    'На странице учётной записи «Скачать мои данные» сохраняет копию: учётную запись, входы и в каждой кампании ваших персонажей, сообщения, броски, звёзды и пожелания. «Удалить учётную запись» забывает ваш логин, имя и пароль и выводит вас отовсюду; персонажи остаются в истории своих кампаний. Учётную запись мастера удаляет оператор сервера, чтобы ни одна кампания не осталась без мастера.',
   Questions: 'Вопросы',
   'Ask your DM, or the person who runs the server you play on.':
     'Спросите своего мастера или того, кто ведёт сервер, на котором вы играете.',

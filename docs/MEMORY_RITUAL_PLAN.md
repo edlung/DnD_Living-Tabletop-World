@@ -5,8 +5,12 @@ Owner request 2026-11-15, after the assessment of what the finished program miss
 кампаний и приключений в кругу семьи и друзей. Теплый и ламповый портал в увлекательные D&D миры» —
 then «Да, план» for the package «Память и ритуал». Record of the owner's answers:
 `reviews/OWNER_MEMORY_RITUAL_2026-11-15.json`. Status: **Stage 710 authorized by the owner on
-2026-11-15 and implemented** (`work-orders/STAGE_710.md`, `reports/STAGE_710_COMPLETION.md`); no
-later stage is authorized, and each starts on the owner's word (`AGENT_WORKFLOW.md`). It follows `docs/FULL_GAME_PLAN.md` (Stages
+2026-11-15 and implemented** (`work-orders/STAGE_710.md`, `reports/STAGE_710_COMPLETION.md`). The
+owner's word of the same day, typed in the working session: «не спрашивай меня, а действуй по плану
+до конца» — the stages follow the plan without asking to start each, each in its own pull request,
+the points the plan left open settled by the session and recorded; merges, deployment and builds on
+the family's devices stay the owner's. **Stage 720 is implemented** (`work-orders/STAGE_720.md`,
+`reports/STAGE_720_COMPLETION.md`). It follows `docs/FULL_GAME_PLAN.md` (Stages
 600–699) and `docs/NATIVE_APPS_PLAN.md` (Stage 700).
 
 The rules, the table, the TV and the DM's tools are complete. What is thin is the ritual around play:

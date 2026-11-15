@@ -93,7 +93,9 @@ export function CloseEvening({
   const [dropped, setDropped] = useState<ReadonlySet<string>>(new Set());
   const [line, setLine] = useState('');
   const [chapter, setChapter] = useState(true);
-  const [unpair, setUnpair] = useState(true);
+  const [stars, setStars] = useState(true);
+  // The screens stay paired by default: they show the stars now and "Previously…" next time.
+  const [unpair, setUnpair] = useState(false);
   const [guests, setGuests] = useState(false);
   const [busy, setBusy] = useState(false);
   const [stopped, setStopped] = useState<EveningResult | null>(null);
@@ -127,6 +129,7 @@ export function CloseEvening({
         now,
         reason: t('The DM’s line at the end of the session'),
         chapter,
+        stars,
         unpair: invitations && unpair,
         guests: invitations && guests,
         commandId,
@@ -225,6 +228,22 @@ export function CloseEvening({
         <p id={`${ids}-chapter`} className="muted">
           {t(
             'The story of this session as the party saw it. Players read it in the Chronicle, and it opens the next session as “Previously…”. To undo something from tonight later, you will first have to undo the chapter.',
+          )}
+        </p>
+        <label>
+          <input
+            type="checkbox"
+            checked={stars}
+            aria-describedby={`${ids}-stars`}
+            onChange={(event) => {
+              setStars(event.target.checked);
+            }}
+          />
+          {t('Ask everyone for stars and wishes on the table’s screens')}
+        </label>
+        <p id={`${ids}-stars`} className="muted">
+          {t(
+            'Everyone names a star — what they liked, read by all — and a wish for next time, read only by you. Players write on their own screens either way; you can write for a child who says it aloud.',
           )}
         </p>
         {invitations && (

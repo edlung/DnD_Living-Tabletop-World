@@ -1,0 +1,321 @@
+/* Stars and wishes at an evening's end (ADR 0071 §2): a player's card in the lobby (a page of
+   parchment, as "Previously…" beside it), the DM's block on the Session sheet, the table's screen. */
+
+/* Whose words, then the words. */
+.evening-words {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.evening-words li {
+  display: grid;
+  gap: 2px;
+}
+.evening-words strong {
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+}
+.evening-words span {
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+/* The player's card: one line and a button; the two fields on demand. */
+.previously-brief.stars-card {
+  display: grid;
+  gap: 8px;
+  max-height: min(70dvh, 560px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.stars-card > * {
+  margin: 0;
+}
+.stars-line {
+  line-height: 1.4;
+}
+.stars-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 4px;
+}
+.stars-form label {
+  margin-top: 4px;
+  color: var(--page-ink);
+  font-weight: 700;
+}
+.stars-form textarea {
+  width: 100%;
+  /* Two lines, not the app's tall field: both fields and who reads each stay in view on a phone. */
+  min-height: 3.25rem;
+  border-color: var(--page-ink-muted);
+  background: var(--page);
+  color: var(--page-ink);
+  /* 16px: a smaller field makes a phone zoom the page when it takes focus. */
+  font-size: 1rem;
+  resize: vertical;
+}
+/* What a player kept, in their own words, with who reads each. */
+.stars-kept {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+}
+.stars-kept dt {
+  margin-top: 4px;
+  color: var(--page-ink-muted);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+.stars-kept dd {
+  margin: 0;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+.stars-hint {
+  margin: 0;
+  color: var(--page-ink-muted);
+  font-size: 0.85rem;
+}
+.stars-failed {
+  margin: 4px 0 0;
+  color: var(--rubric);
+  font-weight: 700;
+}
+.stars-so-far summary {
+  min-height: 32px;
+  cursor: pointer;
+  font-weight: 700;
+}
+.stars-so-far .evening-words {
+  margin-top: 8px;
+}
+.stars-so-far .evening-words strong {
+  color: var(--page-ink-muted);
+}
+/* While a player writes, the recap beside it steps aside: one thing at a time over the scene. */
+.rest-banner-slot:has(.stars-form) .previously-brief:not(.stars-card),
+.rest-banner-slot:has(.stars-form) .previously--lobby {
+  display: none;
+}
+@media (max-width: 767px) {
+  .previously-brief.stars-card {
+    max-height: max(160px, calc(100dvh - 460px));
+  }
+  /* While a player writes, the card takes the slot: the lobby's line waits, the fields fit. */
+  .rest-banner-slot:has(.stars-form) .lobby-banner {
+    display: none;
+  }
+  .previously-brief.stars-card:has(.stars-form) {
+    max-height: calc(100dvh - var(--topbar-h) - var(--dock-h, 88px) - 24px);
+    scroll-padding-bottom: 64px;
+  }
+  /* A phone's slot grows up from the tab bar: with the table's stars open too, the recap waits. */
+  .rest-banner-slot:has(.stars-so-far[open]) .previously-brief:not(.stars-card),
+  .rest-banner-slot:has(.stars-so-far[open]) .previously--lobby {
+    display: none;
+  }
+}
+/* A screen too short for both fields beside the scene: the card keeps its line and its button,
+   and the form scrolls inside what the scene leaves. */
+@media (max-height: 560px) {
+  .previously-brief.stars-card {
+    max-height: calc(100dvh - var(--topbar-h) - var(--dock-h, 88px) - 150px);
+  }
+  /* One card over a short scene: the recap waits while stars and wishes are asked for. */
+  .rest-banner-slot:has(.stars-card) .previously-brief:not(.stars-card),
+  .rest-banner-slot:has(.stars-card) .previously--lobby,
+  .rest-banner-slot:has(.stars-form) .lobby-banner {
+    display: none;
+  }
+  .previously-brief.stars-card:has(.stars-form) {
+    max-height: calc(100dvh - var(--topbar-h) - var(--dock-h, 88px) - 24px);
+    scroll-padding-bottom: 64px;
+  }
+}
+
+/* The DM's block between sessions. */
+.evening-after {
+  display: grid;
+  gap: 12px;
+}
+.evening-after h4,
+.evening-after h5,
+.evening-after p {
+  margin: 0;
+}
+.evening-after h5 {
+  margin-top: 4px;
+  color: var(--gold-bright);
+  font-size: 0.85rem;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+}
+.evening-session {
+  display: grid;
+  gap: 8px;
+}
+.evening-after .evening-words strong {
+  color: var(--text-muted);
+}
+.evening-write summary,
+.evening-wishes summary,
+.evening-earlier summary {
+  min-height: 32px;
+  cursor: pointer;
+}
+.evening-write .hand-form,
+.evening-earlier .evening-session {
+  margin-top: 8px;
+}
+.evening-earlier .evening-session + .evening-session {
+  margin-top: 16px;
+}
+/* A status line with nothing to say takes no room but stays in the page, so that what it says
+   next is announced (a region that appears with its words often is not). */
+.evening-status:empty {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+.evening-after {
+  position: relative;
+}
+.evening-wishes .evening-words {
+  margin-top: 8px;
+}
+
+/* On the table's screen: the prompt, then the stars, large. */
+.display-stars {
+  display: grid;
+  place-items: center;
+  min-height: 100dvh;
+  padding: 5vmin;
+  background: var(--page-ground);
+  color: var(--page-ink);
+}
+.display-stars-page {
+  display: grid;
+  gap: 2.5vmin;
+  width: min(100%, 130vmin);
+}
+.display-stars-page > * {
+  margin: 0;
+}
+.display-stars .previously-eyebrow {
+  font-size: clamp(1rem, 2.4vmin, 4rem);
+}
+.display-stars h1 {
+  color: var(--rubric);
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4.6vmin, 8rem);
+  line-height: 1.1;
+}
+.display-stars-prompt {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 4vmin, 7rem);
+  line-height: 1.3;
+}
+.display-stars-how {
+  color: var(--page-ink-muted);
+  font-size: clamp(0.95rem, 2vmin, 3.4rem);
+  line-height: 1.35;
+}
+.display-stars .evening-words {
+  gap: 2vmin;
+}
+/* More than four stars: two columns, so a full table's stars stay on one screen. */
+.display-stars .evening-words--columns {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2vmin 5vmin;
+}
+.display-stars .evening-words strong {
+  color: var(--page-ink-muted);
+  font-size: clamp(0.95rem, 2vmin, 3.4rem);
+}
+.display-stars .evening-words span {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 3vmin, 5.2rem);
+  line-height: 1.3;
+}
+/* In a player's Table screen sheet online: sized to the sheet. */
+.shared-screen .display-stars {
+  min-height: min(32vh, 22rem);
+  padding: 3cqi;
+}
+.shared-screen .display-stars h1 {
+  font-size: clamp(1.25rem, 3.2cqi, 1.9rem);
+}
+.shared-screen .display-stars-prompt,
+.shared-screen .display-stars .evening-words span {
+  font-size: clamp(1rem, 2.2cqi, 1.25rem);
+}
+.shared-screen .display-stars .evening-words strong,
+.shared-screen .display-stars .previously-eyebrow,
+.shared-screen .display-stars-how {
+  font-size: 0.85rem;
+}
+.shared-screen .display-stars .evening-words--columns {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* The form's own controls stay in reach while it scrolls inside the card on a small screen. */
+.stars-form .action-row {
+  position: sticky;
+  bottom: -12px;
+  margin: 4px 0 -12px;
+  padding: 8px 0 12px;
+  background: var(--page-ground);
+}
+
+/* A wide, short screen (a phone held wide) floats the slot under the place's card: while a player
+   writes, it moves up to the top bar so both fields and their buttons end above the dock. */
+@media (min-width: 768px) and (max-height: 560px) {
+  .rest-banner-slot:has(.stars-form) {
+    top: calc(var(--topbar-h) + 8px);
+  }
+  .previously-brief.stars-card:has(.stars-form) {
+    width: min(640px, calc(100vw - 136px));
+    max-height: calc(100dvh - var(--topbar-h) - var(--dock-h, 88px) - 40px);
+  }
+  /* The star and the wish side by side: both fields, who reads each and the buttons in view. */
+  .stars-form {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 16px;
+  }
+  /* Label, who reads it, field: the star's three in the first column, the wish's in the second. */
+  .stars-form > :nth-child(-n + 3) {
+    grid-column: 1;
+  }
+  .stars-form > :nth-child(n + 4):nth-child(-n + 6) {
+    grid-column: 2;
+  }
+  .stars-form > :nth-child(1),
+  .stars-form > :nth-child(4) {
+    grid-row: 1;
+    margin-top: 0;
+  }
+  .stars-form > :nth-child(2),
+  .stars-form > :nth-child(5) {
+    grid-row: 2;
+  }
+  .stars-form > :nth-child(3),
+  .stars-form > :nth-child(6) {
+    grid-row: 3;
+  }
+  .stars-form .stars-failed {
+    grid-row: 4;
+    grid-column: 1 / -1;
+  }
+  .stars-form .action-row {
+    position: static;
+    grid-row: 5;
+    grid-column: 1 / -1;
+    margin: 4px 0 0;
+    padding: 0;
+  }
+}

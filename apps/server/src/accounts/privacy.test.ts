@@ -65,6 +65,25 @@ async function table(): Promise<{
     );
   expect((await say(seren.session, 'PLAYER', 'Seren looks for tracks.')).statusCode).toBe(201);
   expect((await say(dm.session, 'DM', 'The rain washed them away.')).statusCode).toBe(201);
+  // The evening ends: Seren's star and wish, and the DM's own (ADR 0071 §2).
+  const ended = await table.send(
+    'POST',
+    '/campaigns/ravenford/commands',
+    { cookie: dm.session },
+    { commandId: 'privacy-test.end', command: { type: 'EndSession', sessionId: 'ravenford-s1' } },
+  );
+  expect(ended.statusCode).toBe(200);
+  const reflect = (cookie: string, perspective: string, characterId: string | null, star: string) =>
+    table.send(
+      'POST',
+      `/campaigns/ravenford/reflections?perspective=${perspective}`,
+      { cookie },
+      { sessionId: 'ravenford-s1', characterId, star, wish: `${star} — a wish` },
+    );
+  expect((await reflect(seren.session, 'PLAYER', SEREN, 'The tracks in the rain')).statusCode).toBe(
+    204,
+  );
+  expect((await reflect(dm.session, 'DM', null, 'You all listened')).statusCode).toBe(204);
   return {
     table,
     dm: { account: dm.account, session: dm.session },
@@ -86,6 +105,15 @@ describe('a person’s data', () => {
     const campaign = data.campaigns[0];
     expect(campaign?.characters.map((character) => character.entityId)).toEqual([SEREN]);
     expect(campaign?.chat.map((line) => line.text)).toEqual(['Seren looks for tracks.']);
+    // Her own star and wish, with the session's title; never the DM's.
+    expect(campaign?.reflections).toEqual([
+      expect.objectContaining({
+        session: 'Session 1: Arrival in Ravenford',
+        star: 'The tracks in the rain',
+        wish: 'The tracks in the rain — a wish',
+      }),
+    ]);
+    expect(response.body).not.toContain('You all listened');
     expect(response.body).not.toMatch(/scrypt|token|password_hash|passwordHash/);
     expect((await t.send('GET', '/account/data')).statusCode).toBe(401);
   });

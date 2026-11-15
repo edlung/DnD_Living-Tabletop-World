@@ -16,6 +16,11 @@ import { registerChatRoutes, type ChatDependencies } from '../chat/chat-routes.t
 import { InMemoryMarkStore } from '../marks/mark-store.ts';
 import { registerMarkRoutes, type MarkDependencies } from '../marks/mark-routes.ts';
 import { InMemoryChatStore } from '../chat/chat-store.ts';
+import {
+  registerReflectionRoutes,
+  type ReflectionDependencies,
+} from '../reflections/reflection-routes.ts';
+import { InMemoryReflectionStore } from '../reflections/reflection-store.ts';
 import { registerHandoutRoutes, type HandoutDependencies } from '../handouts/handout-routes.ts';
 import { InMemoryHandoutStore } from '../handouts/handout-store.ts';
 import { registerLibraryRoutes } from '../library/library-routes.ts';
@@ -146,6 +151,8 @@ export interface AppDependencies {
   readonly lobby?: LobbyDependencies;
   /** Table talk (ADR 0044 §1): chat, whispers, the DM's word to one player; in memory when absent. */
   readonly chat?: ChatDependencies;
+  /** Stars and wishes at an evening's end (ADR 0071 §2); in memory when absent. */
+  readonly reflections?: ReflectionDependencies;
   /** The table's shared marks on the board (ADR 0057 §5); in memory when absent. */
   readonly marks?: MarkDependencies;
   /** Handouts (ADR 0044 §5): what the DM shows one player or the party; in memory when absent. */
@@ -172,6 +179,11 @@ export const memoryMarks = (): MarkDependencies => ({
 
 export const memoryChat = (): ChatDependencies => ({
   store: new InMemoryChatStore(),
+  now: () => new Date().toISOString(),
+});
+
+export const memoryReflections = (): ReflectionDependencies => ({
+  store: new InMemoryReflectionStore(),
   now: () => new Date().toISOString(),
 });
 
@@ -289,6 +301,9 @@ export function buildApp(input: AppDependencies): FastifyInstance {
   // One chat for its routes and a person's copy of their data (ADR 0062 §2).
   const chat = deps.chat ?? memoryChat();
   registerChatRoutes(app, { ...deps, chat });
+  // One set of stars and wishes for their routes and a person's copy of their data.
+  const reflections = deps.reflections ?? memoryReflections();
+  registerReflectionRoutes(app, { ...deps, reflections });
   registerMarkRoutes(app, { ...deps, marks: deps.marks ?? memoryMarks() });
   // One set of handouts for the handout routes and the DM's library that gives them (ADR 0058 §3).
   const handouts = deps.handouts ?? memoryHandouts();
@@ -318,7 +333,12 @@ export function buildApp(input: AppDependencies): FastifyInstance {
     if (accounts && accountLimits) {
       const withAccounts = { ...deps, signIn: { ...deps.signIn, accounts, accountLimits } };
       registerAccountRoutes(app, withAccounts);
-      registerPrivacyRoutes(app, { ...withAccounts, chat: chat.store, table: table.store });
+      registerPrivacyRoutes(app, {
+        ...withAccounts,
+        chat: chat.store,
+        table: table.store,
+        reflections: reflections.store,
+      });
     }
     // The table's displays and join links (ADR 0042): pairing, the cast, the table's QR code.
     const { displays, displayLimits, openLinks } = deps.signIn;

@@ -94,6 +94,8 @@ export const castSchema = z.discriminatedUnion('kind', [
     })
     .strict(),
   z.object({ kind: z.literal('chronicle') }).strict(),
+  /** The last evening's stars, and the prompt to write them (ADR 0071 §2): never a wish. */
+  z.object({ kind: z.literal('stars') }).strict(),
   z.object({ kind: z.literal('picture'), entityId: entityIdSchema }).strict(),
   z.object({ kind: z.literal('join') }).strict(),
   z.object({ kind: z.literal('blank') }).strict(),

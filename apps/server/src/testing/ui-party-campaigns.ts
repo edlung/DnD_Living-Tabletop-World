@@ -63,6 +63,10 @@ export const UI_PARTY_CAMPAIGNS = {
   /** The same journey on an iPad in WebKit, on a campaign of its own. */
   ritualIpad: 'ui-ritual-ipad',
   ritualRu: 'ui-ritual-ru',
+  /** Stars and wishes at an evening's end (Stage 720). */
+  stars: 'ui-stars',
+  starsIpad: 'ui-stars-ipad',
+  starsRu: 'ui-stars-ru',
 } as const;
 
 /**
@@ -106,6 +110,9 @@ export async function seedUiPartyCampaigns(engine: WorldEngine): Promise<void> {
     [UI_PARTY_CAMPAIGNS.ritual, 'en'],
     [UI_PARTY_CAMPAIGNS.ritualIpad, 'en'],
     [UI_PARTY_CAMPAIGNS.ritualRu, 'ru'],
+    [UI_PARTY_CAMPAIGNS.stars, 'en'],
+    [UI_PARTY_CAMPAIGNS.starsIpad, 'en'],
+    [UI_PARTY_CAMPAIGNS.starsRu, 'ru'],
   ] as const) {
     const seed = await loadSeed(
       language === 'ru' ? RAVENFORD_RU_FIXTURES_DIR : RAVENFORD_FIXTURES_DIR,

@@ -25,6 +25,8 @@ test.use({ baseURL: SIGN_IN_ORIGIN, trace: 'off', screenshot: 'off' });
 const LIVE = { timeout: 15_000 };
 const FIRST = 'Session 1: Arrival in Ravenford';
 const LINE = 'We swore to find the missing caravan.';
+const BRANN_STAR = 'Brann held the bridge alone.';
+const BRANN_WISH = 'More riddles, please.';
 const SPACED_CODE = /^[A-HJKMNP-Z2-9]{4} [A-HJKMNP-Z2-9]{4}$/;
 
 const freshPage = async (browser: Browser): Promise<Page> => (await browser.newContext()).newPage();
@@ -97,6 +99,24 @@ test('the next evening opens with “Previously…” on the TV and an online pl
   // This server has a narrator (the local provider): whichever prose, the sheet says which.
   await expect(closed).toContainText(/Chapter written( as the plain record: [^.]+)?\./, LIVE);
   await expect(closed).not.toContainText('The table’s screens are unpaired.');
+
+  // The TV asks for stars and wishes (ADR 0071 §2), then shows each star as it comes: the DM
+  // writes for a player who said theirs aloud. A wish never reaches the screen.
+  const stars = tv.locator('.display-stars');
+  await expect(stars).toContainText(
+    'A star for tonight: what did you like? A wish for next time: what do you want?',
+    LIVE,
+  );
+  await expectAccessible(tv, 'the table’s screen asking for stars and wishes');
+  const after = sheet.getByRole('region', { name: 'Stars and wishes' });
+  await after.getByText('Write a star and a wish for someone', { exact: true }).click();
+  await after.getByLabel('Whose words', { exact: true }).selectOption({ label: 'Brann Ironvale' });
+  await after.getByLabel('Star (everyone reads it)', { exact: true }).fill(BRANN_STAR);
+  await after.getByLabel('Wish (only you read it)', { exact: true }).fill(BRANN_WISH);
+  await after.getByRole('button', { name: 'Keep them', exact: true }).click();
+  await expect(stars).toContainText(BRANN_STAR, LIVE);
+  await expect(stars).toContainText('Brann Ironvale');
+  await expectAccessible(tv, 'the evening’s stars on the table’s screen');
   await expect(player.getByRole('region', { name: 'Previously…' })).toContainText(FIRST, LIVE);
 
   // The next session opens online with "Previously…".
@@ -144,6 +164,8 @@ test('the next evening opens with “Previously…” on the TV and an online pl
   // The screen read the party's view only: the DM's line to the party, none of the DM's secrets.
   const bodies = await received();
   expect(bodies).toContain(FIRST);
+  expect(bodies).toContain(BRANN_STAR);
+  expect(bodies, 'the screen received a wish').not.toContain(BRANN_WISH);
   for (const marker of boundary.forbiddenMarkers.PARTY) {
     expect(bodies, `the screen received ${marker}`).not.toContain(marker);
   }

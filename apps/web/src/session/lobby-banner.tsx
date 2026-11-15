@@ -6,6 +6,7 @@ import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
 import { recapParagraphs } from '../chronicle/book-chapters.ts';
 import { Previously, usePreviously } from '../chronicle/previously.tsx';
+import { StarsCard } from '../ritual/stars-card.tsx';
 import { Glyph } from '../visual/glyph.tsx';
 
 /**
@@ -96,6 +97,7 @@ export function LobbyBanner({
           </>
         )}
       </div>
+      {session === null && <StarsCard api={api} characterId={actorId} />}
       {session === null && <LobbyPreviously api={api} onOpenChronicle={onOpenChronicle} />}
     </>
   );

@@ -807,3 +807,18 @@ reviewed; Gate 05's report and findings stand as recorded.
   PARTY markers on everything the TV received).
 - Next review obligation: none scheduled; the session's own attack pass is in
   `reports/STAGE_710_COMPLETION.md`. The owner may order an independent repeat.
+
+## Stage 720: a new table surface (2026-11-15)
+
+Stage 720 (`docs/adr/0071-memory-and-ritual.md` §2) adds stars and wishes, table data like table
+talk (Gate 06's row for chat is its nearest kin).
+
+- Boundary: a wish reaches its author (that character's perspective) and the DM, by listing and by
+  live signal; the party's view, another player and a table display get stars only; a stranger
+  nothing. Writing: a player their own character's, the DM anyone's, between sessions.
+- Deterministic regressions: `apps/server/src/reflections/reflection-routes.test.ts` (each reader,
+  each writer, a table display, the window), `reflection-live.test.ts` (a wish alone signals the DM
+  only), `reflection-store.integration.test.ts`, `apps/server/src/accounts/privacy.test.ts` (a copy
+  holds one's own only), the move's coverage test, the journeys `tests/e2e/stars-and-wishes.spec.ts`
+  (what a player's browser received) and `evening-ritual-screens.spec.ts` (what the TV received).
+- Next review obligation: none scheduled; the owner may order an independent repeat.

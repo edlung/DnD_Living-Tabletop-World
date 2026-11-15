@@ -6,6 +6,7 @@ import {
   memoryChat,
   memoryMarks,
   memoryHandouts,
+  memoryReflections,
   memoryTable,
   type AppDependencies,
 } from '../http/app.ts';
@@ -53,6 +54,8 @@ export function buildLiveApp(
     marks: deps.marks ?? memoryMarks(),
     // And one set of handouts, so a new one signals its readers (ADR 0044 §5).
     handouts: deps.handouts ?? memoryHandouts(),
+    // And one set of stars and wishes, so a new one signals its readers (ADR 0071 §2).
+    reflections: deps.reflections ?? memoryReflections(),
     presence: registry,
   };
   const app = buildApp(shared);

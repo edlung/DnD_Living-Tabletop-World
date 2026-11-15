@@ -10,8 +10,11 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   after it); draft work order `work-orders/STAGE_710.md`.
 - Status: the plan is PR 37 (draft). Stage 710 was authorized by the owner on 2026-11-15 («Да,
   этап 710») and implemented on `claude/stage-710-previously` (ADR 0071 §1, report
-  `reports/STAGE_710_COMPLETION.md`), awaiting the owner's disposition; no later stage is
-  authorized. Off-host backup copies are a separate task on the owner's separate word.
+  `reports/STAGE_710_COMPLETION.md`), awaiting the owner's disposition. On the owner's word of
+  the same day («не спрашивай меня, а действуй по плану до конца») the stages follow the plan, each
+  in its own pull request; merges and deployment stay the owner's. Stage 720 (stars and wishes) is
+  implemented on `claude/stage-720-stars-and-wishes`, stacked on 710's branch
+  (`reports/STAGE_720_COMPLETION.md`). Off-host backup copies are a separate task on the owner's separate word.
 
 ## Current request — campaign library release, 2026-11-14
 

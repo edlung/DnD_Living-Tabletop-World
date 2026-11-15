@@ -20,7 +20,7 @@ import { accountData, forgetAccount, type PrivacyDependencies } from './privacy.
  */
 export function registerPrivacyRoutes(
   app: FastifyInstance,
-  deps: AccountRouteDependencies & Pick<PrivacyDependencies, 'chat' | 'table'>,
+  deps: AccountRouteDependencies & Pick<PrivacyDependencies, 'chat' | 'table' | 'reflections'>,
 ): void {
   const { accounts, accountLimits, credentials, clock } = deps.signIn;
   const privacy: PrivacyDependencies = {
@@ -29,6 +29,7 @@ export function registerPrivacyRoutes(
     credentials,
     chat: deps.chat,
     table: deps.table,
+    reflections: deps.reflections,
   };
   const secure = secureCookies(deps.signIn.publicOrigin);
 

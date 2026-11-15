@@ -7,6 +7,7 @@ import { useResource } from '../api/resource.ts';
 import { recapParagraphs } from '../chronicle/book-chapters.ts';
 import { chapterMessage } from '../chronicle/chapter-message.ts';
 import { usePreviously } from '../chronicle/previously.tsx';
+import { EveningWords } from '../ritual/evening-words.tsx';
 import { Field } from '../session/account-forms.tsx';
 import { Glyph } from '../visual/glyph.tsx';
 import { useRereadOn } from '../world/use-world-data.ts';
@@ -99,6 +100,13 @@ export function SessionSheet({
             api={api}
             result={ended}
             onOpenChronicle={onOpenChronicle}
+          />
+        )}
+        {table.session === null && step === null && (
+          <EveningWords
+            api={api}
+            revision={revision + round}
+            characters={table.characters.map((entry) => entry.character)}
           />
         )}
         {table.session === null && step !== null ? (

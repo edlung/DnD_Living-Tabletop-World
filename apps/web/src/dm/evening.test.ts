@@ -46,6 +46,7 @@ const plan = (over: Partial<EveningPlan> = {}): EveningPlan => ({
   now: 150,
   reason: 'Closing the evening',
   chapter: true,
+  stars: false,
   unpair: false,
   guests: false,
   commandId: (key) => `evening-${key}`,
@@ -212,6 +213,19 @@ describe('closing an evening', () => {
     );
     expect(chapter).toEqual({ kind: 'written', chronicleId: 'chronicle.one', prose: 'prose' });
     expect(calls.map((call) => call.path)).toEqual(['chronicle']);
+  });
+
+  it('shows “Stars and wishes” on the screens after the end, unless they are unpaired', async () => {
+    const shown = server([[/^chronicle/, written]]);
+    await closeEvening(shown.api, plan({ stars: true }), () => 'prose');
+    const paths = shown.calls.map((call) => call.path);
+    expect(shown.calls.find((call) => call.path === 'display/cast')?.body).toEqual({
+      cast: { kind: 'stars' },
+    });
+    expect(paths.indexOf('display/cast')).toBeGreaterThan(paths.lastIndexOf('commands'));
+    const unpaired = server([[/^chronicle/, written]]);
+    await closeEvening(unpaired.api, plan({ stars: true, unpair: true }), () => 'prose');
+    expect(unpaired.calls.map((call) => call.path)).not.toContain('display/cast');
   });
 
   it('reads a moment’s words from its draft', () => {

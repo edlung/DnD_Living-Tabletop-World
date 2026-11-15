@@ -2,8 +2,12 @@
 
 - Status: Accepted for §1 (the owner authorized Stage 710 on 2026-11-15, «Да, этап 710», with the
   plan's decisions 8–11 as written: `docs/MEMORY_RITUAL_PLAN.md`,
-  `reviews/OWNER_MEMORY_RITUAL_2026-11-15.json`). Later sections are added by their stages and are
-  not in force until then. Amends ADR 0024 §4–6 (a chapter of one session, who reads the party's
+  `reviews/OWNER_MEMORY_RITUAL_2026-11-15.json`) and §2 (the owner's answer on who reads stars and
+  wishes, and the word of the same day to follow the plan without asking; the session's own
+  defaults in §2 are marked and stay the owner's to overrule). Later sections are added by their
+  stages and are not in force until then. §2 amends ADR 0042 §3 (a cast of table data), ADR 0043
+  §6 (the screens stay paired at a session's end unless the DM unpairs them), ADR 0061 §5 (the
+  table moves with its campaign) and ADR 0062 §1–2 (the notice and a person's copy name them). Amends ADR 0024 §4–6 (a chapter of one session, who reads the party's
   chapters, the suggestions' screen and their session), ADR 0042 §3 (the Chronicle cast is the recap), ADR
   0043 §6 (the end of a session) and ADR 0044 §5 (when a player's Table screen opens).
 - Context: the rules, the table, the TV and the DM's tools are complete; the ritual around play is
@@ -85,6 +89,38 @@
    otherwise (ADR 0024 §3, ADR 0032). The card never waits for a provider and nothing here adds a
    paid call.
 
+### 2. Stars and wishes (Stage 720)
+
+1. **What they are.** At an evening's end each player may name a star — what they liked — and a
+   wish — what they want next time; the DM too. Table data beside the world (migration 0040,
+   `ltw_session_reflections`): one entry an author a session, 280 characters each, replaced when
+   written again, removed when emptied. Never canonical: no World Engine decision reads them, and
+   they are no memory and no knowledge.
+2. **Who reads what** (the owner's answer of 2026-11-15). Everyone at the table reads the stars: a
+   player in their character's or the party's view, the DM, and a table display. A wish is read by
+   its author — in that character's perspective only, not in the party's view the same player may
+   take — and by the DM. An entry that holds a wish alone is not listed at all to anyone else, and
+   signals nobody else. Names are the reader's own, as for table talk (ADR 0044 §1).
+3. **Who writes.** A player for their own character; the DM for any character at the table — a
+   child who said theirs aloud — and for themself. Between sessions only, for the session that
+   ended last: the next session's start closes it. (Session's default.)
+4. **Where.** A player's lobby holds a card while no session is open: whether theirs are written,
+   the two fields on demand, each saying who reads it, and the table's stars so far. The DM's
+   Session sheet between sessions holds the last evening's stars, its wishes folded until asked
+   for (the sheet may lie open at the table), the form to write someone's for them — it starts
+   from what that person already kept, so writing a star never wipes a wish — and earlier
+   evenings. The table's screen shows a `stars` cast — the prompt
+   while none is written, then each star — which the closing of an evening casts and the DM may
+   cast again; online it opens every player's Table screen (ADR 0044 §5).
+5. **The screens stay paired.** "Unpair the table's screens" at a session's end is offered and no
+   longer ticked by default: the screens show the stars now and "Previously…" next time. (Session's
+   default; it amends ADR 0043 §6's flow, not its rule.)
+6. **A person's data.** The privacy notice names stars and wishes and who reads each; a person's
+   copy lists those of their own characters, a DM's their own; a deleted account's stay with the
+   campaign under the character's name, as table talk does (ADR 0062). A campaign's move carries the
+   table as present state (ADR 0061 §5).
+7. **AI.** None. Nothing here is sent to a provider.
+
 ## Consequences
 
 - No migration and no new route. Contracts: `GenerateChronicle` and the generate request take
@@ -108,8 +144,17 @@
   chapter and of who reads which chapter (`chronicle-routes.test.ts`), the client's units, the
   journey `tests/e2e/evening-ritual.spec.ts`.
 
+- Stage 720: contracts `session/reflections.ts`, the `stars` cast (`display/display.ts`), the data
+  copy's `reflections`; server `src/reflections/` (store, PostgreSQL store, routes), migration
+  `0040_session_reflections.sql`, the live inventory's `reflections`, `MOVED_TABLES`, the data copy;
+  client `ritual/` (`reflections.ts`, `stars-card.tsx`, `evening-words.tsx`, `stars-cast.tsx`,
+  `stars-list.tsx`), `styles/stars.css`. The application and its live twin share one store in
+  every composition (`live/live-app.ts`): without it a star signalled nobody on a server without a
+  database. Rollback: additive, an older build leaves the table alone.
+
 ## Invariants affected
 
 Preserves 4 and 5 (what a player or the TV reads is the party's knowledge, never the DM's), 1–3 and
 11 (kept moments and chapters are commands the World Engine decides and records), 2 and 7 (prose is
-rendered from the entries and changes nothing). No invariant is weakened.
+rendered from the entries and changes nothing). §2 keeps 5 for table data: a wish reaches its
+author and the DM and nobody else, by listing and by signal. No invariant is weakened.

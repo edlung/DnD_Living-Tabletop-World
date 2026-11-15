@@ -64,6 +64,11 @@ pings with their end, the DM's pointer, strokes and shown areas, each the mark o
 table's data for the live session, not canonical state. Additive: an older build leaves both tables
 alone.
 
+Stage 720 (ADR 0071 §2): `0040_session_reflections.sql` keeps stars and wishes beside the world,
+one row for each author of each session (280 characters each), replaced when written again and
+removed when emptied: table data, not canonical state. Additive: an older build leaves the table
+alone.
+
 Stage 680b (ADR 0058 §3–4): `0036_dm_library.sql` keeps the DM's library beside the world — handouts
 kept for later and random tables, one row an entry (its body at most 64 KB), replaced on save and
 deleted on the DM's word; a kept handout notes when it was last given. DM data, not canonical state:

@@ -126,6 +126,17 @@ export interface AccountChatLine {
   readonly text: string;
 }
 
+/** A star and a wish one wrote at an evening's end, in a copy of one's data (ADR 0071 §2). */
+export interface AccountReflectionLine {
+  readonly at: string;
+  /** The session's title. */
+  readonly session: string;
+  /** The character it was written as; null for the DM. */
+  readonly author: string | null;
+  readonly star: string;
+  readonly wish: string;
+}
+
 /** A roll one made, in a copy of one's data. */
 export interface AccountRollLine {
   readonly at: string;
@@ -144,6 +155,7 @@ export interface AccountCampaignData {
   readonly characters: readonly { readonly entityId: string; readonly name: string }[];
   readonly chat: readonly AccountChatLine[];
   readonly rolls: readonly AccountRollLine[];
+  readonly reflections: readonly AccountReflectionLine[];
 }
 
 /**

@@ -28,6 +28,8 @@ export interface EveningPlan {
   /** Why the DM's line was recorded, in the DM's history. */
   readonly reason: string;
   readonly chapter: boolean;
+  /** The table's screens show "Stars and wishes" once the session has ended (ADR 0071 §2). */
+  readonly stars: boolean;
   readonly unpair: boolean;
   readonly guests: boolean;
   /** A stable ID for each command of this closing. */
@@ -160,6 +162,11 @@ export async function closeEvening(
     return stop('end');
   }
 
+  // The prompt for stars and wishes, then each star as it comes: best effort, the DM's Session
+  // sheet shows them again. Screens the DM unpairs next show nothing of it.
+  if (plan.stars && !plan.unpair) {
+    await api.post('display/cast', { cast: { kind: 'stars' } }, wait()).catch(() => undefined);
+  }
   let unpaired = false;
   if (plan.unpair) {
     unpaired = await api.post('displays/revoke', {}, wait()).then(
