@@ -1,0 +1,77 @@
+{
+ "about": "Top-down battle maps (OpenAI image generation through Codex CLI), each drawn over its fight grid and cut to it; originals in ~/Documents/living-tabletop-world-art/.",
+ "maps": [
+  {
+   "location": "dry-dock",
+   "encounter": "dock-catchers",
+   "grid": [
+    18,
+    10
+   ],
+   "file": "dry-dock.webp",
+   "sha256": "42fb314a7165bd626b51790034799dbd221e6c642fe62673d556a4cc2d0d5de9",
+   "originalSha256": "a42de223671ff5d87dde7341bc72e314e653af870363ae1e53b43b9060136790",
+   "originalFile": "battle-maps-2026-11-14/out/rain-check--dry-dock.png",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as rain-check--dry-dock.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Сухой причал» — Краны, навесы с номерами, ворота артели грузчиков, шкаф находок у будки сторожа и канал за краем настила.\n\nThe first reference image is the exact layout of the playable field: a 18 by 10 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Настил Сухого причала под дождём: штабели ящиков и бочек (укрытие), мокрые доски и брошенные тросы (трудные клетки), на юге — открытый край канала с чёрной водой, в которой дрожит красный неон «КОРД И ТОВАРИЩИ. ПОГРУЗКА». Запад — ворота артели и объявление о пропаже на размокшей бумаге; восток — будка сторожа Стеля с жёлтым окном и шкаф находок. Над настилом краны, как цапли.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/rain-check--dry-dock.layout.png",
+    "dry-dock.png"
+   ]
+  },
+  {
+   "location": "covered-market",
+   "encounter": "market-scouts",
+   "grid": [
+    16,
+    12
+   ],
+   "file": "covered-market.webp",
+   "sha256": "dc64b1154a4e768d83859c6f554d124ecc6effea2a7f128ab45d831d7675c27b",
+   "originalSha256": "ffccbf9bbb522b05e9b1176c9671f053f1217d3e7cc07e0ea9f327b76cc28e3d",
+   "originalFile": "battle-maps-2026-11-14/out/rain-check--covered-market.png",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as rain-check--covered-market.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Крытый рынок» — Стеклянная крыша, ряды под жестяными козырьками, рыбные ряды с неоновой вывеской, подсобки и галерея над рядами.\n\nThe first reference image is the exact layout of the playable field: a 16 by 12 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Два длинных ряда прилавков тянутся с северо-запада на восток и дают укрытие; между ними проходы, залитые мокрой рыбьей чешуёй (трудные клетки). Стеклянная крыша гремит от капель, над рядами неон «РЫБА ЖИВАЯ» отражается в каждой луже на камне. Север — ледник с тяжёлой дверью, юг — арка выхода к трамвайному кольцу, где звенят вагоны.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/rain-check--covered-market.layout.png",
+    "covered-market.png"
+   ]
+  },
+  {
+   "location": "tram-depot",
+   "encounter": "depot-shot",
+   "grid": [
+    20,
+    12
+   ],
+   "file": "tram-depot.webp",
+   "sha256": "5269cf34b0e55116300f329423ef576db869d447fe96d1581c7fea19ad2330ab",
+   "originalSha256": "209b30f1743f2444bfcc4f89bdb74b92a71b7b63794b05c6303685084521c96a",
+   "originalFile": "battle-maps-2026-11-14/out/rain-check--tram-depot.png",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as rain-check--tram-depot.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Трамвайный парк № 2 на Линейной» — Депо, пути, билетный зал, главные ворота и задние ворота к пустырю, служебный вагон.\n\nThe first reference image is the exact layout of the playable field: a 20 by 12 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Пути депо под дождём: вагонетки и стрелочные будки дают укрытие, лужи с мазутом между рельсами — трудные клетки. На востоке служебный вагон с горящими фарами, в которых дождь светится косыми нитями; на западе — ворота 2 и пустырь, темнота. Над главными воротами издали светится «ПАРК № 2», его отражение дрожит в луже у билетной будки. У ворот 2 плавает чья-то мокрая бирка.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/rain-check--tram-depot.layout.png",
+    "tram-depot.png"
+   ]
+  },
+  {
+   "location": "clock-roofs",
+   "encounter": "roof-duel",
+   "grid": [
+    20,
+    12
+   ],
+   "file": "clock-roofs.webp",
+   "sha256": "befd7defbcf8de09aea78e9aef06cc978a463565340bb2dec8edd169c55fc85d",
+   "originalSha256": "67cfb66f9ea3ad699c8c9c5c6782ddd915ea9e84a5e1f2c28001bc6fdc05400b",
+   "originalFile": "battle-maps-2026-11-14/out/rain-check--clock-roofs.png",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as rain-check--clock-roofs.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Крыши Часового квартала» — Мокрая черепица доходного дома, крыша типографии «Вечерний листок» и крыша «Точного часа» с часовой башней и неоновыми буквами.\n\nThe first reference image is the exact layout of the playable field: a 20 by 12 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Поле 20×12: столбцы 1–20 с запада, ряды 1–12 с севера; по краю парапет. 1–6 — дом Пеля (лестница 1/6–1/7, труба 6/11); 7 — проём, доска 7/4; 8–11 — типография (окно 9/2); 12 — проём, жёлоб с флажками 12/1; 13–20 — «Точный час» (рамы 15/8, 16/11, дверь 20/6–20/7, лестница 14/12–15/12). Герои — 1–2/5–8. Для всех: ход до 3 клеток, диагональ 1; Рывок (действие) +1; Скат вместо Рывка — +2 по прямой, Ловкость (Акробатика) СЛ 12, провал — ничком, встать стоит 2 клетки; больше 5 за ход никто. Проём: прыжок от края до края — 3 клетки движения, Сила (Атлетика) или Ловкость (Акробатика) СЛ 12; провал — карниз: клетка проёма, ничком, 1d4 дробящего; на карнизе нельзя атаковать, толкнуть дальше нельзя; в свой следующий ход существо тратит всё движение и выбирается на соседнюю клетку крыши с той стороны, откуда прыгало; действие у него есть. Мосток — 1 клетка без проверки, на нём одно существо; снять — действие рядом, доска или жёлоб остаются у края; положить обратно — действие рядом. Толкнуть — действие, Сила (Атлетика) против Силы (Атлетики) или Ловкости (Акробатики): на 1 клетку прочь или с ног; столкнутый в проём — 1d4 дробящего, на карнизе, выбирается на сторону, откуда столкнули. Лежачего в\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/rain-check--clock-roofs.layout.png",
+    "clock-roofs.png"
+   ]
+  }
+ ]
+}

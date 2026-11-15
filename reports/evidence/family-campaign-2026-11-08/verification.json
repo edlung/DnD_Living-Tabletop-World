@@ -1,0 +1,87 @@
+{
+  "status": "TECHNICALLY_VERIFIED",
+  "baseCommit": "e69c3290ca34cbde4a837591bfb477b899581142",
+  "ownerAcceptance": "NOT_PERFORMED",
+  "scope": "work-orders/FAMILY_CAMPAIGN_2026-11-08.md",
+  "unit": {
+    "tests": 3605,
+    "files": 410,
+    "result": "PASS"
+  },
+  "integration": {
+    "tests": 369,
+    "files": 71,
+    "result": "PASS",
+    "database": "ltw_family_campaign_check_20261108",
+    "databaseDropped": true
+  },
+  "familyTests": {
+    "tests": 9,
+    "result": "PASS"
+  },
+  "browser": {
+    "initialFull": {
+      "tests": 244,
+      "passed": 242,
+      "failed": 2,
+      "duration": "10.7m"
+    },
+    "focusedAfterResizeFix": {
+      "tests": 16,
+      "passed": 16,
+      "failed": 0,
+      "duration": "44.0s"
+    },
+    "fullFollowup": {
+      "tests": 245,
+      "passed": 244,
+      "failed": 1,
+      "duration": "10.6m",
+      "failure": "New dice test used is-answered instead of actual is-rolled class; trace showed the delivered result."
+    },
+    "finalCorrection": {
+      "tests": 10,
+      "passed": 10,
+      "failed": 0,
+      "duration": "22.4s",
+      "command": "pnpm exec playwright test tests/e2e/dice.spec.ts tests/e2e/resize-feedback.spec.ts"
+    },
+    "uniqueCasesWithPassingCoverage": 245,
+    "singleAllGreenFullInvocation": false
+  },
+  "static": {
+    "format": "PASS",
+    "typecheck": "PASS",
+    "build": "PASS",
+    "diffCheck": "PASS",
+    "lint": "Full scan identified one void-arrow style finding in new resize test; corrected; scoped lint of reserved-height.ts, resize-feedback.spec.ts and dice.spec.ts passed. Initial full lint before new test passed.",
+    "contextBudget": {
+      "files": 1753,
+      "overTarget": 0,
+      "overHardLimit": 0
+    },
+    "buildAdvisory": "Existing Vite advisory: some chunks larger than 500 kB."
+  },
+  "visual": {
+    "bookViews": 40,
+    "importViews": 4,
+    "layoutErrors": 0,
+    "layoutWarnings": 0,
+    "axeViolations": 0,
+    "screenshotsInspected": true,
+    "bookAuditServerStopped": true
+  },
+  "assets": {
+    "selectedOriginalImages": 30,
+    "retainedPriorVersions": 1,
+    "runtimeFormat": "webp",
+    "hashesVerified": true
+  },
+  "notPerformed": [
+    "Human family play",
+    "Real owner campaign activation",
+    "Production operator art import",
+    "Deployment/publication",
+    "Paid project provider calls"
+  ]
+}

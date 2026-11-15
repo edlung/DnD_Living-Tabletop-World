@@ -1,0 +1,30 @@
+{
+  "status": "COMPLETE",
+  "completedAt": "2026-11-08T11:35:02.987562+00:00",
+  "completedAuthors": [
+    "small-banner",
+    "dungeon-sanctuary",
+    "storm-kitchen",
+    "dragon-retirement",
+    "impossible-fair",
+    "unwritten-god",
+    "basalt-bloom",
+    "three-magicless-days",
+    "mountain-wedding",
+    "familiar-school"
+  ],
+  "activeAuthors": [],
+  "unassignedCampaigns": [],
+  "configuredAuthors": 10,
+  "readyNativeVariants": 60,
+  "passedTests": 41,
+  "skippedTests": 0,
+  "htmlPages": 192,
+  "layoutStates": 768,
+  "manualScreenshotsReviewed": 28,
+  "blockers": [],
+  "humanPlaytest": "NOT_RUN",
+  "delivery": "campaigns/fantasy-2026/index.html",
+  "report": "reports/FANTASY_TEN_2026-11-08.md",
+  "handoff": "handoffs/FANTASY_TEN_2026-11-08.md"
+}

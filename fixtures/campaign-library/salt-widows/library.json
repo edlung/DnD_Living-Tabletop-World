@@ -1,0 +1,1879 @@
+{
+ "id": "salt-widows",
+ "title": "Вдовы соляного моря",
+ "genre": "Тёмное фэнтези",
+ "audience": "18+",
+ "pitch": "Море ушло сорок лет назад. По его белому дну ходят ладьи на полозьях, а под коркой соли плавает Белорез — левиафан, чей гребень режет соль, как парус. В Пороге Вдов артели делят будущую добычу ножами прямо по карте дна. Вам достаётся седьмая доля: восемь дней похода, бочки воды, две шлюпки и стойка гарпунов. Соперники ближе зверя — пока вы уверены, что охотники здесь вы.",
+ "tone": "Белая тишина, жажда и хруст корки; товарищество на узкой палубе; охота, в которой зверь слушает вас лучше, чем вы его. Гибель видна по последствиям: обломок шлюпки, пустой платок, тишина под полозьями.",
+ "duration": "8 сессий; 3 часа: 10 минут начала и сверки листа следа, три сцены по 50 минут (в восьмом вечере 45, 45 и 60), перерыв 20 минут после второй сцены. Отдельного закрытия нет: вечер кончается в третьей сцене.",
+ "cover": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/cover.webp",
+ "defaultVariant": "4-players",
+ "variants": [
+  {
+   "id": "3-players",
+   "players": 3,
+   "label": "3 игрока",
+   "file": "packages/3-players.json",
+   "digest": "10677dcbc02507562eec5c594602178431df7afa54b6a79514dd8b0a9d0f5e66"
+  },
+  {
+   "id": "4-players",
+   "players": 4,
+   "label": "4 игрока",
+   "file": "packages/4-players.json",
+   "digest": "fcf2eeced204af14b1aca69097d33dcaa1b46265237c1bbd12d55339fb5eb02d"
+  },
+  {
+   "id": "5-players",
+   "players": 5,
+   "label": "5 игроков",
+   "file": "packages/5-players.json",
+   "digest": "1f93826d87f2ee07ae767f2cdc0eeee420fdf160d847efa84044ff48522a3e35"
+  },
+  {
+   "id": "6-players",
+   "players": 6,
+   "label": "6 игроков",
+   "file": "packages/6-players.json",
+   "digest": "955c6c4d6b73871b70b3c2873cefcbb164458eb7774d96f9607075999719e6ac"
+  },
+  {
+   "id": "7-players",
+   "players": 7,
+   "label": "7 игроков",
+   "file": "packages/7-players.json",
+   "digest": "04c572f15b94c5ceb435cc96aa2a9db44b4fccf90367e2423fc23ba3f18750c1"
+  }
+ ],
+ "generator": "codex-cli imagegen",
+ "pictures": [
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/salt-sea.webp",
+   "sha256": "904a695a75973422c1f85b4ed2d0b70d3c0eb591f36c722105ebe95919365be9",
+   "originalSha256": "46efee133367361936396ca3938aa2f6ddb2ff23566b6b7aa0b90673e4a704c9",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as salt-sea.png in the current directory.\nWide landscape establishing view, 3:2. The Ebb Salt: the white bed of a vanished sea, flat salt plates to a motionless horizon, rare rock outcrops as resting places, enormous sinuous furrows in the crust left by something huge, heat haze, no people in focus.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "salt-sea"
+    ],
+    "4-players": [
+     "salt-sea"
+    ],
+    "5-players": [
+     "salt-sea"
+    ],
+    "6-players": [
+     "salt-sea"
+    ],
+    "7-players": [
+     "salt-sea"
+    ]
+   },
+   "file": "salt-sea.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/widows-threshold.webp",
+   "sha256": "d3670683c6f6543d15338bdef5b390d4882ea855a8a6af96345bbf51c3a2a118",
+   "originalSha256": "9d201803c31c4cef034611d0b16cb0a3c2d88e92c5560ce097e198d7af6f4569",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as widows-threshold.png in the current directory.\nLandscape scene, 3:2. The Widows' Threshold: weathered houses above a former shoreline, a square hung with old nets, a long table where hunting crews split shares — rival captains stabbing knives into a hide map spread on the table; black widow scarves on posts, the white salt horizon beyond.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "widows-threshold"
+    ],
+    "4-players": [
+     "widows-threshold"
+    ],
+    "5-players": [
+     "widows-threshold"
+    ],
+    "6-players": [
+     "widows-threshold"
+    ],
+    "7-players": [
+     "widows-threshold"
+    ]
+   },
+   "file": "widows-threshold.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/sunken-steps.webp",
+   "sha256": "c6d58f3fda956678299ab7eede8a4e56b950410e56831abdb95fe9666274cf37",
+   "originalSha256": "44ab5a14c297b2a0180d736641e486c476ad7fc86ba7ff7466c21b4cf25638ed",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as sunken-steps.png in the current directory.\nLandscape scene, 3:2. The Drowned Stairs: hundreds of stone steps descending from a cliff and ending high above the white salt floor, below them the scattered remains of several abandoned hunting camps — torn tents, broken sled runners, cold fire rings.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "sunken-steps"
+    ],
+    "4-players": [
+     "sunken-steps"
+    ],
+    "5-players": [
+     "sunken-steps"
+    ],
+    "6-players": [
+     "sunken-steps"
+    ],
+    "7-players": [
+     "sunken-steps"
+    ]
+   },
+   "file": "sunken-steps.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/bell-salt.webp",
+   "sha256": "86e4f8d078a5fdb979348c6739c10175149cc9a0f36528439ca026d56e2e801d",
+   "originalSha256": "8ad5db3ead401c6a1994130c2b172db11c9a16fcd2775a9ba4e7729acc95721a",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as bell-salt.png in the current directory.\nLandscape scene, 3:2. The Ringing Plates: flat salt plates that ring underfoot at different pitches, dark stone ridges between them, a hunter stepping carefully with a staff, faint sound ripples suggested in the salt dust, glare.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "bell-salt"
+    ],
+    "4-players": [
+     "bell-salt"
+    ],
+    "5-players": [
+     "bell-salt"
+    ],
+    "6-players": [
+     "bell-salt"
+    ],
+    "7-players": [
+     "bell-salt"
+    ]
+   },
+   "file": "bell-salt.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/black-molt.webp",
+   "sha256": "d3acdfe8f7eeaad8441694c41219c392cc83922caf613b55fc4be0f887914b1f",
+   "originalSha256": "6ca94b2ea4d3741284439523dea3e39b3ddb05085d1835139c49652c87377422",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as black-molt.png in the current directory.\nLandscape scene, 3:2. The Black Molt: dark shards of a gigantic shed shell jutting from the salt like roofs of a buried city, hunters' abandoned sorting places between them, sacks and scales, eerie stillness.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "black-molt"
+    ],
+    "4-players": [
+     "black-molt"
+    ],
+    "5-players": [
+     "black-molt"
+    ],
+    "6-players": [
+     "black-molt"
+    ],
+    "7-players": [
+     "black-molt"
+    ]
+   },
+   "file": "black-molt.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/three-wells.webp",
+   "sha256": "0bf498801fbbcf2266b1b3e270ac190c37f8f3deab96a7f073d4180859033562",
+   "originalSha256": "abc57d4d05ba81287abaf15eaf7adb0ec491311543bd5c9294a4b455a08e5756",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as three-wells.png in the current directory.\nLandscape scene, 3:2. Three Swallows: two rival hunting camps at the edges of a small flat clearing on the salt, between them sealed clay water jars guarded under an awning, tense crews watching each other across the space, harpoons leaning on sleds.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "three-wells"
+    ],
+    "4-players": [
+     "three-wells"
+    ],
+    "5-players": [
+     "three-wells"
+    ],
+    "6-players": [
+     "three-wells"
+    ],
+    "7-players": [
+     "three-wells"
+    ]
+   },
+   "file": "three-wells.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/storm-fang.webp",
+   "sha256": "da729e8e4a492f4eddaae443943295f50ae7059568996a99ebc96b24195247f5",
+   "originalSha256": "382bf396cb88bef7d9181e5c27f89897e5e57bf6a6c752db1d02dbe4be01ace3",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as storm-fang.png in the current directory.\nLandscape scene, 3:2. The Storm Fang: a narrow rocky ridge rising from the salt with remnants of old rope railings, dry sleeping niches in the rock, wind tearing at a black scarf tied to a rail, stars beginning.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "storm-fang"
+    ],
+    "4-players": [
+     "storm-fang"
+    ],
+    "5-players": [
+     "storm-fang"
+    ],
+    "6-players": [
+     "storm-fang"
+    ],
+    "7-players": [
+     "storm-fang"
+    ]
+   },
+   "file": "storm-fang.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/zero-tide-tower.webp",
+   "sha256": "5fb174c80bc4978040c5c0b85286b0a9fe9cdb2fee001f514f67a9a355585604",
+   "originalSha256": "c6a36725118e0f74388403f50c4caea4d4398c919f78b98aae005687f89c7080",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as zero-tide-tower.png in the current directory.\nLandscape scene, 3:2. The Zero Tide Tower: a round lighthouse-like keeper's tower on the old shore, its walls marked with measuring lines of vanished water levels, far from any sea now, a lone figure on the gallery with a spyglass, white emptiness all around.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "zero-tide-tower"
+    ],
+    "4-players": [
+     "zero-tide-tower"
+    ],
+    "5-players": [
+     "zero-tide-tower"
+    ],
+    "6-players": [
+     "zero-tide-tower"
+    ],
+    "7-players": [
+     "zero-tide-tower"
+    ]
+   },
+   "file": "zero-tide-tower.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/empty-kitchen.webp",
+   "sha256": "4f3f0c90a3fc4631bda6c5db6e345d6de7c71afc4038b73b464df3bdf740f983",
+   "originalSha256": "3029afe3b767032a817b53e21c9e3ee593224e65cb2632f26b7220b5c7b11501",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as empty-kitchen.png in the current directory.\nLandscape interior and exterior, 3:2. The Empty Kitchen: an abandoned cookhouse of an old hunting crew on a stone islet in the salt, a cold oven, a long table neatly set for guests, a harpoon device and a crate on the floor, late light through the door.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "empty-kitchen"
+    ],
+    "4-players": [
+     "empty-kitchen"
+    ],
+    "5-players": [
+     "empty-kitchen"
+    ],
+    "6-players": [
+     "empty-kitchen"
+    ],
+    "7-players": [
+     "empty-kitchen"
+    ]
+   },
+   "file": "empty-kitchen.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/red-cut.webp",
+   "sha256": "0c1a97c896efee0c89eeae2687daf849ff6af96f5f72a332b3a6d6e4375017c5",
+   "originalSha256": "81e2d32e86b6b452ea121192b3cb8675a6e58f59c89487117c1971e822937f5d",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as red-cut.png in the current directory.\nLandscape scene, 3:2. The Rust Cut: rust-red canyon walls slicing through the white salt layer, wide furrows on the floor from something enormous, several paths between scree slopes, a sled with sails furled moving carefully below.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "red-cut"
+    ],
+    "4-players": [
+     "red-cut"
+    ],
+    "5-players": [
+     "red-cut"
+    ],
+    "6-players": [
+     "red-cut"
+    ],
+    "7-players": [
+     "red-cut"
+    ]
+   },
+   "file": "red-cut.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/no-tide-cauldron.webp",
+   "sha256": "65c0fc842a33c922c19239676a0110de659e38694447fd2319591786618a3bc2",
+   "originalSha256": "046f72dfc5e4d7c651e8f949eeb36905b3a38b912630dc4a36b35403da97c626",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as no-tide-cauldron.png in the current directory.\nWide landscape, 3:2. The Tideless Cauldron: a vast natural basin between stone ribs, an open salt slope leading down and a tight stone passage, the surface of the salt cracking and heaving in the centre as if something breathes beneath, sleds with harpoons on the rim, dusk.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "no-tide-cauldron"
+    ],
+    "4-players": [
+     "no-tide-cauldron"
+    ],
+    "5-players": [
+     "no-tide-cauldron"
+    ],
+    "6-players": [
+     "no-tide-cauldron"
+    ],
+    "7-players": [
+     "no-tide-cauldron"
+    ]
+   },
+   "file": "no-tide-cauldron.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/dry-return.webp",
+   "sha256": "674842121720e98edc4184e032a47028269853c6b72499d0068a466cf3c0f604",
+   "originalSha256": "90c11aefe0b599f81dd248a31097f70001d554a19b6976a568d816c0f359220d",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as dry-return.png in the current directory.\nLandscape scene, 3:2. The Dry Pass: a short white saddle and a long chain of stone ledges above it leading toward the old shore, the roofs of a village visible far away, tired hunters climbing with empty water barrels.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "dry-return"
+    ],
+    "4-players": [
+     "dry-return"
+    ],
+    "5-players": [
+     "dry-return"
+    ],
+    "6-players": [
+     "dry-return"
+    ],
+    "7-players": [
+     "dry-return"
+    ]
+   },
+   "file": "dry-return.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/widows-line.webp",
+   "sha256": "2ea9d8677c28d9969354c16683beb3b5f4e27feed58400c10c03052477edbddb",
+   "originalSha256": "41b4b2e9394a2f2606bea14e719d699d716c6768768a8c9c1c99760d57cd5a66",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as widows-line.png in the current directory.\nWide landscape, 3:2. The Widows' Line: a long line of wooden stakes driven into the white salt floor, each tied with a fluttering black widow scarf, marking the old retreat route of the hunting crews toward the east, sled tracks along it, a huge furrow crossing it, dusk.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "widows-line"
+    ],
+    "4-players": [
+     "widows-line"
+    ],
+    "5-players": [
+     "widows-line"
+    ],
+    "6-players": [
+     "widows-line"
+    ],
+    "7-players": [
+     "widows-line"
+    ]
+   },
+   "file": "widows-line.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/derva-klin.webp",
+   "sha256": "dc611b57de7d1850d5a509372cb61f8de8f6a80740a7ac4194ee04366944c6ea",
+   "originalSha256": "c0d0a02766df6a87c401350c9ab6862e0f3ca4c290f275b76adccf495df009e8",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as derva-klin.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Derva Klin, a 34-year-old woman fighter and salt hunter: a dark cloak, a protective mask of blue glass pushed up on her forehead, a worn copper band on her arm, salt ground into the cracks of her palms, a harpoon over her shoulder, a black widow scarf at her throat, hard grieving eyes. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "derva-klin"
+    ],
+    "4-players": [
+     "derva-klin"
+    ],
+    "5-players": [
+     "derva-klin"
+    ],
+    "6-players": [
+     "derva-klin"
+    ],
+    "7-players": [
+     "derva-klin"
+    ]
+   },
+   "file": "derva-klin.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/taron-vekha.webp",
+   "sha256": "da68087d4402e8cc2811f894d2dd23ec384356d80ba40df7476bfd344dcc9e09",
+   "originalSha256": "7e6d689553a92803dfaf9c56141b5c6dbaa1f7d0ca8844c2648f5fa5d8b0dd5a",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as taron-vekha.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Taron Vekha, a 41-year-old man rogue and tracker: a spotted scarf, a string of flat stone markers carved with arrows, boots with mismatched patches, weathered tanned face squinting at the horizon, a short blade. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "taron-vekha"
+    ],
+    "4-players": [
+     "taron-vekha"
+    ],
+    "5-players": [
+     "taron-vekha"
+    ],
+    "6-players": [
+     "taron-vekha"
+    ],
+    "7-players": [
+     "taron-vekha"
+    ]
+   },
+   "file": "taron-vekha.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/selma-rov.webp",
+   "sha256": "ad603ca1b4e7eb20ffefdaf8dab3b3198bb00a51660931382f99375b36322ccf",
+   "originalSha256": "f533ebdb4f0dc60ff56aedb4450c1ac5501d2a3eb04a8b80a1051511553cb9d3",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as selma-rov.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Selma Rov, a 50-year-old woman cleric: grey hair tied with a salt-crusted thread, a small bottomless cup and a pouch of coarse grey salt on her belt as her holy symbols, a calm severe face, a light mace. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "selma-rov"
+    ],
+    "4-players": [
+     "selma-rov"
+    ],
+    "5-players": [
+     "selma-rov"
+    ],
+    "6-players": [
+     "selma-rov"
+    ],
+    "7-players": [
+     "selma-rov"
+    ]
+   },
+   "file": "selma-rov.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/eyran-list.webp",
+   "sha256": "70a7fedf8a182883fd4fed56e44d3d27807434ec6e90adc4edb17ecea9da6480",
+   "originalSha256": "420da57e4396fd6f61f28f783028d41d06fdcffdf483ab8cb036a6e804e94e00",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as eyran-list.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Eyran List, a 28-year-old man wizard: dusty goggles, mismatched gloves, a wooden case of ordinary stones, salt and charcoal on his cuffs, curious tired face, a staff. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "eyran-list"
+    ],
+    "5-players": [
+     "eyran-list"
+    ],
+    "6-players": [
+     "eyran-list"
+    ],
+    "7-players": [
+     "eyran-list"
+    ]
+   },
+   "file": "eyran-list.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/nata-ugol.webp",
+   "sha256": "53be7d72286c2fed1e44b14cf941f978930675c638cc9fc3f90b1f884fe5f968",
+   "originalSha256": "3bf4065e4413492fa6bceed1840f1a3d9542464a841cb2fafe58b726390a2b1a",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as nata-ugol.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Nata Ugol, a 37-year-old woman fighter: cropped hair, a shield with a worn-off crew sign, carefully folded mittens, strap marks on her shoulders, a short spear, solid stance. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "nata-ugol"
+    ],
+    "6-players": [
+     "nata-ugol"
+    ],
+    "7-players": [
+     "nata-ugol"
+    ]
+   },
+   "file": "nata-ugol.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/vosk-rez.webp",
+   "sha256": "dd79702fe88480cfd6fe6ff93d690a2422c68f09586cbd7b92886cb4191a9eeb",
+   "originalSha256": "e3b12d92c566fc6a83dff6e838a92c67f2bb1099aa5351039abbfc8afc123c40",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as vosk-rez.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Vosk Rez, a 24-year-old young man rogue: a neat jacket over road dust, an empty ring on a cord meant for a valuable trophy, salt polished off his cuffs, ambitious sharp face, a dagger. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "vosk-rez"
+    ],
+    "7-players": [
+     "vosk-rez"
+    ]
+   },
+   "file": "vosk-rez.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/riva-noch.webp",
+   "sha256": "80f3c89890f3e087a8c5767e3ce40eae6645d268dd8ef946680705cddd5127e9",
+   "originalSha256": "5606283813a5539dd9bcb6e6db5a46a8e649a9e5a3056e6f27ec16c9cb053101",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as riva-noch.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Riva Noch, a 60-year-old woman cleric: a dark braid with white streaks, a linen bag embroidered with names, a needle stuck in her sleeve, a kind exhausted face, a staff. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "riva-noch"
+    ]
+   },
+   "file": "riva-noch.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/mara-ivna.webp",
+   "sha256": "f4fa9cdfd6eab85656fd5639f7b5e5f9846e4eaa0405d32ec8970671ea4f0940",
+   "originalSha256": "f4e5902e413d8dc6349b31bd0c2761bd49eae3e84d8238a26d13b5e47ab1db7e",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as mara-ivna.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Oksinya Ivna, a 57-year-old widow and patron of hunts: a black widow scarf edged with white salt, broad hands, a copper water measure on a cord, a guarded gracious look, the hunting square behind her. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "taron-vekha.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "mara-ivna"
+    ],
+    "4-players": [
+     "mara-ivna"
+    ],
+    "5-players": [
+     "mara-ivna"
+    ],
+    "6-players": [
+     "mara-ivna"
+    ],
+    "7-players": [
+     "mara-ivna"
+    ]
+   },
+   "file": "mara-ivna.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/yasna-var.webp",
+   "sha256": "78d67db87c286f9fcb7078149c4ee8a8a858a94c5a535c8a09b24ddb156c2661",
+   "originalSha256": "f7ade1ffb2a500dde6f0e46a7b6681bfa369f3214c0a86a50ce0fd2a6c84e475",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as yasna-var.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Gordeya Var, a 43-year-old woman captain of the Black Net crew: square glass goggles, a patched black cloak, a string of night-glass beads on her shoulder, a flat almost bored expression, a harpoon device at her side. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "taron-vekha.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "yasna-var"
+    ],
+    "4-players": [
+     "yasna-var"
+    ],
+    "5-players": [
+     "yasna-var"
+    ],
+    "6-players": [
+     "yasna-var"
+    ],
+    "7-players": [
+     "yasna-var"
+    ]
+   },
+   "file": "yasna-var.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/radan-kosoi.webp",
+   "sha256": "1cbba0615141ccce19ac9b9419c1840bb30692aabb3033fa55b63f7270f0bd84",
+   "originalSha256": "f1eec7e5f93d4933f6ddadd01cd8ba0619013426a8474e0632058d790e2d6650",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as radan-kosoi.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Radan Kosoi, a 46-year-old man rival captain: a frayed white hood, a crooked clasp, a bitter grin, a broken mast fragment with a line behind him at a campfire. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "taron-vekha.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "radan-kosoi"
+    ],
+    "4-players": [
+     "radan-kosoi"
+    ],
+    "5-players": [
+     "radan-kosoi"
+    ],
+    "6-players": [
+     "radan-kosoi"
+    ],
+    "7-players": [
+     "radan-kosoi"
+    ]
+   },
+   "file": "radan-kosoi.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/luta-senn.webp",
+   "sha256": "7e15d4d1b580304c2eb61c214fb4cb0bc0f765ca2c1f025b864e0ba23e24f9e8",
+   "originalSha256": "6f80bcc0b837f9e0324382b09319fa9e14774ce447793d69d7a68aa5c87815bf",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as luta-senn.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Luta Senn, a 29-year-old woman tracker who listens to the salt: a short cloak, worn earmuffs, a marking stick, kneeling to listen to the ground, intense focus. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "taron-vekha.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "luta-senn"
+    ],
+    "4-players": [
+     "luta-senn"
+    ],
+    "5-players": [
+     "luta-senn"
+    ],
+    "6-players": [
+     "luta-senn"
+    ],
+    "7-players": [
+     "luta-senn"
+    ]
+   },
+   "file": "luta-senn.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/iva-bessonnaya.webp",
+   "sha256": "3568e5ac377769289f8ef40adb7666badd118f57f713f14c1c7dc9a558f24408",
+   "originalSha256": "69e8b235278b55e26876ee714951deeb9d5bb33681fc9de8c5eec506a3a7f55d",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as iva-bessonnaya.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Iva the Sleepless, a 62-year-old former hunter: a darned apron over travelling clothes, a widow scarf tied the man's way, tapping an empty cup, a board with tally marks on the wall of a cold kitchen behind her. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "taron-vekha.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "iva-bessonnaya"
+    ],
+    "4-players": [
+     "iva-bessonnaya"
+    ],
+    "5-players": [
+     "iva-bessonnaya"
+    ],
+    "6-players": [
+     "iva-bessonnaya"
+    ],
+    "7-players": [
+     "iva-bessonnaya"
+    ]
+   },
+   "file": "iva-bessonnaya.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/demid-krai.webp",
+   "sha256": "395560087e3a1b1bbb2b848f5b4021ae26414ed055aa7cc41602da44a018e611",
+   "originalSha256": "7337da0f9929515c559ea14af192b30c767fdf35e7f1eb5b47d05ea437310ad4",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as demid-krai.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Demid Krai, a 35-year-old man: a bandage on his shoulder, a long waistcoat, a small folding stool, sitting high on a rock ledge not waving, watchful. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "taron-vekha.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "demid-krai"
+    ],
+    "4-players": [
+     "demid-krai"
+    ],
+    "5-players": [
+     "demid-krai"
+    ],
+    "6-players": [
+     "demid-krai"
+    ],
+    "7-players": [
+     "demid-krai"
+    ]
+   },
+   "file": "demid-krai.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/nena-sol.webp",
+   "sha256": "e9d43c51909ff268e3481444a6796d09d3cf9459ad5b9715f526d6104c8f954c",
+   "originalSha256": "a726997ce230a5647a52bafb9aa1e63756a3103b0106373473317f45ca0f990a",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as nena-sol.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Nena Sol, a 39-year-old woman water-keeper: copper measures on her belt, eyebrows white with salt, scissors for cutting debt cords, sealed clay jars behind her. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "taron-vekha.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "nena-sol"
+    ],
+    "4-players": [
+     "nena-sol"
+    ],
+    "5-players": [
+     "nena-sol"
+    ],
+    "6-players": [
+     "nena-sol"
+    ],
+    "7-players": [
+     "nena-sol"
+    ]
+   },
+   "file": "nena-sol.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/ostrem-kart.webp",
+   "sha256": "9048040bf7f0749aced37a785f6b34afa855431e5fcb8be5a1ea6f821c4235e6",
+   "originalSha256": "d927bb7dee441da0dfcf393d3f90d374653e8fc5b99308669f0b9f57412c89b0",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as ostrem-kart.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Ostrem Kart, a 55-year-old man tower keeper: head tilted, a linen waistcoat, charcoal-stained fingers, a bundle of old measuring poles with iron feet by the door. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "taron-vekha.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "ostrem-kart"
+    ],
+    "4-players": [
+     "ostrem-kart"
+    ],
+    "5-players": [
+     "ostrem-kart"
+    ],
+    "6-players": [
+     "ostrem-kart"
+    ],
+    "7-players": [
+     "ostrem-kart"
+    ]
+   },
+   "file": "ostrem-kart.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/verek-tikhiy.webp",
+   "sha256": "e15a6875f3c68da5538df0aa92a2938e9af4d8cca05a680a364f84af4fe63810",
+   "originalSha256": "24e0b38144304d26df5ae8f91cc4d1db21aadeceaec2b2549bcd525eaefa4ca5",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as verek-tikhiy.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Verek Tikhy, a 26-year-old broad-shouldered young man in his dead brother's carefully refitted old jacket, an unused captain's share token on his belt, quiet heavy look. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "taron-vekha.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "verek-tikhiy"
+    ],
+    "4-players": [
+     "verek-tikhiy"
+    ],
+    "5-players": [
+     "verek-tikhiy"
+    ],
+    "6-players": [
+     "verek-tikhiy"
+    ],
+    "7-players": [
+     "verek-tikhiy"
+    ]
+   },
+   "file": "verek-tikhiy.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/cut-map-share.webp",
+   "sha256": "f24461743bab1a654e774cf63420053daef502af9e6b76a72233b313f2f4913d",
+   "originalSha256": "de6d52f0c1b7702a339f4aa44ea2bd81b7b6e0f7f050e2cada1d2bc37639ac32",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as cut-map-share.png in the current directory.\nItem illustration, single object or small group centered on a plain weathered parchment backdrop, square 1:1: a palm-wide piece of tanned hide map cut out with a knife, ragged edges, fresh knife scores across it, faint drawn contour lines (no readable text). No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "empty-kitchen.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "cut-map-share"
+    ],
+    "4-players": [
+     "cut-map-share"
+    ],
+    "5-players": [
+     "cut-map-share"
+    ],
+    "6-players": [
+     "cut-map-share"
+    ],
+    "7-players": [
+     "cut-map-share"
+    ]
+   },
+   "file": "cut-map-share.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/derva-harpoon.webp",
+   "sha256": "4a9aec756a4beef1ab925d0597593a345f051e7dcdbb303c91eb08a65e320c1c",
+   "originalSha256": "a0d004060127c410b80d4bbe8ffe9b8bfca5f116786f4413690241619e8814a6",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as derva-harpoon.png in the current directory.\nItem illustration, single object or small group centered on a plain weathered parchment backdrop, square 1:1: a harpoon with a dark ash shaft and a narrow iron head with two barbs, a coiled line tied at its base, a black widow scarf knotted at the butt. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "empty-kitchen.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "derva-harpoon"
+    ],
+    "4-players": [
+     "derva-harpoon"
+    ],
+    "5-players": [
+     "derva-harpoon"
+    ],
+    "6-players": [
+     "derva-harpoon"
+    ],
+    "7-players": [
+     "derva-harpoon"
+    ]
+   },
+   "file": "derva-harpoon.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/taron-marks.webp",
+   "sha256": "4f579547dc8e595d39fee97b86ada3fb7cdfec48243b0c133727dcbba6ad2c96",
+   "originalSha256": "ea6abd1e1b29f57d27f0b16caa7e4368b06de4816c8b76fe8e3085f8a9846c43",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as taron-marks.png in the current directory.\nItem illustration, single object or small group centered on a plain weathered parchment backdrop, square 1:1: a string of flat river stones on a leather cord, each scratched with an arrow and notches. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "empty-kitchen.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "taron-marks"
+    ],
+    "4-players": [
+     "taron-marks"
+    ],
+    "5-players": [
+     "taron-marks"
+    ],
+    "6-players": [
+     "taron-marks"
+    ],
+    "7-players": [
+     "taron-marks"
+    ]
+   },
+   "file": "taron-marks.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/funeral-salt.webp",
+   "sha256": "c3f992289880102504b8519969b7c5ec0654687ad2621cf175283a1aec427ff4",
+   "originalSha256": "05809dc87e8cb88c29a9de149a8d863ba336a70d63071f1b0de73b94938934e3",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as funeral-salt.png in the current directory.\nItem illustration, single object or small group centered on a plain weathered parchment backdrop, square 1:1: a worn leather pouch tied with a cord, coarse grey salt crystals spilling out, a short line of embroidered stitches (no readable letters). No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "empty-kitchen.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "funeral-salt"
+    ],
+    "4-players": [
+     "funeral-salt"
+    ],
+    "5-players": [
+     "funeral-salt"
+    ],
+    "6-players": [
+     "funeral-salt"
+    ],
+    "7-players": [
+     "funeral-salt"
+    ]
+   },
+   "file": "funeral-salt.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/widow-kerchiefs.webp",
+   "sha256": "fcee7941c5487f9fb1b331e0ac980c3bca97ebe2bf89343e9a5e140188e2ad24",
+   "originalSha256": "aaa72ea073c8fd6effa81737797047f117116f1cebdc133c0618bc5548cc0032",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as widow-kerchiefs.png in the current directory.\nItem illustration, single object or small group centered on a plain weathered parchment backdrop, square 1:1: seven folded black wool kerchiefs with white salt edges, embroidered borders of different ages. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "empty-kitchen.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "widow-kerchiefs"
+    ],
+    "4-players": [
+     "widow-kerchiefs"
+    ],
+    "5-players": [
+     "widow-kerchiefs"
+    ],
+    "6-players": [
+     "widow-kerchiefs"
+    ],
+    "7-players": [
+     "widow-kerchiefs"
+    ]
+   },
+   "file": "widow-kerchiefs.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/fresh-plate.webp",
+   "sha256": "04e95dab2d333ebaffef0ad30150537e4a3dbced63607fcccc00f2c50a7468cb",
+   "originalSha256": "f5bf0e0af4a2260e04bd15c2d06d74243376eca5ff6e6ad44b9844f3fadb8ab0",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as fresh-plate.png in the current directory.\nItem illustration, single object or small group centered on a plain weathered parchment backdrop, square 1:1: a palm-sized smooth black shell plate with a round coin-like dent pressed into it. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "empty-kitchen.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "fresh-plate"
+    ],
+    "4-players": [
+     "fresh-plate"
+    ],
+    "5-players": [
+     "fresh-plate"
+    ],
+    "6-players": [
+     "fresh-plate"
+    ],
+    "7-players": [
+     "fresh-plate"
+    ]
+   },
+   "file": "fresh-plate.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/collar-rubbing.webp",
+   "sha256": "f5e6361b1d5f7e1b2a40012a9132bfbb17523a6049bf530b6c3f5e3f46248e11",
+   "originalSha256": "3c17ad9ab86f42b7b8433b1c5872915f1a8f7fc64572ed7b25ca1ff05ec1a2bc",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as collar-rubbing.png in the current directory.\nItem illustration, single object or small group centered on a plain weathered parchment backdrop, square 1:1: a sheet of heavy paper rubbed with charcoal over cast raised marks (no readable text), black-edged from fingers, a thumbprint in the corner. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "empty-kitchen.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "collar-rubbing"
+    ],
+    "4-players": [
+     "collar-rubbing"
+    ],
+    "5-players": [
+     "collar-rubbing"
+    ],
+    "6-players": [
+     "collar-rubbing"
+    ],
+    "7-players": [
+     "collar-rubbing"
+    ]
+   },
+   "file": "collar-rubbing.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/line-stakes.webp",
+   "sha256": "ee8efb082e36aa1b324474e289e22cfa74746e47410fe4c3abb11658a2afdef3",
+   "originalSha256": "6593565fe806a4d0640323aa513814f65ae55516b4d4602a0c0e84b58ffbc788",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as line-stakes.png in the current directory.\nItem illustration, single object or small group centered on a plain weathered parchment backdrop, square 1:1: two tall dark wooden measuring poles with iron feet, burned graduation marks, coiled lines ending in barbed hooks at their base. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "empty-kitchen.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "line-stakes"
+    ],
+    "4-players": [
+     "line-stakes"
+    ],
+    "5-players": [
+     "line-stakes"
+    ],
+    "6-players": [
+     "line-stakes"
+    ],
+    "7-players": [
+     "line-stakes"
+    ]
+   },
+   "file": "line-stakes.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/iva-tooth.webp",
+   "sha256": "436073029b57ded98a9241820ba0a3b6a0fe1e9b930dc9d4ec8cccc1c8b3d251",
+   "originalSha256": "c90c1b7bf4f828e7c941cf2173a039287778eff0e6b84c41762b81db6cec006a",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as iva-tooth.png in the current directory.\nItem illustration, single object or small group centered on a plain weathered parchment backdrop, square 1:1: an arm-length iron tensioning harpoon tooth on a wooden stock with a socket, wrapped in a casing of knotted widow scarves, a tag hanging. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "empty-kitchen.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "iva-tooth"
+    ],
+    "4-players": [
+     "iva-tooth"
+    ],
+    "5-players": [
+     "iva-tooth"
+    ],
+    "6-players": [
+     "iva-tooth"
+    ],
+    "7-players": [
+     "iva-tooth"
+    ]
+   },
+   "file": "iva-tooth.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/full-box.webp",
+   "sha256": "2f7353e2e3d6a8a98417e565a9c349c02f070a9d6db65753b49ddb81a696a05b",
+   "originalSha256": "65fe7cd01f0d4c3c3cd0f236714ac7df92fdf925d56c9f8d17d58c03254f7104",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as full-box.png in the current directory.\nItem illustration, single object or small group centered on a plain weathered parchment backdrop, square 1:1: a small iron-bound box with a leather handle and a fish-head lock, open to show twelve black plates bedded in coarse grey salt and sacking. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "empty-kitchen.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "full-box"
+    ],
+    "4-players": [
+     "full-box"
+    ],
+    "5-players": [
+     "full-box"
+    ],
+    "6-players": [
+     "full-box"
+    ],
+    "7-players": [
+     "full-box"
+    ]
+   },
+   "file": "full-box.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/token-predator.webp",
+   "sha256": "3dfb43e5eeb0a4dfda4545a261fc92195e85bf12ea17766fbe356467bd3d4969",
+   "originalSha256": "5ec1a68c2acca944d3ba7e156996b657f31f83132153ee5c28517ceded2661dc",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as token-predator.png in the current directory.\nGame token figure on a fully transparent background, top three-quarter view, no ground shadow. A pale eyeless salt predator like a shark that swims through salt crust, white rough hide, fins cutting through crystals.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "empty-kitchen.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "brine-break-foe-1",
+     "brine-break-foe-2",
+     "radan-in-brine-foe-1",
+     "radan-in-brine-foe-2"
+    ],
+    "4-players": [
+     "brine-break-foe-1",
+     "brine-break-foe-2",
+     "brine-break-foe-3",
+     "radan-in-brine-foe-1",
+     "radan-in-brine-foe-2",
+     "radan-in-brine-foe-3"
+    ],
+    "5-players": [
+     "brine-break-foe-1",
+     "brine-break-foe-2",
+     "brine-break-foe-3",
+     "brine-break-foe-4",
+     "radan-in-brine-foe-1",
+     "radan-in-brine-foe-2",
+     "radan-in-brine-foe-3",
+     "radan-in-brine-foe-4"
+    ],
+    "6-players": [
+     "brine-break-foe-1",
+     "brine-break-foe-2",
+     "brine-break-foe-3",
+     "brine-break-foe-4",
+     "brine-break-foe-5",
+     "radan-in-brine-foe-1",
+     "radan-in-brine-foe-2",
+     "radan-in-brine-foe-3",
+     "radan-in-brine-foe-4",
+     "radan-in-brine-foe-5"
+    ],
+    "7-players": [
+     "brine-break-foe-1",
+     "brine-break-foe-2",
+     "brine-break-foe-3",
+     "brine-break-foe-4",
+     "brine-break-foe-5",
+     "radan-in-brine-foe-1",
+     "radan-in-brine-foe-2",
+     "radan-in-brine-foe-3",
+     "radan-in-brine-foe-4",
+     "radan-in-brine-foe-5"
+    ]
+   },
+   "file": "token-predator.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/token-predator.webp",
+   "sha256": "3dfb43e5eeb0a4dfda4545a261fc92195e85bf12ea17766fbe356467bd3d4969",
+   "originalSha256": "5ec1a68c2acca944d3ba7e156996b657f31f83132153ee5c28517ceded2661dc",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as token-predator.png in the current directory.\nGame token figure on a fully transparent background, top three-quarter view, no ground shadow. A pale eyeless salt predator like a shark that swims through salt crust, white rough hide, fins cutting through crystals.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "empty-kitchen.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "brine-break-foe-1",
+     "brine-break-foe-2",
+     "radan-in-brine-foe-1",
+     "radan-in-brine-foe-2"
+    ],
+    "4-players": [
+     "brine-break-foe-1",
+     "brine-break-foe-2",
+     "brine-break-foe-3",
+     "radan-in-brine-foe-1",
+     "radan-in-brine-foe-2",
+     "radan-in-brine-foe-3"
+    ],
+    "5-players": [
+     "brine-break-foe-1",
+     "brine-break-foe-2",
+     "brine-break-foe-3",
+     "brine-break-foe-4",
+     "radan-in-brine-foe-1",
+     "radan-in-brine-foe-2",
+     "radan-in-brine-foe-3",
+     "radan-in-brine-foe-4"
+    ],
+    "6-players": [
+     "brine-break-foe-1",
+     "brine-break-foe-2",
+     "brine-break-foe-3",
+     "brine-break-foe-4",
+     "brine-break-foe-5",
+     "radan-in-brine-foe-1",
+     "radan-in-brine-foe-2",
+     "radan-in-brine-foe-3",
+     "radan-in-brine-foe-4",
+     "radan-in-brine-foe-5"
+    ],
+    "7-players": [
+     "brine-break-foe-1",
+     "brine-break-foe-2",
+     "brine-break-foe-3",
+     "brine-break-foe-4",
+     "brine-break-foe-5",
+     "radan-in-brine-foe-1",
+     "radan-in-brine-foe-2",
+     "radan-in-brine-foe-3",
+     "radan-in-brine-foe-4",
+     "radan-in-brine-foe-5"
+    ]
+   },
+   "file": "token-predator--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "token-predator.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/token-raider.webp",
+   "sha256": "a1ab1acd13602ea88730b26909fe6870ee67b0edfdc96d813fb83b89394a6cfc",
+   "originalSha256": "117a8e260e8cd80c471f8afd2632850c7d9739acdcce8a05d862d58aa780dc13",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as token-raider.png in the current directory.\nGame token figure on a fully transparent background, top three-quarter view, no ground shadow. A hunter-raider of the Black Net crew in a patched black cloak with night-glass beads, a hooked gaff and a knife, widow scarf on the wrist.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "empty-kitchen.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "net-deck-foe-1",
+     "net-deck-foe-2",
+     "night-boarders-foe-1",
+     "night-boarders-foe-2",
+     "night-boarders-foe-3",
+     "night-boarders-foe-4"
+    ],
+    "4-players": [
+     "net-deck-foe-1",
+     "net-deck-foe-2",
+     "night-boarders-foe-1",
+     "night-boarders-foe-2",
+     "night-boarders-foe-3",
+     "night-boarders-foe-4",
+     "night-boarders-foe-5"
+    ],
+    "5-players": [
+     "net-deck-foe-1",
+     "net-deck-foe-2",
+     "net-deck-foe-3",
+     "night-boarders-foe-1",
+     "night-boarders-foe-2",
+     "night-boarders-foe-3",
+     "night-boarders-foe-4",
+     "night-boarders-foe-5",
+     "night-boarders-foe-6"
+    ],
+    "6-players": [
+     "net-deck-foe-1",
+     "net-deck-foe-2",
+     "net-deck-foe-3",
+     "night-boarders-foe-1",
+     "night-boarders-foe-2",
+     "night-boarders-foe-3",
+     "night-boarders-foe-4",
+     "night-boarders-foe-5",
+     "night-boarders-foe-6",
+     "night-boarders-foe-7",
+     "night-boarders-foe-8"
+    ],
+    "7-players": [
+     "net-deck-foe-1",
+     "net-deck-foe-2",
+     "net-deck-foe-3",
+     "net-deck-foe-4",
+     "night-boarders-foe-1",
+     "night-boarders-foe-2",
+     "night-boarders-foe-3",
+     "night-boarders-foe-4",
+     "night-boarders-foe-5",
+     "night-boarders-foe-6",
+     "night-boarders-foe-7",
+     "night-boarders-foe-8",
+     "night-boarders-foe-9"
+    ]
+   },
+   "file": "token-raider.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/token-raider.webp",
+   "sha256": "a1ab1acd13602ea88730b26909fe6870ee67b0edfdc96d813fb83b89394a6cfc",
+   "originalSha256": "117a8e260e8cd80c471f8afd2632850c7d9739acdcce8a05d862d58aa780dc13",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as token-raider.png in the current directory.\nGame token figure on a fully transparent background, top three-quarter view, no ground shadow. A hunter-raider of the Black Net crew in a patched black cloak with night-glass beads, a hooked gaff and a knife, widow scarf on the wrist.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "empty-kitchen.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "net-deck-foe-1",
+     "net-deck-foe-2",
+     "night-boarders-foe-1",
+     "night-boarders-foe-2",
+     "night-boarders-foe-3",
+     "night-boarders-foe-4"
+    ],
+    "4-players": [
+     "net-deck-foe-1",
+     "net-deck-foe-2",
+     "night-boarders-foe-1",
+     "night-boarders-foe-2",
+     "night-boarders-foe-3",
+     "night-boarders-foe-4",
+     "night-boarders-foe-5"
+    ],
+    "5-players": [
+     "net-deck-foe-1",
+     "net-deck-foe-2",
+     "net-deck-foe-3",
+     "night-boarders-foe-1",
+     "night-boarders-foe-2",
+     "night-boarders-foe-3",
+     "night-boarders-foe-4",
+     "night-boarders-foe-5",
+     "night-boarders-foe-6"
+    ],
+    "6-players": [
+     "net-deck-foe-1",
+     "net-deck-foe-2",
+     "net-deck-foe-3",
+     "night-boarders-foe-1",
+     "night-boarders-foe-2",
+     "night-boarders-foe-3",
+     "night-boarders-foe-4",
+     "night-boarders-foe-5",
+     "night-boarders-foe-6",
+     "night-boarders-foe-7",
+     "night-boarders-foe-8"
+    ],
+    "7-players": [
+     "net-deck-foe-1",
+     "net-deck-foe-2",
+     "net-deck-foe-3",
+     "net-deck-foe-4",
+     "night-boarders-foe-1",
+     "night-boarders-foe-2",
+     "night-boarders-foe-3",
+     "night-boarders-foe-4",
+     "night-boarders-foe-5",
+     "night-boarders-foe-6",
+     "night-boarders-foe-7",
+     "night-boarders-foe-8",
+     "night-boarders-foe-9"
+    ]
+   },
+   "file": "token-raider--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "token-raider.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/token-harpooner.webp",
+   "sha256": "88d38b57faafe732bb873030934979aa230f2545cb1b4f597ba1f4653670ed9b",
+   "originalSha256": "8a1d8339896afd721b4e5dbf34b27b1a118c2b7c9a7556185685247cc786a5f6",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as token-harpooner.png in the current directory.\nGame token figure on a fully transparent background, top three-quarter view, no ground shadow. A light harpooner archer with a short harpoon bow, perched as if on a mast, widow scarf on the wrist.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "empty-kitchen.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "net-deck-foe-3"
+    ],
+    "4-players": [
+     "net-deck-foe-3"
+    ],
+    "5-players": [
+     "net-deck-foe-4"
+    ],
+    "6-players": [
+     "net-deck-foe-4",
+     "net-deck-foe-5"
+    ],
+    "7-players": [
+     "net-deck-foe-5",
+     "net-deck-foe-6"
+    ]
+   },
+   "file": "token-harpooner.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/token-harpooner.webp",
+   "sha256": "88d38b57faafe732bb873030934979aa230f2545cb1b4f597ba1f4653670ed9b",
+   "originalSha256": "8a1d8339896afd721b4e5dbf34b27b1a118c2b7c9a7556185685247cc786a5f6",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as token-harpooner.png in the current directory.\nGame token figure on a fully transparent background, top three-quarter view, no ground shadow. A light harpooner archer with a short harpoon bow, perched as if on a mast, widow scarf on the wrist.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "empty-kitchen.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "net-deck-foe-3"
+    ],
+    "4-players": [
+     "net-deck-foe-3"
+    ],
+    "5-players": [
+     "net-deck-foe-4"
+    ],
+    "6-players": [
+     "net-deck-foe-4",
+     "net-deck-foe-5"
+    ],
+    "7-players": [
+     "net-deck-foe-5",
+     "net-deck-foe-6"
+    ]
+   },
+   "file": "token-harpooner--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "token-harpooner.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/token-leviathan.webp",
+   "sha256": "a1570213760522de992b10c56d93d9436e43ec9d42ad75fcecd644ca844e4f73",
+   "originalSha256": "6a387ec8377c54f483dfd0dc7bb5b656ab229d4b9190cd5d6e88c9d4b638e1a0",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as token-leviathan.png in the current directory.\nGame token figure on a fully transparent background, top three-quarter view, no ground shadow. The salt leviathan Belorez breaching from salt crust, a colossal pale head and back plated with black molt shards, an old seam scar along its flank.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "empty-kitchen.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "widows-line-hunt-boss"
+    ],
+    "4-players": [
+     "widows-line-hunt-boss"
+    ],
+    "5-players": [
+     "widows-line-hunt-boss"
+    ],
+    "6-players": [
+     "widows-line-hunt-boss"
+    ],
+    "7-players": [
+     "widows-line-hunt-boss"
+    ]
+   },
+   "file": "token-leviathan.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/token-leviathan.webp",
+   "sha256": "a1570213760522de992b10c56d93d9436e43ec9d42ad75fcecd644ca844e4f73",
+   "originalSha256": "6a387ec8377c54f483dfd0dc7bb5b656ab229d4b9190cd5d6e88c9d4b638e1a0",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as token-leviathan.png in the current directory.\nGame token figure on a fully transparent background, top three-quarter view, no ground shadow. The salt leviathan Belorez breaching from salt crust, a colossal pale head and back plated with black molt shards, an old seam scar along its flank.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "empty-kitchen.png"
+   ],
+   "subjects": {
+    "3-players": [
+     "widows-line-hunt-boss"
+    ],
+    "4-players": [
+     "widows-line-hunt-boss"
+    ],
+    "5-players": [
+     "widows-line-hunt-boss"
+    ],
+    "6-players": [
+     "widows-line-hunt-boss"
+    ],
+    "7-players": [
+     "widows-line-hunt-boss"
+    ]
+   },
+   "file": "token-leviathan--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "token-leviathan.webp"
+  },
+  {
+   "file": "bell-salt--map.webp",
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/battle-maps/bell-salt.webp",
+   "sha256": "efd1d43db270e35c5961c0cf25f529ecde82146cbc9dfb1cceb32769af1d5614",
+   "originalSha256": "2f786773fac4ceb5b4414279f689a928bbcbca5dde95dcd398599ee0bca2244d",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as salt-widows--bell-salt.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Звонкие плиты» — Ровные соляные плиты звенят под полозом на разные голоса. Между ними выступает тёмный камень, а местами лежит лишь тонкая корка.\n\nThe first reference image is the exact layout of the playable field: a 18 by 14 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Открытая белая равнина. Запад — каменный остров, у которого стоит ладья с воротом. Середина — звонкие плиты, по ним пятна тонкой корки над рассолом: пешим трудно идти, шлюпка через пятно не идёт. Восточная треть — шлюпка в проломе, борта в рассоле, бочки привязаны к полозу. Ветер с запада, соль хрустит под сапогами, на мачте ладьи шевелится вдовий платок.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/salt-widows--bell-salt.layout.png",
+    "bell-salt.png"
+   ],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "bell-salt.webp",
+   "subjects": {
+    "3-players": [
+     "bell-salt"
+    ],
+    "4-players": [
+     "bell-salt"
+    ],
+    "5-players": [
+     "bell-salt"
+    ],
+    "6-players": [
+     "bell-salt"
+    ],
+    "7-players": [
+     "bell-salt"
+    ]
+   }
+  },
+  {
+   "file": "black-molt--map.webp",
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/battle-maps/black-molt.webp",
+   "sha256": "32ddac61d6944f024f340410c43c0d060cc9c34df6552482996af59f090c04b5",
+   "originalSha256": "b1d28573dd31f96fd627d10cef022cfe9e59f5506824ae4a6f9a058a899a6ac2",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as salt-widows--black-molt.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Чёрная линька» — Чёрные обломки старого панциря торчат из соли, словно крыши погребённого города. На краю — места сортировки, куда встают ладьи сборщиков.\n\nThe first reference image is the exact layout of the playable field: a 18 by 8 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Палуба соляной ладьи, длинная и узкая. Посередине стойка зуба с кольцом венца. У восточного края ящики с пластинами и груз — укрытие. Мачты тоже укрытие, на них вдовьи платки. Западный борт — трап к шлюпке отряда. Доски белы от соли, под сапогами хрустит.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/salt-widows--black-molt.layout.png",
+    "black-molt.png"
+   ],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "black-molt.webp",
+   "subjects": {
+    "3-players": [
+     "black-molt"
+    ],
+    "4-players": [
+     "black-molt"
+    ],
+    "5-players": [
+     "black-molt"
+    ],
+    "6-players": [
+     "black-molt"
+    ],
+    "7-players": [
+     "black-molt"
+    ]
+   }
+  },
+  {
+   "file": "empty-kitchen--map.webp",
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/battle-maps/empty-kitchen.webp",
+   "sha256": "9e77d1014103b88e663a89f0ea316b9e73bd7d93434d7636985c9a7f6738758e",
+   "originalSha256": "0087239e45da9e0db77532a224b54b3513709de0f7a55ee31b9bb0f2189d6c21",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as salt-widows--empty-kitchen.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Пустая поварня» — Поварня старой артели на каменном островке. Печь тёплая, а стол накрыт для гостей.\n\nThe first reference image is the exact layout of the playable field: a 18 by 8 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Собственная палуба ладьи, узкая, в соли и росе. Ящик стоит там, где его поставили в сцене 2: посередине или на корме у западного края. Мачта и бочки — укрытие. У среднего борта привязана шлюпка на полозьях. За бортом чёрный островок поварни и слабый огонь лампы Ивы, вдалеке гудит корка. На мачте мокрый вдовий платок.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/salt-widows--empty-kitchen.layout.png",
+    "empty-kitchen.png"
+   ],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "empty-kitchen.webp",
+   "subjects": {
+    "3-players": [
+     "empty-kitchen"
+    ],
+    "4-players": [
+     "empty-kitchen"
+    ],
+    "5-players": [
+     "empty-kitchen"
+    ],
+    "6-players": [
+     "empty-kitchen"
+    ],
+    "7-players": [
+     "empty-kitchen"
+    ]
+   }
+  },
+  {
+   "file": "red-cut--map.webp",
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/battle-maps/red-cut.webp",
+   "sha256": "12ece6cdb951f0c87ce11fe517b037556c5e60255a0f3c33dd86e830bb55d414",
+   "originalSha256": "708180436eb1d431d708007063f4a23325bc6ff66d388cdeee50c60aa4545c74",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as salt-widows--red-cut.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Рыжий разрез» — Рыжие стены прорезают белый пласт. Узкое ущелье с каменными полками выходит на открытое дно.\n\nThe first reference image is the exact layout of the playable field: a 18 by 14 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Выход из разреза на открытое дно. С запада рыжие стены и каменные полки. Посередине — перевёрнутое днище шлюпки, вокруг пятна тонкой корки над рассолом: пешим трудно идти, шлюпка через пятно не идёт. На востоке белая гладь до горизонта. На обломках мачты у днища висит выцветший вдовий платок, у охотников на поясах — гарпуны с оборванными линями.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/salt-widows--red-cut.layout.png",
+    "red-cut.png"
+   ],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "red-cut.webp",
+   "subjects": {
+    "3-players": [
+     "red-cut"
+    ],
+    "4-players": [
+     "red-cut"
+    ],
+    "5-players": [
+     "red-cut"
+    ],
+    "6-players": [
+     "red-cut"
+    ],
+    "7-players": [
+     "red-cut"
+    ]
+   }
+  },
+  {
+   "file": "widows-line--map.webp",
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/battle-maps/widows-line.webp",
+   "sha256": "2e6c083f762af548fa3e0e633c47409517f058c6bc6910178b1479662c34485c",
+   "originalSha256": "65ddc871223fba5e9d9cd97cd022873b7ebad3bce61d88b4e3f20584113a93d7",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as salt-widows--widows-line.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Вдовья черта» — Долгая белая равнина от Котла на восток к Сухому перевалу. Вдоль неё стоит ряд вешек с выцветшими вдовьими платками, а местами под ногами лишь тонкая корка над рассолом.\n\nThe first reference image is the exact layout of the playable field: a 18 by 14 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Поле 18×14, столбцы 1–18 с запада на восток. Запад — каменное ребро Котла; в столбцах 1–2, рядах 6–9 стоит ладья «Седьмая доля»: пешие герои могут стоять на ней, она никогда не цель. Восток — дорога к Сухому перевалу, за восточным краем — вне боя. Вдовья черта — ряды 6–9, на ней вешки с платками. Четыре пятна тонкой корки 2×2: столбцы 6–7 и 12–13 в рядах 3–4 и 11–12; пешим труднопроходимо, шлюпке нельзя. Ветер с запада. ШЛЮПКА — полоса 2×3, до трёх героев, носовой назван до боя. Рулевой своим перемещением ведёт её на 8 клеток на восток или на 4 в иную сторону; сесть или сойти — 2 клетки. Пустая под платком в конце раунда сама идёт 6 клеток на восток; ушедшая за край потеряна. На шестах — 4 клетки. Гарпун — 1к8; у каждого героя один, на стойке ладьи два запасных. Брошенный мимо лежит на корке, где упал (поднять — взаимодействие с предметом); попавший только в тушу потрачен; поставивший метку остаётся в шве.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/salt-widows--widows-line.layout.png",
+    "widows-line.png"
+   ],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "widows-line.webp",
+   "subjects": {
+    "3-players": [
+     "widows-line"
+    ],
+    "4-players": [
+     "widows-line"
+    ],
+    "5-players": [
+     "widows-line"
+    ],
+    "6-players": [
+     "widows-line"
+    ],
+    "7-players": [
+     "widows-line"
+    ]
+   }
+  }
+ ]
+}

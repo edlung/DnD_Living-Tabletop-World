@@ -16,11 +16,13 @@ export const campaignGenerationStageSchema = z.enum(CAMPAIGN_GENERATION_STAGES);
 export type CampaignGenerationStage = (typeof CAMPAIGN_GENERATION_STAGES)[number];
 
 const fields = campaignPackageSchema.shape;
-const location = campaignEntitySchema.extend({
+/** A generated entity has no manner of speech: it is authored by hand (ADR 0020 amendment 2026-11-14). */
+const generatedEntity = campaignEntitySchema.omit({ manner: true });
+const location = generatedEntity.extend({
   kind: z.literal('location'),
   location: campaignEntitySchema.shape.location.unwrap(),
 });
-const nonlocation = campaignEntitySchema.omit({ location: true }).extend({
+const nonlocation = generatedEntity.omit({ location: true }).extend({
   kind: z.enum(['character', 'npc', 'creature', 'item', 'feature', 'faction']),
 });
 

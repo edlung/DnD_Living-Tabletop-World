@@ -1,0 +1,192 @@
+{
+  "capturedAtUtc": "2026-11-08T09:12:33.161093+00:00",
+  "scope": "Family plot fields and 36 chapter summaries; selected close scenes; noir world premises only; full source hash inventory is identity not claim of line-by-line reading",
+  "files": [
+    {
+      "path": "campaigns/lighthouse/source/act-1.json",
+      "sha256": "366d747dc3aa9951a4a13caf47da46bdc50fe4be69d1925350f5b8bc761cc9bb",
+      "bytes": 23454,
+      "mtime_utc": "2026-11-08T00:01:36.137089+00:00"
+    },
+    {
+      "path": "campaigns/lighthouse/source/act-2.json",
+      "sha256": "49074f3b58e8d47102f4999984edb6bf0862c299e1ac04fda8567574ecfd8699",
+      "bytes": 23330,
+      "mtime_utc": "2026-11-08T00:01:36.142834+00:00"
+    },
+    {
+      "path": "campaigns/lighthouse/source/act-3.json",
+      "sha256": "592d7c349cc4e1abf65993dd35157ae510fae5d54e7caf43169293b5c3cef7aa",
+      "bytes": 22806,
+      "mtime_utc": "2026-11-08T00:01:36.147719+00:00"
+    },
+    {
+      "path": "campaigns/lighthouse/source/act-4.json",
+      "sha256": "7ae8fef74e038c50af26c55bbdc7b4b81b60e9002c4c3656de936dbff455a767",
+      "bytes": 26108,
+      "mtime_utc": "2026-11-08T00:01:36.152407+00:00"
+    },
+    {
+      "path": "campaigns/lighthouse/source/cast.json",
+      "sha256": "f175a97379ff7f5f3b16f9e3a6f2527547d62eb7ac00f7ca31d3dc8f034de582",
+      "bytes": 24794,
+      "mtime_utc": "2026-11-07T23:14:00.234590+00:00"
+    },
+    {
+      "path": "campaigns/lighthouse/source/clues.json",
+      "sha256": "9e46ad4ecdccb09969a3f0128e0c887a452758e24810161bcb6cff564e32741a",
+      "bytes": 10940,
+      "mtime_utc": "2026-11-08T00:01:36.160995+00:00"
+    },
+    {
+      "path": "campaigns/lighthouse/source/handouts.json",
+      "sha256": "9beab5cb85ffe83431c31ae1db28de1d831974d3dabb5c2033a41086a99f92c8",
+      "bytes": 9361,
+      "mtime_utc": "2026-11-07T23:34:57.615120+00:00"
+    },
+    {
+      "path": "campaigns/lighthouse/source/items.json",
+      "sha256": "599e24c082653f466f8f3aab7a736d4c1b0537b283dd9dca6d26d8171f3e27c7",
+      "bytes": 3782,
+      "mtime_utc": "2026-11-07T23:31:33.228993+00:00"
+    },
+    {
+      "path": "campaigns/lighthouse/source/world.json",
+      "sha256": "6be88605c8132c9c0c7af0e7d18b91636e95ee43bb1d84c9e7190d1a8c450770",
+      "bytes": 12094,
+      "mtime_utc": "2026-11-08T00:01:36.168077+00:00"
+    },
+    {
+      "path": "campaigns/acorn-express/source/act-1.json",
+      "sha256": "2e8a1b133c5646e69c81713a94b3854ac31533c980c3b9c7fd57aeaf9a756a1f",
+      "bytes": 36480,
+      "mtime_utc": "2026-11-08T04:37:47.687233+00:00"
+    },
+    {
+      "path": "campaigns/acorn-express/source/act-2.json",
+      "sha256": "167b5e729fefc4c98fbf002006570ea8e84807a0107259f279d24c047ffe01a1",
+      "bytes": 38386,
+      "mtime_utc": "2026-11-08T04:37:47.692132+00:00"
+    },
+    {
+      "path": "campaigns/acorn-express/source/act-3.json",
+      "sha256": "6ace4ba80b4c0f67773e7dd5dac020dcd2028c3c6956288bf4cbe310d37e6c51",
+      "bytes": 41449,
+      "mtime_utc": "2026-11-08T04:37:47.696733+00:00"
+    },
+    {
+      "path": "campaigns/acorn-express/source/act-4.json",
+      "sha256": "671a55e1a5de2aee5159c46b7df7774fe8927cc021823c711c01978326adb22b",
+      "bytes": 43134,
+      "mtime_utc": "2026-11-08T04:44:36.171868+00:00"
+    },
+    {
+      "path": "campaigns/acorn-express/source/cast.json",
+      "sha256": "f39ee345a2c8878443ef1f654d504eabab054ad7530e36cc977cf8d9245f3abd",
+      "bytes": 35653,
+      "mtime_utc": "2026-11-08T04:48:44.341537+00:00"
+    },
+    {
+      "path": "campaigns/acorn-express/source/clues.json",
+      "sha256": "3c505ad5753b29b64741680d317f9715c89583b297ffae3000756bc40e26fc92",
+      "bytes": 13832,
+      "mtime_utc": "2026-11-08T04:37:47.707756+00:00"
+    },
+    {
+      "path": "campaigns/acorn-express/source/handouts.json",
+      "sha256": "f768d9b0c14c5bbbbc0746ac512094c6c198251f90264876d4f2666f237b0dfe",
+      "bytes": 13043,
+      "mtime_utc": "2026-11-08T05:04:32.246730+00:00"
+    },
+    {
+      "path": "campaigns/acorn-express/source/items.json",
+      "sha256": "d35aa16ab54a2968141dcfba5febd3bf4fe75bf85bef54116d8d8204fb409df6",
+      "bytes": 4546,
+      "mtime_utc": "2026-11-08T04:00:44.884574+00:00"
+    },
+    {
+      "path": "campaigns/acorn-express/source/world.json",
+      "sha256": "4d4718c7c95a72a49f839186bd1299c8735c44fcd4014fcd3ec607d957499b3a",
+      "bytes": 18946,
+      "mtime_utc": "2026-11-08T04:37:47.713957+00:00"
+    },
+    {
+      "path": "campaigns/moon-pearl/source/act-1.json",
+      "sha256": "cea1f169b6314d1ac8d802a22aa59d1f4416737114e37b7b4c5cc21061392aab",
+      "bytes": 36057,
+      "mtime_utc": "2026-11-08T08:40:42.708713+00:00"
+    },
+    {
+      "path": "campaigns/moon-pearl/source/act-2.json",
+      "sha256": "53e00fa23b87ccfe4eef1c599b351eb9bfc3f46ef9a983add87e32aeeb88c0df",
+      "bytes": 35462,
+      "mtime_utc": "2026-11-08T08:46:56.360734+00:00"
+    },
+    {
+      "path": "campaigns/moon-pearl/source/act-3.json",
+      "sha256": "8b548b409b722d8e0deb699446fb4ca38bda2fcff904f2fd105e1a73ce8a2ac8",
+      "bytes": 37283,
+      "mtime_utc": "2026-11-08T08:52:22.169639+00:00"
+    },
+    {
+      "path": "campaigns/moon-pearl/source/act-4.json",
+      "sha256": "045f7b958f36a526e332dcbe521666d68d6a061e642adb30b918858c0590d838",
+      "bytes": 43668,
+      "mtime_utc": "2026-11-08T08:58:39.537941+00:00"
+    },
+    {
+      "path": "campaigns/moon-pearl/source/cast.json",
+      "sha256": "bfe2ba563726d7eb63a840f8773c046881ec77ea43563b80cb830f3ce6b67a96",
+      "bytes": 28235,
+      "mtime_utc": "2026-11-08T08:25:30.490725+00:00"
+    },
+    {
+      "path": "campaigns/moon-pearl/source/clues.json",
+      "sha256": "d189e069f93db07ad9fde68f0a07984dab64b0999921e65eb609fafe2f530f8c",
+      "bytes": 14046,
+      "mtime_utc": "2026-11-08T08:33:02.857753+00:00"
+    },
+    {
+      "path": "campaigns/moon-pearl/source/handouts.json",
+      "sha256": "27d39cf1da29ea3aaec4db1d9b6c0e616c0729eee6b98c851504b1ecc3b88ec2",
+      "bytes": 14208,
+      "mtime_utc": "2026-11-08T08:33:02.858049+00:00"
+    },
+    {
+      "path": "campaigns/moon-pearl/source/items.json",
+      "sha256": "fdf0f6e5e201b5d460f37d4c1e1ee9fb5d50444d1592d0a5af59c3490106a9f3",
+      "bytes": 5532,
+      "mtime_utc": "2026-11-08T09:00:04.616928+00:00"
+    },
+    {
+      "path": "campaigns/moon-pearl/source/world.json",
+      "sha256": "b1dc8343ddbc695ac29ae233ae45011f05af4e51b4d3cdc525772b8e299cc975",
+      "bytes": 21925,
+      "mtime_utc": "2026-11-08T08:25:30.490502+00:00"
+    },
+    {
+      "path": "campaigns/noir-2026/rain-check/source/world.json",
+      "sha256": "1ecb6ea5ccdda835589890bad8eeeb83a2580968ec653a35ead0fa7596a15b1a",
+      "bytes": 23991,
+      "mtime_utc": "2026-11-08T09:08:49.670979+00:00"
+    },
+    {
+      "path": "campaigns/noir-2026/seventh-negative/source/world.json",
+      "sha256": "0137477822a4356f31091ee58a6c86226bb5c150e4437f97781f32c687508e18",
+      "bytes": 22622,
+      "mtime_utc": "2026-11-08T09:10:49.579474+00:00"
+    },
+    {
+      "path": "campaigns/noir-2026/white-ash/source/world.json",
+      "sha256": "b7d84ed5386af16be53d9a3ecb2ab9eaf845f60289e69cf5faef53c90ce4b7ef",
+      "bytes": 24402,
+      "mtime_utc": "2026-11-08T09:07:17.741721+00:00"
+    }
+  ],
+  "phraseComparison": {
+    "fields": "family act-*.json leaves .play and .readAloud longer than 100 characters",
+    "normalization": "lowercase word tokens; pairwise SequenceMatcher longest contiguous word span, autojunk=False",
+    "result": "No cross-campaign matching contiguous spans >=9 words",
+    "caveat": "Not all dialogue, all source prose, fuzzy paraphrases, or external corpus checked"
+  }
+}

@@ -1,0 +1,59 @@
+{
+ "about": "Top-down battle maps (OpenAI image generation through Codex CLI), each drawn over its fight grid and cut to it; originals in ~/Documents/living-tabletop-world-art/.",
+ "maps": [
+  {
+   "location": "upside-quay",
+   "encounter": "eagle-aerie",
+   "grid": [
+    20,
+    7
+   ],
+   "file": "upside-quay.webp",
+   "sha256": "256a310edc47ad20023a2c81379c6e844b7b4ee5ad4446afd423bbe9747050cc",
+   "originalSha256": "4f85906ce3c13c766baba046da839cb86112e72346fe64942f3e62dd7b2fd908",
+   "originalFile": "battle-maps-2026-11-14/out/sky-archipelago--upside-quay.png",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as sky-archipelago--upside-quay.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Перевёрнутый причал» — Два настила обращены подошвами друг к другу. Между ними натянуты страховочные линии и стоят полосатые контрольные столбы со стрелками створа.\n\nThe first reference image is the exact layout of the playable field: a 20 by 7 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Каменный карниз шириной в планер, по краям обрыв в облачный океан. В центре — гнездо из колючих ветвей, перьев и обрывков чужой парусины; в него вцепился парус «Стрижа». По краям карниза лежат валуны, за ними можно укрыться от пике. Западный край — место, где сели герои; восточный — выход на воздух. На камне белеют полосы старого мела: чей-то маршал когда-то размечал здесь створ.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/sky-archipelago--upside-quay.layout.png",
+    "upside-quay.png"
+   ]
+  },
+  {
+   "location": "glass-shoals",
+   "encounter": "white-gyrfalcon-boarding",
+   "grid": [
+    18,
+    8
+   ],
+   "file": "glass-shoals.webp",
+   "sha256": "2c7a84f7771afa9051faa2d2d273fd028b4ee207b8c6d062fe81e22c94c48e6a",
+   "originalSha256": "85e363c94290424933548502b78f481904c9b8a46b36ec8cd73a9e750eaa0bf3",
+   "originalFile": "battle-maps-2026-11-14/out/sky-archipelago--glass-shoals.png",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as sky-archipelago--glass-shoals.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Стеклянная отмель» — Прозрачные плиты отражают паруса с разной задержкой. На песчаных краях нанесены мерные шаги, а безопасные карманы отмечены небольшими флажками.\n\nThe first reference image is the exact layout of the playable field: a 18 by 8 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Узкая палуба гоночного планера. Мачта в центре — хорошее укрытие. По бортам натянуты снасти и шкоты, о них легко споткнуться. С западного борта на двух кошках висит ялик налётчиков; под ним сквозь прозрачную плиту отмели виден облачный океан. На корме мелом нарисована белая полоса — знак «Кречета».\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/sky-archipelago--glass-shoals.layout.png",
+    "glass-shoals.png"
+   ]
+  },
+  {
+   "location": "judges-terrace",
+   "encounter": "barge-boarding",
+   "grid": [
+    18,
+    8
+   ],
+   "file": "judges-terrace.webp",
+   "sha256": "6fcb6a5573e67262c3cb9ea22d0169720aa02f6ae0cdbfb8fb23bb51c7c4e745",
+   "originalSha256": "8d9c244958b31011edcc83aeb3c8f71296a51cc6ce15623a1d6df249c4270dba",
+   "originalFile": "battle-maps-2026-11-14/out/sky-archipelago--judges-terrace.png",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as sky-archipelago--judges-terrace.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Судейская терраса» — Открытая площадка перед последним этапом с доской результатов и обзором на внешний круг будущего финала; у внешнего края — швартовые кнехты для судейской баржи.\n\nThe first reference image is the exact layout of the playable field: a 18 by 8 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Широкая палуба судейской баржи. На корме — доска этапов в дубовой раме, за ней можно укрыться; на доске ещё не стёрт мел последних строк. В центре — мачта и призовой сундук под печатью. По бортам три кошки с канатами, уходящими к бригу «Сорока». На палубе рассыпана белая пыль из опрокинутой банки с табличным мелом.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/sky-archipelago--judges-terrace.layout.png",
+    "judges-terrace.png"
+   ]
+  }
+ ]
+}

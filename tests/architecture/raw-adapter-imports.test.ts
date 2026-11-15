@@ -23,6 +23,21 @@ const RAW = new Set(
   ),
 );
 const COMPOSER = join(SERVER, 'ai', 'gateway.ts');
+/**
+ * Offline tools the owner runs by hand, never imported by the application (checked below): the
+ * Sonnet 5.5 campaign writer (owner decision 2026-11-13, its own ledger and spending ceiling,
+ * `scripts/campaign-shared/AGENTS.md`) builds the Anthropic adapter directly, and the book layout
+ * audits load an auditor module by the path they are given. Nothing else under `scripts/` may.
+ */
+const OFFLINE_TOOLS: ReadonlyMap<string, string> = new Map([
+  ['scripts/campaign-shared/sonnet-author.ts', '../../apps/server/src/ai/anthropic-provider.ts'],
+  ['scripts/campaign-shared/sonnet-stream.ts', '../../apps/server/src/ai/anthropic-provider.ts'],
+  ['scripts/campaign-collection/audit.ts', '(computed specifier)'],
+  ['scripts/dark-fantasy/layout-audit.ts', '(computed specifier)'],
+  ['scripts/fantasy-campaigns/audit.ts', '(computed specifier)'],
+  ['scripts/mixed-campaigns/audit.ts', '(computed specifier)'],
+  ['scripts/noir-campaigns/audit.ts', '(computed specifier)'],
+]);
 const OPTIONS: ts.CompilerOptions = {
   module: ts.ModuleKind.NodeNext,
   moduleResolution: ts.ModuleResolutionKind.NodeNext,
@@ -90,12 +105,24 @@ describe('raw adapter imports', () => {
     const offenders: string[] = [];
     for (const root of [SERVER, join(ROOT, 'scripts')]) {
       for (const file of await sources(root)) {
+        const path = relative(ROOT, file).split(sep).join('/');
         for (const offense of rawImportOffenses(file, await readFile(file, 'utf8'))) {
-          offenders.push(`${relative(ROOT, file).split(sep).join('/')}: ${offense}`);
+          if (OFFLINE_TOOLS.get(path) !== offense) offenders.push(`${path}: ${offense}`);
         }
       }
     }
     expect(offenders).toEqual([]);
+  });
+
+  it('keeps the offline tools out of the application', async () => {
+    const reaching: string[] = [];
+    for (const file of await sources(join(ROOT, 'apps')))
+      if (
+        !file.endsWith('.test.ts') &&
+        /from ['"][./]*scripts\//.test(await readFile(file, 'utf8'))
+      )
+        reaching.push(relative(ROOT, file).split(sep).join('/'));
+    expect(reaching).toEqual([]);
   });
 
   it('catches the spellings a file-name match missed (negative controls)', () => {

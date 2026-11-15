@@ -2,14 +2,15 @@
 
 Security-relevant module. Authority: `docs/adr/0020-npc-intelligence.md` §1 and §3 (owner-approved). Gate 04 attacks this path (`docs/GATE_COVERAGE.md`, Stage 130).
 
-| Concern                                                                      | File                                                            |
-| ---------------------------------------------------------------------------- | --------------------------------------------------------------- |
-| Whether a character can talk to an NPC now (authorization, preconditions)    | `talk.ts`                                                       |
-| The minimal context an NPC speaks from; trace sources; what a command shared | `dialogue-context.ts`                                           |
-| Disclosure rule (shared with `AskAbout` and Insight)                         | `../investigation/disclosure.ts`                                |
-| Tests: contents, names, sources; Talk; the Gate 04 isolation matrix          | `dialogue-context.test.ts`, `talk.test.ts`, `isolation.test.ts` |
-| Tests: whether it met the speaker and what it told (SI-N1)                   | `dialogue-met.test.ts`                                          |
-| Test support: the planted markers of `fixtures/ravenford/npc-boundary.json`  | `testing/boundary.ts`                                           |
+| Concern                                                                       | File                                                            |
+| ----------------------------------------------------------------------------- | --------------------------------------------------------------- |
+| Whether a character can talk to an NPC now (authorization, preconditions)     | `talk.ts`                                                       |
+| The minimal context an NPC speaks from; trace sources; what a command shared  | `dialogue-context.ts`                                           |
+| Disclosure rule (shared with `AskAbout` and Insight)                          | `../investigation/disclosure.ts`                                |
+| Tests: contents, names, sources; Talk; the Gate 04 isolation matrix           | `dialogue-context.test.ts`, `talk.test.ts`, `isolation.test.ts` |
+| Tests: whether it met the speaker and what it told (SI-N1)                    | `dialogue-met.test.ts`                                          |
+| Tests: its own manner of speech, never another's, its description or a secret | `dialogue-manner.test.ts`                                       |
+| Test support: the planted markers of `fixtures/ravenford/npc-boundary.json`   | `testing/boundary.ts`                                           |
 
 Rules:
 
@@ -20,4 +21,5 @@ Rules:
 - Every line keeps its `sourceId` for the trace. The AI gateway renders names and sentences only; no ID may reach a provider.
 - What it already said (ADR 0020 amendment 2026-10-28) comes only from its own recorded exchanges: `metBefore` per character, from the `InformationShared`, `EvidenceShown` and `InsightChecked` events naming the character and the NPC (not undone, not of this exchange's command; cited in the trace as `event#<id>`); `toldBefore` per the speaker's scope. Never from the speaker's memories or records.
 - Round 2 (same amendment): what the exchange's own command shares is just told, never told before, read from the snapshot by `conversation.exchangeCommandId` even if the caller passes no `justShared`. `metBefore` also counts `conversation.earlierReplies`: the trace IDs of the NPC's own earlier spoken replies to this character (the server reads them from the reply traces; cited as `trace#<id>`, latest 4). Only that it spoke counts, never what it said.
+- How it talks (ADR 0020 amendment 2026-11-14): `manner` is the NPC's own public manner of speech from its profile (`EntityState.manner`, one line), cited as `manner#<npcId>`; never its description or another NPC's manner. The prompt renders it apart from what it may tell.
 - Talk records nothing. It is authorized like a player command (`authorizeActingFor`) and checks `AskAbout`'s preconditions in the same order, so a refusal reveals no more than a command's rejection.

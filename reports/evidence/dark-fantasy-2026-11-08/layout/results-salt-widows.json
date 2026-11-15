@@ -1,0 +1,388 @@
+{
+  "pageCount": 19,
+  "errors": 0,
+  "warnings": 0,
+  "titleFindings": [],
+  "results": [
+    {
+      "path": "salt-widows/index.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/maps.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/players.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/session-1.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/session-2.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/session-3.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/session-4.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/session-5.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/session-6.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/session-7.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/session-8.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/handouts/iva-account.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/handouts/molt-observations.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/handouts/shares-note.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/handouts/tooth-instruction.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/handouts/tower-lines.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/handouts/two-accounts.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/handouts/unfinished-return.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/handouts/ways-home.html",
+      "width": 1440,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/index.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/maps.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/players.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/session-1.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/session-2.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/session-3.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/session-4.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/session-5.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/session-6.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/session-7.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/session-8.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/handouts/iva-account.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/handouts/molt-observations.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/handouts/shares-note.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/handouts/tooth-instruction.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/handouts/tower-lines.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/handouts/two-accounts.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/handouts/unfinished-return.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/handouts/ways-home.html",
+      "width": 768,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/index.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/maps.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/players.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/session-1.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/session-2.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/session-3.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/session-4.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/session-5.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/session-6.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/session-7.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/session-8.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/handouts/iva-account.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/handouts/molt-observations.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/handouts/shares-note.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/handouts/tooth-instruction.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/handouts/tower-lines.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/handouts/two-accounts.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/handouts/unfinished-return.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/handouts/ways-home.html",
+      "width": 390,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/index.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/maps.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/players.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/session-1.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/session-2.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/session-3.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/session-4.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/session-5.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/session-6.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/session-7.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/session-8.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/handouts/iva-account.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/handouts/molt-observations.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/handouts/shares-note.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/handouts/tooth-instruction.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/handouts/tower-lines.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/handouts/two-accounts.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/handouts/unfinished-return.html",
+      "width": 320,
+      "findings": []
+    },
+    {
+      "path": "salt-widows/handouts/ways-home.html",
+      "width": 320,
+      "findings": []
+    }
+  ]
+}

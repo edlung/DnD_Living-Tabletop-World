@@ -1,0 +1,60 @@
+{
+  "modelRequested": "claude-opus-5-5",
+  "effortRequested": "max",
+  "humanPlaytest": "NOT_RUN",
+  "validation": "isolated canonical compiler; no database or real activation",
+  "variants": [
+    {
+      "size": 5,
+      "sha256": "ce440438ddefe1bad44a3e19f6ab68271762511b2f090be4d1d2415a45556f1c",
+      "compilerVersion": 1,
+      "readiness": "READY",
+      "findings": [],
+      "counts": {
+        "entities": 80,
+        "knowledge": 150,
+        "encounters": 4,
+        "quests": 8
+      }
+    },
+    {
+      "size": 6,
+      "sha256": "de366f9c2d3db06f8ce9fd60627e9b849641e3e148e68e468cda42f1a2765010",
+      "compilerVersion": 1,
+      "readiness": "READY",
+      "findings": [],
+      "counts": {
+        "entities": 86,
+        "knowledge": 152,
+        "encounters": 4,
+        "quests": 8
+      }
+    },
+    {
+      "size": 7,
+      "sha256": "6f7f89909e23bd0d0989aff1c8c44de59507fca81f2cf6300589e5ab7a0545a7",
+      "compilerVersion": 1,
+      "readiness": "READY",
+      "findings": [],
+      "counts": {
+        "entities": 90,
+        "knowledge": 154,
+        "encounters": 4,
+        "quests": 8
+      }
+    },
+    {
+      "size": 8,
+      "sha256": "5a01470c4e90ccb39a00528d99bc624c3f30e4655239343d9f83dff095842bce",
+      "compilerVersion": 1,
+      "readiness": "READY",
+      "findings": [],
+      "counts": {
+        "entities": 93,
+        "knowledge": 156,
+        "encounters": 4,
+        "quests": 8
+      }
+    }
+  ]
+}

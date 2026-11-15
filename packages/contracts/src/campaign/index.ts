@@ -9,6 +9,7 @@ export {
   OPAQUE_QUEST_ID,
   OPAQUE_STAGE_ID,
   campaignQuestIdentitiesShape,
+  toNpcManner,
   type CampaignPackage,
   type CampaignEntity,
   type CampaignKnowledge,
@@ -158,3 +159,12 @@ export {
   type HitPointsAtLevel,
   type LevelsBy,
 } from './options.ts';
+export {
+  campaignLibraryEntrySchema,
+  campaignLibraryPackagePathSchema,
+  campaignLibraryResponseSchema,
+  campaignLibraryVariantSchema,
+  type CampaignLibraryEntry,
+  type CampaignLibraryResponse,
+  type CampaignLibraryVariant,
+} from './library.ts';

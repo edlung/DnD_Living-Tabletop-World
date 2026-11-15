@@ -1,0 +1,1699 @@
+{
+ "id": "last-orbit",
+ "title": "Последняя Орбита",
+ "genre": "Научная фантастика",
+ "audience": "16+",
+ "pitch": "Экипаж спасательного буксира «Стриж» нарушил приказ и снял тридцать одного человека с закрытого Двадцатого причала. Теперь вы на «Нитке», пересадочной тюрьме над облачной Кордеей: восемь дней до заключительного перевода, после которого экипаж разделят навсегда. Каждый день — три переклички, и на каждой номера на робах читают вслух. На первой в вашем строю оказался лишний человек с номером вашей серии. И никто не может сказать, кто его туда поставил.",
+ "tone": "Тюремный побег, который считают по номерам: холод стекла, заклёпки, сетка перекличек на стене и голос, читающий ваши номера вслух трижды в день. Напряжённо и по-взрослому, без жестокости; с заслуженной надеждой.",
+ "duration": "8 сессий; Около трёх часов: три сцены по 50 минут и перерыв 15 минут; обсуждение границ перед первым вечером",
+ "cover": "campaigns/collection-2026/last-orbit/assets/runtime/cover.webp",
+ "defaultVariant": "6-players",
+ "variants": [
+  {
+   "id": "5-players",
+   "players": 5,
+   "label": "5 игроков",
+   "file": "packages/5-players.json",
+   "digest": "5aec074c49adcaa6820067ec3b94e78303eaa7ba33d0fa296705fc6b661543ff"
+  },
+  {
+   "id": "6-players",
+   "players": 6,
+   "label": "6 игроков",
+   "file": "packages/6-players.json",
+   "digest": "2ed3f5064b927293dcd39ab177f63820633adf1cc8c46ad1317cf74b69a28030"
+  },
+  {
+   "id": "7-players",
+   "players": 7,
+   "label": "7 игроков",
+   "file": "packages/7-players.json",
+   "digest": "721ba53640676a19409a0376230dc9b240d53f6a29c9456f2ef519e5e685d8fc"
+  },
+  {
+   "id": "8-players",
+   "players": 8,
+   "label": "8 игроков",
+   "file": "packages/8-players.json",
+   "digest": "9f052c3f7034766df72b11b6bc5dd63e2aff624f293484d43843f710b6b6f7b6"
+  }
+ ],
+ "generator": "codex-cli imagegen",
+ "pictures": [
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/thread-station.webp",
+   "sha256": "cb6f8aa6b8f844d06db3d010a35e451c46dc11db4ce39e1cd50d3418cfc6269d",
+   "originalSha256": "67b0bec3304611ddd00103f316d9ac2f741d7fe794981df781c01fb6797d9af7",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as thread-station.png in the current directory.\nLandscape scene, 3:2. Exterior view of the orbital transfer prison station: a riveted habitat ring with long transparent corridors, two docking arms, one with a small shuttle and one with a cargo barge, slowly turning in front of a vast cloud-banded planet; tiny lit windows, frost on the hull, deep space beyond.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "5-players": [
+     "thread-station"
+    ],
+    "6-players": [
+     "thread-station"
+    ],
+    "7-players": [
+     "thread-station"
+    ],
+    "8-players": [
+     "thread-station"
+    ]
+   },
+   "file": "thread-station.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/receiving-wheel.webp",
+   "sha256": "0183bfe1b383eca637238e6dd3e223aa50d81d448327bac60d1e047cc54efd3d",
+   "originalSha256": "0e52b426152173fa82290eb90b7637cca9a6e386b363a5dc4f989009009ab941",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as receiving-wheel.png in the current directory.\nLandscape scene, 3:2. A round reception hall on a space station: rows of transparent lockers holding confiscated personal belongings, steel benches, a blank departures board glowing above, a line of newly arrived prisoners in orange robes with blank number patches facing a clerk at a curved desk, the planet glowing through a high window.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "5-players": [
+     "receiving-wheel"
+    ],
+    "6-players": [
+     "receiving-wheel"
+    ],
+    "7-players": [
+     "receiving-wheel"
+    ],
+    "8-players": [
+     "receiving-wheel"
+    ]
+   },
+   "file": "receiving-wheel.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/communal-mess.webp",
+   "sha256": "0b52b5df96146ab5395944b28aa8b72d5f04d32b23de02de135cf89733159fca",
+   "originalSha256": "ff54800cc6eeb4c91b11a14c046f03af1558af427abecb9af91a702643346d09",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as communal-mess.png in the current directory.\nLandscape scene, 3:2. A long communal mess hall on an orbital prison: pushed-together steel tables, mugs of mismatched colours, prisoners in orange robes leaning in to talk quietly, one empty seat with a folded napkin on it, rivet rows along the bulkheads, warm light against cold walls.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "5-players": [
+     "communal-mess"
+    ],
+    "6-players": [
+     "communal-mess"
+    ],
+    "7-players": [
+     "communal-mess"
+    ],
+    "8-players": [
+     "communal-mess"
+    ]
+   },
+   "file": "communal-mess.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/glass-walk.webp",
+   "sha256": "9710a883b18488735ef56d33695153cdfe683d7799f2940340fe35d2eaa0e43b",
+   "originalSha256": "2ff353803061ec146d0a1c8b5f8a3b6b960aee3f0044c9fa051e32dfa8ab2dc2",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as glass-walk.png in the current directory.\nLandscape scene, 3:2. A wide gallery along enormous curved observation windows on a space station; a small group of prisoners in orange robes walks under a guard's watch, their reflections layered over the giant cloud planet outside, frost at the window edges, rivets along the frames.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "5-players": [
+     "glass-walk"
+    ],
+    "6-players": [
+     "glass-walk"
+    ],
+    "7-players": [
+     "glass-walk"
+    ],
+    "8-players": [
+     "glass-walk"
+    ]
+   },
+   "file": "glass-walk.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/folded-yard.webp",
+   "sha256": "c1be0cee3405d928dabf8025d1e1c7051d10b19cf23de20ec42d66622f7b9d69",
+   "originalSha256": "824f7438e4238e3468ef6cf36d91c9604730bc1e36842f161da86304ef47313c",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as folded-yard.png in the current directory.\nLandscape scene, 3:2. An indoor work and exercise yard on an orbital prison: soft movable partitions, low cargo containers, coloured stripes painted on the floor, prisoners in orange robes carrying crates under bright overhead lamps, a guard balcony above, rivets and steel.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "5-players": [
+     "folded-yard"
+    ],
+    "6-players": [
+     "folded-yard"
+    ],
+    "7-players": [
+     "folded-yard"
+    ],
+    "8-players": [
+     "folded-yard"
+    ]
+   },
+   "file": "folded-yard.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/petition-booth.webp",
+   "sha256": "c1f3de2fa94b83b20a3fbb3206bb5205af574cf808bcc6ec098445fa093cd448",
+   "originalSha256": "869d138bf958a738c6f3aeb62c216d03a6015deff7f4d585b953647aab7a4c75",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as petition-booth.png in the current directory.\nLandscape scene, 3:2. A petition hall on a space station: a short queue of prisoners in orange robes, a single visitor chair before a narrow service window with a glass partition, stacks of paper copies of petitions, a sign plate above the window with no legible writing, cold fluorescent light.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "5-players": [
+     "petition-booth"
+    ],
+    "6-players": [
+     "petition-booth"
+    ],
+    "7-players": [
+     "petition-booth"
+    ],
+    "8-players": [
+     "petition-booth"
+    ]
+   },
+   "file": "petition-booth.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/quiet-infirmary.webp",
+   "sha256": "ae798ffccdc3eeac0f82f50e2d2b46d1f0fabec047f2f3f19c615dd162a0657b",
+   "originalSha256": "cbadaef4b688c74f85c0d9969bcc596d582317df136dd7e1aefd8d80d6727494",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as quiet-infirmary.png in the current directory.\nLandscape scene, 3:2. A small quiet infirmary on an orbital prison: pale folding screens, two beds, soft blue night light, a medic in a grey coat sitting beside a patient in an orange robe, a small window showing the planet's glow, calm and tender.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "5-players": [
+     "quiet-infirmary"
+    ],
+    "6-players": [
+     "quiet-infirmary"
+    ],
+    "7-players": [
+     "quiet-infirmary"
+    ],
+    "8-players": [
+     "quiet-infirmary"
+    ]
+   },
+   "file": "quiet-infirmary.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/transit-deck.webp",
+   "sha256": "baefa5c23387bc6d37c91cd5317d23650ae20c4ee3baeef0f2f7f99eeec9a33d",
+   "originalSha256": "13aaccfb14ee690b7e5ae1959fc50990f99c4ddaad4d6ac93c98ed69c0b2196b",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as transit-deck.png in the current directory.\nLandscape scene, 3:2. A covered cargo transfer deck between a warehouse and a docking port: stacked crates, a marked-up distribution table, shift workers in orange robes gathering, through a large port window a boxy cargo barge docked with a hanging passenger plate, rivets, hazard stripes.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "5-players": [
+     "transit-deck"
+    ],
+    "6-players": [
+     "transit-deck"
+    ],
+    "7-players": [
+     "transit-deck"
+    ],
+    "8-players": [
+     "transit-deck"
+    ]
+   },
+   "file": "transit-deck.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/farewell-berth.webp",
+   "sha256": "07b09bf0533dbef2798c5edb7385821a84b22a8a1d1e8bed0b46df3602224ec6",
+   "originalSha256": "4f7d70ca72577ca1859ce138489bce523a64d1c7da0f3c84deebe3a895bc2f8e",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as farewell-berth.png in the current directory.\nLandscape scene, 3:2. A passenger departure hall on a space station: rows of seats facing a huge observation screen with the cloud planet, wide sealed doors of a docking ferry at the end, a red-lit airlock hatch to one side, empty and expectant, frost on the glass.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "5-players": [
+     "farewell-berth"
+    ],
+    "6-players": [
+     "farewell-berth"
+    ],
+    "7-players": [
+     "farewell-berth"
+    ],
+    "8-players": [
+     "farewell-berth"
+    ]
+   },
+   "file": "farewell-berth.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/block-b.webp",
+   "sha256": "870803c324be6cded8008ec4e3a7e208ddff7adf9bf6e32f4d765bbf34821483",
+   "originalSha256": "e18832a4a9d78f179cf1d14eefaf66c96fb909c737e45833364d7bc63af8651b",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as block-b.png in the current directory.\nLandscape scene, 3:2. A prison cell block corridor on an orbital station: rows of rivets along the floor and walls, cell doors each with a blank number plate, small night lights, a roll-call grid board on the wall by the entrance drawn as an empty chart of boxes with no writing, prisoners in orange robes lined up in a row for roll call, a guard with a clipboard walking along them.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "sevra-dan.png"
+   ],
+   "subjects": {
+    "5-players": [
+     "block-b"
+    ],
+    "6-players": [
+     "block-b"
+    ],
+    "7-players": [
+     "block-b"
+    ],
+    "8-players": [
+     "block-b"
+    ]
+   },
+   "file": "block-b.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/airlock-three.webp",
+   "sha256": "e540e91d66f713aef3dacd011dc65a49ee01fa9341f61c6def6fc45bfe14963b",
+   "originalSha256": "1fe71455d39d54643afcd89dd2ce98ff5e0671ed6151bdc40af7c0312ab139d6",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as airlock-three.png in the current directory.\nLandscape scene, 3:2. An airlock chamber on a space station: a heavy inner door, racks of pressure suits, lockers of air tanks with blank tags, a small isolation cell to one side, hose grating on the floor, frost from the vents, and a round porthole in the outer hatch showing the riveted hull and the cloud planet beyond, red warning light.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "sevra-dan.png"
+   ],
+   "subjects": {
+    "5-players": [
+     "airlock-three"
+    ],
+    "6-players": [
+     "airlock-three"
+    ],
+    "7-players": [
+     "airlock-three"
+    ],
+    "8-players": [
+     "airlock-three"
+    ]
+   },
+   "file": "airlock-three.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/outer-hull.webp",
+   "sha256": "b9820723ee9618f743b703176f00cf4e21ee53572d6a513b012d6c9c177a65a9",
+   "originalSha256": "e70ff34679bdec6276d5f1ff198fb6d58a7c6121ac1e7113aee74d5551c1a95d",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as outer-hull.png in the current directory.\nLandscape scene, 3:2. Outside on the outer hull of the orbital prison ring: rows of rivets, tether rings every few steps, stiffening ribs, a few torn plates, three long observation windows above with guard slits, the edge of the ring dropping away to the vast cloud-banded planet below; a few figures in pressure suits clipped to tethers advance towards a docking mast where a small boxy cargo shuttle waits with its hatch lit, total silence, cold starlight.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "sevra-dan.png"
+   ],
+   "subjects": {
+    "5-players": [
+     "outer-hull"
+    ],
+    "6-players": [
+     "outer-hull"
+    ],
+    "7-players": [
+     "outer-hull"
+    ],
+    "8-players": [
+     "outer-hull"
+    ]
+   },
+   "file": "outer-hull.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/twentieth-berth.webp",
+   "sha256": "34eb576032b617219a4858acb321d1e42fae959462fe388f7e10f5e58705a3f7",
+   "originalSha256": "7f86b71d841816a82b7c6862b8b982e1222556ea4df8540c3017ee8bccb169c0",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as twentieth-berth.png in the current directory.\nLandscape scene, 3:2. A closed old passenger docking berth on the far side of a space station ring seen through a frosted gallery window: a torn ragged edge of a docking clamp ripped out with a chunk of the ring, a fresh seal across the dark doorway, empty and sealed, rivets and frost, the planet glowing behind.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "sevra-dan.png"
+   ],
+   "subjects": {
+    "5-players": [
+     "twentieth-berth"
+    ],
+    "6-players": [
+     "twentieth-berth"
+    ],
+    "7-players": [
+     "twentieth-berth"
+    ],
+    "8-players": [
+     "twentieth-berth"
+    ]
+   },
+   "file": "twentieth-berth.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/sevra-dan.webp",
+   "sha256": "b627c2e989c1541a54feea190fa57d2ac8e3ba08a6b764b9913dab3ea17653d2",
+   "originalSha256": "82bac8b945f12201cc4761bba11ae37e3d25cbb6bd1928847a7b3489e1be0215",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as sevra-dan.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Sevra Dan, a 37-year-old woman, rescue tug captain and fighter: close-cropped hair with grey temples, a orange prison robe with a blank stencilled number patch, steady protective stance, glancing back as if counting her people, a riveted corridor and frosted viewport behind. No text.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "5-players": [
+     "sevra-dan"
+    ],
+    "6-players": [
+     "sevra-dan"
+    ],
+    "7-players": [
+     "sevra-dan"
+    ],
+    "8-players": [
+     "sevra-dan"
+    ]
+   },
+   "file": "sevra-dan.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/mir-avel.webp",
+   "sha256": "4e8923b94985651496524460c1551b1b82c12f3ddb99163737393d93522ead4d",
+   "originalSha256": "c3e1ec6ec23247c5a013ca7a9ba17bd41891848482f353f73612c5f9a133ed04",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as mir-avel.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Mir Avel, a 28-year-old man, passenger dispatcher and quick-talking negotiator: an uneven fringe, mismatched coloured shoelaces, a orange prison robe with a blank stencilled number patch, holding a small notebook full of sketched faces, sharp observant eyes. No text.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "5-players": [
+     "mir-avel"
+    ],
+    "6-players": [
+     "mir-avel"
+    ],
+    "7-players": [
+     "mir-avel"
+    ],
+    "8-players": [
+     "mir-avel"
+    ]
+   },
+   "file": "mir-avel.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/nara-vel.webp",
+   "sha256": "23a774883de2a8aa5a14708119d1af549a6df65c8d73404ab073695f3e15d439",
+   "originalSha256": "000964b8ea4e498ba0d82c569a2e4aa7e6229420fabbc44894bd374f6e590f54",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as nara-vel.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Nara Vel, a 42-year-old woman, field medic with a gentle psionic gift: soft features, a transparent bracelet with a pressed petal, sleeves neatly rolled up, a orange prison robe with a blank stencilled number patch, a faint warm glow around her fingertips. No text.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "5-players": [
+     "nara-vel"
+    ],
+    "6-players": [
+     "nara-vel"
+    ],
+    "7-players": [
+     "nara-vel"
+    ],
+    "8-players": [
+     "nara-vel"
+    ]
+   },
+   "file": "nara-vel.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/ilay-rosh.webp",
+   "sha256": "d7a80d69c529e876712020c4f5cbb82c717c1056098a70aaea07ce2492eb9539",
+   "originalSha256": "8d023744417792dd0df78fca8e8eb558668abb4dd389419ab7f2d6abfe889198",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as ilay-rosh.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Ilay Rosh, a 25-year-old man, light-projection specialist: long fingers, freckles, two small star doodles on his collar, a orange prison robe with a blank stencilled number patch, a slender glass stylus casting a thin line of golden light. No text.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "5-players": [
+     "ilay-rosh"
+    ],
+    "6-players": [
+     "ilay-rosh"
+    ],
+    "7-players": [
+     "ilay-rosh"
+    ],
+    "8-players": [
+     "ilay-rosh"
+    ]
+   },
+   "file": "ilay-rosh.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/bor-kamen.webp",
+   "sha256": "7b80f3254de0916556afea32ee7f3f03ed5911ebd6a518932f41aa6767af6bdd",
+   "originalSha256": "a583e74aba39e00ac7e38b47a9329b1727956dcb7ab4a7734e22641dbddb7bc4",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as bor-kamen.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Bor Kamen, a 46-year-old man, cargo shift chief and protector of passengers: broad shoulders, a neatly darned pocket, a wooden button kept as an heirloom, a orange prison robe with a blank stencilled number patch, calm heavy strength. No text.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "5-players": [
+     "bor-kamen"
+    ],
+    "6-players": [
+     "bor-kamen"
+    ],
+    "7-players": [
+     "bor-kamen"
+    ],
+    "8-players": [
+     "bor-kamen"
+    ]
+   },
+   "file": "bor-kamen.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/tessa-lun.webp",
+   "sha256": "ba2b2939d30ef9e4586eaafa8570b110d6ff6c13d968d817d70759289ec1e499",
+   "originalSha256": "6cfe6fa127d8510222397af21416c00487582ce0438aa042ec8e199c3548c76b",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as tessa-lun.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Agata Lun, a 34-year-old woman, ship's quartermaster, cook and deal-maker: a crooked smile, a bright thread sewn into her cuff, a orange prison robe with a blank stencilled number patch, holding a ladle and a mess bowl, shrewd warmth. No text.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "5-players": [],
+    "6-players": [
+     "tessa-lun"
+    ],
+    "7-players": [
+     "tessa-lun"
+    ],
+    "8-players": [
+     "tessa-lun"
+    ]
+   },
+   "file": "tessa-lun.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/yuna-is.webp",
+   "sha256": "dffa4c41bcc73af2558066a4708c18c41fae9be4392d3ad61360ff77cc68df5e",
+   "originalSha256": "e0b805fec7ee2d442bbd301a0c182634893725b689bf15188b2b33b52744a605",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as yuna-is.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Yuna Is, a 30-year-old woman, passenger counsellor with a soothing psionic touch: dark hair gathered in a wide ring, a tiny door drawn in ink on her palm, a orange prison robe with a blank stencilled number patch, quiet compassionate gaze. No text.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "yuna-is"
+    ],
+    "8-players": [
+     "yuna-is"
+    ]
+   },
+   "file": "yuna-is.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/damir-oll.webp",
+   "sha256": "0b7df6488021c0da5e5d7e9ab1829e543b05d6dbe0ae6a8402c5f541df262e60",
+   "originalSha256": "5888172f89845a2bcdd6793b68242182133dfaca12b4f16521a8b068f3b43c4c",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as damir-oll.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Damir Oll, a 40-year-old man, keeper of ship records and light-stories: large round glasses, a patched elbow, a orange prison robe with a blank stencilled number patch, a small floating projection of a ship log in pale light beside him. No text.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "5-players": [],
+    "6-players": [],
+    "7-players": [],
+    "8-players": [
+     "damir-oll"
+    ]
+   },
+   "file": "damir-oll.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/oryn-vey.webp",
+   "sha256": "7ea537ffae21abc2cd361974f38907a36b02227cd0f49fb117c9e715836e18dc",
+   "originalSha256": "e8a2c259d0c2f98d48011b5728f3b1e3801031387ca0f7f32338233109a8bc2d",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as oryn-vey.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Ansel Bram, a 49-year-old man, prison station commandant: an immaculate creaseless grey uniform, rimless glasses, a thick folder under his arm, reading without raising his eyes, cold calm, an office with a viewport behind. No text.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "sevra-dan.png"
+   ],
+   "subjects": {
+    "5-players": [
+     "oryn-vey"
+    ],
+    "6-players": [
+     "oryn-vey"
+    ],
+    "7-players": [
+     "oryn-vey"
+    ],
+    "8-players": [
+     "oryn-vey"
+    ]
+   },
+   "file": "oryn-vey.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/vesta-rin.webp",
+   "sha256": "0264cee75666a5b579ed3004ef717d9ff866c0073bff263833bc13a3f01740b2",
+   "originalSha256": "3c322ffc05c94ae902aac44ff3730567d6dc8e8b3070fe3399dae019f539babe",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as vesta-rin.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Kaya Shtern, a 39-year-old woman, senior guard of the prison station: worn uniform cuffs, pale eyelashes, a roll-call clipboard and a pencil behind her ear, tired fairness, a riveted gallery behind. No text.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "sevra-dan.png"
+   ],
+   "subjects": {
+    "5-players": [
+     "vesta-rin"
+    ],
+    "6-players": [
+     "vesta-rin"
+    ],
+    "7-players": [
+     "vesta-rin"
+    ],
+    "8-players": [
+     "vesta-rin"
+    ]
+   },
+   "file": "vesta-rin.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/mira-ker.webp",
+   "sha256": "3a86d53952060e8d01d7bae153bd3ea070d2d0542a89a7189e78af3e857b8c30",
+   "originalSha256": "590474e510b8c9cf16042c38855d2f3a41c2d3c5b4d92f9da54f4d72ba834c01",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as mira-ker.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Adel Merts, a 54-year-old woman, prisoner archivist: ink-stained fingers, a smoothed orange prisoner robe with a blank number patch, glasses on a cord, shelves of paper case files behind. No text.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "sevra-dan.png"
+   ],
+   "subjects": {
+    "5-players": [
+     "mira-ker"
+    ],
+    "6-players": [
+     "mira-ker"
+    ],
+    "7-players": [
+     "mira-ker"
+    ],
+    "8-players": [
+     "mira-ker"
+    ]
+   },
+   "file": "mira-ker.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/sor-dar.webp",
+   "sha256": "e95b2ab3862af5fbf4416414e9b900f61c18eee90f4d69f71df756c2bf4cd67a",
+   "originalSha256": "02845c4935ba08cd1cd6406a44a92a45c04da21899ca7fc111869f57a60b51d2",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as sor-dar.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Sor Dar, a 36-year-old man, prisoner go-between at the mess hall: a silver streak in his hair, a slight limp, a notched steel tray and half a slice of bread held out, guilty friendly smile, an orange prison robe. No text.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "sevra-dan.png"
+   ],
+   "subjects": {
+    "5-players": [
+     "sor-dar"
+    ],
+    "6-players": [
+     "sor-dar"
+    ],
+    "7-players": [
+     "sor-dar"
+    ],
+    "8-players": [
+     "sor-dar"
+    ]
+   },
+   "file": "sor-dar.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/lida-senn.webp",
+   "sha256": "21ad55497e53a4da025649c381074164741c1fecb03826aca3ec2295bad62deb",
+   "originalSha256": "6fe3ea81a5f29db0135d2f4aaf28171fdce9fb6ae63d0e460b120fa6f8de832b",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as lida-senn.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Hana First, a 45-year-old woman, station doctor: blue sleeves, short nails, a small kettle beside her on an infirmary shelf, blue night light, direct honest gaze. No text.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "sevra-dan.png"
+   ],
+   "subjects": {
+    "5-players": [
+     "lida-senn"
+    ],
+    "6-players": [
+     "lida-senn"
+    ],
+    "7-players": [
+     "lida-senn"
+    ],
+    "8-players": [
+     "lida-senn"
+    ]
+   },
+   "file": "lida-senn.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/aron-tey.webp",
+   "sha256": "79ce3cb460d3aca805914ae36a5c01d2bd656b0fd72dcbc1e5ab615e92c67eb5",
+   "originalSha256": "6e1bf475b9b821cf5c35e7caa7cb6c7b82b60c3b5c03a5187189f2bb8436b8cf",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as aron-tey.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Aron Tey, a 33-year-old man, independent cargo shuttle pilot: a scuffed outer-fleet jacket, a round hair clip, two identical thermoses, a cockpit window with a docking mast behind. No text.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "sevra-dan.png"
+   ],
+   "subjects": {
+    "5-players": [
+     "aron-tey"
+    ],
+    "6-players": [
+     "aron-tey"
+    ],
+    "7-players": [
+     "aron-tey"
+    ],
+    "8-players": [
+     "aron-tey"
+    ]
+   },
+   "file": "aron-tey.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/nika-sol.webp",
+   "sha256": "429cbbc038dd4b71b3027e8132f0f856f796a97678104b79b1708fd249abad48",
+   "originalSha256": "901435c3aca2f7aa1473212e6ff8ba64d2d3da30693e4eff50fae39607a658e9",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as nika-sol.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Ilona March, a 44-year-old woman, oversight inspector with a limited mandate: a white travel jacket, a heavy folder with a paper seal, attentive and careful, a petition hall behind. No text.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "sevra-dan.png"
+   ],
+   "subjects": {
+    "5-players": [
+     "nika-sol"
+    ],
+    "6-players": [
+     "nika-sol"
+    ],
+    "7-players": [
+     "nika-sol"
+    ],
+    "8-players": [
+     "nika-sol"
+    ]
+   },
+   "file": "nika-sol.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/esh-lar.webp",
+   "sha256": "7c8bfd793812929a20eb9cbeabb21c2c61a4debc651d47f875d44c3d180bd1c0",
+   "originalSha256": "cde5395232bc24e2574310a658f11cb81a8323bff7e0545183d7fd110c594d01",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as esh-lar.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Esh Lar, a 27-year-old man, former docking technician placed among the prisoners: red eyebrows, a sports headband, an orange prison robe with a blank number patch, an empty ration box with constellations drawn on it, wary eyes. No text.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "sevra-dan.png"
+   ],
+   "subjects": {
+    "5-players": [
+     "esh-lar"
+    ],
+    "6-players": [
+     "esh-lar"
+    ],
+    "7-players": [
+     "esh-lar"
+    ],
+    "8-players": [
+     "esh-lar"
+    ]
+   },
+   "file": "esh-lar.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/oskar-veld.webp",
+   "sha256": "425b6b39d8dab6e2c8ba0f24ca722536baa8b72279f124e487cdd8fdb405ffd3",
+   "originalSha256": "571e937f241aaaee3da591b175cb39b42cdfe9eea370d76a418422e7874e8703",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as oskar-veld.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Oskar Veld, a 31-year-old man, rank-and-file station guard: broad palms, a faded shift ribbon on his sleeve, looking past the viewer at the hull outside a frosted window. No text.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "sevra-dan.png"
+   ],
+   "subjects": {
+    "5-players": [
+     "oskar-veld"
+    ],
+    "6-players": [
+     "oskar-veld"
+    ],
+    "7-players": [
+     "oskar-veld"
+    ],
+    "8-players": [
+     "oskar-veld"
+    ]
+   },
+   "file": "oskar-veld.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/petra-lous.webp",
+   "sha256": "aab5f79e9d30c19bb01c7b48e7bfedbd603a939bf6dc603f330cf82c2d3c928c",
+   "originalSha256": "521cf3476e7d35e58270df0cd84d863f2871113c5aaf4e18cbd600955fb15890",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as petra-lous.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Petra Lous, a 26-year-old woman, rank-and-file station guard: close-cropped hair, lips moving as she counts steps, quick nervous energy, a gallery with observation windows behind. No text.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "sevra-dan.png"
+   ],
+   "subjects": {
+    "5-players": [
+     "petra-lous"
+    ],
+    "6-players": [
+     "petra-lous"
+    ],
+    "7-players": [
+     "petra-lous"
+    ],
+    "8-players": [
+     "petra-lous"
+    ]
+   },
+   "file": "petra-lous.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/yakov-strel.webp",
+   "sha256": "e1e7d657371f4e265af3f08b7f52eecaf479d6f74fb798ace7833ee38bf51201",
+   "originalSha256": "d2cace6c58638a52e5de048697508c7b6f2de10712c0961a25bae2dada4edbc3",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as yakov-strel.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Yakov Strel, a 58-year-old man, old ferry mechanic now a prisoner: grey moustache, broad callused fingers knocking on a steel table, an orange prisoner robe with a blank number patch, mess hall behind. No text.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "sevra-dan.png"
+   ],
+   "subjects": {
+    "5-players": [
+     "yakov-strel"
+    ],
+    "6-players": [
+     "yakov-strel"
+    ],
+    "7-players": [
+     "yakov-strel"
+    ],
+    "8-players": [
+     "yakov-strel"
+    ]
+   },
+   "file": "yakov-strel.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/roza-mint.webp",
+   "sha256": "ed173b80d3385b8bd20ddcba41d7cd5a8fc4870592412932dde0669f3ad66fb5",
+   "originalSha256": "62e6e0f9efb300191836182999171b81b48fbafe1d5d285ccff43a93c249ac2d",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as roza-mint.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Roza Mint, a 41-year-old woman, prisoner who once counted the ferry's air: dark curls under a headscarf, a quick smile, an orange prisoner robe with a blank number patch, serving bowls at a mess counter. No text.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "sevra-dan.png"
+   ],
+   "subjects": {
+    "5-players": [
+     "roza-mint"
+    ],
+    "6-players": [
+     "roza-mint"
+    ],
+    "7-players": [
+     "roza-mint"
+    ],
+    "8-players": [
+     "roza-mint"
+    ]
+   },
+   "file": "roza-mint.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/notebook-of-faces.webp",
+   "sha256": "99357241f8388208b33c129d85e11395aad6fd5e67f5bf82132d17f2ba7d0a0b",
+   "originalSha256": "3211dce5a68c7d511e741ab796e354d78933a2e007e5e50d3bfb16779128f818",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as notebook-of-faces.png in the current directory.\nItem illustration, single object or small group centered on a plain brushed graphite steel backdrop lit by soft planet-light, square 1:1: A worn pocket notebook lying open, its pages filled with many small hand-drawn ink sketches of different human faces, a pencil tucked in the spine, frost-blue light.\n No text.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "transit-deck.png"
+   ],
+   "subjects": {
+    "5-players": [
+     "notebook-of-faces"
+    ],
+    "6-players": [
+     "notebook-of-faces"
+    ],
+    "7-players": [
+     "notebook-of-faces"
+    ],
+    "8-players": [
+     "notebook-of-faces"
+    ]
+   },
+   "file": "notebook-of-faces.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/sor-bread.webp",
+   "sha256": "282eb02540586a1825563493347402e18ff781bceaf449a86b510da0b1c7c7e1",
+   "originalSha256": "678c2d3c0673f92d74affaa9f3c7a93d18861c3b6d485b8d934ea1b438387030",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as sor-bread.png in the current directory.\nItem illustration, single object or small group centered on a plain brushed graphite steel backdrop lit by soft planet-light, square 1:1: A dry slice of ration bread with three clean knife notches cut into its crust, resting on a scratched steel mess tray.\n No text.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "transit-deck.png"
+   ],
+   "subjects": {
+    "5-players": [
+     "sor-bread"
+    ],
+    "6-players": [
+     "sor-bread"
+    ],
+    "7-players": [
+     "sor-bread"
+    ],
+    "8-players": [
+     "sor-bread"
+    ]
+   },
+   "file": "sor-bread.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/light-stylus.webp",
+   "sha256": "b4cb0743bb6349584809c40074ec8e2893ccc344d65c38a8945fa1112fcc2af9",
+   "originalSha256": "384765fe48c92c5c4010a34d02cf3e49dd68e6a70ca7b5442cea088eb903abbb",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as light-stylus.png in the current directory.\nItem illustration, single object or small group centered on a plain brushed graphite steel backdrop lit by soft planet-light, square 1:1: A slender glass rod in a brass setting with three metal rings, glowing faintly warm gold from inside, casting a thin line of light.\n No text.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "transit-deck.png"
+   ],
+   "subjects": {
+    "5-players": [
+     "light-stylus"
+    ],
+    "6-players": [
+     "light-stylus"
+    ],
+    "7-players": [
+     "light-stylus"
+    ],
+    "8-players": [
+     "light-stylus"
+    ]
+   },
+   "file": "light-stylus.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/medic-seal.webp",
+   "sha256": "b7de143480d800c60bb2689df9cfa182f06d7a16c3798b85b1748921acb121c8",
+   "originalSha256": "9777b71540c95df767283f0c05e7a81d25cf70a633fd0ab9af6b55b17f872033",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as medic-seal.png in the current directory.\nItem illustration, single object or small group centered on a plain brushed graphite steel backdrop lit by soft planet-light, square 1:1: A roll of blue medical seal ribbon with an embossed cross-free plain stamp pattern, a short strip wrapped around a small bundle, no legible writing.\n No text.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "transit-deck.png"
+   ],
+   "subjects": {
+    "5-players": [
+     "medic-seal"
+    ],
+    "6-players": [
+     "medic-seal"
+    ],
+    "7-players": [
+     "medic-seal"
+    ],
+    "8-players": [
+     "medic-seal"
+    ]
+   },
+   "file": "medic-seal.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/report-copy.webp",
+   "sha256": "e62a4b02230b201aaf6b7084d91a771c771f15e85f0e5c7a2ebb80292d6ee2c0",
+   "originalSha256": "03f2ab8ea9fa718fb5475f90de44ddce89acf6efd92245c3b5481a5c88327189",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as report-copy.png in the current directory.\nItem illustration, single object or small group centered on a plain brushed graphite steel backdrop lit by soft planet-light, square 1:1: Four handwritten paper sheets clipped together, neat dense handwriting rendered as illegible scribble lines, one corner folded, lying on a riveted steel desk.\n No text.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "transit-deck.png"
+   ],
+   "subjects": {
+    "5-players": [
+     "report-copy"
+    ],
+    "6-players": [
+     "report-copy"
+    ],
+    "7-players": [
+     "report-copy"
+    ],
+    "8-players": [
+     "report-copy"
+    ]
+   },
+   "file": "report-copy.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/full-tanks.webp",
+   "sha256": "208243889a4aaf8109bd7f9f2a3c319a24b1011e01e4e23ff2654533f0c6935b",
+   "originalSha256": "e9d9126763f1de4842ed80bce277b297b896b0d47aff8a0743f568b6334f7b20",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as full-tanks.png in the current directory.\nItem illustration, single object or small group centered on a plain brushed graphite steel backdrop lit by soft planet-light, square 1:1: A row of three pressure-suit air tank tags hanging from locker hooks, chalk marks scrawled on them as simple strokes, behind them the shoulder gauges of suits.\n No text.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "transit-deck.png"
+   ],
+   "subjects": {
+    "5-players": [
+     "full-tanks"
+    ],
+    "6-players": [
+     "full-tanks"
+    ],
+    "7-players": [
+     "full-tanks"
+    ],
+    "8-players": [
+     "full-tanks"
+    ]
+   },
+   "file": "full-tanks.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/spare-tank.webp",
+   "sha256": "ae47c2bd222014e118692b385f21076f1eb11d4c99e3ced72e3d3ab6f27cd545",
+   "originalSha256": "686acf97f276e83aab14203a3157bf7b48dc76678e72880990efda01bdf3f113",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as spare-tank.png in the current directory.\nItem illustration, single object or small group centered on a plain brushed graphite steel backdrop lit by soft planet-light, square 1:1: A short compact air cylinder with a yellow band and a canvas shoulder strap, small valve and gauge, scuffed metal.\n No text.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "transit-deck.png"
+   ],
+   "subjects": {
+    "5-players": [
+     "spare-tank"
+    ],
+    "6-players": [
+     "spare-tank"
+    ],
+    "7-players": [
+     "spare-tank"
+    ],
+    "8-players": [
+     "spare-tank"
+    ]
+   },
+   "file": "spare-tank.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/knock-code.webp",
+   "sha256": "152fd74e75c0f62a33575d2caaaac419bb7d2d691bbfa6e335548c73fc1c1d7f",
+   "originalSha256": "96cf486fc864b41e7853b93f147d8ac1a8bff8c251af3c9f4ad5bb4c070ddb99",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as knock-code.png in the current directory.\nItem illustration, single object or small group centered on a plain brushed graphite steel backdrop lit by soft planet-light, square 1:1: The inside of an orange prison robe sleeve turned back, showing a row of hand-drawn ink dots and dashes, a hand holding the cuff.\n No text.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "transit-deck.png"
+   ],
+   "subjects": {
+    "5-players": [
+     "knock-code"
+    ],
+    "6-players": [
+     "knock-code"
+    ],
+    "7-players": [
+     "knock-code"
+    ],
+    "8-players": [
+     "knock-code"
+    ]
+   },
+   "file": "knock-code.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/duty-card.webp",
+   "sha256": "54706943f71f070df48c64c9f4a24efc4b9855f581487ddf6bd7cd6621c1bd95",
+   "originalSha256": "86aa2f71cbec489c891ccda822890716791cbf30b79b6302365df5c43a814c13",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as duty-card.png in the current directory.\nItem illustration, single object or small group centered on a plain brushed graphite steel backdrop lit by soft planet-light, square 1:1: A stiff grey service card with a printed station floor plan of a corridor, small marked positions as dots near windows and a hatch, no legible text, a lanyard clip.\n No text.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "transit-deck.png"
+   ],
+   "subjects": {
+    "5-players": [
+     "duty-card"
+    ],
+    "6-players": [
+     "duty-card"
+    ],
+    "7-players": [
+     "duty-card"
+    ],
+    "8-players": [
+     "duty-card"
+    ]
+   },
+   "file": "duty-card.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/token-guard.webp",
+   "sha256": "236d3df2dd8fe190599db5d67bdd96b74f75f404c4f7e0ab50722ba3b09266cc",
+   "originalSha256": "d07f652305a6c2d6643d0041a525285da2b8e1c5fbf6722b7cb942bf291d8d88",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as token-guard.png in the current directory.\nGame token figure on a fully transparent background, top three-quarter view, no ground shadow. An orbital prison station guard in a dark grey uniform with a padded vest and a stun baton, helmet visor up, stern.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "transit-deck.png"
+   ],
+   "subjects": {
+    "5-players": [
+     "block-search-foe-1",
+     "block-search-foe-2",
+     "block-search-foe-3",
+     "block-search-foe-4",
+     "locker-three-foe-1",
+     "locker-three-foe-2",
+     "locker-three-foe-3",
+     "locker-three-foe-4"
+    ],
+    "6-players": [
+     "block-search-foe-1",
+     "block-search-foe-2",
+     "block-search-foe-3",
+     "block-search-foe-4",
+     "block-search-foe-5",
+     "locker-three-foe-1",
+     "locker-three-foe-2",
+     "locker-three-foe-3",
+     "locker-three-foe-4",
+     "locker-three-foe-5"
+    ],
+    "7-players": [
+     "block-search-foe-1",
+     "block-search-foe-2",
+     "block-search-foe-3",
+     "block-search-foe-4",
+     "block-search-foe-5",
+     "locker-three-foe-1",
+     "locker-three-foe-2",
+     "locker-three-foe-3",
+     "locker-three-foe-4",
+     "locker-three-foe-5"
+    ],
+    "8-players": [
+     "block-search-foe-1",
+     "block-search-foe-2",
+     "block-search-foe-3",
+     "block-search-foe-4",
+     "block-search-foe-5",
+     "block-search-foe-6",
+     "locker-three-foe-1",
+     "locker-three-foe-2",
+     "locker-three-foe-3",
+     "locker-three-foe-4",
+     "locker-three-foe-5",
+     "locker-three-foe-6"
+    ]
+   },
+   "file": "token-guard.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/token-guard.webp",
+   "sha256": "236d3df2dd8fe190599db5d67bdd96b74f75f404c4f7e0ab50722ba3b09266cc",
+   "originalSha256": "d07f652305a6c2d6643d0041a525285da2b8e1c5fbf6722b7cb942bf291d8d88",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as token-guard.png in the current directory.\nGame token figure on a fully transparent background, top three-quarter view, no ground shadow. An orbital prison station guard in a dark grey uniform with a padded vest and a stun baton, helmet visor up, stern.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "transit-deck.png"
+   ],
+   "subjects": {
+    "5-players": [
+     "block-search-foe-1",
+     "block-search-foe-2",
+     "block-search-foe-3",
+     "block-search-foe-4",
+     "locker-three-foe-1",
+     "locker-three-foe-2",
+     "locker-three-foe-3",
+     "locker-three-foe-4"
+    ],
+    "6-players": [
+     "block-search-foe-1",
+     "block-search-foe-2",
+     "block-search-foe-3",
+     "block-search-foe-4",
+     "block-search-foe-5",
+     "locker-three-foe-1",
+     "locker-three-foe-2",
+     "locker-three-foe-3",
+     "locker-three-foe-4",
+     "locker-three-foe-5"
+    ],
+    "7-players": [
+     "block-search-foe-1",
+     "block-search-foe-2",
+     "block-search-foe-3",
+     "block-search-foe-4",
+     "block-search-foe-5",
+     "locker-three-foe-1",
+     "locker-three-foe-2",
+     "locker-three-foe-3",
+     "locker-three-foe-4",
+     "locker-three-foe-5"
+    ],
+    "8-players": [
+     "block-search-foe-1",
+     "block-search-foe-2",
+     "block-search-foe-3",
+     "block-search-foe-4",
+     "block-search-foe-5",
+     "block-search-foe-6",
+     "locker-three-foe-1",
+     "locker-three-foe-2",
+     "locker-three-foe-3",
+     "locker-three-foe-4",
+     "locker-three-foe-5",
+     "locker-three-foe-6"
+    ]
+   },
+   "file": "token-guard--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "token-guard.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/token-convoy.webp",
+   "sha256": "ac64fea56e85e00f81b8cf867f3c7c1d9e60cbbec5f965d13c2d16a9d4a31607",
+   "originalSha256": "b74812722e9642f2c5cb762838cc0ab9bd8e6833b50500dd3efed323194932d2",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as token-convoy.png in the current directory.\nGame token figure on a fully transparent background, top three-quarter view, no ground shadow. A transfer service convoy trooper in a dark navy pressure suit with magnetic boots, a tether carabiner on the belt and a light-spear held upright, helmet on.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "transit-deck.png"
+   ],
+   "subjects": {
+    "5-players": [
+     "line-one-foe-1",
+     "line-one-foe-2",
+     "line-one-foe-3",
+     "line-one-foe-4",
+     "line-one-foe-5",
+     "line-one-foe-6",
+     "hull-walk-foe-1",
+     "hull-walk-foe-2",
+     "hull-walk-foe-3"
+    ],
+    "6-players": [
+     "line-one-foe-1",
+     "line-one-foe-2",
+     "line-one-foe-3",
+     "line-one-foe-4",
+     "line-one-foe-5",
+     "line-one-foe-6",
+     "line-one-foe-7",
+     "line-one-foe-8",
+     "hull-walk-foe-1",
+     "hull-walk-foe-2",
+     "hull-walk-foe-3"
+    ],
+    "7-players": [
+     "line-one-foe-1",
+     "line-one-foe-2",
+     "line-one-foe-3",
+     "line-one-foe-4",
+     "line-one-foe-5",
+     "line-one-foe-6",
+     "line-one-foe-7",
+     "line-one-foe-8",
+     "line-one-foe-9",
+     "hull-walk-foe-1",
+     "hull-walk-foe-2",
+     "hull-walk-foe-3",
+     "hull-walk-foe-4"
+    ],
+    "8-players": [
+     "line-one-foe-1",
+     "line-one-foe-2",
+     "line-one-foe-3",
+     "line-one-foe-4",
+     "line-one-foe-5",
+     "line-one-foe-6",
+     "line-one-foe-7",
+     "line-one-foe-8",
+     "hull-walk-foe-1",
+     "hull-walk-foe-2",
+     "hull-walk-foe-3",
+     "hull-walk-foe-4"
+    ]
+   },
+   "file": "token-convoy.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/token-convoy.webp",
+   "sha256": "ac64fea56e85e00f81b8cf867f3c7c1d9e60cbbec5f965d13c2d16a9d4a31607",
+   "originalSha256": "b74812722e9642f2c5cb762838cc0ab9bd8e6833b50500dd3efed323194932d2",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as token-convoy.png in the current directory.\nGame token figure on a fully transparent background, top three-quarter view, no ground shadow. A transfer service convoy trooper in a dark navy pressure suit with magnetic boots, a tether carabiner on the belt and a light-spear held upright, helmet on.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "transit-deck.png"
+   ],
+   "subjects": {
+    "5-players": [
+     "line-one-foe-1",
+     "line-one-foe-2",
+     "line-one-foe-3",
+     "line-one-foe-4",
+     "line-one-foe-5",
+     "line-one-foe-6",
+     "hull-walk-foe-1",
+     "hull-walk-foe-2",
+     "hull-walk-foe-3"
+    ],
+    "6-players": [
+     "line-one-foe-1",
+     "line-one-foe-2",
+     "line-one-foe-3",
+     "line-one-foe-4",
+     "line-one-foe-5",
+     "line-one-foe-6",
+     "line-one-foe-7",
+     "line-one-foe-8",
+     "hull-walk-foe-1",
+     "hull-walk-foe-2",
+     "hull-walk-foe-3"
+    ],
+    "7-players": [
+     "line-one-foe-1",
+     "line-one-foe-2",
+     "line-one-foe-3",
+     "line-one-foe-4",
+     "line-one-foe-5",
+     "line-one-foe-6",
+     "line-one-foe-7",
+     "line-one-foe-8",
+     "line-one-foe-9",
+     "hull-walk-foe-1",
+     "hull-walk-foe-2",
+     "hull-walk-foe-3",
+     "hull-walk-foe-4"
+    ],
+    "8-players": [
+     "line-one-foe-1",
+     "line-one-foe-2",
+     "line-one-foe-3",
+     "line-one-foe-4",
+     "line-one-foe-5",
+     "line-one-foe-6",
+     "line-one-foe-7",
+     "line-one-foe-8",
+     "hull-walk-foe-1",
+     "hull-walk-foe-2",
+     "hull-walk-foe-3",
+     "hull-walk-foe-4"
+    ]
+   },
+   "file": "token-convoy--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "token-convoy.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/token-captain.webp",
+   "sha256": "d588f631840fd630d1d1c463a6032c0ba47147ed41108734868a9df515ba9a47",
+   "originalSha256": "132d9187464e4e2fbb972b01e1b942c80a720753c9d0d3513f182c2cb654136e",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as token-captain.png in the current directory.\nGame token figure on a fully transparent background, top three-quarter view, no ground shadow. A senior prison guard captain, a woman of 39, in a grey pressure suit with a white senior stripe across the chest, helmet visor raised, a roll-call clipboard at her belt, a short impact baton and a harpoon-needle launcher.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "transit-deck.png"
+   ],
+   "subjects": {
+    "5-players": [
+     "hull-walk-boss"
+    ],
+    "6-players": [
+     "hull-walk-boss"
+    ],
+    "7-players": [
+     "hull-walk-boss"
+    ],
+    "8-players": [
+     "hull-walk-boss"
+    ]
+   },
+   "file": "token-captain.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/runtime/token-captain.webp",
+   "sha256": "d588f631840fd630d1d1c463a6032c0ba47147ed41108734868a9df515ba9a47",
+   "originalSha256": "132d9187464e4e2fbb972b01e1b942c80a720753c9d0d3513f182c2cb654136e",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as token-captain.png in the current directory.\nGame token figure on a fully transparent background, top three-quarter view, no ground shadow. A senior prison guard captain, a woman of 39, in a grey pressure suit with a white senior stripe across the chest, helmet visor raised, a roll-call clipboard at her belt, a short impact baton and a harpoon-needle launcher.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png",
+    "transit-deck.png"
+   ],
+   "subjects": {
+    "5-players": [
+     "hull-walk-boss"
+    ],
+    "6-players": [
+     "hull-walk-boss"
+    ],
+    "7-players": [
+     "hull-walk-boss"
+    ],
+    "8-players": [
+     "hull-walk-boss"
+    ]
+   },
+   "file": "token-captain--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "token-captain.webp"
+  },
+  {
+   "file": "block-b--map.webp",
+   "source": "campaigns/collection-2026/last-orbit/assets/battle-maps/block-b.webp",
+   "sha256": "bb9d81269f427668e7670d43df6b10ffaa0ab2b97ad81dcc295650dd6398bbb4",
+   "originalSha256": "6d59905fc8ee3aa681a53c7c37d5ea4f5000db176b7cf2ff67f24ed8e41f9e57",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as last-orbit--block-b.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Блок Б» — Коридор камер на рядах заклёпок: двери с номерами, ночники, сетка перекличек на стене у входа. Здесь живёт экипаж, здесь утром и вечером читают номера. Соседнее крыло — блок А. Западная дверь ведёт в коридор Тихого лазарета, восточные ворота — к Палубе грузовых смен.\n\nThe first reference image is the exact layout of the playable field: a 18 by 7 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Коридор камер на рядах заклёпок, 18 клеток в длину и 7 в ширину. Двери камер в нишах вдоль северной и южной стен дают укрытие три четверти. Посередине вытащенные койки и тележки с бельём — трудная местность. Экипаж стоит на западе у двери к лазарету, охрана входит с востока от ворот блока. Ночники горят синим, на стене у входа висит сетка перекличек с карандашными палочками.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/last-orbit--block-b.layout.png",
+    "block-b.png"
+   ],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "block-b.webp",
+   "subjects": {
+    "5-players": [
+     "block-b"
+    ],
+    "6-players": [
+     "block-b"
+    ],
+    "7-players": [
+     "block-b"
+    ],
+    "8-players": [
+     "block-b"
+    ]
+   }
+  },
+  {
+   "file": "airlock-three--map.webp",
+   "source": "campaigns/collection-2026/last-orbit/assets/battle-maps/airlock-three.webp",
+   "sha256": "551191da31a49cad1caabcf40671edf0d9b0384ce0727e4488cd07894b71f213",
+   "originalSha256": "6dca97407ba24fd6f5804fa9f4c60431f58f89e3a87b03e263724f625b24c507",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as last-orbit--airlock-three.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Шлюз 3» — Камера между Прощальным причалом и Палубой грузовых смен: внутренняя дверь, стойки скафандров, шкафчики баллонов с бирками, изолятор в предшлюзе и внешний люк с круглым окошком. Через окошко видна обшивка. Пол в шланговых решётках, везде иней от вентиляции.\n\nThe first reference image is the exact layout of the playable field: a 12 by 6 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Камера шлюза 3, 12×6. Стойки скафандров вдоль северной и южной стен дают укрытие три четверти. Посередине решётка слива и тянущиеся шланги — трудная местность. Запад — внутренняя дверь, откуда входит экипаж. Восток — внешний люк с круглым окошком, за ним видны обшивка, заклёпки и страховочные кольца, по которым идти в последний вечер. Иней на шлангах, шкафчики баллонов с мелом на бирках в восточном краю.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/last-orbit--airlock-three.layout.png",
+    "airlock-three.png"
+   ],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "airlock-three.webp",
+   "subjects": {
+    "5-players": [
+     "airlock-three"
+    ],
+    "6-players": [
+     "airlock-three"
+    ],
+    "7-players": [
+     "airlock-three"
+    ],
+    "8-players": [
+     "airlock-three"
+    ]
+   }
+  },
+  {
+   "file": "outer-hull--map.webp",
+   "source": "campaigns/collection-2026/last-orbit/assets/battle-maps/outer-hull.webp",
+   "sha256": "e88bda2b7605c3fd43f85f2cf2005a24c9207505a973c0ac5237db0692ab2162",
+   "originalSha256": "5ce7f65b2e2e5033a2dd12344175187ff902451613e559638177e44af2401a53",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as last-orbit--outer-hull.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Внешняя обшивка кольца» — Снаружи: ряды заклёпок, страховочные кольца через каждые три шага, рёбра жёсткости, несколько сорванных листов. Сверху — три окна Стеклянного обхода, снизу — край кольца и облака Кордеи. В двенадцати шагах восточнее шлюза 3 стоит мачта шлюпов и грузовой шлюп «Иней». Тишина полная; слышно только своё дыхание в скафандре.\n\nThe first reference image is the exact layout of the playable field: a 12 by 6 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): ПОЛЕ (столбец/ряд): 12 столбцов с запада на восток, 6 рядов с севера на юг; диагональ стоит 1 клетку. Запад: внешний люк шлюза 3 в западном краю рядов 3–4. Восток: мачта «Инея» — столбцы 11–12, её поручень по всем рядам считается кольцом; люк шлюпа — 12/3 и 12/4; люк шлюза 4 — 12/1. От столбца 1 до клетки люка — 11 клеток, и ещё 1 — на борт. Север, над рядом 1: Окно 1 над столбцами 3–4, Окно 2 над 6–7, Окно 3 над 9–10. Рёбра жёсткости — клетки 3/1, 6/1, 9/1, на них не встать; кто южнее ребра в его столбце, тот в укрытии три четверти (+5 к КБ) от окна над ним. Кольца — в столбцах 1, 4, 7, 10 каждого ряда. Сорванные листы — трудные клетки 5/3, 5/4, 8/3, 8/4: шаг на них стоит 2. Юг, под рядом 6: край кольца и облака Кордеи. КЛЕТКИ: клетка с кольцом и клетка мачты держат двоих (два героя или герой и его спутник), любая другая — одного. Сквозь союзников проходить можно; сквозь конвоира и Каю — нет, и снос перед ними останавливается; оглушённый или упавший до 0 конвоир висит под кольцом и клетку освобождает. Толчок (Атлетика против Атлетики или Акробатики) сдвигает на 1 клетку, не пристёгнутого — ещё и сносит; конвоира или Каю у поручня мачты — на 1 клетку по столбцу 12, без сноса. ТАЩИТ\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/last-orbit--outer-hull.layout.png",
+    "outer-hull.png"
+   ],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "outer-hull.webp",
+   "subjects": {
+    "5-players": [
+     "outer-hull"
+    ],
+    "6-players": [
+     "outer-hull"
+    ],
+    "7-players": [
+     "outer-hull"
+    ],
+    "8-players": [
+     "outer-hull"
+    ]
+   }
+  }
+ ]
+}

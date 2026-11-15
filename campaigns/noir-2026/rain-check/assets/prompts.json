@@ -1,0 +1,584 @@
+{
+ "tool": "Codex CLI image generation on the owner ChatGPT subscription (CODEX_HOME=~/.codex-review-cli codex exec -i <references>)",
+ "style": "Match one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+ "images": [
+  {
+   "id": "cover",
+   "file": "cover.png",
+   "kind": "cover",
+   "transparent": false,
+   "prompt": "Generate one image and save it as cover.png in the current directory.\nWide landscape key art, 3:2. A rain-soaked hillside cemetery at dusk in a fictional 1930s-inspired city: a sea of black umbrellas around a fresh grave under yew trees, a funeral portrait on an easel beside the coffin. At the far edge of the crowd, under the dripping yews, one tall stooped man stands bareheaded with no umbrella, looking straight back, and a woman in a black coat with a lifted veil turns her head toward him. Behind the cemetery the city climbs in rain: tram wires, slate roofs, a clock tower and red neon letters blurred into puddles. Four investigators in coats and hats in the foreground, one with a folding camera.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/cover.png",
+   "generatedAt": "2026-11-14",
+   "references": []
+  },
+  {
+   "id": "latren",
+   "file": "latren.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as latren.png in the current directory.\nLandscape scene, 3:2. A panorama of a fictional rain-soaked 1930s-inspired city at dusk seen from a hill: tram lines and overhead wires, canals and locks, slate roofs, a covered market's glass roof, a clock tower with neon letters, a theatre's lit marquee, thousands of reflections in wet streets.\n\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/latren.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "rain-cemetery",
+   "file": "rain-cemetery.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as rain-cemetery.png in the current directory.\nLandscape scene, 3:2. A northern city cemetery in heavy rain: yew trees, a chapel with a dripping porch, a gatekeeper's lodge by the back fence, black umbrellas filing out, a tram loop with a stopped tram at the gates, wet gravel paths.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/rain-cemetery.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "dry-dock",
+   "file": "dry-dock.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as dry-dock.png in the current directory.\nLandscape scene, 3:2. A canal-side dry dock at night in rain: cargo cranes, numbered corrugated sheds, the gates of a stevedores' union yard, a watchman's hut with a lost-property cabinet, stacked crates, coiled ropes, black canal water reflecting sodium lamps.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/dry-dock.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "covered-market",
+   "file": "covered-market.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as covered-market.png in the current directory.\nLandscape scene, 3:2. A covered market under a vast glass roof streaming with rain: rows of stalls under tin awnings, fish counters on ice beneath a red neon fish sign, a gallery walkway above the rows, porters with handcarts, wet stone floor glittering with scales.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/covered-market.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "alteration-room",
+   "file": "alteration-room.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as alteration-room.png in the current directory.\nLandscape scene, 3:2. A tiny tailor's mending booth in the cloth row of a covered market: tailor's chalk, a box of measuring tapes, pins in a cushion, a dressmaker's dummy wearing a long grey checked overcoat, rain drumming on the glass roof above.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/alteration-room.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "waiting-hotel",
+   "file": "waiting-hotel.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as waiting-hotel.png in the current directory.\nLandscape scene, 3:2. A cheap night shelter by a tram loop: a long dormitory of forty iron cots, a drying room hung with other people's raincoats dripping onto the floor, a thick guest ledger on a desk with a lamp, a back staircase leading down into a laundry yard.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/waiting-hotel.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "water-gallery",
+   "file": "water-gallery.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as water-gallery.png in the current directory.\nLandscape scene, 3:2. A canal lock with an iron grille and a glass gallery of rain gauges beside it: rows of tall glass measuring tubes filled to different heights, an upper room with a lit window, an iron footbridge over rushing water, rain everywhere.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/water-gallery.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "lantern-theatre",
+   "file": "lantern-theatre.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as lantern-theatre.png in the current directory.\nLandscape scene, 3:2. A small old city theatre on a rainy night: posters under glass by the entrance, a red-velvet stalls hall seen from the wings, a prompter's box at the stage edge, a corridor under the stage, fly galleries above and a hatch to the roof.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/lantern-theatre.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "tram-depot",
+   "file": "tram-depot.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as tram-depot.png in the current directory.\nLandscape scene, 3:2. A tram depot at night in rain: long sheds, tracks gleaming with puddles and oil, a ticket hall with a lit booth, wide main gates and smaller back gates to a waste ground, a single service tramcar with its headlamps burning.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/tram-depot.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "clock-roofs",
+   "file": "clock-roofs.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as clock-roofs.png in the current directory.\nLandscape scene, 3:2. Wet slate rooftops of a city block at night in a downpour: the roof of a tenement with a chimney stack, a narrow gap to a printing house roof, another gap, then the roof of an insurance company crowned by a clock tower and big neon letters glowing red and teal, a painter's plank laid across one gap, a gutter with a line of wet signal flags across the other.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/clock-roofs.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "exact-house",
+   "file": "exact-house.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as exact-house.png in the current directory.\nLandscape scene, 3:2. The grand hall of an old insurance company: numbered brass-trimmed counter windows, clerks in sleeve garters, a huge brass wall clock, rain streaming down tall windows, a clock tower visible outside above the roof.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/exact-house.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "nina-flat",
+   "file": "nina-flat.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as nina-flat.png in the current directory.\nLandscape scene, 3:2. A third-floor city apartment on a rainy evening: an upright piano under a dust cover, a narrow hallway with an umbrella stand holding two black umbrellas, one large and one small, lace curtains, a lamp, rain on the windows.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/nina-flat.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "lock-precinct",
+   "file": "lock-precinct.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as lock-precinct.png in the current directory.\nLandscape scene, 3:2. A small police precinct by a canal lock: a duty room with wet hats on hooks and a big desk ledger, a telephone with a dial, a bench for waiting, a door to an identification room with a covered table, rain beyond the window.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/lock-precinct.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "lada-osher",
+   "file": "lada-osher.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as lada-osher.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Vanda Hess, a 37-year-old woman, head of a small missing-persons bureau and the team's tough one: an old officer's trench coat, a cane umbrella, a notebook with rain-waved edges, steady watchful eyes. Rainy noir city backdrop softly out of focus. No text.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/lada-osher.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "gleb-shor",
+   "file": "gleb-shor.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as gleb-shor.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Konrad Vilk, a 32-year-old man, bureau and evening-paper photographer, nimble and quiet: a folding camera under an oilcloth, a tin of wet film, a polite half-smile, cap pushed back. Rainy noir city backdrop softly out of focus. No text.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/gleb-shor.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "roman-ivren",
+   "file": "roman-ivren.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as roman-ivren.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Roman Ivren, a 45-year-old man, the bureau's files-and-timetables man: grey waistcoat, simple round spectacles, a battered tram timetable booklet full of pencilled corrections in his hand. Rainy noir city backdrop softly out of focus. No text.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/roman-ivren.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "marta-bess",
+   "file": "marta-bess.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as marta-bess.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Regina Holt, a 51-year-old woman, the bureau's gentle voice for the grieving: a dark scarf, a dry handkerchief held ready, an oilcloth-covered music notebook, kind tired eyes. Rainy noir city backdrop softly out of focus. No text.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/marta-bess.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "stasya-gran",
+   "file": "stasya-gran.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as stasya-gran.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Zoya Tarkh, a 29-year-old woman, bureau messenger and former tram conductor, strong and direct: a conductor's satchel without a ticket punch, thick-soled boots, hands always in plain sight. Rainy noir city backdrop softly out of focus. No text.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/stasya-gran.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "mark-sel",
+   "file": "mark-sel.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as mark-sel.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Kazimir Lott, a 34-year-old man, a notary's copy clerk: ink on his cuff, a magnifying glass on a cord, neat twine for folders, precise and attentive. Rainy noir city backdrop softly out of focus. No text.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/mark-sel.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "yana-renk",
+   "file": "yana-renk.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as yana-renk.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Yana Renk, a 27-year-old woman, bureau courier with a great memory for routes: short raincoat, waterproof satchel, a tram depot token on a cord at her wrist, quick and alert. Rainy noir city backdrop softly out of focus. No text.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/yana-renk.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "timon-kroy",
+   "file": "timon-kroy.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as timon-kroy.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Timon Kroy, a 46-year-old man who writes obituaries for the evening paper: a flat hat, a soft voice, rain-softened obituary sheets in his coat pocket, a mournful gentle face. Rainy noir city backdrop softly out of focus. No text.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/timon-kroy.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "nina-run",
+   "file": "nina-run.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as nina-run.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Klara Run, a 41-year-old woman in mourning: a fitted black coat, her black veil lifted, a brand-new black umbrella with the shop's cardboard tag still on the handle, perfectly dry gloves despite the rain, composed and sorrowful. Rainy noir city backdrop softly out of focus. No text.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/nina-run.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "saveliy-run",
+   "file": "saveliy-run.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as saveliy-run.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Saveliy Run, a 43-year-old man, tall and stooped, no umbrella, rain running off him, wearing someone else's short raincoat with sleeves too short, cashier's hands with ink on the fingers, haunted eyes. Rainy noir city backdrop softly out of focus. No text.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/saveliy-run.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "vera-meller",
+   "file": "vera-meller.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as vera-meller.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Helga Meller, a 47-year-old woman, chief claims hunter of an insurance company: grey cloak, a clock-face badge on the lapel, a dry pencil behind her ear, an oilcloth folder, cool appraising look. Rainy noir city backdrop softly out of focus. No text.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/vera-meller.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "matvey-kord",
+   "file": "matvey-kord.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as matvey-kord.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Matvey Kord, a 46-year-old man, broad leader of a stevedores' union crew: canvas work jacket, bareheaded in the rain, a cargo hook on his belt, grief and anger held in. Rainy noir city backdrop softly out of focus. No text.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/matvey-kord.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "yulian-kord",
+   "file": "yulian-kord.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as yulian-kord.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Yulian Kord, a 39-year-old man shown as a formal funeral-style portrait photograph look: small moustache, a mole by his eyebrow, a dark navy tailored overcoat, a faint uneasy smile. Rainy noir city backdrop softly out of focus. No text.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/yulian-kord.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "grigory-stehl",
+   "file": "grigory-stehl.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as grigory-stehl.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Grigory Stehl, a 58-year-old night watchman of a canal dock: an oilcloth cape, spectacles on a cord, a logbook under his arm, a key to the lost-property cabinet, weathered and careful. Rainy noir city backdrop softly out of focus. No text.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/grigory-stehl.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "tereza-kel",
+   "file": "tereza-kel.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as tereza-kel.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Tereza Oks, a 44-year-old woman, a market seamstress: a tape measure around her neck, tailor's chalk in her apron pocket, pins held between her lips, sharp shrewd eyes. Rainy noir city backdrop softly out of focus. No text.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/tereza-kel.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "trofim-shpak",
+   "file": "trofim-shpak.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as trofim-shpak.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Trofim Shpak, a 33-year-old man, a short fish-market porter wearing someone else's long grey checked overcoat with the sleeves turned up twice, nervous grin. Rainy noir city backdrop softly out of focus. No text.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/trofim-shpak.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "milena-voss",
+   "file": "milena-voss.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as milena-voss.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Milena Voss, a 36-year-old woman, manager of a night shelter: a heavy ring of keys on her belt, dry hands, a wet hem, tired firm expression. Rainy noir city backdrop softly out of focus. No text.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/milena-voss.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "fedor-nell",
+   "file": "fedor-nell.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as fedor-nell.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Gustav Nell, a 61-year-old man, canal lock keeper: oilcloth apron, a boathook, glass rain-gauge tubes in his breast pocket, stubborn and kindly. Rainy noir city backdrop softly out of focus. No text.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/fedor-nell.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "stepan-falk",
+   "file": "stepan-falk.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as stepan-falk.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Stepan Falk, a 49-year-old police inspector: a wet hat, a report in an oilcloth cover, a perpetual head cold, a handkerchief, shrewd patient eyes. Rainy noir city backdrop softly out of focus. No text.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/stepan-falk.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "aglaya-meyr",
+   "file": "aglaya-meyr.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as aglaya-meyr.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Aglaya Meyr, a 47-year-old woman, a theatre prompter: a dark shawl, a pencil stuck in her pinned-up hair, a prompt book in oilcloth, dim stage light from below. Rainy noir city backdrop softly out of focus. No text.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/aglaya-meyr.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "zakhar-vents",
+   "file": "zakhar-vents.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as zakhar-vents.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Zakhar Vents, a 58-year-old man, senior night conductor and driver of a service tram: a satchel with a ticket punch, a brass whistle on a chain, steady old hands. Rainy noir city backdrop softly out of focus. No text.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/zakhar-vents.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "timetable-book",
+   "file": "timetable-book.png",
+   "kind": "item",
+   "transparent": false,
+   "prompt": "Generate one image and save it as timetable-book.png in the current directory.\nItem illustration, single object or small group centered on a plain dark wet slate backdrop lit by soft amber lamplight, square 1:1: A worn cardboard-covered tram timetable booklet swollen by rain, its pages full of pencilled corrections, old soggy tram tickets used as bookmarks.\n No text.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/timetable-book.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "hire-envelope",
+   "file": "hire-envelope.png",
+   "kind": "item",
+   "transparent": false,
+   "prompt": "Generate one image and save it as hire-envelope.png in the current directory.\nItem illustration, single object or small group centered on a plain dark wet slate backdrop lit by soft amber lamplight, square 1:1: A damp yellow envelope with a few crisp dry banknotes peeking out, a handwritten receipt line on the flap shown only as illegible looping strokes.\n No text.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/hire-envelope.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "crowd-photo",
+   "file": "crowd-photo.png",
+   "kind": "item",
+   "transparent": false,
+   "prompt": "Generate one image and save it as crowd-photo.png in the current directory.\nItem illustration, single object or small group centered on a plain dark wet slate backdrop lit by soft amber lamplight, square 1:1: A palm-sized black-and-white photo print, damp at the edges, showing rows of black umbrellas in rain and, at the back by yew trees, one tall bareheaded man looking into the lens.\n No text.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/crowd-photo.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "savely-umbrella",
+   "file": "savely-umbrella.png",
+   "kind": "item",
+   "transparent": false,
+   "prompt": "Generate one image and save it as savely-umbrella.png in the current directory.\nItem illustration, single object or small group centered on a plain dark wet slate backdrop lit by soft amber lamplight, square 1:1: An old black man's umbrella with one broken rib sticking out, hanging on a nail in a wooden lodge, a crumpled punched tram ticket tucked into its folds.\n No text.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/savely-umbrella.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "duck-umbrella",
+   "file": "duck-umbrella.png",
+   "kind": "item",
+   "transparent": false,
+   "prompt": "Generate one image and save it as duck-umbrella.png in the current directory.\nItem illustration, single object or small group centered on a plain dark wet slate backdrop lit by soft amber lamplight, square 1:1: A black lady's umbrella with a carved wooden handle shaped like a duck's head and a silver ring around its neck, a small paper tag tied on with string.\n No text.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/duck-umbrella.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "depot-token",
+   "file": "depot-token.png",
+   "kind": "item",
+   "transparent": false,
+   "prompt": "Generate one image and save it as depot-token.png in the current directory.\nItem illustration, single object or small group centered on a plain dark wet slate backdrop lit by soft amber lamplight, square 1:1: A dull copper token with a small hole for a cord, lying on a worn wooden bench in a crane cabin, a stamped number shown only as an abstract mark.\n No text.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/depot-token.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "borrowed-coat",
+   "file": "borrowed-coat.png",
+   "kind": "item",
+   "transparent": false,
+   "prompt": "Generate one image and save it as borrowed-coat.png in the current directory.\nItem illustration, single object or small group centered on a plain dark wet slate backdrop lit by soft amber lamplight, square 1:1: A long grey overcoat in a large check, lining stained by fish water, a patch on the left elbow, laid over a chair, a chalk mark inside the collar shown as an illegible smudge.\n No text.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/borrowed-coat.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "police-card",
+   "file": "police-card.png",
+   "kind": "item",
+   "transparent": false,
+   "prompt": "Generate one image and save it as police-card.png in the current directory.\nItem illustration, single object or small group centered on a plain dark wet slate backdrop lit by soft amber lamplight, square 1:1: A small thick cardboard calling card with rain-soaked edges and a smudged ink stamp, the printed lines shown only as abstract illegible marks.\n No text.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/police-card.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "tower-key",
+   "file": "tower-key.png",
+   "kind": "item",
+   "transparent": false,
+   "prompt": "Generate one image and save it as tower-key.png in the current directory.\nItem illustration, single object or small group centered on a plain dark wet slate backdrop lit by soft amber lamplight, square 1:1: A heavy brass key on a leather cord with a small clock-face fob, resting in an open palm, rain drops on the metal.\n No text.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/tower-key.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "token-catcher",
+   "file": "token-catcher.png",
+   "kind": "token",
+   "transparent": true,
+   "prompt": "Generate one image and save it as token-catcher.png in the current directory.\nGame token figure on a fully transparent background, top three-quarter view, no ground shadow. A hired bounty catcher in a wet flat cap and rough coat, a knife at the boot, a small crossbow held low and pointed down, wary.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/token-catcher.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ],
+   "srd": "bandit"
+  },
+  {
+   "id": "token-watchman",
+   "file": "token-watchman.png",
+   "kind": "token",
+   "transparent": true,
+   "prompt": "Generate one image and save it as token-watchman.png in the current directory.\nGame token figure on a fully transparent background, top three-quarter view, no ground shadow. An insurance company tracker in a grey cloak with a clock-face badge on the lapel, a hunting bow held low, a short cleaver at the hip, cool and precise.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/token-watchman.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ],
+   "srd": "scout"
+  },
+  {
+   "id": "token-loader",
+   "file": "token-loader.png",
+   "kind": "token",
+   "transparent": true,
+   "prompt": "Generate one image and save it as token-loader.png in the current directory.\nGame token figure on a fully transparent background, top three-quarter view, no ground shadow. A burly dock loader in a canvas jacket with tar-stained sleeves and a cargo hook on his belt, fists ready, rain-soaked.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/token-loader.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ],
+   "srd": "tough"
+  },
+  {
+   "id": "token-klara",
+   "file": "token-klara.png",
+   "kind": "token",
+   "transparent": true,
+   "prompt": "Generate one image and save it as token-klara.png in the current directory.\nGame token figure on a fully transparent background, top three-quarter view, no ground shadow. A woman in a fitted black coat and wet black veil holding a cane with a brass knob, a small pistol held down at her side, rain streaming, unreadable face.\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "rain-check-2026-11-14/out/token-klara.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ],
+   "srd": "bandit-captain"
+  }
+ ]
+}

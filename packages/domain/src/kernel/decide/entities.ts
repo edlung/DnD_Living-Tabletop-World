@@ -31,6 +31,9 @@ export function decideCreateEntity(
       { kind },
     );
   }
+  if (command.manner !== undefined && kind !== 'npc') {
+    return reject('INVALID_ENTITY_DEFINITION', 'Only an NPC has a manner of speech', { kind });
+  }
   if (location && location.parentId !== null) {
     const parent = findUsableLocation(state, location.parentId);
     if (!parent.ok) return parent;
@@ -48,6 +51,7 @@ export function decideCreateEntity(
       kind,
       name: command.name,
       description: command.description ?? '',
+      ...(command.manner ? { manner: command.manner } : {}),
       existsSince,
       location: location ?? null,
     },
@@ -144,7 +148,18 @@ export function decideUpdateEntityProfile(
     command.description !== undefined && command.description !== entity.description
       ? { from: entity.description, to: command.description }
       : undefined;
-  if (!name && !description) {
+  if (command.manner !== undefined && entity.kind !== 'npc') {
+    return reject('INVALID_ENTITY_DEFINITION', 'Only an NPC has a manner of speech', {
+      entityId: entity.entityId,
+      kind: entity.kind,
+    });
+  }
+  // An NPC's manner of speech (ADR 0020 amendment 2026-11-14); `''` is none.
+  const manner =
+    command.manner !== undefined && command.manner !== (entity.manner ?? '')
+      ? { from: entity.manner ?? '', to: command.manner }
+      : undefined;
+  if (!name && !description && !manner) {
     return reject('NO_EFFECT', 'The profile already has these values');
   }
   return accept({
@@ -153,6 +168,7 @@ export function decideUpdateEntityProfile(
       entityId: entity.entityId,
       ...(name ? { name } : {}),
       ...(description ? { description } : {}),
+      ...(manner ? { manner } : {}),
     },
   });
 }

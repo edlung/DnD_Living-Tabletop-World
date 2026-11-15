@@ -1,0 +1,938 @@
+{
+  "kind": "uncommitted-delivery-file-identity",
+  "createdAt": "2026-11-08T00:38:13.366874+00:00",
+  "workspace": "/Users/oleksandr/Documents/living-tabletop-world-dev-pack-v1.2",
+  "baseCommit": "e69c3290ca34cbde4a837591bfb477b899581142",
+  "excludes": ["reports/evidence/family-campaign-2026-11-08/file-identity.json"],
+  "artifactDigest": "7927051e4418bb5d036e36ec59200fbb6f71147093c3dcceb662e57c4b9b3574",
+  "digestMethod": "SHA-256 of UTF-8 JSON {baseCommit,files}, recursively sorted keys, compact separators, ensure_ascii=false; files sorted by path.",
+  "fileCount": 185,
+  "totalBytes": 121426270,
+  "files": [
+    {
+      "path": ".prettierignore",
+      "bytes": 4487,
+      "sha256": "82278d079d69adea5e8a1a4817ae8c5805c626f4a5908df0dfccc550e9f2bd2b"
+    },
+    {
+      "path": "apps/server/src/campaigns/AGENTS.md",
+      "bytes": 3761,
+      "sha256": "3c1d1a26dd77d22b6264e0c37dcb4d8d44ee58293bd91f098cc6266cef4574a5"
+    },
+    {
+      "path": "apps/server/src/campaigns/encounter-books.ts",
+      "bytes": 1992,
+      "sha256": "29460d0bc6c3d7e5dada878b25687c5dbee7e094c5ae22d7a70d786034351537"
+    },
+    {
+      "path": "apps/server/src/combat/prepared-encounters.ts",
+      "bytes": 9666,
+      "sha256": "48b767e13265b00bbbc508ed8e350755913a2f9afe84a7a4a447cbdaa76aa4a1"
+    },
+    {
+      "path": "apps/server/src/http/app.ts",
+      "bytes": 12658,
+      "sha256": "caf00f5a0e70af390f1d85cff25b10928420fa836db32531e6cc00beada7b397"
+    },
+    {
+      "path": "apps/server/src/images/curated-import.ts",
+      "bytes": 8212,
+      "sha256": "f011f910cfb06a8bcaf7bcc7b6a93de74d4405790aa6a61bfaeec24a8a096053"
+    },
+    {
+      "path": "apps/server/src/main.ts",
+      "bytes": 17021,
+      "sha256": "51dec015c033ce545701b4536a4455a07aaa9f7f18692df13fc99531a2bd7a75"
+    },
+    {
+      "path": "apps/server/src/testing/ui-workshop-links.ts",
+      "bytes": 2338,
+      "sha256": "2240feebca70b7ea62a5cdb0ee154096e6fa48bd6162ca9434659c03aa3399e4"
+    },
+    {
+      "path": "apps/web/src/i18n/ru-workshop-scenario.ts",
+      "bytes": 21757,
+      "sha256": "2250df8f5b9ef8b8e20f8c090d16436d3dcad55d72c3c7f8c6497e1ef3c8ac47"
+    },
+    {
+      "path": "apps/web/src/shell/reserved-height.ts",
+      "bytes": 1644,
+      "sha256": "22d1ab557f979febce13cf3715c4542324e258e563731173c8b8f1a71807a5a2"
+    },
+    {
+      "path": "apps/web/src/styles/workshop-scenario.css",
+      "bytes": 5953,
+      "sha256": "6125fcc41fbfa61c37bac39a878c2edaa0ba9dd1af08722fb1e06895146756b6"
+    },
+    {
+      "path": "apps/web/src/workshop/AGENTS.md",
+      "bytes": 3452,
+      "sha256": "c24b0309a98fd6b44f4d9d6ac4dec8e67ff477431a85d300482a70ca0a708cad"
+    },
+    {
+      "path": "apps/web/src/workshop/package-file.test.ts",
+      "bytes": 885,
+      "sha256": "24823843d5a0c000711022882fa79686eb58c2a5682a6305269db44dedcb2a7c"
+    },
+    {
+      "path": "apps/web/src/workshop/package-file.ts",
+      "bytes": 551,
+      "sha256": "c4fa6c0a7bac0cbf513872561194ae7a31de018e994993357b714be621971966"
+    },
+    {
+      "path": "apps/web/src/workshop/package-import.tsx",
+      "bytes": 5463,
+      "sha256": "27ac9681f25ca35230fcb940a21f1f1c83d76b46674933ef4938c295c8ce9075"
+    },
+    {
+      "path": "apps/web/src/workshop/scenario-tab.tsx",
+      "bytes": 16017,
+      "sha256": "82a8bf76cb062adaed8ccc7d88981fc52cd9001a4a49061eb349faae8d5a2790"
+    },
+    {
+      "path": "campaigns/AGENTS.md",
+      "bytes": 503,
+      "sha256": "f6ff508a7c056d7b4694beee7ebf7b0943a7662c68e960b77204fa9f546ca750"
+    },
+    {
+      "path": "campaigns/lighthouse/AGENTS.md",
+      "bytes": 801,
+      "sha256": "5e9ef4a1a317c569de65c4641f2b5ba0c749c8b731e020a79da95186e0830766"
+    },
+    {
+      "path": "campaigns/lighthouse/README.md",
+      "bytes": 11019,
+      "sha256": "005fe96470cde2e1f12705c8c41faf737a3745c384b1693654773b2e54bda70b"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/AGENTS.md",
+      "bytes": 587,
+      "sha256": "85513de8822b9356927e31c3abd81724b763b2e1f761f536a5cf8b5772a8a768"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/art-direction.md",
+      "bytes": 3330,
+      "sha256": "3dc71b0c4f6c25888ab446562f20139f1b71953ffc03f4098b36a6f5bc80801c"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/asya.png",
+      "bytes": 3113686,
+      "sha256": "1833252be8fb30200d6052d9076156d76a50e0a9e664f0900c5166ac2151a7b3"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/automaton.png",
+      "bytes": 2187204,
+      "sha256": "02ccacb9650790360d1be5154eabc5d0b66ea59ff281bf2f302cead3c751ea85"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/bells.png",
+      "bytes": 3693944,
+      "sha256": "87c3818d004fbc5f04a63253c5084709e9af46c53dd2c87611ea5486816818c2"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/bridge.png",
+      "bytes": 2990271,
+      "sha256": "dd2db557ab1d1643befbc82b0e320216ac57a1e00069664f69e674adc71e1c48"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/cover.png",
+      "bytes": 3127664,
+      "sha256": "5abccbbbea1f1dfb35b9cfb92ce2218d73ffc0c9838c4f0c696027c1dcd6dbc5"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/dawn.png",
+      "bytes": 3571191,
+      "sha256": "172263d2756000fe485712e708a5bd1f48c3cba49bcfb9a768bc67938ba28584"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/finn.png",
+      "bytes": 2963030,
+      "sha256": "8b783da3dc6453c170e644756a232c70e53bd08a591b3ee19e7fd2257728ee11"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/forge.png",
+      "bytes": 3604380,
+      "sha256": "2a00e95246f0643a1a30502eff1fc8b192e541dc82c4d87d30a3306ee5abc326"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/harbor.png",
+      "bytes": 3946466,
+      "sha256": "d30c90d6cca36da44309d6ddde4ad4cfe67dc4d4687df2ae52c526b346215112"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/ilyr.png",
+      "bytes": 2962238,
+      "sha256": "03940c6b6c8dd59374ee209c9b2ae8f9d6aeb95947d05ec9cdc217a50f97a113"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/kanto.png",
+      "bytes": 2979860,
+      "sha256": "936de72d524a6300d7750469f06c5dabb453c3f94e02dfb781916c79d84ca074"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/library.png",
+      "bytes": 3868051,
+      "sha256": "9fb7d2c3f6cbbf0bec7585fee50e83208288967df3e50255b88bea2227ca1508"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/lighthouse-v2.png",
+      "bytes": 2969977,
+      "sha256": "ff718b72543a2be13953c824c0bbbefe55dbc421aec0dbbc44179fbfb7d33bb1"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/lighthouse.png",
+      "bytes": 3257298,
+      "sha256": "444da7132a21bac0523637a656818dfabffd55511697c94a0a342141aa36c859"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/manifest.json",
+      "bytes": 44469,
+      "sha256": "d56c84bd1382e260de0c845011d757299fb47e5bd683322bfd8772c1caa3f355"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/market.png",
+      "bytes": 3714387,
+      "sha256": "13279cad6c84fc909e31c3a340c0bc1c15873f2b3afa845e44a4ee6f099c4514"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/mika.png",
+      "bytes": 3155893,
+      "sha256": "a0fe7ff5578266ecdd3b05edeee0d55d4be58e6e8ea754c427c08af1417a8dd6"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/mirror.png",
+      "bytes": 2759064,
+      "sha256": "524434014389bf744a9e9c6d91f455c80fec358a343e260d4bc1d80bb1250c39"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/notebook.png",
+      "bytes": 2945527,
+      "sha256": "90cb36110dd22997b3ed97824dc279b5c569a0d42456f3708c80f568d6e65ead"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/observatory.png",
+      "bytes": 3260934,
+      "sha256": "e94d5dbbd82089bc8b5f3ce66b97cb958b33038c0972b37d3102f63355580ee5"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/orchard.png",
+      "bytes": 4023021,
+      "sha256": "8dd15198d84795a60142cf4f7a8b769c03c24fe429f3d8b4e291af6df371292e"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/pom.png",
+      "bytes": 3236238,
+      "sha256": "bf3238c7af102bc6e18146ded9bbff7aabacceecc7725be71f4c0f69cfb29b48"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/prompts.json",
+      "bytes": 21806,
+      "sha256": "233a3ea6defaa50d84ba2e7067a2e154f895c1e9988da1474d5a11fe5bf8fd8d"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/runa.png",
+      "bytes": 3192612,
+      "sha256": "00f523d989282a0031d3c91195d28dc6f47ead0c64054cc88d004e0c1eea1838"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/runtime/asya.webp",
+      "bytes": 472200,
+      "sha256": "7c99ef272d587fb0d3303e1ae6d4be50c2981dce8df6f0a00ff42b8378bc8365"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/runtime/automaton.webp",
+      "bytes": 464676,
+      "sha256": "b634eb67c9343109fdfba800bfdac310149fb772d66869d922b7901c99f68e60"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/runtime/bells.webp",
+      "bytes": 701812,
+      "sha256": "7a7218da4429f6904d42427b6c705f84478b076f5837b1425bf7ca417fdf123e"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/runtime/bridge.webp",
+      "bytes": 406482,
+      "sha256": "06a297d5896885df8a35d9304b0b72213eaac248aba543317f3bdf9b15f40f4f"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/runtime/cover.webp",
+      "bytes": 497078,
+      "sha256": "b44a1677babc2826ab3599af036af90c813d4b0f2257a5df9e6fdf8801d15cf2"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/runtime/dawn.webp",
+      "bytes": 657698,
+      "sha256": "cc5ba9205c0f309401a45738c2d9d2be9031c2efccc92aa27345dd7eb116b87c"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/runtime/finn.webp",
+      "bytes": 453748,
+      "sha256": "92cec81c364ac2e919cd613b2f3c8ba4b7e29ebe7d29323ec8bd4c99aa20839a"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/runtime/forge.webp",
+      "bytes": 676936,
+      "sha256": "a87ac6c40f915d42ecc6c4674bd7ede43fdcd8be63b7f13c263452cc4fdfccc9"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/runtime/harbor.webp",
+      "bytes": 766486,
+      "sha256": "731319672f1d1665d027bdcad30a12cd8c0d278869bcca98f79737824114a126"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/runtime/ilyr.webp",
+      "bytes": 427920,
+      "sha256": "87bf167e39d910042e5c1ac9ea9bb6cdf06fbd30f8193278eee94c5dbf780947"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/runtime/kanto.webp",
+      "bytes": 426042,
+      "sha256": "8b6fb594cc2078b1344378a94c18d00e5e41a0e1e77babe9f610f8c34a9c92ed"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/runtime/library.webp",
+      "bytes": 733166,
+      "sha256": "eb28f2ff12277da27456b114044cccfb5dbce26ce992b6e3ce9f970d68bcead5"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/runtime/lighthouse.webp",
+      "bytes": 463868,
+      "sha256": "fe115f0ca3800ff289ca2dff7d2902625feba2853793490a28686fadfc9e8b6d"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/runtime/market.webp",
+      "bytes": 687960,
+      "sha256": "b8f4519e12ade6b4312c27595978a95573367ad6eabe0d5015dff3aad461d66d"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/runtime/mika.webp",
+      "bytes": 484918,
+      "sha256": "69915f4dd1ec59381f7e59827cc320ca22c69de5074af81e2e8d996cc495fb9f"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/runtime/mirror.webp",
+      "bytes": 325462,
+      "sha256": "a9d10d76a6f7f41c6caf0ee9926ad81b233f7799b23846bef1982c6969a91484"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/runtime/notebook.webp",
+      "bytes": 373472,
+      "sha256": "8f9ff96c29cac4c9ebdc7517ca6c6f1a6f07e0eb85f44cbd7ac8002ea6b3b530"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/runtime/observatory.webp",
+      "bytes": 561700,
+      "sha256": "f122f7ec3b3764e85bea21b754596ba1ba233c96936d019be7a21689475ad7cb"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/runtime/orchard.webp",
+      "bytes": 792528,
+      "sha256": "b0bbedd12ab8c25eb0f0f9c2fc9e94055ffc6dac9e2d4b2d0c1f2f832d04f9d5"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/runtime/pom.webp",
+      "bytes": 532904,
+      "sha256": "750f47fb41bcbe6250c825fc9b8ea806898bd3d2a041db6d6615535df60b6710"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/runtime/runa.webp",
+      "bytes": 498444,
+      "sha256": "9fd1fb14b8eccf2807f2e87ce995decd691d4838e5fb256199a8d6a71017b0aa"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/runtime/saffra.webp",
+      "bytes": 420166,
+      "sha256": "e4fa54a1c4b76e2d7992d702089f10bc168cd73d150b3ff9d25d0e6ad16694d9"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/runtime/seed.webp",
+      "bytes": 339282,
+      "sha256": "8381ad89eb74f36e257a184f5e5c5e9ec352f3802a4eeb402ee8a4aa1cc840b7"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/runtime/severin.webp",
+      "bytes": 467894,
+      "sha256": "7be3691584774a867f42daefe198065cde025bb93acb85ecef6453e51912d0ef"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/runtime/ship.webp",
+      "bytes": 664270,
+      "sha256": "cd02ee28aa62332ecb0273afb9aca47b03fd65563aac8c1f0087097aed08a27e"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/runtime/spool.webp",
+      "bytes": 351722,
+      "sha256": "523cc130b4f8352a3d91ac1fa684b02c6401d8236e46dbc7556ff41391c391a2"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/runtime/tess.webp",
+      "bytes": 432480,
+      "sha256": "a29e323c0299b3a17ad42811e2243a65764e326b2195dead293082ef8bfa9bc4"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/runtime/tuning.webp",
+      "bytes": 400238,
+      "sha256": "d8a7dc7ace89905b813922fb109d3413d4a63d164d587dfe2159c6b31d3da119"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/runtime/vey.webp",
+      "bytes": 437840,
+      "sha256": "bf80115f9962c7529b441aec994fcbc305c3ec9c72186135d42ac85f2a2745f2"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/runtime/winter.webp",
+      "bytes": 753840,
+      "sha256": "baf88ee4b4dbfb62228cd1cfee43c657c0a9efa7ff2b87c14ec722572f051be8"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/saffra.png",
+      "bytes": 2998095,
+      "sha256": "46387c5fd6c1ee5f705cde42d12cc5a2f19742791bc8a85316b6deabb613a694"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/seed.png",
+      "bytes": 2763349,
+      "sha256": "3fa9bec96a92a3f3d463c593ec9eab377729e9ebb6647efd05f9749587c6880f"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/severin.png",
+      "bytes": 3169150,
+      "sha256": "2eec6c88f16bf270fd062fd1a9d182dea89e9f2707f67a46a0a442a0e3d69bfc"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/ship.png",
+      "bytes": 3611178,
+      "sha256": "b2f4f9e19b4b21180e2bd3f8273eb1c05934a4742e8f97e16343b54b6be07269"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/spool.png",
+      "bytes": 1663939,
+      "sha256": "bb8253509f189890dcf1f738617e81e3c49b65177b638f4daddc5b06624d3ea1"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/tess.png",
+      "bytes": 2960595,
+      "sha256": "f066f8cc0a91aa3db2caffd635f39fe6d9f25b0274d9adccc19d17d67a887028"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/tuning.png",
+      "bytes": 2958272,
+      "sha256": "03e6503ef07e905f0351102d259c2d050b0fae7b7a8ac663cdf77b5a1cf24eea"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/vey.png",
+      "bytes": 2950499,
+      "sha256": "7e1ef0e4ca606e2216deeb8695b2da1b7051bc967b3cc3fc4c219c7670a8fbe3"
+    },
+    {
+      "path": "campaigns/lighthouse/assets/winter.png",
+      "bytes": 3960153,
+      "sha256": "7449451de791db6b4bcc2d7f59bce2c4f472388032a4ac03b276a2f7844a2453"
+    },
+    {
+      "path": "campaigns/lighthouse/book-responsive.css",
+      "bytes": 2102,
+      "sha256": "9372fdae4d1aeac2905e4d5f0822687a621f3371fe4d2ae5f07b357385e519af"
+    },
+    {
+      "path": "campaigns/lighthouse/book.css",
+      "bytes": 6352,
+      "sha256": "ee455f2cf679e000ecfbd0295ead51b97cb3e81d1e1cc8a34a415e21bbe26e55"
+    },
+    {
+      "path": "campaigns/lighthouse/guide.html",
+      "bytes": 36933,
+      "sha256": "48a7416a74dccb3d565898881e2360f38f57319e30f89da76cca8f8597739a35"
+    },
+    {
+      "path": "campaigns/lighthouse/handouts.html",
+      "bytes": 9469,
+      "sha256": "25b186bbd609c1f464702eab5097d5f728823680422e77a9e1f0d8fe647c6592"
+    },
+    {
+      "path": "campaigns/lighthouse/handouts/handout-bells.html",
+      "bytes": 1367,
+      "sha256": "85f1f02a3a23d28b1e8ac5d5779fc7b90793ffea0b22d90297a47293150691d6"
+    },
+    {
+      "path": "campaigns/lighthouse/handouts/handout-courier.html",
+      "bytes": 1346,
+      "sha256": "e4f173b68b0471c473beea443843021ad88e729c6bf725b53ad6cbe06dc194e7"
+    },
+    {
+      "path": "campaigns/lighthouse/handouts/handout-epilogue.html",
+      "bytes": 1242,
+      "sha256": "e7e642b00485621ca7d43ba233e069c1f6a984eb7d63fb4696d3cb37cbbc900e"
+    },
+    {
+      "path": "campaigns/lighthouse/handouts/handout-four-rings.html",
+      "bytes": 1489,
+      "sha256": "110fe97042ba0a9f4a5906ce33923d6e0b5e0ccb9fae14fe05a9292f765e3742"
+    },
+    {
+      "path": "campaigns/lighthouse/handouts/handout-invitation.html",
+      "bytes": 1311,
+      "sha256": "755fb32c0679f22087f9d05faa4ee78d151b5390f63295c6679d4471af98a7f5"
+    },
+    {
+      "path": "campaigns/lighthouse/handouts/handout-plans.html",
+      "bytes": 1608,
+      "sha256": "9400eb91c28345a4bdeb1c30a36543a6189892dec904eb7ff9843c01c054019e"
+    },
+    {
+      "path": "campaigns/lighthouse/handouts/handout-postcard.html",
+      "bytes": 1410,
+      "sha256": "4dab440c232beb36c3725f2bd359f09ea0afdadcad15d22f1f4b451a3cf6da3f"
+    },
+    {
+      "path": "campaigns/lighthouse/handouts/handout-protocol.html",
+      "bytes": 1347,
+      "sha256": "4bfa6680464a8c79e6cccc100e7796e5eaaceeb893fafeb13dcf7f2c9ab0b87d"
+    },
+    {
+      "path": "campaigns/lighthouse/handouts/handout-register.html",
+      "bytes": 1373,
+      "sha256": "b6a3e00678d42684d6451d3f4592709a73929920a832bd3cecc17e8fe6b2db95"
+    },
+    {
+      "path": "campaigns/lighthouse/handouts/handout-route.html",
+      "bytes": 1337,
+      "sha256": "46883943262fbf97f0f32b4e6a2c81eb49a1c408a45f1e4eb4e49f840e4f21c7"
+    },
+    {
+      "path": "campaigns/lighthouse/handouts/handout-runa-confession.html",
+      "bytes": 1465,
+      "sha256": "73fe4df9089c5a537d62a554acb8995f3be529f7c607261279c6e9ffae34e206"
+    },
+    {
+      "path": "campaigns/lighthouse/handouts/handout-runa-letter.html",
+      "bytes": 1425,
+      "sha256": "a29cb54a8863b9c888d9d4411e594a5f2cf9e984802d8b1666adf06cbcfc5bfb"
+    },
+    {
+      "path": "campaigns/lighthouse/handouts/handout-stars.html",
+      "bytes": 1318,
+      "sha256": "e3b19fbcdd4878895897980cb268f3e837404a07af9a0dcf3bd5ef0a99bcc8b5"
+    },
+    {
+      "path": "campaigns/lighthouse/handouts/handout-ticket.html",
+      "bytes": 1364,
+      "sha256": "7fe33f88a47e618068abe3b39a9fa9f3a3af06cd9966c5a1a58d496a60e6a587"
+    },
+    {
+      "path": "campaigns/lighthouse/handouts/handout-trade.html",
+      "bytes": 1403,
+      "sha256": "6e970518013d79d3426db10ce0cfa515dfe8866565383052794e888849f28dbe"
+    },
+    {
+      "path": "campaigns/lighthouse/handouts/handout-water.html",
+      "bytes": 1343,
+      "sha256": "b99245fc2a31cd905f567f2928ef6d653f551d6c307ef142efdafc3420faf61d"
+    },
+    {
+      "path": "campaigns/lighthouse/handouts/handout-witness.html",
+      "bytes": 1365,
+      "sha256": "f3105b05c0dfa96b15a2e73f765358cfe5e4012cfa3ff126323ac7066263d962"
+    },
+    {
+      "path": "campaigns/lighthouse/handouts/item-bridge.html",
+      "bytes": 1639,
+      "sha256": "893111cb72a35c70fa55c606014337ef41a7103fcf9f793536c32529205853ce"
+    },
+    {
+      "path": "campaigns/lighthouse/handouts/item-mirror.html",
+      "bytes": 1531,
+      "sha256": "fbbf73c57141b36b968a97b9743693811791b2ae86133186f234fa89858fb736"
+    },
+    {
+      "path": "campaigns/lighthouse/handouts/item-notebook.html",
+      "bytes": 1487,
+      "sha256": "ef13184111420a289d7b9ae0c5256e3ff776ef1caab8dc74689ecba18c825bed"
+    },
+    {
+      "path": "campaigns/lighthouse/handouts/item-seed.html",
+      "bytes": 1584,
+      "sha256": "336f86c10a63b4cdd7e2fe4fc72fae07e5db822b1c20644a7554aec0edd287bb"
+    },
+    {
+      "path": "campaigns/lighthouse/handouts/item-tuning.html",
+      "bytes": 1507,
+      "sha256": "b4cb269b7924dc7600a29760a81f98b4ee266c0f345178030d5e15e18ef37421"
+    },
+    {
+      "path": "campaigns/lighthouse/index.html",
+      "bytes": 4044,
+      "sha256": "6cc2c221b069781181050efab967a077125e9bf2e7163c0a584ba3ca4a50f6a2"
+    },
+    {
+      "path": "campaigns/lighthouse/maps.html",
+      "bytes": 8109,
+      "sha256": "f97c74ed64ac7ad2da514bda7fc6f8ce5da095a5467fa87f0140c85493f3139f"
+    },
+    {
+      "path": "campaigns/lighthouse/maps/archipelago.svg",
+      "bytes": 4565,
+      "sha256": "1168589c370ad491c6108ab7c141b275dac43032943c61d657531d632fb40cfe"
+    },
+    {
+      "path": "campaigns/lighthouse/maps/dock-keepers.svg",
+      "bytes": 9545,
+      "sha256": "3a40335a22985b260c2dca7de63b46f1fd80098de7e96c9cf14b29f0c30eda4f"
+    },
+    {
+      "path": "campaigns/lighthouse/maps/last-guardian.svg",
+      "bytes": 9537,
+      "sha256": "9df7f4a9bcbcb26d6dd49a36993086d98a870ce1c45669f1f67674dc87009609"
+    },
+    {
+      "path": "campaigns/lighthouse/maps/workshop-repairer.svg",
+      "bytes": 9559,
+      "sha256": "a80580e37408729e3d7fbd040b4050794b0b42f0fda4dcffd33e537e2bff6743"
+    },
+    {
+      "path": "campaigns/lighthouse/package.json",
+      "bytes": 137874,
+      "sha256": "484ed78b1eebfc72e889a0a1f682718ddefbc9a2aa9b23324784b2c96e246690"
+    },
+    {
+      "path": "campaigns/lighthouse/players.html",
+      "bytes": 8560,
+      "sha256": "ae8f8f3b2543aa70fb15b65debfa86692e9e6171ee3cf9e749b1bdcb2767d9da"
+    },
+    {
+      "path": "campaigns/lighthouse/sessions/01.html",
+      "bytes": 10919,
+      "sha256": "c360128f248d3a3eaf2cb3ad9ed4509dc282da02ca53be73773b2f78360b98cd"
+    },
+    {
+      "path": "campaigns/lighthouse/sessions/02.html",
+      "bytes": 10281,
+      "sha256": "646bc93fb885bb5da9fa0de70b9371ca034bf79f80b0a27543502ca928682544"
+    },
+    {
+      "path": "campaigns/lighthouse/sessions/03.html",
+      "bytes": 10151,
+      "sha256": "b37ca3363b72e163030f7efc12fcdb9553c411171c8e5d34db12d2112874e47b"
+    },
+    {
+      "path": "campaigns/lighthouse/sessions/04.html",
+      "bytes": 10337,
+      "sha256": "cb86621eeecba72d293af67ab70743d0f694963a481ad0160dcba1b41b681ae9"
+    },
+    {
+      "path": "campaigns/lighthouse/sessions/05.html",
+      "bytes": 10063,
+      "sha256": "5116297d774e89ef975e181896cf0cf6249e82e435e865410e6cddd111dec830"
+    },
+    {
+      "path": "campaigns/lighthouse/sessions/06.html",
+      "bytes": 10630,
+      "sha256": "11b9601b07a15c8e8391c1cccf1f01a8d9ea99aea2c80ce9db3a25f1c03a7058"
+    },
+    {
+      "path": "campaigns/lighthouse/sessions/07.html",
+      "bytes": 10140,
+      "sha256": "e65d0f94f03e44bb09faffd7e8c2d08042ac3822afe431bb181826f3078190e4"
+    },
+    {
+      "path": "campaigns/lighthouse/sessions/08.html",
+      "bytes": 10255,
+      "sha256": "ef7c3cbaa62ff375269fe4683a5d5d7453e00206d52985344201dd92a66a46bb"
+    },
+    {
+      "path": "campaigns/lighthouse/sessions/09.html",
+      "bytes": 10171,
+      "sha256": "bdb6b9655470caa3b9926d89bf06e3bb866c327c03d7529da0782389557dc676"
+    },
+    {
+      "path": "campaigns/lighthouse/sessions/10.html",
+      "bytes": 10354,
+      "sha256": "8325bd2c7ff658d875aa6ef4e1095716849e255547c7f254eec2de997e1153d9"
+    },
+    {
+      "path": "campaigns/lighthouse/sessions/11.html",
+      "bytes": 13012,
+      "sha256": "3059e42e08bbb5fa28d97a1d124c37660cb93a7b214e7a5b171baa1153a36179"
+    },
+    {
+      "path": "campaigns/lighthouse/sessions/12.html",
+      "bytes": 10535,
+      "sha256": "2bd0ab0bde921f9d2ae7a84dac6e3a948c1a270b3872709263ae0a815c52093b"
+    },
+    {
+      "path": "campaigns/lighthouse/source/act-1.json",
+      "bytes": 23454,
+      "sha256": "366d747dc3aa9951a4a13caf47da46bdc50fe4be69d1925350f5b8bc761cc9bb"
+    },
+    {
+      "path": "campaigns/lighthouse/source/act-2.json",
+      "bytes": 23330,
+      "sha256": "49074f3b58e8d47102f4999984edb6bf0862c299e1ac04fda8567574ecfd8699"
+    },
+    {
+      "path": "campaigns/lighthouse/source/act-3.json",
+      "bytes": 22806,
+      "sha256": "592d7c349cc4e1abf65993dd35157ae510fae5d54e7caf43169293b5c3cef7aa"
+    },
+    {
+      "path": "campaigns/lighthouse/source/act-4.json",
+      "bytes": 26108,
+      "sha256": "7ae8fef74e038c50af26c55bbdc7b4b81b60e9002c4c3656de936dbff455a767"
+    },
+    {
+      "path": "campaigns/lighthouse/source/cast.json",
+      "bytes": 24794,
+      "sha256": "f175a97379ff7f5f3b16f9e3a6f2527547d62eb7ac00f7ca31d3dc8f034de582"
+    },
+    {
+      "path": "campaigns/lighthouse/source/clues.json",
+      "bytes": 10940,
+      "sha256": "9e46ad4ecdccb09969a3f0128e0c887a452758e24810161bcb6cff564e32741a"
+    },
+    {
+      "path": "campaigns/lighthouse/source/handouts.json",
+      "bytes": 9361,
+      "sha256": "9beab5cb85ffe83431c31ae1db28de1d831974d3dabb5c2033a41086a99f92c8"
+    },
+    {
+      "path": "campaigns/lighthouse/source/items.json",
+      "bytes": 3782,
+      "sha256": "599e24c082653f466f8f3aab7a736d4c1b0537b283dd9dca6d26d8171f3e27c7"
+    },
+    {
+      "path": "campaigns/lighthouse/source/world.json",
+      "bytes": 12094,
+      "sha256": "6be88605c8132c9c0c7af0e7d18b91636e95ee43bb1d84c9e7190d1a8c450770"
+    },
+    {
+      "path": "campaigns/lighthouse/tokens.html",
+      "bytes": 4626,
+      "sha256": "4f2ad2cba8ee7a307c6c65b003f5714bb05cad3f03306d67951c1a62e1127802"
+    },
+    {
+      "path": "campaigns/lighthouse/variants/four-players.json",
+      "bytes": 141680,
+      "sha256": "3beb7d6174cc1b6bbdaae12580ee0a8aa47e6fef744f3a67a9901bd5900d4901"
+    },
+    {
+      "path": "campaigns/lighthouse/variants/without-asya.json",
+      "bytes": 137560,
+      "sha256": "ea2889e15e430d2086819125b6ad6982adb6262c37585919eec0ef8f9daf3f1c"
+    },
+    {
+      "path": "campaigns/lighthouse/variants/without-finn.json",
+      "bytes": 137441,
+      "sha256": "ca392e60f042136c027901f646d1d6b4732ee8bc9d5d46d45d1a4b208894b431"
+    },
+    {
+      "path": "campaigns/lighthouse/variants/without-tess.json",
+      "bytes": 137562,
+      "sha256": "d1e9ea1a9f78ca26f788b426bf3d68f9aea0c4a3580e90f6752f6e31e7cac83e"
+    },
+    {
+      "path": "docs/AI_CONTEXT_MAP.md",
+      "bytes": 43423,
+      "sha256": "ef605a8ca5f86071161dbc575b5345f57ceca7536abbddf8fa4e9132bab12160"
+    },
+    {
+      "path": "docs/PROJECT_WORKFLOW.md",
+      "bytes": 30015,
+      "sha256": "17caa574cfad221a0ec6e845299eadfbf001e21dc921d55849ebd8fc13b9758a"
+    },
+    {
+      "path": "handoffs/FAMILY_CAMPAIGN_2026-11-08.md",
+      "bytes": 10671,
+      "sha256": "3a367a7728f39f731dbcc5e866e1842313b61de89f58c0dfbd5e4eded7df01e2"
+    },
+    {
+      "path": "package.json",
+      "bytes": 2768,
+      "sha256": "778cc776768f942b0a0277fe69f860835665f1e0f1043b90be3e699dcb52cbbd"
+    },
+    {
+      "path": "reports/FAMILY_CAMPAIGN_2026-11-08.md",
+      "bytes": 10162,
+      "sha256": "05863c39351cd1c9574e602f25f9e246c9393b102243507ed366070e6122876b"
+    },
+    {
+      "path": "reports/evidence/family-campaign-2026-11-08/AGENTS.md",
+      "bytes": 440,
+      "sha256": "d9200a58703319159f56151f6ef783da5d969d618df696ba755677e5010b49b5"
+    },
+    {
+      "path": "reports/evidence/family-campaign-2026-11-08/book-layout.json",
+      "bytes": 3727,
+      "sha256": "da63d91a259adcf4412f29c25a6a6e2c42056f59a2e46e07fa880b7e791cd501"
+    },
+    {
+      "path": "reports/evidence/family-campaign-2026-11-08/cover-desktop.png",
+      "bytes": 2024862,
+      "sha256": "6a063bd214f4acfbb9eba50963b23760f87c0d96c512bc0bf3f86387f659a77f"
+    },
+    {
+      "path": "reports/evidence/family-campaign-2026-11-08/cover-phone.png",
+      "bytes": 762424,
+      "sha256": "db512c80dad8dfdb0652eae37ca1f82886e518262d32558344de69797f63abd9"
+    },
+    {
+      "path": "reports/evidence/family-campaign-2026-11-08/heroes.png",
+      "bytes": 1548417,
+      "sha256": "2f2739c32286aeb2249603970372debe194e9c3e130c25490e5e94a7e02dfce7"
+    },
+    {
+      "path": "reports/evidence/family-campaign-2026-11-08/import-desktop.png",
+      "bytes": 785569,
+      "sha256": "f11c692ff31ea92e30f44c7577aa31e474d6193f7030578ec54e7ee28b442920"
+    },
+    {
+      "path": "reports/evidence/family-campaign-2026-11-08/import-layout.json",
+      "bytes": 832,
+      "sha256": "5c7a93a6187d21bbc2775f915077907f31467c2a2402c623a5717f442671f776"
+    },
+    {
+      "path": "reports/evidence/family-campaign-2026-11-08/import-phone.png",
+      "bytes": 247069,
+      "sha256": "2eda88568be494ba0f1870ed0fe7c18fbd0500c6f6e659fe02bd7a6e164fec3a"
+    },
+    {
+      "path": "reports/evidence/family-campaign-2026-11-08/initial-validation.json",
+      "bytes": 1755,
+      "sha256": "1eeadfaa46ba0f6b931b9423153088ee8c65569692edd1c66d11400d466eb079"
+    },
+    {
+      "path": "reports/evidence/family-campaign-2026-11-08/item-card.png",
+      "bytes": 285666,
+      "sha256": "d5fe777bc042d5513a6d0a7d68470e66a8206d9849eca939556f77b0892e5e7c"
+    },
+    {
+      "path": "reports/evidence/family-campaign-2026-11-08/verification.json",
+      "bytes": 2334,
+      "sha256": "a8f964ef00635d6c99773cc51c695fa752732194cae7eb4a845729d32d9f0b33"
+    },
+    {
+      "path": "scripts/lighthouse/AGENTS.md",
+      "bytes": 655,
+      "sha256": "71dc13bf7c1eaa2e76e7d6eb1061d3a4a57d95b901a43128b5919b68283c73cb"
+    },
+    {
+      "path": "scripts/lighthouse/art.test.ts",
+      "bytes": 2449,
+      "sha256": "0ab5ae64d1c3bd7e166d6528c657170a32c3e23d974905368fc712d879df34d9"
+    },
+    {
+      "path": "scripts/lighthouse/assets.ts",
+      "bytes": 3590,
+      "sha256": "cffe8c5c7acbc00fb1057f4994eec7b4b64efb764c79f695fb05ce8c659ca12d"
+    },
+    {
+      "path": "scripts/lighthouse/build.ts",
+      "bytes": 1432,
+      "sha256": "d4b529f4720b956b4e667247900dc221318f09dbc87dabfb441ea9e85106af82"
+    },
+    {
+      "path": "scripts/lighthouse/curated-art.ts",
+      "bytes": 2719,
+      "sha256": "d0aba10cb8670e80c6b7656846e2573cdcda4c3f08ee30c9439a0f9de8ab0dc8"
+    },
+    {
+      "path": "scripts/lighthouse/data.ts",
+      "bytes": 1128,
+      "sha256": "0a758bd03b450235083cf8e0752f731be1329a3f93c31f3be446f23fff84e842"
+    },
+    {
+      "path": "scripts/lighthouse/encounters.ts",
+      "bytes": 3298,
+      "sha256": "770f557b663d7a90e79e03e1cb3b41a45efc842ee61d805a35ee20be4aa9068a"
+    },
+    {
+      "path": "scripts/lighthouse/import-art.ts",
+      "bytes": 2895,
+      "sha256": "afaadf80dd0671f8f43f16a6e8170015928d23e10fd69cb5429a28cff5879ebc"
+    },
+    {
+      "path": "scripts/lighthouse/integrity.test.ts",
+      "bytes": 2144,
+      "sha256": "35f5b586e6a71bc1c938d5429650efc04bedf76cfa6b3b0850418a53844662cb"
+    },
+    {
+      "path": "scripts/lighthouse/package.test.ts",
+      "bytes": 3402,
+      "sha256": "7f7fee73451e30ed62590082316bc3c94439fd2760d7dec15e5f504fc74ee1e3"
+    },
+    {
+      "path": "scripts/lighthouse/package.ts",
+      "bytes": 12831,
+      "sha256": "ab2bd60edab731b97d0482c132e94f278cc4a7d0fd6a003ab482e18a2870bda4"
+    },
+    {
+      "path": "scripts/lighthouse/play-fixture.ts",
+      "bytes": 5283,
+      "sha256": "11c4266e8cd3b2dbec6e3bf59f45cee4f81c7ee683e6287c51c28df0f0fef72d"
+    },
+    {
+      "path": "scripts/lighthouse/play.test.ts",
+      "bytes": 3329,
+      "sha256": "65e225a21219f6f2db432c4d43059bfe98ca0c87fad9c106c4d2bce080a5546a"
+    },
+    {
+      "path": "scripts/lighthouse/render-chapters.ts",
+      "bytes": 3484,
+      "sha256": "24a4ca1b6a61d5a474c95d2a0919b6efa77a0ade8f85bb263f0bafa1cce6d0ab"
+    },
+    {
+      "path": "scripts/lighthouse/render-common.ts",
+      "bytes": 2568,
+      "sha256": "4b05d63f3f1845d365772030747d9d0e29dedb9b4b3be688d10193278220c3ef"
+    },
+    {
+      "path": "scripts/lighthouse/render-maps.ts",
+      "bytes": 8363,
+      "sha256": "9ce71ff5c1e7b354f58e7cc7b916581f5c6d61463437194a045d32423ee923c8"
+    },
+    {
+      "path": "scripts/lighthouse/render-pages.ts",
+      "bytes": 14727,
+      "sha256": "62e9c4259143515352f69f19bf190e760e6b1e8fe5f8f3724f2bfc32f34668a4"
+    },
+    {
+      "path": "scripts/lighthouse/render.ts",
+      "bytes": 342,
+      "sha256": "4b9856e03127bd504037349d454b4df51d387033f009d217c6a647e70245f066"
+    },
+    {
+      "path": "scripts/lighthouse/sheets.ts",
+      "bytes": 2892,
+      "sha256": "13d56d2621dcdca62efb94e43915f483fbd97d37dda82e381943c9b5bb97ec57"
+    },
+    {
+      "path": "scripts/lighthouse/validate.ts",
+      "bytes": 1285,
+      "sha256": "954e3c16bdc2ecedf085d638d6f4f5204dfc421733b0bee125c49f4ff80a61ef"
+    },
+    {
+      "path": "tests/e2e/AGENTS.md",
+      "bytes": 19833,
+      "sha256": "eae999a16d0d7e48f0c86163876ffacec8038058a88424d94eb3b944b3ba69c3"
+    },
+    {
+      "path": "tests/e2e/dice.spec.ts",
+      "bytes": 8489,
+      "sha256": "08b6e02b6669469ed615f89eaed57cab0d727348ca7b5a409d701ba165c864e7"
+    },
+    {
+      "path": "tests/e2e/resize-feedback.spec.ts",
+      "bytes": 1591,
+      "sha256": "227706a48e101c3cf9a478346fde55f59c6480e7a3c07d4a36f6a358be8fbb65"
+    },
+    {
+      "path": "tests/e2e/workshop-package-import.spec.ts",
+      "bytes": 4603,
+      "sha256": "ac48b34d68c6820f6bb76a34ab0e2e2e497a7f220db8b09146f59c44e6fb6874"
+    },
+    {
+      "path": "work-orders/FAMILY_CAMPAIGN_2026-11-08.md",
+      "bytes": 2738,
+      "sha256": "2eb691b1d91dc4f021831a94bdd4c2535b87f0975d24d5a6432a2e5556864d2a"
+    }
+  ]
+}

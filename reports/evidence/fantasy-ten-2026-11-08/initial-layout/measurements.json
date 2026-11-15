@@ -1,0 +1,82 @@
+[
+  {
+    "file": "index.html",
+    "width": 1440,
+    "findings": []
+  },
+  {
+    "file": "players.html",
+    "width": 1440,
+    "findings": []
+  },
+  {
+    "file": "session-1.html",
+    "width": 1440,
+    "findings": []
+  },
+  {
+    "file": "maps.html",
+    "width": 1440,
+    "findings": []
+  },
+  {
+    "file": "index.html",
+    "width": 768,
+    "findings": []
+  },
+  {
+    "file": "players.html",
+    "width": 768,
+    "findings": []
+  },
+  {
+    "file": "session-1.html",
+    "width": 768,
+    "findings": []
+  },
+  {
+    "file": "maps.html",
+    "width": 768,
+    "findings": []
+  },
+  {
+    "file": "index.html",
+    "width": 390,
+    "findings": []
+  },
+  {
+    "file": "players.html",
+    "width": 390,
+    "findings": []
+  },
+  {
+    "file": "session-1.html",
+    "width": 390,
+    "findings": []
+  },
+  {
+    "file": "maps.html",
+    "width": 390,
+    "findings": []
+  },
+  {
+    "file": "index.html",
+    "width": 320,
+    "findings": []
+  },
+  {
+    "file": "players.html",
+    "width": 320,
+    "findings": []
+  },
+  {
+    "file": "session-1.html",
+    "width": 320,
+    "findings": []
+  },
+  {
+    "file": "maps.html",
+    "width": 320,
+    "findings": []
+  }
+]

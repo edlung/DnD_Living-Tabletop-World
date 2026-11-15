@@ -1,0 +1,95 @@
+{
+  "modelRequested": "gpt-6-astra",
+  "effortRequested": "max",
+  "providerResponseAttestation": "NOT_AVAILABLE; agent launch configuration is recorded separately",
+  "humanPlaytest": "NOT_RUN",
+  "validation": "isolated canonical compiler; no database or real activation",
+  "counts": {
+    "sessions": 8,
+    "scenes": 24,
+    "heroes": 7,
+    "npcs": 10,
+    "locations": 11,
+    "clues": 16,
+    "handouts": 8,
+    "encounters": 3
+  },
+  "sourceHashes": {
+    "source/world.json": "bfe7c72fd79c5995e2a0dc89800c5ec93b81e1389a3174277da6259ab837f9fe",
+    "source/cast.json": "c0fbb0ddf00cf41984bb0dc133e0e96c40d2bc079383b6142fd3e71e8f7611ea",
+    "source/clues.json": "6c57d60b121e9fefcb1d1207278d65f835f00469a566003a9d4acb092e6152d3",
+    "source/handouts.json": "31421eb11cf284f4cd19cb404dd4a5c70f224af7cfd86f17e23398f7244fd68f",
+    "source/encounters.json": "7aa1957e9b06b03809fd1f5f1505f9c55a17c106d2138c12bc9965b245cce5b5",
+    "source/sessions-1.json": "269bea9ebee3480f60e78112aa148de66a4d190a34dc6c98ceb631e96620ead4",
+    "source/sessions-2.json": "df10ef0db31775f3f2f4b035b3f6782dd1097d5b24eac629890a815e8bc11c81",
+    "source/sessions-3.json": "603bffde74b87a8eedb44d38bd6e53f37b9117f93956e62f208521492d0e0677",
+    "source/sessions-4.json": "9cadd1ed2e7a3e66aeb249f38914828291311e0ba5e918723ed427dfbe944c08"
+  },
+  "variants": [
+    {
+      "size": 3,
+      "sha256": "b89c51d39279b029dc5758ee13d60ae7267fe25ba9c922f12ae502b93a8ac744",
+      "compilerVersion": 1,
+      "readiness": "READY",
+      "findings": [],
+      "counts": {
+        "entities": 49,
+        "knowledge": 142,
+        "encounters": 3,
+        "quests": 8
+      }
+    },
+    {
+      "size": 4,
+      "sha256": "c2997d1b7459d76deca7bad8a178b4152b527feb2dd3d94ddae855c27b8c27dd",
+      "compilerVersion": 1,
+      "readiness": "READY",
+      "findings": [],
+      "counts": {
+        "entities": 54,
+        "knowledge": 145,
+        "encounters": 3,
+        "quests": 8
+      }
+    },
+    {
+      "size": 5,
+      "sha256": "c05aa2d1856b207b1ee53c2d25a575319f787a37f320c4d9f09cef5fa431309e",
+      "compilerVersion": 1,
+      "readiness": "READY",
+      "findings": [],
+      "counts": {
+        "entities": 56,
+        "knowledge": 148,
+        "encounters": 3,
+        "quests": 8
+      }
+    },
+    {
+      "size": 6,
+      "sha256": "0103350b5550fb8cc0a4effc668e68cd75085e998de442299fd36d56dc0c20f4",
+      "compilerVersion": 1,
+      "readiness": "READY",
+      "findings": [],
+      "counts": {
+        "entities": 61,
+        "knowledge": 151,
+        "encounters": 3,
+        "quests": 8
+      }
+    },
+    {
+      "size": 7,
+      "sha256": "ae4f854b0882ed7c574b9137194048e2e41ffa8bd00619b676ef2ea1fb1b6026",
+      "compilerVersion": 1,
+      "readiness": "READY",
+      "findings": [],
+      "counts": {
+        "entities": 66,
+        "knowledge": 154,
+        "encounters": 3,
+        "quests": 8
+      }
+    }
+  ]
+}

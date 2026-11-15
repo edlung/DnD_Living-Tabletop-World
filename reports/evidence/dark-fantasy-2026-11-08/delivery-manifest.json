@@ -1,0 +1,2821 @@
+{
+  "createdAt": "2026-11-08T11:18:47.175325+00:00",
+  "scope": "Owned campaign collection, isolated tools, work order, report and named verification evidence. Shared concurrent project documents and this manifest/handoff are not frozen by this file.",
+  "files": [
+    {
+      "path": "campaigns/dark-fantasy-2026/AGENTS.md",
+      "sha256": "7988cffbec05b4c9e517f926a8aa49ae36adeda73b94e1ba2b28a209704263ca",
+      "bytes": 627
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/DESIGN_MATRIX.md",
+      "sha256": "e01c3d06c9b9f937b6b36fb5311fbb8c5a4a0ee491c861d0f64066ac218fc5cb",
+      "bytes": 9472
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ORIGINALITY.md",
+      "sha256": "79085212fd646f8d7e46a101b084c5e59bbae6415c1f2a976088106f926e7176",
+      "bytes": 11508
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/README.md",
+      "sha256": "9108d430bcb7d9b87cd467a22074c4ae477a43c0dc1ff9ffd39a8c51c7a47882",
+      "bytes": 7474
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/AGENTS.md",
+      "sha256": "485238ecd9dc2837b6555bdb711b86afbd55bdc78c58ae61a0a80afd4ecd8d90",
+      "bytes": 1039
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/README.md",
+      "sha256": "c607278f514dd8515741406e9f47ccf587295d87366b0e22303bfddfcc9296df",
+      "bytes": 12235
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/handouts/guest-fire-practice.html",
+      "sha256": "1c7982d41579c39ba762da015e3725d84328c63519a5d2e01ddd13faff10d9ab",
+      "bytes": 5131
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/handouts/shared-pledge.html",
+      "sha256": "c1511df71f267e4d6c4d0295e3f065e45fe79388945574b59ab7c681898670d1",
+      "bytes": 4880
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/handouts/three-stations.html",
+      "sha256": "217a4f3e63da06abed39c3d49609a16544ba9a7f5d275c8fd4b6f318b7d4214a",
+      "bytes": 5121
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/handouts/tithe-voice.html",
+      "sha256": "ed9bf8b4ec12d0cf8480f69ef8502ab7dea9d4305d74c986df201028eeed4df3",
+      "bytes": 4779
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/handouts/trail-choice.html",
+      "sha256": "e85af5fd48229c0ea02a1943255662904246dde3aeadc68b0773d03d91ab12f2",
+      "bytes": 4928
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/handouts/winter-terms.html",
+      "sha256": "a282c2ef1e7e0e0f0904d24e4fa4c821b4bc470b0f5d0f59acaa22ea50686459",
+      "bytes": 5048
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/handouts/winter-voices.html",
+      "sha256": "760f0ec48077068f9281ae976fa4bd4bc017ad159a35961e67e5326b9de00105",
+      "bytes": 5023
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/handouts/workers-choices.html",
+      "sha256": "f41872447b504900081cc06eb595439f68df24f94a6e489c29661bdb48b73bc1",
+      "bytes": 4880
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/index.html",
+      "sha256": "26d1f740ed8f47a7acc54320c32c0519687ad3f283217d37ce18cd5b4c2851af",
+      "bytes": 48621
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/maps/brazier-wardens-3.svg",
+      "sha256": "46116e12bc5650e44467294d0f697a8e4519b8db65891a94594cbf15ddfdf5cf",
+      "bytes": 18229
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/maps/brazier-wardens-4.svg",
+      "sha256": "070c3106276a8788aabdcca1ad7fbb1207af9c0264da8964957665a89dd2d371",
+      "bytes": 18453
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/maps/brazier-wardens-5.svg",
+      "sha256": "1c6eb8f2fbac036e623ecfa059583776d974539ed4fa98d891011acc694c69cb",
+      "bytes": 18566
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/maps/brazier-wardens-6.svg",
+      "sha256": "9539592aeef37ac4b13fc69e2b3ecc1e3b3a7569801e96554a78f09a97262783",
+      "bytes": 18793
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/maps/brazier-wardens-7.svg",
+      "sha256": "33bcafef3404a02935f5debc8b0c8d89b02989ae2566e3c622f6acade830fdcf",
+      "bytes": 19021
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/maps/cinder-hunt-3.svg",
+      "sha256": "46116e12bc5650e44467294d0f697a8e4519b8db65891a94594cbf15ddfdf5cf",
+      "bytes": 18229
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/maps/cinder-hunt-4.svg",
+      "sha256": "070c3106276a8788aabdcca1ad7fbb1207af9c0264da8964957665a89dd2d371",
+      "bytes": 18453
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/maps/cinder-hunt-5.svg",
+      "sha256": "1c6eb8f2fbac036e623ecfa059583776d974539ed4fa98d891011acc694c69cb",
+      "bytes": 18566
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/maps/cinder-hunt-6.svg",
+      "sha256": "9539592aeef37ac4b13fc69e2b3ecc1e3b3a7569801e96554a78f09a97262783",
+      "bytes": 18793
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/maps/cinder-hunt-7.svg",
+      "sha256": "33bcafef3404a02935f5debc8b0c8d89b02989ae2566e3c622f6acade830fdcf",
+      "bytes": 19021
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/maps/tithe-collectors-3.svg",
+      "sha256": "46116e12bc5650e44467294d0f697a8e4519b8db65891a94594cbf15ddfdf5cf",
+      "bytes": 18229
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/maps/tithe-collectors-4.svg",
+      "sha256": "070c3106276a8788aabdcca1ad7fbb1207af9c0264da8964957665a89dd2d371",
+      "bytes": 18453
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/maps/tithe-collectors-5.svg",
+      "sha256": "1c6eb8f2fbac036e623ecfa059583776d974539ed4fa98d891011acc694c69cb",
+      "bytes": 18566
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/maps/tithe-collectors-6.svg",
+      "sha256": "9539592aeef37ac4b13fc69e2b3ecc1e3b3a7569801e96554a78f09a97262783",
+      "bytes": 18793
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/maps/tithe-collectors-7.svg",
+      "sha256": "33bcafef3404a02935f5debc8b0c8d89b02989ae2566e3c622f6acade830fdcf",
+      "bytes": 19021
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/maps.html",
+      "sha256": "82f0ca8271ba0fc612361f36d844b9d3cd1fd46fbce5029bdf82f39f7ee0a179",
+      "bytes": 67947
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/package.json",
+      "sha256": "f915da7ba60f54a00d80a9099959655d4588e61982c55461f4f1a49458b58a6f",
+      "bytes": 279378
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/players.html",
+      "sha256": "867a47fde8aa779214467ae1b57342f19a185d1a370732f5ad30237499c58834",
+      "bytes": 16070
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/session-1.html",
+      "sha256": "f676c146f0bc11a49619e9bfc5ca74d603b04658a27ce9bf9cd17a24e434a2a5",
+      "bytes": 17889
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/session-2.html",
+      "sha256": "c3f11519e62b1ac97b7c49286799e96425ab825696e105bedbe7fef9c7bc910d",
+      "bytes": 20337
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/session-3.html",
+      "sha256": "f637d2eefa213faf9cbbb43a0d698a395d7680656dc94c0ee473b7c8174cd891",
+      "bytes": 17033
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/session-4.html",
+      "sha256": "9ef84ca3e05f64486d65e71702a28cdc403d83c89d30d5fb6dcdf265ba420ff2",
+      "bytes": 18937
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/session-5.html",
+      "sha256": "6aae20f1da7da4503dac998d40bd8b50c389cff979796919c9abada426b37511",
+      "bytes": 19241
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/session-6.html",
+      "sha256": "4ee4fce1706efcec1c49dc06aaa80708463716cbb46424afb78edaa1b1be7d10",
+      "bytes": 19091
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/session-7.html",
+      "sha256": "78b8dc3de69254c43fb1e604fa94ce51d518f3bf4bdceaf44cd0e088e1b51693",
+      "bytes": 19895
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/session-8.html",
+      "sha256": "a3305626955258283678a6370979d6e2fe74625c45d16798695068f29ce5853f",
+      "bytes": 20273
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/source/cast.json",
+      "sha256": "680000579704804fe18fc8d050ebbc1303206abc68dc166e5f29a3b231562f64",
+      "bytes": 26003
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/source/clues.json",
+      "sha256": "9b211ecd79f16d5d308da60aa5875c791c0dae04a162a4aa634939a2ec27e351",
+      "bytes": 20672
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/source/encounters.json",
+      "sha256": "956a20c4bef30e95a32e4415cdbdacd37b2af032e561753269926b6e3390943e",
+      "bytes": 9396
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/source/handouts.json",
+      "sha256": "87f93e4bbef102ff20623a6a4a68ea64c5abe07f8d42c0fad66d7b3970df38cc",
+      "bytes": 7007
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/source/sessions-1.json",
+      "sha256": "b1370a66d72d5ebbc9d920b09a9cfaaed4742605da63856766ef196c481aef9c",
+      "bytes": 25825
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/source/sessions-2.json",
+      "sha256": "3ad46ebfbe0d0785fc1467de7272545863a04884a7ea6e26b2639538dc775bbc",
+      "bytes": 26909
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/source/sessions-3.json",
+      "sha256": "e7f289a877b3a8c3e97062b43a9712c1fab79888d32849a192dfd266b855a0ff",
+      "bytes": 27778
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/source/sessions-4.json",
+      "sha256": "4fe0309b177bb6d8da9f072db8236fc638747a09ae35588e804eee558fe5adb9",
+      "bytes": 29719
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/source/world.json",
+      "sha256": "77227d819fbeeccebbf6d420f2cf02590da8aa98f45736536e497b0335ef6c01",
+      "bytes": 25286
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/variants/3-players.json",
+      "sha256": "4efd2f3a036db4f985d631533889a35241351de0fc0a912ab9cb4b4a08f4ebb7",
+      "bytes": 270647
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/variants/4-players.json",
+      "sha256": "f915da7ba60f54a00d80a9099959655d4588e61982c55461f4f1a49458b58a6f",
+      "bytes": 279378
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/variants/5-players.json",
+      "sha256": "da66c009ecc974ba1e3b4743984e95cf8b8462152baa7f67518f3ce02578c85b",
+      "bytes": 282803
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/variants/6-players.json",
+      "sha256": "55275c0ba51480fdfbcad677e5f010e9c6487600b90ee5b74fb71825013fd3f3",
+      "bytes": 291569
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/variants/7-players.json",
+      "sha256": "8cb066b3698e26c306b37f1502a31f38af318fd7fee14513a373f0253d8aad6c",
+      "bytes": 300186
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/ash-tithe/verification.json",
+      "sha256": "a97a5f524ed93b240f5aef1782c652d0dd52cd92eca6e9b09be3b2950e2c4d1f",
+      "bytes": 1755
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/AGENTS.md",
+      "sha256": "be1888e435d621d13707d9f8d1834659a3ffd1404c8281e56f9aecbd569dd11b",
+      "bytes": 3275
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/README.md",
+      "sha256": "ff15e9c94c08a65d7a87f0089067ae6baf04e07411aab84c63ce50f6577e8fd7",
+      "bytes": 13088
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/handouts/h-guest-offer.html",
+      "sha256": "db376be528030069bb14692fec772102bb98b5e322f93440ebffd7602d1b2862",
+      "bytes": 4825
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/handouts/h-hunt-kit.html",
+      "sha256": "9e6eab26fdbcffd326cc7c13b5d32ee4db097b8968f095f77736f619c36ce68a",
+      "bytes": 5201
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/handouts/h-lantern-note.html",
+      "sha256": "e9d718533e1b121b0b6d35beb9cae82bc16f005a5250c471ebc503e641903a9d",
+      "bytes": 4892
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/handouts/h-mill-test.html",
+      "sha256": "e7780124d9de74dbb4f6277d17ea397ec46655faba354a49a3147a86f273661f",
+      "bytes": 5062
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/handouts/h-next-morning.html",
+      "sha256": "947159e8b3618fa3307f77e9f7ee4c24157694b854c1ae2657302250b2fd2f3f",
+      "bytes": 4905
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/handouts/h-night-watch.html",
+      "sha256": "549818560e8241a66a587e6b465cd5a25a77f4bc68c91d96397f1944cf3a20b2",
+      "bytes": 4852
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/handouts/h-orchard-trail.html",
+      "sha256": "ed8bf30aafaa10ed7f8749ffbc50a6b4b4bf3f74eb90b5dbf3bced5b719a32ad",
+      "bytes": 5008
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/handouts/h-shepherd-game.html",
+      "sha256": "b0914b7c9e296ac51ed7c722b01d49f7dd2d5d7daa286d0aeffa5bea332cbf67",
+      "bytes": 5006
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/index.html",
+      "sha256": "16b91cef050ebda434d190a05eadadeba30f740a0b4163dd88ce23b50d08ca1e",
+      "bytes": 49518
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/maps/belfry-shards-3.svg",
+      "sha256": "46116e12bc5650e44467294d0f697a8e4519b8db65891a94594cbf15ddfdf5cf",
+      "bytes": 18229
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/maps/belfry-shards-4.svg",
+      "sha256": "070c3106276a8788aabdcca1ad7fbb1207af9c0264da8964957665a89dd2d371",
+      "bytes": 18453
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/maps/belfry-shards-5.svg",
+      "sha256": "1c6eb8f2fbac036e623ecfa059583776d974539ed4fa98d891011acc694c69cb",
+      "bytes": 18566
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/maps/belfry-shards-6.svg",
+      "sha256": "9539592aeef37ac4b13fc69e2b3ecc1e3b3a7569801e96554a78f09a97262783",
+      "bytes": 18793
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/maps/belfry-shards-7.svg",
+      "sha256": "33bcafef3404a02935f5debc8b0c8d89b02989ae2566e3c622f6acade830fdcf",
+      "bytes": 19021
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/maps/mill-hushers-3.svg",
+      "sha256": "46116e12bc5650e44467294d0f697a8e4519b8db65891a94594cbf15ddfdf5cf",
+      "bytes": 18229
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/maps/mill-hushers-4.svg",
+      "sha256": "070c3106276a8788aabdcca1ad7fbb1207af9c0264da8964957665a89dd2d371",
+      "bytes": 18453
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/maps/mill-hushers-5.svg",
+      "sha256": "1c6eb8f2fbac036e623ecfa059583776d974539ed4fa98d891011acc694c69cb",
+      "bytes": 18566
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/maps/mill-hushers-6.svg",
+      "sha256": "9539592aeef37ac4b13fc69e2b3ecc1e3b3a7569801e96554a78f09a97262783",
+      "bytes": 18793
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/maps/mill-hushers-7.svg",
+      "sha256": "33bcafef3404a02935f5debc8b0c8d89b02989ae2566e3c622f6acade830fdcf",
+      "bytes": 19021
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/maps/orchard-folds-3.svg",
+      "sha256": "46116e12bc5650e44467294d0f697a8e4519b8db65891a94594cbf15ddfdf5cf",
+      "bytes": 18229
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/maps/orchard-folds-4.svg",
+      "sha256": "070c3106276a8788aabdcca1ad7fbb1207af9c0264da8964957665a89dd2d371",
+      "bytes": 18453
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/maps/orchard-folds-5.svg",
+      "sha256": "1c6eb8f2fbac036e623ecfa059583776d974539ed4fa98d891011acc694c69cb",
+      "bytes": 18566
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/maps/orchard-folds-6.svg",
+      "sha256": "9539592aeef37ac4b13fc69e2b3ecc1e3b3a7569801e96554a78f09a97262783",
+      "bytes": 18793
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/maps/orchard-folds-7.svg",
+      "sha256": "33bcafef3404a02935f5debc8b0c8d89b02989ae2566e3c622f6acade830fdcf",
+      "bytes": 19021
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/maps.html",
+      "sha256": "a2f8ad29d9fa81d13d4247c7ddecb901facd5f810a66d833cf29935820bd7789",
+      "bytes": 67390
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/package.json",
+      "sha256": "682d420da83600063303223ecbab0e3d64073501ad4d087a1cbbc87172b40502",
+      "bytes": 281573
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/players.html",
+      "sha256": "d29a64d2e9a528ba22ac840c5d5db950372cb8b3772d7fd3d920cc11c3846394",
+      "bytes": 18675
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/session-1.html",
+      "sha256": "03fc08014d1de633beed6610b270885b094f31a02e48e0d872f5bdd3ef402b19",
+      "bytes": 19284
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/session-2.html",
+      "sha256": "af9edcee59a02d8fcdbd2d9ea6338a10f2ed964fa9255da288e5bade3c1d4431",
+      "bytes": 19106
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/session-3.html",
+      "sha256": "d9126120d502c642cb65f71800f6a68eb8879a5ad93bc16facff6348a4d766c2",
+      "bytes": 19808
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/session-4.html",
+      "sha256": "ede1d503e0ee79223ec6799dbe7a3b3ef1739e17a40329f8674607f5f94494fb",
+      "bytes": 19118
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/session-5.html",
+      "sha256": "8f5a2c3674923e2f648b91cd852eb48c15a0bd56295232da0a75152722f681a7",
+      "bytes": 19547
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/session-6.html",
+      "sha256": "13e1422d5cf232dc6cb35eb06415b5f435bc7d94ed5acc2ac7979633f8290905",
+      "bytes": 19931
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/session-7.html",
+      "sha256": "330ededa588e5772924e588e553a64db5a90da6a9dff11a1c15c3012bc096d27",
+      "bytes": 20180
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/session-8.html",
+      "sha256": "97780b1aae8fac3457028f74ddd3cc5cb4015a5958451710bfcb22288218b1f5",
+      "bytes": 20974
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/source/cast.json",
+      "sha256": "2ebdc6f0cf17551a636910f519586e1fa48d056426d016f3d196c41d007c1aff",
+      "bytes": 26504
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/source/clues.json",
+      "sha256": "a45972c6e2e1fbbfcdb9fbd96b885a151f80b09967a55c30a3f23cdb10c34e8c",
+      "bytes": 22948
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/source/encounters.json",
+      "sha256": "d2938a3dc92fb79285ee7cbf1ebef1587365c649442707bf8490296667d0e664",
+      "bytes": 8571
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/source/handouts.json",
+      "sha256": "643120c2ea79358a3313db0b87b47e22f96c27b8802788e854f92f5873142e2b",
+      "bytes": 6841
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/source/sessions-1.json",
+      "sha256": "1a4f4d92f6bf59279fdf9c3ede869cf0c36ee2dc77f86486c3cb3c8f9368ea81",
+      "bytes": 26769
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/source/sessions-2.json",
+      "sha256": "7ddb05c96ccb22ff37c9b11f96d06746e249053ba2deed1a5e706c2f0747dd48",
+      "bytes": 27055
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/source/sessions-3.json",
+      "sha256": "6b9cfd01a59de58c342a561186a677ed8e1f62b0b82270bc2a93a18bdf5b2817",
+      "bytes": 27515
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/source/sessions-4.json",
+      "sha256": "daa1b6b1c1b7f495fc2b3e58012c0acc796e091965b58edd79e9d6cf23f1a9c5",
+      "bytes": 29444
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/source/world.json",
+      "sha256": "92dfec1fc44a3f544bd4fcfc8efbd88ec6b7af88fb332faa840623ac7558b2cf",
+      "bytes": 27458
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/variants/3-players.json",
+      "sha256": "6c3742e46f7163a469fc85fb976c379573b676ff892bfffc0b13dabe989dfb6f",
+      "bytes": 273020
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/variants/4-players.json",
+      "sha256": "682d420da83600063303223ecbab0e3d64073501ad4d087a1cbbc87172b40502",
+      "bytes": 281573
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/variants/5-players.json",
+      "sha256": "5abaaf5b8452c79165bc87371972c011cb5126ae865d0e401c97b2ac9b279276",
+      "bytes": 285252
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/variants/6-players.json",
+      "sha256": "008eae9d99deadf0815e6f155ef43c5724f616c8802a93ac7f4ac3b00d0dc95c",
+      "bytes": 293908
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/variants/7-players.json",
+      "sha256": "c1e4e47ba5dd88a1e3e955bf72cbbbbf827455e8ef0f2d57f392aadca48889b5",
+      "bytes": 302649
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/bellwether-hollow/verification.json",
+      "sha256": "ba0beec22796c156aba487f8d725f773e0b09894a2cf6a0a9046055f12718382",
+      "bytes": 1755
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/AGENTS.md",
+      "sha256": "429e0623e636b11c0650511f02287244b11922bb7655e520dae8b8ef3246e0bc",
+      "bytes": 2666
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/README.md",
+      "sha256": "95d6bac38026c77e054ab14c21a1ef921e268ec040ef5613986312d09c3d390d",
+      "bytes": 14765
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/handouts/bowl-warning.html",
+      "sha256": "999e4cb513138ea35cae9126069d439bf6edd75e5dea72d224c7856633ed147b",
+      "bytes": 4893
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/handouts/iven-instruction.html",
+      "sha256": "11a8f30e614ec64b5178df799de469e38f7f700c9fc69d7f03fe66e8ce159ae3",
+      "bytes": 4840
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/handouts/lower-route.html",
+      "sha256": "5d6168be4d042e310f71fa874c2de3d4350997c0bd2e3552cbe50085a4d55d65",
+      "bytes": 4933
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/handouts/otta-sequence.html",
+      "sha256": "d176ca5d89fde094a5bf2387921a1d8fe4f73bee704a493322fa0da9fd7a653a",
+      "bytes": 4989
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/handouts/shift-order.html",
+      "sha256": "ed7b9da6886ec9bf5f88129d0905ca41f12ed8b80b9b1dd78d7a9ba595030837",
+      "bytes": 4824
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/handouts/six-breaths.html",
+      "sha256": "bfc97fc1098989a5f912ccf891935be951b68ff082c4f0f6ad2f49959300c1ed",
+      "bytes": 4875
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/handouts/summons.html",
+      "sha256": "352142ceb9ee76af0874fbcb141216154b039f09555e80fd2f51858da406db08",
+      "bytes": 4887
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/handouts/three-operations.html",
+      "sha256": "59a50a577c3b234aaf58322b1d04ca7d5ca112e026727a46b04f1a70c42a9b8c",
+      "bytes": 4916
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/index.html",
+      "sha256": "dd2e66e3c90239e0f23bc89efbae317b1ef6de32081b0ad55b22626fd8b0dd93",
+      "bytes": 44572
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/maps/clinker-collectors-3.svg",
+      "sha256": "46116e12bc5650e44467294d0f697a8e4519b8db65891a94594cbf15ddfdf5cf",
+      "bytes": 18229
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/maps/clinker-collectors-4.svg",
+      "sha256": "070c3106276a8788aabdcca1ad7fbb1207af9c0264da8964957665a89dd2d371",
+      "bytes": 18453
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/maps/clinker-collectors-5.svg",
+      "sha256": "1c6eb8f2fbac036e623ecfa059583776d974539ed4fa98d891011acc694c69cb",
+      "bytes": 18566
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/maps/clinker-collectors-6.svg",
+      "sha256": "9539592aeef37ac4b13fc69e2b3ecc1e3b3a7569801e96554a78f09a97262783",
+      "bytes": 18793
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/maps/clinker-collectors-7.svg",
+      "sha256": "33bcafef3404a02935f5debc8b0c8d89b02989ae2566e3c622f6acade830fdcf",
+      "bytes": 19021
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/maps/seal-carriers-3.svg",
+      "sha256": "46116e12bc5650e44467294d0f697a8e4519b8db65891a94594cbf15ddfdf5cf",
+      "bytes": 18229
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/maps/seal-carriers-4.svg",
+      "sha256": "070c3106276a8788aabdcca1ad7fbb1207af9c0264da8964957665a89dd2d371",
+      "bytes": 18453
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/maps/seal-carriers-5.svg",
+      "sha256": "1c6eb8f2fbac036e623ecfa059583776d974539ed4fa98d891011acc694c69cb",
+      "bytes": 18566
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/maps/seal-carriers-6.svg",
+      "sha256": "9539592aeef37ac4b13fc69e2b3ecc1e3b3a7569801e96554a78f09a97262783",
+      "bytes": 18793
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/maps/seal-carriers-7.svg",
+      "sha256": "33bcafef3404a02935f5debc8b0c8d89b02989ae2566e3c622f6acade830fdcf",
+      "bytes": 19021
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/maps/thread-watch-3.svg",
+      "sha256": "46116e12bc5650e44467294d0f697a8e4519b8db65891a94594cbf15ddfdf5cf",
+      "bytes": 18229
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/maps/thread-watch-4.svg",
+      "sha256": "070c3106276a8788aabdcca1ad7fbb1207af9c0264da8964957665a89dd2d371",
+      "bytes": 18453
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/maps/thread-watch-5.svg",
+      "sha256": "1c6eb8f2fbac036e623ecfa059583776d974539ed4fa98d891011acc694c69cb",
+      "bytes": 18566
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/maps/thread-watch-6.svg",
+      "sha256": "9539592aeef37ac4b13fc69e2b3ecc1e3b3a7569801e96554a78f09a97262783",
+      "bytes": 18793
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/maps/thread-watch-7.svg",
+      "sha256": "33bcafef3404a02935f5debc8b0c8d89b02989ae2566e3c622f6acade830fdcf",
+      "bytes": 19021
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/maps.html",
+      "sha256": "e0109f0541a50f4eb2ead51bab7f4f35a693ac4a51b62e60c44e5a2b9498d46c",
+      "bytes": 66771
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/package.json",
+      "sha256": "5b1824ccd0e69ecc46e2b1ff1244335dfd0ca45603456ff75e10722d8c183ff3",
+      "bytes": 269421
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/players.html",
+      "sha256": "1bd20d5ac13dd9c8c38df59435898a715ff2375b3cf8c1bf0f9f41f6e98a3528",
+      "bytes": 16622
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/session-1.html",
+      "sha256": "aae8b2a678c0e0e74ae26571661d9ca2c3a63a2f8f5f3d4dceda2168a7eaccf0",
+      "bytes": 17319
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/session-2.html",
+      "sha256": "722687a91ea8ad5669d7da18385b717029f48bb3b86578f7e8a88e5adac7b2b5",
+      "bytes": 18325
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/session-3.html",
+      "sha256": "89af66e32350d6f15d78ca9c240a23affb44127b069a4f6cce6ba87d1888e9fd",
+      "bytes": 17554
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/session-4.html",
+      "sha256": "6a709fcfce4ae2dda9c206b6ef0110afd0a36c190c8f1e9c67689e0b09369b52",
+      "bytes": 19177
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/session-5.html",
+      "sha256": "138b63cfe985b83f07a15a415f16a90c3a3437a17a32ad5a823840a8a9cc77d3",
+      "bytes": 18511
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/session-6.html",
+      "sha256": "3f50cea9db38c2e2a3121634cebfab27f025b57f2fd3ef83dd4d054587505b1f",
+      "bytes": 19003
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/session-7.html",
+      "sha256": "af8bd578757e696b59ff1883b4cdad9752a71095f0dfc2675145f14f87b5d0a9",
+      "bytes": 21341
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/session-8.html",
+      "sha256": "7edbd78d931ed3da71389fba7b5c1d12718f118ba3b30544f5e4d3d0e6123595",
+      "bytes": 20175
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/source/cast.json",
+      "sha256": "79e3ebf357804ff43cf64584c175fdfd61d98c4f4ea950923c53df88425657b2",
+      "bytes": 23625
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/source/clues.json",
+      "sha256": "86c27204ff50d98ea5068cf61f005c4ef71cd8436b948c4476a6a561f7d20035",
+      "bytes": 19317
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/source/encounters.json",
+      "sha256": "ccaf52483e1e8e0d1a2573afa41aa1c7d8b0484238470fde6049453a90d7494c",
+      "bytes": 8015
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/source/handouts.json",
+      "sha256": "94a0d0ec33ccb24c5b9d409e55a7b0d0fdb2e2c0648179b581fcf103c1349494",
+      "bytes": 6435
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/source/sessions-1.json",
+      "sha256": "218192678a025e8d2a2453694ae4df3ca8e1a546cbc0b63f05947623be095661",
+      "bytes": 26053
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/source/sessions-2.json",
+      "sha256": "9b9c5ce0c770b608eabcf0bef52e903f4c2b8b3d01ce416b4b3b70b049e1b743",
+      "bytes": 27021
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/source/sessions-3.json",
+      "sha256": "a2f3247c43602082b1d5e85b672e7d3eedf2172d1f64fe51fd7a0f3252a30966",
+      "bytes": 27059
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/source/sessions-4.json",
+      "sha256": "c2acffe51df734a76b65a0358863c10755b3d5670f658289c19e413535ae1cab",
+      "bytes": 29436
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/source/world.json",
+      "sha256": "f13fb3b41d460e756fe2eabbc3cd62383ae32ed49376d4ab2a8892ff886f70cb",
+      "bytes": 24620
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/variants/3-players.json",
+      "sha256": "70436c0c1ad1ea5b80a23e214cf29a1982b9366295151b9897b18eefab38f327",
+      "bytes": 260964
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/variants/4-players.json",
+      "sha256": "5b1824ccd0e69ecc46e2b1ff1244335dfd0ca45603456ff75e10722d8c183ff3",
+      "bytes": 269421
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/variants/5-players.json",
+      "sha256": "29ddcaf663f2d63703920065b46697fc21d9c4311b53e4026ba1c58006b3c0d2",
+      "bytes": 272959
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/variants/6-players.json",
+      "sha256": "350020ca2b8309b71a2bff2df4a0b9440abaacf761803364a001f18e9685e344",
+      "bytes": 281323
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/variants/7-players.json",
+      "sha256": "1b91b90f3c825b26a3f0440e63d7ea3a8acad030583bfcc843b96b1071c1fe9a",
+      "bytes": 289810
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/black-sun-forge/verification.json",
+      "sha256": "991f5e5042f34b777073b289b81a0b2ba606903c84fa206c3fa4863d2257421c",
+      "bytes": 1755
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/book.css",
+      "sha256": "64dab40c5939765ff685afc9266e38182153256b72831034c22bfe3a661de14e",
+      "bytes": 3780
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/index.html",
+      "sha256": "14847572ca74102deff223e90203308b1ae83f04ff6958ba0104e916ef06bf01",
+      "bytes": 13219
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/AGENTS.md",
+      "sha256": "4ad42d50c7a0e8b0c34e4b19cd137b5f3d89d49a55c9d3cadaf04abe8bc9ff14",
+      "bytes": 4456
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/README.md",
+      "sha256": "f40a7a8697005ad1832de8d9b19fc86f34990e28fe3de5bf4bbce2c47d15e046",
+      "bytes": 17625
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/handouts/blank-postcard.html",
+      "sha256": "be2881a5c5d62bc6611789a7e782f4b8196bb124dd21577a7f3dce828dd3074b",
+      "bytes": 4845
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/handouts/elina-original.html",
+      "sha256": "6335296518add289b7250381282205103c949bd12b69394aaa957d9ed08d9415",
+      "bytes": 4920
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/handouts/ferry-test.html",
+      "sha256": "2e9ba8db028c3dc37bea4b81a60733684080b4ead235d507f5dbb54a0806f256",
+      "bytes": 4791
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/handouts/garden-note.html",
+      "sha256": "034550369b4fd812fe1e3bb73a3e4f12093d95394a645187846118eeb3a1a71b",
+      "bytes": 4893
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/handouts/observation-page.html",
+      "sha256": "2f117decdf44dc8a5cbc0a7d4a19910cb0dac08762b7f26c7090e4e46b27a6d1",
+      "bytes": 5043
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/handouts/quay-note.html",
+      "sha256": "14d62c7083241e07012c8938f308e0708aec84313cd36e7e74beea611e001fc6",
+      "bytes": 4907
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/handouts/sena-request.html",
+      "sha256": "1f4ca140b2e7613dc61c8e679a6b50c1401ca445453d6caeec1f017499c24d30",
+      "bytes": 4874
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/handouts/witness-promise.html",
+      "sha256": "74da6de2003f76a93323c454bcad370566ea7f4c00a927000568684bbe7b4619",
+      "bytes": 4852
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/index.html",
+      "sha256": "0c0aecf65231f6f1b6b69386345f39640796eb37c1e9472b32a381460db2d0a4",
+      "bytes": 52940
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/maps/ink-shapes-3.svg",
+      "sha256": "46116e12bc5650e44467294d0f697a8e4519b8db65891a94594cbf15ddfdf5cf",
+      "bytes": 18229
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/maps/ink-shapes-4.svg",
+      "sha256": "070c3106276a8788aabdcca1ad7fbb1207af9c0264da8964957665a89dd2d371",
+      "bytes": 18453
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/maps/ink-shapes-5.svg",
+      "sha256": "1c6eb8f2fbac036e623ecfa059583776d974539ed4fa98d891011acc694c69cb",
+      "bytes": 18566
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/maps/ink-shapes-6.svg",
+      "sha256": "9539592aeef37ac4b13fc69e2b3ecc1e3b3a7569801e96554a78f09a97262783",
+      "bytes": 18793
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/maps/ink-shapes-7.svg",
+      "sha256": "33bcafef3404a02935f5debc8b0c8d89b02989ae2566e3c622f6acade830fdcf",
+      "bytes": 19021
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/maps/porcelain-repeats-3.svg",
+      "sha256": "46116e12bc5650e44467294d0f697a8e4519b8db65891a94594cbf15ddfdf5cf",
+      "bytes": 18229
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/maps/porcelain-repeats-4.svg",
+      "sha256": "070c3106276a8788aabdcca1ad7fbb1207af9c0264da8964957665a89dd2d371",
+      "bytes": 18453
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/maps/porcelain-repeats-5.svg",
+      "sha256": "1c6eb8f2fbac036e623ecfa059583776d974539ed4fa98d891011acc694c69cb",
+      "bytes": 18566
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/maps/porcelain-repeats-6.svg",
+      "sha256": "9539592aeef37ac4b13fc69e2b3ecc1e3b3a7569801e96554a78f09a97262783",
+      "bytes": 18793
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/maps/porcelain-repeats-7.svg",
+      "sha256": "33bcafef3404a02935f5debc8b0c8d89b02989ae2566e3c622f6acade830fdcf",
+      "bytes": 19021
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/maps/rain-steps-3.svg",
+      "sha256": "46116e12bc5650e44467294d0f697a8e4519b8db65891a94594cbf15ddfdf5cf",
+      "bytes": 18229
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/maps/rain-steps-4.svg",
+      "sha256": "070c3106276a8788aabdcca1ad7fbb1207af9c0264da8964957665a89dd2d371",
+      "bytes": 18453
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/maps/rain-steps-5.svg",
+      "sha256": "1c6eb8f2fbac036e623ecfa059583776d974539ed4fa98d891011acc694c69cb",
+      "bytes": 18566
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/maps/rain-steps-6.svg",
+      "sha256": "9539592aeef37ac4b13fc69e2b3ecc1e3b3a7569801e96554a78f09a97262783",
+      "bytes": 18793
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/maps/rain-steps-7.svg",
+      "sha256": "33bcafef3404a02935f5debc8b0c8d89b02989ae2566e3c622f6acade830fdcf",
+      "bytes": 19021
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/maps.html",
+      "sha256": "f33ed6b76d40bf55fe3f606724ee6d16a86e49062744e624c4ece2fdb3b59bdf",
+      "bytes": 67012
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/package.json",
+      "sha256": "26d21cbd5495f587f816610e57b16db14841a97d3a02a2d9153c417f4ca3c3a0",
+      "bytes": 276538
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/players.html",
+      "sha256": "e41ed3c3fa5620696d7ff1d363539428ad10fd807847c6eb531bacbf54fc086a",
+      "bytes": 19155
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/session-1.html",
+      "sha256": "afee2094e51037ef69207180ccc490c7d263b6f05434eb372408bf4a369fc7df",
+      "bytes": 15449
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/session-2.html",
+      "sha256": "74b6c177b7d38b1445a6f1a7b4521c08efc9e3c98c301f033100c4cfc3630260",
+      "bytes": 17363
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/session-3.html",
+      "sha256": "9328b0fa633dc7042126e6509ee8ca2193787ee2490973c6dc8de53c47fd02b5",
+      "bytes": 17827
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/session-4.html",
+      "sha256": "0aa504df7f4b93d58c9f64c7001c2e86f109d1d0dd4318d8d25201041bbda6a0",
+      "bytes": 18204
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/session-5.html",
+      "sha256": "999e3f5487b26fb62dcb11e49bbdb7ac98dac9dd92ab751cd859951a3efc5f4c",
+      "bytes": 19487
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/session-6.html",
+      "sha256": "94a96ee27d2ec86aa874f5e19c1d6df142240f6d674a1e6b191dfb5471ede7c6",
+      "bytes": 17107
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/session-7.html",
+      "sha256": "5c38e784fe372ca6d8c4fe24c32510079a9d86ed224086ceeff68aa7a46c611e",
+      "bytes": 16714
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/session-8.html",
+      "sha256": "e718575e2d97cd2ee26bc22f1d59c23d9650cae6b177f37468808fb90db2272c",
+      "bytes": 19577
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/source/cast.json",
+      "sha256": "f5ab308558d547f03c0ff05e23d06d03a911258ed63206139f704c6eb06604d0",
+      "bytes": 28837
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/source/clues.json",
+      "sha256": "55dca3f1f6fbddd1075832922e1b720c34d256381bce38f8cdff60fb64c3436e",
+      "bytes": 22856
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/source/encounters.json",
+      "sha256": "3aeaf37a3af96422d3deefa55850be5d50213213da719257d0203e7187551827",
+      "bytes": 8264
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/source/handouts.json",
+      "sha256": "9362c858ba71723fac5b28b82792e227525f7bdbae92dc634a6eea52677d493f",
+      "bytes": 6329
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/source/sessions-1.json",
+      "sha256": "cb66a8572c6f5c62955400651272139590919a2e2c1ea0c02f75832137277498",
+      "bytes": 25470
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/source/sessions-2.json",
+      "sha256": "05b00039941434f4a3b3f9acad98631fab1897d27faa7023c1c226b3d0467450",
+      "bytes": 26043
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/source/sessions-3.json",
+      "sha256": "bd8a2fc6cb4e3913862f51c925450c3979861f9f97916d25706d651b994f3b2a",
+      "bytes": 26469
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/source/sessions-4.json",
+      "sha256": "f0d572d39548601ea52d92343d0074c4b799e85f7e3a4317eb464494bcfe54bf",
+      "bytes": 27870
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/source/world.json",
+      "sha256": "414dfbde694d6faa1bc23e88cca6df608e9f7ab634485bb1d888f97f2edc2b83",
+      "bytes": 28481
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/variants/3-players.json",
+      "sha256": "211588ef7a2ffa74e66a1e6d8ac15436fef786492b3ec00cc67f39899ce96f98",
+      "bytes": 267919
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/variants/4-players.json",
+      "sha256": "26d21cbd5495f587f816610e57b16db14841a97d3a02a2d9153c417f4ca3c3a0",
+      "bytes": 276538
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/variants/5-players.json",
+      "sha256": "1d19079688c216240078238838a829c87c7fbc43a0c5c2a5fc4d417125eee754",
+      "bytes": 280102
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/variants/6-players.json",
+      "sha256": "9b5cba150b371463f8aa18857f3ecfc380153c47f4c20ae3a7c12fa1fe40d2b6",
+      "bytes": 288729
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/variants/7-players.json",
+      "sha256": "9073f0eaa3777b4a21781bcef56d9741479406638ffef1f7acfbea0e4e3436a4",
+      "bytes": 297265
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/verification.json",
+      "sha256": "22c01c5d2fa33f421a30d3b149e6df99b49c6ae200b7e589b6c8dd0971dd7cd7",
+      "bytes": 1755
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/AGENTS.md",
+      "sha256": "ace173ef1f3ef76fab83264c8c0c8d6eb235e9804a89a7a288751ed53f57be3e",
+      "bytes": 3878
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/README.md",
+      "sha256": "e8d0bd8f96c36e04c44247c69177d43127ce3d7b7868874734f0b510cf9ae43b",
+      "bytes": 14450
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/handouts/borr-instruction.html",
+      "sha256": "576c69ae9c6eafc5c759d190f50398dd17e8f734525cdea282c311bd8160b8c0",
+      "bytes": 4655
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/handouts/calendar-page.html",
+      "sha256": "70e308ea823d27fb9e4c8cb5f4d2bb81522ef6a2cdcdfaf96637154da746b4ef",
+      "bytes": 5064
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/handouts/departure-note.html",
+      "sha256": "6a8b92089cefe5c36c05d80970ecc33940395f0a2d84b832a108206f16b48ebf",
+      "bytes": 4799
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/handouts/landing-note.html",
+      "sha256": "d3b58c443b1fcaa42ad83a838479a992f7a038ea27f49cb44bf9399b51eee2b2",
+      "bytes": 4898
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/handouts/own-choice.html",
+      "sha256": "47d4249a7621eddffa6b2a3319e432c39e53f2128ddc6e4691fd13515ea08560",
+      "bytes": 4910
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/handouts/river-instructions.html",
+      "sha256": "a72a578aa323bb7aa58a77a35f932cc4bd8fe6db3b0f9187ee385784c12ae277",
+      "bytes": 4942
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/handouts/trial-text.html",
+      "sha256": "8258f113a37f3322774bbf759bcc81ff58aec27af98ad82d6f95e85b68ccfb54",
+      "bytes": 4945
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/handouts/underbed-copy.html",
+      "sha256": "0c2a96d1b03e67a5f5fd06f381eb17b4c2e1e57dac7c2cdbcb8a31d7a13b4bef",
+      "bytes": 4962
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/index.html",
+      "sha256": "9caeed2fee091b5317b65078c10ad0b527e87a38f988f3da1ec61ccb1a8e423c",
+      "bytes": 44483
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/maps/held-slip-3.svg",
+      "sha256": "46116e12bc5650e44467294d0f697a8e4519b8db65891a94594cbf15ddfdf5cf",
+      "bytes": 18229
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/maps/held-slip-4.svg",
+      "sha256": "070c3106276a8788aabdcca1ad7fbb1207af9c0264da8964957665a89dd2d371",
+      "bytes": 18453
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/maps/held-slip-5.svg",
+      "sha256": "1c6eb8f2fbac036e623ecfa059583776d974539ed4fa98d891011acc694c69cb",
+      "bytes": 18566
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/maps/held-slip-6.svg",
+      "sha256": "9539592aeef37ac4b13fc69e2b3ecc1e3b3a7569801e96554a78f09a97262783",
+      "bytes": 18793
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/maps/held-slip-7.svg",
+      "sha256": "33bcafef3404a02935f5debc8b0c8d89b02989ae2566e3c622f6acade830fdcf",
+      "bytes": 19021
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/maps/landing-cordon-3.svg",
+      "sha256": "46116e12bc5650e44467294d0f697a8e4519b8db65891a94594cbf15ddfdf5cf",
+      "bytes": 18229
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/maps/landing-cordon-4.svg",
+      "sha256": "070c3106276a8788aabdcca1ad7fbb1207af9c0264da8964957665a89dd2d371",
+      "bytes": 18453
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/maps/landing-cordon-5.svg",
+      "sha256": "1c6eb8f2fbac036e623ecfa059583776d974539ed4fa98d891011acc694c69cb",
+      "bytes": 18566
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/maps/landing-cordon-6.svg",
+      "sha256": "9539592aeef37ac4b13fc69e2b3ecc1e3b3a7569801e96554a78f09a97262783",
+      "bytes": 18793
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/maps/landing-cordon-7.svg",
+      "sha256": "33bcafef3404a02935f5debc8b0c8d89b02989ae2566e3c622f6acade830fdcf",
+      "bytes": 19021
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/maps/river-interception-3.svg",
+      "sha256": "46116e12bc5650e44467294d0f697a8e4519b8db65891a94594cbf15ddfdf5cf",
+      "bytes": 18229
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/maps/river-interception-4.svg",
+      "sha256": "070c3106276a8788aabdcca1ad7fbb1207af9c0264da8964957665a89dd2d371",
+      "bytes": 18453
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/maps/river-interception-5.svg",
+      "sha256": "1c6eb8f2fbac036e623ecfa059583776d974539ed4fa98d891011acc694c69cb",
+      "bytes": 18566
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/maps/river-interception-6.svg",
+      "sha256": "9539592aeef37ac4b13fc69e2b3ecc1e3b3a7569801e96554a78f09a97262783",
+      "bytes": 18793
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/maps/river-interception-7.svg",
+      "sha256": "33bcafef3404a02935f5debc8b0c8d89b02989ae2566e3c622f6acade830fdcf",
+      "bytes": 19021
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/maps.html",
+      "sha256": "6759efa322ba1e30cef3287d48894f2d0b32cdc6611636554d5741069ce6cac6",
+      "bytes": 67742
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/package.json",
+      "sha256": "9dbf11ace65b50980fb647d7d43c20fb4e68190c2728f1631deede57a980271b",
+      "bytes": 261401
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/players.html",
+      "sha256": "0fe6d762e48f48ca1aa3816b626c7d999e76f6d958844d9ae28c200253b1c2bd",
+      "bytes": 18081
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/session-1.html",
+      "sha256": "f10724c352d6bc6d5fc84d49c9ba3c6fd540a07705e839538461dc9755f1637e",
+      "bytes": 16141
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/session-2.html",
+      "sha256": "50d4b7abd48d54daadc90f9de1a9c5373b1c069de2ec0e8e971ddb8e978c11bd",
+      "bytes": 16626
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/session-3.html",
+      "sha256": "b71410490e7e2fbbfa9e166b3ad1b07843f86bac2d118b16c295c8f47dc6ad1b",
+      "bytes": 16833
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/session-4.html",
+      "sha256": "11b50cc1658146444d229d6d58f30d74f71806062688804ca5b16160d9113494",
+      "bytes": 19282
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/session-5.html",
+      "sha256": "78f7f401123ce18a47f286f10ecd523b7bf563db00629b25b5a388d0e2afe44a",
+      "bytes": 17097
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/session-6.html",
+      "sha256": "b5d182e514464e6470f8c257820890f9c39476067de5e2a26935d8a1d9dc744b",
+      "bytes": 16998
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/session-7.html",
+      "sha256": "94e017568ce3e091ee81056abcefd846957efa855dc0e0d4a73750fa7795eb35",
+      "bytes": 16333
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/session-8.html",
+      "sha256": "20b2000e41dde3ca1c617f6232790e1765132b63d28199f0808c552c49074b68",
+      "bytes": 16517
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/source/cast.json",
+      "sha256": "8825b0729c291662fac9e3ce350cb1ce3eea49c890fa3fb423fb18787685bfef",
+      "bytes": 23132
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/source/clues.json",
+      "sha256": "72353cea50c4de278c98f851582224a3a4ed1b996a5d7a473c3b9c3754c71889",
+      "bytes": 21512
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/source/encounters.json",
+      "sha256": "ae5399ce0f2ba4c1edda153b10ee8eacd8ba08822c1c695253d83dced8c75a91",
+      "bytes": 9112
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/source/handouts.json",
+      "sha256": "18cd3dc0bdc2c5a5fc0eb7f2d5c57fcdbf37e919925360c3b7130e3ddb6d89e3",
+      "bytes": 6572
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/source/sessions-1.json",
+      "sha256": "ab49c621e23003fce51c3614b39be65168faf08f30113a2169ad139d5bcb4190",
+      "bytes": 24681
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/source/sessions-2.json",
+      "sha256": "aabca2ea5d08cc6818de6fe5fba281f2b8d7851bcae7fca2c34dfec67d60769b",
+      "bytes": 25081
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/source/sessions-3.json",
+      "sha256": "dccd25b35950e0bb257c1454115c62aedf942dfe1225a424a782bafb4ffa7b18",
+      "bytes": 25996
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/source/sessions-4.json",
+      "sha256": "fa3cd03c7c140e465d835a23a0eefe54a9363ccaed077dbf0be39e0dd9f4ddc7",
+      "bytes": 27167
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/source/world.json",
+      "sha256": "7ced906d8229d7fc29d5c15781c8b1aa2ee14cf15a78d406d0ae58b8f03b681c",
+      "bytes": 25923
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/variants/3-players.json",
+      "sha256": "4e06a50da508e1b0658ec213185ba578a0cbc94c68157675cebd9d4a538f437b",
+      "bytes": 252585
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/variants/4-players.json",
+      "sha256": "9dbf11ace65b50980fb647d7d43c20fb4e68190c2728f1631deede57a980271b",
+      "bytes": 261401
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/variants/5-players.json",
+      "sha256": "d15e7a9c242bfe01e6332928de535da43280ff94370b8e6c4f79b53e9346a340",
+      "bytes": 265105
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/variants/6-players.json",
+      "sha256": "82570ee6788586efbea697ac1a10c1649238c480149a4afe0862620dd471e3d9",
+      "bytes": 273826
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/variants/7-players.json",
+      "sha256": "937b2962d83ab8f2ac2660af577608ccdc7a6120cff8529c4cd0239bb551987e",
+      "bytes": 282542
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/last-ferryman/verification.json",
+      "sha256": "7999ab91b33cf2d305d82acb7c0fa6d9a3c36c84be99b49e318cd4a89e7c3ec4",
+      "bytes": 1755
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/AGENTS.md",
+      "sha256": "6188b987a6b8e00daabb605531d569e85ae01d71aafb56375c3bade7a7d171dc",
+      "bytes": 1115
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/README.md",
+      "sha256": "65f00935318c58946efe7db8bda79c7d0b98e172613a80194a9e19778c79fabf",
+      "bytes": 15401
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/handouts/black-ways.html",
+      "sha256": "f44866b6bbd82ffd62678799cc8c67c492a88f33769b63abba9ce5a5cdd7b1f9",
+      "bytes": 4918
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/handouts/dust-and-way.html",
+      "sha256": "7ebc6421761fe1522f3d91eb9b1e30ac580068a0572974679f6fe086dd49a007",
+      "bytes": 4885
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/handouts/ernas-words.html",
+      "sha256": "a1334c9aaa2c5e1c8cfa0745281d1d4e49a18b1aabc5a636bbf5c6663da84e0d",
+      "bytes": 4951
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/handouts/felt-observation.html",
+      "sha256": "ab8ad3175dd3b2cbbc21b98cb9844a4dc4ebb39d16381ffe3d541b1491dd7f29",
+      "bytes": 4782
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/handouts/first-ways.html",
+      "sha256": "85ccd20e1cf3dd5240bc6a5e579cc20df250e61ff7d54c4fd5ea51c56a85e147",
+      "bytes": 4849
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/handouts/lake-signs.html",
+      "sha256": "c6d34c969e6650e5bcb36b4f0cf181c152d6daacaa99c194b5870819789f1b76",
+      "bytes": 4806
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/index.html",
+      "sha256": "e81b3d12667d120869baf49e24322045674c989a503a889f8b07e6ff49f0ca96",
+      "bytes": 48599
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/maps/chute-splinters-3.svg",
+      "sha256": "46116e12bc5650e44467294d0f697a8e4519b8db65891a94594cbf15ddfdf5cf",
+      "bytes": 18229
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/maps/chute-splinters-4.svg",
+      "sha256": "070c3106276a8788aabdcca1ad7fbb1207af9c0264da8964957665a89dd2d371",
+      "bytes": 18453
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/maps/chute-splinters-5.svg",
+      "sha256": "1c6eb8f2fbac036e623ecfa059583776d974539ed4fa98d891011acc694c69cb",
+      "bytes": 18566
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/maps/chute-splinters-6.svg",
+      "sha256": "9539592aeef37ac4b13fc69e2b3ecc1e3b3a7569801e96554a78f09a97262783",
+      "bytes": 18793
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/maps/chute-splinters-7.svg",
+      "sha256": "33bcafef3404a02935f5debc8b0c8d89b02989ae2566e3c622f6acade830fdcf",
+      "bytes": 19021
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/maps/rib-splinters-3.svg",
+      "sha256": "46116e12bc5650e44467294d0f697a8e4519b8db65891a94594cbf15ddfdf5cf",
+      "bytes": 18229
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/maps/rib-splinters-4.svg",
+      "sha256": "070c3106276a8788aabdcca1ad7fbb1207af9c0264da8964957665a89dd2d371",
+      "bytes": 18453
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/maps/rib-splinters-5.svg",
+      "sha256": "1c6eb8f2fbac036e623ecfa059583776d974539ed4fa98d891011acc694c69cb",
+      "bytes": 18566
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/maps/rib-splinters-6.svg",
+      "sha256": "9539592aeef37ac4b13fc69e2b3ecc1e3b3a7569801e96554a78f09a97262783",
+      "bytes": 18793
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/maps/rib-splinters-7.svg",
+      "sha256": "33bcafef3404a02935f5debc8b0c8d89b02989ae2566e3c622f6acade830fdcf",
+      "bytes": 19021
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/maps/tooth-splinters-3.svg",
+      "sha256": "46116e12bc5650e44467294d0f697a8e4519b8db65891a94594cbf15ddfdf5cf",
+      "bytes": 18229
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/maps/tooth-splinters-4.svg",
+      "sha256": "070c3106276a8788aabdcca1ad7fbb1207af9c0264da8964957665a89dd2d371",
+      "bytes": 18453
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/maps/tooth-splinters-5.svg",
+      "sha256": "1c6eb8f2fbac036e623ecfa059583776d974539ed4fa98d891011acc694c69cb",
+      "bytes": 18566
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/maps/tooth-splinters-6.svg",
+      "sha256": "9539592aeef37ac4b13fc69e2b3ecc1e3b3a7569801e96554a78f09a97262783",
+      "bytes": 18793
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/maps/tooth-splinters-7.svg",
+      "sha256": "33bcafef3404a02935f5debc8b0c8d89b02989ae2566e3c622f6acade830fdcf",
+      "bytes": 19021
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/maps.html",
+      "sha256": "46cf5449ac9239859b99010a784faff1056f60f6cbb9d4f71dfb01176f41cc35",
+      "bytes": 67828
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/package.json",
+      "sha256": "788bf45ffe95ba8fda88b0058f188d8d9ca7958b9ef02668b9f7867dda29031c",
+      "bytes": 276396
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/players.html",
+      "sha256": "7e874d74a786915939538eb27f6756d13825c453945a789dea14dea6c87ad68f",
+      "bytes": 18338
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/session-1.html",
+      "sha256": "6375dcd4944a9fb71551dfa190d10a2e5c72fe14540ab243fdd88bf48e8e42d3",
+      "bytes": 17142
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/session-2.html",
+      "sha256": "30091ab8c24a64d583eb660253d4b0cf192cb9ba9db6e3c47a2161b4d791f333",
+      "bytes": 18574
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/session-3.html",
+      "sha256": "d77b47079c9cf00709a74768a1ba5e258ee717ee2bb0df4a10fcaa61261d4a9e",
+      "bytes": 20370
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/session-4.html",
+      "sha256": "4ff87e8e07a6378a02ee80ef8e5c28e7e2e978b678f13e118fa175fdd519677e",
+      "bytes": 20469
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/session-5.html",
+      "sha256": "2eecc59ee8d84ddaa8920619813f2c4f69da2829ed4504e0d9cd3f19c4672e62",
+      "bytes": 22479
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/session-6.html",
+      "sha256": "d67f3cbba973aaa61fa084418b419c5f39a75404c0cb26304a799f748ba6db68",
+      "bytes": 23337
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/session-7.html",
+      "sha256": "0507fc6bed222ae6ef549e5c8710529c0a271e0a58dc6c24602d9101f998b081",
+      "bytes": 23864
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/session-8.html",
+      "sha256": "3ff8f60e5dfedf9d10f60be2c893a332987c4df1140c662df2dada2a32b99380",
+      "bytes": 20181
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/source/cast.json",
+      "sha256": "fd11d8b613cd94fa0d4f5c698f777c96c88f725980a8661a7244e51b33c2d9e5",
+      "bytes": 27403
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/source/clues.json",
+      "sha256": "41e5d1ef0c9cb669d840308ceddd54ad8a388468d688be742aa1e7f7fc8986fd",
+      "bytes": 19909
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/source/encounters.json",
+      "sha256": "de194e827d1f150b1b2ed835a99be7575f0c3b1c0601c9689bfaea9c0296ccc6",
+      "bytes": 9245
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/source/handouts.json",
+      "sha256": "c4594914adc1eeea810f7c3f559bd2da2d64eb2290be5c650f23f06adf5f1364",
+      "bytes": 5289
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/source/sessions-1.json",
+      "sha256": "0618a01a4bc1214fc846b75979748fb079a73ec673fb0a181db882c61afffc26",
+      "bytes": 26441
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/source/sessions-2.json",
+      "sha256": "30ff8ebe7fa1579d37ddefca7be1fe36ba684edc8c31cfd32ee8467ed61ae8a9",
+      "bytes": 26814
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/source/sessions-3.json",
+      "sha256": "8067bc8f1ccad76f3a6371500c1b369e45350f7d7782b984c2ae94d4f35101ca",
+      "bytes": 28301
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/source/sessions-4.json",
+      "sha256": "9645f16c5a1e18d7afaf73a6a4d33f4fd42c041639b78699da67c8106678d616",
+      "bytes": 29820
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/source/world.json",
+      "sha256": "acc347ce5392f51d9c2f11ecda7e49d21097353f579fecc857135965f161638d",
+      "bytes": 25555
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/variants/3-players.json",
+      "sha256": "ca821c496db95f735cf98987ad4bd92d88da5d145b6c6988f6e518b3f89bc788",
+      "bytes": 267539
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/variants/4-players.json",
+      "sha256": "788bf45ffe95ba8fda88b0058f188d8d9ca7958b9ef02668b9f7867dda29031c",
+      "bytes": 276396
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/variants/5-players.json",
+      "sha256": "2f66c75efe8790c6782640576f36ea4fe4c8f6409c6d388fc0ccdaaa9a4745d8",
+      "bytes": 280027
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/variants/6-players.json",
+      "sha256": "b3aebc63075e9c5c0efe976690dd558b4b738c7458e9b8fac7e2554767a37c90",
+      "bytes": 288771
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/variants/7-players.json",
+      "sha256": "d37b3a7250eb0252d316888daa98ddb3cc7b619ffd100e32eb029d7e78dac2b6",
+      "bytes": 297564
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/marrow-crown/verification.json",
+      "sha256": "13eca50883da28d2b73d5335e1a3c9729129a3648bf212d50ea18a4acfa896e7",
+      "bytes": 1755
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/AGENTS.md",
+      "sha256": "2ebb5f7fd86fc47ffc11aeec9cc4cf432df593eb7164231bc70358592c80e0b1",
+      "bytes": 2961
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/README.md",
+      "sha256": "f8d62c374eece60cac90097d471b20caeca2eba2c5b0bb070772a38772ff72bf",
+      "bytes": 11402
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/handouts/care-sheet.html",
+      "sha256": "8bf8ea96d4517c464aab1b29e57ee418439e222f5bc326c171d7f49f74d66d84",
+      "bytes": 5162
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/handouts/cargo-check.html",
+      "sha256": "a99bd2fdf5110fb1489184e0e70177fa7ec1b7aed037b825fc279f564ac31aef",
+      "bytes": 5158
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/handouts/division-order.html",
+      "sha256": "415edd72ac45fb61a69aada09d914fded0cf7fd71b142ea32cacf68836b01727",
+      "bytes": 4986
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/handouts/eda-commission.html",
+      "sha256": "01e01d937306f3600423d95156cf6623edd3c3f542d755c5c816bf6c10d8667c",
+      "bytes": 4991
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/handouts/fitting-instruction.html",
+      "sha256": "69d9f16ca639e20794265c0f78792dfd01a500bf85847d19fb10baa558510763",
+      "bytes": 5063
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/handouts/pocket-plan.html",
+      "sha256": "18069e7065363d9fad67375b2e756fc2303d37b37d6f48bb6a253aa7c66b90bd",
+      "bytes": 4966
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/handouts/return-card.html",
+      "sha256": "30b9c12a6b97ae1e494a636a03de71cee6a1f9475f5e0618e9618b4117722174",
+      "bytes": 5022
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/handouts/ulla-ticket.html",
+      "sha256": "9435a7ea3432b8e38dc1931be3de6d7240b554f7d9b4edae889413aa39ec388b",
+      "bytes": 5114
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/handouts/weight-diagram.html",
+      "sha256": "6c7ad8e44f84c01c7353d03ac32d04d62c96fa8ae8f44db54c92b4d7c8aff876",
+      "bytes": 5069
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/index.html",
+      "sha256": "cbe9ab1f270abeeb1695ba7a722854f2539683ba1ee7b25a3899fe6cd3f2d050",
+      "bytes": 49390
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/maps/cabinet-guard-3.svg",
+      "sha256": "46116e12bc5650e44467294d0f697a8e4519b8db65891a94594cbf15ddfdf5cf",
+      "bytes": 18229
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/maps/cabinet-guard-4.svg",
+      "sha256": "070c3106276a8788aabdcca1ad7fbb1207af9c0264da8964957665a89dd2d371",
+      "bytes": 18453
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/maps/cabinet-guard-5.svg",
+      "sha256": "1c6eb8f2fbac036e623ecfa059583776d974539ed4fa98d891011acc694c69cb",
+      "bytes": 18566
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/maps/cabinet-guard-6.svg",
+      "sha256": "9539592aeef37ac4b13fc69e2b3ecc1e3b3a7569801e96554a78f09a97262783",
+      "bytes": 18793
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/maps/cabinet-guard-7.svg",
+      "sha256": "33bcafef3404a02935f5debc8b0c8d89b02989ae2566e3c622f6acade830fdcf",
+      "bytes": 19021
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/maps/wash-wardens-3.svg",
+      "sha256": "46116e12bc5650e44467294d0f697a8e4519b8db65891a94594cbf15ddfdf5cf",
+      "bytes": 18229
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/maps/wash-wardens-4.svg",
+      "sha256": "070c3106276a8788aabdcca1ad7fbb1207af9c0264da8964957665a89dd2d371",
+      "bytes": 18453
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/maps/wash-wardens-5.svg",
+      "sha256": "1c6eb8f2fbac036e623ecfa059583776d974539ed4fa98d891011acc694c69cb",
+      "bytes": 18566
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/maps/wash-wardens-6.svg",
+      "sha256": "9539592aeef37ac4b13fc69e2b3ecc1e3b3a7569801e96554a78f09a97262783",
+      "bytes": 18793
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/maps/wash-wardens-7.svg",
+      "sha256": "33bcafef3404a02935f5debc8b0c8d89b02989ae2566e3c622f6acade830fdcf",
+      "bytes": 19021
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/maps/yard-interception-3.svg",
+      "sha256": "46116e12bc5650e44467294d0f697a8e4519b8db65891a94594cbf15ddfdf5cf",
+      "bytes": 18229
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/maps/yard-interception-4.svg",
+      "sha256": "070c3106276a8788aabdcca1ad7fbb1207af9c0264da8964957665a89dd2d371",
+      "bytes": 18453
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/maps/yard-interception-5.svg",
+      "sha256": "1c6eb8f2fbac036e623ecfa059583776d974539ed4fa98d891011acc694c69cb",
+      "bytes": 18566
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/maps/yard-interception-6.svg",
+      "sha256": "9539592aeef37ac4b13fc69e2b3ecc1e3b3a7569801e96554a78f09a97262783",
+      "bytes": 18793
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/maps/yard-interception-7.svg",
+      "sha256": "33bcafef3404a02935f5debc8b0c8d89b02989ae2566e3c622f6acade830fdcf",
+      "bytes": 19021
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/maps.html",
+      "sha256": "660d5c0ddb7b18221c42a042879535b26922b30ea02cd8fe795199532ff58caf",
+      "bytes": 68206
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/package.json",
+      "sha256": "f0ac7c47f6a3a7d4974f289e952259c9989092d78933d624c0b46390b8d46611",
+      "bytes": 282899
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/players.html",
+      "sha256": "781db0f4f91d688b87502dd37ea735546dce677af6ca6ea56d675922f72efc29",
+      "bytes": 17686
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/session-1.html",
+      "sha256": "ebe22495aa830adcc9e6037e4b0925ef29e0bde36b6cf7e34667a523a16bc4c8",
+      "bytes": 19341
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/session-2.html",
+      "sha256": "f474beaf95f34cfa35a6075df1e6d342592b2c49203bd811cfea2facb9fab58b",
+      "bytes": 23788
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/session-3.html",
+      "sha256": "f5596513910a7b00dafd3157f4e6929252887320efd3e8083b178d97f9a05b78",
+      "bytes": 22158
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/session-4.html",
+      "sha256": "eb09c20599d8b8443c463f9a8ed3403c52b9fd677b8e67df4fb329b591fa271d",
+      "bytes": 23455
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/session-5.html",
+      "sha256": "d96d84574389fda95ace3ff23956b43d4109f142672a28174ca21dad58118393",
+      "bytes": 23531
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/session-6.html",
+      "sha256": "baccf324db02cf1202c014d839b3853c200bb6a1564dbe8666682301780d64e2",
+      "bytes": 24129
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/session-7.html",
+      "sha256": "00a80f8aa4403d09504cec2137df2af03b311f2c73497cfdea0a928eeceb1fbb",
+      "bytes": 21647
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/session-8.html",
+      "sha256": "3a3c9aa45b304ac2a7114fe0feea59735792f1ccf72be2289177eb73e056f4d3",
+      "bytes": 22296
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/source/cast.json",
+      "sha256": "606d08206f34093e2d5cf7576b72d9286e49843b9f98af64059c4472101c5a18",
+      "bytes": 28999
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/source/clues.json",
+      "sha256": "b54de4fdd25c3bfd279f624658037815bf44a1bcca2b01d6db552873daf5ab79",
+      "bytes": 24570
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/source/encounters.json",
+      "sha256": "67067a6159ecc2ec4507c60a7d5cf7bbb502809e6a14672e358045cef884db83",
+      "bytes": 9739
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/source/handouts.json",
+      "sha256": "215e37ea167a86c3cecb56ee90bd1396b45ee29f3262bf1262c730b3ecfbe13a",
+      "bytes": 8810
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/source/sessions-1.json",
+      "sha256": "16f2665858a6d0ad195d9af73803216c329f09eea9197af65037e92f36e53efb",
+      "bytes": 26698
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/source/sessions-2.json",
+      "sha256": "407b590c98fb47a530ab579f2a81def3c0301b90ab6af52272ab35dc26eb8744",
+      "bytes": 26234
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/source/sessions-3.json",
+      "sha256": "c4e299039394151dc288ca070514e9cdbc5edd16173c917106d77b634ee77136",
+      "bytes": 27089
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/source/sessions-4.json",
+      "sha256": "9a6084d9be78e4d458aec3c8d820f8102c85abf4a22cd43bc6e2713b6848f021",
+      "bytes": 27949
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/source/world.json",
+      "sha256": "44df1d58c0ee9223cbf8b3be84bbce3dd016340115e0912d0a2526dacd29111c",
+      "bytes": 24735
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/variants/3-players.json",
+      "sha256": "5593f47b22a750a0426915a1f2833c65a1244a248a478ca532cea3f2f2e7356e",
+      "bytes": 273926
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/variants/4-players.json",
+      "sha256": "f0ac7c47f6a3a7d4974f289e952259c9989092d78933d624c0b46390b8d46611",
+      "bytes": 282899
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/variants/5-players.json",
+      "sha256": "ee85a074bf6ecd8064ca1712bbc19371e505bfe535db55e2e73985e196c93b67",
+      "bytes": 286544
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/variants/6-players.json",
+      "sha256": "34095c55ffbe24a5e3f0c694706022afaed95cac6d04f128b9143eab64484c56",
+      "bytes": 295466
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/variants/7-players.json",
+      "sha256": "571c921d1519f99a3407eb59e133acad7ab50910b45b847c0c1dc86aeb5112de",
+      "bytes": 304467
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/moth-court/verification.json",
+      "sha256": "917b1271784575ec4bb796a0f3345163927c4cb4ec740d74bf51d454db007fcd",
+      "bytes": 1755
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/AGENTS.md",
+      "sha256": "c0278dc2cedcf65c527b13488b80f1a73150783a10c5c3e412f8b0ebf8babcdc",
+      "bytes": 943
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/README.md",
+      "sha256": "b38267fd556deaa4fe943ac5a465e80c86f10b9cbd4527c20477ac1b00fb5aa8",
+      "bytes": 10426
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/handouts/iva-account.html",
+      "sha256": "0b9dfdff5d33eb6b033ea4d1d2627e674d88417fd16818d1fdcc863cc97ac411",
+      "bytes": 5021
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/handouts/molt-observations.html",
+      "sha256": "522f4e99da95c8cde5cde0abb856a2352baf4e55020f4163388c2817bad08320",
+      "bytes": 5067
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/handouts/shares-note.html",
+      "sha256": "90ed92ee72c41aeddcb372219bef32ec47ae5b148158348834448c3f5d9d498a",
+      "bytes": 5049
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/handouts/tooth-instruction.html",
+      "sha256": "089713dfff92a0d0afe4416208ca2bde2307f6c5b6d876ad9c9ce161ae21756d",
+      "bytes": 5079
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/handouts/tower-lines.html",
+      "sha256": "61450006e5c1933c94bacaf85c7aaa39f20f6615f8a950bdfbde7a6a7ae84584",
+      "bytes": 5064
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/handouts/two-accounts.html",
+      "sha256": "4a235aa9375600ed5714f129e04fee75033578ebaf22cdde8a9d791d8691ba52",
+      "bytes": 5056
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/handouts/unfinished-return.html",
+      "sha256": "117dc91e2a045001ae64616c640c6b0dfef7e6a2cc750c9abc156f146825eefd",
+      "bytes": 4887
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/handouts/ways-home.html",
+      "sha256": "c4a0046c131dd3e5abdf9225b727d0cfb4e58044766846ad09ebb9eaf3dd4a9c",
+      "bytes": 5064
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/index.html",
+      "sha256": "8196236fd3855227c8786a081e7bd97a77dbcde6f9ec64a944853cc577291bbc",
+      "bytes": 51997
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/maps/glass-refuse-3.svg",
+      "sha256": "46116e12bc5650e44467294d0f697a8e4519b8db65891a94594cbf15ddfdf5cf",
+      "bytes": 18229
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/maps/glass-refuse-4.svg",
+      "sha256": "070c3106276a8788aabdcca1ad7fbb1207af9c0264da8964957665a89dd2d371",
+      "bytes": 18453
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/maps/glass-refuse-5.svg",
+      "sha256": "1c6eb8f2fbac036e623ecfa059583776d974539ed4fa98d891011acc694c69cb",
+      "bytes": 18566
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/maps/glass-refuse-6.svg",
+      "sha256": "9539592aeef37ac4b13fc69e2b3ecc1e3b3a7569801e96554a78f09a97262783",
+      "bytes": 18793
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/maps/glass-refuse-7.svg",
+      "sha256": "33bcafef3404a02935f5debc8b0c8d89b02989ae2566e3c622f6acade830fdcf",
+      "bytes": 19021
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/maps/loose-collars-3.svg",
+      "sha256": "46116e12bc5650e44467294d0f697a8e4519b8db65891a94594cbf15ddfdf5cf",
+      "bytes": 18229
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/maps/loose-collars-4.svg",
+      "sha256": "070c3106276a8788aabdcca1ad7fbb1207af9c0264da8964957665a89dd2d371",
+      "bytes": 18453
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/maps/loose-collars-5.svg",
+      "sha256": "1c6eb8f2fbac036e623ecfa059583776d974539ed4fa98d891011acc694c69cb",
+      "bytes": 18566
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/maps/loose-collars-6.svg",
+      "sha256": "9539592aeef37ac4b13fc69e2b3ecc1e3b3a7569801e96554a78f09a97262783",
+      "bytes": 18793
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/maps/loose-collars-7.svg",
+      "sha256": "33bcafef3404a02935f5debc8b0c8d89b02989ae2566e3c622f6acade830fdcf",
+      "bytes": 19021
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/maps/recoil-shards-3.svg",
+      "sha256": "46116e12bc5650e44467294d0f697a8e4519b8db65891a94594cbf15ddfdf5cf",
+      "bytes": 18229
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/maps/recoil-shards-4.svg",
+      "sha256": "070c3106276a8788aabdcca1ad7fbb1207af9c0264da8964957665a89dd2d371",
+      "bytes": 18453
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/maps/recoil-shards-5.svg",
+      "sha256": "1c6eb8f2fbac036e623ecfa059583776d974539ed4fa98d891011acc694c69cb",
+      "bytes": 18566
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/maps/recoil-shards-6.svg",
+      "sha256": "9539592aeef37ac4b13fc69e2b3ecc1e3b3a7569801e96554a78f09a97262783",
+      "bytes": 18793
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/maps/recoil-shards-7.svg",
+      "sha256": "33bcafef3404a02935f5debc8b0c8d89b02989ae2566e3c622f6acade830fdcf",
+      "bytes": 19021
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/maps.html",
+      "sha256": "d8f2aaebd4fadeb6f39e89b91dc68f537fd87f09dce3d7cdb8d27405bffd3db9",
+      "bytes": 68496
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/package.json",
+      "sha256": "e5e53d2ef73d6b4dbd195cacad70c1a60e27d9df711d9613e00f8bc7112258af",
+      "bytes": 286060
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/players.html",
+      "sha256": "e53d81b5e77f9f9641217fa4a17060a32194f4330cd0fdefcb6c91cdeeb2fe84",
+      "bytes": 19378
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/session-1.html",
+      "sha256": "6963ca5f8dd0efc833cc3174063ee8716af44dbd0abf3928856bead657804f37",
+      "bytes": 18983
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/session-2.html",
+      "sha256": "6b63f356bdfc276ed5244a67db9c6b24639f9933a1e3a5393677e655c2d38f47",
+      "bytes": 19875
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/session-3.html",
+      "sha256": "4874d9109de56bc53d27ac04c8e49d77b7e8246020c0b0c9cc614b81cbcdd113",
+      "bytes": 19649
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/session-4.html",
+      "sha256": "8d7d8a1004431367a2324cfcd62fcd4aff4e14a09e31ba14315c7d8fdafe291c",
+      "bytes": 20354
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/session-5.html",
+      "sha256": "5df97239a596b0f16fef16db8d1fc3956571c5f762c556d734b67d5635e853e4",
+      "bytes": 21267
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/session-6.html",
+      "sha256": "d325cef07e64d459b6a1d249fd8a20eb5d408f657b0f98711935332d45818f04",
+      "bytes": 20084
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/session-7.html",
+      "sha256": "095ff5259706888ffe09adc5a679239daf79d6286aca4e709c85c2e4139b98be",
+      "bytes": 21630
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/session-8.html",
+      "sha256": "a8e90a1a7237ddf50288432a2e717ec9142c45ead40a24ebe09333c0cfd944a2",
+      "bytes": 23010
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/source/cast.json",
+      "sha256": "90c54d1c6f054d160d37d4da92ff86a5924d3cfdd8e8cd00595c8322384ada84",
+      "bytes": 30797
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/source/clues.json",
+      "sha256": "d06abe927b897721a7eaf938f56a116d92ff2af4f92695510ef11067fb0f74a8",
+      "bytes": 26102
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/source/encounters.json",
+      "sha256": "5f5063f58996b23c6df0deb80aef3542e2ab123a52169210b2d3e8c90ed246db",
+      "bytes": 10191
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/source/handouts.json",
+      "sha256": "9a385fdb3a37b5dffd097b03f66f9eb0f01f7c303833b4ff6d70ebb6f7f51d33",
+      "bytes": 8113
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/source/sessions-1.json",
+      "sha256": "767aed6fd67eaad1bbb0a8ccc7531d8bf0927f06d071c43b86ade70ebd36ef7d",
+      "bytes": 26339
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/source/sessions-2.json",
+      "sha256": "253f212faad97e5f78769a30f03e959734a993a87a555017adce6625e9800735",
+      "bytes": 26512
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/source/sessions-3.json",
+      "sha256": "a9e1c516001ecb97c04d53a98f4f250b12bb0e1d346a62913e02ed797b079bdb",
+      "bytes": 26993
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/source/sessions-4.json",
+      "sha256": "54af26c6d549f991d337890ff34fac40784e55fa2a9c1e5b4cc2438b5479393c",
+      "bytes": 29676
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/source/world.json",
+      "sha256": "c0e7b51d41bb9012e7064c52a552de5ad9efe749133a55c41d1ee3fe1dc66cbd",
+      "bytes": 26515
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/variants/3-players.json",
+      "sha256": "0b59a0bd2852a1699c12fd7090dea94df991664122ecb0916370b874b1ce0519",
+      "bytes": 276846
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/variants/4-players.json",
+      "sha256": "e5e53d2ef73d6b4dbd195cacad70c1a60e27d9df711d9613e00f8bc7112258af",
+      "bytes": 286060
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/variants/5-players.json",
+      "sha256": "ac1d345f67c9cc8559c367cca1d45fad77aca6c9aad1411eb23e548b2b66f287",
+      "bytes": 289791
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/variants/6-players.json",
+      "sha256": "302c68e7b249c8f64776152f9fa70dc84ff1eab13df8ac55e38b3a8a326ec22c",
+      "bytes": 298848
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/variants/7-players.json",
+      "sha256": "080c53e117b3f1dae4f17111c6f8c9f97768fee53117e8efa14faa080cef94d1",
+      "bytes": 308092
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/salt-widows/verification.json",
+      "sha256": "a7c12237746a91c300c299987bfba5026369a7be36528b2a054ece31fd027ac1",
+      "bytes": 1755
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/AGENTS.md",
+      "sha256": "1c5ca6d22509d6e64b7bcfdcff69b2648df02f943c4d20d59ae3741aa46c8263",
+      "bytes": 1377
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/README.md",
+      "sha256": "d42f30e34238ca00dcef9c58d4a80d5b1077eb3c8be95488779ff259fc0a4121",
+      "bytes": 12904
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/handouts/cup-story.html",
+      "sha256": "1a0ef0ca0838c01c9950767a66b8714b003013252457a896bbc3b51ee9d60a00",
+      "bytes": 4950
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/handouts/guard-words.html",
+      "sha256": "98027470c5bf09f2ae76f054bfeb3f2d05b95111b02f74cc7fbb7554088a7305",
+      "bytes": 4789
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/handouts/lantern-result.html",
+      "sha256": "174207ca5853f4f617de7624e8d7e34b8e2a1b86cb938e342f7ea403211915c7",
+      "bytes": 4807
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/handouts/painted-departure.html",
+      "sha256": "a218ffd50f38691f185d33a83a6d973acef20552cf405f71fc28b36256f6bb6f",
+      "bytes": 5018
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/handouts/unbound-page.html",
+      "sha256": "7f5dc6041b8aa64627ddd237c1399d6d499abcc6928a21d97b07fedf84fc5bb7",
+      "bytes": 4657
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/handouts/walking-plan.html",
+      "sha256": "8c54be60ac4eb116756e05f6f80717d9f5c5ce33d71fe18c34f48a16cf267e32",
+      "bytes": 4965
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/handouts/water-sketch.html",
+      "sha256": "6b8c11dbf3ce29402a759a025a9810630877c537e1290c41a876d6ef362a6fdb",
+      "bytes": 4879
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/handouts/wet-welcome.html",
+      "sha256": "cd0de2998fbe811c35ddff26d063784440d777b6af800f10251275ac9b38b223",
+      "bytes": 4720
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/index.html",
+      "sha256": "4bba7a20011c2bb55826a526d73e1ee76a4e92eeb066fe9d76bd1471fa4e4ed7",
+      "bytes": 46302
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/maps/briar-shields-3.svg",
+      "sha256": "46116e12bc5650e44467294d0f697a8e4519b8db65891a94594cbf15ddfdf5cf",
+      "bytes": 18229
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/maps/briar-shields-4.svg",
+      "sha256": "070c3106276a8788aabdcca1ad7fbb1207af9c0264da8964957665a89dd2d371",
+      "bytes": 18453
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/maps/briar-shields-5.svg",
+      "sha256": "1c6eb8f2fbac036e623ecfa059583776d974539ed4fa98d891011acc694c69cb",
+      "bytes": 18566
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/maps/briar-shields-6.svg",
+      "sha256": "9539592aeef37ac4b13fc69e2b3ecc1e3b3a7569801e96554a78f09a97262783",
+      "bytes": 18793
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/maps/briar-shields-7.svg",
+      "sha256": "33bcafef3404a02935f5debc8b0c8d89b02989ae2566e3c622f6acade830fdcf",
+      "bytes": 19021
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/maps/empty-cloaks-3.svg",
+      "sha256": "46116e12bc5650e44467294d0f697a8e4519b8db65891a94594cbf15ddfdf5cf",
+      "bytes": 18229
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/maps/empty-cloaks-4.svg",
+      "sha256": "070c3106276a8788aabdcca1ad7fbb1207af9c0264da8964957665a89dd2d371",
+      "bytes": 18453
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/maps/empty-cloaks-5.svg",
+      "sha256": "1c6eb8f2fbac036e623ecfa059583776d974539ed4fa98d891011acc694c69cb",
+      "bytes": 18566
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/maps/empty-cloaks-6.svg",
+      "sha256": "9539592aeef37ac4b13fc69e2b3ecc1e3b3a7569801e96554a78f09a97262783",
+      "bytes": 18793
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/maps/empty-cloaks-7.svg",
+      "sha256": "33bcafef3404a02935f5debc8b0c8d89b02989ae2566e3c622f6acade830fdcf",
+      "bytes": 19021
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/maps/root-waterbearers-3.svg",
+      "sha256": "46116e12bc5650e44467294d0f697a8e4519b8db65891a94594cbf15ddfdf5cf",
+      "bytes": 18229
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/maps/root-waterbearers-4.svg",
+      "sha256": "070c3106276a8788aabdcca1ad7fbb1207af9c0264da8964957665a89dd2d371",
+      "bytes": 18453
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/maps/root-waterbearers-5.svg",
+      "sha256": "1c6eb8f2fbac036e623ecfa059583776d974539ed4fa98d891011acc694c69cb",
+      "bytes": 18566
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/maps/root-waterbearers-6.svg",
+      "sha256": "9539592aeef37ac4b13fc69e2b3ecc1e3b3a7569801e96554a78f09a97262783",
+      "bytes": 18793
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/maps/root-waterbearers-7.svg",
+      "sha256": "33bcafef3404a02935f5debc8b0c8d89b02989ae2566e3c622f6acade830fdcf",
+      "bytes": 19021
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/maps.html",
+      "sha256": "f15dbae7cd802cc8dfba277607ec71109fd2eb7629e008b024ae488e4f40fbe9",
+      "bytes": 67922
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/package.json",
+      "sha256": "ded1a84f86862b295edd7c72c02c466ffbfdd2cb830f6ea8412751bfaf9d1dce",
+      "bytes": 289584
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/players.html",
+      "sha256": "ad6394e240152f3978f3158a9c278ba97b35a8bd97d23e08b88ffc9bc8552e16",
+      "bytes": 18149
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/session-1.html",
+      "sha256": "b101fd1d893c4e6f14bb9dabe0d8f08779ae314824ad19fa0b56012214438cf4",
+      "bytes": 16897
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/session-2.html",
+      "sha256": "26a780301e54a26d1f641e390a8b744bb78f8b75cbece11277acdddfd62fc17b",
+      "bytes": 18315
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/session-3.html",
+      "sha256": "fc89a5a28ae0c607c79c82d8087552410ee7d2f178aa75d83d1cc1a2b5d251d0",
+      "bytes": 20694
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/session-4.html",
+      "sha256": "67abdf9f3be2dfec650207adc9f7c0e6b037cef3a272408daa98842b3ad85f30",
+      "bytes": 19362
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/session-5.html",
+      "sha256": "cb671bfa80d815e2ab1d70530285873272a328ce0f1a2ea863ae6a86f4a17e85",
+      "bytes": 21853
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/session-6.html",
+      "sha256": "3fb2edeeb6ca34585485685779a6ed8121396b4d5f9b97b78e33137ad3a54d95",
+      "bytes": 19811
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/session-7.html",
+      "sha256": "1b8a4025d62f7a231a58b3387c214f6ca01db761449dd376e5fa208548f55051",
+      "bytes": 22967
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/session-8.html",
+      "sha256": "18013afc6ea86a9f65c4eafc1837394d5391509c72835b52036ce43d7975486e",
+      "bytes": 18687
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/source/cast.json",
+      "sha256": "d9f9031fc883b18c1846d0208de007ab05e1509d5f4d213d7c89a29f4bcf9577",
+      "bytes": 25427
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/source/clues.json",
+      "sha256": "c41131c5b685a252d450786a45654a00cb35f027f54e810cf0b66a06b50f8727",
+      "bytes": 19861
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/source/encounters.json",
+      "sha256": "808f343fffc6185a093963098e24d92a85477a8ce484985288f3c5b58b6e3423",
+      "bytes": 9147
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/source/handouts.json",
+      "sha256": "cb7d0bd4a541e71855af869d27b5597136232fae44f03ba8f0edb70b87a16512",
+      "bytes": 6314
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/source/sessions-1.json",
+      "sha256": "69e673dbf70fff8c5d2d2d9b79ebfc4d8c768792ef8c286c52b114226eada0eb",
+      "bytes": 28412
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/source/sessions-2.json",
+      "sha256": "848bead4864f96497f88ddc04afdd15fe371f3a6fd1388879bcbee94a15db0ab",
+      "bytes": 29964
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/source/sessions-3.json",
+      "sha256": "0453638c93f79911062cdab64dda82aa8aba73a184dd3a4fe4eb44f95cffb4a0",
+      "bytes": 31349
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/source/sessions-4.json",
+      "sha256": "0961f7e6905398dab84dd78255fa11186b5d58b72a6bbc081aa3785e8a2fa6b8",
+      "bytes": 33522
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/source/world.json",
+      "sha256": "9de9b7352e25f6b08a5a22f490bc601d060b5ece472231e247febd059fa40cb4",
+      "bytes": 24394
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/variants/3-players.json",
+      "sha256": "a044a3aeafb9c7335fbe63a0fa17a4a4072449b8fe54be1b07dd606296ae4227",
+      "bytes": 280964
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/variants/4-players.json",
+      "sha256": "ded1a84f86862b295edd7c72c02c466ffbfdd2cb830f6ea8412751bfaf9d1dce",
+      "bytes": 289584
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/variants/5-players.json",
+      "sha256": "bf4cff699deb6366abe336a18bdba33a9281e83e1ff28761af76827763dba9a9",
+      "bytes": 293107
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/variants/6-players.json",
+      "sha256": "3178dc98e41333ddf4779b3975171ba468e233220657b7747049f21c83594086",
+      "bytes": 301512
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/variants/7-players.json",
+      "sha256": "bdc9fc917354b4912ef7a25e30e5bc8a0d7a94b1b2a3a52016d8af0db5a09ecf",
+      "bytes": 310158
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/thorn-abbey/verification.json",
+      "sha256": "9de1ca1394d562a056a134cc2e7c0ac0ef4bfd78701419e59c17c388297407ae",
+      "bytes": 1755
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/AGENTS.md",
+      "sha256": "54f95266d77baeaa8a9dd44740071ce40113287f881b08cdd096471e168e9baf",
+      "bytes": 1816
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/README.md",
+      "sha256": "68159a36c8303112e8c2be782250630736b892a9788f035f309503d61239b7c3",
+      "bytes": 13556
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/handouts/aftercare-list.html",
+      "sha256": "3f33be629ca22bef8ddee7f4004c1cd09b5df05164359e0f1252ab00a3e037a8",
+      "bytes": 4981
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/handouts/circle-leaflet.html",
+      "sha256": "8d84c508b42c0513f253306b0a3394914021ad8c9f83f03dfb3c3cb87f85c59d",
+      "bytes": 4891
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/handouts/graft-diagram.html",
+      "sha256": "62b5896402477db393576dd89fc54b8571d9710b29a31dc5af92cf0632d0ce15",
+      "bytes": 4923
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/handouts/lamp-promise.html",
+      "sha256": "2c7d2464926106b2c4b976bd89c5142dc5edeb2593b5b540f5a8c63eb3ddec10",
+      "bytes": 5010
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/handouts/patient-cards.html",
+      "sha256": "d2712b025544059910549959e07849ae2e3b2c206f3fc61897a2fd8e47845381",
+      "bytes": 4856
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/handouts/silk-term.html",
+      "sha256": "ea4508cde68a28ecf0fc25854c8c73e4b1114c80f798f75e5e07a400d715e923",
+      "bytes": 4938
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/handouts/silver-warning.html",
+      "sha256": "bea0f851c44af697c8b049718097bdb190d2f06cdad7afbfcce23b1200cfdf92",
+      "bytes": 4998
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/handouts/three-bowls-note.html",
+      "sha256": "b9fd3571842be004ea2866ef8400ef3a72d7e8e281459b2dc5e1571435a9f9d9",
+      "bytes": 4871
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/index.html",
+      "sha256": "e44b51884e0cdd4019c4e92d047260b2679227bcbf779f9ab02db218c04c53f7",
+      "bytes": 43212
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/maps/lamp-wickers-3.svg",
+      "sha256": "46116e12bc5650e44467294d0f697a8e4519b8db65891a94594cbf15ddfdf5cf",
+      "bytes": 18229
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/maps/lamp-wickers-4.svg",
+      "sha256": "070c3106276a8788aabdcca1ad7fbb1207af9c0264da8964957665a89dd2d371",
+      "bytes": 18453
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/maps/lamp-wickers-5.svg",
+      "sha256": "1c6eb8f2fbac036e623ecfa059583776d974539ed4fa98d891011acc694c69cb",
+      "bytes": 18566
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/maps/lamp-wickers-6.svg",
+      "sha256": "9539592aeef37ac4b13fc69e2b3ecc1e3b3a7569801e96554a78f09a97262783",
+      "bytes": 18793
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/maps/lamp-wickers-7.svg",
+      "sha256": "33bcafef3404a02935f5debc8b0c8d89b02989ae2566e3c622f6acade830fdcf",
+      "bytes": 19021
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/maps/mirror-echoes-3.svg",
+      "sha256": "46116e12bc5650e44467294d0f697a8e4519b8db65891a94594cbf15ddfdf5cf",
+      "bytes": 18229
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/maps/mirror-echoes-4.svg",
+      "sha256": "070c3106276a8788aabdcca1ad7fbb1207af9c0264da8964957665a89dd2d371",
+      "bytes": 18453
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/maps/mirror-echoes-5.svg",
+      "sha256": "1c6eb8f2fbac036e623ecfa059583776d974539ed4fa98d891011acc694c69cb",
+      "bytes": 18566
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/maps/mirror-echoes-6.svg",
+      "sha256": "9539592aeef37ac4b13fc69e2b3ecc1e3b3a7569801e96554a78f09a97262783",
+      "bytes": 18793
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/maps/mirror-echoes-7.svg",
+      "sha256": "33bcafef3404a02935f5debc8b0c8d89b02989ae2566e3c622f6acade830fdcf",
+      "bytes": 19021
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/maps/white-ushers-3.svg",
+      "sha256": "46116e12bc5650e44467294d0f697a8e4519b8db65891a94594cbf15ddfdf5cf",
+      "bytes": 18229
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/maps/white-ushers-4.svg",
+      "sha256": "070c3106276a8788aabdcca1ad7fbb1207af9c0264da8964957665a89dd2d371",
+      "bytes": 18453
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/maps/white-ushers-5.svg",
+      "sha256": "1c6eb8f2fbac036e623ecfa059583776d974539ed4fa98d891011acc694c69cb",
+      "bytes": 18566
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/maps/white-ushers-6.svg",
+      "sha256": "9539592aeef37ac4b13fc69e2b3ecc1e3b3a7569801e96554a78f09a97262783",
+      "bytes": 18793
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/maps/white-ushers-7.svg",
+      "sha256": "33bcafef3404a02935f5debc8b0c8d89b02989ae2566e3c622f6acade830fdcf",
+      "bytes": 19021
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/maps.html",
+      "sha256": "aa6dd3e0daee47d0feef32b12c8ed4b20607a273c1f37a4919d39bd955949112",
+      "bytes": 67992
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/package.json",
+      "sha256": "a37fa596e4c0793d057ce898d70ef768321a5d9c0bf4de2ba4e05a5fc9235e90",
+      "bytes": 272195
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/players.html",
+      "sha256": "f889f35b39a4b6181816a7d340bb6defc95aa82436c6ea65c8ff2fde92a84e04",
+      "bytes": 17356
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/session-1.html",
+      "sha256": "af71ce6122cd8abb9281bc96f85e9029340c8dfb6cda7acfc19772564e7ba5f3",
+      "bytes": 17447
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/session-2.html",
+      "sha256": "9c815759bd58e9456d1d9a9e8f65191aadb12d7e02a5e5b57dfb8b6f4750c3c6",
+      "bytes": 17854
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/session-3.html",
+      "sha256": "e7ec10f3339346763a5d24deb4b599b6b2e7822e92d9a02cf0816dbb49219a7e",
+      "bytes": 17277
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/session-4.html",
+      "sha256": "db389c089b9f9c068f78c1370b41cec58e2e4b9d62bb0f8c1097d0610be8c359",
+      "bytes": 17830
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/session-5.html",
+      "sha256": "674919dbf4e95d139c3723f7ca5919329e8674b601ffa0cb52152aa1373e3bf1",
+      "bytes": 17327
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/session-6.html",
+      "sha256": "8612b878dc511b25396630c2c74c867349d63d8f114dffb3714878727f784efd",
+      "bytes": 17989
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/session-7.html",
+      "sha256": "52b01d18a7204c9d91d2c38aa1f5654bf13fb90fcaf7e1b4783875c9ea1317f6",
+      "bytes": 20439
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/session-8.html",
+      "sha256": "e9a5a6676a05de729711d2af0d43bb2d394f8847387f564b9fa5939da1251b30",
+      "bytes": 21106
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/source/cast.json",
+      "sha256": "0857dea999c335ca28dcf26debd5701215721a6064af4ed6575dab1d60feca92",
+      "bytes": 25400
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/source/clues.json",
+      "sha256": "32b0d3f132410d55668ca40dca5e2e49959bb6b0fac67c4e12db0d14a6760677",
+      "bytes": 21671
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/source/encounters.json",
+      "sha256": "d785e6b784088dafa8393fe05be7e28feba82e0ab91eaf39e62ee99560533cfd",
+      "bytes": 9163
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/source/handouts.json",
+      "sha256": "89b9f822dc6f3ef2e8bf68741a1d737af8d79a220e3ed15d1de30134f623a331",
+      "bytes": 7076
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/source/sessions-1.json",
+      "sha256": "21a4b5370ebb57b97829eda48cd9cf204d1a5cd7f48aca2f63391930759bcadf",
+      "bytes": 26719
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/source/sessions-2.json",
+      "sha256": "85528ce48f2cd1c7bcad165d4a96fbc0db40814aa9b7a500e83cd8bea831f8dd",
+      "bytes": 26339
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/source/sessions-3.json",
+      "sha256": "802fc7adf97ba7e214401c808a8b277c3aa08bd7886a73b259a72113ad842d3d",
+      "bytes": 26774
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/source/sessions-4.json",
+      "sha256": "b6a2e1139b9cbd70e3932466050139a89d3a57f96b1b0754eeb0f77083cbb5a7",
+      "bytes": 29096
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/source/world.json",
+      "sha256": "a8ada2aa6ef5f12566f7feb85de79d5307e1fb006acefe61bc46c6e446d367a4",
+      "bytes": 21424
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/variants/3-players.json",
+      "sha256": "cb4a6057b6b2b8d38aa2ca8eb11c903636220fe785669057a48677cb6beeab30",
+      "bytes": 263721
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/variants/4-players.json",
+      "sha256": "a37fa596e4c0793d057ce898d70ef768321a5d9c0bf4de2ba4e05a5fc9235e90",
+      "bytes": 272195
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/variants/5-players.json",
+      "sha256": "f80e1b64f5f1faa9045135bdde7037c7568598a8b2b912711937934ab258e7cb",
+      "bytes": 275675
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/variants/6-players.json",
+      "sha256": "b6134b7651ac0059e383e87ba9aef438128d150438ecbb189b28e993782eb112",
+      "bytes": 284311
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/variants/7-players.json",
+      "sha256": "b065b5b72a0c8a11f249f14ef3f46fdb8ad835308435f3e0810ff6ca434cedab",
+      "bytes": 292688
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/winter-orchard/verification.json",
+      "sha256": "389a33c3f05c5ee3be4c771f011ede9c8988f8bf2b549a4311c30cce33cd7dae",
+      "bytes": 1755
+    },
+    {
+      "path": "reports/DARK_FANTASY_TEN_2026-11-08.md",
+      "sha256": "5984060461cc3b31ff76ba2a8cafca425df9b5346ab2a5b988cfc6b1e962bb9e",
+      "bytes": 15582
+    },
+    {
+      "path": "reports/evidence/dark-fantasy-2026-11-08/authors.json",
+      "sha256": "4ede0798362d2e10284798a74a20c448b4f31cf0a0872d7dfd6a49ef9cb7eba0",
+      "bytes": 4771
+    },
+    {
+      "path": "reports/evidence/dark-fantasy-2026-11-08/build.log",
+      "sha256": "a28a94ec54fc8c127708966f9df18eccd0b77cc48fc825afcc0be81efd5f9031",
+      "bytes": 314
+    },
+    {
+      "path": "reports/evidence/dark-fantasy-2026-11-08/checks.json",
+      "sha256": "6480ce84984d5dcdf2107abd0ea7efaa83f1d4823b4581b8d20d59a623b8c1c4",
+      "bytes": 1125
+    },
+    {
+      "path": "reports/evidence/dark-fantasy-2026-11-08/content-summary.json",
+      "sha256": "0cb5a331ba3726da4a8fa928d7931b14b42da4cde7621591fccd62a03a1b7881",
+      "bytes": 5477
+    },
+    {
+      "path": "reports/evidence/dark-fantasy-2026-11-08/context-budget.log",
+      "sha256": "c1713fb9d0cdce418b81a392ca4de0388b4911ab7580bfb37a782b148c32270d",
+      "bytes": 74
+    },
+    {
+      "path": "reports/evidence/dark-fantasy-2026-11-08/format.log",
+      "sha256": "17aa973d3f004560237d9a95171210b0671deff23d61628eecf7322ff5938f20",
+      "bytes": 66
+    },
+    {
+      "path": "reports/evidence/dark-fantasy-2026-11-08/layout/results.json",
+      "sha256": "4b655bcf1e5471d3f1e5e8950e7337313d1668f1cfb1f58be12deedf23174499",
+      "bytes": 84581
+    },
+    {
+      "path": "reports/evidence/dark-fantasy-2026-11-08/layout.log",
+      "sha256": "a82cefc0db42706195daf3493561c94e9269ee39cffeacf8963ce9d995a722a9",
+      "bytes": 140
+    },
+    {
+      "path": "reports/evidence/dark-fantasy-2026-11-08/lint.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "reports/evidence/dark-fantasy-2026-11-08/originality-evidence.json",
+      "sha256": "a3e3c428ceba8b5e4fb962025453299832c0251466c141f844f1eb963e761e65",
+      "bytes": 554182
+    },
+    {
+      "path": "reports/evidence/dark-fantasy-2026-11-08/originality.log",
+      "sha256": "305245784294f91c0c1f390a0cf334eec964d386099898c829d455c6b6cdfc56",
+      "bytes": 122
+    },
+    {
+      "path": "reports/evidence/dark-fantasy-2026-11-08/render.log",
+      "sha256": "50f883a8eb0f58eee2e6b5e1348e1bc4fb84a353dc1abe849f7ccc6c516519af",
+      "bytes": 704
+    },
+    {
+      "path": "reports/evidence/dark-fantasy-2026-11-08/tests.log",
+      "sha256": "677fc80a656384e7147315e4babdefa1ba46b2893da30f41912ab1098cb2ffb3",
+      "bytes": 250
+    },
+    {
+      "path": "reports/evidence/dark-fantasy-2026-11-08/typecheck.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "scripts/dark-fantasy/AGENTS.md",
+      "sha256": "44112d3485798e66d043bde5686ebea53bcc889a1cd2b967d357baf5ee685d0b",
+      "bytes": 489
+    },
+    {
+      "path": "scripts/dark-fantasy/CONTENT_CONTRACT.md",
+      "sha256": "7ed2b4e647ef46a1aa64b2a52d00a698c67614550ab46414147cc21941de250d",
+      "bytes": 7822
+    },
+    {
+      "path": "scripts/dark-fantasy/book.css",
+      "sha256": "64dab40c5939765ff685afc9266e38182153256b72831034c22bfe3a661de14e",
+      "bytes": 3780
+    },
+    {
+      "path": "scripts/dark-fantasy/build.ts",
+      "sha256": "6074e93688125936cb51892aff1232741cea4af1d498a9fa897be847ed313162",
+      "bytes": 1853
+    },
+    {
+      "path": "scripts/dark-fantasy/editorial.ts",
+      "sha256": "39d2a49407ae62ebf78afeeda0de15477695975451be7d5d55c378da8731558e",
+      "bytes": 4353
+    },
+    {
+      "path": "scripts/dark-fantasy/encounters.ts",
+      "sha256": "b8038f39693caa1704deb567304aec59c6534cd85fbbae2c8c8ce58d3f4336bb",
+      "bytes": 2121
+    },
+    {
+      "path": "scripts/dark-fantasy/exports.test.ts",
+      "sha256": "e312a43498080f645a91af37d92ceae170166f24b52446873a0f838602eab8d2",
+      "bytes": 2043
+    },
+    {
+      "path": "scripts/dark-fantasy/layout-audit.ts",
+      "sha256": "8d95b64b576b724f4bdb134b658532edb33a6f66f1762453dc178655ffd759ae",
+      "bytes": 4303
+    },
+    {
+      "path": "scripts/dark-fantasy/originality.ts",
+      "sha256": "a60ee5605d1baf9649468d13a6dd03f1cb557849ff487a30c7b114a6cde328ff",
+      "bytes": 4469
+    },
+    {
+      "path": "scripts/dark-fantasy/package.test.ts",
+      "sha256": "fd73bedeee8bad772432cc6414db14743bdef4566487ca86224313e7cecddbaf",
+      "bytes": 4727
+    },
+    {
+      "path": "scripts/dark-fantasy/package.ts",
+      "sha256": "e700e26d74a6e6b726fb52655d23825163ddc8c98b28dd280c3cc941d5ef411b",
+      "bytes": 7198
+    },
+    {
+      "path": "scripts/dark-fantasy/play-fixture.ts",
+      "sha256": "83968b728cdf178a095bb9bad32aa4715a4690b63da0392879f4d9918f9bb164",
+      "bytes": 5509
+    },
+    {
+      "path": "scripts/dark-fantasy/play.test.ts",
+      "sha256": "73d6349322ae9d3820fd4af0b5ce863f291af678393b6b2f241e0ad3de5617c3",
+      "bytes": 6544
+    },
+    {
+      "path": "scripts/dark-fantasy/render-book.ts",
+      "sha256": "6796e73a5db882afd16591ca648971d47389d0995c9115d3b1c52c4aaee0840a",
+      "bytes": 8143
+    },
+    {
+      "path": "scripts/dark-fantasy/render-common.ts",
+      "sha256": "6162c016b986429010f7e528872b84bd3e99f1715599a3269f8bb6340e48f16d",
+      "bytes": 2135
+    },
+    {
+      "path": "scripts/dark-fantasy/render-maps.ts",
+      "sha256": "abb7e897a96a162e29ae6e8481a5bd2eef6b220bf0102af1042587f42fcbfc73",
+      "bytes": 5295
+    },
+    {
+      "path": "scripts/dark-fantasy/render-session.ts",
+      "sha256": "98fd2483adcaeba3580ec3114e26dc8a8370f182adf79effb064de621983f15c",
+      "bytes": 2335
+    },
+    {
+      "path": "scripts/dark-fantasy/render.ts",
+      "sha256": "aa8c5498151d9ad9a09c43805cdcb42e56839b145667757e8b32ff53233be41e",
+      "bytes": 3530
+    },
+    {
+      "path": "scripts/dark-fantasy/sheets.ts",
+      "sha256": "b2bc39ccf25883face63aff0843ae1318aa2c98a40e711f5b1c23c21fea5a42d",
+      "bytes": 2890
+    },
+    {
+      "path": "scripts/dark-fantasy/source.ts",
+      "sha256": "56c8f5dc732823cef40d268cc43de8622d93a2bf376fd1e2d6b1961b6de412f2",
+      "bytes": 3608
+    },
+    {
+      "path": "scripts/dark-fantasy/tsconfig.json",
+      "sha256": "7e367c19158fa90e77d59ff08828c0b1b5c19eecb1138f34b47d43ebd76db9ce",
+      "bytes": 67
+    },
+    {
+      "path": "scripts/dark-fantasy/validate.ts",
+      "sha256": "ed9cf7c8b86954fa3efc28ba7eb2f1ffd229deb0007a9a186b252d16bcde3662",
+      "bytes": 1282
+    },
+    {
+      "path": "work-orders/DARK_FANTASY_TEN_2026-11-08.md",
+      "sha256": "521203a449b0381db1c8d7420d7c90a93e7e561b68fd55e0553b8e0e6c61550b",
+      "bytes": 2428
+    }
+  ]
+}

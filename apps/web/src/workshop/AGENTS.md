@@ -40,3 +40,5 @@ Read the accepted Stage 370 contract, current work order and `apps/web/AGENTS.md
 - Access strings remain in `i18n/ru-access.ts`; editor/scenario strings belong in
   `ru-workshop-editor.ts` / `ru-workshop-scenario.ts`, loaded by the deferred private module and dictionary coverage.
 - Use the existing UI art/tokens; inspect 1440/768/390/320 px and run layout/axe checks.
+
+- `package-import.tsx` accepts content-only JSON in an empty draft. Preview before explicit OWNER save, server-owned identities, exact nonce retained on uncertain retries; no implicit activation, image job or credential storage.

@@ -122,6 +122,8 @@ import { decodePayload, isVersioned } from './event-versions.ts';
  */
 
 const text = z.string().max(4000);
+/** An NPC's manner of speech (ADR 0020 amendment 2026-11-14); `''` in a change means none. */
+const manner = z.string().max(200);
 const status = z.enum(ENTITY_STATUSES);
 const placement = z
   .object({ locationId: entityIdSchema, since: worldTimeSchema.nullable() })
@@ -138,7 +140,8 @@ export const restoreSchema = z.discriminatedUnion('fact', [
     .object({
       fact: z.literal('entity.profile'),
       entityId: entityIdSchema,
-      value: z.object({ name: text, description: text }).strict(),
+      /** `manner` only when it had one; restores written before it never had one. */
+      value: z.object({ name: text, description: text, manner: manner.exactOptional() }).strict(),
     })
     .strict(),
   z
@@ -206,6 +209,8 @@ export const kernelEventSchema = z.discriminatedUnion('type', [
         kind: z.enum(ENTITY_KINDS),
         name: text,
         description: text,
+        /** An NPC's manner of speech; absent when it has none, and in every earlier event. */
+        manner: manner.exactOptional(),
         existsSince: worldTimeSchema.nullable(),
         location: z
           .object({ type: z.enum(LOCATION_TYPES), parentId: entityIdSchema.nullable() })
@@ -232,6 +237,7 @@ export const kernelEventSchema = z.discriminatedUnion('type', [
         entityId: entityIdSchema,
         name: change(text).optional(),
         description: change(text).optional(),
+        manner: change(manner).exactOptional(),
       })
       .strict(),
   ),

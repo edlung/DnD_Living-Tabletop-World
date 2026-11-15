@@ -3,6 +3,7 @@ import { randomUUID } from 'node:crypto';
 import type { WorldEngine } from '@ltw/domain';
 
 import type { AssetContentStore } from '../assets/content-store.ts';
+import type { CampaignLibrary } from '../campaigns/library.ts';
 import { hashToken, newToken } from '../auth/tokens.ts';
 import { loadCuratedSet } from '../images/curated-set.ts';
 import { createLogger } from '../platform/logging/logger.ts';
@@ -30,8 +31,10 @@ export async function seedWorkshopActivation(input: {
   bootstrap: WorldEngine;
   contents: AssetContentStore;
   seed: string;
+  /** The campaign library, whose pictures a started library campaign receives. */
+  library?: CampaignLibrary;
 }) {
-  const { store, revisions, images, controls, bootstrap, contents, seed } = input;
+  const { store, revisions, images, controls, bootstrap, contents, seed, library } = input;
   const repository = new MemoryCampaignActivationRepository(store, revisions, images, controls);
   const content = new MemoryCampaignInitialContentStore(repository);
   const publication = new MemoryCampaignPublication(repository);
@@ -54,6 +57,14 @@ export async function seedWorkshopActivation(input: {
     contents,
     draftImages: images,
     bootstrap,
+    ...(library
+      ? {
+          libraryPictures: {
+            library,
+            logger: createLogger({ service: 'ui-library-pictures', level: 'silent' }),
+          },
+        }
+      : {}),
   };
   const curated = await loadCuratedSet();
   const picture = curated.entries[0];

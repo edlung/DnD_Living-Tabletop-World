@@ -1,0 +1,1341 @@
+{
+ "id": "moon-pearl",
+ "title": "Тайна Лунной Жемчужины",
+ "genre": "Семейное морское расследование",
+ "audience": "8+",
+ "pitch": "В день Праздника Первого Голоса знаменитая Лунная Жемчужина внезапно умолкает, а в витрине стоит красивая стеклянная подделка. Трое друзей идут по следу через город под морем, где приливы каждый день закрывают и открывают галереи, а к каждому месту ведут разные пути. Чем больше голосов они слышат, тем труднее верить красивой истории на музейной табличке.",
+ "tone": "Чудесное морское расследование, озорные представления, погоня наперегонки с приливом и хитрый план на шумных торгах. Есть риск опоздать и цена ошибок, но нет безысходности, смертей и обязательной жертвы.",
+ "duration": "12 вечеров: десять по 150 минут, финал на торгах 180 минут (можно разделить на две встречи), короткий последний вечер 90 минут. Три эпизода за вечер, паузы между эпизодами. Любую главу можно продолжить в другой день, сохранив найденное.",
+ "cover": "campaigns/moon-pearl/assets/runtime/cover.webp",
+ "defaultVariant": "four-players",
+ "variants": [
+  {
+   "id": "four-players",
+   "players": 4,
+   "label": "4 игрока",
+   "file": "packages/four-players.json",
+   "digest": "8b1ab74055b3b7670e80686c216e4bad5d37ec843b2f49dbc6d67643e2f24a1c"
+  },
+  {
+   "id": "without-toren",
+   "players": 3,
+   "label": "3 игрока, без героя «Торен Риф»",
+   "file": "packages/without-toren.json",
+   "digest": "6e4c0bb243da4bb9cd33208111d5e7948079d316a3cfcfc8bb2c31b8b61ad700"
+  },
+  {
+   "id": "without-leya",
+   "players": 3,
+   "label": "3 игрока, без героя «Лея Скат»",
+   "file": "packages/without-leya.json",
+   "digest": "1a53b80c55140ae51f7ca89c7e9c29fb91a0b35cdce126865449807a518645db"
+  },
+  {
+   "id": "without-amalia",
+   "players": 3,
+   "label": "3 игрока, без героя «Амалия Морева»",
+   "file": "packages/without-amalia.json",
+   "digest": "9b7923e3d9499d0045ac6320b3ff52aa93a71d1fd0c40edef70a89b0b5ff838f"
+  }
+ ],
+ "generator": "codex-cli imagegen",
+ "pictures": [
+  {
+   "source": "campaigns/moon-pearl/assets/runtime/cover.webp",
+   "sha256": "27acbd89aa6a6a02bad63307b46c9508923387723b79b64ee21fd5730a412eb3",
+   "originalSha256": "2ab465b1597bda379e4d27917a58aa7ef5d557177d1f95870b505ddb8247df9b",
+   "generated": "2026-11-08",
+   "prompt": "Use case: illustration-story. Asset: full-page environment illustration for Тайна Лунной Жемчужины. Wide 3:2 cinematic establishing cover. A magnificent original city inside many transparent vaulted bubbles on the seafloor, connected by dry glass galleries; pearl-white museum, coral gardens, theatre and giant empty nautilus-shell pavilion. Foreground a small warmly lit covered boat in a canal inside a dry arch, three tiny travellers seen from behind. A huge gentle manta passes far above outside. A glowing pearl motif reflected subtly in the dome. Leave upper left relatively calm for separately overlaid title. This image reveals no culprit or treasure location. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "sea"
+    ],
+    "without-toren": [
+     "sea"
+    ],
+    "without-leya": [
+     "sea"
+    ],
+    "without-amalia": [
+     "sea"
+    ]
+   },
+   "file": "cover.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/runtime/museum.webp",
+   "sha256": "bfa4cc6aa3a7ef715aade19ec625c12f34f404c2ad24f60104891633b0d8f246",
+   "originalSha256": "5f8cf82835cd8439d742f3e5d0ac40c444e45922280131f902aa33136d84fd26",
+   "generated": "2026-11-08",
+   "prompt": "Use case: illustration-story. Asset: full-page environment illustration for Тайна Лунной Жемчужины. Wide 3:2 interior of the Museum of the First Voice, ivory stairs, low display cabinets, a small pearlescent spherical exhibit on a brass stand with an acoustic horn, translucent ocean ceiling and a manta silhouette. Cheerful festival decorations half prepared. Do not make the exhibit visibly fake or add secret clues. No central characters. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "museum"
+    ],
+    "without-toren": [
+     "museum"
+    ],
+    "without-leya": [
+     "museum"
+    ],
+    "without-amalia": [
+     "museum"
+    ]
+   },
+   "file": "museum.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/runtime/quay.webp",
+   "sha256": "e5674d3672441eb28cdbebe28219bd5b29cbc3616595a792b8bc4410f9b9c13c",
+   "originalSha256": "bd36dc9fa2bec094c08ea667ed2ac4b4d92a48a3bbbdafc544e72d4aff501b43",
+   "generated": "2026-11-08",
+   "prompt": "Use case: illustration-story. Asset: full-page environment illustration for Тайна Лунной Жемчужины. Wide 3:2 dry seaside quay under a huge transparent underwater vault. Calm canal inside, little jetties and railings, three tide-shaped brass bollards, warm lanterns, baskets and benches. A small covered blue boat docked. Sea outside arches rich with fish, ordinary air inside. Inviting and navigable. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "quay"
+    ],
+    "without-toren": [
+     "quay"
+    ],
+    "without-leya": [
+     "quay"
+    ],
+    "without-amalia": [
+     "quay"
+    ]
+   },
+   "file": "quay.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/runtime/boat.webp",
+   "sha256": "a0a687c03d4ff23ec1c98ce6b59596ccd91caf4025957929fa7d54e5b886efcf",
+   "originalSha256": "a2fd9712a3e223b6fe13642a66fafd5a1eb87408c995e79947b1af721dbfe1f4",
+   "generated": "2026-11-08",
+   "prompt": "Use case: illustration-story. Asset: full-page environment illustration for Тайна Лунной Жемчужины. Wide 3:2 intimate interior of the blue covered boat Listen to the Sea, cosy wood cabin, three chairs and a spare bench, round table with three blank smooth memory stones, small closed stove, brass listening tubes, soup cups. Through the window a luminous underwater city beyond a dry canal arch. No text or people. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "boat"
+    ],
+    "without-toren": [
+     "boat"
+    ],
+    "without-leya": [
+     "boat"
+    ],
+    "without-amalia": [
+     "boat"
+    ]
+   },
+   "file": "boat.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/runtime/market.webp",
+   "sha256": "1c0a80ee8917b55cd86520ec7569a2979f68b1918be61ac29b7ed4d57b5ec0b0",
+   "originalSha256": "7b5f72b773d01ff4718302af01e7e88d9386344bf55d0c69d4bbc12e1a5c4184",
+   "generated": "2026-11-08",
+   "prompt": "Use case: illustration-story. Asset: full-page environment illustration for Тайна Лунной Жемчужины. Wide 3:2 spectacular lively Ebb Market inside dry vault, awnings of old sails, pearl-white stalls, shell-shaped buns, baskets on pulleys, wooden bridges over shallow canal, anthropomorphic sea-folk and ordinary air-breathing humans mingling. Little funny empty-box stall. No readable signs, no plot evidence. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "market"
+    ],
+    "without-toren": [
+     "market"
+    ],
+    "without-leya": [
+     "market"
+    ],
+    "without-amalia": [
+     "market"
+    ]
+   },
+   "file": "market.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/runtime/reef.webp",
+   "sha256": "fdfebfdb67181372231dab261102481543a8363606016af175bd6dea47719c98",
+   "originalSha256": "14f6084b06aeafd7a53ca47897f90f4787502a2a3754ec1779ac69548eb3f10c",
+   "generated": "2026-11-08",
+   "prompt": "Use case: illustration-story. Asset: full-page environment illustration for Тайна Лунной Жемчужины. Wide 3:2 quiet listening coral garden. Dry indoor garden terrace with benches, brass acoustic bowls and simple tubes on a table. Huge transparent wall overlooks living coral towers in teal seawater; sunlight patterns, warm peach flowers inside. Scientific curiosity and poetic calm, not psychedelic. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "reef"
+    ],
+    "without-toren": [
+     "reef"
+    ],
+    "without-leya": [
+     "reef"
+    ],
+    "without-amalia": [
+     "reef"
+    ]
+   },
+   "file": "reef.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/runtime/theatre.webp",
+   "sha256": "a13758bd5fe1cb22022c99aa298ea73f86c5b766107af01461f1d56ec5feda54",
+   "originalSha256": "ab7153fb8b68100e66113d0f85f4befe7db4d2747fde6f64c9349bc3b821cc1a",
+   "generated": "2026-11-08",
+   "prompt": "Use case: illustration-story. Asset: full-page environment illustration for Тайна Лунной Жемчужины. Wide 3:2 theatrical auditorium under a clear sea dome, eight distinct draped curtains in blue coral gold ivory, stage with paper waves, dry backstage workbench, shallow round saltwater pool adjacent to directors chair, whimsical eight drumsticks in a holder. No portrait, no text, joyful rehearsal setting. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "theatre"
+    ],
+    "without-toren": [
+     "theatre"
+    ],
+    "without-leya": [
+     "theatre"
+    ],
+    "without-amalia": [
+     "theatre"
+    ]
+   },
+   "file": "theatre.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/runtime/glass.webp",
+   "sha256": "5c1216656dc486b33306ff271b45bd0703bc5cbbe868f3af19184be4e9e1a0ae",
+   "originalSha256": "b4ce04a4bc6cf721e8a1ba36e5f2230cf740a4252a9d1d744bd52650581bcec2",
+   "generated": "2026-11-08",
+   "prompt": "Use case: illustration-story. Asset: full-page environment illustration for Тайна Лунной Жемчужины. Wide 3:2 safe dry glassmaker courtyard, cool translucent seashell replicas displayed on ivory workbenches, brass magnifiers, glass rods neatly stored, enclosed warm kiln behind protective screen far away, hanging coloured lenses casting bright circles. Human-scale workshop; no secrets, no hot glass handled by children. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "glass"
+    ],
+    "without-toren": [
+     "glass"
+    ],
+    "without-leya": [
+     "glass"
+    ],
+    "without-amalia": [
+     "glass"
+    ]
+   },
+   "file": "glass.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/runtime/archive.webp",
+   "sha256": "3229202187c21bd73d126a5d03c20cb62bbfde8aa7a889ef8c02cf6eeb54a55f",
+   "originalSha256": "5a03da3fbdb0119d17b1a9b3e648a21c49341ff0cc38547a5ec44ffaffafaf95",
+   "generated": "2026-11-08",
+   "prompt": "Use case: illustration-story. Asset: full-page environment illustration for Тайна Лунной Жемчужины. Wide 3:2 Archive of Unhurried Affairs. Dry pearl-white vaulted room, indigo shelves, scrolls and books without readable words, broad low accessible table, coral-coloured bookmarks, short rolling ladder. Through wide glass window a serene sea turtle swims outside. Magical natural light, rich detail. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "archive"
+    ],
+    "without-toren": [
+     "archive"
+    ],
+    "without-leya": [
+     "archive"
+    ],
+    "without-amalia": [
+     "archive"
+    ]
+   },
+   "file": "archive.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/runtime/wreck.webp",
+   "sha256": "b8989c15b11b77818f5265ccd55646568182f26b6c5aa7947313e2693e0ecb21",
+   "originalSha256": "8d1bf52b3466d070ff0f24e2a6dd96d80db640d2049bed80c86e3b15c233d81d",
+   "generated": "2026-11-08",
+   "prompt": "Edit the supplied illustrated workshop scene. Preserve the beautiful dry underwater architecture, mosaic of many hands, intact stair and ocean light, gouache texture and palette. Remove ALL people and animals inside the room, and remove the large physical pearl and its stand from the table completely. The original pearl is not in this location. Replace the foreground with a modest empty wooden workbench, closed old working ledger and a simple small recording-cylinder cabinet (no luminous sphere anywhere). No physical treasure, no letters or captions. Make the architecture and mosaic the main subject, atmospheric quiet archaeological wonder. Fish outside the glass may remain. Keep 3:2 landscape composition.",
+   "references": [
+    "references/wreck-draft.png"
+   ],
+   "subjects": {
+    "four-players": [
+     "wreck"
+    ],
+    "without-toren": [
+     "wreck"
+    ],
+    "without-leya": [
+     "wreck"
+    ],
+    "without-amalia": [
+     "wreck"
+    ]
+   },
+   "file": "wreck.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/runtime/nautilus.webp",
+   "sha256": "d56896b212521454ab5ea6f83e829c301b3c38583664b24182b57b2fa562a794",
+   "originalSha256": "746cf92828dce0e8e7200ed0c16313ac7df81906da910da16c90ca854a3eebdf",
+   "generated": "2026-11-08",
+   "prompt": "Use case: illustration-story. Asset: full-page environment illustration for Тайна Лунной Жемчужины. Wide 3:2 grand auction pavilion inside a gigantic ancient EMPTY nautilus shell, not a live animal. Dry spiral galleries, mother-of-pearl ribs, soft coral velvet seats, brass lamps and sealed anonymous storage crates behind a lattice at one side. Clear multiple exits and an open public desk. Elegant intriguing atmosphere, no villain portrait or readable lot labels. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "nautilus"
+    ],
+    "without-toren": [
+     "nautilus"
+    ],
+    "without-leya": [
+     "nautilus"
+    ],
+    "without-amalia": [
+     "nautilus"
+    ]
+   },
+   "file": "nautilus.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/runtime/passage.webp",
+   "sha256": "e8a8e910befed1856d4c64c41971a800c34ee17d4ebdd906fbdac6e0483a43db",
+   "originalSha256": "4d050bbdf147dec81fd8711ae608c11fc9a03fabba8f5e8979e12605621259ae",
+   "generated": "2026-11-08",
+   "prompt": "Use case: illustration-story. Asset: full-page environment illustration for Тайна Лунной Жемчужины. Wide 3:2 awe-inspiring transparent city gallery with broad dry walkway, strong brass ribs, railings and a safe dry refuge alcove with benches. Outside the intact glass an immense curling ocean current sweeps sunlight and fish overhead. Warm lantern inside, calm safe space, no cracks, no flooded interior, no endangered children. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "passage"
+    ],
+    "without-toren": [
+     "passage"
+    ],
+    "without-leya": [
+     "passage"
+    ],
+    "without-amalia": [
+     "passage"
+    ]
+   },
+   "file": "passage.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/runtime/commons.webp",
+   "sha256": "7bc4245a0966c3824ef688738983a31592d0e96f54493e72ba2e72980e62e976",
+   "originalSha256": "cf4e05085695ed819cc81b79772a4e2d98b461c270e0b607e73d7bdd80c8b208",
+   "generated": "2026-11-08",
+   "prompt": "Use case: illustration-story. Asset: full-page environment illustration for Тайна Лунной Жемчужины. Wide 3:2 public square beneath a vast circular ocean window. Low amphitheatre steps, accessible little platform, tables with blank paper and small chairs, flower planters, diverse residents arriving. Pearl ivory and deep turquoise, celebratory but open-ended, no mandatory crowd triumph or text. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "commons"
+    ],
+    "without-toren": [
+     "commons"
+    ],
+    "without-leya": [
+     "commons"
+    ],
+    "without-amalia": [
+     "commons"
+    ]
+   },
+   "file": "commons.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/runtime/toren.webp",
+   "sha256": "fe0a608248c24deacee927564495f418cccfe0f9f33221a36c29060f0dc19ff1",
+   "originalSha256": "9217e8498686a38d6a69ffec0d19bec6e16f865212bfb4b88f787585291baf18",
+   "generated": "2026-11-08",
+   "prompt": "Use case: illustration-story. Asset: selectable hero portrait, vertical 2:3, full head and hands within generous frame, three-quarter body, quiet abstract ocean architectural background. Character: Торен Риф. Коренастый дварф с медной бородой, бирюзовым плащом и круглым щитом с волной. На поясе простая серебристая звёздочка. Warm capable expression, individual personality, clear silhouette and natural anatomy. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "toren"
+    ],
+    "without-toren": [],
+    "without-leya": [
+     "toren"
+    ],
+    "without-amalia": [
+     "toren"
+    ]
+   },
+   "file": "toren.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/runtime/leya.webp",
+   "sha256": "9f0263c69544dc84b426881d6929870943fdc2883e90a331def3ffa62a4a80d5",
+   "originalSha256": "83f0ee5a46fb3e95f65ad868841df56a3549063b16e4d50092c7b4431b854b8d",
+   "generated": "2026-11-08",
+   "prompt": "Use case: illustration-story. Asset: selectable hero portrait, vertical 2:3, full head and hands within generous frame, three-quarter body, quiet abstract ocean architectural background. Character: Лея Скат. Полурослик с тёмной косой, коралловой курткой и сумкой для находок. На шее маленький пустой стеклянный футляр. Warm capable expression, individual personality, clear silhouette and natural anatomy. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "leya"
+    ],
+    "without-toren": [
+     "leya"
+    ],
+    "without-leya": [],
+    "without-amalia": [
+     "leya"
+    ]
+   },
+   "file": "leya.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/runtime/amalia.webp",
+   "sha256": "6f7db4c3627712dd38046e8cec4343bf8b07931811d98bc47667b7f4871dfc85",
+   "originalSha256": "5780dc09ccfc89dd34a3a673373c17c69b405edde8cac419392ccc07b29e2f11",
+   "generated": "2026-11-08",
+   "prompt": "Use case: illustration-story. Asset: selectable hero portrait, vertical 2:3, full head and hands within generous frame, three-quarter body, quiet abstract ocean architectural background. Character: Амалия Морева. Взрослая женщина с тёплой смуглой кожей, волнистыми тёмными волосами и синим дорожным платьем. На посохе маленький ракушечный колокольчик. Warm capable expression, individual personality, clear silhouette and natural anatomy. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "amalia"
+    ],
+    "without-toren": [
+     "amalia"
+    ],
+    "without-leya": [
+     "amalia"
+    ],
+    "without-amalia": []
+   },
+   "file": "amalia.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/runtime/emil.webp",
+   "sha256": "c7636126e47bbb6d5c26812a16e6ac48e32d8a69a5a8448e6dd575cd28a6ebfc",
+   "originalSha256": "d342e9f755301e86bd58d09d25a60c4695bec59a490dc5fd9d66b3b5d2622965",
+   "generated": "2026-11-08",
+   "prompt": "Use case: illustration-story. Asset: selectable hero portrait, vertical 2:3, full head and hands within generous frame, three-quarter body, quiet abstract ocean architectural background. Character: Эмиль Стеклосвет. Эльф с короткими серебристыми волосами, круглой оправой очков и тёмно-синим жилетом. В руках латунная рамка с цветной линзой. Warm capable expression, individual personality, clear silhouette and natural anatomy. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "emil"
+    ],
+    "without-toren": [
+     "emil"
+    ],
+    "without-leya": [
+     "emil"
+    ],
+    "without-amalia": [
+     "emil"
+    ]
+   },
+   "file": "emil.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/runtime/nora.webp",
+   "sha256": "1e0f2b186df8ce9d110be40b836c94da17147a7e1cf0f39b9e387b4e216ecaf7",
+   "originalSha256": "b096c973f8e3a9a18aa36a2f3ded6749571623884d526f316fb94d94383b38f3",
+   "generated": "2026-11-08",
+   "prompt": "Use case: illustration-story. Asset: vertical 2:3 character portrait, entire head and hands within generous frame, distinctive silhouette, quiet atmospheric background suggesting their workplace. Character: Капитан Нора Волнорез. Пожилая женщина с серебряными волосами, синим капитанским пальто, золотыми пуговицами и доброй морщинкой у глаз. Show only public appearance, no hidden motives or evidence. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "nora"
+    ],
+    "without-toren": [
+     "nora"
+    ],
+    "without-leya": [
+     "nora"
+    ],
+    "without-amalia": [
+     "nora"
+    ]
+   },
+   "file": "nora.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/runtime/elma.webp",
+   "sha256": "46a51f9b2cd3dadcac2b8bde88ffad861cb1ff843a942ab2bb3e68695b3fa2ca",
+   "originalSha256": "dab6af30af7c9e5224a77f22b4f0e7d9b5adfc8296d97ccd3013ed6167cf3971",
+   "generated": "2026-11-08",
+   "prompt": "Use case: illustration-story. Asset: vertical 2:3 character portrait, entire head and hands within generous frame, distinctive silhouette, quiet atmospheric background suggesting their workplace. Character: Эльма Ракит. Высокая женщина с каштановой косой, белым музейным жакетом и бирюзовыми перчатками. Show only public appearance, no hidden motives or evidence. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "elma"
+    ],
+    "without-toren": [
+     "elma"
+    ],
+    "without-leya": [
+     "elma"
+    ],
+    "without-amalia": [
+     "elma"
+    ]
+   },
+   "file": "elma.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/runtime/lucien.webp",
+   "sha256": "f520e0263ba915f075fe42706f3ad550815986a78e76427203157f5994c7ca9f",
+   "originalSha256": "aff04f776e052785d2452a19649e8afd0f5fd9df6c9476a22b8be58d0f1ed359",
+   "generated": "2026-11-08",
+   "prompt": "Use case: illustration-story. Asset: vertical 2:3 character portrait, entire head and hands within generous frame, distinctive silhouette, quiet atmospheric background suggesting their workplace. Character: Люсьен Коралл. Ухоженный мужчина с узкими усами, винным бархатным сюртуком и золотой заколкой в форме коралла. Show only public appearance, no hidden motives or evidence. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "lucien"
+    ],
+    "without-toren": [
+     "lucien"
+    ],
+    "without-leya": [
+     "lucien"
+    ],
+    "without-amalia": [
+     "lucien"
+    ]
+   },
+   "file": "lucien.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/runtime/bubo.webp",
+   "sha256": "da6cf7fd14d3960dc76754afa35dfefa48c8516f7974855c13380615027201be",
+   "originalSha256": "21a03603a0a16b71786c90cf531a4a53a74ab52c28b61e8733a0fc133e3aec37",
+   "generated": "2026-11-08",
+   "prompt": "Use case: illustration-story. Asset: isolated complete friendly crab character cutout, square canvas, truly transparent background, no ground plane, no cast shadow, all legs and pincers inside frame. Character: Бубо. Маленький кораллово-красный краб с синей почтовой сумкой, круглыми глазами и белой фуражкой. Show only public appearance, no hidden motives or evidence. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "bubo"
+    ],
+    "without-toren": [
+     "bubo"
+    ],
+    "without-leya": [
+     "bubo"
+    ],
+    "without-amalia": [
+     "bubo"
+    ]
+   },
+   "file": "bubo.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/runtime/bubo.webp",
+   "sha256": "da6cf7fd14d3960dc76754afa35dfefa48c8516f7974855c13380615027201be",
+   "originalSha256": "21a03603a0a16b71786c90cf531a4a53a74ab52c28b61e8733a0fc133e3aec37",
+   "generated": "2026-11-08",
+   "prompt": "Use case: illustration-story. Asset: isolated complete friendly crab character cutout, square canvas, truly transparent background, no ground plane, no cast shadow, all legs and pincers inside frame. Character: Бубо. Маленький кораллово-красный краб с синей почтовой сумкой, круглыми глазами и белой фуражкой. Show only public appearance, no hidden motives or evidence. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "bubo"
+    ],
+    "without-toren": [
+     "bubo"
+    ],
+    "without-leya": [
+     "bubo"
+    ],
+    "without-amalia": [
+     "bubo"
+    ]
+   },
+   "file": "bubo--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "bubo.webp"
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/runtime/dora.webp",
+   "sha256": "28202c0e87c9bbd4a497e2e1539620459b7132952e6b2baba4016173f38c1303",
+   "originalSha256": "b36fb30e025e26c606ccb9f5b73a5428b5943ba9ead23bb6998cf01f67f4508e",
+   "generated": "2026-11-08",
+   "prompt": "Use case: illustration-story. Asset: vertical 2:3 character portrait, entire head and hands within generous frame, distinctive silhouette, quiet atmospheric background suggesting their workplace. Character: Дора Стеклянница. Дварфийка с тёмной кожей, белыми короткими кудрями, медными очками и абрикосовым рабочим фартуком. Show only public appearance, no hidden motives or evidence. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "dora"
+    ],
+    "without-toren": [
+     "dora"
+    ],
+    "without-leya": [
+     "dora"
+    ],
+    "without-amalia": [
+     "dora"
+    ]
+   },
+   "file": "dora.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/runtime/ostin.webp",
+   "sha256": "25d3fe0bd85a79e2d21cf0122d1d4af7523dbd2a5c4b7fa2cfde8896fb8239dc",
+   "originalSha256": "373612c79be1eb5ca3b111625f1cd8db1107209b97ca4b70e218cc27cdeb11c7",
+   "generated": "2026-11-08",
+   "prompt": "Use case: illustration-story. Asset: vertical 2:3 character portrait, entire head and hands within generous frame, distinctive silhouette, quiet atmospheric background suggesting their workplace. Character: Остин Восемь-Пауз. Сиреневый осьминог с маленьким золотым жилетом и восемью выразительными руками; сидит у круглого бассейна. Show only public appearance, no hidden motives or evidence. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "ostin"
+    ],
+    "without-toren": [
+     "ostin"
+    ],
+    "without-leya": [
+     "ostin"
+    ],
+    "without-amalia": [
+     "ostin"
+    ]
+   },
+   "file": "ostin.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/runtime/vella.webp",
+   "sha256": "23a7f47dc9576850d55d36b11e3dc35ea56d0786f51c00b93b2a6163ab5b7b90",
+   "originalSha256": "a0e12df56e36ba029b9b6552764ddaee1267bf4489413b1c89b7f002cc894282",
+   "generated": "2026-11-08",
+   "prompt": "Use case: illustration-story. Asset: vertical 2:3 character portrait, entire head and hands within generous frame, distinctive silhouette, quiet atmospheric background suggesting their workplace. Character: Велла Листоплав. Добродушная морская саламандра с бирюзовой кожей, коралловыми наружными жабрами и соломенной садовой шляпой. Show only public appearance, no hidden motives or evidence. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "vella"
+    ],
+    "without-toren": [
+     "vella"
+    ],
+    "without-leya": [
+     "vella"
+    ],
+    "without-amalia": [
+     "vella"
+    ]
+   },
+   "file": "vella.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/runtime/ur.webp",
+   "sha256": "b12e8d9e2652dec137855f2c91d5802171efdea3b4766406dea8fc3cc4e715e4",
+   "originalSha256": "5615a416e89d6daf836b1a3131287931f4c34fad95f08dd75f19c71a20ee80d0",
+   "generated": "2026-11-08",
+   "prompt": "Use case: illustration-story. Asset: vertical 2:3 character portrait, entire head and hands within generous frame, distinctive silhouette, quiet atmospheric background suggesting their workplace. Character: Архивариус Ур. Пожилой черепахообразный житель в чернильном жилете, с круглыми очками и закладкой на запястье. Show only public appearance, no hidden motives or evidence. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "ur"
+    ],
+    "without-toren": [
+     "ur"
+    ],
+    "without-leya": [
+     "ur"
+    ],
+    "without-amalia": [
+     "ur"
+    ]
+   },
+   "file": "ur.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/runtime/iris.webp",
+   "sha256": "644ec825d733dd44cec7d4d47d177ad55efb9d64619b87176bfcf51fb5c2bb81",
+   "originalSha256": "b03f7460c853e4dee5cccf2f32b6ce04e3b10e1fd940bfcbbbd607ec16187669",
+   "generated": "2026-11-08",
+   "prompt": "Use case: illustration-story. Asset: vertical 2:3 character portrait, entire head and hands within generous frame, distinctive silhouette, quiet atmospheric background suggesting their workplace. Character: Ирис Береговая. Женщина с тёмными короткими волосами, перламутровым плащом и коралловой лентой на папке. Show only public appearance, no hidden motives or evidence. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "iris"
+    ],
+    "without-toren": [
+     "iris"
+    ],
+    "without-leya": [
+     "iris"
+    ],
+    "without-amalia": [
+     "iris"
+    ]
+   },
+   "file": "iris.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/runtime/fold-crab.webp",
+   "sha256": "6a6d7a26ca41245ecf32878a5452587fd5f12ab9f5b355d4a5d4e1b2b6219eb7",
+   "originalSha256": "31181e2838036a79570540d99656249756aaa52c1675b75c0d75733a23655def",
+   "generated": "2026-11-08",
+   "prompt": "Use case: illustration-story. Asset: isolated full-body service automaton token, square canvas, genuinely transparent background, no floor, no shadow. A small charming mechanical crab folded from thick ivory nautical chart paper, abstract blue contour lines with NO letters, soft rounded folded pincers, brass split-pin joints, warm glass eyes, small blank permit slot. Entire creature and every leg comfortably inside frame. Toylike and reparable, no weapons, no menace. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "paper-reception-foe-1",
+     "paper-reception-foe-2",
+     "quay-chase-foe-1",
+     "quay-chase-foe-2",
+     "quay-chase-foe-3",
+     "quay-chase-foe-4",
+     "quay-chase-foe-5",
+     "auction-hall-foe-1",
+     "auction-hall-foe-2"
+    ],
+    "without-toren": [
+     "paper-reception-foe-1",
+     "paper-reception-foe-2",
+     "quay-chase-foe-1",
+     "quay-chase-foe-2",
+     "quay-chase-foe-3",
+     "quay-chase-foe-4",
+     "auction-hall-foe-1",
+     "auction-hall-foe-2"
+    ],
+    "without-leya": [
+     "paper-reception-foe-1",
+     "paper-reception-foe-2",
+     "quay-chase-foe-1",
+     "quay-chase-foe-2",
+     "quay-chase-foe-3",
+     "quay-chase-foe-4",
+     "auction-hall-foe-1",
+     "auction-hall-foe-2"
+    ],
+    "without-amalia": [
+     "paper-reception-foe-1",
+     "paper-reception-foe-2",
+     "quay-chase-foe-1",
+     "quay-chase-foe-2",
+     "quay-chase-foe-3",
+     "quay-chase-foe-4",
+     "auction-hall-foe-1",
+     "auction-hall-foe-2"
+    ]
+   },
+   "file": "fold-crab.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/runtime/fold-crab.webp",
+   "sha256": "6a6d7a26ca41245ecf32878a5452587fd5f12ab9f5b355d4a5d4e1b2b6219eb7",
+   "originalSha256": "31181e2838036a79570540d99656249756aaa52c1675b75c0d75733a23655def",
+   "generated": "2026-11-08",
+   "prompt": "Use case: illustration-story. Asset: isolated full-body service automaton token, square canvas, genuinely transparent background, no floor, no shadow. A small charming mechanical crab folded from thick ivory nautical chart paper, abstract blue contour lines with NO letters, soft rounded folded pincers, brass split-pin joints, warm glass eyes, small blank permit slot. Entire creature and every leg comfortably inside frame. Toylike and reparable, no weapons, no menace. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "paper-reception-foe-1",
+     "paper-reception-foe-2",
+     "quay-chase-foe-1",
+     "quay-chase-foe-2",
+     "quay-chase-foe-3",
+     "quay-chase-foe-4",
+     "quay-chase-foe-5",
+     "auction-hall-foe-1",
+     "auction-hall-foe-2"
+    ],
+    "without-toren": [
+     "paper-reception-foe-1",
+     "paper-reception-foe-2",
+     "quay-chase-foe-1",
+     "quay-chase-foe-2",
+     "quay-chase-foe-3",
+     "quay-chase-foe-4",
+     "auction-hall-foe-1",
+     "auction-hall-foe-2"
+    ],
+    "without-leya": [
+     "paper-reception-foe-1",
+     "paper-reception-foe-2",
+     "quay-chase-foe-1",
+     "quay-chase-foe-2",
+     "quay-chase-foe-3",
+     "quay-chase-foe-4",
+     "auction-hall-foe-1",
+     "auction-hall-foe-2"
+    ],
+    "without-amalia": [
+     "paper-reception-foe-1",
+     "paper-reception-foe-2",
+     "quay-chase-foe-1",
+     "quay-chase-foe-2",
+     "quay-chase-foe-3",
+     "quay-chase-foe-4",
+     "auction-hall-foe-1",
+     "auction-hall-foe-2"
+    ]
+   },
+   "file": "fold-crab--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "fold-crab.webp"
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/runtime/pass.webp",
+   "sha256": "7846f837b345cab333544a8ba7c6c370cca67f7883e9c2bd3f055f9588550106",
+   "originalSha256": "94771bd24f7abb96a46edba74d219ceb98939be1a80bb3081f4d43ed0f30657e",
+   "generated": "2026-11-08",
+   "prompt": "Use case: illustration-story. Asset: collectible prop card art, square canvas, one object centred with generous whitespace, ivory paper background, soft studio-like daylight. A small mother-of-pearl visitor pass on a coral ribbon, three wave-shaped embossed marks, blank inset for a name, elegant practical handcrafted object. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "pass"
+    ],
+    "without-toren": [
+     "pass"
+    ],
+    "without-leya": [
+     "pass"
+    ],
+    "without-amalia": [
+     "pass"
+    ]
+   },
+   "file": "pass.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/runtime/lens.webp",
+   "sha256": "6281d3a99b4a86b3d04e55bac4856371449d154894204db2c8e6cd9a6bba2f22",
+   "originalSha256": "95d083293d2f63a55fa8742a6daf0bac9e6d0d32a8f4bb9cb584e5df912dba4b",
+   "generated": "2026-11-08",
+   "prompt": "Use case: illustration-story. Asset: collectible prop card art, square canvas, one object centred with generous whitespace, ivory paper background, soft studio-like daylight. A brass folding magnifier with a round pale blue lens and a little ivory handle, tactile workshop tool, tiny scratches, no numbers. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "lens"
+    ],
+    "without-toren": [
+     "lens"
+    ],
+    "without-leya": [
+     "lens"
+    ],
+    "without-amalia": [
+     "lens"
+    ]
+   },
+   "file": "lens.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/runtime/chime.webp",
+   "sha256": "073c1642b2f75768f208a4f18fdd31b75cbc779b334c186af7983c3e5ea812af",
+   "originalSha256": "6387b0d8117e158e0dc2ae8640770770b38a161062502bd3fdcd5aedacde3b9a",
+   "generated": "2026-11-08",
+   "prompt": "Use case: illustration-story. Asset: collectible prop card art, square canvas, one object centred with generous whitespace, ivory paper background, soft studio-like daylight. A delicate tiny chime made from three different pale seashells and coral thread, each shell distinct, natural asymmetry, gentle warm reflected light. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "chime"
+    ],
+    "without-toren": [
+     "chime"
+    ],
+    "without-leya": [
+     "chime"
+    ],
+    "without-amalia": [
+     "chime"
+    ]
+   },
+   "file": "chime.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/runtime/case.webp",
+   "sha256": "12e93166d898aad00bec107d69bdf7ccfc3b93c597ce7354bad819a2b67bcf67",
+   "originalSha256": "71b3f4e084b6f5f146382302292434837aee24e0f3987301901cbfd0c53a7ea6",
+   "generated": "2026-11-08",
+   "prompt": "Use case: illustration-story. Asset: collectible prop card art, square canvas, one object centred with generous whitespace, ivory paper background, soft studio-like daylight. An EMPTY small oval glass keepsake case with thin brass edges, hinged lid open, deep blue velvet lining. Its emptiness is purposeful and beautiful. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "case"
+    ],
+    "without-toren": [
+     "case"
+    ],
+    "without-leya": [
+     "case"
+    ],
+    "without-amalia": [
+     "case"
+    ]
+   },
+   "file": "case.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/runtime/ribbon.webp",
+   "sha256": "0134baf57b691d812431e844cc7b063c73afee22b93a08043c1c0f31f467680c",
+   "originalSha256": "a1e9811a0809a060723e4c9ed4b5c5b6604c9a44bd9638e6586a6360c5d0e91f",
+   "generated": "2026-11-08",
+   "prompt": "Use case: illustration-story. Asset: collectible prop card art, square canvas, one object centred with generous whitespace, ivory paper background, soft studio-like daylight. A loose coil of coral-peach fabric ribbon with three small blank mother-of-pearl tags, ends curling naturally, handmade celebration memento, no writing. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "ribbon"
+    ],
+    "without-toren": [
+     "ribbon"
+    ],
+    "without-leya": [
+     "ribbon"
+    ],
+    "without-amalia": [
+     "ribbon"
+    ]
+   },
+   "file": "ribbon.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/runtime/pearl.webp",
+   "sha256": "d72f29c10bf845ea1f072e076e7de4a4c4fe45f2bd54e7287989535d89ff6ea7",
+   "originalSha256": "81d2426ccbe5ca0402aa658d692958ab3c440e51cbb7d25f990f7cec61ac39c3",
+   "generated": "2026-11-08",
+   "prompt": "Use case: illustration-story. Asset: square standalone artifact card, one object only on ivory paper background. A beautiful luminous mother-of-pearl sphere mounted on a small brass cradle, its solid base engraved with seven connected abstract wave marks; a small hand-cranked acoustic recording horn attached at the side, clearly a crafted musical archive, not a living creature. No writing, no people, no scenery, no other treasure. Generous whitespace. Original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+   "references": [],
+   "subjects": {
+    "four-players": [
+     "pearl"
+    ],
+    "without-toren": [
+     "pearl"
+    ],
+    "without-leya": [
+     "pearl"
+    ],
+    "without-amalia": [
+     "pearl"
+    ]
+   },
+   "file": "pearl.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/runtime/glass-copy.webp",
+   "sha256": "fd41c7db8cec196b7b62097bfd866629b48431dd5aea5ec00817a19becd03841",
+   "originalSha256": "1facb422684f2bb11298f83b6f6fe109a500948c9626057302c4eeaa9abd3e37",
+   "generated": "2026-11-13",
+   "prompt": "Use case: illustration-story. Asset: object illustration for an original family tabletop adventure. Square 1:1. A single teaching glass replica of a pearl-white musical archive sphere, the size of a grapefruit, sitting on a soft coral-coloured cloth on a workshop table; the sphere is smooth pale glass with a faint casting seam near the base, and on its small glass foot a tiny engraved mark of three rays; beside it a folded brass loupe. Match the attached reference pictures exactly in medium and palette: tactile gouache and coloured-pencil storybook painting with subtle paper grain, deep ultramarine and luminous teal, pearl ivory, coral peach and restrained warm gold; elegant composition, intricate believable handcrafted detail. No people. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "case.png",
+    "lens.png"
+   ],
+   "subjects": {
+    "four-players": [
+     "glass-copy"
+    ],
+    "without-toren": [
+     "glass-copy"
+    ],
+    "without-leya": [
+     "glass-copy"
+    ],
+    "without-amalia": [
+     "glass-copy"
+    ]
+   },
+   "file": "glass-copy.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/runtime/tide-calendar.webp",
+   "sha256": "3976a927094491dbcc82cfc164538978f30bcb00ab65fc77c54716e1a88b8226",
+   "originalSha256": "4d27e5d96742ac298a043e13f201fa3d2a1d408b7000a9e59ddef8060bf375b0",
+   "generated": "2026-11-13",
+   "prompt": "Use case: illustration-story. Asset: collectible prop card art for an original family tabletop adventure, square 1:1, one object centred with generous whitespace on an ivory paper background, soft studio-like daylight. A brass tide calendar: a round pocket-sized brass disc like a large compass case, its lid open, inside a rotating dial of mother-of-pearl with small engraved wave marks around the rim and three tiny movable coral-coloured pegs; a short blue cord loop. The dial carries only abstract wave and moon marks, nothing readable. Match the attached reference pictures exactly in medium and palette: tactile gouache and coloured-pencil storybook painting with subtle paper grain, deep ultramarine and luminous teal, pearl ivory, coral peach and restrained warm gold; elegant composition, intricate believable handcrafted detail. No people. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "pass.png",
+    "ribbon.png"
+   ],
+   "subjects": {
+    "four-players": [
+     "tide-calendar"
+    ],
+    "without-toren": [
+     "tide-calendar"
+    ],
+    "without-leya": [
+     "tide-calendar"
+    ],
+    "without-amalia": [
+     "tide-calendar"
+    ]
+   },
+   "file": "tide-calendar.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/runtime/courier-tag.webp",
+   "sha256": "8f39b5bf947ed0efc84b7681b65be38a07003b97d40ff11197df402de33ff17e",
+   "originalSha256": "eb2f85ed26a7962b6fa07accca1fe030eb99f7d1ab33ed15361dcb3d3ef98064",
+   "generated": "2026-11-13",
+   "prompt": "Use case: illustration-story. Asset: collectible prop card art for an original family tabletop adventure, square 1:1, one object centred with generous whitespace on an ivory paper background, soft studio-like daylight. A small courier guild parcel tag: a rectangle of thick cream card with rounded corners, a punched hole with a short blue string, a stamped mark of a tiny stylised crab carrying a satchel, and a smear of blue wax; the card is blank apart from the crab stamp and two abstract scribbled lines that do not read as letters. Match the attached reference pictures exactly in medium and palette: tactile gouache and coloured-pencil storybook painting with subtle paper grain, deep ultramarine and luminous teal, pearl ivory, coral peach and restrained warm gold; elegant composition, intricate believable handcrafted detail. No people. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "pass.png",
+    "ribbon.png"
+   ],
+   "subjects": {
+    "four-players": [
+     "courier-tag"
+    ],
+    "without-toren": [
+     "courier-tag"
+    ],
+    "without-leya": [
+     "courier-tag"
+    ],
+    "without-amalia": [
+     "courier-tag"
+    ]
+   },
+   "file": "courier-tag.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/runtime/brass-pointer.webp",
+   "sha256": "b47835b1a160176967b516ef2ebed90556ae80235833578ff75f6683799d7398",
+   "originalSha256": "baf8761e695f67e065aa024561c97ce3fe2391349cd9eac6c098b2dd2da1baa3",
+   "generated": "2026-11-13",
+   "prompt": "Use case: illustration-story. Asset: standalone game figure for an original family tabletop adventure, square 1:1, the whole object isolated on a fully transparent background (PNG with alpha), no ground, no shadow, no backdrop. A whimsical animated auctioneer's pointer: a slim brass rod as tall as a child, topped with a small mother-of-pearl hand with one pointing finger, a coral tassel below the hand, the rod slightly bent as if alive and hovering upright; friendly, not scary. Match the attached reference figure exactly in medium and palette: tactile gouache and coloured-pencil storybook painting, pearl ivory, coral peach, warm brass gold and touches of teal. No text, no lettering, no logos, no watermark, no border.",
+   "references": [
+    "fold-crab.png"
+   ],
+   "subjects": {
+    "four-players": [
+     "auction-hall-boss"
+    ],
+    "without-toren": [
+     "auction-hall-boss"
+    ],
+    "without-leya": [
+     "auction-hall-boss"
+    ],
+    "without-amalia": [
+     "auction-hall-boss"
+    ]
+   },
+   "file": "brass-pointer.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/runtime/brass-pointer.webp",
+   "sha256": "b47835b1a160176967b516ef2ebed90556ae80235833578ff75f6683799d7398",
+   "originalSha256": "baf8761e695f67e065aa024561c97ce3fe2391349cd9eac6c098b2dd2da1baa3",
+   "generated": "2026-11-13",
+   "prompt": "Use case: illustration-story. Asset: standalone game figure for an original family tabletop adventure, square 1:1, the whole object isolated on a fully transparent background (PNG with alpha), no ground, no shadow, no backdrop. A whimsical animated auctioneer's pointer: a slim brass rod as tall as a child, topped with a small mother-of-pearl hand with one pointing finger, a coral tassel below the hand, the rod slightly bent as if alive and hovering upright; friendly, not scary. Match the attached reference figure exactly in medium and palette: tactile gouache and coloured-pencil storybook painting, pearl ivory, coral peach, warm brass gold and touches of teal. No text, no lettering, no logos, no watermark, no border.",
+   "references": [
+    "fold-crab.png"
+   ],
+   "subjects": {
+    "four-players": [
+     "auction-hall-boss"
+    ],
+    "without-toren": [
+     "auction-hall-boss"
+    ],
+    "without-leya": [
+     "auction-hall-boss"
+    ],
+    "without-amalia": [
+     "auction-hall-boss"
+    ]
+   },
+   "file": "brass-pointer--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "brass-pointer.webp"
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/runtime/pinna.webp",
+   "sha256": "dd337675327089b4ed0d261885f46c9bf997c6fbacd7840afa3b8666995c8e80",
+   "originalSha256": "13c80a8577df645d171c0bc867122e873b20efa435a53ac1ea37ebf8f1024a2b",
+   "generated": "2026-11-13",
+   "prompt": "Use case: illustration-story. Asset: vertical 2:3 (1024 by 1536) character portrait, entire head and hands within generous frame, distinctive silhouette, quiet atmospheric background suggesting their workplace. Character: Служитель Пинна, the dry, polite steward of an auction pavilion built inside a gigantic empty nautilus shell. A thin elderly human man in a mother-of-pearl waistcoat, a small brass gavel hanging on a cord around his neck, a thick schedule ledger under one arm, neatly combed grey hair, an attentive unhurried face; behind him soft spiral mother-of-pearl ribs and brass lamps of the auction hall. Show only public appearance, no hidden motives or evidence. Match the attached reference portraits exactly in medium, palette and framing: original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no franchise references. No text, no lettering, no watermark, no border. The interior is a stable dry air space with ordinary air, seawater visible outside transparent vaults; the character is not swimming.",
+   "references": [
+    "ur.png",
+    "lucien.png"
+   ],
+   "subjects": {
+    "four-players": [
+     "pinna"
+    ],
+    "without-toren": [
+     "pinna"
+    ],
+    "without-leya": [
+     "pinna"
+    ],
+    "without-amalia": [
+     "pinna"
+    ]
+   },
+   "file": "pinna.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/moon-pearl/assets/runtime/timokha.webp",
+   "sha256": "4c57c476905f97556736b35644db8cd7e378c88cde8fc1413796804aaae66843",
+   "originalSha256": "274897ac1ff62e2dcbab7c6bdcaf1052ff592ee89220a84aa51d5886bd32c2a4",
+   "generated": "2026-11-13",
+   "prompt": "Use case: illustration-story. Asset: vertical 2:3 (1024 by 1536) character portrait, entire head and hands within generous frame, distinctive silhouette, quiet atmospheric background suggesting their workplace. Character: Тимоха Окунь, a lanky teenage errand boy at an underwater market: an oversized fisherman's jacket with rolled sleeves, scraped knees under short trousers, a courier's satchel across the shoulder, tousled hair, a quick friendly uncertain grin; behind him the awnings of old sails and lantern-lit stalls of the market under a transparent vault. Show only public appearance, no hidden motives or evidence. Match the attached reference portraits exactly in medium, palette and framing: original premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no franchise references. No text, no lettering, no watermark, no border. The interior is a stable dry air space with ordinary air, seawater visible outside transparent vaults; the character is not swimming.",
+   "references": [
+    "leya.png",
+    "bubo.png"
+   ],
+   "subjects": {
+    "four-players": [
+     "timokha"
+    ],
+    "without-toren": [
+     "timokha"
+    ],
+    "without-leya": [
+     "timokha"
+    ],
+    "without-amalia": [
+     "timokha"
+    ]
+   },
+   "file": "timokha.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "file": "glass--map.webp",
+   "source": "campaigns/moon-pearl/assets/battle-maps/glass.webp",
+   "sha256": "6f6d256ba2f0c05ad4d84f0ae8ffc79d65a47d5933916f0f398d0b97462596bb",
+   "originalSha256": "809c27e4ce452f31e70bc002760b80d915c962aacbecf55103e3a6f1375717c8",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as moon-pearl--glass.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Стеклянный Двор» — Светлая мастерская с остывшими образцами, защищённой печью и столом под увеличительными стёклами. Готовые копии ракушек лежат отдельно от ещё горячих изделий.\n\nThe first reference image is the exact layout of the playable field: a 14 by 10 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nOriginal premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+   "references": [
+    "ref/moon-pearl--glass.layout.png",
+    "glass.png"
+   ],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "glass.webp",
+   "subjects": {
+    "four-players": [
+     "glass"
+    ],
+    "without-toren": [
+     "glass"
+    ],
+    "without-leya": [
+     "glass"
+    ],
+    "without-amalia": [
+     "glass"
+    ]
+   }
+  },
+  {
+   "file": "quay--map.webp",
+   "source": "campaigns/moon-pearl/assets/battle-maps/quay.webp",
+   "sha256": "e358abe3f386be77cbf8547dea59b49f0f7f60d38737552166285cdae716b9f1",
+   "originalSha256": "0f1c5547ce979fb45ff5c68bc66d9b9e578279b275f3bcbeb96e9c4f7619c1e4",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as moon-pearl--quay.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Причал Трёх Приливов» — Сухая набережная под стеклянной аркой. Лодки ходят по открытому внутри свода каналу; за дальним концом причала Южный шлюз, чьи ворота в полдень уходят за свод. Верёвочные ограждения и широкие ступени позволяют спокойно садиться на борт.\n\nThe first reference image is the exact layout of the playable field: a 18 by 10 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nOriginal premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+   "references": [
+    "ref/moon-pearl--quay.layout.png",
+    "quay.png"
+   ],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "quay.webp",
+   "subjects": {
+    "four-players": [
+     "quay"
+    ],
+    "without-toren": [
+     "quay"
+    ],
+    "without-leya": [
+     "quay"
+    ],
+    "without-amalia": [
+     "quay"
+    ]
+   }
+  },
+  {
+   "file": "nautilus--map.webp",
+   "source": "campaigns/moon-pearl/assets/battle-maps/nautilus.webp",
+   "sha256": "fdeb61cd9c7a16c9a56858e8e89ead32a373c7ddcee2f5a6d8285a9a369e8dc4",
+   "originalSha256": "5f671fcd47fb37c9ff4aa85775dba5baadf24856e60231c23f175523b933ffab",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as moon-pearl--nautilus.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Зал Наутилуса» — Павильон в огромной пустой древней раковине, не живое животное. Спиральные сухие галереи соединяют зал торгов, склад и открытую террасу. Посетителей встречает служитель с книгой расписания.\n\nThe first reference image is the exact layout of the playable field: a 18 by 10 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nOriginal premium illustrated family fantasy adventure, tactile gouache and coloured-pencil storybook painting with subtle paper grain, elegant cinematic composition, intricate believable handcrafted details, expressive humane faces, deep ultramarine and luminous teal water, pearl ivory, coral peach and restrained warm gold. Wonder, gentle wit and visual depth; no horror, no graphic injuries, no franchise references. No text, no lettering, no watermark, no border. Every architectural interior is a stable dry air space with ordinary breathable air, the seawater visible outside transparent vaults; characters inside are not swimming.",
+   "references": [
+    "ref/moon-pearl--nautilus.layout.png",
+    "nautilus.png"
+   ],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "nautilus.webp",
+   "subjects": {
+    "four-players": [
+     "nautilus"
+    ],
+    "without-toren": [
+     "nautilus"
+    ],
+    "without-leya": [
+     "nautilus"
+    ],
+    "without-amalia": [
+     "nautilus"
+    ]
+   }
+  }
+ ]
+}

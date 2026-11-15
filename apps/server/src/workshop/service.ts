@@ -3,6 +3,7 @@ import { randomUUID } from 'node:crypto';
 import { MAX_INVITATION_HOURS, SESSION_DAYS, workshopIdSchema } from '@ltw/contracts';
 
 import type { RequestLimits } from '../auth/limits.ts';
+import type { CampaignLibrary } from '../campaigns/library.ts';
 import type { AuthClock } from '../auth/session-authenticator.ts';
 import { hashToken, newToken } from '../auth/tokens.ts';
 import type { WorkshopStore } from './store.ts';
@@ -30,6 +31,8 @@ export interface WorkshopDependencies {
   readonly cancelEdit?: (jobId: string) => void;
   readonly activation?: CampaignActivationDependencies;
   readonly campaignEntry?: CampaignEntryDependencies;
+  /** The authored campaigns the workshop offers (fixtures/campaign-library/). */
+  readonly library?: CampaignLibrary;
 }
 export const WORKSHOP_SESSION_MS = SESSION_DAYS * 24 * 60 * 60_000;
 

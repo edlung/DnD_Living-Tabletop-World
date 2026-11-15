@@ -1,0 +1,342 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Набросок Тадеуша · Хор Пустых Комнат</title><style>:root {
+  color-scheme: light;
+  font-family: Georgia, 'Times New Roman', serif;
+  color: #202f3b;
+  background: #f4f0e8;
+  font-size: 18px;
+  line-height: 1.65;
+  --line: #c5c5ba;
+  --ink: #163e50;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+header,
+main,
+footer {
+  width: min(1200px, calc(100% - 64px));
+  margin-inline: auto;
+}
+header {
+  padding-block: 64px 32px;
+  border-bottom: 1px solid var(--line);
+}
+main {
+  display: grid;
+  gap: 32px;
+  padding-block: 32px 64px;
+}
+footer {
+  border-top: 1px solid var(--line);
+  padding-block: 24px 48px;
+  font:
+    14px/1.6 system-ui,
+    sans-serif;
+}
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+  text-wrap: balance;
+}
+h1 {
+  font-size: clamp(2rem, 5vw, 3.8rem);
+  max-width: 20ch;
+  margin: 16px 0 24px;
+  font-weight: 500;
+}
+h2 {
+  font-size: 1.65rem;
+  margin: 0 0 16px;
+  font-weight: 500;
+}
+h3 {
+  font-size: 1.15rem;
+  margin: 24px 0 8px;
+}
+p {
+  max-width: 70ch;
+  margin: 0 0 16px;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+p:last-child,
+ul:last-child {
+  margin-bottom: 0;
+}
+ul,
+ol {
+  padding-left: 24px;
+  margin-block: 0 16px;
+  max-width: 75ch;
+}
+li {
+  margin-block: 8px;
+}
+a {
+  color: var(--ink);
+  text-underline-offset: 4px;
+  overflow-wrap: anywhere;
+}
+a:hover {
+  color: #7c3919;
+}
+a:focus-visible,
+summary:focus-visible {
+  outline: 3px solid #a84919;
+  outline-offset: 4px;
+}
+nav,
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+}
+nav a,
+.actions a,
+.card-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font:
+    16px/1.5 system-ui,
+    sans-serif;
+}
+.eyebrow {
+  font:
+    700 13px/1.6 system-ui,
+    sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #495c65;
+}
+.lead {
+  font-size: 1.3rem;
+  max-width: 60ch;
+}
+.panel {
+  border: 1px solid var(--line);
+  padding: 32px;
+  background: #fffcf6;
+  min-width: 0;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: 24px;
+  align-items: start;
+}
+.ribbon {
+  border-left: 4px solid #ab6a35;
+  padding: 16px 24px;
+  background: #e8e0d1;
+}
+.adult {
+  color: #773424;
+  font-weight: 700;
+}
+.read-aloud {
+  border-left: 4px solid #748d91;
+  padding: 16px 24px;
+  background: #eaf0ee;
+  font-style: italic;
+}
+.scene + .scene {
+  margin-top: 32px;
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+}
+.meta {
+  font:
+    16px/1.6 system-ui,
+    sans-serif;
+  color: #495c65;
+}
+.map {
+  max-width: 700px;
+  min-width: 560px;
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid #495c65;
+  background: white;
+}
+.map-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+}
+.map-scroll:focus-visible {
+  outline: 3px solid #a84919;
+  outline-offset: 4px;
+}
+.map-hint {
+  display: none;
+}
+.map text {
+  font:
+    bold 13px system-ui,
+    sans-serif;
+}
+.map-title {
+  font:
+    16px/1.5 system-ui,
+    sans-serif;
+}
+.skip {
+  position: absolute;
+  top: -100px;
+  padding: 16px;
+  background: white;
+}
+.skip:focus {
+  top: 0;
+}
+details {
+  border-top: 1px solid var(--line);
+  padding-block: 16px;
+}
+summary {
+  min-height: 44px;
+  cursor: pointer;
+  font-weight: 700;
+}
+details > div {
+  margin-top: 16px;
+}
+.handout {
+  max-width: 75ch;
+  border: 2px solid #8c9a9d;
+  padding: 32px;
+  background: white;
+}
+@media (max-width: 600px) {
+  .map-scroll {
+    mask-image: linear-gradient(to right, #000 calc(100% - 16px), transparent);
+  }
+  .map-hint {
+    display: block;
+    margin-top: 8px;
+  }
+  :root {
+    font-size: 17px;
+  }
+  header,
+  main,
+  footer {
+    width: calc(100% - 32px);
+  }
+  header {
+    padding-top: 32px;
+  }
+  .panel,
+  .handout {
+    padding: 24px;
+  }
+  .grid {
+    gap: 16px;
+  }
+}
+@media print {
+  .map {
+    min-width: 0;
+    max-width: 100%;
+  }
+  .map-scroll {
+    overflow: visible;
+    mask-image: none;
+  }
+  .map-hint {
+    display: none;
+  }
+  :root {
+    color: #000;
+    background: #fff;
+    font-size: 11pt;
+  }
+  header,
+  main,
+  footer {
+    width: 100%;
+  }
+  nav,
+  .actions,
+  .skip {
+    display: none;
+  }
+  header {
+    padding: 0 0 16px;
+  }
+  .panel {
+    background: white;
+    padding: 16px;
+    break-inside: avoid;
+  }
+  .scene {
+    break-inside: avoid;
+  }
+  .grid {
+    display: block;
+  }
+  .grid > * {
+    margin-block: 16px;
+  }
+  a {
+    color: black;
+  }
+}
+
+/* Pictures of reworked campaigns (assets/manifest.json); campaigns without art have none. */
+img.art {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 0 1rem;
+  border-radius: 12px;
+}
+img.art.cover {
+  aspect-ratio: 3 / 2;
+  max-height: 60vh;
+  object-fit: cover;
+}
+img.art.portrait {
+  max-width: 320px;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+}
+img.art.token {
+  max-width: 180px;
+  border-radius: 0;
+}
+.tokens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.section-title {
+  margin: 2rem 0 1rem;
+}
+.faces {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0 0 1rem;
+}
+.faces figure {
+  width: 96px;
+  margin: 0;
+  text-align: center;
+  font-size: 0.85rem;
+}
+img.art.thumb,
+img.art.thumb.portrait {
+  width: 96px;
+  max-width: 96px;
+  aspect-ratio: 2 / 3;
+  margin: 0 0 0.25rem;
+  border-radius: 8px;
+}
+</style></head><body><a class="skip" href="#main">К содержанию</a><header><div class="eyebrow">Хор Пустых Комнат</div><h1>Набросок Тадеуша</h1></header><main id="main"><article class="handout"><p>ПАРАДНЫЙ ПУТЬ: сад → вестибюль → внутренний засов → крыльцо → дорога. СЛУЖЕБНЫЙ ПУТЬ: сад → кухня → цепь решётки и внутренний крюк → открытая терраса → лестница → та же дорога. Ширмы внутри передвигаются. Наружную стену я проверил по окнам. Крыша кончается до нижней ступени. Рисунок описывает увиденное, а не обещает пустых коридоров.</p></article></main><footer>Living Tabletop World · Авторская коллекция · 2026</footer></body></html>

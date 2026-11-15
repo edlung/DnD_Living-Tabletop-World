@@ -1,0 +1,517 @@
+{
+  "checkedAtUtc": "2026-11-08T09:12:20.626246+00:00",
+  "files": [
+    {
+      "path": "campaigns/collection-2026/sky-archipelago/source/cast.json",
+      "sha256": "43f7ca2de411dc6cc1ec41842d95917f9cb9f41f45ff238f709c39ca181104d9",
+      "bytes": 26204,
+      "mtime": 1794128986.7069619
+    },
+    {
+      "path": "campaigns/collection-2026/sky-archipelago/source/clues.json",
+      "sha256": "9e3e192c6c9125fb4959a548808a5ebc2b9cfb2199ce66f34877019f32827e8f",
+      "bytes": 22047,
+      "mtime": 1794128986.7077477
+    },
+    {
+      "path": "campaigns/collection-2026/sky-archipelago/source/encounters.json",
+      "sha256": "8726e1494b93d04ab9a83166e62f80691c72acb1cf7a2061375b4c2e7667fd3b",
+      "bytes": 11219,
+      "mtime": 1794128986.7082925
+    },
+    {
+      "path": "campaigns/collection-2026/sky-archipelago/source/handouts.json",
+      "sha256": "a754423a866f6f158adebdf4e1c5982b36ea13bdd0a47be861d02b937f46624d",
+      "bytes": 8085,
+      "mtime": 1794127857.7343574
+    },
+    {
+      "path": "campaigns/collection-2026/sky-archipelago/source/sessions-1.json",
+      "sha256": "65fc52a04c03b4f7dbc4b9f7207ecd004c9ca879efa8552caaa32ab83208f4ae",
+      "bytes": 25476,
+      "mtime": 1794128278.2728686
+    },
+    {
+      "path": "campaigns/collection-2026/sky-archipelago/source/sessions-2.json",
+      "sha256": "4b93da0740d4f79915c52a520fc0beaff9b347a5146f2a1e389cca70806d2286",
+      "bytes": 25913,
+      "mtime": 1794128278.2947187
+    },
+    {
+      "path": "campaigns/collection-2026/sky-archipelago/source/sessions-3.json",
+      "sha256": "b8db40c552f219351c4106ff456d7ef505477f5dd16499ae758d3d5d0a13e7b4",
+      "bytes": 27522,
+      "mtime": 1794128609.0616543
+    },
+    {
+      "path": "campaigns/collection-2026/sky-archipelago/source/sessions-4.json",
+      "sha256": "5b904c3698c3b211b02e3f8d086d0fab97702efa5a3d7cd8f90f95337adf35ff",
+      "bytes": 30958,
+      "mtime": 1794128609.090771
+    },
+    {
+      "path": "campaigns/collection-2026/sky-archipelago/source/world.json",
+      "sha256": "fd3329f7d69425be4117f76cae2df579aa6acac6b4490cd945b3ec83b3c8a1db",
+      "bytes": 23233,
+      "mtime": 1794127647.9143744
+    },
+    {
+      "path": "campaigns/collection-2026/velvet-ledger/source/cast.json",
+      "sha256": "712f6f1c557829d45743231cb0a8f5ecd0bd935ae4d4129938b706548c76cf44",
+      "bytes": 30219,
+      "mtime": 1794127631.2421906
+    },
+    {
+      "path": "campaigns/collection-2026/velvet-ledger/source/clues.json",
+      "sha256": "179dcdc665c6d59e70433003140eaa03ae8c0a292ca63175904cc47293513e37",
+      "bytes": 20491,
+      "mtime": 1794128090.066365
+    },
+    {
+      "path": "campaigns/collection-2026/velvet-ledger/source/encounters.json",
+      "sha256": "277a9cd7b2341bf178b731201ef42149b61534813de8b28589d0a64cbed47fa7",
+      "bytes": 10819,
+      "mtime": 1794127631.2431402
+    },
+    {
+      "path": "campaigns/collection-2026/velvet-ledger/source/handouts.json",
+      "sha256": "6312921e5f28c01dad3843f9fe324cdf545e93a902ea144e71b44220e2858314",
+      "bytes": 7926,
+      "mtime": 1794127631.2428463
+    },
+    {
+      "path": "campaigns/collection-2026/velvet-ledger/source/sessions-1.json",
+      "sha256": "1001fd6bee1a11f39394c2a02d6bbb4a5defa4220c26d807fa87e8f7fda01592",
+      "bytes": 25368,
+      "mtime": 1794127631.2435331
+    },
+    {
+      "path": "campaigns/collection-2026/velvet-ledger/source/sessions-2.json",
+      "sha256": "2badd2d1fc32da432838e94dbf12dbc64cc2af5b33afe5cfa9a166989e594859",
+      "bytes": 27515,
+      "mtime": 1794127826.0173874
+    },
+    {
+      "path": "campaigns/collection-2026/velvet-ledger/source/sessions-3.json",
+      "sha256": "a58d6159bf0136aae4e6b9dc22132fc55f48fc8473a1c611d1ee7cee0259758e",
+      "bytes": 28293,
+      "mtime": 1794128090.126337
+    },
+    {
+      "path": "campaigns/collection-2026/velvet-ledger/source/sessions-4.json",
+      "sha256": "39d12c4571341ce20be6be2b0c66de302874f7b0adb4ee609ed6ac85cdce213a",
+      "bytes": 29881,
+      "mtime": 1794128358.3245323
+    },
+    {
+      "path": "campaigns/collection-2026/velvet-ledger/source/world.json",
+      "sha256": "6c8ddf805dfdacb5d71b3e105231b73f9ada3f6bc8cc4c0ed3677fd2a00103e1",
+      "bytes": 22783,
+      "mtime": 1794128655.834229
+    },
+    {
+      "path": "campaigns/collection-2026/salt-meridian/source/cast.json",
+      "sha256": "5666ba4fc55dac9a0d0c1a2c41f40f5256e3a53fcbe4958355f2e483f4a4921b",
+      "bytes": 28675,
+      "mtime": 1794128704.9026618
+    },
+    {
+      "path": "campaigns/collection-2026/salt-meridian/source/clues.json",
+      "sha256": "2de6572b55055296a09e976df706e189ef56448cb65578c358f376724b99f537",
+      "bytes": 18867,
+      "mtime": 1794127840.6632335
+    },
+    {
+      "path": "campaigns/collection-2026/salt-meridian/source/encounters.json",
+      "sha256": "a77dcfdf513cc314d3d618d43fbff9ec6efade1916df015170a1098a5be28d14",
+      "bytes": 8997,
+      "mtime": 1794127840.6635864
+    },
+    {
+      "path": "campaigns/collection-2026/salt-meridian/source/handouts.json",
+      "sha256": "3526a8a757f25e2d5e9c8202475b14e0afa331b41bf1e3a63c252722bfcdd30a",
+      "bytes": 6951,
+      "mtime": 1794127840.6634364
+    },
+    {
+      "path": "campaigns/collection-2026/salt-meridian/source/sessions-1.json",
+      "sha256": "57843881671c550d4759968c324877974fafb280f6dc9fadc118bec4b182df61",
+      "bytes": 26854,
+      "mtime": 1794128778.6728272
+    },
+    {
+      "path": "campaigns/collection-2026/salt-meridian/source/sessions-2.json",
+      "sha256": "8dc625c3e035952f78fd3cc89bf7bafda2742afcacbcbeb361671e4bee3fc1a6",
+      "bytes": 26557,
+      "mtime": 1794128224.7696805
+    },
+    {
+      "path": "campaigns/collection-2026/salt-meridian/source/sessions-3.json",
+      "sha256": "61fb5c6b8ccd69530caf8def345b47787df1fe826353ba5bfc7501faead30fc3",
+      "bytes": 27849,
+      "mtime": 1794128588.92689
+    },
+    {
+      "path": "campaigns/collection-2026/salt-meridian/source/sessions-4.json",
+      "sha256": "6828f0f3de5265fed8507a99cc7484670101bf3cd9ee67dadcc113726c0e6a8b",
+      "bytes": 30442,
+      "mtime": 1794128588.948422
+    },
+    {
+      "path": "campaigns/collection-2026/salt-meridian/source/world.json",
+      "sha256": "8afb71da0686122862a6791e817e4e2abfa784b3a0791ff3b165750a92b8114a",
+      "bytes": 23983,
+      "mtime": 1794128704.9022129
+    },
+    {
+      "path": "campaigns/collection-2026/last-orbit/source/cast.json",
+      "sha256": "d1024f88edd967afbaf30f6e83f7030c55e481a8ab1caf20f31d6e2e240c169f",
+      "bytes": 28561,
+      "mtime": 1794129051.7485254
+    },
+    {
+      "path": "campaigns/collection-2026/last-orbit/source/world.json",
+      "sha256": "086374cb107e41649adc935c856989d3fddc424c8172a2f6969e4c8bcf9a558d",
+      "bytes": 24652,
+      "mtime": 1794128865.8657997
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/rain-bureau/source/cast.json",
+      "sha256": "14552e9278afd834290977610d5c68f0390219f6829dab9c44bcf1fad805ba40",
+      "bytes": 24995,
+      "mtime": 1794128950.6491115
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/rain-bureau/source/clues.json",
+      "sha256": "6415043fc1c0921c19053a73eae9e81cbea7d6b3be720e6f8591bc0335db0a02",
+      "bytes": 20679,
+      "mtime": 1794128950.6499178
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/rain-bureau/source/encounters.json",
+      "sha256": "7aa1957e9b06b03809fd1f5f1505f9c55a17c106d2138c12bc9965b245cce5b5",
+      "bytes": 8039,
+      "mtime": 1794129080.4543755
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/rain-bureau/source/handouts.json",
+      "sha256": "5a86296860665e4386ebd21cd38d5e791ad63055b420adc6347043b84855dbdb",
+      "bytes": 6472,
+      "mtime": 1794128001.000702
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/rain-bureau/source/sessions-1.json",
+      "sha256": "57595cad139f0f3124bf75af3b55445430def9955a57ba4ae5016e25fb24b840",
+      "bytes": 24395,
+      "mtime": 1794128266.9807725
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/rain-bureau/source/sessions-2.json",
+      "sha256": "9d9f79b4d8a59e7f8e77e337fc764e153d7a0c4530f96990070e2ff7f808ffd3",
+      "bytes": 25312,
+      "mtime": 1794128950.6506708
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/rain-bureau/source/sessions-3.json",
+      "sha256": "031f9f3c2a5b515db38fff68c027e65ce024f9baee03786e715db07f6d3ad93c",
+      "bytes": 25739,
+      "mtime": 1794128627.0544944
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/rain-bureau/source/sessions-4.json",
+      "sha256": "b4d550d67c131140a01f321dc35b9d7347a4274177f3acee3261555af3059aec",
+      "bytes": 27112,
+      "mtime": 1794128776.6738794
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/rain-bureau/source/world.json",
+      "sha256": "e1d2da414f785f981c9e4570f4aba0cc643517ca460b9928f354934d261bd88a",
+      "bytes": 26136,
+      "mtime": 1794127746.5348625
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/red-dune-post/source/cast.json",
+      "sha256": "25ea87f2edda1198ecadcaa1b956d2b2c5cb5098827e9cef8d650b187738415a",
+      "bytes": 30067,
+      "mtime": 1794129104.406635
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/red-dune-post/source/clues.json",
+      "sha256": "934393c821db54b27652bfe816010d162b203ca53c087c9dbf8e9acde51040d4",
+      "bytes": 19193,
+      "mtime": 1794129104.4072986
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/red-dune-post/source/encounters.json",
+      "sha256": "d0c313f2fe7d86182881088d214fae29469ac591ce0235ceafae41b8670f7341",
+      "bytes": 9528,
+      "mtime": 1794129104.4081273
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/red-dune-post/source/handouts.json",
+      "sha256": "3b891e8ef621c611fc686fd19e2f04f65c5fdb54ec28cf1776eac9fa77d6af3e",
+      "bytes": 9542,
+      "mtime": 1794129104.4078171
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/red-dune-post/source/sessions-1.json",
+      "sha256": "da22d5f166d1c3c49631fe4a00c30e19b16b61a6092ed7962f39a34b7e7cc25c",
+      "bytes": 26887,
+      "mtime": 1794128415.6456916
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/red-dune-post/source/sessions-2.json",
+      "sha256": "0fc2940fb2b3b06bc7d0587d44d0ed0345797368ca6ff6c55138cbccafaeefa4",
+      "bytes": 26912,
+      "mtime": 1794128594.7193336
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/red-dune-post/source/sessions-3.json",
+      "sha256": "cc0a11cfd3e21fc69aced95bc70e21e760199b71c0702a93f9e9c2396444aac1",
+      "bytes": 27105,
+      "mtime": 1794128804.2913914
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/red-dune-post/source/sessions-4.json",
+      "sha256": "ded8a194f9eddc95a1183bdb3e9a81970cbb95a2da51dd27afaef03dcea4acc6",
+      "bytes": 28939,
+      "mtime": 1794128995.3168802
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/red-dune-post/source/world.json",
+      "sha256": "28057a1cbb1a85b6eec9c44bcb017bc9754aa7bf5a35736dd876642563f30829",
+      "bytes": 24072,
+      "mtime": 1794129104.4056602
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/museum-midnight/source/cast.json",
+      "sha256": "3c57a9e9fd4e2ce550fc97fb42aa81e8f68931fdacaaf37e31092d07ed8d6a20",
+      "bytes": 26880,
+      "mtime": 1794128525.4894898
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/museum-midnight/source/clues.json",
+      "sha256": "2dc8f482962d0b133dbe053fe7556d9171a72ad40abebb0b38774bd559ac70fb",
+      "bytes": 22050,
+      "mtime": 1794128525.4903512
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/museum-midnight/source/encounters.json",
+      "sha256": "821776aa0c2f42944d60c856114677d06621010c78980951b59b24abd58723aa",
+      "bytes": 8966,
+      "mtime": 1794129080.453719
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/museum-midnight/source/handouts.json",
+      "sha256": "17d121fb5db4e3e29ec3e500a32c437663eb1c202084df49bab57449c1e1db51",
+      "bytes": 7203,
+      "mtime": 1794128525.4913619
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/museum-midnight/source/sessions-1.json",
+      "sha256": "f1ee1e221002930f4edefe3d051305818f77bbfb206c8f78e3574ddbf1c15720",
+      "bytes": 26617,
+      "mtime": 1794128525.4918063
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/museum-midnight/source/sessions-2.json",
+      "sha256": "822084301b83b96fc9d5d84b787a37c583e09c63f0ba3618eddec4b382fa2391",
+      "bytes": 27789,
+      "mtime": 1794128525.4928699
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/museum-midnight/source/sessions-3.json",
+      "sha256": "bd29f797f9acba1be444decb4ec1ec14057f86d7d90768a004f8a13dcfba9e5b",
+      "bytes": 27863,
+      "mtime": 1794128525.4937189
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/museum-midnight/source/sessions-4.json",
+      "sha256": "e269dfaaad1b7fc189bc4cb4593b70b93ca1a9b3bd41ed4c466d997c90242770",
+      "bytes": 29846,
+      "mtime": 1794128525.4943798
+    },
+    {
+      "path": "campaigns/mixed-ages-2026/museum-midnight/source/world.json",
+      "sha256": "aefc5fc7f9c486891ed72543d74b7aafbfbeafb11485ebf01b00d0089fbaffc2",
+      "bytes": 24039,
+      "mtime": 1794128660.6312854
+    },
+    {
+      "path": "campaigns/moon-pearl/source/world.json",
+      "sha256": "b1dc8343ddbc695ac29ae233ae45011f05af4e51b4d3cdc525772b8e299cc975",
+      "bytes": 21925,
+      "mtime": 1794126330.4905019
+    },
+    {
+      "path": "campaigns/moon-pearl/source/act-3.json",
+      "sha256": "8b548b409b722d8e0deb699446fb4ca38bda2fcff904f2fd105e1a73ce8a2ac8",
+      "bytes": 37283,
+      "mtime": 1794127942.1696386
+    },
+    {
+      "path": "campaigns/moon-pearl/source/act-4.json",
+      "sha256": "045f7b958f36a526e332dcbe521666d68d6a061e642adb30b918858c0590d838",
+      "bytes": 43668,
+      "mtime": 1794128319.5379412
+    },
+    {
+      "path": "campaigns/fantasy-2026/dungeon-sanctuary/source/world.json",
+      "sha256": "28fc810950367118222d3bf70acfe6f949392239a936a5418d75f5287a36050b",
+      "bytes": 22793,
+      "mtime": 1794127531.6977723
+    },
+    {
+      "path": "campaigns/fantasy-2026/storm-kitchen/source/world.json",
+      "sha256": "19af22561223ea2b1d7b79b45efa3587ed767ac70857f35777899ebee3e72905",
+      "bytes": 24094,
+      "mtime": 1794129064.5825973
+    },
+    {
+      "path": "campaigns/dark-fantasy-2026/lantern-mere/source/world.json",
+      "sha256": "caeb8782d452f3377003f3b8f1ea8c96c223efa79de32963af6facafc926807e",
+      "bytes": 29424,
+      "mtime": 1794128986.8960938
+    },
+    {
+      "path": "campaigns/fantasy-2026/small-banner/source/world.json",
+      "sha256": "17258ae410bbc694dd80dc8abd79fb326e37709d93b590a408cb643320f6591e",
+      "bytes": 24503,
+      "mtime": 1794127833.3068771
+    },
+    {
+      "path": "campaigns/fantasy-2026/dungeon-sanctuary/source/sessions-4.json",
+      "sha256": "390cbebfa9fac18407751b4fab22683ce0d8e258267aa36243416afc7013fad5",
+      "bytes": 31470,
+      "mtime": 1794128929.9268978
+    },
+    {
+      "path": "campaigns/fantasy-2026/storm-kitchen/source/sessions-4.json",
+      "sha256": "c3bf7de931488869b208bfbb56a1dd4f9296b6344d8cfe17d8f9f3250ca142d6",
+      "bytes": 29210,
+      "mtime": 1794128868.1147149
+    }
+  ],
+  "coverage": [
+    {
+      "group": "collection-2026",
+      "slug": "sky-archipelago",
+      "world": true,
+      "sessions": 8
+    },
+    {
+      "group": "collection-2026",
+      "slug": "velvet-ledger",
+      "world": true,
+      "sessions": 8
+    },
+    {
+      "group": "collection-2026",
+      "slug": "salt-meridian",
+      "world": true,
+      "sessions": 8
+    },
+    {
+      "group": "collection-2026",
+      "slug": "clockwork-carnival",
+      "world": false,
+      "sessions": 0
+    },
+    {
+      "group": "collection-2026",
+      "slug": "last-orbit",
+      "world": true,
+      "sessions": 0
+    },
+    {
+      "group": "collection-2026",
+      "slug": "winter-caravan",
+      "world": false,
+      "sessions": 0
+    },
+    {
+      "group": "collection-2026",
+      "slug": "hollow-choir",
+      "world": false,
+      "sessions": 0
+    },
+    {
+      "group": "collection-2026",
+      "slug": "glass-republic",
+      "world": false,
+      "sessions": 0
+    },
+    {
+      "group": "collection-2026",
+      "slug": "ash-testament",
+      "world": false,
+      "sessions": 0
+    },
+    {
+      "group": "collection-2026",
+      "slug": "ember-crown",
+      "world": false,
+      "sessions": 0
+    },
+    {
+      "group": "mixed-ages-2026",
+      "slug": "rain-bureau",
+      "world": true,
+      "sessions": 8
+    },
+    {
+      "group": "mixed-ages-2026",
+      "slug": "red-dune-post",
+      "world": true,
+      "sessions": 8
+    },
+    {
+      "group": "mixed-ages-2026",
+      "slug": "museum-midnight",
+      "world": true,
+      "sessions": 8
+    },
+    {
+      "group": "mixed-ages-2026",
+      "slug": "paper-sea",
+      "world": false,
+      "sessions": 0
+    },
+    {
+      "group": "mixed-ages-2026",
+      "slug": "cedar-tournament",
+      "world": false,
+      "sessions": 0
+    },
+    {
+      "group": "mixed-ages-2026",
+      "slug": "root-city",
+      "world": false,
+      "sessions": 0
+    },
+    {
+      "group": "mixed-ages-2026",
+      "slug": "lantern-court",
+      "world": false,
+      "sessions": 0
+    },
+    {
+      "group": "mixed-ages-2026",
+      "slug": "silent-frequency",
+      "world": false,
+      "sessions": 0
+    },
+    {
+      "group": "mixed-ages-2026",
+      "slug": "copper-canyon",
+      "world": false,
+      "sessions": 0
+    },
+    {
+      "group": "mixed-ages-2026",
+      "slug": "dream-orchestra",
+      "world": false,
+      "sessions": 0
+    }
+  ]
+}

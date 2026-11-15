@@ -1,0 +1,57 @@
+{
+  "command": "DATABASE_URL=<dedicated temporary local database> NODE_ENV=test pnpm validate",
+  "database": "ltw_family_campaign_check_20261108",
+  "completed": [
+    "format",
+    "lint",
+    "typecheck",
+    "context-budget",
+    "unit",
+    "build",
+    "migration",
+    "seed",
+    "integration"
+  ],
+  "unit": {
+    "tests": 3605,
+    "files": 410,
+    "result": "PASS"
+  },
+  "integration": {
+    "tests": 369,
+    "files": 71,
+    "result": "PASS"
+  },
+  "browser": {
+    "tests": 244,
+    "passed": 242,
+    "failed": 2,
+    "duration": "10.7m",
+    "result": "FAIL"
+  },
+  "failures": [
+    {
+      "test": "dice.spec.ts: the DM asks for a check with a hidden DC, and the player answers it",
+      "observed": "The total assertion could match the already visible DC; the result assertion timed out after 5s.",
+      "followup": "Assert the answered result field explicitly using the existing 15s live-update allowance."
+    },
+    {
+      "test": "table-display.spec.ts: a TV pairs by its code, shows what the DM casts, and the table joins by its link",
+      "observed": "Waiting strip remained nonempty at the 15s deadline after withdrawal.",
+      "followup": "Passed unchanged in the isolated 16-test rerun. Full rerun follows; no speculative production change."
+    }
+  ],
+  "additionalRegression": {
+    "test": "resize-feedback.spec.ts",
+    "before": "FAIL: native ResizeObserver loop message observed through window.error",
+    "fix": "Deduplicate height writes and defer ResizeObserver delivery updates to one cancellable animation frame; first layout measurement remains immediate.",
+    "after": "PASS"
+  },
+  "focusedRerun": {
+    "tests": 16,
+    "passed": 16,
+    "failed": 0,
+    "duration": "44.0s",
+    "result": "PASS"
+  }
+}

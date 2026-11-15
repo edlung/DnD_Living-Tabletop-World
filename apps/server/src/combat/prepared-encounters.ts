@@ -16,6 +16,7 @@ import { campaignRole, isCombatant, type Actor, type WorldState } from '@ltw/dom
 import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod';
 
+import type { CampaignEncounterBooks } from '../campaigns/encounter-books.ts';
 import { statusOf } from '../http/command-status.ts';
 import { errorBody, sendError } from '../http/errors.ts';
 import { authenticate, parseInput, type RouteDependencies } from '../http/request-context.ts';
@@ -32,7 +33,7 @@ import {
  * stand and the party's characters at the place at the party's starting squares — all through
  * the World Engine as the DM, under command IDs derived from the request, so a retried request
  * starts nothing twice. Ravenford's books come from its fixtures, in the campaign's language; a
- * campaign the workshop prepared has none here.
+ * workshop campaigns read their digest-bound immutable encounter book.
  */
 export type PreparedEncounterBooks = Readonly<
   Partial<Record<Language, readonly PreparedEncounter[]>>
@@ -50,6 +51,8 @@ export interface PreparedEncounterDependencies extends RouteDependencies {
   readonly preparedEncounters?: PreparedEncounterBooks;
   /** Every other ready adventure's books (docs/adr/0058-campaign-content.md §5). */
   readonly adventures?: Readonly<Record<string, AdventureBooks>>;
+  /** A workshop campaign's own encounters, read from its frozen initial content. */
+  readonly campaignEncounters?: CampaignEncounterBooks;
 }
 
 const params = z.object({ campaignId: campaignIdSchema }).strict();
@@ -59,10 +62,18 @@ const startParams = z
 
 /**
  * The campaign's prepared encounters in its language: its adventure's, Ravenford's when it named
- * none; none for a campaign the workshop prepared.
+ * none; a campaign the workshop prepared reads its own digest-bound encounter book and never falls
+ * back to an adventure's.
  */
-function encountersOf(deps: PreparedEncounterDependencies, state: WorldState) {
-  if (!state.campaign || state.bootstrap) return [];
+async function encountersOf(deps: PreparedEncounterDependencies, state: WorldState) {
+  if (!state.campaign) return [];
+  if (state.bootstrap)
+    return (
+      (await deps.campaignEncounters?.get(
+        state.campaign.campaignId,
+        state.bootstrap.source.scenarioDigest,
+      )) ?? []
+    );
   const { adventure, language } = state.campaign;
   const books =
     adventure === null ? deps.preparedEncounters : deps.adventures?.[adventure]?.encounters;
@@ -159,7 +170,7 @@ export function registerPreparedEncounterRoutes(
     const dm = await dmState(request, reply, deps, actor, path.campaignId);
     if (!dm) return reply;
     const body: PreparedEncounterListResponse = {
-      encounters: encountersOf(deps, dm.state).flatMap((encounter) => {
+      encounters: (await encountersOf(deps, dm.state)).flatMap((encounter) => {
         const view = preparedView(dm.state, encounter);
         return view === null ? [] : [view];
       }),
@@ -178,7 +189,7 @@ export function registerPreparedEncounterRoutes(
       if (!body) return reply;
       const dm = await dmState(request, reply, deps, actor, path.campaignId);
       if (!dm) return reply;
-      const encounter = encountersOf(deps, dm.state).find(
+      const encounter = (await encountersOf(deps, dm.state)).find(
         (candidate) => candidate.encounterId === path.encounterId,
       );
       const view = encounter ? preparedView(dm.state, encounter) : null;

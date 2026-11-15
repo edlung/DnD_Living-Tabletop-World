@@ -1,0 +1,88 @@
+{
+  "modelRequested": "gpt-6-astra",
+  "effortRequested": "max",
+  "sourceSha256": "77e553d496afe339def3d5daa780b9793eecd0b5e613d4b624e9218e89b6ce6e",
+  "sourceHashAlgorithm": "sorted source JSON filename + NUL + exact bytes + NUL",
+  "humanPlaytest": "NOT_RUN",
+  "validation": "isolated canonical compiler; no database or real activation",
+  "variants": [
+    {
+      "size": 3,
+      "sha256": "608a2bba248e94f4c3cf5266266b52af99697fce3949d7b7b48450b8828e7072",
+      "compilerVersion": 1,
+      "readiness": "READY",
+      "findings": [],
+      "counts": {
+        "entities": 41,
+        "knowledge": 167,
+        "encounters": 3,
+        "quests": 8
+      }
+    },
+    {
+      "size": 4,
+      "sha256": "b73e69947a6255fd82ab1a3e60c89d456bded1391284fd1804f9cf61686c519c",
+      "compilerVersion": 1,
+      "readiness": "READY",
+      "findings": [],
+      "counts": {
+        "entities": 46,
+        "knowledge": 170,
+        "encounters": 3,
+        "quests": 8
+      }
+    },
+    {
+      "size": 5,
+      "sha256": "0a9505c5b1de7c55794834dec1f73837b018f844999c5b9d83f187202846104d",
+      "compilerVersion": 1,
+      "readiness": "READY",
+      "findings": [],
+      "counts": {
+        "entities": 48,
+        "knowledge": 173,
+        "encounters": 3,
+        "quests": 8
+      }
+    },
+    {
+      "size": 6,
+      "sha256": "b1ce63825a39059f9d9c26b6dee929dba02236055ea7e3922f0ddea36521baa0",
+      "compilerVersion": 1,
+      "readiness": "READY",
+      "findings": [],
+      "counts": {
+        "entities": 53,
+        "knowledge": 176,
+        "encounters": 3,
+        "quests": 8
+      }
+    },
+    {
+      "size": 7,
+      "sha256": "251ea45be248fbd2be1014331e955a4f824161406a4c424f2a215e9b90e0fcb0",
+      "compilerVersion": 1,
+      "readiness": "READY",
+      "findings": [],
+      "counts": {
+        "entities": 58,
+        "knowledge": 179,
+        "encounters": 3,
+        "quests": 8
+      }
+    },
+    {
+      "size": 8,
+      "sha256": "2b9ef7f6ff9ef1df98d2a27c22997f8ce475a7074d6c3793a09a27b7ee431657",
+      "compilerVersion": 1,
+      "readiness": "READY",
+      "findings": [],
+      "counts": {
+        "entities": 63,
+        "knowledge": 182,
+        "encounters": 3,
+        "quests": 8
+      }
+    }
+  ]
+}

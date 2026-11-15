@@ -1,0 +1,559 @@
+{
+ "tool": "Codex CLI image generation on the owner ChatGPT subscription (CODEX_HOME=~/.codex-review-cli codex exec -i <references>)",
+ "style": "Match one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+ "images": [
+  {
+   "id": "cover",
+   "file": "cover.png",
+   "kind": "cover",
+   "transparent": false,
+   "prompt": "Generate one image and save it as cover.png in the current directory.\nWide landscape key art, 3:2. The dry bed of a vanished salt sea stretching to a motionless white horizon at dusk; a colossal pale leviathan with a plated back of black molt shards breaks up through the salt crust like a whale breaching from ice, salt spray in the air. In the foreground two rival hunting crews on wind-driven salt sleds with patched sails and harpoon racks, black widow scarves tied to masts and necks; a party of seven adventurers (two fighters, two rogues, two clerics, one wizard) on the lead sled bracing with harpoons. Harsh glare, long shadows, grief and dread.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "salt-widows-2026-11-14/out/cover.png",
+   "generatedAt": "2026-11-14",
+   "references": []
+  },
+  {
+   "id": "salt-sea",
+   "file": "salt-sea.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as salt-sea.png in the current directory.\nWide landscape establishing view, 3:2. The Ebb Salt: the white bed of a vanished sea, flat salt plates to a motionless horizon, rare rock outcrops as resting places, enormous sinuous furrows in the crust left by something huge, heat haze, no people in focus.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "salt-widows-2026-11-14/out/salt-sea.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "widows-threshold",
+   "file": "widows-threshold.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as widows-threshold.png in the current directory.\nLandscape scene, 3:2. The Widows' Threshold: weathered houses above a former shoreline, a square hung with old nets, a long table where hunting crews split shares — rival captains stabbing knives into a hide map spread on the table; black widow scarves on posts, the white salt horizon beyond.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "salt-widows-2026-11-14/out/widows-threshold.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "sunken-steps",
+   "file": "sunken-steps.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as sunken-steps.png in the current directory.\nLandscape scene, 3:2. The Drowned Stairs: hundreds of stone steps descending from a cliff and ending high above the white salt floor, below them the scattered remains of several abandoned hunting camps — torn tents, broken sled runners, cold fire rings.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "salt-widows-2026-11-14/out/sunken-steps.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "bell-salt",
+   "file": "bell-salt.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as bell-salt.png in the current directory.\nLandscape scene, 3:2. The Ringing Plates: flat salt plates that ring underfoot at different pitches, dark stone ridges between them, a hunter stepping carefully with a staff, faint sound ripples suggested in the salt dust, glare.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "salt-widows-2026-11-14/out/bell-salt.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "black-molt",
+   "file": "black-molt.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as black-molt.png in the current directory.\nLandscape scene, 3:2. The Black Molt: dark shards of a gigantic shed shell jutting from the salt like roofs of a buried city, hunters' abandoned sorting places between them, sacks and scales, eerie stillness.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "salt-widows-2026-11-14/out/black-molt.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "three-wells",
+   "file": "three-wells.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as three-wells.png in the current directory.\nLandscape scene, 3:2. Three Swallows: two rival hunting camps at the edges of a small flat clearing on the salt, between them sealed clay water jars guarded under an awning, tense crews watching each other across the space, harpoons leaning on sleds.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "salt-widows-2026-11-14/out/three-wells.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "storm-fang",
+   "file": "storm-fang.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as storm-fang.png in the current directory.\nLandscape scene, 3:2. The Storm Fang: a narrow rocky ridge rising from the salt with remnants of old rope railings, dry sleeping niches in the rock, wind tearing at a black scarf tied to a rail, stars beginning.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "salt-widows-2026-11-14/out/storm-fang.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "zero-tide-tower",
+   "file": "zero-tide-tower.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as zero-tide-tower.png in the current directory.\nLandscape scene, 3:2. The Zero Tide Tower: a round lighthouse-like keeper's tower on the old shore, its walls marked with measuring lines of vanished water levels, far from any sea now, a lone figure on the gallery with a spyglass, white emptiness all around.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "salt-widows-2026-11-14/out/zero-tide-tower.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "empty-kitchen",
+   "file": "empty-kitchen.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as empty-kitchen.png in the current directory.\nLandscape interior and exterior, 3:2. The Empty Kitchen: an abandoned cookhouse of an old hunting crew on a stone islet in the salt, a cold oven, a long table neatly set for guests, a harpoon device and a crate on the floor, late light through the door.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "salt-widows-2026-11-14/out/empty-kitchen.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "red-cut",
+   "file": "red-cut.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as red-cut.png in the current directory.\nLandscape scene, 3:2. The Rust Cut: rust-red canyon walls slicing through the white salt layer, wide furrows on the floor from something enormous, several paths between scree slopes, a sled with sails furled moving carefully below.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "salt-widows-2026-11-14/out/red-cut.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "no-tide-cauldron",
+   "file": "no-tide-cauldron.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as no-tide-cauldron.png in the current directory.\nWide landscape, 3:2. The Tideless Cauldron: a vast natural basin between stone ribs, an open salt slope leading down and a tight stone passage, the surface of the salt cracking and heaving in the centre as if something breathes beneath, sleds with harpoons on the rim, dusk.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "salt-widows-2026-11-14/out/no-tide-cauldron.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "dry-return",
+   "file": "dry-return.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as dry-return.png in the current directory.\nLandscape scene, 3:2. The Dry Pass: a short white saddle and a long chain of stone ledges above it leading toward the old shore, the roofs of a village visible far away, tired hunters climbing with empty water barrels.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "salt-widows-2026-11-14/out/dry-return.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "widows-line",
+   "file": "widows-line.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as widows-line.png in the current directory.\nWide landscape, 3:2. The Widows' Line: a long line of wooden stakes driven into the white salt floor, each tied with a fluttering black widow scarf, marking the old retreat route of the hunting crews toward the east, sled tracks along it, a huge furrow crossing it, dusk.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "salt-widows-2026-11-14/out/widows-line.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "derva-klin",
+   "file": "derva-klin.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as derva-klin.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Derva Klin, a 34-year-old woman fighter and salt hunter: a dark cloak, a protective mask of blue glass pushed up on her forehead, a worn copper band on her arm, salt ground into the cracks of her palms, a harpoon over her shoulder, a black widow scarf at her throat, hard grieving eyes. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "salt-widows-2026-11-14/out/derva-klin.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "taron-vekha",
+   "file": "taron-vekha.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as taron-vekha.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Taron Vekha, a 41-year-old man rogue and tracker: a spotted scarf, a string of flat stone markers carved with arrows, boots with mismatched patches, weathered tanned face squinting at the horizon, a short blade. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "salt-widows-2026-11-14/out/taron-vekha.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "selma-rov",
+   "file": "selma-rov.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as selma-rov.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Selma Rov, a 50-year-old woman cleric: grey hair tied with a salt-crusted thread, a small bottomless cup and a pouch of coarse grey salt on her belt as her holy symbols, a calm severe face, a light mace. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "salt-widows-2026-11-14/out/selma-rov.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "eyran-list",
+   "file": "eyran-list.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as eyran-list.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Eyran List, a 28-year-old man wizard: dusty goggles, mismatched gloves, a wooden case of ordinary stones, salt and charcoal on his cuffs, curious tired face, a staff. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "salt-widows-2026-11-14/out/eyran-list.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "nata-ugol",
+   "file": "nata-ugol.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as nata-ugol.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Nata Ugol, a 37-year-old woman fighter: cropped hair, a shield with a worn-off crew sign, carefully folded mittens, strap marks on her shoulders, a short spear, solid stance. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "salt-widows-2026-11-14/out/nata-ugol.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "vosk-rez",
+   "file": "vosk-rez.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as vosk-rez.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Vosk Rez, a 24-year-old young man rogue: a neat jacket over road dust, an empty ring on a cord meant for a valuable trophy, salt polished off his cuffs, ambitious sharp face, a dagger. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "salt-widows-2026-11-14/out/vosk-rez.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "riva-noch",
+   "file": "riva-noch.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as riva-noch.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Riva Noch, a 60-year-old woman cleric: a dark braid with white streaks, a linen bag embroidered with names, a needle stuck in her sleeve, a kind exhausted face, a staff. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "salt-widows-2026-11-14/out/riva-noch.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "mara-ivna",
+   "file": "mara-ivna.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as mara-ivna.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Oksinya Ivna, a 57-year-old widow and patron of hunts: a black widow scarf edged with white salt, broad hands, a copper water measure on a cord, a guarded gracious look, the hunting square behind her. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "salt-widows-2026-11-14/out/mara-ivna.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "taron-vekha.png"
+   ]
+  },
+  {
+   "id": "yasna-var",
+   "file": "yasna-var.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as yasna-var.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Gordeya Var, a 43-year-old woman captain of the Black Net crew: square glass goggles, a patched black cloak, a string of night-glass beads on her shoulder, a flat almost bored expression, a harpoon device at her side. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "salt-widows-2026-11-14/out/yasna-var.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "taron-vekha.png"
+   ]
+  },
+  {
+   "id": "radan-kosoi",
+   "file": "radan-kosoi.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as radan-kosoi.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Radan Kosoi, a 46-year-old man rival captain: a frayed white hood, a crooked clasp, a bitter grin, a broken mast fragment with a line behind him at a campfire. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "salt-widows-2026-11-14/out/radan-kosoi.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "taron-vekha.png"
+   ]
+  },
+  {
+   "id": "luta-senn",
+   "file": "luta-senn.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as luta-senn.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Luta Senn, a 29-year-old woman tracker who listens to the salt: a short cloak, worn earmuffs, a marking stick, kneeling to listen to the ground, intense focus. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "salt-widows-2026-11-14/out/luta-senn.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "taron-vekha.png"
+   ]
+  },
+  {
+   "id": "iva-bessonnaya",
+   "file": "iva-bessonnaya.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as iva-bessonnaya.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Iva the Sleepless, a 62-year-old former hunter: a darned apron over travelling clothes, a widow scarf tied the man's way, tapping an empty cup, a board with tally marks on the wall of a cold kitchen behind her. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "salt-widows-2026-11-14/out/iva-bessonnaya.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "taron-vekha.png"
+   ]
+  },
+  {
+   "id": "demid-krai",
+   "file": "demid-krai.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as demid-krai.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Demid Krai, a 35-year-old man: a bandage on his shoulder, a long waistcoat, a small folding stool, sitting high on a rock ledge not waving, watchful. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "salt-widows-2026-11-14/out/demid-krai.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "taron-vekha.png"
+   ]
+  },
+  {
+   "id": "nena-sol",
+   "file": "nena-sol.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as nena-sol.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Nena Sol, a 39-year-old woman water-keeper: copper measures on her belt, eyebrows white with salt, scissors for cutting debt cords, sealed clay jars behind her. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "salt-widows-2026-11-14/out/nena-sol.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "taron-vekha.png"
+   ]
+  },
+  {
+   "id": "ostrem-kart",
+   "file": "ostrem-kart.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as ostrem-kart.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Ostrem Kart, a 55-year-old man tower keeper: head tilted, a linen waistcoat, charcoal-stained fingers, a bundle of old measuring poles with iron feet by the door. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "salt-widows-2026-11-14/out/ostrem-kart.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "taron-vekha.png"
+   ]
+  },
+  {
+   "id": "verek-tikhiy",
+   "file": "verek-tikhiy.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as verek-tikhiy.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Verek Tikhy, a 26-year-old broad-shouldered young man in his dead brother's carefully refitted old jacket, an unused captain's share token on his belt, quiet heavy look. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "salt-widows-2026-11-14/out/verek-tikhiy.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "taron-vekha.png"
+   ]
+  },
+  {
+   "id": "cut-map-share",
+   "file": "cut-map-share.png",
+   "kind": "item",
+   "transparent": false,
+   "prompt": "Generate one image and save it as cut-map-share.png in the current directory.\nItem illustration, single object or small group centered on a plain weathered parchment backdrop, square 1:1: a palm-wide piece of tanned hide map cut out with a knife, ragged edges, fresh knife scores across it, faint drawn contour lines (no readable text). No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "salt-widows-2026-11-14/out/cut-map-share.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "empty-kitchen.png"
+   ]
+  },
+  {
+   "id": "derva-harpoon",
+   "file": "derva-harpoon.png",
+   "kind": "item",
+   "transparent": false,
+   "prompt": "Generate one image and save it as derva-harpoon.png in the current directory.\nItem illustration, single object or small group centered on a plain weathered parchment backdrop, square 1:1: a harpoon with a dark ash shaft and a narrow iron head with two barbs, a coiled line tied at its base, a black widow scarf knotted at the butt. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "salt-widows-2026-11-14/out/derva-harpoon.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "empty-kitchen.png"
+   ]
+  },
+  {
+   "id": "taron-marks",
+   "file": "taron-marks.png",
+   "kind": "item",
+   "transparent": false,
+   "prompt": "Generate one image and save it as taron-marks.png in the current directory.\nItem illustration, single object or small group centered on a plain weathered parchment backdrop, square 1:1: a string of flat river stones on a leather cord, each scratched with an arrow and notches. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "salt-widows-2026-11-14/out/taron-marks.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "empty-kitchen.png"
+   ]
+  },
+  {
+   "id": "funeral-salt",
+   "file": "funeral-salt.png",
+   "kind": "item",
+   "transparent": false,
+   "prompt": "Generate one image and save it as funeral-salt.png in the current directory.\nItem illustration, single object or small group centered on a plain weathered parchment backdrop, square 1:1: a worn leather pouch tied with a cord, coarse grey salt crystals spilling out, a short line of embroidered stitches (no readable letters). No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "salt-widows-2026-11-14/out/funeral-salt.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "empty-kitchen.png"
+   ]
+  },
+  {
+   "id": "widow-kerchiefs",
+   "file": "widow-kerchiefs.png",
+   "kind": "item",
+   "transparent": false,
+   "prompt": "Generate one image and save it as widow-kerchiefs.png in the current directory.\nItem illustration, single object or small group centered on a plain weathered parchment backdrop, square 1:1: seven folded black wool kerchiefs with white salt edges, embroidered borders of different ages. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "salt-widows-2026-11-14/out/widow-kerchiefs.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "empty-kitchen.png"
+   ]
+  },
+  {
+   "id": "fresh-plate",
+   "file": "fresh-plate.png",
+   "kind": "item",
+   "transparent": false,
+   "prompt": "Generate one image and save it as fresh-plate.png in the current directory.\nItem illustration, single object or small group centered on a plain weathered parchment backdrop, square 1:1: a palm-sized smooth black shell plate with a round coin-like dent pressed into it. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "salt-widows-2026-11-14/out/fresh-plate.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "empty-kitchen.png"
+   ]
+  },
+  {
+   "id": "collar-rubbing",
+   "file": "collar-rubbing.png",
+   "kind": "item",
+   "transparent": false,
+   "prompt": "Generate one image and save it as collar-rubbing.png in the current directory.\nItem illustration, single object or small group centered on a plain weathered parchment backdrop, square 1:1: a sheet of heavy paper rubbed with charcoal over cast raised marks (no readable text), black-edged from fingers, a thumbprint in the corner. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "salt-widows-2026-11-14/out/collar-rubbing.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "empty-kitchen.png"
+   ]
+  },
+  {
+   "id": "line-stakes",
+   "file": "line-stakes.png",
+   "kind": "item",
+   "transparent": false,
+   "prompt": "Generate one image and save it as line-stakes.png in the current directory.\nItem illustration, single object or small group centered on a plain weathered parchment backdrop, square 1:1: two tall dark wooden measuring poles with iron feet, burned graduation marks, coiled lines ending in barbed hooks at their base. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "salt-widows-2026-11-14/out/line-stakes.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "empty-kitchen.png"
+   ]
+  },
+  {
+   "id": "iva-tooth",
+   "file": "iva-tooth.png",
+   "kind": "item",
+   "transparent": false,
+   "prompt": "Generate one image and save it as iva-tooth.png in the current directory.\nItem illustration, single object or small group centered on a plain weathered parchment backdrop, square 1:1: an arm-length iron tensioning harpoon tooth on a wooden stock with a socket, wrapped in a casing of knotted widow scarves, a tag hanging. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "salt-widows-2026-11-14/out/iva-tooth.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "empty-kitchen.png"
+   ]
+  },
+  {
+   "id": "full-box",
+   "file": "full-box.png",
+   "kind": "item",
+   "transparent": false,
+   "prompt": "Generate one image and save it as full-box.png in the current directory.\nItem illustration, single object or small group centered on a plain weathered parchment backdrop, square 1:1: a small iron-bound box with a leather handle and a fish-head lock, open to show twelve black plates bedded in coarse grey salt and sacking. No text.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "salt-widows-2026-11-14/out/full-box.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "empty-kitchen.png"
+   ]
+  },
+  {
+   "id": "token-predator",
+   "file": "token-predator.png",
+   "kind": "token",
+   "transparent": true,
+   "prompt": "Generate one image and save it as token-predator.png in the current directory.\nGame token figure on a fully transparent background, top three-quarter view, no ground shadow. A pale eyeless salt predator like a shark that swims through salt crust, white rough hide, fins cutting through crystals.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "salt-widows-2026-11-14/out/token-predator.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "empty-kitchen.png"
+   ],
+   "srd": "reef-shark"
+  },
+  {
+   "id": "token-raider",
+   "file": "token-raider.png",
+   "kind": "token",
+   "transparent": true,
+   "prompt": "Generate one image and save it as token-raider.png in the current directory.\nGame token figure on a fully transparent background, top three-quarter view, no ground shadow. A hunter-raider of the Black Net crew in a patched black cloak with night-glass beads, a hooked gaff and a knife, widow scarf on the wrist.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "salt-widows-2026-11-14/out/token-raider.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "empty-kitchen.png"
+   ],
+   "srd": "bandit"
+  },
+  {
+   "id": "token-harpooner",
+   "file": "token-harpooner.png",
+   "kind": "token",
+   "transparent": true,
+   "prompt": "Generate one image and save it as token-harpooner.png in the current directory.\nGame token figure on a fully transparent background, top three-quarter view, no ground shadow. A light harpooner archer with a short harpoon bow, perched as if on a mast, widow scarf on the wrist.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "salt-widows-2026-11-14/out/token-harpooner.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "empty-kitchen.png"
+   ],
+   "srd": "scout"
+  },
+  {
+   "id": "token-leviathan",
+   "file": "token-leviathan.png",
+   "kind": "token",
+   "transparent": true,
+   "prompt": "Generate one image and save it as token-leviathan.png in the current directory.\nGame token figure on a fully transparent background, top three-quarter view, no ground shadow. The salt leviathan Belorez breaching from salt crust, a colossal pale head and back plated with black molt shards, an old seam scar along its flank.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "salt-widows-2026-11-14/out/token-leviathan.png",
+   "generatedAt": "2026-11-14",
+   "references": [
+    "cover.png",
+    "empty-kitchen.png"
+   ],
+   "srd": "ogre-zombie"
+  }
+ ]
+}

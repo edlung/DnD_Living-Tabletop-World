@@ -11,6 +11,7 @@ import { CampaignManualEditor } from './editing/editor.tsx';
 import { CampaignLocks } from './editing/locks.tsx';
 import { contentPathLocked, targetForNode } from './editing/targets.ts';
 import { useScenarioSave, type ManualDraftBuffer } from './editing/use-scenario-save.ts';
+import { CampaignPackageImport } from './package-import.tsx';
 import { ScenarioBrowser } from './scenario/browser.tsx';
 import { buildScenarioIndex, nearestScenarioPath } from './scenario/graph.ts';
 import {
@@ -174,7 +175,7 @@ function ScenarioContent({
               ? t('Unattached generation proposal')
               : t('Scenario overview')}
         </h3>
-        <button type="button" onClick={reload}>
+        <button type="button" onClick={reload} disabled={operationPending}>
           {t('Reload saved content')}
         </button>
       </div>
@@ -314,7 +315,22 @@ function ScenarioContent({
           onRetry={retry}
         />
       ) : !data?.content ? (
-        <p>{t('Generate a campaign to prepare its scenario.')}</p>
+        <>
+          <p>{t('Generate a campaign or import a prepared package below.')}</p>
+          {source.kind === 'revision' && headRevision === 0 && (
+            <CampaignPackageImport
+              client={client}
+              draftId={draftId}
+              onSaved={onSaved}
+              onPendingChanged={setOperationPending}
+              onReload={() => {
+                setOperationPending(false);
+                reload();
+                onRefreshHistory();
+              }}
+            />
+          )}
+        </>
       ) : context && mode === 'edit' ? (
         <div className="campaign-manual-workspace">
           <CampaignManualEditor

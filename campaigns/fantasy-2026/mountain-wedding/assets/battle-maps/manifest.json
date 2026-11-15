@@ -1,0 +1,77 @@
+{
+ "about": "Top-down battle maps (OpenAI image generation through Codex CLI), each drawn over its fight grid and cut to it; originals in ~/Documents/living-tabletop-world-art/.",
+ "maps": [
+  {
+   "location": "dry-throat",
+   "encounter": "throat-dust",
+   "grid": [
+    18,
+    12
+   ],
+   "file": "dry-throat.webp",
+   "sha256": "cb6a3120c3f5033fd500f4b8d93892dd4ceb4a8a3d4a0e132c46309e80d2d99f",
+   "originalSha256": "9ab73aea5a2cda3da03ea096d666b90f34d5b1a407afe4d8d3fe9f015470bac9",
+   "originalFile": "battle-maps-2026-11-14/out/mountain-wedding--dry-throat.png",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as mountain-wedding--dry-throat.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Сухой зев» — Расселина с песчаным дном и низким навесом между ногами гор; в песке лежат следы каменных ног.\n\nThe first reference image is the exact layout of the playable field: a 18 by 12 square grid drawn in the middle of the canvas filling it. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Поле 18×12. Запад — песчаное дно зева, где стоят ходоки, тёплый шершавый камень по стенам. Середина — низкий навес, труднопроходимая полоса: через неё только ползком, два низких прохода. Под навесом лежат низкие следы: четыре плоских отпечатка, царапина от плиты и трещина колена с красной и серебряной крошкой. Восток — выходная полка и борозда осыпи с мелким правым следом. Свист ветра гуляет по навесу, песок мелко шуршит под ладонями.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/mountain-wedding--dry-throat.layout.png",
+    "dry-throat.png"
+   ]
+  },
+  {
+   "location": "tilted-bridge",
+   "encounter": "bridge-chips",
+   "grid": [
+    18,
+    12
+   ],
+   "file": "tilted-bridge.webp",
+   "sha256": "3b804a1b2b59efbd475d29bee144b14d7887f2852d5b7a4a1ee262043a73a147",
+   "originalSha256": "919eeafc0beb8084caf3f4739f22c99974853153c51e812396237abdaa052c57",
+   "originalFile": "battle-maps-2026-11-14/out/mountain-wedding--tilted-bridge.png",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as mountain-wedding--tilted-bridge.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Косой мост» — Природная каменная дуга над неглубокой расщелиной, широкая с одного края и острая с другого.\n\nThe first reference image is the exact layout of the playable field: a 18 by 12 square grid drawn in the middle of the canvas filling it. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Поле 18×12. Запад — ближний широкий конец дуги, где стоят ходоки и точка общего знака. Середина — расщелина, труднопроходимая полоса, с двумя переходами: каменная дуга, острая с одного края, и упавшая плита. У переходов есть укрытия. Восток — дальний широкий конец (главная постановка; за краем поля под ним лежит низкий Ломан) и внутренняя полка в северо-восточном углу: ступени, широкая неровная полоса под острым краем. Ветер свистит в швах дуги; камень под ладонями холодный и крошится.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/mountain-wedding--tilted-bridge.layout.png",
+    "tilted-bridge.png"
+   ]
+  },
+  {
+   "location": "red-shoulder",
+   "encounter": "shoulder-wind",
+   "grid": [
+    22,
+    6
+   ],
+   "file": "red-shoulder.webp",
+   "sha256": "2049d5c921b5ec4cc93ff8c19993dfcbacecb684b46a844254de9dcc636b525d",
+   "originalSha256": "33673105ec464dc9f945a5974a09dfc7457fd160087907d51cc3ca91bd9dfa8d",
+   "originalFile": "battle-maps-2026-11-14/out/mountain-wedding--red-shoulder.png",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as mountain-wedding--red-shoulder.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Красное плечо» — Наклонный склон Аремы, прорезанный глубокими складками; пустой наружный выступ похож на вытянутый локоть.\n\nThe first reference image is the exact layout of the playable field: a 22 by 6 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Поле 22×6, гребень на ветру. Длинные края — внутренние складки, труднопроходимые, но безопасные для упавших. Укрытия — каменные зубья по гребню. Посередине седловина, неровная полоса. Ходоки входят с востока (подножие плеча), вершина на западе. Камень под ладонями тёплый и гудит; ветер свистит в зубьях и рвёт ленты с камней.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/mountain-wedding--red-shoulder.layout.png",
+    "red-shoulder.png"
+   ]
+  },
+  {
+   "location": "high-cleft",
+   "encounter": "last-touch",
+   "grid": [
+    22,
+    6
+   ],
+   "file": "high-cleft.webp",
+   "sha256": "9fc01c1afb329ffe4c390edb55f63a632f8eb66e7a439f96173383ef92949b3d",
+   "originalSha256": "266ba9b4997bc79eef2e97d38637f38aea6e72f452f0bb8ef6568e87243676a3",
+   "originalFile": "battle-maps-2026-11-14/out/mountain-wedding--high-cleft.png",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as mountain-wedding--high-cleft.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Высокий разлом» — Узкий разлом между вершинами; к восьмому шагу вершины нависают над ним, и между ними остаётся щель шириной в шаг.\n\nThe first reference image is the exact layout of the playable field: a 22 by 6 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Поле 22×6, столбцы с запада, ряды с севера. Столбцы 11–12 — щель касания, труднопроходимая. Западная вершина Аремы: красный сигнальный камень — столбец 4, ряд 1; отсюда из разлома вылезает Верхушка. Восточная вершина Торвена: серебряный камень — столбец 20, ряд 6. Общий камень — столбец 14, ряд 3, в её досягаемости, когда она в щели. Клетка зова — столбец 13, ряд 1, над Ломаном. Длинные края — внутренние складки. Ветер один на двоих и свистит в швах, небо между вершинами сжимается в полосу.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/mountain-wedding--high-cleft.layout.png",
+    "high-cleft.png"
+   ]
+  }
+ ]
+}

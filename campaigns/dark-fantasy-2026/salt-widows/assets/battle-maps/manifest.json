@@ -1,0 +1,95 @@
+{
+ "about": "Top-down battle maps (OpenAI image generation through Codex CLI), each drawn over its fight grid and cut to it; originals in ~/Documents/living-tabletop-world-art/.",
+ "maps": [
+  {
+   "location": "bell-salt",
+   "encounter": "brine-break",
+   "grid": [
+    18,
+    14
+   ],
+   "file": "bell-salt.webp",
+   "sha256": "efd1d43db270e35c5961c0cf25f529ecde82146cbc9dfb1cceb32769af1d5614",
+   "originalSha256": "2f786773fac4ceb5b4414279f689a928bbcbca5dde95dcd398599ee0bca2244d",
+   "originalFile": "battle-maps-2026-11-14/out/salt-widows--bell-salt.png",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as salt-widows--bell-salt.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Звонкие плиты» — Ровные соляные плиты звенят под полозом на разные голоса. Между ними выступает тёмный камень, а местами лежит лишь тонкая корка.\n\nThe first reference image is the exact layout of the playable field: a 18 by 14 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Открытая белая равнина. Запад — каменный остров, у которого стоит ладья с воротом. Середина — звонкие плиты, по ним пятна тонкой корки над рассолом: пешим трудно идти, шлюпка через пятно не идёт. Восточная треть — шлюпка в проломе, борта в рассоле, бочки привязаны к полозу. Ветер с запада, соль хрустит под сапогами, на мачте ладьи шевелится вдовий платок.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/salt-widows--bell-salt.layout.png",
+    "bell-salt.png"
+   ]
+  },
+  {
+   "location": "black-molt",
+   "encounter": "net-deck",
+   "grid": [
+    18,
+    8
+   ],
+   "file": "black-molt.webp",
+   "sha256": "32ddac61d6944f024f340410c43c0d060cc9c34df6552482996af59f090c04b5",
+   "originalSha256": "b1d28573dd31f96fd627d10cef022cfe9e59f5506824ae4a6f9a058a899a6ac2",
+   "originalFile": "battle-maps-2026-11-14/out/salt-widows--black-molt.png",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as salt-widows--black-molt.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Чёрная линька» — Чёрные обломки старого панциря торчат из соли, словно крыши погребённого города. На краю — места сортировки, куда встают ладьи сборщиков.\n\nThe first reference image is the exact layout of the playable field: a 18 by 8 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Палуба соляной ладьи, длинная и узкая. Посередине стойка зуба с кольцом венца. У восточного края ящики с пластинами и груз — укрытие. Мачты тоже укрытие, на них вдовьи платки. Западный борт — трап к шлюпке отряда. Доски белы от соли, под сапогами хрустит.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/salt-widows--black-molt.layout.png",
+    "black-molt.png"
+   ]
+  },
+  {
+   "location": "empty-kitchen",
+   "encounter": "night-boarders",
+   "grid": [
+    18,
+    8
+   ],
+   "file": "empty-kitchen.webp",
+   "sha256": "9e77d1014103b88e663a89f0ea316b9e73bd7d93434d7636985c9a7f6738758e",
+   "originalSha256": "0087239e45da9e0db77532a224b54b3513709de0f7a55ee31b9bb0f2189d6c21",
+   "originalFile": "battle-maps-2026-11-14/out/salt-widows--empty-kitchen.png",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as salt-widows--empty-kitchen.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Пустая поварня» — Поварня старой артели на каменном островке. Печь тёплая, а стол накрыт для гостей.\n\nThe first reference image is the exact layout of the playable field: a 18 by 8 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Собственная палуба ладьи, узкая, в соли и росе. Ящик стоит там, где его поставили в сцене 2: посередине или на корме у западного края. Мачта и бочки — укрытие. У среднего борта привязана шлюпка на полозьях. За бортом чёрный островок поварни и слабый огонь лампы Ивы, вдалеке гудит корка. На мачте мокрый вдовий платок.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/salt-widows--empty-kitchen.layout.png",
+    "empty-kitchen.png"
+   ]
+  },
+  {
+   "location": "red-cut",
+   "encounter": "radan-in-brine",
+   "grid": [
+    18,
+    14
+   ],
+   "file": "red-cut.webp",
+   "sha256": "12ece6cdb951f0c87ce11fe517b037556c5e60255a0f3c33dd86e830bb55d414",
+   "originalSha256": "708180436eb1d431d708007063f4a23325bc6ff66d388cdeee50c60aa4545c74",
+   "originalFile": "battle-maps-2026-11-14/out/salt-widows--red-cut.png",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as salt-widows--red-cut.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Рыжий разрез» — Рыжие стены прорезают белый пласт. Узкое ущелье с каменными полками выходит на открытое дно.\n\nThe first reference image is the exact layout of the playable field: a 18 by 14 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Выход из разреза на открытое дно. С запада рыжие стены и каменные полки. Посередине — перевёрнутое днище шлюпки, вокруг пятна тонкой корки над рассолом: пешим трудно идти, шлюпка через пятно не идёт. На востоке белая гладь до горизонта. На обломках мачты у днища висит выцветший вдовий платок, у охотников на поясах — гарпуны с оборванными линями.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/salt-widows--red-cut.layout.png",
+    "red-cut.png"
+   ]
+  },
+  {
+   "location": "widows-line",
+   "encounter": "widows-line-hunt",
+   "grid": [
+    18,
+    14
+   ],
+   "file": "widows-line.webp",
+   "sha256": "2e6c083f762af548fa3e0e633c47409517f058c6bc6910178b1479662c34485c",
+   "originalSha256": "65ddc871223fba5e9d9cd97cd022873b7ebad3bce61d88b4e3f20584113a93d7",
+   "originalFile": "battle-maps-2026-11-14/out/salt-widows--widows-line.png",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as salt-widows--widows-line.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Вдовья черта» — Долгая белая равнина от Котла на восток к Сухому перевалу. Вдоль неё стоит ряд вешек с выцветшими вдовьими платками, а местами под ногами лишь тонкая корка над рассолом.\n\nThe first reference image is the exact layout of the playable field: a 18 by 14 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Поле 18×14, столбцы 1–18 с запада на восток. Запад — каменное ребро Котла; в столбцах 1–2, рядах 6–9 стоит ладья «Седьмая доля»: пешие герои могут стоять на ней, она никогда не цель. Восток — дорога к Сухому перевалу, за восточным краем — вне боя. Вдовья черта — ряды 6–9, на ней вешки с платками. Четыре пятна тонкой корки 2×2: столбцы 6–7 и 12–13 в рядах 3–4 и 11–12; пешим труднопроходимо, шлюпке нельзя. Ветер с запада. ШЛЮПКА — полоса 2×3, до трёх героев, носовой назван до боя. Рулевой своим перемещением ведёт её на 8 клеток на восток или на 4 в иную сторону; сесть или сойти — 2 клетки. Пустая под платком в конце раунда сама идёт 6 клеток на восток; ушедшая за край потеряна. На шестах — 4 клетки. Гарпун — 1к8; у каждого героя один, на стойке ладьи два запасных. Брошенный мимо лежит на корке, где упал (поднять — взаимодействие с предметом); попавший только в тушу потрачен; поставивший метку остаётся в шве.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/salt-widows--widows-line.layout.png",
+    "widows-line.png"
+   ]
+  }
+ ]
+}

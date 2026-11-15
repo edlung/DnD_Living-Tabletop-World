@@ -96,3 +96,93 @@ packages/contracts/src/items/srd/*.json
 # Their Russian, written by `scripts/srd/translate.ts` (ADR 0055 §5); the terms glossary is hand-kept.
 packages/rules/src/srd/ru/*.json
 !packages/rules/src/srd/ru/terms.json
+
+# Reproducible campaign presentation and compiler outputs; edit source/ and scripts/lighthouse/.
+campaigns/lighthouse/*.html
+campaigns/lighthouse/package.json
+campaigns/lighthouse/variants/
+campaigns/lighthouse/sessions/
+campaigns/lighthouse/handouts/
+campaigns/lighthouse/maps/
+campaigns/lighthouse/assets/manifest.json
+
+# Generated second campaign presentation and compiler outputs.
+campaigns/acorn-express/*.html
+campaigns/acorn-express/package.json
+campaigns/acorn-express/variants/
+campaigns/acorn-express/sessions/
+campaigns/acorn-express/handouts/
+campaigns/acorn-express/maps/
+campaigns/acorn-express/assets/manifest.json
+
+# Captured Acorn Express audit measurements, retained verbatim.
+reports/evidence/acorn-express-2026-11-08/measurements/
+
+# Generated ten-campaign collection; authored JSON remains formatted.
+campaigns/collection-2026/**/*.html
+campaigns/collection-2026/**/package.json
+campaigns/collection-2026/**/variants/
+campaigns/collection-2026/**/maps/
+campaigns/collection-2026/**/verification.json
+reports/evidence/ten-campaigns-2026-11-08/*.json
+
+# Generated fantasy collection outputs; edit source/ and scripts/fantasy-campaigns/.
+campaigns/fantasy-2026/**/*.html
+campaigns/fantasy-2026/**/package.json
+campaigns/fantasy-2026/**/variants/
+campaigns/fantasy-2026/**/maps/
+campaigns/fantasy-2026/**/verification.json
+reports/evidence/fantasy-ten-2026-11-08/
+
+# Reproducible dark fantasy collection outputs; edit source and scripts/dark-fantasy.
+campaigns/dark-fantasy-2026/**/*.html
+campaigns/dark-fantasy-2026/**/package.json
+campaigns/dark-fantasy-2026/**/variants/
+campaigns/dark-fantasy-2026/**/maps/
+campaigns/dark-fantasy-2026/**/verification.json
+reports/evidence/dark-fantasy-2026-11-08/originality-evidence.json
+reports/evidence/dark-fantasy-2026-11-08/layout/
+
+# Moon Pearl reproducible presentation and compiler outputs.
+campaigns/moon-pearl/*.html
+campaigns/moon-pearl/package.json
+campaigns/moon-pearl/variants/
+campaigns/moon-pearl/sessions/
+campaigns/moon-pearl/handouts/
+campaigns/moon-pearl/maps/
+campaigns/moon-pearl/assets/manifest.json
+reports/evidence/moon-pearl-2026-11-08/measurements/
+reports/evidence/moon-pearl-a11-2026-11-08/measurements/
+reports/evidence/moon-pearl-a11-2026-11-08/rejected-cargo-draft/
+reports/evidence/acorn-originality-revision-2026-11-08/measurements/
+
+# Generated mixed-audience collection outputs; edit source/ and scripts/mixed-campaigns/.
+campaigns/mixed-ages-2026/**/*.html
+campaigns/mixed-ages-2026/**/package.json
+campaigns/mixed-ages-2026/**/variants/
+campaigns/mixed-ages-2026/**/verification.json
+campaigns/mixed-ages-2026/**/maps/
+reports/evidence/mixed-ten-2026-11-08/*.json
+reports/evidence/mixed-ten-2026-11-08/layout/
+
+# Generated noir collection outputs; edit source/ and scripts/noir-campaigns/.
+campaigns/noir-2026/**/*.html
+campaigns/noir-2026/**/package.json
+campaigns/noir-2026/**/variants/
+campaigns/noir-2026/**/maps/
+campaigns/noir-2026/**/verification.json
+reports/evidence/noir-ten-2026-11-08/
+
+# The campaign library and the campaigns' picture manifests, written by their scripts
+# (scripts/campaign-library/, scripts/campaign-shared/campaign-art.ts): rebuilt, never edited.
+fixtures/campaign-library/
+campaigns/**/assets/manifest.json
+campaigns/**/assets/prompts.json
+campaigns/**/assets/battle-maps/manifest.json
+# Campaign work evidence of 2026-11-08 … 11-14: kept byte for byte.
+reports/evidence/*-2026-11-08/
+reports/evidence/*-2026-11-09/
+reports/evidence/*-2026-11-13/
+reports/evidence/*-2026-11-14/
+# Generated from the SRD 5.2.1 monster blocks (scripts/campaign-shared/AGENTS.md).
+scripts/campaign-shared/srd-blocks.json

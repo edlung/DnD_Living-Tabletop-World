@@ -1,0 +1,113 @@
+{
+ "about": "Top-down battle maps (OpenAI image generation through Codex CLI), each drawn over its fight grid and cut to it; originals in ~/Documents/living-tabletop-world-art/.",
+ "maps": [
+  {
+   "location": "hanging-teeth",
+   "encounter": "teeth-hollowed",
+   "grid": [
+    22,
+    5
+   ],
+   "file": "hanging-teeth.webp",
+   "sha256": "10f5e23d0068cb817ae07fb2bdbd07403a99bc22678bca4e3442589ddbcfc2bb",
+   "originalSha256": "6a74a55c713e91d948c0fa14b94b862e4a592a7513f23913686451a313198f80",
+   "originalFile": "battle-maps-2026-11-14/out/marrow-crown--hanging-teeth.png",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as marrow-crown--hanging-teeth.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Висячие зубья» — Белые столбы свисают со свода и слабо светятся, как молоко в темноте. Внизу между ними идёт тропа; вверху — узкий карниз со старыми верёвочными петлями. Пахнет солью и старым салом.\n\nThe first reference image is the exact layout of the playable field: a 22 by 5 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Нижняя тропа между висячими зубьями — длинный узкий коридор, который слабо светится молочно-белой костью. Столбы-зубья у стен дают укрытие. Посередине тропы — россыпь костяной крошки, по ней идут медленно и с шорохом. Пахнет солью и старым салом; в трещинах стен за тонкой костью медленно пульсирует бледный мозг. На западе — внутренняя губа шва, где светится фонарь Освина; на востоке — спуск к Лестнице.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/marrow-crown--hanging-teeth.layout.png",
+    "hanging-teeth.png"
+   ]
+  },
+  {
+   "location": "folds-camp",
+   "encounter": "camp-spinners",
+   "grid": [
+    16,
+    14
+   ],
+   "file": "folds-camp.webp",
+   "sha256": "a105d8f1a8be8cbcc432d248e418d3858ff7f50da5a173cdb38b80b2fcc066a1",
+   "originalSha256": "2a6e5990c397aa70bfec68591edc1fd31fa0fb4fa8146891e6e22d39f3dbde23",
+   "originalFile": "battle-maps-2026-11-14/out/marrow-crown--folds-camp.png",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as marrow-crown--folds-camp.png in the current directory.\n\nA tabletop battle map, square 1:1, seen straight from above (orthographic top-down), of this place: «Складчатый бивак» — Под нависшей складкой стоят две палатки, широкая грузовая рама и сальные лампы. Высоко в складке висит старая паутина. Это временный лагерь небольшой экспедиции.\n\nThe first reference image is the exact layout of the playable field: a 16 by 14 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Под нависшей складкой на севере стоят две палатки; в середине — разобранная широкая рама, рядом две сальные лампы, от которых пахнет жиром. Южная треть пещеры — осыпь сала и кости, там ноги вязнут. Пара обломков складки служит укрытиями. Над головой серой тенью висит паутина, а в стене за палатками мозг бледно и медленно пульсирует. Огни факелов тянутся к южной тяге.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/marrow-crown--folds-camp.layout.png",
+    "folds-camp.png"
+   ]
+  },
+  {
+   "location": "rib-forest",
+   "encounter": "forest-hollowed",
+   "grid": [
+    16,
+    14
+   ],
+   "file": "rib-forest.webp",
+   "sha256": "51f6c986989c5e06c5d61001e4a03b7b88d3b91fdefbd82b9c2f09f710c8b1ab",
+   "originalSha256": "2733e768d4b8b56fd998676cbdef37505f3d3f5be74e3bec6b4af1d4743384e4",
+   "originalFile": "battle-maps-2026-11-14/out/marrow-crown--rib-forest.png",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as marrow-crown--rib-forest.png in the current directory.\n\nA tabletop battle map, square 1:1, seen straight from above (orthographic top-down), of this place: «Рёберный лес» — Белые арки медленно поворачиваются и скрывают друг друга; на них видны меловые стрелки. По полу тянутся чёрные каменные полосы, которые не двигаются.\n\nThe first reference image is the exact layout of the playable field: a 16 by 14 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Поляна между белыми арками, которые медленно поворачиваются и скрипят. На севере — чёрная полоса и выход к Алому повороту; посередине на камне лежит тайник с тремя узлами. По поляне разбросаны пыльные насыпи, где ноги вязнут. Основания арок дают укрытие. Кость под ногами гладкая, в проёмах арок за тонкой стенкой пульсирует бледный мозг, огонь факела тянется к тайнику.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/marrow-crown--rib-forest.layout.png",
+    "rib-forest.png"
+   ]
+  },
+  {
+   "location": "rough-throat",
+   "encounter": "throat-follower",
+   "grid": [
+    22,
+    5
+   ],
+   "file": "rough-throat.webp",
+   "sha256": "12b332364a4e698a3b1cceac7d54bc9a5c87885e27807735a200767189c2b893",
+   "originalSha256": "9ac91e587d5329ac4ca583a04e2da05c8be35a209f010ad8752773b6c42993b6",
+   "originalFile": "battle-maps-2026-11-14/out/marrow-crown--rough-throat.png",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as marrow-crown--rough-throat.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Шероховатый провал» — Наклонный жёлоб кончается стенами, которые медленно трутся друг о друга и мелют белые обломки в пыль. Высоко сбоку виден тёмный лаз вверх.\n\nThe first reference image is the exact layout of the playable field: a 22 by 5 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Наклонный лаз вверх: вдоль стен тянутся выступы, за которыми можно укрыться. Посередине коридора несколько клеток чёрного камня — холодной старой кости Олома, скользкой и трудной для хода. На западе край над Провалом, откуда тянет тёплым сквозняком; на востоке — чёрная кромка Кармана эха. Белый пол чуть липкий от жира мозга, стены влажно мерцают, огонь факела тянется вверх по лазу.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/marrow-crown--rough-throat.layout.png",
+    "rough-throat.png"
+   ]
+  },
+  {
+   "location": "sun-fissure",
+   "encounter": "fissure-spinners",
+   "grid": [
+    22,
+    5
+   ],
+   "file": "sun-fissure.webp",
+   "sha256": "182725bc286c7479ac73e73b3ca262b3110857af896355e147d06600f2320d04",
+   "originalSha256": "e98df389b60ddd6021522cb6139603c7fe909a3786f73b749ba4931f0d7009ba",
+   "originalFile": "battle-maps-2026-11-14/out/marrow-crown--sun-fissure.png",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as marrow-crown--sun-fissure.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Световая щель» — Узкая косая трещина; в полдень сверху падает полоса дня. Человек с мягким свёртком проходит здесь боком, но выбраться наружу слишком высоко и слишком тесно.\n\nThe first reference image is the exact layout of the playable field: a 22 by 5 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Длинная косая трещина вверх, настолько узкая, что идут боком. На западе нижний вход, на востоке — полоса дня и паутина с застрявшим свёртком; пыль в луче висит, как мука. Выступы стен — укрытия; посередине осыпь костяного щебня, по ней ходят медленно. Стены тёплые на ощупь, сквозь тонкую кость за ними пульсирует мозг, факел горит ровно и сильнее тянется к свету полосы.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/marrow-crown--sun-fissure.layout.png",
+    "sun-fissure.png"
+   ]
+  },
+  {
+   "location": "salt-mouth",
+   "encounter": "seam-nest",
+   "grid": [
+    16,
+    14
+   ],
+   "file": "salt-mouth.webp",
+   "sha256": "23320f1d2a2ae9f0cd35bb3a37cac8578d99df35fc47bbb61fb3abd9bb003729",
+   "originalSha256": "ddd900e4968bc3b22c035a82596c68302c18fa955ad976675de463871305bfe8",
+   "originalFile": "battle-maps-2026-11-14/out/marrow-crown--salt-mouth.png",
+   "generated": "2026-11-14",
+   "prompt": "Generate one image and save it as marrow-crown--salt-mouth.png in the current directory.\n\nA tabletop battle map, square 1:1, seen straight from above (orthographic top-down), of this place: «Соляной рот» — Костяной шов в боку Олома над ущельем: две губы в восьми кольцах соли. Внутри — низкий зал с внутренней губой. Шов открывается на рассвете и держится восемь счётов, потом сходится.\n\nThe first reference image is the exact layout of the playable field: a 16 by 14 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Внутренний зал Соляного рта. На севере шов в кольцах соли, откуда тянет утренним ветром: зона шва — средние шесть клеток двух северных рядов. На юге опутанный белыми нитями проход от Зубьев; перед ним, если мёртвые видели свет, вповалку лежат сухие оболочки в куртках. Лужи бледного мозга и россыпь кости — труднопроходимые пятна; обломанные зубья дают укрытие. Кость под ногами тёплая, на стенах свет первых лучей, огонь факелов тянется к шву и затем к гнезду. В приложении гнездо — одна фишка: тело 3×3 — её клетка и восемь вокруг.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/marrow-crown--salt-mouth.layout.png",
+    "salt-mouth.png"
+   ]
+  }
+ ]
+}

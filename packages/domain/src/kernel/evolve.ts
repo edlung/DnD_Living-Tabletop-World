@@ -146,12 +146,13 @@ function apply(state: WorldState, event: RecordedEvent): WorldState {
       return updateEntity(state, entityId, { placement: { locationId, since } });
     }
     case 'EntityProfileUpdated': {
-      const { entityId, name, description } = event.payload;
+      const { entityId, name, description, manner } = event.payload;
       const current = requireEntity(state, entityId);
-      return updateEntity(state, entityId, {
+      const updated = updateEntity(state, entityId, {
         name: name?.to ?? current.name,
         description: description?.to ?? current.description,
       });
+      return manner ? withManner(updated, entityId, manner.to) : updated;
     }
     case 'EntityStatusChanged':
       // When it died, for the spells that return the dead (docs/adr/0056-…md §5).
@@ -337,8 +338,10 @@ function applyRestore(state: WorldState, restore: Restore): WorldState {
     case 'entity':
       requireEntity(state, restore.entityId);
       return { ...state, entities: withoutEntry(state.entities, restore.entityId) };
-    case 'entity.profile':
-      return updateEntity(state, restore.entityId, restore.value);
+    case 'entity.profile': {
+      const { manner, ...profile } = restore.value;
+      return withManner(updateEntity(state, restore.entityId, profile), restore.entityId, manner);
+    }
     case 'entity.placement':
       return updateEntity(state, restore.entityId, { placement: restore.value });
     case 'entity.status':
@@ -471,6 +474,16 @@ function requireScene(state: WorldState, sceneId: string): SceneState {
   const scene = state.scenes.get(sceneId);
   if (!scene) throw new CorruptHistoryError(`unknown scene ${sceneId}`);
   return scene;
+}
+
+/** An NPC's manner of speech, set or (when empty or absent) removed, so state never holds `''`. */
+function withManner(state: WorldState, entityId: string, manner: string | undefined): WorldState {
+  const next: { -readonly [Key in keyof EntityState]: EntityState[Key] } = {
+    ...requireEntity(state, entityId),
+  };
+  if (manner) next.manner = manner;
+  else delete next.manner;
+  return { ...state, entities: withEntry(state.entities, entityId, next) };
 }
 
 function updateEntity(

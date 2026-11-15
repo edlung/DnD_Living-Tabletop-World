@@ -1,0 +1,311 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Кузница чёрного солнца — игрокам</title><style>:root {
+  color-scheme: light;
+  font-family: Georgia, 'Times New Roman', serif;
+  color: #202f3b;
+  background: #f4f0e8;
+  font-size: 18px;
+  line-height: 1.65;
+  --line: #c5c5ba;
+  --ink: #163e50;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+header,
+main,
+footer {
+  width: min(1200px, calc(100% - 64px));
+  margin-inline: auto;
+}
+header {
+  padding-block: 64px 32px;
+  border-bottom: 1px solid var(--line);
+}
+main {
+  display: grid;
+  gap: 32px;
+  padding-block: 32px 64px;
+}
+footer {
+  border-top: 1px solid var(--line);
+  padding-block: 24px 48px;
+  font:
+    14px/1.6 system-ui,
+    sans-serif;
+}
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+  text-wrap: balance;
+}
+h1 {
+  font-size: clamp(2rem, 5vw, 3.8rem);
+  max-width: 20ch;
+  margin: 16px 0 24px;
+  font-weight: 500;
+}
+h2 {
+  font-size: 1.65rem;
+  margin: 0 0 16px;
+  font-weight: 500;
+}
+h3 {
+  font-size: 1.15rem;
+  margin: 24px 0 8px;
+}
+p {
+  max-width: 70ch;
+  margin: 0 0 16px;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+p:last-child,
+ul:last-child {
+  margin-bottom: 0;
+}
+ul,
+ol {
+  padding-left: 24px;
+  margin-block: 0 16px;
+  max-width: 75ch;
+}
+li {
+  margin-block: 8px;
+}
+a {
+  color: var(--ink);
+  text-underline-offset: 4px;
+  overflow-wrap: anywhere;
+}
+a:hover {
+  color: #7c3919;
+}
+a:focus-visible,
+summary:focus-visible {
+  outline: 3px solid #a84919;
+  outline-offset: 4px;
+}
+nav,
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+}
+nav a,
+.actions a,
+.card-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font:
+    16px/1.5 system-ui,
+    sans-serif;
+}
+.eyebrow {
+  font:
+    700 13px/1.6 system-ui,
+    sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #495c65;
+}
+.lead {
+  font-size: 1.3rem;
+  max-width: 60ch;
+}
+.panel {
+  border: 1px solid var(--line);
+  padding: 32px;
+  background: #fffcf6;
+  min-width: 0;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: 24px;
+  align-items: start;
+}
+.ribbon {
+  border-left: 4px solid #ab6a35;
+  padding: 16px 24px;
+  background: #e8e0d1;
+}
+.adult {
+  color: #773424;
+  font-weight: 700;
+}
+.read-aloud {
+  border-left: 4px solid #748d91;
+  padding: 16px 24px;
+  background: #eaf0ee;
+  font-style: italic;
+}
+.scene + .scene {
+  margin-top: 32px;
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+}
+.meta {
+  font:
+    16px/1.6 system-ui,
+    sans-serif;
+  color: #495c65;
+}
+.map {
+  max-width: 700px;
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid #495c65;
+  background: white;
+}
+.map text {
+  font:
+    bold 13px system-ui,
+    sans-serif;
+}
+.map-title {
+  font:
+    16px/1.5 system-ui,
+    sans-serif;
+}
+.skip {
+  position: absolute;
+  top: -100px;
+  padding: 16px;
+  background: white;
+}
+.skip:focus {
+  top: 0;
+}
+details {
+  border-top: 1px solid var(--line);
+  padding-block: 16px;
+}
+summary {
+  min-height: 44px;
+  cursor: pointer;
+  font-weight: 700;
+}
+details > div {
+  margin-top: 16px;
+}
+.handout {
+  max-width: 75ch;
+  border: 2px solid #8c9a9d;
+  padding: 32px;
+  background: white;
+}
+@media (max-width: 600px) {
+  :root {
+    font-size: 17px;
+  }
+  header,
+  main,
+  footer {
+    width: calc(100% - 32px);
+  }
+  header {
+    padding-top: 32px;
+  }
+  .panel,
+  .handout {
+    padding: 24px;
+  }
+  .grid {
+    gap: 16px;
+  }
+}
+@media print {
+  :root {
+    color: #000;
+    background: #fff;
+    font-size: 11pt;
+  }
+  header,
+  main,
+  footer {
+    width: 100%;
+  }
+  nav,
+  .actions,
+  .skip {
+    display: none;
+  }
+  header {
+    padding: 0 0 16px;
+  }
+  .panel {
+    background: white;
+    padding: 16px;
+    break-inside: avoid;
+  }
+  .scene {
+    break-inside: avoid;
+  }
+  .grid {
+    display: block;
+  }
+  .grid > * {
+    margin-block: 16px;
+  }
+  a {
+    color: black;
+  }
+}
+
+/* Pictures of reworked campaigns (assets/manifest.json); campaigns without art have none. */
+img.art {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 0 1rem;
+  border-radius: 12px;
+}
+img.art.cover {
+  aspect-ratio: 3 / 2;
+  max-height: 60vh;
+  object-fit: cover;
+}
+img.art.portrait {
+  max-width: 320px;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+}
+img.art.token {
+  max-width: 180px;
+  border-radius: 0;
+}
+.tokens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.section-title {
+  margin: 2rem 0 1rem;
+}
+.faces {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0 0 1rem;
+}
+.faces figure {
+  width: 96px;
+  margin: 0;
+  text-align: center;
+  font-size: 0.85rem;
+}
+img.art.thumb,
+img.art.thumb.portrait {
+  width: 96px;
+  max-width: 96px;
+  aspect-ratio: 2 / 3;
+  margin: 0 0 0.25rem;
+  border-radius: 8px;
+}
+</style></head><body><a class="skip" href="#main">К содержанию</a><header><div class="eyebrow">Космическое тёмное фэнтези: экспедиция и причинная ловушка · 18+ · 3–7 игроков</div><h1>Кузница чёрного солнца — игрокам</h1></header><main id="main"><div class="lead"><p>В пустой глазнице мёртвой звезды снова стучат молоты. Экспедиция должна остановить ковку проклятия, способного обездвижить три приграничных города. Но на металле проступают следы ещё не нанесённых ударов — и один из них похож на ваш. Кузнечица ждёт именно тех, кто придёт уничтожить её работу.</p></div><section class="panel"><h2>Мир и начало</h2><p>Аш-Кер висит над миром в провале чёрного неба; туда ведёт каменная лестница, возникающая после затмения. Это чужая магическая кузница, а не космический корабль: воздух удерживают руны, расстояния пересекают пешком, опасности решаются обычными правилами фэнтези. Герои — взрослые участники добровольной экспедиции; их базовые классы и способности соответствуют поддерживаемому уровню 3.</p><p>Лестница заканчивается у лагерного навеса, натянутого между двумя рогами камня. Над навесом висит чёрный круг без сияния. Вейра Даль оставила на столе обломок молота в маленькой чаше, соединённой серебристой полоской с другой. Рядом записка: «Если хотите спасти свои города, приходите и разбейте сердце». В пустой чаше проступает след ещё не нанесённого удара. Соррен Вит отводит взгляд: «Мы пришли остановить ковку. Сначала выясним, кто назначил нам способ».</p></section><section class="panel"><h2>Перед первой сессией</h2><p>Выберите героев в рамках состава, согласованного с ведущим. Подготовленные листы используют классы воина, плута, жреца и волшебника 3-го уровня. Жанровые профессии и названия меняют описание, но не дают дополнительных автоматических умений.</p><p>Решения принадлежат вам. Можно спорить, искать иной путь, отступать и договариваться. Сообщите ведущему о нежелательных темах; пауза и смена описания доступны без объяснений.</p><ul><li>Противодействие как чужой инструмент</li><li>Ответственность за выбранный способ борьбы</li><li>Ложная неизбежность и проверяемое сомнение</li><li>Месть, превращённая в военное оружие</li><li>Цена отказа от опасного трофея</li></ul><ul><li>Только 18+: все названные люди совершеннолетние. Война, плен, принуждение и магические травмы обсуждаются без натуралистичных подробностей.</li><li>Сексуальное насилие, пытки в подробностях и вред детям исключены. Потерю тени описывать как странность света и движения, а не телесный ужас.</li><li>Перед началом каждый может назвать исключаемую тему; знак паузы останавливает описание. Снизить интенсивность можно без объяснения. Персонаж не обязан доверять видению или приносить себя в жертву.</li></ul></section><div class="grid"><article class="panel"><div class="eyebrow">34 лет · воин · уровень 3</div><h2>Рада Тес</h2><p>Защитница экспедиции</p><p>Коротко стриженные волосы, потёртый плащ и щит с незакрашенной трещиной.</p><p>Рада защищала людей в одном из городов под угрозой и хочет остановить удар до начала нового похода.</p><h3>Связь</h3><p>Левен однажды вывел её отряд через закрытый перевал; она доверяет его глазам, хотя не всем выводам.</p><h3>В центре внимания</h3><p>Прикрой переход, выбери цену удержания позиции и покажи, как защищать, не отдавая товарищам приказов.</p><h3>Личный вопрос</h3><p>Сумеешь ли ты отказаться от немедленного удара, когда именно он кажется самым смелым поступком?</p></article><article class="panel"><div class="eyebrow">29 лет · плут · уровень 3</div><h2>Левен Кер</h2><p>Следопыт чужих переходов</p><p>Латунная бусина в ухе, серые перчатки, складная линейка на ремне.</p><p>Его наставник вернулся из Аш-Кер с обломком, который отдавал звук до прикосновения; Левен хочет понять опасность, не продать её.</p><h3>Связь</h3><p>Мара укрыла его после неудачной экспедиции и никогда не потребовала расплаты.</p><h3>В центре внимания</h3><p>Сравни следы, проведи малый опыт и найди обход, доступный всему отряду.</p><h3>Личный вопрос</h3><p>Какое доказательство заставит тебя изменить красивую догадку?</p></article><article class="panel"><div class="eyebrow">41 лет · жрец · уровень 3</div><h2>Мара Иль</h2><p>Служительница дорожных клятв</p><p>Белая нить вокруг запястья, тёмная дорожная одежда, маленький дорожный алтарь.</p><p>Она сопровождает добровольцев и не желает, чтобы их обещание защиты обратилось против них.</p><h3>Связь</h3><p>Рада когда-то отказалась оставить незнакомца ради приказа; Мара помнит этот выбор лучше любой победы.</p><h3>В центре внимания</h3><p>Помоги раненому, отдели известное от веры и предложи ясные условия сделки без обязательной магии.</p><h3>Личный вопрос</h3><p>Где заканчивается верность обещанию и начинается покорность чужому сценарию?</p></article><article class="panel"><div class="eyebrow">52 лет · волшебник · уровень 3</div><h2>Эннор Сай</h2><p>Исследователь чужой ковки</p><p>Очки с разными стёклами и дорожная книга, прошитая чёрной бечевой.</p><p>Ему известны слухи об оттисках Аш-Кер, но ни одного личного опыта; он готов проверять собственные ожидания.</p><h3>Связь</h3><p>Считает наблюдения Левена равными своим формулам и просит его искать ошибки.</p><h3>В центре внимания</h3><p>Формулируй проверяемые предположения; любой товарищ может повторить твой опыт без заклинания.</p><h3>Личный вопрос</h3><p>От какого открытия ты добровольно откажешься, если безопасного способа сохранить его нет?</p></article><article class="panel"><div class="eyebrow">26 лет · воин · уровень 3</div><h2>Тава Орн</h2><p>Мастер переносных опор</p><p>Рукава с цветными заплатами, широкий пояс и два простых походных молотка.</p><p>Она нанялась обеспечить возвращение экспедиции и намерена выполнить обещание, даже если маршрут придётся бросить.</p><h3>Связь</h3><p>Рада научила её спорить с командиром до опасного перехода, а не после него.</p><h3>В центре внимания</h3><p>Закрепляй путь, организуй перенос и превращай уже найденную улику в практический план.</p><h3>Личный вопрос</h3><p>Когда стоит оставить сделанное собственными руками, чтобы люди могли идти дальше?</p></article><article class="panel"><div class="eyebrow">37 лет · плут · уровень 3</div><h2>Дарель Вей</h2><p>Переговорщик пограничных дорог</p><p>Застёгнутый высокий ворот, мягкая походная обувь, немятая лента на рюкзаке.</p><p>Он видел, как перемирие превращали в подготовку нападения, и пришёл сорвать следующее.</p><h3>Связь</h3><p>Мара однажды настояла, чтобы условия его сделки услышали обе стороны; он ценит эту прямоту.</p><h3>В центре внимания</h3><p>Выясняй конкретные требования противника, замечай противоречия в приказах и договаривайся о выходе.</p><h3>Личный вопрос</h3><p>Какую удобную недоговорённость ты произнесёшь вслух, хотя она ослабит твою позицию?</p></article><article class="panel"><div class="eyebrow">45 лет · жрец · уровень 3</div><h2>Сера Нем</h2><p>Хранительница походных огней</p><p>Фонарь на коротком шесте, спокойный голос и шрам на деревянной накладке щита.</p><p>Она знает цену поспешным погребальным обещаниям и хочет вернуть людей, а не легенду об их подвиге.</p><h3>Связь</h3><p>Левен помогает ей отмечать безопасные стоянки; каждый умеет исправить карту другого.</p><h3>В центре внимания</h3><p>Следи за возвращением отрядов, поддержи действие товарища и обозначь личную цену финального решения.</p><h3>Личный вопрос</h3><p>Кому ты позволишь заботиться о тебе, когда собственная выдержка закончится?</p></article></div></main><footer>Living Tabletop World · Авторская коллекция · 2026</footer></body></html>

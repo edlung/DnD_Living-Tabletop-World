@@ -8,6 +8,7 @@ import Fastify, { LogController, type FastifyBaseLogger, type FastifyInstance } 
 import type { AssetContentStore } from '../assets/content-store.ts';
 import { registerWorkshopRoutes } from '../workshop/routes.ts';
 import type { WorkshopDependencies } from '../workshop/service.ts';
+import type { CampaignEncounterBooks } from '../campaigns/encounter-books.ts';
 import type { CampaignQuestBooks } from '../campaigns/quest-books.ts';
 import { registerAccountRoutes } from '../accounts/account-routes.ts';
 import { registerPrivacyRoutes } from '../accounts/privacy-routes.ts';
@@ -117,6 +118,7 @@ export interface AppDependencies {
   readonly adventurePictures?: AdventurePictures;
   /** Prepared encounters by language (Stage 605); none when absent. */
   readonly preparedEncounters?: PreparedEncounterBooks;
+  readonly campaignEncounters?: CampaignEncounterBooks;
   /**
    * Live subscriptions (docs/adr/0033-live-session.md §5), shared by the application and its
    * silent fingerprint twin (`src/live/live-app.ts`). Without a live session nobody is present.

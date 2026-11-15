@@ -14,14 +14,28 @@ export function useReservedHeight<T extends HTMLElement>(property: ReservedHeigh
     const element = box.current;
     const host = element?.closest<HTMLElement>('.world-main');
     if (!element || !host) return;
+    let lastHeight = -1;
+    let frame: number | undefined;
     const measure = () => {
-      host.style.setProperty(property, `${String(element.offsetHeight)}px`);
+      const height = element.offsetHeight;
+      if (height === lastHeight) return;
+      lastHeight = height;
+      host.style.setProperty(property, `${String(height)}px`);
     };
     measure();
-    const observer = new ResizeObserver(measure);
+    // Updating the ancestor during observer delivery can resize this box again in the
+    // same layout cycle. Keep the first measurement synchronous, then coalesce changes.
+    const observer = new ResizeObserver(() => {
+      if (frame !== undefined) return;
+      frame = requestAnimationFrame(() => {
+        frame = undefined;
+        measure();
+      });
+    });
     observer.observe(element);
     return () => {
       observer.disconnect();
+      if (frame !== undefined) cancelAnimationFrame(frame);
       host.style.removeProperty(property);
     };
   }, [property, shown]);

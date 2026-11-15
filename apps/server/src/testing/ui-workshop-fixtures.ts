@@ -14,6 +14,7 @@ import { MemoryCampaignRevisionRepository } from './campaign-packages.ts';
 import { bellCampaign } from '../../../../packages/domain/src/campaign/testing/bell.ts';
 import { englishBellCampaign } from './generation/bell-english.ts';
 import { seedWorkshopEdits } from './ui-workshop-edits.ts';
+import { loadCampaignLibrary } from '../campaigns/library.ts';
 import { seedWorkshopActivation } from './ui-workshop-activation.ts';
 import { seedWorkshopGeneration } from './ui-workshop-generation.ts';
 import { seedWorkshopImages, completePreviewVisualBriefs } from './ui-workshop-images.ts';
@@ -40,9 +41,11 @@ export async function seedWorkshopAccess(
   const store = new MemoryWorkshopStore();
   const revisions = new MemoryCampaignRevisionRepository(store);
   const { images, cancelImage, stopImages } = await seedWorkshopImages(store, revisions, seed);
+  const library = await loadCampaignLibrary();
   const workshop: WorkshopDependencies = {
     store,
     packages: revisions,
+    library,
     publicOrigin: SIGN_IN_ORIGIN,
     clock: systemAuthClock,
     limits: new RequestLimits(
@@ -156,6 +159,7 @@ export async function seedWorkshopAccess(
         bootstrap: runtime.bootstrap,
         contents: runtime.contents,
         seed,
+        library,
       })
     : null;
   return {

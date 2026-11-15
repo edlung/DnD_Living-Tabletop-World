@@ -95,6 +95,8 @@ function spoken(context: NpcDialogueContext): string {
   const lines = [...context.justTold, ...context.mayTell, ...context.common, ...context.memories];
   return [
     context.attitude,
+    // Its manner of speech (ADR 0020 amendment 2026-11-14); `dialogue-manner.test.ts` plants one.
+    context.manner ?? '',
     ...entities.map((entity) => `${entity.kind} ${entity.name ?? ''}`),
     ...lines.map((line) => line.text),
   ].join('\n');

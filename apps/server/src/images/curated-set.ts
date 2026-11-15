@@ -117,15 +117,30 @@ function checkEntries(entries: readonly CuratedEntry[]): void {
  * content limit, so that a changed or retouched file is never imported.
  */
 export async function loadCuratedSet(directory: string = CURATED_SET_DIR): Promise<CuratedSet> {
-  const parsed = manifestSchema.safeParse(
-    JSON.parse(await readFile(join(directory, 'manifest.json'), 'utf8')),
-  );
-  if (!parsed.success) throw new CuratedSetError('the manifest does not match its schema');
-  const manifest = parsed.data;
-  checkEntries(manifest.assets);
+  const manifest: unknown = JSON.parse(await readFile(join(directory, 'manifest.json'), 'utf8'));
+  const files = manifestSchema.safeParse(manifest).data?.assets.map((entry) => entry.file) ?? [];
   const bytes = new Map<string, Uint8Array>();
-  for (const entry of manifest.assets) {
-    const data = new Uint8Array(await readFile(join(directory, entry.file)));
+  for (const file of files) bytes.set(file, new Uint8Array(await readFile(join(directory, file))));
+  return curatedSetOf(manifest, bytes);
+}
+
+/**
+ * A curated set from a manifest and the bytes of its files, checked as a committed set is: every
+ * entry, its derivation, and each file's size and SHA-256. The campaign library builds its sets
+ * this way, bound to the entities of the campaign that is importing them.
+ */
+export function curatedSetOf(
+  manifest: unknown,
+  files: ReadonlyMap<string, Uint8Array>,
+): CuratedSet {
+  const parsed = manifestSchema.safeParse(manifest);
+  if (!parsed.success) throw new CuratedSetError('the manifest does not match its schema');
+  const { assets, generator } = parsed.data;
+  checkEntries(assets);
+  const bytes = new Map<string, Uint8Array>();
+  for (const entry of assets) {
+    const data = files.get(entry.file);
+    if (!data) throw new CuratedSetError(`${entry.file}: not in the set`);
     if (data.byteLength === 0 || data.byteLength > MAX_CONTENT_BYTES) {
       throw new CuratedSetError(`${entry.file}: outside the content limit`);
     }
@@ -136,8 +151,8 @@ export async function loadCuratedSet(directory: string = CURATED_SET_DIR): Promi
   }
   const order = (entry: CuratedEntry) => (entry.variant === 'reference' ? 0 : 1);
   return {
-    model: manifest.generator,
-    entries: [...manifest.assets].sort((a, b) => order(a) - order(b)),
+    model: generator,
+    entries: [...assets].sort((a, b) => order(a) - order(b)),
     bytesOf: (file) => {
       const data = bytes.get(file);
       if (!data) throw new CuratedSetError(`${file}: not in the set`);
