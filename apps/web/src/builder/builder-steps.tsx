@@ -3,6 +3,7 @@ import { useT } from '@ltw/ui';
 import { useId } from 'react';
 
 import { ABILITY_NAMES, className } from '../character/words.ts';
+import { builderArtUrl } from '../visual/ui-kit.ts';
 import { Field, Problems } from './builder-fields.tsx';
 import { LanguageChoice } from './builder-languages.tsx';
 import type { Builder } from './use-builder.ts';
@@ -13,7 +14,7 @@ import type { Builder } from './use-builder.ts';
  * `builder-abilities.tsx`.
  */
 
-/** A row of cards to pick one from: each a name and a line. */
+/** A row of cards to pick one from: each a name and a line, and its GPT picture where it has one. */
 function Cards<T extends string>({
   label,
   items,
@@ -26,6 +27,8 @@ function Cards<T extends string>({
     readonly name: string;
     readonly line: string;
     readonly lang?: string | undefined;
+    /** The UI kit's picture of the choice (a class, a species): decoration, so no alt text. */
+    readonly art?: string | null;
   }[];
   readonly chosen: T | null;
   readonly onChoose: (id: T) => void;
@@ -39,11 +42,12 @@ function Cards<T extends string>({
           role="radio"
           aria-checked={chosen === item.id}
           lang={item.lang}
-          className="builder-card"
+          className={item.art ? 'builder-card builder-card--art' : 'builder-card'}
           onClick={() => {
             onChoose(item.id);
           }}
         >
+          {item.art && <img className="builder-card-art" src={item.art} alt="" />}
           <span className="builder-card-name">{item.name}</span>
           <span className="builder-card-line">{item.line}</span>
         </button>
@@ -69,6 +73,7 @@ export function ClassStep({
         items={options.classes.map((one) => ({
           id: one.classId,
           name: className(t, one.classId),
+          art: builderArtUrl('class', one.classId),
           line: t('d{die} hit points · {ability}', {
             die: one.hitDie,
             ability: t(one.primaryAbility),
@@ -135,6 +140,7 @@ export function OriginStep({
           id: one.speciesId,
           lang: one.language === options.language ? undefined : one.language,
           name: one.name,
+          art: builderArtUrl('species', one.speciesId),
           line: t('{speed} ft · {traits}', { speed: one.speedFt, traits: one.traits.join(', ') }),
         }))}
         chosen={draft.speciesId}

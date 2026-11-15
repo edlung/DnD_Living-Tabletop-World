@@ -1,0 +1,359 @@
+{
+  "$comment": "The town of Ravenford grows (2026-11-15): rooms inside the Golden Stag Inn, the Merchant Guild, Orin's Alchemy and the North Gate; the Riverside Docks, the Shrine Quarter and Tanners' Row; seven townsfolk; the region 'Ravenford and its Surroundings', whose picture is a painted map, with its pins and the roads between the outdoor places. Public content only, known to everyone as the other public places and people are (PUBLIC records). Seeded last, so every earlier seeded command keeps its ID and a database seeded before this file accepts a rerun that only adds these commands.",
+  "campaignId": "ravenford",
+  "dmActorId": "dm-ravenford",
+  "commands": [
+    {
+      "type": "CreateEntity",
+      "entityId": "ravenford-surroundings",
+      "kind": "location",
+      "name": "Ravenford and its Surroundings",
+      "description": "The walled town on its river ford and the country around it: fields, the river and the Old Trade Road winding away into the wooded hills.",
+      "existsSince": null,
+      "location": {
+        "type": "region",
+        "parentId": null
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "golden-stag-common-room",
+      "kind": "location",
+      "name": "Golden Stag Common Room",
+      "description": "A low-beamed hall with a great hearth, long tables and a bar, where travelers eat, drink and trade news.",
+      "existsSince": null,
+      "location": {
+        "type": "room",
+        "parentId": "golden-stag-inn"
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "guild-hall",
+      "kind": "location",
+      "name": "Guild Hall",
+      "description": "The guild's high meeting hall, with a long counting table, shelves of ledgers and a painted map of the trade roads on the wall.",
+      "existsSince": null,
+      "location": {
+        "type": "room",
+        "parentId": "merchant-guild"
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "orins-workroom",
+      "kind": "location",
+      "name": "Orin's Workroom",
+      "description": "The cramped workroom behind the shop, where Orin brews and distills among shelves of jars and a soot-blackened furnace.",
+      "existsSince": null,
+      "location": {
+        "type": "room",
+        "parentId": "orins-alchemy"
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "north-gate-guardroom",
+      "kind": "location",
+      "name": "North Gate Guardroom",
+      "description": "A stone room in the gatehouse with a brazier, a weapon rack, a duty board and bunks for the watch.",
+      "existsSince": null,
+      "location": {
+        "type": "room",
+        "parentId": "north-gate"
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "riverside-docks",
+      "kind": "location",
+      "name": "Riverside Docks",
+      "description": "Timber jetties and warehouses on the river below the town wall, where barges unload and the ferry crosses beside the ford.",
+      "existsSince": null,
+      "location": {
+        "type": "district",
+        "parentId": "ravenford"
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "shrine-quarter",
+      "kind": "location",
+      "name": "Shrine Quarter",
+      "description": "A quiet quarter of narrow lanes around a small stone shrine, with a walled garden and candles burning at its door.",
+      "existsSince": null,
+      "location": {
+        "type": "district",
+        "parentId": "ravenford"
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "tanners-row",
+      "kind": "location",
+      "name": "Tanners' Row",
+      "description": "The poor lower town downstream, where tanners and dyers work over reeking vats and hides dry on racks by the water.",
+      "existsSince": null,
+      "location": {
+        "type": "district",
+        "parentId": "ravenford"
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "gerrit-ambler",
+      "kind": "npc",
+      "name": "Gerrit Ambler",
+      "description": "Innkeeper of the Golden Stag; jovial, curious, generous with gossip.",
+      "manner": "Talks loudly and warmly, calls everyone 'friend' and drifts into gossip.",
+      "existsSince": null,
+      "placement": {
+        "locationId": "golden-stag-common-room",
+        "since": null
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "hedda-marsh",
+      "kind": "npc",
+      "name": "Hedda Marsh",
+      "description": "Dockmaster of the Riverside Docks; brisk, exacting, fair.",
+      "manner": "Short, clipped sentences; counts things aloud and hates wasted time.",
+      "existsSince": null,
+      "placement": {
+        "locationId": "riverside-docks",
+        "since": null
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "old-cobb",
+      "kind": "npc",
+      "name": "Old Cobb",
+      "description": "Ferryman at the ford; slow-spoken, weather-wise, on the river all his life.",
+      "manner": "Speaks slowly, in river sayings, and always comes round to the weather.",
+      "existsSince": null,
+      "placement": {
+        "locationId": "riverside-docks",
+        "since": null
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "brother-aldous",
+      "kind": "npc",
+      "name": "Brother Aldous",
+      "description": "Keeper of the town's shrine; gentle, patient, tends the sick and the poor.",
+      "manner": "Soft-spoken and patient; answers worry with a blessing and a practical suggestion.",
+      "existsSince": null,
+      "placement": {
+        "locationId": "shrine-quarter",
+        "since": null
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "sergeant-garrow",
+      "kind": "npc",
+      "name": "Sergeant Garrow",
+      "description": "Sergeant of the Ravenford Guard at the North Gate, under Captain Thorne; gruff, dutiful, many years on the walls.",
+      "manner": "Gruff and to the point; calls people by their trade, never by their name.",
+      "existsSince": null,
+      "placement": {
+        "locationId": "north-gate-guardroom",
+        "since": null
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "little-pip",
+      "kind": "npc",
+      "name": "Little Pip",
+      "description": "A barefoot street child of about ten who runs errands all over town for a copper; quick and cheeky.",
+      "manner": "Chatters fast, haggles over every copper and calls grown-ups 'mister' or 'missus'.",
+      "existsSince": null,
+      "placement": {
+        "locationId": "tanners-row",
+        "since": null
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "ada-flint",
+      "kind": "npc",
+      "name": "Ada Flint",
+      "description": "Master tanner of Tanners' Row; blunt, proud of her trade, speaks up for the lower town.",
+      "manner": "Blunt and loud, with no patience for fine manners or guild-hall talk.",
+      "existsSince": null,
+      "placement": {
+        "locationId": "tanners-row",
+        "since": null
+      }
+    },
+    {
+      "type": "SetMapPins",
+      "regionId": "ravenford-surroundings",
+      "pins": [
+        {
+          "placeId": "ravenford",
+          "x": 0.36,
+          "y": 0.63
+        },
+        {
+          "placeId": "market-square",
+          "x": 0.5,
+          "y": 0.66
+        },
+        {
+          "placeId": "north-gate",
+          "x": 0.51,
+          "y": 0.5
+        },
+        {
+          "placeId": "riverside-docks",
+          "x": 0.4,
+          "y": 0.82
+        },
+        {
+          "placeId": "shrine-quarter",
+          "x": 0.62,
+          "y": 0.585
+        },
+        {
+          "placeId": "tanners-row",
+          "x": 0.64,
+          "y": 0.76
+        },
+        {
+          "placeId": "old-trade-road",
+          "x": 0.52,
+          "y": 0.36
+        },
+        {
+          "placeId": "location-f3b82c8b",
+          "x": 0.58,
+          "y": 0.12
+        }
+      ]
+    },
+    {
+      "type": "SetRoute",
+      "fromId": "north-gate",
+      "toId": "old-trade-road",
+      "route": {
+        "miles": 3,
+        "terrain": "hill",
+        "road": true
+      }
+    },
+    {
+      "type": "SetRoute",
+      "fromId": "old-trade-road",
+      "toId": "location-f3b82c8b",
+      "route": {
+        "miles": 4,
+        "terrain": "hill",
+        "road": true
+      }
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "pub-ravenford-surroundings",
+      "scope": {
+        "kind": "PUBLIC"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Ravenford is a walled town on a river ford, and the Old Trade Road leaves it by the North Gate.",
+      "subjects": ["ravenford-surroundings", "ravenford", "north-gate", "old-trade-road"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "pub-golden-stag-common-room",
+      "scope": {
+        "kind": "PUBLIC"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Gerrit Ambler keeps the common room of the Golden Stag Inn.",
+      "subjects": ["gerrit-ambler", "golden-stag-common-room", "golden-stag-inn"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "pub-guild-hall",
+      "scope": {
+        "kind": "PUBLIC"
+      },
+      "knowledgeType": "FACT",
+      "statement": "The Merchant Guild meets and settles its accounts in its hall.",
+      "subjects": ["guild-hall", "merchant-guild", "merchant-guild-faction"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "pub-orins-workroom",
+      "scope": {
+        "kind": "PUBLIC"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Orin Stonebeard brews his potions in a workroom behind the shop.",
+      "subjects": ["orins-workroom", "orins-alchemy", "orin-stonebeard"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "pub-north-gate-guardroom",
+      "scope": {
+        "kind": "PUBLIC"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Sergeant Garrow of the Ravenford Guard keeps the guardroom at the North Gate.",
+      "subjects": ["sergeant-garrow", "north-gate-guardroom", "north-gate", "ravenford-guard"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "pub-riverside-docks",
+      "scope": {
+        "kind": "PUBLIC"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Barges unload at the Riverside Docks, where Hedda Marsh is dockmaster and Old Cobb runs the ferry by the ford.",
+      "subjects": ["riverside-docks", "hedda-marsh", "old-cobb", "ravenford"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "pub-shrine-quarter",
+      "scope": {
+        "kind": "PUBLIC"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Brother Aldous keeps the shrine in the Shrine Quarter and tends the sick.",
+      "subjects": ["shrine-quarter", "brother-aldous"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "pub-tanners-row",
+      "scope": {
+        "kind": "PUBLIC"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Tanners' Row is the poor lower town downstream, where Ada Flint is master tanner.",
+      "subjects": ["tanners-row", "ada-flint"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "pub-pip-errands",
+      "scope": {
+        "kind": "PUBLIC"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Little Pip, a street child from Tanners' Row, runs errands all over town for a copper.",
+      "subjects": ["little-pip", "tanners-row"],
+      "knownSince": null
+    }
+  ]
+}

@@ -4,6 +4,7 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 
 import knowledgeSeed from '../../../../fixtures/ravenford/knowledge-seed.json' with { type: 'json' };
 import tableSeed from '../../../../fixtures/ravenford/table-seed.json' with { type: 'json' };
+import townSeed from '../../../../fixtures/ravenford/town-seed.json' with { type: 'json' };
 import {
   ASHEN_CIRCLE_ID,
   EXPECTED_VISIBLE,
@@ -21,8 +22,13 @@ import {
  */
 let app: FastifyInstance;
 let entityIds: string[];
-// The party's knowledge of its companions comes with the table seed (Stage 605).
-const KNOWLEDGE_IDS = [...knowledgeSeed.commands, ...tableSeed.commands].flatMap((command) =>
+// The party's knowledge of its companions comes with the table seed (Stage 605), the town's
+// public records with the town seed.
+const KNOWLEDGE_IDS = [
+  ...knowledgeSeed.commands,
+  ...tableSeed.commands,
+  ...townSeed.commands,
+].flatMap((command) =>
   'knowledgeId' in command && typeof command.knowledgeId === 'string' ? [command.knowledgeId] : [],
 );
 const BASE = '/campaigns/ravenford';

@@ -1,3 +1,5 @@
+import { CLASS_ART, SPECIES_ART, SRD_SPELL_ART } from './srd-art-names.ts';
+
 /**
  * The names of the GPT-made UI kit's pictures (ADR 0034; files in `../assets/ui-kit/`,
  * provenance in `../assets/ui-kit.manifest.json`). Plain data, so the glyph mappings can be
@@ -193,6 +195,7 @@ export const CATALOG_NAMES = {
     'healing-word',
     'hunters-mark',
     'misty-step',
+    ...SRD_SPELL_ART,
   ],
   weapons: ['dagger', 'longbow', 'scimitar', 'shortbow'],
 } as const;
@@ -244,5 +247,7 @@ export const KIND_NAMES = [
   'type-ooze',
   'type-plant',
   'type-undead',
+  ...CLASS_ART.map((id) => `class-${id}` as const),
+  ...SPECIES_ART.map((id) => `species-${id}` as const),
 ] as const;
 export type KindName = (typeof KIND_NAMES)[number];

@@ -70,4 +70,21 @@ describe.each(ADVENTURES)('the pictures of %s', (adventure) => {
     );
     expect(missing).toEqual([]);
   });
+
+  it('give every place and every named person a picture', async () => {
+    const has = await covered();
+    const seed = await loadAdventureSeed(adventure, 'en');
+    const missing: string[] = [];
+    for (const submission of seed.submissions as { command: unknown }[]) {
+      const command = submission.command as { type: string; kind?: string; entityId?: string };
+      if (
+        command.type === 'CreateEntity' &&
+        (command.kind === 'location' || command.kind === 'npc') &&
+        command.entityId &&
+        !has.has(`${command.entityId}|reference|image`)
+      )
+        missing.push(command.entityId);
+    }
+    expect(missing).toEqual([]);
+  });
 });

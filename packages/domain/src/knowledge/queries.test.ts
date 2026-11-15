@@ -166,6 +166,22 @@ describe('entities through knowledge', () => {
         'orins-alchemy',
         'ravenford',
         'ravenford-guard',
+        // The town's rooms, districts, townsfolk and region map (town-seed.json), public to all.
+        'ada-flint',
+        'brother-aldous',
+        'gerrit-ambler',
+        'golden-stag-common-room',
+        'guild-hall',
+        'hedda-marsh',
+        'north-gate-guardroom',
+        'old-cobb',
+        'orins-workroom',
+        'little-pip',
+        'ravenford-surroundings',
+        'riverside-docks',
+        'sergeant-garrow',
+        'shrine-quarter',
+        'tanners-row',
       ].sort(),
     );
     expect(entityIds(as('NPC:mira-vale'))).not.toContain('elowen-starwhisper');

@@ -45,7 +45,7 @@ const VARIANT_PARTS: Readonly<Record<string, string>> = {
   night: 'at night: deep blue darkness, moonlight and warm lantern glows',
   dawn: 'at dawn: low pink-gold light',
   // Day is only ever a variant, never flat grey light (docs/design/ravenford-art-bible.md §3).
-  day: 'in muted daylight with soft shadows',
+  day: 'in warm daylight: soft golden sun, clear shadows and deep rich tones, never flat or grey',
   dusk: 'at dusk: low amber light and long shadows',
   clear: 'under a clear sky',
   overcast: 'under a grey overcast sky',
