@@ -8,7 +8,7 @@ import { LanguageProvider, StatusPanel, useT, type Language } from '@ltw/ui';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { WorldApi, type Connection } from '../api/client.ts';
-import { LiveActiveContext, LiveRefreshContext } from '../api/live-context.ts';
+import { LiveActiveContext, LiveRefreshContext, LiveRetryContext } from '../api/live-context.ts';
 import { useResource } from '../api/resource.ts';
 import { useScreenAwake } from '../alerts/screen.ts';
 import { TableMusic } from '../audio/table-music.tsx';
@@ -260,13 +260,16 @@ function DisplayStage({
   useHostedTvSound();
   // As on the world screen (docs/adr/0033-live-session.md §4): every read follows the live signal
   // and is checked once more after it, so a read that met the state mid-change never stays shown.
+  // Nobody touches this screen: a read that failed is read again until it answers (§4 amended).
   return (
     <LiveActiveContext.Provider value={true}>
-      <LiveRefreshContext.Provider value={live.refresh}>
-        <ApprovedImagesContext.Provider value={images}>
-          <DisplayScreen api={api} live={live} session={session} onForget={onForget} />
-        </ApprovedImagesContext.Provider>
-      </LiveRefreshContext.Provider>
+      <LiveRetryContext.Provider value={true}>
+        <LiveRefreshContext.Provider value={live.refresh}>
+          <ApprovedImagesContext.Provider value={images}>
+            <DisplayScreen api={api} live={live} session={session} onForget={onForget} />
+          </ApprovedImagesContext.Provider>
+        </LiveRefreshContext.Provider>
+      </LiveRetryContext.Provider>
     </LiveActiveContext.Provider>
   );
 }

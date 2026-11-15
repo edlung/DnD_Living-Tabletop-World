@@ -12,8 +12,9 @@ a failed background read.
 1. **The table's screen (`/display`).**
    - The waiting strip never covers the turn order: on the battlefield it stands along the bottom,
      everywhere it names at most four waits, the same ones gathered, and the rest as a count.
-   - A read that failed in the background is read again (2 s doubling to 30 s) until it answers, so a
-     screen that lost its network shows the present once it is back; while the live signal is away
+   - A read of the table's screen that failed in the background is read again (2 s doubling to
+     30 s) until it answers, so a screen that lost its network shows the present once it is back
+     (the world screen's reads stay as they were); while the live signal is away
      the screen says so in a small plate.
    - The rolls cast fits one screen: the newest roll large, two before it beside it, the waits capped.
    - Type scales with the screen: the page's root size follows the smaller side from 1080 lines up,

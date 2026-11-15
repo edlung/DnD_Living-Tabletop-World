@@ -64,7 +64,7 @@ describe('the reads of a generation', () => {
   }
 
   /** A generation whose reads answer when the test says. */
-  function generation(live = true) {
+  function generation(live = true, retry = false) {
     const reads: Pending[] = [];
     const shown: Resource<number>[] = [];
     const reader = new GenerationReads<number>({
@@ -74,6 +74,7 @@ describe('the reads of a generation', () => {
         }),
       show: (resource) => shown.push(resource),
       live,
+      retry,
     });
     /** Answers the newest read and lets the answer land. */
     const answer = async (value: number) => {
@@ -161,7 +162,7 @@ describe('the reads of a generation', () => {
   });
 
   it('reads a failed background read again, slower each time, until one answers', async () => {
-    const { reader, reads, shown, answer } = generation();
+    const { reader, reads, shown, answer } = generation(true, true);
     reader.start();
     await answer(1);
     // The trailing read meets a network that is down: it is tried again after 2 s, 4 s, 8 s…
@@ -187,8 +188,8 @@ describe('the reads of a generation', () => {
     expect(reads).toHaveLength(expected + 2);
   });
 
-  it('never retries a refusal, nor anything outside a live session', async () => {
-    const refused = generation();
+  it('never retries a refusal, nor anything outside a live session, nor unasked', async () => {
+    const refused = generation(true, true);
     refused.reader.start();
     await refused.answer(1);
     await wait(TRAILING_REREAD_MS);
@@ -196,13 +197,26 @@ describe('the reads of a generation', () => {
     await wait(RETRY_READ_MAX_MS * 4);
     expect(refused.reads).toHaveLength(2);
 
-    const quiet = generation(false);
+    const quiet = generation(false, true);
     quiet.reader.start();
     await quiet.answer(1);
     quiet.reader.reread();
     quiet.reads.at(-1)?.reject(new Error('down'));
     await wait(RETRY_READ_MAX_MS * 4);
     expect(quiet.reads).toHaveLength(2);
+
+    // The world screen does not ask for it: a failed background read gets its one trailing read,
+    // whose failure is followed by nothing (a stale tab stays quiet, ADR 0036 §7).
+    const world = generation();
+    world.reader.start();
+    await world.answer(1);
+    world.reader.reread();
+    world.reads.at(-1)?.reject(new Error('down'));
+    await wait(TRAILING_REREAD_MS);
+    expect(world.reads).toHaveLength(3);
+    world.reads.at(-1)?.reject(new Error('down'));
+    await wait(RETRY_READ_MAX_MS * 4);
+    expect(world.reads).toHaveLength(3);
   });
 
   it('ends with its generation: no trailing read, and no late answer shown', async () => {

@@ -22,8 +22,9 @@ Scope `work-orders/NATIVE_TV_POLISH_2026-11-15.md`; branch `claude/native-tv-pol
 - Whom the table waits for never covers the turn order: at the foot beside the battlefield, at most
   three lines over a cast (five in the rolls cast), the same ask once with its count, the rest as
   "and N more" (`display/waiting-strip.tsx`, `moments.ts` `gatherWaits`).
-- A background read that fails for a passing reason is read again after 2 s, doubling to 30 s,
-  until it answers (`api/resource.ts`, ADR 0033 amendment) — for every live screen, the phones too.
+- A background read of the table's screen that fails for a passing reason is read again after
+  2 s, doubling to 30 s, until it answers (`api/resource.ts`, `LiveRetryContext`; ADR 0033
+  amendment). The world screen's reads are as on `main` (see "The second CI run" below).
   The screen says "No connection to the table…" once the signal has been away four seconds
   (`display/display-live.tsx`).
 - The rolls cast fits one screen: the newest roll large, the two before it side by side.
@@ -134,6 +135,21 @@ Scope `work-orders/NATIVE_TV_POLISH_2026-11-15.md`; branch `claude/native-tv-pol
   of the signed-out page (English and Russian) and of the replace question inside the stand-in
   app at 1440, 768, 390 and 320 px — informational spacing notes only. The sign-out dialog's,
   the workshop's and the voice's lines were not opened in a shell (the same one-line change).
+
+## The second CI run: a regression of this branch, fixed
+
+- Run on `4a95ff4d`: `game-sign-out-identity.spec.ts`, `sign-in-tabs.spec.ts`, `sign-in.spec.ts`
+  (the revocation journey: one read where none was expected) and `companion.spec.ts` failed.
+- Cause: the retry of failed background reads acted on every live screen. Logging every failed
+  read in these four journeys showed 93 reads dropped at the transport in open generations — the
+  journeys abort a stale tab's requests on purpose (`route.abort()`), and navigation drops reads
+  in flight — and each was read again 2 s, 4 s, 8 s… later. A stale tab must stay quiet until one
+  of its own moments asks the server (ADR 0036 §7); with the retry it asked by itself.
+- Fix: the retry is asked for by the table's screen alone (`LiveRetryContext` in
+  `/display`); everywhere else `GenerationReads` behaves as on `main`. A unit test holds the
+  world screen to it (`api/resource.test.ts`).
+- These journeys cannot be repeated with `--repeat-each` (they share a campaign and use each
+  invitation once): they were run as whole files on a fresh server each time.
 
 ## Findings that needed no change
 

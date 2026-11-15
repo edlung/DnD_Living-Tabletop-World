@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 import { ApiError } from './client.ts';
-import { TRAILING_REREAD_MS, useLiveActive, useLiveRefresh } from './live-context.ts';
+import { TRAILING_REREAD_MS, useLiveActive, useLiveRefresh, useLiveRetry } from './live-context.ts';
 
 export type Resource<T> =
   | { readonly status: 'loading' }
@@ -61,10 +61,13 @@ const passing = (error: unknown) =>
  * replaces a pending trailing read (its own completion schedules the next one), and a trailing
  * read schedules none, so a quiet screen stops reading. Closing ends it all.
  *
- * A background read that failed for a passing reason (the network, the server) is read again,
+ * Where the screen asks for it (`retry`: the table's screen alone, `LiveRetryContext`), a
+ * background read that failed for a passing reason (the network, the server) is read again,
  * `RETRY_READ_MS` later and then twice as long each time up to `RETRY_READ_MAX_MS`, until one
  * answers: a screen whose network came back shows the present without waiting for the next signal
  * (the table's screen stayed on an old cast; work-orders/NATIVE_TV_POLISH_2026-11-15.md §1).
+ * Everywhere else a failed read is left as it always was: a tab whose requests fail must not ask
+ * the server again by itself (a replaced sign-in's stale tab, ADR 0036 §7).
  */
 export class GenerationReads<T> {
   readonly #load: (signal: AbortSignal) => Promise<T>;
@@ -73,6 +76,7 @@ export class GenerationReads<T> {
   readonly #order = new ReadOrder();
   readonly #controllers = new Set<AbortController>();
   #open = true;
+  readonly #retry: boolean;
   #running = false;
   #queued: Exclude<ReadKind, 'foreground'> | null = null;
   #trailing: ReturnType<typeof setTimeout> | undefined;
@@ -84,10 +88,13 @@ export class GenerationReads<T> {
     readonly show: (resource: Resource<T>) => void;
     /** Inside a live session: reads are followed by a trailing read. */
     readonly live: boolean;
+    /** A failed background read is read again until one answers (the table's screen). */
+    readonly retry?: boolean;
   }) {
     this.#load = options.load;
     this.#show = options.show;
     this.#live = options.live;
+    this.#retry = options.retry ?? false;
   }
 
   /** The generation's first read. */
@@ -137,7 +144,7 @@ export class GenerationReads<T> {
       if (this.#open && kind === 'foreground' && this.#order.failed(ticket)) {
         this.#show({ status: 'error', message: messageOf(error) });
       }
-      again = kind !== 'foreground' && passing(error);
+      again = this.#retry && kind !== 'foreground' && passing(error);
     } finally {
       this.#controllers.delete(controller);
       if (this.#open && this.#live && (again || kind !== 'trailing')) {
@@ -168,6 +175,7 @@ export class GenerationReads<T> {
 export function useResource<T>(key: string, load: (signal: AbortSignal) => Promise<T>) {
   const refresh = useLiveRefresh();
   const active = useLiveActive();
+  const retry = useLiveRetry();
   const [attempt, setAttempt] = useState(0);
   const generation = `${key}:${attempt}`;
   const [stored, setStored] = useState<{ key: string; resource: Resource<T> } | null>(null);
@@ -180,6 +188,7 @@ export function useResource<T>(key: string, load: (signal: AbortSignal) => Promi
         setStored({ key: generation, resource });
       },
       live: active,
+      retry,
     });
     // A signal that came with this generation is covered by its foreground read.
     seen.current = refresh;
@@ -190,7 +199,7 @@ export function useResource<T>(key: string, load: (signal: AbortSignal) => Promi
       reads.current = null;
     };
     // `refresh` is read once per generation, deliberately not a dependency.
-  }, [generation, load, active]);
+  }, [generation, load, active, retry]);
   useEffect(() => {
     if (seen.current === refresh) return;
     seen.current = refresh;
