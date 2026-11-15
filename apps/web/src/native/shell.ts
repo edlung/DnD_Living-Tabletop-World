@@ -142,6 +142,9 @@ export function nativeShell(): NativeShell | null {
   return cached;
 }
 
+/** Whether the page runs inside one of the apps: its words then say "this app", not "this browser". */
+export const inApp = (): boolean => nativeShell() !== null;
+
 /** Strictly one of the shell's messages, or null. */
 export function parseShellMessage(value: unknown): ShellMessage | null {
   const raw = record(value);

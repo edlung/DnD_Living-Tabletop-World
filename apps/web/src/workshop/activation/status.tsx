@@ -2,6 +2,7 @@ import { campaignActivationAnswerSchema, type CampaignActivationView } from '@lt
 import { useT } from '@ltw/ui';
 import { useRef, useState } from 'react';
 
+import { inApp } from '../../native/shell.ts';
 import type { WorkshopClient } from '../client.ts';
 import { useRequestSignal } from '../use-request-signal.ts';
 import { EnterCampaignButton } from './enter-button.tsx';
@@ -62,9 +63,13 @@ export function ActivationStatus({
       {activation.status === 'PUBLISHED' ? (
         <>
           <p>
-            {t(
-              'Enter through a normal invitation. This browser asks before replacing another game sign-in.',
-            )}
+            {inApp()
+              ? t(
+                  'Enter through a normal invitation. This app asks before replacing another game sign-in.',
+                )
+              : t(
+                  'Enter through a normal invitation. This browser asks before replacing another game sign-in.',
+                )}
           </p>
           <EnterCampaignButton client={client} campaignId={activation.campaignId} />
         </>

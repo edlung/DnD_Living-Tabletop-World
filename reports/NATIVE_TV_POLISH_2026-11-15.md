@@ -51,6 +51,10 @@ Scope `work-orders/NATIVE_TV_POLISH_2026-11-15.md`; branch `claude/native-tv-pol
   question; "No, thanks" is remembered.
 - "Only this app" on the join page; the scanner's button has the search glyph, not an envelope; iOS describes
   its use of the local network and of the microphone.
+- Inside the apps no page speaks of "this browser" any more: the signed-out page, the question
+  before an invitation replaces a sign-in, signing out, the workshop's two notes, and the voice's
+  refused microphone (which now points to the device's settings for the app) say "this app".
+  The DM's notes about another player's seat ("the browser they joined in") are unchanged.
 
 **Layout.**
 
@@ -113,6 +117,24 @@ Scope `work-orders/NATIVE_TV_POLISH_2026-11-15.md`; branch `claude/native-tv-pol
 - The targeted runs after the last edits: `display-room`, `native-polish`, `native-shell`,
   `table-display`, `display-moments`, `dm-screen` (Chromium and iPad), `atmosphere` — all green.
 
+## The pull request's first CI run
+
+- Seven of eight checks passed; `UI and API journeys (1/3)` failed on one journey,
+  `dice.spec.ts` "the DM asks for a check with a hidden DC, and the player answers it" (the plate's
+  line did not show within 30 s). This branch changes no dice code, and the same journeys run
+  four times each on this machine afterwards passed 36/36; the hosted runner fails a different
+  journey on other runs of `main` too (`rest`, `combat-area`, `game-sign-out-identity`,
+  `scene-result-layout`). The journey was left as it is; the next push runs CI again.
+
+## After the first CI run: the app's words
+
+- The pages reworded for the apps (above): unit 4,559/4,559, format, lint, typecheck and
+  context budget again; `native-polish` (now also the signed-out page's words in the app and in a
+  browser), `native-shell`, `sign-in`, `accounts` and `workshop-access` — 24/24; the layout audit
+  of the signed-out page (English and Russian) and of the replace question inside the stand-in
+  app at 1440, 768, 390 and 320 px — informational spacing notes only. The sign-out dialog's,
+  the workshop's and the voice's lines were not opened in a shell (the same one-line change).
+
 ## Findings that needed no change
 
 - The survey's "tilted board broken in WebKit" was Playwright's WebKit build only: in the real
@@ -128,5 +150,4 @@ Scope `work-orders/NATIVE_TV_POLISH_2026-11-15.md`; branch `claude/native-tv-pol
   the port, and this change touches no server code, migration or package the server builds from.
   CI runs them on the pull request.
 - Voice in the apps stops when the app leaves the screen (no background audio mode was added).
-- Other pages still say "this browser" inside the apps (replacing a sign-in, the privacy page).
 - Offered, not chosen: an Android TV app that opens `/display` with a remote and its own sound.

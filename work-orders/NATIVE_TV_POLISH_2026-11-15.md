@@ -35,8 +35,8 @@ a failed background read.
    - The workshop in LTW DM: its invitation link opens from the scanner and from a launch link; the
      DM's sign-in and campaign pages offer "Campaign workshop", and the workshop offers the way back.
    - Notifications are asked for when the table first waits for the person, after the app's own
-     question. In the apps the join page says "this app", the scanner has a scanner's glyph, and iOS
-     describes its use of the local network (ADR 0061).
+     question. In the apps the pages say "this app" where a browser's say "this browser", the
+     scanner has a scanner's glyph, and iOS describes its use of the local network (ADR 0061).
    - Android's target SDK follows Android 17 once tested on it.
 3. **Layout.** The top bar never overlaps itself between 1200 and 1365 px (an iPad or an Android
    tablet held wide); a phone held wide keeps the scene (compact top bar and dock); the tilted board

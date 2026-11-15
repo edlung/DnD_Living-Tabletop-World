@@ -111,7 +111,9 @@
     table waits for you?"); "No, thanks" is remembered — one flag, the only thing the shell stores
     besides origins (§3) — and a permission already decided is never asked again.
   - iOS declares `NSLocalNetworkUsageDescription` for a table played from the DM's laptop
-    (ADR 0061). In the apps the join page says "Only this app" for a seat without a login.
+    (ADR 0061). In the apps the join page says "Only this app" for a seat without a login, and
+    every page that names "this browser" to the person says "this app" (`native/shell.ts`
+    `inApp`); a refused microphone points to the device's settings for the app.
   - Verified on the simulators and the emulator: the TV's sound word reaching the TV's own data
     store, the microphone in LTW DM on iPadOS and in LTW Player on Android (camera still refused),
     Android's two notification questions. Not verified: sound heard from a real TV, the iOS

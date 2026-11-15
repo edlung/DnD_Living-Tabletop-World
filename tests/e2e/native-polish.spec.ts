@@ -123,6 +123,9 @@ test('LTW DM offers the workshop and the workshop the way back; the join page sp
   await player.goto(START);
   await expect(player.getByRole('heading', { name: words.none })).toBeVisible(LIVE);
   await expect(player.getByRole('link', { name: 'Campaign workshop' })).toHaveCount(0);
+  // The signed-out page speaks of the app too, never of a browser.
+  await expect(player.getByText('stays in this app on this device')).toBeVisible();
+  await expect(player.getByText('browser')).toHaveCount(0);
 
   const dm = await withShell(browser, { app: 'dm', features: ['scan', 'server', 'tv'] });
   await dm.goto(START);
@@ -144,4 +147,6 @@ test('LTW DM offers the workshop and the workshop the way back; the join page sp
     LIVE,
   );
   await expect(plain.getByRole('link', { name: 'To the game' })).toHaveCount(0);
+  await plain.goto(START);
+  await expect(plain.getByText('stays in that browser')).toBeVisible(LIVE);
 });
