@@ -9,11 +9,25 @@ import {
   SRD_SCHOOLS,
   srdCreatureTypeOf,
 } from '../../packages/contracts/src/index.ts';
-import { SRD_MONSTERS } from '../../packages/rules/src/index.ts';
+import { srdItemEntry } from '../../packages/contracts/src/items/srd/catalog.ts';
 import {
+  SRD_CLASSES,
+  SRD_MONSTERS,
+  SRD_SPECIES,
+  SRD_SPELLS,
+} from '../../packages/rules/src/index.ts';
+import {
+  MONSTER_ART,
+  SRD_ITEM_ART,
+  SRD_SPELL_ART,
+} from '../../apps/web/src/visual/srd-art-names.ts';
+import {
+  builderArtUrl,
   creatureTypeArtUrl,
+  itemArtUrl,
   itemPictureUrl,
   LOADED,
+  monsterArtUrl,
   schoolArtUrl,
 } from '../../apps/web/src/visual/ui-kit.ts';
 import {
@@ -105,6 +119,7 @@ describe('the UI kit in the client', () => {
     expect([...CATALOG_NAMES.spells].sort()).toEqual(names('catalog/spells'));
     expect([...CATALOG_NAMES.weapons].sort()).toEqual(names('catalog/weapons'));
     expect([...KIND_NAMES].sort()).toEqual(names('catalog/kinds'));
+    expect([...MONSTER_ART].sort()).toEqual(names('catalog/monsters'));
   });
 
   it('builds a URL for every named picture', () => {
@@ -116,6 +131,7 @@ describe('the UI kit in the client', () => {
     expect(loaded(LOADED.spells)).toEqual([...CATALOG_NAMES.spells].sort());
     expect(loaded(LOADED.weapons)).toEqual([...CATALOG_NAMES.weapons].sort());
     expect(loaded(LOADED.kinds)).toEqual([...KIND_NAMES].sort());
+    expect(loaded(LOADED.monsters)).toEqual([...MONSTER_ART].sort());
     for (const url of LOADED.glyphs.values()) expect(url).toMatch(/\.png$/);
   });
 
@@ -128,5 +144,25 @@ describe('the UI kit in the client', () => {
     const untyped = SRD_MONSTERS.filter((monster) => srdCreatureTypeOf(monster.type) === null);
     expect(untyped.map((monster) => monster.name)).toEqual([]);
     expect(srdCreatureTypeOf('Swarm of Tiny Undead')).toBe('undead');
+  });
+
+  it('pictures SRD entries only by their real catalog IDs, and every class and species', () => {
+    const spells = new Set(SRD_SPELLS.map((spell) => spell.spellId));
+    for (const id of SRD_SPELL_ART) expect(spells.has(id), id).toBe(true);
+    const monsters = new Map(SRD_MONSTERS.map((monster) => [monster.monsterId, monster]));
+    for (const id of MONSTER_ART) {
+      expect(monsters.has(id), id).toBe(true);
+      expect(monsterArtUrl(id, null), id).toMatch(/catalog\/monsters\//);
+    }
+    // A stat block without its own portrait shows its creature type's.
+    expect(monsterArtUrl('no-such-monster', 'dragon')).toBe(creatureTypeArtUrl('dragon'));
+    for (const id of SRD_ITEM_ART) {
+      expect(srdItemEntry(id), id).toBeDefined();
+      expect(itemArtUrl(id), id).not.toBeNull();
+    }
+    for (const one of SRD_CLASSES)
+      expect(builderArtUrl('class', one.classId), one.classId).not.toBeNull();
+    for (const one of SRD_SPECIES)
+      expect(builderArtUrl('species', one.speciesId), one.speciesId).not.toBeNull();
   });
 });

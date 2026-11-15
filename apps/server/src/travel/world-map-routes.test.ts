@@ -42,15 +42,46 @@ describe('the world map and a journey', () => {
       return response.json<WorldMapResponse>();
     };
     const mine = await read(TOKENS.player, 'PLAYER');
-    expect(mine.regions[0]?.pins.map((pin) => pin.place.entityId)).toEqual([
-      'market-square',
-      'north-gate',
+    const town = mine.regions.find(({ region }) => region.entityId === 'ravenford');
+    expect(town?.pins.map((pin) => pin.place.entityId)).toEqual(['market-square', 'north-gate']);
+    expect(mine.routes.filter(({ from }) => from.entityId === 'market-square')).toMatchObject([
+      { miles: 1, terrain: 'urban', road: true },
     ]);
-    expect(mine.routes).toMatchObject([{ miles: 1, terrain: 'urban', road: true }]);
     expect(mine.hereId).toBe('market-square');
     expect((await read(TOKENS.dm, 'DM')).party.map((one) => one.entityId).sort()).toEqual(
       [...PARTY].sort(),
     );
+  });
+
+  it('shows the seeded map of Ravenford and its surroundings, the caravan site only to the DM', async () => {
+    const created = await dmTable();
+    tables.push(created);
+    const read = async (token: string, perspective: string) =>
+      (
+        await get(created.app, `${CAMPAIGN}/world-map?perspective=${perspective}`, token)
+      ).json<WorldMapResponse>();
+    const pinned = (map: WorldMapResponse) =>
+      map.regions
+        .find(({ region }) => region.entityId === 'ravenford-surroundings')
+        ?.pins.map((pin) => pin.place.entityId);
+    const roads = (map: WorldMapResponse) =>
+      map.routes.map(({ from, to }) => `${from.entityId}–${to.entityId}`);
+    const town = [
+      'ravenford',
+      'market-square',
+      'north-gate',
+      'riverside-docks',
+      'shrine-quarter',
+      'tanners-row',
+      'old-trade-road',
+    ];
+    const dm = await read(TOKENS.dm, 'DM');
+    expect(pinned(dm)).toEqual([...town, 'location-f3b82c8b']);
+    expect(roads(dm)).toEqual(['north-gate–old-trade-road', 'old-trade-road–location-f3b82c8b']);
+    const mine = await read(TOKENS.player, 'PLAYER');
+    expect(pinned(mine)).toEqual(town);
+    expect(roads(mine)).toEqual(['north-gate–old-trade-road']);
+    expect(JSON.stringify(mine)).not.toContain('location-f3b82c8b');
   });
 
   it('lists the journey in the DM’s history beside time and weather', async () => {

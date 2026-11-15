@@ -21,8 +21,17 @@ export type Recipe =
     };
 
 import { ITEM_CATALOG } from '../../packages/contracts/src/items/catalog.ts';
+import {
+  CLASS_ART,
+  MONSTER_ART,
+  SPECIES_ART,
+  SRD_ITEM_ART,
+  SRD_SPELL_ART,
+} from '../../apps/web/src/visual/srd-art-names.ts';
 
 const ITEM_CATALOG_IDS = ITEM_CATALOG.map((entry) => entry.itemId);
+// SRD catalog pictures (2026-11-15): the client's own lists name them (`srd-art-names.ts`).
+const SRD_ITEM_IDS: readonly string[] = SRD_ITEM_ART;
 const glyphs = (...names: (string | null)[]): Recipe => ({ kind: 'glyphs', names, size: 128 });
 
 /** The pictures by kind (ADR 0055 §6); `apps/web/src/visual/ui-kit-names.ts` KIND_NAMES lists them. */
@@ -74,6 +83,8 @@ const KIND_PICTURES = [
     'food',
     'tack',
   ].map((one) => `kind-${one}`),
+  ...CLASS_ART.map((id) => `class-${id}`),
+  ...SPECIES_ART.map((id) => `species-${id}`),
 ] as const;
 
 export const RECIPES: Readonly<Record<string, Recipe>> = {
@@ -286,7 +297,20 @@ export const RECIPES: Readonly<Record<string, Recipe>> = {
     ]),
   ),
   ...Object.fromEntries(
+    SRD_ITEM_IDS.map((id) => [
+      `item-${id}`,
+      { kind: 'art', out: `catalog/items/${id}.webp`, width: 384, quality: 82 } as const,
+    ]),
+  ),
+  ...Object.fromEntries(
+    MONSTER_ART.map((id) => [
+      `monster-${id}`,
+      { kind: 'art', out: `catalog/monsters/${id}.webp`, width: 384, quality: 82 } as const,
+    ]),
+  ),
+  ...Object.fromEntries(
     [
+      ...SRD_SPELL_ART,
       'hunters-mark',
       'detect-magic',
       'healing-word',

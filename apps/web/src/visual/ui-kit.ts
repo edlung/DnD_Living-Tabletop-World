@@ -79,6 +79,15 @@ const items = byName(
   }),
 );
 
+// Bestiary portraits (2026-11-15): one per SRD stat block that has one, keyed by its monster ID.
+const monsters = byName(
+  import.meta.glob<string>('../assets/ui-kit/catalog/monsters/*.webp', {
+    eager: true,
+    query: '?url',
+    import: 'default',
+  }),
+);
+
 // Pictures by kind (docs/adr/0055-rules-reference-and-toolbox.md §6): a school, a creature type, an
 // item's look; an SRD entry shows its kind's until it has its own.
 const kinds = byName(
@@ -122,6 +131,14 @@ export const schoolArtUrl = (school: string | undefined): string | null =>
 export const creatureTypeArtUrl = (creatureType: string | null): string | null =>
   creatureType === null ? null : (kinds.get(`type-${creatureType}`) ?? null);
 
+/** An SRD stat block's own bestiary portrait, else its creature type's (`creatureTypeArtUrl`). */
+export const monsterArtUrl = (monsterId: string, creatureType: string | null): string | null =>
+  monsters.get(monsterId) ?? creatureTypeArtUrl(creatureType);
+
+/** A class's or species' card picture in the character builder, or null while it has none. */
+export const builderArtUrl = (kind: 'class' | 'species', id: string): string | null =>
+  kinds.get(`${kind}-${id}`) ?? null;
+
 /** An item's picture: its own, else its look's (an SRD entry), else none. */
 export const itemPictureUrl = (catalog: {
   readonly itemId: string;
@@ -131,4 +148,13 @@ export const itemPictureUrl = (catalog: {
   (catalog.look === null ? null : (kinds.get(`kind-${catalog.look}`) ?? null));
 
 /** Every loaded name per folder, for the completeness test. */
-export const LOADED = { glyphs, textures, ornaments, board, spells, weapons, kinds } as const;
+export const LOADED = {
+  glyphs,
+  textures,
+  ornaments,
+  board,
+  spells,
+  weapons,
+  kinds,
+  monsters,
+} as const;

@@ -8,6 +8,7 @@ channel, date, the GPT original's SHA-256 and the mechanical processing recipe.
   model (Codex CLI on the owner's ChatGPT subscription), keep the original outside the repository,
   add its recipe to `scripts/ui-kit/recipes.ts`, and rebuild with
   `node scripts/ui-kit/cli.ts <originals-dir> <prompts.json> apps/web/src/assets [name ...]`.
+- Catalog art: `catalog/spells/`, `catalog/weapons/`, `catalog/items/` (Ravenford items and `srd-*` items), `catalog/monsters/` (SRD stat blocks), `catalog/kinds/` (schools, creature types, item looks, `class-*`, `species-*`); the names live in `visual/ui-kit-names.ts` and `visual/srd-art-names.ts`, style in `docs/design/ravenford-art-bible.md` §10.
 - `ui-kit/glyphs/*.png` are white alpha masks: render with CSS `mask-image` + `currentColor`.
 - UI-kit pictures state nothing about the world. Never use one in place of an approved world image
   (places, people, objects come from the asset API); see `docs/STAGE_320_DESIGN.md` §4.

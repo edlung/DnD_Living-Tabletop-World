@@ -27,6 +27,21 @@
 | Maren Ashby                           | Марен Эшби                        |
 | Ambush on the Old Trade Road          | Засада на Старой Торговой дороге  |
 | Chapter I — Shadows on the Trade Road | Глава I — Тени на Торговой дороге |
+| Ravenford and its Surroundings        | Равенфорд и окрестности           |
+| Golden Stag Common Room               | Общий зал «Золотого Оленя»        |
+| Guild Hall                            | Зал Торговой гильдии              |
+| Orin's Workroom                       | Мастерская алхимика               |
+| North Gate Guardroom                  | Караульня Северных ворот          |
+| Riverside Docks                       | Речная пристань                   |
+| Shrine Quarter                        | Храмовый квартал                  |
+| Tanners' Row                          | Кожевенный ряд                    |
+| Gerrit Ambler                         | Геррит Эмблер                     |
+| Hedda Marsh                           | Хедда Марш                        |
+| Old Cobb                              | Старый Кобб                       |
+| Brother Aldous                        | Брат Олдос                        |
+| Sergeant Garrow                       | Сержант Гарроу                    |
+| Little Pip                            | Малыш Пип                         |
+| Ada Flint                             | Ада Флинт                         |
 
 Заклинания: Fireball — Огненный шар; Counterspell — Контрзаклинание; Healing Word — Лечащее слово; Hunter's Mark — Метка охотника; Misty Step — Туманный шаг; Detect Magic — Обнаружение магии.
 

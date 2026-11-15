@@ -1,0 +1,359 @@
+{
+  "$comment": "Russian Ravenford (ADR 0031): the same IDs and structure as fixtures/ravenford/town-seed.json, with Russian content. Public content only; seeded last, so every earlier seeded command keeps its ID.",
+  "campaignId": "ravenford",
+  "dmActorId": "dm-ravenford",
+  "commands": [
+    {
+      "type": "CreateEntity",
+      "entityId": "ravenford-surroundings",
+      "kind": "location",
+      "name": "Равенфорд и окрестности",
+      "description": "Обнесённый стеной городок у речного брода и земли вокруг: поля, река и Старая Торговая дорога, что вьётся к лесистым холмам.",
+      "existsSince": null,
+      "location": {
+        "type": "region",
+        "parentId": null
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "golden-stag-common-room",
+      "kind": "location",
+      "name": "Общий зал «Золотого Оленя»",
+      "description": "Низкий зал под тяжёлыми балками: большой очаг, длинные столы и стойка; здесь путники едят, пьют и делятся новостями.",
+      "existsSince": null,
+      "location": {
+        "type": "room",
+        "parentId": "golden-stag-inn"
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "guild-hall",
+      "kind": "location",
+      "name": "Зал Торговой гильдии",
+      "description": "Высокий зал собраний гильдии: длинный счётный стол, полки с книгами учёта и расписанная карта торговых дорог на стене.",
+      "existsSince": null,
+      "location": {
+        "type": "room",
+        "parentId": "merchant-guild"
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "orins-workroom",
+      "kind": "location",
+      "name": "Мастерская алхимика",
+      "description": "Тесная мастерская за лавкой: здесь Орин Стоунберд варит и перегоняет зелья среди полок с банками и закопчённой печи.",
+      "existsSince": null,
+      "location": {
+        "type": "room",
+        "parentId": "orins-alchemy"
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "north-gate-guardroom",
+      "kind": "location",
+      "name": "Караульня Северных ворот",
+      "description": "Каменная комната в надвратной башне: жаровня, стойка с оружием, доска нарядов и нары для караула.",
+      "existsSince": null,
+      "location": {
+        "type": "room",
+        "parentId": "north-gate"
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "riverside-docks",
+      "kind": "location",
+      "name": "Речная пристань",
+      "description": "Деревянные причалы и склады на реке под городской стеной: здесь разгружают баржи, а рядом с бродом ходит паром.",
+      "existsSince": null,
+      "location": {
+        "type": "district",
+        "parentId": "ravenford"
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "shrine-quarter",
+      "kind": "location",
+      "name": "Храмовый квартал",
+      "description": "Тихий квартал узких улочек вокруг небольшого каменного святилища: сад за оградой и свечи у дверей.",
+      "existsSince": null,
+      "location": {
+        "type": "district",
+        "parentId": "ravenford"
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "tanners-row",
+      "kind": "location",
+      "name": "Кожевенный ряд",
+      "description": "Бедный нижний город ниже по течению: кожевники и красильщики работают у зловонных чанов, шкуры сохнут на рамах у воды.",
+      "existsSince": null,
+      "location": {
+        "type": "district",
+        "parentId": "ravenford"
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "gerrit-ambler",
+      "kind": "npc",
+      "name": "Геррит Эмблер",
+      "description": "Хозяин «Золотого Оленя»: весёлый, любопытный, охотно делится слухами.",
+      "manner": "Говорит громко и радушно, всех зовёт «друг» и легко сбивается на сплетни.",
+      "existsSince": null,
+      "placement": {
+        "locationId": "golden-stag-common-room",
+        "since": null
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "hedda-marsh",
+      "kind": "npc",
+      "name": "Хедда Марш",
+      "description": "Начальница Речной пристани: деловитая, придирчивая, справедливая.",
+      "manner": "Говорит коротко и отрывисто, вслух всё пересчитывает и не терпит пустой траты времени.",
+      "existsSince": null,
+      "placement": {
+        "locationId": "riverside-docks",
+        "since": null
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "old-cobb",
+      "kind": "npc",
+      "name": "Старый Кобб",
+      "description": "Паромщик у брода: неторопливый, знает погоду, всю жизнь на реке.",
+      "manner": "Говорит медленно, речными присказками, и всегда сворачивает на погоду.",
+      "existsSince": null,
+      "placement": {
+        "locationId": "riverside-docks",
+        "since": null
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "brother-aldous",
+      "kind": "npc",
+      "name": "Брат Олдос",
+      "description": "Хранитель городского святилища: мягкий, терпеливый, ухаживает за больными и бедными.",
+      "manner": "Говорит тихо и терпеливо; на тревогу отвечает благословением и дельным советом.",
+      "existsSince": null,
+      "placement": {
+        "locationId": "shrine-quarter",
+        "since": null
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "sergeant-garrow",
+      "kind": "npc",
+      "name": "Сержант Гарроу",
+      "description": "Сержант Равенфордской стражи у Северных ворот; командир — Капитан Торн. Грубоватый, исполнительный, много лет на стенах.",
+      "manner": "Говорит грубовато и по делу; зовёт людей по ремеслу, а не по имени.",
+      "existsSince": null,
+      "placement": {
+        "locationId": "north-gate-guardroom",
+        "since": null
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "little-pip",
+      "kind": "npc",
+      "name": "Малыш Пип",
+      "description": "Босоногий уличный мальчишка лет десяти: за медяк бегает с поручениями по всему городу; шустрый и дерзкий.",
+      "manner": "Тараторит, торгуется за каждый медяк и зовёт взрослых «дяденька» и «тётенька».",
+      "existsSince": null,
+      "placement": {
+        "locationId": "tanners-row",
+        "since": null
+      }
+    },
+    {
+      "type": "CreateEntity",
+      "entityId": "ada-flint",
+      "kind": "npc",
+      "name": "Ада Флинт",
+      "description": "Мастер-кожевница Кожевенного ряда: прямая, гордится ремеслом, говорит за весь нижний город.",
+      "manner": "Говорит прямо и громко, не терпит церемоний и гильдейских речей.",
+      "existsSince": null,
+      "placement": {
+        "locationId": "tanners-row",
+        "since": null
+      }
+    },
+    {
+      "type": "SetMapPins",
+      "regionId": "ravenford-surroundings",
+      "pins": [
+        {
+          "placeId": "ravenford",
+          "x": 0.36,
+          "y": 0.63
+        },
+        {
+          "placeId": "market-square",
+          "x": 0.5,
+          "y": 0.66
+        },
+        {
+          "placeId": "north-gate",
+          "x": 0.51,
+          "y": 0.5
+        },
+        {
+          "placeId": "riverside-docks",
+          "x": 0.4,
+          "y": 0.82
+        },
+        {
+          "placeId": "shrine-quarter",
+          "x": 0.62,
+          "y": 0.585
+        },
+        {
+          "placeId": "tanners-row",
+          "x": 0.64,
+          "y": 0.76
+        },
+        {
+          "placeId": "old-trade-road",
+          "x": 0.52,
+          "y": 0.36
+        },
+        {
+          "placeId": "location-f3b82c8b",
+          "x": 0.58,
+          "y": 0.12
+        }
+      ]
+    },
+    {
+      "type": "SetRoute",
+      "fromId": "north-gate",
+      "toId": "old-trade-road",
+      "route": {
+        "miles": 3,
+        "terrain": "hill",
+        "road": true
+      }
+    },
+    {
+      "type": "SetRoute",
+      "fromId": "old-trade-road",
+      "toId": "location-f3b82c8b",
+      "route": {
+        "miles": 4,
+        "terrain": "hill",
+        "road": true
+      }
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "pub-ravenford-surroundings",
+      "scope": {
+        "kind": "PUBLIC"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Равенфорд — обнесённый стеной городок у речного брода; Старая Торговая дорога выходит из него через Северные ворота.",
+      "subjects": ["ravenford-surroundings", "ravenford", "north-gate", "old-trade-road"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "pub-golden-stag-common-room",
+      "scope": {
+        "kind": "PUBLIC"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Геррит Эмблер держит общий зал «Золотого Оленя».",
+      "subjects": ["gerrit-ambler", "golden-stag-common-room", "golden-stag-inn"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "pub-guild-hall",
+      "scope": {
+        "kind": "PUBLIC"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Торговая гильдия собирается и сводит счета в своём зале.",
+      "subjects": ["guild-hall", "merchant-guild", "merchant-guild-faction"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "pub-orins-workroom",
+      "scope": {
+        "kind": "PUBLIC"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Орин Стоунберд варит зелья в мастерской за лавкой.",
+      "subjects": ["orins-workroom", "orins-alchemy", "orin-stonebeard"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "pub-north-gate-guardroom",
+      "scope": {
+        "kind": "PUBLIC"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Сержант Гарроу из Равенфордской стражи ведёт караульню у Северных ворот.",
+      "subjects": ["sergeant-garrow", "north-gate-guardroom", "north-gate", "ravenford-guard"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "pub-riverside-docks",
+      "scope": {
+        "kind": "PUBLIC"
+      },
+      "knowledgeType": "FACT",
+      "statement": "На Речной пристани разгружают баржи; начальница пристани — Хедда Марш, паром у брода водит Старый Кобб.",
+      "subjects": ["riverside-docks", "hedda-marsh", "old-cobb", "ravenford"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "pub-shrine-quarter",
+      "scope": {
+        "kind": "PUBLIC"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Брат Олдос хранит святилище в Храмовом квартале и ухаживает за больными.",
+      "subjects": ["shrine-quarter", "brother-aldous"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "pub-tanners-row",
+      "scope": {
+        "kind": "PUBLIC"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Кожевенный ряд — бедный нижний город ниже по течению; мастер-кожевница там — Ада Флинт.",
+      "subjects": ["tanners-row", "ada-flint"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "pub-pip-errands",
+      "scope": {
+        "kind": "PUBLIC"
+      },
+      "knowledgeType": "FACT",
+      "statement": "Малыш Пип, уличный мальчишка из Кожевенного ряда, за медяк бегает с поручениями по всему городу.",
+      "subjects": ["little-pip", "tanners-row"],
+      "knownSince": null
+    }
+  ]
+}

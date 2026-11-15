@@ -48,6 +48,7 @@
 | ------------------------- | --------------------------------------------------------------------------------------------------- |
 | База места                | средняя насыщенность ≥ 30 %; тёмных пикселей (яркость < 0,18) ≥ 5 %; янтарь + синий + бирюза ≥ 10 % |
 | Портрет, бестиарий        | тёмных ≥ 30 %; янтарь + синий + бирюза ≥ 8 %                                                        |
+| Вариант «день»            | средняя насыщенность ≥ 35 % (серые дни Hollowmere давали 16–33 %); тёплый солнечный свет и тени     |
 | Вариант «ночь»            | средняя светлота ≤ 55 из 255; синего ≥ 7 %                                                          |
 | Варианты «дождь», «туман» | насыщенность может падать до 15 %; темнота и тёплый источник не обязательны                         |
 
@@ -55,7 +56,7 @@
 
 - **База места — вечер.** Золотой час, сумерки или вечер в янтарно-синей гамме: тёплые окна и
   фонари, длинные тени, небо от янтаря до синевы.
-- **День — только вариант** (`--day`, `--dawn`), в приглушённой тёплой палитре и с тенями. Плоский
+- **День — только вариант** (`--day`, `--dawn`), в тёплом солнечном свете с ясными тенями и глубокими тонами. Плоский
   серый день не используется ни в базе, ни в варианте.
 - **Портреты и бестиарий** — тёмный фон, уходящий почти в чёрный; один тёплый ключевой свет; у нежити
   и магических существ допустим холодный ключ.
@@ -89,16 +90,16 @@
 Keep the same place's architecture and composition or the same person's face, hair, build and clothing
 exactly; change only what this variant requires.`
 
-| Метка                       | Формулировка                                                                                                   |
-| --------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `night`                     | at night: deep blue darkness, moonlight and warm lantern glows                                                 |
-| `rain`                      | in steady rain: wet ground and puddles, rain streaks, grey overcast light                                      |
-| `night-rain`                | at night in steady rain: lantern glows reflected in puddles, rain streaks                                      |
-| `fog`                       | in thick fog: shapes fading into pale mist                                                                     |
-| `dusk` / `dawn` / `day`     | at dusk: low amber light and long shadows / at dawn: low pink-gold light / in muted daylight with soft shadows |
-| `snow`, `storm`, `overcast` | как в `style.ts`                                                                                               |
-| `wounded`                   | wounded but standing: torn clothing, a bandage, a cut on the brow, tired but resolute                          |
-| `figure`                    | фраза фигурки из §4                                                                                            |
+| Метка                       | Формулировка                                                                                                                                                        |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `night`                     | at night: deep blue darkness, moonlight and warm lantern glows                                                                                                      |
+| `rain`                      | in steady rain: wet ground and puddles, rain streaks, grey overcast light                                                                                           |
+| `night-rain`                | at night in steady rain: lantern glows reflected in puddles, rain streaks                                                                                           |
+| `fog`                       | in thick fog: shapes fading into pale mist                                                                                                                          |
+| `dusk` / `dawn` / `day`     | at dusk: low amber light and long shadows / at dawn: low pink-gold light / in warm daylight: soft golden sun, clear shadows and deep rich tones, never flat or grey |
+| `snow`, `storm`, `overcast` | как в `style.ts`                                                                                                                                                    |
+| `wounded`                   | wounded but standing: torn clothing, a bandage, a cut on the brow, tired but resolute                                                                               |
+| `figure`                    | фраза фигурки из §4                                                                                                                                                 |
 
 Минимальный набор для нового места: база + `night`. Для места, куда возвращаются часто, ещё `rain`
 или `fog` (по климату региона: в топях — туман). Для героя и врага в бою: портрет + `figure`; для
@@ -240,14 +241,13 @@ the ground reads clearly under game tokens`, затем STYLE из §8.2. Кар
 `node scripts/ui-kit/cli.ts`. Для новых иконок каталога (бестиарий SRD, заклинания, предметы)
 действуют §2 и §6 этой библии; эталоны — `catalog/kinds/*` и `catalog/items/*`.
 
-## 11. Что из отгруженного расходится с библией
+## 11. Что из отгруженного расходилось с библией
 
-По §2–3 и замеру. Ничего не перерисовывается без решения владельца.
+По §2–3 и замеру. Исправлено 2026-11-15 (`reports/RAVENFORD_ART_P1_P2_2026-11-15.md`).
 
-| Картинка                                            | Расхождение                                                               | Что сделать                                                    |
-| --------------------------------------------------- | ------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| `hollowmere/hollowmere`, `mill-road`, `willow-ford` | дневная база, слабые тени (тёмных 0–4 %), у `mill-road` насыщенность 14 % | новая вечерняя база по §3; нынешние можно оставить как `--day` |
-| `hollowmere/drowned-chapel`, `reeves-hall`          | серо и плоско (насыщенность 25–27 %)                                      | вечерняя база с тёплым огнём                                   |
-| `hollowmere/*` места                                | нет вариантов `night`/`fog`                                               | по §5                                                          |
-| `ravenford-ru/market-square`                        | база утренняя                                                             | оставить (§3, исключение 2)                                    |
-| `ui-kit/catalog/kinds/school-enchantment`           | розово-маджентовое сердце вне палитры                                     | при следующем обновлении каталога                              |
+| Картинка                                                                             | Было                                | Сделано                                                                                                                        |
+| ------------------------------------------------------------------------------------ | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| `hollowmere/hollowmere`, `mill-road`, `willow-ford`, `drowned-chapel`, `reeves-hall` | дневная или серая база, слабые тени | новая вечерняя база поверх прежней картинки (архитектура сохранена); прежние оригиналы — в `ravenford-p1-2026-11-15/replaced/` |
+| места Hollowmere                                                                     | нет вариантов                       | `day` (тёплый), `night`, `fog` для ключевых мест; `day` у ночных баз топи и мельницы                                           |
+| `ravenford-ru/market-square`                                                         | база утренняя                       | оставлена (§3, исключение 2)                                                                                                   |
+| `ui-kit/catalog/kinds/school-enchantment`                                            | розово-маджентовое сердце           | перерисована в палитре                                                                                                         |
