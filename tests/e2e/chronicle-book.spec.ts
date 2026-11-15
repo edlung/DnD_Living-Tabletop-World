@@ -24,6 +24,11 @@ async function writeChapter(page: Page): Promise<void> {
   await openChronicle(page);
   await expect(book(page)).toContainText('No chapter has been written for this view yet.');
   await book(page).getByText('Write a chapter (DM)', { exact: true }).click();
+  // The writer proposes the session's title (ADR 0071 §1.2); the DM gives the chapter its own.
+  await expect(book(page).getByLabel('Title', { exact: true })).toHaveValue(
+    'Session 1: Arrival in Ravenford',
+  );
+  await book(page).getByLabel('Title', { exact: true }).fill(TITLE);
   await book(page)
     .getByLabel('Told from', { exact: true })
     .selectOption('CHARACTER:elowen-starwhisper');

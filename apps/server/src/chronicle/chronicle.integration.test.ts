@@ -48,9 +48,18 @@ describe('the Chronicle on PostgreSQL', () => {
     );
     expect(generated.statusCode).toBe(200);
     const { rendering, chronicleId } = generated.json<GenerateChronicleResponse>();
+    // A second chapter, of the open session alone (ADR 0071 §1.2): stored with its session.
+    const ofSession = await post(
+      app,
+      '/campaigns/ravenford/chronicle',
+      { title: 'Session 1', perspective: 'PARTY', from: -1_000_000, sessionId: 'ravenford-s1' },
+      TOKENS.dm,
+    );
+    expect(ofSession.statusCode).toBe(200);
     const first = (
       await get(app, '/campaigns/ravenford/chronicle?perspective=PARTY', TOKENS.player)
     ).json<ChronicleListResponse>();
+    expect(first.chapters.map((chapter) => chapter.sessionId)).toEqual([null, 'ravenford-s1']);
     await app.close();
 
     const trace = (await traces.get(

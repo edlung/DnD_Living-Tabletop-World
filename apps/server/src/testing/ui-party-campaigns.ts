@@ -58,6 +58,11 @@ export const UI_PARTY_CAMPAIGNS = {
   /** The DM's library: kept handouts and random tables (Stage 680b). */
   library: 'ui-library',
   libraryRu: 'ui-library-ru',
+  /** An evening closed and the next opened with "Previously…" (Stage 710). */
+  ritual: 'ui-ritual',
+  /** The same journey on an iPad in WebKit, on a campaign of its own. */
+  ritualIpad: 'ui-ritual-ipad',
+  ritualRu: 'ui-ritual-ru',
 } as const;
 
 /**
@@ -98,6 +103,9 @@ export async function seedUiPartyCampaigns(engine: WorldEngine): Promise<void> {
     [UI_PARTY_CAMPAIGNS.editorsRu, 'ru'],
     [UI_PARTY_CAMPAIGNS.library, 'en'],
     [UI_PARTY_CAMPAIGNS.libraryRu, 'ru'],
+    [UI_PARTY_CAMPAIGNS.ritual, 'en'],
+    [UI_PARTY_CAMPAIGNS.ritualIpad, 'en'],
+    [UI_PARTY_CAMPAIGNS.ritualRu, 'ru'],
   ] as const) {
     const seed = await loadSeed(
       language === 'ru' ? RAVENFORD_RU_FIXTURES_DIR : RAVENFORD_FIXTURES_DIR,

@@ -8,8 +8,10 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   package «Память и ритуал»; seven product answers (`reviews/OWNER_MEMORY_RITUAL_2026-11-15.json`).
   Program `docs/MEMORY_RITUAL_PLAN.md` (Stages 710–799: Part 1 before the family playtest, Part 2
   after it); draft work order `work-orders/STAGE_710.md`.
-- Status: plan only. No stage is authorized; Stage 710 starts on the owner's word, from `main` after
-  PR 36. Off-host backup copies are a separate task on the owner's separate word.
+- Status: the plan is PR 37 (draft). Stage 710 was authorized by the owner on 2026-11-15 («Да,
+  этап 710») and implemented on `claude/stage-710-previously` (ADR 0071 §1, report
+  `reports/STAGE_710_COMPLETION.md`), awaiting the owner's disposition; no later stage is
+  authorized. Off-host backup copies are a separate task on the owner's separate word.
 
 ## Current request — campaign library release, 2026-11-14
 

@@ -46,6 +46,7 @@ export function DmSheets({
   directory,
   place,
   revision,
+  sessionId,
   locked,
   weather,
   onWeather,
@@ -62,6 +63,8 @@ export function DmSheets({
   /** Null until the world has loaded. */
   readonly place: DmPlace | null;
   readonly revision: number;
+  /** The session that plays; null between sessions. */
+  readonly sessionId: string | null;
   readonly locked: boolean;
   readonly weather: Weather | null;
   readonly onWeather: (weather: Weather) => void;
@@ -88,6 +91,7 @@ export function DmSheets({
           open={shell.sheet === 'party'}
           revision={revision}
           locationId={place?.locationId ?? null}
+          sessionId={sessionId}
           directory={directory}
           locked={locked}
           onRun={(command) => {
@@ -113,9 +117,11 @@ export function DmSheets({
           onRun={(command) => {
             onRun({ kind: 'command', command });
           }}
-          onWriteChapter={() => {
+          locationId={place?.locationId ?? null}
+          onWorldChanged={onWorldChanged}
+          onOpenChronicle={(chronicleId) => {
             shell.dismissSheet();
-            shell.openChronicle();
+            shell.openChronicle(chronicleId);
           }}
         />
       </Sheet>

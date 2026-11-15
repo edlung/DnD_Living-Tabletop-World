@@ -26,6 +26,8 @@ import { Glyph } from '../visual/glyph.tsx';
 import { phaseGlyph, weatherGlyph } from '../visual/glyph-map.ts';
 import { QrCode } from '../visual/qr-code.tsx';
 import { textureUrl } from '../visual/ui-kit.ts';
+import { newestPartyChapter } from '../chronicle/book-chapters.ts';
+import { Previously } from '../chronicle/previously.tsx';
 import { useRereadOn } from '../world/use-world-data.ts';
 import { DiceFaces } from './big-roll.tsx';
 import { PlaceCard } from './place-card.tsx';
@@ -295,17 +297,13 @@ function ChronicleCast(props: Props) {
   const list = useRead(props, 'chronicle', (api, signal) =>
     api.get<ChronicleListResponse>('chronicle', signal),
   );
-  const chapter = list?.chapters.at(-1) ?? null;
+  // "Previously…" (ADR 0071 §1.4): the party's newest chapter, as every other screen shows it.
+  const chapter = list ? newestPartyChapter(list.chapters) : null;
   if (!chapter)
     return <TitleCard title={t('The Chronicle is still empty')} subtitle={props.campaignName} />;
   return (
     <section className="display-chronicle" aria-label={chapter.title}>
-      <article>
-        <h1>{chapter.title}</h1>
-        {chapter.prose.paragraphs.slice(0, 4).map((paragraph, index) => (
-          <p key={index}>{paragraph.text}</p>
-        ))}
-      </article>
+      <Previously api={props.api} chapter={chapter} heading="h1" />
     </section>
   );
 }

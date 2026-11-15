@@ -142,11 +142,12 @@ test('a Russian DM moves time and weather, and writes a chapter that reads in Ru
 
   await openChronicle(page, 'Хроника');
   await page.getByText('Написать главу (мастер)', { exact: true }).click();
-  await expect(page.getByLabel('Название')).toHaveValue('Глава I — Тени на Торговой дороге');
+  // The writer proposes the session's title (ADR 0071 §1.2).
+  await expect(page.getByLabel('Название')).toHaveValue('Сессия 1: Прибытие в Равенфорд');
   await page.getByRole('button', { name: 'Написать главу', exact: true }).click();
   await expect(
     page.getByText('Глава записана простым перечнем событий: рассказчик был недоступен.'),
   ).toBeVisible();
-  await expect(page.getByRole('heading', { name: /Глава I/ })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /Сессия 1/ })).toBeVisible();
   await expectNoEnglish(page, 'the written chapter');
 });

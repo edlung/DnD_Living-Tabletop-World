@@ -27,11 +27,12 @@ export default defineConfig({
   },
   projects: [
     { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
-    // The DM's screen on an iPad in Safari's engine (docs/adr/0043-dm-screen.md §4, Stage 620).
+    // The DM's screen on an iPad in Safari's engine (docs/adr/0043-dm-screen.md §4, Stage 620),
+    // and an evening closed and opened there (docs/adr/0071-memory-and-ritual.md §1, Stage 710).
     {
       name: 'ipad',
       use: { ...devices['iPad Pro 11 landscape'] },
-      testMatch: /dm-screen\.spec\.ts$/,
+      testMatch: /(dm-screen|evening-ritual)\.spec\.ts$/,
     },
     // Release 1.0's journeys in Safari's engine too (work-orders/STAGE_699.md, 699b).
     {

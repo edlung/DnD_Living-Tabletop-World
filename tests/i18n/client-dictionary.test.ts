@@ -50,6 +50,7 @@ import '../../apps/web/src/i18n/ru-dm-screen.ts';
 import '../../apps/web/src/i18n/ru-chat.ts';
 import '../../apps/web/src/i18n/ru-guide.ts';
 import '../../apps/web/src/i18n/ru-companion.ts';
+import '../../apps/web/src/i18n/ru-ritual.ts';
 import '../../apps/web/src/i18n/ru-conditions.ts';
 import '../../apps/web/src/i18n/ru-weapons.ts';
 import '../../apps/web/src/i18n/ru-hit-points.ts';

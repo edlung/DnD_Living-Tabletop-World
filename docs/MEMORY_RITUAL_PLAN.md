@@ -4,8 +4,9 @@ Owner request 2026-11-15, after the assessment of what the finished program miss
 увлекательным проект настолько, чтобы была масса впечатлений и хотелось всегда возвращаться ради новых
 кампаний и приключений в кругу семьи и друзей. Теплый и ламповый портал в увлекательные D&D миры» —
 then «Да, план» for the package «Память и ритуал». Record of the owner's answers:
-`reviews/OWNER_MEMORY_RITUAL_2026-11-15.json`. Status: **plan only — no stage is authorized**; each
-stage starts on the owner's word (`AGENT_WORKFLOW.md`). It follows `docs/FULL_GAME_PLAN.md` (Stages
+`reviews/OWNER_MEMORY_RITUAL_2026-11-15.json`. Status: **Stage 710 authorized by the owner on
+2026-11-15 and implemented** (`work-orders/STAGE_710.md`, `reports/STAGE_710_COMPLETION.md`); no
+later stage is authorized, and each starts on the owner's word (`AGENT_WORKFLOW.md`). It follows `docs/FULL_GAME_PLAN.md` (Stages
 600–699) and `docs/NATIVE_APPS_PLAN.md` (Stage 700).
 
 The rules, the table, the TV and the DM's tools are complete. What is thin is the ritual around play:
@@ -66,8 +67,10 @@ Owner's answers of 2026-11-15 (O), and the session's defaults the owner may over
    is built from the PARTY reads, never from the DM's. A chapter told from the DM is never shown,
    exported or printed outside the DM's own book (ADR 0008, ADR 0024 §2).
 9. **(S) A chapter belongs to an evening.** The chapter offered at a session's end is told from the
-   Party, covers that session's window in world time and takes the session's title. The DM may still
-   write any other chapter from the book.
+   Party, of that session, and takes the session's title. The DM may still write any other chapter
+   from the book. (Found in Stage 710: the world's clock stands still through most evenings, so the
+   chapter names its session — an optional `sessionId` on `GenerateChronicle`, ADR 0071 §1.2 — and
+   does not rely on a window in world time.)
 10. **(S) The app prompts, people talk.** "Previously…" is text on the screens that someone reads
     aloud; stars and wishes are a prompt on the TV and a small card on each phone; nothing is read by a
     synthetic voice, nothing blocks play, every card can be skipped. The DM may write a star or a wish
@@ -107,9 +110,9 @@ the owner's word each time.
   words to read aloud. The party's chapters are in every player's book, marked as the party's.
 - **Where.** `dm/session-sheet.tsx` (split: it is 420 lines), `chronicle/` (the book, the writer), a
   new `chronicle/previously.tsx`, `session/lobby-banner.tsx`, `display/cast-views.tsx`.
-- **Data and authority.** Nothing new is stored. Kept moments are `RecordMemory` commands the World
-  Engine checks (ADR 0010); the chapter is `GenerateChronicle` (ADR 0024 §4); a player reads PARTY
-  chapters because a player may take PARTY. Reading only; no migration.
+- **Data and authority.** No new table. Kept moments are `RecordMemory` commands the World Engine
+  checks (ADR 0010); the chapter is `GenerateChronicle` (ADR 0024 §4) with the session it tells; a
+  player reads PARTY chapters because a player may take PARTY. No migration.
 - **ADRs.** New ADR 0071 §1; amends ADR 0024 (§5: a member's book lists the party's chapters; §6:
   the suggestions' screen; the offered chapter's window), ADR 0042 §3 (the recap cast), ADR 0043 §6
   (the end's steps).

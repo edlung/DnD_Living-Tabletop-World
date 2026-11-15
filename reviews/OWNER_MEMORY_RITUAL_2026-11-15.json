@@ -11,7 +11,8 @@
     "beforeThePlaytest": "Ритуал вечера до, остальное после (Recommended): «Ранее…», stars and wishes, the next date, the table's agreement and the DM's guide before the family playtest; the book with its gallery, the home between worlds and small comforts after it",
     "offHostBackups": "Отдельной задачей, вне пакета (Recommended): a separate task on the owner's separate word and choice of place; the server is not touched by this package"
   },
-  "authorizedStages": [],
+  "authorizedStages": ["710"],
+  "authorization": "Stage 710 on 2026-11-15: «Да, этап 710», answered to the question «Начинать этап 710 («Ранее…» и глава вечера)?» after the plan was shown, typed by the owner in the planning session; the session that started it relayed the same word given there («Да, начать 710»). It covers Stage 710 alone, in its own pull request; no merge, no deployment",
   "plan": "docs/MEMORY_RITUAL_PLAN.md; draft work order work-orders/STAGE_710.md",
   "delegation": "None recorded. The session's defaults are marked (S) in the plan's decisions and stay the owner's to overrule; every stage starts on the owner's word.",
   "askedAtTheTime": "Starting each stage, merges into main, deployments, native builds on the family's devices, the place for off-host backup copies.",

@@ -1,9 +1,10 @@
 # Work Order — Stage 710: "Previously…" and the evening's chapter
 
-**DRAFT — not authorized.** Program `docs/MEMORY_RITUAL_PLAN.md` (Part 1, decisions 8–11), owner's
-answers `reviews/OWNER_MEMORY_RITUAL_2026-11-15.json`. Implementation starts only on the owner's
-word; the branch starts from `main` after PR 36 (the eleven red journeys) has merged. ADR 0071 §1 is
-written first, with the amendments of ADR 0024, 0042 and 0043 it names.
+Authority: the owner's word of 2026-11-15, «Да, этап 710»
+(`reviews/OWNER_MEMORY_RITUAL_2026-11-15.json`), program `docs/MEMORY_RITUAL_PLAN.md` (Part 1,
+decisions 8–11); ADR 0071 §1, written first, with the amendments of ADR 0024, 0042, 0043 and 0044
+§5 it names. Branch `claude/stage-710-previously`, from the plan's branch on `main` `9881a3e8` (PR
+36, the eleven red journeys of `main`, was still open when the stage began).
 
 ## Why
 
@@ -49,23 +50,29 @@ Read in code on main `9881a3e8`:
 
 ## Design notes
 
-- No migration, no new table and, as read today, no new route: `GET …/chronicle/suggestions` takes
-  `scope`, `from` and `to`; `POST …/chronicle` takes `from` and `to`; `GET …/sessions` gives a
-  session's start and end in world time; `GET …/chronicle?perspective=PARTY` is open to a player.
-  A server change found necessary is designed in the ADR before it is written.
-- The window is world time. A moment at the very instant the previous session ended can be told in
-  both chapters; the domain test pins what happens and the ADR says which is intended.
+- No migration and no new route. One contract grew, found necessary while building and designed
+  in ADR 0071 §1.2 before it was written: the world's clock moves only when time is advanced, so
+  through most of an evening and from one evening to the next it stands still, and a window in
+  world time cannot tell two evenings apart. `GenerateChronicle` takes an optional `sessionId` (of
+  the window's memories, those recorded with that session), a chapter's view names it, and the
+  suggestions' route takes `session` (the moments recorded since it started). A chapter without a
+  session is unchanged; `ChronicleGenerated` keeps version 4.
+- The persona-mode test server has no table screen: the screens' side is journeyed on the
+  invitation-mode servers.
+- A player's Table screen opens when the table goes online while the page is open (a session
+  opened with "Previously…"), not on a reload into a table already online (ADR 0044 §5 amended).
 - The card keeps nothing in browser storage (`apps/web/AGENTS.md`): it shows while the lobby says no
   session is open, and where the DM casts it.
-- `dm/session-sheet.tsx` is 420 lines: the end's steps go to a file of their own before it grows.
-- Pictures are read for the time they were chosen for (`withPictureTimes`, Gate 06).
+- `dm/session-sheet.tsx` was 420 lines: the running session and the closing live in
+  `dm/session-running.tsx`, the closing's steps in `dm/evening.ts`.
+- Pictures are read for the time they were chosen for (`PlacePlate`, Gate 06).
 
 ## Boundaries
 
-No stars and wishes (Stage 720), no next date (730), no printable book (770). No change to what a
-chapter is, how its prose is checked, or who may write one. No AI call beyond the chapter's existing
-narrator; no paid call in any test. A DM-told chapter is never listed, cast or carded for anyone but
-the DM. Nothing is deployed; merging is the owner's word.
+No stars and wishes (Stage 720), no next date (730), no printable book (770). How a chapter's prose
+is checked and who may write one are unchanged; a chapter without a session is what it was. No AI
+call beyond the chapter's existing narrator; no paid call in any test. A DM-told chapter is never
+listed, cast or carded for anyone but the DM. Nothing is deployed; merging is the owner's word.
 
 ## Checks
 

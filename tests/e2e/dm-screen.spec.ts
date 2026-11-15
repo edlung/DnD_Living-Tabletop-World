@@ -183,6 +183,11 @@ test('a session pauses, ends and starts again with the players ready', async ({ 
 
   // The end: the chapter to write; the player waits for the next session and says ready.
   await sheet.getByRole('button', { name: 'End the session', exact: true }).click();
+  // Closing the evening (ADR 0071 §1.3; its own journey is `evening-ritual.spec.ts`): this DM
+  // leaves the chapter for later, so the sheet offers to write it.
+  await sheet
+    .getByRole('checkbox', { name: 'Write a chapter about this session', exact: true })
+    .uncheck();
   await sheet.getByRole('button', { name: 'Yes, end the session', exact: true }).click();
   await expect(sheet.getByRole('button', { name: 'Write the chapter', exact: true })).toBeVisible();
   await expect(player.getByText('The session has not started yet.')).toBeVisible();

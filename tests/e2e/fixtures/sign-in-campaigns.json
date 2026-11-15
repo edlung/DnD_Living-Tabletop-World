@@ -32,5 +32,6 @@
   "privacy": "ui-signin-privacy",
   "release": "ui-signin-release",
   "releaseWebkit": "ui-signin-release-webkit",
-  "chronicleWriter": "ui-signin-chronicle-writer"
+  "chronicleWriter": "ui-signin-chronicle-writer",
+  "ritual": "ui-signin-ritual"
 }

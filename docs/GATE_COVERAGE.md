@@ -789,3 +789,21 @@ ADR 0023 amendments of 2026-10-27, ADR 0035 amendment "Gate 06 remediation"): ro
 PASS after remediation and retest: `reviews/ASTRA_GATE_06_REPORT.md`, evidence
 `reviews/evidence/gate-06/`. Every alpha row above was attacked on a deployment (the report's
 coverage table names the team per row). Open for the owner: G06-client-02.
+
+## Stage 710 delta to row 170 (2026-11-15)
+
+Stage 710 (`docs/adr/0071-memory-and-ritual.md` §1) changes the Chronicle surface Gate 05
+reviewed; Gate 05's report and findings stand as recorded.
+
+- Changed boundary: `GenerateChronicle` takes an optional `sessionId` (a chapter of one session's
+  memories, resting on the session; refused for an unknown session and for the DM's view); the
+  suggestions' route takes `session`; a player's client reads the chapters told from the Party as
+  PARTY and shows them in the player's book, in the lobby and on the table's screen.
+- Deterministic regressions: `packages/domain/src/chronicle/session-chapter.test.ts`,
+  `apps/server/src/http/chronicle-routes.test.ts` ("a session’s chapter"; a player's own view
+  lists no party chapter, the PARTY view no DM-told one), `apps/web/src/chronicle/book-chapters.test.ts`,
+  `apps/web/src/dm/evening.test.ts`, the journeys `tests/e2e/evening-ritual.spec.ts` (the player's
+  boundary on everything received and shown) and `tests/e2e/evening-ritual-screens.spec.ts` (the
+  PARTY markers on everything the TV received).
+- Next review obligation: none scheduled; the session's own attack pass is in
+  `reports/STAGE_710_COMPLETION.md`. The owner may order an independent repeat.

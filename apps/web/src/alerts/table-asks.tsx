@@ -36,6 +36,7 @@ export function TableAsks({
   locked,
   onRun,
   onOpenSheet,
+  onOpenChronicle,
   onReadHandout,
 }: {
   readonly api: WorldApi;
@@ -48,6 +49,8 @@ export function TableAsks({
   readonly locked: boolean;
   readonly onRun: (intent: ExplorationIntent) => void;
   readonly onOpenSheet: (characterId: string) => void;
+  /** Opens the book at a chapter (the recap's "Read on"). */
+  readonly onOpenChronicle: (chronicleId: string) => void;
   /** Opens a handout where it is read (the Journal). */
   readonly onReadHandout: (handoutId: string) => void;
 }) {
@@ -77,7 +80,7 @@ export function TableAsks({
   const asked = isDm ? [] : requests.filter((request) => request.status === 'open');
   return (
     <div className="rest-banner-slot table-asks" aria-live="polite">
-      <LobbyBanner api={api} actorId={actorId} isDm={isDm} />
+      <LobbyBanner api={api} actorId={actorId} isDm={isDm} onOpenChronicle={onOpenChronicle} />
       <RestBanner
         isDm={isDm}
         actorId={actorId}

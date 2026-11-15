@@ -77,6 +77,7 @@ export function WorldOverlays({
         onOpenSheet={(characterId) => {
           shell.openHero(characterId, 'overview');
         }}
+        onOpenChronicle={shell.openChronicle}
         onReadHandout={(handoutId) => {
           shell.openSheet('journal');
           // Once the Journal shows, the handout takes focus and so comes into view.
@@ -99,6 +100,7 @@ export function WorldOverlays({
             revision={revision}
             directory={directory}
             open={shell.chronicle}
+            wanted={shell.chronicleChapter}
           />
         )}
       </ChronicleDialog>

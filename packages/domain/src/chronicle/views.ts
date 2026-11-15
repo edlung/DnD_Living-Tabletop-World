@@ -98,6 +98,7 @@ export function chapterView(
     perspective: record.perspective,
     from: record.from,
     to: record.to,
+    sessionId: record.sessionId ?? null,
     generatedAt: record.generatedAt,
     entries: record.entries.map((entry) => entryView(state, index, dm, entry)),
     prose: {

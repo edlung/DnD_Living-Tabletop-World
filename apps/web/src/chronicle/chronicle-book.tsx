@@ -1,12 +1,13 @@
 import type { ChronicleEntryView, ChronicleListResponse, EntityRef } from '@ltw/contracts';
 import { StatusPanel, useT } from '@ltw/ui';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
 import { Glyph } from '../visual/glyph.tsx';
 import { textureUrl } from '../visual/ui-kit.ts';
 import { useRereadOn } from '../world/use-world-data.ts';
+import { PARTY, bookChapters } from './book-chapters.ts';
 import { ChapterPages } from './chapter-pages.tsx';
 import { FlashbackScene } from './flashback-scene.tsx';
 import { GenerateChapter } from './generate-chapter.tsx';
@@ -14,6 +15,8 @@ import { GenerateChapter } from './generate-chapter.tsx';
 interface Opened {
   readonly memoryId: string;
   readonly placeName: string | null;
+  /** A party chapter's memory: its scene is read in the party's view. */
+  readonly party: boolean;
   /** The control that opened it: Return gives focus back to it. */
   readonly opener: HTMLElement;
 }
@@ -22,7 +25,8 @@ interface Opened {
  * The Chronicle as a book (docs/STAGE_320_DESIGN.md §5.6; ADR 0024): the GPT book spread scaled
  * to the screen, chapters as ribbon tabs, the chosen chapter on two facing pages, and a
  * memory's flashback played as a scene over the book. Chapters are told from the viewing
- * perspective's own memories; every word, type and source is shown as the server supplied it.
+ * perspective's own memories, and a player's book also holds the party's (ADR 0071 §1), read in
+ * the party's view; every word, type and source is shown as the server supplied it.
  * The DM writes a chapter from the book's header. Visual state (the chosen chapter, an open
  * flashback) lives here only; the book stays mounted while closed and is read again in the
  * background after the viewer's own actions and on the live signal, so the DM's draft title
@@ -35,6 +39,7 @@ export function ChronicleBook({
   revision,
   directory,
   open,
+  wanted,
 }: {
   readonly api: WorldApi;
   readonly isDm: boolean;
@@ -43,19 +48,53 @@ export function ChronicleBook({
   readonly directory: readonly EntityRef[];
   /** The book is open: what it shows now is what the reader sees. */
   readonly open: boolean;
+  /** A chapter the book was asked to open at (a recap's "Read on"); each asking is a new object. */
+  readonly wanted: { readonly chronicleId: string } | null;
 }) {
   const t = useT();
   const load = useCallback(
     (signal: AbortSignal) => api.get<ChronicleListResponse>('chronicle', signal),
     [api],
   );
-  const { resource, retry, reread } = useResource('chronicle', load);
+  const own = useResource('chronicle', load);
+  // The party's chapters, which a player may read as PARTY; the DM's list already holds them.
+  const partyApi = useMemo(() => api.as(PARTY), [api]);
+  const alsoParty = !isDm && api.perspective !== PARTY;
+  const loadParty = useCallback(
+    (signal: AbortSignal) =>
+      alsoParty ? partyApi.get<ChronicleListResponse>('chronicle', signal) : Promise.resolve(null),
+    [partyApi, alsoParty],
+  );
+  const shared = useResource(`chronicle-party:${String(alsoParty)}`, loadParty);
+  const reread = () => {
+    own.reread();
+    shared.reread();
+  };
+  const retry = () => {
+    own.retry();
+    shared.retry();
+  };
   useRereadOn(revision, reread);
+  // One book once both lists are read: a chapter must not arrive late and look newly written. The
+  // party's list failing leaves the reader's own book.
+  const resource =
+    own.resource.status === 'ready' && shared.resource.status === 'loading'
+      ? ({ status: 'loading' } as const)
+      : own.resource;
+  const ownChapters = own.resource.status === 'ready' ? own.resource.value.chapters : null;
+  const partyChapters = shared.resource.status === 'ready' ? shared.resource.value?.chapters : null;
+  const book = useMemo(
+    () => (resource.status === 'ready' ? bookChapters(ownChapters ?? [], partyChapters ?? []) : []),
+    [resource.status, ownChapters, partyChapters],
+  );
   const [chosen, setChosen] = useState<string | null>(null);
   const [opened, setOpened] = useState<Opened | null>(null);
   // The chapters the reader has met: those in the book when it first showed, and each shown since.
   const [met, setMet] = useState<ReadonlySet<string> | null>(null);
-  const chapters = resource.status === 'ready' ? resource.value.chapters : [];
+  const chapters = book.map((entry) => entry.chapter);
+  // A player reads a party chapter's pages in the party's view; the DM reads all as the DM.
+  const readsAsParty = (chronicleId: string | null) =>
+    !isDm && book.some((entry) => entry.party && entry.chapter.chronicleId === chronicleId);
   // The chosen chapter, else the latest (before anything is shown, or when the chosen one is gone).
   const chapter = chapters.find((entry) => entry.chronicleId === chosen) ?? chapters.at(-1) ?? null;
   const shownId = chapter?.chronicleId ?? null;
@@ -72,6 +111,12 @@ export function ChronicleBook({
       return shownId === null || known.has(shownId) ? known : new Set([...known, shownId]);
     });
   }, [open, resource.status, shownId, ids, chosen]);
+  // Asked to open at a chapter: it becomes the chosen one (and waits if it is not read yet).
+  useEffect(() => {
+    if (wanted === null) return;
+    setChosen(wanted.chronicleId);
+    setOpened(null);
+  }, [wanted]);
   const names = new Map(directory.map((entity) => [entity.entityId, entity.name]));
   const close = () => {
     const back = opened?.opener;
@@ -91,6 +136,7 @@ export function ChronicleBook({
           <GenerateChapter
             api={api}
             characters={directory.filter((entity) => entity.kind === 'character')}
+            written={chapters.length}
             onWritten={(chronicleId) => {
               if (chronicleId) setChosen(chronicleId);
               reread();
@@ -158,15 +204,17 @@ export function ChronicleBook({
             >
               <ChapterPages
                 key={chapter.chronicleId}
-                api={api}
+                api={readsAsParty(chapter.chronicleId) ? partyApi : api}
                 chapter={chapter}
                 isDm={isDm}
+                teller={isDm || readsAsParty(chapter.chronicleId)}
                 names={names}
                 onFlashback={(entry: ChronicleEntryView, opener) => {
                   if (entry.memoryId)
                     setOpened({
                       memoryId: entry.memoryId,
                       placeName: entry.location?.name ?? null,
+                      party: readsAsParty(chapter.chronicleId),
                       opener,
                     });
                 }}
@@ -176,7 +224,7 @@ export function ChronicleBook({
           {opened && (
             <FlashbackScene
               key={opened.memoryId}
-              api={api}
+              api={opened.party ? partyApi : api}
               memoryId={opened.memoryId}
               placeName={opened.placeName}
               onReturn={close}

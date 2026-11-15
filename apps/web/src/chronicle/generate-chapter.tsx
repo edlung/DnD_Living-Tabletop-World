@@ -1,31 +1,49 @@
-import type { EntityRef, GenerateChronicleResponse } from '@ltw/contracts';
+import type { EntityRef, GenerateChronicleResponse, SessionListResponse } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import { ApiError, type WorldApi } from '../api/client.ts';
+import { useResource } from '../api/resource.ts';
 import { Opening } from '../shell/opening.tsx';
 import { Glyph } from '../visual/glyph.tsx';
+import { chapterTitle, lastSession, sessionChapter } from './book-chapters.ts';
 import { chapterMessage } from './chapter-message.ts';
 
 /**
- * The DM writes a chapter, in the book's header (docs/STAGE_320_DESIGN.md §5.6): a title and
- * who it is told from; the server computes the entries, writes the prose and checks it. While
+ * The DM writes a chapter, in the book's header (docs/STAGE_320_DESIGN.md §5.6): a title, who it
+ * is told from and what it covers — the last session, whose title it proposes, or the whole story
+ * (ADR 0071 §1); the server computes the entries, writes the prose and checks it. While
  * it writes the book says so; afterwards it says honestly which prose the chapter holds and
  * why (ADR 0032, C), and never promises other prose later. The draft title survives closing.
  */
 export function GenerateChapter({
   api,
   characters,
+  written,
   onWritten,
 }: {
   readonly api: WorldApi;
   readonly characters: readonly EntityRef[];
+  /** How many chapters the book holds: the next one's number when no session names it. */
+  readonly written: number;
   /** A chapter was recorded: the book reads its chapters again and opens this one. */
   readonly onWritten: (chronicleId: string | null) => void;
 }) {
   const t = useT();
-  const [title, setTitle] = useState(() => t('Chapter I — Shadows on the Trade Road'));
+  const loadSessions = useCallback(
+    (signal: AbortSignal) => api.get<SessionListResponse>('sessions', signal, false),
+    [api],
+  );
+  const sessions = useResource('chapter-sessions', loadSessions);
+  const session =
+    sessions.resource.status === 'ready' ? lastSession(sessions.resource.value.sessions) : null;
+  // The DM's own words once typed; until then the session's title, or the chapter's number.
+  const [typed, setTyped] = useState<string | null>(null);
+  const title =
+    typed ??
+    (session ? chapterTitle(session.title) : t('Chapter {number}', { number: written + 1 }));
   const [scope, setScope] = useState('PARTY');
+  const [whole, setWhole] = useState(false);
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const generate = async () => {
@@ -34,7 +52,11 @@ export function GenerateChapter({
     try {
       const result = await api.post<GenerateChronicleResponse>(
         'chronicle',
-        { title, perspective: scope, from: 0 },
+        {
+          title: title.trim(),
+          perspective: scope,
+          ...(session && !whole ? sessionChapter(session) : { from: 0 }),
+        },
         new AbortController().signal,
       );
       // Honest provenance (ADR 0032, C): which prose the chapter holds, and why.
@@ -66,7 +88,7 @@ export function GenerateChapter({
           id="chapter-title"
           value={title}
           onChange={(event) => {
-            setTitle(event.target.value);
+            setTyped(event.target.value);
           }}
         />
         <label htmlFor="chapter-scope">{t('Told from')}</label>
@@ -85,6 +107,21 @@ export function GenerateChapter({
             </option>
           ))}
         </select>
+        {session && (
+          <>
+            <label htmlFor="chapter-covers">{t('Covers')}</label>
+            <select
+              id="chapter-covers"
+              value={whole ? 'all' : 'session'}
+              onChange={(event) => {
+                setWhole(event.target.value === 'all');
+              }}
+            >
+              <option value="session">{t('“{title}” only', { title: session.title })}</option>
+              <option value="all">{t('The whole story so far')}</option>
+            </select>
+          </>
+        )}
         <button
           type="button"
           className="primary-button"
