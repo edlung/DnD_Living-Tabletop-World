@@ -4,7 +4,7 @@ import { useCallback, type MouseEvent } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
-import { useApprovedImage } from '../visual/approved-images.ts';
+import { useApprovedImage, withPictureTimes } from '../visual/approved-images.ts';
 import { textureUrl } from '../visual/ui-kit.ts';
 
 /**
@@ -34,7 +34,10 @@ export function MapCanvas({
   const t = useT();
   const load = useCallback(
     (signal: AbortSignal) =>
-      api.get<ScenePresentationResponse>(`locations/${encodeURIComponent(regionId)}/scene`, signal),
+      api
+        .get<ScenePresentationResponse>(`locations/${encodeURIComponent(regionId)}/scene`, signal)
+        // The map's picture is fetched for the time it was chosen for, as a scene's is (Gate 06).
+        .then(withPictureTimes),
     [api, regionId],
   );
   const { resource } = useResource(`region-map:${regionId}`, load);

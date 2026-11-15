@@ -1,4 +1,4 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect as baseExpect, test, type Page } from '@playwright/test';
 
 import { LIVE_URL } from './support/live.ts';
 import { dockButton } from './support/shell.ts';
@@ -15,6 +15,9 @@ import {
 } from './support/sign-in.ts';
 
 test.use({ baseURL: SIGN_IN_ORIGIN, trace: 'off', screenshot: 'off' });
+
+// A world opened after a sign-in is replaced takes over 5 s to show on a hosted runner.
+const expect = baseExpect.configure({ timeout: 15_000 });
 
 const words = WORDS.en;
 const signOut = (page: Page) => page.getByRole('button', { name: words.signOut, exact: true });

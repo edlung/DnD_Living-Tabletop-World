@@ -1,6 +1,6 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect as baseExpect, test, type Page } from '@playwright/test';
 
-import { LIVE_URL } from './support/live.ts';
+import { LIVE_URL, readsQuiet } from './support/live.ts';
 import { dockButton } from './support/shell.ts';
 import {
   SIGN_IN_CAMPAIGNS,
@@ -23,6 +23,9 @@ import {
  */
 test.use({ baseURL: SIGN_IN_ORIGIN, trace: 'off', screenshot: 'off' });
 
+// A world opened after a sign-in is replaced takes over 5 s to show on a hosted runner.
+const expect = baseExpect.configure({ timeout: 15_000 });
+
 const words = WORDS.en;
 const mira = (page: Page) => page.getByRole('button', { name: 'Mira Vale', exact: true });
 
@@ -44,7 +47,7 @@ test('tabs still showing the DM’s world are signed out once another tab replac
   const offline = await context.newPage();
   await dmTab(offline);
   // Quiet: every tab's reads are done (each read is followed by one more 1.5 s later).
-  await shown.waitForTimeout(3_000);
+  await readsQuiet([shown, refused, offline]);
 
   // Another tab opens the player's link and, asked, replaces the DM's sign-in.
   const player = await context.newPage();
