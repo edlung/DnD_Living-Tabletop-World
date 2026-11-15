@@ -113,4 +113,24 @@ registerRussian({
     'Предложить всем звёзды и пожелания — на экранах стола',
   'Everyone names a star — what they liked, read by all — and a wish for next time, read only by you. Players write on their own screens either way; you can write for a child who says it aloud.':
     'Каждый называет звезду — что понравилось, её видят все — и пожелание на следующий раз, его читаете только вы. Игроки в любом случае пишут на своих экранах; за ребёнка, который сказал вслух, можете записать вы.',
+  // The next game (ADR 0071 §3)
+  'Next game:': 'Следующая игра:',
+  'The next game': 'Следующая игра',
+  'Add to calendar': 'В календарь',
+  'No date yet. Set one, and everyone sees it in the campaign and in their campaign list.':
+    'Даты пока нет. Назначьте её — все увидят её в кампании и в своём списке кампаний.',
+  'Day and time': 'День и время',
+  'Choose the day and the time first.': 'Сначала выберите день и время.',
+  'That time has already passed. Choose a later one.': 'Это время уже прошло. Выберите другое.',
+  'A note for everyone (optional)': 'Пара слов для всех (необязательно)',
+  'At Grandma’s; bring snacks': 'У бабушки; захватите угощение',
+  'Change the date': 'Изменить дату',
+  'Set the date': 'Назначить дату',
+  'Remove the date': 'Убрать дату',
+  'The date is set. Everyone at the table sees it.': 'Дата назначена. Её видят все за столом.',
+  'The date is removed. Set it again if that was a slip.':
+    'Дата убрана. Если это вышло случайно, назначьте её снова.',
+  'The date could not be set. Check the day and the time, then try again.':
+    'Дату назначить не удалось. Проверьте день и время и попробуйте снова.',
+  'The date could not be removed. Try again.': 'Дату убрать не удалось. Попробуйте снова.',
 });

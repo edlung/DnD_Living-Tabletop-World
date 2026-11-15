@@ -6,6 +6,7 @@ import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
 import { recapParagraphs } from '../chronicle/book-chapters.ts';
 import { Previously, usePreviously } from '../chronicle/previously.tsx';
+import { calendarHref, NextGameLine, useCalendarFile } from '../ritual/next-game.tsx';
 import { StarsCard } from '../ritual/stars-card.tsx';
 import { Glyph } from '../visual/glyph.tsx';
 
@@ -37,6 +38,7 @@ export function LobbyBanner({
   const load = useCallback((signal: AbortSignal) => api.get<LobbyResponse>('lobby', signal), [api]);
   const lobby = useResource(`lobby:${actorId ?? ''}`, load);
   const [busy, setBusy] = useState(false);
+  const calendarFile = useCalendarFile();
   if (lobby.resource.status !== 'ready') return null;
   const { session, paused, characters } = lobby.resource.value;
   // A server from before moves sends none.
@@ -97,6 +99,14 @@ export function LobbyBanner({
           </>
         )}
       </div>
+      {/* A server from before the date sends none. */}
+      {session === null && lobby.resource.value.nextGame && (
+        <NextGameLine
+          next={lobby.resource.value.nextGame}
+          calendar={calendarFile ? calendarHref(api.campaignId) : null}
+          className="next-game--lobby"
+        />
+      )}
       {session === null && <StarsCard api={api} characterId={actorId} />}
       {session === null && <LobbyPreviously api={api} onOpenChronicle={onOpenChronicle} />}
     </>

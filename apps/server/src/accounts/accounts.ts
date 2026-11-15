@@ -6,6 +6,7 @@ import {
   RESET_HOURS,
   type AccountCampaign,
   type NewAccount,
+  type NextGame,
 } from '@ltw/contracts';
 import { campaignRole, type WorldEngine } from '@ltw/domain';
 
@@ -97,6 +98,8 @@ export async function campaignsOf(
   engine: WorldEngine,
   seats: readonly SeatRecord[],
   moves: CampaignMoves = NOTHING_AWAY,
+  /** When each campaign's table meets again, as the table reads it now (ADR 0071 §3). */
+  nextGameOf: (campaignId: string) => Promise<NextGame | null> = () => Promise.resolve(null),
 ): Promise<AccountCampaign[]> {
   const listed: AccountCampaign[] = [];
   for (const seat of seats) {
@@ -114,6 +117,7 @@ export async function campaignsOf(
       language: campaign.language,
       characters,
       away: await moves.awayOf(seat.campaignId),
+      nextGame: await nextGameOf(seat.campaignId),
     });
   }
   return listed;

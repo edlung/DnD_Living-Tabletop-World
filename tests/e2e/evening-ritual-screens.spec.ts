@@ -157,7 +157,10 @@ test('the next evening opens with “Previously…” on the TV and an online pl
   await expect(sheet.getByRole('article', { name: FIRST })).toHaveCount(0, LIVE);
   // The card went with its button: focus is on the session's own controls, and the sheet says so.
   await expect(sheet.getByRole('button', { name: 'Pause the game', exact: true })).toBeFocused();
-  await expect(sheet.getByRole('status')).toContainText('The scene is on the table’s screens.');
+  // (The sheet's own status: the next game's form beside it has one too.)
+  await expect(sheet.locator('.session-status')).toContainText(
+    'The scene is on the table’s screens.',
+  );
   await expect(tv.locator('.display-chronicle')).toHaveCount(0, LIVE);
   await expect(shared.getByRole('heading', { level: 1, name: FIRST })).toHaveCount(0, LIVE);
 

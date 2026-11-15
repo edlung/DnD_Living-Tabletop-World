@@ -4,7 +4,10 @@
   plan's decisions 8–11 as written: `docs/MEMORY_RITUAL_PLAN.md`,
   `reviews/OWNER_MEMORY_RITUAL_2026-11-15.json`) and §2 (the owner's answer on who reads stars and
   wishes, and the word of the same day to follow the plan without asking; the session's own
-  defaults in §2 are marked and stay the owner's to overrule). Later sections are added by their
+  defaults in §2 are marked and stay the owner's to overrule) and §3 (the owner's answer «Дата +
+  файл календаря» and the same word; its defaults are marked too). §3 amends ADR 0043 §6 (the
+  table's state holds the date), ADR 0041 (the hub's card says it) and ADR 0042 §3 (the join screen
+  says it). Later sections are added by their
   stages and are not in force until then. §2 amends ADR 0042 §3 (a cast of table data), ADR 0043
   §6 (the screens stay paired at a session's end unless the DM unpairs them), ADR 0061 §5 (the
   table moves with its campaign) and ADR 0062 §1–2 (the notice and a person's copy name them). Amends ADR 0024 §4–6 (a chapter of one session, who reads the party's
@@ -121,6 +124,45 @@
    table as present state (ADR 0061 §5).
 7. **AI.** None. Nothing here is sent to a provider.
 
+### 3. The next game (Stage 730)
+
+1. **What it is.** When the table meets again: an instant and an optional line of up to 120
+   characters ("At Grandma's"), part of the table's state (migration 0041, two columns on
+   `ltw_table_states`). Table data beside the world: the World Engine neither reads nor decides
+   it, and it is no part of the world's clock.
+2. **Who sets and who reads.** The DM alone sets, changes and takes it away, on the Session sheet
+   at any time. Every member reads it in the lobby's answer, a table display too, and the account's
+   hub on each campaign's card. It names nothing of the world, so it takes no perspective.
+3. **When it stops.** A date is shown through its own evening and is past six hours after it
+   began: the server stops sending it, with no job and no write. What could not be shown is not
+   set — an evening already over, or a date further than two years ahead, is refused — so the DM
+   is never told "everyone sees it" of a date nobody does. The session that starts within twelve
+   hours of the date clears it; a date for a later day stays — an extra evening in between does
+   not lose it. (Session's defaults; the plan said "a date that passed, or a session's start,
+   clears it".)
+4. **In words.** Each screen writes the instant in its own time zone, in the campaign's language
+   and the reader's own flavour of it (18:00 or 6:00 PM), with how far off it is by the calendar's
+   days ("today", "tomorrow", "in 6 days"), declined by the browser's own rules and counted again
+   at the reader's midnight. The DM's line stands on a line of its own under the date.
+5. **The calendar file.** `GET /campaigns/:id/next-game.ics` for every member inside the campaign
+   (not a table display), and `GET /account/campaigns/:id/next-game.ics` for the account on its
+   hub, its own campaigns only: one event of three hours — the campaign's name, the instant in
+   UTC, the DM's line — with reminders a day and an hour before, a UID stable for the campaign and
+   its server, and a sequence that grows with time, so a file saved after a change replaces the
+   event a calendar holds. Nothing of the world, no names of people, no address of the server
+   beyond the UID's host. It is sent inline under its file name: a phone's browser offers its own
+   calendar, a browser that shows no calendars saves the file. The reader's own calendar reminds
+   them: the product still has no push service (ADR 0070). The link is offered where a link can
+   carry the sign-in — a browser signed in by its cookie — and not in the native shells until
+   they can hand a file to the system (Stage 750).
+6. **Where.** The lobby holds a line while no session is open, above the stars card; the hub's
+   campaign card; the join screen of the table's screens; the DM's Session sheet, with the form.
+   A date taken away leaves the form's fields as they were, so a slip is one press to undo.
+   (Session's default: the plan also named the stars card; one line beside it says it once.)
+7. **Around it.** The date moves with its campaign as the rest of the table's state does (ADR 0061
+   §5). It is the table's, not a person's: a person's copy of their data does not list it.
+8. **AI.** None.
+
 ## Consequences
 
 - No migration and no new route. Contracts: `GenerateChronicle` and the generate request take
@@ -151,10 +193,19 @@
   `stars-list.tsx`), `styles/stars.css`. The application and its live twin share one store in
   every composition (`live/live-app.ts`): without it a star signalled nobody on a server without a
   database. Rollback: additive, an older build leaves the table alone.
+- Stage 730: contracts `session/lobby.ts` (`NextGame`, the lobby's answer and change),
+  `session/accounts.ts` (a campaign's `nextGame`); server `src/table/next-game.ts` (when a date is
+  shown and settable, the calendar file and its reply), `table-state.ts` and its PostgreSQL store,
+  `lobby-routes.ts` and `accounts/account-routes.ts` (the file's two routes), `accounts/accounts.ts`; migration `0041_next_game.sql`;
+  client `ritual/next-game-words.ts`, `next-game.tsx`, mounted in `dm/session-sheet.tsx`,
+  `session/lobby-banner.tsx`, `session/hub.tsx`, `display/cast-views.tsx`. Rollback: additive, an
+  older build leaves the columns alone and shows no date.
 
 ## Invariants affected
 
 Preserves 4 and 5 (what a player or the TV reads is the party's knowledge, never the DM's), 1–3 and
 11 (kept moments and chapters are commands the World Engine decides and records), 2 and 7 (prose is
 rendered from the entries and changes nothing). §2 keeps 5 for table data: a wish reaches its
-author and the DM and nobody else, by listing and by signal. No invariant is weakened.
+author and the DM and nobody else, by listing and by signal. §3 adds nothing a perspective could leak: the date
+and its line are the DM's words for the whole table, and the file carries the campaign's name only.
+No invariant is weakened.

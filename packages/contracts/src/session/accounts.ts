@@ -4,7 +4,7 @@ import type { ChatChannel, ChatVoice } from '../chat/chat.ts';
 import type { RollGroup, RollSubject } from '../dice/rolls.ts';
 import type { Language } from '../language/language.ts';
 import { CREDENTIAL_TOKEN_PATTERN } from './auth.ts';
-import type { CampaignAway } from './lobby.ts';
+import type { CampaignAway, NextGame } from './lobby.ts';
 
 /**
  * Accounts (docs/adr/0041-accounts.md, Stage 600): a login and a password that hold a person's seats
@@ -86,6 +86,8 @@ export interface AccountCampaign {
   readonly characters: readonly { readonly entityId: string; readonly name: string }[];
   /** Played on another server since a move; null at home (docs/adr/0061-local-mode.md §5). */
   readonly away: CampaignAway | null;
+  /** When its table meets again; null when no date is set or it has passed (ADR 0071 §3). */
+  readonly nextGame: NextGame | null;
 }
 
 /** `GET /account`: the signed-in account, or 401. */

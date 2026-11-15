@@ -1,4 +1,10 @@
-import { FRESH_SOUND, type TableDice, type TableMode, type TableSound } from '@ltw/contracts';
+import {
+  FRESH_SOUND,
+  type NextGame,
+  type TableDice,
+  type TableMode,
+  type TableSound,
+} from '@ltw/contracts';
 
 /**
  * The table's state around a session (docs/adr/0043-dm-screen.md §6): whether it plays at the
@@ -16,6 +22,8 @@ export interface TableState {
   readonly dice: TableDice;
   /** What the table hears (docs/adr/0059-atmosphere.md, migration 0037). */
   readonly sound: TableSound;
+  /** When the table meets again (docs/adr/0071-memory-and-ritual.md §3, migration 0041). */
+  readonly nextGame: NextGame | null;
 }
 
 export const FRESH_TABLE: TableState = {
@@ -24,6 +32,7 @@ export const FRESH_TABLE: TableState = {
   absent: [],
   dice: 'app',
   sound: FRESH_SOUND,
+  nextGame: null,
 };
 
 export interface TableStateStore {
@@ -43,6 +52,7 @@ export class InMemoryTableStateStore implements TableStateStore {
       ...state,
       absent: [...state.absent],
       sound: { ...state.sound },
+      nextGame: state.nextGame === null ? null : { ...state.nextGame },
     });
     return Promise.resolve();
   }

@@ -67,6 +67,10 @@ export const UI_PARTY_CAMPAIGNS = {
   stars: 'ui-stars',
   starsIpad: 'ui-stars-ipad',
   starsRu: 'ui-stars-ru',
+  /** The next game's date (Stage 730). */
+  nextGame: 'ui-next-game',
+  nextGameIpad: 'ui-next-game-ipad',
+  nextGameRu: 'ui-next-game-ru',
 } as const;
 
 /**
@@ -113,6 +117,9 @@ export async function seedUiPartyCampaigns(engine: WorldEngine): Promise<void> {
     [UI_PARTY_CAMPAIGNS.stars, 'en'],
     [UI_PARTY_CAMPAIGNS.starsIpad, 'en'],
     [UI_PARTY_CAMPAIGNS.starsRu, 'ru'],
+    [UI_PARTY_CAMPAIGNS.nextGame, 'en'],
+    [UI_PARTY_CAMPAIGNS.nextGameIpad, 'en'],
+    [UI_PARTY_CAMPAIGNS.nextGameRu, 'ru'],
   ] as const) {
     const seed = await loadSeed(
       language === 'ru' ? RAVENFORD_RU_FIXTURES_DIR : RAVENFORD_FIXTURES_DIR,

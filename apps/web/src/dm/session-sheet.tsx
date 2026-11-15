@@ -8,6 +8,7 @@ import { recapParagraphs } from '../chronicle/book-chapters.ts';
 import { chapterMessage } from '../chronicle/chapter-message.ts';
 import { usePreviously } from '../chronicle/previously.tsx';
 import { EveningWords } from '../ritual/evening-words.tsx';
+import { NextGameForm } from '../ritual/next-game.tsx';
 import { Field } from '../session/account-forms.tsx';
 import { Glyph } from '../visual/glyph.tsx';
 import { useRereadOn } from '../world/use-world-data.ts';
@@ -137,7 +138,11 @@ export function SessionSheet({
                         () => false,
                       )
                   : true;
-                await change({ mode });
+                // The game that was dated begins: its date has done its work (one for a later
+                // day stays).
+                const begun =
+                  table.nextGame && Date.parse(table.nextGame.at) <= Date.now() + 12 * 3_600_000;
+                await change(begun ? { mode, nextGame: null } : { mode });
                 if (!cast) setFailed(true);
                 onRun({ type: 'StartSession', title });
               })();
@@ -164,6 +169,14 @@ export function SessionSheet({
             }}
           />
         )}
+        {/* When the table meets again (ADR 0071 §3). */}
+        <NextGameForm
+          api={api}
+          next={table.nextGame ?? null}
+          onChanged={() => {
+            setRound((value) => value + 1);
+          }}
+        />
         {/* The DM's music (ADR 0059 §3): where the ambience plays, from the same moment. */}
         <MusicPanel
           api={api}

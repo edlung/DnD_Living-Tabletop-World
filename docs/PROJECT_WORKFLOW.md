@@ -14,7 +14,8 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   the same day («не спрашивай меня, а действуй по плану до конца») the stages follow the plan, each
   in its own pull request; merges and deployment stay the owner's. Stage 720 (stars and wishes) is
   implemented on `claude/stage-720-stars-and-wishes`, stacked on 710's branch
-  (`reports/STAGE_720_COMPLETION.md`). Off-host backup copies are a separate task on the owner's separate word.
+  (`reports/STAGE_720_COMPLETION.md`). Stage 730 (the next game) is implemented on
+  `claude/stage-730-next-game`, stacked on 720's (`reports/STAGE_730_COMPLETION.md`). Off-host backup copies are a separate task on the owner's separate word.
 
 ## Current request — campaign library release, 2026-11-14
 

@@ -26,6 +26,7 @@ import { InMemoryHandoutStore } from '../handouts/handout-store.ts';
 import { registerLibraryRoutes } from '../library/library-routes.ts';
 import type { AdventureBooks, AdventurePictures } from '../adventures/adventures.ts';
 import { registerLobbyRoutes } from '../table/lobby-routes.ts';
+import { shownNextGame } from '../table/next-game.ts';
 import { isAwayRefusal, registerMoveGuard } from '../campaigns/move/guard.ts';
 import { NOTHING_AWAY, type CampaignMoves } from '../campaigns/move/moves.ts';
 import { registerMusicRoutes } from '../music/music-routes.ts';
@@ -332,7 +333,11 @@ export function buildApp(input: AppDependencies): FastifyInstance {
     // person's data, copied or deleted (ADR 0062).
     if (accounts && accountLimits) {
       const withAccounts = { ...deps, signIn: { ...deps.signIn, accounts, accountLimits } };
-      registerAccountRoutes(app, withAccounts);
+      registerAccountRoutes(app, {
+        ...withAccounts,
+        nextGameOf: async (campaignId) =>
+          shownNextGame((await lobby.state.read(campaignId)).nextGame, lobby.now()),
+      });
       registerPrivacyRoutes(app, {
         ...withAccounts,
         chat: chat.store,

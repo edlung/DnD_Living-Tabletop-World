@@ -319,3 +319,94 @@
     padding: 0;
   }
 }
+
+/* The next game (ADR 0071 §3): one line — the glyph, when, and the way into a calendar. */
+.next-game {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 4px 8px;
+  margin: 0;
+  line-height: 1.35;
+}
+/* The mark stays beside the first line of its words, however many lines they take. */
+.next-game > .glyph {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 0.1em;
+  color: var(--gold-bright);
+}
+.next-game > span {
+  flex: 1 1 12rem;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+/* The DM's line under the date, so a long one never buries it. */
+.next-game-note {
+  display: block;
+}
+.next-game .button-link {
+  align-self: center;
+  min-height: 32px;
+}
+/* In the lobby, over the scene: on glass, beside the lobby's own line. */
+.next-game--lobby {
+  width: min(100%, 560px);
+  padding: 8px 12px 8px 16px;
+  border: 1px solid color-mix(in srgb, var(--gold) 55%, transparent);
+  border-radius: var(--radius-panel);
+  background: var(--glass-raised);
+  box-shadow: var(--shadow-soft);
+  color: var(--text);
+  text-align: left;
+  pointer-events: auto;
+}
+.rest-banner-slot:has(.stars-form) .next-game--lobby {
+  display: none;
+}
+@media (max-height: 560px) {
+  .rest-banner-slot:has(.stars-card) .next-game--lobby {
+    display: none;
+  }
+}
+/* A small phone with the stars card too: the date stays whole, a long line keeps two rows (the
+   whole of it is on the campaign's card in the list), so the cards stay under the top bar. */
+@media (max-width: 767px) and (max-height: 700px) {
+  .rest-banner-slot:has(.stars-card) .next-game--lobby .next-game-note {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+  }
+}
+/* On the hub's card and on the DM's sheet: a quiet line. */
+.next-game--hub {
+  margin-top: 4px;
+  color: var(--text);
+  font-size: 0.95rem;
+}
+.next-game-tool {
+  display: grid;
+  gap: 8px;
+}
+.next-game-tool > p {
+  margin: 0;
+}
+/* On the table's screen, under the way in: a centred paragraph no wider than a line reads. */
+.next-game--display {
+  display: block;
+  max-width: min(92%, 36em);
+  margin: 3vmin auto 0;
+  font-size: clamp(1.1rem, 2.6vmin, 3.4rem);
+  text-align: center;
+  text-wrap: balance;
+}
+.next-game--display > .glyph {
+  display: inline-block;
+  width: clamp(20px, 3vmin, 56px);
+  height: clamp(20px, 3vmin, 56px);
+  margin: 0 0.4em 0 0;
+  vertical-align: -0.15em;
+}

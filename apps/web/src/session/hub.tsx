@@ -4,6 +4,8 @@ import { useCallback, useEffect, useId, useState, type SubmitEvent } from 'react
 
 import { AboutButton } from '../guide/about.tsx';
 import { NativeEntry } from '../native/native-entry.tsx';
+import { nativeShell } from '../native/shell.ts';
+import { calendarHref, NextGameLine } from '../ritual/next-game.tsx';
 import { Glyph } from '../visual/glyph.tsx';
 import { ornamentUrl, textureUrl } from '../visual/ui-kit.ts';
 import { changePassword, readAccount, renameAccount, type EnterAnswer } from './account-flow.ts';
@@ -233,6 +235,13 @@ function CampaignCard({
         <p className="muted">
           {who} · {campaign.language === 'ru' ? t('Russian') : t('English')}
         </p>
+        {campaign.nextGame && (
+          <NextGameLine
+            next={campaign.nextGame}
+            calendar={nativeShell() === null ? calendarHref(campaign.campaignId, 'account') : null}
+            className="next-game--hub"
+          />
+        )}
         {away !== null && (
           <p className="hub-campaign-away">
             {t('Played on {where} since {when}: here you can look, not play.', {

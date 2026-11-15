@@ -69,6 +69,10 @@ one row for each author of each session (280 characters each), replaced when wri
 removed when emptied: table data, not canonical state. Additive: an older build leaves the table
 alone.
 
+Stage 730 (ADR 0071 §3): `0041_next_game.sql` adds the next game to the table's state — an instant
+and a line of at most 120 characters, both the DM's: table data, not canonical state. Additive: an
+older build leaves the columns alone.
+
 Stage 680b (ADR 0058 §3–4): `0036_dm_library.sql` keeps the DM's library beside the world — handouts
 kept for later and random tables, one row an entry (its body at most 64 KB), replaced on save and
 deleted on the DM's word; a kept handout notes when it was last given. DM data, not canonical state:

@@ -822,3 +822,21 @@ talk (Gate 06's row for chat is its nearest kin).
   holds one's own only), the move's coverage test, the journeys `tests/e2e/stars-and-wishes.spec.ts`
   (what a player's browser received) and `evening-ritual-screens.spec.ts` (what the TV received).
 - Next review obligation: none scheduled; the owner may order an independent repeat.
+
+## Stage 730: the next game (2026-11-15)
+
+Stage 730 (`docs/adr/0071-memory-and-ritual.md` §3) adds a date and a line to the table's state and
+a calendar file. Nothing of the world is in either, so no perspective boundary moves.
+
+- Boundary: the DM alone writes the date; every member and a table display read it; the file is a
+  member's inside the campaign and the account's on its hub (a display is refused, a stranger and
+  another account's campaign find nothing) and carries the campaign's name, the
+  instant and the DM's line only. The line is free text into a file: escaped and folded by RFC 5545,
+  so it cannot add a property or an event.
+- Deterministic regressions: `apps/server/src/table/next-game.test.ts` (when a date is shown and
+  settable; the file's lines, escapes, folding, an injected `END:VEVENT`),
+  `lobby-routes.test.ts` (who sets and reads, the refusals, the file per role, a date that passed),
+  `table-state.integration.test.ts` (PostgreSQL holds it), `apps/server/src/accounts/accounts.test.ts`
+  (the hub's card), `apps/web/src/ritual/next-game-words.test.ts`, the journeys
+  `tests/e2e/next-game.spec.ts` and `next-game-file.spec.ts` (the saved file's text).
+- Next review obligation: none scheduled; the owner may order an independent repeat.

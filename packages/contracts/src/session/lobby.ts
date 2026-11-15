@@ -28,6 +28,19 @@ export interface CampaignAway {
   readonly movedAt: string;
 }
 
+/** How long the DM's line about the next game may be ("at Grandma's"). */
+export const NEXT_GAME_NOTE_CHARS = 120;
+
+/**
+ * The next game (docs/adr/0071-memory-and-ritual.md §3): when the table meets again. Table data
+ * the DM sets; every member and a table display read it.
+ */
+export interface NextGame {
+  /** The instant it begins (ISO 8601, UTC); each screen shows it in its own time zone. */
+  readonly at: string;
+  readonly note: string;
+}
+
 export interface LobbyCharacter {
   readonly character: EntityRef;
   /** Its player holds a live subscription. */
@@ -54,6 +67,8 @@ export interface LobbyResponse {
   readonly sound: TableSound;
   /** Played on another server since a move; null at home (docs/adr/0061-local-mode.md §5). */
   readonly away: CampaignAway | null;
+  /** When the table meets again; null when no date is set or it has passed (ADR 0071 §3). */
+  readonly nextGame: NextGame | null;
 }
 
 /** `POST …/lobby/ready`: a player for their character, or the DM for anyone. */
@@ -72,5 +87,14 @@ export const lobbyChangeRequestSchema = z
     ambience: ambienceChoiceSchema.optional(),
     /** The DM's music: a track played, paused, resumed or stopped (ADR 0059 §3). */
     music: musicChangeSchema.optional(),
+    /** The next game: a date with a line about it, or null to take it away (ADR 0071 §3). */
+    nextGame: z
+      .object({
+        at: z.iso.datetime(),
+        note: z.string().trim().max(NEXT_GAME_NOTE_CHARS).default(''),
+      })
+      .strict()
+      .nullable()
+      .optional(),
   })
   .strict();

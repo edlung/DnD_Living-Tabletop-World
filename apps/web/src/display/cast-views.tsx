@@ -6,6 +6,7 @@ import type {
   EncounterResponse,
   EntityPresentationResponse,
   EntityRef,
+  LobbyResponse,
   RollFeedResponse,
   ScenePresentationResponse,
 } from '@ltw/contracts';
@@ -28,6 +29,7 @@ import { QrCode } from '../visual/qr-code.tsx';
 import { textureUrl } from '../visual/ui-kit.ts';
 import { newestPartyChapter } from '../chronicle/book-chapters.ts';
 import { Previously } from '../chronicle/previously.tsx';
+import { NextGameLine } from '../ritual/next-game.tsx';
 import { StarsCast } from '../ritual/stars-cast.tsx';
 import { useRereadOn } from '../world/use-world-data.ts';
 import { DiceFaces } from './big-roll.tsx';
@@ -336,6 +338,8 @@ function JoinCast(props: Props) {
     api.get<ChronicleListResponse>('chronicle', signal),
   );
   const last = chronicle?.chapters.at(-1) ?? null;
+  // When the table meets again (ADR 0071 §3), under the way in.
+  const lobby = useRead(props, 'lobby', (api, signal) => api.get<LobbyResponse>('lobby', signal));
   return (
     <section className="display-join" aria-label={t('Join the table')}>
       <div className="display-join-card">
@@ -354,6 +358,7 @@ function JoinCast(props: Props) {
         ) : (
           <p>{t('The DM has not opened the table to join yet.')}</p>
         )}
+        {lobby?.nextGame && <NextGameLine next={lobby.nextGame} className="next-game--display" />}
       </div>
       {last && (
         <aside className="display-recap">
