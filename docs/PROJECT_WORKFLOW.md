@@ -2,6 +2,15 @@
 
 Updated 2026-10-15. The owner's current AGENTS instructions take precedence over older process banners.
 
+## Current request — memory and ritual, 2026-11-15
+
+- Owner: the goal «Теплый и ламповый портал в увлекательные D&D миры», then «Да, план» for the
+  package «Память и ритуал»; seven product answers (`reviews/OWNER_MEMORY_RITUAL_2026-11-15.json`).
+  Program `docs/MEMORY_RITUAL_PLAN.md` (Stages 710–799: Part 1 before the family playtest, Part 2
+  after it); draft work order `work-orders/STAGE_710.md`.
+- Status: plan only. No stage is authorized; Stage 710 starts on the owner's word, from `main` after
+  PR 36. Off-host backup copies are a separate task on the owner's separate word.
+
 ## Current request — campaign library release, 2026-11-14
 
 - Owner: «Давай закроем все пробелы» (after the eight reworked campaigns were found to lack drawn

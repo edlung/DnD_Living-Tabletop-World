@@ -1,0 +1,26 @@
+{
+  "date": "2026-11-15",
+  "source": "Owner's goal and «Да, план» in the project chat, then seven product questions answered in the planning session (two rounds)",
+  "ownerInstruction": "сделать удобным и увлекательным проект настолько, чтобы была масса впечатлений и хотелось всегда возвращаться ради новых кампаний и приключений в кругу семьи и друзей. Теплый и ламповый портал в увлекательные D&D миры",
+  "answers": {
+    "starsAndWishesReaders": "Звёзды всем, пожелания мастеру (Recommended): everyone at the table reads the stars; a wish is read by its author and the DM only",
+    "nextGameReminder": "Дата + файл календаря (Recommended): the date in the hub and the campaign, a calendar file, the person's own calendar reminds; no notification from LTW, no push service",
+    "partyAlbum": "Галерея из картинок игры (Recommended): places visited, faces met and handouts shown to the party, as the party knows them; no uploaded photographs",
+    "neighboursInThePackage": "Договор стола (игра с детьми), Памятка новому мастеру, Дом между мирами, Мелкие удобства: all four chosen",
+    "nativeApps": "Да, отдельным малым этапом (Recommended): the shells learn to hand a calendar file to the system and to print or save a PDF; a new build and install on the family's devices; until then the buttons work in a browser",
+    "beforeThePlaytest": "Ритуал вечера до, остальное после (Recommended): «Ранее…», stars and wishes, the next date, the table's agreement and the DM's guide before the family playtest; the book with its gallery, the home between worlds and small comforts after it",
+    "offHostBackups": "Отдельной задачей, вне пакета (Recommended): a separate task on the owner's separate word and choice of place; the server is not touched by this package"
+  },
+  "authorizedStages": [],
+  "plan": "docs/MEMORY_RITUAL_PLAN.md; draft work order work-orders/STAGE_710.md",
+  "delegation": "None recorded. The session's defaults are marked (S) in the plan's decisions and stay the owner's to overrule; every stage starts on the owner's word.",
+  "askedAtTheTime": "Starting each stage, merges into main, deployments, native builds on the family's devices, the place for off-host backup copies.",
+  "unchangedBoundaries": [
+    "World Engine authority: stars, wishes, the next date, the agreement and keepsakes are table data beside the world, never canonical",
+    "knowledge isolation: everything shown to players, cast, exported or printed is the PARTY perspective's; a wish is its author's and the DM's",
+    "AI optional: every stage works without a key; no new paid call",
+    "no push service, no service worker, no third-party SDK (FULL_GAME_PLAN decision 10, ADR 0070)",
+    "all art from the OpenAI image model; the app draws only game markup",
+    "human play acceptance is the owner's and is reported honestly"
+  ]
+}
