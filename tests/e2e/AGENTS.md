@@ -57,6 +57,9 @@ It changes no world state; keep its window listener, since `pageerror` misses th
   no "Spoken, not a recorded fact." (`ai-feedback.spec.ts`, `dm-tools.spec.ts`).
 - Live session (`live-*.spec.ts`, ADR 0033): two browsers share each campaign of
   `fixtures/live-campaigns.json` (`ui-live-campaigns.ts`) and never press "Refresh world".
+  A journey that needs a page quiet before it counts requests waits with `readsQuiet`
+  (`support/live.ts`: no read for 3 s), never a fixed pause: on a hosted runner the trailing
+  re-reads of a slow load were still due after one (`sign-in.spec.ts`, `sign-in-tabs.spec.ts`).
   The live stream never ends while a page lives, so response-body collectors skip it
   (`isLiveStream` in `support/session.ts`); its frames are held to the fixed grammar by the
   server tests. Only the stream's transport is touched: the reconnect journey cuts the open

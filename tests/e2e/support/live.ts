@@ -1,4 +1,4 @@
-import { expect, type Page } from '@playwright/test';
+import { expect, type Page, type Request } from '@playwright/test';
 
 import campaigns from '../fixtures/live-campaigns.json' with { type: 'json' };
 
@@ -37,4 +37,26 @@ export function countWorldReads(page: Page): { count(): number } {
     }
   });
   return { count: () => reads };
+}
+
+/**
+ * Quiet: none of the pages has sent a read for `ms`. In a live session every read is followed by
+ * one more 1.5 s after it completes, and a change reaches a page a comparison cycle (1 s) later,
+ * so on a slow runner a fixed wait from an arbitrary moment can end while reads are still due.
+ * Measured from the last read, the same wait ends only once they are done.
+ */
+export async function readsQuiet(pages: readonly Page[], ms = 3_000): Promise<void> {
+  const [first] = pages;
+  if (!first) return;
+  let last = Date.now();
+  const seen = (request: Request) => {
+    const path = new URL(request.url()).pathname;
+    if (path.startsWith('/api/') && !path.endsWith('/live')) last = Date.now();
+  };
+  for (const page of pages) page.on('request', seen);
+  try {
+    for (let rest = ms; rest > 0; rest = last + ms - Date.now()) await first.waitForTimeout(rest);
+  } finally {
+    for (const page of pages) page.off('request', seen);
+  }
 }
