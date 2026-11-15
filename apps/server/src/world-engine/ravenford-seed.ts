@@ -36,6 +36,8 @@ export const RAVENFORD_SEED_FILES: readonly SeedFile[] = [
   { file: 'combat-seed.json', prefix: 'combat' },
   { file: 'items-seed.json', prefix: 'items' },
   { file: 'table-seed.json', prefix: 'table' },
+  // Added after the review campaign was deployed: last, so a rerun only adds its commands.
+  { file: 'town-seed.json', prefix: 'town' },
 ];
 
 const seedSchema = z.object({

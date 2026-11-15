@@ -15,6 +15,7 @@ import { iso, type AuthClock } from '../auth/session-authenticator.ts';
 import { HOUR_MS, SESSION_MS } from '../auth/sign-in.ts';
 import { hashToken, newToken } from '../auth/tokens.ts';
 import { importCuratedSet } from '../images/curated-import.ts';
+import { bindSeedEntities, seededEntityIds } from '../images/seed-entities.ts';
 import type { LibraryStore } from '../library/library-store.ts';
 import type { Logger } from '../platform/logging/logger.ts';
 import type { AccountStore, SeatRecord } from './account-store.ts';
@@ -85,8 +86,11 @@ export async function createFromTemplate(
   // leaves the campaign without it, never without its DM.
   if (deps.pictures) {
     const { sets, contents, logger } = deps.pictures;
+    // Its ready-made characters' IDs are this copy's own: their pictures name the seed command.
+    const seeded = seededEntityIds((await engine.load(campaignId))?.history ?? []);
     for (const set of sets[adventure] ?? []) {
-      await importCuratedSet({ engine, contents, set, logger }, campaignId, seed.dm).catch(
+      const bound = bindSeedEntities(set, seeded);
+      await importCuratedSet({ engine, contents, set: bound, logger }, campaignId, seed.dm).catch(
         (error: unknown) => {
           logger.warn({ err: error, campaignId }, 'a ready adventure picture was not imported');
         },

@@ -15,7 +15,12 @@ import { InMemoryAssetContentStore, contentHashOf } from '../assets/content-stor
 import { loadCuratedSet } from '../images/curated-set.ts';
 import { createLogger } from '../platform/logging/logger.ts';
 import { MIDDLE_ENTROPY, seededEngine } from '../testing/ravenford-app.ts';
-import { RAVENFORD_RU_FIXTURES_DIR, loadRavenfordSeed } from './ravenford-seed.ts';
+import {
+  RAVENFORD_RU_FIXTURES_DIR,
+  RAVENFORD_SEED_FILES,
+  loadRavenfordSeed,
+  loadSeed,
+} from './ravenford-seed.ts';
 import {
   ReviewCampaignError,
   loadReviewCampaignSeed,
@@ -157,6 +162,51 @@ describe('review campaign', { timeout: SLOW_MS }, () => {
     });
     const state = (await engine.load('ravenford'))?.state;
     expect(state?.roster.get('elowen-starwhisper')).toBe(PLAYER.actorId);
+  });
+
+  it('adds only the town to a campaign seeded and played before the town seed existed', async () => {
+    // The deployed review campaign: seeded from the list without town-seed.json, then played.
+    const engine = emptyEngine();
+    const before = RAVENFORD_SEED_FILES.filter(({ prefix }) => prefix !== 'town');
+    expect(before).toHaveLength(RAVENFORD_SEED_FILES.length - 1);
+    const older = (await loadSeed(RAVENFORD_RU_FIXTURES_DIR, before)).submissions;
+    const review = await loadReviewCampaignSeed();
+    const releases = review.submissions.filter(
+      ({ command }) => command.type === 'ReleaseCharacter',
+    );
+    for (const submission of [...older, ...releases]) {
+      expect((await engine.execute(submission)).status).toBe('accepted');
+    }
+    const played = [
+      { type: 'AssignCharacter', characterId: 'elowen-starwhisper', playerActorId: PLAYER.actorId },
+      { type: 'EnterLocation', characterId: 'elowen-starwhisper', locationId: 'old-trade-road' },
+    ];
+    for (const [index, command] of played.entries()) {
+      const actor = index === 0 ? DM : PLAYER;
+      const submission = {
+        commandId: `review-test.${index}`,
+        campaignId: 'ravenford',
+        actor,
+        command,
+      };
+      expect((await engine.execute(submission)).status).toBe('accepted');
+    }
+
+    const rerun = await seedReviewCampaign(engine);
+
+    const town = review.submissions.filter(({ commandId }) =>
+      commandId.startsWith('ravenford.town.'),
+    );
+    expect(town.length).toBeGreaterThan(0);
+    expect(rerun).toMatchObject({
+      accepted: town.length,
+      duplicate: older.length + releases.length,
+    });
+    const state = (await engine.load('ravenford'))?.state;
+    expect(state?.entities.get('ravenford-surroundings')?.name).toBe('Равенфорд и окрестности');
+    expect(state?.mapPins.get('ravenford-surroundings')).toHaveLength(8);
+    expect(state?.roster.get('elowen-starwhisper')).toBe(PLAYER.actorId);
+    expect(state?.entities.get('elowen-starwhisper')?.placement?.locationId).toBe('old-trade-road');
   });
 
   it('refuses a database that holds the English Ravenford', async () => {

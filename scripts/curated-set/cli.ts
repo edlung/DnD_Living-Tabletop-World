@@ -24,6 +24,12 @@ interface GenerationItem {
   readonly refs: readonly string[];
   readonly ref: string | null;
   readonly prompt: string;
+  /**
+   * A battle map drawn around a prepared fight's grid (columns, rows) in the middle of its canvas:
+   * the grid's own rectangle is cut out, so the map lies on the board square for square. Absent:
+   * the 16 × 12 road map's 4:3 centre.
+   */
+  readonly grid?: readonly [number, number];
 }
 
 /**
@@ -32,8 +38,16 @@ interface GenerationItem {
  * remediation). Generation names stay descriptive; they never reach a player.
  */
 const ENTITY_IDS: Readonly<Record<string, readonly string[]>> = {
-  'goblin-raider': ['creature-10fb59d4', 'creature-589f6668', 'creature-6513bec0'],
-  'goblin-shaman': ['creature-ae08be99'],
+  // The road goblins of the Old Trade Road: the investigation's and the road ambush's (table seed).
+  'goblin-raider': [
+    'creature-10fb59d4',
+    'creature-589f6668',
+    'creature-6513bec0',
+    'creature-e4045805',
+    'creature-09a3666b',
+    'creature-19c9df4a',
+  ],
+  'goblin-shaman': ['creature-ae08be99', 'creature-e02754d2'],
   'abandoned-caravan-site': ['location-f3b82c8b'],
   'broken-wagon-wheel': ['item-f44e7183'],
   'goblin-weapon': ['item-0869f47a'],
@@ -70,6 +84,23 @@ async function encode(item: GenerationItem, source: string): Promise<Buffer> {
         .webp({ quality: 82 })
         .toBuffer();
     case 'map': {
+      if (item.grid) {
+        const [columns, rows] = item.grid;
+        const { width, height } = await sharp(source).metadata();
+        const scale = Math.min(width / columns, height / rows);
+        const bw = Math.round(columns * scale);
+        const bh = Math.round(rows * scale);
+        return sharp(source)
+          .extract({
+            left: Math.floor((width - bw) / 2),
+            top: Math.floor((height - bh) / 2),
+            width: bw,
+            height: bh,
+          })
+          .resize({ width: 1536, height: 1536, fit: 'inside', withoutEnlargement: true })
+          .webp({ quality: 84 })
+          .toBuffer();
+      }
       // The encounter grid is 4:3 (16 × 12); crop the centre to that shape.
       const meta = await sharp(source).metadata();
       const height = meta.height;

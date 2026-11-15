@@ -24,11 +24,15 @@
       "purpose": "image",
       "derivedFrom": null,
       "mediaType": "image/webp",
-      "sha256": "7158747f6aa92858e9f3bb32c77bfde21338a52f3e7264a2134805daa478e6df",
-      "originalSha256": "281bc42033f9652b76f5830c5cd41e95097ec6d8117fef1825d004093bd429a8",
-      "generated": "2026-11-03",
-      "references": ["docs/design/stage-320/owner-concepts/05-combat-bridge.webp"],
-      "prompt": "Create exactly one new image with your image generation tool. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached concept art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the concepts for style only; never copy their interface panels, characters, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nSUBJECT: a rutted cart road running north through flat willow country under a grey sky: pollard willows, reed-edged ditches, distant fen mist\nFRAMING: wide 3:2 landscape establishing view at eye level; keep the lower third calm and uncluttered (open ground, water or flagstones) so interface elements can sit there; no identifiable people — at most a few tiny distant anonymous silhouettes far in the background.\n\nThen copy the generated PNG into the current working directory as mill-road.png and reply only with that file name."
+      "sha256": "7469367e88e7decdbe778f579ec99be5a34099f3e8e525c160fde854e41f394a",
+      "originalSha256": "c33ac52d0670c6f6f4ca3363ed678287110c7c3228cdb9e47cd4a5c21c9ebdeb",
+      "generated": "2026-11-15",
+      "references": [
+        "living-tabletop-world-art/ravenford-p1-2026-11-15/replaced/mill-road.png",
+        "fixtures/ravenford-ru/assets/golden-stag-inn.webp",
+        "fixtures/hollowmere/assets/sunken-mill.webp"
+      ],
+      "prompt": "Create exactly one new image with your image generation tool. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nSUBJECT: a rutted cart road running north through flat willow country: pollard willows, reed-edged ditches, distant fen mist, at dusk: low amber evening light and long blue shadows, warm lamplight in windows and on the water\nThe first attached image is this same place as it was first painted: keep its architecture, landmarks and composition exactly, but repaint it in the light and palette of the other attached references.\nFRAMING: wide 3:2 landscape establishing view at eye level; keep the lower third calm and uncluttered (open ground or cobblestones) so interface elements can sit there; no identifiable people — at most a few tiny distant anonymous silhouettes far in the background.\n\nThen copy the generated PNG into the current working directory as mill-road.png and reply only with that file name."
     },
     {
       "file": "willow-ford.webp",
@@ -38,11 +42,15 @@
       "purpose": "image",
       "derivedFrom": null,
       "mediaType": "image/webp",
-      "sha256": "e7d18c137a8ce73cf70f1ffb6330374a4b06f6f343ffa578ec17188226fc867a",
-      "originalSha256": "abe9ec5da7e9ff947cdbbd2699af535d2d1a5a94b96ad3cdd2664d16316adde4",
-      "generated": "2026-11-03",
-      "references": ["docs/design/stage-320/owner-concepts/05-combat-bridge.webp"],
-      "prompt": "Create exactly one new image with your image generation tool. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached concept art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the concepts for style only; never copy their interface panels, characters, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nSUBJECT: a shallow ford where a dirt cart road crosses a cold clear brook between leaning willows, knee-deep water over pebbles, sedges along the banks, morning light\nFRAMING: wide 3:2 landscape establishing view at eye level; keep the lower third calm and uncluttered (open ground, water or flagstones) so interface elements can sit there; no identifiable people — at most a few tiny distant anonymous silhouettes far in the background.\n\nThen copy the generated PNG into the current working directory as willow-ford.png and reply only with that file name."
+      "sha256": "147f28b4dd665625bda10a3e4944630d75ded470da256a29faa2869950329dfa",
+      "originalSha256": "6cffaade1dbe85da5c78929c5718f8dcc39db871f5644b174c1f61c09f31c4d7",
+      "generated": "2026-11-15",
+      "references": [
+        "living-tabletop-world-art/ravenford-p1-2026-11-15/replaced/willow-ford.png",
+        "fixtures/ravenford-ru/assets/golden-stag-inn.webp",
+        "fixtures/hollowmere/assets/sunken-mill.webp"
+      ],
+      "prompt": "Create exactly one new image with your image generation tool. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nSUBJECT: a shallow ford where a dirt cart road crosses a cold clear brook between leaning willows, knee-deep water over pebbles, sedges along the banks, at dusk: low amber evening light and long blue shadows, warm lamplight in windows and on the water\nThe first attached image is this same place as it was first painted: keep its architecture, landmarks and composition exactly, but repaint it in the light and palette of the other attached references.\nFRAMING: wide 3:2 landscape establishing view at eye level; keep the lower third calm and uncluttered (open ground or cobblestones) so interface elements can sit there; no identifiable people — at most a few tiny distant anonymous silhouettes far in the background.\n\nThen copy the generated PNG into the current working directory as willow-ford.png and reply only with that file name."
     },
     {
       "file": "hollowmere.webp",
@@ -52,11 +60,15 @@
       "purpose": "image",
       "derivedFrom": null,
       "mediaType": "image/webp",
-      "sha256": "3a068b96450873b94ab137d92162b3bc99df44e9f4d6a7a7c24fd6e55c3bd19c",
-      "originalSha256": "e5b6150320eda6b096693311b15ecc01cb137c8b54d6a0ef8057b5952bf385e0",
-      "generated": "2026-11-03",
-      "references": ["docs/design/stage-320/owner-concepts/01-overview.webp"],
-      "prompt": "Create exactly one new image with your image generation tool. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached concept art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the concepts for style only; never copy their interface panels, characters, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nSUBJECT: Hollowmere, a marsh village of reed-thatched houses on wooden stilts joined by plank causeways at the edge of a foggy fen; a squat old stone bell tower leans over a small green; eel traps and flat-bottomed boats; late afternoon\nFRAMING: wide 3:2 landscape establishing view at eye level; keep the lower third calm and uncluttered (open ground, water or flagstones) so interface elements can sit there; no identifiable people — at most a few tiny distant anonymous silhouettes far in the background.\n\nThen copy the generated PNG into the current working directory as hollowmere.png and reply only with that file name."
+      "sha256": "5fbbaf9ffe2683f610108a05e511524a8a382d75aec47c75a852781ba0ae6f72",
+      "originalSha256": "aaa4778dc4925607cd9065a042eb1a222d51418416ecbdaefeb7040f3e3d8f0a",
+      "generated": "2026-11-15",
+      "references": [
+        "living-tabletop-world-art/ravenford-p1-2026-11-15/replaced/hollowmere.png",
+        "fixtures/ravenford-ru/assets/golden-stag-inn.webp",
+        "fixtures/hollowmere/assets/sunken-mill.webp"
+      ],
+      "prompt": "Create exactly one new image with your image generation tool. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nSUBJECT: Hollowmere, a marsh village of reed-thatched houses on wooden stilts joined by plank causeways at the edge of a foggy fen; a squat old stone bell tower leans over a small green; eel traps and flat-bottomed boats, at dusk: low amber evening light and long blue shadows, warm lamplight in windows and on the water\nThe first attached image is this same place as it was first painted: keep its architecture, landmarks and composition exactly, but repaint it in the light and palette of the other attached references.\nFRAMING: wide 3:2 landscape establishing view at eye level; keep the lower third calm and uncluttered (open ground or cobblestones) so interface elements can sit there; no identifiable people — at most a few tiny distant anonymous silhouettes far in the background.\n\nThen copy the generated PNG into the current working directory as hollowmere.png and reply only with that file name."
     },
     {
       "file": "reeves-hall.webp",
@@ -66,11 +78,15 @@
       "purpose": "image",
       "derivedFrom": null,
       "mediaType": "image/webp",
-      "sha256": "48f930bcebb3247ff45cca55596d52b0aa58d5c88d3e87a0e0c38d169ee74517",
-      "originalSha256": "e662a2098bad37fcb7cf2231c960d357b46d8a79e785438d864742e7399e9fdd",
-      "generated": "2026-11-03",
-      "references": ["docs/design/stage-320/owner-concepts/07-player-and-dm-view.webp"],
-      "prompt": "Create exactly one new image with your image generation tool. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached concept art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the concepts for style only; never copy their interface panels, characters, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nSUBJECT: a long timber hall with a turf roof in a marsh village, oil barrels stacked by the door, warm light in small windows, plank walkway in front\nFRAMING: wide 3:2 landscape establishing view at eye level; keep the lower third calm and uncluttered (open ground, water or flagstones) so interface elements can sit there; no identifiable people — at most a few tiny distant anonymous silhouettes far in the background.\n\nThen copy the generated PNG into the current working directory as reeves-hall.png and reply only with that file name."
+      "sha256": "46a381936bfa7e17f9e32858293bf83237cee2b43f2edba08bf2396f331ded95",
+      "originalSha256": "38efb2a3440714b2fc7cd35174191fcad8bd872c0b7932ac9dd8bd238f390bfb",
+      "generated": "2026-11-15",
+      "references": [
+        "living-tabletop-world-art/ravenford-p1-2026-11-15/replaced/reeves-hall.png",
+        "fixtures/ravenford-ru/assets/golden-stag-inn.webp",
+        "fixtures/hollowmere/assets/sunken-mill.webp"
+      ],
+      "prompt": "Create exactly one new image with your image generation tool. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nSUBJECT: a long timber hall with a turf roof in a marsh village, oil barrels stacked by the door, warm light in small windows, plank walkway in front, at dusk: low amber evening light and long blue shadows, warm lamplight in windows and on the water\nThe first attached image is this same place as it was first painted: keep its architecture, landmarks and composition exactly, but repaint it in the light and palette of the other attached references.\nFRAMING: wide 3:2 landscape establishing view at eye level; keep the lower third calm and uncluttered (open ground or cobblestones) so interface elements can sit there; no identifiable people — at most a few tiny distant anonymous silhouettes far in the background.\n\nThen copy the generated PNG into the current working directory as reeves-hall.png and reply only with that file name."
     },
     {
       "file": "reeves-cellar.webp",
@@ -122,11 +138,15 @@
       "purpose": "image",
       "derivedFrom": null,
       "mediaType": "image/webp",
-      "sha256": "4d002944e8e01fd023e98f0997634aaaf5a93d6106c42cefe03988c349a6bcf6",
-      "originalSha256": "78c3f650cd43d5edb2ab317e7b78078e04d545bfc9584e76b9402d62c16c98c7",
-      "generated": "2026-11-03",
-      "references": ["docs/design/stage-320/owner-concepts/05-combat-bridge.webp"],
-      "prompt": "Create exactly one new image with your image generation tool. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached concept art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the concepts for style only; never copy their interface panels, characters, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nSUBJECT: a small stone chapel on a reedy islet, half sunk into black marsh water after a great flood, arched windows, a carved bell over the barred door, grey fog\nFRAMING: wide 3:2 landscape establishing view at eye level; keep the lower third calm and uncluttered (open ground, water or flagstones) so interface elements can sit there; no identifiable people — at most a few tiny distant anonymous silhouettes far in the background.\n\nThen copy the generated PNG into the current working directory as drowned-chapel.png and reply only with that file name."
+      "sha256": "ace93c49052c88ab364fc7beea5148ffd3637809208bdff8ab633e3440a0efb7",
+      "originalSha256": "de2e2ceafb9e3f8d1b58dc1e9079a17f7a112259ffdb77295ecd66c384b3e34e",
+      "generated": "2026-11-15",
+      "references": [
+        "living-tabletop-world-art/ravenford-p1-2026-11-15/replaced/drowned-chapel.png",
+        "fixtures/ravenford-ru/assets/golden-stag-inn.webp",
+        "fixtures/hollowmere/assets/sunken-mill.webp"
+      ],
+      "prompt": "Create exactly one new image with your image generation tool. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nSUBJECT: a small stone chapel on a reedy islet, half sunk into black marsh water after a great flood, arched windows, a carved bell over the barred door, low mist on the water, at dusk: low amber evening light and long blue shadows, warm lamplight in windows and on the water\nThe first attached image is this same place as it was first painted: keep its architecture, landmarks and composition exactly, but repaint it in the light and palette of the other attached references.\nFRAMING: wide 3:2 landscape establishing view at eye level; keep the lower third calm and uncluttered (open ground or cobblestones) so interface elements can sit there; no identifiable people — at most a few tiny distant anonymous silhouettes far in the background.\n\nThen copy the generated PNG into the current working directory as drowned-chapel.png and reply only with that file name."
     },
     {
       "file": "sunken-mill.webp",
@@ -370,7 +390,12 @@
     },
     {
       "file": "ashen-acolyte.webp",
-      "entityIds": ["creature-04e362c6", "creature-1b6489b4"],
+      "entityIds": [
+        "creature-04e362c6",
+        "creature-1b6489b4",
+        "creature-883736e6",
+        "creature-c0e1d9b6"
+      ],
       "variant": "reference",
       "label": null,
       "purpose": "image",
@@ -498,7 +523,12 @@
     },
     {
       "file": "ashen-acolyte--figure.webp",
-      "entityIds": ["creature-04e362c6", "creature-1b6489b4"],
+      "entityIds": [
+        "creature-04e362c6",
+        "creature-1b6489b4",
+        "creature-883736e6",
+        "creature-c0e1d9b6"
+      ],
       "variant": "derived",
       "label": "figure",
       "purpose": "figure",
@@ -551,6 +581,932 @@
       "generated": "2026-11-03",
       "references": [],
       "prompt": "Create exactly one new image with your image generation tool, using the attached reference image as the input image. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached concept art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the concepts for style only; never copy their interface panels, characters, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nThe attached image is the approved canonical reference. Draw full-body painted tabletop miniature of the same figure standing on a round dark stone base, three-quarter view from slightly above, isolated on a pure flat black background (#000000), no cast shadow beyond the base. Keep the same figure's face, build, clothing and colours exactly; change only what this variant requires.\nFRAMING: square 1:1.\n\nThen copy the generated PNG into the current working directory as lantern-bearer--figure.png and reply only with that file name."
+    },
+    {
+      "file": "swarm-of-rats.webp",
+      "entityIds": ["creature-74212878"],
+      "variant": "reference",
+      "label": null,
+      "purpose": "image",
+      "derivedFrom": null,
+      "mediaType": "image/webp",
+      "sha256": "8a1dc2c561b3aa21831c0e1c504ee564734722f6926a19feaf4c92beadbbfdc2",
+      "originalSha256": "9f5eebe9c7041394bd0a7d18cc461d3b211b604247d86b8e3b37685072f33468",
+      "generated": "2026-11-15",
+      "references": [
+        "fixtures/hollowmere/assets/giant-rat.webp",
+        "fixtures/ravenford-ru/assets/goblin-shaman.webp"
+      ],
+      "prompt": "Create exactly one new image with your image generation tool. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nSUBJECT: a swarm of rats: dozens of slick wet brown rats boiling over one another in one heaving mass on a flooded plank floor, beady eyes and yellow teeth glinting in lantern light\nThey are the same kind of marsh rat as the attached giant rat, only of ordinary size.\nFRAMING: square 1:1 bestiary portrait, the whole creature or head and shoulders, three-quarter view, dramatic rim light on a dark smoky background with a soft vignette; an original design, not any known franchise creature.\n\nThen copy the generated PNG into the current working directory as swarm-of-rats.png and reply only with that file name."
+    },
+    {
+      "file": "giant-frog.webp",
+      "entityIds": ["creature-404048a6", "creature-fb440f54"],
+      "variant": "reference",
+      "label": null,
+      "purpose": "image",
+      "derivedFrom": null,
+      "mediaType": "image/webp",
+      "sha256": "f942dfda5ad5adc22956a0c73ae520be98141d73797d5feb916d65b65ae648de",
+      "originalSha256": "337e4446550e3eaa709dc433831172aba4e909f2b26b31a415b679ab8bd44907",
+      "generated": "2026-11-15",
+      "references": [
+        "fixtures/hollowmere/assets/giant-rat.webp",
+        "fixtures/hollowmere/assets/fogmarsh.webp"
+      ],
+      "prompt": "Create exactly one new image with your image generation tool. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nSUBJECT: a giant marsh frog the size of a calf: mottled olive and black skin glistening wet, bulging gold eyes, a wide lipless mouth, crouched in black fen water among reeds\nFRAMING: square 1:1 bestiary portrait, the whole creature or head and shoulders, three-quarter view, dramatic rim light on a dark smoky background with a soft vignette; an original design, not any known franchise creature.\n\nThen copy the generated PNG into the current working directory as giant-frog.png and reply only with that file name."
+    },
+    {
+      "file": "reed-lookout.webp",
+      "entityIds": ["creature-f44353f4", "creature-c086c930"],
+      "variant": "reference",
+      "label": null,
+      "purpose": "image",
+      "derivedFrom": null,
+      "mediaType": "image/webp",
+      "sha256": "16a9bd0f12890e71f37257c7c4ab4e8cdd797a384422b083a97099c14a61e337",
+      "originalSha256": "343faaf296c9bda43c0635310aab37e540d6e29b5d542e533b3d4fc94cb3090e",
+      "generated": "2026-11-15",
+      "references": [
+        "fixtures/hollowmere/assets/reed-smuggler.webp",
+        "fixtures/ravenford-ru/assets/mira-vale.webp"
+      ],
+      "prompt": "Create exactly one new image with your image generation tool. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nSUBJECT: a sharp-eyed marsh lookout of the Reed Cloaks smugglers: a cloak of woven reeds, a longbow in hand with an arrow nocked, a shortsword at the hip, crouched on old timber beams, watchful narrowed eyes\nThe lookout belongs to the same smuggling band as the attached reed smuggler: the same woven reed cloak and gear, but a different person.\nFRAMING: square 1:1 bestiary portrait, the whole creature or head and shoulders, three-quarter view, dramatic rim light on a dark smoky background with a soft vignette; an original design, not any known franchise creature.\n\nThen copy the generated PNG into the current working directory as reed-lookout.png and reply only with that file name."
+    },
+    {
+      "file": "bryn-ashdown.webp",
+      "entityIds": ["seed-party-0001"],
+      "variant": "reference",
+      "label": null,
+      "purpose": "image",
+      "derivedFrom": null,
+      "mediaType": "image/webp",
+      "sha256": "43940f312730d0e5d916a836e8f3821c14ac5e8d7002fbf57290a38bc1f85e02",
+      "originalSha256": "eb1278f3a25a4c348f0aa60eeeea2452e92cbce8a4254ffe3e343fca15d2e60a",
+      "generated": "2026-11-15",
+      "references": [
+        "fixtures/ravenford-ru/assets/captain-thorne.webp",
+        "fixtures/ravenford-ru/assets/elowen-starwhisper.webp"
+      ],
+      "prompt": "Create exactly one new image with your image generation tool. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nSUBJECT: Bryn Ashdown, a human fighter woman in her late twenties, a former soldier: short-cropped dark hair, a pale scar across one cheekbone, a determined level gaze, a chain mail hauberk over a padded gambeson, the hilt of a greatsword over her shoulder\nShe is a new hero of the same world as the attached portraits; paint her with the same light, finish and level of detail.\nFRAMING: square 1:1 portrait, head and shoulders to mid-chest, three-quarter view, soft cinematic key light, dark atmospheric background that falls off to near-black at the edges.\n\nThen copy the generated PNG into the current working directory as bryn-ashdown.png and reply only with that file name."
+    },
+    {
+      "file": "hesk-coalbeard.webp",
+      "entityIds": ["seed-party-0002"],
+      "variant": "reference",
+      "label": null,
+      "purpose": "image",
+      "derivedFrom": null,
+      "mediaType": "image/webp",
+      "sha256": "ed24a9b810ab2f02ee19cf068798f17da8438fcd173d1d920551b2ac88620158",
+      "originalSha256": "a436d4ff5224491e67418dea87a7d7515dcdde20d2bde453fd73dd60f1661a85",
+      "generated": "2026-11-15",
+      "references": [
+        "fixtures/ravenford-ru/assets/orin-stonebeard.webp",
+        "fixtures/ravenford-ru/assets/elowen-starwhisper.webp"
+      ],
+      "prompt": "Create exactly one new image with your image generation tool. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nSUBJECT: Hesk Coalbeard, a young dwarf cleric and temple acolyte: a coal-black braided beard, soot-dark brows, earnest dark eyes, a chain shirt under a simple dark-red acolyte's tabard, a wooden shield on his arm, a plain bronze holy amulet, a mace\nHe is a new hero of the same world as the attached portraits; paint him with the same light, finish and level of detail, but he is not the attached old alchemist.\nFRAMING: square 1:1 portrait, head and shoulders to mid-chest, three-quarter view, soft cinematic key light, dark atmospheric background that falls off to near-black at the edges.\n\nThen copy the generated PNG into the current working directory as hesk-coalbeard.png and reply only with that file name."
+    },
+    {
+      "file": "wren-underbough.webp",
+      "entityIds": ["seed-party-0003"],
+      "variant": "reference",
+      "label": null,
+      "purpose": "image",
+      "derivedFrom": null,
+      "mediaType": "image/webp",
+      "sha256": "40d560ac1c890ab78a901a120b0080b8961a7e14a9373ff9ea07ccbbc3556ff3",
+      "originalSha256": "acb4ac946a3a3125af90f6532f2b330485f3db00e8da237f6a288bc77027c21f",
+      "generated": "2026-11-15",
+      "references": [
+        "fixtures/ravenford-ru/assets/mira-vale.webp",
+        "fixtures/ravenford-ru/assets/elowen-starwhisper.webp"
+      ],
+      "prompt": "Create exactly one new image with your image generation tool. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nSUBJECT: Wren Underbough, a halfling rogue man in his twenties, a former street thief: tousled sandy hair, a sharp foxlike grin, watchful green eyes, a hooded dark leather jacket, two daggers at his belt\nHe is a new hero of the same world as the attached portraits; paint him with the same light, finish and level of detail.\nFRAMING: square 1:1 portrait, head and shoulders to mid-chest, three-quarter view, soft cinematic key light, dark atmospheric background that falls off to near-black at the edges.\n\nThen copy the generated PNG into the current working directory as wren-underbough.png and reply only with that file name."
+    },
+    {
+      "file": "lyra-venn.webp",
+      "entityIds": ["seed-party-0004"],
+      "variant": "reference",
+      "label": null,
+      "purpose": "image",
+      "derivedFrom": null,
+      "mediaType": "image/webp",
+      "sha256": "d9fc2098323150e0da1bb98228d9c72f5e448f3965f50e9513df5fe56dc9210b",
+      "originalSha256": "8cf48188f3bee8c7df996c4fd6ffddf0bc0437ace5eeb4f7eb3ec5f0f8b486b0",
+      "generated": "2026-11-15",
+      "references": [
+        "fixtures/ravenford-ru/assets/elowen-starwhisper.webp",
+        "fixtures/ravenford-ru/assets/mira-vale.webp"
+      ],
+      "prompt": "Create exactly one new image with your image generation tool. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nSUBJECT: Lyra Venn, a young elf wizard and scholar: long straight raven-black hair, pointed ears, thoughtful grey eyes, a deep blue scholar's robe with a high collar, ink stains on her fingers, a worn leather-bound spellbook held to her chest, a plain wooden quarterstaff\nShe is a new hero of the same world as the attached portraits, not the attached elf ranger; paint her with the same light, finish and level of detail.\nFRAMING: square 1:1 portrait, head and shoulders to mid-chest, three-quarter view, soft cinematic key light, dark atmospheric background that falls off to near-black at the edges.\n\nThen copy the generated PNG into the current working directory as lyra-venn.png and reply only with that file name."
+    },
+    {
+      "file": "swarm-of-rats--figure.webp",
+      "entityIds": ["creature-74212878"],
+      "variant": "derived",
+      "label": "figure",
+      "purpose": "figure",
+      "derivedFrom": "swarm-of-rats.webp",
+      "mediaType": "image/webp",
+      "sha256": "e98c624c6bffd60aa7125c1706797f6c3d323ecfd80566adc0c61d7c8a448c92",
+      "originalSha256": "1de281e1334c12325fc9f2556c0010bb79a28d5e18a909fd1f1db53a1cd67a7b",
+      "generated": "2026-11-15",
+      "references": ["swarm-of-rats.webp"],
+      "prompt": "Create exactly one new image with your image generation tool, using the attached reference image as the input image. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nThe attached image is the approved canonical reference. Draw a full-body painted tabletop miniature of the same character standing on a round dark stone base, three-quarter view from slightly above, isolated on a pure flat black background (#000000), no cast shadow beyond the base. Keep the same person's or creature's face, build, hair, clothing, equipment and colours exactly; change only what this variant requires.\nFRAMING: square 1:1.\n\nThen copy the generated PNG into the current working directory as swarm-of-rats--figure.png and reply only with that file name."
+    },
+    {
+      "file": "giant-frog--figure.webp",
+      "entityIds": ["creature-404048a6", "creature-fb440f54"],
+      "variant": "derived",
+      "label": "figure",
+      "purpose": "figure",
+      "derivedFrom": "giant-frog.webp",
+      "mediaType": "image/webp",
+      "sha256": "515f146220df4d4dd1aa39a59fea9d268a8d2688552262c30a851b9a69b455c0",
+      "originalSha256": "ee7e1638bb1c08cb36a3710b4665ab4c95106934f5ed7b6da9c00fb56bb6275c",
+      "generated": "2026-11-15",
+      "references": ["giant-frog.webp"],
+      "prompt": "Create exactly one new image with your image generation tool, using the attached reference image as the input image. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nThe attached image is the approved canonical reference. Draw a full-body painted tabletop miniature of the same character standing on a round dark stone base, three-quarter view from slightly above, isolated on a pure flat black background (#000000), no cast shadow beyond the base. Keep the same person's or creature's face, build, hair, clothing, equipment and colours exactly; change only what this variant requires.\nFRAMING: square 1:1.\n\nThen copy the generated PNG into the current working directory as giant-frog--figure.png and reply only with that file name."
+    },
+    {
+      "file": "reed-lookout--figure.webp",
+      "entityIds": ["creature-f44353f4", "creature-c086c930"],
+      "variant": "derived",
+      "label": "figure",
+      "purpose": "figure",
+      "derivedFrom": "reed-lookout.webp",
+      "mediaType": "image/webp",
+      "sha256": "4ff7b1e3ae72d134ffac52b452fbb26fdf0fa18a02cb023885e1ea6dfd81e4f0",
+      "originalSha256": "88d6de60cfd6230a1b11ff08ec3b9c79e2235025298f3b044a587346e2e07c47",
+      "generated": "2026-11-15",
+      "references": ["reed-lookout.webp"],
+      "prompt": "Create exactly one new image with your image generation tool, using the attached reference image as the input image. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nThe attached image is the approved canonical reference. Draw a full-body painted tabletop miniature of the same character standing on a round dark stone base, three-quarter view from slightly above, isolated on a pure flat black background (#000000), no cast shadow beyond the base. Keep the same person's or creature's face, build, hair, clothing, equipment and colours exactly; change only what this variant requires.\nFRAMING: square 1:1.\n\nThen copy the generated PNG into the current working directory as reed-lookout--figure.png and reply only with that file name."
+    },
+    {
+      "file": "bryn-ashdown--figure.webp",
+      "entityIds": ["seed-party-0001"],
+      "variant": "derived",
+      "label": "figure",
+      "purpose": "figure",
+      "derivedFrom": "bryn-ashdown.webp",
+      "mediaType": "image/webp",
+      "sha256": "3ae5e99c339ef38128252f1ddaa4de70f108ea2540b3340ed18b460fc4e381a7",
+      "originalSha256": "44be345fd49865a69ae8dbf2f6ae30c649edbc430ce40aeea1407148cdb76d6a",
+      "generated": "2026-11-15",
+      "references": ["bryn-ashdown.webp"],
+      "prompt": "Create exactly one new image with your image generation tool, using the attached reference image as the input image. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nThe attached image is the approved canonical reference. Draw a full-body painted tabletop miniature of the same character standing on a round dark stone base, three-quarter view from slightly above, isolated on a pure flat black background (#000000), no cast shadow beyond the base. Keep the same person's or creature's face, build, hair, clothing, equipment and colours exactly; change only what this variant requires.\nFRAMING: square 1:1.\n\nThen copy the generated PNG into the current working directory as bryn-ashdown--figure.png and reply only with that file name."
+    },
+    {
+      "file": "bryn-ashdown--wounded.webp",
+      "entityIds": ["seed-party-0001"],
+      "variant": "derived",
+      "label": "wounded",
+      "purpose": "image",
+      "derivedFrom": "bryn-ashdown.webp",
+      "mediaType": "image/webp",
+      "sha256": "d6fd7454290af05c7de289f5f5125aabe5ce7a3de7e05ab6a63780d7ae9b94a6",
+      "originalSha256": "01087afb9f412c7810f896479c67899ccec37e3c09d81da205cfe4d913943b4d",
+      "generated": "2026-11-15",
+      "references": ["bryn-ashdown.webp"],
+      "prompt": "Create exactly one new image with your image generation tool, using the attached reference image as the input image. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nThe attached image is the approved canonical reference. Draw the same person wounded but standing: torn clothing, a bandaged arm, a cut on the brow, tired but resolute. Keep the same person's or creature's face, build, hair, clothing, equipment and colours exactly; change only what this variant requires.\nFRAMING: square 1:1 portrait, head and shoulders to mid-chest, three-quarter view, soft cinematic key light, dark atmospheric background that falls off to near-black at the edges.\n\nThen copy the generated PNG into the current working directory as bryn-ashdown--wounded.png and reply only with that file name."
+    },
+    {
+      "file": "hesk-coalbeard--figure.webp",
+      "entityIds": ["seed-party-0002"],
+      "variant": "derived",
+      "label": "figure",
+      "purpose": "figure",
+      "derivedFrom": "hesk-coalbeard.webp",
+      "mediaType": "image/webp",
+      "sha256": "dba54c48a2dc2bf9a326b3d38e8b6b89d07507a3e277f3a9d27b5f877e0f0a8e",
+      "originalSha256": "ac1010b59a1e6eba24aec60df7a768b8d42ef662328a84f812d3dfa36a121b5f",
+      "generated": "2026-11-15",
+      "references": ["hesk-coalbeard.webp"],
+      "prompt": "Create exactly one new image with your image generation tool, using the attached reference image as the input image. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nThe attached image is the approved canonical reference. Draw a full-body painted tabletop miniature of the same character standing on a round dark stone base, three-quarter view from slightly above, isolated on a pure flat black background (#000000), no cast shadow beyond the base. Keep the same person's or creature's face, build, hair, clothing, equipment and colours exactly; change only what this variant requires.\nFRAMING: square 1:1.\n\nThen copy the generated PNG into the current working directory as hesk-coalbeard--figure.png and reply only with that file name."
+    },
+    {
+      "file": "hesk-coalbeard--wounded.webp",
+      "entityIds": ["seed-party-0002"],
+      "variant": "derived",
+      "label": "wounded",
+      "purpose": "image",
+      "derivedFrom": "hesk-coalbeard.webp",
+      "mediaType": "image/webp",
+      "sha256": "46cb52d6bfd5ed172ca2dca7e415fac086723800b02003baaeba4e0ab7774e1a",
+      "originalSha256": "e35847581852fa7f28de4b493d7a25f899fe47cd381ac3c0add68a1bda7f1573",
+      "generated": "2026-11-15",
+      "references": ["hesk-coalbeard.webp"],
+      "prompt": "Create exactly one new image with your image generation tool, using the attached reference image as the input image. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nThe attached image is the approved canonical reference. Draw the same person wounded but standing: torn clothing, a bandaged arm, a cut on the brow, tired but resolute. Keep the same person's or creature's face, build, hair, clothing, equipment and colours exactly; change only what this variant requires.\nFRAMING: square 1:1 portrait, head and shoulders to mid-chest, three-quarter view, soft cinematic key light, dark atmospheric background that falls off to near-black at the edges.\n\nThen copy the generated PNG into the current working directory as hesk-coalbeard--wounded.png and reply only with that file name."
+    },
+    {
+      "file": "wren-underbough--figure.webp",
+      "entityIds": ["seed-party-0003"],
+      "variant": "derived",
+      "label": "figure",
+      "purpose": "figure",
+      "derivedFrom": "wren-underbough.webp",
+      "mediaType": "image/webp",
+      "sha256": "c689ca87abfcf4871e929e091d9d82ec80d2debba191213044a9d8b472b54ae8",
+      "originalSha256": "cf06e3461ca0e4d2b87fc33fe5355028c4c5d52c045c9bf9325fd2dc43147374",
+      "generated": "2026-11-15",
+      "references": ["wren-underbough.webp"],
+      "prompt": "Create exactly one new image with your image generation tool, using the attached reference image as the input image. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nThe attached image is the approved canonical reference. Draw a full-body painted tabletop miniature of the same character standing on a round dark stone base, three-quarter view from slightly above, isolated on a pure flat black background (#000000), no cast shadow beyond the base. Keep the same person's or creature's face, build, hair, clothing, equipment and colours exactly; change only what this variant requires.\nFRAMING: square 1:1.\n\nThen copy the generated PNG into the current working directory as wren-underbough--figure.png and reply only with that file name."
+    },
+    {
+      "file": "wren-underbough--wounded.webp",
+      "entityIds": ["seed-party-0003"],
+      "variant": "derived",
+      "label": "wounded",
+      "purpose": "image",
+      "derivedFrom": "wren-underbough.webp",
+      "mediaType": "image/webp",
+      "sha256": "e6b2387e8e296c6f3c626dab504fd06fcdcbb6651a4cf70e3bc2397ef2f8bab0",
+      "originalSha256": "3d8dcbf1c88165d677d42298c5b90385cf37049279626389ce244703f20a5b12",
+      "generated": "2026-11-15",
+      "references": ["wren-underbough.webp"],
+      "prompt": "Create exactly one new image with your image generation tool, using the attached reference image as the input image. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nThe attached image is the approved canonical reference. Draw the same person wounded but standing: torn clothing, a bandaged arm, a cut on the brow, tired but resolute. Keep the same person's or creature's face, build, hair, clothing, equipment and colours exactly; change only what this variant requires.\nFRAMING: square 1:1 portrait, head and shoulders to mid-chest, three-quarter view, soft cinematic key light, dark atmospheric background that falls off to near-black at the edges.\n\nThen copy the generated PNG into the current working directory as wren-underbough--wounded.png and reply only with that file name."
+    },
+    {
+      "file": "lyra-venn--figure.webp",
+      "entityIds": ["seed-party-0004"],
+      "variant": "derived",
+      "label": "figure",
+      "purpose": "figure",
+      "derivedFrom": "lyra-venn.webp",
+      "mediaType": "image/webp",
+      "sha256": "173dee9f7d2529d9eae0f6a54661213f20e630d7bb47d8571efdf87ec2e4b95b",
+      "originalSha256": "56866d311f2c5c742510d21ee7738ff8d304f01f90dbbdabc0b79db512703bf4",
+      "generated": "2026-11-15",
+      "references": ["lyra-venn.webp"],
+      "prompt": "Create exactly one new image with your image generation tool, using the attached reference image as the input image. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nThe attached image is the approved canonical reference. Draw a full-body painted tabletop miniature of the same character standing on a round dark stone base, three-quarter view from slightly above, isolated on a pure flat black background (#000000), no cast shadow beyond the base. Keep the same person's or creature's face, build, hair, clothing, equipment and colours exactly; change only what this variant requires.\nFRAMING: square 1:1.\n\nThen copy the generated PNG into the current working directory as lyra-venn--figure.png and reply only with that file name."
+    },
+    {
+      "file": "lyra-venn--wounded.webp",
+      "entityIds": ["seed-party-0004"],
+      "variant": "derived",
+      "label": "wounded",
+      "purpose": "image",
+      "derivedFrom": "lyra-venn.webp",
+      "mediaType": "image/webp",
+      "sha256": "90663d8cf787eaa3e1158f4a13e81a814749fb4fe2cf13b2d5b2a453d9810882",
+      "originalSha256": "8941ab5785fdd49a945191e1ecb827d4e4bfab192ede9bbde2c788456883396f",
+      "generated": "2026-11-15",
+      "references": ["lyra-venn.webp"],
+      "prompt": "Create exactly one new image with your image generation tool, using the attached reference image as the input image. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nThe attached image is the approved canonical reference. Draw the same person wounded but standing: torn clothing, a bandaged arm, a cut on the brow, tired but resolute. Keep the same person's or creature's face, build, hair, clothing, equipment and colours exactly; change only what this variant requires.\nFRAMING: square 1:1 portrait, head and shoulders to mid-chest, three-quarter view, soft cinematic key light, dark atmospheric background that falls off to near-black at the edges.\n\nThen copy the generated PNG into the current working directory as lyra-venn--wounded.png and reply only with that file name."
+    },
+    {
+      "file": "marsh-light--figure.webp",
+      "entityIds": ["creature-136c3004"],
+      "variant": "derived",
+      "label": "figure",
+      "purpose": "figure",
+      "derivedFrom": "marsh-light.webp",
+      "mediaType": "image/webp",
+      "sha256": "9f0e773f384d05340c0c98237e884630feac2d69f0c4055916e932fe76c1387b",
+      "originalSha256": "a92e6c8d114101fa688b6f2486f1659bbb3ad6f68da17254b62ae32f7f1296e4",
+      "generated": "2026-11-15",
+      "references": ["fixtures/hollowmere/assets/marsh-light.webp"],
+      "prompt": "Create exactly one new image with your image generation tool, using the attached reference image as the input image. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nThe attached image is the approved canonical reference. Draw a painted tabletop miniature of the same creature: the pale cold ball of light with its faint skull-like shimmer, hovering on a thin twist of marsh mist above a round dark stone base with a few reeds, three-quarter view from slightly above, isolated on a pure flat black background (#000000), no cast shadow beyond the base. Keep the same person's or creature's face, build, hair, clothing, equipment and colours exactly; change only what this variant requires.\nFRAMING: square 1:1.\n\nThen copy the generated PNG into the current working directory as marsh-light--figure.png and reply only with that file name."
+    },
+    {
+      "file": "willow-ford--map.webp",
+      "entityIds": ["willow-ford"],
+      "variant": "derived",
+      "label": "map",
+      "purpose": "battle-map",
+      "derivedFrom": "willow-ford.webp",
+      "mediaType": "image/webp",
+      "sha256": "50a92e654c4ef1572a148f2376e555f8576cf8d0076bd1f7ff38153beaac20e9",
+      "originalSha256": "63310309ebba3c2b0b011bf139ce554903c1f5c02cbec3d523df6297cf1c7b32",
+      "generated": "2026-11-15",
+      "references": [
+        "living-tabletop-world-art/ravenford-p0-2026-11-15/ref/willow-ford--map.layout.png",
+        "fixtures/hollowmere/assets/willow-ford.webp"
+      ],
+      "prompt": "Generate one image with your image generation tool and save it as willow-ford--map.png in the current working directory. Do not write any code or other files except saving the result.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: the Willow Ford: a rutted dirt cart road crosses the field from west to east and fords a shallow cold brook that runs north to south through the middle; the hatched squares are the knee-deep brook over pebbles; leaning willows, sedge and wet grass on both banks; the mid-grey squares are a fallen willow log and a stump, the dark square is a thick old willow trunk.\n\nThe first reference image is the exact layout of the playable field: a 14 by 10 square grid drawn in the middle of the canvas. Keep the same composition and positions: every black square is a solid obstacle that blocks movement and gives full cover, every dark grey square a tall obstacle that gives three-quarters cover, every mid-grey square a low obstacle that gives half cover, every square with diagonal hatching is difficult ground. Draw the obstacles exactly on those squares, at the scale of one square each. Plain light squares are open ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nThe second reference image shows how this place looks at eye level; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nSTYLE: match the attached place picture — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks."
+    },
+    {
+      "file": "reeves-cellar--map.webp",
+      "entityIds": ["reeves-cellar"],
+      "variant": "derived",
+      "label": "map",
+      "purpose": "battle-map",
+      "derivedFrom": "reeves-cellar.webp",
+      "mediaType": "image/webp",
+      "sha256": "bf6af8f2e77ee29026678a1ebd0734a01a56b298c1aa7f331b7a5542890bbfdf",
+      "originalSha256": "9167a99072287c377e4cab22a32b18b73e02e1e59eb1016fe1a784397ea96830",
+      "generated": "2026-11-15",
+      "references": [
+        "living-tabletop-world-art/ravenford-p0-2026-11-15/ref/reeves-cellar--map.layout.png",
+        "fixtures/hollowmere/assets/reeves-cellar.webp"
+      ],
+      "prompt": "Generate one image with your image generation tool and save it as reeves-cellar--map.png in the current working directory. Do not write any code or other files except saving the result.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: the reeve's cellar: a damp low cellar with a floor of old planks; the mid-grey squares are stacks of oil barrels and salt sacks; the hatched squares are a ragged gnawed hole in the planks with black water below; more barrels and sacks along the walls beyond the field.\n\nThe first reference image is the exact layout of the playable field: a 10 by 8 square grid drawn in the middle of the canvas. Keep the same composition and positions: every black square is a solid obstacle that blocks movement and gives full cover, every dark grey square a tall obstacle that gives three-quarters cover, every mid-grey square a low obstacle that gives half cover, every square with diagonal hatching is difficult ground. Draw the obstacles exactly on those squares, at the scale of one square each. Plain light squares are open ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nThe second reference image shows how this place looks at eye level; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nSTYLE: match the attached place picture — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks."
+    },
+    {
+      "file": "drowned-chapel--map.webp",
+      "entityIds": ["drowned-chapel"],
+      "variant": "derived",
+      "label": "map",
+      "purpose": "battle-map",
+      "derivedFrom": "drowned-chapel.webp",
+      "mediaType": "image/webp",
+      "sha256": "006eb747baaf08a2920d4841002d1a283e7d824eebc5e5510c1d22f50f71b29f",
+      "originalSha256": "30cea1e04188af574b60a79730a0226fa8fd55aa4f06952560c88dbec6ad68b8",
+      "generated": "2026-11-15",
+      "references": [
+        "living-tabletop-world-art/ravenford-p0-2026-11-15/ref/drowned-chapel--map.layout.png",
+        "fixtures/hollowmere/assets/drowned-chapel.webp"
+      ],
+      "prompt": "Generate one image with your image generation tool and save it as drowned-chapel--map.png in the current working directory. Do not write any code or other files except saving the result.\n\nA tabletop battle map, square 1:1, seen straight from above (orthographic top-down), of this place: inside the flooded nave of a small old stone chapel: worn flagstones; the hatched squares, the whole southern part of the nave, are knee-deep black flood water over the flagstones; the mid-grey squares are toppled wooden pews; the dark square is a thick stone pillar near the altar at the east end; mossy stone walls beyond the field.\n\nThe first reference image is the exact layout of the playable field: a 14 by 12 square grid drawn in the middle of the canvas. Keep the same composition and positions: every black square is a solid obstacle that blocks movement and gives full cover, every dark grey square a tall obstacle that gives three-quarters cover, every mid-grey square a low obstacle that gives half cover, every square with diagonal hatching is difficult ground. Draw the obstacles exactly on those squares, at the scale of one square each. Plain light squares are open ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nThe second reference image shows how this place looks at eye level; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nSTYLE: match the attached place picture — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks."
+    },
+    {
+      "file": "fogmarsh--map.webp",
+      "entityIds": ["fogmarsh"],
+      "variant": "derived",
+      "label": "map",
+      "purpose": "battle-map",
+      "derivedFrom": "fogmarsh.webp",
+      "mediaType": "image/webp",
+      "sha256": "d83149ad194ef1cfefb24f2aa3a8e950f6ef8d403820d803e2436752f6e053e7",
+      "originalSha256": "ba01d0004e9cfd29a08a433d7a3f746233b83af784455473f2f6f887012d97e5",
+      "generated": "2026-11-15",
+      "references": [
+        "living-tabletop-world-art/ravenford-p0-2026-11-15/ref/fogmarsh--map.layout.png",
+        "fixtures/hollowmere/assets/fogmarsh.webp"
+      ],
+      "prompt": "Generate one image with your image generation tool and save it as fogmarsh--map.png in the current working directory. Do not write any code or other files except saving the result.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: a channel through the Fogmarsh: firm peat ground and a few old planks laid as a path; the two hatched bands running north to south are reed beds and black pools of knee-deep fen water; the mid-grey square between them is a drowned alder stump; thin pale mist lying low over the water.\n\nThe first reference image is the exact layout of the playable field: a 16 by 12 square grid drawn in the middle of the canvas. Keep the same composition and positions: every black square is a solid obstacle that blocks movement and gives full cover, every dark grey square a tall obstacle that gives three-quarters cover, every mid-grey square a low obstacle that gives half cover, every square with diagonal hatching is difficult ground. Draw the obstacles exactly on those squares, at the scale of one square each. Plain light squares are open ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nThe second reference image shows how this place looks at eye level; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nSTYLE: match the attached place picture — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks."
+    },
+    {
+      "file": "sunken-mill--map.webp",
+      "entityIds": ["sunken-mill"],
+      "variant": "derived",
+      "label": "map",
+      "purpose": "battle-map",
+      "derivedFrom": "sunken-mill.webp",
+      "mediaType": "image/webp",
+      "sha256": "63273be35cbb1ef4717a5aefcb485ec10c4efb30293b514172226fde9c37c7ca",
+      "originalSha256": "bb804834319f292c4ad7190f16a4b4b9b4bb04aeaf658c7bbcc62b784de32279",
+      "generated": "2026-11-15",
+      "references": [
+        "living-tabletop-world-art/ravenford-p0-2026-11-15/ref/sunken-mill--map.layout.png",
+        "fixtures/hollowmere/assets/sunken-mill.webp"
+      ],
+      "prompt": "Generate one image with your image generation tool and save it as sunken-mill--map.png in the current working directory. Do not write any code or other files except saving the result.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: the floor of an old timber water-mill standing in still black water: wide worn planks; the two black squares are the massive wooden housing of the waterwheel's axle and gears; the mid-grey squares are stacked grain sacks and crates; the three hatched columns along the east edge are wet, broken boards over the mill-race; the mossy waterwheel turns in black water just beyond the east edge of the field.\n\nThe first reference image is the exact layout of the playable field: a 16 by 12 square grid drawn in the middle of the canvas. Keep the same composition and positions: every black square is a solid obstacle that blocks movement and gives full cover, every dark grey square a tall obstacle that gives three-quarters cover, every mid-grey square a low obstacle that gives half cover, every square with diagonal hatching is difficult ground. Draw the obstacles exactly on those squares, at the scale of one square each. Plain light squares are open ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nThe second reference image shows how this place looks at eye level; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nSTYLE: match the attached place picture — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks."
+    },
+    {
+      "file": "flooded-crypt--map.webp",
+      "entityIds": ["location-5b2e9c47"],
+      "variant": "derived",
+      "label": "map",
+      "purpose": "battle-map",
+      "derivedFrom": "flooded-crypt.webp",
+      "mediaType": "image/webp",
+      "sha256": "221c957c7937785691e5d635c50dc28985bfce670cd0b04c87b1300036b83a6f",
+      "originalSha256": "5291732e77753e778864a764f848be95642f5790be1b2f67090c6aa733814f21",
+      "generated": "2026-11-15",
+      "references": [
+        "living-tabletop-world-art/ravenford-p0-2026-11-15/ref/flooded-crypt--map.layout.png",
+        "fixtures/hollowmere/assets/flooded-crypt.webp"
+      ],
+      "prompt": "Generate one image with your image generation tool and save it as flooded-crypt--map.png in the current working directory. Do not write any code or other files except saving the result.\n\nA tabletop battle map, square 1:1, seen straight from above (orthographic top-down), of this place: a vaulted stone crypt half flooded with black water: worn flagstones and the foot of a stone stair on the west side; the hatched band running north to south through the middle is knee-deep black water; the mid-grey squares are carved stone tombs; more tombs along the walls beyond the field.\n\nThe first reference image is the exact layout of the playable field: a 12 by 10 square grid drawn in the middle of the canvas. Keep the same composition and positions: every black square is a solid obstacle that blocks movement and gives full cover, every dark grey square a tall obstacle that gives three-quarters cover, every mid-grey square a low obstacle that gives half cover, every square with diagonal hatching is difficult ground. Draw the obstacles exactly on those squares, at the scale of one square each. Plain light squares are open ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nThe second reference image shows how this place looks at eye level; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nSTYLE: match the attached place picture — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks."
+    },
+    {
+      "file": "sunken-bell-chamber--map.webp",
+      "entityIds": ["location-c81f04da"],
+      "variant": "derived",
+      "label": "map",
+      "purpose": "battle-map",
+      "derivedFrom": "sunken-bell-chamber.webp",
+      "mediaType": "image/webp",
+      "sha256": "a4389a1a2c3df25cc95fa214d21ba4c7eaaa408751471b6522dcb708d7e3aeff",
+      "originalSha256": "b4da38e7bfe238c192dcdb93aab28453fe7069f18eabf39c1eaa6139adbe65c6",
+      "generated": "2026-11-15",
+      "references": [
+        "living-tabletop-world-art/ravenford-p0-2026-11-15/ref/sunken-bell-chamber--map.layout.png",
+        "fixtures/hollowmere/assets/sunken-bell-chamber.webp"
+      ],
+      "prompt": "Generate one image with your image generation tool and save it as sunken-bell-chamber--map.png in the current working directory. Do not write any code or other files except saving the result.\n\nA tabletop battle map, square 1:1, seen straight from above (orthographic top-down), of this place: a round underground chamber of old stone: a ring of flagstone floor around a dark pool in the centre; the hatched squares in the centre are a shallow dark pool; the four dark squares are thick stone pillars; the top of an ancient green bronze bell hangs low over the pool.\n\nThe first reference image is the exact layout of the playable field: a 14 by 12 square grid drawn in the middle of the canvas. Keep the same composition and positions: every black square is a solid obstacle that blocks movement and gives full cover, every dark grey square a tall obstacle that gives three-quarters cover, every mid-grey square a low obstacle that gives half cover, every square with diagonal hatching is difficult ground. Draw the obstacles exactly on those squares, at the scale of one square each. Plain light squares are open ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nThe second reference image shows how this place looks at eye level; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nSTYLE: match the attached place picture — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks."
+    },
+    {
+      "file": "hollowmere-bell.webp",
+      "entityIds": ["hollowmere-bell"],
+      "variant": "reference",
+      "label": null,
+      "purpose": "image",
+      "derivedFrom": null,
+      "mediaType": "image/webp",
+      "sha256": "a36cce0d1e6ab47c6e66e1efe2283a5c3f79f140512e4d64f095ed3cccc99df4",
+      "originalSha256": "ac74d69b80986dcd4d7e135f62bf5ba1062477aae41b428fbd499cec10f0e29f",
+      "generated": "2026-11-15",
+      "references": [
+        "fixtures/hollowmere/assets/bell-tower.webp",
+        "fixtures/ravenford-ru/assets/broken-wagon-wheel.webp",
+        "fixtures/ravenford-ru/assets/goblin-weapon.webp"
+      ],
+      "prompt": "Create exactly one new image with your image generation tool. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nSUBJECT: a large bronze bell green with age hanging in the open belfry of an old stone tower, seen close from below, a thick hemp rope hanging from it; beyond the belfry arches only the flat fen, reed beds and a few thatched stilt-house roofs at dusk, no castle, no hills\nFRAMING: square 1:1 close view of the object where it lies, soft light, shallow depth of field.\n\nThen copy the generated PNG into the current working directory as hollowmere-bell.png and reply only with that file name."
+    },
+    {
+      "file": "bell-rope.webp",
+      "entityIds": ["feature-1e6b3d90"],
+      "variant": "reference",
+      "label": null,
+      "purpose": "image",
+      "derivedFrom": null,
+      "mediaType": "image/webp",
+      "sha256": "a769da093a2e413e226791b2e75bf0ffeebde25bc54f48dc6f3fbbec4aa88024",
+      "originalSha256": "31579a44bbb42f748322f2243e51b37476abbf03973619cbb79785b15f9b495e",
+      "generated": "2026-11-15",
+      "references": [
+        "fixtures/hollowmere/assets/bell-tower.webp",
+        "fixtures/ravenford-ru/assets/broken-wagon-wheel.webp",
+        "fixtures/ravenford-ru/assets/goblin-weapon.webp"
+      ],
+      "prompt": "Create exactly one new image with your image generation tool. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nSUBJECT: a thick old hemp bell rope hanging in a stone doorway, frayed, stained green around a mended knot\nFRAMING: square 1:1 close view of the object where it lies, soft light, shallow depth of field.\n\nThen copy the generated PNG into the current working directory as bell-rope.png and reply only with that file name."
+    },
+    {
+      "file": "churned-mud.webp",
+      "entityIds": ["feature-8a2f6c14"],
+      "variant": "reference",
+      "label": null,
+      "purpose": "image",
+      "derivedFrom": null,
+      "mediaType": "image/webp",
+      "sha256": "edaf952b419da9b43754810ec0e5dd37019b51580f4dfa0e6cdbf4305a4f0db2",
+      "originalSha256": "6d412129b2ed5099d860d839da55f80f0f1dd97d2183f9d373abe4a897afea37",
+      "generated": "2026-11-15",
+      "references": [
+        "fixtures/hollowmere/assets/willow-ford.webp",
+        "fixtures/ravenford-ru/assets/broken-wagon-wheel.webp",
+        "fixtures/ravenford-ru/assets/goblin-weapon.webp"
+      ],
+      "prompt": "Create exactly one new image with your image generation tool. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nSUBJECT: the muddy bank of a brook ford, trampled and churned into a mess of blurred marks and long scored furrows; nothing readable, no clear footprints\nFRAMING: square 1:1 close view of the object where it lies, soft light, shallow depth of field.\n\nThen copy the generated PNG into the current working directory as churned-mud.png and reply only with that file name."
+    },
+    {
+      "file": "drowned-altar.webp",
+      "entityIds": ["feature-0d9b5e72"],
+      "variant": "reference",
+      "label": null,
+      "purpose": "image",
+      "derivedFrom": null,
+      "mediaType": "image/webp",
+      "sha256": "76c2b23e5a4f6d620551f40f1e6638901558ed7ca075562f1a8f70402a50f17b",
+      "originalSha256": "5dfa0bb829b4c880dbe1f25ba989e32a2d76b5d96665f77b3bae85fb9b0da32e",
+      "generated": "2026-11-15",
+      "references": [
+        "fixtures/hollowmere/assets/drowned-chapel.webp",
+        "fixtures/ravenford-ru/assets/broken-wagon-wheel.webp",
+        "fixtures/ravenford-ru/assets/goblin-weapon.webp"
+      ],
+      "prompt": "Create exactly one new image with your image generation tool. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nSUBJECT: a stone altar standing in a hand’s depth of black water inside a flooded chapel, its carvings of bells worn smooth, a shaft of grey light\nFRAMING: square 1:1 close view of the object where it lies, soft light, shallow depth of field.\n\nThen copy the generated PNG into the current working directory as drowned-altar.png and reply only with that file name."
+    },
+    {
+      "file": "cracked-slab.webp",
+      "entityIds": ["feature-f3c7a185"],
+      "variant": "reference",
+      "label": null,
+      "purpose": "image",
+      "derivedFrom": null,
+      "mediaType": "image/webp",
+      "sha256": "03a3a1740fc13f5bbbbbf0fe22b25361ebf812c6e90b6279cdf050bb1299795a",
+      "originalSha256": "ec8c623019d0640c9bc2188f30445ae132b9e60910dee289467cc9b3e3f6b485",
+      "generated": "2026-11-15",
+      "references": [
+        "fixtures/hollowmere/assets/drowned-chapel.webp",
+        "fixtures/ravenford-ru/assets/broken-wagon-wheel.webp",
+        "fixtures/ravenford-ru/assets/goblin-weapon.webp"
+      ],
+      "prompt": "Create exactly one new image with your image generation tool. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nSUBJECT: a broad flagstone in a chapel floor cracked across, a small bell carved in one corner, a film of water on the stones around it\nFRAMING: square 1:1 close view of the object where it lies, soft light, shallow depth of field.\n\nThen copy the generated PNG into the current working directory as cracked-slab.png and reply only with that file name."
+    },
+    {
+      "file": "marsh-lights.webp",
+      "entityIds": ["feature-b57d2e3a"],
+      "variant": "reference",
+      "label": null,
+      "purpose": "image",
+      "derivedFrom": null,
+      "mediaType": "image/webp",
+      "sha256": "8b88da2e95c3c0020dece98095377cd7ddad9ac9d8dd528872231b33d0592fd3",
+      "originalSha256": "ef8de8a8750caa0d343b3b016f1a5ea74de08659977fb1a15eafedd6f376c6b8",
+      "generated": "2026-11-15",
+      "references": [
+        "fixtures/hollowmere/assets/fogmarsh.webp",
+        "fixtures/ravenford-ru/assets/broken-wagon-wheel.webp",
+        "fixtures/ravenford-ru/assets/goblin-weapon.webp"
+      ],
+      "prompt": "Create exactly one new image with your image generation tool. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nSUBJECT: pale cold lights drifting low over dark reed beds and black water at night, their reflections trembling\nFRAMING: square 1:1 close view of the object where it lies, soft light, shallow depth of field.\n\nThen copy the generated PNG into the current working directory as marsh-lights.png and reply only with that file name."
+    },
+    {
+      "file": "sunken-bell.webp",
+      "entityIds": ["feature-6e0a4bd2"],
+      "variant": "reference",
+      "label": null,
+      "purpose": "image",
+      "derivedFrom": null,
+      "mediaType": "image/webp",
+      "sha256": "b3a853774fd13ff06db97a8db43f67b004e5782d20af4b202a84db97b1c7a602",
+      "originalSha256": "1d31afea97744957a271c2b2b362d6ea991e8ca08aadd1eedd28a2c761d4135b",
+      "generated": "2026-11-15",
+      "references": [
+        "fixtures/hollowmere/assets/sunken-bell-chamber.webp",
+        "fixtures/ravenford-ru/assets/broken-wagon-wheel.webp",
+        "fixtures/ravenford-ru/assets/goblin-weapon.webp"
+      ],
+      "prompt": "Create exactly one new image with your image generation tool. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nSUBJECT: an ancient bronze bell green with copper hanging low on a chain over still black water in a stone vault, faint ripples beneath it\nFRAMING: square 1:1 close view of the object where it lies, soft light, shallow depth of field.\n\nThen copy the generated PNG into the current working directory as sunken-bell.png and reply only with that file name."
+    },
+    {
+      "file": "brisk-cargo.webp",
+      "entityIds": ["brisk-cargo"],
+      "variant": "reference",
+      "label": null,
+      "purpose": "image",
+      "derivedFrom": null,
+      "mediaType": "image/webp",
+      "sha256": "a7679d525c0bf0076b42683308857a20496df2d9553867079ef4814c1ddb75d2",
+      "originalSha256": "f26f646239096fc39f6d190890c4527b6bc65ddd282f473a2cb59666075f58fb",
+      "generated": "2026-11-15",
+      "references": [
+        "fixtures/ravenford-ru/assets/abandoned-caravan-site.webp",
+        "fixtures/ravenford-ru/assets/broken-wagon-wheel.webp",
+        "fixtures/ravenford-ru/assets/goblin-weapon.webp"
+      ],
+      "prompt": "Create exactly one new image with your image generation tool. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nSUBJECT: a covered wagon loaded with oil jars packed in straw and sacks of grey salt, a patient mule in the shafts, standing on a muddy road\nFRAMING: square 1:1 close view of the object where it lies, soft light, shallow depth of field.\n\nThen copy the generated PNG into the current working directory as brisk-cargo.png and reply only with that file name."
+    },
+    {
+      "file": "tarred-ledger.webp",
+      "entityIds": ["item-4f8e2c61"],
+      "variant": "reference",
+      "label": null,
+      "purpose": "image",
+      "derivedFrom": null,
+      "mediaType": "image/webp",
+      "sha256": "dc5a5c7f7eed7c7867aa3f0f503e87b644ea5bea2ad457991688e5f188716616",
+      "originalSha256": "7c682d396101dace59dd7869dd09c12e7f4c47d529ac1cabb47a7754222c112e",
+      "generated": "2026-11-15",
+      "references": [
+        "fixtures/ravenford-ru/assets/burned-cargo.webp",
+        "fixtures/ravenford-ru/assets/broken-wagon-wheel.webp",
+        "fixtures/ravenford-ru/assets/goblin-weapon.webp"
+      ],
+      "prompt": "Create exactly one new image with your image generation tool. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nSUBJECT: a closed ledger with a black tarred cover lying on folded oilcloth on a rough table, its pages unseen\nFRAMING: square 1:1 close view of the object where it lies, soft light, shallow depth of field.\n\nThen copy the generated PNG into the current working directory as tarred-ledger.png and reply only with that file name."
+    },
+    {
+      "file": "lantern-of-revealing.webp",
+      "entityIds": ["item-2385d954"],
+      "variant": "reference",
+      "label": null,
+      "purpose": "image",
+      "derivedFrom": null,
+      "mediaType": "image/webp",
+      "sha256": "43702ec72021b1a01a3039b448ae1a092f24928fd314996675d3ae299f915693",
+      "originalSha256": "4a05302b3100c72501b3f10aa903ba43ddd97f297e7661b89d20ac9b352dc774",
+      "generated": "2026-11-15",
+      "references": [
+        "fixtures/hollowmere/assets/lantern-bearer.webp",
+        "fixtures/ravenford-ru/assets/broken-wagon-wheel.webp",
+        "fixtures/ravenford-ru/assets/goblin-weapon.webp"
+      ],
+      "prompt": "Create exactly one new image with your image generation tool. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nSUBJECT: a hooded lantern of black iron with a perfectly steady pale flame behind its glass, standing on wet stone\nFRAMING: square 1:1 close view of the object where it lies, soft light, shallow depth of field.\n\nThen copy the generated PNG into the current working directory as lantern-of-revealing.png and reply only with that file name."
+    },
+    {
+      "file": "grey-cloak.webp",
+      "entityIds": ["item-95cc9f7c"],
+      "variant": "reference",
+      "label": null,
+      "purpose": "image",
+      "derivedFrom": null,
+      "mediaType": "image/webp",
+      "sha256": "d73760efa7c8e10d2ac165433dd352bce3e60c84bfc7b460153b5a876b667fcb",
+      "originalSha256": "7e34f3aa70a43340f7df00251aae28a5600ffcef4084f3023db8a3696005d428",
+      "generated": "2026-11-15",
+      "references": [
+        "fixtures/hollowmere/assets/ashen-acolyte.webp",
+        "fixtures/ravenford-ru/assets/broken-wagon-wheel.webp",
+        "fixtures/ravenford-ru/assets/goblin-weapon.webp"
+      ],
+      "prompt": "Create exactly one new image with your image generation tool. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nSUBJECT: a folded grey wool cloak whose hem is stitched with a ring of ash-coloured thread, lying on a wooden bench\nFRAMING: square 1:1 close view of the object where it lies, soft light, shallow depth of field.\n\nThen copy the generated PNG into the current working directory as grey-cloak.png and reply only with that file name."
+    },
+    {
+      "file": "saint-odrans-mace.webp",
+      "entityIds": ["item-2520d229"],
+      "variant": "reference",
+      "label": null,
+      "purpose": "image",
+      "derivedFrom": null,
+      "mediaType": "image/webp",
+      "sha256": "cb292cc4aaee0abe7e056531136fa544f4aebebf2d747cb8fde2d60054cc3245",
+      "originalSha256": "76172ff0fe1ebc445d67310d1513b5ebe7eda8271f3bb8a74e678f0e1e90a8ff",
+      "generated": "2026-11-15",
+      "references": [
+        "fixtures/hollowmere/assets/drowned-knight.webp",
+        "fixtures/ravenford-ru/assets/broken-wagon-wheel.webp",
+        "fixtures/ravenford-ru/assets/goblin-weapon.webp"
+      ],
+      "prompt": "Create exactly one new image with your image generation tool. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nSUBJECT: an old knight’s mace whose head is shaped like a closed bell, untarnished and gleaming, lying on wet stone beside black water\nFRAMING: square 1:1 close view of the object where it lies, soft light, shallow depth of field.\n\nThen copy the generated PNG into the current working directory as saint-odrans-mace.png and reply only with that file name."
+    },
+    {
+      "file": "holy-water.webp",
+      "entityIds": ["item-17fe9455"],
+      "variant": "reference",
+      "label": null,
+      "purpose": "image",
+      "derivedFrom": null,
+      "mediaType": "image/webp",
+      "sha256": "042f54fe54352ce3d9effd25110f3a385f477515d1e257f5703458d3f7e3fdd6",
+      "originalSha256": "08f2c7cd6d33c1067f8cec1e3cbd75f873c39f9a49bd6dfcabe6e7f5924ec676",
+      "generated": "2026-11-15",
+      "references": [
+        "fixtures/hollowmere/assets/sister-ilse.webp",
+        "fixtures/ravenford-ru/assets/broken-wagon-wheel.webp",
+        "fixtures/ravenford-ru/assets/goblin-weapon.webp"
+      ],
+      "prompt": "Create exactly one new image with your image generation tool. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nSUBJECT: a small glass flask of clear water stoppered with pale wax stamped with a little bell, on a stone shelf by a candle\nFRAMING: square 1:1 close view of the object where it lies, soft light, shallow depth of field.\n\nThen copy the generated PNG into the current working directory as holy-water.png and reply only with that file name."
+    },
+    {
+      "file": "reed-cloaks-emblem.webp",
+      "entityIds": ["faction-3d7a52e8"],
+      "variant": "reference",
+      "label": null,
+      "purpose": "image",
+      "derivedFrom": null,
+      "mediaType": "image/webp",
+      "sha256": "f0cc34bca4d95f914d837073b4b25c9f1822bc7adf8469f0f1cc7fe2be036532",
+      "originalSha256": "49cf100294074d3754eab2f76fbdf936948871374ae7d4804dc1f2da1762fac5",
+      "generated": "2026-11-15",
+      "references": [
+        "fixtures/hollowmere/assets/reed-smuggler.webp",
+        "fixtures/ravenford-ru/assets/goblin-weapon.webp"
+      ],
+      "prompt": "Create exactly one new image with your image generation tool. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nSUBJECT: the sign of a band of marsh smugglers: a knot of braided reeds fastened with a bone toggle to the shoulder of a cloak of woven reeds, wet with marsh water, lit by a shuttered lantern\nFRAMING: square 1:1 close view of the object, soft light against a dark background, shallow depth of field.\n\nThen copy the generated PNG into the current working directory as reed-cloaks-emblem.png and reply only with that file name."
+    },
+    {
+      "file": "ashen-circle-emblem.webp",
+      "entityIds": ["faction-a6c41f09"],
+      "variant": "reference",
+      "label": null,
+      "purpose": "image",
+      "derivedFrom": null,
+      "mediaType": "image/webp",
+      "sha256": "d4f95dc532750c1b72175316d17443cf5b870e6fca0ee9954572ff513d044e62",
+      "originalSha256": "5bf4d9fd390ed11a0094cdbc1c7913a308cea6605e24cf5d9dd2ea04f6ddc243",
+      "generated": "2026-11-15",
+      "references": [
+        "fixtures/hollowmere/assets/ashen-acolyte.webp",
+        "fixtures/ravenford-ru/assets/goblin-weapon.webp"
+      ],
+      "prompt": "Create exactly one new image with your image generation tool. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nSUBJECT: the sign of a hooded cult: a ring of grey ash smeared on rough grey cloth beside a guttering candle stub, a curl of smoke\nFRAMING: square 1:1 close view of the object, soft light against a dark background, shallow depth of field.\n\nThen copy the generated PNG into the current working directory as ashen-circle-emblem.png and reply only with that file name."
+    },
+    {
+      "file": "hollowmere--day.webp",
+      "entityIds": ["hollowmere"],
+      "variant": "derived",
+      "label": "day",
+      "purpose": "image",
+      "derivedFrom": "hollowmere.webp",
+      "mediaType": "image/webp",
+      "sha256": "eefff017f7187d15954f5b3d8545a126084e49c1d9e1f0cdf2a42b389e71b382",
+      "originalSha256": "ba191aafd3101aca32b8e706a3f834ed66e83d73ed761baaf2df8ef12f7a2915",
+      "generated": "2026-11-15",
+      "references": ["hollowmere.webp"],
+      "prompt": "Create exactly one new image with your image generation tool, using the attached reference image as the input image. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nThe attached image is the approved canonical reference. Draw the same place in warm daylight: soft golden late-morning sun breaking through thin haze, clear shadows and deep rich tones; never flat, grey or overcast. Keep the same place's architecture, landmarks and composition exactly; change only what this variant requires.\nFRAMING: wide 3:2 landscape establishing view at eye level; keep the lower third calm and uncluttered (open ground or cobblestones) so interface elements can sit there; no identifiable people — at most a few tiny distant anonymous silhouettes far in the background.\n\nThen copy the generated PNG into the current working directory as hollowmere--day.png and reply only with that file name."
+    },
+    {
+      "file": "hollowmere--night.webp",
+      "entityIds": ["hollowmere"],
+      "variant": "derived",
+      "label": "night",
+      "purpose": "image",
+      "derivedFrom": "hollowmere.webp",
+      "mediaType": "image/webp",
+      "sha256": "34fc012a571205ed0e864ed65ececed40008632e61cd1e92e25b2eb2ccf9c96e",
+      "originalSha256": "74e97ed1fc2be335cf0d56d9457738a6b77c5a6b72a78d1fad3d429a12e7bfe3",
+      "generated": "2026-11-15",
+      "references": ["hollowmere.webp"],
+      "prompt": "Create exactly one new image with your image generation tool, using the attached reference image as the input image. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nThe attached image is the approved canonical reference. Draw the same place at night: deep blue darkness, moonlight and warm lantern glows. Keep the same place's architecture, landmarks and composition exactly; change only what this variant requires.\nFRAMING: wide 3:2 landscape establishing view at eye level; keep the lower third calm and uncluttered (open ground or cobblestones) so interface elements can sit there; no identifiable people — at most a few tiny distant anonymous silhouettes far in the background.\n\nThen copy the generated PNG into the current working directory as hollowmere--night.png and reply only with that file name."
+    },
+    {
+      "file": "hollowmere--fog.webp",
+      "entityIds": ["hollowmere"],
+      "variant": "derived",
+      "label": "fog",
+      "purpose": "image",
+      "derivedFrom": "hollowmere.webp",
+      "mediaType": "image/webp",
+      "sha256": "6623505c1006a287330c73664124e202c020736ca32b7dc94bbf9d1fe8013b50",
+      "originalSha256": "bdf5bf53ceb496855a593e9ffa8f5b1b2785e07ee21de792ff9df62f7f21c3d7",
+      "generated": "2026-11-15",
+      "references": ["hollowmere.webp"],
+      "prompt": "Create exactly one new image with your image generation tool, using the attached reference image as the input image. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nThe attached image is the approved canonical reference. Draw the same place in thick fog: shapes fading into pale mist. Keep the same place's architecture, landmarks and composition exactly; change only what this variant requires.\nFRAMING: wide 3:2 landscape establishing view at eye level; keep the lower third calm and uncluttered (open ground or cobblestones) so interface elements can sit there; no identifiable people — at most a few tiny distant anonymous silhouettes far in the background.\n\nThen copy the generated PNG into the current working directory as hollowmere--fog.png and reply only with that file name."
+    },
+    {
+      "file": "mill-road--day.webp",
+      "entityIds": ["mill-road"],
+      "variant": "derived",
+      "label": "day",
+      "purpose": "image",
+      "derivedFrom": "mill-road.webp",
+      "mediaType": "image/webp",
+      "sha256": "4ae124bcbb244e7d27f3dc4552b85bd2c1d9e977fad09543e94d9c0366d41791",
+      "originalSha256": "17166e7eb2167f936f570b964e7834df25057e0fff6034a6054abda85ff8ddc0",
+      "generated": "2026-11-15",
+      "references": ["mill-road.webp"],
+      "prompt": "Create exactly one new image with your image generation tool, using the attached reference image as the input image. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nThe attached image is the approved canonical reference. Draw the same place in warm daylight: soft golden late-morning sun breaking through thin haze, clear shadows and deep rich tones; never flat, grey or overcast. Keep the same place's architecture, landmarks and composition exactly; change only what this variant requires.\nFRAMING: wide 3:2 landscape establishing view at eye level; keep the lower third calm and uncluttered (open ground or cobblestones) so interface elements can sit there; no identifiable people — at most a few tiny distant anonymous silhouettes far in the background.\n\nThen copy the generated PNG into the current working directory as mill-road--day.png and reply only with that file name."
+    },
+    {
+      "file": "mill-road--night.webp",
+      "entityIds": ["mill-road"],
+      "variant": "derived",
+      "label": "night",
+      "purpose": "image",
+      "derivedFrom": "mill-road.webp",
+      "mediaType": "image/webp",
+      "sha256": "e33c4dc59bd1e529001c530afa8bc53e99b7de7e1d557a52bec1f1bcff64d192",
+      "originalSha256": "e504cd45cd6d3700f2b381255eaf17c3d1b8b23b6f7c32c8f2c6619ad7a4cb56",
+      "generated": "2026-11-15",
+      "references": ["mill-road.webp"],
+      "prompt": "Create exactly one new image with your image generation tool, using the attached reference image as the input image. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nThe attached image is the approved canonical reference. Draw the same place at night: deep blue darkness, moonlight and warm lantern glows. Keep the same place's architecture, landmarks and composition exactly; change only what this variant requires.\nFRAMING: wide 3:2 landscape establishing view at eye level; keep the lower third calm and uncluttered (open ground or cobblestones) so interface elements can sit there; no identifiable people — at most a few tiny distant anonymous silhouettes far in the background.\n\nThen copy the generated PNG into the current working directory as mill-road--night.png and reply only with that file name."
+    },
+    {
+      "file": "mill-road--fog.webp",
+      "entityIds": ["mill-road"],
+      "variant": "derived",
+      "label": "fog",
+      "purpose": "image",
+      "derivedFrom": "mill-road.webp",
+      "mediaType": "image/webp",
+      "sha256": "b374d0da43a8c9e0dbb4bc0dc7ba7934c45b3c18ae49c746b29cb4f6dfedb526",
+      "originalSha256": "bded2c2a195ec23b503381170efaf4ca2a95f7d58d11ce200bb804e649b76e12",
+      "generated": "2026-11-15",
+      "references": ["mill-road.webp"],
+      "prompt": "Create exactly one new image with your image generation tool, using the attached reference image as the input image. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nThe attached image is the approved canonical reference. Draw the same place in thick fog: shapes fading into pale mist. Keep the same place's architecture, landmarks and composition exactly; change only what this variant requires.\nFRAMING: wide 3:2 landscape establishing view at eye level; keep the lower third calm and uncluttered (open ground or cobblestones) so interface elements can sit there; no identifiable people — at most a few tiny distant anonymous silhouettes far in the background.\n\nThen copy the generated PNG into the current working directory as mill-road--fog.png and reply only with that file name."
+    },
+    {
+      "file": "willow-ford--day.webp",
+      "entityIds": ["willow-ford"],
+      "variant": "derived",
+      "label": "day",
+      "purpose": "image",
+      "derivedFrom": "willow-ford.webp",
+      "mediaType": "image/webp",
+      "sha256": "59dd529deb819244c8b9f43d186b8c07437ae36588cd72d9545468fa3040d93e",
+      "originalSha256": "bcb5fee466c5574c93800fd0c9fecea5528b6b51f385baf5069b4e3534dcfa7b",
+      "generated": "2026-11-15",
+      "references": ["willow-ford.webp"],
+      "prompt": "Create exactly one new image with your image generation tool, using the attached reference image as the input image. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nThe attached image is the approved canonical reference. Draw the same place in warm daylight: soft golden late-morning sun breaking through thin haze, clear shadows and deep rich tones; never flat, grey or overcast. Keep the same place's architecture, landmarks and composition exactly; change only what this variant requires.\nFRAMING: wide 3:2 landscape establishing view at eye level; keep the lower third calm and uncluttered (open ground or cobblestones) so interface elements can sit there; no identifiable people — at most a few tiny distant anonymous silhouettes far in the background.\n\nThen copy the generated PNG into the current working directory as willow-ford--day.png and reply only with that file name."
+    },
+    {
+      "file": "willow-ford--night.webp",
+      "entityIds": ["willow-ford"],
+      "variant": "derived",
+      "label": "night",
+      "purpose": "image",
+      "derivedFrom": "willow-ford.webp",
+      "mediaType": "image/webp",
+      "sha256": "714ac6fdf685581c118bac8ed0fe4d8b78bd0aa5718e7ca3b85ac7e378cdaaf4",
+      "originalSha256": "6ff4d73a4f5a5b3c7e0efd54531939413a07ccd0c3936fe7da3f264262e71e46",
+      "generated": "2026-11-15",
+      "references": ["willow-ford.webp"],
+      "prompt": "Create exactly one new image with your image generation tool, using the attached reference image as the input image. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nThe attached image is the approved canonical reference. Draw the same place at night: deep blue darkness, moonlight and warm lantern glows. Keep the same place's architecture, landmarks and composition exactly; change only what this variant requires.\nFRAMING: wide 3:2 landscape establishing view at eye level; keep the lower third calm and uncluttered (open ground or cobblestones) so interface elements can sit there; no identifiable people — at most a few tiny distant anonymous silhouettes far in the background.\n\nThen copy the generated PNG into the current working directory as willow-ford--night.png and reply only with that file name."
+    },
+    {
+      "file": "willow-ford--fog.webp",
+      "entityIds": ["willow-ford"],
+      "variant": "derived",
+      "label": "fog",
+      "purpose": "image",
+      "derivedFrom": "willow-ford.webp",
+      "mediaType": "image/webp",
+      "sha256": "01dbdf8b8ecabfd18a6e8851a83409b73701e79b725185d7fd6009f5e12d9a8b",
+      "originalSha256": "d45c93e3a7617664732cadbdb34c80c7fbfebda737a71ffb54aecb35815a6b3d",
+      "generated": "2026-11-15",
+      "references": ["willow-ford.webp"],
+      "prompt": "Create exactly one new image with your image generation tool, using the attached reference image as the input image. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nThe attached image is the approved canonical reference. Draw the same place in thick fog: shapes fading into pale mist. Keep the same place's architecture, landmarks and composition exactly; change only what this variant requires.\nFRAMING: wide 3:2 landscape establishing view at eye level; keep the lower third calm and uncluttered (open ground or cobblestones) so interface elements can sit there; no identifiable people — at most a few tiny distant anonymous silhouettes far in the background.\n\nThen copy the generated PNG into the current working directory as willow-ford--fog.png and reply only with that file name."
+    },
+    {
+      "file": "drowned-chapel--day.webp",
+      "entityIds": ["drowned-chapel"],
+      "variant": "derived",
+      "label": "day",
+      "purpose": "image",
+      "derivedFrom": "drowned-chapel.webp",
+      "mediaType": "image/webp",
+      "sha256": "6c4a72a870b75cb3b27fee1f55f182e624f003e582d4e33bb9cff27b495b5ae9",
+      "originalSha256": "e515a3666e6b1f514f6adc58baba87393c9d7b68763d01d5bffd1c6853736c74",
+      "generated": "2026-11-15",
+      "references": ["drowned-chapel.webp"],
+      "prompt": "Create exactly one new image with your image generation tool, using the attached reference image as the input image. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nThe attached image is the approved canonical reference. Draw the same place in warm daylight: soft golden late-morning sun breaking through thin haze, clear shadows and deep rich tones; never flat, grey or overcast. Keep the same place's architecture, landmarks and composition exactly; change only what this variant requires.\nFRAMING: wide 3:2 landscape establishing view at eye level; keep the lower third calm and uncluttered (open ground or cobblestones) so interface elements can sit there; no identifiable people — at most a few tiny distant anonymous silhouettes far in the background.\n\nThen copy the generated PNG into the current working directory as drowned-chapel--day.png and reply only with that file name."
+    },
+    {
+      "file": "drowned-chapel--night.webp",
+      "entityIds": ["drowned-chapel"],
+      "variant": "derived",
+      "label": "night",
+      "purpose": "image",
+      "derivedFrom": "drowned-chapel.webp",
+      "mediaType": "image/webp",
+      "sha256": "d7e56451a570db43422687d06ccded783dd74657c0a893677ab115ae7ef5cbae",
+      "originalSha256": "79c8858ddc8745eabc5ee061a7466e3b4995bd1f307c3d456abcf872b09422c9",
+      "generated": "2026-11-15",
+      "references": ["drowned-chapel.webp"],
+      "prompt": "Create exactly one new image with your image generation tool, using the attached reference image as the input image. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nThe attached image is the approved canonical reference. Draw the same place at night: deep blue darkness, moonlight and warm lantern glows. Keep the same place's architecture, landmarks and composition exactly; change only what this variant requires.\nFRAMING: wide 3:2 landscape establishing view at eye level; keep the lower third calm and uncluttered (open ground or cobblestones) so interface elements can sit there; no identifiable people — at most a few tiny distant anonymous silhouettes far in the background.\n\nThen copy the generated PNG into the current working directory as drowned-chapel--night.png and reply only with that file name."
+    },
+    {
+      "file": "drowned-chapel--fog.webp",
+      "entityIds": ["drowned-chapel"],
+      "variant": "derived",
+      "label": "fog",
+      "purpose": "image",
+      "derivedFrom": "drowned-chapel.webp",
+      "mediaType": "image/webp",
+      "sha256": "854715c998a7668ecf241140529c1f2bcbc50b40ff1f2588e57f0be5774e98a1",
+      "originalSha256": "fd071ffa1e3245da23bbc4ff3e03998dbc05c7da32db0d3bb0898b8a61fc35c2",
+      "generated": "2026-11-15",
+      "references": ["drowned-chapel.webp"],
+      "prompt": "Create exactly one new image with your image generation tool, using the attached reference image as the input image. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nThe attached image is the approved canonical reference. Draw the same place in thick fog: shapes fading into pale mist. Keep the same place's architecture, landmarks and composition exactly; change only what this variant requires.\nFRAMING: wide 3:2 landscape establishing view at eye level; keep the lower third calm and uncluttered (open ground or cobblestones) so interface elements can sit there; no identifiable people — at most a few tiny distant anonymous silhouettes far in the background.\n\nThen copy the generated PNG into the current working directory as drowned-chapel--fog.png and reply only with that file name."
+    },
+    {
+      "file": "reeves-hall--day.webp",
+      "entityIds": ["reeves-hall"],
+      "variant": "derived",
+      "label": "day",
+      "purpose": "image",
+      "derivedFrom": "reeves-hall.webp",
+      "mediaType": "image/webp",
+      "sha256": "67d4d8cc51eac52231952e7635b49c540c324be28ee3813921ceee486160bab1",
+      "originalSha256": "f6f65662661fc43f5f08b6ac7ab433f33c55e79fb3112ddb3dc1cb8ec0f407e1",
+      "generated": "2026-11-15",
+      "references": ["reeves-hall.webp"],
+      "prompt": "Create exactly one new image with your image generation tool, using the attached reference image as the input image. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nThe attached image is the approved canonical reference. Draw the same place in warm daylight: soft golden late-morning sun breaking through thin haze, clear shadows and deep rich tones; never flat, grey or overcast. Keep the same place's architecture, landmarks and composition exactly; change only what this variant requires.\nFRAMING: wide 3:2 landscape establishing view at eye level; keep the lower third calm and uncluttered (open ground or cobblestones) so interface elements can sit there; no identifiable people — at most a few tiny distant anonymous silhouettes far in the background.\n\nThen copy the generated PNG into the current working directory as reeves-hall--day.png and reply only with that file name."
+    },
+    {
+      "file": "reeves-hall--night.webp",
+      "entityIds": ["reeves-hall"],
+      "variant": "derived",
+      "label": "night",
+      "purpose": "image",
+      "derivedFrom": "reeves-hall.webp",
+      "mediaType": "image/webp",
+      "sha256": "b961babc3461917af634b89a9f755d369bf6ff342e4ff14a9725f53c9a9583c5",
+      "originalSha256": "92d0d6af9b8c3df2660d681abd7a6998801f224fa3e5106957deee03834e5fee",
+      "generated": "2026-11-15",
+      "references": ["reeves-hall.webp"],
+      "prompt": "Create exactly one new image with your image generation tool, using the attached reference image as the input image. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nThe attached image is the approved canonical reference. Draw the same place at night: deep blue darkness, moonlight and warm lantern glows. Keep the same place's architecture, landmarks and composition exactly; change only what this variant requires.\nFRAMING: wide 3:2 landscape establishing view at eye level; keep the lower third calm and uncluttered (open ground or cobblestones) so interface elements can sit there; no identifiable people — at most a few tiny distant anonymous silhouettes far in the background.\n\nThen copy the generated PNG into the current working directory as reeves-hall--night.png and reply only with that file name."
+    },
+    {
+      "file": "bell-tower--night.webp",
+      "entityIds": ["bell-tower"],
+      "variant": "derived",
+      "label": "night",
+      "purpose": "image",
+      "derivedFrom": "bell-tower.webp",
+      "mediaType": "image/webp",
+      "sha256": "a3ffa6f30221897ef117d59e9e5453ee177198e079796013f5e503f67169956f",
+      "originalSha256": "c1a5dd141461a92c35e68e5bd66146b28a9611ba80cabe8608f072d72d10161a",
+      "generated": "2026-11-15",
+      "references": ["fixtures/hollowmere/assets/bell-tower.webp"],
+      "prompt": "Create exactly one new image with your image generation tool, using the attached reference image as the input image. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nThe attached image is the approved canonical reference. Draw the same place at night: deep blue darkness, moonlight and warm lantern glows. Keep the same place's architecture, landmarks and composition exactly; change only what this variant requires.\nFRAMING: wide 3:2 landscape establishing view at eye level; keep the lower third calm and uncluttered (open ground or cobblestones) so interface elements can sit there; no identifiable people — at most a few tiny distant anonymous silhouettes far in the background.\n\nThen copy the generated PNG into the current working directory as bell-tower--night.png and reply only with that file name."
+    },
+    {
+      "file": "bell-tower--fog.webp",
+      "entityIds": ["bell-tower"],
+      "variant": "derived",
+      "label": "fog",
+      "purpose": "image",
+      "derivedFrom": "bell-tower.webp",
+      "mediaType": "image/webp",
+      "sha256": "114a2a021f708583d13acaca2871c41c29a8cb62d80f5bf3127c463b471fd948",
+      "originalSha256": "218d97b58844ba0bd49af02d421f822ed8e707341c543af0f8a321f9539e6b54",
+      "generated": "2026-11-15",
+      "references": ["fixtures/hollowmere/assets/bell-tower.webp"],
+      "prompt": "Create exactly one new image with your image generation tool, using the attached reference image as the input image. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nThe attached image is the approved canonical reference. Draw the same place in thick fog: shapes fading into pale mist. Keep the same place's architecture, landmarks and composition exactly; change only what this variant requires.\nFRAMING: wide 3:2 landscape establishing view at eye level; keep the lower third calm and uncluttered (open ground or cobblestones) so interface elements can sit there; no identifiable people — at most a few tiny distant anonymous silhouettes far in the background.\n\nThen copy the generated PNG into the current working directory as bell-tower--fog.png and reply only with that file name."
+    },
+    {
+      "file": "fogmarsh--day.webp",
+      "entityIds": ["fogmarsh"],
+      "variant": "derived",
+      "label": "day",
+      "purpose": "image",
+      "derivedFrom": "fogmarsh.webp",
+      "mediaType": "image/webp",
+      "sha256": "6e4ac7bbb48f7c1c1955a421e63cc24bbf652da347f125c05ffc204d90e21387",
+      "originalSha256": "f684d2c26bdaa364374f85a3628d518690b54d164f46da68b7718deda4cdac68",
+      "generated": "2026-11-15",
+      "references": ["fixtures/hollowmere/assets/fogmarsh.webp"],
+      "prompt": "Create exactly one new image with your image generation tool, using the attached reference image as the input image. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nThe attached image is the approved canonical reference. Draw the same place in warm daylight: soft golden late-morning sun breaking through thin haze, clear shadows and deep rich tones; never flat, grey or overcast. Keep the same place's architecture, landmarks and composition exactly; change only what this variant requires.\nFRAMING: wide 3:2 landscape establishing view at eye level; keep the lower third calm and uncluttered (open ground or cobblestones) so interface elements can sit there; no identifiable people — at most a few tiny distant anonymous silhouettes far in the background.\n\nThen copy the generated PNG into the current working directory as fogmarsh--day.png and reply only with that file name."
+    },
+    {
+      "file": "sunken-mill--day.webp",
+      "entityIds": ["sunken-mill"],
+      "variant": "derived",
+      "label": "day",
+      "purpose": "image",
+      "derivedFrom": "sunken-mill.webp",
+      "mediaType": "image/webp",
+      "sha256": "dd492b2a12474ce96f9d0fd61d6bcde7577170b2e766303a5e0eee18547a0bf7",
+      "originalSha256": "c6ad578fafb509699abcd92154b623dc9c247835833bbb7428b8a8642456e663",
+      "generated": "2026-11-15",
+      "references": ["fixtures/hollowmere/assets/sunken-mill.webp"],
+      "prompt": "Create exactly one new image with your image generation tool, using the attached reference image as the input image. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nThe attached image is the approved canonical reference. Draw the same place in warm daylight: soft golden late-morning sun breaking through thin haze, clear shadows and deep rich tones; never flat, grey or overcast. Keep the same place's architecture, landmarks and composition exactly; change only what this variant requires.\nFRAMING: wide 3:2 landscape establishing view at eye level; keep the lower third calm and uncluttered (open ground or cobblestones) so interface elements can sit there; no identifiable people — at most a few tiny distant anonymous silhouettes far in the background.\n\nThen copy the generated PNG into the current working directory as sunken-mill--day.png and reply only with that file name."
     }
   ]
 }

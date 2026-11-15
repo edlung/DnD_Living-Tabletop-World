@@ -40,14 +40,24 @@ test('a Russian DM gives the SRD’s Rope by its Russian name, and its card read
   await expectAccessible(page, 'a Russian SRD item’s card');
 });
 
-test('the bestiary shows a stat block’s creature type, a swarm its members’', async ({ page }) => {
+test('the bestiary shows a stat block’s own portrait, else its creature type, a swarm its members’', async ({
+  page,
+}) => {
   await enterCombat(page, COMBAT_CAMPAIGNS.bestiary, TOKENS.dm);
   await openSheet(page, 'Encounter');
   const form = page.getByRole('form', { name: 'From the bestiary' });
   const find = form.getByLabel('Find by name or type', { exact: true });
   const creature = form.getByLabel('Creature', { exact: true });
+  // Its own GPT portrait (2026-11-15).
   await find.fill('swarm of rats');
   await creature.selectOption('swarm-of-rats');
+  await expect(form.locator('.bestiary-type-art')).toHaveAttribute(
+    'src',
+    /monsters\/swarm-of-rats/,
+  );
+  // No portrait of its own: its members' type.
+  await find.fill('swarm of insects');
+  await creature.selectOption('swarm-of-insects');
   await expect(form).toContainText('Swarm of Tiny Beasts');
   await expect(form.locator('.bestiary-type-art')).toHaveAttribute('src', /type-beast/);
   await find.fill('adult red');

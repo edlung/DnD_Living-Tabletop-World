@@ -5,6 +5,7 @@ import kernelSeed from '../../../../../fixtures/ravenford/kernel-seed.json' with
 import knowledgeSeed from '../../../../../fixtures/ravenford/knowledge-seed.json' with { type: 'json' };
 import memorySeed from '../../../../../fixtures/ravenford/memory-seed.json' with { type: 'json' };
 import tableSeed from '../../../../../fixtures/ravenford/table-seed.json' with { type: 'json' };
+import townSeed from '../../../../../fixtures/ravenford/town-seed.json' with { type: 'json' };
 import type { Actor } from '../../kernel/actor.ts';
 import { SequentialIds, SteppingClock } from '../../kernel/engine/deterministic-sources.ts';
 import { InMemoryEventStore } from '../../kernel/engine/in-memory-event-store.ts';
@@ -47,6 +48,13 @@ export async function seedRavenford(): Promise<{ engine: WorldEngine; state: Wor
       commands: tableSeed.commands,
       commandIdPrefix: `${CAMPAIGN}.table`,
     }),
+    // The town's rooms, districts, townsfolk and region map, public to all.
+    ...submissionsFromScript({
+      campaignId: CAMPAIGN,
+      actor: DM,
+      commands: townSeed.commands,
+      commandIdPrefix: `${CAMPAIGN}.town`,
+    }),
   ];
   for (const submission of submissions) {
     const result = await engine.execute(submission);
@@ -73,6 +81,7 @@ export function perspective(
 export const ALL_KNOWLEDGE_IDS: readonly string[] = [
   ...knowledgeSeed.commands,
   ...tableSeed.commands,
+  ...townSeed.commands,
 ].flatMap((command) =>
   'knowledgeId' in command && typeof command.knowledgeId === 'string' ? [command.knowledgeId] : [],
 );
