@@ -3,6 +3,7 @@ package tech.vardahei.ltw.player
 import android.Manifest
 import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.net.Uri
 import android.os.Build
@@ -26,6 +27,7 @@ import androidx.core.net.toUri
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.Lifecycle
 import org.json.JSONObject
 import kotlin.math.min
 
@@ -61,7 +63,19 @@ class MainActivity : ComponentActivity(), Game.Host {
         files?.onReceiveValue(WebChromeClient.FileChooserParams.parseResult(result.resultCode, result.data))
         files = null
     }
-    private val notifications = registerForActivityResult(ActivityResultContracts.RequestPermission()) {}
+    private val notifications = registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
+        // Android keeps no "not asked yet": a refusal is remembered here, so nobody is asked twice.
+        if (!granted) store.declinedNotifications = true
+    }
+    /** The question about notifications was put, or found needless, in this launch. */
+    private var notifyAsked = false
+    /** The page's request for the microphone that waits for the system's answer. */
+    private var microphoneAnswer: ((Boolean) -> Unit)? = null
+    private val microphone = registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
+        // A recreated activity has no request left to answer: its new page asks again.
+        microphoneAnswer?.invoke(granted)
+        microphoneAnswer = null
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
@@ -122,7 +136,9 @@ class MainActivity : ComponentActivity(), Game.Host {
     }
 
     override fun onDestroy() {
-        game?.view?.destroy()
+        dialogs.close()
+        microphoneAnswer = null
+        game?.close()
         super.onDestroy()
     }
 
@@ -154,7 +170,10 @@ class MainActivity : ComponentActivity(), Game.Host {
         when (message) {
             is PageMessage.Haptic -> alerts.haptic(message.kind)
             is PageMessage.Awake -> keepAwake(message.on)
-            is PageMessage.Waiting -> alerts.onWaiting(message.count)
+            is PageMessage.Waiting -> {
+                alerts.onWaiting(message.count)
+                if (message.count > 0) askToNotify()
+            }
             PageMessage.Scan -> scan()
             PageMessage.Server -> dialogs.chooseServer { startGame() }
             is PageMessage.BackResult -> if (backAsked != null && message.id == backAsked) {
@@ -164,7 +183,7 @@ class MainActivity : ComponentActivity(), Game.Host {
             }
             // Ready needs no answer here; the TV's messages are LTW DM's alone.
             PageMessage.Ready, is PageMessage.TvCode, is PageMessage.TvPaired, PageMessage.TvUnpaired,
-            PageMessage.TvForget -> Unit
+            PageMessage.TvForget, is PageMessage.TvSound -> Unit
         }
     }
 
@@ -215,6 +234,38 @@ class MainActivity : ComponentActivity(), Game.Host {
         }
     }
 
+    /** The table's voice chat (ADR 0060): Android asks the person once; after that the answer stands. */
+    override fun askMicrophone(decide: (Boolean) -> Unit) {
+        if (checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
+            decide(true)
+            return
+        }
+        // One system question at a time; a later request takes over its answer.
+        val asking = microphoneAnswer != null
+        microphoneAnswer = decide
+        if (!asking) microphone.launch(Manifest.permission.RECORD_AUDIO)
+    }
+
+    /**
+     * Notifications are asked for where they matter (ADR 0070 §5): when the table first waits for
+     * the person, in view, with the shell's own question before the system's. A permission already
+     * given or refused is left alone, and "No, thanks" is remembered for good. Before Android 13
+     * there is nothing to ask.
+     */
+    private fun askToNotify() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU || notifyAsked || store.declinedNotifications) return
+        if (!lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) return
+        notifyAsked = true
+        val permission = Manifest.permission.POST_NOTIFICATIONS
+        val decided = checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED ||
+            shouldShowRequestPermissionRationale(permission)
+        if (decided) return
+        dialogs.askToNotify(
+            onContinue = { notifications.launch(permission) },
+            onLater = { store.declinedNotifications = true },
+        )
+    }
+
     override fun shim(): String = shimSource
         ?: Game.shimSource(assets.open("ltw-native.js").bufferedReader().use { it.readText() })
             .also { shimSource = it }
@@ -226,10 +277,6 @@ class MainActivity : ComponentActivity(), Game.Host {
             window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         } else {
             window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-        }
-        if (on && Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && !store.askedForNotifications) {
-            store.askedForNotifications = true
-            notifications.launch(Manifest.permission.POST_NOTIFICATIONS)
         }
     }
 

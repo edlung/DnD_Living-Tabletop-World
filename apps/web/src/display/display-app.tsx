@@ -14,6 +14,7 @@ import { useScreenAwake } from '../alerts/screen.ts';
 import { TableMusic } from '../audio/table-music.tsx';
 import { TableAmbience } from '../audio/table-sound.tsx';
 import { onForgetAsked, reportToHost } from '../native/tv-report.ts';
+import { useHostedTvSound } from '../native/tv-sound.ts';
 import { useLiveSession } from '../session/use-live-session.ts';
 import { ApprovedImages, ApprovedImagesContext } from '../visual/approved-images.ts';
 import { ornamentUrl, textureUrl } from '../visual/ui-kit.ts';
@@ -21,6 +22,7 @@ import { useRereadOn } from '../world/use-world-data.ts';
 import { BigRoll } from './big-roll.tsx';
 import { CastView } from './cast-views.tsx';
 import { DisplayCorner } from './display-corner.tsx';
+import { LinkPlate, useFollowedCast } from './display-live.tsx';
 import { castKey } from './moments.ts';
 import {
   forgetDisplay,
@@ -48,6 +50,8 @@ type Stage =
   | { readonly kind: 'unreachable' };
 
 const POLL_MS = 2_000;
+/** A screen that could not reach the table, or asked for too many codes, tries again by itself. */
+const RETRY_MS = { unreachable: 10_000, limited: 60_000 } as const;
 
 const browserLanguage = (): Language =>
   navigator.language.toLowerCase().startsWith('ru') ? 'ru' : 'en';
@@ -106,6 +110,28 @@ export function DisplayApp({ transport = fetch }: { readonly transport?: typeof 
       window.clearInterval(timer);
     };
   }, [waiting, transport, settle]);
+
+  // Nobody stands at a TV to press "Try again": the screen asks again by itself.
+  const stuck = stage.kind === 'unreachable' || stage.kind === 'limited' ? stage : null;
+  useEffect(() => {
+    if (stuck === null) return;
+    const timer = window.setTimeout(() => {
+      void readDisplaySession(transport).then((answer) => {
+        settle(answer, false);
+      });
+    }, RETRY_MS[stuck.kind]);
+    return () => {
+      window.clearTimeout(timer);
+    };
+  }, [stuck, transport, settle]);
+
+  // The page's type follows the screen's size (styles/display-tv.css): a 4K TV reads as a 1080p one.
+  useEffect(() => {
+    document.documentElement.classList.add('is-display');
+    return () => {
+      document.documentElement.classList.remove('is-display');
+    };
+  }, []);
 
   // Hosted by LTW DM on its TV, the screen tells the app its code, or the campaign it is paired
   // with (docs/adr/0070-native-apps.md §6), so the DM pairs it with one press — and asked to show
@@ -183,6 +209,7 @@ function Pairing({ stage, onRetry }: { readonly stage: Stage; readonly onRetry: 
                 ? t('Too many codes were asked for. Wait a minute, then try again.')
                 : t('The table could not be reached. Check the connection, then try again.')}
             </p>
+            <p className="display-hint">{t('The screen tries again by itself.')}</p>
             <button className="primary-button" onClick={onRetry}>
               {t('Try again')}
             </button>
@@ -229,6 +256,8 @@ function DisplayStage({
   const live = useLiveSession(connection, 'PARTY');
   // A paired screen stays awake (ADR 0044 §3): the TV never dims mid-game.
   useScreenAwake(true);
+  // In LTW DM's TV window sound needs no press and follows the DM's word (ADR 0070 §6).
+  useHostedTvSound();
   // As on the world screen (docs/adr/0033-live-session.md §4): every read follows the live signal
   // and is checked once more after it, so a read that met the state mid-change never stays shown.
   return (
@@ -290,33 +319,37 @@ function DisplayScreen({
   useRereadOn(live.refresh, lobby.reread);
   const table = lobby.resource.status === 'ready' ? lobby.resource.value : null;
   const choice = table?.sound.ambience ?? null;
+  // The DM's cast, or the battlefield while a cast that follows the party meets a fight (§3).
+  const shown = useFollowedCast(
+    api,
+    cast.resource.status === 'ready' ? cast.resource.value : null,
+    live.refresh,
+  );
   return (
-    <main
-      className="display"
-      data-cast={cast.resource.status === 'ready' ? cast.resource.value.cast.kind : 'loading'}
-    >
-      {cast.resource.status === 'ready' ? (
+    <main className="display" data-cast={shown?.cast.kind ?? 'loading'}>
+      {shown !== null ? (
         <>
           {/* Another cast fades in (ADR 0059 §4); a battlefield's zoom or focus does not. */}
-          <div key={castKey(cast.resource.value)} className="display-cast">
+          <div key={castKey(shown)} className="display-cast">
             <CastView
               api={api}
-              cast={cast.resource.value}
+              cast={shown}
               directory={directory}
               refresh={live.refresh}
               campaignName={session.campaignName}
             />
           </div>
           {/* The dice cast lists whom the table waits for itself; the join card is for joining. */}
-          {!['dice', 'join'].includes(cast.resource.value.cast.kind) && (
-            <WaitingStrip api={api} refresh={live.refresh} directory={directory} />
+          {!['dice', 'join'].includes(shown.cast.kind) && (
+            <WaitingStrip
+              api={api}
+              refresh={live.refresh}
+              directory={directory}
+              low={shown.cast.kind === 'battlefield'}
+            />
           )}
           {/* A roll the table may see, big over the cast; a plate beside the battlefield. */}
-          <BigRoll
-            api={api}
-            refresh={live.refresh}
-            compact={cast.resource.value.cast.kind === 'battlefield'}
-          />
+          <BigRoll api={api} refresh={live.refresh} compact={shown.cast.kind === 'battlefield'} />
         </>
       ) : (
         <div className="display-wait">
@@ -333,6 +366,7 @@ function DisplayScreen({
       )}
       <TableAmbience api={api} refresh={live.refresh} choice={choice} placeId={scenePlaceId} />
       <TableMusic api={api} music={table?.sound.music ?? null} />
+      <LinkPlate status={live.status} />
       <DisplayCorner name={session.name} onForget={onForget} />
     </main>
   );

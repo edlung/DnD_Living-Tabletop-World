@@ -40,6 +40,14 @@ const messageOf = (error: unknown) =>
 
 type ReadKind = 'foreground' | 'background' | 'trailing';
 
+/** A background read that failed is read again after this long, doubling to the longest. */
+export const RETRY_READ_MS = 2_000;
+export const RETRY_READ_MAX_MS = 30_000;
+
+/** A failure another try may not meet: the network, the server; never a refusal. */
+const passing = (error: unknown) =>
+  !(error instanceof ApiError) || error.status === 0 || error.status === 429 || error.status >= 500;
+
 /**
  * The reads of one generation (docs/adr/0033-live-session.md §4). The first read is in the
  * foreground: its failure shows while nothing newer has succeeded. Every later read is in the
@@ -52,6 +60,11 @@ type ReadKind = 'foreground' | 'background' | 'trailing';
  * whatever caused that read (the first load, a signal, the viewer's own action). A newer read
  * replaces a pending trailing read (its own completion schedules the next one), and a trailing
  * read schedules none, so a quiet screen stops reading. Closing ends it all.
+ *
+ * A background read that failed for a passing reason (the network, the server) is read again,
+ * `RETRY_READ_MS` later and then twice as long each time up to `RETRY_READ_MAX_MS`, until one
+ * answers: a screen whose network came back shows the present without waiting for the next signal
+ * (the table's screen stayed on an old cast; work-orders/NATIVE_TV_POLISH_2026-11-15.md §1).
  */
 export class GenerationReads<T> {
   readonly #load: (signal: AbortSignal) => Promise<T>;
@@ -63,6 +76,8 @@ export class GenerationReads<T> {
   #running = false;
   #queued: Exclude<ReadKind, 'foreground'> | null = null;
   #trailing: ReturnType<typeof setTimeout> | undefined;
+  /** Background reads failed in a row since the last answer. */
+  #failures = 0;
 
   constructor(options: {
     readonly load: (signal: AbortSignal) => Promise<T>;
@@ -113,20 +128,29 @@ export class GenerationReads<T> {
     const controller = new AbortController();
     this.#controllers.add(controller);
     const ticket = this.#order.start();
+    let again = false;
     try {
       const value = await this.#load(controller.signal);
+      this.#failures = 0;
       if (this.#open && this.#order.succeeded(ticket)) this.#show({ status: 'ready', value });
     } catch (error) {
       if (this.#open && kind === 'foreground' && this.#order.failed(ticket)) {
         this.#show({ status: 'error', message: messageOf(error) });
       }
+      again = kind !== 'foreground' && passing(error);
     } finally {
       this.#controllers.delete(controller);
-      if (this.#open && this.#live && kind !== 'trailing') {
+      if (this.#open && this.#live && (again || kind !== 'trailing')) {
         clearTimeout(this.#trailing);
-        this.#trailing = setTimeout(() => {
-          this.#background('trailing');
-        }, TRAILING_REREAD_MS);
+        if (again) this.#failures += 1;
+        this.#trailing = setTimeout(
+          () => {
+            this.#background('trailing');
+          },
+          again
+            ? Math.min(RETRY_READ_MS * 2 ** (this.#failures - 1), RETRY_READ_MAX_MS)
+            : TRAILING_REREAD_MS,
+        );
       }
     }
   }

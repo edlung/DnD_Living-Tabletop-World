@@ -1,7 +1,14 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
+import { ApiError } from './client.ts';
 import { TRAILING_REREAD_MS } from './live-context.ts';
-import { GenerationReads, ReadOrder, type Resource } from './resource.ts';
+import {
+  GenerationReads,
+  ReadOrder,
+  RETRY_READ_MAX_MS,
+  RETRY_READ_MS,
+  type Resource,
+} from './resource.ts';
 
 /**
  * Background re-reads of one generation (docs/adr/0033-live-session.md §4): late and
@@ -151,6 +158,51 @@ describe('the reads of a generation', () => {
       { status: 'ready', value: 1 },
       { status: 'ready', value: 3 },
     ]);
+  });
+
+  it('reads a failed background read again, slower each time, until one answers', async () => {
+    const { reader, reads, shown, answer } = generation();
+    reader.start();
+    await answer(1);
+    // The trailing read meets a network that is down: it is tried again after 2 s, 4 s, 8 s…
+    await wait(TRAILING_REREAD_MS);
+    expect(reads).toHaveLength(2);
+    let expected = 2;
+    for (const delay of [2_000, 4_000, 8_000, 16_000, 30_000, 30_000]) {
+      reads.at(-1)?.reject(new Error('down'));
+      await wait(delay - 1);
+      expect(reads).toHaveLength(expected);
+      await wait(1);
+      expected += 1;
+      expect(reads).toHaveLength(expected);
+    }
+    // The network is back: the answer shows, and the waits start short again.
+    await answer(2);
+    expect(shown.at(-1)).toEqual({ status: 'ready', value: 2 });
+    await wait(RETRY_READ_MAX_MS * 2);
+    expect(reads).toHaveLength(expected);
+    reader.reread();
+    reads.at(-1)?.reject(new ApiError(0));
+    await wait(RETRY_READ_MS);
+    expect(reads).toHaveLength(expected + 2);
+  });
+
+  it('never retries a refusal, nor anything outside a live session', async () => {
+    const refused = generation();
+    refused.reader.start();
+    await refused.answer(1);
+    await wait(TRAILING_REREAD_MS);
+    refused.reads.at(-1)?.reject(new ApiError(403));
+    await wait(RETRY_READ_MAX_MS * 4);
+    expect(refused.reads).toHaveLength(2);
+
+    const quiet = generation(false);
+    quiet.reader.start();
+    await quiet.answer(1);
+    quiet.reader.reread();
+    quiet.reads.at(-1)?.reject(new Error('down'));
+    await wait(RETRY_READ_MAX_MS * 4);
+    expect(quiet.reads).toHaveLength(2);
   });
 
   it('ends with its generation: no trailing read, and no late answer shown', async () => {

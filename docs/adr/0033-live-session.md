@@ -99,3 +99,10 @@ control stayed offered after Day 2.
   ones that client has shown (a place the undo made unknown keeps the seen name, or a neutral
   word). Nothing goes into browser storage: the notice is dismissed in memory and is not listed
   once the player acts again. No new command, event or authority.
+- 2026-11-15 (`work-orders/NATIVE_TV_POLISH_2026-11-15.md`; found on the table's screen, which
+  stayed on an old cast after a short loss of network). §4: a background read that fails for a
+  passing reason — the network, a 5xx or 429 answer, never a refusal — is read again 2 s later
+  and then twice as long each time up to 30 s, until one answers (`GenerationReads`,
+  `RETRY_READ_MS`); before, one trailing read 1.5 s later was the only second try, and a screen
+  whose stream survived the gap waited for the next signal. Only inside a live session; a
+  foreground failure still shows its error and its Retry.

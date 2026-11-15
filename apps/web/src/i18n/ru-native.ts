@@ -7,6 +7,10 @@ import { registerRussian } from '@ltw/ui';
 registerRussian({
   'Scan the table’s code': 'Сканировать код стола',
   'Server: {host}': 'Сервер: {host}',
+  'To the game': 'К игре',
+  'Only this app': 'Только это приложение',
+  'No login: you come back only in this app on this device, for up to {days} days.':
+    'Без логина: вернуться можно только в этом приложении на этом устройстве, до {days} дней.',
   // LTW DM's own TV (§6)
   'The TV of this device': 'Телевизор этого устройства',
   'Pair this TV': 'Подключить этот телевизор',
@@ -23,4 +27,6 @@ registerRussian({
   'The TV of this device still shows another campaign.':
     'Телевизор этого устройства всё ещё показывает другую кампанию.',
   'Show this campaign on the TV': 'Показать эту кампанию на телевизоре',
+  'Sound on the TV: ambience, music and the dice': 'Звук на телевизоре: фон, музыка и кубики',
+  'Volume on the TV': 'Громкость на телевизоре',
 });

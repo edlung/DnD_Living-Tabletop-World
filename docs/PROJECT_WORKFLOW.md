@@ -2,7 +2,18 @@
 
 Updated 2026-10-15. The owner's current AGENTS instructions take precedence over older process banners.
 
-## Current request — campaign library release, 2026-11-14
+## Current request — the apps and the table's screen, 2026-11-15
+
+- Owner: «давай доработаем приложения для iphone, android, ipad и вывод на телевизор». The session
+  surveyed `main` (`e268e158`) on the iOS simulators, the Android emulator and in browsers at TV
+  sizes, showed nineteen findings and asked; the owner chose three packages (the table's screen,
+  the apps, the layout) and the TV's sound "from the DM's iPad"; an Android TV app was offered and
+  not chosen. Scope `work-orders/NATIVE_TV_POLISH_2026-11-15.md`; branch `claude/native-tv-polish`
+  from `e268e158`; report `reports/NATIVE_TV_POLISH_2026-11-15.md`.
+- Status: implemented and verified; a pull request into `main` awaits the owner's merge decision.
+  Not merged, not deployed, nothing published to a store.
+
+## Earlier request — campaign library release, 2026-11-14
 
 - Owner: «Давай закроем все пробелы» (after the eight reworked campaigns were found to lack drawn
   battle maps, the NPC manner of speech in the game's AI, pictures that travel with a campaign, and

@@ -240,7 +240,7 @@
   margin: 0;
 }
 /* On a phone the hub is a page to work in: the key art keeps a strip, not a third of the screen */
-@media (max-width: 767px) {
+@media (max-width: 767px), (max-width: 1199px) and (max-height: 500px) {
   .sign-in.hub-page {
     padding-top: 16vh;
   }

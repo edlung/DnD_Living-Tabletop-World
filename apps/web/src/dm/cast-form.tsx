@@ -1,6 +1,6 @@
 import type { Cast, CastKind, CastResponse, EncounterResponse, EntityRef } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
-import { useCallback, useId, useState, type SubmitEvent } from 'react';
+import { useCallback, useId, useMemo, useState, type SubmitEvent } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
@@ -142,7 +142,17 @@ export function CastForm({
                 </option>
               ))}
             </select>
+            {place === PARTY_PLACE && (
+              <p className="field-hint">
+                {t(
+                  'While the party fights, the screens show the battlefield, and the scene again after it.',
+                )}
+              </p>
+            )}
           </div>
+        )}
+        {(kind === 'battlefield' || (kind === 'scene' && place === PARTY_PLACE)) && (
+          <UnseenFight api={api} fighting={fighters.length > 0} />
         )}
         {kind === 'battlefield' && (
           <div className="screen-cast-row">
@@ -245,5 +255,29 @@ export function CastForm({
         </button>
       </form>
     </section>
+  );
+}
+
+/**
+ * The screens read the PARTY perspective, which sees a fight only while a character someone plays
+ * takes part (ADR 0042 §3, ADR 0015 §6): a DM running a fight the screens cannot see is told so,
+ * instead of finding "No fight right now" on the TV.
+ */
+function UnseenFight({ api, fighting }: { readonly api: WorldApi; readonly fighting: boolean }) {
+  const t = useT();
+  const party = useMemo(() => api.as('PARTY'), [api]);
+  const load = useCallback(
+    (signal: AbortSignal) =>
+      fighting ? party.get<EncounterResponse>('encounter', signal) : Promise.resolve(null),
+    [party, fighting],
+  );
+  const seen = useResource(`screen-party-fight:${String(fighting)}`, load);
+  if (!fighting || seen.resource.status !== 'ready' || seen.resource.value?.encounter) return null;
+  return (
+    <p className="field-hint" role="status">
+      {t(
+        'The screens cannot show this fight yet: they see a fight only once a character someone plays takes part in it.',
+      )}
+    </p>
   );
 }

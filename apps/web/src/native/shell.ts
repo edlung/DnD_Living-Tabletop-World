@@ -5,7 +5,18 @@
  * is an enhancement: without a shell the page keeps its browser behaviour.
  */
 export type NativeApp = 'player' | 'dm' | 'tv';
-export type NativeFeature = 'haptics' | 'awake' | 'waiting' | 'scan' | 'server' | 'back' | 'tv';
+export type NativeFeature =
+  | 'haptics'
+  | 'awake'
+  | 'waiting'
+  | 'scan'
+  | 'server'
+  | 'back'
+  | 'tv'
+  /** LTW DM carries its page's word on the TV's sound to the TV's page. */
+  | 'tv-sound'
+  /** The TV's window plays sound without a press. */
+  | 'sound';
 export type HapticKind = 'alert' | 'dice';
 
 /** What the page asks of the shell. */
@@ -20,7 +31,8 @@ export type PageMessage =
   | { readonly type: 'tv-code'; readonly code: string }
   | { readonly type: 'tv-paired'; readonly campaign?: string }
   | { readonly type: 'tv-unpaired' }
-  | { readonly type: 'tv-forget' };
+  | { readonly type: 'tv-forget' }
+  | { readonly type: 'tv-sound'; readonly on: boolean; readonly volume: number };
 
 /**
  * The TV connected to the DM's device, as LTW DM sees it (§6); a paired TV names the campaign it
@@ -33,12 +45,14 @@ export type TvState =
 
 /**
  * What the shell tells the page: Android's Back (numbered, so a late answer is not taken for the
- * next press's), how the TV stands, and to the TV's own page, to forget its pairing.
+ * next press's), how the TV stands, and to the TV's own page, to forget its pairing and how the DM
+ * set its sound (on or off, its volume 0–100).
  */
 export type ShellMessage =
   | { readonly type: 'back'; readonly id?: number }
   | ({ readonly type: 'tv' } & TvState)
-  | { readonly type: 'forget' };
+  | { readonly type: 'forget' }
+  | { readonly type: 'sound'; readonly on: boolean; readonly volume: number };
 
 export interface NativeShell {
   readonly platform: 'ios' | 'android';
@@ -57,6 +71,8 @@ const FEATURES: ReadonlySet<string> = new Set([
   'server',
   'back',
   'tv',
+  'tv-sound',
+  'sound',
 ]);
 /** A TV's pairing code, as the server makes it (`@ltw/contracts` `CODE_ALPHABET`). */
 export const PAIRING_CODE = /^[A-HJKMNP-Z2-9]{8}$/;
@@ -78,6 +94,8 @@ interface Fields {
   readonly code?: unknown;
   readonly id?: unknown;
   readonly campaign?: unknown;
+  readonly on?: unknown;
+  readonly volume?: unknown;
 }
 
 const record = (value: unknown): Fields | null =>
@@ -129,6 +147,12 @@ export function parseShellMessage(value: unknown): ShellMessage | null {
   const raw = record(value);
   if (raw === null) return null;
   if (raw.type === 'forget') return { type: 'forget' };
+  if (raw.type === 'sound') {
+    const { on, volume } = raw;
+    return typeof on === 'boolean' && sequence(volume) && volume <= 100
+      ? { type: 'sound', on, volume }
+      : null;
+  }
   if (raw.type === 'back') {
     if (raw.id === undefined) return { type: 'back' };
     return sequence(raw.id) ? { type: 'back', id: raw.id } : null;
