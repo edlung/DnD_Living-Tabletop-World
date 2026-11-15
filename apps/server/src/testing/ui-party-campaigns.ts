@@ -1,6 +1,11 @@
 import { commandSubmissionSchema, type WorldEngine } from '@ltw/domain';
 
-import { RAVENFORD_RU_FIXTURES_DIR, loadRavenfordSeed } from '../world-engine/ravenford-seed.ts';
+import {
+  RAVENFORD_FIXTURES_DIR,
+  RAVENFORD_RU_FIXTURES_DIR,
+  RAVENFORD_SEED_FILES,
+  loadSeed,
+} from '../world-engine/ravenford-seed.ts';
 
 /**
  * Browser-test campaigns for the table's party (Stage 605): copies of Ravenford whose four
@@ -44,7 +49,7 @@ export const UI_PARTY_CAMPAIGNS = {
   trapsFound: 'ui-traps-found',
   /** What a fallen foe carried, taken after the fight (Stage 670e). */
   lootFight: 'ui-loot-fight',
-  /** The world map, its routes and a journey (Stage 670g). */
+  /** The world map, its routes and a journey (Stage 670g): lands nobody has mapped yet. */
   travel: 'ui-travel',
   travelRu: 'ui-travel-ru',
   /** The DM's editors without AI (Stage 680a). */
@@ -54,6 +59,14 @@ export const UI_PARTY_CAMPAIGNS = {
   library: 'ui-library',
   libraryRu: 'ui-library-ru',
 } as const;
+
+/**
+ * The travel journeys start where no map exists and the DM draws the first one: their Ravenford is
+ * seeded without the town's growth (`town-seed.json`), which brings the shipped map of the
+ * surroundings, its pins and its roads.
+ */
+const UNMAPPED: readonly string[] = [UI_PARTY_CAMPAIGNS.travel, UI_PARTY_CAMPAIGNS.travelRu];
+const BEFORE_THE_MAP = RAVENFORD_SEED_FILES.filter(({ prefix }) => prefix !== 'town');
 
 const PARTY = ['elowen-starwhisper', 'brann-ironvale', 'tamsin-quickfoot', 'maren-ashby'];
 const DM = { actorId: 'dm-ravenford', kind: 'user' } as const;
@@ -86,7 +99,10 @@ export async function seedUiPartyCampaigns(engine: WorldEngine): Promise<void> {
     [UI_PARTY_CAMPAIGNS.library, 'en'],
     [UI_PARTY_CAMPAIGNS.libraryRu, 'ru'],
   ] as const) {
-    const seed = await loadRavenfordSeed(language === 'ru' ? RAVENFORD_RU_FIXTURES_DIR : undefined);
+    const seed = await loadSeed(
+      language === 'ru' ? RAVENFORD_RU_FIXTURES_DIR : RAVENFORD_FIXTURES_DIR,
+      UNMAPPED.includes(campaignId) ? BEFORE_THE_MAP : RAVENFORD_SEED_FILES,
+    );
     for (const input of seed.submissions) {
       const submission = commandSubmissionSchema.parse(input);
       const result = await engine.execute({
