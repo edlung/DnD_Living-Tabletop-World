@@ -373,6 +373,8 @@ describe('accounts', () => {
       'Wren Underbough',
     ]);
     expect(state?.roster.size).toBe(0);
+    // Each one's GPT portrait, named in the set by its seed command and bound to this copy's ID.
+    for (const one of characters) expect(state?.assets.canonical.has(one.entityId)).toBe(true);
     // Its GPT pictures, approved by its DM: Hollowmere's own, and Ravenford's North Gate it opens at.
     expect(state?.assets.canonical.has('hollowmere')).toBe(true);
     expect(state?.assets.canonical.has('north-gate')).toBe(true);

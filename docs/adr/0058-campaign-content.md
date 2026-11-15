@@ -123,8 +123,11 @@
 - A viewer with no place of its own (the DM, the party's view) opens where the scene is played: the
   directory states the active scene's place (`scenePlaceId`), where the client once fell back to
   Ravenford's Market Square and opened Hollowmere at its Bell Tower.
-- A ready-made character has no curated portrait: its ID is the World Engine's, new in every copy,
-  so the import (by entity ID) cannot name it; its player or the DM adds one as for any character.
+- A ready-made character's ID is the World Engine's, new in every copy, so the import cannot name
+  it by entity ID. Its curated portrait names the seed command that creates it instead
+  (`seed-party-0001`), and the copy binds that name to the ID its own history recorded before the
+  import (amendment 2026-11-15: `apps/server/src/images/seed-entities.ts`, `accounts/templates.ts`).
+  Its player or the DM may still replace it as for any character.
 
 ## Consequences
 

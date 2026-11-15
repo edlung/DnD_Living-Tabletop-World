@@ -63,7 +63,14 @@
     },
     {
       "file": "goblin-raider.webp",
-      "entityIds": ["creature-10fb59d4", "creature-589f6668", "creature-6513bec0"],
+      "entityIds": [
+        "creature-10fb59d4",
+        "creature-589f6668",
+        "creature-6513bec0",
+        "creature-e4045805",
+        "creature-09a3666b",
+        "creature-19c9df4a"
+      ],
       "variant": "reference",
       "label": null,
       "purpose": "image",
@@ -77,7 +84,7 @@
     },
     {
       "file": "goblin-shaman.webp",
-      "entityIds": ["creature-ae08be99"],
+      "entityIds": ["creature-ae08be99", "creature-e02754d2"],
       "variant": "reference",
       "label": null,
       "purpose": "image",
@@ -528,7 +535,14 @@
     },
     {
       "file": "goblin-raider--wounded.webp",
-      "entityIds": ["creature-10fb59d4", "creature-589f6668", "creature-6513bec0"],
+      "entityIds": [
+        "creature-10fb59d4",
+        "creature-589f6668",
+        "creature-6513bec0",
+        "creature-e4045805",
+        "creature-09a3666b",
+        "creature-19c9df4a"
+      ],
       "variant": "derived",
       "label": "wounded",
       "purpose": "image",
@@ -542,7 +556,7 @@
     },
     {
       "file": "goblin-shaman--wounded.webp",
-      "entityIds": ["creature-ae08be99"],
+      "entityIds": ["creature-ae08be99", "creature-e02754d2"],
       "variant": "derived",
       "label": "wounded",
       "purpose": "image",
@@ -612,7 +626,14 @@
     },
     {
       "file": "goblin-raider--figure.webp",
-      "entityIds": ["creature-10fb59d4", "creature-589f6668", "creature-6513bec0"],
+      "entityIds": [
+        "creature-10fb59d4",
+        "creature-589f6668",
+        "creature-6513bec0",
+        "creature-e4045805",
+        "creature-09a3666b",
+        "creature-19c9df4a"
+      ],
       "variant": "derived",
       "label": "figure",
       "purpose": "figure",
@@ -626,7 +647,7 @@
     },
     {
       "file": "goblin-shaman--figure.webp",
-      "entityIds": ["creature-ae08be99"],
+      "entityIds": ["creature-ae08be99", "creature-e02754d2"],
       "variant": "derived",
       "label": "figure",
       "purpose": "figure",
@@ -637,6 +658,232 @@
       "generated": "2026-10-15",
       "references": [],
       "prompt": "Create exactly one new image with your image generation tool, using the attached reference image as the input image. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached concept art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the concepts for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nThe attached image is the approved canonical reference. Draw full-body painted tabletop miniature of the same character standing on a round dark stone base, three-quarter view from slightly above, isolated on a pure flat black background (#000000), no cast shadow beyond the base. Keep the same place's architecture and composition or the same person's face, hair, build and clothing exactly; change only what this variant requires.\nFRAMING: square 1:1.\n\nThen copy the generated PNG into the current working directory as goblin-shaman--figure.png and reply only with that file name."
+    },
+    {
+      "file": "grey-worg.webp",
+      "entityIds": ["creature-208d86da", "creature-9f5fe645"],
+      "variant": "reference",
+      "label": null,
+      "purpose": "image",
+      "derivedFrom": null,
+      "mediaType": "image/webp",
+      "sha256": "001aec073c5d59a140902e32ec4e8eb10f78959ea46449f40d45f8ffa0ad4eec",
+      "originalSha256": "5aca08c53b04fd76dfd93fb3e67ff88b7b14571b4bd325979e1abdec592fa3a4",
+      "generated": "2026-11-15",
+      "references": [
+        "fixtures/ravenford-ru/assets/goblin-shaman.webp",
+        "fixtures/hollowmere/assets/drowned-knight.webp",
+        "docs/design/stage-320/owner-concepts/06-combat-states.webp"
+      ],
+      "prompt": "Create exactly one new image with your image generation tool. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nSUBJECT: a grey worg that road goblins ride: a huge wolf-like beast the size of a pony, coarse fur grey as old ash, a heavy scarred muzzle, one torn ear, hungry yellow eyes, a crude goblin riding harness of patched leather straps\nFRAMING: square 1:1 bestiary portrait, the whole creature or head and shoulders, three-quarter view, dramatic rim light on a dark smoky background with a soft vignette; an original design, not any known franchise creature.\n\nThen copy the generated PNG into the current working directory as grey-worg.png and reply only with that file name."
+    },
+    {
+      "file": "goblin-warlord.webp",
+      "entityIds": ["creature-90defd0d"],
+      "variant": "reference",
+      "label": null,
+      "purpose": "image",
+      "derivedFrom": null,
+      "mediaType": "image/webp",
+      "sha256": "13d403a99f530ad902f6878e861021bc609d94510c0c91a08cc350878fcb1c02",
+      "originalSha256": "20c20655f621b93c7c3932a7d6dbf44285ae75789c7d5be82aeb08be4f120a51",
+      "generated": "2026-11-15",
+      "references": [
+        "fixtures/ravenford-ru/assets/goblin-raider.webp",
+        "fixtures/ravenford-ru/assets/goblin-shaman.webp"
+      ],
+      "prompt": "Create exactly one new image with your image generation tool. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nSUBJECT: a goblin warlord, taller and broader than the raiders: a small wiry grey-green goblin build grown hard and scarred, long pointed ears and sharp teeth, a wolf-pelt cloak, a breastplate of mismatched scavenged steel plates over crude patched leather armour, a notched scimitar and a battered round wooden shield, a cruel calculating look\nHe belongs to the same goblin tribe as the attached goblin raider and shaman: the same grey-green skin, ears, teeth and crude patched leather.\nFRAMING: square 1:1 bestiary portrait, the whole creature or head and shoulders, three-quarter view, dramatic rim light on a dark smoky background with a soft vignette; an original design, not any known franchise creature.\n\nThen copy the generated PNG into the current working directory as goblin-warlord.png and reply only with that file name."
+    },
+    {
+      "file": "brann-ironvale.webp",
+      "entityIds": ["brann-ironvale"],
+      "variant": "reference",
+      "label": null,
+      "purpose": "image",
+      "derivedFrom": null,
+      "mediaType": "image/webp",
+      "sha256": "80b92b5373f774afa89b1db1d9e07e0986aeac6c27ba49ca20d525683ae42644",
+      "originalSha256": "875773b04120e540ce5f136828307986f090e7e0b0f20f92b2539b812c38b4bb",
+      "generated": "2026-11-15",
+      "references": [
+        "fixtures/ravenford-ru/assets/elowen-starwhisper.webp",
+        "fixtures/ravenford-ru/assets/captain-thorne.webp"
+      ],
+      "prompt": "Create exactly one new image with your image generation tool. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nSUBJECT: Brann Ironvale, a broad-shouldered human fighter in his late thirties, a veteran caravan guard turned sellsword: close-cropped dark-blond hair, a short beard, a weathered steady face, town-guard chain mail under a dark surcoat without emblems, a round shield painted with a stag-head crest, an arming sword at his hip\nHe is a new hero of the same world as the attached portraits; paint him with the same light, finish and level of detail.\nFRAMING: square 1:1 portrait, head and shoulders to mid-chest, three-quarter view, soft cinematic key light, dark atmospheric background that falls off to near-black at the edges.\n\nThen copy the generated PNG into the current working directory as brann-ironvale.png and reply only with that file name."
+    },
+    {
+      "file": "tamsin-quickfoot.webp",
+      "entityIds": ["tamsin-quickfoot"],
+      "variant": "reference",
+      "label": null,
+      "purpose": "image",
+      "derivedFrom": null,
+      "mediaType": "image/webp",
+      "sha256": "3e091632d9bba52d90f87f2744a8e41fdb4d3ff8fb05d4765d9ab1dec5c20dc5",
+      "originalSha256": "e27fdb8418ef402de1104aef9563ea3b54cb5856ae0510c679cf948f06fa1af7",
+      "generated": "2026-11-15",
+      "references": [
+        "fixtures/ravenford-ru/assets/elowen-starwhisper.webp",
+        "fixtures/ravenford-ru/assets/mira-vale.webp"
+      ],
+      "prompt": "Create exactly one new image with your image generation tool. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nSUBJECT: Tamsin Quickfoot, a halfling rogue woman: small and nimble, curly chestnut hair tied back, quick clever hazel eyes, a sly half-smile, a dark traveller's leather jerkin with many pockets, a slender duelist's rapier at her hip and a short hunting bow over her shoulder\nShe is a new hero of the same world as the attached portraits; paint her with the same light, finish and level of detail.\nFRAMING: square 1:1 portrait, head and shoulders to mid-chest, three-quarter view, soft cinematic key light, dark atmospheric background that falls off to near-black at the edges.\n\nThen copy the generated PNG into the current working directory as tamsin-quickfoot.png and reply only with that file name."
+    },
+    {
+      "file": "maren-ashby.webp",
+      "entityIds": ["maren-ashby"],
+      "variant": "reference",
+      "label": null,
+      "purpose": "image",
+      "derivedFrom": null,
+      "mediaType": "image/webp",
+      "sha256": "46894dd99afa32fafd690416cbb03b2ca847964eed91fe2d6001176ae29a8e97",
+      "originalSha256": "d0a930985fd08e691ac87285c8c913b4e5ffd863fbbd66ce6e92ad03dcac7c00",
+      "generated": "2026-11-15",
+      "references": [
+        "fixtures/ravenford-ru/assets/orin-stonebeard.webp",
+        "fixtures/ravenford-ru/assets/elowen-starwhisper.webp"
+      ],
+      "prompt": "Create exactly one new image with your image generation tool. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nSUBJECT: Maren Ashby, a dwarf cleric and healer of the Life Domain, a man in his prime: a thick braided dark-brown beard with a few grey streaks, calm deep-set eyes, a blunt steady expression, town-guard chain mail under a plain grey-white tabard, an oak buckler and a flanged mace, a small gold sun-and-leaf holy symbol on a chain, a pouch of herbal balm at his belt\nHe is a new hero of the same world as the attached portraits; paint him with the same light, finish and level of detail, but he is not the attached old alchemist.\nFRAMING: square 1:1 portrait, head and shoulders to mid-chest, three-quarter view, soft cinematic key light, dark atmospheric background that falls off to near-black at the edges.\n\nThen copy the generated PNG into the current working directory as maren-ashby.png and reply only with that file name."
+    },
+    {
+      "file": "grey-worg--figure.webp",
+      "entityIds": ["creature-208d86da", "creature-9f5fe645"],
+      "variant": "derived",
+      "label": "figure",
+      "purpose": "figure",
+      "derivedFrom": "grey-worg.webp",
+      "mediaType": "image/webp",
+      "sha256": "7db83940153bf5630d02a27d22121bc2f0dcadc1cec14aa1eecf82e7d5f0ffe4",
+      "originalSha256": "e344d9e772744f970aef88d3c0199ac0622b62e1c0e28f0329d3f8a0dba40328",
+      "generated": "2026-11-15",
+      "references": ["grey-worg.webp"],
+      "prompt": "Create exactly one new image with your image generation tool, using the attached reference image as the input image. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nThe attached image is the approved canonical reference. Draw a full-body painted tabletop miniature of the same character standing on a round dark stone base, three-quarter view from slightly above, isolated on a pure flat black background (#000000), no cast shadow beyond the base. Keep the same person's or creature's face, build, hair, clothing, equipment and colours exactly; change only what this variant requires.\nFRAMING: square 1:1.\n\nThen copy the generated PNG into the current working directory as grey-worg--figure.png and reply only with that file name."
+    },
+    {
+      "file": "grey-worg--wounded.webp",
+      "entityIds": ["creature-208d86da", "creature-9f5fe645"],
+      "variant": "derived",
+      "label": "wounded",
+      "purpose": "image",
+      "derivedFrom": "grey-worg.webp",
+      "mediaType": "image/webp",
+      "sha256": "b553f2a7fe4c1965ae3a283ed9b8f2f37c4a71ae63894dc949ab45eccdff2083",
+      "originalSha256": "b25098ee17dd6235b9082180c53b71502976b1306ff5918277db59fd2b60bfab",
+      "generated": "2026-11-15",
+      "references": ["grey-worg.webp"],
+      "prompt": "Create exactly one new image with your image generation tool, using the attached reference image as the input image. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nThe attached image is the approved canonical reference. Draw the same creature wounded but standing: torn hide, a bleeding cut on the flank, bared teeth, tired but still dangerous; no gore. Keep the same person's or creature's face, build, hair, clothing, equipment and colours exactly; change only what this variant requires.\nFRAMING: square 1:1 bestiary portrait, the whole creature or head and shoulders, three-quarter view, dramatic rim light on a dark smoky background with a soft vignette; an original design, not any known franchise creature.\n\nThen copy the generated PNG into the current working directory as grey-worg--wounded.png and reply only with that file name."
+    },
+    {
+      "file": "goblin-warlord--figure.webp",
+      "entityIds": ["creature-90defd0d"],
+      "variant": "derived",
+      "label": "figure",
+      "purpose": "figure",
+      "derivedFrom": "goblin-warlord.webp",
+      "mediaType": "image/webp",
+      "sha256": "bce31122fd251cf653b874133fddff8b66d345fdf0e5867410a50c46a51d5e1e",
+      "originalSha256": "e63544a63d65601a2fca3f82377bbf8c92eb8952682df943107f75ed6e17f16f",
+      "generated": "2026-11-15",
+      "references": ["goblin-warlord.webp"],
+      "prompt": "Create exactly one new image with your image generation tool, using the attached reference image as the input image. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nThe attached image is the approved canonical reference. Draw a full-body painted tabletop miniature of the same character standing on a round dark stone base, three-quarter view from slightly above, isolated on a pure flat black background (#000000), no cast shadow beyond the base. Keep the same person's or creature's face, build, hair, clothing, equipment and colours exactly; change only what this variant requires.\nFRAMING: square 1:1.\n\nThen copy the generated PNG into the current working directory as goblin-warlord--figure.png and reply only with that file name."
+    },
+    {
+      "file": "goblin-warlord--wounded.webp",
+      "entityIds": ["creature-90defd0d"],
+      "variant": "derived",
+      "label": "wounded",
+      "purpose": "image",
+      "derivedFrom": "goblin-warlord.webp",
+      "mediaType": "image/webp",
+      "sha256": "25024605ed6297bca26af97124041df96fb154c1c1cd8232b828a4013687cd8a",
+      "originalSha256": "3a06e8a637f1bca8ab98d6ff62401d8807c7e3afdc8d9a2f746a1da5c72db0eb",
+      "generated": "2026-11-15",
+      "references": ["goblin-warlord.webp"],
+      "prompt": "Create exactly one new image with your image generation tool, using the attached reference image as the input image. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nThe attached image is the approved canonical reference. Draw the same person wounded but standing: torn clothing, a bandaged arm, a cut on the brow, tired but resolute. Keep the same person's or creature's face, build, hair, clothing, equipment and colours exactly; change only what this variant requires.\nFRAMING: square 1:1 bestiary portrait, the whole creature or head and shoulders, three-quarter view, dramatic rim light on a dark smoky background with a soft vignette; an original design, not any known franchise creature.\n\nThen copy the generated PNG into the current working directory as goblin-warlord--wounded.png and reply only with that file name."
+    },
+    {
+      "file": "brann-ironvale--figure.webp",
+      "entityIds": ["brann-ironvale"],
+      "variant": "derived",
+      "label": "figure",
+      "purpose": "figure",
+      "derivedFrom": "brann-ironvale.webp",
+      "mediaType": "image/webp",
+      "sha256": "c307bbf64cda61c6f18af43f41abfe35d489778ac5669531348f1a63d6fe7775",
+      "originalSha256": "8d0100d74f8e43f389fd9422ee890bcb1ea545031d692e08c8254c16766372ff",
+      "generated": "2026-11-15",
+      "references": ["brann-ironvale.webp"],
+      "prompt": "Create exactly one new image with your image generation tool, using the attached reference image as the input image. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nThe attached image is the approved canonical reference. Draw a full-body painted tabletop miniature of the same character standing on a round dark stone base, three-quarter view from slightly above, isolated on a pure flat black background (#000000), no cast shadow beyond the base. Keep the same person's or creature's face, build, hair, clothing, equipment and colours exactly; change only what this variant requires.\nFRAMING: square 1:1.\n\nThen copy the generated PNG into the current working directory as brann-ironvale--figure.png and reply only with that file name."
+    },
+    {
+      "file": "brann-ironvale--wounded.webp",
+      "entityIds": ["brann-ironvale"],
+      "variant": "derived",
+      "label": "wounded",
+      "purpose": "image",
+      "derivedFrom": "brann-ironvale.webp",
+      "mediaType": "image/webp",
+      "sha256": "3a5796d5856b95b2ded57791177cf136da15ce676335ad811a68d09d0e44d694",
+      "originalSha256": "dd940f53adb9642fdb5059e53386a77fb4f4d26f927a5c8a82ea4c96292ce59f",
+      "generated": "2026-11-15",
+      "references": ["brann-ironvale.webp"],
+      "prompt": "Create exactly one new image with your image generation tool, using the attached reference image as the input image. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nThe attached image is the approved canonical reference. Draw the same person wounded but standing: torn clothing, a bandaged arm, a cut on the brow, tired but resolute. Keep the same person's or creature's face, build, hair, clothing, equipment and colours exactly; change only what this variant requires.\nFRAMING: square 1:1 portrait, head and shoulders to mid-chest, three-quarter view, soft cinematic key light, dark atmospheric background that falls off to near-black at the edges.\n\nThen copy the generated PNG into the current working directory as brann-ironvale--wounded.png and reply only with that file name."
+    },
+    {
+      "file": "tamsin-quickfoot--figure.webp",
+      "entityIds": ["tamsin-quickfoot"],
+      "variant": "derived",
+      "label": "figure",
+      "purpose": "figure",
+      "derivedFrom": "tamsin-quickfoot.webp",
+      "mediaType": "image/webp",
+      "sha256": "91e05f6ca5d62791c1290817c92b222c57983acc139d8abc88ef90e531354946",
+      "originalSha256": "e873280aaf6b963d5c03dbe1fa686ac591612cf483cf5e88dc4da037b081b4ec",
+      "generated": "2026-11-15",
+      "references": ["tamsin-quickfoot.webp"],
+      "prompt": "Create exactly one new image with your image generation tool, using the attached reference image as the input image. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nThe attached image is the approved canonical reference. Draw a full-body painted tabletop miniature of the same character standing on a round dark stone base, three-quarter view from slightly above, isolated on a pure flat black background (#000000), no cast shadow beyond the base. Keep the same person's or creature's face, build, hair, clothing, equipment and colours exactly; change only what this variant requires.\nFRAMING: square 1:1.\n\nThen copy the generated PNG into the current working directory as tamsin-quickfoot--figure.png and reply only with that file name."
+    },
+    {
+      "file": "tamsin-quickfoot--wounded.webp",
+      "entityIds": ["tamsin-quickfoot"],
+      "variant": "derived",
+      "label": "wounded",
+      "purpose": "image",
+      "derivedFrom": "tamsin-quickfoot.webp",
+      "mediaType": "image/webp",
+      "sha256": "ad3b3c9e3501fbe1e3e7a5b25712bfcb207b02d3f1aa81c32217f2d9bb685bb9",
+      "originalSha256": "66dfc210c0f66a232f9d54c5edfd475d688b9efe1cf29f38380aeee610374232",
+      "generated": "2026-11-15",
+      "references": ["tamsin-quickfoot.webp"],
+      "prompt": "Create exactly one new image with your image generation tool, using the attached reference image as the input image. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nThe attached image is the approved canonical reference. Draw the same person wounded but standing: torn clothing, a bandaged arm, a cut on the brow, tired but resolute. Keep the same person's or creature's face, build, hair, clothing, equipment and colours exactly; change only what this variant requires.\nFRAMING: square 1:1 portrait, head and shoulders to mid-chest, three-quarter view, soft cinematic key light, dark atmospheric background that falls off to near-black at the edges.\n\nThen copy the generated PNG into the current working directory as tamsin-quickfoot--wounded.png and reply only with that file name."
+    },
+    {
+      "file": "maren-ashby--figure.webp",
+      "entityIds": ["maren-ashby"],
+      "variant": "derived",
+      "label": "figure",
+      "purpose": "figure",
+      "derivedFrom": "maren-ashby.webp",
+      "mediaType": "image/webp",
+      "sha256": "d8a6351b1dca52a4be34b7836fa8660eb75ee7381f6d89bd8042bb02d018422e",
+      "originalSha256": "a60d8a078c6fafd72d2cbfdb13b2e9a176b1b74fb8d3c57d5b96530c3c24a30f",
+      "generated": "2026-11-15",
+      "references": ["maren-ashby.webp"],
+      "prompt": "Create exactly one new image with your image generation tool, using the attached reference image as the input image. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nThe attached image is the approved canonical reference. Draw a full-body painted tabletop miniature of the same character standing on a round dark stone base, three-quarter view from slightly above, isolated on a pure flat black background (#000000), no cast shadow beyond the base. Keep the same person's or creature's face, build, hair, clothing, equipment and colours exactly; change only what this variant requires.\nFRAMING: square 1:1.\n\nThen copy the generated PNG into the current working directory as maren-ashby--figure.png and reply only with that file name."
+    },
+    {
+      "file": "maren-ashby--wounded.webp",
+      "entityIds": ["maren-ashby"],
+      "variant": "derived",
+      "label": "wounded",
+      "purpose": "image",
+      "derivedFrom": "maren-ashby.webp",
+      "mediaType": "image/webp",
+      "sha256": "116c184792f8b805700f7ed90e7c5f0ed6aac881cc3f0cc8a324eecf570f7f8b",
+      "originalSha256": "bef9ddde0e98c3f48832f741fac5ae0157b33cce1edcba9c95b2e7991ac1334f",
+      "generated": "2026-11-15",
+      "references": ["maren-ashby.webp"],
+      "prompt": "Create exactly one new image with your image generation tool, using the attached reference image as the input image. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nThe attached image is the approved canonical reference. Draw the same person wounded but standing: torn clothing, a bandaged arm, a cut on the brow, tired but resolute. Keep the same person's or creature's face, build, hair, clothing, equipment and colours exactly; change only what this variant requires.\nFRAMING: square 1:1 portrait, head and shoulders to mid-chest, three-quarter view, soft cinematic key light, dark atmospheric background that falls off to near-black at the edges.\n\nThen copy the generated PNG into the current working directory as maren-ashby--wounded.png and reply only with that file name."
     }
   ]
 }
