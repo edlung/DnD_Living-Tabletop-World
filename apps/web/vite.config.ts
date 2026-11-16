@@ -1,5 +1,6 @@
 import { defineConfig, type Plugin } from 'vite';
 
+import { devTrace } from './dev-trace.ts';
 import manifest from './src/assets/ui-kit.manifest.json' with { type: 'json' };
 
 /**
@@ -47,7 +48,7 @@ function uiKitUrlsInDevelopment(): Plugin {
 // server, playwright.config.ts) its own dependency cache, so two servers never race on one.
 const cacheDir = process.env['LTW_VITE_CACHE_DIR'];
 export default defineConfig({
-  plugins: [uiKitUrlsInDevelopment()],
+  plugins: [uiKitUrlsInDevelopment(), devTrace()],
   ...(cacheDir === undefined ? {} : { cacheDir }),
   resolve: { conditions: ['@ltw/source', 'browser', 'development|production'] },
   server: {
