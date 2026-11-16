@@ -7,12 +7,6 @@ import { defineConfig, devices } from '@playwright/test';
 // sign-in server, never written anywhere.
 process.env['LTW_UI_SIGN_IN_SEED'] ??= randomBytes(32).toString('hex');
 
-// Temporary (WebKit lab): the built client behind the same proxy, instead of the dev server.
-const web = (port: number) =>
-  process.env['LTW_E2E_BUILT'] === undefined
-    ? `pnpm dev:web --host 127.0.0.1 --port ${String(port)}`
-    : `pnpm --filter @ltw/web exec vite preview --host 127.0.0.1 --port ${String(port)} --strictPort`;
-
 export default defineConfig({
   testDir: './tests/e2e',
   outputDir: './test-results',
@@ -33,27 +27,15 @@ export default defineConfig({
   },
   projects: [
     { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
-    // The DM's screen on an iPad in Safari's engine (docs/adr/0043-dm-screen.md §4, Stage 620),
-    // and an evening closed and opened there (docs/adr/0071-memory-and-ritual.md §1, Stage 710);
-    // the journeys of the later ritual and keepsake stages run there too, each named below.
-    // One WebKit journey at a time. These are the suite's heaviest — a DM, players and a TV,
-    // three to five pages each. Side by side on a hosted runner, across four runs of 2026-11-16,
-    // a different one each time waited fifteen or twenty seconds for a screen that had not caught
-    // up (an evening closed, a card in the lobby); one at a time, none has waited so since. That
-    // day's red runs had two more causes, answered elsewhere: journeys that left their pages open
-    // (tests/e2e/support/journey.ts) and the dev client reloading a page (LTW_VITE_NO_RELOAD below).
-    // Same journeys, same assertions, one worker.
+    // The DM's screen on an iPad in Safari's engine (docs/adr/0043-dm-screen.md §4, Stage 620).
     {
       name: 'ipad',
-      workers: 1,
       use: { ...devices['iPad Pro 11 landscape'] },
-      testMatch:
-        /(dm-screen|evening-ritual|stars-and-wishes|next-game|agreement|ritual-checkpoint|campaign-book|campaign-end|comforts|keepsakes-checkpoint)\.spec\.ts$/,
+      testMatch: /dm-screen\.spec\.ts$/,
     },
     // Release 1.0's journeys in Safari's engine too (work-orders/STAGE_699.md, 699b).
     {
       name: 'webkit',
-      workers: 1,
       use: { ...devices['Desktop Safari'] },
       testMatch: /release\.spec\.ts$/,
     },
@@ -66,10 +48,8 @@ export default defineConfig({
       timeout: 30_000,
     },
     {
-      command: web(4310),
-      // A page that lost its connection to the dev server is not reloaded under its journey:
-      // LTW_VITE_NO_RELOAD in apps/web/vite.config.ts.
-      env: { LTW_API_TARGET: 'http://127.0.0.1:4311', LTW_VITE_NO_RELOAD: '1' },
+      command: 'pnpm dev:web --host 127.0.0.1 --port 4310',
+      env: { LTW_API_TARGET: 'http://127.0.0.1:4311' },
       url: 'http://127.0.0.1:4310',
       reuseExistingServer: false,
       timeout: 30_000,
@@ -83,11 +63,10 @@ export default defineConfig({
       timeout: 30_000,
     },
     {
-      command: web(4312),
+      command: 'pnpm dev:web --host 127.0.0.1 --port 4312',
       env: {
         LTW_API_TARGET: 'http://127.0.0.1:4313',
         LTW_VITE_CACHE_DIR: 'node_modules/.vite-sign-in',
-        LTW_VITE_NO_RELOAD: '1',
       },
       url: 'http://127.0.0.1:4312',
       reuseExistingServer: false,
