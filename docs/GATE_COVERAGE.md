@@ -918,3 +918,15 @@ for a few seconds and never stored; a text size and a break reminder that never 
   journeys `tests/e2e/comforts.spec.ts` and `comforts-screens.spec.ts`.
 - Next review obligation: none scheduled; the owner may order an independent repeat.
 
+## Stage 799: the package's close (2026-11-16)
+
+One new journey and one fix. `tests/e2e/keepsakes-checkpoint.spec.ts` plays a last evening, a
+campaign's end and its book with the DM, two players and the table's screen (Chromium, WebKit on
+an iPad) and looks through what each was sent: the TV the party's view and none of the
+party-forbidden markers; a player her own wish and none of the markers forbidden to her
+character; the other player not that wish; of a cheer its ID, its mark and who gave it. The pass
+over every new read of Stages 770–790 found that the account's list named, of a finished
+campaign, a hero the party has not met when the DM had chosen a keepsake for one: the list now
+leaves that keepsake out (`apps/server/src/accounts/finished-campaigns.test.ts`, which fails
+without the fix). The table of every read and its tests is in `reports/STAGE_799_COMPLETION.md`.
+

@@ -26,7 +26,9 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   the account's list) on `claude/stage-780-home-between-worlds`, stacked on 770's (ADR 0072 §2,
   `reports/STAGE_780_COMPLETION.md`); Stage 790 (small comforts: text size, the DM's break
   reminder, cheers at the table) on `claude/stage-790-small-comforts`, stacked on 780's (ADR 0072
-  §3, `reports/STAGE_790_COMPLETION.md`). Off-host backup copies are a separate task on the owner's
+  §3, `reports/STAGE_790_COMPLETION.md`); Stage 799 (the package's close: one journey over Part
+  2, the adversarial pass, the handoff) on `claude/stage-799-package-close`, stacked on 790's
+  (`reports/STAGE_799_COMPLETION.md`): the package ends there, before the family playtest. Off-host backup copies are a separate task on the owner's
   separate word.
 
 ## Current request — campaign library release, 2026-11-14

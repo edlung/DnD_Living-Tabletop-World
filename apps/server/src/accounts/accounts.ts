@@ -139,19 +139,22 @@ export async function campaignsOf(
 }
 
 /** The characters the party knows, as a member reading the party's view is shown them. */
-function heroesOf(state: WorldState, actor: Actor): string[] {
+function heroesOf(state: WorldState, actor: Actor): Set<string> {
   const party = resolvePerspective(state, actor, { kind: 'PARTY' });
-  if (!party.ok) return [];
+  if (!party.ok) return new Set();
   const known = knownEntityIds(state, party.perspective);
-  return [...state.entities.values()]
-    .filter((entity) => entity.kind === 'character' && known.has(entity.entityId))
-    .map((entity) => entity.entityId);
+  return new Set(
+    [...state.entities.values()]
+      .filter((entity) => entity.kind === 'character' && known.has(entity.entityId))
+      .map((entity) => entity.entityId),
+  );
 }
 
 /**
  * A finished campaign as its members' list shows it: the days played, the heroes the party knows
- * (as the book's cover names them), and every keepsake — what the whole table reads there (ADR
- * 0072 §2).
+ * (as the book's cover names them), and what each of them keeps — what a member reads there as
+ * the party (ADR 0072 §2.6). A keepsake the DM chose for someone the party has not met is not
+ * this list's to name: inside the campaign it is read without a name, and here it is left out.
  */
 async function finishedOf(
   state: WorldState,
@@ -162,6 +165,7 @@ async function finishedOf(
   const end = await ending.read(campaignId);
   if (end === null) return null;
   const named = (entityId: string) => state.entities.get(entityId)?.name ?? entityId;
+  const heroes = heroesOf(state, actor);
   const sessions = [...state.sessions.values()];
   const first = sessions[0];
   const last = sessions.at(-1);
@@ -171,15 +175,15 @@ async function finishedOf(
       first === undefined || last === undefined
         ? null
         : { from: first.playedFrom, to: last.playedTo ?? last.playedFrom },
-    heroes: heroesOf(state, actor)
-      .map(named)
-      .sort((a, b) => a.localeCompare(b)),
-    keepsakes: (await ending.keepsakes(campaignId)).map((kept) => ({
-      hero: named(kept.characterId),
-      kind: kept.kind,
-      label: kept.label,
-      line: kept.line,
-    })),
+    heroes: [...heroes].map(named).sort((a, b) => a.localeCompare(b)),
+    keepsakes: (await ending.keepsakes(campaignId))
+      .filter((kept) => heroes.has(kept.characterId))
+      .map((kept) => ({
+        hero: named(kept.characterId),
+        kind: kept.kind,
+        label: kept.label,
+        line: kept.line,
+      })),
   };
 }
 

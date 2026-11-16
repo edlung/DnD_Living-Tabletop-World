@@ -19,7 +19,10 @@ so it is not re-read against one. **Stage 770 is implemented** (`work-orders/STA
 `reports/STAGE_770_COMPLETION.md`, ADR 0072 §1). **Stage 780 is implemented**
 (`work-orders/STAGE_780.md`, `reports/STAGE_780_COMPLETION.md`, ADR 0072 §2). **Stage 790 is
 implemented** (`work-orders/STAGE_790.md`, `reports/STAGE_790_COMPLETION.md`, ADR 0072 §3), in a
-cloud session on the owner's word of 2026-11-16, «перенеси часть работы в облако». It follows
+cloud session on the owner's word of 2026-11-16, «перенеси часть работы в облако». **Stage 799,
+the package's close, is done** (`work-orders/STAGE_799.md`, `reports/STAGE_799_COMPLETION.md`):
+what remains is the owner's — the merges, the deployment, the family playtest — and Stage 750,
+which waits for PR 32. It follows
 `docs/FULL_GAME_PLAN.md` (Stages 600–699) and `docs/NATIVE_APPS_PLAN.md` (Stage 700).
 
 The rules, the table, the TV and the DM's tools are complete. What is thin is the ritual around play:

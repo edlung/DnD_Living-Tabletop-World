@@ -275,3 +275,7 @@ It changes no world state; keep its window listener, since `pageerror` misses th
   `evaluate` and a reload) instead of waiting or faking the clock — the count itself is
   `apps/web/src/comforts/break-timer.test.ts`'s. A cheer is gone from a screen in 4 s and from
   the server in 6: assert it where it shows, then that it went.
+- The package's close (Stage 799): `keepsakes-checkpoint.spec.ts` owns the `keepsakes` and
+  `keepsakesIpad` sign-in campaigns — a DM with a login, two invited players and a paired TV. At
+  a laptop's size the finished adventure's card lies over the top of an open sheet: the journey
+  cheers from Chat, whose row stands lower. The TV asks for nothing of a campaign's end.
