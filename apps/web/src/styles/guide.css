@@ -149,7 +149,7 @@
 .topbar .guide-button--title {
   display: none;
 }
-@media (max-width: 767px) {
+@media (max-width: 767px), (max-width: 1199px) and (max-height: 500px) {
   .topbar .guide-button--title {
     display: inline-flex;
     flex: none;

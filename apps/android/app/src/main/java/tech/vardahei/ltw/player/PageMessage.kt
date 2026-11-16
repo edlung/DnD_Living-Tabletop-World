@@ -24,6 +24,9 @@ sealed interface PageMessage {
     data object TvUnpaired : PageMessage
     data object TvForget : PageMessage
 
+    /** LTW DM's page sets its TV's sound (0–100); read here as on iOS, and nothing follows. */
+    data class TvSound(val on: Boolean, val volume: Int) : PageMessage
+
     companion object {
         private const val MAX_LENGTH = 1024
         private val PAIRING_CODE = Regex("^[A-HJKMNP-Z2-9]{8}$")
@@ -46,7 +49,7 @@ sealed interface PageMessage {
                     else -> null
                 }
                 "awake" -> (json.opt("on") as? Boolean)?.let(::Awake)
-                "waiting" -> count(json.opt("count"))?.let(::Waiting)
+                "waiting" -> whole(json.opt("count"), 0..99)?.let(::Waiting)
                 "scan" -> Scan
                 "server" -> Server
                 "back-result" -> backResult(json)
@@ -58,6 +61,11 @@ sealed interface PageMessage {
                 }
                 "tv-unpaired" -> TvUnpaired
                 "tv-forget" -> TvForget
+                "tv-sound" -> {
+                    val on = json.opt("on") as? Boolean
+                    val volume = whole(json.opt("volume"), 0..100)
+                    if (on != null && volume != null) TvSound(on, volume) else null
+                }
                 else -> null
             }
         }
@@ -72,9 +80,10 @@ sealed interface PageMessage {
             }
         }
 
-        private fun count(value: Any?): Int? = when (value) {
-            is Int -> value.takeIf { it in 0..99 }
-            is Long -> value.takeIf { it in 0L..99L }?.toInt()
+        /** A whole number within a range, written as one: no fraction, no text, no boolean. */
+        private fun whole(value: Any?, range: IntRange): Int? = when (value) {
+            is Int -> value.takeIf { it in range }
+            is Long -> value.takeIf { it in range }?.toInt()
             else -> null
         }
     }

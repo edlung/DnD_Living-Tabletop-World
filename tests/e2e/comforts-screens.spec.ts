@@ -96,6 +96,12 @@ test('the TV shows the table’s cheers and the DM’s break', async ({ browser 
   await dm.reload();
   await expect(dm.locator('nav.dock')).toBeVisible(LIVE);
   await openSheet(dm, 'Session');
+  // The TV is told slowly, so the pause is read back before the break is kept: a resume from the
+  // Session sheet ends that break all the same, at once.
+  await dm.route('**/display/cast', async (route) => {
+    if (route.request().method() === 'POST') await new Promise((done) => setTimeout(done, 2_500));
+    await route.continue();
+  });
   await dm
     .locator('#sheet-session')
     .getByLabel('Remind me to take a break', { exact: true })

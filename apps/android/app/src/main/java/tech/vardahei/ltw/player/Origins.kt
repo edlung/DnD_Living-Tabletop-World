@@ -13,7 +13,15 @@ object Origins {
     private val TOKEN = Regex("^[A-Za-z0-9_-]{43}$")
     private val HOST = Regex("^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?(\\.[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?)*$")
     private val LOOPBACK = setOf("localhost", "127.0.0.1")
-    private val LINK_PATHS = setOf("", "/", "/table", "/table/", "/join", "/join/", "/reset", "/reset/")
+
+    /**
+     * The start page, a table's code, and the links that carry a token: a player's invitation, a
+     * password reset, and the workshop's invitation of a co-author.
+     */
+    private val LINK_PATHS = setOf(
+        "", "/", "/table", "/table/", "/join", "/join/", "/reset", "/reset/",
+        "/workshop/join", "/workshop/join/",
+    )
 
     /** What a scanned code or an opened link asks for. */
     sealed interface Link {

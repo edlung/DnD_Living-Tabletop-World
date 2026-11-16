@@ -4,7 +4,8 @@ import UIKit
 import WebKit
 
 /// LTW DM's TV (docs/adr/0070-native-apps.md §6): what the TV window and the DM's game window share —
-/// the server the DM plays on, and how the TV stands, which the DM's page hears as `tv` messages.
+/// the server the DM plays on, how the TV stands, which the DM's page hears as `tv` messages, and
+/// how the DM set the TV's sound, which the TV's page hears as `sound`.
 @MainActor
 final class TVHub {
     static let shared = TVHub()
@@ -26,7 +27,9 @@ final class TVHub {
     /// The server the DM plays on; the TV follows it, and what it said of the old one is void.
     var origin = "" {
         didSet {
-            guard origin != oldValue, let tv else { return }
+            guard origin != oldValue else { return }
+            sound = nil
+            guard let tv else { return }
             state = .connected
             tv.open(origin)
         }
@@ -50,9 +53,21 @@ final class TVHub {
         Alerts.shared.keepAwake(false, reason: "tv")
     }
 
-    /// What the table display in the TV window reports of itself.
+    /// How the DM's page last set the TV's sound: held in memory only, never stored, and void once
+    /// the DM plays on another server.
+    private var sound: (on: Bool, volume: Int)?
+
+    /// The DM's page sets the TV's sound; the TV's page hears it now and whenever it is ready.
+    func setSound(on: Bool, volume: Int) {
+        sound = (on, volume)
+        tv?.send(.sound(on: on, volume: volume))
+    }
+
+    /// What the table display in the TV window reports of itself. A page that has just loaded
+    /// (`ready`) is told the sound the DM set, if any.
     func report(_ message: PageMessage) {
         switch message {
+        case .ready: if let sound { tv?.send(.sound(on: sound.on, volume: sound.volume)) }
         case .tvCode(let code): state = .pairing(code: code)
         case .tvPaired(let campaign): state = .paired(campaign: campaign)
         case .tvUnpaired: state = .connected
@@ -62,14 +77,15 @@ final class TVHub {
 
     /// The DM asks the TV to show this campaign: it forgets its pairing and shows a new code.
     func forget() {
-        tv?.forget()
+        tv?.send(.forget)
     }
 }
 
 /// The TV window's view: the table display (`/display`) of the DM's server in a website data store of
 /// its own — it holds only the display device's cookie, never the DM's session — read only, in the
-/// PARTY perspective like any paired TV (ADR 0042).
-final class TVController: UIViewController, WKNavigationDelegate {
+/// PARTY perspective like any paired TV (ADR 0042). Its sound starts without a tap: nobody can touch
+/// this window.
+final class TVController: UIViewController, WKNavigationDelegate, WKUIDelegate {
     private var webView: WKWebView!
     private var origin = ""
 
@@ -82,10 +98,11 @@ final class TVController: UIViewController, WKNavigationDelegate {
         let bridge = Bridge(
             origin: { [weak self] in self?.origin ?? "" },
             onMessage: { message in TVHub.shared.report(message) })
-        bridge.install(into: configuration, app: "tv", features: ["awake"])
+        bridge.install(into: configuration, app: "tv", features: ["awake", "sound"])
         webView = WKWebView(frame: view.bounds, configuration: configuration)
         webView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         webView.navigationDelegate = self
+        webView.uiDelegate = self
         webView.isOpaque = false
         webView.backgroundColor = Theme.inkUI
         webView.scrollView.isScrollEnabled = false
@@ -114,9 +131,19 @@ final class TVController: UIViewController, WKNavigationDelegate {
         webView.reload()
     }
 
-    func forget() {
+    /// The TV hears no microphone and sees no camera, and nobody is asked: without this answer
+    /// WebKit would put its own question on a screen no one can touch.
+    func webView(
+        _ webView: WKWebView, decideMediaCapturePermissionsFor origin: WKSecurityOrigin,
+        initiatedBy frame: WKFrameInfo, type: WKMediaCaptureType
+    ) async -> WKPermissionDecision {
+        .deny
+    }
+
+    /// One message to the table display's page, once there is a view to hear it.
+    func send(_ message: ShellMessage) {
         guard webView != nil else { return }
-        Bridge.send(.forget, to: webView)
+        Bridge.send(message, to: webView)
     }
 
     /// One data store per install, kept apart from the DM's, so a TV paired once stays paired.
