@@ -1,0 +1,55 @@
+/*
+ * A phone held wide (work-orders/NATIVE_TV_POLISH_2026-11-15.md §3): some 390 px tall and up to
+ * 950 px wide. It is laid out as a phone (the `max-height: 500px` half of every phone query), with
+ * the top bar in one row and a lower dock, so the scene keeps what is left.
+ */
+@media (max-width: 1199px) and (max-height: 500px) {
+  :root {
+    --topbar-h: 44px;
+    --dock-h: 52px;
+  }
+  .topbar {
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+    min-height: var(--topbar-h);
+    padding-block: 0.2rem;
+  }
+  .topbar-emblem {
+    width: 28px;
+    height: 28px;
+  }
+  .topbar-title h1 {
+    font-size: 1.15rem;
+  }
+  .session-controls {
+    flex: none;
+    gap: 0.3rem;
+  }
+  .perspective-control {
+    flex: none;
+  }
+  .perspective-control select {
+    width: auto;
+    max-width: 11rem;
+  }
+}
+/* The phone's one-column scene, shorter still: the art's row no longer takes half the screen. */
+@media (max-width: 1199px) and (max-height: 500px) {
+  .scene {
+    grid-template-rows: auto auto auto auto;
+    gap: 0.5rem;
+    padding-top: 8px;
+  }
+  .stage-backdrop {
+    height: 100%;
+  }
+  .cartouche {
+    padding: 0.4rem 0.8rem;
+  }
+  .cartouche h2 {
+    font-size: 1.3rem;
+  }
+  .party-rail {
+    grid-row: 2;
+  }
+}

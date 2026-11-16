@@ -17,3 +17,11 @@
   font-weight: 700;
   letter-spacing: 0.08em;
 }
+
+/* The TV's sound, set from the DM's sheet: its switch, then its volume */
+.native-tv-sound {
+  display: grid;
+  gap: 0.4rem;
+  max-width: 24rem;
+  margin-block: 0.5rem;
+}

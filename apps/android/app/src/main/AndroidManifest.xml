@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- LTW Player (docs/adr/0070-native-apps.md): the shell asks only for the network, the camera
-     (its own scanner), vibration and notifications. No backup or transfer holds its session. -->
+     (its own scanner), the microphone (the table's voice chat, ADR 0060), vibration and
+     notifications. No backup or transfer holds its session. -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <uses-feature
         android:name="android.hardware.camera.any"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.microphone"
         android:required="false" />
 
     <application
@@ -33,7 +39,8 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <!-- The owner's server's table, invitation and reset links open here (ADR 0070 §4). -->
+            <!-- The owner's server's table, invitation, reset and workshop invitation links open
+                 here (ADR 0070 §4). -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -43,6 +50,7 @@
                 <data android:pathPrefix="/table" />
                 <data android:pathPrefix="/join" />
                 <data android:pathPrefix="/reset" />
+                <data android:pathPrefix="/workshop/join" />
             </intent-filter>
         </activity>
 

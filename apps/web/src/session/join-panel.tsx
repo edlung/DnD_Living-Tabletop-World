@@ -2,6 +2,7 @@ import { SESSION_DAYS, type NewAccount } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
 import { useEffect, useId, useState, type SubmitEvent } from 'react';
 
+import { nativeShell } from '../native/shell.ts';
 import { Glyph } from '../visual/glyph.tsx';
 import type { SignInAnswer } from './account-flow.ts';
 import {
@@ -70,6 +71,7 @@ export function JoinPanel({
     setMissing(false);
   }, [draft.mode]);
 
+  const inApp = nativeShell() !== null;
   const words: Record<JoinMode, { readonly title: string; readonly hint: string }> = {
     new: {
       title: t('Create a login'),
@@ -79,12 +81,23 @@ export function JoinPanel({
       title: t('I have a login'),
       hint: t('This table joins the campaigns of your login.'),
     },
-    browser: {
-      title: t('Only this browser'),
-      hint: t('No login: you come back only in this browser, for up to {days} days.', {
-        days: SESSION_DAYS,
-      }),
-    },
+    // In LTW Player and LTW DM the seat is kept by the app, which is no browser to its person.
+    browser: inApp
+      ? {
+          title: t('Only this app'),
+          hint: t(
+            'No login: you come back only in this app on this device, for up to {days} days.',
+            {
+              days: SESSION_DAYS,
+            },
+          ),
+        }
+      : {
+          title: t('Only this browser'),
+          hint: t('No login: you come back only in this browser, for up to {days} days.', {
+            days: SESSION_DAYS,
+          }),
+        },
   };
 
   async function submit(event: SubmitEvent<HTMLFormElement>) {

@@ -2,8 +2,8 @@
 import Foundation
 import LTWCore
 
-/// The one thing the shell stores (docs/adr/0070-native-apps.md §3): the server the app plays on and
-/// the last few chosen, as origins — never a token, a URL with a fragment or world data.
+/// What the shell stores of where it plays (docs/adr/0070-native-apps.md §3): the server the app
+/// plays on and the last few chosen, as origins — never a token, a URL with a fragment or world data.
 @MainActor
 final class ServerStore {
     private let defaults = UserDefaults.standard

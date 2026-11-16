@@ -7,6 +7,7 @@ import {
   type ShellMessage,
   type TvState,
 } from './shell.ts';
+import { sayTvSound } from './tv-sound.ts';
 
 /**
  * The TV of LTW DM (docs/adr/0070-native-apps.md §6): an external screen gets a window of its
@@ -22,6 +23,8 @@ export function installNativeTv(shell: NativeShell | null = nativeShell()): () =
   return onShellMessage((message) => {
     if (message.type !== 'tv') return;
     current = stateOf(message);
+    // A TV that just came, or whose page started again, hears the DM's choice of its sound.
+    if (current.state !== 'absent') sayTvSound(shell);
     for (const listener of listeners) listener();
   });
 }
