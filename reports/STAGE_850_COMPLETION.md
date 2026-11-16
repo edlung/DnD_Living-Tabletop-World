@@ -1,6 +1,6 @@
 # Stage 850 completion — a scene that brings its sound
 
-Pull request: https://github.com/edlung/DnD_Living-Tabletop-World/pull/PRNUM (draft, stacked on
+Pull request: https://github.com/edlung/DnD_Living-Tabletop-World/pull/55 (draft, stacked on
 Stage 840's, https://github.com/edlung/DnD_Living-Tabletop-World/pull/53).
 
 Work order `work-orders/STAGE_850.md`; program `docs/TABLE_IDEAS_PLAN.md` (section 850); ADR 0073
