@@ -1,4 +1,4 @@
-import { defineConfig, type Connect, type Plugin } from 'vite';
+import { defineConfig, type Plugin } from 'vite';
 
 import manifest from './src/assets/ui-kit.manifest.json' with { type: 'json' };
 
@@ -43,25 +43,27 @@ function uiKitUrlsInDevelopment(): Plugin {
 }
 
 /**
- * With `LTW_VITE_NO_WS` (below) nobody answers the dev client's handshake, and a page would hold a
- * connection open waiting for it — one of the few a browser gives a page for one server. It is
- * refused at once instead: the dev client says so in the console and goes on without.
+ * The dev client reloads a page whose connection to this server (the one hot reloading uses) was
+ * lost and found again. In WebKit that connection now and then closes under a browser journey,
+ * and the journey's page came back signed in but at its start, the sheet it was using shut. Under
+ * `LTW_VITE_NO_RELOAD` (the journeys' servers, playwright.config.ts) the client keeps its
+ * connection as ever and only that reload is taken out: a journey edits no source, so a page
+ * that lost the connection has lost nothing. The client's text is Vite's own; if it no longer
+ * reads as expected, the server says so instead of quietly reloading pages again.
  */
-function refusesHotConnections(): Plugin {
+const LOST_CONNECTION = 'if (payload.event === "vite:ws:disconnect") {';
+
+function keepsPagesAfterLostConnection(): Plugin {
   return {
-    name: 'ltw:no-hot-connection',
+    name: 'ltw:no-reload-after-lost-connection',
     apply: 'serve',
-    configureServer(server) {
-      server.httpServer?.on(
-        'upgrade',
-        (request: Connect.IncomingMessage, socket: { end: (answer: string) => void }) => {
-          const protocol = request.headers['sec-websocket-protocol'];
-          if (protocol !== 'vite-hmr' && protocol !== 'vite-ping') return;
-          socket.end(
-            'HTTP/1.1 426 Upgrade Required\r\nConnection: close\r\nContent-Length: 0\r\n\r\n',
-          );
-        },
-      );
+    enforce: 'pre',
+    transform(code, id) {
+      if (!(id.split('?')[0] ?? id).endsWith('/vite/dist/client/client.mjs')) return null;
+      if (code.split(LOST_CONNECTION).length !== 2) {
+        this.error('the dev client does not read as vite.config.ts expects (LTW_VITE_NO_RELOAD)');
+      }
+      return { code: code.replace(LOST_CONNECTION, 'if (false) {'), map: null };
     },
   };
 }
@@ -70,19 +72,12 @@ function refusesHotConnections(): Plugin {
 // LTW_VITE_CACHE_DIR gives a second dev server of the same client (the browser tests' sign-in
 // server, playwright.config.ts) its own dependency cache, so two servers never race on one.
 const cacheDir = process.env['LTW_VITE_CACHE_DIR'];
-// LTW_VITE_NO_WS: the browser journeys' servers (playwright.config.ts) keep no connection to
-// their pages. The dev client reloads a page whose connection to this server was lost, and in
-// WebKit that connection now and then closes under a journey: its page came back signed in but
-// at its start, the sheet it was using shut. A journey edits no source, so it has no use for the
-// connection; a page of the built client has none either.
-const noWs = process.env['LTW_VITE_NO_WS'] !== undefined;
+const noReload = process.env['LTW_VITE_NO_RELOAD'] !== undefined;
 export default defineConfig({
-  plugins: [uiKitUrlsInDevelopment(), ...(noWs ? [refusesHotConnections()] : [])],
+  plugins: [uiKitUrlsInDevelopment(), ...(noReload ? [keepsPagesAfterLostConnection()] : [])],
   ...(cacheDir === undefined ? {} : { cacheDir }),
   resolve: { conditions: ['@ltw/source', 'browser', 'development|production'] },
   server: {
-    // Nor does a page without the connection try to send its console over it.
-    ...(noWs ? { ws: false as const, forwardConsole: false as const } : {}),
     host: '127.0.0.1',
     strictPort: true,
     proxy: {

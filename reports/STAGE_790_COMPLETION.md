@@ -127,11 +127,13 @@ a journey that waited too long for a screen leaves no more than that in a log.
   (`[ipad] ritual-checkpoint.spec.ts:59`, the DM's page, a second after "My campaigns"), and in
   Stage 799's run of the same hour the fourth, the same two lines before
   `[ipad] keepsakes-checkpoint.spec.ts:58` lost its page. So the
-  reload is the dev client's, not the application's: a built client has no such connection. The
-  journeys' dev servers now keep none (`LTW_VITE_NO_WS`, `apps/web/vite.config.ts`,
-  `playwright.config.ts`): a journey edits no source and has no use for hot reloading. Why
-  WebKit drops that connection is not known, and no longer matters to a journey. The trace is
-  gone with its question.
+  reload is the dev client's, not the application's: a built client has no such connection. Cutting that connection by hand reproduced it here in Chromium: the page reloaded again and
+  again. The journeys' dev servers now take that one reload out of the dev client
+  (`LTW_VITE_NO_RELOAD`, `apps/web/vite.config.ts`, `playwright.config.ts`); with it the same cut
+  leaves the page where it was. The connection itself stays as it always was: a first try that
+  switched it off left every page waiting on a handshake nobody answered, and the two CI runs
+  with it lost iPad pages in new ways. Why WebKit drops the connection is not known, and no
+  longer matters to a journey. The trace is gone with its question.
 - **Their first clean runs.** With journeys closing their pages, both Chromium shards (1/3,
   2/3) were green on both pull requests at once for the first time; the only red was the reload
   above.
@@ -227,8 +229,11 @@ them, lie over an open sheet as they did.
 
 - **WebKit, here.** This environment has no WebKit; the pull request's CI is the only word on
   it. There `comforts.spec.ts` passed on the iPad project in every run.
-- **The whole suite on the last commit, here**: run — 346 of 346 on Chromium in 28.5 minutes,
-  with journeys closing their pages, the next game's fix and the dev servers' connection off.
+- **The whole suite on the last commit, here.** The last whole Chromium run — 346 of 346 in
+  28.5 minutes, with journeys closing their pages and the next game's fix — was one commit
+  before the dev client's reload was taken out the way it now is. On the last tree 23 journeys
+  ran (the DM's screen, the next game, the release's, signing in, the comforts) and the cut
+  connection was tried by hand; CI runs the whole.
 - **Why WebKit drops its connection to the dev server** (above): not found; the journeys no
   longer depend on it. That the reloads are gone is shown only by CI runs to come.
 - **No human has used it**, and Part 2 was not re-read against a playtest. Whether a DM wants to
