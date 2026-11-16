@@ -1,0 +1,2588 @@
+[
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 398,
+      "Уход по Камышовой": 2
+    },
+    "why": {
+      "знамя сорвано": 335,
+      "Сайр упал": 45,
+      "Сайр сдался": 5,
+      "Сайр отошёл": 13,
+      "знамя встало": 2
+    },
+    "mean_rounds": 3.75,
+    "p10": 3,
+    "p90": 5,
+    "any_drop": 0.54,
+    "mean_drops": 0.65,
+    "stair_emptied": 0.482,
+    "hero_decisions_per_round": 7.1,
+    "dm_steps_per_round": 2.3,
+    "foe_turns_per_round": 6.5,
+    "label": "A базовая политика",
+    "table": "понемногу"
+  },
+  {
+    "n": 7,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 399,
+      "Уход по Камышовой": 1
+    },
+    "why": {
+      "знамя сорвано": 346,
+      "Сайр упал": 44,
+      "Сайр сдался": 3,
+      "знамя встало": 1,
+      "Сайр отошёл": 6
+    },
+    "mean_rounds": 3.63,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.61,
+    "mean_drops": 0.76,
+    "stair_emptied": 0.17,
+    "hero_decisions_per_round": 8.1,
+    "dm_steps_per_round": 2.3,
+    "foe_turns_per_round": 6.4,
+    "label": "A базовая политика",
+    "table": "понемногу"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 400
+    },
+    "why": {
+      "знамя сорвано": 366,
+      "Сайр упал": 31,
+      "Сайр отошёл": 3
+    },
+    "mean_rounds": 3.43,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.45,
+    "mean_drops": 0.48,
+    "stair_emptied": 0.077,
+    "hero_decisions_per_round": 9.3,
+    "dm_steps_per_round": 2.2,
+    "foe_turns_per_round": 6.3,
+    "label": "A базовая политика",
+    "table": "понемногу"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 400
+    },
+    "why": {
+      "знамя сорвано": 340,
+      "Сайр упал": 49,
+      "Сайр отошёл": 8,
+      "Сайр сдался": 3
+    },
+    "mean_rounds": 3.65,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.44,
+    "mean_drops": 0.55,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 7.0,
+    "dm_steps_per_round": 3.5,
+    "foe_turns_per_round": 6.7,
+    "label": "A базовая политика",
+    "table": "ворота"
+  },
+  {
+    "n": 7,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 400
+    },
+    "why": {
+      "знамя сорвано": 347,
+      "Сайр упал": 50,
+      "Сайр отошёл": 3
+    },
+    "mean_rounds": 3.58,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.55,
+    "mean_drops": 0.69,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 8.0,
+    "dm_steps_per_round": 3.7,
+    "foe_turns_per_round": 6.7,
+    "label": "A базовая политика",
+    "table": "ворота"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 400
+    },
+    "why": {
+      "Сайр упал": 53,
+      "знамя сорвано": 343,
+      "Сайр отошёл": 4
+    },
+    "mean_rounds": 3.46,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.417,
+    "mean_drops": 0.47,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 9.3,
+    "dm_steps_per_round": 3.8,
+    "foe_turns_per_round": 6.6,
+    "label": "A базовая политика",
+    "table": "ворота"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Отданный квартал": 400
+    },
+    "why": {
+      "Сайр упал": 54,
+      "знамя сорвано": 315,
+      "Сайр сдался": 29,
+      "Сайр отошёл": 2
+    },
+    "mean_rounds": 3.73,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.807,
+    "mean_drops": 0.97,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 7.0,
+    "dm_steps_per_round": 3.2,
+    "foe_turns_per_round": 7.9,
+    "label": "A базовая политика",
+    "table": "бросил низ"
+  },
+  {
+    "n": 7,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Отданный квартал": 400
+    },
+    "why": {
+      "знамя сорвано": 345,
+      "Сайр упал": 42,
+      "Сайр сдался": 13
+    },
+    "mean_rounds": 3.58,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.828,
+    "mean_drops": 1.05,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 8.1,
+    "dm_steps_per_round": 3.3,
+    "foe_turns_per_round": 7.9,
+    "label": "A базовая политика",
+    "table": "бросил низ"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Отданный квартал": 400
+    },
+    "why": {
+      "знамя сорвано": 354,
+      "Сайр упал": 39,
+      "Сайр сдался": 6,
+      "Сайр отошёл": 1
+    },
+    "mean_rounds": 3.43,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.74,
+    "mean_drops": 0.86,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 9.4,
+    "dm_steps_per_round": 3.4,
+    "foe_turns_per_round": 7.8,
+    "label": "A базовая политика",
+    "table": "бросил низ"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Уход по Камышовой": 27,
+      "Венец стоит / цена: Рабочие Журны": 373
+    },
+    "why": {
+      "знамя встало": 27,
+      "Сайр упал": 265,
+      "Сайр отошёл": 48,
+      "Сайр сдался": 60
+    },
+    "mean_rounds": 4.51,
+    "p10": 4,
+    "p90": 5,
+    "any_drop": 0.787,
+    "mean_drops": 1.02,
+    "stair_emptied": 0.772,
+    "hero_decisions_per_round": 6.6,
+    "dm_steps_per_round": 2.4,
+    "foe_turns_per_round": 6.2,
+    "label": "B без срыва знамени",
+    "table": "понемногу"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 398,
+      "Венец стоит / цена: Соседи": 2
+    },
+    "why": {
+      "знамя сорвано": 343,
+      "Сайр упал": 57
+    },
+    "mean_rounds": 2.61,
+    "p10": 2,
+    "p90": 3,
+    "any_drop": 0.522,
+    "mean_drops": 0.66,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 7.6,
+    "dm_steps_per_round": 2.2,
+    "foe_turns_per_round": 6.9,
+    "label": "C рывок на Сайра",
+    "table": "понемногу"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Соседи": 273,
+      "Венец стоит / цена: Рабочие Журны": 127
+    },
+    "why": {
+      "Сайр упал": 47,
+      "знамя сорвано": 330,
+      "Сайр сдался": 23
+    },
+    "mean_rounds": 3.75,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.725,
+    "mean_drops": 0.86,
+    "stair_emptied": 0.085,
+    "hero_decisions_per_round": 7.3,
+    "dm_steps_per_round": 2.2,
+    "foe_turns_per_round": 6.6,
+    "label": "D решётка всегда",
+    "table": "понемногу"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 398,
+      "Уход по Камышовой": 2
+    },
+    "why": {
+      "знамя сорвано": 344,
+      "Сайр упал": 35,
+      "Сайр отошёл": 17,
+      "Сайр сдался": 2,
+      "знамя встало": 2
+    },
+    "mean_rounds": 3.76,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.565,
+    "mean_drops": 0.68,
+    "stair_emptied": 0.472,
+    "hero_decisions_per_round": 7.1,
+    "dm_steps_per_round": 2.3,
+    "foe_turns_per_round": 6.4,
+    "label": "E без решётки",
+    "table": "понемногу"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 395,
+      "Уход по Камышовой": 5
+    },
+    "why": {
+      "знамя сорвано": 341,
+      "знамя встало": 5,
+      "Сайр упал": 31,
+      "Сайр отошёл": 16,
+      "Сайр сдался": 7
+    },
+    "mean_rounds": 3.71,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.507,
+    "mean_drops": 0.6,
+    "stair_emptied": 0.422,
+    "hero_decisions_per_round": 7.1,
+    "dm_steps_per_round": 2.3,
+    "foe_turns_per_round": 6.4,
+    "label": "F дворфы 5 клеток",
+    "table": "понемногу"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 398,
+      "Уход по Камышовой": 2
+    },
+    "why": {
+      "Сайр упал": 26,
+      "знамя сорвано": 346,
+      "Сайр сдался": 4,
+      "Сайр отошёл": 22,
+      "знамя встало": 2
+    },
+    "mean_rounds": 3.71,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.425,
+    "mean_drops": 0.48,
+    "stair_emptied": 0.343,
+    "hero_decisions_per_round": 7.1,
+    "dm_steps_per_round": 2.3,
+    "foe_turns_per_round": 6.5,
+    "label": "G гвардия у Сайра с р.1",
+    "table": "понемногу"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 385,
+      "Уход по Камышовой": 15
+    },
+    "why": {
+      "Сайр упал": 282,
+      "Сайр сдался": 53,
+      "Сайр отошёл": 50,
+      "знамя встало": 15
+    },
+    "mean_rounds": 4.54,
+    "p10": 4,
+    "p90": 5,
+    "any_drop": 0.805,
+    "mean_drops": 1.03,
+    "stair_emptied": 0.76,
+    "hero_decisions_per_round": 6.6,
+    "dm_steps_per_round": 2.4,
+    "foe_turns_per_round": 6.2,
+    "label": "H без срыва, без решётки",
+    "table": "понемногу"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 394,
+      "Венец стоит / цена: Соседи": 5,
+      "Уход по Камышовой": 1
+    },
+    "why": {
+      "Сайр упал": 340,
+      "Сайр отошёл": 36,
+      "Сайр сдался": 23,
+      "знамя встало": 1
+    },
+    "mean_rounds": 4.26,
+    "p10": 4,
+    "p90": 5,
+    "any_drop": 0.69,
+    "mean_drops": 0.94,
+    "stair_emptied": 0.198,
+    "hero_decisions_per_round": 8.6,
+    "dm_steps_per_round": 2.4,
+    "foe_turns_per_round": 6.2,
+    "label": "B без срыва знамени",
+    "table": "понемногу"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 398,
+      "Венец стоит / цена: Соседи": 2
+    },
+    "why": {
+      "знамя сорвано": 320,
+      "Сайр упал": 80
+    },
+    "mean_rounds": 2.48,
+    "p10": 2,
+    "p90": 3,
+    "any_drop": 0.487,
+    "mean_drops": 0.56,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 9.9,
+    "dm_steps_per_round": 2.2,
+    "foe_turns_per_round": 6.8,
+    "label": "C рывок на Сайра",
+    "table": "понемногу"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 234,
+      "Венец стоит / цена: Соседи": 166
+    },
+    "why": {
+      "знамя сорвано": 350,
+      "Сайр упал": 46,
+      "Сайр сдался": 4
+    },
+    "mean_rounds": 3.4,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.59,
+    "mean_drops": 0.64,
+    "stair_emptied": 0.01,
+    "hero_decisions_per_round": 9.6,
+    "dm_steps_per_round": 2.1,
+    "foe_turns_per_round": 6.2,
+    "label": "D решётка всегда",
+    "table": "понемногу"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 399,
+      "Венец стоит / цена: Соседи": 1
+    },
+    "why": {
+      "Сайр упал": 34,
+      "знамя сорвано": 363,
+      "Сайр отошёл": 3
+    },
+    "mean_rounds": 3.45,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.482,
+    "mean_drops": 0.5,
+    "stair_emptied": 0.05,
+    "hero_decisions_per_round": 9.3,
+    "dm_steps_per_round": 2.2,
+    "foe_turns_per_round": 6.3,
+    "label": "E без решётки",
+    "table": "понемногу"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 397,
+      "Венец стоит / цена: Соседи": 3
+    },
+    "why": {
+      "знамя сорвано": 358,
+      "Сайр упал": 36,
+      "Сайр отошёл": 6
+    },
+    "mean_rounds": 3.46,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.492,
+    "mean_drops": 0.54,
+    "stair_emptied": 0.08,
+    "hero_decisions_per_round": 9.3,
+    "dm_steps_per_round": 2.2,
+    "foe_turns_per_round": 6.3,
+    "label": "F дворфы 5 клеток",
+    "table": "понемногу"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 394,
+      "Венец стоит / цена: Соседи": 6
+    },
+    "why": {
+      "знамя сорвано": 363,
+      "Сайр упал": 35,
+      "Сайр отошёл": 2
+    },
+    "mean_rounds": 3.48,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.282,
+    "mean_drops": 0.29,
+    "stair_emptied": 0.02,
+    "hero_decisions_per_round": 9.2,
+    "dm_steps_per_round": 2.2,
+    "foe_turns_per_round": 6.3,
+    "label": "G гвардия у Сайра с р.1",
+    "table": "понемногу"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 392,
+      "Венец стоит / цена: Соседи": 7,
+      "Уход по Камышовой": 1
+    },
+    "why": {
+      "Сайр упал": 320,
+      "Сайр отошёл": 50,
+      "Сайр сдался": 29,
+      "знамя встало": 1
+    },
+    "mean_rounds": 4.29,
+    "p10": 4,
+    "p90": 5,
+    "any_drop": 0.72,
+    "mean_drops": 0.97,
+    "stair_emptied": 0.223,
+    "hero_decisions_per_round": 8.6,
+    "dm_steps_per_round": 2.3,
+    "foe_turns_per_round": 6.2,
+    "label": "H без срыва, без решётки",
+    "table": "понемногу"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 400
+    },
+    "why": {
+      "Сайр отошёл": 33,
+      "Сайр упал": 319,
+      "Сайр сдался": 48
+    },
+    "mean_rounds": 4.44,
+    "p10": 4,
+    "p90": 5,
+    "any_drop": 0.755,
+    "mean_drops": 1.06,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 6.4,
+    "dm_steps_per_round": 3.4,
+    "foe_turns_per_round": 6.6,
+    "label": "B без срыва знамени",
+    "table": "ворота"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 399,
+      "Венец стоит / цена: Соседи": 1
+    },
+    "why": {
+      "знамя сорвано": 347,
+      "Сайр упал": 52,
+      "Сайр отошёл": 1
+    },
+    "mean_rounds": 2.56,
+    "p10": 2,
+    "p90": 3,
+    "any_drop": 0.522,
+    "mean_drops": 0.63,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 7.6,
+    "dm_steps_per_round": 2.9,
+    "foe_turns_per_round": 6.9,
+    "label": "C рывок на Сайра",
+    "table": "ворота"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Соседи": 276,
+      "Венец стоит / цена: Рабочие Журны": 124
+    },
+    "why": {
+      "знамя сорвано": 332,
+      "Сайр упал": 44,
+      "Сайр сдался": 24
+    },
+    "mean_rounds": 3.77,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.74,
+    "mean_drops": 0.85,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 7.3,
+    "dm_steps_per_round": 3.2,
+    "foe_turns_per_round": 6.9,
+    "label": "D решётка всегда",
+    "table": "ворота"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 400
+    },
+    "why": {
+      "Сайр упал": 52,
+      "знамя сорвано": 334,
+      "Сайр отошёл": 11,
+      "Сайр сдался": 3
+    },
+    "mean_rounds": 3.7,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.49,
+    "mean_drops": 0.61,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 7.0,
+    "dm_steps_per_round": 3.5,
+    "foe_turns_per_round": 6.7,
+    "label": "E без решётки",
+    "table": "ворота"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 400
+    },
+    "why": {
+      "знамя сорвано": 329,
+      "Сайр упал": 54,
+      "Сайр отошёл": 13,
+      "Сайр сдался": 4
+    },
+    "mean_rounds": 3.75,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.54,
+    "mean_drops": 0.66,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 7.0,
+    "dm_steps_per_round": 3.5,
+    "foe_turns_per_round": 6.7,
+    "label": "F дворфы 5 клеток",
+    "table": "ворота"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 400
+    },
+    "why": {
+      "знамя сорвано": 334,
+      "Сайр отошёл": 14,
+      "Сайр упал": 51,
+      "Сайр сдался": 1
+    },
+    "mean_rounds": 3.68,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.42,
+    "mean_drops": 0.47,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 7.0,
+    "dm_steps_per_round": 3.6,
+    "foe_turns_per_round": 6.7,
+    "label": "G гвардия у Сайра с р.1",
+    "table": "ворота"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 399,
+      "Уход по Камышовой": 1
+    },
+    "why": {
+      "Сайр упал": 303,
+      "Сайр сдался": 58,
+      "Сайр отошёл": 38,
+      "все герои выбыли": 1
+    },
+    "mean_rounds": 4.46,
+    "p10": 4,
+    "p90": 5,
+    "any_drop": 0.762,
+    "mean_drops": 1.11,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 6.4,
+    "dm_steps_per_round": 3.4,
+    "foe_turns_per_round": 6.6,
+    "label": "H без срыва, без решётки",
+    "table": "ворота"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 399,
+      "Венец стоит / цена: Соседи": 1
+    },
+    "why": {
+      "Сайр упал": 359,
+      "Сайр сдался": 18,
+      "Сайр отошёл": 23
+    },
+    "mean_rounds": 4.19,
+    "p10": 4,
+    "p90": 5,
+    "any_drop": 0.65,
+    "mean_drops": 0.83,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 8.6,
+    "dm_steps_per_round": 3.7,
+    "foe_turns_per_round": 6.5,
+    "label": "B без срыва знамени",
+    "table": "ворота"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 398,
+      "Венец стоит / цена: Соседи": 2
+    },
+    "why": {
+      "знамя сорвано": 338,
+      "Сайр упал": 62
+    },
+    "mean_rounds": 2.48,
+    "p10": 2,
+    "p90": 3,
+    "any_drop": 0.487,
+    "mean_drops": 0.59,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 9.8,
+    "dm_steps_per_round": 2.8,
+    "foe_turns_per_round": 6.9,
+    "label": "C рывок на Сайра",
+    "table": "ворота"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 240,
+      "Венец стоит / цена: Соседи": 160
+    },
+    "why": {
+      "знамя сорвано": 359,
+      "Сайр упал": 32,
+      "Сайр сдался": 9
+    },
+    "mean_rounds": 3.41,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.652,
+    "mean_drops": 0.71,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 9.6,
+    "dm_steps_per_round": 3.4,
+    "foe_turns_per_round": 6.8,
+    "label": "D решётка всегда",
+    "table": "ворота"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 399,
+      "Венец стоит / цена: Соседи": 1
+    },
+    "why": {
+      "знамя сорвано": 352,
+      "Сайр упал": 47,
+      "Сайр отошёл": 1
+    },
+    "mean_rounds": 3.44,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.448,
+    "mean_drops": 0.5,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 9.3,
+    "dm_steps_per_round": 3.8,
+    "foe_turns_per_round": 6.6,
+    "label": "E без решётки",
+    "table": "ворота"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 400
+    },
+    "why": {
+      "знамя сорвано": 342,
+      "Сайр упал": 56,
+      "Сайр отошёл": 2
+    },
+    "mean_rounds": 3.46,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.43,
+    "mean_drops": 0.48,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 9.3,
+    "dm_steps_per_round": 3.8,
+    "foe_turns_per_round": 6.6,
+    "label": "F дворфы 5 клеток",
+    "table": "ворота"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 398,
+      "Венец стоит / цена: Соседи": 2
+    },
+    "why": {
+      "знамя сорвано": 351,
+      "Сайр упал": 48,
+      "Сайр отошёл": 1
+    },
+    "mean_rounds": 3.45,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.247,
+    "mean_drops": 0.26,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 9.2,
+    "dm_steps_per_round": 3.9,
+    "foe_turns_per_round": 6.6,
+    "label": "G гвардия у Сайра с р.1",
+    "table": "ворота"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 399,
+      "Венец стоит / цена: Соседи": 1
+    },
+    "why": {
+      "Сайр упал": 350,
+      "Сайр сдался": 25,
+      "Сайр отошёл": 25
+    },
+    "mean_rounds": 4.12,
+    "p10": 4,
+    "p90": 5,
+    "any_drop": 0.688,
+    "mean_drops": 0.9,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 8.6,
+    "dm_steps_per_round": 3.8,
+    "foe_turns_per_round": 6.5,
+    "label": "H без срыва, без решётки",
+    "table": "ворота"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Отданный квартал": 400
+    },
+    "why": {
+      "Сайр упал": 274,
+      "Сайр сдался": 122,
+      "Сайр отошёл": 4
+    },
+    "mean_rounds": 4.49,
+    "p10": 4,
+    "p90": 5,
+    "any_drop": 0.895,
+    "mean_drops": 1.41,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 6.5,
+    "dm_steps_per_round": 3.0,
+    "foe_turns_per_round": 7.8,
+    "label": "B без срыва знамени",
+    "table": "бросил низ"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Отданный квартал": 400
+    },
+    "why": {
+      "знамя сорвано": 350,
+      "Сайр упал": 48,
+      "Сайр отошёл": 2
+    },
+    "mean_rounds": 2.63,
+    "p10": 2,
+    "p90": 3,
+    "any_drop": 0.632,
+    "mean_drops": 0.85,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 7.1,
+    "dm_steps_per_round": 2.9,
+    "foe_turns_per_round": 7.9,
+    "label": "C рывок на Сайра",
+    "table": "бросил низ"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Отданный квартал": 400
+    },
+    "why": {
+      "знамя сорвано": 329,
+      "Сайр сдался": 29,
+      "Сайр упал": 42
+    },
+    "mean_rounds": 3.8,
+    "p10": 3,
+    "p90": 5,
+    "any_drop": 0.823,
+    "mean_drops": 1,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 7.0,
+    "dm_steps_per_round": 3.1,
+    "foe_turns_per_round": 7.9,
+    "label": "D решётка всегда",
+    "table": "бросил низ"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Отданный квартал": 400
+    },
+    "why": {
+      "знамя сорвано": 331,
+      "Сайр упал": 54,
+      "Сайр отошёл": 15
+    },
+    "mean_rounds": 3.65,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.53,
+    "mean_drops": 0.7,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 6.8,
+    "dm_steps_per_round": 3.3,
+    "foe_turns_per_round": 7.7,
+    "label": "E без решётки",
+    "table": "бросил низ"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Отданный квартал": 400
+    },
+    "why": {
+      "знамя сорвано": 341,
+      "Сайр упал": 38,
+      "Сайр сдался": 18,
+      "Сайр отошёл": 3
+    },
+    "mean_rounds": 3.8,
+    "p10": 3,
+    "p90": 5,
+    "any_drop": 0.845,
+    "mean_drops": 1.14,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 7.0,
+    "dm_steps_per_round": 3.2,
+    "foe_turns_per_round": 7.9,
+    "label": "F дворфы 5 клеток",
+    "table": "бросил низ"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Отданный квартал": 400
+    },
+    "why": {
+      "Сайр упал": 35,
+      "знамя сорвано": 326,
+      "Сайр сдался": 39
+    },
+    "mean_rounds": 3.66,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.593,
+    "mean_drops": 0.66,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 6.9,
+    "dm_steps_per_round": 3.1,
+    "foe_turns_per_round": 7.9,
+    "label": "G гвардия у Сайра с р.1",
+    "table": "бросил низ"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Отданный квартал": 400
+    },
+    "why": {
+      "Сайр упал": 300,
+      "Сайр отошёл": 100
+    },
+    "mean_rounds": 4.5,
+    "p10": 4,
+    "p90": 5,
+    "any_drop": 0.848,
+    "mean_drops": 1.36,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 6.2,
+    "dm_steps_per_round": 3.1,
+    "foe_turns_per_round": 7.6,
+    "label": "H без срыва, без решётки",
+    "table": "бросил низ"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Отданный квартал": 400
+    },
+    "why": {
+      "Сайр упал": 309,
+      "Сайр сдался": 89,
+      "Сайр отошёл": 2
+    },
+    "mean_rounds": 4.2,
+    "p10": 4,
+    "p90": 5,
+    "any_drop": 0.85,
+    "mean_drops": 1.16,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 8.8,
+    "dm_steps_per_round": 3.1,
+    "foe_turns_per_round": 7.7,
+    "label": "B без срыва знамени",
+    "table": "бросил низ"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Отданный квартал": 400
+    },
+    "why": {
+      "знамя сорвано": 324,
+      "Сайр упал": 76
+    },
+    "mean_rounds": 2.49,
+    "p10": 2,
+    "p90": 3,
+    "any_drop": 0.57,
+    "mean_drops": 0.73,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 9.5,
+    "dm_steps_per_round": 2.8,
+    "foe_turns_per_round": 7.8,
+    "label": "C рывок на Сайра",
+    "table": "бросил низ"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Отданный квартал": 400
+    },
+    "why": {
+      "знамя сорвано": 348,
+      "Сайр упал": 46,
+      "Сайр сдался": 6
+    },
+    "mean_rounds": 3.46,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.738,
+    "mean_drops": 0.84,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 9.4,
+    "dm_steps_per_round": 3.4,
+    "foe_turns_per_round": 7.8,
+    "label": "D решётка всегда",
+    "table": "бросил низ"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Отданный квартал": 400
+    },
+    "why": {
+      "знамя сорвано": 350,
+      "Сайр упал": 44,
+      "Сайр отошёл": 6
+    },
+    "mean_rounds": 3.48,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.51,
+    "mean_drops": 0.62,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 9.1,
+    "dm_steps_per_round": 3.6,
+    "foe_turns_per_round": 7.6,
+    "label": "E без решётки",
+    "table": "бросил низ"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Отданный квартал": 400
+    },
+    "why": {
+      "знамя сорвано": 347,
+      "Сайр упал": 45,
+      "Сайр сдался": 8
+    },
+    "mean_rounds": 3.47,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.78,
+    "mean_drops": 0.94,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 9.4,
+    "dm_steps_per_round": 3.4,
+    "foe_turns_per_round": 7.8,
+    "label": "F дворфы 5 клеток",
+    "table": "бросил низ"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Отданный квартал": 400
+    },
+    "why": {
+      "знамя сорвано": 345,
+      "Сайр упал": 46,
+      "Сайр сдался": 9
+    },
+    "mean_rounds": 3.44,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.37,
+    "mean_drops": 0.4,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 9.3,
+    "dm_steps_per_round": 3.2,
+    "foe_turns_per_round": 7.7,
+    "label": "G гвардия у Сайра с р.1",
+    "table": "бросил низ"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Отданный квартал": 400
+    },
+    "why": {
+      "Сайр упал": 345,
+      "Сайр отошёл": 55
+    },
+    "mean_rounds": 4.22,
+    "p10": 4,
+    "p90": 5,
+    "any_drop": 0.743,
+    "mean_drops": 1.13,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 8.4,
+    "dm_steps_per_round": 3.4,
+    "foe_turns_per_round": 7.5,
+    "label": "H без срыва, без решётки",
+    "table": "бросил низ"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 399,
+      "Уход по Камышовой": 1
+    },
+    "why": {
+      "знамя сорвано": 233,
+      "Сайр отошёл": 157,
+      "Сайр упал": 5,
+      "знамя встало": 1,
+      "Сайр сдался": 4
+    },
+    "mean_rounds": 3.44,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.427,
+    "mean_drops": 0.48,
+    "stair_emptied": 0.352,
+    "hero_decisions_per_round": 7.0,
+    "dm_steps_per_round": 2.2,
+    "foe_turns_per_round": 6.5,
+    "label": "M порог в любой момент",
+    "table": "понемногу"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 398,
+      "Уход по Камышовой": 2
+    },
+    "why": {
+      "Сайр упал": 48,
+      "знамя сорвано": 334,
+      "Сайр отошёл": 14,
+      "Сайр сдался": 2,
+      "знамя встало": 2
+    },
+    "mean_rounds": 3.69,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.542,
+    "mean_drops": 0.64,
+    "stair_emptied": 0.475,
+    "hero_decisions_per_round": 7.1,
+    "dm_steps_per_round": 2.3,
+    "foe_turns_per_round": 6.4,
+    "label": "N ничья в пользу героя",
+    "table": "понемногу"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 396,
+      "Венец стоит / цена: Соседи": 4
+    },
+    "why": {
+      "знамя сорвано": 338,
+      "Сайр упал": 61,
+      "Сайр отошёл": 1
+    },
+    "mean_rounds": 2.58,
+    "p10": 2,
+    "p90": 3,
+    "any_drop": 0.568,
+    "mean_drops": 0.7,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 7.7,
+    "dm_steps_per_round": 2.2,
+    "foe_turns_per_round": 6.9,
+    "label": "O рывок + решётка всегда",
+    "table": "понемногу"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 399,
+      "Венец стоит / цена: Соседи": 1
+    },
+    "why": {
+      "знамя сорвано": 259,
+      "Сайр упал": 15,
+      "Сайр отошёл": 126
+    },
+    "mean_rounds": 3.29,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.378,
+    "mean_drops": 0.41,
+    "stair_emptied": 0.052,
+    "hero_decisions_per_round": 9.2,
+    "dm_steps_per_round": 2.2,
+    "foe_turns_per_round": 6.3,
+    "label": "M порог в любой момент",
+    "table": "понемногу"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 398,
+      "Венец стоит / цена: Соседи": 2
+    },
+    "why": {
+      "знамя сорвано": 366,
+      "Сайр упал": 30,
+      "Сайр отошёл": 4
+    },
+    "mean_rounds": 3.46,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.458,
+    "mean_drops": 0.51,
+    "stair_emptied": 0.058,
+    "hero_decisions_per_round": 9.3,
+    "dm_steps_per_round": 2.2,
+    "foe_turns_per_round": 6.3,
+    "label": "N ничья в пользу героя",
+    "table": "понемногу"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 399,
+      "Венец стоит / цена: Соседи": 1
+    },
+    "why": {
+      "знамя сорвано": 342,
+      "Сайр упал": 57,
+      "Сайр отошёл": 1
+    },
+    "mean_rounds": 2.51,
+    "p10": 2,
+    "p90": 3,
+    "any_drop": 0.54,
+    "mean_drops": 0.64,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 9.8,
+    "dm_steps_per_round": 2.2,
+    "foe_turns_per_round": 6.8,
+    "label": "O рывок + решётка всегда",
+    "table": "понемногу"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 400
+    },
+    "why": {
+      "знамя сорвано": 247,
+      "Сайр отошёл": 140,
+      "Сайр упал": 13
+    },
+    "mean_rounds": 3.49,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.383,
+    "mean_drops": 0.45,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 6.9,
+    "dm_steps_per_round": 3.5,
+    "foe_turns_per_round": 6.7,
+    "label": "M порог в любой момент",
+    "table": "ворота"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 400
+    },
+    "why": {
+      "знамя сорвано": 349,
+      "Сайр упал": 43,
+      "Сайр отошёл": 7,
+      "Сайр сдался": 1
+    },
+    "mean_rounds": 3.64,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.463,
+    "mean_drops": 0.57,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 7.0,
+    "dm_steps_per_round": 3.5,
+    "foe_turns_per_round": 6.7,
+    "label": "N ничья в пользу героя",
+    "table": "ворота"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 397,
+      "Венец стоит / цена: Соседи": 3
+    },
+    "why": {
+      "знамя сорвано": 351,
+      "Сайр упал": 47,
+      "Сайр отошёл": 1,
+      "Сайр сдался": 1
+    },
+    "mean_rounds": 2.61,
+    "p10": 2,
+    "p90": 3,
+    "any_drop": 0.552,
+    "mean_drops": 0.71,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 7.5,
+    "dm_steps_per_round": 2.9,
+    "foe_turns_per_round": 6.9,
+    "label": "O рывок + решётка всегда",
+    "table": "ворота"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 400
+    },
+    "why": {
+      "знамя сорвано": 274,
+      "Сайр отошёл": 117,
+      "Сайр упал": 9
+    },
+    "mean_rounds": 3.29,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.378,
+    "mean_drops": 0.41,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 9.2,
+    "dm_steps_per_round": 3.7,
+    "foe_turns_per_round": 6.6,
+    "label": "M порог в любой момент",
+    "table": "ворота"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 399,
+      "Венец стоит / цена: Соседи": 1
+    },
+    "why": {
+      "знамя сорвано": 357,
+      "Сайр упал": 35,
+      "Сайр отошёл": 7,
+      "Сайр сдался": 1
+    },
+    "mean_rounds": 3.44,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.458,
+    "mean_drops": 0.53,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 9.2,
+    "dm_steps_per_round": 3.8,
+    "foe_turns_per_round": 6.6,
+    "label": "N ничья в пользу героя",
+    "table": "ворота"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 398,
+      "Венец стоит / цена: Соседи": 2
+    },
+    "why": {
+      "знамя сорвано": 327,
+      "Сайр упал": 72,
+      "Сайр отошёл": 1
+    },
+    "mean_rounds": 2.5,
+    "p10": 2,
+    "p90": 3,
+    "any_drop": 0.555,
+    "mean_drops": 0.67,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 9.9,
+    "dm_steps_per_round": 2.8,
+    "foe_turns_per_round": 6.8,
+    "label": "O рывок + решётка всегда",
+    "table": "ворота"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Отданный квартал": 400
+    },
+    "why": {
+      "Сайр сдался": 179,
+      "знамя сорвано": 204,
+      "Сайр упал": 5,
+      "Сайр отошёл": 12
+    },
+    "mean_rounds": 3.44,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.787,
+    "mean_drops": 0.89,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 6.9,
+    "dm_steps_per_round": 3.2,
+    "foe_turns_per_round": 7.9,
+    "label": "M порог в любой момент",
+    "table": "бросил низ"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Отданный квартал": 400
+    },
+    "why": {
+      "знамя сорвано": 337,
+      "Сайр упал": 38,
+      "Сайр сдался": 24,
+      "Сайр отошёл": 1
+    },
+    "mean_rounds": 3.68,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.83,
+    "mean_drops": 1.04,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 7.0,
+    "dm_steps_per_round": 3.2,
+    "foe_turns_per_round": 7.9,
+    "label": "N ничья в пользу героя",
+    "table": "бросил низ"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Отданный квартал": 400
+    },
+    "why": {
+      "Сайр упал": 41,
+      "знамя сорвано": 358,
+      "Сайр отошёл": 1
+    },
+    "mean_rounds": 2.64,
+    "p10": 2,
+    "p90": 3,
+    "any_drop": 0.655,
+    "mean_drops": 0.87,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 7.2,
+    "dm_steps_per_round": 2.9,
+    "foe_turns_per_round": 7.9,
+    "label": "O рывок + решётка всегда",
+    "table": "бросил низ"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Отданный квартал": 400
+    },
+    "why": {
+      "Сайр сдался": 137,
+      "знамя сорвано": 244,
+      "Сайр отошёл": 6,
+      "Сайр упал": 13
+    },
+    "mean_rounds": 3.25,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.743,
+    "mean_drops": 0.84,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 9.2,
+    "dm_steps_per_round": 3.4,
+    "foe_turns_per_round": 7.9,
+    "label": "M порог в любой момент",
+    "table": "бросил низ"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Отданный квартал": 400
+    },
+    "why": {
+      "знамя сорвано": 361,
+      "Сайр упал": 38,
+      "Сайр сдался": 1
+    },
+    "mean_rounds": 3.42,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.75,
+    "mean_drops": 0.87,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 9.4,
+    "dm_steps_per_round": 3.4,
+    "foe_turns_per_round": 7.8,
+    "label": "N ничья в пользу героя",
+    "table": "бросил низ"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Отданный квартал": 400
+    },
+    "why": {
+      "знамя сорвано": 329,
+      "Сайр упал": 71
+    },
+    "mean_rounds": 2.52,
+    "p10": 2,
+    "p90": 3,
+    "any_drop": 0.62,
+    "mean_drops": 0.8,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 9.5,
+    "dm_steps_per_round": 2.8,
+    "foe_turns_per_round": 7.8,
+    "label": "O рывок + решётка всегда",
+    "table": "бросил низ"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 390,
+      "Уход по Камышовой": 10
+    },
+    "why": {
+      "знамя сорвано": 218,
+      "Сайр упал": 122,
+      "Сайр сдался": 25,
+      "Сайр отошёл": 25,
+      "знамя встало": 10
+    },
+    "mean_rounds": 4.21,
+    "p10": 3,
+    "p90": 5,
+    "any_drop": 0.68,
+    "mean_drops": 0.85,
+    "stair_emptied": 0.645,
+    "hero_decisions_per_round": 6.9,
+    "dm_steps_per_round": 2.4,
+    "foe_turns_per_round": 6.3,
+    "label": "X1 правка: срыв на рядах 11-12, раз в раунд",
+    "table": "понемногу"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 377,
+      "Уход по Камышовой": 23
+    },
+    "why": {
+      "знамя сорвано": 178,
+      "Сайр упал": 189,
+      "знамя встало": 23,
+      "Сайр сдался": 9,
+      "Сайр отошёл": 1
+    },
+    "mean_rounds": 4.47,
+    "p10": 4,
+    "p90": 5,
+    "any_drop": 0.792,
+    "mean_drops": 1.03,
+    "stair_emptied": 0.745,
+    "hero_decisions_per_round": 6.8,
+    "dm_steps_per_round": 2.4,
+    "foe_turns_per_round": 6.3,
+    "label": "X2 правка: X1 + порог 20",
+    "table": "понемногу"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 393,
+      "Венец стоит / цена: Соседи": 4,
+      "Уход по Камышовой": 3
+    },
+    "why": {
+      "знамя сорвано": 189,
+      "Сайр упал": 205,
+      "Сайр отошёл": 3,
+      "знамя встало": 3
+    },
+    "mean_rounds": 2.93,
+    "p10": 2,
+    "p90": 4,
+    "any_drop": 0.64,
+    "mean_drops": 0.85,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 7.2,
+    "dm_steps_per_round": 2.3,
+    "foe_turns_per_round": 6.8,
+    "label": "X3 правка: X2, рывок на Сайра",
+    "table": "понемногу"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 370,
+      "Уход по Камышовой": 30
+    },
+    "why": {
+      "Сайр упал": 100,
+      "знамя встало": 30,
+      "знамя сорвано": 256,
+      "Сайр сдался": 11,
+      "Сайр отошёл": 3
+    },
+    "mean_rounds": 4.63,
+    "p10": 4,
+    "p90": 6,
+    "any_drop": 0.885,
+    "mean_drops": 1.27,
+    "stair_emptied": 0.85,
+    "hero_decisions_per_round": 6.9,
+    "dm_steps_per_round": 2.4,
+    "foe_turns_per_round": 6.3,
+    "label": "X4 правка: X2 + Сайр КД 16, две атаки",
+    "table": "понемногу"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 293,
+      "Уход по Камышовой": 107
+    },
+    "why": {
+      "знамя сорвано": 203,
+      "знамя встало": 107,
+      "Сайр упал": 72,
+      "Сайр сдался": 16,
+      "раунд 8": 1,
+      "Сайр отошёл": 1
+    },
+    "mean_rounds": 4.57,
+    "p10": 4,
+    "p90": 6,
+    "any_drop": 0.907,
+    "mean_drops": 1.28,
+    "stair_emptied": 0.925,
+    "hero_decisions_per_round": 6.8,
+    "dm_steps_per_round": 2.4,
+    "foe_turns_per_round": 6.4,
+    "label": "X5 правка: X4 + лежащий ступень не держит",
+    "table": "понемногу"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 396,
+      "Венец стоит / цена: Соседи": 4
+    },
+    "why": {
+      "знамя сорвано": 209,
+      "Сайр упал": 157,
+      "Сайр отошёл": 22,
+      "Сайр сдался": 12
+    },
+    "mean_rounds": 3.99,
+    "p10": 3,
+    "p90": 5,
+    "any_drop": 0.623,
+    "mean_drops": 0.75,
+    "stair_emptied": 0.158,
+    "hero_decisions_per_round": 9.0,
+    "dm_steps_per_round": 2.3,
+    "foe_turns_per_round": 6.2,
+    "label": "X1 правка: срыв на рядах 11-12, раз в раунд",
+    "table": "понемногу"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 395,
+      "Венец стоит / цена: Соседи": 4,
+      "Уход по Камышовой": 1
+    },
+    "why": {
+      "знамя сорвано": 188,
+      "Сайр упал": 209,
+      "Сайр сдался": 2,
+      "знамя встало": 1
+    },
+    "mean_rounds": 4.1,
+    "p10": 3,
+    "p90": 5,
+    "any_drop": 0.66,
+    "mean_drops": 0.84,
+    "stair_emptied": 0.165,
+    "hero_decisions_per_round": 8.9,
+    "dm_steps_per_round": 2.3,
+    "foe_turns_per_round": 6.2,
+    "label": "X2 правка: X1 + порог 20",
+    "table": "понемногу"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 393,
+      "Венец стоит / цена: Соседи": 5,
+      "Уход по Камышовой": 2
+    },
+    "why": {
+      "Сайр упал": 240,
+      "знамя сорвано": 156,
+      "Сайр отошёл": 2,
+      "знамя встало": 2
+    },
+    "mean_rounds": 2.75,
+    "p10": 2,
+    "p90": 4,
+    "any_drop": 0.585,
+    "mean_drops": 0.71,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 9.4,
+    "dm_steps_per_round": 2.2,
+    "foe_turns_per_round": 6.7,
+    "label": "X3 правка: X2, рывок на Сайра",
+    "table": "понемногу"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 396,
+      "Уход по Камышовой": 4
+    },
+    "why": {
+      "Сайр упал": 143,
+      "знамя сорвано": 240,
+      "Сайр отошёл": 2,
+      "Сайр сдался": 11,
+      "знамя встало": 4
+    },
+    "mean_rounds": 4.43,
+    "p10": 4,
+    "p90": 5,
+    "any_drop": 0.818,
+    "mean_drops": 1.26,
+    "stair_emptied": 0.307,
+    "hero_decisions_per_round": 8.9,
+    "dm_steps_per_round": 2.3,
+    "foe_turns_per_round": 6.2,
+    "label": "X4 правка: X2 + Сайр КД 16, две атаки",
+    "table": "понемногу"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 379,
+      "Уход по Камышовой": 21
+    },
+    "why": {
+      "Сайр упал": 167,
+      "знамя сорвано": 198,
+      "Сайр сдался": 11,
+      "Сайр отошёл": 3,
+      "знамя встало": 21
+    },
+    "mean_rounds": 4.48,
+    "p10": 4,
+    "p90": 5,
+    "any_drop": 0.848,
+    "mean_drops": 1.33,
+    "stair_emptied": 0.412,
+    "hero_decisions_per_round": 8.9,
+    "dm_steps_per_round": 2.4,
+    "foe_turns_per_round": 6.2,
+    "label": "X5 правка: X4 + лежащий ступень не держит",
+    "table": "понемногу"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 400
+    },
+    "why": {
+      "знамя сорвано": 230,
+      "Сайр упал": 148,
+      "Сайр сдался": 11,
+      "Сайр отошёл": 11
+    },
+    "mean_rounds": 4.11,
+    "p10": 3,
+    "p90": 5,
+    "any_drop": 0.675,
+    "mean_drops": 0.91,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 6.8,
+    "dm_steps_per_round": 3.5,
+    "foe_turns_per_round": 6.6,
+    "label": "X1 правка: срыв на рядах 11-12, раз в раунд",
+    "table": "ворота"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 400
+    },
+    "why": {
+      "знамя сорвано": 190,
+      "Сайр упал": 197,
+      "Сайр сдался": 13
+    },
+    "mean_rounds": 4.33,
+    "p10": 4,
+    "p90": 5,
+    "any_drop": 0.765,
+    "mean_drops": 1.07,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 6.7,
+    "dm_steps_per_round": 3.5,
+    "foe_turns_per_round": 6.6,
+    "label": "X2 правка: X1 + порог 20",
+    "table": "ворота"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 386,
+      "Венец стоит / цена: Соседи": 9,
+      "Уход по Камышовой": 5
+    },
+    "why": {
+      "Сайр упал": 205,
+      "знамя сорвано": 186,
+      "знамя встало": 5,
+      "Сайр отошёл": 4
+    },
+    "mean_rounds": 2.97,
+    "p10": 2,
+    "p90": 4,
+    "any_drop": 0.63,
+    "mean_drops": 0.84,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 7.1,
+    "dm_steps_per_round": 3.1,
+    "foe_turns_per_round": 6.8,
+    "label": "X3 правка: X2, рывок на Сайра",
+    "table": "ворота"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 399,
+      "Уход по Камышовой": 1
+    },
+    "why": {
+      "знамя сорвано": 248,
+      "Сайр упал": 134,
+      "Сайр сдался": 15,
+      "раунд 8": 1,
+      "все герои выбыли": 1,
+      "Сайр отошёл": 1
+    },
+    "mean_rounds": 4.64,
+    "p10": 4,
+    "p90": 6,
+    "any_drop": 0.882,
+    "mean_drops": 1.43,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 6.6,
+    "dm_steps_per_round": 3.4,
+    "foe_turns_per_round": 6.7,
+    "label": "X4 правка: X2 + Сайр КД 16, две атаки",
+    "table": "ворота"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 283,
+      "Уход по Камышовой": 117
+    },
+    "why": {
+      "Сайр упал": 81,
+      "знамя сорвано": 188,
+      "знамя встало": 117,
+      "Сайр сдался": 13,
+      "Сайр отошёл": 1
+    },
+    "mean_rounds": 4.33,
+    "p10": 4,
+    "p90": 5,
+    "any_drop": 0.905,
+    "mean_drops": 1.24,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 6.7,
+    "dm_steps_per_round": 3.5,
+    "foe_turns_per_round": 6.7,
+    "label": "X5 правка: X4 + лежащий ступень не держит",
+    "table": "ворота"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 400
+    },
+    "why": {
+      "знамя сорвано": 208,
+      "Сайр упал": 177,
+      "Сайр сдался": 5,
+      "Сайр отошёл": 10
+    },
+    "mean_rounds": 3.9,
+    "p10": 3,
+    "p90": 5,
+    "any_drop": 0.605,
+    "mean_drops": 0.76,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 9.0,
+    "dm_steps_per_round": 3.8,
+    "foe_turns_per_round": 6.5,
+    "label": "X1 правка: срыв на рядах 11-12, раз в раунд",
+    "table": "ворота"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 399,
+      "Венец стоит / цена: Соседи": 1
+    },
+    "why": {
+      "знамя сорвано": 178,
+      "Сайр упал": 217,
+      "Сайр сдался": 3,
+      "Сайр отошёл": 2
+    },
+    "mean_rounds": 4.05,
+    "p10": 3,
+    "p90": 5,
+    "any_drop": 0.657,
+    "mean_drops": 0.85,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 8.9,
+    "dm_steps_per_round": 3.7,
+    "foe_turns_per_round": 6.5,
+    "label": "X2 правка: X1 + порог 20",
+    "table": "ворота"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 384,
+      "Венец стоит / цена: Соседи": 16
+    },
+    "why": {
+      "знамя сорвано": 153,
+      "Сайр упал": 245,
+      "Сайр отошёл": 2
+    },
+    "mean_rounds": 2.82,
+    "p10": 2,
+    "p90": 4,
+    "any_drop": 0.618,
+    "mean_drops": 0.78,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 9.3,
+    "dm_steps_per_round": 3.0,
+    "foe_turns_per_round": 6.7,
+    "label": "X3 правка: X2, рывок на Сайра",
+    "table": "ворота"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 400
+    },
+    "why": {
+      "знамя сорвано": 226,
+      "Сайр упал": 158,
+      "Сайр сдался": 16
+    },
+    "mean_rounds": 4.41,
+    "p10": 4,
+    "p90": 5,
+    "any_drop": 0.818,
+    "mean_drops": 1.28,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 8.9,
+    "dm_steps_per_round": 3.6,
+    "foe_turns_per_round": 6.6,
+    "label": "X4 правка: X2 + Сайр КД 16, две атаки",
+    "table": "ворота"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 376,
+      "Уход по Камышовой": 23,
+      "Венец стоит / цена: Соседи": 1
+    },
+    "why": {
+      "знамя сорвано": 221,
+      "Сайр упал": 141,
+      "знамя встало": 23,
+      "Сайр сдался": 14,
+      "Сайр отошёл": 1
+    },
+    "mean_rounds": 4.32,
+    "p10": 4,
+    "p90": 5,
+    "any_drop": 0.825,
+    "mean_drops": 1.26,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 8.9,
+    "dm_steps_per_round": 3.7,
+    "foe_turns_per_round": 6.6,
+    "label": "X5 правка: X4 + лежащий ступень не держит",
+    "table": "ворота"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Отданный квартал": 400
+    },
+    "why": {
+      "Сайр упал": 118,
+      "Сайр сдался": 53,
+      "знамя сорвано": 228,
+      "Сайр отошёл": 1
+    },
+    "mean_rounds": 4.17,
+    "p10": 3,
+    "p90": 5,
+    "any_drop": 0.868,
+    "mean_drops": 1.17,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 6.9,
+    "dm_steps_per_round": 3.0,
+    "foe_turns_per_round": 7.9,
+    "label": "X1 правка: срыв на рядах 11-12, раз в раунд",
+    "table": "бросил низ"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Отданный квартал": 400
+    },
+    "why": {
+      "знамя сорвано": 207,
+      "Сайр упал": 177,
+      "Сайр сдался": 14,
+      "Сайр отошёл": 2
+    },
+    "mean_rounds": 4.46,
+    "p10": 4,
+    "p90": 5,
+    "any_drop": 0.907,
+    "mean_drops": 1.36,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 6.8,
+    "dm_steps_per_round": 3.0,
+    "foe_turns_per_round": 7.9,
+    "label": "X2 правка: X1 + порог 20",
+    "table": "бросил низ"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Отданный квартал": 394,
+      "Пощада": 6
+    },
+    "why": {
+      "Сайр упал": 205,
+      "знамя сорвано": 183,
+      "знамя встало": 6,
+      "Сайр отошёл": 6
+    },
+    "mean_rounds": 2.94,
+    "p10": 2,
+    "p90": 4,
+    "any_drop": 0.74,
+    "mean_drops": 1.07,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 6.8,
+    "dm_steps_per_round": 3.0,
+    "foe_turns_per_round": 7.8,
+    "label": "X3 правка: X2, рывок на Сайра",
+    "table": "бросил низ"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Отданный квартал": 399,
+      "Пощада": 1
+    },
+    "why": {
+      "знамя сорвано": 267,
+      "Сайр упал": 105,
+      "Сайр сдался": 26,
+      "раунд 8": 1,
+      "все герои выбыли": 1
+    },
+    "mean_rounds": 4.67,
+    "p10": 4,
+    "p90": 6,
+    "any_drop": 0.965,
+    "mean_drops": 1.85,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 6.7,
+    "dm_steps_per_round": 3.0,
+    "foe_turns_per_round": 7.9,
+    "label": "X4 правка: X2 + Сайр КД 16, две атаки",
+    "table": "бросил низ"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Отданный квартал": 343,
+      "Пощада": 57
+    },
+    "why": {
+      "знамя сорвано": 231,
+      "знамя встало": 57,
+      "Сайр сдался": 17,
+      "Сайр упал": 95
+    },
+    "mean_rounds": 4.61,
+    "p10": 4,
+    "p90": 5,
+    "any_drop": 0.953,
+    "mean_drops": 1.75,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 6.7,
+    "dm_steps_per_round": 3.0,
+    "foe_turns_per_round": 7.9,
+    "label": "X5 правка: X4 + лежащий ступень не держит",
+    "table": "бросил низ"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Отданный квартал": 400
+    },
+    "why": {
+      "знамя сорвано": 228,
+      "Сайр упал": 142,
+      "Сайр сдался": 30
+    },
+    "mean_rounds": 3.79,
+    "p10": 3,
+    "p90": 5,
+    "any_drop": 0.833,
+    "mean_drops": 1.08,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 9.2,
+    "dm_steps_per_round": 3.2,
+    "foe_turns_per_round": 7.8,
+    "label": "X1 правка: срыв на рядах 11-12, раз в раунд",
+    "table": "бросил низ"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Отданный квартал": 400
+    },
+    "why": {
+      "Сайр упал": 213,
+      "знамя сорвано": 185,
+      "Сайр сдался": 2
+    },
+    "mean_rounds": 4.07,
+    "p10": 3,
+    "p90": 5,
+    "any_drop": 0.83,
+    "mean_drops": 1.15,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 9.1,
+    "dm_steps_per_round": 3.2,
+    "foe_turns_per_round": 7.8,
+    "label": "X2 правка: X1 + порог 20",
+    "table": "бросил низ"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Отданный квартал": 400
+    },
+    "why": {
+      "Сайр упал": 256,
+      "знамя сорвано": 138,
+      "Сайр отошёл": 6
+    },
+    "mean_rounds": 2.77,
+    "p10": 2,
+    "p90": 4,
+    "any_drop": 0.68,
+    "mean_drops": 0.92,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 9.0,
+    "dm_steps_per_round": 2.9,
+    "foe_turns_per_round": 7.8,
+    "label": "X3 правка: X2, рывок на Сайра",
+    "table": "бросил низ"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Отданный квартал": 400
+    },
+    "why": {
+      "знамя сорвано": 238,
+      "Сайр упал": 143,
+      "Сайр сдался": 19
+    },
+    "mean_rounds": 4.43,
+    "p10": 4,
+    "p90": 5,
+    "any_drop": 0.895,
+    "mean_drops": 1.62,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 9.1,
+    "dm_steps_per_round": 3.1,
+    "foe_turns_per_round": 7.8,
+    "label": "X4 правка: X2 + Сайр КД 16, две атаки",
+    "table": "бросил низ"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Отданный квартал": 388,
+      "Пощада": 12
+    },
+    "why": {
+      "Сайр упал": 151,
+      "знамя встало": 12,
+      "знамя сорвано": 218,
+      "Сайр сдался": 19
+    },
+    "mean_rounds": 4.41,
+    "p10": 4,
+    "p90": 5,
+    "any_drop": 0.925,
+    "mean_drops": 1.65,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 9.1,
+    "dm_steps_per_round": 3.1,
+    "foe_turns_per_round": 7.8,
+    "label": "X5 правка: X4 + лежащий ступень не держит",
+    "table": "бросил низ"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Отданный квартал": 400
+    },
+    "why": {
+      "знамя сорвано": 340,
+      "Сайр отошёл": 12,
+      "Сайр упал": 48
+    },
+    "mean_rounds": 3.71,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.583,
+    "mean_drops": 0.82,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 7.0,
+    "dm_steps_per_round": 3.3,
+    "foe_turns_per_round": 7.7,
+    "label": "I бросил низ + союз через гонца",
+    "table": "бросил низ"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 400
+    },
+    "why": {
+      "знамя сорвано": 345,
+      "Сайр упал": 45,
+      "Сайр отошёл": 7,
+      "Сайр сдался": 3
+    },
+    "mean_rounds": 3.68,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.492,
+    "mean_drops": 0.6,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 7.1,
+    "dm_steps_per_round": 3.5,
+    "foe_turns_per_round": 6.7,
+    "label": "J ворота: снятые соседями — не упавшие",
+    "table": "ворота"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 399,
+      "Уход по Камышовой": 1
+    },
+    "why": {
+      "знамя сорвано": 387,
+      "Сайр упал": 10,
+      "Сайр отошёл": 2,
+      "знамя встало": 1
+    },
+    "mean_rounds": 1.78,
+    "p10": 1,
+    "p90": 3,
+    "any_drop": 0.098,
+    "mean_drops": 0.11,
+    "stair_emptied": 0.08,
+    "hero_decisions_per_round": 7.6,
+    "dm_steps_per_round": 2.0,
+    "foe_turns_per_round": 6.8,
+    "label": "K понемногу при Воротах 0",
+    "table": "понемногу"
+  },
+  {
+    "n": 6,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 400
+    },
+    "why": {
+      "знамя сорвано": 325,
+      "Сайр упал": 59,
+      "Сайр сдался": 4,
+      "Сайр отошёл": 12
+    },
+    "mean_rounds": 3.73,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.355,
+    "mean_drops": 0.41,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 7.2,
+    "dm_steps_per_round": 3.6,
+    "foe_turns_per_round": 6.8,
+    "label": "L ворота при Воротах 5",
+    "table": "ворота"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Отданный квартал": 400
+    },
+    "why": {
+      "знамя сорвано": 337,
+      "Сайр упал": 53,
+      "Сайр отошёл": 10
+    },
+    "mean_rounds": 3.44,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.505,
+    "mean_drops": 0.61,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 9.3,
+    "dm_steps_per_round": 3.7,
+    "foe_turns_per_round": 7.6,
+    "label": "I бросил низ + союз через гонца",
+    "table": "бросил низ"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 400
+    },
+    "why": {
+      "знамя сорвано": 351,
+      "Сайр упал": 46,
+      "Сайр отошёл": 3
+    },
+    "mean_rounds": 3.42,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.44,
+    "mean_drops": 0.5,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 9.3,
+    "dm_steps_per_round": 3.8,
+    "foe_turns_per_round": 6.6,
+    "label": "J ворота: снятые соседями — не упавшие",
+    "table": "ворота"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 400
+    },
+    "why": {
+      "знамя сорвано": 396,
+      "Сайр упал": 4
+    },
+    "mean_rounds": 1.48,
+    "p10": 1,
+    "p90": 2,
+    "any_drop": 0.102,
+    "mean_drops": 0.11,
+    "stair_emptied": 0.018,
+    "hero_decisions_per_round": 9.8,
+    "dm_steps_per_round": 2.0,
+    "foe_turns_per_round": 6.8,
+    "label": "K понемногу при Воротах 0",
+    "table": "понемногу"
+  },
+  {
+    "n": 8,
+    "runs": 400,
+    "outcomes": {
+      "Венец стоит / цена: Рабочие Журны": 397,
+      "Венец стоит / цена: Соседи": 3
+    },
+    "why": {
+      "знамя сорвано": 350,
+      "Сайр упал": 47,
+      "Сайр отошёл": 3
+    },
+    "mean_rounds": 3.42,
+    "p10": 3,
+    "p90": 4,
+    "any_drop": 0.312,
+    "mean_drops": 0.32,
+    "stair_emptied": 0.0,
+    "hero_decisions_per_round": 9.3,
+    "dm_steps_per_round": 3.8,
+    "foe_turns_per_round": 6.7,
+    "label": "L ворота при Воротах 5",
+    "table": "ворота"
+  }
+]
