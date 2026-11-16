@@ -1,6 +1,7 @@
-import { expect, test, type Browser, type Page } from '@playwright/test';
+import { expect, test, type Page } from '@playwright/test';
 
 import boundary from '../../fixtures/ravenford/knowledge-boundary.json' with { type: 'json' };
+import { closePages, freshPage } from './support/pages.ts';
 import { expectAccessible } from './support/axe.ts';
 import { holdResponse, isLiveStream } from './support/session.ts';
 import { openSheet } from './support/shell.ts';
@@ -11,6 +12,9 @@ import {
   joinAsDm,
   openInvitation,
 } from './support/sign-in.ts';
+
+// Every page of the journey closes with it (`support/pages.ts` says why).
+test.afterEach(closePages);
 
 /**
  * "Previously…" on every screen (docs/adr/0071-memory-and-ritual.md §1.4, Stage 710), on the
@@ -28,8 +32,6 @@ const LINE = 'We swore to find the missing caravan.';
 const BRANN_STAR = 'Brann held the bridge alone.';
 const BRANN_WISH = 'More riddles, please.';
 const SPACED_CODE = /^[A-HJKMNP-Z2-9]{4} [A-HJKMNP-Z2-9]{4}$/;
-
-const freshPage = async (browser: Browser): Promise<Page> => (await browser.newContext()).newPage();
 
 /** Everything a page received, the live stream aside. */
 function collectBodies(page: Page): () => Promise<string> {

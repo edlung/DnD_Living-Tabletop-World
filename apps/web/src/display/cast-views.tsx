@@ -30,6 +30,7 @@ import { textureUrl } from '../visual/ui-kit.ts';
 import { newestPartyChapter } from '../chronicle/book-chapters.ts';
 import { Previously } from '../chronicle/previously.tsx';
 import { NextGameLine } from '../ritual/next-game.tsx';
+import { AgreementCast } from '../ritual/agreement.tsx';
 import { StarsCast } from '../ritual/stars-cast.tsx';
 import { useRereadOn } from '../world/use-world-data.ts';
 import { DiceFaces } from './big-roll.tsx';
@@ -65,6 +66,8 @@ export function CastView(props: Props) {
       return <ChronicleCast {...props} />;
     case 'stars':
       return <StarsCast api={props.api} refresh={props.refresh} />;
+    case 'agreement':
+      return <AgreementCast api={props.api} refresh={props.refresh} />;
     case 'picture':
       return <PictureCast {...props} entityId={cast.entityId} />;
     case 'join':

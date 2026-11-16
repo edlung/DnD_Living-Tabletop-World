@@ -7,11 +7,13 @@ import { useResource } from '../api/resource.ts';
 import { recapParagraphs } from '../chronicle/book-chapters.ts';
 import { chapterMessage } from '../chronicle/chapter-message.ts';
 import { usePreviously } from '../chronicle/previously.tsx';
+import { AgreementTool } from '../ritual/agreement-tool.tsx';
 import { EveningWords } from '../ritual/evening-words.tsx';
 import { NextGameForm } from '../ritual/next-game.tsx';
 import { Field } from '../session/account-forms.tsx';
 import { Glyph } from '../visual/glyph.tsx';
 import { useRereadOn } from '../world/use-world-data.ts';
+import { FirstEvening } from './first-evening.tsx';
 import { CampaignOptionsForm } from './campaign-options.tsx';
 import { STEP_WORDS, writeChapter, type EveningResult, type EveningStep } from './evening.ts';
 import { MusicPanel } from './music-panel.tsx';
@@ -103,6 +105,10 @@ export function SessionSheet({
             onOpenChronicle={onOpenChronicle}
           />
         )}
+        {/* Until the first evening has ended (a campaign may begin with its session open). */}
+        {step === null && (
+          <FirstEvening api={api} revision={revision + round} dated={Boolean(table.nextGame)} />
+        )}
         {table.session === null && step === null && (
           <EveningWords
             api={api}
@@ -177,6 +183,8 @@ export function SessionSheet({
             setRound((value) => value + 1);
           }}
         />
+        {/* How this table plays (ADR 0071 §4). */}
+        <AgreementTool api={api} revision={revision + round} />
         {/* The DM's music (ADR 0059 §3): where the ambience plays, from the same moment. */}
         <MusicPanel
           api={api}

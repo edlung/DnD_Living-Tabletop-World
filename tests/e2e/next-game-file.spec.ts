@@ -2,6 +2,7 @@ import { readFile } from 'node:fs/promises';
 
 import { expect, test, type Page } from '@playwright/test';
 
+import { closePages, freshPage } from './support/pages.ts';
 import { expectAccessible } from './support/axe.ts';
 import { openSheet } from './support/shell.ts';
 import {
@@ -14,6 +15,9 @@ import {
   joinPath,
   openInvitation,
 } from './support/sign-in.ts';
+
+// Every page of the journey closes with it (`support/pages.ts` says why).
+test.afterEach(closePages);
 
 /**
  * The next game where it leaves the campaign's own screens (docs/adr/0071-memory-and-ritual.md §3,
@@ -61,11 +65,11 @@ test('a player saves the calendar file; the hub’s card and the TV say when', a
   const words = WORDS.en;
 
   // A TV waits with its code; the DM joins with a login (the hub needs one) and pairs it.
-  const tv = await (await browser.newContext()).newPage();
+  const tv = await freshPage(browser);
   await tv.goto('/display');
   const code = tv.locator('.display-code');
   await expect(code).toHaveText(/^\S{4} \S{4}$/, WAIT);
-  const dm = await (await browser.newContext()).newPage();
+  const dm = await freshPage(browser);
   await dm.goto(joinPath(dmToken(campaign)));
   const invited = accessState(dm, words.invited);
   await invited.getByLabel('Your name at the table', { exact: true }).fill('Ada');
@@ -80,7 +84,7 @@ test('a player saves the calendar file; the hub’s card and the TV say when', a
     'The screen is paired: it shows what you choose below.',
   );
   const link = await invite(dm, 'Elowen Starwhisper');
-  const player = await (await browser.newContext({ acceptDownloads: true })).newPage();
+  const player = await freshPage(browser, { acceptDownloads: true });
   await openInvitation(player, link);
   await expect(player.locator('nav.dock')).toBeVisible(WAIT);
 

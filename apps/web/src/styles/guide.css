@@ -5,15 +5,22 @@
   padding: 1.1rem 1.25rem 1rem;
   border: 1px solid var(--line-strong);
   border-radius: var(--radius-panel);
+  /* A ground of its own under the glass: the dialog may open over the lobby's light cards. */
   background:
     linear-gradient(var(--glass-raised), var(--glass-raised)),
-    url('../assets/ui-kit/textures/panel-grain.webp') center / 256px;
+    url('../assets/ui-kit/textures/panel-grain.webp') center / 256px,
+    var(--ink-950);
+  background-color: var(--ink-950);
   box-shadow: var(--shadow);
   color: var(--text);
 }
 .guide-dialog[open] {
-  display: grid;
+  /* A column whose page takes what the header and the footer leave, and scrolls within it: on a
+     short screen the buttons stay in reach. */
+  display: flex;
+  flex-direction: column;
   gap: 0.75rem;
+  overflow: hidden;
 }
 .guide-dialog::backdrop {
   background: color-mix(in srgb, var(--ink-950) 72%, transparent);
@@ -29,7 +36,14 @@
   font-size: 1.5rem;
 }
 .guide-page {
-  min-height: 11rem;
+  flex: 1 1 auto;
+  min-height: min(11rem, 30dvh);
+  overflow-y: auto;
+}
+.guide-header,
+.guide-footer,
+.guide-parts {
+  flex: none;
 }
 .guide-page h3 {
   display: flex;

@@ -11,7 +11,8 @@ owner's word of the same day, typed in the working session: «не спраши�
 the points the plan left open settled by the session and recorded; merges, deployment and builds on
 the family's devices stay the owner's. **Stage 720 is implemented** (`work-orders/STAGE_720.md`,
 `reports/STAGE_720_COMPLETION.md`). **Stage 730 is implemented** (`work-orders/STAGE_730.md`,
-`reports/STAGE_730_COMPLETION.md`). It follows `docs/FULL_GAME_PLAN.md` (Stages
+`reports/STAGE_730_COMPLETION.md`). **Stage 740 is implemented** (`work-orders/STAGE_740.md`,
+`reports/STAGE_740_COMPLETION.md`). It follows `docs/FULL_GAME_PLAN.md` (Stages
 600–699) and `docs/NATIVE_APPS_PLAN.md` (Stage 700).
 
 The rules, the table, the TV and the DM's tools are complete. What is thin is the ritual around play:

@@ -47,6 +47,7 @@ import { loadQuestBook } from './quests/quest-book.ts';
 import { PostgresProposalStore } from './authoring/postgres-proposal-store.ts';
 import { PostgresChatStore } from './chat/postgres-chat-store.ts';
 import { PostgresReflectionStore } from './reflections/postgres-reflection-store.ts';
+import { PostgresAgreementStore } from './agreement/postgres-agreement-store.ts';
 import { PostgresMarkStore } from './marks/postgres-mark-store.ts';
 import { PostgresHandoutStore } from './handouts/postgres-handout-store.ts';
 import { PostgresTrackStore } from './music/postgres-track-store.ts';
@@ -228,6 +229,8 @@ async function main(): Promise<void> {
       store: new PostgresReflectionStore(pool),
       now: () => new Date().toISOString(),
     },
+    // The table's agreement (ADR 0071 §4; migration 0042).
+    agreement: { store: new PostgresAgreementStore(pool), now: () => new Date().toISOString() },
     marks: { store: new PostgresMarkStore(pool), now: () => new Date().toISOString() },
     handouts: { store: new PostgresHandoutStore(pool), now: () => new Date().toISOString() },
     // The DM's music (ADR 0059 §3; migration 0038).

@@ -63,6 +63,8 @@ export function coverageInventory(target: LiveTarget): ViewRequest[] {
     // What the table's display shows (ADR 0042), read by every member. Optional: a composition
     // without displays answers 404, which is fingerprinted like any absent view.
     { url: `${base}/display/cast`, optional: true },
+    // The table's agreement (ADR 0071 §4): every member and the display read the same page.
+    scoped('agreement'),
   ];
   // The table's rolls and the DM's check requests (Stage 510): the dice the client animates; the
   // open short rest (Stage 530), when players spend Hit Point Dice.

@@ -2,10 +2,14 @@ import { expect, test, type Page } from '@playwright/test';
 
 import { UI_PARTY_CAMPAIGNS } from '../../apps/server/src/testing/ui-party-campaigns.ts';
 import boundary from '../../fixtures/ravenford/knowledge-boundary.json' with { type: 'json' };
+import { closePages, freshPage } from './support/pages.ts';
 import { dmRequest } from './support/authoring.ts';
 import { expectAccessible } from './support/axe.ts';
 import { collectApiBodies, enterWorld, expectPlayerBoundary, TOKENS } from './support/session.ts';
 import { openSheet } from './support/shell.ts';
+
+// Every page of the journey closes with it (`support/pages.ts` says why).
+test.afterEach(closePages);
 
 /**
  * An evening closed and the next one opened (docs/adr/0071-memory-and-ritual.md §1, Stage 710):
@@ -33,8 +37,8 @@ test('the DM closes an evening; its chapter and “Previously…” reach the pl
 }) => {
   test.setTimeout(180_000);
   const campaign = campaignOf();
-  const dm = await (await browser.newContext()).newPage();
-  const player = await (await browser.newContext()).newPage();
+  const dm = await freshPage(browser);
+  const player = await freshPage(browser);
   const received = collectApiBodies(player);
   // What the player's browser reads of the Chronicle, its own view and the party's.
   const chronicles: Promise<string>[] = [];
@@ -159,8 +163,8 @@ test('the DM closes an evening; its chapter and “Previously…” reach the pl
 test('an evening of which nothing is kept has no chapter, and says so', async ({ browser }) => {
   test.setTimeout(120_000);
   const campaign = campaignOf();
-  const dm = await (await browser.newContext()).newPage();
-  const player = await (await browser.newContext()).newPage();
+  const dm = await freshPage(browser);
+  const player = await freshPage(browser);
   await enterWorld(dm, TOKENS.dm, campaign);
   await enterWorld(player, TOKENS.player, campaign);
   await openSheet(dm, 'Session');

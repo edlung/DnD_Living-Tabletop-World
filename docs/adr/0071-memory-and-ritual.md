@@ -7,7 +7,10 @@
   defaults in §2 are marked and stay the owner's to overrule) and §3 (the owner's answer «Дата +
   файл календаря» and the same word; its defaults are marked too). §3 amends ADR 0043 §6 (the
   table's state holds the date), ADR 0041 (the hub's card says it) and ADR 0042 §3 (the join screen
-  says it). Later sections are added by their
+  says it) and §4 (the owner's answer that the table's agreement and the DM's guide join the
+  package, and the same word; its defaults are marked). §4 amends ADR 0044 §8 (the guide is by
+  role and ends with the table's page), ADR 0042 §3 (an `agreement` cast) and ADR 0061 §5 (the
+  two tables move). Later sections are added by their
   stages and are not in force until then. §2 amends ADR 0042 §3 (a cast of table data), ADR 0043
   §6 (the screens stay paired at a session's end unless the DM unpairs them), ADR 0061 §5 (the
   table moves with its campaign) and ADR 0062 §1–2 (the notice and a person's copy name them). Amends ADR 0024 §4–6 (a chapter of one session, who reads the party's
@@ -163,6 +166,46 @@
    §5). It is the table's, not a person's: a person's copy of their data does not list it.
 8. **AI.** None.
 
+### 4. The table's agreement and the DM's guide (Stage 740)
+
+1. **The agreement.** One short page a campaign, the DM's to write: the tone (cosy, adventurous,
+   spooky or grim, and a line of the DM's own), what is not in this game (eight things to tick and
+   lines of the table's own), the table's sign for a pause, a word on who plays. Table data beside
+   the world (migration 0042, `ltw_table_agreements`): no World Engine decision reads it. The form
+   starts from what suits a family table, so keeping it is one press.
+2. **Who reads it.** Every member and a table display, the same page in every perspective — it
+   holds nothing of the world. The DM may show it on the table's screens (an `agreement` cast) to
+   read aloud at the first meeting; online it opens every player's Table screen.
+3. **"Understood".** Said to a version of the words (`ltw_table_agreement_understood`): by a
+   player for their own character, by the DM for any character — a child who said it aloud. Only
+   the page as it stands may be agreed to. Changed words are a new version and ask everyone again;
+   the same words written again are not. Who has said it is the DM's alone to read: no other view
+   is sent the list.
+4. **Where a player meets it.** A card while they have not said "Understood" to the page as it
+   stands — in the lobby and over a game in play alike, because a campaign may begin with its
+   first session already open; "Later" puts it away until the screen is opened again, and nothing
+   blocks play. The page stays in "How to play" as its last page, "Our table".
+5. **The quiet ways to the DM.** From "Our table" a player asks for a pause — the table's own
+   whisper to the DM (ADR 0044 §1) with fixed words, so nobody has to find any, once a minute at most from a screen — or opens the chat
+   with the DM chosen, for words of their own. Neither is a new channel, and neither pauses the
+   game by itself: the DM decides.
+6. **The guide by role.** "How to play" opens for the DM on "How to run the game" — before the
+   evening, the first meeting, opening, running, the table's screen, closing, when something goes
+   wrong — with the players' pages one press away; a player sees the players' pages only. Static
+   words in both languages that name the screens as they are; nothing of the world.
+7. **Before the first evening.** Until a campaign's first session has ended, the DM's Session sheet
+   lists what to do first — invite, write the agreement, set the day, pair the TV — ticked where
+   the application can tell, with the way to the guide.
+8. **Around it.** Both tables move with their campaign (ADR 0061 §5). The marks name a character,
+   not an account: a person's copy of their data does not list them, and they stay with the
+   campaign (session's default, by ADR 0062's rule for table data without a person's words).
+9. **AI.** None reads the agreement in this stage. Whether "not in this game" should bind the
+   NPCs' talk and the narrator's prose when AI is on is the owner's open point: it changes prompt
+   contracts (ADR 0020, ADR 0032) and is a design of its own.
+10. **Left out** (session's default): a library campaign's `audience` and `tone` do not start the
+    page off, as the plan suggested — a campaign does not record the library entry it came from,
+    and the library's tone is a paragraph, not a choice. The family defaults start it instead.
+
 ## Consequences
 
 - No migration and no new route. Contracts: `GenerateChronicle` and the generate request take
@@ -200,6 +243,13 @@
   client `ritual/next-game-words.ts`, `next-game.tsx`, mounted in `dm/session-sheet.tsx`,
   `session/lobby-banner.tsx`, `session/hub.tsx`, `display/cast-views.tsx`. Rollback: additive, an
   older build leaves the columns alone and shows no date.
+- Stage 740: contracts `session/agreement.ts`, the `agreement` cast (`display/display.ts`); server
+  `src/agreement/` (store, PostgreSQL store, routes), migration `0042_table_agreement.sql`, the
+  live inventory's `agreement`, `MOVED_TABLES`; client `ritual/agreement-words.ts`, `agreement.tsx`,
+  `agreement-tool.tsx`, `guide/guide.tsx` (by role), `guide/dm-guide.ts`, `guide/our-table.tsx`,
+  `dm/first-evening.tsx`, `shell/requests.ts` (a request from one corner of the screen to
+  another), `styles/agreement.css`, `i18n/ru-agreement.ts`. The API context now wraps the top bar
+  too. Rollback: additive, an older build leaves the tables alone.
 
 ## Invariants affected
 
@@ -208,4 +258,5 @@ Preserves 4 and 5 (what a player or the TV reads is the party's knowledge, never
 rendered from the entries and changes nothing). §2 keeps 5 for table data: a wish reaches its
 author and the DM and nobody else, by listing and by signal. §3 adds nothing a perspective could leak: the date
 and its line are the DM's words for the whole table, and the file carries the campaign's name only.
-No invariant is weakened.
+§4 keeps 5 for table data once more: who has said
+"Understood" reaches the DM and nobody else. No invariant is weakened.

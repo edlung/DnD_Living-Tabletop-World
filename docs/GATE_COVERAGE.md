@@ -840,3 +840,18 @@ a calendar file. Nothing of the world is in either, so no perspective boundary m
   (the hub's card), `apps/web/src/ritual/next-game-words.test.ts`, the journeys
   `tests/e2e/next-game.spec.ts` and `next-game-file.spec.ts` (the saved file's text).
 - Next review obligation: none scheduled; the owner may order an independent repeat.
+
+## Stage 740: the table's agreement (2026-11-16)
+
+Stage 740 (`docs/adr/0071-memory-and-ritual.md` §4) adds the table's agreement, table data like
+table talk, and static pages of the guide.
+
+- Boundary: the page is the DM's to write and everyone's to read, a table display included — it
+  holds nothing of the world. Who has said "Understood" is sent to the DM alone. A player says it
+  for their own character, the DM for anyone; nobody for a version they were not shown. The quiet
+  request for a pause is a whisper to the DM (ADR 0044 §1's boundary, unchanged).
+- Deterministic regressions: `apps/server/src/agreement/agreement-routes.test.ts` (each reader and
+  writer, a table display, a page out of shape, versions), `agreement-store.integration.test.ts`,
+  the live inventory's and the move's coverage tests, the journeys `tests/e2e/agreement.spec.ts`
+  (what a player's browser received) and `agreement-screens.spec.ts` (what the TV received).
+- Next review obligation: none scheduled; the owner may order an independent repeat.

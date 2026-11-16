@@ -7,6 +7,7 @@ import { useResource } from '../api/resource.ts';
 import { recapParagraphs } from '../chronicle/book-chapters.ts';
 import { Previously, usePreviously } from '../chronicle/previously.tsx';
 import { calendarHref, NextGameLine, useCalendarFile } from '../ritual/next-game.tsx';
+import { AgreementCard } from '../ritual/agreement.tsx';
 import { StarsCard } from '../ritual/stars-card.tsx';
 import { Glyph } from '../visual/glyph.tsx';
 
@@ -61,7 +62,9 @@ export function LobbyBanner({
   }
   if (isDm || actorId === null) return null;
   const mine = characters.find((entry) => entry.character.entityId === actorId);
-  if (session !== null && !paused) return null;
+  // A game in play has no lobby; the table's agreement still asks to be read (a campaign may
+  // begin with its first session already open).
+  if (session !== null && !paused) return <AgreementCard api={api} characterId={actorId} />;
   return (
     <>
       <div className="lobby-banner">
@@ -107,6 +110,8 @@ export function LobbyBanner({
           className="next-game--lobby"
         />
       )}
+      {/* The table's agreement, until this player has said "Understood" (ADR 0071 §4). */}
+      <AgreementCard api={api} characterId={actorId} />
       {session === null && <StarsCard api={api} characterId={actorId} />}
       {session === null && <LobbyPreviously api={api} onOpenChronicle={onOpenChronicle} />}
     </>

@@ -6,6 +6,7 @@ import {
   memoryChat,
   memoryMarks,
   memoryHandouts,
+  memoryAgreement,
   memoryReflections,
   memoryTable,
   type AppDependencies,
@@ -56,6 +57,8 @@ export function buildLiveApp(
     handouts: deps.handouts ?? memoryHandouts(),
     // And one set of stars and wishes, so a new one signals its readers (ADR 0071 §2).
     reflections: deps.reflections ?? memoryReflections(),
+    // And one agreement, so a page written or understood signals its readers (ADR 0071 §4).
+    agreement: deps.agreement ?? memoryAgreement(),
     presence: registry,
   };
   const app = buildApp(shared);

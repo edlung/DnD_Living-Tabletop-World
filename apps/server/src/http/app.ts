@@ -21,6 +21,11 @@ import {
   type ReflectionDependencies,
 } from '../reflections/reflection-routes.ts';
 import { InMemoryReflectionStore } from '../reflections/reflection-store.ts';
+import {
+  registerAgreementRoutes,
+  type AgreementDependencies,
+} from '../agreement/agreement-routes.ts';
+import { InMemoryAgreementStore } from '../agreement/agreement-store.ts';
 import { registerHandoutRoutes, type HandoutDependencies } from '../handouts/handout-routes.ts';
 import { InMemoryHandoutStore } from '../handouts/handout-store.ts';
 import { registerLibraryRoutes } from '../library/library-routes.ts';
@@ -154,6 +159,8 @@ export interface AppDependencies {
   readonly chat?: ChatDependencies;
   /** Stars and wishes at an evening's end (ADR 0071 §2); in memory when absent. */
   readonly reflections?: ReflectionDependencies;
+  /** The table's agreement (ADR 0071 §4). */
+  readonly agreement?: AgreementDependencies;
   /** The table's shared marks on the board (ADR 0057 §5); in memory when absent. */
   readonly marks?: MarkDependencies;
   /** Handouts (ADR 0044 §5): what the DM shows one player or the party; in memory when absent. */
@@ -185,6 +192,11 @@ export const memoryChat = (): ChatDependencies => ({
 
 export const memoryReflections = (): ReflectionDependencies => ({
   store: new InMemoryReflectionStore(),
+  now: () => new Date().toISOString(),
+});
+
+export const memoryAgreement = (): AgreementDependencies => ({
+  store: new InMemoryAgreementStore(),
   now: () => new Date().toISOString(),
 });
 
@@ -305,6 +317,7 @@ export function buildApp(input: AppDependencies): FastifyInstance {
   // One set of stars and wishes for their routes and a person's copy of their data.
   const reflections = deps.reflections ?? memoryReflections();
   registerReflectionRoutes(app, { ...deps, reflections });
+  registerAgreementRoutes(app, { ...deps, agreement: deps.agreement ?? memoryAgreement() });
   registerMarkRoutes(app, { ...deps, marks: deps.marks ?? memoryMarks() });
   // One set of handouts for the handout routes and the DM's library that gives them (ADR 0058 §3).
   const handouts = deps.handouts ?? memoryHandouts();

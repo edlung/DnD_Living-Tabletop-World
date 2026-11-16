@@ -29,6 +29,7 @@ import './i18n/ru-features.ts';
 import './i18n/ru-summons.ts';
 import './i18n/ru-encounters.ts';
 import './i18n/ru-companion.ts';
+import './i18n/ru-agreement.ts';
 import './i18n/ru-ritual.ts';
 import './i18n/ru-conditions.ts';
 import './i18n/ru-weapons.ts';
@@ -101,6 +102,7 @@ import './styles/rules.css';
 import './styles/workshop.css';
 import './styles/ritual.css';
 import './styles/stars.css';
+import './styles/agreement.css';
 import './styles/print.css';
 
 // An invitation link's token leaves the address before anything is requested or rendered

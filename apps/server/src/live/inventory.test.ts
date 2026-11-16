@@ -32,6 +32,8 @@ const ALWAYS = [
   '/campaigns/ravenford/world-map',
   // What the table's display shows (ADR 0042).
   '/campaigns/ravenford/display/cast ?',
+  // The table's agreement (ADR 0071 §4).
+  '/campaigns/ravenford/agreement',
 ];
 
 describe('the coverage inventory', () => {

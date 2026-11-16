@@ -1,9 +1,13 @@
 import { expect, test, type Page } from '@playwright/test';
 
 import { UI_PARTY_CAMPAIGNS } from '../../apps/server/src/testing/ui-party-campaigns.ts';
+import { closePages, freshPage } from './support/pages.ts';
 import { expectAccessible } from './support/axe.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
 import { openSheet } from './support/shell.ts';
+
+// Every page of the journey closes with it (`support/pages.ts` says why).
+test.afterEach(closePages);
 
 /**
  * The next game (docs/adr/0071-memory-and-ritual.md §3, Stage 730): the DM sets when the table
@@ -58,8 +62,8 @@ test('the DM sets the next game; a waiting player reads it; the game that begins
 }) => {
   test.setTimeout(180_000);
   const campaign = campaignOf();
-  const dm = await (await browser.newContext()).newPage();
-  const player = await (await browser.newContext()).newPage();
+  const dm = await freshPage(browser);
+  const player = await freshPage(browser);
   await enterWorld(dm, TOKENS.dm, campaign);
   await enterWorld(player, TOKENS.player, campaign);
   await openSheet(dm, 'Session');

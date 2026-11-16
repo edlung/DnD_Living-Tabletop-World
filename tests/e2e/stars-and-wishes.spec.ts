@@ -1,9 +1,13 @@
 import { expect, test, type Page } from '@playwright/test';
 
 import { UI_PARTY_CAMPAIGNS } from '../../apps/server/src/testing/ui-party-campaigns.ts';
+import { closePages, freshPage } from './support/pages.ts';
 import { expectAccessible } from './support/axe.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
 import { openSheet } from './support/shell.ts';
+
+// Every page of the journey closes with it (`support/pages.ts` says why).
+test.afterEach(closePages);
 
 /**
  * Stars and wishes at an evening's end (docs/adr/0071-memory-and-ritual.md §2, Stage 720): the
@@ -29,8 +33,8 @@ const session = (page: Page) => page.locator('#sheet-session');
 test('a player’s star is the table’s, a wish is the DM’s alone', async ({ browser }) => {
   test.setTimeout(180_000);
   const campaign = campaignOf();
-  const dm = await (await browser.newContext()).newPage();
-  const player = await (await browser.newContext()).newPage();
+  const dm = await freshPage(browser);
+  const player = await freshPage(browser);
   // Everything the player's browser reads of stars and wishes.
   const read: Promise<string>[] = [];
   player.on('response', (response) => {

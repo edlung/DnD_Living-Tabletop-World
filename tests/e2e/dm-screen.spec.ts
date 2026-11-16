@@ -1,9 +1,13 @@
 import { expect as baseExpect, test, type Locator, type Page } from '@playwright/test';
 
 import { UI_PARTY_CAMPAIGNS } from '../../apps/server/src/testing/ui-party-campaigns.ts';
+import { closePages, freshPage } from './support/pages.ts';
 import { expectAccessible } from './support/axe.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
 import { openSheet } from './support/shell.ts';
+
+// Every page of the journey closes with it (`support/pages.ts` says why).
+test.afterEach(closePages);
 
 /**
  * The DM's screen (docs/adr/0043-dm-screen.md, Stage 620): the Party sheet shows every
@@ -161,8 +165,8 @@ test('the DM changes a running fight’s turn order', async ({ page }) => {
 
 test('a session pauses, ends and starts again with the players ready', async ({ browser }) => {
   test.setTimeout(120_000);
-  const dm = await (await browser.newContext()).newPage();
-  const player = await (await browser.newContext()).newPage();
+  const dm = await freshPage(browser);
+  const player = await freshPage(browser);
   await enterWorld(dm, TOKENS.dm, campaignOf());
   await enterWorld(player, TOKENS.player, campaignOf());
   await openSheet(dm, 'Session');
