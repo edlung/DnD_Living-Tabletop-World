@@ -71,6 +71,7 @@ import '../../apps/web/src/i18n/ru-known.ts';
 import '../../apps/web/src/i18n/ru-story.ts';
 import '../../apps/web/src/i18n/ru-place-sound.ts';
 import '../../apps/web/src/i18n/ru-guest.ts';
+import '../../apps/web/src/i18n/ru-story-cast.ts';
 
 /**
  * Every English string the client can show has a Russian entry, and every entry keeps the

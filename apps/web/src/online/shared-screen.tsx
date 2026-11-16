@@ -12,13 +12,20 @@ import type { Shell } from '../shell/use-shell.ts';
 /**
  * The table's screen on every screen when the session plays online (docs/adr/0044-online-play.md
  * §5, plan decision 4): what the DM casts, read in the party's view as the TV reads it, in a sheet
- * of its own. It follows the DM: when the DM shows something to everyone — a picture, a title
- * card, the Chronicle — the sheet opens, unless another sheet or a dialog is open (then the dock
+ * of its own. It follows the DM: when the DM shows something to everyone — a picture, a story's
+ * picture and words, a title card, the Chronicle — the sheet opens, unless another sheet or a dialog is open (then the dock
  * marks it). So it does when the table goes online while this page is open — a session opened
  * with "Previously…" (docs/adr/0071-memory-and-ritual.md §1.4) — but not on a reload into a table
  * already online, where what is shown is not news. The join card never shows here.
  */
-const SHOWN: ReadonlySet<string> = new Set(['picture', 'title', 'chronicle', 'stars', 'agreement']);
+const SHOWN: ReadonlySet<string> = new Set([
+  'picture',
+  'story',
+  'title',
+  'chronicle',
+  'stars',
+  'agreement',
+]);
 
 export function SharedScreenSheet({
   api,

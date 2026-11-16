@@ -14,6 +14,8 @@ export function castKey(cast: CastResponse): string {
       return `title:${shown.title}\n${shown.subtitle}`;
     case 'picture':
       return `picture:${shown.entityId}`;
+    case 'story':
+      return `story:${shown.entityId ?? ''}\n${shown.text}`;
     default:
       return shown.kind;
   }

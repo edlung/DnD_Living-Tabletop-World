@@ -70,6 +70,8 @@ export function CastView(props: Props) {
       return <AgreementCast api={props.api} refresh={props.refresh} />;
     case 'picture':
       return <PictureCast {...props} entityId={cast.entityId} />;
+    case 'story':
+      return <StoryCast {...props} entityId={cast.entityId} text={cast.text} />;
     case 'join':
       return <JoinCast {...props} />;
     case 'blank':
@@ -329,6 +331,37 @@ function PictureCast(props: Props & { readonly entityId: string }) {
       <img src={art} alt={name ?? ''} />
       {name && <figcaption>{name}</figcaption>}
     </figure>
+  );
+}
+
+/**
+ * Theatre of the mind (docs/adr/0073-table-ideas.md §8): one large picture the party knows — the
+ * game's key art where there is none — and the words someone reads aloud, each paragraph its own.
+ */
+function StoryCast(props: Props & { readonly entityId: string | null; readonly text: string }) {
+  const t = useT();
+  const path =
+    props.entityId === null ? null : `entities/${encodeURIComponent(props.entityId)}/presentation`;
+  const shown = useRead(props, `story:${path ?? ''}`, (api, signal) =>
+    path === null ? Promise.resolve(null) : api.get<EntityPresentationResponse>(path, signal),
+  );
+  const art = useApprovedImage(shown?.presentation.image ?? null);
+  const name = nameIn(props.directory, props.entityId);
+  const paragraphs = props.text.split(/\n+/).filter((line) => line.trim() !== '');
+  return (
+    <section className="display-story" aria-label={t('A story read aloud')}>
+      <img
+        className="display-story-art"
+        src={art ?? textureUrl('brand-keyart')}
+        alt={art !== null && name !== null ? name : ''}
+      />
+      <div className="display-story-scrim" aria-hidden="true" />
+      <div className="display-story-words">
+        {paragraphs.map((paragraph, index) => (
+          <p key={`${String(index)}:${paragraph}`}>{paragraph}</p>
+        ))}
+      </div>
+    </section>
   );
 }
 
