@@ -1024,3 +1024,17 @@ Stage 840 (`docs/adr/0073-table-ideas.md` §5) gives a hero a backstory and a pl
   backstories; deletion deletes its notes and no one else's),
   `campaigns/move/tables.integration.test.ts`, the journey `tests/e2e/hero-story.spec.ts` (what
   the DM and the other player were sent).
+
+## Stage 850: a scene that brings its sound (2026-11-16)
+
+Stage 850 (`docs/adr/0073-table-ideas.md` §6) lets a place carry a sound that the DM's showing of
+it switches on.
+
+- Boundary: a place's sound is the DM's alone to set and to read (`…/dm/place-sounds`, 404 for
+  anyone else). It reaches the table only as the table's one sound state, which every screen
+  already reads: an ambience's name and a track's ID, nothing of the place. The cast's answer
+  says whether the sound changed, to the DM who cast.
+- Deterministic regressions: `apps/server/src/display/place-sound.test.ts` (kept, applied by
+  showing and by nothing else, the track not restarted, a deleted track, the DM's alone, bounds),
+  `place-sound-store.integration.test.ts`, `campaigns/move/tables.integration.test.ts`, the
+  journey `tests/e2e/place-sound.spec.ts`.

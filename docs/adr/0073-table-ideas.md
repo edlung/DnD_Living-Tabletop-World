@@ -4,15 +4,17 @@
   улучшений…», quoted as relayed in `reviews/OWNER_TABLE_IDEAS_2026-11-16.json`; every point of §1
   is the session's and is marked in the plan, `docs/TABLE_IDEAS_PLAN.md` decisions 3–4, and stays
   the owner's to overrule). Later sections are added by their stages and are not in force until
-  then. §2–§5 are accepted on the same word; every point of them is the session's (the plan's
-  decisions 5–8). §1 amends ADR 0062 §1 (the notice names error reports), ADR 0042 §2 (a table display's one
+  then. §2–§6 are accepted on the same word; every point of them is the session's (the plan's
+  decisions 5–9). §1 amends ADR 0062 §1 (the notice names error reports), ADR 0042 §2 (a table display's one
   write), ADR 0033 (one more read in the DM's live inventory) and ADR 0061 §5 (a table that names
   a campaign and stays behind). §2 amends ADR 0071 §4.5 (a request for a pause is no longer a chat
   message) and ADR 0033 (one more read in the live inventory, for the DM and the asker). §3 amends ADR 0015
   §6 (a combatant's view says what is left of its turn, to its own player and the DM). §4 amends
   ADR 0024 §5 (the Chronicle has a third view) and changes no contract. §5 amends ADR 0061 §5 (two
   tables move), ADR 0062 §1–3 (the notice, a person's copy, what deleting an account deletes) and
-  ADR 0072 §2 (a finished campaign takes a private note).
+  ADR 0072 §2 (a finished campaign takes a private note). §6 amends ADR 0059 §1 and §3 (a place
+  shown writes the table's sound; the display's "by the scene" follows the place it shows), ADR
+  0042 §3 (the cast's answer says what it did to the sound) and ADR 0061 §5 (one table moves).
 - Context: The program after «Память и ритуал» borrows ten things other tools for the same hobby
   do well. This ADR holds their contracts, one section a stage. The first: the client reported
   nothing. A game's screen that failed while drawing fell back to a line about a "world response"
@@ -201,6 +203,29 @@
    what is kept until someone types in it; if the kept text changes under the typing — the
    other of its two writers saved — the page says so before "Save" replaces it.
 
+### 6. A scene that brings its sound (Stage 850)
+
+1. **A place's own sound.** The DM may keep, for a place, an ambience (one of the table's
+   choices: by the scene, none, or a soundscape) and one of the DM's tracks — either, or both.
+   Kept where the place is shown: in the form "What the screens show", under the place chosen.
+   Table data beside the world (migration 0046, `ltw_place_sounds`), the DM's alone to set and
+   to read; no World Engine decision reads it.
+2. **Showing switches it on.** When the DM shows a place's scene on the table's screens
+   (`POST …/display/cast`, kind `scene`) and that place — the one named, or where the party is
+   when none is named — brings a sound, the server writes it into the table's one sound state
+   (ADR 0059 §1, §3): the ambience is set; the track plays from its start, on repeat. A track
+   that is already the one playing is not restarted; a track deleted since is not played, and
+   the place then brings its ambience alone. The answer says what changed, and the form says
+   "The place's sound is on."
+3. **Nothing else does.** Not the party's walking, not the world's scene changing, not a live
+   signal: only the DM's own act of showing. What plays stays one state, read by every screen as
+   before; the DM's sound controls on the Session sheet show it and change it afterwards.
+4. **"By the scene" is the scene on the screen.** The table's display chose its "by the scene"
+   ambience from the world's active scene even while it showed another place; it now follows
+   the place it shows — the cast's, else where the scene is played. This amends ADR 0059 §1.
+5. **There is no "prepared scene" in the application**: a place is what the DM shows. A prepared
+   encounter's or a handout's own sound is not in this section.
+
 ## Consequences
 
 - The DM's list can be written to by anyone at the table, and — without a campaign — the
@@ -244,6 +269,12 @@
   written there. That is the point of the rule; a family that wants otherwise shares the screen.
 - What a player writes in a backstory is not canon: the DM reads it and decides what the world
   takes from it, by the DM's own tools.
+
+- A place's sound plays only where the table's sound plays: on a paired display and, online, on
+  every screen (ADR 0059 §6). At a table with no screen and not online, keeping a sound for a
+  place changes nothing anyone hears.
+- Showing a place a second time sets its ambience again: a DM who changed the sound by hand and
+  shows the same place again gets the place's sound back.
 
 ## Alternatives considered
 

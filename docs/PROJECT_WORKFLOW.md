@@ -22,7 +22,10 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   encyclopedia) on `claude/stage-830-party-encyclopedia`, stacked on 820's (ADR 0073 §4,
   `reports/STAGE_830_COMPLETION.md`); Stage 840 (private notes and a hero's backstory) on
   `claude/stage-840-notes-and-backstory`, stacked on 830's (ADR 0073 §5,
-  `reports/STAGE_840_COMPLETION.md`); each awaits the owner's disposition.
+  `reports/STAGE_840_COMPLETION.md`); Stage 850 (a scene that brings its sound) on
+  `claude/stage-850-scene-sound`, stacked on 840's (ADR 0073 §6,
+  `reports/STAGE_850_COMPLETION.md`, with the second checkpoint); each awaits the owner's
+  disposition.
 
 ## Current request — memory and ritual, 2026-11-15
 

@@ -277,6 +277,9 @@ It changes no world state; keep its window listener, since `pageerror` misses th
 - Native apps (ADR 0070, `native-shell.spec.ts`): a stand-in shell installed with `addInitScript`
   records what the page posts, and the journey speaks for the shell with `ltw-native` events; it owns
   the `native` sign-in campaign. The apps themselves are checked on the simulator and the emulator.
+- A scene that brings its sound (ADR 0073 §6, Stage 850): `place-sound.spec.ts` owns the
+  `placeSound` sign-in campaign with a paired TV and `placeSoundRu` (seeded from the Russian
+  Ravenford); what plays is read from the TV's `data-ambience`, as `atmosphere.spec.ts` reads it.
 - A hero's backstory and private notes (ADR 0073 §5, Stage 840): `hero-story.spec.ts` owns the
   `story` sign-in campaign (and `storyIpad` in WebKit) — the DM and two players by invitation;
   `hero-story-words.spec.ts` owns `ui-story-ru`.

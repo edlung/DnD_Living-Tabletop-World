@@ -83,6 +83,11 @@ row while it is finished (`ltw_campaign_endings`, deleted when the DM reopens it
 keepsake (`ltw_keepsakes`): table data, not canonical state. Additive: an older build leaves both
 tables alone, and plays a finished campaign on — it knows nothing of its end.
 
+Stage 850 (ADR 0073 §6): `0046_place_sounds.sql` keeps a place's own sound (`ltw_place_sounds`,
+one row a place: an ambience and a track of the DM's), applied to the table's sound when the DM
+shows the place: table data, not canonical state. It moves with its campaign. Additive: an older
+build leaves the table alone.
+
 Stage 840 (ADR 0073 §5): `0045_backstories_and_notes.sql` keeps a hero's backstory
 (`ltw_backstories`, one text a character, its player's and the DM's) and a player's private notes
 (`ltw_player_notes`, kept under their writer's actor in the campaign and read by nobody else, the

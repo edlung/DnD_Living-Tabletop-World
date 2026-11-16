@@ -13,8 +13,9 @@ devices stay the owner's. Status: **Stage 800 is implemented** (`work-orders/STA
 `reports/STAGE_810_COMPLETION.md`, ADR 0073 §2) and **Stage 820** (`work-orders/STAGE_820.md`,
 `reports/STAGE_820_COMPLETION.md`, ADR 0073 §3, with the first checkpoint) and **Stage 830**
 (`work-orders/STAGE_830.md`, `reports/STAGE_830_COMPLETION.md`, ADR 0073 §4) and **Stage 840**
-(`work-orders/STAGE_840.md`, `reports/STAGE_840_COMPLETION.md`, ADR 0073 §5); the later stages
-follow.
+(`work-orders/STAGE_840.md`, `reports/STAGE_840_COMPLETION.md`, ADR 0073 §5) and **Stage 850**
+(`work-orders/STAGE_850.md`, `reports/STAGE_850_COMPLETION.md`, ADR 0073 §6, with the second
+checkpoint); the later stages follow.
 
 It follows `docs/MEMORY_RITUAL_PLAN.md` (Stages 710–799, pull requests 37–47, none merged) and is
 stacked on its last branch, `claude/stage-799-package-close`. ADR 0073 holds its contracts, one
