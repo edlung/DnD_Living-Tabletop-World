@@ -140,9 +140,8 @@
   cursor: progress;
   opacity: 0.6;
 }
-/* The two lines stay to be heard; empty, they take no room. */
-.campaign-end-said:empty,
-.campaign-end-failed:empty {
+/* The line of what was done stays to be heard; empty, it takes no room. */
+.campaign-end-said:empty {
   height: 0;
   margin: 0;
   padding: 0;

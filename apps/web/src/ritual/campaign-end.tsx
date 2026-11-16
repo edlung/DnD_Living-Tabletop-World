@@ -191,17 +191,20 @@ export function CampaignEnd({
           </div>
         </>
       )}
-      {/* Two lines that stay: what was done is said politely, what failed at once. */}
+      {/*
+       * What was done is said politely, in a line that stays; what failed is said at once, in a
+       * line that is there only while something failed — the Session sheet has no alert otherwise.
+       */}
       <p role="status" className="muted campaign-end-said">
         {words}
       </p>
-      <p role="alert" className="authoring-notice error campaign-end-failed">
-        {failed === 'finish'
-          ? t('The campaign could not be finished. Try again.')
-          : failed === 'reopen'
-            ? t('The campaign could not be reopened. Try again.')
-            : ''}
-      </p>
+      {failed !== null && (
+        <p role="alert" className="authoring-notice error campaign-end-failed">
+          {failed === 'finish'
+            ? t('The campaign could not be finished. Try again.')
+            : t('The campaign could not be reopened. Try again.')}
+        </p>
+      )}
     </section>
   );
 }
