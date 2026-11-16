@@ -12,6 +12,7 @@ import {
   memoryTable,
   type AppDependencies,
 } from '../http/app.ts';
+import { memoryCheers } from '../cheers/cheer-routes.ts';
 import { memoryLobby } from '../table/table-state.ts';
 import { createLogger } from '../platform/logging/logger.ts';
 import { fingerprintSubscription } from './fingerprint.ts';
@@ -62,6 +63,8 @@ export function buildLiveApp(
     agreement: deps.agreement ?? memoryAgreement(),
     // And one end, so a campaign finished or a keepsake chosen signals its readers (ADR 0072 §2).
     ending: deps.ending ?? memoryEnding(),
+    // And one board of cheers, so applause reaches every screen (ADR 0072 §3).
+    cheers: deps.cheers ?? memoryCheers(),
     presence: registry,
   };
   const app = buildApp(shared);

@@ -122,7 +122,7 @@ test('the table hears what the DM chooses, on the TV and online on every screen'
   // The player turns the table's sound off on their own screen: the TV plays on.
   await openSheet(player, 'Dice');
   const dice = player.locator('#sheet-dice');
-  await dice.getByText('Sound and motion', { exact: true }).click();
+  await dice.getByText('This screen: sound, motion, text size', { exact: true }).click();
   await dice.getByLabel('The table’s sound: ambience and music', { exact: true }).uncheck();
   await expect(sound(player)).toHaveAttribute('data-ambience', 'none');
   await expect(dice.getByLabel('Volume of the table’s sound', { exact: true })).toBeDisabled();

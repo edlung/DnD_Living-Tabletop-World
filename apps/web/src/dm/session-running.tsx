@@ -5,6 +5,7 @@ import { useCallback, useId, useRef, useState } from 'react';
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
 import { Previously, usePreviously } from '../chronicle/previously.tsx';
+import { BreakChoice } from '../comforts/break-reminder.tsx';
 import { Glyph } from '../visual/glyph.tsx';
 import { useRereadOn } from '../world/use-world-data.ts';
 import { CloseEvening } from './close-evening.tsx';
@@ -97,6 +98,7 @@ export function Running({
           {t('End the session')}
         </button>
       </div>
+      <BreakChoice id={`${ids}-break`} />
       {ending && (
         <CloseEvening
           api={api}

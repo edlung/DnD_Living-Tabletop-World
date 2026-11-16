@@ -268,3 +268,10 @@ It changes no world state; keep its window listener, since `pageerror` misses th
 - Native apps (ADR 0070, `native-shell.spec.ts`): a stand-in shell installed with `addInitScript`
   records what the page posts, and the journey speaks for the shell with `ltw-native` events; it owns
   the `native` sign-in campaign. The apps themselves are checked on the simulator and the emulator.
+- Small comforts (ADR 0072 §3, Stage 790): `comforts.spec.ts` owns `ui-comforts` (and
+  `ui-comforts-ipad` in WebKit), `comforts-screens.spec.ts` the `comforts` sign-in campaign with a
+  paired TV. The break reminder's count is the DM's browser's own (`ltw.break:<campaign>` in
+  `localStorage`): a journey seeds it a few seconds short of an hour (`addInitScript`, or
+  `evaluate` and a reload) instead of waiting or faking the clock — the count itself is
+  `apps/web/src/comforts/break-timer.test.ts`'s. A cheer is gone from a screen in 4 s and from
+  the server in 6: assert it where it shows, then that it went.

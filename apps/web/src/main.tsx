@@ -42,6 +42,8 @@ import './i18n/ru-atmosphere.ts';
 import './i18n/ru-voice.ts';
 import './i18n/ru-moves.ts';
 import './i18n/ru-privacy.ts';
+import './i18n/ru-comforts.ts';
+import { applyTextSize } from './dice/settings.ts';
 import { DisplayApp } from './display/display-app.tsx';
 import { PrivacyPage } from './session/privacy-notice.tsx';
 import { startNative } from './native/start.ts';
@@ -107,6 +109,7 @@ import './styles/stars.css';
 import './styles/agreement.css';
 import './styles/keepsake.css';
 import './styles/ending.css';
+import './styles/comforts.css';
 import './styles/print.css';
 import './styles/print-book.css';
 
@@ -116,7 +119,11 @@ import './styles/print-book.css';
 // one, the page's first request — whether this browser is signed in — is sent exactly once.
 const root = document.getElementById('root');
 if (!root) throw new Error('Missing application root');
-if (window.location.pathname === '/display' || window.location.pathname === '/display/') {
+const display = window.location.pathname === '/display' || window.location.pathname === '/display/';
+// A person's own screen wears the text size they chose (docs/adr/0072-keepsakes.md §3); the
+// table's display is sized by its screen.
+if (!display) applyTextSize();
+if (display) {
   // The table's screen (docs/adr/0042-table-display.md): a device, not a person's sign-in.
   createRoot(root).render(
     <StrictMode>

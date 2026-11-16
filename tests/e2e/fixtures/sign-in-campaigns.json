@@ -39,5 +39,6 @@
   "checkpoint": "ui-signin-checkpoint",
   "checkpointIpad": "ui-signin-checkpoint-ipad",
   "book": "ui-signin-book",
-  "ending": "ui-signin-ending"
+  "ending": "ui-signin-ending",
+  "comforts": "ui-signin-comforts"
 }

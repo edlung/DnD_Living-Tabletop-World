@@ -1,0 +1,181 @@
+/*
+ * Small comforts (docs/adr/0072-keepsakes.md §3): cheers at the table, and the DM's break
+ * reminder. The viewer's text size is the root's (base.css).
+ */
+
+/* The cheers a screen shows: over the screen, taking no press, gone in a moment. */
+.cheer-layer {
+  position: fixed;
+  bottom: calc(var(--dock-h) + 24px + env(safe-area-inset-bottom, 0px));
+  left: 50%;
+  z-index: 40;
+  /* A band across the middle; on a phone the whole width, a gutter kept either side. */
+  width: min(100% - 16px, 880px);
+  height: 0;
+  translate: -50% 0;
+  pointer-events: none;
+}
+.cheer {
+  position: absolute;
+  bottom: 0;
+  /* Five lanes across the band, each cheer whole inside it: a burst of applause spreads out. */
+  left: calc(var(--cheer-lane, 0.5) * (100% - var(--cheer-w)));
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  width: var(--cheer-w);
+  margin: 0;
+  animation: cheer-rise 4s var(--ease) both;
+  --cheer-w: min(11rem, 100%);
+}
+.cheer-sign {
+  font-size: 2.6rem;
+  line-height: 1.1;
+  /* The system's own emoji, in colour where the system has them. */
+  font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
+  filter: drop-shadow(0 4px 10px rgb(0 0 0 / 0.55));
+}
+.cheer-by {
+  max-width: 100%;
+  padding: 2px 10px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: var(--glass-raised);
+  color: var(--text);
+  font-size: 0.85rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+@keyframes cheer-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(24px) scale(0.6);
+  }
+  12% {
+    opacity: 1;
+    transform: translateY(0) scale(1.08);
+  }
+  20% {
+    transform: translateY(-6px) scale(1);
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(-96px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-128px) scale(0.96);
+  }
+}
+/* Motion off (the viewer's setting, or the system's): the cheer appears and goes, in place. */
+.cheer-layer.is-still .cheer {
+  animation-name: cheer-still;
+}
+@keyframes cheer-still {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  8%,
+  88% {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cheer {
+    animation-name: cheer-still;
+  }
+}
+
+/* On the table's display the cheers are sized by the screen, like everything there. */
+.cheer-layer--display {
+  bottom: 6vmin;
+  width: 80%;
+}
+.cheer-layer--display .cheer {
+  --cheer-w: 40vmin;
+}
+.cheer-layer--display .cheer-sign {
+  font-size: clamp(3rem, 11vmin, 9rem);
+}
+.cheer-layer--display .cheer-by {
+  padding: 0.3vmin 1.6vmin;
+  font-size: clamp(1rem, 2.6vmin, 2rem);
+}
+
+/* The row of marks: one press cheers the table. */
+.cheer-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-block: 4px 12px;
+}
+.cheer-row-label {
+  margin-right: 4px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+/* On a narrow screen the words take their own line, so the five marks stay in one row. */
+@media (max-width: 520px) {
+  .cheer-row-label {
+    flex-basis: 100%;
+  }
+}
+.cheer-button {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
+  font-size: 1.35rem;
+  line-height: 1;
+  font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
+}
+.cheer-button[aria-disabled='true'] {
+  opacity: 0.55;
+}
+/* On a phone or a tablet a cheer is smaller: it floats over what the thumb just pressed. */
+@media (max-width: 768px) {
+  .cheer-layer:not(.cheer-layer--display) .cheer-sign {
+    font-size: 2rem;
+  }
+}
+
+/* This screen's text size: the same choice in the Dice sheet's settings and in the guide. */
+.text-size-choice {
+  display: grid;
+  gap: 6px;
+}
+.text-size-choice select {
+  max-width: 360px;
+}
+
+/* The DM's break reminder, among the table's questions over the stage. */
+.break-card {
+  /* Narrow enough to keep clear of the place's cartouche at every text size. */
+  max-width: min(100%, 520px);
+  border-radius: var(--radius-panel);
+}
+.break-card button {
+  min-height: 44px;
+}
+.break-said:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}
+.break-card:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}
+.break-choice {
+  display: grid;
+  gap: 6px;
+  margin-top: 12px;
+}
+.break-choice select {
+  max-width: 360px;
+}
+.break-choice .muted {
+  margin: 0;
+  font-size: 0.85rem;
+}

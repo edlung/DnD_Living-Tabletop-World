@@ -13,6 +13,11 @@ import type { CampaignQuestBooks } from '../campaigns/quest-books.ts';
 import { registerAccountRoutes } from '../accounts/account-routes.ts';
 import { registerPrivacyRoutes } from '../accounts/privacy-routes.ts';
 import { registerChatRoutes, type ChatDependencies } from '../chat/chat-routes.ts';
+import {
+  memoryCheers,
+  registerCheerRoutes,
+  type CheerDependencies,
+} from '../cheers/cheer-routes.ts';
 import { InMemoryMarkStore } from '../marks/mark-store.ts';
 import { registerMarkRoutes, type MarkDependencies } from '../marks/mark-routes.ts';
 import { InMemoryChatStore } from '../chat/chat-store.ts';
@@ -166,6 +171,8 @@ export interface AppDependencies {
   readonly agreement?: AgreementDependencies;
   /** A campaign's end and its heroes' keepsakes (ADR 0072 §2); in memory when absent. */
   readonly ending?: EndingDependencies;
+  /** Cheers at the table (ADR 0072 §3): this process's memory, always. */
+  readonly cheers?: CheerDependencies;
   /** The table's shared marks on the board (ADR 0057 §5); in memory when absent. */
   readonly marks?: MarkDependencies;
   /** Handouts (ADR 0044 §5): what the DM shows one player or the party; in memory when absent. */
@@ -333,6 +340,7 @@ export function buildApp(input: AppDependencies): FastifyInstance {
   registerReflectionRoutes(app, { ...deps, reflections });
   registerAgreementRoutes(app, { ...deps, agreement: deps.agreement ?? memoryAgreement() });
   registerEndingRoutes(app, { ...deps, ending });
+  registerCheerRoutes(app, { ...deps, cheers: deps.cheers ?? memoryCheers() });
   registerMarkRoutes(app, { ...deps, marks: deps.marks ?? memoryMarks() });
   // One set of handouts for the handout routes and the DM's library that gives them (ADR 0058 §3).
   const handouts = deps.handouts ?? memoryHandouts();

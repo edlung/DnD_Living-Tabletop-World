@@ -24,7 +24,9 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   on `claude/stage-770-book-and-gallery`, stacked on 760's (ADR 0072 §1,
   `reports/STAGE_770_COMPLETION.md`); Stage 780 (a campaign's end, keepsakes, finished adventures in
   the account's list) on `claude/stage-780-home-between-worlds`, stacked on 770's (ADR 0072 §2,
-  `reports/STAGE_780_COMPLETION.md`). Off-host backup copies are a separate task on the owner's
+  `reports/STAGE_780_COMPLETION.md`); Stage 790 (small comforts: text size, the DM's break
+  reminder, cheers at the table) on `claude/stage-790-small-comforts`, stacked on 780's (ADR 0072
+  §3, `reports/STAGE_790_COMPLETION.md`). Off-host backup copies are a separate task on the owner's
   separate word.
 
 ## Current request — campaign library release, 2026-11-14

@@ -17,8 +17,10 @@ the family's devices stay the owner's. **Stage 720 is implemented** (`work-order
 word of 2026-11-16, «продолжаем»**, typed after Stage 760's report — before the family playtest,
 so it is not re-read against one. **Stage 770 is implemented** (`work-orders/STAGE_770.md`,
 `reports/STAGE_770_COMPLETION.md`, ADR 0072 §1). **Stage 780 is implemented**
-(`work-orders/STAGE_780.md`, `reports/STAGE_780_COMPLETION.md`, ADR 0072 §2). It follows `docs/FULL_GAME_PLAN.md` (Stages
-600–699) and `docs/NATIVE_APPS_PLAN.md` (Stage 700).
+(`work-orders/STAGE_780.md`, `reports/STAGE_780_COMPLETION.md`, ADR 0072 §2). **Stage 790 is
+implemented** (`work-orders/STAGE_790.md`, `reports/STAGE_790_COMPLETION.md`, ADR 0072 §3), in a
+cloud session on the owner's word of 2026-11-16, «перенеси часть работы в облако». It follows
+`docs/FULL_GAME_PLAN.md` (Stages 600–699) and `docs/NATIVE_APPS_PLAN.md` (Stage 700).
 
 The rules, the table, the TV and the DM's tools are complete. What is thin is the ritual around play:
 what happens before an evening, after it and between meetings. Advice kept from the assessment: play
@@ -281,7 +283,9 @@ Text size for each viewer (three steps, kept beside the dice settings; the layou
 break reminder for the DM (off, 60 or 90 minutes of an unpaused session; a "Break" card for the TV);
 reactions at the table (a few fixed marks, shown for a moment on every screen and the TV, never
 stored). ADR 0072 §3. Open point: the marks' art — the owner's rule is that art comes from the
-OpenAI image model, so either system emoji as text or a small made set.
+OpenAI image model, so either system emoji as text or a small made set. _Settled by the stage
+(the session's decision): system emoji as text; and the marks are called "cheers", since a
+"reaction" is a rule of the fight._
 
 #### 799 The package's close — size S
 
@@ -336,5 +340,5 @@ and may swap. 750 waits for PR 32.
 - Whether "not in this game" should bind AI when it is on (Stage 740).
 - Client error reports before the playtest (above).
 - Players' notes and backstory: Stage 790 or a later package.
-- The reactions' art (Stage 790).
+- ~~The reactions' art (Stage 790)~~ — system emoji as text (ADR 0072 §3; the session's decision).
 - The place for off-host backup copies (a separate task).

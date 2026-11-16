@@ -63,6 +63,7 @@ import '../../apps/web/src/i18n/ru-features.ts';
 import '../../apps/web/src/i18n/ru-summons.ts';
 import '../../apps/web/src/i18n/ru-encounters.ts';
 import '../../apps/web/src/i18n/ru-native.ts';
+import '../../apps/web/src/i18n/ru-comforts.ts';
 
 /**
  * Every English string the client can show has a Russian entry, and every entry keeps the

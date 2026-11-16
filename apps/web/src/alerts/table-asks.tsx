@@ -3,6 +3,7 @@ import { useT } from '@ltw/ui';
 import { useEffect, useRef, useState } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
+import { BreakReminder } from '../comforts/break-reminder.tsx';
 import { playChime } from '../dice/audio.ts';
 import { checkWords } from '../dice/checks.ts';
 import { AnswerCheck } from '../dice/own-dice.tsx';
@@ -94,6 +95,8 @@ export function TableAsks({
         onOpenChronicle={onOpenChronicle}
         onOpenBook={onOpenBook}
       />
+      {/* The DM's break reminder (docs/adr/0072-keepsakes.md §3): off unless the DM asked. */}
+      {isDm && <BreakReminder api={api} />}
       <RestBanner
         isDm={isDm}
         actorId={actorId}

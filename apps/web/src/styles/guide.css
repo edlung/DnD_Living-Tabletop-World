@@ -40,6 +40,25 @@
   min-height: min(11rem, 30dvh);
   overflow-y: auto;
 }
+/* More of the page beyond an edge: the edge fades (visual/scroll-edges.ts). */
+.guide-page[data-more-before] {
+  mask-image: linear-gradient(to bottom, transparent, #000 24px);
+}
+.guide-page[data-more-after] {
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 24px), transparent);
+}
+.guide-page[data-more-before][data-more-after] {
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 24px,
+    #000 calc(100% - 24px),
+    transparent
+  );
+}
+.guide-page .text-size-choice {
+  margin-bottom: 0.5rem;
+}
 .guide-header,
 .guide-footer,
 .guide-parts {

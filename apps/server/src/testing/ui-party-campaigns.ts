@@ -85,6 +85,10 @@ export const UI_PARTY_CAMPAIGNS = {
   ending: 'ui-ending',
   endingIpad: 'ui-ending-ipad',
   endingRu: 'ui-ending-ru',
+  /** Small comforts: text size, a break, cheers (Stage 790). */
+  comforts: 'ui-comforts',
+  comfortsIpad: 'ui-comforts-ipad',
+  comfortsRu: 'ui-comforts-ru',
 } as const;
 
 /**
@@ -144,6 +148,9 @@ export async function seedUiPartyCampaigns(engine: WorldEngine): Promise<void> {
     [UI_PARTY_CAMPAIGNS.ending, 'en'],
     [UI_PARTY_CAMPAIGNS.endingIpad, 'en'],
     [UI_PARTY_CAMPAIGNS.endingRu, 'ru'],
+    [UI_PARTY_CAMPAIGNS.comforts, 'en'],
+    [UI_PARTY_CAMPAIGNS.comfortsIpad, 'en'],
+    [UI_PARTY_CAMPAIGNS.comfortsRu, 'ru'],
   ] as const) {
     const seed = await loadSeed(
       language === 'ru' ? RAVENFORD_RU_FIXTURES_DIR : RAVENFORD_FIXTURES_DIR,

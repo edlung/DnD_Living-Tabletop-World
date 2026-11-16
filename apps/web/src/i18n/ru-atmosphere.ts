@@ -9,7 +9,6 @@ registerRussian({
   'Sound on': 'Включить звук',
   'Turn the sound off': 'Выключить звук',
   'Turn the sound on': 'Включить звук',
-  'Sound and motion': 'Звук и движение',
   'The table’s sound: ambience and music': 'Звук стола: фон и музыка',
   'Volume of the table’s sound': 'Громкость звука стола',
 

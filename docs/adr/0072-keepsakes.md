@@ -6,13 +6,16 @@
   the session's own defaults in §1 are marked and stay the owner's to overrule) and §2 (the
   owner's answer that the home between worlds joins the package, the plan's decision 12, the same
   word; the plan wanted §2 drafted after a campaign had been played to its end — none has been —
-  so all of §2 is the session's draft and is marked). Later sections are added by their stages
-  and are not in force until then. §1 amends ADR 0010 (a session's view says when it was really
+  so all of §2 is the session's draft and is marked) and §3 (the owner's answer that small
+  comforts join the package; every point of §3 is the session's and is marked). Later sections
+  are added by their stages and are not in force until then. §1 amends ADR 0010 (a session's view says when it was really
   played), ADR 0024 §5 (the party's chapters are also read as one book), ADR 0041 (the campaign's
   card opens its book), ADR 0056 §5 (print shows the sheet or the book) and ADR 0071 §2 (the
   stars' read may list every evening). §2 amends ADR 0041 (the account's list has finished
   adventures), ADR 0061 §5 (the two tables move; a second guard beside the away one) and ADR 0062
-  §1–2 (the notice and a person's copy name keepsakes).
+  §1–2 (the notice and a person's copy name keepsakes). §3 amends ADR 0033 (one more read in the
+  live inventory), ADR 0042 §3 (the display shows the table's cheers over any cast; the `title`
+  cast also says "Break") and ADR 0043 §6 (the DM's break beside the pause).
 - Context: Part 1 of the program gave every evening a chapter told from the Party, its stars and
   a place among the others. Nothing gathers them: the Chronicle shows one chapter at a time with
   its sources, for reading closely; a family has nothing to print, to send to a grandmother or to
@@ -113,6 +116,58 @@ Every point here is the session's (S): the owner asked not to be asked, and may 
    deleted, as stars do.
 8. **AI.** None.
 
+### 3. Small comforts (Stage 790)
+
+Every point here is the session's (S): the owner asked not to be asked, and may overrule any.
+
+1. **Text size for each viewer.** Three steps — normal, larger (112.5%), largest (125%) — kept
+   in the browser beside the dice settings (`ltw.dice-settings`), like sound and motion: no
+   server knows of it. It is the page's root size; type is sized in `rem` throughout, so every
+   page a person reads in that browser follows — the game, the account's list, signing in, the
+   workshop, the privacy notice. Two things do not: the table's display, whose type is sized by
+   its screen, and paper, which keeps its own measure. The choice has two doors: the Dice
+   sheet's settings, renamed "This screen: sound, motion, text size", and the first page of "How
+   to play", where the person who needs it reads first. Three steps and no more: the browser's
+   own zoom goes further; these are the steps the layout was looked at. At the larger steps the
+   top bar gives up its wordmark and the session's title sooner, so the campaign's name keeps
+   its place.
+2. **A break reminder for the DM.** Off unless the DM asks: after 60 or 90 minutes of play, a
+   quiet card among the table's questions over the stage offers a break. The count is the DM's
+   browser's own (`ltw.break:<campaign>`): play counts while a session is open and not paused
+   and that screen is there to see it; a pause of five minutes, or ten minutes with the screen
+   away, is a break already and the count starts again. "Take a break" pauses the game (ADR 0043
+   §6) — the pause is the break — and shows a title card, "Break", on the table's screens — the
+   `title` cast that exists, no new kind. The card then says what happened and no more: that the
+   screens say "Break" only where a screen is there to say it (a paired display, or every screen
+   online). The break lasts while the game is paused: "Back to the game" on the card, or
+   resuming from the Session sheet, ends it, and the screens show again what they showed before
+   unless the DM has cast something else meanwhile. "Ask again in 15 minutes" puts the question
+   off by a quarter of an hour of play and keeps the count true. Nothing new on the server:
+   players see the pause as they do any pause, and the screens a title card.
+3. **Cheers at the table.** A player or the DM presses one of five fixed marks — applause, a
+   laugh, "wow", "scary", a heart — and every screen of the table shows it for a moment with the
+   name of who gave it. In the code and in these documents they are cheers — "reaction" is a
+   word of the rules (ADR 0046) — and on the screens the row is labelled "Without words": it
+   stands first in the Dice sheet and above the message in Chat.
+   The marks are the system's own emoji written as text (the plan's open point: the owner's rule
+   is that art comes from the image model and the application draws none, so no set was made);
+   each has a word for a reader who does not see it.
+4. **A cheer is never stored.** It is held in the server process's memory for six seconds,
+   twelve a campaign at most (`cheers/cheer-board.ts`), and then is gone: no table, so nothing
+   moves with a campaign (ADR 0061), nothing is in a person's copy and the notice has nothing to
+   name (ADR 0062). A restart forgets the cheers held; nothing else is lost.
+5. **Who gives and who reads.** A player gives a cheer as the character they play, the DM as the
+   DM (or as a character the DM plays); a table display, the party's shared view and a stranger
+   give none; thirty a minute for one person. Every member in a character's or the DM's view and
+   a table display read the cheers still held; a name is the reader's own (ADR 0008). The read is
+   in the live inventory (ADR 0033 §2), so a cheer reaches a screen with the next comparison —
+   a second or two — and one more signal follows when it is gone. The viewer's own shows at once.
+6. **A finished campaign still takes a cheer** — it is named in `ending/guard.ts` beside table
+   talk: applause for the last page changes nothing and is kept nowhere. An away campaign
+   refuses it as it refuses every write (ADR 0061 §5): its table is elsewhere. A paused game
+   takes it: a cheer is not play.
+7. **AI.** None.
+
 ## Consequences
 
 - A table can print what it played, or save it as a file, from any browser; a player who missed an
@@ -130,6 +185,13 @@ Every point here is the session's (S): the owner asked not to be asked, and may 
 - (§2) Controls of play stay on a finished campaign's screens and are refused when pressed, as
   on an away campaign's; the lobby says why.
 
+- (§3) Every screen of a table reads one more view, and each cheer signals it twice (given,
+  gone): a table of five clapping together re-reads its views a few times in a few seconds.
+- (§3) At the largest text some rows wrap where they did not; the layouts were looked at each
+  step at five sizes in both languages, and what was found is in the stage's report.
+- (§3) The break's count lives in one browser: a DM who changes device mid-session starts it
+  again, and a second DM screen counts on its own.
+
 ## Invariants affected
 
 - 1–3 (authority): nothing is written. The two instants are derived from events already recorded.
@@ -140,3 +202,7 @@ Every point here is the session's (S): the owner asked not to be asked, and may 
 - (§2) 1–3: the end and the keepsakes are table data; the guard refuses, it never writes. 4–5,
   11: a keepsake's name is taken in its hero's own view, so an unidentified thing is kept under
   the name that hero knows; tested per role in `ending/ending-routes.test.ts`.
+- (§3) 1–3: a cheer is table data held in memory, read by no decision; the break is the pause
+  and the cast that exist; the text size never leaves the browser. 4–5, 11: a cheer carries a
+  mark of a fixed few and who gave it, named as the reader knows them; tested per role in
+  `cheers/cheer-routes.test.ts`, the display included. 12: unchanged.

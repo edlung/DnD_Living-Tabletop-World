@@ -81,6 +81,10 @@ export function coverageInventory(target: LiveTarget): ViewRequest[] {
   if (target.kind === 'CHARACTER' || target.kind === 'DM' || target.display === true) {
     views.push(scoped('reflections'));
   }
+  // Cheers at the table (ADR 0072 §3): held a few seconds, shown on every screen and the display.
+  if (target.kind === 'CHARACTER' || target.kind === 'DM' || target.display === true) {
+    views.push(scoped('cheers'));
+  }
   // Crafting (ADR 0057 §9): a project's days of work, a character's own and the DM's.
   if (target.kind === 'CHARACTER' || target.kind === 'DM') views.push(scoped('crafting'));
   // The table's shared marks on the board (ADR 0057 §5): every member's and the display's.

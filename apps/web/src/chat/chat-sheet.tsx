@@ -12,6 +12,7 @@ import {
 } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
+import { CheerRow } from '../comforts/cheers.tsx';
 import { useDiceTable } from '../dice/table.tsx';
 import { rollMarks, rollSentence } from '../dice/words.ts';
 import { useScreenRequest } from '../shell/requests.ts';
@@ -191,6 +192,8 @@ export function ChatSheet({
             )}
           </ol>
         )}
+        {/* Talk without words (docs/adr/0072-keepsakes.md §3): one press cheers the table. */}
+        <CheerRow className="cheer-row--chat" />
         <form
           className="chat-compose"
           noValidate

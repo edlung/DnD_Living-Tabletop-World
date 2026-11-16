@@ -1,10 +1,12 @@
 import { useT, type Translate } from '@ltw/ui';
 import { useCallback, useId, useLayoutEffect, useRef, useState } from 'react';
 
+import { TextSizeChoice } from '../comforts/text-size.tsx';
 import { useRulesApi } from '../rules/reference-data.ts';
 import { useScreenRequest } from '../shell/requests.ts';
 import { Glyph } from '../visual/glyph.tsx';
 import { IconButton } from '../visual/icon-button.tsx';
+import { useScrollEdges } from '../visual/scroll-edges.ts';
 import type { GlyphName } from '../visual/ui-kit-names.ts';
 import { dmPagesOf } from './dm-guide.ts';
 import { OurTable } from './our-table.tsx';
@@ -21,6 +23,8 @@ export interface GuidePage {
   readonly glyph: GlyphName;
   readonly title: string;
   readonly lines: readonly string[];
+  /** The page ends with the choice of this screen's text size. */
+  readonly textSize?: true;
 }
 
 function pagesOf(t: Translate): readonly GuidePage[] {
@@ -36,7 +40,10 @@ function pagesOf(t: Translate): readonly GuidePage[] {
         t(
           'Your phone is your character: the sheet, your dice, the journal and the places you know.',
         ),
+        // The viewer's text size (docs/adr/0072-keepsakes.md §3): chosen where a newcomer reads first.
+        t('If the words are small, make them larger here, or later in Dice:'),
       ],
+      textSize: true,
     },
     {
       glyph: 'look',
@@ -73,6 +80,9 @@ function pagesOf(t: Translate): readonly GuidePage[] {
       title: t('Talking'),
       lines: [
         t('Talk to the table in Chat, as your character or out of character.'),
+        t(
+          'Or say it without words: Dice and Chat have a row of emoji — applause, a laugh — that the whole table sees for a moment.',
+        ),
         t('Send the DM a word only they read. The DM can answer you alone.'),
         t('Your phone tells you whenever the table waits for you.'),
       ],
@@ -144,6 +154,9 @@ export function GuideDialog({
   const page = pages[index] ?? null;
   const last = index === count - 1;
   const title = page?.title ?? t('Our table');
+  // A page longer than its screen says so at its edge (a cut without a fade reads as the end).
+  const body = useRef<HTMLElement>(null);
+  const edges = useScrollEdges(body, `${String(open)}:${title}`, 'y');
   return (
     <dialog
       ref={ref}
@@ -174,7 +187,10 @@ export function GuideDialog({
         </div>
       )}
       <section
+        ref={body}
         className="guide-page"
+        data-more-before={edges.before || undefined}
+        data-more-after={edges.after || undefined}
         id={`${ids}-page`}
         aria-live="polite"
         aria-labelledby={`${ids}-page-title`}
@@ -188,6 +204,7 @@ export function GuideDialog({
         {page
           ? page.lines.map((line) => <p key={line}>{line}</p>)
           : api && open && <OurTable api={api} dm={dm} onLeave={onClose} />}
+        {page?.textSize && <TextSizeChoice id={`${ids}-text-size`} />}
       </section>
       <footer className="guide-footer">
         <span className="guide-step">

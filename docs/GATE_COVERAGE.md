@@ -899,3 +899,22 @@ data like stars, and a guard that refuses play in a finished campaign.
   inventory's and the move's coverage tests, `accounts.test.ts`, `privacy.test.ts`, the journeys
   `tests/e2e/campaign-end.spec.ts` and `campaign-end-hub.spec.ts`.
 - Next review obligation: none scheduled; the owner may order an independent repeat.
+
+## Stage 790: small comforts (2026-11-16)
+
+Stage 790 (`docs/adr/0072-keepsakes.md` §3) adds cheers at the table, held in the server's memory
+for a few seconds and never stored; a text size and a break reminder that never leave the browser.
+
+- Boundary: one new read, `GET …/cheers`. A cheer is a mark of a fixed five and who gave it — no
+  free text — read by every member in a character's or the DM's view and by a table display; the
+  name is the reader's own (a character the reader does not know is unnamed). A player gives one
+  as the character they play, the DM as the DM; the party's shared view, a display and a stranger
+  give none. The read is in the live inventory for the same readers, so its signal reveals
+  nothing they may not read. The break shows a `title` cast whose two lines are fixed words.
+- Deterministic regressions: `apps/server/src/cheers/cheer-routes.test.ts` (each reader and
+  giver, the fixed marks, the few seconds, the rate, a finished campaign, a table display, the
+  live signal through the shared board), `cheer-board.test.ts`, `live/inventory.test.ts` (who
+  covers the read; the display's inventory), `apps/web/src/comforts/break-timer.test.ts`, the
+  journeys `tests/e2e/comforts.spec.ts` and `comforts-screens.spec.ts`.
+- Next review obligation: none scheduled; the owner may order an independent repeat.
+

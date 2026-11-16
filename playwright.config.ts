@@ -28,12 +28,13 @@ export default defineConfig({
   projects: [
     { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
     // The DM's screen on an iPad in Safari's engine (docs/adr/0043-dm-screen.md §4, Stage 620),
-    // and an evening closed and opened there (docs/adr/0071-memory-and-ritual.md §1, Stage 710).
+    // and an evening closed and opened there (docs/adr/0071-memory-and-ritual.md §1, Stage 710);
+    // the journeys of the later ritual and keepsake stages run there too, each named below.
     {
       name: 'ipad',
       use: { ...devices['iPad Pro 11 landscape'] },
       testMatch:
-        /(dm-screen|evening-ritual|stars-and-wishes|next-game|agreement|ritual-checkpoint|campaign-book|campaign-end)\.spec\.ts$/,
+        /(dm-screen|evening-ritual|stars-and-wishes|next-game|agreement|ritual-checkpoint|campaign-book|campaign-end|comforts)\.spec\.ts$/,
     },
     // Release 1.0's journeys in Safari's engine too (work-orders/STAGE_699.md, 699b).
     {

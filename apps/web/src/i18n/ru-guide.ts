@@ -44,7 +44,7 @@ registerRussian({
     'Если мастер разрешает настоящие кубики, бросьте свои и введите, что выпало.',
   Talking: 'Разговор',
   'Talk to the table in Chat, as your character or out of character.':
-    'Говорите со столом в чате — от лица персонажа или от себя.',
+    'Говорите со столом в «Чате» — от лица персонажа или от себя.',
   'Send the DM a word only they read. The DM can answer you alone.':
     'Напишите мастеру то, что прочтёт только мастер. Мастер может ответить лично вам.',
   'Your phone tells you whenever the table waits for you.': 'Телефон сообщит, когда стол ждёт вас.',
