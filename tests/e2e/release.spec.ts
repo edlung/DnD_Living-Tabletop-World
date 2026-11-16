@@ -1,5 +1,6 @@
-import { expect as baseExpect, test, type Browser, type Page } from '@playwright/test';
+import { expect as baseExpect, type Browser, type Page } from '@playwright/test';
 
+import { test } from './support/journey.ts';
 import { dockButton, openSheet } from './support/shell.ts';
 import {
   SIGN_IN_CAMPAIGNS,

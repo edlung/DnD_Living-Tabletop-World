@@ -1,7 +1,8 @@
-import { expect as baseExpect, test } from '@playwright/test';
+import { expect as baseExpect } from '@playwright/test';
 
 import { UI_ITEM_CAMPAIGNS } from '../../apps/server/src/testing/ui-item-campaigns.ts';
 import { expectAccessible } from './support/axe.ts';
+import { test } from './support/journey.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
 import { openCharacter, openSheet } from './support/shell.ts';
 

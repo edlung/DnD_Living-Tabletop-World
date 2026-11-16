@@ -1,5 +1,6 @@
-import { expect as baseExpect, test, type Page } from '@playwright/test';
+import { expect as baseExpect, type Page } from '@playwright/test';
 
+import { test } from './support/journey.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
 import { dockButton, dockMore, expectDockFits, expectOnTop, openSheet } from './support/shell.ts';
 import { SIGN_IN_CAMPAIGNS, SIGN_IN_ORIGIN, WORDS, joinAsDm } from './support/sign-in.ts';

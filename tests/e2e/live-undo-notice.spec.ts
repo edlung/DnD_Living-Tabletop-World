@@ -1,8 +1,9 @@
-import { expect, test } from '@playwright/test';
+import { expect } from '@playwright/test';
 
 import { playerCommand } from './support/authoring.ts';
 import { expectAccepted, submit } from './support/combat.ts';
 import { historyEntry, openHistory } from './support/dm.ts';
+import { test } from './support/journey.ts';
 import { expectLive, LIVE_CAMPAIGNS } from './support/live.ts';
 import { collectApiBodies, enterWorld, TOKENS } from './support/session.ts';
 import { openSheet } from './support/shell.ts';

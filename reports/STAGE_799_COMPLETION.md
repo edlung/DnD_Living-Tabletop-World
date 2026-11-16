@@ -10,28 +10,33 @@ Session model: Claude Fable 5.2.
 **Read first.** Stages 790 and 799 and the last three commits of Stage 780 were made in a cloud
 session whose network refuses Playwright's download host: WebKit could not be installed there,
 so the `ipad` and `webkit` projects were run by that session on none of the three branches.
-What stands for WebKit is CI's word: Stage 780's pull request is green on its fix; the pull
-requests of Stages 790 and 799 are to be opened from the pushed branches (below) and their CI read. The package is not closed until their CI
-has been read.
+What stands for WebKit is CI's word. Stage 780's pull request (44) is green on its fix. Stage
+790's (46) and this one (47) were red in their first runs on a different journey each time — none
+of it these stages' code; Stage 790's report says what was found in the suite and fixed (journeys
+left their pages open; the next game's date was read stale) and what was not (a WebKit page that
+reloads under its journey). Before those fixes pull request 47 was green whole on commit
+`2af141ea`, WebKit included, and every iPad journey of the package — this close's and Stage
+790's among them — passed in each run since the two WebKit projects run one journey at a time.
+Read the CI of the last commits before merging.
 
 This is where the session stops: the plan puts the family playtest — the owner's — after the
 package.
 
 ## What the package is, as it stands
 
-| Stage | What a table gets                                                            | Pull request                   |
-| ----- | ---------------------------------------------------------------------------- | ------------------------------ |
-| —     | The plan                                                                     | 37 (draft)                     |
-| 710   | An evening closes with its chapter; the next one opens with "Previously…"    | 38                             |
-| 720   | A star for the table and a wish for the DM at an evening's end               | 39                             |
-| 730   | The next game's date on every screen, and its calendar file                  | 40                             |
-| 740   | The table's agreement, the quiet ways to the DM, the DM's guide              | 41                             |
-| 750   | Not done: the shells hand over the calendar file and print — waits for PR 32 | —                              |
-| 760   | Part 1's checkpoint                                                          | 42                             |
-| 770   | The book of the campaign and its gallery, on screen and on paper             | 43                             |
-| 780   | A campaign's end, keepsakes, "Adventures we finished"                        | 44                             |
-| 790   | Text size, the DM's break reminder, cheers at the table                      | branch pushed; PR to be opened |
-| 799   | This close                                                                   | branch pushed; PR to be opened |
+| Stage | What a table gets                                                            | Pull request |
+| ----- | ---------------------------------------------------------------------------- | ------------ |
+| —     | The plan                                                                     | 37 (draft)   |
+| 710   | An evening closes with its chapter; the next one opens with "Previously…"    | 38           |
+| 720   | A star for the table and a wish for the DM at an evening's end               | 39           |
+| 730   | The next game's date on every screen, and its calendar file                  | 40           |
+| 740   | The table's agreement, the quiet ways to the DM, the DM's guide              | 41           |
+| 750   | Not done: the shells hand over the calendar file and print — waits for PR 32 | —            |
+| 760   | Part 1's checkpoint                                                          | 42           |
+| 770   | The book of the campaign and its gallery, on screen and on paper             | 43           |
+| 780   | A campaign's end, keepsakes, "Adventures we finished"                        | 44           |
+| 790   | Text size, the DM's break reminder, cheers at the table                      | 46           |
+| 799   | This close                                                                   | 47           |
 
 Each stands on the one before: merge in that order. Migrations 0040–0043 are additive; Stages
 770, 790 and 799 have none.
@@ -77,15 +82,15 @@ Each stands on the one before: merge in that order. Migrations 0040–0043 are a
 Run on the branch on 2026-11-16 in a cloud session (a four-core container, Node 24, PostgreSQL 16
 — the project's is 18; offline, no paid call), on the finished tree of the whole package:
 
-| Check                                                         | Result                                                                                                                         |
-| ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| `pnpm run format:check`, `lint`, `typecheck`                  | pass                                                                                                                           |
-| `pnpm run context-budget`                                     | pass; one earlier warning (`scripts/campaign-shared/combat-kit.ts`)                                                            |
-| `pnpm run test` (unit)                                        | 581 files, 4662 tests pass                                                                                                     |
-| `pnpm run build`                                              | pass                                                                                                                           |
-| `pnpm run test:integration` (PostgreSQL, throwaway databases) | 81 files, 398 tests pass                                                                                                       |
-| `pnpm run test:e2e`, Chromium project, whole                  | 347 journeys, 41.6 minutes: 339 pass; 8 ran out of their 30 seconds and **all 8 pass when run alone** (below)                  |
-| `pnpm run test:e2e`, `ipad` and `webkit` projects             | **not run here**: no WebKit in this environment. The close's journey and Stage 790's are in the `ipad` project and wait for CI |
+| Check                                                         | Result                                                                                                                             |
+| ------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `pnpm run format:check`, `lint`, `typecheck`                  | pass                                                                                                                               |
+| `pnpm run context-budget`                                     | pass; one earlier warning (`scripts/campaign-shared/combat-kit.ts`)                                                                |
+| `pnpm run test` (unit)                                        | 581 files, 4662 tests pass                                                                                                         |
+| `pnpm run build`                                              | pass                                                                                                                               |
+| `pnpm run test:integration` (PostgreSQL, throwaway databases) | 81 files, 398 tests pass                                                                                                           |
+| `pnpm run test:e2e`, Chromium project, whole                  | 347 journeys, 41.6 minutes: 339 pass; 8 ran out of their 30 seconds and **all 8 pass when run alone** (below)                      |
+| `pnpm run test:e2e`, `ipad` and `webkit` projects             | **not run here**: no WebKit in this environment. In CI the close's journey and Stage 790's passed on the iPad project in every run |
 
 The eight that ran out of time (30.2–35.0 s) with nothing else running on the machine:
 `combat-lifecycle.spec.ts:17`, `combat-turn.spec.ts:18`, `dm-history.spec.ts:66`,
@@ -136,10 +141,13 @@ keepsakes.
 - **No human has played any of Part 2**, and it was built before the playtest that was to
   re-read it. Every check here is a machine's: journeys, layout looks, an independent UX pass by a reviewing agent in each stage. Stage 780 above all is a draft of what "finished" means at a
   table.
-- **WebKit for Stages 790 and 799.** Their journeys on the iPad project have been run by nobody
-  yet: this environment cannot install WebKit, and their pull requests were not open when this
-  was written. Read their CI before merging; a red iPad journey there is new information, not
-  noise.
+- **WebKit, by this session.** Nothing of Stages 790 and 799 ran on WebKit anywhere but in
+  their pull requests' CI. One thing there is not explained: now and then a WebKit page reloads
+  under its journey (seen before this package too); the job's log now says when the dev server
+  causes it (Stage 790's report).
+- **The whole suite after the suite's own fixes.** The whole Chromium run after journeys began
+  to close their pages was on Stage 790's branch (345 of 346 in 28.7 minutes); here only CI runs
+  the whole.
 - **Paper.** The book's print was checked in Stage 770 as Chromium's PDF; no page was printed,
   and Safari's print was not tried.
 - **No real device**: not a phone (the keyboard over a card, the largest text under a thumb), not
@@ -160,13 +168,12 @@ keepsakes.
 
 ## For the owner
 
-1. **Merge, in order**: PR 37 (the plan) → 38 → 39 → 40 → 41 → 42 → 43 → 44 → Stage 790's →
-   Stage 799's. Each is stacked on the one before; after a merge the next one's base moves to
-   `main` by itself or by one click. Stage 790's and 799's branches are pushed
-   (`claude/stage-790-small-comforts`, `claude/stage-799-package-close`); if their pull requests
-   are not open when you read this, open them with bases `claude/stage-780-home-between-worlds`
-   and `claude/stage-790-small-comforts` — the session's connector for that failed after GitHub
-   was reconnected — and read their CI first.
+1. **Merge, in order**: PR 37 (the plan) → 38 → 39 → 40 → 41 → 42 → 43 → 44 → 46 → 47. Each is
+   stacked on the one before; after a merge the next one's base moves to `main` by itself or by
+   one click. Read the CI of 46 and 47 first. PR 32 (Stage 750's ground) adds two specs that open
+   pages of their own, `display-room.spec.ts` and `native-polish.spec.ts`: whichever lands
+   second, give them the journey `test` (`tests/e2e/support/journey.ts`, one import each) and
+   take their names out of `tests/architecture/journey-pages.test.ts`.
 2. **Deploy** when you choose: four additive migrations (0040–0043) run on start as usual; an
    older build leaves their tables alone. One thing to know: a build from before 0043 plays a
    finished campaign on, since only the newer build knows of the end.

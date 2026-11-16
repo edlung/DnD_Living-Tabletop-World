@@ -1,4 +1,4 @@
-import { expect, test, type Locator, type Page } from '@playwright/test';
+import { expect, type Locator, type Page } from '@playwright/test';
 
 import {
   assetsOf,
@@ -8,6 +8,7 @@ import {
   playerPresentation,
   TOMAS,
 } from './support/images.ts';
+import { test } from './support/journey.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
 import { openSheet, revealDockButton } from './support/shell.ts';
 

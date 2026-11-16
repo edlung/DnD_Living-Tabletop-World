@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect } from '@playwright/test';
 
 import {
   anchor,
@@ -9,6 +9,7 @@ import {
   submit,
   turnTray,
 } from './support/combat.ts';
+import { test } from './support/journey.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
 import { chooseLocation, closeSheet, openSheet } from './support/shell.ts';
 
