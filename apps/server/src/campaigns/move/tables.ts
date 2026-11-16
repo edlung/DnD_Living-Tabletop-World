@@ -196,6 +196,26 @@ export const MOVED_TABLES: readonly MovedTable[] = [
     owner: byCampaign,
   },
   {
+    // A hero's backstory (ADR 0073 §5): the hero's, so it goes where the hero goes.
+    name: 'ltw_backstories',
+    kind: 'state',
+    where: campaign,
+    key: ['campaign_id', 'character_id'],
+    order: 'character_id',
+    batch: ROWS,
+    owner: byCampaign,
+  },
+  {
+    // A player's private notes (ADR 0073 §5): the person's, by their actor in the campaign.
+    name: 'ltw_player_notes',
+    kind: 'state',
+    where: campaign,
+    key: ['campaign_id', 'owner_id', 'note_id'],
+    order: 'owner_id, note_id',
+    batch: ROWS,
+    owner: byCampaign,
+  },
+  {
     name: 'ltw_table_states',
     kind: 'state',
     where: campaign,

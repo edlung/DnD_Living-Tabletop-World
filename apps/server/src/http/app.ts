@@ -24,6 +24,8 @@ import {
   type ClientErrorDependencies,
 } from '../client-errors/client-error-routes.ts';
 import { InMemoryMarkStore } from '../marks/mark-store.ts';
+import { registerNoteRoutes, type NoteDependencies } from '../notes/note-routes.ts';
+import { InMemoryNoteStore } from '../notes/note-store.ts';
 import {
   memoryPauses,
   registerPauseRoutes,
@@ -183,6 +185,8 @@ export interface AppDependencies {
   readonly ending?: EndingDependencies;
   /** Cheers at the table (ADR 0072 §3): this process's memory, always. */
   readonly cheers?: CheerDependencies;
+  /** A hero's backstory and a player's private notes (ADR 0073 §5); in memory when absent. */
+  readonly notes?: NoteDependencies;
   /** Requests for a pause (ADR 0073 §2): this process's memory, always. */
   readonly pauses?: PauseDependencies;
   /** What a broken page reports (ADR 0073 §1): operations data; in memory when absent. */
@@ -223,6 +227,11 @@ export const memoryReflections = (): ReflectionDependencies => ({
 
 export const memoryAgreement = (): AgreementDependencies => ({
   store: new InMemoryAgreementStore(),
+  now: () => new Date().toISOString(),
+});
+
+export const memoryNotes = (): NoteDependencies => ({
+  store: new InMemoryNoteStore(),
   now: () => new Date().toISOString(),
 });
 
@@ -356,6 +365,9 @@ export function buildApp(input: AppDependencies): FastifyInstance {
   registerEndingRoutes(app, { ...deps, ending });
   registerCheerRoutes(app, { ...deps, cheers: deps.cheers ?? memoryCheers() });
   registerPauseRoutes(app, { ...deps, lobby, pauses: deps.pauses ?? memoryPauses() });
+  // One set of backstories and notes for their routes and a person's copy of their data.
+  const notes = deps.notes ?? memoryNotes();
+  registerNoteRoutes(app, { ...deps, notes });
   registerClientErrorRoutes(app, {
     ...deps,
     clientErrors: deps.clientErrors ?? memoryClientErrors(),
@@ -400,6 +412,7 @@ export function buildApp(input: AppDependencies): FastifyInstance {
         table: table.store,
         reflections: reflections.store,
         ending: ending.store,
+        notes: notes.store,
       });
     }
     // The table's displays and join links (ADR 0042): pairing, the cast, the table's QR code.

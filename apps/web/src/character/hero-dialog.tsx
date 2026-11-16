@@ -37,38 +37,47 @@ export type OverviewSections = (shown: {
   readonly portraitWish: string | null;
 }) => ReactNode;
 
-const TABS: readonly { readonly id: HeroTab; readonly label: string }[] = [
+interface TabEntry {
+  readonly id: HeroTab;
+  readonly label: string;
+}
+
+const TABS: readonly TabEntry[] = [
   { id: 'overview', label: 'Overview' },
   { id: 'skills', label: 'Skills' },
   { id: 'spells', label: 'Spells' },
   { id: 'inventory', label: 'Inventory' },
 ];
+/** A hero's backstory and its player's notes (docs/adr/0073-table-ideas.md §5): where there is one. */
+const STORY_TAB: TabEntry = { id: 'story', label: 'Story' };
 
 /** Tabs by the WAI-ARIA pattern: arrows, Home and End move and choose; one tab in the Tab order. */
 function Tabs({
   idBase,
+  tabs,
   tab,
   onTab,
 }: {
   readonly idBase: string;
+  readonly tabs: readonly TabEntry[];
   readonly tab: HeroTab;
   readonly onTab: (tab: HeroTab) => void;
 }) {
   const t = useT();
   const refs = useRef(new Map<HeroTab, HTMLButtonElement>());
   const move = (event: KeyboardEvent<HTMLDivElement>) => {
-    const index = TABS.findIndex((entry) => entry.id === tab);
+    const index = tabs.findIndex((entry) => entry.id === tab);
     const next =
       event.key === 'ArrowRight'
-        ? (index + 1) % TABS.length
+        ? (index + 1) % tabs.length
         : event.key === 'ArrowLeft'
-          ? (index - 1 + TABS.length) % TABS.length
+          ? (index - 1 + tabs.length) % tabs.length
           : event.key === 'Home'
             ? 0
             : event.key === 'End'
-              ? TABS.length - 1
+              ? tabs.length - 1
               : null;
-    const chosen = next === null ? undefined : TABS[next];
+    const chosen = next === null ? undefined : tabs[next];
     if (!chosen) return;
     event.preventDefault();
     onTab(chosen.id);
@@ -76,7 +85,7 @@ function Tabs({
   };
   return (
     <div className="hero-tabs" role="tablist" aria-label={t('Character sheet')} onKeyDown={move}>
-      {TABS.map((entry) => (
+      {tabs.map((entry) => (
         <button
           key={entry.id}
           ref={(element) => {
@@ -117,6 +126,7 @@ export function HeroDialog({
   onClose,
   inventory,
   overview,
+  story,
   notice,
 }: {
   readonly api: WorldApi;
@@ -132,6 +142,11 @@ export function HeroDialog({
   readonly inventory: ReactNode;
   /** The table's sections of the Overview tab for the shown sheet (Stage 530). */
   readonly overview?: OverviewSections;
+  /**
+   * The Story tab's content — the hero's backstory, its player's notes (ADR 0073 §5) — where the
+   * reader has one: its own player, or the DM. Absent: no such tab.
+   */
+  readonly story?: ReactNode;
   /** The result of the latest action: the world behind a modal is out of reach. */
   readonly notice: ReactNode;
 }) {
@@ -163,6 +178,7 @@ export function HeroDialog({
           onClose={onClose}
           inventory={inventory}
           overview={overview}
+          story={story}
         />
       )}
       {entityId !== null && <div className="hero-notice">{notice}</div>}
@@ -180,6 +196,7 @@ function HeroContent({
   onClose,
   inventory,
   overview,
+  story,
 }: {
   readonly api: WorldApi;
   readonly revision: number;
@@ -190,9 +207,14 @@ function HeroContent({
   readonly onClose: () => void;
   readonly inventory: ReactNode;
   readonly overview: OverviewSections | undefined;
+  readonly story: ReactNode;
 }) {
   const t = useT();
   const idBase = useId();
+  const hasStory = story !== undefined && story !== null && story !== false;
+  const tabs = hasStory ? [...TABS, STORY_TAB] : TABS;
+  // A sheet without the Story tab, opened where one was last read: its first tab.
+  const shownTab: HeroTab = tab === 'story' && !hasStory ? 'overview' : tab;
   // A person the DM added in words has no sheet until one is set: the server's 404 then says so
   // plainly instead of a failure with Retry (Stage 360).
   const load = useCallback(
@@ -255,17 +277,19 @@ function HeroContent({
             derived={value.derived}
           />
           <div className="hero-main">
-            <Tabs idBase={idBase} tab={tab} onTab={onTab} />
+            <Tabs idBase={idBase} tabs={tabs} tab={shownTab} onTab={onTab} />
             <div
               id={`${idBase}-panel`}
               className="hero-panel"
               role="tabpanel"
-              aria-labelledby={`${idBase}-tab-${tab}`}
+              aria-labelledby={`${idBase}-tab-${shownTab}`}
               tabIndex={0}
             >
-              {!value.derived ? (
+              {shownTab === 'story' ? (
+                story
+              ) : !value.derived ? (
                 <StatusPanel state="empty" label={t('No character sheet is recorded here.')} />
-              ) : tab === 'overview' ? (
+              ) : shownTab === 'overview' ? (
                 <>
                   <OverviewTab
                     entityId={entityId}
@@ -282,9 +306,9 @@ function HeroContent({
                   {/* The sheet on paper (docs/adr/0056-characters-from-the-srd.md §5). */}
                   <PrintSection api={api} entityId={entityId} value={value} />
                 </>
-              ) : tab === 'skills' ? (
+              ) : shownTab === 'skills' ? (
                 <SkillsTab entityId={entityId} derived={value.derived} />
-              ) : tab === 'spells' ? (
+              ) : shownTab === 'spells' ? (
                 <SpellsTab sheet={value.sheet} derived={value.derived} />
               ) : (
                 inventory

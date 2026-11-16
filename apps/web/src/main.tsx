@@ -47,6 +47,7 @@ import './i18n/ru-report.ts';
 import './i18n/ru-pause.ts';
 import './i18n/ru-hint.ts';
 import './i18n/ru-known.ts';
+import './i18n/ru-story.ts';
 import { applyTextSize } from './dice/settings.ts';
 import { DisplayApp } from './display/display-app.tsx';
 import { RootBoundary } from './report/broken-page.tsx';
@@ -119,6 +120,7 @@ import './styles/comforts.css';
 import './styles/broken.css';
 import './styles/pause.css';
 import './styles/known.css';
+import './styles/story.css';
 import './styles/print.css';
 import './styles/print-book.css';
 

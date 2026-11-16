@@ -50,6 +50,7 @@ import { PostgresReflectionStore } from './reflections/postgres-reflection-store
 import { PostgresAgreementStore } from './agreement/postgres-agreement-store.ts';
 import { PostgresEndingStore } from './ending/postgres-ending-store.ts';
 import { PostgresMarkStore } from './marks/postgres-mark-store.ts';
+import { PostgresNoteStore } from './notes/postgres-note-store.ts';
 import { buildLabel } from './client-errors/client-error-routes.ts';
 import { PostgresClientErrorStore } from './client-errors/postgres-client-error-store.ts';
 import { PostgresHandoutStore } from './handouts/postgres-handout-store.ts';
@@ -236,6 +237,8 @@ async function main(): Promise<void> {
     agreement: { store: new PostgresAgreementStore(pool), now: () => new Date().toISOString() },
     // A campaign's end and its heroes' keepsakes (ADR 0072 §2; migration 0043).
     ending: { store: new PostgresEndingStore(pool), now: () => new Date().toISOString() },
+    // A hero's backstory and a player's private notes (ADR 0073 §5; migration 0045).
+    notes: { store: new PostgresNoteStore(pool), now: () => new Date().toISOString() },
     // What a broken page reports (ADR 0073 §1; migration 0044).
     clientErrors: {
       store: new PostgresClientErrorStore(pool),

@@ -1,3 +1,5 @@
+import { Backstory } from '../character/story/backstory.tsx';
+import { MyNotes } from '../character/story/my-notes.tsx';
 import type { EncounterView, EntityRef } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
 import type { ReactNode } from 'react';
@@ -105,6 +107,21 @@ export function WorldHeroDialog({
           )}
         </>
       )}
+      story={
+        // A hero's backstory for its own player and the DM; the player's own notes beside it
+        // (docs/adr/0073-table-ideas.md §5). Nobody else has the tab.
+        shown?.kind === 'character' && (isDm || shown.entityId === actorId) ? (
+          <>
+            <Backstory
+              api={api}
+              characterId={shown.entityId}
+              name={shown.name}
+              asDm={isDm}
+            />
+            {!isDm && <MyNotes api={api} />}
+          </>
+        ) : undefined
+      }
       inventory={
         <InventoryPanel
           api={api}
