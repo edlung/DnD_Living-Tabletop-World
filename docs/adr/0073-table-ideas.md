@@ -114,7 +114,9 @@
 
 1. **What it is.** While a game plays, a player's own screen has "What can I do?" beside the
    way to a pause (not while the DM has paused it: every command waits then, and the lobby says
-   so). It opens a short page in plain words. In a fight, on the hero's turn: what is
+   so). In a fight the two lie in the fight's own layout — under the switch between the scene
+   and the battlefield, or at the stage's lower right on a wide screen — clear of the turn
+   order. It opens a short page in plain words. In a fight, on the hero's turn: what is
    left — feet of movement, the action, a bonus action, the reaction, attacks an Attack action
    still holds — each marked "You can" or "Used up", with the hero's own options as the rules list
    them now and a caster's spell slots; on another's turn: whose it is (as the viewer knows them;

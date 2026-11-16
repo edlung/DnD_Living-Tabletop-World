@@ -15,6 +15,7 @@ import {
 } from './support/combat.ts';
 import { closePages, freshPage } from './support/pages.ts';
 import { collectApiBodies, enterWorld, TOKENS } from './support/session.ts';
+import { expectOnTop } from './support/shell.ts';
 
 // Every page of the journey closes with it (`support/pages.ts` says why).
 test.afterEach(closePages);
@@ -74,6 +75,10 @@ test('on her turn the hint says what is left, as she spends it; then that she wa
   await expectAccessible(page, 'the hint on a fresh turn');
   await closeHint(page);
   await expect(hintButton(page)).toBeFocused();
+  // The quiet row lies in the fight's own layout: the switch and the turn order stay in reach.
+  await expectOnTop(page.getByRole('tab', { name: 'Battlefield', exact: true }));
+  await expectOnTop(anchor(page));
+  await expectOnTop(hintButton(page));
 
   // She walks three squares: fifteen feet are left.
   await square(page, 5, 6).click();
@@ -149,7 +154,8 @@ test('outside a fight the hint names the place and leads to Places', async ({ br
 test('по-русски: подсказка в свой ход', async ({ page }) => {
   test.skip(test.info().project.name !== 'chromium', 'The words are the same on every engine.');
   test.setTimeout(90_000);
-  await enterCombat(page, COMBAT_CAMPAIGNS.hintRu);
+  await enterWorld(page, TOKENS.player, COMBAT_CAMPAIGNS.hintRu);
+  await expect(page.getByRole('region', { name: 'Поле боя', exact: true })).toBeVisible(WAIT);
   await page.getByRole('button', { name: 'Что я могу сделать?', exact: true }).click();
   await expect(hint(page).getByRole('heading', { level: 2 })).toHaveText('Сейчас ваш ход', WAIT);
   await expect(hint(page)).toContainText('Осталось до 30 фт.');

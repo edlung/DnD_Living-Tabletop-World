@@ -1,6 +1,7 @@
 import type { LobbyResponse } from '@ltw/contracts';
 import { useLanguage, useT } from '@ltw/ui';
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
+import { createPortal } from 'react-dom';
 
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
@@ -32,6 +33,7 @@ export function LobbyBanner({
   onOpenChronicle,
   onOpenBook,
   beside,
+  fightSlot = null,
 }: {
   readonly api: WorldApi;
   /** The acting character; none, no player's banner. */
@@ -39,6 +41,11 @@ export function LobbyBanner({
   readonly isDm: boolean;
   /** A player's own small button for a game in play ("What can I do?"), beside the pause's. */
   readonly beside?: ReactNode;
+  /**
+   * In a fight: the element of the fight's own layout that holds the quiet row, so that it lies
+   * clear of the turn order; none outside a fight.
+   */
+  readonly fightSlot?: string | null;
   /** Opens the book at a chapter. */
   readonly onOpenChronicle: (chronicleId: string) => void;
   /** Opens the campaign's whole book. */
@@ -51,6 +58,11 @@ export function LobbyBanner({
   const [busy, setBusy] = useState(false);
   const calendarFile = useCalendarFile();
   const end = useEnding(api);
+  // The fight's own place for the quiet row, once the fight's layout has drawn it.
+  const [slot, setSlot] = useState<HTMLElement | null>(null);
+  useEffect(() => {
+    setSlot(fightSlot === null ? null : document.getElementById(fightSlot));
+  }, [fightSlot]);
   if (lobby.resource.status !== 'ready') return null;
   const { session, paused, characters } = lobby.resource.value;
   // A server from before moves sends none.
@@ -93,13 +105,16 @@ export function LobbyBanner({
   // begin with its first session already open).
   // And the one-press way to a pause (ADR 0073 §2): told to the DM alone.
   if (session !== null && !paused) {
+    const row = (
+      <div className="quiet-row">
+        {beside}
+        <PauseAsk api={api} />
+      </div>
+    );
     return (
       <>
         <AgreementCard api={api} characterId={actorId} />
-        <div className="quiet-row">
-          {beside}
-          <PauseAsk api={api} />
-        </div>
+        {fightSlot === null ? row : slot?.isConnected ? createPortal(row, slot) : null}
       </>
     );
   }

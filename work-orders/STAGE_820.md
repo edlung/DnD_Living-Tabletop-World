@@ -33,6 +33,10 @@ program `docs/TABLE_IDEAS_PLAN.md` (section 820); ADR 0073 §3, written with the
   paused; the hero's own options stand each on a line of its own; "Press", as the rest of the
   application says, not "Tap".
 
+- Found by looking at the screens: over a fight the quiet row covered the turn order (and the
+  switch on a tablet). In a fight it now lies in the fight's own layout; this moves Stage 810's
+  button too.
+
 ## Boundaries
 
 No migration, no table, no event, no command. No AI. One additive field in one view; an older
