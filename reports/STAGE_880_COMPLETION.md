@@ -85,20 +85,23 @@ place early. Nothing is written to the world; no AI is called.
 | 870 Theatre of the mind on the screen | https://github.com/edlung/DnD_Living-Tabletop-World/pull/58 | a picture with words to read aloud; no migration                          |
 | 880 Sealed envelopes                  | this one                                                    | a handout the party sees from outside until it opens; migration 0047      |
 
-**Merge order.** After pull requests 37–44, 46 and 47 (the earlier package): 48 (the plan), 49,
-50, 51, 52, 53, 55, 56, 58, this one. Each is stacked on the one before. Migrations in order:
-0044 (800), 0045 (840), 0046 (850), 0047 (880); each is additive.
+**Merge order.** The earlier package (pull requests 37–44, 46 and 47) and the apps' polish (32)
+were merged into `main` on 2026-11-16, while this stage was being verified; `main` is merged
+into every branch of this program, and the plan's pull request now points at `main`. So, in
+order: 48 (the plan), 49, 50, 51, 52, 53, 55, 56, 58, this one. Each is stacked on the one
+before. Migrations in order: 0044 (800), 0045 (840), 0046 (850), 0047 (880); each is additive.
 
 **Not verified, across the three.** WebKit locally (CI only); the whole browser suite on these
 branches outside CI; a real television across a room; a guest's real phone at the table's link;
 the family at a real table.
 
-**CI.** When this was written, pull requests 55 (Stage 850) and 58 (Stage 870) were green on their current heads. Pull request 56 (Stage 860) was red in one WebKit journey this stage does not touch (`evening-ritual` on the iPad: the player's screen did not show the lobby within fifteen seconds of the evening's end); the same journey passed in pull request 58, which holds all of Stage 860's code. Stage 800's journey raced the page's own reload on the iPad; that is fixed in pull request 49 and is merged up the stack with the program's last stage, which runs CI on every branch once more.
+**CI.** When this was written, pull requests 55 (Stage 850) and 58 (Stage 870) were green on their current heads. Pull request 56 (Stage 860) was red in one WebKit journey this stage does not touch (`evening-ritual` on the iPad: the player's screen did not show the lobby within fifteen seconds of the evening's end); the same journey passed in pull request 58, which holds all of Stage 860's code. Stage 800's journey raced the page's own reload on the iPad; that is fixed in pull request 49. That fix and `main` are merged up the stack as this is written, which runs CI on every branch once more; what it answered is in Stage 890's report or in the pull requests themselves.
 
 **Still to come.** Stage 890 ("I'll come / I can't") is written and reviewed in source; it is
 verified and opened next, and its report closes the program.
 
 ## For the owner
 
-Merge after pull request 58 (Stage 870). Migration 0047 is additive. Only the owner can: merge,
-deploy, and seal a real letter for a real evening.
+Merge after pull request 58 (Stage 870). Migration 0047 is additive. The checks above ran
+before `main` was merged in; after it they were repeated on Stage 890's branch, which holds all
+of this one, and this branch's own run is CI's. Only the owner can: merge, deploy, and seal a real letter for a real evening.
