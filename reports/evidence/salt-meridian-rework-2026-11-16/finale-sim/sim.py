@@ -174,7 +174,7 @@ def caravan_move(ships, t, chain, cfg, B, st, log):
         c = est_captures(o, B, t, cfg)
         chain_ships = any(x.lane == 'M' for x in o)
         if removable and c > 0 and not (forced_chain if chain_ships else forced): continue
-        v = (len(o) - c, len(o))
+        v = (len(o) - c, -c, len(o))
         if best is None or v > best[0]: best = (v, o)
     choice = best[1]
     st['holds'] += int(removable and not forced and any(len(o) - est_captures(o, B, t, cfg) >= 0 and len(o) > len(choice) for o in opts))
@@ -186,7 +186,11 @@ def caravan_move(ships, t, chain, cfg, B, st, log):
         s.row, s.state = 3, 'row3'
         if s.lane == 'N' and meter_needed: st['meter'] = False
     # staging
-    shoal_future = any(shoal_ok(water_at(k, st), cfg, B, st, k)[0] for k in range(t + 1, 7))
+    def _sh(k):  # the table expects the signal to put the aground «Сойка» in drift
+        w = water_at(k, st); need = 1 if cfg['reef'] == 'pact' else 2
+        blocked = any(b['aground'] and not b['drift'] and not b['gone'] for b in B) and not st['mast_team']
+        return not blocked and (w >= need or (w == 1 and st['meter']))
+    shoal_future = any(_sh(k) for k in range(t + 1, 7))
     trig = False
     for s in live:
         if s in choice: continue

@@ -105,3 +105,7 @@ limit of 512 KiB.
 2026-11-16: `collection-2026/winter-caravan` done the same way (`campaigns/distinctness/winter-caravan-brief.md`,
 `reports/WINTER_CARAVAN_REWORK_2026-11-16.md`). Paused at the owner's request after it:
 `salt-meridian` is a tuned draft before critics; `ash-testament` has its brief only.
+
+2026-11-16: resumed at the owner's request. `collection-2026/salt-meridian` done the same way
+(`campaigns/distinctness/salt-meridian-brief.md`, `reports/SALT_MERIDIAN_REWORK_2026-11-16.md`): a
+blockade run under an alarm track, ending in the breakthrough of the Three Mouths.
