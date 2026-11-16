@@ -12,6 +12,7 @@ import { ChapterPages } from './chapter-pages.tsx';
 import { FlashbackScene } from './flashback-scene.tsx';
 import { GenerateChapter } from './generate-chapter.tsx';
 import { KeepsakeView } from './keepsake/keepsake-view.tsx';
+import { KnownView } from './known/known-view.tsx';
 
 interface Opened {
   readonly memoryId: string;
@@ -34,7 +35,8 @@ interface Opened {
  * survives both. The chapter first shown stays the one shown: a chapter written meanwhile
  * never replaces the page being read (its place, an open flashback), its ribbon says "New".
  * "The whole book" shows the campaign's book instead of the spread (ADR 0072 §1): the party's
- * chapters as one page, whoever reads.
+ * chapters as one page, whoever reads. "What we know" shows the party's encyclopedia (ADR 0073 §4)
+ * the same way; asked to open at a chapter or at the whole book, the Chronicle leaves it.
  */
 export function ChronicleBook({
   api,
@@ -97,6 +99,11 @@ export function ChronicleBook({
   );
   const [chosen, setChosen] = useState<string | null>(null);
   const [opened, setOpened] = useState<Opened | null>(null);
+  // The party's encyclopedia in place of the chapters and the whole book (ADR 0073 §4).
+  const [known, setKnown] = useState(false);
+  useEffect(() => {
+    setKnown(false);
+  }, [wanted, whole]);
   // The chapters the reader has met: those in the book when it first showed, and each shown since.
   const [met, setMet] = useState<ReadonlySet<string> | null>(null);
   const chapters = book.map((entry) => entry.chapter);
@@ -145,16 +152,26 @@ export function ChronicleBook({
             <button
               key={String(choice)}
               type="button"
-              aria-pressed={whole === choice}
+              aria-pressed={!known && whole === choice}
               onClick={() => {
+                setKnown(false);
                 onWhole(choice);
               }}
             >
               {choice ? t('The whole book') : t('By chapter')}
             </button>
           ))}
+          <button
+            type="button"
+            aria-pressed={known}
+            onClick={() => {
+              setKnown(true);
+            }}
+          >
+            {t('What we know')}
+          </button>
         </div>
-        {isDm && !whole && (
+        {isDm && !whole && !known && (
           <GenerateChapter
             api={api}
             characters={directory.filter((entity) => entity.kind === 'character')}
@@ -166,8 +183,19 @@ export function ChronicleBook({
           />
         )}
       </header>
-      <KeepsakeView api={api} shown={open && whole} revision={revision} />
-      {chapters.length > 0 && !whole && (
+      <KeepsakeView api={api} shown={open && whole && !known} revision={revision} />
+      <KnownView
+        api={api}
+        shown={open && known}
+        revision={revision}
+        onChapter={(chronicleId) => {
+          setKnown(false);
+          onWhole(false);
+          setChosen(chronicleId);
+          setOpened(null);
+        }}
+      />
+      {chapters.length > 0 && !whole && !known && (
         <nav className="book-ribbons" aria-label={t('Chapters')}>
           <div className="book-ribbon-list">
             {chapters.map((entry) => (
@@ -191,7 +219,7 @@ export function ChronicleBook({
           </div>
         </nav>
       )}
-      <div className="book-stage" hidden={whole}>
+      <div className="book-stage" hidden={whole || known}>
         <div className={`book-spread${opened ? ' is-remembering' : ''}`}>
           <img
             className="book-spread-art"
