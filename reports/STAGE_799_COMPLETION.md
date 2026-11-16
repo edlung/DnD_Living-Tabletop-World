@@ -173,6 +173,12 @@ keepsakes.
 
 ## For the owner
 
+**Done since this was written**: on the owner's word of 2026-11-16 («доделывай и сливай») the
+whole package was merged into `main` as one merge of PR 47 (`2fc04704`) — the tree whose CI ran
+green whole, Chromium, the iPad project and WebKit — and PRs 37–46 are closed with it, their
+commits inside that merge. Nothing is deployed. Step 1 below is therefore history; steps 2 and 3
+stand, and so does what PR 32 needs.
+
 1. **Merge, in order**: PR 37 (the plan) → 38 → 39 → 40 → 41 → 42 → 43 → 44 → 46 → 47. Each is
    stacked on the one before; after a merge the next one's base moves to `main` by itself or by
    one click. Read the CI of 46 and 47 first. PR 32 (Stage 750's ground) adds two specs that open
