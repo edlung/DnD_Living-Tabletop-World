@@ -254,7 +254,7 @@ describe('the hint’s words', () => {
       }
     }
     fightHint(t, {
-      encounter: { ...fight(FOE), combatants: [] } as unknown as EncounterView,
+      encounter: { ...fight(FOE), combatants: [] },
       actorId: ME,
       currentName: null,
       own: null,
