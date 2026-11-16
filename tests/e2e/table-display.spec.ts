@@ -140,7 +140,7 @@ test('a TV pairs by its code, shows what the DM casts, and the table joins by it
   const phone = await freshPage(browser);
   await phone.goto(link);
   expect(phone.url()).toBe(`${SIGN_IN_ORIGIN}/`);
-  const seats = phone.getByRole('region', { name: 'Choose your character' });
+  const seats = phone.getByRole('region', { name: 'Choose your hero' });
   await expect(
     seats.getByRole('button', { name: 'Play Tamsin Quickfoot', exact: true }),
   ).toBeVisible();
@@ -157,16 +157,21 @@ test('a TV pairs by its code, shows what the DM casts, and the table joins by it
   await tablet.goto('/table');
   await tablet.getByLabel('Table code', { exact: true }).fill(tableCode);
   await tablet.getByRole('button', { name: 'Find the table', exact: true }).click();
-  const offered = tablet.getByRole('region', { name: 'Choose your character' });
+  const offered = tablet.getByRole('region', { name: 'Choose your hero' });
   await expect(
     offered.getByRole('button', { name: 'Play Maren Ashby', exact: true }),
   ).toBeVisible();
   await expect(offered.getByRole('button', { name: 'Play Tamsin Quickfoot' })).toHaveCount(0);
   // This one wants a login, to come back from another device: the usual join page follows.
   await offered
-    .getByLabel('I want a login, to come back to this table from another device', { exact: true })
+    .getByLabel('I have a login or want one — to come back from any device', { exact: true })
     .check();
-  await expect(offered).toContainText('Press a hero: next you choose a login and a password.');
+  await expect(offered).toContainText('Press a hero: next you sign in or create a login.');
+  // A device that sat down before finds its way back from the same page.
+  await expect(offered.getByRole('link', { name: 'Open the table', exact: true })).toHaveAttribute(
+    'href',
+    '/',
+  );
   await offered.getByRole('button', { name: 'Play Maren Ashby', exact: true }).click();
   await expect(tablet.getByLabel('Login', { exact: true })).toBeVisible(LIVE);
   await takeSeat(tablet);

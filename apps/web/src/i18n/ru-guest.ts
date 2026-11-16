@@ -4,8 +4,10 @@ import { registerRussian } from '@ltw/ui';
 registerRussian({
   'Press a hero to sit down and play on this device. Nothing to remember.':
     'Нажмите на героя, чтобы сесть за стол и играть на этом устройстве. Запоминать ничего не нужно.',
-  'Press a hero: next you choose a login and a password.':
-    'Нажмите на героя: дальше вы выберете логин и пароль.',
-  'I want a login, to come back to this table from another device':
-    'Хочу логин, чтобы возвращаться к этому столу с другого устройства',
+  'Press a hero: next you sign in or create a login.':
+    'Нажмите на героя: дальше вы войдёте или придумаете логин и пароль.',
+  'I have a login or want one — to come back from any device':
+    'У меня есть логин или я хочу его завести — чтобы возвращаться с любого устройства',
+  'Already sat down on this device?': 'Уже садились за стол с этого устройства?',
+  'Open the table': 'Откройте стол',
 });

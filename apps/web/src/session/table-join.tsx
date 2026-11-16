@@ -75,7 +75,7 @@ export function TableJoin({
     if (answer === 'ok') return;
     if (answer === 'taken') {
       setProblem(
-        t('Someone took {name} a moment ago. Choose another character.', { name: character.name }),
+        t('Someone took {name} a moment ago. Choose another hero.', { name: character.name }),
       );
       await read(key);
       return;
@@ -166,41 +166,29 @@ function TableOffer({
 }) {
   const t = useT();
   const id = useId();
+  // This browser may sit at the table already (a guest who scanned the code again): the way back.
+  const back = (
+    <p className="table-back">
+      {t('Already sat down on this device?')} <a href="/">{t('Open the table')}</a>
+    </p>
+  );
   return (
     <section className="table-offer" aria-labelledby={`${id}-title`}>
       <p className="eyebrow">{offer.campaignName}</p>
-      <h3 id={`${id}-title`}>{t('Choose your character')}</h3>
+      <h3 id={`${id}-title`}>{t('Choose your hero')}</h3>
       {problem && (
         <p className="account-error" role="alert">
           {problem}
         </p>
       )}
       {offer.characters.length === 0 ? (
-        <p>{t('Every seat at this table is taken. Ask the DM.')}</p>
+        <>
+          <p>{t('Every seat at this table is taken. Ask the DM.')}</p>
+          {back}
+        </>
       ) : (
         <>
-          <p id={`${id}-how`}>
-            {login
-              ? t('Press a hero: next you choose a login and a password.')
-              : t('Press a hero to sit down and play on this device. Nothing to remember.')}
-          </p>
-          <ul className="table-seats" aria-describedby={`${id}-how`}>
-          {offer.characters.map((character) => (
-            <li key={character.entityId}>
-              <button
-                className="table-seat"
-                disabled={busy}
-                aria-label={t('Play {name}', { name: character.name })}
-                onClick={() => {
-                  onChoose(character);
-                }}
-              >
-                <Glyph name="character" />
-                {character.name}
-              </button>
-            </li>
-          ))}
-          </ul>
+          {/* Asked before the heroes: what a press does depends on it. */}
           <label className="table-login">
             <input
               type="checkbox"
@@ -210,8 +198,31 @@ function TableOffer({
                 onLogin(event.target.checked);
               }}
             />
-            {t('I want a login, to come back to this table from another device')}
+            {t('I have a login or want one — to come back from any device')}
           </label>
+          <p role="status">
+            {login
+              ? t('Press a hero: next you sign in or create a login.')
+              : t('Press a hero to sit down and play on this device. Nothing to remember.')}
+          </p>
+          <ul className="table-seats">
+            {offer.characters.map((character) => (
+              <li key={character.entityId}>
+                <button
+                  className="table-seat"
+                  aria-disabled={busy}
+                  aria-label={t('Play {name}', { name: character.name })}
+                  onClick={() => {
+                    if (!busy) onChoose(character);
+                  }}
+                >
+                  <Glyph name="character" />
+                  {character.name}
+                </button>
+              </li>
+            ))}
+          </ul>
+          {back}
         </>
       )}
     </section>

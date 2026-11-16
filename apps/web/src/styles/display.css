@@ -475,11 +475,23 @@
    large enough for a thumb. */
 .table-login {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
   min-height: 44px;
-  margin-top: 12px;
+  margin: 4px 0 12px;
   color: var(--text-muted);
+}
+.table-back {
+  margin: 16px 0 0;
+  color: var(--text-muted);
+}
+.table-back a {
+  display: inline-block;
+  padding: 10px 0;
+}
+.table-seat[aria-disabled='true'] {
+  opacity: 0.6;
+  cursor: progress;
 }
 .table-login input {
   flex: none;

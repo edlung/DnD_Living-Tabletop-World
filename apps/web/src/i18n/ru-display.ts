@@ -126,10 +126,10 @@ registerRussian({
     'Слишком много попыток. Подождите минуту и попробуйте снова.',
   'This table link is closed or its code is wrong. Ask the DM.':
     'Ссылка стола закрыта или код неверен. Спросите мастера.',
-  'Choose your character': 'Выберите персонажа',
+  'Choose your hero': 'Выберите героя',
   'Every seat at this table is taken. Ask the DM.':
     'Все места за этим столом заняты. Спросите мастера.',
   'Play {name}': 'Играть: {name}',
-  'Someone took {name} a moment ago. Choose another character.':
-    '{name}: этого персонажа только что заняли. Выберите другого.',
+  'Someone took {name} a moment ago. Choose another hero.':
+    '{name}: этого героя только что заняли. Выберите другого.',
 });
