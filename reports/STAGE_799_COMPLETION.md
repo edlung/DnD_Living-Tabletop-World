@@ -144,7 +144,7 @@ keepsakes.
   their pull requests' CI. That the reloads of WebKit pages are gone is shown only by CI runs to
   come; why WebKit drops its connection to the dev server is not known (Stage 790's report).
 - **The whole suite after the suite's own fixes.** Run whole on Stage 790's branch (346 of 346
-  on Chromium in 28.5 minutes); here only CI runs the whole.
+  on Chromium in 28.5 minutes, one commit before its last); here only CI runs the whole.
 - **Paper.** The book's print was checked in Stage 770 as Chromium's PDF; no page was printed,
   and Safari's print was not tried.
 - **No real device**: not a phone (the keyboard over a card, the largest text under a thumb), not
