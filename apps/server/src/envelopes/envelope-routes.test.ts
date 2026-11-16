@@ -53,7 +53,10 @@ afterEach(async () => {
 describe('a sealed envelope', () => {
   it('is sealed by the DM from a kept handout, and seen by the party from outside only', async () => {
     expect((await keep(1)).statusCode).toBe(201);
-    expect((await seal(10, { entryId: ID(1), label: LABEL, opens: 'word' })).statusCode).toBe(201);
+    const first = await seal(10, { entryId: ID(1), label: LABEL, opens: 'word' });
+    expect(first.statusCode).toBe(201);
+    // The answer has a body: the client would take an empty one for a failure.
+    expect(first.json()).toEqual({ envelopeId: ID(10) });
     // A retried request seals one envelope.
     expect((await seal(10, { entryId: ID(1), label: LABEL, opens: 'word' })).statusCode).toBe(200);
     for (const [perspective, token] of [
@@ -159,8 +162,7 @@ describe('a sealed envelope', () => {
     expect((await open(10, TOKENS.player)).statusCode).toBe(403);
     expect((await get(app, `${BASE}/dm/envelopes`, TOKENS.player)).statusCode).toBe(403);
     expect((await get(app, `${BASE}/dm/envelopes`, TOKENS.outsider)).statusCode).toBe(404);
-    const remove = (token: string) =>
-      post(app, `${BASE}/dm/envelopes/${ID(10)}/delete`, {}, token);
+    const remove = (token: string) => post(app, `${BASE}/dm/envelopes/${ID(10)}/delete`, {}, token);
     expect((await remove(TOKENS.player)).statusCode).toBe(403);
     expect(await sealedFor('PLAYER', TOKENS.player)).toHaveLength(1);
     expect((await remove(TOKENS.dm)).statusCode).toBe(204);
@@ -240,8 +242,7 @@ describe('an envelope and the live stream', () => {
   it('signals the party when one is sealed and when it opens', async () => {
     const live = await liveRavenford();
     const player = await readyLive(live.app, `${BASE}/live?perspective=PLAYER`, TOKENS.player);
-    const changes = () =>
-      player.messages().filter((message) => message.type === 'changed').length;
+    const changes = () => player.messages().filter((message) => message.type === 'changed').length;
     await live.hub.cycle();
     await live.hub.cycle();
     const before = changes();

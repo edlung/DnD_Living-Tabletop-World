@@ -178,7 +178,10 @@ test('an envelope sealed for the evening’s chapter opens when the evening is c
     .getByRole('region', { name: 'Sealed envelopes', exact: true })
     .getByRole('listitem')
     .filter({ hasText: LATER });
-  await expect(theirs).toContainText('Sealed. It opens when the evening’s chapter is written.', WAIT);
+  await expect(theirs).toContainText(
+    'Sealed. It opens when the evening’s chapter is written.',
+    WAIT,
+  );
 
   // The DM ends the session with its chapter: the envelope opens by itself.
   await openSheet(dm, 'Session');
@@ -193,17 +196,11 @@ test('an envelope sealed for the evening’s chapter opens when the evening is c
 
   // Whatever the player's screen shows between evenings, the handout is theirs to read.
   await expect
-    .poll(
-      async () =>
-        (
-          await dmRequest(dm, campaign, 'get', 'dm/envelopes')
-        ).body,
-      WAIT,
-    )
+    .poll(async () => (await dmRequest(dm, campaign, 'get', 'dm/envelopes')).body, WAIT)
     .toMatchObject({
       envelopes: expect.arrayContaining([
         expect.objectContaining({ label: LATER, openedBy: 'chapter' }),
-      ]) as unknown,
+      ]),
     });
   await openSheet(dm, 'Party');
   await expect(mine).toContainText('Opened');

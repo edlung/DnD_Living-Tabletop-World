@@ -28,13 +28,15 @@ registerRussian({
     'Запечатано: отряд видит конверт, но не то, что внутри.',
   'A campaign holds {max} envelopes. Delete one first.':
     'В кампании помещается {max} конвертов. Сначала удалите один.',
-  'The envelope could not be sealed. Try again.': 'Не удалось запечатать конверт. Попробуйте ещё раз.',
+  'The envelope could not be sealed. Try again.':
+    'Не удалось запечатать конверт. Попробуйте ещё раз.',
   // The DM's list
   Envelopes: 'Конверты',
   'Opens when you say': 'Откроется, когда вы скажете',
   'Opens when the next evening’s chapter is written':
     'Откроется, когда будет написана глава следующего вечера',
-  'Opens when the chapter of “{evening}” is written': 'Откроется, когда будет написана глава «{evening}»',
+  'Opens when the chapter of “{evening}” is written':
+    'Откроется, когда будет написана глава «{evening}»',
   'Opened {when}': 'Открыт {when}',
   'Inside: {title}': 'Внутри: {title}',
   'Open it now': 'Открыть сейчас',

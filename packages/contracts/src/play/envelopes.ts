@@ -34,6 +34,11 @@ export type SealEnvelope = z.infer<typeof sealEnvelopeSchema>;
 
 export const envelopeParamsSchema = z.object({ envelopeId: z.uuid() }).strict();
 
+/** The answer to a sealing: 201 the first time, 200 for a retried request — the same envelope. */
+export interface SealedEnvelopeResponse {
+  readonly envelopeId: string;
+}
+
 /** An envelope from outside: all the party is sent while it is sealed. */
 export interface SealedEnvelopeView {
   readonly envelopeId: string;

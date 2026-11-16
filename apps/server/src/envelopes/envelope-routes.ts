@@ -9,6 +9,7 @@ import {
   type DmEnvelopesResponse,
   type EnvelopeOpens,
   type EnvelopesResponse,
+  type SealedEnvelopeResponse,
 } from '@ltw/contracts';
 import { campaignRole, type Actor, type WorldState } from '@ltw/domain';
 import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
@@ -177,9 +178,7 @@ export function registerEnvelopeRoutes(
             name: state.entities.get(envelope.entityId)?.name ?? null,
           },
     evening:
-      envelope.sessionId === null
-        ? null
-        : (state.sessions.get(envelope.sessionId)?.title ?? null),
+      envelope.sessionId === null ? null : (state.sessions.get(envelope.sessionId)?.title ?? null),
     openedAt: envelope.openedAt,
     openedBy: envelope.openedBy,
   });
@@ -221,7 +220,9 @@ export function registerEnvelopeRoutes(
       sealedAt: now(),
     });
     if (sealed === 'full') return sendError(reply, request, 'CONFLICT');
-    return reply.code(sealed === 'sealed' ? 201 : 200).send();
+    // With a body: the client reads one from every answer but 204 (`apps/web/src/api/client.ts`).
+    const body: SealedEnvelopeResponse = { envelopeId };
+    return reply.code(sealed === 'sealed' ? 201 : 200).send(body);
   });
 
   app.post('/campaigns/:campaignId/dm/envelopes/:envelopeId/open', async (request, reply) => {

@@ -46,7 +46,12 @@ async function life(store: EnvelopeStore) {
   seen.push(await store.seal(envelope(1, { label: 'Changed', title: 'Other' })));
   seen.push(
     await store.seal(
-      envelope(2, { opens: 'chapter', sessionId: 'ravenford-s1', text: null, entityId: 'mira-vale' }),
+      envelope(2, {
+        opens: 'chapter',
+        sessionId: 'ravenford-s1',
+        text: null,
+        entityId: 'mira-vale',
+      }),
     ),
   );
   seen.push(await store.seal(envelope(3, { campaignId: 'other' })));

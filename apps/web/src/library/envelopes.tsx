@@ -265,7 +265,7 @@ export function DmEnvelopes({
                 <span className="muted">
                   {sealed
                     ? opensWords(t, envelope)
-                    : t('Opened {when}', { when: formatWhen(envelope.openedAt ?? '', language) })}
+                    : t('Opened {when}', { when: formatWhen(envelope.openedAt, language) })}
                 </span>
               </div>
               <p className="muted">{t('Inside: {title}', { title: envelope.title })}</p>

@@ -1,6 +1,6 @@
 import type { EntityRef, KeptHandoutView } from '@ltw/contracts';
 import { StatusPanel, useLanguage, useT } from '@ltw/ui';
-import { useId, useRef, useState, type SubmitEvent } from 'react';
+import { useEffect, useId, useRef, useState, type SubmitEvent } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { useDiceTable } from '../dice/table.tsx';
@@ -71,9 +71,7 @@ export function TableHandouts({
       {/* What is sealed for the party, and what has opened (docs/adr/0073-table-ideas.md §9). */}
       <DmEnvelopes
         api={api}
-        envelopes={
-          envelopes.resource.status === 'ready' ? envelopes.resource.value.envelopes : []
-        }
+        envelopes={envelopes.resource.status === 'ready' ? envelopes.resource.value.envelopes : []}
         onChanged={envelopes.reread}
       />
     </>
@@ -107,6 +105,13 @@ function KeptHandoutCard({
   const [sealing, setSealing] = useState(false);
   const [sealed, setSealed] = useState(false);
   const sealer = useRef<HTMLButtonElement>(null);
+  // The form is gone: the button that opened it takes the focus back, once it is drawn again.
+  const back = useRef(false);
+  useEffect(() => {
+    if (sealing || !back.current) return;
+    back.current = false;
+    sealer.current?.focus();
+  }, [sealing]);
   const [said, setSaid] = useState<'given' | 'refused' | 'unsaved' | null>(null);
   const path = `dm/library/handouts/${encodeURIComponent(handout.entryId)}`;
   const give = async () => {
@@ -198,11 +203,10 @@ function KeptHandoutCard({
           title={handout.title}
           pictured={handout.picture !== null}
           onDone={(done) => {
+            back.current = true;
             setSealing(false);
             setSealed(done);
             if (done) onSealed();
-            // The form is gone: the button that opened it takes the focus back.
-            requestAnimationFrame(() => sealer.current?.focus());
           }}
         />
       ) : (
