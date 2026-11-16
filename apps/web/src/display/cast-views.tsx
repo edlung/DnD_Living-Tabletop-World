@@ -348,8 +348,15 @@ function StoryCast(props: Props & { readonly entityId: string | null; readonly t
   const art = useApprovedImage(shown?.presentation.image ?? null);
   const name = nameIn(props.directory, props.entityId);
   const paragraphs = props.text.split(/\n+/).filter((line) => line.trim() !== '');
+  // Much text, or many short lines (a verse, a riddle), stands smaller so that all of it fits.
+  const load =
+    props.text.length > 450 || paragraphs.length > 6
+      ? 'long'
+      : props.text.length > 250 || paragraphs.length > 3
+        ? 'mid'
+        : 'short';
   return (
-    <section className="display-story" aria-label={t('A story read aloud')}>
+    <section className="display-story" data-load={load} aria-label={t('A story read aloud')}>
       <img
         className="display-story-art"
         src={art ?? textureUrl('brand-keyart')}

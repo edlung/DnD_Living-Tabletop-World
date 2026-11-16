@@ -43,7 +43,7 @@ test('the DM shows one picture and the words read aloud', async ({ browser }) =>
   await form.getByLabel('The picture', { exact: true }).selectOption({ label: 'Market Square' });
   const words = form.getByLabel('The words to read aloud', { exact: true });
   await words.fill(LINES);
-  await expect(form).toContainText(`${String(LINES.length)} of 600 characters.`);
+  await expect(form).toContainText(`${String(600 - LINES.length)} characters left.`);
   await expectAccessible(dm, 'the cast form with the story’s fields');
   await form.getByRole('button', { name: 'Show on the screens', exact: true }).click();
   await expect(form).toContainText('Now: A picture with words to read aloud', LIVE);
@@ -71,19 +71,33 @@ test('the DM shows one picture and the words read aloud', async ({ browser }) =>
   await form.getByRole('button', { name: 'Show on the screens', exact: true }).click();
   await expect(story.locator('p')).toHaveText(['Night falls.'], LIVE);
   await expect(story.locator('img.display-story-art')).toHaveAttribute('alt', '');
+
+  // A riddle of twelve short lines: the form warns, and the screen still holds every line.
+  const verse = Array.from({ length: 12 }, (_, index) => `Line ${String(index + 1)} of the riddle,`);
+  await words.fill(verse.join('\n'));
+  await expect(form).toContainText('So many lines may not fit a screen: show them in two parts.');
+  await form.getByRole('button', { name: 'Show on the screens', exact: true }).click();
+  await expect(story.locator('p')).toHaveCount(12, LIVE);
+  await expect(story).toHaveAttribute('data-load', 'long');
+  const first = await story.locator('p').first().boundingBox();
+  const last = await story.locator('p').last().boundingBox();
+  expect(first?.y ?? -1, 'the first line is on the screen').toBeGreaterThanOrEqual(0);
+  expect((last?.y ?? 0) + (last?.height ?? 0), 'the last line is on the screen').toBeLessThanOrEqual(
+    720,
+  );
 });
 
-test('по-русски: картина со словами', async ({ browser }) => {
+test('по-русски: картинка со словами', async ({ browser }) => {
   test.setTimeout(120_000);
   const dm = await freshPage(browser);
   await joinAsDm(dm, SIGN_IN_CAMPAIGNS.storyCastRu, 0, WORDS.ru);
   await openSheet(dm, 'Экран стола');
   const form = dm.locator('#sheet-screen').getByRole('region', { name: 'Что показывают экраны' });
   await form
-    .getByRole('radio', { name: 'Картину со словами для чтения вслух', exact: true })
+    .getByRole('radio', { name: 'Картинку со словами для чтения вслух', exact: true })
     .check();
-  await expect(form.getByLabel('Картина', { exact: true })).toBeVisible();
+  await expect(form.getByLabel('Картинка', { exact: true })).toBeVisible();
   await form.getByLabel('Слова, которые читают вслух', { exact: true }).fill('Наступает ночь.');
-  await expect(form).toContainText('15 из 600 знаков. Их читают все за столом.');
+  await expect(form).toContainText('Осталось знаков: 585. Эти слова увидят все за столом.');
   await expectAccessible(dm, 'форма показа с полями истории');
 });

@@ -1,6 +1,6 @@
 import { STORY_CAST_CHARS, type ChronicleListResponse, type EntityRef } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
-import { useCallback, useId, useMemo } from 'react';
+import { useCallback, useId, useMemo, useState } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
@@ -9,6 +9,19 @@ import { PARTY } from '../chronicle/book-chapters.ts';
 /** Paragraphs of the party's chapters the form offers: the newest chapters' first. */
 const OFFERED = 12;
 const NONE = '';
+/** Lines after which the words may not fit a screen: the form says so. */
+const LINES = 8;
+
+/** A paragraph cut to the cast's size at the end of a sentence, or of a word. */
+export function fitted(text: string, max = STORY_CAST_CHARS): string {
+  const whole = text.trim();
+  if (whole.length <= max) return whole;
+  const cut = whole.slice(0, max);
+  const sentence = Math.max(cut.lastIndexOf('. '), cut.lastIndexOf('! '), cut.lastIndexOf('? '));
+  if (sentence > max / 2) return cut.slice(0, sentence + 1);
+  const word = cut.lastIndexOf(' ');
+  return `${cut.slice(0, word > 0 ? Math.min(word, max - 1) : max - 1)}…`;
+}
 
 /**
  * The fields of the story cast (docs/adr/0073-table-ideas.md §8): a picture the party knows, or
@@ -49,12 +62,23 @@ export function StoryCastFields({
         chapter.prose.paragraphs.map((paragraph, index) => ({
           key: `${chapter.chronicleId}:${String(index)}`,
           chapter: chapter.title,
-          text: paragraph.text.trim().slice(0, STORY_CAST_CHARS),
+          text: fitted(paragraph.text),
         })),
       )
       .filter((paragraph) => paragraph.text !== '')
       .slice(0, OFFERED);
   }, [chronicle.resource]);
+  // The paragraph chosen, and whether taking it would replace words the DM typed.
+  const [from, setFrom] = useState(NONE);
+  const [asking, setAsking] = useState(false);
+  const chosen = offered.find((paragraph) => paragraph.key === from) ?? null;
+  const take = () => {
+    if (chosen === null) return;
+    onText(chosen.text);
+    setAsking(false);
+    setFrom(NONE);
+  };
+  const lines = text.split('\n').filter((line) => line.trim() !== '').length;
   return (
     <>
       <div className="field">
@@ -91,10 +115,11 @@ export function StoryCastFields({
           }}
         />
         <p id={`${id}-words-hint`} className="field-hint">
-          {t('{count} of {max} characters. Everyone at the table reads them.', {
-            count: text.length,
-            max: STORY_CAST_CHARS,
+          {t('{left} characters left. Everyone at the table sees these words.', {
+            left: STORY_CAST_CHARS - text.length,
           })}
+          {lines > LINES &&
+            ` ${t('So many lines may not fit a screen: show them in two parts.')}`}
         </p>
       </div>
       {offered.length > 0 && (
@@ -102,10 +127,10 @@ export function StoryCastFields({
           <label htmlFor={`${id}-from`}>{t('Or take a paragraph of the party’s chapters')}</label>
           <select
             id={`${id}-from`}
-            value={NONE}
+            value={from}
             onChange={(event) => {
-              const chosen = offered.find((paragraph) => paragraph.key === event.target.value);
-              if (chosen) onText(chosen.text);
+              setFrom(event.target.value);
+              setAsking(false);
             }}
           >
             <option value={NONE}>{t('Choose…')}</option>
@@ -115,6 +140,37 @@ export function StoryCastFields({
               </option>
             ))}
           </select>
+          {/* Choosing shows nothing yet: the press takes it, and asks before it replaces words. */}
+          {asking ? (
+            <div className="action-row" role="group" aria-label={t('Replace what you wrote?')}>
+              <span>{t('Replace what you wrote?')}</span>
+              <button type="button" onClick={take}>
+                {t('Replace')}
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setAsking(false);
+                }}
+              >
+                {t('Keep mine')}
+              </button>
+            </div>
+          ) : (
+            <div className="action-row">
+              <button
+                type="button"
+                aria-disabled={chosen === null}
+                onClick={() => {
+                  if (chosen === null) return;
+                  if (text.trim() !== '' && text.trim() !== chosen.text) setAsking(true);
+                  else take();
+                }}
+              >
+                {t('Take this paragraph')}
+              </button>
+            </div>
+          )}
         </div>
       )}
     </>

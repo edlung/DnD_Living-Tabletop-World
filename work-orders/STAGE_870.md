@@ -23,6 +23,11 @@ stage. Branch `claude/stage-870-story-cast`, stacked on Stage 860's.
 - Without a picture the game's own key art stands behind the words, as behind a title card.
 - No new art is drawn or generated: the pictures are the world's approved ones.
 
+- From the independent pass, taken as decisions: the words stand smaller the more there are,
+  and the form warns past eight lines; the dark the words stand on rises with them; a paragraph
+  of the chapters is taken by a press, asks before it replaces what the DM typed, and is cut at
+  a sentence's end; online the cast is a panel the keyboard scrolls, and new words are announced.
+
 ## Boundaries
 
 No migration (the cast is stored as it is), no table, no event, no world state. No AI. A display

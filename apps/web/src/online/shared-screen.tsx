@@ -96,8 +96,16 @@ export function SharedScreenSheet({
           className="shared-screen"
           {...(shown.cast.kind === 'chronicle'
             ? { tabIndex: 0, role: 'group', 'aria-label': t('Previously…') }
-            : {})}
+            : shown.cast.kind === 'story'
+              ? { tabIndex: 0, role: 'group', 'aria-label': t('A story read aloud') }
+              : {})}
         >
+          {/* New words are said to who cannot see them arrive (ADR 0073 §8). */}
+          {shown.cast.kind === 'story' && (
+            <p role="status" className="visually-hidden">
+              {t('The DM shows: {words}', { words: shown.cast.text })}
+            </p>
+          )}
           <CastView
             api={party}
             cast={shown}
