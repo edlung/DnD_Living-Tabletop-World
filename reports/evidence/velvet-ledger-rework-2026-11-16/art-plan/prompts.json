@@ -1,0 +1,499 @@
+{
+  "tool": "planned: OpenAI image generation via Codex CLI (not run; art deferred by the owner on 2026-11-16)",
+  "style": "Match one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+  "images": [
+    {
+      "id": "cover",
+      "file": "cover.png",
+      "kind": "cover",
+      "transparent": false,
+      "prompt": "Generate one image and save it as cover.png in the current directory.\nWide landscape key art, 3:2. Dawn on a narrow street of cord-makers' stalls in the occult-industrial city of Velten: awnings hung with skeins of velvet cord, wet cobbles, brass heat pipes steaming along dark brick walls, a tram chain glinting overhead. Two bailiffs of a banking house, velvet cords slung over their shoulders and rings of blank inventory tags at their belts, stand at the open door of a narrow two-storey house above a former sewing shop; one of them, a coldly polite man in grey gloves, knocks on the door although it is open. A long shadow lies across the threshold and does not follow the rising sun. In the foreground eight adults watch from the street: a straight-backed woman in a worn insignia-less bailiff's cloak with a shield whose emblem was removed; a young courier in a grey many-pocketed vest with a satchel and a black mourning band; a woman in a dark scarf with a silver counting bead on a cord; a young man in fogged round spectacles with a brass instrument case at his belt; a grey-haired foundry woman in a heavy work jacket; a neat auditor in polished boots with a pencil behind his ear; an older man in a warm black suit; a young woman with violet-stained fingers and an apron over her coat. Steam, damp velvet, quiet defiance.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": []
+    },
+    {
+      "id": "velten-city",
+      "file": "velten-city.png",
+      "kind": "location",
+      "transparent": false,
+      "prompt": "Generate one image and save it as velten-city.png in the current directory.\nLandscape scene, 3:2. A panoramic view of the city of Velten at dusk: dark brick districts and steaming brass heat pipes gathered around great furnaces glowing amber through soot, trams drawn along enchanted chains between the rooftops, shift clocks hanging over crossroads, the grand exchange building with its bell tower rising above wet slate roofs, iron lattice girders over a canal. Rain-slick streets, gaslight, chimney smoke.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": []
+    },
+    {
+      "id": "night-ledger-office",
+      "file": "night-ledger-office.png",
+      "kind": "location",
+      "transparent": false,
+      "prompt": "Generate one image and save it as night-ledger-office.png in the current directory.\nLandscape scene, 3:2. Interior of a former tram ticket office turned into a small after-hours office: a long table with eight chairs, a lockable cabinet, the old ticket window with its grille, a faded tram timetable on the wall covered in pencilled figures rendered as illegible marks, cooling glasses of tea, inkwells, a single warm lamp. Rain streaks the night window; a worn, welcoming refuge.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": []
+    },
+    {
+      "id": "municipal-archive",
+      "file": "municipal-archive.png",
+      "kind": "location",
+      "transparent": false,
+      "prompt": "Generate one image and save it as municipal-archive.png in the current directory.\nLandscape scene, 3:2. Interior of the Chamber of Agreements, a civic archive of certified copies: tall shelves of bound copies, green-shaded lamps, brass pneumatic catalogue tubes running along the walls, a polished issue counter with neat stacks of blank request forms, a notice board by the entrance with illegible sheets. Orderly, hushed, bureaucratic.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": []
+    },
+    {
+      "id": "nine-pipe-foundry",
+      "file": "nine-pipe-foundry.png",
+      "kind": "location",
+      "transparent": false,
+      "prompt": "Generate one image and save it as nine-pipe-foundry.png in the current directory.\nLandscape scene, 3:2. A large foundry crowned by nine tall exhaust stacks: the glow of molten metal, chains and ladles, a yellow line painted on the floor where the shift leaves its tools, a canteen with long tables and a small union cash desk, a chalk board with illegible tallies. Soot, heat haze, tired strong workers in heavy jackets.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": []
+    },
+    {
+      "id": "quiet-clinic",
+      "file": "quiet-clinic.png",
+      "kind": "location",
+      "transparent": false,
+      "prompt": "Generate one image and save it as quiet-clinic.png in the current directory.\nLandscape scene, 3:2. A small quiet infirmary for people who cannot sleep: soft curtains muting grey daylight, a row of narrow cots with adults resting under blankets, half of them restless, a reception table with small cards, and by the window one empty bed made up with careful widow's neatness. Hushed, tender, melancholy.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": []
+    },
+    {
+      "id": "velvet-exchange",
+      "file": "velvet-exchange.png",
+      "kind": "location",
+      "transparent": false,
+      "prompt": "Generate one image and save it as velvet-exchange.png in the current directory.\nLandscape scene, 3:2. The trading floor of the Velvet Exchange: a grand hall divided by velvet-draped partitions, a huge price board made of rows of small blank brass plaques, a speaker's rostrum in the centre, a great copper bell hanging under the vaulted ceiling, a pawn window set into the side wall, clerks copying at a long desk, traders in coats raising their hands. Brass, velvet, gaslight, a tense hum.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": []
+    },
+    {
+      "id": "counterweight-station",
+      "file": "counterweight-station.png",
+      "kind": "location",
+      "transparent": false,
+      "prompt": "Generate one image and save it as counterweight-station.png in the current directory.\nLandscape scene, 3:2. Counterweight Station above a canal: a lattice of iron girders from which hundreds of heavy weights hang on chains, each weight with a chalk mark rendered as illegible scribbles, long shadows falling across the dark water below, an engineer's catwalk, oilskin visitor capes hanging on hooks by the entrance. Grey mist, dripping iron, an uncanny balance.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": []
+    },
+    {
+      "id": "ash-printworks",
+      "file": "ash-printworks.png",
+      "kind": "location",
+      "transparent": false,
+      "prompt": "Generate one image and save it as ash-printworks.png in the current directory.\nLandscape scene, 3:2. Interior of a low printworks: a heavy iron press, sheets of paper drying on lines strung across the room, all blank or illegible, cases of type, pots of hot wax, a counter with a thick order book, warm lamplight and drifting steam. Ink-stained, busy, close.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": []
+    },
+    {
+      "id": "open-court",
+      "file": "open-court.png",
+      "kind": "location",
+      "transparent": false,
+      "prompt": "Generate one image and save it as open-court.png in the current directory.\nLandscape scene, 3:2. The Open Court, a public hall of applications rather than a courtroom: a long application desk with neat stacks of blank forms, banks of wooden filing drawers, sample notices pinned to the wall as illegible sheets, a wall clock above the attorneys' desk, benches of waiting townsfolk. Plain, civic, a hopeful morning light.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": []
+    },
+    {
+      "id": "cord-row",
+      "file": "cord-row.png",
+      "kind": "location",
+      "transparent": false,
+      "prompt": "Generate one image and save it as cord-row.png in the current directory.\nLandscape scene, 3:2. Cord Row, a street of cord-makers and small shops at evening: awnings hung with skeins of velvet cord in wine, black and plum, wet cobbles, barrels and stalls, lanterns hanging from the awning hooks, narrow houses of poor debtors, long still shadows lying on several thresholds. Damp hemp, cobbler's glue, neighbourly poverty.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": []
+    },
+    {
+      "id": "otek-house",
+      "file": "otek-house.png",
+      "kind": "location",
+      "transparent": false,
+      "prompt": "Generate one image and save it as otek-house.png in the current directory.\nLandscape scene, 3:2. Interior of a narrow house above a former sewing shop: a squat stove glowing warm, a bed with a velvet canopy, an old sewing machine, a framed painted portrait of the late mistress of the house, a kind middle-aged woman, a chest of letters; every piece of furniture is tied with velvet cord and a blank paper inventory tag. Through the open door a small dented brass bell hangs on a velvet cord above the threshold, and a shadow lies on the threshold that does not match the light. Grief, intimacy, quiet dispossession.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": []
+    },
+    {
+      "id": "velvet-bank",
+      "file": "velvet-bank.png",
+      "kind": "location",
+      "transparent": false,
+      "prompt": "Generate one image and save it as velvet-bank.png in the current directory.\nLandscape scene, 3:2. The counting hall of the Velvet House bank: rows of polished wooden counters running the length of the hall, brass lamps above them, an iron safe grille at the far end beneath an overhanging gallery, a main door and a side door each fitted with a rolled-up iron shutter, a calm queue of depositors. Polished brass, velvet ropes, cold prosperity.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": []
+    },
+    {
+      "id": "ledger-vault",
+      "file": "ledger-vault.png",
+      "kind": "location",
+      "transparent": false,
+      "prompt": "Generate one image and save it as ledger-vault.png in the current directory.\nLandscape scene, 3:2. A low vaulted cellar beneath an exchange floor: on a bronze lectern in a pool of candlelight lies a thick open tome bound in faded cherry velvet, its pages glistening with ink that never dries, the writing only illegible strokes; damp stone, a narrow stair rising toward a thin line of light. Hushed, sacred, ominous.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": [],
+      "reveal": 5
+    },
+    {
+      "id": "velvet-hall",
+      "file": "velvet-hall.png",
+      "kind": "location",
+      "transparent": false,
+      "prompt": "Generate one image and save it as velvet-hall.png in the current directory.\nLandscape scene, 3:2. The ballroom of the Velvet House: a parquet floor with couples in black velvet half-masks waltzing in the centre, columns along both long walls, an orchestra in the upper gallery, a raised gallery at the far end with a card table, tall doors opening onto a staircase. Chandeliers, deep wine velvet drapes, elegance with an edge.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": []
+    },
+    {
+      "id": "vera-shtal",
+      "file": "vera-shtal.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Generate one image and save it as vera-shtal.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Olga Brandt, a 41-year-old woman, former bailiff of a banking house, now a fighter: a straight back, a worn uniform bailiff's cloak with all insignia removed, a shield whose emblem has been carefully pried off, an old dark-burgundy velvet training cord with service knots wound around her wrist; a steady, principled gaze. Behind her, a wet street of cord-makers' awnings at dawn.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": ["cover.png"]
+    },
+    {
+      "id": "yan-otek",
+      "file": "yan-otek.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Generate one image and save it as yan-otek.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Yan Otek, a 32-year-old man, contract courier and rogue: a grey vest with many flat pockets, cycling gloves, a waterproof satchel across his chest, a black mourning band on his sleeve; quick, guarded, grieving eyes. Behind him, the narrow doorway of a house on a street of cord-makers.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": ["cover.png"]
+    },
+    {
+      "id": "mira-lenn",
+      "file": "mira-lenn.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Generate one image and save it as mira-lenn.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Agnia Sver, a 36-year-old woman, keeper of a weavers' street mutual-aid fund and a cleric: a dark scarf, a silver counting bead on a cord at her neck, a closed case of clean bandages, a dues notebook under her arm; warm but unyielding. Behind her, a weavers' street with lit windows.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": ["cover.png"]
+    },
+    {
+      "id": "lev-sorin",
+      "file": "lev-sorin.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Generate one image and save it as lev-sorin.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Pavel Sorin, a 29-year-old man, chronoscopist of the city meters and a wizard: fogged round spectacles, a brass pencil case, a palm-sized brass chronoscope in a leather case on his belt, ink on his cuffs, neat and precise; curious, careful. Behind him, iron girders with hanging counterweights in mist.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": ["cover.png"]
+    },
+    {
+      "id": "rada-ven",
+      "file": "rada-ven.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Generate one image and save it as rada-ven.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Ulyana Ven, a 47-year-old woman, night-shift negotiator of a foundry and a fighter: close-cropped grey hair, a heavy work jacket, a hammer in a locked tool case, work mittens with careful hand stitching; solid, unhurried authority. Behind her, the glow of a foundry and its tall stacks.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": ["cover.png"]
+    },
+    {
+      "id": "daniil-kest",
+      "file": "daniil-kest.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Generate one image and save it as daniil-kest.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Daniil Kest, a 38-year-old man, independent auditor and rogue: impeccably brushed boots, a pocket ruler, a notebook bristling with coloured bookmarks, a pencil behind his ear; dry, sharp, faintly amused. Behind him, the blank brass price board of an exchange hall.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": ["cover.png"]
+    },
+    {
+      "id": "sev-erda",
+      "file": "sev-erda.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Generate one image and save it as sev-erda.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Arseny Erda, a 54-year-old man, advocate for people who inherited debts, and a cleric: a warm black suit, a wooden community token on a cord, a soft-spoken patient manner, one hand resting on the back of an empty chair he keeps free for whoever comes. Behind him, a quiet lamplit office.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": ["cover.png"]
+    },
+    {
+      "id": "eva-tarn",
+      "file": "eva-tarn.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Generate one image and save it as eva-tarn.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Eva Tarn, a 26-year-old woman, chemist of printing inks and a wizard: violet ink stains on her fingers, a protective apron over her coat, a few blank sample cards in her breast pocket; inquisitive and quick. Behind her, paper sheets drying on lines in a printworks.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": ["cover.png"]
+    },
+    {
+      "id": "levna-nor",
+      "file": "levna-nor.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Generate one image and save it as levna-nor.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Levna Nor, a 39-year-old woman, exchange copy clerk who reads debtors their accounts after her shift: a neat coat, a cracked lacquered handbag, an ink dot on her thumb, a small abacus in her pocket, counting briskly on her fingers as she explains. Behind her, a long table in a former ticket office at night.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": []
+    },
+    {
+      "id": "marena-voss",
+      "file": "marena-voss.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Generate one image and save it as marena-voss.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Marena Voss, a 52-year-old woman, keeper of a civic archive of certified copies: a grey suit, thin gloves, a folding portfolio with a plain embossed crest, a watch on a chain over her lapel that she glances at; precise and by the book. Behind her, green-shaded lamps and brass catalogue tubes.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": []
+    },
+    {
+      "id": "savel-ark",
+      "file": "savel-ark.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Generate one image and save it as savel-ark.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Orest Valm, a 57-year-old man, director of the Velvet Exchange and senior partner of its banking house: a soft velvet collar, a trimmed beard, a cane with a small bronze tongue-shaped finial, crisp dry cuffs; composed, courteous, a man who never raises his voice. Behind him, the gallery above a busy exchange floor.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": []
+    },
+    {
+      "id": "inga-reil",
+      "file": "inga-reil.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Generate one image and save it as inga-reil.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Inga Reil, a 43-year-old woman, elected union representative of a foundry: a leather work apron, a wide folder of shift rosters, fresh darning on her sleeve; blunt, tough, unapologetic. Behind her, a foundry canteen and a chalk tally board.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": []
+    },
+    {
+      "id": "timon-lest",
+      "file": "timon-lest.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Generate one image and save it as timon-lest.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Vaclav Lest, a 61-year-old man, senior engineer of Counterweight Station: a moustache, a heavy engineer's waistcoat, a bunch of keys with large blank tags, a stick of chalk behind his ear, tapping a girder with the chalk; gruff and exact. Behind him, iron girders with hanging weights over a canal.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": []
+    },
+    {
+      "id": "dara-ves",
+      "file": "dara-ves.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Generate one image and save it as dara-ves.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Sofya Ves, a 34-year-old woman, healer of an infirmary for the sleepless: a white apron over a dark dress, tired kind eyes, keys to a card cabinet at her belt, speaking softly. Behind her, a curtained ward with narrow cots.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": []
+    },
+    {
+      "id": "askar-mel",
+      "file": "askar-mel.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Generate one image and save it as askar-mel.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Askar Mel, a 46-year-old man, printer: rolled-up sleeves, soot on his elbows, a type gauge in his breast pocket, one hand raised asking to wait until the press stops. Behind him, a heavy iron press and sheets drying on lines.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": []
+    },
+    {
+      "id": "naya-oren",
+      "file": "naya-oren.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Generate one image and save it as naya-oren.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Naya Oren, a 48-year-old woman, attorney at a public applications desk: a dark-blue attorney's robe, a simple ring, a briefcase of blank forms; calm and methodical. Behind her, a long desk with neat stacks of blank forms.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": []
+    },
+    {
+      "id": "gaspar-til",
+      "file": "gaspar-til.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Generate one image and save it as gaspar-til.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Gaspar Til, a 44-year-old man, crier of the exchange: a long velvet crier's frock coat, a blank brass price plaque in his hand, mouth open mid-announcement in a voice that carries through three halls. Behind him, a crowded trading floor.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": []
+    },
+    {
+      "id": "kornel-shay",
+      "file": "kornel-shay.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Generate one image and save it as kornel-shay.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Kornel Shay, a 58-year-old man, judge of the bell at the exchange: a black judge's robe, a gavel with a velvet head, a widower's ring on his little finger; terse and measured. Behind him, a great copper bell hanging high under a vaulted ceiling.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": []
+    },
+    {
+      "id": "viktor-dorn",
+      "file": "viktor-dorn.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Generate one image and save it as viktor-dorn.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Viktor Dorn, a 38-year-old man, inventory agent of a banking house: grey gloves, a velvet cord around his wrist in place of a bracelet, quiet shoes, a ring of blank inventory tags; coldly polite. Behind him, a doorway on a wet street of cord-makers' awnings at dawn.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": ["cover.png"]
+    },
+    {
+      "id": "tadeush-krin",
+      "file": "tadeush-krin.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Generate one image and save it as tadeush-krin.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Tadeush Krin, a 52-year-old man, cobbler: a cobbler's apron, hands wound with waxed thread, spectacles on a cord, grumbling over a boot sole without looking up. Behind him, a tiny cobbler's stall under an awning.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": []
+    },
+    {
+      "id": "luiza-tamm",
+      "file": "luiza-tamm.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Generate one image and save it as luiza-tamm.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Luiza Tamm, a 29-year-old woman, cord-maker: velvet lint on her fingers, skeins of velvet cord over her shoulder, quick hands braiding a cord as she talks. Behind her, an awning hung with skeins of cord.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": []
+    },
+    {
+      "id": "efimiya-surma",
+      "file": "efimiya-surma.png",
+      "kind": "portrait",
+      "transparent": false,
+      "prompt": "Generate one image and save it as efimiya-surma.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Efimiya Surma, a 50-year-old woman, head of a rival banking house: a dress the colour of metal oxide, a signet ring set with a grey antimony crystal, a fan made like an abacus in her hand; shrewd, amused, bargaining even in a compliment. Behind her, a ballroom box with velvet drapes.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": []
+    },
+    {
+      "id": "door-bell",
+      "file": "door-bell.png",
+      "kind": "item",
+      "transparent": true,
+      "prompt": "Generate one image and save it as door-bell.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A small brass door bell with a dent on its side, hanging from a velvet cord the colour of old wine; a small blank paper inventory tag is tied to it with a doubled cord.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": []
+    },
+    {
+      "id": "velvet-cord",
+      "file": "velvet-cord.png",
+      "kind": "item",
+      "transparent": true,
+      "prompt": "Generate one image and save it as velvet-cord.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. An old dark-burgundy velvet bailiff's cord, loosely coiled, ending in a distinctive service knot.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": []
+    },
+    {
+      "id": "chronoscope",
+      "file": "chronoscope.png",
+      "kind": "item",
+      "transparent": true,
+      "prompt": "Generate one image and save it as chronoscope.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A palm-sized brass cylinder instrument with a small glass window and a thin needle, a wax verification seal on its side, hanging from a leather shoulder strap.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": []
+    },
+    {
+      "id": "irena-note",
+      "file": "irena-note.png",
+      "kind": "item",
+      "transparent": true,
+      "prompt": "Generate one image and save it as irena-note.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A sheet of paper folded in four and half opened, filled with warm, neat handwriting rendered as illegible strokes.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": []
+    },
+    {
+      "id": "artel-box",
+      "file": "artel-box.png",
+      "kind": "item",
+      "transparent": true,
+      "prompt": "Generate one image and save it as artel-box.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A tin strongbox with a velvet lining and a small padlock, its lid ajar, showing folded papers tied with cord.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": []
+    },
+    {
+      "id": "judge-paper",
+      "file": "judge-paper.png",
+      "kind": "item",
+      "transparent": true,
+      "prompt": "Generate one image and save it as judge-paper.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A heavy sheet of debt paper with two signature flourishes and, below them, a fresh glistening line of ink; all writing is illegible strokes.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": []
+    },
+    {
+      "id": "counterweight-list",
+      "file": "counterweight-list.png",
+      "kind": "item",
+      "transparent": true,
+      "prompt": "Generate one image and save it as counterweight-list.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. The back of a station waybill covered in columns of chalk marks rendered as illegible scribbles, chalk dust crumbling from the sheet.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": []
+    },
+    {
+      "id": "heir-stamp",
+      "file": "heir-stamp.png",
+      "kind": "item",
+      "transparent": true,
+      "prompt": "Generate one image and save it as heir-stamp.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A form sheet from a public office with a round blue stamp impression and a signature flourish; all writing is illegible strokes.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": []
+    },
+    {
+      "id": "union-pai",
+      "file": "union-pai.png",
+      "kind": "item",
+      "transparent": true,
+      "prompt": "Generate one image and save it as union-pai.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A thick stack of twelve share certificates with ornamental engraving and illegible marks, bound with a ribbon and a red wax seal.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": []
+    },
+    {
+      "id": "copy-book",
+      "file": "copy-book.png",
+      "kind": "item",
+      "transparent": true,
+      "prompt": "Generate one image and save it as copy-book.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A narrow notebook bound in oilcloth and held shut with an elastic band, small ink dots on the edges of its pages.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": []
+    },
+    {
+      "id": "token-tough",
+      "file": "token-tough.png",
+      "kind": "token",
+      "transparent": true,
+      "prompt": "Generate one image and save it as token-tough.png in the current directory.\nGame token figure, square 1:1, on a fully transparent background, top three-quarter view, no ground shadow. A heavy-set debt collector of a banking house in a grey coat with a velvet armband, a lowered cudgel in one hand and a lantern with a velvet shutter in the other, a ring of blank tags at the belt; stern.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": [],
+      "srd": "tough"
+    },
+    {
+      "id": "token-spy",
+      "file": "token-spy.png",
+      "kind": "token",
+      "transparent": true,
+      "prompt": "Generate one image and save it as token-spy.png in the current directory.\nGame token figure, square 1:1, on a fully transparent background, top three-quarter view, no ground shadow. A lean, quiet agent of a banking house in a dark cloak and a black velvet half-mask, grey gloves, a slim blade sheathed at the hip and a small hand crossbow holstered under the cloak, a velvet cord around the wrist; poised and watchful.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "originalFile": "",
+      "generatedAt": "",
+      "references": [],
+      "srd": "spy"
+    }
+  ]
+}
