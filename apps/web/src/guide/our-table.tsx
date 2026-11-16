@@ -63,12 +63,12 @@ function QuietWays({ api, onLeave }: { readonly api: WorldApi; readonly onLeave:
         {playing
           ? t('Only the DM will see either of these.')
           : t(
-              'Only the DM will see this. While a game is played, “Ask for a pause” is here and on your own screen.',
+              'Only the DM will see what you write. While the game is on, “Ask for a pause” is here and on the game screen.',
             )}
       </p>
       <p role="status" className="our-table-asked">
         {pause.seen
-          ? t('The DM has seen that you asked for a pause.')
+          ? t('The DM has seen that you asked for a pause. You can ask again in a minute.')
           : pause.waiting
             ? t('Only the DM was told that you would like a pause.')
             : ''}

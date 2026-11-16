@@ -1,4 +1,5 @@
 import { useT } from '@ltw/ui';
+import { useEffect, useRef } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { Glyph } from '../visual/glyph.tsx';
@@ -14,13 +15,22 @@ import { usePauseAsk } from './use-pause-ask.ts';
 export function PauseAsk({ api }: { readonly api: WorldApi }) {
   const t = useT();
   const pause = usePauseAsk(api, 'stage');
-  if (pause.waiting || pause.seen) {
+  const asked = pause.waiting || pause.seen;
+  // The press removes the button it was made on: the line that answers takes its focus.
+  const line = useRef<HTMLParagraphElement>(null);
+  const pressed = useRef(false);
+  useEffect(() => {
+    if (!asked || !pressed.current) return;
+    pressed.current = false;
+    line.current?.focus();
+  }, [asked]);
+  if (asked) {
     return (
-      <p className="rest-banner pause-asked">
+      <p ref={line} tabIndex={-1} className="rest-banner pause-asked">
         <Glyph name={pause.seen ? 'confirm' : 'time'} />
         <span className="rest-banner-text">
           {pause.seen
-            ? t('The DM has seen that you asked for a pause.')
+            ? t('The DM has seen that you asked for a pause. You can ask again in a minute.')
             : t('Only the DM was told that you would like a pause.')}
         </span>
       </p>
@@ -32,7 +42,11 @@ export function PauseAsk({ api }: { readonly api: WorldApi }) {
         type="button"
         className="pause-ask-button"
         aria-disabled={pause.busy}
-        onClick={pause.busy ? undefined : pause.ask}
+        onClick={() => {
+          if (pause.busy) return;
+          pressed.current = true;
+          pause.ask();
+        }}
       >
         <Glyph name="time" />
         {t('Ask for a pause')}

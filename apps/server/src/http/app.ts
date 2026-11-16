@@ -24,7 +24,11 @@ import {
   type ClientErrorDependencies,
 } from '../client-errors/client-error-routes.ts';
 import { InMemoryMarkStore } from '../marks/mark-store.ts';
-import { memoryPauses, registerPauseRoutes, type PauseDependencies } from '../pause/pause-routes.ts';
+import {
+  memoryPauses,
+  registerPauseRoutes,
+  type PauseDependencies,
+} from '../pause/pause-routes.ts';
 import { registerMarkRoutes, type MarkDependencies } from '../marks/mark-routes.ts';
 import { InMemoryChatStore } from '../chat/chat-store.ts';
 import {

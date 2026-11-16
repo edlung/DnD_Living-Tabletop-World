@@ -35,6 +35,10 @@
 .pause-asked {
   border-radius: var(--radius-panel);
 }
+.pause-asked:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}
 .pause-card button[aria-disabled='true'] {
   opacity: 0.6;
   cursor: progress;
@@ -44,5 +48,20 @@
      to the dock's first tabs. */
   .pause-ask {
     justify-items: end;
+  }
+}
+
+@media (max-width: 767px) {
+  /* A request for a pause is told nowhere else: on a phone it stays over an open sheet, where
+     the table's other questions give way (`rest.css`), and stands alone there. */
+  .world-main:has(.sheet:not([hidden]), .detail-panel:not([hidden]))
+    .rest-banner-slot:has(.pause-card, .pause-said) {
+    display: flex;
+    z-index: 12;
+  }
+  .world-main:has(.sheet:not([hidden]), .detail-panel:not([hidden]))
+    .rest-banner-slot:has(.pause-card, .pause-said)
+    > :not(.pause-card, .pause-said) {
+    display: none;
   }
 }

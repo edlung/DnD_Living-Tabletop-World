@@ -117,7 +117,7 @@ test('the DM writes the agreement; a player reads it, agrees, and asks for a pau
   await expect(dm.locator('#sheet-chat')).not.toContainText('pause');
   await asked.getByRole('button', { name: 'Not now', exact: true }).click();
   await expect(guide.getByRole('status')).toHaveText(
-    'The DM has seen that you asked for a pause.',
+    'The DM has seen that you asked for a pause. You can ask again in a minute.',
     WAIT,
   );
   // "Tell the DM privately" opens the chat with the DM chosen.

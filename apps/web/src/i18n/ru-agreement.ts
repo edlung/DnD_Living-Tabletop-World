@@ -32,8 +32,8 @@ registerRussian({
   'Read it': 'Прочитать',
   Later: 'Позже',
   Understood: 'Понятно',
-  'The agreement stays in “How to play”. “Ask for a pause” is on your screen while you play.':
-    'Договор всегда есть в «Как играть». Кнопка «Попросить паузу» — на вашем экране, пока идёт игра.',
+  'The agreement stays in “How to play”. “Ask for a pause” is on the game screen while you play.':
+    'Договор всегда есть в «Как играть». Кнопка «Попросить паузу» — на экране игры, пока идёт игра.',
   'That did not go through. The page may have changed: read it and try again.':
     'Не получилось. Возможно, договор изменился: прочитайте его и попробуйте снова.',
   'The DM has not written it yet.': 'Мастер его ещё не написал.',
@@ -79,8 +79,7 @@ registerRussian({
   'Only the DM will see either of these.': 'И то и другое увидит только мастер.',
   'Pause asked': 'Просьба отправлена',
   'Whose pages': 'Чьи страницы',
-  'Only the DM was told that you would like a pause.':
-    'О том, что вам нужна пауза, узнал только мастер.',
+  'Only the DM was told that you would like a pause.': 'Просьбу о паузе увидит только мастер.',
   'That did not reach the DM. Say “pause” aloud — that always works.':
     'До мастера это не дошло. Скажите «пауза» вслух — это работает всегда.',
   'For players': 'Игрокам',

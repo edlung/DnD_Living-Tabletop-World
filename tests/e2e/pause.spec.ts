@@ -29,7 +29,7 @@ test.use({ baseURL: SIGN_IN_ORIGIN, trace: 'off', screenshot: 'off' });
 const LIVE = { timeout: 20_000 };
 const ELOWEN = 'Elowen Starwhisper';
 const TOLD = 'Only the DM was told that you would like a pause.';
-const SEEN = 'The DM has seen that you asked for a pause.';
+const SEEN = 'The DM has seen that you asked for a pause. You can ask again in a minute.';
 const PAUSED = 'The DM paused the game. It waits until they resume.';
 
 /** Everything a page received about requests for a pause. */
@@ -96,6 +96,8 @@ test('one press tells the DM alone: not the other player, not the table’s scre
   await ask.click();
   await expect(elowen.locator('.pause-asked')).toHaveText(TOLD, LIVE);
   await expect(ask).toHaveCount(0);
+  // The button pressed is gone: the line that answers has the focus.
+  await expect(elowen.locator('.pause-asked')).toBeFocused();
 
   // The DM's screen, and no other, shows who asks.
   const card = dm.locator('.pause-card');
@@ -115,6 +117,10 @@ test('one press tells the DM alone: not the other player, not the table’s scre
   // "Not now": the asker reads that the DM has seen it; the game plays on.
   await card.getByRole('button', { name: 'Not now', exact: true }).click();
   await expect(card).toHaveCount(0, LIVE);
+  // The card's last word stays where it was, with the focus its button held.
+  const said = dm.locator('.pause-said');
+  await expect(said).toHaveText(`${ELOWEN} will read that you have seen it.`);
+  await expect(said).toBeFocused();
   await expect(elowen.locator('.pause-asked')).toHaveText(SEEN, LIVE);
   await expect(elowen.getByText(PAUSED, { exact: true })).toHaveCount(0);
 
@@ -128,6 +134,7 @@ test('one press tells the DM alone: not the other player, not the table’s scre
   await expect(card).toContainText('Brann Ironvale asks for a pause.', LIVE);
   await card.getByRole('button', { name: 'Pause the game', exact: true }).click();
   await expect(card).toHaveCount(0, LIVE);
+  await expect(said).toHaveText('The game is paused. Resume it in Session.');
   // Everyone reads the pause — which names nobody.
   await expect(elowen.getByText(PAUSED, { exact: true })).toBeVisible(LIVE);
   await expect(brann.getByText(PAUSED, { exact: true })).toBeVisible(LIVE);

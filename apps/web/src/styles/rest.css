@@ -256,7 +256,8 @@
       transparent
     );
   }
-  .world-main:has(.rest-banner) .stage {
+  /* (The line that answers a request for a pause is as small as the button it replaces.) */
+  .world-main:has(.rest-banner:not(.pause-asked)) .stage {
     padding-bottom: calc(var(--dock-h) + var(--outcome-h, 0px) + 8rem);
   }
   .world-main:has(.sheet:not([hidden]), .detail-panel:not([hidden])) .rest-banner-slot {

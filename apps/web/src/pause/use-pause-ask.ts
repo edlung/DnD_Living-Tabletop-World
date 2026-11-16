@@ -22,13 +22,14 @@ export interface PauseAskState {
 
 export function usePauseAsk(api: WorldApi, key: string): PauseAskState {
   const load = useCallback(
-    (signal: AbortSignal) => api.get<PauseAsksResponse>('pause-requests', signal).catch(() => null),
+    (signal: AbortSignal) => api.get<PauseAsksResponse>('pause-requests', signal),
     [api],
   );
+  // A re-read that fails keeps what is shown (`api/resource.ts`): the line does not flicker away.
   const asks = useResource(`pause-ask:${key}`, load);
   const [busy, setBusy] = useState(false);
   const [failed, setFailed] = useState(false);
-  const mine = asks.resource.status === 'ready' ? (asks.resource.value?.asks[0] ?? null) : null;
+  const mine = asks.resource.status === 'ready' ? (asks.resource.value.asks[0] ?? null) : null;
   const { reread } = asks;
   const ask = useCallback(() => {
     setBusy(true);
