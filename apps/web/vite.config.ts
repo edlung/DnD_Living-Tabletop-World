@@ -1,4 +1,4 @@
-import { defineConfig, type Plugin } from 'vite';
+import { defineConfig, type Connect, type Plugin } from 'vite';
 
 import manifest from './src/assets/ui-kit.manifest.json' with { type: 'json' };
 
@@ -42,6 +42,30 @@ function uiKitUrlsInDevelopment(): Plugin {
   };
 }
 
+/**
+ * With `LTW_VITE_NO_WS` (below) nobody answers the dev client's handshake, and a page would hold a
+ * connection open waiting for it — one of the few a browser gives a page for one server. It is
+ * refused at once instead: the dev client says so in the console and goes on without.
+ */
+function refusesHotConnections(): Plugin {
+  return {
+    name: 'ltw:no-hot-connection',
+    apply: 'serve',
+    configureServer(server) {
+      server.httpServer?.on(
+        'upgrade',
+        (request: Connect.IncomingMessage, socket: { end: (answer: string) => void }) => {
+          const protocol = request.headers['sec-websocket-protocol'];
+          if (protocol !== 'vite-hmr' && protocol !== 'vite-ping') return;
+          socket.end(
+            'HTTP/1.1 426 Upgrade Required\r\nConnection: close\r\nContent-Length: 0\r\n\r\n',
+          );
+        },
+      );
+    },
+  };
+}
+
 // Only the local API is proxied. Bearer tokens never enter URLs or static assets.
 // LTW_VITE_CACHE_DIR gives a second dev server of the same client (the browser tests' sign-in
 // server, playwright.config.ts) its own dependency cache, so two servers never race on one.
@@ -53,11 +77,12 @@ const cacheDir = process.env['LTW_VITE_CACHE_DIR'];
 // connection; a page of the built client has none either.
 const noWs = process.env['LTW_VITE_NO_WS'] !== undefined;
 export default defineConfig({
-  plugins: [uiKitUrlsInDevelopment()],
+  plugins: [uiKitUrlsInDevelopment(), ...(noWs ? [refusesHotConnections()] : [])],
   ...(cacheDir === undefined ? {} : { cacheDir }),
   resolve: { conditions: ['@ltw/source', 'browser', 'development|production'] },
   server: {
-    ...(noWs ? { ws: false as const } : {}),
+    // Nor does a page without the connection try to send its console over it.
+    ...(noWs ? { ws: false as const, forwardConsole: false as const } : {}),
     host: '127.0.0.1',
     strictPort: true,
     proxy: {
