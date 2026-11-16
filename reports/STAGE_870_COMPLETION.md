@@ -1,6 +1,6 @@
 # Stage 870 completion — theatre of the mind on the table's screen
 
-Pull request: https://github.com/edlung/DnD_Living-Tabletop-World/pull/PRNUM (draft, stacked on
+Pull request: https://github.com/edlung/DnD_Living-Tabletop-World/pull/58 (draft, stacked on
 Stage 860's, https://github.com/edlung/DnD_Living-Tabletop-World/pull/56).
 
 Work order `work-orders/STAGE_870.md`; program `docs/TABLE_IDEAS_PLAN.md` (section 870); ADR 0073
