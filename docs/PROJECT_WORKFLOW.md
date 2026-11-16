@@ -17,7 +17,9 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   (`reports/STAGE_720_COMPLETION.md`). Stage 730 (the next game) is implemented on
   `claude/stage-730-next-game`, stacked on 720's (`reports/STAGE_730_COMPLETION.md`); Stage 740 (the
   table's agreement and the DM's guide) on `claude/stage-740-agreement`, stacked on 730's
-  (`reports/STAGE_740_COMPLETION.md`). Off-host backup copies are a separate task on the owner's separate word.
+  (`reports/STAGE_740_COMPLETION.md`); Stage 760 (the ritual's checkpoint) on
+  `claude/stage-760-ritual-checkpoint` (`reports/STAGE_760_COMPLETION.md`): Part 1 stops there, before
+  the family playtest; Stage 750 waits for PR 32. Off-host backup copies are a separate task on the owner's separate word.
 
 ## Current request — campaign library release, 2026-11-14
 

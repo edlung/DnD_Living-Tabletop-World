@@ -14,6 +14,7 @@ import { nativeHaptic } from '../native/signals.ts';
 import { LobbyBanner } from '../session/lobby-banner.tsx';
 import { Glyph } from '../visual/glyph.tsx';
 import { useScreenAwake, useTitleCount } from './screen.ts';
+import { useSlotRoom } from './slot-room.ts';
 import { newWaits, waitsOf, type Wait } from './waits.ts';
 
 /**
@@ -78,8 +79,11 @@ export function TableAsks({
   useTitleCount(waits.length);
   useScreenAwake(sessionOpen);
   const asked = isDm ? [] : requests.filter((request) => request.status === 'open');
+  // On a phone the column stays under the top bar and scrolls (`slot-room.ts`).
+  const slot = useRef<HTMLDivElement>(null);
+  useSlotRoom(slot);
   return (
-    <div className="rest-banner-slot table-asks" aria-live="polite">
+    <div className="rest-banner-slot table-asks" aria-live="polite" ref={slot}>
       <LobbyBanner api={api} actorId={actorId} isDm={isDm} onOpenChronicle={onOpenChronicle} />
       <RestBanner
         isDm={isDm}

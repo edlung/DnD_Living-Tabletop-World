@@ -250,6 +250,10 @@
   `dm/first-evening.tsx`, `shell/requests.ts` (a request from one corner of the screen to
   another), `styles/agreement.css`, `i18n/ru-agreement.ts`. The API context now wraps the top bar
   too. Rollback: additive, an older build leaves the tables alone.
+- Stage 760 (the checkpoint): on a phone the lobby's column — the line, the next game, the
+  agreement's card, the stars card and "Previously…" may stand there at once — stops under the top
+  bar's real height and scrolls, each card whole (`alerts/slot-room.ts`, `styles/rest.css`); one
+  evening from end to end is a journey of its own (`tests/e2e/ritual-checkpoint.spec.ts`).
 
 ## Invariants affected
 

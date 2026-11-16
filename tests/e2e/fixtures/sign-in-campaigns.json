@@ -35,5 +35,7 @@
   "chronicleWriter": "ui-signin-chronicle-writer",
   "ritual": "ui-signin-ritual",
   "nextGame": "ui-signin-next-game",
-  "agreement": "ui-signin-agreement"
+  "agreement": "ui-signin-agreement",
+  "checkpoint": "ui-signin-checkpoint",
+  "checkpointIpad": "ui-signin-checkpoint-ipad"
 }

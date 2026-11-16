@@ -855,3 +855,11 @@ table talk, and static pages of the guide.
   the live inventory's and the move's coverage tests, the journeys `tests/e2e/agreement.spec.ts`
   (what a player's browser received) and `agreement-screens.spec.ts` (what the TV received).
 - Next review obligation: none scheduled; the owner may order an independent repeat.
+
+## Stage 760: the ritual's checkpoint (2026-11-16)
+
+No new read. `tests/e2e/ritual-checkpoint.spec.ts` plays one evening with the DM, two players and
+the table's screen (Chromium, WebKit on an iPad) and looks through what each was sent: the TV the
+party's view and none of the party-forbidden markers; a player their own wish and not the other's;
+nobody but the DM the list of who agreed or another's request for a pause. The table of every new
+read of Stages 710–740 and its tests is in `reports/STAGE_760_COMPLETION.md`.
