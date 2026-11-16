@@ -13,7 +13,7 @@ describe.each(SLUGS)('%s delivered local books', (slug) => {
         .filter((name) => name.endsWith('.html'))
         .map((name) => `handouts/${name}`),
     );
-    expect(pages.length).toBe(11 + source.handouts.length);
+    expect(pages.length).toBe(3 + source.sessions.length + source.handouts.length);
     for (const name of pages) {
       const url = new URL(name, root);
       const html = await readFile(url, 'utf8');

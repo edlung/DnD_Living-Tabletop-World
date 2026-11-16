@@ -35,7 +35,7 @@ export function tacticalMap(e: CampaignPackage['encounters'][number]): string {
       `<circle cx="${x}" cy="${y}" r="15" fill="${c.side === 'party' ? '#164c62' : '#843b28'}"/><text x="${x}" y="${y + 5}" text-anchor="middle" fill="white">${i + 1}</text>`,
     );
   });
-  return `<svg xmlns="http://www.w3.org/2000/svg" class="map" role="img" aria-label="Тактическая сетка A–N, 1–12: герои слева, противники справа" viewBox="0 0 ${width * size + margin} ${height * size + margin}"><title>Тактическая сетка 14 на 12 клеток</title><g font-family="system-ui,sans-serif" font-size="12" fill="#354852">${labels}</g><g transform="translate(${margin} ${margin})">${cells.join('')}</g></svg>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" class="map" role="img" aria-label="Тактическая сетка A–${String.fromCharCode(64 + width)}, 1–${height}: герои синие, противники красные" viewBox="0 0 ${width * size + margin} ${height * size + margin}"><title>Тактическая сетка ${width} на ${height} клеток</title><g font-family="system-ui,sans-serif" font-size="12" fill="#354852">${labels}</g><g transform="translate(${margin} ${margin})">${cells.join('')}</g></svg>`;
 }
 export function renderMaps(s: Source): string {
   if (s.world.engine) return renderKitMaps(s);

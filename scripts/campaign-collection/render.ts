@@ -35,6 +35,9 @@ for (const slug of selected.length ? selected : SLUGS) {
   const keep = new Set(s.handouts.map((h) => `${h.key}.html`));
   for (const name of await readdir(new URL('handouts/', root)))
     if (name.endsWith('.html') && !keep.has(name)) await rm(new URL(`handouts/${name}`, root));
+  const evenings = new Set(s.sessions.map((x) => `session-${x.number}.html`));
+  for (const name of await readdir(root))
+    if (/^session-\d+\.html$/.test(name) && !evenings.has(name)) await rm(new URL(name, root));
   const maps = new Set(s.encounters.map((e) => e.key));
   for (const name of await readdir(new URL('maps/', root)))
     if (name.endsWith('.svg') && !maps.has(name.replace(/-\d+\.svg$/, '')))
