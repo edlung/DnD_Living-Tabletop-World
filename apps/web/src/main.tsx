@@ -51,6 +51,7 @@ import './i18n/ru-story.ts';
 import './i18n/ru-place-sound.ts';
 import './i18n/ru-guest.ts';
 import './i18n/ru-story-cast.ts';
+import './i18n/ru-envelopes.ts';
 import { applyTextSize } from './dice/settings.ts';
 import { DisplayApp } from './display/display-app.tsx';
 import { RootBoundary } from './report/broken-page.tsx';

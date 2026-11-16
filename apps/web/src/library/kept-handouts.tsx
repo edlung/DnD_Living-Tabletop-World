@@ -7,6 +7,7 @@ import { useDiceTable } from '../dice/table.tsx';
 import { formatWhen } from '../dm/players.ts';
 import { HandoutFields, draftHandout, type HandoutDraft } from '../handouts/handout-fields.tsx';
 import { GiveHandout } from '../handouts/handouts.tsx';
+import { DmEnvelopes, SealEnvelope, useEnvelopes } from './envelopes.tsx';
 import { useLibrary, type Library } from './use-library.ts';
 
 /**
@@ -27,6 +28,7 @@ export function TableHandouts({
   const ids = useId();
   const table = useDiceTable();
   const library = useLibrary(api);
+  const envelopes = useEnvelopes(api);
   if (!table?.isDm) return null;
   const kept = library.resource.status === 'ready' ? library.resource.value.handouts : null;
   return (
@@ -55,29 +57,44 @@ export function TableHandouts({
             {kept.map((handout) => (
               <KeptHandoutCard
                 key={handout.entryId}
+                api={api}
                 handout={handout}
                 library={library}
                 characters={characters}
                 directory={directory}
+                onSealed={envelopes.reread}
               />
             ))}
           </ul>
         )}
       </section>
+      {/* What is sealed for the party, and what has opened (docs/adr/0073-table-ideas.md §9). */}
+      <DmEnvelopes
+        api={api}
+        envelopes={
+          envelopes.resource.status === 'ready' ? envelopes.resource.value.envelopes : []
+        }
+        onChanged={envelopes.reread}
+      />
     </>
   );
 }
 
 function KeptHandoutCard({
+  api,
   handout,
   library,
   characters,
   directory,
+  onSealed,
 }: {
+  readonly api: WorldApi;
   readonly handout: KeptHandoutView;
   readonly library: Library;
   readonly characters: readonly EntityRef[];
   readonly directory: readonly EntityRef[];
+  /** An envelope was sealed from this handout: the list of envelopes reads again. */
+  readonly onSealed: () => void;
 }) {
   const t = useT();
   const language = useLanguage();
@@ -185,6 +202,12 @@ function KeptHandoutCard({
         >
           {t('Change')}
         </button>
+        <SealEnvelope
+          api={api}
+          entryId={handout.entryId}
+          title={handout.title}
+          onSealed={onSealed}
+        />
         {deleting ? (
           <>
             <button

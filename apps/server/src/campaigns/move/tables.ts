@@ -196,6 +196,16 @@ export const MOVED_TABLES: readonly MovedTable[] = [
     owner: byCampaign,
   },
   {
+    // Sealed envelopes (ADR 0073 §9): what waits for the party goes where the campaign goes.
+    name: 'ltw_envelopes',
+    kind: 'state',
+    where: campaign,
+    key: ['campaign_id', 'envelope_id'],
+    order: 'sealed_at, envelope_id',
+    batch: ROWS,
+    owner: byCampaign,
+  },
+  {
     // Places' own sounds (ADR 0073 §6): the DM's preparation goes where the campaign goes.
     name: 'ltw_place_sounds',
     kind: 'state',
