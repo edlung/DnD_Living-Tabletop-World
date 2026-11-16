@@ -65,3 +65,15 @@
   min-height: 1.4em;
   margin: 0;
 }
+/* The place's two fields start level (one has a line under it, the other may not), and stand
+   one under the other where two would be too narrow for a track's name. */
+.place-sound .screen-cast-row {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  align-items: start;
+}
+.place-sound .field-hint:empty {
+  display: none;
+}
+.screen-sounded:empty {
+  min-height: 0;
+}

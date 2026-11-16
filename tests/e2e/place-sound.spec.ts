@@ -98,7 +98,8 @@ test('showing a place switches its sound on, and the DM’s choice still stands 
 
 test('по-русски: звук места в форме показа', async ({ browser }) => {
   test.setTimeout(120_000);
-  const dm = await freshPage(browser);
+  // The sign-in screen speaks the browser's language; the table, the campaign's.
+  const dm = await freshPage(browser, { locale: 'ru-RU' });
   await joinAsDm(dm, SIGN_IN_CAMPAIGNS.placeSoundRu, 0, WORDS.ru);
   await openSheet(dm, 'Экран стола');
   const form = dm.locator('#sheet-screen').getByRole('region', { name: 'Что показывают экраны' });

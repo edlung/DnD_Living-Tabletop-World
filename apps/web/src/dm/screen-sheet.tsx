@@ -76,7 +76,8 @@ export function ScreenSheet({
           }}
         />
       )}
-      <p role="status" className="place-sound-status">
+      {/* A live line of its own, not the sheet's status: that one is the pairing's. */}
+      <p aria-live="polite" className="place-sound-status screen-sounded">
         {sounded?.ambience && sounded.music
           ? t('Showing the place changed the table’s sound: ambience and music.')
           : sounded?.ambience

@@ -24,6 +24,11 @@ stage. Branch `claude/stage-850-scene-sound`, stacked on Stage 840's.
 - Only the DM's showing applies it — never the party's arrival at the place.
 - A campaign may give a sound to two hundred places.
 
+- From the independent pass, taken as decisions: the sheet — not the form, which is made anew
+  with every cast — says what showing the place did to the sound; the same button removes a
+  place's sound when both fields are left as they are, and is named so; a deleted track is said
+  to be deleted; "where the party is" says that the party's place may bring its sound.
+
 ## Boundaries
 
 No world state, no event, no command. No new sound and no new track: the five soundscapes and
