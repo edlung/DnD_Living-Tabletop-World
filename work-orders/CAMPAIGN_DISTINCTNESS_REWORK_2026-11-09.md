@@ -101,3 +101,7 @@ limit of 512 KiB.
 
 2026-11-16: `collection-2026/hollow-choir` done the same way (`campaigns/distinctness/hollow-choir-brief.md`,
 `reports/HOLLOW_CHOIR_REWORK_2026-11-16.md`): one night in six evenings of five scenes.
+
+2026-11-16: `collection-2026/winter-caravan` done the same way (`campaigns/distinctness/winter-caravan-brief.md`,
+`reports/WINTER_CARAVAN_REWORK_2026-11-16.md`). Paused at the owner's request after it:
+`salt-meridian` is a tuned draft before critics; `ash-testament` has its brief only.
