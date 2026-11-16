@@ -1,46 +1,46 @@
 {
-  "modelRequested": "gpt-6-astra",
+  "modelRequested": "claude-opus-5-5",
   "effortRequested": "max",
   "humanPlaytest": "NOT_RUN",
   "validation": "isolated canonical compiler; no database or real activation",
   "variants": [
     {
       "size": 6,
-      "sha256": "50cd9965d559a438c0eb3f9b3a9ece413ecf982b17b1a9ca7c4df2913af712cd",
+      "sha256": "2f6dbd50953102eecaa3a375f15723b1b8b4df052bdba15a2a4af9e4089902a2",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
       "counts": {
-        "entities": 52,
-        "knowledge": 108,
+        "entities": 73,
+        "knowledge": 160,
         "encounters": 3,
-        "quests": 8
+        "quests": 7
       }
     },
     {
       "size": 7,
-      "sha256": "659295ced3144cb0ccd8d6215ef867ed3a79dc27c475c18a8c452b2015625874",
+      "sha256": "cc67d26040e52c9097f8953e36eaf1237cc733972e969e17b5b4c4a35ede583a",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
       "counts": {
-        "entities": 57,
-        "knowledge": 110,
+        "entities": 78,
+        "knowledge": 162,
         "encounters": 3,
-        "quests": 8
+        "quests": 7
       }
     },
     {
       "size": 8,
-      "sha256": "9e5fd738d13a11976f0f65d58d52dddffa997216fddac2572e7524c655ee3642",
+      "sha256": "c255b9a26e9b124f2d6e67844d7732948b717270461ed3bb0c8fc480b8f249a7",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
       "counts": {
-        "entities": 62,
-        "knowledge": 112,
+        "entities": 80,
+        "knowledge": 164,
         "encounters": 3,
-        "quests": 8
+        "quests": 7
       }
     }
   ]
