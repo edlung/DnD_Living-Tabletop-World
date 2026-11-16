@@ -35,7 +35,7 @@ export default defineConfig({
     // a different one each time waited fifteen or twenty seconds for a screen that had not caught
     // up (an evening closed, a card in the lobby); one at a time, none has waited so since. That
     // day's red runs had two more causes, answered elsewhere: journeys that left their pages open
-    // (tests/e2e/support/journey.ts) and the dev client reloading a page (LTW_VITE_NO_WS below).
+    // (tests/e2e/support/journey.ts) and the dev client reloading a page (LTW_VITE_NO_RELOAD below).
     // Same journeys, same assertions, one worker.
     {
       name: 'ipad',
@@ -61,8 +61,9 @@ export default defineConfig({
     },
     {
       command: 'pnpm dev:web --host 127.0.0.1 --port 4310',
-      // No connection from the dev server to its pages: see LTW_VITE_NO_WS in vite.config.ts.
-      env: { LTW_API_TARGET: 'http://127.0.0.1:4311', LTW_VITE_NO_WS: '1' },
+      // A page that lost its connection to the dev server is not reloaded under its journey:
+      // LTW_VITE_NO_RELOAD in apps/web/vite.config.ts.
+      env: { LTW_API_TARGET: 'http://127.0.0.1:4311', LTW_VITE_NO_RELOAD: '1' },
       url: 'http://127.0.0.1:4310',
       reuseExistingServer: false,
       timeout: 30_000,
@@ -80,7 +81,7 @@ export default defineConfig({
       env: {
         LTW_API_TARGET: 'http://127.0.0.1:4313',
         LTW_VITE_CACHE_DIR: 'node_modules/.vite-sign-in',
-        LTW_VITE_NO_WS: '1',
+        LTW_VITE_NO_RELOAD: '1',
       },
       url: 'http://127.0.0.1:4312',
       reuseExistingServer: false,

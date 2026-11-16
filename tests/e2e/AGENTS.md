@@ -24,10 +24,9 @@ It changes no world state; keep its window listener, since `pageerror` misses th
   A spec that takes `browser` imports `test` from `support/journey.ts` (it closes what the journey
   opened), or closes its own with `closePages` of `support/pages.ts`;
   `tests/architecture/journey-pages.test.ts` holds every spec to one of the two.
-- The journeys' dev servers keep no connection to their pages (`LTW_VITE_NO_WS`,
-  `apps/web/vite.config.ts`): the dev client reloads a page that lost it, and in WebKit it was
-  lost now and then under a journey. So a journey never sees hot reloading; it edits no source.
-  The dev client's handshake is refused at once, so no page waits on it; its console says so.
+- The journeys' dev servers do not reload a page that lost its connection to them
+  (`LTW_VITE_NO_RELOAD`, `apps/web/vite.config.ts`): the dev client does, and in WebKit that
+  connection was lost now and then under a journey, whose page then came back at its start.
 - `apps/server/src/testing/ui-server.ts` composes the real World Engine and dev
   personas over deterministic in-memory storage. No external AI provider runs.
 - These are browser journeys through real HTTP projections, not mocked domain
