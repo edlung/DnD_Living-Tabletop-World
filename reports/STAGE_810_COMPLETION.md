@@ -42,6 +42,15 @@ From the independent UX, copy and accessibility pass (a reviewing subagent, read
 Not taken: the button over the scene is not given room of its own on a phone (it is small and is
 there all evening).
 
+## Found by the pull request's CI, and fixed
+
+The whole browser suite, which this environment did not run for this stage, failed in two older
+journeys (`combat-narrow.spec.ts:24`, `combat-scene-view.spec.ts:22`): over a fight on a narrow
+screen the button lay on the fight's own controls — "Move here", the switch to the battlefield —
+and took their presses. In a fight the button now lies in the fight's own layout, under the
+switch (the same place Stage 820 gives the row of the two quiet buttons). Both journeys pass
+again.
+
 ## Verification
 
 | Check                                                                                                                                                 | Result                                                                                                             |
