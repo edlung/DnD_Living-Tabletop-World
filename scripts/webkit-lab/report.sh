@@ -2,6 +2,11 @@
 # Temporary (WebKit lab): what the runner knows of a run, printed to the job's log.
 set -u
 lab=/tmp/lab
+crashes=$(grep -cE 'malloc|corrupted|free\(\)|realloc\(\)|munmap_chunk' "$lab/stderr.log")
+lost=$(grep -c 'internal error. This is a WebKit bug' "$lab/stderr.log")
+cores=$(ls /tmp/cores/*.core 2>/dev/null | wc -l)
+echo "[lab] heap corruption messages: $crashes; requests lost to a dead network process: $lost; core dumps: $cores"
+pnpm exec playwright --version
 echo "::group::[lab] machine"
 nproc
 free -m
@@ -45,8 +50,4 @@ if [ -n "$cores" ]; then
     sudo gdb -batch -ex 'bt 45' -ex 'info threads' "$exe" "$core" 2>&1 | grep -vE '^\[New LWP|^warning: (Could not|Section|Can.t open)|No such file' | cut -c1-260 | head -120
   done
 fi
-echo "::endgroup::"
-
-echo "::group::[lab] traces of failed journeys"
-node --input-type=module - test-results < scripts/webkit-lab/trace-digest.mjs.txt 2>&1 | head -400
 echo "::endgroup::"

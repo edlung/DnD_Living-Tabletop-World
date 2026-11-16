@@ -19,21 +19,23 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        variant: [shard, webkit, notrace, built]
-        run: [1, 2, 3]
+        variant: [shard]
+        run: [1, 2, 3, 4, 5, 6]
         include:
           - variant: shard
             args: --shard=3/3
           - variant: webkit
+            run: 1
             args: --project=ipad --project=webkit
-          - variant: notrace
-            args: --project=ipad --project=webkit --trace off
-          - variant: built
+          - variant: webkit
+            run: 2
             args: --project=ipad --project=webkit
-            built: '1'
-          - variant: shard
+          - variant: webkit
+            run: 3
+            args: --project=ipad --project=webkit
+          - variant: webkit
             run: 4
-            args: --shard=3/3
+            args: --project=ipad --project=webkit
 
     env:
       NODE_ENV: test
@@ -73,12 +75,10 @@ jobs:
       - name: Journeys
         env:
           DEBUG: pw:browser
-          LAB_BUILT: ${{ matrix.built }}
         run: |
           mkdir -p /tmp/lab /tmp/cores
           sudo sysctl -q -w kernel.core_pattern='/tmp/cores/%e.%p.core'
           ulimit -c unlimited
-          if [ -n "$LAB_BUILT" ]; then export LTW_E2E_BUILT=1; fi
           bash scripts/webkit-lab/sample.sh > /tmp/lab/mem.log &
           pnpm run test:e2e ${{ matrix.args }} 2> /tmp/lab/stderr.log
 
