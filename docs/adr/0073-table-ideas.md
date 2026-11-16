@@ -195,6 +195,10 @@
    account deletes those notes — nobody else could ever read them — and leaves the backstories
    with their heroes (ADR 0062 §2–3). The privacy notice names both. A finished campaign still
    takes a note, a player's own notebook, and no longer a backstory (ADR 0072 §2).
+8. **Words not yet saved.** The Story tab keeps what is typed while another tab of the sheet
+   shows, and the sheet asks before it closes on words nobody saved. A backstory's field follows
+   what is kept until someone types in it; if the kept text changes under the typing — the
+   other of its two writers saved — the page says so before "Save" replaces it.
 
 ## Consequences
 

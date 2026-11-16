@@ -22,7 +22,10 @@ test('по-русски: предыстория и личные заметки',
   await enterWorld(page, TOKENS.player, UI_PARTY_CAMPAIGNS.storyRu);
   const story = await openCharacter(page, 'История', 'Персонаж');
   const backstory = story.getByRole('region', { name: 'История героя' });
-  await expect(backstory).toContainText('Это читаете вы и мастер, и каждый из вас может изменить текст.', WAIT);
+  await expect(backstory).toContainText(
+    'Это читаете вы и мастер, и каждый из вас может изменить текст.',
+    WAIT,
+  );
   const notes = story.getByRole('region', { name: 'Мои заметки' });
   await expect(notes).toContainText('Их читаете только вы. Мастер и другие игроки их не видят.');
   await notes.getByRole('button', { name: 'Написать заметку', exact: true }).click();
@@ -32,4 +35,28 @@ test('по-русски: предыстория и личные заметки',
   await expect(notes.getByRole('status')).toHaveText('Заметка сохранена.', WAIT);
   await expect(notes.locator('.story-notes li')).toContainText('Заметка без названия');
   await expectAccessible(page, 'вкладка «История» с заметкой');
+
+  // Five tabs on a phone: each word stays inside its own tab, and the row inside the screen.
+  for (const width of [390, 320]) {
+    await page.setViewportSize({ width, height: 700 });
+    const tabs = await page.locator('.hero-tab').evaluateAll((all) =>
+      all.map((tab) => {
+        const range = document.createRange();
+        range.selectNodeContents(tab);
+        const words = range.getBoundingClientRect();
+        const box = tab.getBoundingClientRect();
+        return { left: box.left, right: box.right, from: words.left, to: words.right };
+      }),
+    );
+    expect(tabs).toHaveLength(5);
+    for (const tab of tabs) {
+      expect(tab.from, `a tab's word starts inside it at ${String(width)}`).toBeGreaterThanOrEqual(
+        tab.left,
+      );
+      expect(tab.to, `a tab's word ends inside it at ${String(width)}`).toBeLessThanOrEqual(
+        tab.right + 0.5,
+      );
+    }
+    expect(tabs.at(-1)?.right ?? 0).toBeLessThanOrEqual(width);
+  }
 });

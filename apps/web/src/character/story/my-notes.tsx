@@ -173,7 +173,7 @@ export function MyNotes({ api }: { readonly api: WorldApi }) {
             save();
           }}
         >
-          <label htmlFor={`${ids}-note-title`}>{t('What it is about (optional)')}</label>
+          <label htmlFor={`${ids}-note-title`}>{t('What the note is about (optional)')}</label>
           <input
             ref={first}
             id={`${ids}-note-title`}
@@ -320,9 +320,7 @@ export function MyNotes({ api }: { readonly api: WorldApi }) {
         </ul>
       )}
       {resource.status === 'ready' && notes.length === 0 && editing === null && (
-        <p className="muted">
-          {t('No notes yet. Write down a clue, a name to remember, a plan.')}
-        </p>
+        <p className="muted">{t('No notes yet. Write down a clue, a name to remember, a plan.')}</p>
       )}
     </section>
   );

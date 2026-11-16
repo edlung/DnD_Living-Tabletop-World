@@ -45,7 +45,7 @@ registerRussian({
     'Блокнот полон: удалите заметку, чтобы написать новую.',
   'A new note': 'Новая заметка',
   'Change the note': 'Изменить заметку',
-  'What it is about (optional)': 'О чём она (необязательно)',
+  'What the note is about (optional)': 'О чём заметка (необязательно)',
   'The note': 'Заметка',
   'Save the note': 'Сохранить заметку',
   'The note is saved.': 'Заметка сохранена.',

@@ -83,3 +83,28 @@
   opacity: 0.6;
   cursor: not-allowed;
 }
+
+/* Five tabs on a phone (the Story tab is the fifth): they share the row by their words, a little
+   smaller on the narrowest screens, and the row scrolls sideways before two of them ever meet
+   ("Заклинания" and "Снаряжение" did at 390 px). */
+@media (max-width: 599px) {
+  .hero-tabs {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .hero-tabs .hero-tab {
+    flex: 1 0 auto;
+  }
+}
+@media (max-width: 419px) {
+  .hero-tabs .hero-tab {
+    padding: 8px 4px;
+    font-size: 0.9rem;
+  }
+}
+@media (max-width: 359px) {
+  .hero-tabs .hero-tab {
+    padding: 8px 2px;
+    font-size: 0.82rem;
+  }
+}

@@ -28,6 +28,13 @@ stacked on Stage 830's.
 - The plan said the DM reads backstories "from the party's sheet": the DM opens a hero's sheet
   from there and finds the Story tab; there is no second list.
 
+- From the independent pass, taken as decisions: the sheet asks before it closes on unsaved
+  words, and the Story tab keeps them while another tab shows; a backstory's field follows what
+  is kept until someone types, and says when it changed under the typing; the DM's tab says
+  that a player's notes exist and are not the DM's to read; "Backstory" is «История героя» in
+  Russian (the builder's Background is «Предыстория»).
+- Found by looking at the screens: five tabs share a phone's row by their words.
+
 ## Boundaries
 
 No world state, no event, no command, no knowledge record. No AI reads either text. No art.
