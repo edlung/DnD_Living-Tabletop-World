@@ -72,6 +72,16 @@ is; ADR 0072 §2 marks every point as the session's.
   owner in a thing's name ("Brann Ironvale keeps: Brann Ironvale's Woodcutter's hatchet" — the
   names are the test world's own; a thing named "Woodcutter's hatchet" reads well).
 
+- **Found by the whole browser suite, once it was run to its end** (in a cloud session, and by
+  the pull request's CI on both engines): the block "The adventure's end" kept an empty
+  `role="alert"` line on the Session sheet at all times — one of the reviewer's "two lines that
+  stay". Four older journeys read "no alert on the Session sheet" as "nothing failed" and broke in
+  five places (`dm-screen.spec.ts:166`, `evening-ritual.spec.ts:35`,
+  `evening-ritual-screens.spec.ts:47`, `own-dice.spec.ts:17`; the first two on the iPad project
+  too). The line of what failed is now there only while a finish or a reopening has failed, as
+  the keepsake form's is; the polite line of what was done stays (commit 2dbed0b7). This is what
+  the first version of this report named as the stage's main open risk.
+
 ## Files
 
 Contracts `session/ending.ts`, `session/accounts.ts`, `knowledge/views.ts` (`FINISHED`). Server
@@ -90,15 +100,40 @@ migration `0043_campaign_endings.sql`, `http/app.ts`, `http/errors.ts`, `main.ts
 
 Run on the branch on 2026-11-16 (offline; no paid call):
 
-| Check                                                         | Result                                                                                                                                                                                                                   |
-| ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `pnpm run format:check`, `lint`, `typecheck`                  | pass                                                                                                                                                                                                                     |
-| `pnpm run context-budget`                                     | pass; one earlier warning (`scripts/campaign-shared/combat-kit.ts`), none from this stage                                                                                                                                |
-| `pnpm run test` (unit)                                        | 577 files, 4636 tests pass                                                                                                                                                                                               |
-| `pnpm run test:integration` (PostgreSQL, throwaway databases) | 81 files, 398 tests pass: the store held to the in-memory semantics, migration 0043, the move's coverage                                                                                                                 |
-| `pnpm run build`                                              | pass                                                                                                                                                                                                                     |
-| `pnpm run test:e2e` (the whole suite)                         | **not run to its end**: the run was stopped part-way when the owner had to close the laptop and the work moved to a cloud session. The stage's own journeys and their neighbours were run and pass (below)               |
-| `ui-layout-audit` (`audit.mjs` in a temporary journey)        | the lobby's card in three states, the DM's block, the book's end at 1440, 768, 390, 320 and 832×400 in both languages, the account's list at four sizes: no finding from this stage after the fixes; one reviewed, below |
+| Check                                                         | Result                                                                                                                                                                                                                                                              |
+| ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `pnpm run format:check`, `lint`, `typecheck`                  | pass                                                                                                                                                                                                                                                                |
+| `pnpm run context-budget`                                     | pass; one earlier warning (`scripts/campaign-shared/combat-kit.ts`), none from this stage                                                                                                                                                                           |
+| `pnpm run test` (unit)                                        | 577 files, 4636 tests pass                                                                                                                                                                                                                                          |
+| `pnpm run test:integration` (PostgreSQL, throwaway databases) | 81 files, 398 tests pass: the store held to the in-memory semantics, migration 0043, the move's coverage                                                                                                                                                            |
+| `pnpm run build`                                              | pass                                                                                                                                                                                                                                                                |
+| `pnpm run test:e2e` (the whole suite)                         | **run to its end on Chromium in a cloud session after the fix above**: 342 journeys, 335 pass in the whole run, 7 ran out of their 30 seconds on a four-core container and pass when run alone (below). The `ipad` and `webkit` projects were not run there (below) |
+| `ui-layout-audit` (`audit.mjs` in a temporary journey)        | the lobby's card in three states, the DM's block, the book's end at 1440, 768, 390, 320 and 832×400 in both languages, the account's list at four sizes: no finding from this stage after the fixes; one reviewed, below                                            |
+
+**The whole suite, 2026-11-16, in a cloud session** (a four-core container; Node 24, Playwright
+1.63 with its Chromium; the journeys' servers hold their own in-memory stores):
+
+- A first whole run on commit faa85c42 was stopped at 172 of 342 once it had shown the defect
+  above (167 passed; two failed on the alert, three ran out of time). The pull request's CI on
+  the same commit (run 43821032472, hosted runners, all three projects) ended with 347 passed, 7
+  failed, 1 skipped, 2 not run: six of the seven are the alert — `dm-screen.spec.ts:166` and
+  `evening-ritual.spec.ts:35` on Chromium and on the iPad, `evening-ritual-screens.spec.ts:47`,
+  `own-dice.spec.ts:17` — and the seventh is `[ipad] agreement.spec.ts:27` (under "Not
+  verified"). Static checks, unit tests, build and integration tests and the deployment check
+  passed there.
+- After the fix (commit 2dbed0b7) the sixteen journeys of the files that failed and of this
+  stage (`dm-screen`, `evening-ritual`, `evening-ritual-screens`, `own-dice`, `campaign-end`,
+  `campaign-end-hub`, `campaign-book`, `campaign-book-hub`, `stars-and-wishes`, `agreement`,
+  `agreement-screens`) pass on Chromium.
+- Then the whole Chromium project, 342 journeys, 40.9 minutes: **335 pass; 7 fail, each a
+  journey that ran out of its 30 seconds** (30.0–35.2 s): `combat-lifecycle.spec.ts:17`,
+  `light.spec.ts:21`, `live-stand-in.spec.ts:43`, `live-undo-notice.spec.ts:20`,
+  `live-world.spec.ts:23`, `perspectives.spec.ts:13`, `sign-in-tabs.spec.ts:37`. Five of them ran
+  while the session was also running another stage's unit tests on the same four cores — the
+  session's mistake, not the product's. **Run again alone, all seven pass** (15–30 s each; three
+  within a second or two of the limit on this machine). None is a file this stage touched.
+- `voice.spec.ts:77` and `table-display.spec.ts:65`, which failed in whole runs on the owner's
+  laptop, pass here in the whole run and in the pull request's CI.
 
 Run and passing on their own, after the last change to the product: `campaign-end.spec.ts`
 (Chromium on a laptop, WebKit on an iPad: the end waits for the evening to close; the DM
@@ -137,11 +172,24 @@ the two files of this stage were run again, the other two were not.
 
 ## Not verified, and limits
 
-- **The whole browser suite was not run to its end on this stage** (above). What changed
-  outside the stage's own screens — the stars card's words after the last game, the lobby
-  banner, the Session sheet, the account's list split into two lists — is covered by journeys
-  that were not all run again after the last fixes. The cloud session that continues this work,
-  or the pull request's CI, is to run it; until then this is the stage's main open risk.
+- **WebKit after the fix.** The cloud session could not install WebKit (its network refuses
+  Playwright's download host), so the `ipad` and `webkit` projects were not run there; and it
+  could not push (no write access to the repository), so the pull request's CI has not run on
+  the fix. What is known of WebKit is the CI run on the commit before it: the two iPad failures
+  on the alert, which the fix removes for the same reason as on Chromium — read in code, not
+  run — and the one below. The CI of the pushed fix is to confirm.
+- **`[ipad] agreement.spec.ts:27` failed once in that CI run**: the player's card "Before you
+  play" did not appear within fifteen seconds of the DM saving the agreement. It passes on
+  Chromium here (three times) and passed on the iPad in Stage 770's CI. Whether it is a hosted
+  runner's slowness or something of this stage on WebKit is not known; nothing of the agreement
+  was changed here, but the lobby banner that holds its card was. To be watched in the next CI
+  run.
+- **Seven journeys ran out of time in the whole run and pass alone** (above): on this machine
+  the suite's 30 seconds leave three of them a second or two to spare. That it is the machine
+  and not a slow path this stage added was not proved beyond their passing alone.
+- **Stage 770's CI (PR 43) is red** on `next-game.spec.ts:60`, on both engines (after the session started, the Session sheet did not say "No date yet." within fifteen seconds); the same journey passes in
+  this stage's CI an hour later and in both runs here. Not investigated — neither stage changed
+  the journey or the next game — and named so that it is not taken for green.
 - **No human has used it**, and the design was not drafted from a campaign played to its end
   (see the top). Whether a table wants a campaign to refuse play once finished, whether one
   keepsake is right, whether children choose on phones or together at the table — unknown.
@@ -155,7 +203,8 @@ the two files of this stage were run again, the other two were not.
   two-line names on the book's cover (centred, as meant; Stage 770's).
 - Not tried: a real phone, a screen reader's actual speech, the native apps, a table display
   while a campaign is finished (it reads the end; nothing is cast for it).
-- `voice.spec.ts:77` and `table-display.spec.ts:65` are as Stage 770's report describes them.
+- `voice.spec.ts:77` and `table-display.spec.ts:65` are as Stage 770's report describes them on
+  the owner's laptop; both pass in the cloud session's whole run and in CI.
 - Migration 0043 ran only in the integration tests' throwaway databases; nothing was deployed;
   the shared development database was not touched.
 
