@@ -109,10 +109,17 @@ test('the DM writes the agreement; a player reads it, agrees, and asks for a pau
   );
   // A second press sends no second request.
   await guide.getByRole('button', { name: 'Pause asked', exact: true }).click({ force: true });
-  // The DM reads it in Chat, as a word to the DM alone.
+  // The DM reads it on a card of their own (ADR 0073 §2), and not in Chat: it is not table talk.
+  const asked = dm.locator('.pause-card');
+  await expect(asked).toHaveCount(1, WAIT);
+  await expect(asked).toContainText('asks for a pause. Only you see this.');
   await openSheet(dm, 'Chat');
-  await expect(dm.locator('#sheet-chat')).toContainText('I would like a pause, please.', WAIT);
-  await expect(dm.locator('#sheet-chat').getByText('I would like a pause, please.')).toHaveCount(1);
+  await expect(dm.locator('#sheet-chat')).not.toContainText('pause');
+  await asked.getByRole('button', { name: 'Not now', exact: true }).click();
+  await expect(guide.getByRole('status')).toHaveText(
+    'The DM has seen that you asked for a pause.',
+    WAIT,
+  );
   // "Tell the DM privately" opens the chat with the DM chosen.
   await guide.getByRole('button', { name: 'Tell the DM privately', exact: true }).click();
   await expect(guide).toBeHidden();

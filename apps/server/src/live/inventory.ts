@@ -85,6 +85,9 @@ export function coverageInventory(target: LiveTarget): ViewRequest[] {
   if (target.kind === 'CHARACTER' || target.kind === 'DM' || target.display === true) {
     views.push(scoped('cheers'));
   }
+  // A quiet request for a pause (ADR 0073 §2): the DM reads every one, a character its own —
+  // so another player's stream is never signalled by one.
+  if (target.kind === 'CHARACTER' || target.kind === 'DM') views.push(scoped('pause-requests'));
   // Crafting (ADR 0057 §9): a project's days of work, a character's own and the DM's.
   if (target.kind === 'CHARACTER' || target.kind === 'DM') views.push(scoped('crafting'));
   // The table's shared marks on the board (ADR 0057 §5): every member's and the display's.

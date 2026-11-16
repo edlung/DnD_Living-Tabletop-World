@@ -14,6 +14,7 @@ import {
 } from '../http/app.ts';
 import { memoryCheers } from '../cheers/cheer-routes.ts';
 import { memoryClientErrors } from '../client-errors/client-error-routes.ts';
+import { memoryPauses } from '../pause/pause-routes.ts';
 import { memoryLobby } from '../table/table-state.ts';
 import { createLogger } from '../platform/logging/logger.ts';
 import { fingerprintSubscription } from './fingerprint.ts';
@@ -66,6 +67,8 @@ export function buildLiveApp(
     ending: deps.ending ?? memoryEnding(),
     // And one board of cheers, so applause reaches every screen (ADR 0072 §3).
     cheers: deps.cheers ?? memoryCheers(),
+    // And one board of requests for a pause, so one signals the DM and its asker (ADR 0073 §2).
+    pauses: deps.pauses ?? memoryPauses(),
     // And one list of what broken pages reported, so a report signals the DM (ADR 0073 §1).
     clientErrors: deps.clientErrors ?? memoryClientErrors(),
     presence: registry,

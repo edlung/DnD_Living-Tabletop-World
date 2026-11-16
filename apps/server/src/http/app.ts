@@ -24,6 +24,7 @@ import {
   type ClientErrorDependencies,
 } from '../client-errors/client-error-routes.ts';
 import { InMemoryMarkStore } from '../marks/mark-store.ts';
+import { memoryPauses, registerPauseRoutes, type PauseDependencies } from '../pause/pause-routes.ts';
 import { registerMarkRoutes, type MarkDependencies } from '../marks/mark-routes.ts';
 import { InMemoryChatStore } from '../chat/chat-store.ts';
 import {
@@ -178,6 +179,8 @@ export interface AppDependencies {
   readonly ending?: EndingDependencies;
   /** Cheers at the table (ADR 0072 §3): this process's memory, always. */
   readonly cheers?: CheerDependencies;
+  /** Requests for a pause (ADR 0073 §2): this process's memory, always. */
+  readonly pauses?: PauseDependencies;
   /** What a broken page reports (ADR 0073 §1): operations data; in memory when absent. */
   readonly clientErrors?: ClientErrorDependencies;
   /** The table's shared marks on the board (ADR 0057 §5); in memory when absent. */
@@ -348,6 +351,7 @@ export function buildApp(input: AppDependencies): FastifyInstance {
   registerAgreementRoutes(app, { ...deps, agreement: deps.agreement ?? memoryAgreement() });
   registerEndingRoutes(app, { ...deps, ending });
   registerCheerRoutes(app, { ...deps, cheers: deps.cheers ?? memoryCheers() });
+  registerPauseRoutes(app, { ...deps, lobby, pauses: deps.pauses ?? memoryPauses() });
   registerClientErrorRoutes(app, {
     ...deps,
     clientErrors: deps.clientErrors ?? memoryClientErrors(),

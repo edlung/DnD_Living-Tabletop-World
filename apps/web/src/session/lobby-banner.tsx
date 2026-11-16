@@ -6,6 +6,7 @@ import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
 import { recapParagraphs } from '../chronicle/book-chapters.ts';
 import { Previously, usePreviously } from '../chronicle/previously.tsx';
+import { PauseAsk } from '../pause/pause-ask.tsx';
 import { calendarHref, NextGameLine, useCalendarFile } from '../ritual/next-game.tsx';
 import { AgreementCard } from '../ritual/agreement.tsx';
 import { useEnding } from '../ritual/ending.ts';
@@ -17,7 +18,8 @@ import { Glyph } from '../visual/glyph.tsx';
  * A player's view of the table around a session (docs/adr/0043-dm-screen.md §6): while no session
  * is open, "ready" for the one to come and "Previously…" to read meanwhile (ADR 0071 §1.4: the
  * party's last chapter, for the player who missed the evening too); while the DM has paused the
- * game, that it waits. Nothing
+ * game, that it waits; while it plays, the one-press way to ask for a pause
+ * (docs/adr/0073-table-ideas.md §2). Nothing
  * otherwise for a player, and nothing of this for the DM (the Session sheet is theirs). Everyone,
  * the DM too, reads when the campaign plays on another server since a move: here it is looked at,
  * not played (docs/adr/0061-local-mode.md §5). It lies first among the table's questions over the
@@ -86,7 +88,15 @@ export function LobbyBanner({
   const mine = characters.find((entry) => entry.character.entityId === actorId);
   // A game in play has no lobby; the table's agreement still asks to be read (a campaign may
   // begin with its first session already open).
-  if (session !== null && !paused) return <AgreementCard api={api} characterId={actorId} />;
+  // And the one-press way to a pause (ADR 0073 §2): told to the DM alone.
+  if (session !== null && !paused) {
+    return (
+      <>
+        <AgreementCard api={api} characterId={actorId} />
+        <PauseAsk api={api} />
+      </>
+    );
+  }
   return (
     <>
       <div className="lobby-banner">

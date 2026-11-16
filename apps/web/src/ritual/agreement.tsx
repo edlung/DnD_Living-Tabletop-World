@@ -160,7 +160,7 @@ export function AgreementCard({
         </section>
         <footer className="guide-footer">
           <span className="guide-step">
-            {t('The agreement and “Ask for a pause” stay in “How to play”.')}
+            {t('The agreement stays in “How to play”. “Ask for a pause” is on your screen while you play.')}
           </span>
           <div className="action-row">
             <button

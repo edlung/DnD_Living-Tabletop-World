@@ -93,6 +93,8 @@ export const UI_PARTY_CAMPAIGNS = {
   troubles: 'ui-troubles',
   troublesIpad: 'ui-troubles-ipad',
   troublesRu: 'ui-troubles-ru',
+  /** A short way to a pause, in Russian (Stage 810). */
+  pauseRu: 'ui-pause-ru',
 } as const;
 
 /**
@@ -158,6 +160,7 @@ export async function seedUiPartyCampaigns(engine: WorldEngine): Promise<void> {
     [UI_PARTY_CAMPAIGNS.troubles, 'en'],
     [UI_PARTY_CAMPAIGNS.troublesIpad, 'en'],
     [UI_PARTY_CAMPAIGNS.troublesRu, 'ru'],
+    [UI_PARTY_CAMPAIGNS.pauseRu, 'ru'],
   ] as const) {
     const seed = await loadSeed(
       language === 'ru' ? RAVENFORD_RU_FIXTURES_DIR : RAVENFORD_FIXTURES_DIR,

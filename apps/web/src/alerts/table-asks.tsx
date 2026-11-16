@@ -10,6 +10,7 @@ import { AnswerCheck } from '../dice/own-dice.tsx';
 import { useDiceSettings } from '../dice/settings.ts';
 import { useDiceTable } from '../dice/table.tsx';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
+import { PauseAsks } from '../pause/pause-asks.tsx';
 import { TroubleNotice } from '../report/screen-troubles.tsx';
 import { RestBanner } from '../rest/sheet-rest.tsx';
 import { nativeHaptic } from '../native/signals.ts';
@@ -96,6 +97,8 @@ export function TableAsks({
         onOpenChronicle={onOpenChronicle}
         onOpenBook={onOpenBook}
       />
+      {/* A player's quiet request for a pause (docs/adr/0073-table-ideas.md §2): the DM's alone. */}
+      {isDm && <PauseAsks api={api} />}
       {/* The DM's break reminder (docs/adr/0072-keepsakes.md §3): off unless the DM asked. */}
       {isDm && <BreakReminder api={api} />}
       {/* What this table's screens reported when they broke (docs/adr/0073-table-ideas.md §1). */}

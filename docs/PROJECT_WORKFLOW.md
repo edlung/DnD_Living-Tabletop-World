@@ -14,7 +14,9 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   sessions' reading), each in its own pull request stacked on the one before; merges, deployment,
   the family playtest and real devices stay the owner's. Stage 800 (client error reports) is
   implemented on `claude/stage-800-client-error-reports` (ADR 0073 §1,
-  `reports/STAGE_800_COMPLETION.md`), awaiting the owner's disposition.
+  `reports/STAGE_800_COMPLETION.md`); Stage 810 (a short way to a pause) on
+  `claude/stage-810-short-way-to-a-pause`, stacked on 800's (ADR 0073 §2,
+  `reports/STAGE_810_COMPLETION.md`); each awaits the owner's disposition.
 
 ## Current request — memory and ritual, 2026-11-15
 

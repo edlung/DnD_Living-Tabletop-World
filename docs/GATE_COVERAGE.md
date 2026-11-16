@@ -954,3 +954,23 @@ what broke, in fixed fields, and shows the DM a list.
   header, never in the body), `trouble-words.test.ts` (the DM's words are the application's own
   for every value), the journeys `tests/e2e/client-errors.spec.ts` (the report as sent, against
   the forbidden markers and the typed chat line) and `client-errors-screens.spec.ts`.
+
+## Stage 810: a short way to a pause (2026-11-16)
+
+Stage 810 (`docs/adr/0073-table-ideas.md` §2) lets a player ask for a pause with one press and
+tells the DM alone.
+
+- Boundary: one new read, `GET …/pause-requests`, and two writes. That a named character's player
+  asked is the DM's and the asker's to read and nobody else's: another player's character view,
+  the party's shared view, the public view and a table display are refused (403), a stranger finds
+  no campaign. A request carries no words. The read is in the live inventory of the DM and of
+  each character's own view, which shows only that character's request — so another player's
+  stream is not signalled. Held in memory; no chat message, no table, no log line.
+- Deterministic regressions: `apps/server/src/pause/pause-routes.test.ts` (each asker and reader;
+  the other player's view empty; a body with words refused; one request a minute; the rate; seen
+  and gone; aged out; the pause answers; the session's end forgets; no chat message; a table
+  display; the live signal to the DM and the asker and not to the other player),
+  `pause-board.test.ts`, `live/inventory.test.ts` (a display and the party's view never cover the
+  read), the journeys `tests/e2e/pause.spec.ts` (what the other player's screen and the table's
+  screen show and were sent), `pause-words.spec.ts`, `agreement.spec.ts`,
+  `ritual-checkpoint.spec.ts`.

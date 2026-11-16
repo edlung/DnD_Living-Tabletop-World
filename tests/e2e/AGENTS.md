@@ -277,6 +277,11 @@ It changes no world state; keep its window listener, since `pageerror` misses th
 - Native apps (ADR 0070, `native-shell.spec.ts`): a stand-in shell installed with `addInitScript`
   records what the page posts, and the journey speaks for the shell with `ltw-native` events; it owns
   the `native` sign-in campaign. The apps themselves are checked on the simulator and the emulator.
+- A short way to a pause (ADR 0073 §2, Stage 810): `pause.spec.ts` owns the `pause` sign-in
+  campaign (and `pauseIpad` in WebKit) — the DM, two players by invitation and a paired TV;
+  `pause-words.spec.ts` owns `ui-pause-ru`. A request is held in the server's memory for ten
+  minutes: a journey that asks must have the DM answer ("Not now" or the pause), or the card stays
+  on the DM's screen for the rest of it.
 - Client error reports (ADR 0073 §1, Stage 800): `client-errors.spec.ts` owns `ui-troubles` (and
   `ui-troubles-ipad` in WebKit, `ui-troubles-ru`), `client-errors-screens.spec.ts` the `troubles`
   sign-in campaign with a paired TV. A screen is broken on purpose by a route that hands back a

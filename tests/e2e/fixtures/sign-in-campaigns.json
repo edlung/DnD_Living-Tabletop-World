@@ -43,5 +43,7 @@
   "comforts": "ui-signin-comforts",
   "keepsakes": "ui-signin-keepsakes",
   "keepsakesIpad": "ui-signin-keepsakes-ipad",
-  "troubles": "ui-signin-troubles"
+  "troubles": "ui-signin-troubles",
+  "pause": "ui-signin-pause",
+  "pauseIpad": "ui-signin-pause-ipad"
 }

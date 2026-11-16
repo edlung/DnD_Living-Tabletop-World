@@ -1,0 +1,48 @@
+/*
+ * A quiet request for a pause (docs/adr/0073-table-ideas.md §2): the player's small button among
+ * the table's questions over the stage, the line that answers it, and the DM's card.
+ */
+.pause-ask {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  pointer-events: auto;
+}
+/* Small and quiet: it is there all evening, and pressed perhaps once. */
+.pause-ask-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 6px 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: var(--glass-raised);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(var(--blur));
+  color: var(--text);
+  font-size: 0.95rem;
+}
+.pause-ask-button > .glyph {
+  width: 20px;
+  height: 20px;
+  color: var(--gold-bright);
+}
+.pause-ask-button[aria-disabled='true'] {
+  opacity: 0.6;
+  cursor: progress;
+}
+.pause-asked {
+  border-radius: var(--radius-panel);
+}
+.pause-card button[aria-disabled='true'] {
+  opacity: 0.6;
+  cursor: progress;
+}
+@media (max-width: 767px) {
+  /* On a phone the column fills the width: the button keeps to the right, out of the thumb's way
+     to the dock's first tabs. */
+  .pause-ask {
+    justify-items: end;
+  }
+}

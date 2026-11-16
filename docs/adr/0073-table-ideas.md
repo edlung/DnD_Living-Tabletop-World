@@ -4,9 +4,11 @@
   улучшений…», quoted as relayed in `reviews/OWNER_TABLE_IDEAS_2026-11-16.json`; every point of §1
   is the session's and is marked in the plan, `docs/TABLE_IDEAS_PLAN.md` decisions 3–4, and stays
   the owner's to overrule). Later sections are added by their stages and are not in force until
-  then. §1 amends ADR 0062 §1 (the notice names error reports), ADR 0042 §2 (a table display's one
+  then. §2 is accepted on the same word; every point of it is the session's (the plan's decision
+  5). §1 amends ADR 0062 §1 (the notice names error reports), ADR 0042 §2 (a table display's one
   write), ADR 0033 (one more read in the DM's live inventory) and ADR 0061 §5 (a table that names
-  a campaign and stays behind).
+  a campaign and stays behind). §2 amends ADR 0071 §4.5 (a request for a pause is no longer a chat
+  message) and ADR 0033 (one more read in the live inventory, for the DM and the asker).
 - Context: The program after «Память и ритуал» borrows ten things other tools for the same hobby
   do well. This ADR holds their contracts, one section a stage. The first: the client reported
   nothing. A game's screen that failed while drawing fell back to a line about a "world response"
@@ -77,6 +79,33 @@
    cannot break the way they did; a session's fallback speaks the campaign's language.
 8. **The notice.** The privacy notice says what a report holds, who reads it and for how long.
 
+### 2. A short way to a pause (Stage 810)
+
+1. **One press.** While a session plays and is not paused, a player's own screen shows "Ask for a
+   pause" among the table's questions over the stage. A press sends the request; the screen then
+   says "Only the DM was told that you would like a pause", and later "The DM has seen that you
+   asked for a pause". "Our table" in "How to play" keeps its button: the same request, offered
+   there while a game plays.
+2. **What a request is.** That a character's player would like a pause — nothing more: no words,
+   no reason, no other character. A player asks as the character they play (the DM may, playing
+   one). It pauses nothing: the DM decides (ADR 0071 §4.5 stands in that).
+3. **Kept nowhere.** A request lives in the server's memory, as a cheer does (ADR 0072 §3): one a
+   character; gone a minute after the DM has seen it, or ten minutes after it was asked if nobody
+   answered, or when the session ends. Pressed again within a minute it is the same request. It
+   is not a chat message any more (this replaces ADR 0071 §4.5's whisper with fixed words): no
+   table, no log line, no copy of a person's data holds one.
+4. **Who reads.** The DM reads every request; the asker reads their own; no other perspective
+   reads any — another player's character, the party's shared view, the public view and a table
+   display are refused. The read (`GET …/pause-requests`) is in the live inventory of the DM and
+   of each character's own view, where it shows that character's request only: another player's
+   stream is not signalled, because nothing they read has changed.
+5. **The DM's card.** Among the table's questions on the DM's screen: "Elowen asks for a pause.
+   Only you see this." with "Pause the game" — the pause that exists (ADR 0043 §6), which
+   answers everyone who asked — and "Not now", which tells that one player the DM has seen it.
+   Neither tells the table who asked: a pause names nobody.
+6. **Limits.** Twelve requests a minute from one person in one campaign reach the board at most;
+   the board itself takes one a minute from a character.
+
 ## Consequences
 
 - The DM's list can be written to by anyone at the table, and — without a campaign — the
@@ -93,6 +122,13 @@
   to parse it) is never reported: the reporter is that script.
 - The count of a row can be driven up by one broken screen in a loop only as far as five a page
   load and the address's limit allow.
+
+- A request for a pause is lost if the server restarts within its ten minutes, and is not seen by
+  a DM whose screen is closed. The line a player reads says only what is true — that the DM was
+  told — and the table's own sign for a pause (ADR 0071 §4.1) stays the way that always works.
+- The DM's device shows the card to whoever looks at it: a DM who shares their screen shares it.
+- A pause follows a request by seconds; at a table of three a child can guess who asked. The
+  application does not say; the DM's guide asks the DM not to.
 
 ## Alternatives considered
 
