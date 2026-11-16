@@ -113,3 +113,7 @@ blockade run under an alarm track, ending in the breakthrough of the Three Mouth
 2026-11-16: `collection-2026/ash-testament` done the same way (`campaigns/distinctness/ash-testament-brief.md`,
 `reports/ASH_TESTAMENT_REWORK_2026-11-16.md`): an escort of a surrendered witness under burnt flags on
 the masts, ending in the ambush on the long planks.
+
+2026-11-16: `collection-2026/glass-republic` done the same way (`campaigns/distinctness/glass-republic-brief.md`,
+`reports/GLASS_REPUBLIC_REWORK_2026-11-16.md`): a round of six factions, the curator who knew from the
+first page, and the coup night by the hour with one choice on the balcony.
