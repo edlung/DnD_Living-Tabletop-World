@@ -64,7 +64,8 @@ AMB = dict(
     # tuning levers (defaults = campaign text as of 2026-11-16)
     line_kd=1, rumor_kd=2, whisper_kd=1, kd_floor=1, short_cap=3,
     skup_plus=0, opr_plus=0, otz_plus=0, izd_plus=0, nadb_list=None,   # nadb_list: amounts for strokes 1,3,6,9
-    sold_returns=False,          # sold judge returns a seized bell at stroke 12 like the others          # A9 Ольга's «следующая Рука мимо» survives a Рука already stopped by Заслон/ally
+    sold_returns=False,
+    plan_aware=False,            # policy fix: Курс projection counts the House Курс moves the plan already cancels          # sold judge returns a seized bell at stroke 12 like the others          # A9 Ольга's «следующая Рука мимо» survives a Рука already stopped by Заслон/ally
     d_shift=0,                   # added to the starting Долг (gap sweep)
 )
 
@@ -118,7 +119,12 @@ class Bell:
     def proj_kd(self, s, floor_uses=None):
         """Honest projection of the final Курс: all remaining Скупки/Опровержение land, the Book reads what it
         still can, and the Floor spends `floor_uses` more Слух (default: all it has) plus Аскар."""
-        adds = sum(self.house(t)[1] for t in range(s, 13) if self.house(t)[0] in ('skup', 'opr'))
+        cp = getattr(self, 'cur_plan', {}) if self.amb.get('plan_aware', False) else {}
+        def kept(t):   # share of a Курс move expected to land, given the current cancel plan
+            c = cp.get(t)
+            if not c: return 1.0
+            return 0.0 if c[0] in ('ally', 'zvon') else 0.2
+        adds = sum(self.house(t)[1] * kept(t) for t in range(s, 13) if self.house(t)[0] in ('skup', 'opr'))
         book_left = (sum(1 for t in range(s, 13) if t not in self.seized) - self.zvon) if self.key == 'yan' else 0
         unread = [l for l in self.lines if l not in self.read]
         red = min(len(unread), max(0, book_left)) * self.amb['line_kd'] + ('Павел' in unread)
@@ -295,6 +301,7 @@ class Bell:
 
     # ----- one stroke -----
     def stroke(self, s, plan):
+        self.cur_plan = plan
         self._rolls = 0; decisions = 0
         typ, amt = self.house(s)
         cancel = plan.get(s)

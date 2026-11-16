@@ -90,3 +90,11 @@ writer now lets every parallel request finish when one answer is rejected.
 rain-check-brief.md`, `reports/RAIN_CHECK_REWORK_2026-11-14.md`); the noir tools joined the shared
 series registry (items, pictures in books, Sonnet writer with a `case` job). All eight candidates picked
 on 2026-11-13 are now reworked.
+
+2026-11-16: owner decision — the 45 remaining campaigns are reworked in cloud sessions, the writer is
+Claude Opus 5.5 high in-session (no Sonnet, no paid calls), art later (prompts and `style.txt`
+prepared, nothing generated), a pilot with the rest of `collection-2026` first. `collection-2026/
+velvet-ledger` done (`campaigns/distinctness/velvet-ledger-brief.md`, `reports/VELVET_LEDGER_REWORK_
+2026-11-16.md`); not added to `fixtures/campaign-library/`. The collection tools now allow fewer than
+eight evenings (books test, stale evening pages, map titles); packages must stay under the web import
+limit of 512 KiB.
