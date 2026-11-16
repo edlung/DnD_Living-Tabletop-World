@@ -1,6 +1,5 @@
 import { defineConfig, type Plugin } from 'vite';
 
-import { devTrace } from './dev-trace.ts';
 import manifest from './src/assets/ui-kit.manifest.json' with { type: 'json' };
 
 /**
@@ -47,11 +46,18 @@ function uiKitUrlsInDevelopment(): Plugin {
 // LTW_VITE_CACHE_DIR gives a second dev server of the same client (the browser tests' sign-in
 // server, playwright.config.ts) its own dependency cache, so two servers never race on one.
 const cacheDir = process.env['LTW_VITE_CACHE_DIR'];
+// LTW_VITE_NO_WS: the browser journeys' servers (playwright.config.ts) keep no connection to
+// their pages. The dev client reloads a page whose connection to this server was lost, and in
+// WebKit that connection now and then closes under a journey: its page came back signed in but
+// at its start, the sheet it was using shut. A journey edits no source, so it has no use for the
+// connection; a page of the built client has none either.
+const noWs = process.env['LTW_VITE_NO_WS'] !== undefined;
 export default defineConfig({
-  plugins: [uiKitUrlsInDevelopment(), devTrace()],
+  plugins: [uiKitUrlsInDevelopment()],
   ...(cacheDir === undefined ? {} : { cacheDir }),
   resolve: { conditions: ['@ltw/source', 'browser', 'development|production'] },
   server: {
+    ...(noWs ? { ws: false as const } : {}),
     host: '127.0.0.1',
     strictPort: true,
     proxy: {
