@@ -7,6 +7,12 @@ import { defineConfig, devices } from '@playwright/test';
 // sign-in server, never written anywhere.
 process.env['LTW_UI_SIGN_IN_SEED'] ??= randomBytes(32).toString('hex');
 
+// Temporary (WebKit lab): the built client behind the same proxy, instead of the dev server.
+const web = (port: number) =>
+  process.env['LTW_E2E_BUILT'] === undefined
+    ? `pnpm dev:web --host 127.0.0.1 --port ${String(port)}`
+    : `pnpm --filter @ltw/web exec vite preview --host 127.0.0.1 --port ${String(port)} --strictPort`;
+
 export default defineConfig({
   testDir: './tests/e2e',
   outputDir: './test-results',
@@ -60,7 +66,7 @@ export default defineConfig({
       timeout: 30_000,
     },
     {
-      command: 'pnpm dev:web --host 127.0.0.1 --port 4310',
+      command: web(4310),
       // A page that lost its connection to the dev server is not reloaded under its journey:
       // LTW_VITE_NO_RELOAD in apps/web/vite.config.ts.
       env: { LTW_API_TARGET: 'http://127.0.0.1:4311', LTW_VITE_NO_RELOAD: '1' },
@@ -77,7 +83,7 @@ export default defineConfig({
       timeout: 30_000,
     },
     {
-      command: 'pnpm dev:web --host 127.0.0.1 --port 4312',
+      command: web(4312),
       env: {
         LTW_API_TARGET: 'http://127.0.0.1:4313',
         LTW_VITE_CACHE_DIR: 'node_modules/.vite-sign-in',

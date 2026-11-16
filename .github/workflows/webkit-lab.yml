@@ -1,0 +1,87 @@
+# Temporary: finds what crashes WebKit's network process under the journeys
+# (reports/WEBKIT_NETWORK_CRASH_2026-11-16.md). Removed before this branch is offered for merge.
+name: WebKit lab
+
+on:
+  push:
+    branches: [claude/blissful-bell-crso4v]
+
+concurrency:
+  group: webkit-lab-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lab:
+    name: ${{ matrix.variant }} (${{ matrix.run }})
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+
+    strategy:
+      fail-fast: false
+      matrix:
+        variant: [shard, webkit, notrace, built]
+        run: [1, 2, 3]
+        include:
+          - variant: shard
+            args: --shard=3/3
+          - variant: webkit
+            args: --project=ipad --project=webkit
+          - variant: notrace
+            args: --project=ipad --project=webkit --trace off
+          - variant: built
+            args: --project=ipad --project=webkit
+            built: '1'
+          - variant: shard
+            run: 4
+            args: --shard=3/3
+
+    env:
+      NODE_ENV: test
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+
+      - name: Install (frozen lockfile)
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm run build
+
+      - name: Playwright version
+        id: playwright
+        run: |
+          version=$(pnpm exec playwright --version | awk '{print $2}')
+          test -n "$version"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      - name: Restore Chromium and WebKit
+        uses: actions/cache/restore@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-chromium-webkit-${{ runner.os }}-${{ steps.playwright.outputs.version }}
+
+      - name: Install Chromium and WebKit for UI journeys
+        run: pnpm exec playwright install --with-deps chromium webkit
+
+      - name: Journeys
+        env:
+          DEBUG: pw:browser
+          LAB_BUILT: ${{ matrix.built }}
+        run: |
+          mkdir -p /tmp/lab /tmp/cores
+          sudo sysctl -q -w kernel.core_pattern='/tmp/cores/%e.%p.core'
+          ulimit -c unlimited
+          if [ -n "$LAB_BUILT" ]; then export LTW_E2E_BUILT=1; fi
+          bash scripts/webkit-lab/sample.sh > /tmp/lab/mem.log &
+          pnpm run test:e2e ${{ matrix.args }} 2> /tmp/lab/stderr.log
+
+      - name: What the runner knows
+        if: always()
+        run: bash scripts/webkit-lab/report.sh
