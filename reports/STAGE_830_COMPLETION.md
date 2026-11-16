@@ -1,6 +1,6 @@
 # Stage 830 completion — the party's encyclopedia
 
-Pull request: https://github.com/edlung/DnD_Living-Tabletop-World/pull/PRNUM (draft, stacked on
+Pull request: https://github.com/edlung/DnD_Living-Tabletop-World/pull/52 (draft, stacked on
 Stage 820's, https://github.com/edlung/DnD_Living-Tabletop-World/pull/51).
 
 Work order `work-orders/STAGE_830.md`; program `docs/TABLE_IDEAS_PLAN.md` (section 830); ADR 0073
