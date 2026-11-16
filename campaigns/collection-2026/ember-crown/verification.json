@@ -6,39 +6,39 @@
   "variants": [
     {
       "size": 6,
-      "sha256": "1931c6b46c4d0b25d090b44f8401596a4344d7406afada016d2c73bc67af9df9",
+      "sha256": "dc181743ae95d5428656f7507f6ae0ceb7c6bf39b1d12e31fca165173ae5973a",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
       "counts": {
         "entities": 90,
-        "knowledge": 130,
+        "knowledge": 131,
         "encounters": 6,
         "quests": 8
       }
     },
     {
       "size": 7,
-      "sha256": "c2881a227177681943401a98f4b526016b09fcd077bf39d53ac0af0e2f916e99",
+      "sha256": "5e6a706f6746bebbdf92bcdde3f0f9575b9c5e6a1506205827594223ac08cfda",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
       "counts": {
         "entities": 97,
-        "knowledge": 132,
+        "knowledge": 133,
         "encounters": 6,
         "quests": 8
       }
     },
     {
       "size": 8,
-      "sha256": "3cd6240aca6f0fa23206e2de120041ef2b95782467986c4248c4237df7fc57f9",
+      "sha256": "a7bc90e6310d289571686247f8f7202d444f92c75d23603c10fff681493ce8ab",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
       "counts": {
         "entities": 102,
-        "knowledge": 134,
+        "knowledge": 135,
         "encounters": 6,
         "quests": 8
       }
