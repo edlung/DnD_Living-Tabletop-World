@@ -277,6 +277,9 @@ It changes no world state; keep its window listener, since `pageerror` misses th
 - Native apps (ADR 0070, `native-shell.spec.ts`): a stand-in shell installed with `addInitScript`
   records what the page posts, and the journey speaks for the shell with `ltw-native` events; it owns
   the `native` sign-in campaign. The apps themselves are checked on the simulator and the emulator.
+- "What can I do?" (ADR 0073 §3, Stage 820): `turn-hint.spec.ts` owns the combat campaigns
+  `hint` (`hintIpad` in WebKit, `hintRu`), each the ambush at Elowen's first turn, and
+  `ui-hint-scene` for the hint outside a fight.
 - A short way to a pause (ADR 0073 §2, Stage 810): `pause.spec.ts` owns the `pause` sign-in
   campaign (and `pauseIpad` in WebKit) — the DM, two players by invitation and a paired TV;
   `pause-words.spec.ts` owns `ui-pause-ru`. A request is held in the server's memory for ten

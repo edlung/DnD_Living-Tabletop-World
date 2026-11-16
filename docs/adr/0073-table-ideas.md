@@ -4,11 +4,12 @@
   улучшений…», quoted as relayed in `reviews/OWNER_TABLE_IDEAS_2026-11-16.json`; every point of §1
   is the session's and is marked in the plan, `docs/TABLE_IDEAS_PLAN.md` decisions 3–4, and stays
   the owner's to overrule). Later sections are added by their stages and are not in force until
-  then. §2 is accepted on the same word; every point of it is the session's (the plan's decision
-  5). §1 amends ADR 0062 §1 (the notice names error reports), ADR 0042 §2 (a table display's one
+  then. §2 and §3 are accepted on the same word; every point of them is the session's (the plan's
+  decisions 5 and 6). §1 amends ADR 0062 §1 (the notice names error reports), ADR 0042 §2 (a table display's one
   write), ADR 0033 (one more read in the DM's live inventory) and ADR 0061 §5 (a table that names
   a campaign and stays behind). §2 amends ADR 0071 §4.5 (a request for a pause is no longer a chat
-  message) and ADR 0033 (one more read in the live inventory, for the DM and the asker).
+  message) and ADR 0033 (one more read in the live inventory, for the DM and the asker). §3 amends ADR 0015
+  §6 (a combatant's view says what is left of its turn, to its own player and the DM).
 - Context: The program after «Память и ритуал» borrows ten things other tools for the same hobby
   do well. This ADR holds their contracts, one section a stage. The first: the client reported
   nothing. A game's screen that failed while drawing fell back to a line about a "world response"
@@ -109,6 +110,30 @@
 6. **Limits.** Twelve requests a minute from one person in one campaign reach the board at most;
    the board itself takes one a minute from a character.
 
+### 3. "What can I do?" (Stage 820)
+
+1. **What it is.** While a session is open, a player's own screen has "What can I do?" beside the
+   way to a pause. It opens a short page in plain words. In a fight, on the hero's turn: what is
+   left — feet of movement, the action, a bonus action, the reaction, attacks an Attack action
+   still holds — each marked "You can" or "Used up", with the hero's own options as the rules list
+   them now and a caster's spell slots; on another's turn: whose it is (as the viewer knows them;
+   not at all when the fog hides them), that the hero waits, and the reaction; down or fallen: what
+   that means. Outside a fight: the place, what a press on the scene does, the places nearby.
+   Always: "Say it aloud. The DM decides what happens: you are not limited to the buttons."
+2. **Where its words come from.** Only from what the server already answers for that character:
+   the fight's view, the context of the hero itself, the hero's own sheet, its surroundings. The
+   page tells; it does not advise what is best, and it says nothing where the server says nothing
+   (an option the rules refuse is not listed; a server that sends no budget gets a shorter page,
+   never a guess). No AI.
+3. **The one new thing a view says.** A combatant's view gains `turn`: whether it is its turn, and
+   whether the action, the bonus action and the reaction are left, feet of walking speed left
+   (Dash included) and attacks left. It is the DM's to read for everyone, a character's own
+   player's for that character, and a commander's player's for the creature their character
+   commands. No other view carries it: not another player's, not the party's shared view, not a
+   table display's. This amends ADR 0015 §6.
+4. **What it does not do.** It submits nothing and changes nothing; three of its lines lead on —
+   to Places, to the hero's sheet, to the rules reference (ADR 0055).
+
 ## Consequences
 
 - The DM's list can be written to by anyone at the table, and — without a campaign — the
@@ -132,6 +157,13 @@
 - The DM's device shows the card to whoever looks at it: a DM who shares their screen shares it.
 - A pause follows a request by seconds; at a table of three a child can guess who asked. The
   application does not say; the DM's guide asks the DM not to.
+
+- What is left of a turn was the server's alone, learned by a player one refusal at a time
+  ("no action", "not enough movement"); now the hero's own screen reads it in every fight's view.
+  It is that character's own state; the DM's view of everyone's adds nothing the DM could not
+  already read from the rules' refusals.
+- The hint's feet are of walking speed: a hero who flies or swims, stands up from prone or drags a
+  grappled creature may reach less than the page says, and the rules still refuse the move.
 
 ## Alternatives considered
 

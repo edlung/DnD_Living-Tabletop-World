@@ -97,6 +97,8 @@ export const UI_PARTY_CAMPAIGNS = {
   pauseRu: 'ui-pause-ru',
   /** The DM's card over an open sheet, on a phone (Stage 810). */
   pausePhone: 'ui-pause-phone',
+  /** "What can I do?" outside a fight (Stage 820). */
+  hintScene: 'ui-hint-scene',
 } as const;
 
 /**
@@ -164,6 +166,7 @@ export async function seedUiPartyCampaigns(engine: WorldEngine): Promise<void> {
     [UI_PARTY_CAMPAIGNS.troublesRu, 'ru'],
     [UI_PARTY_CAMPAIGNS.pauseRu, 'ru'],
     [UI_PARTY_CAMPAIGNS.pausePhone, 'en'],
+    [UI_PARTY_CAMPAIGNS.hintScene, 'en'],
   ] as const) {
     const seed = await loadSeed(
       language === 'ru' ? RAVENFORD_RU_FIXTURES_DIR : RAVENFORD_FIXTURES_DIR,

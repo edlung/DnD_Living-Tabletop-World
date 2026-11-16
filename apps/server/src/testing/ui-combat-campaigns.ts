@@ -106,6 +106,10 @@ const STAGES: Readonly<Record<keyof typeof campaigns, CombatStage>> = {
   breath: 'placed',
   // Metamagic (docs/adr/0056-…md §4): Elowen also a Sorcerer, Quickened and Distant; started below.
   metamagic: 'placed',
+  // "What can I do?" (docs/adr/0073-table-ideas.md §3): Elowen's first turn of the ambush.
+  hint: 'started',
+  hintIpad: 'started',
+  hintRu: 'started',
 };
 
 export async function seedUiCombatCampaigns(engine: WorldEngine): Promise<void> {

@@ -974,3 +974,19 @@ tells the DM alone.
   read), the journeys `tests/e2e/pause.spec.ts` (what the other player's screen and the table's
   screen show and were sent), `pause-words.spec.ts`, `agreement.spec.ts`,
   `ritual-checkpoint.spec.ts`.
+
+## Stage 820: "What can I do?" (2026-11-16)
+
+Stage 820 (`docs/adr/0073-table-ideas.md` §3) tells a player in plain words what their hero can do
+now, from that hero's own reads.
+
+- Boundary: one additive field, `turn`, on a combatant in the fight's view — what is left of its
+  turn. It is sent for a combatant to the DM, to the character's own player, and to the player
+  whose character commands it; a foe's is not sent to a player, and the party's shared view and a
+  table display are sent nobody's. The hint reads the fight's view, the hero's own context, its
+  own sheet and its surroundings — reads the player already had — and names whoever acts only as
+  the view names them (a turn the fog hides is not named).
+- Deterministic regressions: `packages/combat/src/view.test.ts` ("what is left of a turn": each
+  viewer, and as it is spent), `apps/web/src/hint/turn-hint.test.ts` (a spent thing is never
+  offered; a hidden turn is not named; nothing is guessed without the budget), the journey
+  `tests/e2e/turn-hint.spec.ts` (the page's reads held to the player's boundary).

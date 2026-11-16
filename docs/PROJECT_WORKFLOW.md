@@ -16,7 +16,10 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   implemented on `claude/stage-800-client-error-reports` (ADR 0073 §1,
   `reports/STAGE_800_COMPLETION.md`); Stage 810 (a short way to a pause) on
   `claude/stage-810-short-way-to-a-pause`, stacked on 800's (ADR 0073 §2,
-  `reports/STAGE_810_COMPLETION.md`); each awaits the owner's disposition.
+  `reports/STAGE_810_COMPLETION.md`); Stage 820 ("What can I do?") on
+  `claude/stage-820-what-can-i-do`, stacked on 810's (ADR 0073 §3,
+  `reports/STAGE_820_COMPLETION.md`, with the first checkpoint); each awaits the owner's
+  disposition.
 
 ## Current request — memory and ritual, 2026-11-15
 
