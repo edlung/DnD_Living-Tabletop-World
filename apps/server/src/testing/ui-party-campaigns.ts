@@ -58,6 +58,37 @@ export const UI_PARTY_CAMPAIGNS = {
   /** The DM's library: kept handouts and random tables (Stage 680b). */
   library: 'ui-library',
   libraryRu: 'ui-library-ru',
+  /** An evening closed and the next opened with "Previously…" (Stage 710). */
+  ritual: 'ui-ritual',
+  /** The same journey on an iPad in WebKit, on a campaign of its own. */
+  ritualIpad: 'ui-ritual-ipad',
+  ritualRu: 'ui-ritual-ru',
+  /** Stars and wishes at an evening's end (Stage 720). */
+  stars: 'ui-stars',
+  starsIpad: 'ui-stars-ipad',
+  starsRu: 'ui-stars-ru',
+  /** The next game's date (Stage 730). */
+  nextGame: 'ui-next-game',
+  nextGameIpad: 'ui-next-game-ipad',
+  nextGameRu: 'ui-next-game-ru',
+  /** The table's agreement and the DM's guide (Stage 740). */
+  agreement: 'ui-agreement',
+  agreementIpad: 'ui-agreement-ipad',
+  agreementRu: 'ui-agreement-ru',
+  /** The book of the campaign and its gallery (Stage 770). */
+  book: 'ui-book',
+  bookIpad: 'ui-book-ipad',
+  bookRu: 'ui-book-ru',
+  /** The same book with the curated pictures: the place, the faces, the gallery. */
+  bookPictures: 'ui-book-pictures',
+  /** A campaign finished, its keepsakes, and reopened (Stage 780). */
+  ending: 'ui-ending',
+  endingIpad: 'ui-ending-ipad',
+  endingRu: 'ui-ending-ru',
+  /** Small comforts: text size, a break, cheers (Stage 790). */
+  comforts: 'ui-comforts',
+  comfortsIpad: 'ui-comforts-ipad',
+  comfortsRu: 'ui-comforts-ru',
 } as const;
 
 /**
@@ -98,6 +129,28 @@ export async function seedUiPartyCampaigns(engine: WorldEngine): Promise<void> {
     [UI_PARTY_CAMPAIGNS.editorsRu, 'ru'],
     [UI_PARTY_CAMPAIGNS.library, 'en'],
     [UI_PARTY_CAMPAIGNS.libraryRu, 'ru'],
+    [UI_PARTY_CAMPAIGNS.ritual, 'en'],
+    [UI_PARTY_CAMPAIGNS.ritualIpad, 'en'],
+    [UI_PARTY_CAMPAIGNS.ritualRu, 'ru'],
+    [UI_PARTY_CAMPAIGNS.stars, 'en'],
+    [UI_PARTY_CAMPAIGNS.starsIpad, 'en'],
+    [UI_PARTY_CAMPAIGNS.starsRu, 'ru'],
+    [UI_PARTY_CAMPAIGNS.nextGame, 'en'],
+    [UI_PARTY_CAMPAIGNS.nextGameIpad, 'en'],
+    [UI_PARTY_CAMPAIGNS.nextGameRu, 'ru'],
+    [UI_PARTY_CAMPAIGNS.agreement, 'en'],
+    [UI_PARTY_CAMPAIGNS.agreementIpad, 'en'],
+    [UI_PARTY_CAMPAIGNS.agreementRu, 'ru'],
+    [UI_PARTY_CAMPAIGNS.book, 'en'],
+    [UI_PARTY_CAMPAIGNS.bookIpad, 'en'],
+    [UI_PARTY_CAMPAIGNS.bookRu, 'ru'],
+    [UI_PARTY_CAMPAIGNS.bookPictures, 'en'],
+    [UI_PARTY_CAMPAIGNS.ending, 'en'],
+    [UI_PARTY_CAMPAIGNS.endingIpad, 'en'],
+    [UI_PARTY_CAMPAIGNS.endingRu, 'ru'],
+    [UI_PARTY_CAMPAIGNS.comforts, 'en'],
+    [UI_PARTY_CAMPAIGNS.comfortsIpad, 'en'],
+    [UI_PARTY_CAMPAIGNS.comfortsRu, 'ru'],
   ] as const) {
     const seed = await loadSeed(
       language === 'ru' ? RAVENFORD_RU_FIXTURES_DIR : RAVENFORD_FIXTURES_DIR,

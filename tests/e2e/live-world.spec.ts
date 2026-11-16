@@ -1,7 +1,8 @@
-import { expect, test } from '@playwright/test';
+import { expect } from '@playwright/test';
 
 import { enterAsDm, propose, review } from './support/authoring.ts';
 import { expectAccepted, submit } from './support/combat.ts';
+import { test } from './support/journey.ts';
 import {
   countWorldReads,
   expectLive,

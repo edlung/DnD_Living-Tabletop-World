@@ -20,7 +20,8 @@ import { checkProse } from './prose.ts';
 /**
  * `GenerateChronicle` (docs/adr/0024-chronicle.md §4; owner decision of
  * 2026-10-04): the DM records a chapter told from a perspective over a
- * world-time window. The World Engine computes the entries itself and only
+ * world-time window, or of one session's memories in it
+ * (docs/adr/0071-memory-and-ritual.md §1.2). The World Engine computes the entries itself and only
  * checks that the prose, written outside it, cites them and follows the
  * prose rules; it never reads the prose. A chapter rests on everything it
  * tells: undoing any of it is refused while the chapter stands.
@@ -39,7 +40,20 @@ export function decideGenerateChronicle(
   const request = parsePerspective(command.perspective);
   const access = request ? resolvePerspective(state, actor, request) : null;
   if (!access?.ok) return invalid('No perspective the chapter can be told from');
-  const draft = chronicleEntries(state, history, access.perspective, command.from, command.to);
+  if (command.sessionId !== undefined) {
+    if (!state.sessions.has(command.sessionId)) return invalid('No such session to tell');
+    if (access.perspective.scopes === 'ALL') {
+      return invalid('A session’s chapter is told from memories, not from the DM’s view');
+    }
+  }
+  const draft = chronicleEntries(
+    state,
+    history,
+    access.perspective,
+    command.from,
+    command.to,
+    command.sessionId,
+  );
   if (draft.entries.length === 0) return invalid('Nothing to tell from that perspective then');
   const issues = checkProse(draft.entries, command.prose.paragraphs, languageOf(state));
   if (issues.length > 0) return invalid('The prose does not follow the chapter', { issues });
@@ -51,6 +65,7 @@ export function decideGenerateChronicle(
       perspective: access.perspective.label,
       from: command.from,
       to: command.to,
+      ...(command.sessionId === undefined ? {} : { sessionId: command.sessionId }),
       entries: draft.entries,
       prose: structuredClone(command.prose),
       rests: draft.rests,

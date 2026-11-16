@@ -15,6 +15,9 @@ import { salientEvents } from './salience.ts';
  * events: each memory it may see in the window, with the related knowledge
  * it may see and that knowledge's epistemic type. The DM is told from
  * salient events. At most 40, the most salient, in world-time order.
+ * A session's chapter (docs/adr/0071-memory-and-ritual.md §1.2) tells, of the
+ * window's memories, only those recorded with that session, and rests on
+ * the session too.
  *
  * A chapter rests on everything it tells and everything it was told with
  * (Gate 05, G05-H01): the memories, records, and events it tells; the names
@@ -36,9 +39,11 @@ function memoryEntries(
   perspective: ResolvedPerspective,
   from: number,
   to: number,
+  sessionId: string | undefined,
 ): Unkeyed[] {
   return visibleMemories(state, perspective)
     .filter((memory) => memory.occurredAt >= from && memory.occurredAt <= to)
+    .filter((memory) => sessionId === undefined || memory.sessionId === sessionId)
     .map((memory) => {
       const knowledge = memory.relatedKnowledge.flatMap((knowledgeId) => {
         const record = state.knowledge.get(knowledgeId);
@@ -116,11 +121,13 @@ export function chronicleEntries(
   perspective: ResolvedPerspective,
   from: number,
   to: number,
+  /** One session's chapter: never with the DM's view, whose events name no session. */
+  sessionId?: string,
 ): ChronicleDraft {
   const all: Unkeyed[] =
     perspective.scopes === 'ALL'
       ? salientEvents(state, history, from, to)
-      : memoryEntries(state, perspective, from, to);
+      : memoryEntries(state, perspective, from, to, sessionId);
   const chronological = (a: Unkeyed, b: Unkeyed) =>
     a.entry.occurredAt - b.entry.occurredAt || orderKey(a.entry).localeCompare(orderKey(b.entry));
   const kept = [...all]
@@ -137,6 +144,7 @@ export function chronicleEntries(
           ...premisesOf(entry, state.preparedParty !== undefined),
         ]),
         ...perspectivePremises(perspective, state.preparedParty !== undefined),
+        ...(sessionId === undefined ? [] : [facts.session(sessionId)]),
       ]),
     ].sort(),
   };

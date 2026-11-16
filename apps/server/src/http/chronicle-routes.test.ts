@@ -6,6 +6,7 @@ import type {
   FlashbackResponse,
   GenerateChronicleResponse,
   MemorySuggestionsResponse,
+  SessionListResponse,
 } from '@ltw/contracts';
 import type { WorldEngine } from '@ltw/domain';
 import type { FastifyInstance } from 'fastify';
@@ -195,5 +196,104 @@ describe('Chapter I — Shadows on the Trade Road', () => {
     expect((await get(app, `${BASE}/chronicle?perspective=DM`, TOKENS.player)).statusCode).toBe(
       403,
     );
+  });
+});
+
+/**
+ * A session's chapter over HTTP (docs/adr/0071-memory-and-ritual.md §1): the moments suggested
+ * since the session started, kept with it, told by its chapter alone — also when the next
+ * evening starts at the same instant of the world.
+ */
+describe('a session’s chapter', () => {
+  const sessions = async () =>
+    (await get(app, `${BASE}/sessions`, TOKENS.dm)).json<SessionListResponse>().sessions;
+  const partyChapters = async () =>
+    (
+      await get(app, `${BASE}/chronicle?perspective=PARTY`, TOKENS.player)
+    ).json<ChronicleListResponse>().chapters;
+
+  it('tells its own evening and never the one before, though the clock stood still', async () => {
+    const [first] = await sessions();
+    if (!first) throw new Error('Ravenford opens with a session');
+    const offered = await get(
+      app,
+      `${BASE}/chronicle/suggestions?from=${String(first.startedAt)}&session=${first.sessionId}`,
+      TOKENS.dm,
+    );
+    const { suggestions } = offered.json<MemorySuggestionsResponse>();
+    expect(suggestions.map((s) => s.reason)).toEqual(['arrival', 'battle', 'arrival', 'new-day']);
+    for (const suggestion of suggestions) {
+      await dm({ ...suggestion.command, sessionId: first.sessionId });
+    }
+    await dm({ type: 'EndSession', sessionId: first.sessionId });
+    const one = await generate(TOKENS.dm, {
+      title: first.title,
+      from: first.startedAt,
+      sessionId: first.sessionId,
+    });
+    expect(one.statusCode).toBe(200);
+
+    // The next evening starts at the very instant the first ended.
+    await dm({ type: 'StartSession', sessionId: 'evening-two', title: 'Session 2' });
+    const second = (await sessions()).find((entry) => entry.sessionId === 'evening-two');
+    expect(second?.startedAt).toBe((await sessions())[0]?.endedAt);
+    // Nothing of the first evening is offered again.
+    const again = await get(
+      app,
+      `${BASE}/chronicle/suggestions?from=${String(second?.startedAt)}&session=evening-two`,
+      TOKENS.dm,
+    );
+    expect(again.json<MemorySuggestionsResponse>().suggestions).toEqual([]);
+    await dm({
+      type: 'RecordMemory',
+      scope: { kind: 'PARTY' },
+      memoryKind: 'CONSEQUENCE',
+      summary: 'We found the broken wheel.',
+      occurredAt: second?.startedAt,
+      sessionId: 'evening-two',
+      reason: 'Closing the evening',
+    });
+    await dm({ type: 'EndSession', sessionId: 'evening-two' });
+    const two = await generate(TOKENS.dm, {
+      title: 'Session 2',
+      from: second?.startedAt,
+      sessionId: 'evening-two',
+    });
+    expect(two.statusCode).toBe(200);
+
+    const [chapterOne, chapterTwo] = await partyChapters();
+    expect(chapterOne).toMatchObject({ title: first.title, sessionId: first.sessionId });
+    expect(chapterOne?.entries.map((entry) => entry.text)).toEqual(
+      expect.arrayContaining(['We fought 4 foes at Old Trade Road.', 'Day 2 dawned.']),
+    );
+    expect(chapterOne?.entries.map((entry) => entry.text)).not.toContain(
+      'We found the broken wheel.',
+    );
+    expect(chapterTwo).toMatchObject({ title: 'Session 2', sessionId: 'evening-two' });
+    expect(chapterTwo?.entries.map((entry) => entry.text)).toEqual(['We found the broken wheel.']);
+    // The player's own book lists neither: they are the party's, read as PARTY.
+    const own = await get(app, `${BASE}/chronicle?perspective=PLAYER`, TOKENS.player);
+    expect(own.json<ChronicleListResponse>().chapters).toEqual([]);
+  });
+
+  it('is refused for an unknown session and for the DM’s view', async () => {
+    const [first] = await sessions();
+    expect((await generate(TOKENS.dm, { sessionId: 'no-such-evening' })).statusCode).toBe(400);
+    expect(
+      (await generate(TOKENS.dm, { sessionId: first?.sessionId, perspective: 'DM' })).statusCode,
+    ).toBe(400);
+    expect(
+      (await get(app, `${BASE}/chronicle/suggestions?from=0&session=no-such-evening`, TOKENS.dm))
+        .statusCode,
+    ).toBe(400);
+    expect(
+      (
+        await get(
+          app,
+          `${BASE}/chronicle/suggestions?from=0&session=${first?.sessionId ?? ''}`,
+          TOKENS.player,
+        )
+      ).statusCode,
+    ).toBe(403);
   });
 });

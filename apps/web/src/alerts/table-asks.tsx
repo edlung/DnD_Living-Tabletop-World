@@ -3,6 +3,7 @@ import { useT } from '@ltw/ui';
 import { useEffect, useRef, useState } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
+import { BreakReminder } from '../comforts/break-reminder.tsx';
 import { playChime } from '../dice/audio.ts';
 import { checkWords } from '../dice/checks.ts';
 import { AnswerCheck } from '../dice/own-dice.tsx';
@@ -14,6 +15,7 @@ import { nativeHaptic } from '../native/signals.ts';
 import { LobbyBanner } from '../session/lobby-banner.tsx';
 import { Glyph } from '../visual/glyph.tsx';
 import { useScreenAwake, useTitleCount } from './screen.ts';
+import { useSlotRoom } from './slot-room.ts';
 import { newWaits, waitsOf, type Wait } from './waits.ts';
 
 /**
@@ -36,6 +38,8 @@ export function TableAsks({
   locked,
   onRun,
   onOpenSheet,
+  onOpenChronicle,
+  onOpenBook,
   onReadHandout,
 }: {
   readonly api: WorldApi;
@@ -48,6 +52,10 @@ export function TableAsks({
   readonly locked: boolean;
   readonly onRun: (intent: ExplorationIntent) => void;
   readonly onOpenSheet: (characterId: string) => void;
+  /** Opens the book at a chapter (the recap's "Read on"). */
+  readonly onOpenChronicle: (chronicleId: string) => void;
+  /** Opens the campaign's whole book (a finished adventure's card). */
+  readonly onOpenBook: () => void;
   /** Opens a handout where it is read (the Journal). */
   readonly onReadHandout: (handoutId: string) => void;
 }) {
@@ -75,9 +83,20 @@ export function TableAsks({
   useTitleCount(waits.length);
   useScreenAwake(sessionOpen);
   const asked = isDm ? [] : requests.filter((request) => request.status === 'open');
+  // On a phone the column stays under the top bar and scrolls (`slot-room.ts`).
+  const slot = useRef<HTMLDivElement>(null);
+  useSlotRoom(slot);
   return (
-    <div className="rest-banner-slot table-asks" aria-live="polite">
-      <LobbyBanner api={api} actorId={actorId} isDm={isDm} />
+    <div className="rest-banner-slot table-asks" aria-live="polite" ref={slot}>
+      <LobbyBanner
+        api={api}
+        actorId={actorId}
+        isDm={isDm}
+        onOpenChronicle={onOpenChronicle}
+        onOpenBook={onOpenBook}
+      />
+      {/* The DM's break reminder (docs/adr/0072-keepsakes.md §3): off unless the DM asked. */}
+      {isDm && <BreakReminder api={api} />}
       <RestBanner
         isDm={isDm}
         actorId={actorId}

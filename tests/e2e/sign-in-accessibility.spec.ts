@@ -1,6 +1,7 @@
-import { expect, test, type Browser } from '@playwright/test';
+import { expect, type Browser } from '@playwright/test';
 
 import { expectAccessible, WIDTHS } from './support/axe.ts';
+import { test } from './support/journey.ts';
 import { dockButton, expectDockFits, openSheet } from './support/shell.ts';
 import {
   SIGN_IN_CAMPAIGNS,

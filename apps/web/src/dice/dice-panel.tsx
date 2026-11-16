@@ -4,6 +4,8 @@ import { useId } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { ChatSheet } from '../chat/chat-sheet.tsx';
+import { CheerRow, TableCheers } from '../comforts/cheers.tsx';
+import { TextSizeChoice } from '../comforts/text-size.tsx';
 import { RandomTables } from '../library/random-tables.tsx';
 import { SharedScreenSheet } from '../online/shared-screen.tsx';
 import { Sheet } from '../shell/sheet.tsx';
@@ -27,7 +29,9 @@ function DiceSettingsForm() {
   const ids = useId();
   return (
     <details className="disclosure dice-settings">
-      <summary>{t('Sound and motion')}</summary>
+      <summary>{t('This screen: sound, motion, text size')}</summary>
+      {/* The size of this screen's text (docs/adr/0072-keepsakes.md §3). */}
+      <TextSizeChoice id={`${ids}-text`} />
       <label className="dice-toggle">
         <input
           type="checkbox"
@@ -110,8 +114,15 @@ export function DicePanel({
 }) {
   const t = useT();
   const table = useDiceTable();
+  // Who cheers (docs/adr/0072-keepsakes.md §3): the DM, or the character this screen plays.
+  const hero = table?.characterId ?? null;
+  const author = hero === null ? null : (characters.find((one) => one.entityId === hero) ?? null);
   return (
-    <>
+    <TableCheers
+      api={api}
+      author={author && { entityId: author.entityId, name: author.name }}
+      canGive={table !== null && (table.isDm || hero !== null)}
+    >
       <Sheet
         id="dice"
         title={t('Dice')}
@@ -121,6 +132,8 @@ export function DicePanel({
       >
         <div className="dice-panel">
           <div className="dice-panel-main">
+            {/* First, where a thumb finds it on a phone: one press cheers the table (ADR 0072 §3). */}
+            <CheerRow />
             <Requests characters={characters} />
             <RollBuilder characters={characters} />
             <CheckRoller />
@@ -142,6 +155,6 @@ export function DicePanel({
       <ChatSheet api={api} shell={shell} characters={characters} />
       {/* Online, the table's screen on every player's screen (ADR 0044 §5). */}
       <SharedScreenSheet api={api} shell={shell} />
-    </>
+    </TableCheers>
   );
 }

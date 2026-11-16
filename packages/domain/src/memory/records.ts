@@ -27,6 +27,9 @@ export interface SessionRecord {
   readonly title: string;
   readonly startedAt: number;
   readonly endedAt: number | null;
+  /** The real instants the start and the end were recorded (ADR 0072 §1); no decision reads them. */
+  readonly playedFrom: string;
+  readonly playedTo: string | null;
 }
 
 export const DEFAULT_SALIENCE = 3;

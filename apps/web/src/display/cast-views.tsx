@@ -6,6 +6,7 @@ import type {
   EncounterResponse,
   EntityPresentationResponse,
   EntityRef,
+  LobbyResponse,
   RollFeedResponse,
   ScenePresentationResponse,
 } from '@ltw/contracts';
@@ -26,6 +27,11 @@ import { Glyph } from '../visual/glyph.tsx';
 import { phaseGlyph, weatherGlyph } from '../visual/glyph-map.ts';
 import { QrCode } from '../visual/qr-code.tsx';
 import { textureUrl } from '../visual/ui-kit.ts';
+import { newestPartyChapter } from '../chronicle/book-chapters.ts';
+import { Previously } from '../chronicle/previously.tsx';
+import { NextGameLine } from '../ritual/next-game.tsx';
+import { AgreementCast } from '../ritual/agreement.tsx';
+import { StarsCast } from '../ritual/stars-cast.tsx';
 import { useRereadOn } from '../world/use-world-data.ts';
 import { DiceFaces } from './big-roll.tsx';
 import { PlaceCard } from './place-card.tsx';
@@ -58,6 +64,10 @@ export function CastView(props: Props) {
       return <TitleCard title={cast.title} subtitle={cast.subtitle} />;
     case 'chronicle':
       return <ChronicleCast {...props} />;
+    case 'stars':
+      return <StarsCast api={props.api} refresh={props.refresh} />;
+    case 'agreement':
+      return <AgreementCast api={props.api} refresh={props.refresh} />;
     case 'picture':
       return <PictureCast {...props} entityId={cast.entityId} />;
     case 'join':
@@ -299,17 +309,13 @@ function ChronicleCast(props: Props) {
   const list = useRead(props, 'chronicle', (api, signal) =>
     api.get<ChronicleListResponse>('chronicle', signal),
   );
-  const chapter = list?.chapters.at(-1) ?? null;
+  // "Previously…" (ADR 0071 §1.4): the party's newest chapter, as every other screen shows it.
+  const chapter = list ? newestPartyChapter(list.chapters) : null;
   if (!chapter)
     return <TitleCard title={t('The Chronicle is still empty')} subtitle={props.campaignName} />;
   return (
     <section className="display-chronicle" aria-label={chapter.title}>
-      <article>
-        <h1>{chapter.title}</h1>
-        {chapter.prose.paragraphs.slice(0, 4).map((paragraph, index) => (
-          <p key={index}>{paragraph.text}</p>
-        ))}
-      </article>
+      <Previously api={props.api} chapter={chapter} heading="h1" />
     </section>
   );
 }
@@ -340,6 +346,8 @@ function JoinCast(props: Props) {
     api.get<ChronicleListResponse>('chronicle', signal),
   );
   const last = chronicle?.chapters.at(-1) ?? null;
+  // When the table meets again (ADR 0071 §3), under the way in.
+  const lobby = useRead(props, 'lobby', (api, signal) => api.get<LobbyResponse>('lobby', signal));
   return (
     <section className="display-join" aria-label={t('Join the table')}>
       <div className="display-join-card">
@@ -358,6 +366,7 @@ function JoinCast(props: Props) {
         ) : (
           <p>{t('The DM has not opened the table to join yet.')}</p>
         )}
+        {lobby?.nextGame && <NextGameLine next={lobby.nextGame} className="next-game--display" />}
       </div>
       {last && (
         <aside className="display-recap">

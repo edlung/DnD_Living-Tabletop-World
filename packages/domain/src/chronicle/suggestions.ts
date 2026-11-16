@@ -232,3 +232,28 @@ export function memorySuggestions(
       },
     }));
 }
+
+/**
+ * Of a window's suggestions, those of one session (docs/adr/0071-memory-and-ritual.md §1.3): the
+ * moments whose events were recorded after the session started and, once it has ended, before its
+ * end. The world's clock often stands still between two evenings, so the window alone would offer
+ * an earlier evening's moments again. An unknown session keeps none.
+ */
+export function suggestionsOfSession(
+  history: readonly RecordedEvent[],
+  sessionId: string,
+  suggestions: readonly MemorySuggestionView[],
+): MemorySuggestionView[] {
+  const of = (type: 'SessionStarted' | 'SessionEnded') =>
+    history.find((event) => event.type === type && event.payload.sessionId === sessionId)?.sequence;
+  const started = of('SessionStarted');
+  if (started === undefined) return [];
+  const ended = of('SessionEnded') ?? Number.POSITIVE_INFINITY;
+  return suggestions.filter(
+    (suggestion) =>
+      suggestion.sources.length > 0 &&
+      suggestion.sources.every(
+        ({ sequence }) => sequence !== undefined && sequence > started && sequence < ended,
+      ),
+  );
+}

@@ -31,6 +31,7 @@ describe('PostgresTableStateStore', () => {
         absent: ['brann-ironvale'],
         dice: 'physical',
         sound: { ambience: 'rain', music: null },
+        nextGame: { at: '2026-11-21T16:00:00.000Z', note: 'At Grandma’s' },
       },
       '2026-11-02T10:00:00.000Z',
     );
@@ -50,6 +51,7 @@ describe('PostgresTableStateStore', () => {
             pausedAt: 42.5,
           },
         },
+        nextGame: { at: '2026-11-28T16:30:00.000Z', note: '' },
       },
       '2026-11-02T10:05:00.000Z',
     );
@@ -68,7 +70,20 @@ describe('PostgresTableStateStore', () => {
           pausedAt: 42.5,
         },
       },
+      // The next game (migration 0041): the date written last, and its line.
+      nextGame: { at: '2026-11-28T16:30:00.000Z', note: '' },
     });
+    // An older build writes the row without the date's columns: the date stays as it was.
+    await pool.query(
+      `UPDATE ltw_table_states SET mode = 'table', updated_at = '2026-11-02T10:06:00.000Z'
+        WHERE campaign_id = 'ravenford'`,
+    );
+    expect((await store.read('ravenford')).nextGame).toEqual({
+      at: '2026-11-28T16:30:00.000Z',
+      note: '',
+    });
+    await store.write('ravenford', { ...FRESH_TABLE, nextGame: null }, '2026-11-02T10:07:00.000Z');
+    expect((await store.read('ravenford')).nextGame).toBeNull();
     expect(await store.read('other-table')).toEqual(FRESH_TABLE);
   });
 });

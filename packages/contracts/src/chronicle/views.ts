@@ -48,6 +48,8 @@ export interface ChronicleChapterView {
   readonly perspective: string;
   readonly from: number;
   readonly to: number;
+  /** The session whose chapter it is; null for a chapter of a window alone (ADR 0071 §1.2). */
+  readonly sessionId: string | null;
   /** The world time it was generated at. */
   readonly generatedAt: number;
   readonly entries: readonly ChronicleEntryView[];
@@ -72,6 +74,8 @@ export interface GenerateChronicleRequest {
   readonly perspective: string;
   readonly from: number;
   readonly to?: number;
+  /** One session's chapter: only the memories recorded with it (ADR 0071 §1.2). */
+  readonly sessionId?: string;
 }
 
 export interface GenerateChronicleResponse {
@@ -94,7 +98,10 @@ export interface MemorySuggestionView {
   readonly command: Readonly<Record<string, unknown>>;
 }
 
-/** `GET /campaigns/:campaignId/chronicle/suggestions?scope=PARTY&from=…&to=…` (DM only). */
+/**
+ * `GET /campaigns/:campaignId/chronicle/suggestions?scope=PARTY&from=…&to=…&session=…` (DM only);
+ * `session` keeps the moments that happened since that session started (ADR 0071 §1.3).
+ */
 export interface MemorySuggestionsResponse {
   readonly scope: string;
   readonly suggestions: readonly MemorySuggestionView[];

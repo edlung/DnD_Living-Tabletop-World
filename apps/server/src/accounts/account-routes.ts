@@ -10,8 +10,10 @@ import {
   signInRequestSchema,
   type AccountResponse,
   type EnteredCampaignResponse,
+  type NextGame,
 } from '@ltw/contracts';
 import { campaignRole, type WorldEngine } from '@ltw/domain';
+import type { EndingStore } from '../ending/ending-store.ts';
 import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod';
 
@@ -46,6 +48,7 @@ import {
 } from './accounts.ts';
 import { hashPassword, verifyPassword } from './passwords.ts';
 import { createFromTemplate } from './templates.ts';
+import { sendNextGame } from '../table/next-game.ts';
 
 /**
  * Accounts over HTTP (docs/adr/0041-accounts.md), invitation mode only: signing in and out,
@@ -68,6 +71,10 @@ export interface AccountRouteDependencies {
   readonly logger?: Logger;
   /** Where each campaign plays: the hub says which are away (docs/adr/0061-local-mode.md §5). */
   readonly moves?: CampaignMoves;
+  /** When each campaign's table meets again, for the hub's cards (ADR 0071 §3). */
+  readonly nextGameOf?: (campaignId: string) => Promise<NextGame | null>;
+  /** Each campaign's end and keepsakes, for the hub's finished adventures (ADR 0072 §2). */
+  readonly ending?: EndingStore;
 }
 
 const params = z.object({ campaignId: campaignIdSchema }).strict();
@@ -222,6 +229,8 @@ export function registerAccountRoutes(app: FastifyInstance, deps: AccountRouteDe
         deps.engine,
         await accounts.seats(account.accountId),
         deps.moves,
+        deps.nextGameOf,
+        deps.ending ?? null,
       ),
     };
     return reply.send(response);
@@ -255,6 +264,25 @@ export function registerAccountRoutes(app: FastifyInstance, deps: AccountRouteDe
     if (!body.success) return sendError(reply, request, 'INVALID_REQUEST');
     await accounts.setDisplayName(current.account.accountId, body.data.displayName);
     return reply.code(204).send();
+  });
+
+  // The next game as a calendar file, from the hub's card: the account's own campaigns only.
+  app.get('/account/campaigns/:campaignId/next-game.ics', async (request, reply) => {
+    const current = await signedIn(request);
+    if (!current) return sendError(reply, request, 'UNAUTHENTICATED');
+    const path = params.safeParse(request.params);
+    if (!path.success) return sendError(reply, request, 'INVALID_REQUEST');
+    const seats = (await accounts.seats(current.account.accountId)).filter(
+      (entry) => entry.campaignId === path.data.campaignId,
+    );
+    const [campaign] = await campaignsOf(deps.engine, seats, deps.moves, deps.nextGameOf);
+    if (!campaign?.nextGame) return sendError(reply, request, 'NOT_FOUND');
+    return sendNextGame(request, reply, {
+      campaignId: campaign.campaignId,
+      campaignName: campaign.name,
+      next: campaign.nextGame,
+      now: iso(clock.now()),
+    });
   });
 
   app.post('/account/campaigns/:campaignId/enter', async (request, reply) => {

@@ -80,6 +80,9 @@
 .book-writer {
   position: relative;
   margin: 0;
+  /* No taller than the views' buttons beside it: they stay put when it leaves (ADR 0072 §1). */
+  padding: 0;
+  border-top: 0;
 }
 .book-writer > summary {
   display: inline-flex;

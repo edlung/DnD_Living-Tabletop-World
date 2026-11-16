@@ -3,6 +3,8 @@ import { randomBytes } from 'node:crypto';
 import type {
   AccountCampaignData,
   AccountChatLine,
+  AccountKeepsakeLine,
+  AccountReflectionLine,
   AccountDataResponse,
   AccountRollLine,
 } from '@ltw/contracts';
@@ -10,6 +12,8 @@ import { commanderOf, type WorldEngine } from '@ltw/domain';
 
 import type { CredentialStore } from '../auth/credential-store.ts';
 import type { ChatStore } from '../chat/chat-store.ts';
+import type { EndingStore } from '../ending/ending-store.ts';
+import type { ReflectionStore } from '../reflections/reflection-store.ts';
 import type { TableStore } from '../dice/table-store.ts';
 import type { AccountRecord, AccountStore } from './account-store.ts';
 import { campaignsOf } from './accounts.ts';
@@ -28,6 +32,9 @@ export interface PrivacyDependencies {
   readonly credentials: CredentialStore;
   readonly chat: ChatStore;
   readonly table: TableStore;
+  readonly reflections: ReflectionStore;
+  /** A campaign's end and keepsakes (ADR 0072 §2); a composition without them copies none. */
+  readonly ending?: EndingStore;
 }
 
 /** How much of a campaign's chat and rolls a copy reads: the newest, when there are more. */
@@ -82,6 +89,38 @@ export async function accountData(
         subject: roll.subject,
         groups: roll.groups,
       }));
+    // Stars and wishes (ADR 0071 §2): a player's own characters', a DM's own.
+    const sessionTitle = (sessionId: string) => state?.sessions.get(sessionId)?.title ?? sessionId;
+    const reflections: AccountReflectionLine[] = (
+      await deps.reflections.ofCampaign(campaign.campaignId)
+    )
+      .filter((entry) =>
+        campaign.role === 'dm' ? entry.authorId === null : own.has(entry.authorId ?? ''),
+      )
+      .map((entry) => ({
+        at: entry.updatedAt,
+        session: sessionTitle(entry.sessionId),
+        author: named(entry.authorId),
+        star: entry.star,
+        wish: entry.wish,
+      }));
+    // What a player's own heroes keep from a finished adventure, and a DM's last words to the
+    // table (ADR 0072 §2).
+    const keepsakes: AccountKeepsakeLine[] =
+      campaign.role === 'dm' || !deps.ending
+        ? []
+        : (await deps.ending.keepsakes(campaign.campaignId))
+            .filter((kept) => own.has(kept.characterId))
+            .map((kept) => ({
+              at: kept.keptAt,
+              hero: named(kept.characterId) ?? kept.characterId,
+              label: kept.label,
+              line: kept.line,
+            }));
+    const closing =
+      campaign.role === 'dm' && deps.ending
+        ? ((await deps.ending.read(campaign.campaignId))?.line ?? null)
+        : null;
     campaigns.push({
       campaignId: campaign.campaignId,
       name: campaign.name,
@@ -90,6 +129,9 @@ export async function accountData(
       characters: campaign.characters,
       chat,
       rolls,
+      reflections,
+      keepsakes,
+      closingLine: closing === '' ? null : closing,
     });
   }
   const sessions = (await deps.accounts.sessionsOf(account.accountId)).map((session) => ({

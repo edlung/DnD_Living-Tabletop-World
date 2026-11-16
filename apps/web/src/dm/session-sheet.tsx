@@ -1,44 +1,57 @@
-import type {
-  LobbyResponse,
-  MembershipResponse,
-  SessionListResponse,
-  TableDice,
-  TableMode,
-} from '@ltw/contracts';
+import type { LobbyResponse, SessionListResponse, TableDice, TableMode } from '@ltw/contracts';
 import { StatusPanel, useT } from '@ltw/ui';
-import { useCallback, useEffect, useId, useState, type SubmitEvent } from 'react';
+import { useCallback, useEffect, useId, useRef, useState, type SubmitEvent } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
+import { recapParagraphs } from '../chronicle/book-chapters.ts';
+import { chapterMessage } from '../chronicle/chapter-message.ts';
+import { usePreviously } from '../chronicle/previously.tsx';
+import { AgreementTool } from '../ritual/agreement-tool.tsx';
+import { CampaignEnd } from '../ritual/campaign-end.tsx';
+import { useEnding } from '../ritual/ending.ts';
+import { EveningWords } from '../ritual/evening-words.tsx';
+import { NextGameForm } from '../ritual/next-game.tsx';
 import { Field } from '../session/account-forms.tsx';
-import { useSignInKind } from '../session/sign-in-kind.ts';
 import { Glyph } from '../visual/glyph.tsx';
 import { useRereadOn } from '../world/use-world-data.ts';
+import { FirstEvening } from './first-evening.tsx';
 import { CampaignOptionsForm } from './campaign-options.tsx';
+import { STEP_WORDS, writeChapter, type EveningResult, type EveningStep } from './evening.ts';
 import { MusicPanel } from './music-panel.tsx';
+import { Running } from './session-running.tsx';
 import { SoundChoice } from './sound-choice.tsx';
 import type { DmTableCommand } from './table-commands.ts';
 
 /**
  * A session at the table (docs/adr/0043-dm-screen.md §6), on the DM's Session sheet: who is here,
- * ready or absent; the session's start (at the table or online), its pause and its end — and at
- * the end, the table's screens unpaired and the seats of players without a login freed, then the
- * chapter to write. The start and the end are the World Engine's; the rest is the table's.
+ * ready or absent; the session's start (at the table or online, opened with "Previously…"), its
+ * pause and its end — and at the end the evening closed (`session-running.tsx`,
+ * docs/adr/0071-memory-and-ritual.md §1): its moments kept, the table's screens unpaired, guest
+ * seats freed, the party's chapter written. The start and the end are the World Engine's; the
+ * rest is the table's.
  */
 export function SessionSheet({
   api,
   open,
   revision,
   locked,
+  locationId,
   onRun,
-  onWriteChapter,
+  onWorldChanged,
+  onOpenChronicle,
 }: {
   readonly api: WorldApi;
   readonly open: boolean;
   readonly revision: number;
   readonly locked: boolean;
+  /** Where the DM looks; null when nowhere. */
+  readonly locationId: string | null;
   readonly onRun: (command: DmTableCommand) => void;
-  readonly onWriteChapter: () => void;
+  /** Commands sent from here changed the world: its views read again. */
+  readonly onWorldChanged: () => void;
+  /** Opens the book, at a chapter when one is named. */
+  readonly onOpenChronicle: (chronicleId: string | null) => void;
 }) {
   const t = useT();
   const ids = useId();
@@ -46,9 +59,15 @@ export function SessionSheet({
   const load = useCallback((signal: AbortSignal) => api.get<LobbyResponse>('lobby', signal), [api]);
   const lobby = useResource('dm-lobby', load);
   useRereadOn(revision + round, lobby.reread);
+  // The adventure's end (ADR 0072 §2): finished, the campaign is read and has no next session.
+  const end = useEnding(api, revision + round);
+  const finished = (end.ending?.ending ?? null) !== null;
   const [failed, setFailed] = useState(false);
-  // What the end did, and the chapter to write: shown once the session is gone.
-  const [ended, setEnded] = useState<string | null>(null);
+  // What the closing did: shown once the session is gone.
+  const [ended, setEnded] = useState<EveningResult | null>(null);
+  // The closing's step that runs: the session is gone from the table before its chapter is
+  // written, so the sheet itself says what goes on.
+  const [step, setStep] = useState<EveningStep | null>(null);
   // The campaign's dice as just chosen, shown at once until the table's state reads it back.
   const [dice, setDice] = useState<TableDice | null>(null);
   const readDice = lobby.resource.status === 'ready' ? lobby.resource.value.dice : null;
@@ -84,25 +103,63 @@ export function SessionSheet({
       {/* The session itself and its music, one column: the table's own controls beside it. */}
       <div className="session-main">
         {ended !== null && table.session === null && (
-          <div className="tool-group session-ended" role="status">
-            <p>
-              {ended === '' ? t('The session is over.') : `${t('The session is over.')} ${ended}`}
-            </p>
-            <button type="button" className="primary-button" onClick={onWriteChapter}>
-              <Glyph name="chronicle" />
-              {t('Write the chapter')}
-            </button>
-          </div>
+          <EveningClosed
+            key={ended.sessionId}
+            api={api}
+            result={ended}
+            onOpenChronicle={onOpenChronicle}
+          />
         )}
-        {table.session === null ? (
+        {/* Until the first evening has ended (a campaign may begin with its session open). */}
+        {step === null && (
+          <FirstEvening api={api} revision={revision + round} dated={Boolean(table.nextGame)} />
+        )}
+        {table.session === null && step === null && (
+          <EveningWords
+            api={api}
+            revision={revision + round}
+            characters={table.characters.map((entry) => entry.character)}
+          />
+        )}
+        {table.session === null && step !== null ? (
+          <div className="tool-group session-closing">
+            <p role="status" className="book-writing">
+              {t(STEP_WORDS[step])}
+            </p>
+          </div>
+        ) : table.session === null && finished ? null : table.session === null ? (
           <StartForm
             api={api}
             locked={locked}
-            onStart={(title, mode) => {
+            revision={revision + round}
+            onStart={(title, mode, previously) => {
               setEnded(null);
-              void change({ mode }).then(() => {
+              void (async () => {
+                // The recap is cast first: a screen that goes online with the session opens with
+                // it. A cast that fails does not hold the session back; the sheet says so.
+                const cast = previously
+                  ? await api
+                      .post(
+                        'display/cast',
+                        { cast: { kind: 'chronicle' } },
+                        AbortSignal.timeout(20_000),
+                      )
+                      .then(
+                        () => true,
+                        () => false,
+                      )
+                  : true;
+                // The game that was dated begins: its date has done its work (one for a later
+                // day stays). Read now: a date just changed may not have come back to the sheet.
+                const dated = await api
+                  .get<LobbyResponse>('lobby', AbortSignal.timeout(20_000))
+                  .then((now) => now.nextGame ?? null)
+                  .catch(() => table.nextGame ?? null);
+                const begun = dated && Date.parse(dated.at) <= Date.now() + 12 * 3_600_000;
+                await change(begun ? { mode, nextGame: null } : { mode });
+                if (!cast) setFailed(true);
                 onRun({ type: 'StartSession', title });
-              });
+              })();
             }}
           />
         ) : (
@@ -112,16 +169,42 @@ export function SessionSheet({
             mode={table.mode}
             paused={table.paused}
             locked={locked}
+            revision={revision + round}
+            locationId={locationId}
             api={api}
+            step={step}
             onPause={(paused) => void change({ paused })}
-            onEnd={(sessionId) => {
-              void change({ paused: false }).then(() => {
-                onRun({ type: 'EndSession', sessionId });
-              });
+            onStep={setStep}
+            onClosed={(result) => {
+              setStep(null);
+              if (result.stopped === null) setEnded(result);
+              setRound((value) => value + 1);
+              onWorldChanged();
             }}
-            onEnded={setEnded}
           />
         )}
+        {/* When the table meets again (ADR 0071 §3). */}
+        {!finished && (
+          <NextGameForm
+            api={api}
+            next={table.nextGame ?? null}
+            onChanged={() => {
+              setRound((value) => value + 1);
+            }}
+          />
+        )}
+        {end.ending !== null && step === null && (
+          <CampaignEnd
+            api={api}
+            ending={end.ending}
+            sessionOpen={table.session !== null}
+            onChanged={() => {
+              setRound((value) => value + 1);
+            }}
+          />
+        )}
+        {/* How this table plays (ADR 0071 §4). */}
+        <AgreementTool api={api} revision={revision + round} />
         {/* The DM's music (ADR 0059 §3): where the ambience plays, from the same moment. */}
         <MusicPanel
           api={api}
@@ -206,14 +289,111 @@ export function SessionSheet({
   );
 }
 
+/**
+ * What closing the evening did, said once the session is gone: it takes focus (the button that
+ * closed the evening went with the session), and says what to do about the chapter.
+ */
+function EveningClosed({
+  api,
+  result,
+  onOpenChronicle,
+}: {
+  readonly api: WorldApi;
+  readonly result: EveningResult;
+  readonly onOpenChronicle: (chronicleId: string | null) => void;
+}) {
+  const t = useT();
+  const head = useRef<HTMLParagraphElement>(null);
+  useEffect(() => {
+    head.current?.focus();
+  }, []);
+  // The chapter as it stands: the closing's, or a later try's.
+  const [chapter, setChapter] = useState(result.chapter);
+  const [trying, setTrying] = useState(false);
+  const again = async () => {
+    setTrying(true);
+    setChapter(await writeChapter(api, result, (written) => chapterMessage(written)));
+    setTrying(false);
+  };
+  return (
+    <div className="tool-group session-ended">
+      <p ref={head} tabIndex={-1}>
+        {t('The session is over.')}
+      </p>
+      <ul className="evening-done">
+        {result.kept > 0 && <li>{t('Moments kept: {count}.', { count: result.kept })}</li>}
+        {result.refused.map((words) => (
+          <li key={words}>{t('Not kept — the game did not accept it: “{words}”', { words })}</li>
+        ))}
+        {result.unpaired && <li>{t('The table’s screens are unpaired.')}</li>}
+        {result.freed !== null && (
+          <li>{t('Seats without a login are free: {count}.', { count: result.freed })}</li>
+        )}
+      </ul>
+      <p role="status">
+        {trying
+          ? t(STEP_WORDS.chapter)
+          : chapter.kind === 'written'
+            ? `${t(chapter.prose)} ${t('Players can read it in the Chronicle. Next time, start with “Previously…”.')}`
+            : chapter.kind === 'nothing'
+              ? t(
+                  'No chapter this time: the party kept no memories of this session. Next time, tick a moment or add a line of your own before you end.',
+                )
+              : chapter.kind === 'failed'
+                ? t(
+                    'The chapter could not be written. Try again, or write it later in the Chronicle (“Write a chapter (DM)”).',
+                  )
+                : ''}
+      </p>
+      {chapter.kind === 'written' && (
+        <button
+          type="button"
+          className="primary-button"
+          onClick={() => {
+            onOpenChronicle(chapter.chronicleId);
+          }}
+        >
+          <Glyph name="chronicle" />
+          {t('Open the chapter')}
+        </button>
+      )}
+      {chapter.kind === 'failed' && (
+        <button
+          type="button"
+          className="primary-button"
+          disabled={trying}
+          onClick={() => void again()}
+        >
+          <Glyph name="chapter" />
+          {t('Try the chapter again')}
+        </button>
+      )}
+      {chapter.kind === 'skipped' && (
+        <button
+          type="button"
+          onClick={() => {
+            onOpenChronicle(null);
+          }}
+        >
+          <Glyph name="chronicle" />
+          {t('Write the chapter')}
+        </button>
+      )}
+    </div>
+  );
+}
+
 function StartForm({
   api,
   locked,
+  revision,
   onStart,
 }: {
   readonly api: WorldApi;
   readonly locked: boolean;
-  readonly onStart: (title: string, mode: TableMode) => void;
+  readonly revision: number;
+  /** `previously`: the table's screen opens with the recap. */
+  readonly onStart: (title: string, mode: TableMode, previously: boolean) => void;
 }) {
   const t = useT();
   const ids = useId();
@@ -226,12 +406,14 @@ function StartForm({
   const [title, setTitle] = useState<string | null>(null);
   const [mode, setMode] = useState<TableMode>('table');
   const [attempted, setAttempted] = useState(false);
+  const previously = usePreviously(api, true, revision);
+  const [recap, setRecap] = useState(true);
   const shown = title ?? t('Session {number}', { number: count + 1 });
   const submit = (event: SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
     setAttempted(true);
     if (shown.trim() === '') return;
-    onStart(shown.trim(), mode);
+    onStart(shown.trim(), mode, recap && previously.chapter !== null);
   };
   return (
     <section className="tool-group" aria-labelledby={`${ids}-title`}>
@@ -271,6 +453,30 @@ function StartForm({
             </label>
           ))}
         </fieldset>
+        {previously.chapter !== null && (
+          <>
+            <label className="session-recap-choice">
+              <input
+                type="checkbox"
+                checked={recap}
+                onChange={(event) => {
+                  setRecap(event.target.checked);
+                }}
+              />
+              {t('Open with “Previously…” on the table’s screen')}
+            </label>
+            {/* In brief, so the start stays in view: the whole of it is read from the session's
+                panel once it runs. */}
+            {recap && (
+              <div className="previously-brief previously-brief--form">
+                <p className="previously-brief-title">{previously.chapter.title}</p>
+                <p className="previously-brief-opening">
+                  {recapParagraphs(previously.chapter).at(-1) ?? ''}
+                </p>
+              </div>
+            )}
+          </>
+        )}
         <div className="action-row">
           <button type="submit" className="primary-button" disabled={locked}>
             <Glyph name="confirm" />
@@ -278,143 +484,6 @@ function StartForm({
           </button>
         </div>
       </form>
-    </section>
-  );
-}
-
-function Running({
-  api,
-  title,
-  sessionId,
-  mode,
-  paused,
-  locked,
-  onPause,
-  onEnd,
-  onEnded,
-}: {
-  readonly api: WorldApi;
-  readonly title: string;
-  readonly sessionId: string;
-  readonly mode: TableMode;
-  readonly paused: boolean;
-  readonly locked: boolean;
-  readonly onPause: (paused: boolean) => void;
-  readonly onEnd: (sessionId: string) => void;
-  /** What the end did (the sheet shows it once the session is gone). */
-  readonly onEnded: (done: string) => void;
-}) {
-  const t = useT();
-  const ids = useId();
-  const invitations = useSignInKind() === 'session';
-  const [ending, setEnding] = useState(false);
-  const [unpair, setUnpair] = useState(true);
-  const [guests, setGuests] = useState(false);
-  const end = async () => {
-    const done: string[] = [];
-    onEnd(sessionId);
-    if (invitations && unpair) {
-      await api.post('displays/revoke', {}, AbortSignal.timeout(20_000)).catch(() => undefined);
-      done.push(t('The table’s screens are unpaired.'));
-    }
-    if (invitations && guests) {
-      const members = await api
-        .get<MembershipResponse>('invitations', AbortSignal.timeout(20_000), false)
-        .catch(() => null);
-      const free = members?.members.filter((member) => member.login === null) ?? [];
-      for (const member of free) {
-        await api
-          .post(
-            `members/${encodeURIComponent(member.characterId)}/revoke`,
-            {},
-            AbortSignal.timeout(20_000),
-          )
-          .catch(() => undefined);
-      }
-      done.push(t('Seats without a login are free: {count}.', { count: free.length }));
-    }
-    setEnding(false);
-    onEnded(done.join(' '));
-  };
-  return (
-    <section className="tool-group session-running" aria-labelledby={`${ids}-title`}>
-      <h3 id={`${ids}-title`}>
-        <Glyph name="chapter" />
-        {title}
-      </h3>
-      <p className="muted">
-        {mode === 'table' ? t('At the table') : t('Online')}
-        {paused ? ` · ${t('Paused')}` : ''}
-      </p>
-      <div className="action-row">
-        <button
-          type="button"
-          disabled={locked}
-          onClick={() => {
-            onPause(!paused);
-          }}
-        >
-          <Glyph name={paused ? 'confirm' : 'time'} />
-          {paused ? t('Resume the game') : t('Pause the game')}
-        </button>
-        <button
-          type="button"
-          aria-expanded={ending}
-          onClick={() => {
-            setEnding(!ending);
-          }}
-        >
-          <Glyph name="leave" />
-          {t('End the session')}
-        </button>
-      </div>
-      {ending && (
-        <div className="hand-form session-end">
-          <p>{t('End “{title}” for everyone?', { title })}</p>
-          {invitations && (
-            <>
-              <label>
-                <input
-                  type="checkbox"
-                  checked={unpair}
-                  onChange={(event) => {
-                    setUnpair(event.target.checked);
-                  }}
-                />
-                {t('Unpair the table’s screens')}
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  checked={guests}
-                  onChange={(event) => {
-                    setGuests(event.target.checked);
-                  }}
-                />
-                {t('Free the seats of players without a login')}
-              </label>
-            </>
-          )}
-          <div className="action-row">
-            <button
-              type="button"
-              className="primary-button"
-              disabled={locked}
-              onClick={() => void end()}
-            >
-              {t('Yes, end the session')}
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                setEnding(false);
-              }}
-            >
-              {t('Keep playing')}
-            </button>
-          </div>
-        </div>
-      )}
     </section>
   );
 }

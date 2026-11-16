@@ -1,4 +1,4 @@
-import { expect as baseExpect, test } from '@playwright/test';
+import { expect as baseExpect } from '@playwright/test';
 
 import { expectAccessible } from './support/axe.ts';
 import {
@@ -9,6 +9,7 @@ import {
   square,
   submit,
 } from './support/combat.ts';
+import { test } from './support/journey.ts';
 import { TOKENS } from './support/session.ts';
 import { openSheet } from './support/shell.ts';
 

@@ -64,6 +64,25 @@ pings with their end, the DM's pointer, strokes and shown areas, each the mark o
 table's data for the live session, not canonical state. Additive: an older build leaves both tables
 alone.
 
+Stage 720 (ADR 0071 §2): `0040_session_reflections.sql` keeps stars and wishes beside the world,
+one row for each author of each session (280 characters each), replaced when written again and
+removed when emptied: table data, not canonical state. Additive: an older build leaves the table
+alone.
+
+Stage 730 (ADR 0071 §3): `0041_next_game.sql` adds the next game to the table's state — an instant
+and a line of at most 120 characters, both the DM's: table data, not canonical state. Additive: an
+older build leaves the columns alone.
+
+Stage 740 (ADR 0071 §4): `0042_table_agreement.sql` keeps the table's agreement beside the world —
+one page a campaign (`ltw_table_agreements`) and, for each character, the version they said
+"Understood" to (`ltw_table_agreement_understood`): table data, not canonical state. Additive: an
+older build leaves both tables alone.
+
+Stage 780 (ADR 0072 §2): `0043_campaign_endings.sql` keeps a campaign's end beside the world — a
+row while it is finished (`ltw_campaign_endings`, deleted when the DM reopens it) and each hero's
+keepsake (`ltw_keepsakes`): table data, not canonical state. Additive: an older build leaves both
+tables alone, and plays a finished campaign on — it knows nothing of its end.
+
 Stage 680b (ADR 0058 §3–4): `0036_dm_library.sql` keeps the DM's library beside the world — handouts
 kept for later and random tables, one row an entry (its body at most 64 KB), replaced on save and
 deleted on the DM's word; a kept handout notes when it was last given. DM data, not canonical state:

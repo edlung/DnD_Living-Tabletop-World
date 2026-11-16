@@ -32,6 +32,10 @@ const ALWAYS = [
   '/campaigns/ravenford/world-map',
   // What the table's display shows (ADR 0042).
   '/campaigns/ravenford/display/cast ?',
+  // The table's agreement (ADR 0071 §4).
+  '/campaigns/ravenford/agreement',
+  // A campaign's end and keepsakes (ADR 0072 §2).
+  '/campaigns/ravenford/ending',
 ];
 
 describe('the coverage inventory', () => {
@@ -57,6 +61,10 @@ describe('the coverage inventory', () => {
       // Table talk (ADR 0044 §1) and handouts (§5).
       '/campaigns/ravenford/chat',
       '/campaigns/ravenford/handouts',
+      // Stars and wishes (ADR 0071 §2).
+      '/campaigns/ravenford/reflections',
+      // Cheers at the table (ADR 0072 §3).
+      '/campaigns/ravenford/cheers',
       // Crafting (ADR 0057 §9) and the table's shared marks on the board (§5).
       '/campaigns/ravenford/crafting',
       '/campaigns/ravenford/marks',
@@ -89,6 +97,9 @@ describe('the coverage inventory', () => {
       '/campaigns/ravenford/rest',
       '/campaigns/ravenford/chat',
       '/campaigns/ravenford/handouts',
+      // Stars and wishes (ADR 0071 §2).
+      '/campaigns/ravenford/reflections',
+      '/campaigns/ravenford/cheers',
       '/campaigns/ravenford/crafting',
       '/campaigns/ravenford/marks',
       '/campaigns/ravenford/chronicle/suggestions',
@@ -116,6 +127,24 @@ describe('the coverage inventory', () => {
       expect(covered.some((path) => path.includes('/dm/'))).toBe(false);
       expect(covered.some((path) => path.endsWith('/assets'))).toBe(false);
     }
+  });
+
+  it('gives a table display the stars, the cheers, the marks, the rolls and the join link', () => {
+    const views = coverageInventory(target({ display: true }));
+    expect(paths(views)).toEqual([
+      ...ALWAYS,
+      '/campaigns/ravenford/reflections',
+      // Cheers at the table (ADR 0072 §3): the TV shows them too.
+      '/campaigns/ravenford/cheers',
+      '/campaigns/ravenford/marks',
+      '/campaigns/ravenford/rolls',
+      '/campaigns/ravenford/check-requests',
+      '/campaigns/ravenford/display/join ?',
+    ]);
+    // The party's shared view on a person's screen cheers and reads none.
+    expect(paths(coverageInventory(target({}))).some((path) => path.endsWith('/cheers'))).toBe(
+      false,
+    );
   });
 
   it("leaves out the DM's identity while the DM holds a lower perspective", () => {

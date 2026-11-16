@@ -1,0 +1,386 @@
+/* The evening's ritual (ADR 0071 §1): "Previously…" as a page of the Chronicle wherever it is
+   read, the lobby's brief of it, and closing the evening on the Session sheet. */
+
+/* The recap: a parchment page — the picture, then the words; side by side where there is room. */
+.previously {
+  container-type: inline-size;
+  display: grid;
+  gap: 12px 20px;
+  padding: 16px;
+  border: 1px solid color-mix(in srgb, var(--page-ink) 40%, transparent);
+  border-radius: var(--radius-panel);
+  background: var(--page-ground);
+  box-shadow: var(--shadow-soft);
+  color: var(--page-ink);
+  text-align: left;
+}
+.previously .chapter-plate {
+  margin: 0;
+}
+.previously-words {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  min-width: 0;
+}
+.previously-words > * {
+  margin: 0;
+}
+.previously-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  color: var(--rubric);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+}
+.previously-eyebrow .glyph {
+  width: 18px;
+  height: 18px;
+}
+.previously-words :is(h1, h2, h3, h4) {
+  color: var(--page-ink);
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  line-height: 1.15;
+}
+.previously-passage {
+  font-family: var(--font-body);
+  line-height: 1.45;
+}
+.previously .muted {
+  color: var(--page-ink-muted);
+}
+.previously .action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+@container (min-width: 34rem) {
+  .previously > .chapter-plate {
+    grid-column: 1;
+  }
+  .previously > .previously-words {
+    grid-column: 2;
+  }
+}
+@media (min-width: 768px) {
+  .previously:not(.previously--aloud) {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    align-items: start;
+  }
+}
+
+/* In the lobby, over the stage: the brief pill-sized card, and the whole recap on demand. */
+.previously-brief,
+.previously--lobby {
+  pointer-events: auto;
+}
+.previously-brief {
+  display: grid;
+  gap: 6px;
+  width: min(100%, 560px);
+  padding: 12px 16px;
+  border: 1px solid color-mix(in srgb, var(--page-ink) 40%, transparent);
+  border-radius: var(--radius-panel);
+  background: var(--page-ground);
+  box-shadow: var(--shadow-soft);
+  color: var(--page-ink);
+  text-align: left;
+}
+.previously-brief > * {
+  margin: 0;
+}
+.previously-brief-title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.15;
+}
+.previously-brief-opening {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  line-height: 1.4;
+}
+.previously-brief .action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+.previously--lobby {
+  width: min(100%, 640px);
+  max-height: min(70dvh, 640px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+@media (max-width: 767px) {
+  .previously--lobby {
+    max-height: 60dvh;
+  }
+}
+
+/* On the table's screen: large, to be read aloud from across the room; no scrolling there. */
+.display-chronicle .previously {
+  gap: 3vmin 4vmin;
+  width: min(100%, 150vmin);
+  max-width: none;
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+}
+.display-chronicle .previously-eyebrow {
+  font-size: clamp(1rem, 2.4vmin, 2rem);
+}
+.display-chronicle .previously-eyebrow .glyph {
+  width: clamp(18px, 3vmin, 40px);
+  height: clamp(18px, 3vmin, 40px);
+}
+.display-chronicle .previously-words {
+  gap: 2vmin;
+}
+.display-chronicle .previously-words h1 {
+  margin: 0;
+  color: var(--rubric);
+  font-size: clamp(2rem, 5.4vmin, 4.6rem);
+}
+.display-chronicle .previously-passage {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2.9vmin, 2.4rem);
+  line-height: 1.35;
+}
+.display-chronicle .previously--long .previously-passage {
+  font-size: clamp(1rem, 2.2vmin, 1.8rem);
+}
+.display-chronicle .chapter-plate figcaption {
+  font-size: clamp(0.9rem, 1.8vmin, 1.5rem);
+}
+
+/* Closing the evening: the moments to keep, then what happens after the end. */
+.session-end fieldset {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+  margin: 0;
+  padding: 12px;
+  border: 1px solid color-mix(in srgb, var(--gold) 35%, transparent);
+  border-radius: var(--radius-control);
+}
+.session-end legend {
+  padding: 0 6px;
+  color: var(--gold-bright);
+  font-weight: 700;
+}
+.session-end fieldset p {
+  margin: 0;
+}
+.evening-list {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.session-end .evening-list label {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  min-height: 32px;
+  padding: 4px 0;
+}
+.evening-list input {
+  flex: none;
+  margin-top: 4px;
+}
+.evening-list small {
+  display: block;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+}
+.session-end .evening-line {
+  display: block;
+  min-height: 0;
+  margin-top: 4px;
+}
+.session-end fieldset textarea {
+  width: 100%;
+  resize: vertical;
+}
+.evening-done {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding-left: 1.2rem;
+}
+.session-running > .previously,
+.hand-form > .previously {
+  margin: 4px 0;
+}
+
+/* Controls on the parchment: page inks, as the book's own (the app's glass buttons are for dark). */
+:is(.previously, .previously-brief) button:not(.primary-button) {
+  border-color: color-mix(in srgb, var(--page-ink) 45%, transparent);
+  background: color-mix(in srgb, var(--page) 55%, transparent);
+  color: var(--page-ink);
+}
+:is(.previously, .previously-brief) button:not(.primary-button):hover:enabled {
+  border-color: var(--rubric);
+  background: color-mix(in srgb, var(--page) 85%, transparent);
+}
+:is(.previously, .previously-brief) button:not(.primary-button) .glyph {
+  color: var(--rubric);
+}
+
+/* In a player's Table screen sheet online: the same page, sized to the sheet. */
+.shared-screen .display-chronicle .previously {
+  gap: 3cqi 4cqi;
+  width: 100%;
+}
+.shared-screen .display-chronicle .previously-eyebrow {
+  font-size: clamp(0.8rem, 2cqi, 1rem);
+}
+.shared-screen .display-chronicle .previously-eyebrow .glyph {
+  width: 18px;
+  height: 18px;
+}
+.shared-screen .display-chronicle .previously-words {
+  gap: 1.5cqi;
+}
+.shared-screen .display-chronicle .chapter-plate img {
+  max-height: min(24vh, 16rem);
+}
+.shared-screen .display-chronicle .chapter-plate figcaption {
+  font-size: 0.85rem;
+}
+.shared-screen:focus-visible {
+  outline: 2px solid var(--gold-bright);
+  outline-offset: 2px;
+}
+
+/* The recap stays while the table waits: under the place's card, never over it, on every width
+   that floats the slot (a phone's sits above the tab bar) — as the away notice does. */
+@media (min-width: 768px) {
+  .rest-banner-slot:has(.previously-brief, .previously--lobby, .next-game--lobby) {
+    top: calc(var(--topbar-h) + 120px);
+    left: 120px;
+    align-items: flex-start;
+    max-width: min(640px, calc(100vw - 136px));
+    translate: none;
+  }
+  .previously--lobby {
+    width: min(640px, calc(100vw - 136px));
+    max-height: calc(100dvh - var(--topbar-h) - var(--dock-h, 88px) - 220px);
+  }
+}
+
+/* Where the DM reads it aloud, on the Session sheet: the words, without the picture. */
+.previously--aloud .chapter-plate {
+  display: none;
+}
+
+/* In the Table screen sheet the page fits the sheet's own height where it can. */
+.shared-screen .display-chronicle:has(.previously) {
+  padding: 2cqi 3cqi;
+}
+.shared-screen .display-chronicle .previously-words h1 {
+  margin: 0;
+  font-size: clamp(1.25rem, 3.2cqi, 1.9rem);
+}
+.shared-screen .display-chronicle .previously-passage {
+  margin: 0;
+  font-size: clamp(1rem, 1.9cqi, 1.15rem);
+}
+.shared-screen .display-chronicle .chapter-plate img {
+  max-height: min(18vh, 12rem);
+}
+
+/* A phone's lobby: the words alone (the book holds the picture), within what the scene leaves. */
+@media (max-width: 767px) {
+  .previously--lobby .chapter-plate {
+    display: none;
+  }
+  .previously--lobby {
+    max-height: max(180px, calc(100dvh - 440px));
+  }
+}
+
+/* Keyboard focus on the parchment: the book's own ring (the app's teal ring is for dark glass). */
+:is(.previously, .previously-brief) :focus-visible {
+  outline-color: var(--rubric);
+  box-shadow: none;
+}
+:is(.previously, .previously-brief) button:not(.primary-button) {
+  border-color: color-mix(in srgb, var(--page-ink) 60%, transparent);
+}
+
+/* The recap's own controls stay in reach while a long one scrolls in the lobby. */
+.previously--lobby .action-row {
+  position: sticky;
+  bottom: -16px;
+  margin-bottom: -16px;
+  padding: 8px 0 16px;
+  background: var(--page-ground);
+}
+
+/* On the start form: the brief of it, in the form's own column. */
+.previously-brief--form {
+  width: 100%;
+}
+
+/* The closing as it runs, and what the session's panel says after the scene is shown. */
+.session-closing p,
+.session-status {
+  margin: 0;
+}
+.session-status:empty {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+.session-running {
+  position: relative;
+}
+.session-ended p:focus-visible {
+  outline: 2px solid var(--gold-bright);
+  outline-offset: 2px;
+}
+
+/* A screen too short for the recap beside the scene (a phone held wide): the brief in one row,
+   without its opening line; "Read the recap" opens the book there (session/lobby-banner.tsx). */
+@media (max-height: 560px) {
+  .previously-brief:not(.previously-brief--form) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 12px;
+    width: auto;
+    padding: 8px 12px;
+  }
+  .previously-brief:not(.previously-brief--form) .previously-brief-opening {
+    display: none;
+  }
+  .previously-brief:not(.previously-brief--form) .action-row {
+    margin-top: 0;
+  }
+}
+
+/* The start form's choice of the recap: the box, then its words, as the sheet's other choices. */
+.session-recap-choice {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 32px;
+}

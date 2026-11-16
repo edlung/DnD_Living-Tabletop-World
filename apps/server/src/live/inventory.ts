@@ -63,6 +63,10 @@ export function coverageInventory(target: LiveTarget): ViewRequest[] {
     // What the table's display shows (ADR 0042), read by every member. Optional: a composition
     // without displays answers 404, which is fingerprinted like any absent view.
     { url: `${base}/display/cast`, optional: true },
+    // The table's agreement (ADR 0071 §4): every member and the display read the same page.
+    scoped('agreement'),
+    // A campaign's end and its heroes' keepsakes (ADR 0072 §2): every member and the display.
+    scoped('ending'),
   ];
   // The table's rolls and the DM's check requests (Stage 510): the dice the client animates; the
   // open short rest (Stage 530), when players spend Hit Point Dice.
@@ -72,6 +76,14 @@ export function coverageInventory(target: LiveTarget): ViewRequest[] {
     views.push(scoped('chat'));
     // Handouts (§5): a new one signals its readers.
     views.push(scoped('handouts'));
+  }
+  // Stars and wishes (ADR 0071 §2): a new one signals whoever reads it, the display's cast too.
+  if (target.kind === 'CHARACTER' || target.kind === 'DM' || target.display === true) {
+    views.push(scoped('reflections'));
+  }
+  // Cheers at the table (ADR 0072 §3): held a few seconds, shown on every screen and the display.
+  if (target.kind === 'CHARACTER' || target.kind === 'DM' || target.display === true) {
+    views.push(scoped('cheers'));
   }
   // Crafting (ADR 0057 §9): a project's days of work, a character's own and the DM's.
   if (target.kind === 'CHARACTER' || target.kind === 'DM') views.push(scoped('crafting'));

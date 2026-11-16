@@ -1,7 +1,8 @@
-import { expect, test } from '@playwright/test';
+import { expect } from '@playwright/test';
 
 import { SIGN_IN_ORIGIN, signInSeed } from '../../apps/server/src/testing/ui-sign-in-links.ts';
 import { workshopInvitationToken } from '../../apps/server/src/testing/ui-workshop-links.ts';
+import { test } from './support/journey.ts';
 import { draftApi, workshopOwner } from './support/workshop.ts';
 import {
   enterCharacter,

@@ -6,9 +6,13 @@ import {
   memoryChat,
   memoryMarks,
   memoryHandouts,
+  memoryAgreement,
+  memoryEnding,
+  memoryReflections,
   memoryTable,
   type AppDependencies,
 } from '../http/app.ts';
+import { memoryCheers } from '../cheers/cheer-routes.ts';
 import { memoryLobby } from '../table/table-state.ts';
 import { createLogger } from '../platform/logging/logger.ts';
 import { fingerprintSubscription } from './fingerprint.ts';
@@ -53,6 +57,14 @@ export function buildLiveApp(
     marks: deps.marks ?? memoryMarks(),
     // And one set of handouts, so a new one signals its readers (ADR 0044 §5).
     handouts: deps.handouts ?? memoryHandouts(),
+    // And one set of stars and wishes, so a new one signals its readers (ADR 0071 §2).
+    reflections: deps.reflections ?? memoryReflections(),
+    // And one agreement, so a page written or understood signals its readers (ADR 0071 §4).
+    agreement: deps.agreement ?? memoryAgreement(),
+    // And one end, so a campaign finished or a keepsake chosen signals its readers (ADR 0072 §2).
+    ending: deps.ending ?? memoryEnding(),
+    // And one board of cheers, so applause reaches every screen (ADR 0072 §3).
+    cheers: deps.cheers ?? memoryCheers(),
     presence: registry,
   };
   const app = buildApp(shared);

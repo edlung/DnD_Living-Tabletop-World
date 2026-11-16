@@ -1,9 +1,13 @@
 import { expect as baseExpect, test, type Locator, type Page } from '@playwright/test';
 
 import { UI_PARTY_CAMPAIGNS } from '../../apps/server/src/testing/ui-party-campaigns.ts';
+import { closePages, freshPage } from './support/pages.ts';
 import { expectAccessible } from './support/axe.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
 import { openSheet } from './support/shell.ts';
+
+// Every page of the journey closes with it (`support/pages.ts` says why).
+test.afterEach(closePages);
 
 /**
  * The DM's screen (docs/adr/0043-dm-screen.md, Stage 620): the Party sheet shows every
@@ -161,8 +165,8 @@ test('the DM changes a running fight’s turn order', async ({ page }) => {
 
 test('a session pauses, ends and starts again with the players ready', async ({ browser }) => {
   test.setTimeout(120_000);
-  const dm = await (await browser.newContext()).newPage();
-  const player = await (await browser.newContext()).newPage();
+  const dm = await freshPage(browser);
+  const player = await freshPage(browser);
   await enterWorld(dm, TOKENS.dm, campaignOf());
   await enterWorld(player, TOKENS.player, campaignOf());
   await openSheet(dm, 'Session');
@@ -183,6 +187,11 @@ test('a session pauses, ends and starts again with the players ready', async ({ 
 
   // The end: the chapter to write; the player waits for the next session and says ready.
   await sheet.getByRole('button', { name: 'End the session', exact: true }).click();
+  // Closing the evening (ADR 0071 §1.3; its own journey is `evening-ritual.spec.ts`): this DM
+  // leaves the chapter for later, so the sheet offers to write it.
+  await sheet
+    .getByRole('checkbox', { name: 'Write a chapter about this session', exact: true })
+    .uncheck();
   await sheet.getByRole('button', { name: 'Yes, end the session', exact: true }).click();
   await expect(sheet.getByRole('button', { name: 'Write the chapter', exact: true })).toBeVisible();
   await expect(player.getByText('The session has not started yet.')).toBeVisible();

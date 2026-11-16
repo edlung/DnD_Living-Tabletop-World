@@ -12,6 +12,7 @@ import { LiveActiveContext, LiveRefreshContext, LiveRetryContext } from '../api/
 import { useResource } from '../api/resource.ts';
 import { useScreenAwake } from '../alerts/screen.ts';
 import { TableMusic } from '../audio/table-music.tsx';
+import { DisplayCheers } from '../comforts/cheers.tsx';
 import { TableAmbience } from '../audio/table-sound.tsx';
 import { onForgetAsked, reportToHost } from '../native/tv-report.ts';
 import { useHostedTvSound } from '../native/tv-sound.ts';
@@ -370,6 +371,8 @@ function DisplayScreen({
       <TableAmbience api={api} refresh={live.refresh} choice={choice} placeId={scenePlaceId} />
       <TableMusic api={api} music={table?.sound.music ?? null} />
       <LinkPlate status={live.status} />
+      {/* The table's cheers, for a moment over whatever is cast (ADR 0072 §3). */}
+      <DisplayCheers api={api} />
       <DisplayCorner name={session.name} onForget={onForget} />
     </main>
   );

@@ -1,7 +1,8 @@
-import { expect as baseExpect, test, type Locator, type Page } from '@playwright/test';
+import { expect as baseExpect, type Locator, type Page } from '@playwright/test';
 
 import { UI_PARTY_CAMPAIGNS } from '../../apps/server/src/testing/ui-party-campaigns.ts';
 import { expectAccessible } from './support/axe.ts';
+import { test } from './support/journey.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
 import { openSheet } from './support/shell.ts';
 

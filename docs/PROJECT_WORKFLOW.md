@@ -10,8 +10,38 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   the apps, the layout) and the TV's sound "from the DM's iPad"; an Android TV app was offered and
   not chosen. Scope `work-orders/NATIVE_TV_POLISH_2026-11-15.md`; branch `claude/native-tv-polish`
   from `e268e158`; report `reports/NATIVE_TV_POLISH_2026-11-15.md`.
-- Status: implemented and verified; a pull request into `main` awaits the owner's merge decision.
-  Not merged, not deployed, nothing published to a store.
+- Status: implemented and verified (PR 32); on the owner's word of 2026-11-16 («сливаем») it is
+  merged into `main` once its CI, run again on `main` with the memory-and-ritual package, is green.
+  Not deployed, nothing published to a store.
+
+## Request — memory and ritual, 2026-11-15
+
+- Owner: the goal «Теплый и ламповый портал в увлекательные D&D миры», then «Да, план» for the
+  package «Память и ритуал»; seven product answers (`reviews/OWNER_MEMORY_RITUAL_2026-11-15.json`).
+  Program `docs/MEMORY_RITUAL_PLAN.md` (Stages 710–799: Part 1 before the family playtest, Part 2
+  after it); draft work order `work-orders/STAGE_710.md`.
+- Status: the plan is PR 37 (draft). Stage 710 was authorized by the owner on 2026-11-15 («Да,
+  этап 710») and implemented on `claude/stage-710-previously` (ADR 0071 §1, report
+  `reports/STAGE_710_COMPLETION.md`), awaiting the owner's disposition. On the owner's word of
+  the same day («не спрашивай меня, а действуй по плану до конца») the stages follow the plan, each
+  in its own pull request; merges and deployment stay the owner's. Stage 720 (stars and wishes) is
+  implemented on `claude/stage-720-stars-and-wishes`, stacked on 710's branch
+  (`reports/STAGE_720_COMPLETION.md`). Stage 730 (the next game) is implemented on
+  `claude/stage-730-next-game`, stacked on 720's (`reports/STAGE_730_COMPLETION.md`); Stage 740 (the
+  table's agreement and the DM's guide) on `claude/stage-740-agreement`, stacked on 730's
+  (`reports/STAGE_740_COMPLETION.md`); Stage 760 (the ritual's checkpoint) on
+  `claude/stage-760-ritual-checkpoint` (`reports/STAGE_760_COMPLETION.md`): Part 1 ends there;
+  Stage 750 waits for PR 32. On the owner's word of 2026-11-16 («продолжаем», typed after Stage
+  760's report) Part 2 goes on before the family playtest: Stage 770 (the book and the gallery)
+  on `claude/stage-770-book-and-gallery`, stacked on 760's (ADR 0072 §1,
+  `reports/STAGE_770_COMPLETION.md`); Stage 780 (a campaign's end, keepsakes, finished adventures in
+  the account's list) on `claude/stage-780-home-between-worlds`, stacked on 770's (ADR 0072 §2,
+  `reports/STAGE_780_COMPLETION.md`); Stage 790 (small comforts: text size, the DM's break
+  reminder, cheers at the table) on `claude/stage-790-small-comforts`, stacked on 780's (ADR 0072
+  §3, `reports/STAGE_790_COMPLETION.md`); Stage 799 (the package's close: one journey over Part
+  2, the adversarial pass, the handoff) on `claude/stage-799-package-close`, stacked on 790's
+  (`reports/STAGE_799_COMPLETION.md`): the package ends there, before the family playtest. Off-host backup copies are a separate task on the owner's
+  separate word.
 
 ## Earlier request — campaign library release, 2026-11-14
 

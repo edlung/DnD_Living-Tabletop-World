@@ -22,6 +22,8 @@ export interface ChronicleWorld extends VisualWorld {
     readonly from?: number;
     readonly to?: number;
     readonly title?: string;
+    /** One session's chapter (docs/adr/0071-memory-and-ritual.md §1.2). */
+    readonly sessionId?: string;
     readonly paragraphs?: readonly ChronicleParagraph[];
     readonly actor?: Actor;
   }) => Promise<CommandResult>;
@@ -43,7 +45,7 @@ export async function chronicleWorld(): Promise<ChronicleWorld> {
         : holderPerspective(state, { kind: 'PARTY' });
       const from = options.from ?? DAY1_START;
       const to = options.to ?? state.clock;
-      const draft = chronicleEntries(state, history, perspective, from, to);
+      const draft = chronicleEntries(state, history, perspective, from, to, options.sessionId);
       chapters += 1;
       return world.engine.execute({
         commandId: `chronicle-test.${String(chapters)}`,
@@ -55,6 +57,7 @@ export async function chronicleWorld(): Promise<ChronicleWorld> {
           perspective: label,
           from,
           to,
+          ...(options.sessionId === undefined ? {} : { sessionId: options.sessionId }),
           prose: {
             // With nothing to tell, a placeholder keeps the command well-formed for the decision.
             paragraphs:
