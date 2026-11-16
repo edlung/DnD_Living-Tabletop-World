@@ -4,8 +4,8 @@
   улучшений…», quoted as relayed in `reviews/OWNER_TABLE_IDEAS_2026-11-16.json`; every point of §1
   is the session's and is marked in the plan, `docs/TABLE_IDEAS_PLAN.md` decisions 3–4, and stays
   the owner's to overrule). Later sections are added by their stages and are not in force until
-  then. §2–§9 are accepted on the same word; every point of them is the session's (the plan's
-  decisions 5–12). §1 amends ADR 0062 §1 (the notice names error reports), ADR 0042 §2 (a table display's one
+  then. §2–§10 are accepted on the same word; every point of them is the session's (the plan's
+  decisions 5–13). §1 amends ADR 0062 §1 (the notice names error reports), ADR 0042 §2 (a table display's one
   write), ADR 0033 (one more read in the DM's live inventory) and ADR 0061 §5 (a table that names
   a campaign and stays behind). §2 amends ADR 0071 §4.5 (a request for a pause is no longer a chat
   message) and ADR 0033 (one more read in the live inventory, for the DM and the asker). §3 amends ADR 0015
@@ -19,7 +19,9 @@
   login is asked for) and changes no contract. §8 amends ADR 0042 §3 and ADR 0044 §5 (one more
   cast, `story`). §9 amends ADR 0058 §3 (a kept handout can be sealed), ADR 0044 §5 (a handout
   can arrive from an envelope), ADR 0033 (one more read in the live inventory) and ADR 0061 §5
-  (one table moves).
+  (one table moves). §10 amends ADR 0071 §3 (the date takes answers), ADR 0043 §6 (the lobby's answer
+  says who comes), ADR 0062 §1 (the notice names the answer) and ADR 0061 §5 (one table moves),
+  and reverses decision 14 of `docs/MEMORY_RITUAL_PLAN.md`.
 - Context: The program after «Память и ритуал» borrows ten things other tools for the same hobby
   do well. This ADR holds their contracts, one section a stage. The first: the client reported
   nothing. A game's screen that failed while drawing fell back to a line about a "world response"
@@ -307,6 +309,35 @@
    so. Not a cast: the table's screen shows no envelope by itself. A finished campaign seals and
    opens none. The table moves with its campaign (ADR 0061 §5).
 
+### 10. "I'll come / I can't" for the next game (Stage 890)
+
+1. **What it is.** One answer a character to the next game's date as it stands: comes, or cannot.
+   `ltw_next_game_answers` (migration 0048), table data beside the world. This reverses decision
+   14 of `docs/MEMORY_RITUAL_PLAN.md`, a session's default that left answers out of the earlier
+   package: the owner's word of 2026-11-16 asked for the listed ideas, and this was on the list.
+2. **Who answers.** A player for their own character, under the date in the lobby, with one
+   press; the same press again takes the answer back. The DM for anyone, on the Session sheet —
+   a child who has no phone and said it aloud. `POST /campaigns/:id/lobby/coming`, by the rule
+   "ready" has (ADR 0043 §6). A table display answers nothing.
+3. **Who reads.** The table: the lobby's answer gives each character it lists — the
+   perspective's own, so nobody learns of a character they do not know — its answer or none. A
+   player reads "Coming", "Can't come" and "No answer yet" under their own buttons; the DM reads
+   the same per hero on the Session sheet. Nothing else shows it: not the list of campaigns, not
+   the calendar file, not the table's screen (which could: it is sent the same answer).
+4. **A changed date asks again.** An answer is kept with the instant it answered and read only
+   for that instant: another day or hour, and every hero is unanswered again; the DM's line
+   about the date changes nothing asked. A date taken away or cleared by the session it was set
+   for leaves nothing to answer, and the answers are deleted then.
+5. **What it is not.** No reminder and no notification — the product has no push service (ADR
+   0070) and none is added; the calendar file of ADR 0071 §3 is still the only thing that
+   reminds. No count of who missed what, no history of answers, no "maybe". Not a perspective's
+   knowledge and nothing the World Engine reads: a hero who "can't come" is not marked absent —
+   that stays the DM's own switch on the evening.
+6. **Around it.** The table moves with its campaign (ADR 0061 §5). An answer is the table's
+   state about a hero, as "absent" is, not a line of a person's copy of their data; the privacy
+   notice says that it is kept, who reads it and when it goes. A finished campaign has no date
+   and takes no answer.
+
 ## Consequences
 
 - The DM's list can be written to by anyone at the table, and — without a campaign — the
@@ -382,6 +413,14 @@
 - A build from before this section ignores the table: after a rollback the party sees no
   envelopes and none opens; nothing is lost.
 
+- An answer says something about a person to the whole table: that is its purpose, and the
+  reason there is no third choice and no word of explanation to type.
+- The DM can answer for anyone and so can overwrite a player's own answer; the player sees it at
+  once and can press again. Nothing records who pressed.
+- An answer given for a date that then passes stays in the table, unread, until the next date is
+  set or taken away.
+- A build from before this section ignores the table and shows the date without answers.
+
 ## Alternatives considered
 
 - **A hosted error service.** It would send a family's devices' details to a third party and add
@@ -404,6 +443,11 @@
   DM's word and the chapter are the two moments the table already has.
 - **Showing the envelope on the table's screen as a cast.** A cast is what the DM shows now; an
   envelope waits. The DM can say it aloud, or cast a title card.
+
+- **A reminder to those who have not answered.** It needs a push service or e-mail, which the
+  product refuses, and it is the nagging the plan ruled out.
+- **Marking a hero absent from "I can't".** It would turn a courtesy into table control; the DM
+  decides on the evening who is absent.
 
 ## Invariants affected
 

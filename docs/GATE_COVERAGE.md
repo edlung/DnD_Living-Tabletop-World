@@ -1073,3 +1073,16 @@ Stage 880 (`docs/adr/0073-table-ideas.md` §9) lets the DM seal a kept handout f
   chapter does; the unknown picture; roles; the live signal), `envelope-store.integration.test.ts`
   (PostgreSQL), the journey `tests/e2e/envelopes.spec.ts` (what the player's page was sent while
   it was sealed holds nothing of the inside).
+
+## Stage 890: "I'll come / I can't" for the next game (2026-11-16)
+
+Stage 890 (`docs/adr/0073-table-ideas.md` §10) lets the table answer the next game's date.
+
+- Boundary: an answer is read in the lobby's answer on the characters that perspective already
+  lists, so no character is revealed by it; a player answers for their own character only, and
+  is refused alike for another's hero, a hidden one and one that does not exist; a display reads
+  and answers nothing; the DM answers for anyone. An answer is read only for the instant it was
+  given for.
+- Deterministic regressions: `apps/server/src/table/coming.test.ts` (who answers and who reads;
+  the changed date; no date; refused bodies; the hidden character; a display; the live signal),
+  `coming-store.integration.test.ts` (PostgreSQL), the journey `tests/e2e/coming.spec.ts`.

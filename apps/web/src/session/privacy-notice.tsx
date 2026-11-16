@@ -24,6 +24,7 @@ export function PrivacyPage({ language: initial }: { readonly language: Language
 const KEPT = [
   'Your account: the login you chose, a hash of your password (never the password itself) and the name the table sees. No e-mail, no phone number.',
   'Your campaigns: which ones you sit in, your characters, and each campaign’s story as it is played.',
+  'Whether you come to the next game, if you answered: the table reads it, and it is gone when the date changes or passes.',
   'What you write and roll: your chat messages, your dice rolls, the star and the wish you write when an evening ends (the table reads your star; your wish is for the DM alone), and what your hero keeps when an adventure ends (the table reads it).',
   'Your hero’s story and your notes: the backstory you write for your hero (you and the DM read it) and your private notes (only you read them — the DM does not).',
   'Your sign-ins: when each began and when it ends, to keep you signed in. Cookies hold these sign-ins and nothing else.',
