@@ -104,6 +104,17 @@ class Readings:
     carry_fallen: bool = False              # a lying Efim may be led (dragged) 4 cells
     zaslon_cap: int = 99                    # FIX TEST: total Заслон per round for the whole table
     die_on_fall: int = 99                   # FIX TEST: Efim dies when he drops to 0 for the k-th time
+    vet_hold_with_ruma: bool = False        # lever b: with Рума at the west end veterans leave only at 0 / receipt
+    column_reinforce: bool = False          # lever c: at Р0/Р1 the column brings one more veteran (column 2)
+    xbow_adv_alone: bool = False            # lever d: advantage on a standing Efim with no hero adjacent
+    kondrat_leave_hp: int = 27              # lever e
+    efim_speed: int = 4                     # lever g: cells per round for Efim (led or own step)
+    col_speed: int = 0                      # lever h: column advances this many columns per round after arrival
+    zaslon_vs_grab: bool = True             # lever i: False = Заслон turns attacks only, not «Взять»
+    col_schedule: tuple = (2, 4, 6)         # lever s: column arrival round for Р 0 / 1 / 2
+    tower_col: int = 18                     # lever f: «Дошёл» column with the tower warned
+    vet_hold_with_column: bool = False      # lever b2: while the column stands, veterans do not leave at 4 HP
+    col_speed_by_gap: tuple = ()            # lever h2: column speed for Р 0 / 1 / 2 (overrides col_speed)
 
 
 @dataclass
@@ -203,9 +214,9 @@ class Sim:
         self.efim_fell_round = None
         self.holder: U | None = None
         self.boat = table.boat
-        self.col_round = {0: 2, 1: 4, 2: 6}.get(table.gap)  # None = never
+        self.col_round = dict(enumerate(rd.col_schedule)).get(table.gap)  # None = never
         self.ruma = table.gap == 0
-        self.goal = 18 if table.tower else 20
+        self.goal = rd.tower_col if table.tower else 20
         self.receipt = table.receipt
         self.receipt_read_round = None
         self.kondrat_left_round = None
@@ -265,6 +276,12 @@ class Sim:
         occ.add(self.efim_pos)
         return occ
 
+    def col_front(self):
+        if self.col_round is None or self.round < self.col_round:
+            return 2
+        sp = self.rd.col_speed_by_gap[self.t.gap] if self.rd.col_speed_by_gap else self.rd.col_speed
+        return min(24, 2 + sp * max(0, self.round - self.col_round))
+
     def column_here(self):
         return self.col_round is not None and self.round > self.col_round  # present from end of arrival round
 
@@ -288,7 +305,8 @@ class Sim:
             attacker.hit_platon = True
         if u.hp <= 0:
             self.leave(u)
-        elif u.kind == "vet" and u.hp <= 4:
+        elif u.kind == "vet" and u.hp <= 4 and not (self.rd.vet_hold_with_ruma and self.ruma_present()) \
+                and not (self.rd.vet_hold_with_column and self.column_here()):
             self.leave(u)
         elif u.kind == "xbow" and u.hp <= 5:
             self.leave(u)
@@ -490,7 +508,7 @@ class Sim:
                 x.down = False
 
     def try_lead(self, h):
-        if self.efim_led >= 4 or self.holder is not None:
+        if self.efim_led >= self.rd.efim_speed or self.holder is not None:
             return False
         if not self.efim_standing() and not self.rd.carry_fallen:
             return False
@@ -502,7 +520,7 @@ class Sim:
             return False
         c0 = min(adjcells, key=lambda c: dist.get(c, 0))
         spent = dist.get(c0, 0)
-        budget = min(4 - self.efim_led, 6 - spent)
+        budget = min(self.rd.efim_speed - self.efim_led, 6 - spent)
         if budget <= 0:
             return False
         old = self.efim_pos
@@ -661,7 +679,7 @@ class Sim:
         if self.boat:
             pts.append(BOAT)
         if self.column_here() or (self.rd.hold_without_point == "west" and self.col_round is not None):
-            pts += [(2, r) for r in range(1, 7)]
+            pts += [(self.col_front(), r) for r in range(1, 7)]
         if not pts and self.rd.hold_without_point == "west":
             pts += [(2, r) for r in range(1, 7)]
         return pts
@@ -716,7 +734,7 @@ class Sim:
             dist_to = self.move_toward(v, [self.efim_pos])
         if adj(v.pos, self.efim_pos) and self.holder is None:
             self.stats["grabs"] += 1
-            z = self.zaslon(is_grab=True)
+            z = self.zaslon(is_grab=True) if self.rd.zaslon_vs_grab else None
             if z:
                 return  # reading: a redirected Взять is spent on the hero with no effect
             if self.attack(3, 10, rng):
@@ -758,6 +776,9 @@ class Sim:
         if cheb(x.pos, self.efim_pos) > 16:
             return
         adv = -1 if any(adj(h.pos, x.pos) for h in self.heroes()) else 0
+        if can_shoot_efim and self.rd.xbow_adv_alone and not any(
+                adj(h.pos, self.efim_pos) for h in self.heroes()):
+            adv += 1
         if can_shoot_efim:
             z = self.zaslon()
             if z:
@@ -784,7 +805,7 @@ class Sim:
         rng = self.rng
         if self.round == 1:
             return
-        if k.hp <= 27:
+        if k.hp <= self.rd.kondrat_leave_hp:
             self.leave(k)
             self.kondrat_left_round = self.round
             self.stats["kondrat_left"] = True
@@ -826,7 +847,6 @@ class Sim:
 
     # ---------------- round
     def run(self, max_rounds=30):
-        order = sorted(self.units, key=lambda u: -u.init)
         self.round_log = []
         while self.round < max_rounds:
             self.round += 1
@@ -837,8 +857,9 @@ class Sim:
             for u in self.units:
                 u.zaslon_used = False
                 u.sneak_used = False
-            self.efim_dest_planned = self.efim_dest()
+            self.efim_dest_planned = self.efim_dest(self.rd.efim_speed)
             dec0 = self.stats["decisions"]
+            order = sorted(self.units, key=lambda u: -u.init)
             for u in order:
                 if u.gone or u.down:
                     continue
@@ -865,10 +886,16 @@ class Sim:
             # 3 column
             if self.col_round is not None and r >= self.col_round:
                 for h in self.units:
-                    if h.side == "H" and not h.gone and h.pos[0] <= 2:
+                    if h.side == "H" and not h.gone and h.pos[0] <= self.col_front():
                         h.gone = True
                         h.removed_by_column = True
-                if self.efim_pos[0] <= 2:
+                if (r == self.col_round and self.rd.column_reinforce and self.t.gap in (0, 1)):
+                    occ = self.occupied()
+                    free = [(2, rr) for rr in (3, 4, 2, 5, 1, 6) if (2, rr) not in occ]  # arrival: front = 2
+                    if free:
+                        self.units.append(U("ВетК", "vet", "F", 9, 9, 13, free[0],
+                                            init=self.rng.randint(1, 20)))
+                if self.efim_pos[0] <= self.col_front():
                     self.outcome = "Взят"
                     self.stats["taken_by"] = "column"
                     return self.finish()
@@ -906,7 +933,7 @@ class Sim:
         blocked = {u.pos for u in self.units if not u.gone}
         steps = 0
         pos = self.efim_pos
-        while steps < 4:
+        while steps < self.rd.efim_speed:
             if any(adj(pos, f.pos) for f in self.foes()):
                 break
             nxt = None
@@ -915,7 +942,7 @@ class Sim:
                 if inb(c) and c not in blocked and c not in PILLARS:
                     nxt = c
                     break
-            if not nxt or steps + cost(nxt) > 4:
+            if not nxt or steps + cost(nxt) > self.rd.efim_speed:
                 break
             steps += cost(nxt)
             pos = nxt
