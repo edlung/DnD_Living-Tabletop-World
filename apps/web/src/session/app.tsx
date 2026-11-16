@@ -344,21 +344,23 @@ function SessionShell({
       <a className="skip-link" href="#world-main">
         {t('Skip to world')}
       </a>
-      <TopBar
-        campaignName={identity.campaign.name}
-        status={status}
-        perspective={perspective}
-        choices={perspectiveChoices}
-        dmView={effective === 'DM'}
-        onPerspective={onPerspective}
-        onRefresh={() => {
-          setRevision((value) => value + 1);
-        }}
-        onLeave={onLeave}
-        sessionSlot={setSessionSlot}
-      />
-      {actingAs && <ActingBar standIn={actingAs} onStop={onStopActing} />}
+      {/* The API for the rules' pages, and for the guide's "Our table" in the top bar. */}
       <RulesApiContext.Provider value={api}>
+        <TopBar
+          campaignName={identity.campaign.name}
+          status={status}
+          perspective={perspective}
+          choices={perspectiveChoices}
+          dmView={effective === 'DM'}
+          dm={identity.role === 'DM'}
+          onPerspective={onPerspective}
+          onRefresh={() => {
+            setRevision((value) => value + 1);
+          }}
+          onLeave={onLeave}
+          sessionSlot={setSessionSlot}
+        />
+        {actingAs && <ActingBar standIn={actingAs} onStop={onStopActing} />}
         <World
           key={`${perspective}:${String(revision)}`}
           api={api}

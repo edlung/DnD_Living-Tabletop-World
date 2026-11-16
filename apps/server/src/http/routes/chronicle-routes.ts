@@ -4,6 +4,7 @@ import {
   campaignIdSchema,
   memoryIdSchema,
   parsePerspective,
+  sessionIdSchema,
   worldTimeSchema,
   type ChronicleListResponse,
   type GenerateChronicleResponse,
@@ -16,6 +17,7 @@ import {
   flashbackFor,
   memorySuggestions,
   resolvePerspective,
+  suggestionsOfSession,
   type IdGenerator,
   type SuggestionScope,
 } from '@ltw/domain';
@@ -57,6 +59,7 @@ const generateBody = z
     perspective: z.string().min(1).max(100),
     from: worldTimeSchema,
     to: worldTimeSchema.optional(),
+    sessionId: sessionIdSchema.optional(),
   })
   .strict();
 const suggestionQuery = z
@@ -64,6 +67,8 @@ const suggestionQuery = z
     scope: z.string().optional(),
     from: z.coerce.number().pipe(worldTimeSchema),
     to: z.coerce.number().pipe(worldTimeSchema).optional(),
+    /** Only what happened since this session started (docs/adr/0071-memory-and-ritual.md §1.3). */
+    session: sessionIdSchema.optional(),
   })
   .strict();
 
@@ -104,10 +109,24 @@ export function registerChronicleRoutes(
     const to = body.to ?? state.clock;
     const requested = parsePerspective(body.perspective);
     const access = requested ? resolvePerspective(state, actor, requested) : null;
-    if (!access?.ok || body.from > to || to > state.clock) {
+    if (
+      !access?.ok ||
+      body.from > to ||
+      to > state.clock ||
+      // A session's chapter is told from memories: an unknown session or the DM's view is refused.
+      (body.sessionId !== undefined &&
+        (!state.sessions.has(body.sessionId) || access.perspective.scopes === 'ALL'))
+    ) {
       return sendError(reply, request, 'INVALID_REQUEST');
     }
-    const draft = chronicleEntries(state, history, access.perspective, body.from, to);
+    const draft = chronicleEntries(
+      state,
+      history,
+      access.perspective,
+      body.from,
+      to,
+      body.sessionId,
+    );
     if (draft.entries.length === 0) return sendError(reply, request, 'UNPROCESSABLE');
     const rendered = await renderChronicle(deps.ai, {
       campaignId: params.campaignId,
@@ -130,6 +149,7 @@ export function registerChronicleRoutes(
         perspective: access.perspective.label,
         from: body.from,
         to,
+        ...(body.sessionId === undefined ? {} : { sessionId: body.sessionId }),
         prose: rendered.prose,
       },
     });
@@ -179,12 +199,24 @@ export function registerChronicleRoutes(
           ? { kind: 'CHARACTER', characterId: raw.slice(10) }
           : null;
     const to = query.to ?? state.clock;
-    if (scope === null || query.from > to || to > state.clock) {
+    if (
+      scope === null ||
+      query.from > to ||
+      to > state.clock ||
+      (query.session !== undefined && !state.sessions.has(query.session))
+    ) {
       return sendError(reply, request, 'INVALID_REQUEST');
     }
     const body: MemorySuggestionsResponse = {
       scope: raw,
-      suggestions: memorySuggestions(state, history, scope, query.from, to),
+      suggestions:
+        query.session === undefined
+          ? memorySuggestions(state, history, scope, query.from, to)
+          : suggestionsOfSession(
+              history,
+              query.session,
+              memorySuggestions(state, history, scope, query.from, to),
+            ),
     };
     return reply.send(body);
   });

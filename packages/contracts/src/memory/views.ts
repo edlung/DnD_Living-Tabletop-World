@@ -29,8 +29,15 @@ export interface RecalledMemory {
 export interface SessionView {
   readonly sessionId: string;
   readonly title: string;
+  /** World time, as every `…At` of the world is. */
   readonly startedAt: number;
   readonly endedAt: number | null;
+  /**
+   * The real evening (docs/adr/0072-keepsakes.md §1): the instants its start and its end were
+   * recorded, ISO 8601. Out-of-world metadata like the title; never read by a decision.
+   */
+  readonly playedFrom: string;
+  readonly playedTo: string | null;
 }
 
 export interface MemoryRecallResponse {

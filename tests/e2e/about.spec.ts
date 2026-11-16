@@ -1,6 +1,7 @@
-import { expect, test } from '@playwright/test';
+import { expect } from '@playwright/test';
 
 import { expectAccessible } from './support/axe.ts';
+import { test } from './support/journey.ts';
 import { SIGN_IN_ORIGIN, WORDS, accessState } from './support/sign-in.ts';
 
 /**

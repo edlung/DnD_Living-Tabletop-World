@@ -10,13 +10,18 @@
   @page {
     margin: 12mm;
   }
-  body > :not(.print-sheet) {
+  /* The page is the character's sheet or the campaign's book (`print-book.css`), nothing else. */
+  body > :not(.print-sheet):not(.print-book) {
     display: none !important;
   }
   html,
   body {
     background: #fff !important;
     color: #000 !important;
+  }
+  /* Paper keeps its own measure, whatever text size the screen wears (ADR 0072 §3). */
+  html[data-text-size] {
+    font-size: 100%;
   }
   .print-sheet {
     display: block;

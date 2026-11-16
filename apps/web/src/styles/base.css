@@ -9,6 +9,33 @@ html {
   background: var(--ink-950);
   -webkit-text-size-adjust: 100%;
 }
+/*
+ * The viewer's text size (docs/adr/0072-keepsakes.md §3, dice/settings.ts): type is sized in rem
+ * throughout, so the whole page follows its root. Paper keeps its own measure (print.css).
+ */
+html[data-text-size='large'] {
+  font-size: 112.5%;
+}
+html[data-text-size='larger'] {
+  font-size: 125%;
+}
+/*
+ * Larger words need the room the wordmark and the session's title take in the top bar: they go
+ * sooner than at the normal size (responsive.css drops them at 1199px), and the campaign's name
+ * keeps its place.
+ */
+@media (max-width: 1399px) {
+  html[data-text-size='large'] .topbar-wordmark,
+  html[data-text-size='large'] .topbar-session {
+    display: none;
+  }
+}
+@media (max-width: 1699px) {
+  html[data-text-size='larger'] .topbar-wordmark,
+  html[data-text-size='larger'] .topbar-session {
+    display: none;
+  }
+}
 body {
   margin: 0;
   min-width: 320px;

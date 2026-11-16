@@ -19,7 +19,7 @@ export const WIDTHS = [
 const FLAT =
   '*, *::before, *::after { background-image: none !important; } ' +
   '.stage-backdrop img, .sign-in-art, .book-spread-art { visibility: hidden !important; } ' +
-  '.book-spread { background-color: var(--page-floor) !important; }';
+  '.book-spread, .keepsake-scroll { background-color: var(--page-floor) !important; }';
 
 const listed = (violations: readonly { id: string; nodes: { target: unknown[] }[] }[]) =>
   violations.map(

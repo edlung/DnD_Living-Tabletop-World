@@ -16,6 +16,7 @@ import { KnowledgeBadge } from '../visual/knowledge-cards.tsx';
 import { Medallion } from '../visual/medallion.tsx';
 import { textureUrl } from '../visual/ui-kit.ts';
 import { usePortrait } from '../world/use-portrait.ts';
+import { chapterSpan } from './book-chapters.ts';
 import { pictureNote } from './picture-note.ts';
 import {
   citedEntries,
@@ -32,7 +33,7 @@ import {
  * approved image, or the neutral mist — never a stand-in — with a note only when the
  * presentation says why (`pictureNote`).
  */
-function PlacePlate({
+export function PlacePlate({
   api,
   place,
   at,
@@ -150,18 +151,22 @@ export function ChapterPages({
   api,
   chapter,
   isDm,
+  teller,
   names,
   onFlashback,
 }: {
   readonly api: WorldApi;
   readonly chapter: ChronicleChapterView;
   readonly isDm: boolean;
+  /** Say whom the chapter is told from: the DM's book, and a player's for the party's chapters. */
+  readonly teller: boolean;
   /** Names of the perspective's characters and NPCs, for "told from". */
   readonly names: ReadonlyMap<string, string>;
   readonly onFlashback: (entry: ChronicleEntryView, opener: HTMLElement) => void;
 }) {
   const t = useT();
   const ids = useId();
+  const span = chapterSpan(chapter);
   const records = learned(chapter);
   const people = peopleMet(chapter);
   return (
@@ -169,8 +174,9 @@ export function ChapterPages({
       <div className="book-page book-page--left">
         <header className="chapter-head">
           <p className="chapter-eyebrow">
-            {formatWorldTime(chapter.from, t)} – {formatWorldTime(chapter.to, t)}
-            {isDm && ` · ${t('told from {who}', { who: toldFrom(t, chapter.perspective, names) })}`}
+            {formatWorldTime(span.from, t)} – {formatWorldTime(span.to, t)}
+            {teller &&
+              ` · ${t('told from {who}', { who: toldFrom(t, chapter.perspective, names) })}`}
           </p>
           <h3>{chapter.title}</h3>
         </header>

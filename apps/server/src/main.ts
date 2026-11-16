@@ -46,6 +46,9 @@ import { PostgresImageLedger, imageBudgetStatus } from './images/ledger.ts';
 import { loadQuestBook } from './quests/quest-book.ts';
 import { PostgresProposalStore } from './authoring/postgres-proposal-store.ts';
 import { PostgresChatStore } from './chat/postgres-chat-store.ts';
+import { PostgresReflectionStore } from './reflections/postgres-reflection-store.ts';
+import { PostgresAgreementStore } from './agreement/postgres-agreement-store.ts';
+import { PostgresEndingStore } from './ending/postgres-ending-store.ts';
 import { PostgresMarkStore } from './marks/postgres-mark-store.ts';
 import { PostgresHandoutStore } from './handouts/postgres-handout-store.ts';
 import { PostgresTrackStore } from './music/postgres-track-store.ts';
@@ -222,6 +225,15 @@ async function main(): Promise<void> {
     },
     // The table's rolls, the DM's check requests and short rests (Stages 510, 530; 0025, 0026).
     chat: { store: new PostgresChatStore(pool), now: () => new Date().toISOString() },
+    // Stars and wishes at an evening's end (ADR 0071 §2; migration 0040).
+    reflections: {
+      store: new PostgresReflectionStore(pool),
+      now: () => new Date().toISOString(),
+    },
+    // The table's agreement (ADR 0071 §4; migration 0042).
+    agreement: { store: new PostgresAgreementStore(pool), now: () => new Date().toISOString() },
+    // A campaign's end and its heroes' keepsakes (ADR 0072 §2; migration 0043).
+    ending: { store: new PostgresEndingStore(pool), now: () => new Date().toISOString() },
     marks: { store: new PostgresMarkStore(pool), now: () => new Date().toISOString() },
     handouts: { store: new PostgresHandoutStore(pool), now: () => new Date().toISOString() },
     // The DM's music (ADR 0059 §3; migration 0038).

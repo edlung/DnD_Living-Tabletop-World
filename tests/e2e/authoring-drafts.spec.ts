@@ -1,4 +1,4 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect, type Page } from '@playwright/test';
 
 import {
   ADD_TO_THE_WORLD,
@@ -8,6 +8,7 @@ import {
   propose,
   review,
 } from './support/authoring.ts';
+import { test } from './support/journey.ts';
 import { dockButton, openSheet } from './support/shell.ts';
 
 /**

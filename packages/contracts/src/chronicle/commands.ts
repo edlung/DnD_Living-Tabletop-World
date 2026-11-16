@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 import { worldTimeSchema } from '../kernel/world-time.ts';
+import { sessionIdSchema } from '../memory/commands.ts';
 
 /**
  * Chronicle (docs/adr/0024-chronicle.md; owner decisions of 2026-10-04). A
@@ -54,6 +55,12 @@ export const generateChronicleCommandSchema = z
     perspective: z.string().min(1).max(100),
     from: worldTimeSchema,
     to: worldTimeSchema,
+    /**
+     * One session's chapter (docs/adr/0071-memory-and-ritual.md §1.2): of the window's memories,
+     * only those recorded with this session. The world's clock often stands still from one evening
+     * to the next, so a window alone cannot tell two evenings apart. Never with the DM's view.
+     */
+    sessionId: sessionIdSchema.optional(),
     prose: chronicleProseSchema,
   })
   .strict();

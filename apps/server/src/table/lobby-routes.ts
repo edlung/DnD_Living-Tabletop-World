@@ -5,25 +5,33 @@ import {
   musicAfter,
   type LobbyResponse,
 } from '@ltw/contracts';
-import { campaignOptions } from '@ltw/domain';
+import { campaignOptions, campaignRole } from '@ltw/domain';
 import type { FastifyInstance } from 'fastify';
 import { z } from 'zod';
 
 import { sendError } from '../http/errors.ts';
-import { withBody, withPerspective, type RouteDependencies } from '../http/request-context.ts';
+import {
+  authenticate,
+  parseInput,
+  withBody,
+  withPerspective,
+  type RouteDependencies,
+} from '../http/request-context.ts';
 import { presenceView } from '../live/presence.ts';
 import type { PresenceSource } from '../live/registry.ts';
 import type { CampaignMoves } from '../campaigns/move/moves.ts';
 import type { TrackStore } from '../music/track-store.ts';
 import type { VoiceRooms } from '../voice/voice-rooms.ts';
+import { sendNextGame, settable, shownNextGame } from './next-game.ts';
 import type { LobbyDependencies } from './table-state.ts';
 
 /**
  * A session's lobby (docs/adr/0043-dm-screen.md §6), in the ADR 0009 order: who is here (the
  * perspective's own characters, as presence lists them), who said "ready" for the session to
  * come, whose player is absent; the table's mode and whether the DM paused it; what the table
- * hears (docs/adr/0059-atmosphere.md). A player says "ready" for their own character; the DM
- * changes the rest.
+ * hears (docs/adr/0059-atmosphere.md); when the table meets again, and that date as a calendar
+ * file (docs/adr/0071-memory-and-ritual.md §3). A player says "ready" for their own character; the
+ * DM changes the rest.
  */
 export interface LobbyRouteDependencies extends RouteDependencies {
   readonly lobby: LobbyDependencies;
@@ -69,8 +77,33 @@ export function registerLobbyRoutes(app: FastifyInstance, deps: LobbyRouteDepend
       options: campaignOptions(state),
       sound: table.sound,
       away: await deps.moves.awayOf(path.campaignId),
+      nextGame: shownNextGame(table.nextGame, lobby.now()),
     };
     return reply.send(body);
+  });
+
+  // The next game as a calendar file, for every member at the table: the campaign's name, the
+  // instant and the DM's line — nothing of the world, so it takes no perspective.
+  app.get('/campaigns/:campaignId/next-game.ics', async (request, reply) => {
+    const actor = await authenticate(request, reply, deps);
+    if (!actor) return reply;
+    const path = parseInput(params, request.params, request, reply);
+    if (!path) return reply;
+    if (!parseInput(z.object({}).strict(), request.query, request, reply)) return reply;
+    const state = (await deps.engine.load(path.campaignId))?.state ?? null;
+    const role = campaignRole(state, actor);
+    if (state === null || role === null) return sendError(reply, request, 'NOT_FOUND');
+    // A table display shows the date; it saves no files.
+    if (role === 'DISPLAY') return sendError(reply, request, 'FORBIDDEN');
+    const now = lobby.now();
+    const next = shownNextGame((await lobby.state.read(path.campaignId)).nextGame, now);
+    if (next === null) return sendError(reply, request, 'NOT_FOUND');
+    return sendNextGame(request, reply, {
+      campaignId: path.campaignId,
+      campaignName: state.campaign?.name ?? path.campaignId,
+      next,
+      now,
+    });
   });
 
   app.post('/campaigns/:campaignId/lobby/ready', async (request, reply) => {
@@ -106,6 +139,9 @@ export function registerLobbyRoutes(app: FastifyInstance, deps: LobbyRouteDepend
     )
       return sendError(reply, request, 'NOT_FOUND');
     const now = lobby.now();
+    if (body.nextGame && !settable(body.nextGame.at, now)) {
+      return sendError(reply, request, 'UNPROCESSABLE');
+    }
     const next = {
       mode: body.mode ?? before.mode,
       paused: body.paused ?? before.paused,
@@ -118,6 +154,12 @@ export function registerLobbyRoutes(app: FastifyInstance, deps: LobbyRouteDepend
             ? before.sound.music
             : musicAfter(before.sound.music, body.music, Date.parse(now)),
       },
+      nextGame:
+        body.nextGame === undefined
+          ? before.nextGame
+          : body.nextGame === null
+            ? null
+            : { at: new Date(body.nextGame.at).toISOString(), note: body.nextGame.note },
     };
     await lobby.state.write(path.campaignId, next, now);
     if (before.mode === 'online' && next.mode !== 'online') deps.voice?.end(path.campaignId);
@@ -128,6 +170,7 @@ export function registerLobbyRoutes(app: FastifyInstance, deps: LobbyRouteDepend
         dice: next.dice,
         ambience: next.sound.ambience,
         music: body.music?.action ?? null,
+        nextGame: next.nextGame !== null,
       },
       'table changed',
     );

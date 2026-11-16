@@ -5,12 +5,22 @@ import {
   ACCOUNT_SESSION_DAYS,
   RESET_HOURS,
   type AccountCampaign,
+  type FinishedCampaign,
   type NewAccount,
+  type NextGame,
 } from '@ltw/contracts';
-import { campaignRole, type WorldEngine } from '@ltw/domain';
+import {
+  campaignRole,
+  knownEntityIds,
+  resolvePerspective,
+  type Actor,
+  type WorldEngine,
+  type WorldState,
+} from '@ltw/domain';
 
 import { NOTHING_AWAY, type CampaignMoves } from '../campaigns/move/moves.ts';
 import type { CredentialStore } from '../auth/credential-store.ts';
+import type { EndingStore } from '../ending/ending-store.ts';
 import { iso, type AuthClock } from '../auth/session-authenticator.ts';
 import { SESSION_MS } from '../auth/sign-in.ts';
 import { cookieTokenFrom, hashToken, newToken } from '../auth/tokens.ts';
@@ -97,6 +107,10 @@ export async function campaignsOf(
   engine: WorldEngine,
   seats: readonly SeatRecord[],
   moves: CampaignMoves = NOTHING_AWAY,
+  /** When each campaign's table meets again, as the table reads it now (ADR 0071 §3). */
+  nextGameOf: (campaignId: string) => Promise<NextGame | null> = () => Promise.resolve(null),
+  /** Each campaign's end and keepsakes (ADR 0072 §2); without it nothing is ever finished. */
+  ending: EndingStore | null = null,
 ): Promise<AccountCampaign[]> {
   const listed: AccountCampaign[] = [];
   for (const seat of seats) {
@@ -114,9 +128,63 @@ export async function campaignsOf(
       language: campaign.language,
       characters,
       away: await moves.awayOf(seat.campaignId),
+      nextGame: await nextGameOf(seat.campaignId),
+      // The party's chapters: every member may read them (ADR 0071 §1), so every seat may count them.
+      chapters: [...state.chronicles.values()].filter((chapter) => chapter.perspective === 'PARTY')
+        .length,
+      finished: ending === null ? null : await finishedOf(state, actor, ending, seat.campaignId),
     });
   }
   return listed;
+}
+
+/** The characters the party knows, as a member reading the party's view is shown them. */
+function heroesOf(state: WorldState, actor: Actor): Set<string> {
+  const party = resolvePerspective(state, actor, { kind: 'PARTY' });
+  if (!party.ok) return new Set();
+  const known = knownEntityIds(state, party.perspective);
+  return new Set(
+    [...state.entities.values()]
+      .filter((entity) => entity.kind === 'character' && known.has(entity.entityId))
+      .map((entity) => entity.entityId),
+  );
+}
+
+/**
+ * A finished campaign as its members' list shows it: the days played, the heroes the party knows
+ * (as the book's cover names them), and what each of them keeps — what a member reads there as
+ * the party (ADR 0072 §2.6). A keepsake the DM chose for someone the party has not met is not
+ * this list's to name: inside the campaign it is read without a name, and here it is left out.
+ */
+async function finishedOf(
+  state: WorldState,
+  actor: Actor,
+  ending: EndingStore,
+  campaignId: string,
+): Promise<FinishedCampaign | null> {
+  const end = await ending.read(campaignId);
+  if (end === null) return null;
+  const named = (entityId: string) => state.entities.get(entityId)?.name ?? entityId;
+  const heroes = heroesOf(state, actor);
+  const sessions = [...state.sessions.values()];
+  const first = sessions[0];
+  const last = sessions.at(-1);
+  return {
+    finishedAt: end.finishedAt,
+    played:
+      first === undefined || last === undefined
+        ? null
+        : { from: first.playedFrom, to: last.playedTo ?? last.playedFrom },
+    heroes: [...heroes].map(named).sort((a, b) => a.localeCompare(b)),
+    keepsakes: (await ending.keepsakes(campaignId))
+      .filter((kept) => heroes.has(kept.characterId))
+      .map((kept) => ({
+        hero: named(kept.characterId),
+        kind: kept.kind,
+        label: kept.label,
+        line: kept.line,
+      })),
+  };
 }
 
 /**

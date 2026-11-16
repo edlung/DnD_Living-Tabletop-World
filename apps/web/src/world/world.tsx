@@ -159,8 +159,7 @@ export function World({
       document.getElementById(CONVERSATION_PANEL_ID)?.focus();
     });
   };
-  // An NPC card's edit opens its proposal under Add; where the panel covers the sheet it steps
-  // aside (staying mounted), as for a conversation.
+  // An NPC card's edit opens under Add; a panel over the sheet steps aside, as for a conversation.
   const showAuthoring = () => {
     if (!window.matchMedia(WIDE).matches) setSelected(null);
     shell.openSheet('add');
@@ -405,6 +404,7 @@ export function World({
                     : null
                 }
                 revision={revision}
+                sessionId={openSession?.sessionId ?? null}
                 locked={action.locked}
                 weather={dmWeather}
                 onWeather={setDmWeather}

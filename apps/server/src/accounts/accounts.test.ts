@@ -56,7 +56,7 @@ const accountOf = async (table: SignInTable, cookie: string) =>
 describe('accounts', () => {
   it('joins with a new account whose hub lists the campaign and the character', async () => {
     const table = await signInTable();
-    const { account, session } = await joinedAccount(table);
+    const { dm, account, session } = await joinedAccount(table);
     expect(await accountOf(table, account)).toEqual({
       login: 'seren',
       displayName: 'Seren',
@@ -68,9 +68,51 @@ describe('accounts', () => {
           language: 'en',
           characters: [{ entityId: SEREN, name: expect.any(String) as string }],
           away: null,
+          nextGame: null,
+          chapters: 0,
+          finished: null,
         },
       ],
     });
+    // The DM sets the next game: the hub's card says when (ADR 0071 §3).
+    const at = new Date(Date.now() + 6 * 24 * 3_600_000).toISOString();
+    const dated = await table.send(
+      'POST',
+      '/campaigns/ravenford/lobby?perspective=DM',
+      { cookie: dm },
+      { nextGame: { at, note: 'At Grandma’s' } },
+    );
+    expect(dated.statusCode).toBe(204);
+    expect((await accountOf(table, account)).campaigns[0]?.nextGame).toEqual({
+      at,
+      note: 'At Grandma’s',
+    });
+    // The party's story gains a chapter: the card may offer its book (ADR 0072 §1). A chapter told
+    // from one character is not the party's and is not counted.
+    for (const perspective of ['PARTY', `CHARACTER:${SEREN}`]) {
+      const written = await table.send(
+        'POST',
+        '/campaigns/ravenford/chronicle',
+        { cookie: dm },
+        { title: 'The first evening', perspective, from: 0 },
+      );
+      expect([200, 201, 422]).toContain(written.statusCode);
+    }
+    expect((await accountOf(table, account)).campaigns[0]?.chapters).toBe(1);
+    // …and gives the calendar file for it: the account's own campaigns, nobody else's.
+    const file = await table.send('GET', '/account/campaigns/ravenford/next-game.ics', {
+      cookie: account,
+    });
+    expect(file.statusCode).toBe(200);
+    expect(file.headers['content-type']).toBe('text/calendar; charset=utf-8');
+    expect(file.body).toContain('DESCRIPTION:At Grandma’s');
+    expect(
+      (await table.send('GET', '/account/campaigns/elsewhere/next-game.ics', { cookie: account }))
+        .statusCode,
+    ).toBe(404);
+    expect(
+      (await table.send('GET', '/account/campaigns/ravenford/next-game.ics', {})).statusCode,
+    ).toBe(401);
     // The campaign session works as before; the account cookie alone opens no campaign route.
     expect((await table.send('GET', '/auth/session', { cookie: session })).statusCode).toBe(200);
     const onlyAccount = await table.send(

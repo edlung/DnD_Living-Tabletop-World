@@ -390,6 +390,8 @@ function applyRestore(state: WorldState, restore: Restore): WorldState {
         sessions: withEntry(state.sessions, session.sessionId, {
           ...session,
           endedAt: restore.value,
+          // An end undone leaves the evening open again; its real end goes with it.
+          playedTo: restore.value === null ? null : session.playedTo,
         }),
       };
     }

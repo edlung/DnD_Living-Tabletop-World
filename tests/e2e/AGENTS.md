@@ -18,6 +18,19 @@ including a read-only preview, exact retry and four-width layout/accessibility c
 and captures native `window.error` ResizeObserver messages as well as Playwright page errors.
 It changes no world state; keep its window listener, since `pageerror` misses these messages.
 
+- A journey closes the pages it opens. Playwright closes only the `page` fixture's context; a
+  context from `browser.newContext()` lives on in the worker's browser with its live stream, and
+  the server keeps reading every view for it — which slowed every later journey of that worker.
+  A spec that takes `browser` imports `test` from `support/journey.ts` (it closes what the journey
+  opened), or closes its own with `closePages` of `support/pages.ts`;
+  `tests/architecture/journey-pages.test.ts` holds every spec to one of the two.
+- A journey that fails says what its pages were at, where it opened them with `freshPage` and
+  closes them with `test.afterEach(closePages)` (`support/pages.ts`): a `[journey]` block in the
+  job's log with what each page showed, the requests it still waited for and those that failed.
+  CI keeps no screenshot. Nothing a page of the sign-in servers shows is printed.
+- The journeys' dev servers do not reload a page that lost its connection to them
+  (`LTW_VITE_NO_RELOAD`, `apps/web/vite.config.ts`): the dev client does, and in WebKit that
+  connection was lost now and then under a journey, whose page then came back at its start.
 - `apps/server/src/testing/ui-server.ts` composes the real World Engine and dev
   personas over deterministic in-memory storage. No external AI provider runs.
 - These are browser journeys through real HTTP projections, not mocked domain
@@ -268,3 +281,14 @@ It changes no world state; keep its window listener, since `pageerror` misses th
 - Native apps (ADR 0070, `native-shell.spec.ts`): a stand-in shell installed with `addInitScript`
   records what the page posts, and the journey speaks for the shell with `ltw-native` events; it owns
   the `native` sign-in campaign. The apps themselves are checked on the simulator and the emulator.
+- Small comforts (ADR 0072 §3, Stage 790): `comforts.spec.ts` owns `ui-comforts` (and
+  `ui-comforts-ipad` in WebKit), `comforts-screens.spec.ts` the `comforts` sign-in campaign with a
+  paired TV. The break reminder's count is the DM's browser's own (`ltw.break:<campaign>` in
+  `localStorage`): a journey seeds it a few seconds short of an hour (`addInitScript`, or
+  `evaluate` and a reload) instead of waiting or faking the clock — the count itself is
+  `apps/web/src/comforts/break-timer.test.ts`'s. A cheer is gone from a screen in 4 s and from
+  the server in 6: assert it where it shows, then that it went.
+- The package's close (Stage 799): `keepsakes-checkpoint.spec.ts` owns the `keepsakes` and
+  `keepsakesIpad` sign-in campaigns — a DM with a login, two invited players and a paired TV. At
+  a laptop's size the finished adventure's card lies over the top of an open sheet: the journey
+  cheers from Chat, whose row stands lower. The TV asks for nothing of a campaign's end.

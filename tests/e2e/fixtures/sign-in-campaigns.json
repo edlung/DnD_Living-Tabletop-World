@@ -32,5 +32,15 @@
   "privacy": "ui-signin-privacy",
   "release": "ui-signin-release",
   "releaseWebkit": "ui-signin-release-webkit",
-  "chronicleWriter": "ui-signin-chronicle-writer"
+  "chronicleWriter": "ui-signin-chronicle-writer",
+  "ritual": "ui-signin-ritual",
+  "nextGame": "ui-signin-next-game",
+  "agreement": "ui-signin-agreement",
+  "checkpoint": "ui-signin-checkpoint",
+  "checkpointIpad": "ui-signin-checkpoint-ipad",
+  "book": "ui-signin-book",
+  "ending": "ui-signin-ending",
+  "comforts": "ui-signin-comforts",
+  "keepsakes": "ui-signin-keepsakes",
+  "keepsakesIpad": "ui-signin-keepsakes-ipad"
 }

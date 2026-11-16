@@ -97,6 +97,10 @@ export function useShell(rememberAs?: string) {
     rememberSheet(rememberAs, next);
   };
   const [chronicle, setChronicle] = useState(false);
+  // The Chronicle shows the campaign's whole book instead of its chapters (ADR 0072 §1).
+  const [whole, setWhole] = useState(false);
+  // The chapter the book was asked to open at (a recap's "Read on"); the book takes it once.
+  const [chapter, setChapter] = useState<{ readonly chronicleId: string } | null>(null);
   // The character dialog (Stage 500): whose sheet is open, and the tab it was last read at.
   const [hero, setHero] = useState<string | null>(null);
   const [heroTab, setHeroTab] = useState<HeroTab>('overview');
@@ -104,6 +108,9 @@ export function useShell(rememberAs?: string) {
   return {
     sheet,
     chronicle,
+    chronicleChapter: chapter,
+    chronicleWhole: whole,
+    showWholeBook: setWhole,
     hero,
     heroTab,
     /** Opens a character's dialog, at a tab when one is named (else where it was last read). */
@@ -137,7 +144,17 @@ export function useShell(rememberAs?: string) {
     dismissSheet: () => {
       setSheet(null);
     },
-    openChronicle: () => {
+    /** Opens the book, at a chapter when one is named (each asking is a new one). */
+    openChronicle: (chronicleId: string | null = null) => {
+      if (chronicleId !== null) {
+        setChapter({ chronicleId });
+        setWhole(false);
+      }
+      setChronicle(true);
+    },
+    /** Opens the Chronicle at the campaign's whole book. */
+    openBook: () => {
+      setWhole(true);
       setChronicle(true);
     },
     closeChronicle: () => {

@@ -1,11 +1,21 @@
 import type { ChatChannel, ChatMessageView, ChatVoice, EntityRef, RollEntry } from '@ltw/contracts';
 import { CHAT_TEXT_MAX } from '@ltw/contracts';
 import { StatusPanel, useLanguage, useT, type Translate } from '@ltw/ui';
-import { useEffect, useId, useLayoutEffect, useRef, useState, type KeyboardEvent } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useId,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type KeyboardEvent,
+} from 'react';
 
 import type { WorldApi } from '../api/client.ts';
+import { CheerRow } from '../comforts/cheers.tsx';
 import { useDiceTable } from '../dice/table.tsx';
 import { rollMarks, rollSentence } from '../dice/words.ts';
+import { useScreenRequest } from '../shell/requests.ts';
 import { Sheet } from '../shell/sheet.tsx';
 import type { Shell } from '../shell/use-shell.ts';
 import { useScrollEdges } from '../visual/scroll-edges.ts';
@@ -58,6 +68,15 @@ export function ChatSheet({
   const sending = useRef<string | null>(null);
   const [text, setText] = useState('');
   const [channel, setChannel] = useState<string>('table');
+  // "Tell the DM privately" from the guide (ADR 0071 §4): the chat opens with the DM chosen.
+  const { openSheet } = shell;
+  useScreenRequest(
+    'chat-to-dm',
+    useCallback(() => {
+      setChannel('dm');
+      openSheet('chat');
+    }, [openSheet]),
+  );
   const [voice, setVoice] = useState<ChatVoice>('in-character');
   const [problem, setProblem] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
@@ -173,6 +192,8 @@ export function ChatSheet({
             )}
           </ol>
         )}
+        {/* Talk without words (docs/adr/0072-keepsakes.md §3): one press cheers the table. */}
+        <CheerRow className="cheer-row--chat" />
         <form
           className="chat-compose"
           noValidate

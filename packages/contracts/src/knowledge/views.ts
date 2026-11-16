@@ -95,6 +95,8 @@ export const API_ERROR_CODES = [
   'RATE_LIMITED',
   /** A change to a campaign played on another server since a move (docs/adr/0061-local-mode.md §5): 409. */
   'MOVED',
+  /** A change to a campaign its DM marked finished (docs/adr/0072-keepsakes.md §2): 409. */
+  'FINISHED',
 ] as const;
 export type ApiErrorCode = (typeof API_ERROR_CODES)[number];
 

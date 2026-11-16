@@ -8,6 +8,7 @@ import {
   entityIdSchema,
   knowledgeIdSchema,
   memoryIdSchema,
+  sessionIdSchema,
   worldTimeSchema,
 } from '@ltw/contracts';
 import { z } from 'zod';
@@ -60,6 +61,8 @@ export const chronicleGeneratedPayloadSchema = z
     perspective: z.string().min(1).max(100),
     from: worldTimeSchema,
     to: worldTimeSchema,
+    /** One session's chapter (ADR 0071 §1.2); absent for a chapter of a window alone. */
+    sessionId: sessionIdSchema.optional(),
     entries: z.array(storedEntrySchema).min(1).max(CHRONICLE_LIMITS.entries),
     prose: chronicleProseSchema,
     /** The facts its entries rest on: undoing any of them is refused while the chapter stands. */

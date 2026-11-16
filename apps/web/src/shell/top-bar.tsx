@@ -1,5 +1,5 @@
 import { useT } from '@ltw/ui';
-import { useState, type Ref } from 'react';
+import { useCallback, useState, type Ref } from 'react';
 
 import type { LiveStatus } from '../api/live.ts';
 import { SoundOnButton } from '../audio/sound-on.tsx';
@@ -24,6 +24,7 @@ export function TopBar({
   perspective,
   choices,
   dmView,
+  dm,
   onPerspective,
   onRefresh,
   onLeave,
@@ -34,6 +35,8 @@ export function TopBar({
   readonly perspective: string;
   readonly choices: readonly { readonly value: string; readonly label: string }[];
   readonly dmView: boolean;
+  /** The reader runs this campaign: the guide has the DM's pages. */
+  readonly dm: boolean;
   readonly onPerspective: (perspective: string) => void;
   readonly onRefresh: () => void;
   readonly onLeave: () => void;
@@ -44,9 +47,9 @@ export function TopBar({
   // The first-session guide (ADR 0044 §9): on a phone its button sits on the title's row, so the
   // perspective keeps its room beside the controls.
   const [guide, setGuide] = useState(false);
-  const openGuide = () => {
+  const openGuide = useCallback(() => {
     setGuide(true);
-  };
+  }, []);
   return (
     <header className="topbar">
       <div className="topbar-brand">
@@ -93,6 +96,8 @@ export function TopBar({
       </div>
       <GuideDialog
         open={guide}
+        dm={dm}
+        onOpen={openGuide}
         onClose={() => {
           setGuide(false);
         }}

@@ -1,13 +1,15 @@
-import type { AccountCampaign, AccountResponse, CampaignTemplate } from '@ltw/contracts';
-import { StatusPanel, useLanguage, useT } from '@ltw/ui';
-import { useCallback, useEffect, useId, useState, type SubmitEvent } from 'react';
+import type { AccountResponse, CampaignTemplate } from '@ltw/contracts';
+import { StatusPanel, useT } from '@ltw/ui';
+import { useCallback, useEffect, useState, type SubmitEvent } from 'react';
 
 import { AboutButton } from '../guide/about.tsx';
 import { NativeEntry } from '../native/native-entry.tsx';
+import { askForBook, takeBookRequest } from '../shell/book-request.ts';
 import { Glyph } from '../visual/glyph.tsx';
 import { ornamentUrl, textureUrl } from '../visual/ui-kit.ts';
 import { changePassword, readAccount, renameAccount, type EnterAnswer } from './account-flow.ts';
 import { AccountData } from './account-data.tsx';
+import { CampaignLists } from './hub-campaigns.tsx';
 import { Field, useFocusFirstInvalid } from './account-forms.tsx';
 
 /**
@@ -144,17 +146,20 @@ export function Hub({
           )}
         </p>
       ) : (
-        <ul className="hub-campaigns" aria-labelledby="hub-title">
-          {account.campaigns.map((campaign) => (
-            <CampaignCard
-              key={campaign.campaignId}
-              campaign={campaign}
-              busy={busy !== null}
-              opening={busy === campaign.campaignId}
-              onOpen={() => void run(campaign.campaignId, () => onOpen(campaign.campaignId))}
-            />
-          ))}
-        </ul>
+        <CampaignLists
+          campaigns={account.campaigns}
+          busy={busy}
+          onOpen={(campaignId) => void run(campaignId, () => onOpen(campaignId))}
+          onBook={(campaignId) =>
+            void run(`${campaignId}:book`, async () => {
+              // The campaign opens at its book (ADR 0072 §1); an opening refused asks for none.
+              askForBook(campaignId);
+              const answer = await onOpen(campaignId);
+              if (answer.kind !== 'entered') takeBookRequest(campaignId);
+              return answer;
+            })
+          }
+        />
       )}
       <NativeEntry />
       <section className="hub-section" aria-labelledby="hub-new">
@@ -199,61 +204,6 @@ export function Hub({
         </button>
       </div>
     </div>
-  );
-}
-
-function CampaignCard({
-  campaign,
-  busy,
-  opening,
-  onOpen,
-}: {
-  readonly campaign: AccountCampaign;
-  readonly busy: boolean;
-  readonly opening: boolean;
-  readonly onOpen: () => void;
-}) {
-  const t = useT();
-  const language = useLanguage();
-  const titleId = useId();
-  // A server from before moves sends none.
-  const away = campaign.away ?? null;
-  const who =
-    campaign.role === 'dm'
-      ? t('You are the DM')
-      : t('You play {name}', {
-          name:
-            campaign.characters.map((character) => character.name).join(', ') || t('a character'),
-        });
-  return (
-    <li className="hub-campaign" aria-labelledby={titleId}>
-      <Glyph name={campaign.role === 'dm' ? 'game-master' : 'character'} />
-      <div className="hub-campaign-text">
-        <h3 id={titleId}>{campaign.name}</h3>
-        <p className="muted">
-          {who} · {campaign.language === 'ru' ? t('Russian') : t('English')}
-        </p>
-        {away !== null && (
-          <p className="hub-campaign-away">
-            {t('Played on {where} since {when}: here you can look, not play.', {
-              where: away.destination,
-              when: new Intl.DateTimeFormat(language, { dateStyle: 'medium' }).format(
-                new Date(away.movedAt),
-              ),
-            })}
-          </p>
-        )}
-      </div>
-      <button
-        type="button"
-        className="primary-button"
-        disabled={busy}
-        aria-label={t('Open {campaign}: {who}', { campaign: campaign.name, who })}
-        onClick={onOpen}
-      >
-        {opening ? t('Opening…') : t('Open')}
-      </button>
-    </li>
   );
 }
 

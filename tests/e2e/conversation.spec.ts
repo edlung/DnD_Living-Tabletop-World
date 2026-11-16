@@ -1,7 +1,8 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect, type Page } from '@playwright/test';
 
 import campaigns from './fixtures/dm-tool-campaigns.json' with { type: 'json' };
 import { dmRequest } from './support/authoring.ts';
+import { test } from './support/journey.ts';
 import { LIVE_URL } from './support/live.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
 import { chooseLocation } from './support/shell.ts';
