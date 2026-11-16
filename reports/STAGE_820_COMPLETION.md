@@ -1,6 +1,6 @@
 # Stage 820 completion — "What can I do?"
 
-Pull request: https://github.com/edlung/DnD_Living-Tabletop-World/pull/PRNUM (draft, stacked on
+Pull request: https://github.com/edlung/DnD_Living-Tabletop-World/pull/51 (draft, stacked on
 Stage 810's, https://github.com/edlung/DnD_Living-Tabletop-World/pull/50).
 
 Work order `work-orders/STAGE_820.md`; program `docs/TABLE_IDEAS_PLAN.md` (section 820); ADR 0073
