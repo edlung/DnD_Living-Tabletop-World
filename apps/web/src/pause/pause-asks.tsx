@@ -46,6 +46,7 @@ export function PauseAsks({ api }: { readonly api: WorldApi }) {
   useEffect(() => {
     if (none) setFailed(false);
   }, [none]);
+  // Its place among the cards does not move when the last card goes: it keeps the focus.
   const last =
     said === null ? null : (
       <p ref={word} tabIndex={-1} className="rest-banner break-said pause-said">
@@ -53,7 +54,6 @@ export function PauseAsks({ api }: { readonly api: WorldApi }) {
         <span className="rest-banner-text">{said}</span>
       </p>
     );
-  if (none) return last;
   const { reread } = asks;
   const act = (work: () => Promise<unknown>, done: string) => {
     setBusy(true);

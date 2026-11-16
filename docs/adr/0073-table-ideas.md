@@ -84,8 +84,8 @@
 1. **One press.** While a session plays and is not paused, a player's own screen shows "Ask for a
    pause" among the table's questions over the stage. A press sends the request; the screen then
    says "Only the DM was told that you would like a pause", and later "The DM has seen that you
-   asked for a pause". "Our table" in "How to play" keeps its button: the same request, offered
-   there while a game plays.
+   asked for a pause. You can ask again in a minute." "Our table" in "How to play" keeps its
+   button: the same request, offered there while a game plays.
 2. **What a request is.** That a character's player would like a pause — nothing more: no words,
    no reason, no other character. A player asks as the character they play (the DM may, playing
    one). It pauses nothing: the DM decides (ADR 0071 §4.5 stands in that).
@@ -102,7 +102,10 @@
 5. **The DM's card.** Among the table's questions on the DM's screen: "Elowen asks for a pause.
    Only you see this." with "Pause the game" — the pause that exists (ADR 0043 §6), which
    answers everyone who asked — and "Not now", which tells that one player the DM has seen it.
-   Neither tells the table who asked: a pause names nobody.
+   Neither tells the table who asked: a pause names nobody. The card's last word — that the
+   game is paused, or that the asker will read the DM has seen it — stays a moment where the
+   card was. On a phone the card stays over an open sheet, where the table's other questions
+   give way: nothing else would tell the DM.
 6. **Limits.** Twelve requests a minute from one person in one campaign reach the board at most;
    the board itself takes one a minute from a character.
 

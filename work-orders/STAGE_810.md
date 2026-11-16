@@ -27,6 +27,10 @@ program `docs/TABLE_IDEAS_PLAN.md` (section 810); ADR 0073 §2, written with the
 - "Not now" is told to the asker as "The DM has seen that you asked for a pause" — true, and
   not a refusal a child has to read.
 - The request leaves chat: the fixed message "I would like a pause, please." is gone.
+- From the independent pass, taken as decisions: on a phone the DM's card stays over an open
+  sheet; the card's last word stays a moment and keeps the focus; the asker's line says when
+  they may ask again; a player's button and line are hidden under a sheet the player has open on
+  a phone (the sheet covers the stage).
 
 ## Boundaries
 

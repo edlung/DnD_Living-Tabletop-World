@@ -57,7 +57,8 @@
   .world-main:has(.sheet:not([hidden]), .detail-panel:not([hidden]))
     .rest-banner-slot:has(.pause-card, .pause-said) {
     display: flex;
-    z-index: 12;
+    /* Over a phone's sheet (`responsive.css`: 40). */
+    z-index: 41;
   }
   .world-main:has(.sheet:not([hidden]), .detail-panel:not([hidden]))
     .rest-banner-slot:has(.pause-card, .pause-said)
