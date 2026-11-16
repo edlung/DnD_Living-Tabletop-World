@@ -7,10 +7,6 @@ import { defineConfig, devices } from '@playwright/test';
 // sign-in server, never written anywhere.
 process.env['LTW_UI_SIGN_IN_SEED'] ??= randomBytes(32).toString('hex');
 
-// In CI the dev servers say when they reload a page or lose one (apps/web/dev-trace.ts), and
-// their output is in the job's log: a journey whose page reloaded under it can be read against it.
-const DEV_TRACE: Record<string, string> = process.env['CI'] ? { LTW_DEV_TRACE: '1' } : {};
-
 export default defineConfig({
   testDir: './tests/e2e',
   outputDir: './test-results',
@@ -35,10 +31,12 @@ export default defineConfig({
     // and an evening closed and opened there (docs/adr/0071-memory-and-ritual.md §1, Stage 710);
     // the journeys of the later ritual and keepsake stages run there too, each named below.
     // One WebKit journey at a time. These are the suite's heaviest — a DM, players and a TV,
-    // three to five pages each — and on a hosted runner two of them side by side starve each
-    // other: across four runs of 2026-11-16 a different one each time waited fifteen or twenty
-    // seconds for a screen that had not caught up (an evening closed, a card in the lobby), while
-    // the same journeys passed alone and on Chromium. Same journeys, same assertions, one worker.
+    // three to five pages each. Side by side on a hosted runner, across four runs of 2026-11-16,
+    // a different one each time waited fifteen or twenty seconds for a screen that had not caught
+    // up (an evening closed, a card in the lobby); one at a time, none has waited so since. That
+    // day's red runs had two more causes, answered elsewhere: journeys that left their pages open
+    // (tests/e2e/support/journey.ts) and the dev client reloading a page (LTW_VITE_NO_RELOAD below).
+    // Same journeys, same assertions, one worker.
     {
       name: 'ipad',
       workers: 1,
@@ -63,8 +61,9 @@ export default defineConfig({
     },
     {
       command: 'pnpm dev:web --host 127.0.0.1 --port 4310',
-      env: { LTW_API_TARGET: 'http://127.0.0.1:4311', ...DEV_TRACE },
-      stdout: 'pipe',
+      // A page that lost its connection to the dev server is not reloaded under its journey:
+      // LTW_VITE_NO_RELOAD in apps/web/vite.config.ts.
+      env: { LTW_API_TARGET: 'http://127.0.0.1:4311', LTW_VITE_NO_RELOAD: '1' },
       url: 'http://127.0.0.1:4310',
       reuseExistingServer: false,
       timeout: 30_000,
@@ -82,9 +81,8 @@ export default defineConfig({
       env: {
         LTW_API_TARGET: 'http://127.0.0.1:4313',
         LTW_VITE_CACHE_DIR: 'node_modules/.vite-sign-in',
-        ...DEV_TRACE,
+        LTW_VITE_NO_RELOAD: '1',
       },
-      stdout: 'pipe',
       url: 'http://127.0.0.1:4312',
       reuseExistingServer: false,
       timeout: 30_000,

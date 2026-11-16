@@ -13,7 +13,6 @@
     "apps/*/src/**/*.ts",
     "apps/*/src/**/*.tsx",
     "apps/web/vite.config.ts",
-    "apps/web/dev-trace.ts",
     "packages/*/src/**/*.ts",
     "packages/*/src/**/*.tsx",
     "tests/**/*.ts",

@@ -24,9 +24,9 @@ It changes no world state; keep its window listener, since `pageerror` misses th
   A spec that takes `browser` imports `test` from `support/journey.ts` (it closes what the journey
   opened), or closes its own with `closePages` of `support/pages.ts`;
   `tests/architecture/journey-pages.test.ts` holds every spec to one of the two.
-- In CI the two dev servers write a `[ltw:trace]` line when they tell their pages to reload, send
-  them an error, or a page comes back after losing its connection (`apps/web/dev-trace.ts`): read a
-  journey whose page reloaded under it against those lines in the job's log.
+- The journeys' dev servers do not reload a page that lost its connection to them
+  (`LTW_VITE_NO_RELOAD`, `apps/web/vite.config.ts`): the dev client does, and in WebKit that
+  connection was lost now and then under a journey, whose page then came back at its start.
 - `apps/server/src/testing/ui-server.ts` composes the real World Engine and dev
   personas over deterministic in-memory storage. No external AI provider runs.
 - These are browser journeys through real HTTP projections, not mocked domain

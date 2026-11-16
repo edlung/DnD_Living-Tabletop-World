@@ -12,12 +12,11 @@ session whose network refuses Playwright's download host: WebKit could not be in
 so the `ipad` and `webkit` projects were run by that session on none of the three branches.
 What stands for WebKit is CI's word. Stage 780's pull request (44) is green on its fix. Stage
 790's (46) and this one (47) were red in their first runs on a different journey each time — none
-of it these stages' code; Stage 790's report says what was found in the suite and fixed (journeys
-left their pages open; the next game's date was read stale) and what was not (a WebKit page that
-reloads under its journey). Before those fixes pull request 47 was green whole on commit
-`2af141ea`, WebKit included, and every iPad journey of the package — this close's and Stage
-790's among them — passed in each run since the two WebKit projects run one journey at a time.
-Read the CI of the last commits before merging.
+of it these stages' code. Stage 790's report says what was found in the suite and answered:
+journeys left their pages open; the next game's date was read stale; and the dev server's client
+reloaded a WebKit page whose connection to it had closed (this close's own journey lost its page
+that way once, on the iPad project). On the way pull request 47 was green whole on commit
+`2af141ea`, WebKit included. Read the CI of the last commits before merging.
 
 This is where the session stops: the plan puts the family playtest — the owner's — after the
 package.
@@ -82,15 +81,15 @@ Each stands on the one before: merge in that order. Migrations 0040–0043 are a
 Run on the branch on 2026-11-16 in a cloud session (a four-core container, Node 24, PostgreSQL 16
 — the project's is 18; offline, no paid call), on the finished tree of the whole package:
 
-| Check                                                         | Result                                                                                                                             |
-| ------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| `pnpm run format:check`, `lint`, `typecheck`                  | pass                                                                                                                               |
-| `pnpm run context-budget`                                     | pass; one earlier warning (`scripts/campaign-shared/combat-kit.ts`)                                                                |
-| `pnpm run test` (unit)                                        | 581 files, 4662 tests pass                                                                                                         |
-| `pnpm run build`                                              | pass                                                                                                                               |
-| `pnpm run test:integration` (PostgreSQL, throwaway databases) | 81 files, 398 tests pass                                                                                                           |
-| `pnpm run test:e2e`, Chromium project, whole                  | 347 journeys, 41.6 minutes: 339 pass; 8 ran out of their 30 seconds and **all 8 pass when run alone** (below)                      |
-| `pnpm run test:e2e`, `ipad` and `webkit` projects             | **not run here**: no WebKit in this environment. In CI the close's journey and Stage 790's passed on the iPad project in every run |
+| Check                                                         | Result                                                                                                                                                                        |
+| ------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `pnpm run format:check`, `lint`, `typecheck`                  | pass                                                                                                                                                                          |
+| `pnpm run context-budget`                                     | pass; one earlier warning (`scripts/campaign-shared/combat-kit.ts`)                                                                                                           |
+| `pnpm run test` (unit)                                        | 581 files, 4662 tests pass                                                                                                                                                    |
+| `pnpm run build`                                              | pass                                                                                                                                                                          |
+| `pnpm run test:integration` (PostgreSQL, throwaway databases) | 81 files, 398 tests pass                                                                                                                                                      |
+| `pnpm run test:e2e`, Chromium project, whole                  | 347 journeys, 41.6 minutes: 339 pass; 8 ran out of their 30 seconds and **all 8 pass when run alone** (below)                                                                 |
+| `pnpm run test:e2e`, `ipad` and `webkit` projects             | **not run here**: no WebKit in this environment. In CI Stage 790's passed on the iPad project in every run; the close's in all but one, when the dev client reloaded its page |
 
 The eight that ran out of time (30.2–35.0 s) with nothing else running on the machine:
 `combat-lifecycle.spec.ts:17`, `combat-turn.spec.ts:18`, `dm-history.spec.ts:66`,
@@ -142,12 +141,10 @@ keepsakes.
   re-read it. Every check here is a machine's: journeys, layout looks, an independent UX pass by a reviewing agent in each stage. Stage 780 above all is a draft of what "finished" means at a
   table.
 - **WebKit, by this session.** Nothing of Stages 790 and 799 ran on WebKit anywhere but in
-  their pull requests' CI. One thing there is not explained: now and then a WebKit page reloads
-  under its journey (seen before this package too); the job's log now says when the dev server
-  causes it (Stage 790's report).
-- **The whole suite after the suite's own fixes.** The whole Chromium run after journeys began
-  to close their pages was on Stage 790's branch (345 of 346 in 28.7 minutes); here only CI runs
-  the whole.
+  their pull requests' CI. That the reloads of WebKit pages are gone is shown only by CI runs to
+  come; why WebKit drops its connection to the dev server is not known (Stage 790's report).
+- **The whole suite after the suite's own fixes.** Run whole on Stage 790's branch (346 of 346
+  on Chromium in 28.5 minutes, one commit before its last); here only CI runs the whole.
 - **Paper.** The book's print was checked in Stage 770 as Chromium's PDF; no page was printed,
   and Safari's print was not tried.
 - **No real device**: not a phone (the keyboard over a card, the largest text under a thumb), not
