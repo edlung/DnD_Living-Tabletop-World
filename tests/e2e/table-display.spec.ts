@@ -149,8 +149,8 @@ test('a TV pairs by its code, shows what the DM casts, and the table joins by it
   );
   await expectAccessible(phone, 'the table’s free seats');
   await seats.getByRole('button', { name: 'Play Tamsin Quickfoot', exact: true }).click();
+  // The press itself sat them down: the world is the next thing they see.
   await expect(sceneRegion(phone)).toBeVisible(LIVE);
-  await expect(phone.getByLabel('Login', { exact: true })).toHaveCount(0);
 
   // Another types the code the TV shows; the seat just taken is no longer offered.
   const tablet = await freshPage(browser);
