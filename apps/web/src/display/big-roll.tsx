@@ -6,6 +6,7 @@ import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
 import { cueFor, playCue } from '../audio/cues.ts';
 import { useWaitForSound } from '../audio/sound-on.tsx';
+import { playImpacts } from '../dice/audio.ts';
 import { useDiceSettings } from '../dice/settings.ts';
 import {
   purposeWords,
@@ -16,7 +17,7 @@ import {
   tableResult,
 } from '../dice/words.ts';
 import { useRereadOn } from '../world/use-world-data.ts';
-import { freshRolls } from './moments.ts';
+import { clatter, freshRolls } from './moments.ts';
 
 /** How long a roll shows big, and how long between a roll's throws heard. */
 const SHOW_MS = 4500;
@@ -67,7 +68,8 @@ function Throw({ entry, index }: { readonly entry: RollEntry; readonly index: nu
  * Big dice on the table's screen (docs/adr/0059-atmosphere.md §5): a roll the table may see shows
  * big for a few seconds over the cast — beside the battlefield, a plate in its corner — each die's
  * face, the total, what it was for and what came of it, heard as it shows when the dice's sound is
- * on (§2). Rolls queue; the first read is the table as it was, so nothing in it shows again.
+ * on (§2): its cue, or for a throw that has none the dice's own clatter. Rolls queue; the first
+ * read is the table as it was, so nothing in it shows again.
  */
 export function BigRoll({
   api,
@@ -106,9 +108,15 @@ export function BigRoll({
   sound.current = settings;
   useEffect(() => {
     if (!shown) return;
-    const timers = shown.groups.map((_, index) =>
+    const timers = shown.groups.map((group, index) =>
       window.setTimeout(() => {
-        if (sound.current.sound) playCue(cueFor(shown, index), sound.current.volume);
+        if (!sound.current.sound) return;
+        const cue = cueFor(shown, index);
+        // A throw without a cue is heard as dice: this screen rolls none of its own (no WebGL).
+        if (cue !== null) playCue(cue, sound.current.volume);
+        else if (group.dice.length > 0) {
+          playImpacts(clatter(group.dice.length), sound.current.volume);
+        }
       }, index * THROW_MS),
     );
     timers.push(

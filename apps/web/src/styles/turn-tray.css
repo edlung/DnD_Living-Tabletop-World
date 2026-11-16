@@ -155,7 +155,7 @@
 }
 
 /* A phone: one row that scrolls sideways, each option as wide as its words */
-@media (max-width: 767px) {
+@media (max-width: 767px), (max-width: 1199px) and (max-height: 500px) {
   .tray-row {
     flex-wrap: nowrap;
     justify-content: flex-start;

@@ -293,6 +293,39 @@
       "current": "https://ltw.vardahei.tech",
       "build": "any",
       "outcome": "reject"
+    },
+    {
+      "text": "https://ltw.vardahei.tech/workshop/join#TOKEN",
+      "current": "https://ltw.vardahei.tech",
+      "build": "any",
+      "outcome": "open",
+      "url": "https://ltw.vardahei.tech/workshop/join#TOKEN"
+    },
+    {
+      "text": "https://ltw.vardahei.tech/workshop/join",
+      "current": "https://ltw.vardahei.tech",
+      "build": "any",
+      "outcome": "reject"
+    },
+    {
+      "text": "https://ltw.vardahei.tech/workshop/join#short",
+      "current": "https://ltw.vardahei.tech",
+      "build": "any",
+      "outcome": "reject"
+    },
+    {
+      "text": "https://ltw.vardahei.tech/workshop/drafts#TOKEN",
+      "current": "https://ltw.vardahei.tech",
+      "build": "any",
+      "outcome": "reject"
+    },
+    {
+      "text": "https://dm-laptop.local:8443/workshop/join#TOKEN",
+      "current": "https://ltw.vardahei.tech",
+      "build": "any",
+      "outcome": "switch",
+      "origin": "https://dm-laptop.local:8443",
+      "url": "https://dm-laptop.local:8443/workshop/join#TOKEN"
     }
   ],
   "pageMessages": [
@@ -451,6 +484,46 @@
     {
       "json": "{\"type\":\"scan\"} trailing",
       "valid": false
+    },
+    {
+      "json": "{\"type\":\"tv-sound\",\"on\":true,\"volume\":60}",
+      "valid": true
+    },
+    {
+      "json": "{\"type\":\"tv-sound\",\"on\":false,\"volume\":0}",
+      "valid": true
+    },
+    {
+      "json": "{\"type\":\"tv-sound\",\"on\":true,\"volume\":100}",
+      "valid": true
+    },
+    {
+      "json": "{\"type\":\"tv-sound\",\"on\":true}",
+      "valid": false
+    },
+    {
+      "json": "{\"type\":\"tv-sound\",\"volume\":60}",
+      "valid": false
+    },
+    {
+      "json": "{\"type\":\"tv-sound\",\"on\":1,\"volume\":60}",
+      "valid": false
+    },
+    {
+      "json": "{\"type\":\"tv-sound\",\"on\":true,\"volume\":101}",
+      "valid": false
+    },
+    {
+      "json": "{\"type\":\"tv-sound\",\"on\":true,\"volume\":-1}",
+      "valid": false
+    },
+    {
+      "json": "{\"type\":\"tv-sound\",\"on\":true,\"volume\":12.5}",
+      "valid": false
+    },
+    {
+      "json": "{\"type\":\"tv-sound\",\"on\":true,\"volume\":\"60\"}",
+      "valid": false
     }
   ],
   "shellMessages": [
@@ -560,6 +633,53 @@
         "type": "forget"
       },
       "valid": true
+    },
+    {
+      "message": {
+        "type": "sound",
+        "on": true,
+        "volume": 60
+      },
+      "valid": true
+    },
+    {
+      "message": {
+        "type": "sound",
+        "on": false,
+        "volume": 0
+      },
+      "valid": true
+    },
+    {
+      "message": {
+        "type": "sound",
+        "on": true
+      },
+      "valid": false
+    },
+    {
+      "message": {
+        "type": "sound",
+        "on": "yes",
+        "volume": 60
+      },
+      "valid": false
+    },
+    {
+      "message": {
+        "type": "sound",
+        "on": true,
+        "volume": 101
+      },
+      "valid": false
+    },
+    {
+      "message": {
+        "type": "sound",
+        "on": true,
+        "volume": 1.5
+      },
+      "valid": false
     }
   ]
 }

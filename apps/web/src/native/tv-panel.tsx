@@ -6,13 +6,15 @@ import { ApiError, type WorldApi } from '../api/client.ts';
 import { spacedCode } from '../display/display-flow.ts';
 import { Glyph } from '../visual/glyph.tsx';
 import { nativeShell, type TvState } from './shell.ts';
+import { carriesTvSound, changeTvSound, useTvSound } from './tv-sound.ts';
 import { useNativeTv } from './tv.ts';
 
 /**
  * LTW DM's own TV on the Table screen sheet (docs/adr/0070-native-apps.md §6): a TV connected to
  * this device by AirPlay or a cable shows the table display in a window of its own, never the DM's
- * screen; the code it shows comes here, and the DM pairs it with one press. The screen list, the
- * names and the casts below stay the sheet's own.
+ * screen; the code it shows comes here, and the DM pairs it with one press; its sound, which
+ * starts there without a press, is switched and set here. The screen list, the names and the casts
+ * below stay the sheet's own.
  */
 export function TvPanel({
   api,
@@ -26,6 +28,7 @@ export function TvPanel({
   const tv = useNativeTv();
   const [busy, setBusy] = useState(false);
   const [refusal, setRefusal] = useState<string | null>(null);
+  const sound = useTvSound();
   if (tv === null) return null;
   // A TV keeps the campaign it was paired with; here it may be another one (§6).
   const elsewhere =
@@ -99,6 +102,34 @@ export function TvPanel({
         <p role="alert" className="authoring-notice error">
           {refusal}
         </p>
+      )}
+      {/* Nobody presses anything on the TV: its sound is set here (§6). */}
+      {carriesTvSound() && tv.state !== 'absent' && (
+        <div className="native-tv-sound">
+          <label className="dice-toggle">
+            <input
+              type="checkbox"
+              checked={sound.on}
+              onChange={(event) => {
+                changeTvSound({ on: event.target.checked });
+              }}
+            />
+            <span>{t('Sound on the TV: ambience, music and the dice')}</span>
+          </label>
+          <label htmlFor={`${id}-volume`}>{t('Volume on the TV')}</label>
+          <input
+            id={`${id}-volume`}
+            type="range"
+            min={0}
+            max={100}
+            step={5}
+            value={sound.volume}
+            disabled={!sound.on}
+            onChange={(event) => {
+              changeTvSound({ volume: Number(event.target.value) });
+            }}
+          />
+        </div>
       )}
       <p className="fine-print">
         {t(

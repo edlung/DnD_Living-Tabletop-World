@@ -25,5 +25,9 @@
     <string name="channel_text">When the table is waiting for you</string>
     <string name="waits_title">The table is waiting for you</string>
     <string name="waits_text">Open the game to answer.</string>
+    <string name="notify_title">Tell you when the table waits for you?</string>
+    <string name="notify_text">The app shows a notification when the table waits for your turn or roll while the app is out of view. Nothing else.</string>
+    <string name="notify_later">No, thanks</string>
+    <string name="notify_continue">Continue</string>
     <string name="close">Close</string>
 </resources>
