@@ -115,6 +115,7 @@ class Readings:
     tower_col: int = 18                     # lever f: «Дошёл» column with the tower warned
     vet_hold_with_column: bool = False      # lever b2: while the column stands, veterans do not leave at 4 HP
     col_speed_by_gap: tuple = ()            # lever h2: column speed for Р 0 / 1 / 2 (overrides col_speed)
+    boat_same_turn: int = 0                 # fix test: within this many cells of 17/1 the holder drags at once
 
 
 @dataclass
@@ -740,7 +741,8 @@ class Sim:
             if self.attack(3, 10, rng):
                 self.holder = v
                 self.stats["grab_success"] += 1
-                if self.rd.grab_then_drag_same_turn:
+                if self.rd.grab_then_drag_same_turn or (
+                        self.rd.boat_same_turn and self.boat and cheb(v.pos, BOAT) <= self.rd.boat_same_turn):
                     self.drag(v)
             return
         # path closed / not adjacent: spear the hero in the way (adjacent hero nearest to Efim)

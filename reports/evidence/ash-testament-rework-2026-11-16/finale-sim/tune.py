@@ -24,7 +24,7 @@ def readings(a, b, c, d, e, g=0, h=0, i=0, sc=0, tw=0, b2=0, h2=0):
                    xbow_adv_alone=bool(d), kondrat_leave_hp=20 if e else 27, efim_speed=3 if g else 4,
                    col_speed=(0, 4, 6, 5, 3)[h], zaslon_vs_grab=not i, col_schedule=SCHED[sc],
                    tower_col=(18, 17)[tw], vet_hold_with_column=bool(b2),
-                   col_speed_by_gap=((), (4, 5, 5), (4, 5, 6))[h2])
+                   col_speed_by_gap=((), (4, 5, 5), (4, 5, 6), (5, 6, 6), (5, 5, 5))[h2])
 
 
 def job(args):
