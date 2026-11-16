@@ -277,6 +277,9 @@ It changes no world state; keep its window listener, since `pageerror` misses th
 - Native apps (ADR 0070, `native-shell.spec.ts`): a stand-in shell installed with `addInitScript`
   records what the page posts, and the journey speaks for the shell with `ltw-native` events; it owns
   the `native` sign-in campaign. The apps themselves are checked on the simulator and the emulator.
+- A hero's backstory and private notes (ADR 0073 §5, Stage 840): `hero-story.spec.ts` owns the
+  `story` sign-in campaign (and `storyIpad` in WebKit) — the DM and two players by invitation;
+  `hero-story-words.spec.ts` owns `ui-story-ru`.
 - The party's encyclopedia (ADR 0073 §4, Stage 830): `party-known.spec.ts` owns `ui-known` (and
   `ui-known-ipad` in WebKit, `ui-known-ru`): the page read by a player and by the DM, held to the
   party's forbidden markers.

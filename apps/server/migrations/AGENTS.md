@@ -83,6 +83,12 @@ row while it is finished (`ltw_campaign_endings`, deleted when the DM reopens it
 keepsake (`ltw_keepsakes`): table data, not canonical state. Additive: an older build leaves both
 tables alone, and plays a finished campaign on — it knows nothing of its end.
 
+Stage 840 (ADR 0073 §5): `0045_backstories_and_notes.sql` keeps a hero's backstory
+(`ltw_backstories`, one text a character, its player's and the DM's) and a player's private notes
+(`ltw_player_notes`, kept under their writer's actor in the campaign and read by nobody else, the
+DM included): table data, not canonical state. Both move with their campaign. Additive: an older
+build leaves both tables alone.
+
 Stage 800 (ADR 0073 §1): `0044_client_errors.sql` keeps what a broken page told this server
 (`ltw_client_errors`): fixed fields only — no message, no address, no name — one row a distinct
 report of a campaign or of none, counted when seen again, removed after thirty days and by the

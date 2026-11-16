@@ -1005,3 +1005,22 @@ Chronicle. No server read is added.
   chapter or a record the directory does not list; another perspective's chapter untold; a secret
   left out), the journey `tests/e2e/party-known.spec.ts` (the DM's page and everything it was
   sent, against every marker forbidden to the party).
+
+## Stage 840: private notes and a hero's backstory (2026-11-16)
+
+Stage 840 (`docs/adr/0073-table-ideas.md` §5) gives a hero a backstory and a player a notebook.
+
+- Boundary: two new reads and their writes. A backstory (`GET …/entities/:id/backstory`) is its
+  character's own player's, in that character's view, and the DM's; another hero's player, the
+  party's shared view, the public view and a table display are refused, a stranger finds no
+  campaign. A private note (`GET …/notes`) is read under the asker's own actor as the character
+  whose view they hold: no request names another's notes, the DM's view is refused, and a DM in a
+  character's view reads the DM's own. Neither is in the live inventory. Neither is knowledge:
+  the World Engine reads nothing of them.
+- Deterministic regressions: `apps/server/src/notes/note-routes.test.ts` (each reader and writer;
+  the DM in both views; a note's ID is no way in; a table display; the live inventory),
+  `note-store.integration.test.ts` (PostgreSQL held to the in-memory semantics; another owner
+  cannot delete), `accounts/privacy.test.ts` (the copy holds the account's own notes and heroes'
+  backstories; deletion deletes its notes and no one else's),
+  `campaigns/move/tables.integration.test.ts`, the journey `tests/e2e/hero-story.spec.ts` (what
+  the DM and the other player were sent).

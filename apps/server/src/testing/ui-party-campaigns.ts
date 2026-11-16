@@ -103,6 +103,8 @@ export const UI_PARTY_CAMPAIGNS = {
   known: 'ui-known',
   knownIpad: 'ui-known-ipad',
   knownRu: 'ui-known-ru',
+  /** A hero's backstory and private notes, in Russian (Stage 840). */
+  storyRu: 'ui-story-ru',
 } as const;
 
 /**
@@ -174,6 +176,7 @@ export async function seedUiPartyCampaigns(engine: WorldEngine): Promise<void> {
     [UI_PARTY_CAMPAIGNS.known, 'en'],
     [UI_PARTY_CAMPAIGNS.knownIpad, 'en'],
     [UI_PARTY_CAMPAIGNS.knownRu, 'ru'],
+    [UI_PARTY_CAMPAIGNS.storyRu, 'ru'],
   ] as const) {
     const seed = await loadSeed(
       language === 'ru' ? RAVENFORD_RU_FIXTURES_DIR : RAVENFORD_FIXTURES_DIR,

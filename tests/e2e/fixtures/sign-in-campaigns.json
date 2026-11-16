@@ -45,5 +45,7 @@
   "keepsakesIpad": "ui-signin-keepsakes-ipad",
   "troubles": "ui-signin-troubles",
   "pause": "ui-signin-pause",
-  "pauseIpad": "ui-signin-pause-ipad"
+  "pauseIpad": "ui-signin-pause-ipad",
+  "story": "ui-signin-story",
+  "storyIpad": "ui-signin-story-ipad"
 }

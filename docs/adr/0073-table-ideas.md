@@ -4,13 +4,15 @@
   улучшений…», quoted as relayed in `reviews/OWNER_TABLE_IDEAS_2026-11-16.json`; every point of §1
   is the session's and is marked in the plan, `docs/TABLE_IDEAS_PLAN.md` decisions 3–4, and stays
   the owner's to overrule). Later sections are added by their stages and are not in force until
-  then. §2, §3 and §4 are accepted on the same word; every point of them is the session's (the
-  plan's decisions 5, 6 and 7). §1 amends ADR 0062 §1 (the notice names error reports), ADR 0042 §2 (a table display's one
+  then. §2–§5 are accepted on the same word; every point of them is the session's (the plan's
+  decisions 5–8). §1 amends ADR 0062 §1 (the notice names error reports), ADR 0042 §2 (a table display's one
   write), ADR 0033 (one more read in the DM's live inventory) and ADR 0061 §5 (a table that names
   a campaign and stays behind). §2 amends ADR 0071 §4.5 (a request for a pause is no longer a chat
   message) and ADR 0033 (one more read in the live inventory, for the DM and the asker). §3 amends ADR 0015
   §6 (a combatant's view says what is left of its turn, to its own player and the DM). §4 amends
-  ADR 0024 §5 (the Chronicle has a third view) and changes no contract.
+  ADR 0024 §5 (the Chronicle has a third view) and changes no contract. §5 amends ADR 0061 §5 (two
+  tables move), ADR 0062 §1–3 (the notice, a person's copy, what deleting an account deletes) and
+  ADR 0072 §2 (a finished campaign takes a private note).
 - Context: The program after «Память и ритуал» borrows ten things other tools for the same hobby
   do well. This ADR holds their contracts, one section a stage. The first: the client reported
   nothing. A game's screen that failed while drawing fell back to a line about a "world response"
@@ -162,6 +164,38 @@
 4. **No new read, no table.** The page reads what the server already answers for PARTY; no
    contract changes.
 
+### 5. Players' private notes and a hero's backstory (Stage 840)
+
+1. **Two things, two rules.** A _backstory_ is the hero's: where it comes from and what it wants,
+   one text a character. A _private note_ is a person's: a clue, a suspicion, a plan — theirs
+   alone. Both are table data beside the world (migration 0045, `ltw_backstories`,
+   `ltw_player_notes`): no World Engine decision reads either, and neither is knowledge — what a
+   player writes down gives no character anything to know.
+2. **Who reads a backstory.** Its character's own player, in that character's view, and the DM.
+   Both write it — the DM for a child who tells it aloud; the record says who wrote last. Nobody
+   else: another hero's player, the party's shared view, the public view, a table display and a
+   stranger are refused. It belongs to the hero, so a new player in that seat reads it.
+3. **Who reads a private note.** The person who wrote it, as the character they play — and nobody
+   else. The DM does not: the DM's view has no private notes at all, and a DM who takes a
+   character's view (as the DM may) finds the DM's own notes there, never the player's. A note is
+   kept under its writer's own actor in the campaign: no request can name another's, and a new
+   player in the same seat starts with an empty notebook.
+4. **What the page says.** Each part says who reads it before a word is typed: "You and your DM
+   read this. Nobody else at the table does." and "Only you read these: not the DM, not the
+   other players." The server's operator can read the database, as the privacy notice says of
+   everything kept.
+5. **Bounds.** A backstory is 4000 characters; a note a title of 120 and a body of 4000; fifty
+   notes a person a character; thirty writes a minute. A note deleted is deleted for good.
+6. **Where.** A fifth tab, "Story", on the character's sheet — for the hero's own player (the
+   backstory and "My notes") and for the DM (the backstory). Neither is in the live inventory:
+   nobody's screen is signalled by another's writing, and a changed backstory is read when the
+   sheet is opened again.
+7. **Around it.** Both tables move with their campaign (ADR 0061 §5). A person's copy of their
+   data lists their own heroes' backstories and the notes their own seat wrote; deleting an
+   account deletes those notes — nobody else could ever read them — and leaves the backstories
+   with their heroes (ADR 0062 §2–3). The privacy notice names both. A finished campaign still
+   takes a note, a player's own notebook, and no longer a backstory (ADR 0072 §2).
+
 ## Consequences
 
 - The DM's list can be written to by anyone at the table, and — without a campaign — the
@@ -198,6 +232,14 @@
 - A player's own character may know what the party does not; that is in the Journal, in the
   character's own view, and never on this page.
 
+- A private note is tied to a person's seat, not to a login: a guest who sits down without a login
+  and whose seat is freed after the evening finds an empty notebook next time, and the notes they
+  wrote stay in the database, read by nobody, until the campaign is deleted.
+- The DM cannot read a private note even to help a child who lost it, and cannot moderate what is
+  written there. That is the point of the rule; a family that wants otherwise shares the screen.
+- What a player writes in a backstory is not canon: the DM reads it and decides what the world
+  takes from it, by the DM's own tools.
+
 ## Alternatives considered
 
 - **A hosted error service.** It would send a family's devices' details to a third party and add
@@ -207,6 +249,11 @@
 - **Naming the person.** The DM would know whose phone at once; it would make an error report
   personal data with a place in the person's copy and its deletion. The browser and device are
   enough at a table of five.
+
+- **A private note the DM can read "to keep children safe".** Then it is not private, and the page
+  could not honestly say so; the table's agreement and the pause are the safety tools.
+- **A backstory as canonical knowledge.** It would let a player write facts into the world;
+  refused by invariant 1. The DM turns what they like of it into the world.
 
 ## Invariants affected
 
