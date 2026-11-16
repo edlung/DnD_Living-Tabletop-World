@@ -1,0 +1,16 @@
+[WebServer] $ pnpm --filter @ltw/web run dev --host 127.0.0.1 --port 4310
+[WebServer] $ vite --host 127.0.0.1 --port 4310
+[WebServer] $ pnpm --filter @ltw/web run dev --host 127.0.0.1 --port 4312
+[WebServer] $ vite --host 127.0.0.1 --port 4312
+
+Running 1 test using 1 worker
+
+[collection-2026__ash-testament] imported
+[collection-2026__ash-testament] activated d10717cd-47e5-4e4b-95ab-e7c8c786125b
+[collection-2026__ash-testament] player joined as Анфиса Рой
+[collection-2026__ash-testament] sheet opened
+[collection-2026__ash-testament] encounter started: Жезл в пепле
+[collection-2026__ash-testament] journal quests at start: 0
+  ✓  1 [chromium] › tests/e2e/zz-collection-journey.spec.ts:18:3 › table journey: collection-2026/ash-testament (27.9s)
+
+  1 passed (49.3s)

@@ -1,0 +1,16 @@
+[WebServer] $ pnpm --filter @ltw/web run dev --host 127.0.0.1 --port 4310
+[WebServer] $ vite --host 127.0.0.1 --port 4310
+[WebServer] $ pnpm --filter @ltw/web run dev --host 127.0.0.1 --port 4312
+[WebServer] $ vite --host 127.0.0.1 --port 4312
+
+Running 1 test using 1 worker
+
+[collection-2026__glass-republic] imported
+[collection-2026__glass-republic] activated da079578-021b-4043-a288-6ddf05b1577e
+[collection-2026__glass-republic] player joined as Таисия Ланге
+[collection-2026__glass-republic] sheet opened
+[collection-2026__glass-republic] encounter started: Угол Медного спуска
+[collection-2026__glass-republic] journal quests at start: 0
+  ✓  1 [chromium] › tests/e2e/zz-collection-journey.spec.ts:18:3 › table journey: collection-2026/glass-republic (27.7s)
+
+  1 passed (48.8s)

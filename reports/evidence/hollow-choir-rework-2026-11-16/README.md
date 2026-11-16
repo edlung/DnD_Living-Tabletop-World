@@ -8,7 +8,7 @@ the session.
 - `finale-sim/`: the final critic's simulator of the flight down the stair, written from the text
   (`sim.py`, `make_report.py`), results before (`results.md`) and after round 2 (`results-final.*`).
 - `engine-playthrough.jsonl`: packages for 5–8 players, three seeds each, through the audit harness.
-- `browser-journey.log`, `screens/`: Workshop import, activation, DM and player entry, sheet, a
+- `browser-journey.txt`, `screens/`: Workshop import, activation, DM and player entry, sheet, a
   fight started; book pages at 1440 and 390 px.
 - `art-plan/`: 44 planned pictures and the house style (without the clock, the marked candle, the
   hidden stair or rain). Nothing was generated.

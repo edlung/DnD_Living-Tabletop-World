@@ -11,7 +11,7 @@ written by Opus 5.5 agents inside the session.
   `results-tuned.md` tuning, `results-final.md` after round 2; round 3 changed Сделка to +2).
 - `engine-playthrough.jsonl`: packages for 6–8 players, three seeds each, through the audit harness
   (`../campaign-playability-2026-11-09/measurements/playthrough.ts`).
-- `browser-journey.log`, `screens/`: Workshop import, activation, DM and player entry, sheet, a
+- `browser-journey.txt`, `screens/`: Workshop import, activation, DM and player entry, sheet, a
   fight started; book pages at 1440 and 390 px.
 - `art-plan/`: 49 planned pictures (`prompts.json`) and the house style (`style.txt`, without the
   Book, ledgers or bells). Nothing was generated.

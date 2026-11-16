@@ -1,0 +1,25 @@
+
+[WebServer] $ vite --host 127.0.0.1 --port 4310
+
+[WebServer] $ pnpm --filter @ltw/web run dev --host 127.0.0.1 --port 4312
+
+[WebServer] $ vite --host 127.0.0.1 --port 4312
+
+
+Running 1 test using 1 worker
+
+[1/1] [chromium] › tests/e2e/zz-collection-journey.spec.ts:18:3 › table journey: collection-2026/velvet-ledger
+[chromium] › tests/e2e/zz-collection-journey.spec.ts:18:3 › table journey: collection-2026/velvet-ledger
+[collection-2026__velvet-ledger] imported
+
+[collection-2026__velvet-ledger] activated f7dcbb33-9e8a-46de-a875-9930a7d93c8e
+
+[collection-2026__velvet-ledger] player joined as Ольга Брандт
+
+[collection-2026__velvet-ledger] sheet opened
+
+[collection-2026__velvet-ledger] encounter started: Маски на вальсе
+
+[collection-2026__velvet-ledger] journal quests at start: 1
+
+  1 passed (48.5s)

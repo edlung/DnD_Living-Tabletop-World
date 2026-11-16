@@ -9,7 +9,7 @@ the session.
   pass (`results.md`), the rule search (`results-tuned.md`, `tune*.py`, `tune-*.json`) and the rerun on
   the edited text (`results-final.md`, `run_final.py`, `spine_check.py`, `boat_check.py`).
 - `engine-playthrough.jsonl`: packages for 5–8 players, three seeds each, through the audit harness.
-- `browser-journey.log`, `screens/`: Workshop import, activation, DM and player entry, sheet, a fight
+- `browser-journey.txt`, `screens/`: Workshop import, activation, DM and player entry, sheet, a fight
   started; book pages at 1440 and 390 px.
 - `art-plan/`: 45 planned pictures and the house style (without the pass, the testimony, the kill
   order, the burnt flag or the planks). Nothing was generated.

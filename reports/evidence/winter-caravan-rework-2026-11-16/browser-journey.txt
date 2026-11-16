@@ -1,0 +1,7 @@
+[collection-2026__winter-caravan] imported
+[collection-2026__winter-caravan] activated 641c83e7-75ff-4053-a6cc-855451f7edc2
+[collection-2026__winter-caravan] player joined as Остап Шов
+[collection-2026__winter-caravan] sheet opened
+[collection-2026__winter-caravan] encounter started: Стая у брода
+[collection-2026__winter-caravan] journal quests at start: 0
+  1 passed (52.3s)

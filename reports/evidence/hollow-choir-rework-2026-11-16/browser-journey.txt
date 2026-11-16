@@ -1,0 +1,7 @@
+[collection-2026__hollow-choir] imported
+[collection-2026__hollow-choir] activated 6c421d1a-0c8e-4258-9871-48943329f44b
+[collection-2026__hollow-choir] player joined as Ядвига Рид
+[collection-2026__hollow-choir] sheet opened
+[collection-2026__hollow-choir] encounter started: Первая трапеза
+[collection-2026__hollow-choir] journal quests at start: 0
+  1 passed (43.3s)
