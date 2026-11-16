@@ -52,6 +52,8 @@
   min-width: 0;
   padding-left: 1rem;
   border-left: 1px solid var(--line);
+  /* Whatever the width, the title is cut short before the controls lie over it. */
+  overflow-x: clip;
 }
 .topbar-title h1 {
   flex: 0 1 auto;
@@ -297,7 +299,7 @@
  * Where the full words do not fit, the short ones ("Add", "Time"); each button keeps its full name
  * (shell/use-dock-fit.ts, docs/adr/0043-dm-screen.md §3). A phone's tab bar always has them.
  */
-@media (min-width: 768px) {
+@media (min-width: 768px) and (min-height: 501px), (min-width: 1200px) {
   .dock[data-words='short'] .dock-label {
     display: none;
   }

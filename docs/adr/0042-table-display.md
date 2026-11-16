@@ -92,3 +92,20 @@
   one-way trigger, pruning, casts, seats), the domain's display tests, and the browser journey
   `tests/e2e/table-display.spec.ts` (pairing, casts, a secret place, two seats through the link and
   its code, the PARTY boundary markers on everything the TV received, no write, unpairing).
+
+## Amendments
+
+- 2026-11-15 (owner request and answers of that day, `work-orders/NATIVE_TV_POLISH_2026-11-15.md`).
+  §3 gains: a scene cast to "where the party is" follows a fight — while the PARTY perspective
+  sees an encounter the screen shows the battlefield (whole, following whoever acts) and the scene
+  again after it; a place the DM picked, and every other cast, stays as cast. The rule is the
+  screen's (`display/moments.ts` `followedCast`): the cast itself is unchanged, and the fight is
+  read in the PARTY perspective, so nothing new is revealed. The DM's sheet says so, and says when
+  the screens cannot see a fight because no character someone plays takes part. Also: whom the
+  table waits for is at most a few lines with the same ask counted, at the foot beside the
+  battlefield; the rolls cast fits one screen; the page's root type size follows the screen from
+  1080 lines up; the quiet corner leaves only "Sound on" while sound waits, takes a remote's arrows
+  and OK, and is absent in LTW DM's TV window (ADR 0070); a roll's throw without a cue is heard as
+  dice; the live signal away for four seconds is said on the screen; "could not be reached" tries
+  again by itself (10 s; 60 s after too many codes); a picture cast without an approved picture
+  shows the name on a title card. Journey `tests/e2e/display-room.spec.ts`.

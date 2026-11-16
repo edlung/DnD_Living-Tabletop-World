@@ -24,6 +24,10 @@ It changes no world state; keep its window listener, since `pageerror` misses th
   A spec that takes `browser` imports `test` from `support/journey.ts` (it closes what the journey
   opened), or closes its own with `closePages` of `support/pages.ts`;
   `tests/architecture/journey-pages.test.ts` holds every spec to one of the two.
+- A journey that fails says what its pages were at, where it opened them with `freshPage` and
+  closes them with `test.afterEach(closePages)` (`support/pages.ts`): a `[journey]` block in the
+  job's log with what each page showed, the requests it still waited for and those that failed.
+  CI keeps no screenshot. Nothing a page of the sign-in servers shows is printed.
 - The journeys' dev servers do not reload a page that lost its connection to them
   (`LTW_VITE_NO_RELOAD`, `apps/web/vite.config.ts`): the dev client does, and in WebKit that
   connection was lost now and then under a journey, whose page then came back at its start.
@@ -277,6 +281,12 @@ It changes no world state; keep its window listener, since `pageerror` misses th
 - Native apps (ADR 0070, `native-shell.spec.ts`): a stand-in shell installed with `addInitScript`
   records what the page posts, and the journey speaks for the shell with `ltw-native` events; it owns
   the `native` sign-in campaign. The apps themselves are checked on the simulator and the emulator.
+  `native-polish.spec.ts` uses the same stand-in (the TV's sound, the workshop's door, "Only this
+  app") with the `native` campaign's third DM link and `room`'s third; `takeSeat` accepts the
+  apps' "Only this app".
+- The table's screen in a room (`display-room.spec.ts`, ADR 0042 amendment of 2026-11-15) owns the
+  `room` sign-in campaign: a fight the scene cast follows, the waiting strip at the foot, the corner
+  and a remote's keys, a lost network (`context.setOffline`) and the screen's own retry.
 - Sealed envelopes (ADR 0073 §9, Stage 880): `envelopes.spec.ts` owns `ui-envelopes`,
   `ui-envelopes-ipad` and `ui-envelopes-ru`; its second journey ends the campaign's session (the
   evening's chapter opens the envelope), so nothing else may share those campaigns.

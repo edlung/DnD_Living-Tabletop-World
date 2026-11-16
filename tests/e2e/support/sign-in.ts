@@ -96,7 +96,11 @@ export const accessState = (page: Page, title: string) =>
  */
 export async function takeSeat(page: Page, words: Words = WORDS.en): Promise<void> {
   const invited = accessState(page, words.invited);
-  await invited.getByRole('radio', { name: words.onlyBrowser, exact: true }).check();
+  // In the apps the same choice is "Only this app" (the stand-in shell of the native journeys).
+  await invited
+    .getByRole('radio', { name: words.onlyBrowser, exact: true })
+    .or(invited.getByRole('radio', { name: /^(Only this app|Только это приложение)$/ }))
+    .check();
   await invited.getByRole('button', { name: words.takeSeat, exact: true }).click();
 }
 
