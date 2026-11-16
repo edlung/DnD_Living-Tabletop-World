@@ -145,6 +145,14 @@ keepsakes.
   come; why WebKit drops its connection to the dev server is not known (Stage 790's report).
 - **The whole suite after the suite's own fixes.** Run whole on Stage 790's branch (346 of 346
   on Chromium in 28.5 minutes, one commit before its last); here only CI runs the whole.
+- **An iPad page that never shows its world.** With the reloads gone one failure is left in
+  CI, old and not explained: now and then on the iPad project a page that entered the world
+  never shows its dock, and the journey runs out of its three minutes
+  (`[ipad] evening-ritual.spec.ts:35` on this pull request's commit `f663f59d`; the same on
+  `main` before this package, `[ipad] dm-screen.spec.ts`). Stage 790's pull request was green
+  whole on the same code. CI keeps no screenshot, so a failing journey now writes what its pages
+  showed and which requests they still waited for into the job's log
+  (`tests/e2e/support/pages.ts`): the next occurrence can be read there.
 - **Paper.** The book's print was checked in Stage 770 as Chromium's PDF; no page was printed,
   and Safari's print was not tried.
 - **No real device**: not a phone (the keyboard over a card, the largest text under a thumb), not

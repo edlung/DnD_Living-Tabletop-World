@@ -24,6 +24,10 @@ It changes no world state; keep its window listener, since `pageerror` misses th
   A spec that takes `browser` imports `test` from `support/journey.ts` (it closes what the journey
   opened), or closes its own with `closePages` of `support/pages.ts`;
   `tests/architecture/journey-pages.test.ts` holds every spec to one of the two.
+- A journey that fails says what its pages were at, where it opened them with `freshPage` and
+  closes them with `test.afterEach(closePages)` (`support/pages.ts`): a `[journey]` block in the
+  job's log with what each page showed, the requests it still waited for and those that failed.
+  CI keeps no screenshot. Nothing a page of the sign-in servers shows is printed.
 - The journeys' dev servers do not reload a page that lost its connection to them
   (`LTW_VITE_NO_RELOAD`, `apps/web/vite.config.ts`): the dev client does, and in WebKit that
   connection was lost now and then under a journey, whose page then came back at its start.
