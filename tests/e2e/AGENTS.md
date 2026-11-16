@@ -27,6 +27,7 @@ It changes no world state; keep its window listener, since `pageerror` misses th
 - The journeys' dev servers keep no connection to their pages (`LTW_VITE_NO_WS`,
   `apps/web/vite.config.ts`): the dev client reloads a page that lost it, and in WebKit it was
   lost now and then under a journey. So a journey never sees hot reloading; it edits no source.
+  The dev client's handshake is refused at once, so no page waits on it; its console says so.
 - `apps/server/src/testing/ui-server.ts` composes the real World Engine and dev
   personas over deterministic in-memory storage. No external AI provider runs.
 - These are browser journeys through real HTTP projections, not mocked domain
