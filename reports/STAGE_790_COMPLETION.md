@@ -92,8 +92,9 @@ unused, and none changes what was there before.
 ### In the suite itself, found through this pull request's CI
 
 The first CI runs of this pull request and of Stage 799's were red on a different journey each
-time (seven runs, eleven failures, WebKit and Chromium). None was this stage's code; three causes
-were found, and one is not explained.
+time (nine runs, thirteen failures, WebKit and Chromium). None was this stage's code; four causes
+were found and answered. Not every one of the thirteen was traced to its cause by its own evidence:
+a journey that waited too long for a screen leaves no more than that in a log.
 
 - **Journeys left their pages open.** Playwright closes only the `page` fixture's context. A
   context a journey opens itself (`browser.newContext()`) lived on in the worker's browser: its
@@ -113,17 +114,27 @@ were found, and one is not explained.
   left red in the run above (`next-game.spec.ts:60`, and red on both engines in pull request 43's
   CI). The sheet now reads the table when the session starts (`apps/web/src/dm/session-sheet.tsx`).
 - **Two WebKit journeys side by side.** The `ipad` and `webkit` projects run one journey at a
-  time (`playwright.config.ts`); with it all of the iPad journeys passed in each of the four runs
-  since.
-- **Not explained: a WebKit page that reloads under its journey.** Twice here
-  (`[webkit] release.spec.ts:85`, `[ipad] evening-ritual.spec.ts:163`) and at least twice before
-  this package (`[webkit] release.spec.ts:135` on Stage 710's branch, `[ipad] dm-screen.spec.ts`
-  on `main`) a page navigated to its own address while the journey waited on an open sheet. The
-  client has no such navigation, and the dev server's dependency optimizer is ruled out (it finds
-  every dependency in its first scan). In CI the dev servers now write a `[ltw:trace]` line when
-  they tell pages to reload, send them an error, or a page comes back after a lost connection
-  (`apps/web/dev-trace.ts`), so the next time it happens the job's log says which. It has not
-  happened in the two runs since.
+  time (`playwright.config.ts`); with it all of the iPad journeys passed in four runs of the next six (the other two are the reload below).
+- **A WebKit page reloaded under its journey.** Twice here (`[webkit] release.spec.ts:85`,
+  `[ipad] evening-ritual.spec.ts:163`) and at least twice before this package
+  (`[webkit] release.spec.ts:135` on Stage 710's branch, `[ipad] dm-screen.spec.ts` on `main`) a
+  page navigated to its own address while the journey waited on an open sheet. The client has
+  no such navigation, and the dev server's dependency optimizer was ruled out (it finds every
+  dependency in its first scan). A trace of the dev server, kept in CI for four runs, caught the
+  third: the page's connection to the dev server (the one hot reloading uses) closed without a
+  word — `ws closed … webkit code=1006 after=19505ms` — and 62 ms later the page asked the
+  server whether it was back, which is what the dev client does before it reloads the page
+  (`[ipad] ritual-checkpoint.spec.ts:59`, the DM's page, a second after "My campaigns"), and in
+  Stage 799's run of the same hour the fourth, the same two lines before
+  `[ipad] keepsakes-checkpoint.spec.ts:58` lost its page. So the
+  reload is the dev client's, not the application's: a built client has no such connection. The
+  journeys' dev servers now keep none (`LTW_VITE_NO_WS`, `apps/web/vite.config.ts`,
+  `playwright.config.ts`): a journey edits no source and has no use for hot reloading. Why
+  WebKit drops that connection is not known, and no longer matters to a journey. The trace is
+  gone with its question.
+- **Their first clean runs.** With journeys closing their pages, both Chromium shards (1/3,
+  2/3) were green on both pull requests at once for the first time; the only red was the reload
+  above.
 
 ## Files
 
@@ -215,11 +226,11 @@ them, lie over an open sheet as they did.
 ## Not verified, and limits
 
 - **WebKit, here.** This environment has no WebKit; the pull request's CI is the only word on
-  it. There `comforts.spec.ts` passed on the iPad project in every run (eight).
-- **The whole suite on the last commit, here.** The last whole Chromium run (345 of 346) was on
-  the commit before the next game's fix; after it that journey passed five times of five, and CI
-  runs the whole.
-- **Why a WebKit page reloads under its journey** (above): not found, only made visible.
+  it. There `comforts.spec.ts` passed on the iPad project in every run.
+- **The whole suite on the last commit, here**: run — 346 of 346 on Chromium in 28.5 minutes,
+  with journeys closing their pages, the next game's fix and the dev servers' connection off.
+- **Why WebKit drops its connection to the dev server** (above): not found; the journeys no
+  longer depend on it. That the reloads are gone is shown only by CI runs to come.
 - **No human has used it**, and Part 2 was not re-read against a playtest. Whether a DM wants to
   be reminded, whether children cheer or drum on the button, whether "Largest" is large enough
   for a grandmother — unknown.
