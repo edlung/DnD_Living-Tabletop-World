@@ -25,5 +25,9 @@
     <string name="channel_text">Когда стол ждёт вас</string>
     <string name="waits_title">Стол ждёт вас</string>
     <string name="waits_text">Откройте игру, чтобы ответить.</string>
+    <string name="notify_title">Сообщать, когда стол ждёт вас?</string>
+    <string name="notify_text">Приложение покажет уведомление, если стол ждёт вашего хода или броска, а приложение свёрнуто. Больше ни о чём.</string>
+    <string name="notify_later">Не нужно</string>
+    <string name="notify_continue">Продолжить</string>
     <string name="close">Закрыть</string>
 </resources>

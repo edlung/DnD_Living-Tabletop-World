@@ -1,6 +1,7 @@
 import { StatusPanel, useT } from '@ltw/ui';
 import { useEffect, useRef } from 'react';
 
+import { inApp } from '../native/shell.ts';
 import { useDeliberateChoice } from '../session/deliberate-choice.ts';
 
 export type AccessKind =
@@ -41,7 +42,11 @@ export function WorkshopAccess({
     return (
       <section className="workshop-access" aria-labelledby="workshop-access-title">
         <h2 id="workshop-access-title">{t('Replace your workshop sign-in?')}</h2>
-        <p>{t('This browser already has a workshop open. Your game session stays separate.')}</p>
+        <p>
+          {inApp()
+            ? t('This app already has a workshop open. Your game session stays separate.')
+            : t('This browser already has a workshop open. Your game session stays separate.')}
+        </p>
         <p>
           {t(
             'Keeping it leaves this invitation unused. Replacing it opens the invited workshop instead.',

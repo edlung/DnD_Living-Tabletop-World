@@ -66,6 +66,12 @@ class ContractTest {
     }
 
     @Test
+    fun theDmPageSetsTheTvSound() {
+        assertEquals(PageMessage.TvSound(true, 60), PageMessage.parse("""{"type":"tv-sound","on":true,"volume":60}"""))
+        assertEquals(PageMessage.TvSound(false, 0), PageMessage.parse("""{"type":"tv-sound","on":false,"volume":0}"""))
+    }
+
+    @Test
     fun theGameViewStaysOnItsServer() {
         val current = "https://ltw.vardahei.tech"
         assertEquals(Origins.Navigation.INSIDE, Origins.navigation("https://ltw.vardahei.tech/table", current, false))

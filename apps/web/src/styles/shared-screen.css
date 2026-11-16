@@ -19,7 +19,7 @@
 .shared-screen .display-blank {
   min-height: min(32vh, 22rem);
 }
-@media (max-width: 767px) {
+@media (max-width: 767px), (max-width: 1199px) and (max-height: 500px) {
   .shared-screen .display-scene,
   .shared-screen .display-title,
   .shared-screen .display-dice,
@@ -98,7 +98,7 @@
 .shared-screen .display-picture img {
   max-height: min(26vh, 18rem);
 }
-@media (max-width: 767px) {
+@media (max-width: 767px), (max-width: 1199px) and (max-height: 500px) {
   .shared-screen .display-picture img {
     max-height: 44vh;
   }
