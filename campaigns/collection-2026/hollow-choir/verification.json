@@ -1,59 +1,59 @@
 {
-  "modelRequested": "gpt-6-astra",
+  "modelRequested": "claude-opus-5-5",
   "effortRequested": "max",
   "humanPlaytest": "NOT_RUN",
   "validation": "isolated canonical compiler; no database or real activation",
   "variants": [
     {
       "size": 5,
-      "sha256": "2794b2006e941bf8a6e77c2f03e38c5a76acfeb4f62f0fe3a7722ac7fdfef388",
+      "sha256": "a13a2a32c041d655b2802d77e2fa607dbf5cda90281bbb055fca67a022b708fb",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
       "counts": {
-        "entities": 48,
-        "knowledge": 106,
-        "encounters": 3,
-        "quests": 8
+        "entities": 65,
+        "knowledge": 124,
+        "encounters": 4,
+        "quests": 6
       }
     },
     {
       "size": 6,
-      "sha256": "035e70c7e457ef9f282914db858bb3705914a6123ccf0e44bd74bcccc3ec6623",
+      "sha256": "40393a118cc9e21b5899fef84d16de4d826bf9c7324841d37d45d18805570242",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
       "counts": {
-        "entities": 50,
-        "knowledge": 108,
-        "encounters": 3,
-        "quests": 8
+        "entities": 68,
+        "knowledge": 126,
+        "encounters": 4,
+        "quests": 6
       }
     },
     {
       "size": 7,
-      "sha256": "fa5836655cc63a1de6202d591f5e8a2aa699586cc3d7501fc47687368b9187cd",
+      "sha256": "d050bdcd922991018b8bf744f8db03f6e03b00740e6164dcd7538135ea985a86",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
       "counts": {
-        "entities": 55,
-        "knowledge": 110,
-        "encounters": 3,
-        "quests": 8
+        "entities": 74,
+        "knowledge": 128,
+        "encounters": 4,
+        "quests": 6
       }
     },
     {
       "size": 8,
-      "sha256": "c06dae8875f7a48164b7c2ce010fdb7addddd0fe64d66054d2f1738bb6aca5b4",
+      "sha256": "feea7dd8a13472d5a0d1788b57fb70ee93be71ee5b40091dfcf1f48d84f814e5",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
       "counts": {
-        "entities": 60,
-        "knowledge": 112,
-        "encounters": 3,
-        "quests": 8
+        "entities": 76,
+        "knowledge": 130,
+        "encounters": 4,
+        "quests": 6
       }
     }
   ]
