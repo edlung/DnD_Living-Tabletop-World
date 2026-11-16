@@ -117,3 +117,7 @@ the masts, ending in the ambush on the long planks.
 2026-11-16: `collection-2026/glass-republic` done the same way (`campaigns/distinctness/glass-republic-brief.md`,
 `reports/GLASS_REPUBLIC_REWORK_2026-11-16.md`): a round of six factions, the curator who knew from the
 first page, and the coup night by the hour with one choice on the balcony.
+
+2026-11-16: `collection-2026/ember-crown` done the same way (`campaigns/distinctness/ember-crown-brief.md`,
+`reports/EMBER_CROWN_REWORK_2026-11-16.md`): wall sectors with banners, the east wall falling in
+evening 4, and the battle for the North Gate. All seven campaigns of the series are reworked.
