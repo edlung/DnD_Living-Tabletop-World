@@ -236,6 +236,16 @@ export const MOVED_TABLES: readonly MovedTable[] = [
     owner: byCampaign,
   },
   {
+    // Who comes to the next game (ADR 0073 §10): the answers go with the date they answer.
+    name: 'ltw_next_game_answers',
+    kind: 'state',
+    where: campaign,
+    key: ['campaign_id', 'character_id'],
+    order: 'character_id',
+    batch: ROWS,
+    owner: byCampaign,
+  },
+  {
     name: 'ltw_table_states',
     kind: 'state',
     where: campaign,
