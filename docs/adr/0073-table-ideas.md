@@ -328,8 +328,7 @@
    for that instant: another day or hour, and every hero is unanswered again; the DM's line
    about the date changes nothing asked. A date taken away or cleared by the session it was set
    for leaves nothing to answer, and the answers are deleted then.
-5. **What it is not.** No reminder and no notification — the product has no push service (ADR
-   0070) and none is added; the calendar file of ADR 0071 §3 is still the only thing that
+5. **What it is not.** No reminder and no notification — the product has no push service (ADR 0070) and none is added; the calendar file of ADR 0071 §3 is still the only thing that
    reminds. No count of who missed what, no history of answers, no "maybe". Not a perspective's
    knowledge and nothing the World Engine reads: a hero who "can't come" is not marked absent —
    that stays the DM's own switch on the evening.

@@ -108,15 +108,24 @@ describe('“I’ll come / I can’t”', () => {
       { characterId: ELOWEN, coming: 'yes', note: 'late' },
       { coming: 'yes' },
     ]) {
-      const refused = await post(app, `${BASE}/lobby/coming?perspective=PLAYER`, body, TOKENS.player);
+      const refused = await post(
+        app,
+        `${BASE}/lobby/coming?perspective=PLAYER`,
+        body,
+        TOKENS.player,
+      );
       expect(refused.statusCode, JSON.stringify(body)).toBe(400);
     }
     expect((await say('market-square', 'yes', 'DM', TOKENS.dm)).statusCode).toBe(422);
     expect((await say('nobody-at-all', 'yes', 'DM', TOKENS.dm)).statusCode).toBe(422);
     expect((await say(ELOWEN, 'yes', 'PLAYER', TOKENS.outsider)).statusCode).toBe(404);
     expect(
-      (await post(app, `${BASE}/lobby/coming?perspective=PLAYER`, { characterId: ELOWEN, coming: 'yes' }))
-        .statusCode,
+      (
+        await post(app, `${BASE}/lobby/coming?perspective=PLAYER`, {
+          characterId: ELOWEN,
+          coming: 'yes',
+        })
+      ).statusCode,
     ).toBe(401);
     // A player speaking as the party or as the public answers for nobody.
     expect((await say(ELOWEN, 'yes', 'PARTY')).statusCode).toBe(403);
