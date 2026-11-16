@@ -209,6 +209,7 @@ test('по-русски: мастер запечатывает письмо, о�
   const sheet = dm.locator('#sheet-party');
   const give = sheet.getByRole('region', { name: 'Дать материал' });
   await give.getByLabel('Название', { exact: true }).fill(title);
+  await give.getByLabel('Текст (необязательно)', { exact: true }).fill('Телегу никто не грабил.');
   await give.getByRole('button', { name: 'Отложить' }).click();
   const letter = sheet
     .getByRole('region', { name: 'Заготовки' })
