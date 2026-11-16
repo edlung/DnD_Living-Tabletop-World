@@ -50,6 +50,8 @@ DEFAULT_RD = dict(entry='A',      # no key: A = placed in 12-14 then full move; 
                   pen='unit',      # unit = a failed save of a led/carried person slows the unit; solo = only own limit
                   serv='move_act', # move_act = servant moves then acts; move_only = moving is its whole turn
                   bow=False,        # rogue shortbow from the sheet (task lists rapier only)
+                  v2=False,        # round-2 text (hc-round2-decisions applied)
+                  sponge=False,    # policy: a unit with slack walks one row behind Irina to take the call
                   warden=True,     # policy: tinderbox holder waits at row 1 (seat «ворота») until the stair is empty
                   carry_lead=False,  # exploit reading: a carrier may also lead one guest
                   niches=True, pulls=True, gk_focus=True)
@@ -96,7 +98,8 @@ class Game:
         g.stub_given = False
         g.niche = {10: 'free', 5: 'free'}
         g.gk_hp, g.gk_row = GHAST['hitPoints']['max'], 1
-        g.serv = [S(2 if i % 2 == 0 else 3) for i in range(2 if n <= 6 else 3)]
+        lo = 1 if rd.get('v2') else 2
+        g.serv = [S(lo if i % 2 == 0 else lo + 1) for i in range(2 if n <= 6 else 3)]
         g.seq = 0; g.r = 0; g.calls = 0; g.last_call = None; g.end = False
         g.st = Counter(); g.dec = []
         if key: g.place()
@@ -190,7 +193,7 @@ class Game:
         walkers = [p for p in g.on() if not p.hero and p.grab is None]
         need = 0
         for w in walkers:
-            if w.fallen or w is g.irina: need += 2 if g.rd.get('carry_lead') is False else 1
+            if w.fallen or (w is g.irina and not g.rd.get('v2')): need += 2
             else: need += 1
         need -= sum(1 for w in walkers if w.name in ('Егор', 'Мартин') and not w.fallen)
         spare_heroes = max(0, len(free_h) - max(0, need))
@@ -209,7 +212,8 @@ class Game:
 
     def relight(g):
         for h in sorted([h for h in g.heroes if h.free() and not h.candle], key=lambda h: h.order):
-            near = any(q.candle and abs(q.row - h.row) <= 1 for q in g.on() if q is not h)
+            near = any(q.candle and abs(q.row - h.row) <= 1 for q in g.on() if q is not h) or \
+                (g.rd.get('v2') and h.row == 1 and any(p.st == 'out' for p in g.people))
             if near and not h.bonus and (g.spares or g.urm):
                 h.candle = g.light_spare(); h.bonus = True; g.rnd['bonus'] += 1
             elif h.lighter == 'tinder' or (h.lighter == 'matches' and g.matches > 0):
@@ -252,6 +256,7 @@ class Game:
         if not h.bonus and (g.spares or g.urm) and any(q.candle and abs(q.row - h.row) <= 1 for q in g.on() if q is not h):
             h.candle = g.light_spare(); h.bonus = True; g.rnd['bonus'] += 1
         c.st = 'stair'; c.caught_r = None; c.released_r = g.r; c.row = max(1, c.row - 2)
+        if g.rd.get('v2'): c.moved = True
         g.st['released'] += 1
         return True
 
@@ -296,7 +301,7 @@ class Game:
             first = hs[:1]
             rest = sorted([q for q in cand if q not in first], key=lambda q: (q.hero, abs(q.row - c.row), q.order))
             return (first + rest)[:k]
-        for c in sorted([p for p in avail if p.fallen] + ([g.irina] if g.irina in avail and not g.irina.fallen else []),
+        for c in sorted([p for p in avail if p.fallen] + ([g.irina] if g.irina in avail and not g.irina.fallen and not g.rd.get('v2') else []),
                         key=lambda p: -p.row):
             if c in used: continue
             cs = carriers_for(c, 2)
@@ -306,9 +311,12 @@ class Game:
             if not cs: continue
             used.update(cs); used.add(c); c.link = cs
             sp = 3 if len(cs) == 2 else 2
+            if c is g.irina and g.rd.get('v2'): sp = 2
             out.append(('carry', [c] + cs, sp))
         walkers = sorted([p for p in avail if not p.hero and p not in used and not p.fallen], key=lambda p: (-p.row, p.order))
         for w in walkers:
+            if g.rd.get('v2') and w is g.irina and w.row > 2 * (7 - g.r):
+                used.add(w); w.link = []; out.append(('solo', [w], w.base())); continue  # cannot make it: let go
             hs = [h for h in avail if h.hero and not h.fallen and h not in used and abs(h.row - w.row) <= 1 and h.role not in ('closer', 'gk')]
             if not hs:
                 hs = [h for h in avail if h.hero and not h.fallen and h not in used and abs(h.row - w.row) <= 1]
@@ -354,18 +362,43 @@ class Game:
             return
         if not g.key and g.r == 2: g.place()
         g.plan()
-        g.give_stub()
+        if not g.rd.get('v2'): g.give_stub()
         g.relight()
         g.closers()
         us = g.units()
         us.sort(key=lambda u: min(m.row for m in u[1]))
+        if g.rd.get('v2'):
+            iu = [u for u in us if g.irina in u[1]]
+            if iu:
+                us.remove(iu[0]); us.insert(0, iu[0])
+                if not g.stub_given and iu[0][0] == 'lead':
+                    h = iu[0][1][0]
+                    if h.candle == 'normal': g.spares += 1
+                    h.candle = 'stub'; g.stub_given = True; g.rnd['bonus'] += 1
+            elif not g.stub_given:
+                g.give_stub()
+        sponge = None
         for kind, mem, sp in us:
+            ir = g.irina
+            if (g.rd.get('sponge') and sponge is None and ir is not None and ir.st == 'stair' and ir.moved
+                    and ir not in mem and g.r < 6 and any(m.hero for m in mem) and kind != 'carry'
+                    and ir.row <= 2 * (6 - g.r) and ir.grab is None):
+                want = ir.row + 1
+                if want <= max(m.row for m in mem) and g.feasible(want, 3) and (want < g.L - g.spd or any(m.candle == 'stub' for m in mem)) \
+                        and want >= max(m.row for m in mem) - sp:
+                    sponge = mem
+                    for m in mem: m.row = want; m.moved = True
+                    g.rnd['units'] += 1
+                    continue
             pen = [m.pen for m in mem if (g.rd['pen'] == 'unit' or m is mem[0] or kind == 'carry' and m is not mem[0]
                                           or kind == 'lead' and m.hero)]
             if kind == 'carry': pen = [m.pen for m in mem[1:]] + ([mem[0].pen] if g.rd['pen'] == 'unit' else [])
             if kind == 'lead': pen = [mem[0].pen] + ([mem[1].pen] if g.rd['pen'] == 'unit' else [])
             sp = max(0, sp - (max(pen) if pen else 0))
             start = max(m.row for m in mem)
+            if g.rd.get('v2') and kind == 'lead' and mem[1] is g.irina and start - sp > 2 * (6 - g.r):
+                h = mem[0]; g.irina.row = max(1, g.irina.row - max(0, 1 - g.irina.pen)); g.irina.moved = True
+                g.irina.link = []; mem = [h]; kind = 'solo'; sp = max(0, 3 - h.pen); g.st['irina_let_go'] += 1
             lead = mem[0] if kind != 'carry' else mem[1]
             dest = start - sp
             if kind == 'solo' and lead.hero and lead.role == 'gk' and g.gk_up() and g.r < 6:
@@ -415,7 +448,7 @@ class Game:
                     q = down[0]; h.hw -= 1; h.bonus = True; q.hp = d(1, 4) + 3; q.fallen = False
                     g.rnd['bonus'] += 1; g.st['rolls'] += 1
             if h.act: continue
-            bow = CLS[h.cls].get('bow') if g.rd['bow'] else None
+            bow = CLS[h.cls].get('bow') if (g.rd['bow'] or g.rd.get('v2')) else None
             def hit_servant(sv):
                 atk = bow if (bow and abs(sv.row - h.row) > 1) else CLS[h.cls]['melee']
                 dmg = g.attack(atk, GHOUL['armorClass'], sneak=bool(bow) and g.sneak_ok(h, sv.row))
@@ -588,6 +621,21 @@ def cell(arch, n, key, rd, N=400, seed=1):
                 maxO=max(Os), minO=min(Os), rounds=statistics.mean(r['rounds'] for r in res),
                 stats={k: round(v / N, 2) for k, v in st.items()})
 
+V2 = dict(DEFAULT_RD, v2=True, sponge=True)
+
+def main_v2(N=400):
+    out = {'main': [], 'alt': {}}
+    for arch in ARCH:
+        for key in (True, False):
+            for n in (5, 6, 7, 8):
+                out['main'].append(cell(arch, n, key, V2, N))
+    alts = {'no call sponge': dict(sponge=False), 'no pull-outs': dict(pulls=False), 'no niches': dict(niches=False),
+            'servants move only': dict(serv='move_only')}
+    for name, ch in alts.items():
+        out['alt'][name] = [cell(a, 6, k, dict(V2, **ch), N) for a in ARCH for k in (True, False)]
+    json.dump(out, open(os.path.join(HERE, 'results-final.json'), 'w'), ensure_ascii=False, indent=1)
+    return out
+
 def main():
     out = {'main': [], 'sens': {}, 'exploit': {}}
     for arch in ARCH:
@@ -615,4 +663,5 @@ def main():
     return out
 
 if __name__ == '__main__':
-    main()
+    import sys
+    main_v2() if 'final' in sys.argv else main()

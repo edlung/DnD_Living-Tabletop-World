@@ -98,3 +98,6 @@ velvet-ledger` done (`campaigns/distinctness/velvet-ledger-brief.md`, `reports/V
 2026-11-16.md`); not added to `fixtures/campaign-library/`. The collection tools now allow fewer than
 eight evenings (books test, stale evening pages, map titles); packages must stay under the web import
 limit of 512 KiB.
+
+2026-11-16: `collection-2026/hollow-choir` done the same way (`campaigns/distinctness/hollow-choir-brief.md`,
+`reports/HOLLOW_CHOIR_REWORK_2026-11-16.md`): one night in six evenings of five scenes.
