@@ -22,6 +22,8 @@ VOLLEY = {1: {(x, y) for x in range(6, 9) for y in range(8, 10)},     # Вдов
           2: {(x, y) for x in range(10, 13) for y in range(9, 11)},   # Ворчун K10-M11
           3: ASH}                                                     # Жаровня E6-G7
 SIDE = {'A7': [(0, 6), (0, 7)], 'P7': [(15, 6), (15, 7)]}
+STAIRS_ZONE = {(x, y) for x in range(6, 10) for y in (10, 11)}   # G11-J12
+FLANKS = {(5, 10), (5, 11), (10, 10), (10, 11)}                   # F11 F12 K11 K12
 SOUTH_FREE = [(x, 11) for x in list(range(0, 6)) + list(range(10, 16))]
 NB = [(-1, -1), (0, -1), (1, -1), (-1, 0), (1, 0), (-1, 1), (0, 1), (1, 1)]
 HERO_CELLS = {6: [(7, 11), (8, 11), (6, 11), (9, 11), (5, 11), (10, 11)],
@@ -100,6 +102,15 @@ class Battle:
         elif cv >= 2: s.target, s.refill_rounds = s.F, (3, 5)
         else: s.target, s.refill_rounds = s.F, (3, 5, 7)
         s.sair_moves_r1 = cv == 0
+        if rd.get('lever_j'): s.sair_moves_r1 = False   # Ворота 0: Сайр no longer moves from round 1
+        if rd.get('lever_d') and cv <= 1:          # Сайр starts on row 2; refill every round from round 2
+            s.sair.pos = (11, 1); s.refill_rounds = tuple(range(2, 9))
+        if rd.get('lever_e'):                       # refill every second round from round 3, every gate value
+            s.refill_rounds = tuple(sorted(set(s.refill_rounds) | {3, 5, 7}))
+        if rd.get('lever_k'):                       # waves by gate value: 4-5 one wave, 2-3 three, 0-1 every round
+            s.refill_rounds = (3,) if cv >= 4 else ((3, 5, 7) if cv >= 2 else tuple(range(2, 9)))
+            s.target = s.F
+        s.n_refilled = 0; s.n_side = 0; s.n_volley_hits = 0; s.n_nb_removed = 0
         s.no_move_r1 = cv == 5
         s.assign_roles()
 
@@ -204,14 +215,21 @@ class Battle:
 
     def start_of_round(s):
         r = s.round
-        if s.dawn['alliance'] and not s.nb_arrived:
+        if s.rd.get('lever_h') and s.dawn['alliance'] and not s.nb_arrived:
+            if r >= 3 + (1 if s.dawn['alliance'] == 'late' else 0):
+                s.nb_arrived = True; s.dm_steps['соседи пришли'] += 1
+                if not s.portcullis: s.nb_in = True; s.log('соседи вошли в арку')
+        if s.rd.get('lever_m') and s.dawn['alliance'] and not s.nb_arrived and not s.portcullis:
+            if r >= 3 + (1 if s.dawn['alliance'] == 'late' else 0):
+                s.nb_arrived = True; s.nb_outside_fight = True; s.dm_steps['соседи пришли'] += 1
+        if not s.rd.get('lever_h') and not s.rd.get('lever_m') and s.dawn['alliance'] and not s.nb_arrived:
             arr = None
             if s.signal_round: arr = s.signal_round + 2 + (1 if s.dawn['alliance'] == 'late' else 0)
             noarr = 6 + (1 if s.rd['late_plus_unsignalled'] and s.dawn['alliance'] == 'late' else 0)
             arr = min(arr or 99, noarr)
             if r >= arr:
                 s.nb_arrived = True; s.dm_steps['соседи пришли'] += 1; s.log('соседи пришли')
-        if r in s.refill_rounds and not s.portcullis and not s.nb_arrived:
+        if r in s.refill_rounds and not s.portcullis and (not s.nb_arrived or s.rd.get('lever_m')) and not s.nb_in:
             s.dm_steps['доливка'] += 1
             oc = s.occ()
             for p in REFILL_ORDER:
@@ -219,7 +237,7 @@ class Battle:
                 pool = s.fallen_pool()
                 if not pool: break
                 if p in oc: continue
-                f = pool[0]; f.on = True; f.hp = f.maxhp; f.pos = p
+                f = pool[0]; f.on = True; f.hp = f.maxhp; f.pos = p; s.n_refilled += 1
             s.log('доливка до', len(s.standing_foes()))
         open_side = [k for k in ('A7', 'P7') if s.dawn[k] and not (k == 'A7' and getattr(s, 'a7_locked', False))]
         if open_side:
@@ -232,28 +250,32 @@ class Battle:
                         pool = s.fallen_pool()
                         if not s.side_debt or not pool: break
                         if p in oc: continue
-                        f = pool[0]; f.on = True; f.hp = f.maxhp; f.pos = p; s.side_debt -= 1
+                        f = pool[0]; f.on = True; f.hp = f.maxhp; f.pos = p; s.side_debt -= 1; s.n_side += 1
 
     def end_of_round(s):
         r = s.round
         # 1 volley
-        if r in VOLLEY and not (r == 3 and s.dawn['zharovnya_silent']):
+        zone = VOLLEY.get(r)
+        if s.rd.get('lever_g') and r in (2, 4):
+            zone = None if s.dawn['zharovnya_silent'] else STAIRS_ZONE
+        if zone and not (r == 3 and s.dawn['zharovnya_silent']):
             s.dm_steps['залп'] += 1
             for f in list(s.figs()):
-                if f.hp > 0 and f.pos in VOLLEY[r]:
+                if f.hp > 0 and f.pos in zone:
+                    s.n_volley_hits += 1
                     dm = d(2, 6)
                     if random.randint(1, 20) + f.dsave >= 12: dm //= 2
                     s.dm_steps['спасбросок'] += 1
                     s.damage(f, dm)
             if r == 3: s.diff |= ASH
         # 2 neighbours remove one
-        if s.nb_arrived and not s.nb_in and (not s.portcullis or s.rd['nb_remove_through_bars']):
-            c = [f for f in s.standing_foes() if f.pos[1] <= 2]
+        if s.nb_arrived and (not s.nb_in or s.rd.get('lever_h')) and (not s.portcullis or s.rd['nb_remove_through_bars']):
+            c = [f for f in s.standing_foes() if f.pos[1] <= 2 or s.rd.get('lever_h') or s.rd.get('lever_m')]
             if c:
                 f = min(c, key=lambda f: min(cheb(f.pos, a) for a in ARCH))
                 f.on = False; f.hp = 0
                 if not s.rd['nb_removed_are_fallen']: f.lost = True
-                s.dm_steps['соседи снимают'] += 1; s.log('ленты утащили', f.name)
+                s.dm_steps['соседи снимают'] += 1; s.n_nb_removed += 1; s.log('ленты утащили', f.name)
         # 3 let neighbours in
         if s.nb_arrived and not s.nb_in and not s.portcullis and s.pol['let_in']:
             if not any(f.pos in ARCH for f in s.figs() if f.side == 'foe'):
@@ -349,7 +371,7 @@ class Battle:
             if t.hp > 0: s.attack(s.sair, t, s.sair.atk, s.sair.dmg)
     def check_threshold(s):
         S = s.sair
-        if s.round >= 3 and S.on and S.hp <= s.rd.get('thr', 33) and not S.withdrawing:
+        if s.round >= s.rd.get('thr_round', 3) and S.on and S.hp <= s.rd.get('thr', 33) and not S.withdrawing:
             S.withdrawing = True; s.log('Сайр на пороге (', S.hp, ')')
     def sair_withdraw(s):
         S = s.sair
@@ -375,6 +397,15 @@ class Battle:
                 tt = min(t, key=lambda h: cheb(h.pos, f.pos))
                 s.attack(f, tt, f.atk, f.dmg, ranged=True, adv=-1 if cheb(tt.pos, f.pos) > 4 else 0)
             return
+        if f.kind == 'guard' and s.rd.get('lever_f'):
+            tg = [h for h in s.heroes if h.up and h.pos in STAIRS]
+            if tg:
+                if not any(h in tg for h in s.adj_hostiles(f)):
+                    goals = [q for h in tg for q in [(h.pos[0]+dx, h.pos[1]+dy) for dx, dy in NB] if inb(q)]
+                    s.move_toward(f, goals, f.speed, prefer=lambda p: 0 if p in FLANKS else 1)
+                t = [h for h in s.adj_hostiles(f) if h in tg] or s.adj_hostiles(f)
+                if t: s.attack(f, min(t, key=lambda h: h.hp), f.atk, f.dmg)
+                return
         guard_mode = f.kind == 'guard' and (r >= 3 or s.rd['guards_hold_sair_r12']) and s.sair.on
         if guard_mode:
             S = s.sair
@@ -484,7 +515,7 @@ class Battle:
                     elif not ok():
                         s.move_toward(h, goals, budget)   # Dash with action
                         return
-                if cheb(h.pos, A2) <= (0 if s.dawn['chain'] == 'intact' else 1) and s.round >= 2:
+                if cheb(h.pos, A2) <= (0 if s.dawn['chain'] == 'intact' else 1) and s.round >= s.rd.get('port_round', 2):
                     s.decisions['решётка'] += 1
                     if s.dawn['chain'] == 'intact':
                         s.port_pending = True
@@ -579,7 +610,7 @@ def policy(dawn, tactic='stairs', tear=True, portcullis=None):
 
 def run_cell(n, dawn, rd, pol, runs, seed):
     random.seed(seed)
-    res = Counter(); rounds = []; drop = []; whys = Counter(); stair = 0; dec = []; dms = []; ft = []
+    res = Counter(); rounds = []; drop = []; whys = Counter(); stair = 0; dec = []; dms = []; ft = []; act = Counter()
     for _ in range(runs):
         b = Battle(n, dawn, rd, pol)
         b.banner_up = False; b.stair_emptied = 0; b.dead_states = []
@@ -590,6 +621,8 @@ def run_cell(n, dawn, rd, pol, runs, seed):
         dec.append(sum(v for k, v in b.decisions.items() if not k.startswith('DM')) / b.round)
         dms.append(sum(b.dm_steps.values()) / b.round)
         ft.append((b.decisions['DM: противник'] + b.decisions['DM: Сайр']) / b.round)
+        act['refill'] += b.n_refilled > 0; act['side'] += b.n_side > 0
+        act['volley'] += b.n_volley_hits > 0; act['nb'] += b.n_nb_removed > 0
     rounds.sort()
     q = lambda p: rounds[min(len(rounds) - 1, int(p * len(rounds)))]
     return dict(n=n, runs=runs, outcomes=dict(res), why=dict(whys), mean_rounds=round(statistics.mean(rounds), 2),
@@ -597,7 +630,8 @@ def run_cell(n, dawn, rd, pol, runs, seed):
                 mean_drops=round(statistics.mean(drop), 2), stair_emptied=round(stair / runs, 3),
                 hero_decisions_per_round=round(statistics.mean(dec), 1),
                 dm_steps_per_round=round(statistics.mean(dms), 1),
-                foe_turns_per_round=round(statistics.mean(ft), 1))
+                foe_turns_per_round=round(statistics.mean(ft), 1),
+                happened={k: round(v / runs, 2) for k, v in act.items()})
 
 if __name__ == '__main__':
     runs = int(sys.argv[1]) if len(sys.argv) > 1 else 400
