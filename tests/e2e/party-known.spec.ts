@@ -92,9 +92,9 @@ test('what the party knows is one page, the same for the DM and a player', async
   // The DM's page is the party's too: the same names, and none of the DM's secrets.
   const dmReads = collectPartyReads(dm);
   const theirs = await openKnown(dm);
-  await expect(
-    theirs.known.getByRole('heading', { level: 4, name: 'Mira Vale' }),
-  ).toBeVisible(WAIT);
+  await expect(theirs.known.getByRole('heading', { level: 4, name: 'Mira Vale' })).toBeVisible(
+    WAIT,
+  );
   const names = async (page: Page) =>
     page.locator('dialog.chronicle-dialog .known-entry h4').allTextContents();
   expect(await names(dm)).toEqual(await names(player));

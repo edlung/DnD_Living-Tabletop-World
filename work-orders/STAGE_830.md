@@ -26,6 +26,12 @@ program `docs/TABLE_IDEAS_PLAN.md` (section 830); ADR 0073 §4, written with the
   knowledge today.
 - No memories are listed: the party's chapters are its told story, and each entry names them.
 
+- From the independent pass, taken as decisions: the page keeps what it last read while it is
+  put away, so coming back from a chapter finds it at once; a part that could not be read is
+  left out and said to be, and "nothing more yet" is not said when the party's records were not
+  read; the page's words promise what it holds — who and what the party knows of — not whom it
+  "met" or where it "has been".
+
 ## Boundaries
 
 No server change, no contract change, no migration, no table. Read only. No AI. No art drawn or
