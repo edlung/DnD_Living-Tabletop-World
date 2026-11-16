@@ -277,6 +277,9 @@ It changes no world state; keep its window listener, since `pageerror` misses th
 - Native apps (ADR 0070, `native-shell.spec.ts`): a stand-in shell installed with `addInitScript`
   records what the page posts, and the journey speaks for the shell with `ltw-native` events; it owns
   the `native` sign-in campaign. The apps themselves are checked on the simulator and the emulator.
+- Sealed envelopes (ADR 0073 §9, Stage 880): `envelopes.spec.ts` owns `ui-envelopes`,
+  `ui-envelopes-ipad` and `ui-envelopes-ru`; its second journey ends the campaign's session (the
+  evening's chapter opens the envelope), so nothing else may share those campaigns.
 - Theatre of the mind (ADR 0073 §8, Stage 870): `story-cast.spec.ts` owns the `storyCast` sign-in
   campaign with a paired TV at 1280×720 and `storyCastRu` (seeded from the Russian Ravenford).
 - A scene that brings its sound (ADR 0073 §6, Stage 850): `place-sound.spec.ts` owns the

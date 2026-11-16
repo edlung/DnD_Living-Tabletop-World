@@ -28,7 +28,10 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   for a guest) on `claude/stage-860-guest-way-in`, stacked on 850's (ADR 0073 §7,
   `reports/STAGE_860_COMPLETION.md`); Stage 870 (theatre of the mind on the table's screen) on
   `claude/stage-870-story-cast`, stacked on 860's (ADR 0073 §8,
-  `reports/STAGE_870_COMPLETION.md`); each awaits the owner's disposition.
+  `reports/STAGE_870_COMPLETION.md`); Stage 880 (sealed envelopes) on
+  `claude/stage-880-sealed-envelopes`, stacked on 870's (ADR 0073 §9,
+  `reports/STAGE_880_COMPLETION.md`, with the third checkpoint); each awaits the owner's
+  disposition.
 
 ## Current request — memory and ritual, 2026-11-15
 

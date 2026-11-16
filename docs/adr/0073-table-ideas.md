@@ -4,8 +4,8 @@
   улучшений…», quoted as relayed in `reviews/OWNER_TABLE_IDEAS_2026-11-16.json`; every point of §1
   is the session's and is marked in the plan, `docs/TABLE_IDEAS_PLAN.md` decisions 3–4, and stays
   the owner's to overrule). Later sections are added by their stages and are not in force until
-  then. §2–§8 are accepted on the same word; every point of them is the session's (the plan's
-  decisions 5–11). §1 amends ADR 0062 §1 (the notice names error reports), ADR 0042 §2 (a table display's one
+  then. §2–§9 are accepted on the same word; every point of them is the session's (the plan's
+  decisions 5–12). §1 amends ADR 0062 §1 (the notice names error reports), ADR 0042 §2 (a table display's one
   write), ADR 0033 (one more read in the DM's live inventory) and ADR 0061 §5 (a table that names
   a campaign and stays behind). §2 amends ADR 0071 §4.5 (a request for a pause is no longer a chat
   message) and ADR 0033 (one more read in the live inventory, for the DM and the asker). §3 amends ADR 0015
@@ -17,7 +17,9 @@
   0042 §3 (the cast's answer says what it did to the sound) and ADR 0061 §5 (one table moves). §7
   amends ADR 0042 §5 (a seat chosen through the table's link is taken in this browser unless a
   login is asked for) and changes no contract. §8 amends ADR 0042 §3 and ADR 0044 §5 (one more
-  cast, `story`).
+  cast, `story`). §9 amends ADR 0058 §3 (a kept handout can be sealed), ADR 0044 §5 (a handout
+  can arrive from an envelope), ADR 0033 (one more read in the live inventory) and ADR 0061 §5
+  (one table moves).
 - Context: The program after «Память и ритуал» borrows ten things other tools for the same hobby
   do well. This ADR holds their contracts, one section a stage. The first: the client reported
   nothing. A game's screen that failed while drawing fell back to a line about a "world response"
@@ -271,6 +273,39 @@
    words that exist are the chapters' prose, and the form offers those. No AI capability and no
    paid call is added.
 
+### 9. Sealed envelopes (Stage 880)
+
+1. **What an envelope is.** A handout the DM kept in the library (ADR 0058 §3), sealed for the
+   party ahead of time: words for its outside — up to 120 characters, "Open after the battle" —
+   and what opens it. The envelope takes a copy of the handout as it stands: changing or
+   deleting the library's entry afterwards changes nothing sealed. `ltw_envelopes` (migration
+   0047), table data beside the world; fifty a campaign at most, sealed and opened together.
+2. **What the party sees.** `GET /campaigns/:id/envelopes`: the sealed envelopes from outside —
+   the label, what opens it, when it was sealed — in the Journal of every player, in a
+   character's view or the party's, and for a table display in the party's. The inside (title,
+   text, picture) is in no answer of that route, for anyone; the DM reads it on the DM's own
+   route. An envelope is for the party: one for a single character is a handout given to them
+   when the moment comes.
+3. **It opens on the DM's word.** "Open it now" in the DM's list: the inside becomes a handout
+   for the party by the path every handout takes (ADR 0044 §5) — it waits over each player's
+   stage and marks the Journal — and the envelope leaves the party's sealed ones. Opening twice
+   gives one handout.
+4. **Or by itself, when the evening's chapter is written.** An envelope sealed "for this
+   evening's chapter" names the session open at the sealing; sealed between evenings, it waits
+   for the next evening's. When a chapter told from the party is written for that session — the
+   ritual's close (ADR 0071 §1), or the DM writing it later from the book — every such envelope
+   opens, inside the chapter's own request. A chapter told from one character or from the DM
+   opens nothing, nor does a chapter of no evening. An evening that ends with no chapter leaves
+   its envelopes sealed, for the DM's word.
+5. **What cannot open.** A handout's picture must be of something its reader knows (ADR 0044
+   §5), and an envelope may be sealed before the party does. Then it does not open: the DM is
+   told why, the chapter's writing passes it by, and it stays sealed until the party knows — or
+   the DM gives the words another way. The outside never names the picture.
+6. **What it is not.** Not world state, not knowledge: the World Engine neither reads nor writes
+   an envelope, and what is inside teaches no perspective anything until the DM's own tools say
+   so. Not a cast: the table's screen shows no envelope by itself. A finished campaign seals and
+   opens none. The table moves with its campaign (ADR 0061 §5).
+
 ## Consequences
 
 - The DM's list can be written to by anyone at the table, and — without a campaign — the
@@ -335,6 +370,17 @@
   table. A build from before it reads a stored `story` cast as no cast and shows the default
   scene: after a rollback the screens show where the party is until the DM casts again.
 
+- The label on an envelope is the DM's typing, shown to every player and readable by a paired
+  display's credential: a DM who writes the secret on the outside has told it. The form says
+  what the party reads.
+- An envelope sealed "for this evening's chapter" between evenings opens with the next party
+  chapter of any evening, including one the DM writes for an old session from the book.
+- Opening marks the envelope first and gives the handout second: a server that stops between
+  the two leaves an envelope marked open and nothing given. The inside is still in the DM's
+  list, and the kept handout is still in the library, to give by hand.
+- A build from before this section ignores the table: after a rollback the party sees no
+  envelopes and none opens; nothing is lost.
+
 ## Alternatives considered
 
 - **A hosted error service.** It would send a family's devices' details to a third party and add
@@ -349,6 +395,14 @@
   could not honestly say so; the table's agreement and the pause are the safety tools.
 - **A backstory as canonical knowledge.** It would let a player write facts into the world;
   refused by invariant 1. The DM turns what they like of it into the world.
+
+- **An envelope for one character.** A sealed thing with one reader is a secret kept at the
+  table in front of the others; the handout given to one player already does this quietly.
+- **A date or a world event that opens it.** A timer would open an envelope while nobody plays,
+  and a trigger in the world would make table data depend on canon the other way round. The
+  DM's word and the chapter are the two moments the table already has.
+- **Showing the envelope on the table's screen as a cast.** A cast is what the DM shows now; an
+  envelope waits. The DM can say it aloud, or cast a title card.
 
 ## Invariants affected
 
