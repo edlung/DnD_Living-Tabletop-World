@@ -35,3 +35,17 @@ Scope: 15 distinct campaigns. The 8 shipped ones (`fixtures/campaign-library/ind
 ## Verdict
 
 **Yes.** One HIGH cluster involves a reworked campaign: **ash-testament × rain-check**. Both are witness-protection plots with a pursuers' gap track, a fleeing witness, testimony in evening 7, a grid fight in evening 8 to keep his token safe, and alive / taken / dead endings. The other HIGH cluster (marrow-crown × salt-widows) contains no reworked campaign. The other six reworked campaigns appear only in MEDIUM or LOW clusters. The strongest of those are the evening-5 "suppressed text read aloud" device, which velvet-ledger and salt-meridian sharpen with the shared "40 days", and the headcount evacuation finale with a "count us aloud" close in hollow-choir and winter-caravan.
+
+## Re-check after the ash-testament change
+
+Sources: current `ash-testament/source/*.json` and README.
+
+**What changed.** Efim no longer goes onto the boardwalk. At the end of evening 7 the gap track decides where he goes: to Ruma's column, under arrest, or to the river with Nella's boatman. He is alive in every ending. He writes his account himself on the night of evening 6, and the table reads it as a handout («Завет Ефима»); evening 7 no longer opens with his spoken story. The finale fight is now about carrying the Chasha box (27 tally tags plus the testament) east across the boardwalk. Kondrat's archers try to burn it and Ruma's veterans try to seize it. The endings are now «Ящик у стола» / «Копии у стола» (the fallback packet) / «Пепел» (nothing reaches the table), all about evidence.
+
+**ash-testament × rain-check: down from HIGH to MEDIUM.** Gone: the alive/taken/dead triad, the "no living witness" line, the evening-7 testimony and the protect-the-witness grid fight. Still shared: a mirrored pursuer gap track read in named bands, a witness who slips away, and two factions that want opposite things (seize vs destroy), now aimed at an object. Noticeable, but no longer a replay.
+
+**New overlaps created**
+
+- **Counting aloud at the end.** In «Ящик у стола», Nella counts the tags aloud ("twenty-seven"). This adds ash-testament to the close shared by hollow-choir, winter-caravan and ember-crown, which is now 4 campaigns. It is still a house-style item, not a cluster. The smallest fix is to have Nella read the testament without counting.
+- **Carrier token.** Getting a carried token to a target cell before round N now joins cluster 10 (ember-crown banner, mountain-wedding top, marrow-crown nest). Here the heroes carry rather than block, so it stays LOW. Clockwork-carnival's egg carry is similar and also LOW.
+- No new HIGH or MEDIUM pair was found.
