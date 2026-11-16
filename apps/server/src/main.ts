@@ -50,6 +50,7 @@ import { PostgresReflectionStore } from './reflections/postgres-reflection-store
 import { PostgresAgreementStore } from './agreement/postgres-agreement-store.ts';
 import { PostgresEndingStore } from './ending/postgres-ending-store.ts';
 import { PostgresMarkStore } from './marks/postgres-mark-store.ts';
+import { PostgresPlaceSoundStore } from './display/postgres-place-sound-store.ts';
 import { PostgresNoteStore } from './notes/postgres-note-store.ts';
 import { buildLabel } from './client-errors/client-error-routes.ts';
 import { PostgresClientErrorStore } from './client-errors/postgres-client-error-store.ts';
@@ -249,6 +250,8 @@ async function main(): Promise<void> {
     handouts: { store: new PostgresHandoutStore(pool), now: () => new Date().toISOString() },
     // The DM's music (ADR 0059 §3; migration 0038).
     music: new PostgresTrackStore(pool),
+    // Places' own sounds (ADR 0073 §6; migration 0046).
+    placeSounds: new PostgresPlaceSoundStore(pool),
     // Where each campaign plays: an away one is read, not changed (ADR 0061 §5; migration 0039).
     moves: new PostgresCampaignMoves(pool),
     // The table's voice (ADR 0060): rooms in memory; the relay when the operator set one.

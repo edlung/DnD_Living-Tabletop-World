@@ -113,6 +113,11 @@ export interface CastResponse {
   readonly revision: number;
   /** A scene cast's place: its own, or where the party is; null for any other cast. */
   readonly place?: string | null;
+  /**
+   * What showing the place did to the table's sound (docs/adr/0073-table-ideas.md §6): on the
+   * DM's `POST` of a scene whose place brings a sound; absent otherwise.
+   */
+  readonly sound?: { readonly ambience: boolean; readonly music: boolean };
 }
 
 /** `GET /campaigns/:campaignId/display/join` (displays and the DM): the open table link, if any. */

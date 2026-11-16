@@ -48,6 +48,7 @@ import './i18n/ru-pause.ts';
 import './i18n/ru-hint.ts';
 import './i18n/ru-known.ts';
 import './i18n/ru-story.ts';
+import './i18n/ru-place-sound.ts';
 import { applyTextSize } from './dice/settings.ts';
 import { DisplayApp } from './display/display-app.tsx';
 import { RootBoundary } from './report/broken-page.tsx';

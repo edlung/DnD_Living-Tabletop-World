@@ -196,6 +196,16 @@ export const MOVED_TABLES: readonly MovedTable[] = [
     owner: byCampaign,
   },
   {
+    // Places' own sounds (ADR 0073 §6): the DM's preparation goes where the campaign goes.
+    name: 'ltw_place_sounds',
+    kind: 'state',
+    where: campaign,
+    key: ['campaign_id', 'location_id'],
+    order: 'location_id',
+    batch: ROWS,
+    owner: byCampaign,
+  },
+  {
     // A hero's backstory (ADR 0073 §5): the hero's, so it goes where the hero goes.
     name: 'ltw_backstories',
     kind: 'state',

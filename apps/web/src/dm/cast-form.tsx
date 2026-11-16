@@ -5,6 +5,7 @@ import { useCallback, useId, useState, type SubmitEvent } from 'react';
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
 import { Glyph } from '../visual/glyph.tsx';
+import { PlaceSoundField } from './place-sound.tsx';
 
 /**
  * What the table's screens show (docs/adr/0042-table-display.md §3), on the DM's Table screen
@@ -63,6 +64,7 @@ export function CastForm({
   const [subtitle, setSubtitle] = useState(current.kind === 'title' ? current.subtitle : '');
   const [entityId, setEntityId] = useState(current.kind === 'picture' ? current.entityId : '');
   const [note, setNote] = useState<string | null>(null);
+  const [sounded, setSounded] = useState(false);
   const places = directory.filter((entity) => entity.kind === 'location');
   // Whom a zoomed board keeps in view: the fight's combatants, as the DM sees them.
   const loadFight = useCallback(
@@ -97,8 +99,14 @@ export function CastForm({
       return;
     }
     try {
-      await api.post<CastResponse>('display/cast', { cast }, AbortSignal.timeout(20_000));
+      const done = await api.post<CastResponse>(
+        'display/cast',
+        { cast },
+        AbortSignal.timeout(20_000),
+      );
       setNote(null);
+      // The place brought its sound (ADR 0073 §6): said, since it changed what the table hears.
+      setSounded(done.sound !== undefined && (done.sound.ambience || done.sound.music));
       onCast();
     } catch {
       setNote(t('The screens could not be told. Try again.'));
@@ -147,6 +155,14 @@ export function CastForm({
               ))}
             </select>
           </div>
+        )}
+        {/* The chosen place's own sound, switched on with it (docs/adr/0073-table-ideas.md §6). */}
+        {kind === 'scene' && place !== PARTY_PLACE && (
+          <PlaceSoundField
+            api={api}
+            locationId={place}
+            placeName={places.find((entity) => entity.entityId === place)?.name ?? t('this place')}
+          />
         )}
         {kind === 'battlefield' && (
           <div className="screen-cast-row">
@@ -247,6 +263,9 @@ export function CastForm({
           <Glyph name="live" />
           {t('Show on the screens')}
         </button>
+        <p role="status" className="place-sound-status">
+          {sounded ? t('The place’s sound is on.') : ''}
+        </p>
       </form>
     </section>
   );

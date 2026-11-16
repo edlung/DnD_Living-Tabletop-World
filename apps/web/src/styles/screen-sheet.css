@@ -34,3 +34,28 @@
   width: 20px;
   height: 20px;
 }
+
+/* A place's own sound, kept where the place is shown (docs/adr/0073-table-ideas.md §6). */
+.place-sound {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+}
+.place-sound legend {
+  padding: 0 6px;
+  font-weight: 600;
+}
+.place-sound button {
+  min-height: 44px;
+}
+.place-sound button[aria-disabled='true'] {
+  opacity: 0.6;
+  cursor: default;
+}
+.place-sound-status {
+  min-height: 1.4em;
+  margin: 0;
+}

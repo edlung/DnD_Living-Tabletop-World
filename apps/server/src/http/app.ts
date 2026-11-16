@@ -60,6 +60,8 @@ import { VoiceRooms } from '../voice/voice-rooms.ts';
 import { InMemoryTrackStore, type TrackStore } from '../music/track-store.ts';
 import { memoryLobby, type LobbyDependencies } from '../table/table-state.ts';
 import { registerDisplayRoutes } from '../display/display-routes.ts';
+import { InMemoryPlaceSoundStore, type PlaceSoundStore } from '../display/place-sound-store.ts';
+import { registerPlaceSoundRoutes, type PlaceSoundDependencies } from '../display/place-sound.ts';
 import { registerTableLinkRoutes } from '../display/table-links.ts';
 import { registerAuthRoutes } from '../auth/auth-routes.ts';
 import { registerMemberRoutes } from '../auth/member-routes.ts';
@@ -185,6 +187,8 @@ export interface AppDependencies {
   readonly ending?: EndingDependencies;
   /** Cheers at the table (ADR 0072 §3): this process's memory, always. */
   readonly cheers?: CheerDependencies;
+  /** Places' own sounds (ADR 0073 §6); in memory when absent. */
+  readonly placeSounds?: PlaceSoundStore;
   /** A hero's backstory and a player's private notes (ADR 0073 §5); in memory when absent. */
   readonly notes?: NoteDependencies;
   /** Requests for a pause (ADR 0073 §2): this process's memory, always. */
@@ -348,6 +352,13 @@ export function buildApp(input: AppDependencies): FastifyInstance {
     moves: deps.moves ?? NOTHING_AWAY,
   });
   registerMusicRoutes(app, { ...deps, lobby, music });
+  // A place's own sound (ADR 0073 §6): the DM's routes here, applied where a place is shown.
+  const placeSounds: PlaceSoundDependencies = {
+    store: deps.placeSounds ?? new InMemoryPlaceSoundStore(),
+    lobby,
+    music,
+  };
+  registerPlaceSoundRoutes(app, { ...deps, placeSounds });
   registerVoiceRoutes(app, {
     ...deps,
     lobby,
@@ -418,7 +429,7 @@ export function buildApp(input: AppDependencies): FastifyInstance {
     // The table's displays and join links (ADR 0042): pairing, the cast, the table's QR code.
     const { displays, displayLimits, openLinks } = deps.signIn;
     if (displays && displayLimits && openLinks) {
-      const display = { ...signIn, displays, displayLimits, openLinks };
+      const display = { ...signIn, displays, displayLimits, openLinks, placeSounds };
       registerDisplayRoutes(app, display);
       registerTableLinkRoutes(app, display);
     }
