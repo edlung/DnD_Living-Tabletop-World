@@ -1,6 +1,5 @@
 import { defineConfig, type Plugin } from 'vite';
 
-import { devTrace } from './dev-trace.ts';
 import manifest from './src/assets/ui-kit.manifest.json' with { type: 'json' };
 
 /**
@@ -43,12 +42,39 @@ function uiKitUrlsInDevelopment(): Plugin {
   };
 }
 
+/**
+ * The dev client reloads a page whose connection to this server (the one hot reloading uses) was
+ * lost and found again. In WebKit that connection now and then closes under a browser journey,
+ * and the journey's page came back signed in but at its start, the sheet it was using shut. Under
+ * `LTW_VITE_NO_RELOAD` (the journeys' servers, playwright.config.ts) the client keeps its
+ * connection as ever and only that reload is taken out: a journey edits no source, so a page
+ * that lost the connection has lost nothing. The client's text is Vite's own; if it no longer
+ * reads as expected, the server says so instead of quietly reloading pages again.
+ */
+const LOST_CONNECTION = 'if (payload.event === "vite:ws:disconnect") {';
+
+function keepsPagesAfterLostConnection(): Plugin {
+  return {
+    name: 'ltw:no-reload-after-lost-connection',
+    apply: 'serve',
+    enforce: 'pre',
+    transform(code, id) {
+      if (!(id.split('?')[0] ?? id).endsWith('/vite/dist/client/client.mjs')) return null;
+      if (code.split(LOST_CONNECTION).length !== 2) {
+        this.error('the dev client does not read as vite.config.ts expects (LTW_VITE_NO_RELOAD)');
+      }
+      return { code: code.replace(LOST_CONNECTION, 'if (false) {'), map: null };
+    },
+  };
+}
+
 // Only the local API is proxied. Bearer tokens never enter URLs or static assets.
 // LTW_VITE_CACHE_DIR gives a second dev server of the same client (the browser tests' sign-in
 // server, playwright.config.ts) its own dependency cache, so two servers never race on one.
 const cacheDir = process.env['LTW_VITE_CACHE_DIR'];
+const noReload = process.env['LTW_VITE_NO_RELOAD'] !== undefined;
 export default defineConfig({
-  plugins: [uiKitUrlsInDevelopment(), devTrace()],
+  plugins: [uiKitUrlsInDevelopment(), ...(noReload ? [keepsPagesAfterLostConnection()] : [])],
   ...(cacheDir === undefined ? {} : { cacheDir }),
   resolve: { conditions: ['@ltw/source', 'browser', 'development|production'] },
   server: {
