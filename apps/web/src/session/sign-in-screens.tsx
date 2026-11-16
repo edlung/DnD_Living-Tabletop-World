@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, type ComponentProps, type ReactNode } from
 
 import { AboutButton } from '../guide/about.tsx';
 import { NativeEntry } from '../native/native-entry.tsx';
+import { inApp } from '../native/shell.ts';
 import { Glyph } from '../visual/glyph.tsx';
 import type { GlyphName } from '../visual/ui-kit-names.ts';
 import { ornamentUrl, textureUrl } from '../visual/ui-kit.ts';
@@ -96,7 +97,15 @@ function AccessState({
 
 function CurrentSignInText({ current }: { readonly current: CurrentSignIn | null }) {
   const t = useT();
-  if (current === null) return <p>{t('This browser is already signed in to a table.')}</p>;
+  if (current === null) {
+    return (
+      <p>
+        {inApp()
+          ? t('This app is already signed in to a table.')
+          : t('This browser is already signed in to a table.')}
+      </p>
+    );
+  }
   return (
     <p>
       {current.role === 'DM'
@@ -136,9 +145,13 @@ function ReplaceQuestion({
       <CurrentSignInText current={current} />
       <p>{t('Replace that sign-in with this invitation?')}</p>
       <p className="fine-print">
-        {t(
-          'Replacing signs this browser out of that table. Keeping it leaves the invitation unused: it still works once, in another browser.',
-        )}
+        {inApp()
+          ? t(
+              'Replacing signs this app out of that table. Keeping it leaves the invitation unused: it still works once, on another device.',
+            )
+          : t(
+              'Replacing signs this browser out of that table. Keeping it leaves the invitation unused: it still works once, in another browser.',
+            )}
       </p>
       <p className="fine-print">
         {current === null
@@ -337,10 +350,15 @@ export function SignInScreens({
               )}
             </p>
             <p className="fine-print">
-              {t(
-                'An invitation link works once. A seat taken without a login stays in that browser for up to {days} days.',
-                { days: SESSION_DAYS },
-              )}
+              {inApp()
+                ? t(
+                    'An invitation link works once. A seat taken without a login stays in this app on this device for up to {days} days.',
+                    { days: SESSION_DAYS },
+                  )
+                : t(
+                    'An invitation link works once. A seat taken without a login stays in that browser for up to {days} days.',
+                    { days: SESSION_DAYS },
+                  )}
             </p>
           </AccessState>
         ) : (
