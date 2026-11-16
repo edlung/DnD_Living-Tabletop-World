@@ -28,8 +28,12 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   reminder, cheers at the table) on `claude/stage-790-small-comforts`, stacked on 780's (ADR 0072
   §3, `reports/STAGE_790_COMPLETION.md`); Stage 799 (the package's close: one journey over Part
   2, the adversarial pass, the handoff) on `claude/stage-799-package-close`, stacked on 790's
-  (`reports/STAGE_799_COMPLETION.md`): the package ends there, before the family playtest. Off-host backup copies are a separate task on the owner's
-  separate word.
+  (`reports/STAGE_799_COMPLETION.md`): the package ends there, before the family playtest.
+  **Merged on the owner's word of 2026-11-16 («доделывай и сливай»)**: the whole stack went
+  into `main` as one merge of PR 47 (`2fc04704`), the tree CI ran green on, and PRs 37–46 are
+  closed with it. Not deployed; the family playtest is the owner's. Stage 750 still waits for
+  PR 32, whose two new journeys want the journey `test` of `tests/e2e/support/journey.ts`.
+  Off-host backup copies are a separate task on the owner's separate word.
 
 ## Current request — campaign library release, 2026-11-14
 
