@@ -110,5 +110,15 @@ struct ContractTests {
         #expect(
             ShellMessage.tv(.pairing(code: "AB2CD3EF")).json
                 == #"{"code":"AB2CD3EF","state":"pairing","type":"tv"}"#)
+        #expect(ShellMessage.sound(on: true, volume: 60).json == #"{"on":true,"type":"sound","volume":60}"#)
+        #expect(ShellMessage.sound(on: false, volume: 0).json == #"{"on":false,"type":"sound","volume":0}"#)
+    }
+
+    @Test("The DM's page sets the TV's sound")
+    func tvSound() {
+        #expect(
+            PageMessage.parse(#"{"type":"tv-sound","on":true,"volume":60}"#) == .tvSound(on: true, volume: 60))
+        #expect(
+            PageMessage.parse(#"{"type":"tv-sound","on":false,"volume":0}"#) == .tvSound(on: false, volume: 0))
     }
 }

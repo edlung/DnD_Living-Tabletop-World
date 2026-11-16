@@ -19,6 +19,14 @@ registerRussian({
   'The table could not be reached. Check the connection, then try again.':
     'Не удалось связаться со столом. Проверьте подключение и попробуйте снова.',
   'Opening the table’s screen…': 'Открываем экран стола…',
+  'The screen tries again by itself.': 'Экран сам попробует снова.',
+  'No connection to the table: the screen shows what it last saw and keeps trying.':
+    'Нет связи со столом: на экране последнее, что он видел. Экран пробует снова.',
+  'and {count} more': 'и ещё {count}',
+  'While the party fights, the screens show the battlefield, and the scene again after it.':
+    'Пока отряд в бою, экраны показывают поле боя, а после боя снова сцену.',
+  'The screens cannot show this fight yet: they see a fight only once a character someone plays takes part in it.':
+    'Экраны пока не могут показать этот бой: они видят бой, только когда в нём участвует персонаж, за которого кто-то играет.',
   'Full screen': 'Во весь экран',
   'Unpair this screen?': 'Отключить этот экран?',
   Unpair: 'Отключить',

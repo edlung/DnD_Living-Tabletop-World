@@ -95,6 +95,10 @@ function useRead<T>(
   return read.resource.status === 'ready' ? read.resource.value : null;
 }
 
+/** How much larger than 16 px the page's type is (styles/display-tv.css): the board's squares follow. */
+const rootScale = () =>
+  Math.max(1, Number.parseFloat(getComputedStyle(document.documentElement).fontSize) / 16 || 1);
+
 const nameIn = (directory: readonly EntityRef[], id: string | null) =>
   directory.find((entity) => entity.entityId === id)?.name ?? null;
 
@@ -236,7 +240,7 @@ function Battle({
             choose: () => undefined,
             zoomIn: null,
             zoomOut: null,
-            maxCell: 140,
+            maxCell: Math.round(140 * rootScale()),
           }}
           onPick={() => undefined}
         />
@@ -323,7 +327,8 @@ function PictureCast(props: Props & { readonly entityId: string }) {
   );
   const art = useApprovedImage(shown?.presentation.image ?? null);
   const name = nameIn(props.directory, props.entityId);
-  if (!art) return <div className="display-blank" role="img" aria-label={props.campaignName} />;
+  // Nothing approved to show: its name on a title card, never a dark screen that looks broken.
+  if (!art) return <TitleCard title={name ?? props.campaignName} subtitle="" />;
   return (
     <figure className="display-picture">
       <img src={art} alt={name ?? ''} />
