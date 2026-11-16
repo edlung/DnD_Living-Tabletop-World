@@ -155,7 +155,8 @@ test('one press tells the DM alone: not the other player, not the table’s scre
     .locator('#sheet-session')
     .getByRole('button', { name: 'Resume the game', exact: true })
     .click();
-  await expect(elowen.getByRole('button', { name: 'Ask for a pause', exact: true })).toBeVisible(
-    LIVE,
-  );
+  // (Her own line — that the DM has seen it — stands a minute first: the board's own time.)
+  await expect(elowen.getByRole('button', { name: 'Ask for a pause', exact: true })).toBeVisible({
+    timeout: 80_000,
+  });
 });
