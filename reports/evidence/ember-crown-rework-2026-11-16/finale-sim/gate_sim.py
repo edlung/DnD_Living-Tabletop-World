@@ -217,12 +217,22 @@ class Battle:
 
     def start_of_round(s):
         r = s.round
+        if s.rd.get('sair_enter') and r == 1:
+            s.sair.home = s.sair.pos; s.sair.on = False            # behind the gate leaves until his round
+        if s.rd.get('sair_enter') and r == s.rd['sair_enter'] and not s.sair.on and not s.sair_gone:
+            oc = s.occ()
+            cells = [s.sair.home] + [c for c in REFILL_ORDER[::-1] if c != s.sair.home] + [(x, 1) for x in range(4, 12)]
+            free = [c for c in cells if c not in oc and not (s.portcullis and c in ARCH)]
+            if free: s.sair.pos = free[0]; s.sair.on = True
         if s.rd.get('lever_h') and s.dawn['alliance'] and not s.nb_arrived:
             if r >= 3 + (1 if s.dawn['alliance'] == 'late' else 0):
                 s.nb_arrived = True; s.dm_steps['соседи пришли'] += 1
                 if not s.portcullis: s.nb_in = True; s.log('соседи вошли в арку')
         if s.rd.get('lever_m') and s.dawn['alliance'] and not s.nb_arrived and not s.portcullis:
-            if r >= 3 + (1 if s.dawn['alliance'] == 'late' else 0):
+            late = 1 if s.dawn['alliance'] == 'late' else 0
+            due = (max(3, s.signal_round + 1) + late) if s.signal_round else 99
+            if not s.rd.get('nb_need_signal'): due = 3 + late
+            if r >= due:
                 s.nb_arrived = True; s.nb_outside_fight = True; s.dm_steps['соседи пришли'] += 1
         if not s.rd.get('lever_h') and not s.rd.get('lever_m') and s.dawn['alliance'] and not s.nb_arrived:
             arr = None
@@ -231,7 +241,7 @@ class Battle:
             arr = min(arr or 99, noarr)
             if r >= arr:
                 s.nb_arrived = True; s.dm_steps['соседи пришли'] += 1; s.log('соседи пришли')
-        if r in s.refill_rounds and not s.portcullis and (not s.nb_arrived or s.rd.get('lever_m')) and not s.nb_in:
+        if r in s.refill_rounds and not s.portcullis and (not s.nb_arrived or s.rd.get('lever_m')) and (not s.nb_in or s.rd.get('refill_after_letin')):
             s.dm_steps['доливка'] += 1
             oc = s.occ()
             for p in REFILL_ORDER:
@@ -330,7 +340,18 @@ class Battle:
             s.check_threshold(); return
         oc = s.occ()
         free_st = [p for p in STAIRS if p not in oc]
-        if s.rd.get('prone_no_block'):
+        if s.rd.get('onto_prone'):
+            pr = [p for p in STAIRS if p in oc and oc[p].side == 'hero' and oc[p].hp == 0]
+            for p in sorted(pr, key=lambda p: cheb(p, S.pos)):
+                spots = [(p[0]+dx, p[1]+dy) for dx, dy in NB]
+                spots = [q for q in spots if inb(q) and q not in oc and q not in STAIRS]
+                if not spots: continue
+                hero = oc[p]; hero.on = False                  # let Сайр path into the cell
+                R = s.free_cells(S, S.speed); hero.on = True
+                if p in R:
+                    hero.pos = spots[0]; S.pos = p; s.banner_up = True
+                    s.log('Сайр сдвигает лежащего и поднимает знамя'); return
+        if s.rd.get('prone_no_block') and not s.rd.get('onto_prone'):
             pr = [p for p in STAIRS if p in oc and oc[p].side == 'hero' and oc[p].hp == 0]
             if pr:
                 R = s.free_cells(S, S.speed)
@@ -445,7 +466,8 @@ class Battle:
     def tear_allowed(s):
         S = s.sair
         if s.rd.get('tear_once') and getattr(s, 'tear_round', 0) == s.round: return False
-        return S.on and not s.banner_torn and (S.pos[1] >= s.rd.get('tear_row', 6) or S.hp <= s.rd.get('thr', 33)) and s.pol['tear']
+        hp_ok = S.hp <= s.rd.get('tear_thr', s.rd.get('thr', 33)) and s.round >= s.rd.get('tear_hp_round', 1)
+        return S.on and not s.banner_torn and (S.pos[1] >= s.rd.get('tear_row', 6) or hp_ok) and s.pol['tear']
     def hero_attack(s, h, t):
         allies_adj = any(o is not h and o.up and cheb(o.pos, t.pos) == 1 for o in s.heroes)
         if h.kind == 'fighter':
