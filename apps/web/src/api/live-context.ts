@@ -15,6 +15,16 @@ export const LiveActiveContext = createContext(false);
 export const useLiveActive = (): boolean => useContext(LiveActiveContext);
 
 /**
+ * Whether a background read that failed is read again by itself (`GenerationReads`): only the
+ * table's screen, which nobody touches and which must find the present alone once its network is
+ * back. The world screen never does: a tab whose requests fail stays quiet until one of its own
+ * moments asks the server (docs/adr/0036-production-sign-in.md §7).
+ */
+export const LiveRetryContext = createContext(false);
+
+export const useLiveRetry = (): boolean => useContext(LiveRetryContext);
+
+/**
  * After every read in a live session (a first load, a read a signal caused, a re-read after the
  * viewer's own action), one more background read follows once a comparison cycle (1 s) has
  * surely passed since that read completed; that trailing read is followed by none. A change

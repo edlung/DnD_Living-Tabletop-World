@@ -89,6 +89,10 @@ export function BreakReminder({ api }: { readonly api: WorldApi }) {
     [api, breakTitle],
   );
   const back = t('The game is on again.');
+  // A break just kept still waits for its pause to be read back. That pause may have been read
+  // already, while the screens were being told: look again at once, or a resume from the Session
+  // sheet would be taken for the pause not read yet until the next tick.
+  const awaiting = state?.awaited === true;
   useEffect(() => {
     if (!known) return;
     const look = () => {
@@ -106,7 +110,7 @@ export function BreakReminder({ api }: { readonly api: WorldApi }) {
     return () => {
       window.clearInterval(timer);
     };
-  }, [known, sessionId, paused, keep, showAgain, back]);
+  }, [known, sessionId, paused, awaiting, keep, showAgain, back]);
   const [busy, setBusy] = useState(false);
   const [failed, setFailed] = useState(false);
   const card = useRef<HTMLElement>(null);

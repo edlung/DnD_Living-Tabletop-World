@@ -4,8 +4,9 @@ import android.content.Context
 import androidx.core.content.edit
 
 /**
- * The one thing the shell stores (docs/adr/0070-native-apps.md §3): the server the app plays on
- * and the last few chosen, as origins — never a token, a URL with a fragment or world data.
+ * What the shell stores (docs/adr/0070-native-apps.md §3): the server the app plays on and the
+ * last few chosen, as origins — never a token, a URL with a fragment or world data — and one flag,
+ * that the person does not want to be asked about notifications.
  */
 class ServerStore(context: Context) {
     private val prefs = context.getSharedPreferences("server", Context.MODE_PRIVATE)
@@ -31,15 +32,15 @@ class ServerStore(context: Context) {
 
     fun reset() = choose(BuildConfig.DEFAULT_SERVER)
 
-    /** The notification permission is asked once, when a session first keeps the screen on. */
-    var askedForNotifications: Boolean
-        get() = prefs.getBoolean(ASKED, false)
-        set(value) = prefs.edit { putBoolean(ASKED, value) }
+    /** "Not now" to the question about notifications, or the system's own refused: never asked again. */
+    var declinedNotifications: Boolean
+        get() = prefs.getBoolean(DECLINED, false)
+        set(value) = prefs.edit { putBoolean(DECLINED, value) }
 
     private companion object {
         const val CURRENT = "current"
         const val RECENT = "recent"
-        const val ASKED = "asked-notifications"
+        const val DECLINED = "notifications-declined"
         const val MAX_RECENT = 5
     }
 }

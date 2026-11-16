@@ -19,6 +19,8 @@ public enum PageMessage: Equatable, Sendable {
     case tvPaired(campaign: String?)
     case tvUnpaired
     case tvForget
+    /// LTW DM's page: whether the TV plays the table's sound, and how loud (0–100).
+    case tvSound(on: Bool, volume: Int)
 
     private static let maxLength = 1024
 
@@ -40,6 +42,10 @@ public enum PageMessage: Equatable, Sendable {
             return (campaign as? String).flatMap(campaignID).map { .tvPaired(campaign: $0) }
         case "tv-unpaired": return .tvUnpaired
         case "tv-forget": return .tvForget
+        case "tv-sound":
+            guard let on = boolean(object["on"]), let volume = whole(object["volume"], in: 0...100)
+            else { return nil }
+            return .tvSound(on: on, volume: volume)
         default: return nil
         }
     }
@@ -73,11 +79,15 @@ public enum PageMessage: Equatable, Sendable {
 
     /// A whole number of 0–99 written as one, never `2.5`, `"3"` or `true`.
     private static func count(_ value: Any?) -> Int? {
+        whole(value, in: 0...99)
+    }
+
+    /// A whole number within a range, written as one: no fraction, no text, no boolean.
+    private static func whole(_ value: Any?, in range: ClosedRange<Int>) -> Int? {
         guard let number = value as? NSNumber, CFGetTypeID(number) != CFBooleanGetTypeID(),
             !["d", "f"].contains(String(cString: number.objCType))
         else { return nil }
-        let count = number.intValue
-        return (0...99).contains(count) ? count : nil
+        return range.contains(number.intValue) ? number.intValue : nil
     }
 
     /// A TV's pairing code as the server makes it: eight of `A-HJKMNP-Z2-9`.
@@ -87,7 +97,8 @@ public enum PageMessage: Equatable, Sendable {
 }
 
 /// What the shell tells the page (§2): Android's Back, in LTW DM how its TV stands (a paired TV
-/// names the campaign it shows), and to the TV's own page, to forget its pairing.
+/// names the campaign it shows), and to the TV's own page, to forget its pairing and how the DM set
+/// its sound.
 public enum ShellMessage: Equatable, Sendable {
     public enum TvState: Equatable, Sendable {
         case absent, connected
@@ -98,6 +109,7 @@ public enum ShellMessage: Equatable, Sendable {
     case back(id: Int)
     case tv(TvState)
     case forget
+    case sound(on: Bool, volume: Int)
 
     /// The JSON text the page's shim parses.
     public var json: String {
@@ -110,6 +122,7 @@ public enum ShellMessage: Equatable, Sendable {
         case .tv(.paired(let campaign?)): object = ["type": "tv", "state": "paired", "campaign": campaign]
         case .tv(.pairing(let code)): object = ["type": "tv", "state": "pairing", "code": code]
         case .forget: object = ["type": "forget"]
+        case .sound(let on, let volume): object = ["type": "sound", "on": on, "volume": volume]
         }
         let data = (try? JSONSerialization.data(withJSONObject: object, options: [.sortedKeys])) ?? Data()
         return String(decoding: data, as: UTF8.self)

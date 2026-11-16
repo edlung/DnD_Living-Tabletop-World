@@ -2,6 +2,7 @@ import { useT } from '@ltw/ui';
 import { useEffect, useId, useRef, type KeyboardEvent } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
+import { inApp } from '../native/shell.ts';
 import { Glyph } from '../visual/glyph.tsx';
 import { PeerControls } from './peer-controls.tsx';
 import { useVoice } from './use-voice.ts';
@@ -114,9 +115,13 @@ export function VoicePanel({ api, isDm }: { readonly api: WorldApi; readonly isD
           </div>
           {shown.noMicrophone && (
             <p className="authoring-notice" role="status">
-              {t(
-                'The browser did not allow the microphone: you listen only. Allow it in the site’s settings in the browser, then join again.',
-              )}
+              {inApp()
+                ? t(
+                    'The microphone is not allowed: you listen only. Allow it for this app in the device’s settings, then join again.',
+                  )
+                : t(
+                    'The browser did not allow the microphone: you listen only. Allow it in the site’s settings in the browser, then join again.',
+                  )}
             </p>
           )}
           {mutedByDm && (

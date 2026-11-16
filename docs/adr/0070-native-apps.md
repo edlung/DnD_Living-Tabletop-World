@@ -84,3 +84,38 @@
    built and run on the iOS simulator (iPhone, iPad with the TV preview) and the Android emulator
    against a local server. The shell logs states and hosts only (`tech.vardahei.ltw`), never a URL
    with its fragment.
+
+## Amendments
+
+- 2026-11-15 (owner request and answers of that day, `work-orders/NATIVE_TV_POLISH_2026-11-15.md`;
+  report `reports/NATIVE_TV_POLISH_2026-11-15.md`). Protocol version 1 gains, additively:
+  - **The TV's sound (§2, §6).** Nobody can press "Sound on" on a TV that only shows a window, so
+    the TV's page (`features` now has `sound`) starts its sound without a press and shows no corner.
+    The DM sets it on the Table screen sheet's TV panel: LTW DM's page (`features` has `tv-sound`)
+    sends `tv-sound` (`on`, `volume` 0–100), the shell passes it to the TV's page as `sound` and
+    says it again when that page is `ready`; the shell holds the last word in memory only and
+    forgets it when the server changes. The DM's choice lives in the DM's browser storage, the TV's
+    in its own dice settings.
+  - **The microphone (§4, §7).** The table's voice (ADR 0060) works in the apps: the page of the
+    chosen origin's main frame may capture audio, and only audio. iOS declares
+    `NSMicrophoneUsageDescription` and grants the capture decision for the microphone alone (the
+    system asks the person once); Android declares `RECORD_AUDIO` and `MODIFY_AUDIO_SETTINGS`,
+    asks the runtime permission and grants `RESOURCE_AUDIO_CAPTURE` alone. The camera stays the
+    scanner's; the TV's window is refused everything. This replaces "every other permission request
+    denied" of §7 for the microphone only.
+  - **The workshop (§4).** A scanned or launching link may be `/workshop/join` with its token, as
+    `/join` and `/reset` are. LTW DM's sign-in and campaign pages offer "Campaign workshop" (the
+    app has no address bar), and in the apps the workshop offers "To the game".
+  - **Notifications (§5).** Permission is asked when the table first waits for the person
+    (`waiting` above 0) with the app in view, after the shell's own question ("Tell you when the
+    table waits for you?"); "No, thanks" is remembered — one flag, the only thing the shell stores
+    besides origins (§3) — and a permission already decided is never asked again.
+  - iOS declares `NSLocalNetworkUsageDescription` for a table played from the DM's laptop
+    (ADR 0061). In the apps the join page says "Only this app" for a seat without a login, and
+    every page that names "this browser" to the person says "this app" (`native/shell.ts`
+    `inApp`); a refused microphone points to the device's settings for the app.
+  - Verified on the simulators and the emulator: the TV's sound word reaching the TV's own data
+    store, the microphone in LTW DM on iPadOS and in LTW Player on Android (camera still refused),
+    Android's two notification questions. Not verified: sound heard from a real TV, the iOS
+    notification question, anything on hardware. Android's target SDK stays 36: no Android 17
+    system image is published to test on.

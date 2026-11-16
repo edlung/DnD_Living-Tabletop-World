@@ -177,19 +177,23 @@ the two files of this stage were run again, the other two were not.
   could not push (no write access to the repository), so the pull request's CI has not run on
   the fix. What is known of WebKit is the CI run on the commit before it: the two iPad failures
   on the alert, which the fix removes for the same reason as on Chromium — read in code, not
-  run — and the one below. The CI of the pushed fix is to confirm.
+  run — and the one below. **Confirmed since**: the fix was pushed and the pull request's CI ran
+  green whole on `c401faca`, WebKit and the iPad project included.
 - **`[ipad] agreement.spec.ts:27` failed once in that CI run**: the player's card "Before you
   play" did not appear within fifteen seconds of the DM saving the agreement. It passes on
   Chromium here (three times) and passed on the iPad in Stage 770's CI. Whether it is a hosted
   runner's slowness or something of this stage on WebKit is not known; nothing of the agreement
-  was changed here, but the lobby banner that holds its card was. To be watched in the next CI
-  run.
+  was changed here, but the lobby banner that holds its card was. **Watched since**: it has not
+  failed again in any run of this package, its cause unfound.
 - **Seven journeys ran out of time in the whole run and pass alone** (above): on this machine
   the suite's 30 seconds leave three of them a second or two to spare. That it is the machine
   and not a slow path this stage added was not proved beyond their passing alone.
 - **Stage 770's CI (PR 43) is red** on `next-game.spec.ts:60`, on both engines (after the session started, the Session sheet did not say "No date yet." within fifteen seconds); the same journey passes in
-  this stage's CI an hour later and in both runs here. Not investigated — neither stage changed
-  the journey or the next game — and named so that it is not taken for green.
+  this stage's CI an hour later and in both runs here. Not investigated here — neither stage
+  changed the journey or the next game — and named so that it is not taken for green. **Found
+  since**, in Stage 790: the Session sheet decided from its last reading of the table whether the
+  date had done its work, so a date set a moment before survived the session that began
+  (`reports/STAGE_790_COMPLETION.md`); the sheet now reads the table when the session starts.
 - **No human has used it**, and the design was not drafted from a campaign played to its end
   (see the top). Whether a table wants a campaign to refuse play once finished, whether one
   keepsake is right, whether children choose on phones or together at the table — unknown.
