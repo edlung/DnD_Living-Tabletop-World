@@ -31,10 +31,12 @@ export default defineConfig({
     // and an evening closed and opened there (docs/adr/0071-memory-and-ritual.md §1, Stage 710);
     // the journeys of the later ritual and keepsake stages run there too, each named below.
     // One WebKit journey at a time. These are the suite's heaviest — a DM, players and a TV,
-    // three to five pages each — and on a hosted runner two of them side by side starve each
-    // other: across four runs of 2026-11-16 a different one each time waited fifteen or twenty
-    // seconds for a screen that had not caught up (an evening closed, a card in the lobby), while
-    // the same journeys passed alone and on Chromium. Same journeys, same assertions, one worker.
+    // three to five pages each. Side by side on a hosted runner, across four runs of 2026-11-16,
+    // a different one each time waited fifteen or twenty seconds for a screen that had not caught
+    // up (an evening closed, a card in the lobby); one at a time, none has waited so since. That
+    // day's red runs had two more causes, answered elsewhere: journeys that left their pages open
+    // (tests/e2e/support/journey.ts) and the dev client reloading a page (LTW_VITE_NO_WS below).
+    // Same journeys, same assertions, one worker.
     {
       name: 'ipad',
       workers: 1,
