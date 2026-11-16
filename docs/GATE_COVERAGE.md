@@ -990,3 +990,18 @@ now, from that hero's own reads.
   viewer, and as it is spent), `apps/web/src/hint/turn-hint.test.ts` (a spent thing is never
   offered; a hidden turn is not named; nothing is guessed without the budget), the journey
   `tests/e2e/turn-hint.spec.ts` (the page's reads held to the player's boundary).
+
+## Stage 830: the party's encyclopedia (2026-11-16)
+
+Stage 830 (`docs/adr/0073-table-ideas.md` §4) gathers what the party knows on one page of the
+Chronicle. No server read is added.
+
+- Boundary: every read the page is built from is made in the PARTY perspective, whoever opens
+  it — the DM too — so the DM's secrets, a chapter told from the DM or one character and a record
+  the party does not hold are in none of them. The assembly keeps the rule again: a name comes
+  from the party's directory only; a chapter of another perspective tells nothing; a `SECRET`
+  record is left out.
+- Deterministic regressions: `apps/web/src/chronicle/known/known-model.test.ts` (no name from a
+  chapter or a record the directory does not list; another perspective's chapter untold; a secret
+  left out), the journey `tests/e2e/party-known.spec.ts` (the DM's page and everything it was
+  sent, against every marker forbidden to the party).

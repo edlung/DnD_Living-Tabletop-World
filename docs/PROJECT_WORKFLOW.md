@@ -18,8 +18,9 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   `claude/stage-810-short-way-to-a-pause`, stacked on 800's (ADR 0073 §2,
   `reports/STAGE_810_COMPLETION.md`); Stage 820 ("What can I do?") on
   `claude/stage-820-what-can-i-do`, stacked on 810's (ADR 0073 §3,
-  `reports/STAGE_820_COMPLETION.md`, with the first checkpoint); each awaits the owner's
-  disposition.
+  `reports/STAGE_820_COMPLETION.md`, with the first checkpoint); Stage 830 (the party's
+  encyclopedia) on `claude/stage-830-party-encyclopedia`, stacked on 820's (ADR 0073 §4,
+  `reports/STAGE_830_COMPLETION.md`); each awaits the owner's disposition.
 
 ## Current request — memory and ritual, 2026-11-15
 

@@ -4,12 +4,13 @@
   улучшений…», quoted as relayed in `reviews/OWNER_TABLE_IDEAS_2026-11-16.json`; every point of §1
   is the session's and is marked in the plan, `docs/TABLE_IDEAS_PLAN.md` decisions 3–4, and stays
   the owner's to overrule). Later sections are added by their stages and are not in force until
-  then. §2 and §3 are accepted on the same word; every point of them is the session's (the plan's
-  decisions 5 and 6). §1 amends ADR 0062 §1 (the notice names error reports), ADR 0042 §2 (a table display's one
+  then. §2, §3 and §4 are accepted on the same word; every point of them is the session's (the
+  plan's decisions 5, 6 and 7). §1 amends ADR 0062 §1 (the notice names error reports), ADR 0042 §2 (a table display's one
   write), ADR 0033 (one more read in the DM's live inventory) and ADR 0061 §5 (a table that names
   a campaign and stays behind). §2 amends ADR 0071 §4.5 (a request for a pause is no longer a chat
   message) and ADR 0033 (one more read in the live inventory, for the DM and the asker). §3 amends ADR 0015
-  §6 (a combatant's view says what is left of its turn, to its own player and the DM).
+  §6 (a combatant's view says what is left of its turn, to its own player and the DM). §4 amends
+  ADR 0024 §5 (the Chronicle has a third view) and changes no contract.
 - Context: The program after «Память и ритуал» borrows ten things other tools for the same hobby
   do well. This ADR holds their contracts, one section a stage. The first: the client reported
   nothing. A game's screen that failed while drawing fell back to a line about a "world response"
@@ -140,6 +141,27 @@
 4. **What it does not do.** It submits nothing and changes nothing; three of its lines lead on —
    to Places, to the hero's sheet, to the rules reference (ADR 0055).
 
+### 4. The party's encyclopedia (Stage 830)
+
+1. **What it is.** "What we know" is a third view of the Chronicle, beside "By chapter" and "The
+   whole book": people and creatures, places, things and factions — each with its picture as the
+   party sees it now, its name, what the party knows of it and the party's chapters that tell of
+   it — then what else the party has learned, and what it set out to do. A field finds a name. A
+   chapter named under an entry opens in the book. Read only: nothing on the page writes.
+2. **The party's, whoever opens it.** Every read the page is built from is made in the PARTY
+   perspective — the directory of what the party knows, its knowledge records, its chapters, its
+   quests, its pictures — for a player and for the DM alike (the rule of the book, ADR 0072
+   §1.1). The DM's secrets, a chapter told from the DM or from one character, and a record the
+   party does not hold are in none of those reads, so they cannot reach the page. The page's
+   assembly keeps the rule again, whatever it is handed: a name is taken from the party's
+   directory only, never from a chapter or a record alone; a chapter of another perspective
+   tells nothing; a record typed `SECRET` is left out.
+3. **Nothing is rewritten.** A record is shown as the party holds it, with its type where it is
+   not a plain fact — a rumour stays a rumour, a hypothesis a hypothesis. The page infers
+   nothing: "met" and "been" are what the party's own records and chapters say.
+4. **No new read, no table.** The page reads what the server already answers for PARTY; no
+   contract changes.
+
 ## Consequences
 
 - The DM's list can be written to by anyone at the table, and — without a campaign — the
@@ -170,6 +192,11 @@
   already read from the rules' refusals.
 - The hint's feet are of walking speed: a hero who flies or swims, stands up from prone or drags a
   grappled creature may reach less than the page says, and the rules still refuse the move.
+
+- The encyclopedia is as full as the party's knowledge is: a campaign whose DM records little for
+  the party has a short page. It shows a picture only where the party's view has one.
+- A player's own character may know what the party does not; that is in the Journal, in the
+  character's own view, and never on this page.
 
 ## Alternatives considered
 

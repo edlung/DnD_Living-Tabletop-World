@@ -277,6 +277,9 @@ It changes no world state; keep its window listener, since `pageerror` misses th
 - Native apps (ADR 0070, `native-shell.spec.ts`): a stand-in shell installed with `addInitScript`
   records what the page posts, and the journey speaks for the shell with `ltw-native` events; it owns
   the `native` sign-in campaign. The apps themselves are checked on the simulator and the emulator.
+- The party's encyclopedia (ADR 0073 §4, Stage 830): `party-known.spec.ts` owns `ui-known` (and
+  `ui-known-ipad` in WebKit, `ui-known-ru`): the page read by a player and by the DM, held to the
+  party's forbidden markers.
 - "What can I do?" (ADR 0073 §3, Stage 820): `turn-hint.spec.ts` owns the combat campaigns
   `hint` (`hintIpad` in WebKit, `hintRu`), each the ambush at Elowen's first turn, and
   `ui-hint-scene` for the hint outside a fight.
