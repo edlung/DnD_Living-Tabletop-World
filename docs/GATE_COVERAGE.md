@@ -1046,3 +1046,14 @@ server read or write is added or changed: the table's link, its seats, its limit
 single-use invitation behind a seat are ADR 0042 §5–6's, and the sign-in a guest gets is the one
 "Only this browser" always gave. Regression: the journey `tests/e2e/table-display.spec.ts` (a
 seat taken with one press and no login; the login asked for; the DM's list of seats taken).
+
+## Stage 870: theatre of the mind on the table's screen (2026-11-16)
+
+Stage 870 (`docs/adr/0073-table-ideas.md` §8) adds a cast of one picture and the words read aloud.
+
+- Boundary: below the DM a story cast's picture is filtered as a picture cast's is — one the
+  party does not know is none, and its ID does not travel; the words are the DM's own, shown as
+  written, as a title card's are. The paragraphs the form offers are read in the PARTY view.
+- Deterministic regressions: `apps/server/src/display/story-cast.test.ts` (the shape; the filter
+  for a display and a player; over HTTP for the DM and a display), the journey
+  `tests/e2e/story-cast.spec.ts`.

@@ -49,5 +49,7 @@
   "story": "ui-signin-story",
   "storyIpad": "ui-signin-story-ipad",
   "placeSound": "ui-signin-place-sound",
-  "placeSoundRu": "ui-signin-place-sound-ru"
+  "placeSoundRu": "ui-signin-place-sound-ru",
+  "storyCast": "ui-signin-story-cast",
+  "storyCastRu": "ui-signin-story-cast-ru"
 }

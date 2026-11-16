@@ -4,8 +4,8 @@
   улучшений…», quoted as relayed in `reviews/OWNER_TABLE_IDEAS_2026-11-16.json`; every point of §1
   is the session's and is marked in the plan, `docs/TABLE_IDEAS_PLAN.md` decisions 3–4, and stays
   the owner's to overrule). Later sections are added by their stages and are not in force until
-  then. §2–§7 are accepted on the same word; every point of them is the session's (the plan's
-  decisions 5–10). §1 amends ADR 0062 §1 (the notice names error reports), ADR 0042 §2 (a table display's one
+  then. §2–§8 are accepted on the same word; every point of them is the session's (the plan's
+  decisions 5–11). §1 amends ADR 0062 §1 (the notice names error reports), ADR 0042 §2 (a table display's one
   write), ADR 0033 (one more read in the DM's live inventory) and ADR 0061 §5 (a table that names
   a campaign and stays behind). §2 amends ADR 0071 §4.5 (a request for a pause is no longer a chat
   message) and ADR 0033 (one more read in the live inventory, for the DM and the asker). §3 amends ADR 0015
@@ -16,7 +16,8 @@
   shown writes the table's sound; the display's "by the scene" follows the place it shows), ADR
   0042 §3 (the cast's answer says what it did to the sound) and ADR 0061 §5 (one table moves). §7
   amends ADR 0042 §5 (a seat chosen through the table's link is taken in this browser unless a
-  login is asked for) and changes no contract.
+  login is asked for) and changes no contract. §8 amends ADR 0042 §3 and ADR 0044 §5 (one more
+  cast, `story`).
 - Context: The program after «Память и ритуал» borrows ten things other tools for the same hobby
   do well. This ADR holds their contracts, one section a stage. The first: the client reported
   nothing. A game's screen that failed while drawing fell back to a line about a "world response"
@@ -250,6 +251,26 @@
 5. **The screen's words.** The table's display said "Scan with your phone, sign in, and choose
    your character"; it says "Scan with your phone and choose your hero."
 
+### 8. Theatre of the mind on the table's screen (Stage 870)
+
+1. **A cast of one picture and words.** `story`: a picture of something the party knows — a
+   place, a face, a thing — or none, and up to six hundred characters of words to read aloud.
+   The table's screen fills with the picture (the game's own key art where there is none) and
+   sets the words over its lower part, each line the DM broke as its own paragraph. Online, it
+   is every player's shared screen, and it opens there as a picture or a title card does (ADR
+   0044 §5).
+2. **Whose words.** The DM's own, typed; or a paragraph of the party's chapters, which the form
+   offers — read in the PARTY view, so nothing told from the DM or from one character is among
+   them — and puts into the same field, where the DM may change it. The words are the DM's
+   responsibility on every screen, as a title card's are (ADR 0042 §3): the server stores and
+   shows them as written.
+3. **Below the DM.** A picture the party does not know is none: a display and a player read the
+   words with no picture and not even its ID, as a picture cast of it reads a dark screen. Only
+   an approved picture is ever shown (ADR 0042 §3).
+4. **No narrator is called.** The idea named "the narrator's or the DM's words": the narrator's
+   words that exist are the chapters' prose, and the form offers those. No AI capability and no
+   paid call is added.
+
 ## Consequences
 
 - The DM's list can be written to by anyone at the table, and — without a campaign — the
@@ -309,6 +330,10 @@
 - A guest who sat down without a login and clears the browser, or comes with another phone next
   week, has no way back to that seat but a new link — which is what a guest's seat is. Their
   private notes (§5) stay with the old sign-in.
+
+- The story cast puts up to six hundred characters of the DM's typing on every screen of the
+  table. A build from before it reads a stored `story` cast as no cast and shows the default
+  scene: after a rollback the screens show where the party is until the DM casts again.
 
 ## Alternatives considered
 

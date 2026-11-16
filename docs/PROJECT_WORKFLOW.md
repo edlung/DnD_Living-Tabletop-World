@@ -26,7 +26,9 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   `claude/stage-850-scene-sound`, stacked on 840's (ADR 0073 §6,
   `reports/STAGE_850_COMPLETION.md`, with the second checkpoint); Stage 860 (a shorter way in
   for a guest) on `claude/stage-860-guest-way-in`, stacked on 850's (ADR 0073 §7,
-  `reports/STAGE_860_COMPLETION.md`); each awaits the owner's disposition.
+  `reports/STAGE_860_COMPLETION.md`); Stage 870 (theatre of the mind on the table's screen) on
+  `claude/stage-870-story-cast`, stacked on 860's (ADR 0073 §8,
+  `reports/STAGE_870_COMPLETION.md`); each awaits the owner's disposition.
 
 ## Current request — memory and ritual, 2026-11-15
 
