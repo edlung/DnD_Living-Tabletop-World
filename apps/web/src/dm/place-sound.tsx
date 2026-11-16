@@ -65,7 +65,8 @@ export function PlaceSoundField({
   // A track deleted since: the place no longer brings it, and the field says so.
   const known = trackId === KEEP || !tracksRead || list.some((track) => track.trackId === trackId);
   const changed =
-    ambience !== (stored?.ambience ?? KEEP) || (known ? trackId : KEEP) !== (stored?.trackId ?? KEEP);
+    ambience !== (stored?.ambience ?? KEEP) ||
+    (known ? trackId : KEEP) !== (stored?.trackId ?? KEEP);
   // Both left as they are, with something kept: the press takes the place's sound away.
   const removing = stored !== null && ambience === KEEP && (trackId === KEEP || !known);
   const save = () => {
@@ -141,7 +142,9 @@ export function PlaceSoundField({
           >
             <option value={KEEP}>{t('Leave as it is')}</option>
             {/* The kept track, while the list of tracks is not read yet. */}
-            {!tracksRead && trackId !== KEEP && <option value={trackId}>{t('The kept track')}</option>}
+            {!tracksRead && trackId !== KEEP && (
+              <option value={trackId}>{t('The kept track')}</option>
+            )}
             {list.map((track) => (
               <option key={track.trackId} value={track.trackId}>
                 {track.title}

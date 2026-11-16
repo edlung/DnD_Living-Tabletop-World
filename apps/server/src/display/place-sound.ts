@@ -51,8 +51,7 @@ export async function applyPlaceSound(
   if (sound === null) return null;
   const before = await deps.lobby.state.read(campaignId);
   const now = deps.lobby.now();
-  const track =
-    sound.trackId === null ? null : await deps.music.get(campaignId, sound.trackId);
+  const track = sound.trackId === null ? null : await deps.music.get(campaignId, sound.trackId);
   const playing = before.sound.music;
   const same = track !== null && playing?.trackId === track.trackId && playing.pausedAt === null;
   const music =

@@ -101,9 +101,7 @@ test('по-русски: звук места в форме показа', async 
   const dm = await freshPage(browser);
   await joinAsDm(dm, SIGN_IN_CAMPAIGNS.placeSoundRu, 0, WORDS.ru);
   await openSheet(dm, 'Экран стола');
-  const form = dm
-    .locator('#sheet-screen')
-    .getByRole('region', { name: 'Что показывают экраны' });
+  const form = dm.locator('#sheet-screen').getByRole('region', { name: 'Что показывают экраны' });
   await form.getByRole('radio', { name: 'Сцену места', exact: true }).check();
   const places = form.getByLabel('Место', { exact: true });
   // Any named place: the second choice, after "where the party is".

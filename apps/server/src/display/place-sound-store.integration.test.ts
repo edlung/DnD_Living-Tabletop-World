@@ -30,7 +30,11 @@ async function story(store: PlaceSoundStore) {
   await store.put(C, { locationId: 'market-square', ambience: 'crowd', trackId: null }, AT);
   await store.put(C, { locationId: 'north-gate', ambience: null, trackId: TRACK }, AT);
   await store.put(C, { locationId: 'market-square', ambience: 'rain', trackId: TRACK }, AT);
-  await store.put('other-table', { locationId: 'market-square', ambience: 'fire', trackId: null }, AT);
+  await store.put(
+    'other-table',
+    { locationId: 'market-square', ambience: 'fire', trackId: null },
+    AT,
+  );
   const list = await store.list(C);
   const one = await store.get(C, 'north-gate');
   await store.put(C, { locationId: 'north-gate', ambience: null, trackId: null }, AT);

@@ -6,7 +6,7 @@ import {
 } from '@ltw/contracts';
 import { describe, expect, it } from 'vitest';
 
-import { signInTable, type SignInTable } from '../testing/sign-in.ts';
+import { SEREN, signInTable, type SignInTable } from '../testing/sign-in.ts';
 import { InMemoryPlaceSoundStore } from './place-sound-store.ts';
 
 /**
@@ -24,28 +24,46 @@ async function table() {
   const dm = await t.signInWith(await t.dmInvitation());
   const send = (method: 'GET' | 'POST', path: string, body?: unknown, cookie: string = dm) =>
     t.send(method, `${BASE}/${path}`, { cookie }, body);
-  const sound = async () =>
-    (await send('GET', 'lobby?perspective=DM')).json<LobbyResponse>().sound;
+  const sound = async () => (await send('GET', 'lobby?perspective=DM')).json<LobbyResponse>().sound;
   const keep = (place: string, body: unknown, cookie?: string) =>
     send('POST', `dm/place-sounds/${place}`, body, cookie);
   const show = async (locationId: string | null) =>
-    (await send('POST', 'display/cast', { cast: { kind: 'scene', locationId } })).json<CastResponse>();
+    (
+      await send('POST', 'display/cast', { cast: { kind: 'scene', locationId } })
+    ).json<CastResponse>();
   return { t, dm, send, sound, keep, show };
 }
 
-/** A track of the campaign's, uploaded as the DM does: a few bytes that say they are a WAV. */
+/** A short WAV: its header, then a few bytes of silence (as `music/music-routes.test.ts`). */
+function wav(length = 64): Buffer {
+  const header = Buffer.alloc(44);
+  header.write('RIFF', 0, 'ascii');
+  header.writeUInt32LE(36 + length, 4);
+  header.write('WAVE', 8, 'ascii');
+  header.write('fmt ', 12, 'ascii');
+  header.writeUInt32LE(16, 16);
+  header.writeUInt16LE(1, 20);
+  header.writeUInt16LE(1, 22);
+  header.writeUInt32LE(8000, 24);
+  header.writeUInt32LE(8000, 28);
+  header.writeUInt16LE(1, 32);
+  header.writeUInt16LE(8, 34);
+  header.write('data', 36, 'ascii');
+  header.writeUInt32LE(length, 40);
+  return Buffer.concat([header, Buffer.alloc(length, 128)]);
+}
+
+/** A track of the campaign's, uploaded as the DM does. */
 async function upload(t: SignInTable, cookie: string, title: string, id: number): Promise<string> {
-  const wav = Buffer.concat([
-    Buffer.from('RIFF'),
-    Buffer.from([36, 0, 0, 0]),
-    Buffer.from('WAVEfmt '),
-    Buffer.alloc(24),
-  ]);
   const response = await t.app.inject({
     method: 'POST',
-    url: `${BASE}/music?title=${encodeURIComponent(title)}&requestId=${ID(id)}`,
-    headers: { cookie, origin: 'https://table.example', 'content-type': 'audio/wav' },
-    payload: wav,
+    url: `${BASE}/music?${new URLSearchParams({ title, requestId: ID(id) }).toString()}`,
+    headers: {
+      cookie,
+      origin: 'https://table.example',
+      'content-type': 'application/octet-stream',
+    },
+    payload: wav(),
   });
   if (response.statusCode >= 300) throw new Error(`upload refused: ${String(response.statusCode)}`);
   return response.json<{ trackId: string }>().trackId;
@@ -150,7 +168,7 @@ describe('a place’s own sound', () => {
   it('is the DM’s alone to set and to read', async () => {
     const { t, dm, send, keep } = await table();
     await keep(SQUARE, { ambience: 'rain', trackId: null });
-    const { token } = await t.invite(dm, 'elowen-starwhisper');
+    const { token } = await t.invite(dm, SEREN);
     const player = await t.signInWith(token);
     expect((await send('GET', 'dm/place-sounds', undefined, player)).statusCode).toBe(404);
     expect((await keep(SQUARE, { ambience: 'none', trackId: null }, player)).statusCode).toBe(404);

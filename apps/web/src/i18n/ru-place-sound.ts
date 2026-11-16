@@ -18,10 +18,10 @@ registerRussian({
   'Keep this sound for the place': 'Сохранить звук для места',
   'Remove this place’s sound': 'Убрать звук места',
   'Removed.': 'Убрано.',
-  'That was not kept. Try again.': 'Не сохранилось. Попробуйте ещё раз.',
   'Showing the place changed the table’s sound: ambience and music.':
     'Вместе с местом сменился звук стола: фон и музыка.',
-  'Showing the place changed the table’s sound: ambience.': 'Вместе с местом сменился звук стола: фон.',
+  'Showing the place changed the table’s sound: ambience.':
+    'Вместе с местом сменился звук стола: фон.',
   'Showing the place changed the table’s sound: music.':
     'Вместе с местом сменился звук стола: музыка.',
   'this place': 'это место',
