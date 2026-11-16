@@ -289,7 +289,8 @@
 3. **It opens on the DM's word.** "Open it now" in the DM's list: the inside becomes a handout
    for the party by the path every handout takes (ADR 0044 §5) — it waits over each player's
    stage and marks the Journal — and the envelope leaves the party's sealed ones. Opening twice
-   gives one handout.
+   gives one handout. Deleting asks first: a sealed envelope deleted leaves the party's Journal
+   and never opens; an opened one only leaves the DM's list, and the party keeps the handout.
 4. **Or by itself, when the evening's chapter is written.** An envelope sealed "for this
    evening's chapter" names the session open at the sealing; sealed between evenings, it waits
    for the next evening's. When a chapter told from the party is written for that session — the

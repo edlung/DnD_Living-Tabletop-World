@@ -132,6 +132,23 @@
   border-radius: var(--radius-control);
   background: var(--glass-raised);
 }
+.sealed-envelope > div {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
 .sealed-envelope p {
   margin: 2px 0 0;
+}
+.envelope-inside {
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.kept-handout .action-row button,
+.envelope-card .action-row button {
+  min-height: 44px;
+}
+.envelope-card:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
 }

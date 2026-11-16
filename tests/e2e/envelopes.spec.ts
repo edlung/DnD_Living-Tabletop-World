@@ -76,14 +76,23 @@ test('the DM seals a letter; the party sees the envelope and reads it when it op
   // Sealing asks for the words on the outside.
   await letter.getByRole('button', { name: `Seal in an envelope: ${LETTER}` }).click();
   const form = letter.getByRole('form', { name: `Seal in an envelope: ${LETTER}` });
+  const outside = form.getByLabel('What the outside says', { exact: true });
+  // The form took the place of the card's buttons, and its first field has the focus.
+  await expect(outside).toBeFocused();
   await form.getByRole('button', { name: 'Seal it', exact: true }).click();
   await expect(form.getByRole('alert')).toHaveText('Write what the outside says.');
-  const outside = form.getByLabel('What the outside says', { exact: true });
   await expect(outside).toHaveAttribute('aria-invalid', 'true');
+  await expect(form).toContainText(
+    'It holds a copy: changing the kept handout later does not change it.',
+  );
   await outside.fill(OUTSIDE);
   await expectAccessible(dm, 'sealing an envelope');
   await form.getByRole('button', { name: 'Seal it', exact: true }).click();
   await expect(letter).toContainText('Sealed: the party sees the envelope, not what is inside.');
+  // The form is gone: the button that opened it has the focus again.
+  await expect(
+    letter.getByRole('button', { name: `Seal in an envelope: ${LETTER}` }),
+  ).toBeFocused();
 
   // The DM's list has it, with what is inside and what opens it.
   const envelopes = sheet.getByRole('region', { name: 'Envelopes', exact: true });
@@ -107,17 +116,23 @@ test('the DM seals a letter; the party sees the envelope and reads it when it op
   expect(before).not.toContain(INSIDE);
 
   // The DM opens it: it leaves the sealed ones and arrives as a handout.
-  await mine.getByRole('button', { name: `Open now: ${OUTSIDE}` }).click();
+  await mine.getByRole('button', { name: `Open it now: ${OUTSIDE}` }).click();
+  await expect(envelopes.getByRole('status')).toHaveText('Opened: the party has it as a handout.');
   await expect(mine).toContainText('Opened');
-  await expect(mine.getByRole('button', { name: `Open now: ${OUTSIDE}` })).toHaveCount(0);
+  await expect(mine.getByRole('button', { name: `Open it now: ${OUTSIDE}` })).toHaveCount(0);
   await expect(theirs).toHaveCount(0, WAIT);
   const opened = journal.getByRole('article', { name: LETTER });
   await expect(opened).toContainText(INSIDE, WAIT);
   await expect(opened).toContainText('For the party');
 
-  // An opened envelope is deleted from the DM's list; the handout stays with the party.
-  await mine.getByRole('button', { name: `Delete the envelope: ${OUTSIDE}` }).click();
+  // An opened envelope is removed from the DM's list — after being asked — and the handout
+  // stays with the party.
+  await mine.getByRole('button', { name: `Remove from the list: ${OUTSIDE}` }).click();
+  await expect(mine).toContainText('Remove it from this list? The party keeps the handout.');
+  await expect(mine.getByRole('button', { name: 'Keep it', exact: true })).toBeFocused();
+  await mine.getByRole('button', { name: 'Delete it', exact: true }).click();
   await expect(mine).toHaveCount(0);
+  await expect(envelopes.getByRole('status')).toHaveText('Envelope deleted.');
   await expect(opened).toBeVisible();
 });
 
@@ -145,7 +160,8 @@ test('an envelope sealed for the evening’s chapter opens when the evening is c
   await form.getByLabel('What the outside says', { exact: true }).fill(LATER);
   await form
     .getByLabel('It opens', { exact: true })
-    .selectOption({ label: 'By itself, when this evening’s chapter is written' });
+    .selectOption({ label: 'By itself, when the evening’s chapter is written' });
+  await expect(form).toContainText('If that evening ends with no chapter, it stays sealed');
   await form.getByRole('button', { name: 'Seal it', exact: true }).click();
   const mine = dm
     .locator('#sheet-party')

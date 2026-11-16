@@ -1,13 +1,13 @@
 import type { EntityRef, KeptHandoutView } from '@ltw/contracts';
 import { StatusPanel, useLanguage, useT } from '@ltw/ui';
-import { useId, useState, type SubmitEvent } from 'react';
+import { useId, useRef, useState, type SubmitEvent } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { useDiceTable } from '../dice/table.tsx';
 import { formatWhen } from '../dm/players.ts';
 import { HandoutFields, draftHandout, type HandoutDraft } from '../handouts/handout-fields.tsx';
 import { GiveHandout } from '../handouts/handouts.tsx';
-import { DmEnvelopes, SealEnvelope, useEnvelopes } from './envelopes.tsx';
+import { DmEnvelopes, SealForm, useEnvelopes } from './envelopes.tsx';
 import { useLibrary, type Library } from './use-library.ts';
 
 /**
@@ -103,6 +103,10 @@ function KeptHandoutCard({
   const [to, setTo] = useState('party');
   const [editing, setEditing] = useState<HandoutDraft | null>(null);
   const [deleting, setDeleting] = useState(false);
+  // Sealing it in an envelope (ADR 0073 §9): the form stands in place of the card's buttons.
+  const [sealing, setSealing] = useState(false);
+  const [sealed, setSealed] = useState(false);
+  const sealer = useRef<HTMLButtonElement>(null);
   const [said, setSaid] = useState<'given' | 'refused' | 'unsaved' | null>(null);
   const path = `dm/library/handouts/${encodeURIComponent(handout.entryId)}`;
   const give = async () => {
@@ -187,58 +191,82 @@ function KeptHandoutCard({
             ? t('It could not be given: the picture must be of something its reader knows.')
             : ''}
       </p>
-      <div className="action-row">
-        <button
-          type="button"
-          aria-label={t('Change: {title}', { title: handout.title })}
-          onClick={() => {
-            setSaid(null);
-            setEditing({
-              title: handout.title,
-              text: handout.text ?? '',
-              pictured: handout.picture?.entityId ?? '',
-            });
-          }}
-        >
-          {t('Change')}
-        </button>
-        <SealEnvelope
+      {sealing ? (
+        <SealForm
           api={api}
           entryId={handout.entryId}
           title={handout.title}
-          onSealed={onSealed}
+          pictured={handout.picture !== null}
+          onDone={(done) => {
+            setSealing(false);
+            setSealed(done);
+            if (done) onSealed();
+            // The form is gone: the button that opened it takes the focus back.
+            requestAnimationFrame(() => sealer.current?.focus());
+          }}
         />
-        {deleting ? (
-          <>
-            <button
-              type="button"
-              disabled={library.busy}
-              onClick={() => void library.write(`${path}/delete`, {})}
-            >
-              {t('Delete it')}
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                setDeleting(false);
-              }}
-            >
-              {t('Keep it')}
-            </button>
-          </>
-        ) : (
+      ) : (
+        <div className="action-row">
           <button
             type="button"
-            className="quiet-button"
-            aria-label={t('Delete: {title}', { title: handout.title })}
+            aria-label={t('Change: {title}', { title: handout.title })}
             onClick={() => {
-              setDeleting(true);
+              setSaid(null);
+              setEditing({
+                title: handout.title,
+                text: handout.text ?? '',
+                pictured: handout.picture?.entityId ?? '',
+              });
             }}
           >
-            {t('Delete')}
+            {t('Change')}
           </button>
-        )}
-      </div>
+          <button
+            ref={sealer}
+            type="button"
+            aria-label={t('Seal in an envelope: {title}', { title: handout.title })}
+            onClick={() => {
+              setSealed(false);
+              setSealing(true);
+            }}
+          >
+            {t('Seal in an envelope')}
+          </button>
+          {deleting ? (
+            <>
+              <button
+                type="button"
+                disabled={library.busy}
+                onClick={() => void library.write(`${path}/delete`, {})}
+              >
+                {t('Delete it')}
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setDeleting(false);
+                }}
+              >
+                {t('Keep it')}
+              </button>
+            </>
+          ) : (
+            <button
+              type="button"
+              className="quiet-button"
+              aria-label={t('Delete: {title}', { title: handout.title })}
+              onClick={() => {
+                setDeleting(true);
+              }}
+            >
+              {t('Delete')}
+            </button>
+          )}
+        </div>
+      )}
+      <p role="status" className="muted">
+        {sealed ? t('Sealed: the party sees the envelope, not what is inside.') : ''}
+      </p>
     </li>
   );
 }

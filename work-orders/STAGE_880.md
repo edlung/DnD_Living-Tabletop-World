@@ -28,6 +28,11 @@ stage. Branch `claude/stage-880-sealed-envelopes`, stacked on Stage 870's.
 - Fifty envelopes a campaign, 120 characters on the outside.
 - The glyph is the UI kit's `secret`; nothing is drawn.
 
+- From the independent pass, taken as decisions: deleting an envelope asks first, and says what
+  it does to a sealed one and to an opened one; the sealing form stands in place of the card's
+  buttons, says that it takes a copy and what a picture inside means, and what "the evening's
+  chapter" is when no game is on; the DM's list shows the inside's words and picture.
+
 ## Boundaries
 
 Table data beside the world (migration 0047, additive): no event, no world state, no knowledge
