@@ -37,5 +37,6 @@
   "nextGame": "ui-signin-next-game",
   "agreement": "ui-signin-agreement",
   "checkpoint": "ui-signin-checkpoint",
-  "checkpointIpad": "ui-signin-checkpoint-ipad"
+  "checkpointIpad": "ui-signin-checkpoint-ipad",
+  "book": "ui-signin-book"
 }

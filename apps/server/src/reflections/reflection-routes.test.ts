@@ -207,6 +207,41 @@ describe('stars and wishes', () => {
     expect(await entriesOf('DM', TOKENS.dm)).toEqual([]);
   });
 
+  it('give the book every evening, and the DM reading as the party no wish', async () => {
+    expect((await command({ type: 'EndSession', sessionId: SESSION })).statusCode).toBe(200);
+    expect(
+      (
+        await write('PLAYER', TOKENS.player, {
+          characterId: ELOWEN,
+          star: 'The chase!',
+          wish: WISH,
+        })
+      ).statusCode,
+    ).toBe(204);
+    for (let evening = 2; evening <= 22; evening += 1) {
+      const sessionId = `evening-${String(evening)}`;
+      expect(
+        (await command({ type: 'StartSession', sessionId, title: `Evening ${String(evening)}` }))
+          .statusCode,
+      ).toBe(200);
+      expect((await command({ type: 'EndSession', sessionId })).statusCode).toBe(200);
+    }
+    const latest = (await read('PARTY', TOKENS.dm)).json<ReflectionsResponse>();
+    expect(latest.sessions).toHaveLength(20);
+    expect(latest.sessions.some((session) => session.sessionId === SESSION)).toBe(false);
+    const book = await get(app, `${BASE}/reflections?perspective=PARTY&book=true`, TOKENS.dm);
+    const whole = book.json<ReflectionsResponse>();
+    expect(whole.sessions).toHaveLength(22);
+    // The book is the party's (ADR 0072 §1): the DM reading it as the party is sent the star alone.
+    expect(whole.sessions.at(-1)?.entries).toEqual([
+      expect.objectContaining({ star: 'The chase!', wish: null, own: false }),
+    ]);
+    expect(book.body).not.toContain(WISH);
+    expect(
+      (await get(app, `${BASE}/reflections?perspective=PARTY&book=yes`, TOKENS.dm)).statusCode,
+    ).toBe(400);
+  });
+
   it('show a table display the stars and never a wish; it writes nothing', async () => {
     const table = await signInTable();
     const dm = await table.signInWith(await table.dmInvitation());

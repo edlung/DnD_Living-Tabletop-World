@@ -69,6 +69,7 @@ describe('accounts', () => {
           characters: [{ entityId: SEREN, name: expect.any(String) as string }],
           away: null,
           nextGame: null,
+          chapters: 0,
         },
       ],
     });
@@ -85,6 +86,18 @@ describe('accounts', () => {
       at,
       note: 'At Grandma’s',
     });
+    // The party's story gains a chapter: the card may offer its book (ADR 0072 §1). A chapter told
+    // from one character is not the party's and is not counted.
+    for (const perspective of ['PARTY', `CHARACTER:${SEREN}`]) {
+      const written = await table.send(
+        'POST',
+        '/campaigns/ravenford/chronicle',
+        { cookie: dm },
+        { title: 'The first evening', perspective, from: 0 },
+      );
+      expect([200, 201, 422]).toContain(written.statusCode);
+    }
+    expect((await accountOf(table, account)).campaigns[0]?.chapters).toBe(1);
     // …and gives the calendar file for it: the account's own campaigns, nobody else's.
     const file = await table.send('GET', '/account/campaigns/ravenford/next-game.ics', {
       cookie: account,

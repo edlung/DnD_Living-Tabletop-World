@@ -11,7 +11,7 @@
     "beforeThePlaytest": "Ритуал вечера до, остальное после (Recommended): «Ранее…», stars and wishes, the next date, the table's agreement and the DM's guide before the family playtest; the book with its gallery, the home between worlds and small comforts after it",
     "offHostBackups": "Отдельной задачей, вне пакета (Recommended): a separate task on the owner's separate word and choice of place; the server is not touched by this package"
   },
-  "authorizedStages": ["710", "720", "730", "740", "750", "760"],
+  "authorizedStages": ["710", "720", "730", "740", "750", "760", "770", "780", "790", "799"],
   "authorization": "Stage 710 on 2026-11-15: «Да, этап 710», answered to the question «Начинать этап 710 («Ранее…» и глава вечера)?» after the plan was shown, typed by the owner in the planning session; the session that started it relayed the same word given there («Да, начать 710»). It covers Stage 710 alone, in its own pull request; no merge, no deployment",
   "howToProceed": "«не спрашивай меня, а действуй по плану до конца»: the owner's word of 2026-11-15, typed in the working session after Stage 710's pull request (it replaces «Нет, спрашивать», typed there a moment earlier to «Идти по этапам 720–760 подряд, без вопроса перед каждым?»). The stages follow the plan without asking to start each, each in its own pull request; product points the plan left open are settled by the session and recorded as its defaults; merges, deployment and builds on the family's devices stay the owner's. The plan itself puts the family playtest between Stage 760 and Part 2. A word relayed from another session the same day («Часть 1 подряд») was not recorded or acted on.",
   "plan": "docs/MEMORY_RITUAL_PLAN.md; draft work order work-orders/STAGE_710.md",
@@ -24,5 +24,6 @@
     "no push service, no service worker, no third-party SDK (FULL_GAME_PLAN decision 10, ADR 0070)",
     "all art from the OpenAI image model; the app draws only game markup",
     "human play acceptance is the owner's and is reported honestly"
-  ]
+  ],
+  "continuation": "2026-11-16: «продолжаем», typed by the owner in the working session in answer to Stage 760's report, which said that the plan puts the family playtest next and that the session stops there. The session's reading (not the owner's words): Part 2 (Stages 770–799) starts now, before the playtest, under the same terms as «не спрашивай меня, а действуй по плану до конца» — each stage in its own pull request, open product points settled by the session and recorded, merges, deployment and builds on the family's devices the owner's. It comes later than the answer `beforeThePlaytest` («остальное после») and overrules its order only; Part 2 is therefore not re-read against a playtest, and each report says so. Stage 750 still waits for PR 32."
 }

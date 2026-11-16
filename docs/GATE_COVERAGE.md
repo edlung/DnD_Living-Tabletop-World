@@ -863,3 +863,21 @@ the table's screen (Chromium, WebKit on an iPad) and looks through what each was
 party's view and none of the party-forbidden markers; a player their own wish and not the other's;
 nobody but the DM the list of who agreed or another's request for a pause. The table of every new
 read of Stages 710–740 and its tests is in `reports/STAGE_760_COMPLETION.md`.
+
+## Stage 770: the book of the campaign (2026-11-16)
+
+Stage 770 (`docs/adr/0072-keepsakes.md` §1) gathers the party's chapters, their pictures, the
+evenings' stars and what was shown to the party into one page that prints. No new store and no
+write; the session view gains the real instants of its start and its end.
+
+- Boundary: every read the book is built from is made as PARTY, whoever opens it — the DM too. A
+  chapter told from anyone else, the DM's view of anything, and every wish are in none of them;
+  the page's assembly drops a chapter of another perspective again. Pictures are asked for the
+  world time their chapter ends and fetched for the time they were chosen for (Gate 06).
+- Deterministic regressions: `apps/web/src/chronicle/keepsake/book-model.test.ts` (the assembly),
+  `apps/server/src/reflections/reflection-routes.test.ts` (the book's read of every evening; the
+  DM as the party is sent no wish), `packages/domain/src/memory/decide.test.ts` (the two
+  instants; an end undone), the journey `tests/e2e/campaign-book.spec.ts` (the DM's and a
+  player's book and paper hold neither a chapter told from a character nor a wish; nothing the
+  player's browser read as the party does).
+- Next review obligation: none scheduled; the owner may order an independent repeat.

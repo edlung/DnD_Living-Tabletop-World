@@ -11,6 +11,7 @@ import { PARTY, bookChapters } from './book-chapters.ts';
 import { ChapterPages } from './chapter-pages.tsx';
 import { FlashbackScene } from './flashback-scene.tsx';
 import { GenerateChapter } from './generate-chapter.tsx';
+import { KeepsakeView } from './keepsake/keepsake-view.tsx';
 
 interface Opened {
   readonly memoryId: string;
@@ -32,6 +33,8 @@ interface Opened {
  * background after the viewer's own actions and on the live signal, so the DM's draft title
  * survives both. The chapter first shown stays the one shown: a chapter written meanwhile
  * never replaces the page being read (its place, an open flashback), its ribbon says "New".
+ * "The whole book" shows the campaign's book instead of the spread (ADR 0072 §1): the party's
+ * chapters as one page, whoever reads.
  */
 export function ChronicleBook({
   api,
@@ -40,6 +43,8 @@ export function ChronicleBook({
   directory,
   open,
   wanted,
+  whole,
+  onWhole,
 }: {
   readonly api: WorldApi;
   readonly isDm: boolean;
@@ -50,6 +55,9 @@ export function ChronicleBook({
   readonly open: boolean;
   /** A chapter the book was asked to open at (a recap's "Read on"); each asking is a new object. */
   readonly wanted: { readonly chronicleId: string } | null;
+  /** The whole book is shown instead of the chapters' spread. */
+  readonly whole: boolean;
+  readonly onWhole: (whole: boolean) => void;
 }) {
   const t = useT();
   const load = useCallback(
@@ -132,7 +140,21 @@ export function ChronicleBook({
           <Glyph name="chronicle" />
           {t('Chronicle')}
         </h2>
-        {isDm && (
+        <div className="book-views" role="group" aria-label={t('What the Chronicle shows')}>
+          {([false, true] as const).map((choice) => (
+            <button
+              key={String(choice)}
+              type="button"
+              aria-pressed={whole === choice}
+              onClick={() => {
+                onWhole(choice);
+              }}
+            >
+              {choice ? t('The whole book') : t('By chapter')}
+            </button>
+          ))}
+        </div>
+        {isDm && !whole && (
           <GenerateChapter
             api={api}
             characters={directory.filter((entity) => entity.kind === 'character')}
@@ -144,7 +166,8 @@ export function ChronicleBook({
           />
         )}
       </header>
-      {chapters.length > 0 && (
+      <KeepsakeView api={api} shown={open && whole} revision={revision} />
+      {chapters.length > 0 && !whole && (
         <nav className="book-ribbons" aria-label={t('Chapters')}>
           <div className="book-ribbon-list">
             {chapters.map((entry) => (
@@ -168,7 +191,7 @@ export function ChronicleBook({
           </div>
         </nav>
       )}
-      <div className="book-stage">
+      <div className="book-stage" hidden={whole}>
         <div className={`book-spread${opened ? ' is-remembering' : ''}`}>
           <img
             className="book-spread-art"

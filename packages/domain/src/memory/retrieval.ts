@@ -116,12 +116,16 @@ export function getMemory(
 
 /** Sessions are out-of-world metadata visible to every campaign member (ADR 0010). */
 export function listSessions(state: WorldState): SessionView[] {
-  return [...state.sessions.values()].map(({ sessionId, title, startedAt, endedAt }) => ({
-    sessionId,
-    title,
-    startedAt,
-    endedAt,
-  }));
+  return [...state.sessions.values()].map(
+    ({ sessionId, title, startedAt, endedAt, playedFrom, playedTo }) => ({
+      sessionId,
+      title,
+      startedAt,
+      endedAt,
+      playedFrom,
+      playedTo,
+    }),
+  );
 }
 
 export function toMemoryView(

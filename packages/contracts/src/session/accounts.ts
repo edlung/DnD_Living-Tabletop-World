@@ -88,6 +88,11 @@ export interface AccountCampaign {
   readonly away: CampaignAway | null;
   /** When its table meets again; null when no date is set or it has passed (ADR 0071 §3). */
   readonly nextGame: NextGame | null;
+  /**
+   * How many chapters the party's story holds: above none, its book has something to read
+   * (docs/adr/0072-keepsakes.md §1). A count, nothing of what they tell.
+   */
+  readonly chapters: number;
 }
 
 /** `GET /account`: the signed-in account, or 401. */

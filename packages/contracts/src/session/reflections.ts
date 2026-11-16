@@ -12,6 +12,8 @@ import { sessionIdSchema } from '../memory/commands.ts';
 export const REFLECTION_CHARS = 280;
 /** How many ended sessions a read lists, newest first. */
 export const REFLECTION_SESSIONS = 20;
+/** How many the campaign's book reads (`?book=true`, docs/adr/0072-keepsakes.md §1). */
+export const REFLECTION_BOOK_SESSIONS = 400;
 
 const words = z.string().trim().max(REFLECTION_CHARS);
 

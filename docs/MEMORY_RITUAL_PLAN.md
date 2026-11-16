@@ -13,7 +13,10 @@ the family's devices stay the owner's. **Stage 720 is implemented** (`work-order
 `reports/STAGE_720_COMPLETION.md`). **Stage 730 is implemented** (`work-orders/STAGE_730.md`,
 `reports/STAGE_730_COMPLETION.md`). **Stage 740 is implemented** (`work-orders/STAGE_740.md`,
 `reports/STAGE_740_COMPLETION.md`). **Stage 760, the checkpoint, is done**
-(`reports/STAGE_760_COMPLETION.md`); Stage 750 waits for PR 32. It follows `docs/FULL_GAME_PLAN.md` (Stages
+(`reports/STAGE_760_COMPLETION.md`); Stage 750 waits for PR 32. **Part 2 was started by the owner's
+word of 2026-11-16, «продолжаем»**, typed after Stage 760's report — before the family playtest,
+so it is not re-read against one. **Stage 770 is implemented** (`work-orders/STAGE_770.md`,
+`reports/STAGE_770_COMPLETION.md`, ADR 0072 §1). It follows `docs/FULL_GAME_PLAN.md` (Stages
 600–699) and `docs/NATIVE_APPS_PLAN.md` (Stage 700).
 
 The rules, the table, the TV and the DM's tools are complete. What is thin is the ritual around play:
@@ -235,7 +238,7 @@ the date in the hub, "Previously…", play, the evening closed, stars and wishes
 the audits, the adversarial pass over every new read, the report and the handoff. Merge and
 deployment on the owner's word; then the family playtest (the owner's).
 
-### Part 2 — keepsakes (after the playtest, re-read first)
+### Part 2 — keepsakes (after the playtest, re-read first; started before it on the owner's word of 2026-11-16)
 
 #### 770 The book and the gallery — size M–L
 

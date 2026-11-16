@@ -118,6 +118,9 @@ export async function campaignsOf(
       characters,
       away: await moves.awayOf(seat.campaignId),
       nextGame: await nextGameOf(seat.campaignId),
+      // The party's chapters: every member may read them (ADR 0071 §1), so every seat may count them.
+      chapters: [...state.chronicles.values()].filter((chapter) => chapter.perspective === 'PARTY')
+        .length,
     });
   }
   return listed;

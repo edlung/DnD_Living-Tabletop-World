@@ -20,6 +20,8 @@ export const UI_IMAGE_CAMPAIGNS: readonly string[] = [
   'ui-combat',
   // The DM's own battle map over the curated one (Stage 670b).
   UI_PARTY_CAMPAIGNS.battleMap,
+  // The book of the campaign with its pictures (Stage 770).
+  UI_PARTY_CAMPAIGNS.bookPictures,
   ...Object.values(UI_RU_CAMPAIGNS),
   UI_RU_COMBAT,
 ];

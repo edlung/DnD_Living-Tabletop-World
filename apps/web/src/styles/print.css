@@ -10,7 +10,8 @@
   @page {
     margin: 12mm;
   }
-  body > :not(.print-sheet) {
+  /* The page is the character's sheet or the campaign's book (`print-book.css`), nothing else. */
+  body > :not(.print-sheet):not(.print-book) {
     display: none !important;
   }
   html,

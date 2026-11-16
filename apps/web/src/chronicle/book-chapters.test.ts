@@ -124,6 +124,8 @@ describe('a session as a chapter', () => {
     title: sessionId,
     startedAt,
     endedAt,
+    playedFrom: '2026-11-14T18:00:00.000Z',
+    playedTo: endedAt === null ? null : '2026-11-14T21:30:00.000Z',
   });
 
   it('offers the open session, else the last one started', () => {

@@ -6,6 +6,7 @@ import { AboutButton } from '../guide/about.tsx';
 import { NativeEntry } from '../native/native-entry.tsx';
 import { nativeShell } from '../native/shell.ts';
 import { calendarHref, NextGameLine } from '../ritual/next-game.tsx';
+import { askForBook, takeBookRequest } from '../shell/book-request.ts';
 import { Glyph } from '../visual/glyph.tsx';
 import { ornamentUrl, textureUrl } from '../visual/ui-kit.ts';
 import { changePassword, readAccount, renameAccount, type EnterAnswer } from './account-flow.ts';
@@ -152,8 +153,23 @@ export function Hub({
               key={campaign.campaignId}
               campaign={campaign}
               busy={busy !== null}
-              opening={busy === campaign.campaignId}
+              opening={
+                busy === campaign.campaignId
+                  ? 'world'
+                  : busy === `${campaign.campaignId}:book`
+                    ? 'book'
+                    : null
+              }
               onOpen={() => void run(campaign.campaignId, () => onOpen(campaign.campaignId))}
+              onBook={() =>
+                void run(`${campaign.campaignId}:book`, async () => {
+                  // The campaign opens at its book (ADR 0072 §1); an opening refused asks for none.
+                  askForBook(campaign.campaignId);
+                  const answer = await onOpen(campaign.campaignId);
+                  if (answer.kind !== 'entered') takeBookRequest(campaign.campaignId);
+                  return answer;
+                })
+              }
             />
           ))}
         </ul>
@@ -209,11 +225,15 @@ function CampaignCard({
   busy,
   opening,
   onOpen,
+  onBook,
 }: {
   readonly campaign: AccountCampaign;
   readonly busy: boolean;
-  readonly opening: boolean;
+  /** Which of the card's two doors was pressed and is opening. */
+  readonly opening: 'world' | 'book' | null;
   readonly onOpen: () => void;
+  /** Opens the campaign at its book: the party's chapters as one page. */
+  readonly onBook: () => void;
 }) {
   const t = useT();
   const language = useLanguage();
@@ -253,15 +273,29 @@ function CampaignCard({
           </p>
         )}
       </div>
-      <button
-        type="button"
-        className="primary-button"
-        disabled={busy}
-        aria-label={t('Open {campaign}: {who}', { campaign: campaign.name, who })}
-        onClick={onOpen}
-      >
-        {opening ? t('Opening…') : t('Open')}
-      </button>
+      <div className="hub-campaign-actions">
+        {/* Once the party's story has a chapter: a book with none has nothing to open for. */}
+        {campaign.chapters > 0 && (
+          <button
+            type="button"
+            disabled={busy}
+            aria-label={t('The book of {campaign}', { campaign: campaign.name })}
+            onClick={onBook}
+          >
+            <Glyph name="chronicle" />
+            {opening === 'book' ? t('Opening…') : t('The book')}
+          </button>
+        )}
+        <button
+          type="button"
+          className="primary-button"
+          disabled={busy}
+          aria-label={t('Open {campaign}: {who}', { campaign: campaign.name, who })}
+          onClick={onOpen}
+        >
+          {opening === 'world' ? t('Opening…') : t('Open')}
+        </button>
+      </div>
     </li>
   );
 }

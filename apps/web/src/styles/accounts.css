@@ -168,6 +168,13 @@
 .hub-campaign-text .muted {
   margin: 0.15rem 0 0;
 }
+/* The campaign's book, then its door (ADR 0072 §1). */
+.hub-campaign-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
 /* Played on another server since a move (ADR 0061 §5). */
 .hub-campaign-away {
   margin: 0.25rem 0 0;
@@ -249,8 +256,11 @@
   .hub-campaign {
     grid-template-columns: auto minmax(0, 1fr);
   }
-  .hub-campaign > button {
+  .hub-campaign-actions {
     grid-column: 1 / -1;
+  }
+  .hub-campaign-actions > .primary-button {
+    flex: 1;
   }
 }
 

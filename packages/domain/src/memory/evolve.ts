@@ -58,6 +58,8 @@ export function applySessionStarted(
       title,
       startedAt: event.worldTime,
       endedAt: null,
+      playedFrom: event.recordedAt,
+      playedTo: null,
     }),
     usedIds: new Set(state.usedIds).add(sessionId),
     activeSessionId: sessionId,
@@ -77,6 +79,7 @@ export function applySessionEnded(
     sessions: withEntry(state.sessions, session.sessionId, {
       ...session,
       endedAt: event.worldTime,
+      playedTo: event.recordedAt,
     }),
     activeSessionId: null,
   };

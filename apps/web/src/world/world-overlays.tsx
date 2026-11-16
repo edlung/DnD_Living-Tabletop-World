@@ -6,6 +6,7 @@ import type { WorldApi } from '../api/client.ts';
 import { TableMusic } from '../audio/table-music.tsx';
 import { TableAmbience } from '../audio/table-sound.tsx';
 import { ChronicleBook } from '../chronicle/chronicle-book.tsx';
+import { useBookRequest } from '../shell/book-request.ts';
 import { RollAnnouncer } from '../dice/announcer.tsx';
 import { DiceStage } from '../dice/dice-stage.tsx';
 import { useDiceTable } from '../dice/table.tsx';
@@ -63,6 +64,7 @@ export function WorldOverlays({
   const [announced, setAnnounced] = useState<RollEntry | null>(null);
   const announcer = <RollAnnouncer entry={announced} />;
   const table = useDiceTable();
+  useBookRequest(api.campaignId, shell.openBook);
   return (
     <>
       <TableAsks
@@ -101,6 +103,8 @@ export function WorldOverlays({
             directory={directory}
             open={shell.chronicle}
             wanted={shell.chronicleChapter}
+            whole={shell.chronicleWhole}
+            onWhole={shell.showWholeBook}
           />
         )}
       </ChronicleDialog>

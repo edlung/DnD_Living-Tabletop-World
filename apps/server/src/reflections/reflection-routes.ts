@@ -1,4 +1,5 @@
 import {
+  REFLECTION_BOOK_SESSIONS,
   REFLECTION_SESSIONS,
   campaignIdSchema,
   reflectionRequestSchema,
@@ -32,7 +33,8 @@ export interface ReflectionRouteDependencies extends RouteDependencies {
 }
 
 const params = z.object({ campaignId: campaignIdSchema }).strict();
-const query = z.object({ perspective: z.string() }).strict();
+// `book`: every ended evening the campaign's book prints (ADR 0072 §1), not the latest few.
+const query = z.object({ perspective: z.string(), book: z.literal('true').optional() }).strict();
 const WRITES_PER_MINUTE = 20;
 
 /** The session stars and wishes may be written for: it ended last and none has started since. */
@@ -82,14 +84,14 @@ export function registerReflectionRoutes(
   app.get('/campaigns/:campaignId/reflections', async (request, reply) => {
     const ready = await withPerspective(request, reply, deps, { params, query });
     if (!ready) return reply;
-    const { context, params: path } = ready;
+    const { context, params: path, query: asked } = ready;
     const { state, perspective } = context;
     const known = knownEntityIds(state, perspective);
     const open = openSessionOf(state);
     const entries = await store.ofCampaign(path.campaignId);
     const sessions: SessionReflections[] = [...state.sessions.values()]
       .filter((session) => session.endedAt !== null)
-      .slice(-REFLECTION_SESSIONS)
+      .slice(-(asked.book === 'true' ? REFLECTION_BOOK_SESSIONS : REFLECTION_SESSIONS))
       .reverse()
       .map((session) => ({
         sessionId: session.sessionId,

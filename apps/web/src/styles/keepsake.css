@@ -1,0 +1,382 @@
+/*
+ * The book of the campaign on the screen (docs/adr/0072-keepsakes.md §1): inside the Chronicle,
+ * one parchment page that scrolls — a cover, the party's chapters, the gallery. Ink on parchment:
+ * page tokens only. Its paper is `print-book.css`.
+ */
+
+/* The Chronicle's two views, beside its title */
+.book-views {
+  display: flex;
+  gap: 8px;
+}
+.book-views button {
+  min-height: 40px;
+  border-radius: var(--radius-pill);
+  background: var(--glass-raised);
+}
+/* The view shown: a bright edge, not a tint alone. */
+.book-views button[aria-pressed='true'] {
+  border-color: var(--teal);
+  box-shadow: inset 0 0 0 1px var(--teal);
+  background:
+    linear-gradient(
+      color-mix(in srgb, var(--teal-fill) 55%, transparent),
+      color-mix(in srgb, var(--teal-fill) 55%, transparent)
+    ),
+    var(--glass-raised);
+}
+.book-stage[hidden] {
+  display: none;
+}
+
+.keepsake-stage[hidden] {
+  display: none;
+}
+.keepsake-stage {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 8px;
+  width: min(100%, 54rem);
+  min-height: 0;
+  margin-inline: auto;
+}
+.keepsake-tools {
+  display: grid;
+  justify-items: end;
+  gap: 4px;
+  padding: 16px clamp(16px, 6vw, 64px) 0;
+}
+/* On the parchment: ink, not the glass of the dark screens. */
+.keepsake-tools button {
+  border-color: color-mix(in srgb, var(--page-ink) 55%, transparent);
+  background: color-mix(in srgb, var(--page-ink) 6%, transparent);
+  color: var(--page-ink);
+}
+.keepsake-tools button:hover:enabled {
+  border-color: var(--page-ink);
+  background: color-mix(in srgb, var(--page-ink) 12%, transparent);
+}
+/* Preparing: dimmed, keeping focus. */
+.keepsake-tools button[aria-disabled='true'] {
+  cursor: progress;
+  opacity: 0.6;
+}
+/* The line under the button keeps its room, so the cover does not move when it speaks. */
+.keepsake-tools p {
+  min-height: 1.4em;
+  margin: 0;
+  color: var(--page-ink-muted);
+  font-size: 0.9rem;
+}
+.keepsake-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border-radius: 6px 6px 0 0;
+  /* The parchment, lifted to the pages' floor where it is darker (as the Chronicle's page) */
+  background:
+    linear-gradient(var(--page-floor), var(--page-floor)),
+    url('../assets/ui-kit/textures/parchment.webp') center / 512px,
+    var(--page-ground);
+  background-blend-mode: lighten, normal;
+  box-shadow: var(--shadow);
+  color: var(--page-ink);
+}
+/* More of the page below: its lower edge thins, lightly — the words there stay readable. */
+.keepsake-scroll[data-more-after] {
+  mask-image: linear-gradient(#000 calc(100% - 16px), rgb(0 0 0 / 0.45));
+}
+/* Inside the page's edge: the mask and the frame would cut a ring drawn outside it. */
+.keepsake-scroll:focus-visible {
+  outline-offset: -4px;
+  box-shadow: var(--shadow);
+}
+.keepsake-scroll--status {
+  display: grid;
+  place-content: center;
+  padding: 24px 16px;
+}
+
+.keepsake {
+  padding: 16px clamp(16px, 6vw, 64px) 48px;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+.keepsake h3,
+.keepsake h4,
+.keepsake h5 {
+  margin: 0;
+  color: var(--page-ink);
+  font-family: var(--font-display);
+  line-height: 1.15;
+}
+
+/* The cover */
+.keepsake-cover {
+  display: grid;
+  justify-items: center;
+  gap: 16px;
+  padding: 24px 0 40px;
+  text-align: center;
+}
+.keepsake-eyebrow,
+.keepsake-day,
+.keepsake-label {
+  margin: 0;
+  color: var(--page-ink-muted);
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+}
+.keepsake-cover h3 {
+  font-size: clamp(2rem, 6vw, 3.2rem);
+}
+.keepsake-played {
+  margin: 0;
+  color: var(--page-ink-muted);
+  font-style: italic;
+}
+
+/* Faces: a round portrait when there is one, and the name */
+.keepsake-faces {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.keepsake-face {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  font-weight: 700;
+}
+.keepsake-face img {
+  width: 40px;
+  height: 40px;
+  border: 1px solid color-mix(in srgb, var(--page-ink) 55%, transparent);
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 20%;
+}
+.keepsake-heroes {
+  justify-content: center;
+  gap: 16px 24px;
+}
+.keepsake-heroes .keepsake-face {
+  flex-direction: column;
+  width: 7.5rem;
+  text-align: center;
+  text-wrap: balance;
+}
+.keepsake-heroes .keepsake-face img {
+  width: 88px;
+  height: 88px;
+  box-shadow: 0 2px 6px color-mix(in srgb, var(--page-ink) 30%, transparent);
+}
+
+/* The contents: each evening and the gallery, a press away */
+.keepsake-contents {
+  padding: 8px 0 32px;
+}
+.keepsake-contents ol {
+  display: grid;
+  gap: 4px;
+  max-width: 34rem;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+.keepsake-contents button {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0 16px;
+  width: 100%;
+  min-height: 40px;
+  padding: 4px 8px;
+  border-color: transparent;
+  border-bottom: 1px dotted color-mix(in srgb, var(--page-ink) 55%, transparent);
+  border-radius: 0;
+  background: none;
+  color: var(--page-ink);
+  font-size: 1rem;
+  text-align: left;
+}
+.keepsake-contents button:hover:enabled {
+  border-color: transparent;
+  border-bottom: 1px solid var(--page-ink);
+  background: color-mix(in srgb, var(--page-ink) 8%, transparent);
+}
+.keepsake-contents small {
+  color: var(--page-ink-muted);
+  font-size: 0.9rem;
+}
+.keepsake h4:focus-visible {
+  outline-offset: 4px;
+}
+
+/* A chapter */
+.keepsake-chapter,
+.keepsake-gallery {
+  padding: 32px 0;
+  border-top: 1px solid color-mix(in srgb, var(--page-ink) 28%, transparent);
+}
+.keepsake-chapter-head {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.keepsake-chapter-head h4,
+.keepsake-gallery > h4 {
+  font-size: clamp(1.6rem, 4.5vw, 2.1rem);
+}
+.keepsake-plate {
+  margin: 8px 0 0;
+}
+.keepsake-plate img,
+.keepsake-plate.is-waiting::before {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 1px solid color-mix(in srgb, var(--page-ink) 55%, transparent);
+  border-radius: 3px;
+  object-fit: cover;
+  box-shadow: 0 2px 6px color-mix(in srgb, var(--page-ink) 30%, transparent);
+}
+/* Its room while it is read: the page below does not jump when it arrives. */
+.keepsake-plate.is-waiting::before {
+  box-sizing: border-box;
+  border-style: dashed;
+  box-shadow: none;
+  content: '';
+}
+.keepsake-plate figcaption,
+.keepsake-tile figcaption {
+  margin-top: 4px;
+  color: var(--page-ink);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+.keepsake-prose {
+  max-width: 68ch;
+  margin: 0 0 12px;
+}
+.keepsake-aside {
+  display: grid;
+  gap: 8px;
+  margin-top: 24px;
+}
+.keepsake-stars {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.keepsake-stars li {
+  display: grid;
+  gap: 2px;
+  padding-left: 12px;
+  border-left: 2px solid color-mix(in srgb, var(--page-ink) 40%, transparent);
+}
+.keepsake-stars strong {
+  font-size: 0.9rem;
+}
+
+/* The gallery */
+.keepsake-mark {
+  display: block;
+  height: 1px;
+}
+.keepsake-group {
+  display: grid;
+  gap: 12px;
+  margin-top: 24px;
+}
+.keepsake-group h5 {
+  font-size: 1.25rem;
+}
+/* A group with no picture to show is not shown; nor the gallery with no group to show. */
+.keepsake-group:not(.keepsake-group--shown):not(:has(.keepsake-tile)),
+.keepsake-gallery:not(:has(.keepsake-tile, .keepsake-handout)) {
+  display: none;
+}
+.keepsake-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+  gap: 16px;
+}
+.keepsake-tiles--faces {
+  grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr));
+}
+.keepsake-tile {
+  margin: 0;
+}
+.keepsake-tile img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 1px solid color-mix(in srgb, var(--page-ink) 55%, transparent);
+  border-radius: 3px;
+  object-fit: cover;
+}
+.keepsake-tiles--faces .keepsake-tile img {
+  aspect-ratio: 1;
+  object-position: center 20%;
+}
+.keepsake-handouts {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.keepsake-handout {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid color-mix(in srgb, var(--page-ink) 40%, transparent);
+  border-radius: 3px;
+}
+.keepsake-handout p {
+  margin: 0;
+  white-space: pre-line;
+}
+
+.keepsake-empty,
+.keepsake-ending {
+  margin: 0;
+  padding: 32px 0 8px;
+  border-top: 1px solid color-mix(in srgb, var(--page-ink) 28%, transparent);
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-style: italic;
+  text-align: center;
+}
+
+@media (max-width: 1023px), (max-height: 599px) {
+  .keepsake-stage {
+    width: 100%;
+  }
+}
+/* A short, wide screen (a phone on its side): a chapter's picture is seen whole. */
+@media (max-height: 599px) {
+  .keepsake-plate img,
+  .keepsake-plate.is-waiting::before {
+    width: auto;
+    max-width: 100%;
+    max-height: 60dvh;
+  }
+}
