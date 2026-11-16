@@ -134,6 +134,6 @@ test('по-русски: «Что мы знаем»', async ({ browser }) => {
   await expect(known.getByRole('heading', { level: 2, name: 'Что мы знаем' })).toBeVisible(WAIT);
   await expect(known.getByRole('region', { name: /^Люди и существа/ })).toBeVisible(WAIT);
   await expect(known.getByRole('region', { name: /^Места/ })).toBeVisible();
-  await expect(known.getByLabel('Найти по имени', { exact: true })).toBeVisible();
+  await expect(known.getByLabel('Найти по имени или названию', { exact: true })).toBeVisible();
   await expectAccessible(page, 'энциклопедия отряда');
 });

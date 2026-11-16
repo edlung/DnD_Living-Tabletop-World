@@ -31,13 +31,17 @@ function Fact({ fact }: { readonly fact: KnownFact }) {
 function Entry({
   api,
   entry,
+  factsMissing,
   onChapter,
 }: {
   readonly api: WorldApi;
   readonly entry: KnownEntry;
+  /** The party's records were not read: "nothing more" would be a guess. */
+  readonly factsMissing: boolean;
   readonly onChapter: (chronicleId: string) => void;
 }) {
   const t = useT();
+  const ids = useId();
   const [ref, near] = useNear<HTMLLIElement>(false);
   return (
     <li ref={ref} className="known-entry">
@@ -52,11 +56,13 @@ function Entry({
             ))}
           </ul>
         ) : (
-          <p className="known-none">{t('The party knows the name, and nothing more yet.')}</p>
+          !factsMissing && (
+            <p className="known-none">{t('The party knows the name, and nothing more yet.')}</p>
+          )
         )}
         {entry.chapters.length > 0 && (
-          <p className="known-chapters">
-            <span>{t('In the chapters:')}</span>
+          <p className="known-chapters" role="group" aria-labelledby={`${ids}-chapters`}>
+            <span id={`${ids}-chapters`}>{t('In the chapters:')}</span>
             {entry.chapters.map((chapter) => (
               <button
                 key={chapter.chronicleId}
@@ -81,6 +87,7 @@ function Section({
   title,
   entries,
   typed,
+  factsMissing,
   onChapter,
 }: {
   readonly api: WorldApi;
@@ -88,6 +95,7 @@ function Section({
   readonly title: string;
   readonly entries: readonly KnownEntry[];
   readonly typed: string;
+  readonly factsMissing: boolean;
   readonly onChapter: (chronicleId: string) => void;
 }) {
   const ids = useId();
@@ -98,11 +106,17 @@ function Section({
       <h3 id={`${ids}-title`}>
         <Glyph name={glyph} />
         {title}
-        <small>{found.length}</small>
+        <small aria-hidden="true">{found.length}</small>
       </h3>
       <ul className="known-entries">
         {found.map((entry) => (
-          <Entry key={entry.entity.entityId} api={api} entry={entry} onChapter={onChapter} />
+          <Entry
+            key={entry.entity.entityId}
+            api={api}
+            entry={entry}
+            factsMissing={factsMissing}
+            onChapter={onChapter}
+          />
         ))}
       </ul>
     </section>
@@ -113,7 +127,8 @@ function Section({
  * "What we know" inside the Chronicle (docs/adr/0073-table-ideas.md §4): the party's
  * encyclopedia — people, places, things, what else it has learned and what it set out to do —
  * as one page that scrolls, with a field to find a name. Read as the party whoever looks, while
- * it is shown and not otherwise. Read only: nothing here writes.
+ * it is shown and not otherwise; put away it keeps what it read, so coming back from a chapter
+ * finds the page where it was. Read only: nothing here writes.
  */
 export function KnownView({
   api,
@@ -130,28 +145,32 @@ export function KnownView({
 }) {
   const t = useT();
   const ids = useId();
-  const { api: party, resource, retry } = useKnown(api, shown, revision);
+  const { api: party, known: read, failed, retry } = useKnown(api, shown, revision);
   const [typed, setTyped] = useState('');
-  if (!shown) return null;
-  const known = resource.status === 'ready' ? resource.value : null;
-  if (known === null) {
+  if (read === null) {
+    if (!shown) return null;
     return (
       <div className="keepsake-stage">
         <div className="keepsake-scroll keepsake-scroll--status">
           <StatusPanel
-            state={resource.status === 'error' ? 'error' : 'loading'}
-            label={resource.status === 'error' ? resource.message : t('Gathering what we know…')}
+            state={failed ? 'error' : 'loading'}
+            label={
+              failed
+                ? t('What the party knows could not be read. Try again.')
+                : t('Gathering what we know…')
+            }
             onRetry={retry}
           />
         </div>
       </div>
     );
   }
+  const { book: known, factsMissing, partial } = read;
   const named = [...known.people, ...known.places, ...known.things];
   const found = matching(named, typed).length;
   const searching = typed.trim() !== '';
   return (
-    <div className="keepsake-stage">
+    <div className="keepsake-stage" hidden={!shown}>
       <div
         className="keepsake-scroll known-page"
         role="region"
@@ -162,7 +181,18 @@ export function KnownView({
           <h2>{t('What we know')}</h2>
           <p>
             {t(
-              'Everyone the party has met, everywhere it has been and what it has learned — as the party knows it.',
+              'Who and what the party knows of — people, places and things — as the party knows them.',
+            )}
+          </p>
+          {/* A part that could not be read is left out, and the page says so. */}
+          <p role="status" className="known-partial">
+            {partial && (
+              <>
+                {t('Part of this page could not be read.')}{' '}
+                <button type="button" onClick={retry}>
+                  {t('Try again')}
+                </button>
+              </>
             )}
           </p>
           {named.length > 0 && (
@@ -199,6 +229,7 @@ export function KnownView({
           title={t('People and creatures')}
           entries={known.people}
           typed={typed}
+          factsMissing={factsMissing}
           onChapter={onChapter}
         />
         <Section
@@ -207,6 +238,7 @@ export function KnownView({
           title={t('Places')}
           entries={known.places}
           typed={typed}
+          factsMissing={factsMissing}
           onChapter={onChapter}
         />
         <Section
@@ -215,6 +247,7 @@ export function KnownView({
           title={t('Things and factions')}
           entries={known.things}
           typed={typed}
+          factsMissing={factsMissing}
           onChapter={onChapter}
         />
         {!searching && known.lore.length > 0 && (

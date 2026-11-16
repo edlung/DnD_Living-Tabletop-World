@@ -193,6 +193,12 @@ export function ChronicleBook({
           onWhole(false);
           setChosen(chronicleId);
           setOpened(null);
+          // The button pressed goes with its page: the chapter's own ribbon takes the focus.
+          requestAnimationFrame(() => {
+            document
+              .querySelector<HTMLElement>('.chronicle-dialog .book-ribbon[aria-pressed="true"]')
+              ?.focus({ preventScroll: true });
+          });
         }}
       />
       {chapters.length > 0 && !whole && !known && (
