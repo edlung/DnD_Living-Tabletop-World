@@ -1,6 +1,6 @@
 # Stage 860 completion — a shorter way in for a guest
 
-Pull request: https://github.com/edlung/DnD_Living-Tabletop-World/pull/PRNUM (draft, stacked on
+Pull request: https://github.com/edlung/DnD_Living-Tabletop-World/pull/56 (draft, stacked on
 Stage 850's, https://github.com/edlung/DnD_Living-Tabletop-World/pull/55).
 
 Work order `work-orders/STAGE_860.md`; program `docs/TABLE_IDEAS_PLAN.md` (section 860); ADR 0073
