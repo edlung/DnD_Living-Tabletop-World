@@ -7,6 +7,10 @@ import { defineConfig, devices } from '@playwright/test';
 // sign-in server, never written anywhere.
 process.env['LTW_UI_SIGN_IN_SEED'] ??= randomBytes(32).toString('hex');
 
+// In CI the dev servers say when they reload a page or lose one (apps/web/dev-trace.ts), and
+// their output is in the job's log: a journey whose page reloaded under it can be read against it.
+const DEV_TRACE: Record<string, string> = process.env['CI'] ? { LTW_DEV_TRACE: '1' } : {};
+
 export default defineConfig({
   testDir: './tests/e2e',
   outputDir: './test-results',
@@ -59,7 +63,8 @@ export default defineConfig({
     },
     {
       command: 'pnpm dev:web --host 127.0.0.1 --port 4310',
-      env: { LTW_API_TARGET: 'http://127.0.0.1:4311' },
+      env: { LTW_API_TARGET: 'http://127.0.0.1:4311', ...DEV_TRACE },
+      stdout: 'pipe',
       url: 'http://127.0.0.1:4310',
       reuseExistingServer: false,
       timeout: 30_000,
@@ -77,7 +82,9 @@ export default defineConfig({
       env: {
         LTW_API_TARGET: 'http://127.0.0.1:4313',
         LTW_VITE_CACHE_DIR: 'node_modules/.vite-sign-in',
+        ...DEV_TRACE,
       },
+      stdout: 'pipe',
       url: 'http://127.0.0.1:4312',
       reuseExistingServer: false,
       timeout: 30_000,
