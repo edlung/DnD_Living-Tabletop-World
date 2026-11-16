@@ -16,6 +16,7 @@ import { RestBanner } from '../rest/sheet-rest.tsx';
 import { nativeHaptic } from '../native/signals.ts';
 import { LobbyBanner } from '../session/lobby-banner.tsx';
 import { Glyph } from '../visual/glyph.tsx';
+import { FIGHT_QUIET_ID } from '../world/fight-quiet.ts';
 import { useScreenAwake, useTitleCount } from './screen.ts';
 import { useSlotRoom } from './slot-room.ts';
 import { newWaits, waitsOf, type Wait } from './waits.ts';
@@ -94,6 +95,7 @@ export function TableAsks({
         api={api}
         actorId={actorId}
         isDm={isDm}
+        fightSlot={encounter === null ? null : FIGHT_QUIET_ID}
         onOpenChronicle={onOpenChronicle}
         onOpenBook={onOpenBook}
       />

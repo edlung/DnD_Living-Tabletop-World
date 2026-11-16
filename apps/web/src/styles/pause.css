@@ -66,3 +66,62 @@
     display: none;
   }
 }
+
+/* The player's quiet row over the stage: the way to a pause (and, beside it, what a later stage
+   adds). */
+.quiet-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 8px;
+  pointer-events: none;
+}
+.quiet-row > * {
+  pointer-events: auto;
+}
+@media (max-width: 767px) {
+  .quiet-row {
+    justify-content: flex-end;
+  }
+}
+
+/* In a fight the quiet row lies in the fight's own layout (world/fight-quiet.ts): on a wide
+   screen at the stage's lower right, above the dock's band, where nothing else is; where the
+   fight's parts stand one under another, in that column, under the switch. */
+.fight-quiet {
+  position: absolute;
+  right: 16px;
+  bottom: calc(var(--dock-h) + 24px);
+  z-index: 4;
+}
+.fight-quiet:empty {
+  display: none;
+}
+.fight-quiet .quiet-row {
+  flex-direction: column;
+  align-items: flex-end;
+}
+@media (max-width: 1199px) {
+  .stage--battle .fight-quiet {
+    position: relative;
+    inset: auto;
+    align-self: center;
+  }
+  .stage--battle .fight-quiet .quiet-row {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+  }
+}
+@media (max-width: 767px) {
+  .fight-quiet {
+    position: relative;
+    inset: auto;
+    margin: 0 12px 12px;
+  }
+  .fight-quiet .quiet-row {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
