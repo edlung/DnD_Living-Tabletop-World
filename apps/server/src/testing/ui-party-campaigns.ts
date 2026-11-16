@@ -89,6 +89,10 @@ export const UI_PARTY_CAMPAIGNS = {
   comforts: 'ui-comforts',
   comfortsIpad: 'ui-comforts-ipad',
   comfortsRu: 'ui-comforts-ru',
+  /** Client error reports: a screen that breaks, the DM's card (Stage 800). */
+  troubles: 'ui-troubles',
+  troublesIpad: 'ui-troubles-ipad',
+  troublesRu: 'ui-troubles-ru',
 } as const;
 
 /**
@@ -151,6 +155,9 @@ export async function seedUiPartyCampaigns(engine: WorldEngine): Promise<void> {
     [UI_PARTY_CAMPAIGNS.comforts, 'en'],
     [UI_PARTY_CAMPAIGNS.comfortsIpad, 'en'],
     [UI_PARTY_CAMPAIGNS.comfortsRu, 'ru'],
+    [UI_PARTY_CAMPAIGNS.troubles, 'en'],
+    [UI_PARTY_CAMPAIGNS.troublesIpad, 'en'],
+    [UI_PARTY_CAMPAIGNS.troublesRu, 'ru'],
   ] as const) {
     const seed = await loadSeed(
       language === 'ru' ? RAVENFORD_RU_FIXTURES_DIR : RAVENFORD_FIXTURES_DIR,

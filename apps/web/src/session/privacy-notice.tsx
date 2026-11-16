@@ -26,6 +26,7 @@ const KEPT = [
   'Your campaigns: which ones you sit in, your characters, and each campaign’s story as it is played.',
   'What you write and roll: your chat messages, your dice rolls, the star and the wish you write when an evening ends (the table reads your star; your wish is for the DM alone), and what your hero keeps when an adventure ends (the table reads it).',
   'Your sign-ins: when each began and when it ends, to keep you signed in. Cookies hold these sign-ins and nothing else.',
+  'When a page breaks: which screen it was, which browser and what kind of error — not your name, your login or anything you wrote. The DM of your table and the server’s operator read these notes to mend the game; each is removed thirty days after the error last happened.',
 ] as const;
 
 const SECTIONS = [

@@ -115,6 +115,8 @@ export function coverageInventory(target: LiveTarget): ViewRequest[] {
     // The asset lineage (DM only; no perspective): the DM's image controls follow each job from
     // queued to a candidate as the asset worker reports it (Stage 330 part B).
     views.push({ url: `${base}/assets`, optional: false });
+    // What this table's screens reported when they broke (ADR 0073 §1): the DM's alone.
+    views.push({ url: `${base}/client-errors`, optional: false });
   }
   if (target.focus !== null) {
     const entity = `entities/${encodeURIComponent(target.focus)}`;

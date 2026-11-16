@@ -268,6 +268,13 @@ It changes no world state; keep its window listener, since `pageerror` misses th
 - Native apps (ADR 0070, `native-shell.spec.ts`): a stand-in shell installed with `addInitScript`
   records what the page posts, and the journey speaks for the shell with `ltw-native` events; it owns
   the `native` sign-in campaign. The apps themselves are checked on the simulator and the emulator.
+- Client error reports (ADR 0073 §1, Stage 800): `client-errors.spec.ts` owns `ui-troubles` (and
+  `ui-troubles-ipad` in WebKit, `ui-troubles-ru`), `client-errors-screens.spec.ts` the `troubles`
+  sign-in campaign with a paired TV. A screen is broken on purpose by a route that hands back a
+  body no component can draw (a chat message without fields, a null cast) — the one route
+  interception, and a real render error in the real boundary. An error thrown by `page.evaluate`
+  would not be reported: it names no script of the application. What the DM has looked at is kept
+  in `localStorage` (`ltw.troubles-seen:<campaign>`).
 - Small comforts (ADR 0072 §3, Stage 790): `comforts.spec.ts` owns `ui-comforts` (and
   `ui-comforts-ipad` in WebKit), `comforts-screens.spec.ts` the `comforts` sign-in campaign with a
   paired TV. The break reminder's count is the DM's browser's own (`ltw.break:<campaign>` in

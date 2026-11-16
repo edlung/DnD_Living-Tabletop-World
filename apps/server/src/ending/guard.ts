@@ -18,6 +18,8 @@ export const OPEN_WHEN_FINISHED: ReadonlySet<string> = new Set([
   '/campaigns/:campaignId/chat',
   // Applause for the last page (ADR 0072 §3): table talk without words; nothing is stored.
   '/campaigns/:campaignId/cheers',
+  // The DM clears what broken screens reported (ADR 0073 §1): operations data, not play.
+  '/campaigns/:campaignId/client-errors/clear',
   // The table's screens: the stars and the book may be shown, a screen paired or put away.
   '/campaigns/:campaignId/display/cast',
   '/campaigns/:campaignId/displays',

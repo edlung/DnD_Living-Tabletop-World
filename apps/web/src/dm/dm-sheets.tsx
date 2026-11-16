@@ -1,5 +1,6 @@
 import type { EncounterView, EntityKind, EntityRef, Weather } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
+import { useCallback } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { AuthoringPanel } from '../authoring/authoring-panel.tsx';
@@ -8,7 +9,9 @@ import { DmCombatControls } from '../combat/dm-controls.tsx';
 import type { StandIn } from '../combat/stand-in.ts';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
 import { ImagesSheet } from '../images/images-sheet.tsx';
+import { TroubleList } from '../report/screen-troubles.tsx';
 import { useSignInKind } from '../session/sign-in-kind.ts';
+import { useScreenRequest } from '../shell/requests.ts';
 import { Sheet } from '../shell/sheet.tsx';
 import type { Shell } from '../shell/use-shell.ts';
 import { DmHistory } from './dm-history.tsx';
@@ -77,6 +80,14 @@ export function DmSheets({
   const t = useT();
   const shown = authoring.proposal?.proposal.proposalId;
   const invitations = useSignInKind() === 'session';
+  // The notice of a screen that broke asks for its list (docs/adr/0073-table-ideas.md §1).
+  const { openSheet } = shell;
+  useScreenRequest(
+    'screen-troubles',
+    useCallback(() => {
+      openSheet('session');
+    }, [openSheet]),
+  );
   return (
     <>
       <Sheet
@@ -109,6 +120,9 @@ export function DmSheets({
         open={shell.sheet === 'session'}
         onClose={shell.closeSheet}
       >
+        {/* What this table's screens reported when they broke (docs/adr/0073-table-ideas.md §1):
+            first, since the notice over the stage sends the DM here for it. */}
+        <TroubleList api={api} open={shell.sheet === 'session'} />
         <SessionSheet
           api={api}
           open={shell.sheet === 'session'}

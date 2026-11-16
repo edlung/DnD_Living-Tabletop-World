@@ -13,6 +13,7 @@ import {
   type AppDependencies,
 } from '../http/app.ts';
 import { memoryCheers } from '../cheers/cheer-routes.ts';
+import { memoryClientErrors } from '../client-errors/client-error-routes.ts';
 import { memoryLobby } from '../table/table-state.ts';
 import { createLogger } from '../platform/logging/logger.ts';
 import { fingerprintSubscription } from './fingerprint.ts';
@@ -65,6 +66,8 @@ export function buildLiveApp(
     ending: deps.ending ?? memoryEnding(),
     // And one board of cheers, so applause reaches every screen (ADR 0072 §3).
     cheers: deps.cheers ?? memoryCheers(),
+    // And one list of what broken pages reported, so a report signals the DM (ADR 0073 §1).
+    clientErrors: deps.clientErrors ?? memoryClientErrors(),
     presence: registry,
   };
   const app = buildApp(shared);

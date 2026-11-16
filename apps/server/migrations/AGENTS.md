@@ -83,6 +83,12 @@ row while it is finished (`ltw_campaign_endings`, deleted when the DM reopens it
 keepsake (`ltw_keepsakes`): table data, not canonical state. Additive: an older build leaves both
 tables alone, and plays a finished campaign on — it knows nothing of its end.
 
+Stage 800 (ADR 0073 §1): `0044_client_errors.sql` keeps what a broken page told this server
+(`ltw_client_errors`): fixed fields only — no message, no address, no name — one row a distinct
+report of a campaign or of none, counted when seen again, removed after thirty days and by the
+DM's word. Operations data, not canonical state, and left behind when a campaign moves. Additive:
+an older build leaves the table alone.
+
 Stage 680b (ADR 0058 §3–4): `0036_dm_library.sql` keeps the DM's library beside the world — handouts
 kept for later and random tables, one row an entry (its body at most 64 KB), replaced on save and
 deleted on the DM's word; a kept handout notes when it was last given. DM data, not canonical state:

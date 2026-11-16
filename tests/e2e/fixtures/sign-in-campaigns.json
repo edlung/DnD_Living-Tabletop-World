@@ -42,5 +42,6 @@
   "ending": "ui-signin-ending",
   "comforts": "ui-signin-comforts",
   "keepsakes": "ui-signin-keepsakes",
-  "keepsakesIpad": "ui-signin-keepsakes-ipad"
+  "keepsakesIpad": "ui-signin-keepsakes-ipad",
+  "troubles": "ui-signin-troubles"
 }

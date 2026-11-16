@@ -10,6 +10,7 @@ import { AnswerCheck } from '../dice/own-dice.tsx';
 import { useDiceSettings } from '../dice/settings.ts';
 import { useDiceTable } from '../dice/table.tsx';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
+import { TroubleNotice } from '../report/screen-troubles.tsx';
 import { RestBanner } from '../rest/sheet-rest.tsx';
 import { nativeHaptic } from '../native/signals.ts';
 import { LobbyBanner } from '../session/lobby-banner.tsx';
@@ -97,6 +98,8 @@ export function TableAsks({
       />
       {/* The DM's break reminder (docs/adr/0072-keepsakes.md §3): off unless the DM asked. */}
       {isDm && <BreakReminder api={api} />}
+      {/* What this table's screens reported when they broke (docs/adr/0073-table-ideas.md §1). */}
+      {isDm && <TroubleNotice api={api} />}
       <RestBanner
         isDm={isDm}
         actorId={actorId}

@@ -105,6 +105,8 @@ describe('the coverage inventory', () => {
       '/campaigns/ravenford/chronicle/suggestions',
       '/campaigns/ravenford/dm/history',
       '/campaigns/ravenford/assets',
+      // What this table's screens reported when they broke (ADR 0073 §1): the DM's alone.
+      '/campaigns/ravenford/client-errors',
       '/campaigns/ravenford/entities/mira-vale/knowledge ?',
       '/campaigns/ravenford/entities/mira-vale/presentation ?',
       '/campaigns/ravenford/merchants/mira-vale ?',

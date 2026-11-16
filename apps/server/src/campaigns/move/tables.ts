@@ -326,6 +326,7 @@ export const LEFT_BEHIND: Readonly<Record<string, string>> = {
   ltw_workshop_campaign_activations: 'a campaign published from the workshop does not move yet',
   ltw_campaign_initial_content: 'a campaign published from the workshop does not move yet',
   ltw_campaign_moves: "this server's own record of what moved away and back",
+  ltw_client_errors: "what this server's own client reported when it broke: operations data",
 };
 
 export const movedTable = (name: string): MovedTable | undefined =>

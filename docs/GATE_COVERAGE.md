@@ -930,3 +930,27 @@ campaign, a hero the party has not met when the DM had chosen a keepsake for one
 leaves that keepsake out (`apps/server/src/accounts/finished-campaigns.test.ts`, which fails
 without the fix). The table of every read and its tests is in `reports/STAGE_799_COMPLETION.md`.
 
+## Stage 800: client error reports (2026-11-16)
+
+Stage 800 (`docs/adr/0073-table-ideas.md` §1) lets a broken page tell the family's own server
+what broke, in fixed fields, and shows the DM a list.
+
+- Boundary: one new write, `POST /client-errors`, open to anyone who can load the page (a table
+  display too — its one write), and one new read, `GET …/client-errors`, the campaign's DM's
+  alone (404 for anyone else, as the DM's notes are). A report is enumerations, numbers and up to
+  three script file names of a strict pattern: no message, no address, no name, no account, no
+  character, nothing read from the world — so nothing of a perspective can travel in one. A
+  campaign is believed only for a member of it, from the sender's own credential. The read is in
+  the live inventory for the DM only: a player's stream is not signalled by a report.
+- Deterministic regressions: `apps/server/src/client-errors/client-error-routes.test.ts` (each
+  sender; fields refused, a message among them; the body's size; the limits; the DM's read and
+  clear and nobody else's; no secret marker and no actor in the list; a table display; a
+  session's claim on another campaign; the live signal to the DM and no player),
+  `client-error-store.test.ts` and `client-error-store.integration.test.ts` (PostgreSQL held to
+  the in-memory semantics; a row that says otherwise refused by the table's own checks),
+  `live/inventory.test.ts`, `campaigns/move/tables.integration.test.ts` (left behind, with its
+  reason), `apps/web/src/report/report.test.ts` (a message never travels; a frame of another
+  origin is dropped), `reporter.test.ts` (what is sent and what never is; a persona's token is a
+  header, never in the body), `trouble-words.test.ts` (the DM's words are the application's own
+  for every value), the journeys `tests/e2e/client-errors.spec.ts` (the report as sent, against
+  the forbidden markers and the typed chat line) and `client-errors-screens.spec.ts`.
