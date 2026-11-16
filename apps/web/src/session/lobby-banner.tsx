@@ -1,6 +1,6 @@
 import type { LobbyResponse } from '@ltw/contracts';
 import { useLanguage, useT } from '@ltw/ui';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
@@ -31,11 +31,14 @@ export function LobbyBanner({
   isDm,
   onOpenChronicle,
   onOpenBook,
+  beside,
 }: {
   readonly api: WorldApi;
   /** The acting character; none, no player's banner. */
   readonly actorId: string | null;
   readonly isDm: boolean;
+  /** A player's own small button for a game in play ("What can I do?"), beside the pause's. */
+  readonly beside?: ReactNode;
   /** Opens the book at a chapter. */
   readonly onOpenChronicle: (chronicleId: string) => void;
   /** Opens the campaign's whole book. */
@@ -93,7 +96,10 @@ export function LobbyBanner({
     return (
       <>
         <AgreementCard api={api} characterId={actorId} />
-        <PauseAsk api={api} />
+        <div className="quiet-row">
+          {beside}
+          <PauseAsk api={api} />
+        </div>
       </>
     );
   }
@@ -134,6 +140,8 @@ export function LobbyBanner({
           </>
         )}
       </div>
+      {/* Paused, the hint still answers; the way to a pause has nothing to ask. */}
+      {session !== null && beside !== undefined && <div className="quiet-row">{beside}</div>}
       {/* A server from before the date sends none. */}
       {session === null && lobby.resource.value.nextGame && (
         <NextGameLine

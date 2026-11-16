@@ -1,6 +1,6 @@
 import type { EncounterView } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { BreakReminder } from '../comforts/break-reminder.tsx';
@@ -43,6 +43,7 @@ export function TableAsks({
   onOpenChronicle,
   onOpenBook,
   onReadHandout,
+  beside,
 }: {
   readonly api: WorldApi;
   readonly isDm: boolean;
@@ -60,6 +61,8 @@ export function TableAsks({
   readonly onOpenBook: () => void;
   /** Opens a handout where it is read (the Journal). */
   readonly onReadHandout: (handoutId: string) => void;
+  /** A player's own small button while a game plays ("What can I do?", ADR 0073 §3). */
+  readonly beside?: ReactNode;
 }) {
   const t = useT();
   const table = useDiceTable();
@@ -96,6 +99,7 @@ export function TableAsks({
         isDm={isDm}
         onOpenChronicle={onOpenChronicle}
         onOpenBook={onOpenBook}
+        beside={beside}
       />
       {/* A player's quiet request for a pause (docs/adr/0073-table-ideas.md §2): the DM's alone. */}
       {isDm && <PauseAsks api={api} />}

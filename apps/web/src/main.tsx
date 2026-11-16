@@ -45,6 +45,7 @@ import './i18n/ru-privacy.ts';
 import './i18n/ru-comforts.ts';
 import './i18n/ru-report.ts';
 import './i18n/ru-pause.ts';
+import './i18n/ru-hint.ts';
 import { applyTextSize } from './dice/settings.ts';
 import { DisplayApp } from './display/display-app.tsx';
 import { RootBoundary } from './report/broken-page.tsx';

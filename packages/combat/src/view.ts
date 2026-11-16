@@ -3,6 +3,7 @@ import {
   effectiveMaximum,
   type ConditionNoteView,
   type EncounterCombatantView,
+  type EncounterTurnView,
   type EncounterView,
   type Battlefield,
 } from '@ltw/contracts';
@@ -12,6 +13,7 @@ import {
   hiddenByFog,
   knownEntityIds,
   projectionPartyMemberIds,
+  type CombatantRecord,
   type ResolvedPerspective,
   type EncounterState,
   type WorldState,
@@ -27,9 +29,27 @@ import {
   hitPoints,
   knockedOutOf,
   sizeOf,
+  speedOf,
   speedsOf,
   vitalsOf,
+  type Vitals,
 } from './vitals.ts';
+
+/** What a combatant has left this turn (docs/adr/0073-table-ideas.md §3), from the rules' record. */
+function turnLeft(combatant: CombatantRecord, vitals: Vitals, own: boolean): EncounterTurnView {
+  const { turn } = combatant;
+  return {
+    own,
+    action: own && !turn.actionUsed,
+    bonusAction: own && !turn.bonusActionUsed,
+    reaction: turn.reactionAvailable,
+    // Every foot this turn counts against its speed; Dash adds the speed once more (movement.ts).
+    movementLeftFt: own
+      ? Math.max(0, speedOf(vitals) + (turn.dashFt ?? 0) - turn.movementUsedFt)
+      : 0,
+    attacksLeft: own ? turn.attacksRemaining : 0,
+  };
+}
 
 /**
  * The encounter as a perspective sees it (docs/adr/0015-combat-engine.md §6).
@@ -220,6 +240,12 @@ export function encounterView(
                 trigger: combatant.turn.readied.trigger,
               },
             }
+          : {}),
+        // What is left of its turn: the DM's, its own player's, and the player's whose character
+        // commands it (docs/adr/0073-table-ideas.md §3) — never the party's shared view.
+        ...(thing === undefined &&
+        (dm || (holder !== null && (combatant.entityId === holder || commander === holder)))
+          ? { turn: turnLeft(combatant, vitals, current.entityId === combatant.entityId) }
           : {}),
         ...(dm && thing === undefined
           ? { initiative: { roll, modifier, total, ...(surprised ? { surprised } : {}) } }

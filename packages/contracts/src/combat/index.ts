@@ -76,6 +76,7 @@ export {
 export type {
   ConditionNoteView,
   EncounterCombatantView,
+  EncounterTurnView,
   EncounterResponse,
   EncounterSuggestionResponse,
   EncounterView,

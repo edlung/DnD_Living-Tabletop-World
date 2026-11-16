@@ -3,7 +3,7 @@ import { resolvePerspective, type Actor, type WorldState } from '@ltw/domain';
 import { describe, expect, it } from 'vitest';
 
 import { shamanCastsAtElowen } from './testing/reactions.ts';
-import { DM, ELOWEN, PLAYER, RAIDER_1, roadWorld, startAmbush } from './testing/road.ts';
+import { DM, ELOWEN, PLAYER, RAIDER_1, SHAMAN, roadWorld, startAmbush } from './testing/road.ts';
 import { encounterView } from './view.ts';
 
 /**
@@ -48,5 +48,77 @@ describe('the party’s view of a fight', () => {
     expect(seen(state, DISPLAY, { kind: 'PARTY' })).toEqual(party);
     expect(seen(state, PLAYER, { kind: 'PUBLIC' })).toBeNull();
     expect(seen(state, DM, { kind: 'DM' })?.combatants.every((c) => 'initiative' in c)).toBe(true);
+  });
+});
+
+/**
+ * What is left of a turn (docs/adr/0073-table-ideas.md §3): a character's own player reads it,
+ * and the DM everyone's; the party's shared view and the table's display read nobody's.
+ */
+describe('what is left of a turn', () => {
+  const act = (action: string) => ({ type: 'TakeAction', combatantId: ELOWEN, action });
+  const turnOf = (view: ReturnType<typeof seen>, id: string) =>
+    view?.combatants.find((c) => c.entity.entityId === id)?.turn;
+
+  it('is the acting character’s own: an action, a bonus action, a reaction, her speed', async () => {
+    const world = await roadWorld();
+    await startAmbush(world);
+    const state = await world.state();
+    expect(turnOf(seen(state, PLAYER, { kind: 'PLAYER' }), ELOWEN)).toEqual({
+      own: true,
+      action: true,
+      bonusAction: true,
+      reaction: true,
+      movementLeftFt: 30,
+      attacksLeft: 0,
+    });
+  });
+
+  it('follows what she spends: feet moved, the action, Dash’s second speed', async () => {
+    const world = await roadWorld();
+    await startAmbush(world);
+    const north = [
+      { x: 2, y: 5 },
+      { x: 2, y: 4 },
+    ];
+    await world.submit({ type: 'MoveCombatant', combatantId: ELOWEN, path: north }, PLAYER);
+    const moved = turnOf(seen(await world.state(), PLAYER, { kind: 'PLAYER' }), ELOWEN);
+    expect(moved).toMatchObject({ action: true, movementLeftFt: 20 });
+    await world.submit(act('dash'), PLAYER);
+    const dashed = turnOf(seen(await world.state(), PLAYER, { kind: 'PLAYER' }), ELOWEN);
+    expect(dashed).toMatchObject({ action: false, bonusAction: true, movementLeftFt: 50 });
+  });
+
+  it('is nothing to do off her turn but the reaction', async () => {
+    const world = await roadWorld();
+    await startAmbush(world);
+    await world.submit({ type: 'EndTurn', combatantId: ELOWEN }, PLAYER);
+    expect(turnOf(seen(await world.state(), PLAYER, { kind: 'PLAYER' }), ELOWEN)).toEqual({
+      own: false,
+      action: false,
+      bonusAction: false,
+      reaction: true,
+      movementLeftFt: 0,
+      attacksLeft: 0,
+    });
+  });
+
+  it('is nobody else’s to read: not a foe’s for a player, none for the party or the display', async () => {
+    const world = await roadWorld();
+    await startAmbush(world);
+    const state = await world.state();
+    const hers = seen(state, PLAYER, { kind: 'PLAYER' });
+    for (const foe of [RAIDER_1, SHAMAN]) expect(turnOf(hers, foe)).toBeUndefined();
+    for (const view of [
+      seen(state, PLAYER, { kind: 'PARTY' }),
+      seen(state, DISPLAY, { kind: 'PARTY' }),
+      seen(state, DM, { kind: 'PARTY' }),
+    ]) {
+      expect(view?.combatants.some((c) => 'turn' in c)).toBe(false);
+    }
+    // The DM reads everyone's.
+    const all = seen(state, DM, { kind: 'DM' });
+    expect(all?.combatants.every((c) => c.turn !== undefined)).toBe(true);
+    expect(turnOf(all, SHAMAN)).toMatchObject({ own: false, action: false, reaction: true });
   });
 });
