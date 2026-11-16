@@ -1,6 +1,7 @@
-import { expect as baseExpect, test, type Page } from '@playwright/test';
+import { expect as baseExpect, type Page } from '@playwright/test';
 
 import { expectAccessible } from './support/axe.ts';
+import { test } from './support/journey.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
 import { openSheet } from './support/shell.ts';
 

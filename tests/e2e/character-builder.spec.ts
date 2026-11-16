@@ -1,6 +1,7 @@
-import { expect as baseExpect, test, type Locator } from '@playwright/test';
+import { expect as baseExpect, type Locator } from '@playwright/test';
 
 import { expectAccessible } from './support/axe.ts';
+import { test } from './support/journey.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
 import { openCharacter, openSheet } from './support/shell.ts';
 import { SIGN_IN_CAMPAIGNS, SIGN_IN_ORIGIN, WORDS, joinAsDm } from './support/sign-in.ts';

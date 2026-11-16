@@ -1,4 +1,4 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect, type Page } from '@playwright/test';
 
 import {
   battlefield,
@@ -10,6 +10,7 @@ import {
   playerHp,
   submit,
 } from './support/combat.ts';
+import { test } from './support/journey.ts';
 import { TOKENS } from './support/session.ts';
 import { openSheet } from './support/shell.ts';
 

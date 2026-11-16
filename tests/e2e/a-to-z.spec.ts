@@ -1,4 +1,4 @@
-import { expect as baseExpect, test } from '@playwright/test';
+import { expect as baseExpect } from '@playwright/test';
 
 import {
   battlefield,
@@ -13,6 +13,7 @@ import {
   entityDetails,
   travelTo,
 } from './support/investigation.ts';
+import { test } from './support/journey.ts';
 import { takeWizardLevel } from './support/levels.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
 import { chooseLocation, closeSheet, openCharacter, openSheet } from './support/shell.ts';

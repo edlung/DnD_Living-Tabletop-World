@@ -150,9 +150,12 @@ export function SessionSheet({
                       )
                   : true;
                 // The game that was dated begins: its date has done its work (one for a later
-                // day stays).
-                const begun =
-                  table.nextGame && Date.parse(table.nextGame.at) <= Date.now() + 12 * 3_600_000;
+                // day stays). Read now: a date just changed may not have come back to the sheet.
+                const dated = await api
+                  .get<LobbyResponse>('lobby', AbortSignal.timeout(20_000))
+                  .then((now) => now.nextGame ?? null)
+                  .catch(() => table.nextGame ?? null);
+                const begun = dated && Date.parse(dated.at) <= Date.now() + 12 * 3_600_000;
                 await change(begun ? { mode, nextGame: null } : { mode });
                 if (!cast) setFailed(true);
                 onRun({ type: 'StartSession', title });

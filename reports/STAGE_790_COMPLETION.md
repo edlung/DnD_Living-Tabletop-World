@@ -89,6 +89,42 @@ unused, and none changes what was there before.
   the party rail at the largest text, and the Russian dock's short words nearly touch at 320
   pixels (both as the rail and the dock were, at a size they had not met).
 
+### In the suite itself, found through this pull request's CI
+
+The first CI runs of this pull request and of Stage 799's were red on a different journey each
+time (seven runs, eleven failures, WebKit and Chromium). None was this stage's code; three causes
+were found, and one is not explained.
+
+- **Journeys left their pages open.** Playwright closes only the `page` fixture's context. A
+  context a journey opens itself (`browser.newContext()`) lived on in the worker's browser: its
+  pages kept their live streams, and the server went on reading every view for them each second.
+  79 of the 149 specs did this, so every journey slowed the ones after it in its worker.
+  `tests/e2e/support/pages.ts` already said so and 15 specs closed their pages; the rest did not.
+  CI showed it twice: the pages of one `release.spec.ts` journey were still connected to the dev
+  server through the journey after it, and a failed one-page journey came with screenshots of pages 1, 4, 6
+  and 10. Now a spec that takes `browser` takes its `test` from `tests/e2e/support/journey.ts`,
+  which closes what the journey opened; `tests/architecture/journey-pages.test.ts` holds every
+  spec to that or to `closePages`. The whole Chromium suite here went from 335–339 of 346 in
+  38–42 minutes (three to eight journeys out of time in each run) to 345 of 346 in 28.7 minutes,
+  none out of time.
+- **The date of the next game, read stale (Stage 730).** "Start the session" decided whether the
+  date had done its work from the Session sheet's last reading of the table. A date changed a
+  moment before had not come back yet, so the session began and the date stayed — the one journey
+  left red in the run above (`next-game.spec.ts:60`, and red on both engines in pull request 43's
+  CI). The sheet now reads the table when the session starts (`apps/web/src/dm/session-sheet.tsx`).
+- **Two WebKit journeys side by side.** The `ipad` and `webkit` projects run one journey at a
+  time (`playwright.config.ts`); with it all of the iPad journeys passed in each of the four runs
+  since.
+- **Not explained: a WebKit page that reloads under its journey.** Twice here
+  (`[webkit] release.spec.ts:85`, `[ipad] evening-ritual.spec.ts:163`) and at least twice before
+  this package (`[webkit] release.spec.ts:135` on Stage 710's branch, `[ipad] dm-screen.spec.ts`
+  on `main`) a page navigated to its own address while the journey waited on an open sheet. The
+  client has no such navigation, and the dev server's dependency optimizer is ruled out (it finds
+  every dependency in its first scan). In CI the dev servers now write a `[ltw:trace]` line when
+  they tell pages to reload, send them an error, or a page comes back after a lost connection
+  (`apps/web/dev-trace.ts`), so the next time it happens the job's log says which. It has not
+  happened in the two runs since.
+
 ## Files
 
 Contracts `session/cheers.ts`. Server `src/cheers/` (`cheer-board.ts`, `cheer-routes.ts`),
@@ -178,11 +214,12 @@ them, lie over an open sheet as they did.
 
 ## Not verified, and limits
 
-- **WebKit.** No journey of this stage ran on the iPad project anywhere but in the pull
-  request's CI; `comforts.spec.ts` is in that project. Read its result there before trusting it.
-- **The whole suite on the last commit.** The whole Chromium run was on the commit before the
-  status line's fix (above); after it only the failed journeys, the stage's own and their
-  neighbours were run. CI runs the whole.
+- **WebKit, here.** This environment has no WebKit; the pull request's CI is the only word on
+  it. There `comforts.spec.ts` passed on the iPad project in every run (eight).
+- **The whole suite on the last commit, here.** The last whole Chromium run (345 of 346) was on
+  the commit before the next game's fix; after it that journey passed five times of five, and CI
+  runs the whole.
+- **Why a WebKit page reloads under its journey** (above): not found, only made visible.
 - **No human has used it**, and Part 2 was not re-read against a playtest. Whether a DM wants to
   be reminded, whether children cheer or drum on the button, whether "Largest" is large enough
   for a grandmother — unknown.

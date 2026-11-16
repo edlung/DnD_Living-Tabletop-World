@@ -1,6 +1,7 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect, type Page } from '@playwright/test';
 
 import { clickWhereShown } from './support/combat.ts';
+import { test } from './support/journey.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
 import { chooseLocation, openChronicle, openSheet } from './support/shell.ts';
 

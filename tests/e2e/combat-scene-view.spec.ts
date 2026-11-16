@@ -1,6 +1,7 @@
-import { expect, test } from '@playwright/test';
+import { expect } from '@playwright/test';
 
 import { battlefield, enterCombat, expectAccepted, submit, turnTray } from './support/combat.ts';
+import { test } from './support/journey.ts';
 import {
   bannerWords,
   expectLive,
