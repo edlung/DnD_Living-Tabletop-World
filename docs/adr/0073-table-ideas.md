@@ -417,8 +417,9 @@
   reason there is no third choice and no word of explanation to type.
 - The DM can answer for anyone and so can overwrite a player's own answer; the player sees it at
   once and can press again. Nothing records who pressed.
-- An answer given for a date that then passes stays in the table, unread, until the next date is
-  set or taken away.
+- An answer given for a date that then passes with no session begun stays in the table, unread,
+  until the next date is set or taken away (the notice says "when that game begins or the date
+  is changed or removed").
 - A build from before this section ignores the table and shows the date without answers.
 
 ## Alternatives considered

@@ -3,6 +3,7 @@ import { useT, type Translate } from '@ltw/ui';
 import { useId, useState } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
+import { Glyph } from '../visual/glyph.tsx';
 
 /**
  * "I'll come / I can't" for the next game (docs/adr/0073-table-ideas.md §10): an answer beside the
@@ -76,15 +77,16 @@ export function ComingAsk({
     <section className="coming coming--lobby" aria-label={t('Who comes to the next game')}>
       <div className="coming-ask" role="group" aria-labelledby={`${ids}-ask`}>
         <span id={`${ids}-ask`}>{t('Will you come?')}</span>
+        {/* Two equal answers: neither is the one the page would rather hear. */}
         <button
           type="button"
-          className={mine.coming === null ? 'primary-button' : undefined}
           aria-pressed={mine.coming === 'yes'}
           aria-disabled={busy}
           onClick={() => {
             answer(mine, 'yes');
           }}
         >
+          {mine.coming === 'yes' && <Glyph name="confirm" />}
           {t('I’ll come')}
         </button>
         <button
@@ -95,9 +97,13 @@ export function ComingAsk({
             answer(mine, 'no');
           }}
         >
+          {mine.coming === 'no' && <Glyph name="confirm" />}
           {t('I can’t')}
         </button>
       </div>
+      {mine.coming !== null && (
+        <p className="muted coming-yours">{t('Your answer. Press it again to take it back.')}</p>
+      )}
       <ul className="coming-lines">
         {comingLines(t, characters).map((line) => (
           <li key={line}>{line}</li>
@@ -127,11 +133,16 @@ export function ComingForDm({
   const { busy, failed, answer } = useAnswer(api, onChanged);
   if (characters.length === 0) return null;
   return (
-    <div className="coming coming--dm" role="group" aria-labelledby={`${ids}-title`}>
-      <h4 id={`${ids}-title`}>{t('Who comes')}</h4>
+    <div
+      className="coming coming--dm"
+      role="group"
+      aria-labelledby={`${ids}-title`}
+      aria-describedby={`${ids}-hint`}
+    >
+      <h4 id={`${ids}-title`}>{t('Who’s coming')}</h4>
       <p id={`${ids}-hint`} className="muted">
         {t(
-          'Everyone answers on their own screen. Answer here for someone who told you aloud. A new date asks everyone again.',
+          'Everyone answers on their own screen. Answer here for someone who told you aloud: it replaces their own answer, and they can change it. Press an answer again to clear it. A new date asks everyone again.',
         )}
       </p>
       <ul className="coming-heroes">
@@ -140,7 +151,7 @@ export function ComingForDm({
             <span className="coming-name">{entry.character.name}</span>
             <span className="coming-said">
               {entry.coming === 'yes'
-                ? t('comes')
+                ? t('coming')
                 : entry.coming === 'no'
                   ? t('can’t come')
                   : t('no answer yet')}
@@ -150,12 +161,13 @@ export function ComingForDm({
                 type="button"
                 aria-pressed={entry.coming === 'yes'}
                 aria-disabled={busy}
-                aria-label={t('{name} comes', { name: entry.character.name })}
+                aria-label={t('{name} is coming', { name: entry.character.name })}
                 onClick={() => {
                   answer(entry, 'yes');
                 }}
               >
-                {t('Comes')}
+                {entry.coming === 'yes' && <Glyph name="confirm" />}
+                {t('Coming')}
               </button>
               <button
                 type="button"
@@ -166,6 +178,7 @@ export function ComingForDm({
                   answer(entry, 'no');
                 }}
               >
+                {entry.coming === 'no' && <Glyph name="confirm" />}
                 {t('Can’t')}
               </button>
             </span>

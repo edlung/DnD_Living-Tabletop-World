@@ -179,6 +179,8 @@ export function NextGameForm({
           )}
         </p>
       )}
+      {/* Who answered the date (ADR 0073 §10), right under it. */}
+      {next && <ComingForDm api={api} characters={characters} onChanged={onChanged} />}
       <form className="hand-form" noValidate onSubmit={submit}>
         <label htmlFor={`${ids}-when`}>{t('Day and time')}</label>
         <input
@@ -238,7 +240,6 @@ export function NextGameForm({
           </p>
         )}
       </form>
-      {next && <ComingForDm api={api} characters={characters} onChanged={onChanged} />}
     </section>
   );
 }

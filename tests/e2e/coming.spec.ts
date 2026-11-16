@@ -59,7 +59,7 @@ test('a player says “I’ll come”; the DM reads it and answers for another; 
 
   // Without a date nobody is asked anything.
   const tool = sheet.getByRole('region', { name: 'The next game' });
-  await expect(tool.getByRole('group', { name: 'Who comes' })).toHaveCount(0);
+  await expect(tool.getByRole('group', { name: 'Who’s coming' })).toHaveCount(0);
   await expect(player.locator('.coming--lobby')).toHaveCount(0);
 
   await tool.getByLabel('Day and time', { exact: true }).fill(evening(6));
@@ -77,6 +77,7 @@ test('a player says “I’ll come”; the DM reads it and answers for another; 
   await yes.click();
   await expect(yes).toHaveAttribute('aria-pressed', 'true', WAIT);
   await expect(mine).toContainText(/Coming: Elowen Starwhisper/);
+  await expect(mine).toContainText('Your answer. Press it again to take it back.');
   for (const button of [yes, no]) {
     const box = await button.boundingBox();
     expect(box?.height ?? 0, 'a button a thumb can press').toBeGreaterThanOrEqual(44);
@@ -84,11 +85,11 @@ test('a player says “I’ll come”; the DM reads it and answers for another; 
   await expectAccessible(player, 'the answer given');
 
   // The DM reads it on the Session sheet, without asking anyone.
-  const who = tool.getByRole('group', { name: 'Who comes' });
+  const who = tool.getByRole('group', { name: 'Who’s coming' });
   const elowen = who.getByRole('listitem').filter({ hasText: 'Elowen Starwhisper' });
-  await expect(elowen).toContainText('comes', WAIT);
+  await expect(elowen).toContainText('coming', WAIT);
   await expect(
-    elowen.getByRole('button', { name: 'Elowen Starwhisper comes', exact: true }),
+    elowen.getByRole('button', { name: 'Elowen Starwhisper is coming', exact: true }),
   ).toHaveAttribute('aria-pressed', 'true');
   // And answers for someone who said it aloud: the player's screen reads that too.
   const brann = who.getByRole('listitem').filter({ hasText: 'Brann Ironvale' });
@@ -106,7 +107,7 @@ test('a player says “I’ll come”; the DM reads it and answers for another; 
   await expect(no).toHaveAttribute('aria-pressed', 'false', WAIT);
   await expect(elowen).toContainText('no answer yet', WAIT);
   await yes.click();
-  await expect(elowen).toContainText('comes', WAIT);
+  await expect(elowen).toContainText('coming', WAIT);
 
   // A new date asks everyone again.
   await tool.getByLabel('Day and time', { exact: true }).fill(evening(7));
@@ -120,7 +121,7 @@ test('a player says “I’ll come”; the DM reads it and answers for another; 
   // The date taken away takes the question with it.
   await tool.getByRole('button', { name: 'Remove the date', exact: true }).click();
   await expect(player.locator('.coming--lobby')).toHaveCount(0, WAIT);
-  await expect(tool.getByRole('group', { name: 'Who comes' })).toHaveCount(0);
+  await expect(tool.getByRole('group', { name: 'Who’s coming' })).toHaveCount(0);
 });
 
 test('по-русски: игрок отвечает «Приду», мастер это читает', async ({ browser }) => {
@@ -145,7 +146,7 @@ test('по-русски: игрок отвечает «Приду», масте�
   const mine = player.getByRole('region', { name: 'Кто придёт на следующую игру' });
   const ask = mine.getByRole('group', { name: 'Вы придёте?' });
   await ask.getByRole('button', { name: 'Приду', exact: true }).click();
-  await expect(mine).toContainText(/Придут: /, WAIT);
+  await expect(mine).toContainText(/Кто придёт: /, WAIT);
   await expect(ask.getByRole('button', { name: 'Не смогу', exact: true })).toBeVisible();
   await expectAccessible(player, 'вопрос под датой следующей игры');
   const who = tool.getByRole('group', { name: 'Кто придёт' });

@@ -28,9 +28,24 @@
 .coming button {
   min-height: 44px;
 }
+.coming button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+/* The answer given: a mark as well as a colour. */
 .coming button[aria-pressed='true'] {
   border-color: var(--gold-bright);
   box-shadow: inset 0 0 0 1px var(--gold-bright);
+}
+.coming button > .glyph {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  color: var(--gold-bright);
+}
+.coming-yours {
+  margin: 0;
 }
 .coming button[aria-disabled='true'] {
   opacity: 0.6;
@@ -50,7 +65,7 @@
 }
 .coming-failed {
   margin: 0;
-  color: #ffb4a8;
+  color: var(--danger);
 }
 .coming--dm h4,
 .coming--dm p {
@@ -82,6 +97,11 @@
 }
 @media (max-height: 560px) {
   .rest-banner-slot:has(.stars-card) .coming--lobby {
+    display: none;
+  }
+  /* A short screen keeps the question and puts the table's answers away. */
+  .coming--lobby .coming-lines,
+  .coming--lobby .coming-yours {
     display: none;
   }
 }

@@ -14,8 +14,8 @@ registerRussian({
     'Учётная запись: логин, который вы выбрали, хэш пароля (сам пароль — никогда) и имя, которое видит стол. Ни почты, ни телефона.',
   'Your campaigns: which ones you sit in, your characters, and each campaign’s story as it is played.':
     'Кампании: в каких вы играете, ваши персонажи и история каждой кампании по мере игры.',
-  'Whether you come to the next game, if you answered: the table reads it, and it is gone when the date changes or passes.':
-    'Придёте ли вы на следующую игру, если вы ответили: это видит весь стол, а со сменой даты или после игры ответ пропадает.',
+  'Whether you come to the next game, if you answered: the table reads it, and it is deleted when that game begins or the date is changed or removed.':
+    'Придёте ли вы на следующую игру, если вы ответили: это видит весь стол; ответ удаляется, когда игра начинается либо дату меняют или убирают.',
   'What you write and roll: your chat messages, your dice rolls, the star and the wish you write when an evening ends (the table reads your star; your wish is for the DM alone), and what your hero keeps when an adventure ends (the table reads it).':
     'Что вы пишете и бросаете: ваши сообщения в чате, броски кубиков, звезду и пожелание, которые вы пишете в конце вечера (звезду видит весь стол, пожелание — только мастер), а также то, что ваш герой берёт на память в конце приключения (это видит весь стол).',
   'Your sign-ins: when each began and when it ends, to keep you signed in. Cookies hold these sign-ins and nothing else.':
