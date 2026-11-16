@@ -1,6 +1,6 @@
 # Stage 800 completion — client error reports
 
-Pull request: https://github.com/edlung/DnD_Living-Tabletop-World/pull/PRNUM (draft, stacked on
+Pull request: https://github.com/edlung/DnD_Living-Tabletop-World/pull/49 (draft, stacked on
 the plan's, https://github.com/edlung/DnD_Living-Tabletop-World/pull/48).
 
 Work order `work-orders/STAGE_800.md`; program `docs/TABLE_IDEAS_PLAN.md` (section 800); ADR 0073
