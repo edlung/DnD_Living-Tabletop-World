@@ -79,7 +79,7 @@ def reach(cell, lane): return lane in ('M', 'N') if cell in ('M', 'N') else lane
 
 def active(b, t, cfg):
     if b['gone'] or b['drift'] or t < b['start']: return False
-    if b['aground'] and b['used'] and cfg['R_aground'] == 'spent': return False
+    if b['aground'] and b['used'] and cfg['R_aground'] == 'spent': return False  # 'stays': acts every turn
     return True
 
 def blockade_act(B, ships, t, cfg, log):
@@ -121,13 +121,13 @@ def est_captures(opt, B, t, cfg):
             if b['kind'] == 'patrol': break
     return cap
 
-def can_finish(live, tnext, st, cfg, B):
+def can_finish(live, tnext, st, cfg, B, last=6):
     """Optimistic: chain lies every remaining turn; water falls one extra step if not yet used."""
     bigs = sorted([s.row for s in live if s.size == BIG], reverse=True)
     smalls = len([s for s in live if s.size == SMALL])
     aground = any(b['aground'] and not b['drift'] and not b['gone'] for b in B)
     meter = st['meter']
-    for k in range(tnext, 7):
+    for k in range(tnext, last + 1):
         w = 3 - (k >= 3) - (k >= 5) - 1
         cap_chain = 2
         ready = [r for r in bigs if r + (k - tnext) >= 2]
@@ -165,10 +165,15 @@ def caravan_move(ships, t, chain, cfg, B, st, log):
             if b['group'] == 'sig' and st['mast_team'] and not st['sig_up']: removable = True
             if b['group'] == 'boss' and pol == 'wait' and not st['boss_out'] and not (cfg.get('fix') == 'mate' and b['kind'] == 'flag'): removable = True
     forced = not can_finish(live, t + 1, st, cfg, B)
+    # round 2 text: at 7+ the flagship is never stopped by the surrender -> try to be across before it acts
+    unstop = [b for b in B if b['kind'] == 'flag' and cfg.get('fix') == 'mate' and not b['drift'] and not b['gone']]
+    # chain crossings: at 7+ the last free turn is the one before the flagship acts
+    forced_chain = forced or bool(unstop and t == unstop[0]['start'] - 1)
     best = None
     for o in opts:
         c = est_captures(o, B, t, cfg)
-        if removable and not forced and c > 0: continue
+        chain_ships = any(x.lane == 'M' for x in o)
+        if removable and c > 0 and not (forced_chain if chain_ships else forced): continue
         v = (len(o) - c, len(o))
         if best is None or v > best[0]: best = (v, o)
     choice = best[1]
@@ -193,7 +198,7 @@ def caravan_move(ships, t, chain, cfg, B, st, log):
             if s.lane == 'N' and not shoal_future:
                 s.row = min(s.row, 1); s.lane = 'M'
             else:
-                tgt = 1 if (cfg['R_drop'] == 'any_end' and not st['sig_up']) else 2
+                tgt = 1 if not st['sig_up'] else 2
                 if s.row < tgt: s.row = min(tgt, s.row + 2)
         if s.row == 2 and not st['sig_up']:
             if r0 == 2 or cfg['R_drop'] == 'any_end': trig = True
