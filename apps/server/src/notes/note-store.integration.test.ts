@@ -64,7 +64,13 @@ async function story(store: NoteStore) {
   });
   const gone = await store.backstory(C, BRANN);
 
-  const first = await store.writeNote({ ...mine, noteId: ID(1), title: 'One', body: 'a', updatedAt: at(10) });
+  const first = await store.writeNote({
+    ...mine,
+    noteId: ID(1),
+    title: 'One',
+    body: 'a',
+    updatedAt: at(10),
+  });
   await store.writeNote({ ...mine, noteId: ID(2), title: 'Two', body: '', updatedAt: at(11) });
   // Changed: its first time stays, its place moves up.
   await store.writeNote({ ...mine, noteId: ID(1), title: 'One', body: 'b', updatedAt: at(12) });
@@ -127,7 +133,13 @@ describe('backstories and private notes on PostgreSQL', () => {
     const store = new PostgresNoteStore(pool);
     for (let index = 0; index < MAX_PLAYER_NOTES; index += 1) {
       expect(
-        await store.writeNote({ ...mine, noteId: ID(index), title: 'x', body: '', updatedAt: at(index) }),
+        await store.writeNote({
+          ...mine,
+          noteId: ID(index),
+          title: 'x',
+          body: '',
+          updatedAt: at(index),
+        }),
       ).toBe(true);
     }
     expect(

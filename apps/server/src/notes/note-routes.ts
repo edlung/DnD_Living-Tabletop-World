@@ -120,7 +120,7 @@ export function registerNoteRoutes(app: FastifyInstance, deps: NoteRouteDependen
     actorId: string,
     perspective: ResolvedPerspective,
   ): NoteOwner | null =>
-    perspective.kind === 'CHARACTER'
+    perspective.kind === 'CHARACTER' && perspective.holderId !== null
       ? { campaignId, ownerId: actorId, characterId: perspective.holderId }
       : null;
 

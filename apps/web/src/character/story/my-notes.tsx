@@ -87,9 +87,7 @@ export function MyNotes({ api }: { readonly api: WorldApi }) {
   return (
     <section className="hero-section story-section" aria-labelledby={`${ids}-title`}>
       <h3 id={`${ids}-title`}>{t('My notes')}</h3>
-      <p className="story-who">
-        {t('Only you read these: not the DM, not the other players.')}
-      </p>
+      <p className="story-who">{t('Only you read these: not the DM, not the other players.')}</p>
       {resource.status === 'error' && (
         <p role="alert" className="authoring-notice error">
           {t('Your notes could not be read. Close the sheet and open it again.')}
@@ -218,7 +216,12 @@ export function MyNotes({ api }: { readonly api: WorldApi }) {
                     onClick={() => {
                       setSaid('');
                       setState('idle');
-                      setEditing({ noteId: note.noteId, fresh: false, ...note });
+                      setEditing({
+                        noteId: note.noteId,
+                        fresh: false,
+                        title: note.title,
+                        body: note.body,
+                      });
                     }}
                   >
                     {t('Change')}

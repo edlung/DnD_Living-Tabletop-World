@@ -1,12 +1,7 @@
 import { MAX_PLAYER_NOTES } from '@ltw/contracts';
 import type pg from 'pg';
 
-import type {
-  BackstoryRecord,
-  NoteOwner,
-  NoteStore,
-  PlayerNoteRecord,
-} from './note-store.ts';
+import type { BackstoryRecord, NoteOwner, NoteStore, PlayerNoteRecord } from './note-store.ts';
 
 /** Backstories and private notes on PostgreSQL (migration 0045_backstories_and_notes.sql). */
 interface BackstoryRow {

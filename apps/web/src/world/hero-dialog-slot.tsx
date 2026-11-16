@@ -112,12 +112,7 @@ export function WorldHeroDialog({
         // (docs/adr/0073-table-ideas.md §5). Nobody else has the tab.
         shown?.kind === 'character' && (isDm || shown.entityId === actorId) ? (
           <>
-            <Backstory
-              api={api}
-              characterId={shown.entityId}
-              name={shown.name}
-              asDm={isDm}
-            />
+            <Backstory api={api} characterId={shown.entityId} name={shown.name} asDm={isDm} />
             {!isDm && <MyNotes api={api} />}
           </>
         ) : undefined
