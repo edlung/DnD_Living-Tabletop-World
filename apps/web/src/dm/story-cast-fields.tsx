@@ -48,7 +48,8 @@ export function StoryCastFields({
   const id = useId();
   const party = useMemo(() => api.as(PARTY), [api]);
   const load = useCallback(
-    (signal: AbortSignal) => party.get<ChronicleListResponse>('chronicle', signal).catch(() => null),
+    (signal: AbortSignal) =>
+      party.get<ChronicleListResponse>('chronicle', signal).catch(() => null),
     [party],
   );
   const chronicle = useResource('story-cast-chapters', load);
@@ -118,8 +119,7 @@ export function StoryCastFields({
           {t('{left} characters left. Everyone at the table sees these words.', {
             left: STORY_CAST_CHARS - text.length,
           })}
-          {lines > LINES &&
-            ` ${t('So many lines may not fit a screen: show them in two parts.')}`}
+          {lines > LINES && ` ${t('So many lines may not fit a screen: show them in two parts.')}`}
         </p>
       </div>
       {offered.length > 0 && (

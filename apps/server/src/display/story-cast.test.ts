@@ -1,4 +1,9 @@
-import { STORY_CAST_CHARS, castSchema, type CastResponse, type DisplayPairingResponse } from '@ltw/contracts';
+import {
+  STORY_CAST_CHARS,
+  castSchema,
+  type CastResponse,
+  type DisplayPairingResponse,
+} from '@ltw/contracts';
 import { describe, expect, it } from 'vitest';
 
 import { seededEngine } from '../testing/ravenford-app.ts';

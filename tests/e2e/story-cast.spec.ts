@@ -36,7 +36,9 @@ test('the DM shows one picture and the words read aloud', async ({ browser }) =>
   await expect(tv.locator('.display-cast')).toBeVisible(LIVE);
 
   const form = screen.getByRole('region', { name: 'What the screens show' });
-  await form.getByRole('radio', { name: 'A picture with words to read aloud', exact: true }).check();
+  await form
+    .getByRole('radio', { name: 'A picture with words to read aloud', exact: true })
+    .check();
   // Words are needed; a picture is not.
   await form.getByRole('button', { name: 'Show on the screens', exact: true }).click();
   await expect(form.getByRole('alert')).toHaveText('Write the words first.');
@@ -60,9 +62,9 @@ test('the DM shows one picture and the words read aloud', async ({ browser }) =>
   expect(box?.width).toBe(1280);
   expect(box?.height).toBe(720);
   // Nothing runs off the screen.
-  expect(
-    await tv.evaluate(() => document.documentElement.scrollHeight <= window.innerHeight),
-  ).toBe(true);
+  expect(await tv.evaluate(() => document.documentElement.scrollHeight <= window.innerHeight)).toBe(
+    true,
+  );
   await expectAccessible(tv, 'the story cast on the table’s screen');
 
   // Words alone: the game's own art stands behind them.
@@ -73,7 +75,10 @@ test('the DM shows one picture and the words read aloud', async ({ browser }) =>
   await expect(story.locator('img.display-story-art')).toHaveAttribute('alt', '');
 
   // A riddle of twelve short lines: the form warns, and the screen still holds every line.
-  const verse = Array.from({ length: 12 }, (_, index) => `Line ${String(index + 1)} of the riddle,`);
+  const verse = Array.from(
+    { length: 12 },
+    (_, index) => `Line ${String(index + 1)} of the riddle,`,
+  );
   await words.fill(verse.join('\n'));
   await expect(form).toContainText('So many lines may not fit a screen: show them in two parts.');
   await form.getByRole('button', { name: 'Show on the screens', exact: true }).click();
@@ -82,14 +87,16 @@ test('the DM shows one picture and the words read aloud', async ({ browser }) =>
   const first = await story.locator('p').first().boundingBox();
   const last = await story.locator('p').last().boundingBox();
   expect(first?.y ?? -1, 'the first line is on the screen').toBeGreaterThanOrEqual(0);
-  expect((last?.y ?? 0) + (last?.height ?? 0), 'the last line is on the screen').toBeLessThanOrEqual(
-    720,
-  );
+  expect(
+    (last?.y ?? 0) + (last?.height ?? 0),
+    'the last line is on the screen',
+  ).toBeLessThanOrEqual(720);
 });
 
 test('по-русски: картинка со словами', async ({ browser }) => {
   test.setTimeout(120_000);
-  const dm = await freshPage(browser);
+  // The sign-in screen speaks the browser's language; the table, the campaign's.
+  const dm = await freshPage(browser, { locale: 'ru-RU' });
   await joinAsDm(dm, SIGN_IN_CAMPAIGNS.storyCastRu, 0, WORDS.ru);
   await openSheet(dm, 'Экран стола');
   const form = dm.locator('#sheet-screen').getByRole('region', { name: 'Что показывают экраны' });
