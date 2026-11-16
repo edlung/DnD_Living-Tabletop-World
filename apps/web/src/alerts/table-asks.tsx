@@ -1,5 +1,4 @@
 import type { EncounterView } from '@ltw/contracts';
-import { FIGHT_QUIET_ID } from '../world/fight-quiet.ts';
 import { useT } from '@ltw/ui';
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 
@@ -103,7 +102,6 @@ export function TableAsks({
         onOpenChronicle={onOpenChronicle}
         onOpenBook={onOpenBook}
         beside={beside}
-        fightSlot={encounter === null ? null : FIGHT_QUIET_ID}
       />
       {/* A player's quiet request for a pause (docs/adr/0073-table-ideas.md §2): the DM's alone. */}
       {isDm && <PauseAsks api={api} />}
