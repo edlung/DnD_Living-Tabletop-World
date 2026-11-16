@@ -16,8 +16,8 @@ let app: FastifyInstance;
 const BASE = '/campaigns/ravenford';
 const ELOWEN = 'elowen-starwhisper';
 const BRANN = 'brann-ironvale';
-// The DM's secret (knowledge-boundary.json): no player's lobby lists it.
-const HIDDEN = 'character-hidden-witness';
+// A character the DM made and the party has never met: no player's lobby lists it.
+const HIDDEN = 'b27fefda-3a9e-416a-8580-8ab36924f200';
 const HOUR = 3_600_000;
 const inHours = (hours: number) => new Date(Date.now() + hours * HOUR).toISOString();
 
@@ -126,6 +126,23 @@ describe('“I’ll come / I can’t”', () => {
 
   it('tells no player of a character they do not know', async () => {
     await setDate({ at: inHours(48), note: '' });
+    const made = await post(
+      app,
+      `${BASE}/commands`,
+      {
+        commandId: 'coming.hidden-character',
+        command: {
+          type: 'CreateEntity',
+          entityId: HIDDEN,
+          kind: 'character',
+          name: 'Veiled Archivist Q7',
+          description: 'Unknown to the party.',
+          existsSince: null,
+        },
+      },
+      TOKENS.dm,
+    );
+    expect(made.json()).toMatchObject({ status: 'accepted' });
     // The DM may answer for anyone, a character the party has never met included…
     expect((await say(HIDDEN, 'yes', 'DM', TOKENS.dm)).statusCode).toBe(204);
     expect((await answers('DM', TOKENS.dm))[HIDDEN]).toBe('yes');
@@ -133,6 +150,7 @@ describe('“I’ll come / I can’t”', () => {
     for (const perspective of ['PLAYER', 'PARTY']) {
       const read = await get(app, `${BASE}/lobby?perspective=${perspective}`, TOKENS.player);
       expect(read.body, perspective).not.toContain(HIDDEN);
+      expect(read.body, perspective).not.toContain('Veiled');
     }
     // A player cannot learn whether such a character exists by answering for it.
     expect((await say(HIDDEN, 'yes')).statusCode).toBe(403);
