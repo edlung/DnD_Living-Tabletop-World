@@ -27,6 +27,7 @@ import {
   exhaustionOf,
   has,
   hitPoints,
+  incapacitated,
   knockedOutOf,
   sizeOf,
   speedOf,
@@ -38,16 +39,20 @@ import {
 /** What a combatant has left this turn (docs/adr/0073-table-ideas.md §3), from the rules' record. */
 function turnLeft(combatant: CombatantRecord, vitals: Vitals, own: boolean): EncounterTurnView {
   const { turn } = combatant;
+  // What the rules would refuse (actions.ts, movement.ts) is not offered as left.
+  const held = incapacitated(vitals);
+  const free = own && !held;
   return {
     own,
-    action: own && !turn.actionUsed,
-    bonusAction: own && !turn.bonusActionUsed,
-    reaction: turn.reactionAvailable,
+    action: free && !turn.actionUsed,
+    bonusAction: free && !turn.bonusActionUsed,
+    reaction: !held && turn.reactionAvailable,
     // Every foot this turn counts against its speed; Dash adds the speed once more (movement.ts).
-    movementLeftFt: own
+    movementLeftFt: free
       ? Math.max(0, speedOf(vitals) + (turn.dashFt ?? 0) - turn.movementUsedFt)
       : 0,
-    attacksLeft: own ? turn.attacksRemaining : 0,
+    attacksLeft: free ? turn.attacksRemaining : 0,
+    incapacitated: held,
   };
 }
 

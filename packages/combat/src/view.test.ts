@@ -71,6 +71,7 @@ describe('what is left of a turn', () => {
       reaction: true,
       movementLeftFt: 30,
       attacksLeft: 0,
+      incapacitated: false,
     });
   });
 
@@ -100,7 +101,37 @@ describe('what is left of a turn', () => {
       reaction: true,
       movementLeftFt: 0,
       attacksLeft: 0,
+      incapacitated: false,
     });
+  });
+
+  it('is nothing at all while a condition holds her: what the rules would refuse is not offered', async () => {
+    const world = await roadWorld();
+    await startAmbush(world);
+    await world.dm({
+      type: 'SetCondition',
+      targetId: ELOWEN,
+      condition: 'stunned',
+      applied: true,
+      reason: 'The table says so',
+    });
+    const held = turnOf(seen(await world.state(), PLAYER, { kind: 'PLAYER' }), ELOWEN);
+    expect(held).toEqual({
+      own: true,
+      action: false,
+      bonusAction: false,
+      reaction: false,
+      movementLeftFt: 0,
+      attacksLeft: 0,
+      incapacitated: true,
+    });
+    // The rules agree: a move and an action are refused.
+    const move = await world.submit(
+      { type: 'MoveCombatant', combatantId: ELOWEN, path: [{ x: 2, y: 5 }] },
+      PLAYER,
+    );
+    expect(move.status).toBe('rejected');
+    expect((await world.submit(act('dodge'), PLAYER)).status).toBe('rejected');
   });
 
   it('is nobody else’s to read: not a foe’s for a player, none for the party or the display', async () => {

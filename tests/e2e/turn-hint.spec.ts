@@ -32,7 +32,9 @@ const hintButton = (page: Page) =>
   page.getByRole('button', { name: 'What can I do?', exact: true });
 const hint = (page: Page) => page.locator('dialog.hint-dialog');
 const line = (page: Page, title: string | RegExp) =>
-  hint(page).locator('.hint-line').filter({ has: page.getByRole('heading', { name: title }) });
+  hint(page)
+    .locator('.hint-line')
+    .filter({ has: page.getByRole('heading', { name: title }) });
 
 async function openHint(page: Page): Promise<void> {
   await hintButton(page).click();
@@ -58,11 +60,11 @@ test('on her turn the hint says what is left, as she spends it; then that she wa
   await openHint(page);
   await expect(hint(page).getByRole('heading', { level: 2 })).toHaveText('It is your turn');
   await expect(line(page, /^Your movement/)).toContainText(
-    'Up to 30 ft left. Tap a square on the map to go there.',
+    'Up to 30 ft left. Press a square on the map to go there.',
   );
   const action = line(page, /^One action/);
   await expect(action).toContainText('You can');
-  await expect(action).toContainText('At an enemy: attack, or cast a spell.');
+  await expect(action).toContainText('At an enemy: attack — or a spell, if your hero has one.');
   // Her own options, as the rules list them now, in plain words.
   await expect(action).toContainText('Dodge — be harder to hit until your next turn');
   await expect(action).toContainText('Dash — move once more this turn');
@@ -128,7 +130,7 @@ test('outside a fight the hint names the place and leads to Places', async ({ br
     'What you can do at Old Trade Road',
     WAIT,
   );
-  await expect(line(page, /^Look around/)).toContainText('Tap a person or a thing on the scene');
+  await expect(line(page, /^Look around/)).toContainText('Press a person or a thing on the scene');
   await expect(line(page, /^Something else\?/)).toBeVisible();
   await expectAccessible(page, 'the hint outside a fight');
   await line(page, /^Go somewhere/)

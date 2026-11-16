@@ -12,6 +12,7 @@ import { useResource } from '../api/resource.ts';
 import { labelsOf } from '../combat/labels.ts';
 import { Glyph } from '../visual/glyph.tsx';
 import { IconButton } from '../visual/icon-button.tsx';
+import { useScrollEdges } from '../visual/scroll-edges.ts';
 import { fightHint, sceneHint, type HintLine, type HintPage, type HintWay } from './turn-hint.ts';
 
 const WAY_WORDS: Readonly<Record<HintWay, string>> = {
@@ -50,6 +51,8 @@ export function TurnHintButton({
   const [open, setOpen] = useState(false);
   const dialog = useRef<HTMLDialogElement>(null);
   const opener = useRef<HTMLButtonElement>(null);
+  // Where a line pointed: the hint closes first, and the place it opens takes the focus.
+  const going = useRef<HintWay | null>(null);
   useEffect(() => {
     const element = dialog.current;
     if (!element) return;
@@ -74,9 +77,15 @@ export function TurnHintButton({
         ref={dialog}
         className="guide-dialog hint-dialog"
         aria-labelledby={`${ids}-title`}
+        // Among the table's questions, which are announced as they change: the hint is a dialog
+        // of its own and is read as one.
+        aria-live="off"
         onClose={() => {
           setOpen(false);
-          opener.current?.focus();
+          const way = going.current;
+          going.current = null;
+          if (way === null) opener.current?.focus();
+          else onWay(way);
         }}
       >
         {open && (
@@ -89,8 +98,8 @@ export function TurnHintButton({
               setOpen(false);
             }}
             onWay={(way) => {
+              going.current = way;
               setOpen(false);
-              onWay(way);
             }}
           />
         )}
@@ -169,6 +178,9 @@ function HintBody({
       nearby: (value?.nearby ?? []).flatMap((place) => (place.name === null ? [] : [place.name])),
     });
   }
+  // A list longer than its screen says so at its edge (a cut without a fade reads as the end).
+  const body = useRef<HTMLElement>(null);
+  const edges = useScrollEdges(body, `${page.heading}:${String(page.lines.length)}`, 'y');
   return (
     <>
       <header className="guide-header">
@@ -177,10 +189,13 @@ function HintBody({
       </header>
       {/* It may scroll on a short screen: the keyboard reaches it. */}
       <section
+        ref={body}
         className="guide-page hint-page"
         tabIndex={0}
-        aria-labelledby={titleId}
+        aria-label={t('What can I do?')}
         aria-busy={loading}
+        data-more-before={edges.before || undefined}
+        data-more-after={edges.after || undefined}
       >
         <ul className="hint-lines">
           {page.lines.map((line) => {
@@ -197,6 +212,16 @@ function HintBody({
                     {line.examples.map((example) => (
                       <li key={example}>{example}</li>
                     ))}
+                    {line.own && line.own.length > 0 && (
+                      <li>
+                        {t('On your own hero:')}
+                        <ul>
+                          {line.own.map((option) => (
+                            <li key={option}>{option}</li>
+                          ))}
+                        </ul>
+                      </li>
+                    )}
                   </ul>
                 )}
                 {line.way && (

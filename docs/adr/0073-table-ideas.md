@@ -112,13 +112,15 @@
 
 ### 3. "What can I do?" (Stage 820)
 
-1. **What it is.** While a session is open, a player's own screen has "What can I do?" beside the
-   way to a pause. It opens a short page in plain words. In a fight, on the hero's turn: what is
+1. **What it is.** While a game plays, a player's own screen has "What can I do?" beside the
+   way to a pause (not while the DM has paused it: every command waits then, and the lobby says
+   so). It opens a short page in plain words. In a fight, on the hero's turn: what is
    left — feet of movement, the action, a bonus action, the reaction, attacks an Attack action
    still holds — each marked "You can" or "Used up", with the hero's own options as the rules list
    them now and a caster's spell slots; on another's turn: whose it is (as the viewer knows them;
    not at all when the fog hides them), that the hero waits, and the reaction; down or fallen: what
-   that means. Outside a fight: the place, what a press on the scene does, the places nearby.
+   that means; held by a condition that lets it neither move nor act (Stunned, Paralyzed…): that
+   it cannot act, and nothing offered. Outside a fight: the place, what a press on the scene does, the places nearby.
    Always: "Say it aloud. The DM decides what happens: you are not limited to the buttons."
 2. **Where its words come from.** Only from what the server already answers for that character:
    the fight's view, the context of the hero itself, the hero's own sheet, its surroundings. The
@@ -127,7 +129,9 @@
    never a guess). No AI.
 3. **The one new thing a view says.** A combatant's view gains `turn`: whether it is its turn, and
    whether the action, the bonus action and the reaction are left, feet of walking speed left
-   (Dash included) and attacks left. It is the DM's to read for everyone, a character's own
+   (Dash included) and attacks left — each as nothing left while a condition holds the
+   combatant, which the view says (`incapacitated`), so the page offers nothing the rules would
+   refuse. It is the DM's to read for everyone, a character's own
    player's for that character, and a commander's player's for the creature their character
    commands. No other view carries it: not another player's, not the party's shared view, not a
    table display's. This amends ADR 0015 §6.

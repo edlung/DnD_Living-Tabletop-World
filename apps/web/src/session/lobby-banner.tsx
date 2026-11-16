@@ -140,8 +140,7 @@ export function LobbyBanner({
           </>
         )}
       </div>
-      {/* Paused, the hint still answers; the way to a pause has nothing to ask. */}
-      {session !== null && beside !== undefined && <div className="quiet-row">{beside}</div>}
+      {/* Paused, every command waits: neither the hint nor the way to a pause has anything to say. */}
       {/* A server from before the date sends none. */}
       {session === null && lobby.resource.value.nextGame && (
         <NextGameLine

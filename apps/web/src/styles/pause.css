@@ -127,7 +127,7 @@
   border: 1px solid currentcolor;
   border-radius: var(--radius-pill);
   font-family: var(--font-body, inherit);
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   font-weight: 400;
   letter-spacing: 0.02em;
 }
@@ -138,4 +138,14 @@
 .hint-line button {
   justify-self: start;
   min-height: 44px;
+}
+/* The hint's own buttons a thumb can press. */
+.hint-dialog .guide-header button,
+.hint-dialog .guide-footer button {
+  min-height: 44px;
+  min-width: 44px;
+}
+.hint-examples ul {
+  margin: 2px 0 0;
+  padding-left: 1.2rem;
 }

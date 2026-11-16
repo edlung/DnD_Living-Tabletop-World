@@ -32,6 +32,11 @@ export interface EncounterTurnView {
   readonly movementLeftFt: number;
   /** Attacks left from the Attack action it has taken (Extra Attack); 0 when none. */
   readonly attacksLeft: number;
+  /**
+   * A condition holds it (Stunned, Paralyzed…): the rules refuse its moves, actions and reactions,
+   * and everything above reads as nothing left.
+   */
+  readonly incapacitated: boolean;
 }
 
 /**

@@ -28,6 +28,11 @@ program `docs/TABLE_IDEAS_PLAN.md` (section 820); ADR 0073 §3, written with the
 - The plan's "each line leads to the control that does it" is kept for three lines only: a line
   about the map cannot press the map for the reader.
 
+- From the independent pass, taken as decisions: a hero held by a condition is offered nothing
+  (the view says `incapacitated`, and what is left reads as nothing); no hint while the game is
+  paused; the hero's own options stand each on a line of its own; "Press", as the rest of the
+  application says, not "Tap".
+
 ## Boundaries
 
 No migration, no table, no event, no command. No AI. One additive field in one view; an older

@@ -26,6 +26,8 @@ export interface HintLine {
   readonly title: string;
   readonly detail: string;
   readonly examples?: readonly string[];
+  /** What the hero can do with itself, each on a line of its own under `ownTitle`. */
+  readonly own?: readonly string[];
   readonly way?: HintWay;
 }
 
@@ -56,7 +58,7 @@ export const plainAction = (t: Translate, action: ContextAction): string => {
   return plain === undefined ? actionLabel(t, action, '', []) : t(plain);
 };
 
-/** "Level 1 — 2, level 3 — 1": the slots a caster has left; null for none to speak of. */
+/** "Level 1 ×2, level 3 ×1": the slots a caster has left; null for none to speak of. */
 export function slotsLeft(t: Translate, sheet: CharacterSheet | null): string | null {
   if (sheet === null) return null;
   const { max, expended } = sheet.spellSlots;
@@ -64,7 +66,7 @@ export function slotsLeft(t: Translate, sheet: CharacterSheet | null): string | 
   const left = max
     .map((count, index) => ({ level: index + 1, left: count - (expended[index] ?? 0), count }))
     .filter((row) => row.count > 0 && row.left > 0)
-    .map((row) => t('level {level} — {count}', { level: row.level, count: row.left }));
+    .map((row) => t('level {level} ×{count}', { level: row.level, count: row.left }));
   return left.length === 0
     ? t('No spell slots left: cantrips still work.')
     : t('Spell slots left: {slots}.', { slots: left.join(', ') });
@@ -88,7 +90,7 @@ const reactionLine = (t: Translate, ready: boolean): HintLine =>
     : {
         id: 'reaction',
         tone: 'spent',
-        title: t('Your reaction is spent'),
+        title: t('Your reaction'),
         detail: t('It comes back at the start of your next turn.'),
       };
 
@@ -114,7 +116,7 @@ export function fightHint(t: Translate, input: FightHintInput): HintPage {
         {
           id: 'watch',
           tone: 'info',
-          title: t('Watch and cheer'),
+          title: t('Watch and cheer your friends on'),
           detail: t('When your hero joins, your turn appears in the order.'),
         },
         ANYTHING(t),
@@ -145,9 +147,37 @@ export function fightHint(t: Translate, input: FightHintInput): HintPage {
           tone: 'info',
           title: t('Your hero is down, and still alive'),
           detail: t(
-            'On your turn you roll a death save: the game asks you. A friend can help you up with healing or first aid.',
+            'On your turn the game may ask you for a death save. A friend can heal you back up, or steady you with first aid.',
           ),
         },
+        ANYTHING(t),
+      ],
+    };
+  }
+  // A condition holds the hero: the rules refuse its moves, actions and reactions alike.
+  if (turn?.incapacitated === true) {
+    return {
+      heading: t('Your hero cannot act right now'),
+      lines: [
+        {
+          id: 'held',
+          tone: 'spent',
+          title: t('A condition holds your hero'),
+          detail: t(
+            'No moving, no actions, no reactions until it ends. Ask the DM how to shake it off.',
+          ),
+          way: 'character',
+        },
+        ...(mine
+          ? [
+              {
+                id: 'end',
+                tone: 'info' as const,
+                title: t('Your turn still passes'),
+                detail: t('Press “End turn”: the next one acts.'),
+              },
+            ]
+          : []),
         ANYTHING(t),
       ],
     };
@@ -182,7 +212,7 @@ export function fightHint(t: Translate, input: FightHintInput): HintPage {
             id: 'move',
             tone: 'open',
             title: t('Your movement'),
-            detail: t('Up to {feet} ft left. Tap a square on the map to go there.', {
+            detail: t('Up to {feet} ft left. Press a square on the map to go there.', {
               feet: turn.movementLeftFt,
             }),
           }
@@ -198,7 +228,7 @@ export function fightHint(t: Translate, input: FightHintInput): HintPage {
         id: 'attacks',
         tone: 'open',
         title: t('Attack again'),
-        detail: t('Attacks left with this action: {count}. Tap an enemy.', {
+        detail: t('Attacks left with this action: {count}. Press an enemy.', {
           count: turn.attacksLeft,
         }),
       });
@@ -210,19 +240,13 @@ export function fightHint(t: Translate, input: FightHintInput): HintPage {
             tone: 'open',
             title: t('One action'),
             detail: t(
-              'Tap an enemy, a friend or your own hero on the map: the buttons that appear are what you can do.',
+              'Press an enemy, a friend or your own hero on the map: the buttons that appear are what you can do.',
             ),
             examples: [
-              t('At an enemy: attack, or cast a spell.'),
-              ...(options.length > 0
-                ? [
-                    t('On your own hero: {list}.', {
-                      list: options.map((action) => plainAction(t, action)).join('; '),
-                    }),
-                  ]
-                : []),
+              t('At an enemy: attack — or a spell, if your hero has one.'),
               ...(slots === null ? [] : [slots]),
             ],
+            own: options.map((action) => plainAction(t, action)),
             way: 'rules',
           }
         : {
@@ -237,7 +261,7 @@ export function fightHint(t: Translate, input: FightHintInput): HintPage {
             tone: 'open',
             title: t('A bonus action'),
             detail: t(
-              'A quick extra that only some spells and features use. Many turns have none.',
+              'Something quick on top of your action. Only some spells and features use it; if your hero has none, skip it.',
             ),
           }
         : {
@@ -254,7 +278,7 @@ export function fightHint(t: Translate, input: FightHintInput): HintPage {
       tone: 'info',
       title: t('Move and act'),
       detail: t(
-        'Tap a square to move. Tap an enemy, a friend or your own hero: the buttons that appear are what you can do.',
+        'Press a square to move. Press an enemy, a friend or your own hero: the buttons that appear are what you can do.',
       ),
     });
   }
@@ -291,7 +315,7 @@ export function sceneHint(t: Translate, input: SceneHintInput): HintPage {
         tone: 'open',
         title: t('Look around'),
         detail: t(
-          'Tap a person or a thing on the scene: the buttons that appear are what you can do with it — talk, ask, look closer.',
+          'Press a person or a thing on the scene: the buttons that appear are what you can do with it — talk, ask, look closer.',
         ),
       },
       {

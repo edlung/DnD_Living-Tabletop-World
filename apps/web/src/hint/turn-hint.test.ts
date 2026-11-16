@@ -30,6 +30,7 @@ const FRESH: EncounterTurnView = {
   reaction: true,
   movementLeftFt: 30,
   attacksLeft: 0,
+  incapacitated: false,
 };
 
 const combatant = (
@@ -70,12 +71,16 @@ describe('the hint on your own turn', () => {
     expect(ids(page)).toEqual(['move', 'action', 'bonus', 'reaction', 'end', 'anything']);
     expect(line(page, 'move')).toMatchObject({
       tone: 'open',
-      detail: 'Up to 30 ft left. Tap a square on the map to go there.',
+      detail: 'Up to 30 ft left. Press a square on the map to go there.',
     });
     // Only what the rules call legal now is listed, in plain words.
     expect(line(page, 'action')?.examples).toEqual([
-      'At an enemy: attack, or cast a spell.',
-      'On your own hero: Dodge — be harder to hit until your next turn; Dash — move once more this turn.',
+      'At an enemy: attack — or a spell, if your hero has one.',
+    ]);
+    // Each on a line of its own.
+    expect(line(page, 'action')?.own).toEqual([
+      'Dodge — be harder to hit until your next turn',
+      'Dash — move once more this turn',
     ]);
     expect(line(page, 'reaction')?.tone).toBe('open');
   });
@@ -94,7 +99,37 @@ describe('the hint on your own turn', () => {
       expect(line(page, id)?.tone, id).toBe('spent');
     }
     expect(line(page, 'action')?.examples).toBeUndefined();
+    expect(line(page, 'action')?.own).toBeUndefined();
     expect(line(page, 'move')?.detail).toBe('No movement left this turn.');
+  });
+
+  it('offers nothing while a condition holds the hero — on her turn or another’s', () => {
+    const held = {
+      ...FRESH,
+      action: false,
+      bonusAction: false,
+      reaction: false,
+      movementLeftFt: 0,
+    };
+    const hers = fightHint(en, {
+      encounter: fight(ME, { turn: { ...held, incapacitated: true }, conditions: ['stunned'] }),
+      actorId: ME,
+      currentName: 'Elowen',
+      own: [own('dodge')],
+      sheet: null,
+    });
+    expect(hers.heading).toBe('Your hero cannot act right now');
+    // Her turn still ends by her own press.
+    expect(ids(hers)).toEqual(['held', 'end', 'anything']);
+    expect(hers.lines.some((one) => one.tone === 'open')).toBe(false);
+    const another = fightHint(en, {
+      encounter: fight(FOE, { turn: { ...held, own: false, incapacitated: true } }),
+      actorId: ME,
+      currentName: 'Raider',
+      own: null,
+      sheet: null,
+    });
+    expect(ids(another)).toEqual(['held', 'anything']);
   });
 
   it('counts the attacks an Attack action still holds', () => {
@@ -105,14 +140,14 @@ describe('the hint on your own turn', () => {
       own: null,
       sheet: null,
     });
-    expect(line(page, 'attacks')?.detail).toBe('Attacks left with this action: 1. Tap an enemy.');
+    expect(line(page, 'attacks')?.detail).toBe('Attacks left with this action: 1. Press an enemy.');
   });
 
   it('names the spell slots a caster has left', () => {
     const sheet = {
       spellSlots: { max: [4, 2, 0], expended: [2, 2, 0] },
     } as unknown as CharacterSheet;
-    expect(slotsLeft(en, sheet)).toBe('Spell slots left: level 1 — 2.');
+    expect(slotsLeft(en, sheet)).toBe('Spell slots left: level 1 ×2.');
     expect(
       slotsLeft(en, { spellSlots: { max: [2], expended: [2] } } as unknown as CharacterSheet),
     ).toBe('No spell slots left: cantrips still work.');

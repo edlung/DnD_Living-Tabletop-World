@@ -23,13 +23,18 @@ registerRussian({
   'Your reaction is ready': 'Реакция готова',
   'If something lets you react, the game asks you at once.':
     'Если появится повод ответить, игра сразу спросит вас.',
-  'Your reaction is spent': 'Реакция потрачена',
+  'Your reaction': 'Реакция',
   'It comes back at the start of your next turn.': 'Она вернётся в начале вашего следующего хода.',
   // Not in the fight, fallen, down
   'Your hero is not in this fight': 'Ваш герой не участвует в этом бою',
-  'Watch and cheer': 'Смотрите и болейте',
+  'Watch and cheer your friends on': 'Смотрите и болейте за своих',
   'When your hero joins, your turn appears in the order.':
-    'Когда герой вступит в бой, ваш ход появится в очерёдности.',
+    'Когда герой вступит в бой, ваш ход появится в порядке ходов.',
+  'Your hero cannot act right now': 'Ваш герой сейчас не может действовать',
+  'A condition holds your hero': 'Героя держит состояние',
+  'No moving, no actions, no reactions until it ends. Ask the DM how to shake it off.':
+    'Пока оно не пройдёт, нельзя ни двигаться, ни действовать, ни отвечать реакцией. Спросите мастера, как от него избавиться.',
+  'Your turn still passes': 'Ход всё равно идёт дальше',
   'Your hero has fallen': 'Ваш герой пал',
   'The story is not over': 'История не окончена',
   'Stay with the table and ask the DM what comes next.':
@@ -37,8 +42,8 @@ registerRussian({
   'It is your turn': 'Сейчас ваш ход',
   'Your hero is down': 'Ваш герой без сознания',
   'Your hero is down, and still alive': 'Ваш герой без сознания, но жив',
-  'On your turn you roll a death save: the game asks you. A friend can help you up with healing or first aid.':
-    'В свой ход вы бросаете спасбросок от смерти — игра спросит вас. Друг может поднять вас лечением или первой помощью.',
+  'On your turn the game may ask you for a death save. A friend can heal you back up, or steady you with first aid.':
+    'В свой ход игра может попросить спасбросок от смерти. Друг может поднять вас лечением или помочь первой помощью.',
   // Another's turn
   'Someone you cannot see is acting': 'Действует тот, кого вы не видите',
   'It is someone else’s turn': 'Сейчас чужой ход',
@@ -48,29 +53,30 @@ registerRussian({
     'Надпись на экране скажет, когда он наступит. А пока посмотрите на карту и подумайте.',
   // Your turn
   'Your movement': 'Движение',
-  'Up to {feet} ft left. Tap a square on the map to go there.':
+  'Up to {feet} ft left. Press a square on the map to go there.':
     'Осталось до {feet} фт. Нажмите на клетку карты, чтобы туда пойти.',
   'No movement left this turn.': 'В этом ходу движения не осталось.',
   'Attack again': 'Ещё атака',
-  'Attacks left with this action: {count}. Tap an enemy.':
+  'Attacks left with this action: {count}. Press an enemy.':
     'Этим действием осталось атак: {count}. Нажмите на врага.',
   'One action': 'Одно действие',
-  'Tap an enemy, a friend or your own hero on the map: the buttons that appear are what you can do.':
+  'Press an enemy, a friend or your own hero on the map: the buttons that appear are what you can do.':
     'Нажмите на врага, друга или своего героя на карте: появятся кнопки — это то, что вы можете сделать.',
-  'At an enemy: attack, or cast a spell.': 'С врагом: атаковать или сотворить заклинание.',
-  'On your own hero: {list}.': 'Со своим героем: {list}.',
+  'At an enemy: attack — or a spell, if your hero has one.':
+    'С врагом: атаковать — или сотворить заклинание, если оно у героя есть.',
+  'On your own hero:': 'Со своим героем:',
   'Your action is spent this turn.': 'В этом ходу действие потрачено.',
   'A bonus action': 'Бонусное действие',
-  'A quick extra that only some spells and features use. Many turns have none.':
-    'Быстрое дополнение, которое нужно лишь некоторым заклинаниям и умениям. Во многих ходах его нет.',
+  'Something quick on top of your action. Only some spells and features use it; if your hero has none, skip it.':
+    'Что-то быстрое вдобавок к действию. Оно нужно лишь некоторым заклинаниям и умениям; если у героя таких нет, пропустите.',
   'Your bonus action is spent this turn.': 'В этом ходу бонусное действие потрачено.',
   'Move and act': 'Двигайтесь и действуйте',
-  'Tap a square to move. Tap an enemy, a friend or your own hero: the buttons that appear are what you can do.':
+  'Press a square to move. Press an enemy, a friend or your own hero: the buttons that appear are what you can do.':
     'Нажмите на клетку, чтобы пойти. Нажмите на врага, друга или своего героя: появятся кнопки — это то, что вы можете сделать.',
   'Finished?': 'Закончили?',
-  'Press “End turn”: the next one acts.': 'Нажмите «Завершить ход»: действует следующий.',
+  'Press “End turn”: the next one acts.': 'Нажмите «Закончить ход»: дальше ходит следующий.',
   // Spell slots
-  'level {level} — {count}': '{level}-й уровень — {count}',
+  'level {level} ×{count}': '{level}-й уровень ×{count}',
   'No spell slots left: cantrips still work.':
     'Ячеек заклинаний не осталось; заговоры по-прежнему работают.',
   'Spell slots left: {slots}.': 'Осталось ячеек заклинаний: {slots}.',
@@ -90,7 +96,7 @@ registerRussian({
   'What you can do here': 'Что здесь можно сделать',
   'What you can do at {place}': 'Что можно сделать здесь: {place}',
   'Look around': 'Осмотритесь',
-  'Tap a person or a thing on the scene: the buttons that appear are what you can do with it — talk, ask, look closer.':
+  'Press a person or a thing on the scene: the buttons that appear are what you can do with it — talk, ask, look closer.':
     'Нажмите на человека или предмет на сцене: появятся кнопки — что с ним можно сделать: поговорить, спросить, рассмотреть.',
   'Go somewhere': 'Пойдите куда-нибудь',
   'Places shows where you can go.': 'В «Местах» видно, куда можно пойти.',
