@@ -28,6 +28,7 @@ class BoxRules:
     packet: str = "Елисей"       # who holds Efim's oilcloth packet (core hero)
     carrier: str = "Стас"
     zaslon_total: int = 99       # Заслонов за раунд на весь стол
+    kit_douse: bool = False      # round-4 text: Пелагея's field-kit gives «Сбить пламя» as a bonus action
     packet_run: bool = False     # exploit test: the packet holder runs to the goal column and waits there
     xbow_round1: bool = True     # False: crossbowmen light their bolts in round 1 and do not shoot
 
@@ -173,8 +174,15 @@ class BoxSim(P.Sim):
         h.acted = True
         rng = self.rng
         acted = False
+        # field-kit (round 4 text): Пелагея next to the box may «Сбить пламя» as a bonus action
+        bonus_used = False
+        if self.R.kit_douse and h.key == "Пелагея" and self.integ < self.R.integ and (
+                cheb(h.pos, self.efim_pos) <= 1):
+            self.douse()
+            self.stats["kit_douses"] = self.stats.get("kit_douses", 0) + 1
+            bonus_used = True
         # cleric bonus: raise a downed hero (carrier first)
-        if h.kind == "cleric" and h.hw > 0:
+        if h.kind == "cleric" and h.hw > 0 and not bonus_used:
             downs = [x for x in self.units if x.side == "H" and x.down and not x.gone and cheb(x.pos, h.pos) <= 12]
             if downs:
                 x = downs[0]

@@ -46,6 +46,12 @@ def main():
                  "пакет у Пелагеи": replace(base, packet="Пелагея"),
                  "носитель пакета бежит к вехе": replace(base, packet_run=True)}
         sizes = (5, 8)
+    elif mode == "final2":
+        base = B.BoxRules(**json.loads(sys.argv[3]))
+        rules = {"as written": base, "без бонуса укладки": replace(base, kit_douse=False),
+                 "гонец с пакетом": replace(base, packet_run=True),
+                 "пакет у Пелагеи": replace(base, packet="Пелагея")}
+        sizes = (5, 6, 7, 8)
     else:
         rules = {"final": B.BoxRules(**json.loads(sys.argv[3]))}
         sizes = (5, 6, 7, 8)
@@ -55,7 +61,7 @@ def main():
                 jobs.append((lab, r, t, n, runs, seed)); seed += 1
     with Pool() as pool:
         out = pool.map(job, jobs)
-    json.dump(out, open(f"{HERE}/box-{mode}.json", "w"), ensure_ascii=False)
+    json.dump(out, open(f"{HERE}/box-{mode}.json", "w"), ensure_ascii=False)  # final2 -> box-final2.json
     print("done", len(out))
 
 

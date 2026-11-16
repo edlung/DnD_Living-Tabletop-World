@@ -6,11 +6,10 @@
 Running 1 test using 1 worker
 
 [collection-2026__ash-testament] imported
-[collection-2026__ash-testament] activated d10717cd-47e5-4e4b-95ab-e7c8c786125b
+[collection-2026__ash-testament] activated 10ae102d-25c4-40af-b0eb-f4d361431599
 [collection-2026__ash-testament] player joined as Анфиса Рой
-[collection-2026__ash-testament] sheet opened
 [collection-2026__ash-testament] encounter started: Жезл в пепле
 [collection-2026__ash-testament] journal quests at start: 0
-  ✓  1 [chromium] › tests/e2e/zz-collection-journey.spec.ts:18:3 › table journey: collection-2026/ash-testament (27.9s)
+  ✓  1 [chromium] › tests/e2e/zz-collection-journey.spec.ts:18:3 › table journey: collection-2026/ash-testament (23.9s)
 
-  1 passed (49.3s)
+  1 passed (41.7s)
