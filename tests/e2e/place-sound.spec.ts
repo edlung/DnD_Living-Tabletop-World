@@ -48,9 +48,15 @@ test('showing a place switches its sound on, and the DM’s choice still stands 
   await form.getByRole('radio', { name: 'A place’s scene', exact: true }).check();
   // "Where the party is" names no place to keep a sound for.
   await expect(form.getByRole('group', { name: /^The sound of/ })).toHaveCount(0);
+  // And says that the place the party is in may bring its own.
+  await expect(form).toContainText(
+    'If the place the party is in has a kept sound, showing it switches that sound on.',
+  );
   await form.getByLabel('Place', { exact: true }).selectOption({ label: 'North Gate' });
   const own = form.getByRole('group', { name: 'The sound of North Gate' });
-  await expect(own).toContainText('Showing this place on the screens switches its sound on.');
+  await expect(own).toContainText(
+    'When you show this place, the table’s sound changes to what is kept here',
+  );
   const keep = own.getByRole('button', { name: 'Keep this sound for the place', exact: true });
   await expect(keep).toHaveAttribute('aria-disabled', 'true');
   await own.getByLabel('Ambience', { exact: true }).selectOption({ label: 'Rain' });
@@ -60,9 +66,12 @@ test('showing a place switches its sound on, and the DM’s choice still stands 
   // Keeping it changes nothing the table hears.
   await expect(sound(tv)).not.toHaveAttribute('data-ambience', 'rain');
 
-  // Showing the place does: the TV plays rain, and the form says the sound is on.
+  // Showing the place does: the TV plays rain, and the sheet says what changed — and goes on
+  // saying it, though the form is made anew with the cast.
   await form.getByRole('button', { name: 'Show on the screens', exact: true }).click();
-  await expect(form).toContainText('The place’s sound is on.', LIVE);
+  await expect(
+    screen.getByText('Showing the place changed the table’s sound: ambience.', { exact: true }),
+  ).toBeVisible(LIVE);
   await expect(sound(tv)).toHaveAttribute('data-ambience', 'rain', LIVE);
 
   // Session shows what plays, and the DM changes it there as before.
@@ -81,6 +90,10 @@ test('showing a place switches its sound on, and the DM’s choice still stands 
   // The kept sound is there when the place is chosen again.
   await form.getByLabel('Place', { exact: true }).selectOption({ label: 'North Gate' });
   await expect(own.getByLabel('Ambience', { exact: true })).toHaveValue('rain', LIVE);
+  // Both left as they are: the press takes the place's sound away, and says so.
+  await own.getByLabel('Ambience', { exact: true }).selectOption({ label: 'Leave as it is' });
+  await own.getByRole('button', { name: 'Remove this place’s sound', exact: true }).click();
+  await expect(own.getByRole('status')).toHaveText('Removed.', LIVE);
 });
 
 test('по-русски: звук места в форме показа', async ({ browser }) => {
@@ -96,9 +109,9 @@ test('по-русски: звук места в форме показа', async 
   // Any named place: the second choice, after "where the party is".
   await places.selectOption({ index: 1 });
   const own = form.getByRole('group', { name: /^Звук места: / });
-  await expect(own).toContainText('его звук включается сам', LIVE);
+  await expect(own).toContainText('звук стола сменится на сохранённый здесь', LIVE);
   await own.getByLabel('Фон', { exact: true }).selectOption({ label: 'Дождь' });
-  await own.getByRole('button', { name: 'Запомнить звук для места', exact: true }).click();
-  await expect(own.getByRole('status')).toHaveText('Запомнено.', LIVE);
+  await own.getByRole('button', { name: 'Сохранить звук для места', exact: true }).click();
+  await expect(own.getByRole('status')).toHaveText('Сохранено.', LIVE);
   await expectAccessible(dm, 'форма показа со звуком места');
 });

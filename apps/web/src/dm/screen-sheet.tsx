@@ -29,6 +29,8 @@ export function ScreenSheet({
 }) {
   const t = useT();
   const [round, setRound] = useState(0);
+  // What the last cast did to the table's sound (ADR 0073 §6); said here, where it stays read.
+  const [sounded, setSounded] = useState<CastResponse['sound']>(undefined);
   const loadDisplays = useCallback(
     (signal: AbortSignal) => api.get<DisplayListResponse>('displays', signal, false),
     [api],
@@ -68,9 +70,21 @@ export function ScreenSheet({
           api={api}
           current={cast.resource.value.cast}
           directory={directory}
-          onCast={changed}
+          onCast={(sound) => {
+            setSounded(sound);
+            changed();
+          }}
         />
       )}
+      <p role="status" className="place-sound-status">
+        {sounded?.ambience && sounded.music
+          ? t('Showing the place changed the table’s sound: ambience and music.')
+          : sounded?.ambience
+            ? t('Showing the place changed the table’s sound: ambience.')
+            : sounded?.music
+              ? t('Showing the place changed the table’s sound: music.')
+              : ''}
+      </p>
     </div>
   );
 }

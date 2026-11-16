@@ -39,6 +39,7 @@
 .place-sound {
   display: grid;
   gap: 8px;
+  min-inline-size: 0;
   margin: 0;
   padding: 12px;
   border: 1px solid var(--line);
@@ -51,8 +52,13 @@
 .place-sound button {
   min-height: 44px;
 }
-.place-sound button[aria-disabled='true'] {
+.place-sound select {
+  min-height: 44px;
+}
+.place-sound button[aria-disabled='true'],
+.place-sound button[aria-disabled='true']:hover {
   opacity: 0.6;
+  background: transparent;
   cursor: default;
 }
 .place-sound-status {

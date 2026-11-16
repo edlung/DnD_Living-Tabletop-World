@@ -45,24 +45,32 @@ export function PlaceSoundField({
     sounds.resource.status === 'ready'
       ? (sounds.resource.value.sounds.find((sound) => sound.locationId === locationId) ?? null)
       : null;
+  // The DM's tracks, once read: until then a kept track is taken to be there still.
+  const tracksRead = tracks.resource.status === 'ready' && tracks.resource.value !== null;
   const list = tracks.resource.status === 'ready' ? (tracks.resource.value?.tracks ?? []) : [];
   const [ambience, setAmbience] = useState<string>(KEEP);
   const [trackId, setTrackId] = useState<string>(KEEP);
-  const [state, setState] = useState<'idle' | 'busy' | 'saved' | 'failed'>('idle');
+  const [state, setState] = useState<'idle' | 'busy' | 'saved' | 'removed' | 'failed'>('idle');
   // Another place chosen, or its sound read: the fields show what is kept for it.
   const kept = `${locationId}|${stored?.ambience ?? KEEP}|${stored?.trackId ?? KEEP}`;
   useEffect(() => {
     setAmbience(stored?.ambience ?? KEEP);
     setTrackId(stored?.trackId ?? KEEP);
-    setState('idle');
     // `kept` stands for the stored values: the effect follows them, not the object read anew.
   }, [kept]);
-  // A track deleted since: the place no longer brings it, and the field says so by its absence.
-  const known = trackId === KEEP || list.some((track) => track.trackId === trackId);
+  // What was said of one place is not said of the next.
+  useEffect(() => {
+    setState('idle');
+  }, [locationId]);
+  // A track deleted since: the place no longer brings it, and the field says so.
+  const known = trackId === KEEP || !tracksRead || list.some((track) => track.trackId === trackId);
   const changed =
     ambience !== (stored?.ambience ?? KEEP) || (known ? trackId : KEEP) !== (stored?.trackId ?? KEEP);
+  // Both left as they are, with something kept: the press takes the place's sound away.
+  const removing = stored !== null && ambience === KEEP && (trackId === KEEP || !known);
   const save = () => {
     if (state === 'busy' || !changed) return;
+    const done = removing ? 'removed' : 'saved';
     setState('busy');
     void api
       .post(
@@ -75,7 +83,7 @@ export function PlaceSoundField({
       )
       .then(
         () => {
-          setState('saved');
+          setState(done);
           sounds.reread();
         },
         () => {
@@ -83,12 +91,23 @@ export function PlaceSoundField({
         },
       );
   };
+  if (sounds.resource.status === 'error') {
+    // Unread, a kept sound still comes with the place: the DM is told before pressing.
+    return (
+      <p role="status" className="field-hint">
+        {t('This place’s sound could not be read. Showing the place may still switch it on.')}
+      </p>
+    );
+  }
   if (sounds.resource.status !== 'ready') return null;
   return (
-    <fieldset className="place-sound">
+    <fieldset className="place-sound" aria-describedby={`${ids}-hint`}>
       <legend>{t('The sound of {place}', { place: placeName })}</legend>
       <p className="field-hint" id={`${ids}-hint`}>
-        {t('Showing this place on the screens switches its sound on. You can still change the sound in Session.')}
+        {t(
+          'When you show this place, the table’s sound changes to what is kept here; music starts from its beginning, on repeat. “Leave as it is” changes nothing; “No sound” silences the ambience. You can change it afterwards in Session.',
+        )}{' '}
+        {t('It plays on the table’s screen and, online, on every screen.')}
       </p>
       <div className="screen-cast-row">
         <div className="field">
@@ -96,7 +115,6 @@ export function PlaceSoundField({
           <select
             id={`${ids}-ambience`}
             value={ambience}
-            aria-describedby={`${ids}-hint`}
             onChange={(event) => {
               setAmbience(event.target.value);
               setState('idle');
@@ -115,29 +133,36 @@ export function PlaceSoundField({
           <select
             id={`${ids}-track`}
             value={known ? trackId : KEEP}
+            aria-describedby={`${ids}-track-hint`}
             onChange={(event) => {
               setTrackId(event.target.value);
               setState('idle');
             }}
           >
             <option value={KEEP}>{t('Leave as it is')}</option>
+            {/* The kept track, while the list of tracks is not read yet. */}
+            {!tracksRead && trackId !== KEEP && <option value={trackId}>{t('The kept track')}</option>}
             {list.map((track) => (
               <option key={track.trackId} value={track.trackId}>
                 {track.title}
               </option>
             ))}
           </select>
-          {list.length === 0 && (
-            <p className="field-hint">{t('Add music in Session to choose a track here.')}</p>
-          )}
+          <p className="field-hint" id={`${ids}-track-hint`}>
+            {!known
+              ? t('The kept track was deleted: this place now brings no music.')
+              : tracksRead && list.length === 0
+                ? t('Add a track in Session to choose it here.')
+                : ''}
+          </p>
         </div>
       </div>
       <div className="action-row">
         <button type="button" aria-disabled={state === 'busy' || !changed} onClick={save}>
-          {t('Keep this sound for the place')}
+          {removing ? t('Remove this place’s sound') : t('Keep this sound for the place')}
         </button>
         <p role="status" className="place-sound-status">
-          {state === 'saved' ? t('Kept.') : ''}
+          {state === 'saved' ? t('Kept.') : state === 'removed' ? t('Removed.') : ''}
         </p>
       </div>
       {state === 'failed' && (

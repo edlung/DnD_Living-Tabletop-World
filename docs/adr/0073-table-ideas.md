@@ -275,6 +275,9 @@
   place changes nothing anyone hears.
 - Showing a place a second time sets its ambience again: a DM who changed the sound by hand and
   shows the same place again gets the place's sound back.
+- Session's line "Now by the scene: …" follows the world's scene, and a display follows the
+  place it shows: with "by the scene" chosen and a place shown that the party is not in, the two
+  can name different ambiences. What the display plays is the place it shows.
 
 ## Alternatives considered
 
