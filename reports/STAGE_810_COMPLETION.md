@@ -1,6 +1,6 @@
 # Stage 810 completion — a short way to a pause
 
-Pull request: https://github.com/edlung/DnD_Living-Tabletop-World/pull/PRNUM (draft, stacked on
+Pull request: https://github.com/edlung/DnD_Living-Tabletop-World/pull/50 (draft, stacked on
 Stage 800's, https://github.com/edlung/DnD_Living-Tabletop-World/pull/49).
 
 Work order `work-orders/STAGE_810.md`; program `docs/TABLE_IDEAS_PLAN.md` (section 810); ADR 0073
