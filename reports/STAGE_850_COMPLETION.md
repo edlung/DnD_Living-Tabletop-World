@@ -33,6 +33,8 @@ design point is the session's and stays the owner's to overrule.
   for a track's name on a phone; they start level and stand one under the other now.
 - A neighbour journey (`table-display`) reads "the status" of the Table screen sheet: the line
   that says what the sound did is a live line of its own, not a second status.
+- The journey raced the form: after "Show on the screens" the form is made anew from what is
+  shown, and a place chosen in it meanwhile was undone. The journey waits for the new form.
 - The Russian journey opened the sign-in page in an English browser (the sign-in page speaks
   the browser's language).
 - The stage's own tests had never run: the track upload in them was a guess, and the invitation

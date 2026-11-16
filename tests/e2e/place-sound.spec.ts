@@ -84,7 +84,10 @@ test('showing a place switches its sound on, and the DM’s choice still stands 
   // A place without a sound of its own leaves the table's sound alone.
   await openSheet(dm, 'Table screen');
   await form.getByLabel('Place', { exact: true }).selectOption({ label: 'Market Square' });
+  const shown = await form.getByLabel('Place', { exact: true }).elementHandle();
   await form.getByRole('button', { name: 'Show on the screens', exact: true }).click();
+  // The form is made anew once the cast is read back: until then a choice made in it is undone.
+  await expect.poll(() => shown.evaluate((node) => node.isConnected), LIVE).toBe(false);
   await expect(form).toContainText('Now: A place’s scene', LIVE);
   await expect(sound(tv)).toHaveAttribute('data-ambience', 'none');
   // The kept sound is there when the place is chosen again.
