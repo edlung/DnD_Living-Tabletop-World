@@ -38,6 +38,9 @@ class Game(private val host: Host, val view: WebView) {
         fun onGameGone()
         fun route(url: String): Boolean
         fun chooseFiles(callback: ValueCallback<Array<Uri>>, params: WebChromeClient.FileChooserParams): Boolean
+
+        /** Whether the app may record: asks the person when Android has not been told yet. */
+        fun askMicrophone(decide: (Boolean) -> Unit)
         fun shim(): String
     }
 
@@ -46,6 +49,9 @@ class Game(private val host: Host, val view: WebView) {
     private var script: ScriptHandler? = null
     private var reply: JavaScriptReplyProxy? = null
     private var failed = false
+
+    /** The page's request for the microphone that waits for the person's answer. */
+    private var microphone: PermissionRequest? = null
 
     @SuppressLint("SetJavaScriptEnabled")
     fun configure() {
@@ -84,6 +90,13 @@ class Game(private val host: Host, val view: WebView) {
     fun reload() {
         failed = false
         view.reload()
+    }
+
+    /** The activity is going: a request still waiting is refused, and the view ends. */
+    fun close() {
+        microphone?.deny()
+        microphone = null
+        view.destroy()
     }
 
     /** One message to the page; false when no page of the server has said it is ready. */
@@ -165,8 +178,30 @@ class Game(private val host: Host, val view: WebView) {
             fileChooserParams: FileChooserParams,
         ): Boolean = host.chooseFiles(filePathCallback, fileChooserParams)
 
-        // The page's policy asks for no camera, microphone or place; nothing is granted.
-        override fun onPermissionRequest(request: PermissionRequest) = request.deny()
+        // The table's voice chat (ADR 0060): the microphone alone, for the chosen server alone, once
+        // the person lets the app record. The camera, MIDI and protected media are refused.
+        override fun onPermissionRequest(request: PermissionRequest) {
+            val microphoneOnly = request.resources.contentEquals(arrayOf(PermissionRequest.RESOURCE_AUDIO_CAPTURE))
+            val fromServer = origin.isNotEmpty() &&
+                Origins.normalize(request.origin.toString(), BuildConfig.DEBUG) == origin
+            if (!microphoneOnly || !fromServer) {
+                request.deny()
+                return
+            }
+            microphone?.deny()
+            microphone = request
+            host.askMicrophone { granted ->
+                // A request withdrawn or replaced meanwhile has had its answer.
+                if (microphone === request) {
+                    microphone = null
+                    if (granted) request.grant(arrayOf(PermissionRequest.RESOURCE_AUDIO_CAPTURE)) else request.deny()
+                }
+            }
+        }
+
+        override fun onPermissionRequestCanceled(request: PermissionRequest) {
+            if (microphone === request) microphone = null
+        }
 
         override fun onGeolocationPermissionsShowPrompt(origin: String, callback: GeolocationPermissions.Callback) =
             callback.invoke(origin, false, false)

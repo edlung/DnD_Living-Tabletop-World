@@ -2,6 +2,7 @@ import { LanguageProvider, useT, type Language } from '@ltw/ui';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { flushSync } from 'react-dom';
 
+import { nativeShell } from '../native/shell.ts';
 import type { InvitationHolder } from '../session/invitation-link.ts';
 import { ornamentUrl, textureUrl } from '../visual/ui-kit.ts';
 import { WorkshopAccess, type AccessKind } from './access.tsx';
@@ -28,6 +29,7 @@ function WorkshopPage({
   readonly language: Language;
 }) {
   const t = useT();
+  const inApp = nativeShell() !== null;
   const [screen, setScreen] = useState<Screen>({ kind: start.kind });
   const currentScreen = useRef(screen);
   currentScreen.current = screen;
@@ -160,6 +162,12 @@ function WorkshopPage({
               <h1>{t('Campaign workshop')}</h1>
               <p>{t('A place for the worlds you want to create.')}</p>
             </div>
+            {/* The apps have no address bar: the way back to the table (ADR 0070 §4). */}
+            {inApp && (
+              <a className="button-link" href="/">
+                {t('To the game')}
+              </a>
+            )}
             {screen.kind === 'workshop' && (
               <button
                 ref={signOutButton}

@@ -2,7 +2,19 @@
 
 Updated 2026-10-15. The owner's current AGENTS instructions take precedence over older process banners.
 
-## Current request — memory and ritual, 2026-11-15
+## Current request — the apps and the table's screen, 2026-11-15
+
+- Owner: «давай доработаем приложения для iphone, android, ipad и вывод на телевизор». The session
+  surveyed `main` (`e268e158`) on the iOS simulators, the Android emulator and in browsers at TV
+  sizes, showed nineteen findings and asked; the owner chose three packages (the table's screen,
+  the apps, the layout) and the TV's sound "from the DM's iPad"; an Android TV app was offered and
+  not chosen. Scope `work-orders/NATIVE_TV_POLISH_2026-11-15.md`; branch `claude/native-tv-polish`
+  from `e268e158`; report `reports/NATIVE_TV_POLISH_2026-11-15.md`.
+- Status: implemented and verified (PR 32); on the owner's word of 2026-11-16 («сливаем») it is
+  merged into `main` once its CI, run again on `main` with the memory-and-ritual package, is green.
+  Not deployed, nothing published to a store.
+
+## Request — memory and ritual, 2026-11-15
 
 - Owner: the goal «Теплый и ламповый портал в увлекательные D&D миры», then «Да, план» for the
   package «Память и ритуал»; seven product answers (`reviews/OWNER_MEMORY_RITUAL_2026-11-15.json`).
@@ -35,7 +47,7 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   PR 32, whose two new journeys want the journey `test` of `tests/e2e/support/journey.ts`.
   Off-host backup copies are a separate task on the owner's separate word.
 
-## Current request — campaign library release, 2026-11-14
+## Earlier request — campaign library release, 2026-11-14
 
 - Owner: «Давай закроем все пробелы» (after the eight reworked campaigns were found to lack drawn
   battle maps, the NPC manner of speech in the game's AI, pictures that travel with a campaign, and

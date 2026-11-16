@@ -281,6 +281,12 @@ It changes no world state; keep its window listener, since `pageerror` misses th
 - Native apps (ADR 0070, `native-shell.spec.ts`): a stand-in shell installed with `addInitScript`
   records what the page posts, and the journey speaks for the shell with `ltw-native` events; it owns
   the `native` sign-in campaign. The apps themselves are checked on the simulator and the emulator.
+  `native-polish.spec.ts` uses the same stand-in (the TV's sound, the workshop's door, "Only this
+  app") with the `native` campaign's third DM link and `room`'s third; `takeSeat` accepts the
+  apps' "Only this app".
+- The table's screen in a room (`display-room.spec.ts`, ADR 0042 amendment of 2026-11-15) owns the
+  `room` sign-in campaign: a fight the scene cast follows, the waiting strip at the foot, the corner
+  and a remote's keys, a lost network (`context.setOffline`) and the screen's own retry.
 - Small comforts (ADR 0072 §3, Stage 790): `comforts.spec.ts` owns `ui-comforts` (and
   `ui-comforts-ipad` in WebKit), `comforts-screens.spec.ts` the `comforts` sign-in campaign with a
   paired TV. The break reminder's count is the DM's browser's own (`ltw.break:<campaign>` in

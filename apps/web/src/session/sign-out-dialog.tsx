@@ -1,6 +1,7 @@
 import { useT } from '@ltw/ui';
 import { useEffect, useRef, useState } from 'react';
 
+import { inApp } from '../native/shell.ts';
 import { Glyph } from '../visual/glyph.tsx';
 import type { Connection, GameSignOutGuard } from '../api/client.ts';
 import { signOutAccount } from './account-flow.ts';
@@ -96,7 +97,9 @@ export function SignOutDialog({
       </h2>
       <p id="sign-out-text">
         {withLogin
-          ? t('Your login signs out of this browser too. Sign in with it to come back.')
+          ? inApp()
+            ? t('Your login signs out of this app too. Sign in with it to come back.')
+            : t('Your login signs out of this browser too. Sign in with it to come back.')
           : t('You will need a new invitation link to come back to this table.')}
       </p>
       {state === 'failed' && (

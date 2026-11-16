@@ -1,0 +1,141 @@
+/*
+ * The table's screen from across a room (work-orders/NATIVE_TV_POLISH_2026-11-15.md §1). The
+ * page's type follows the screen: 16 px at 1080 lines and below, twice that on a 4K TV whose
+ * browser counts every pixel, so the rem limits of display.css mean the same on both. The
+ * battlefield's names and turn line are read from three metres.
+ */
+html.is-display {
+  font-size: max(16px, 1.48vmin);
+}
+.display .display-battle .encounter-anchor {
+  font-size: clamp(1.1rem, 2.2vmin, 2rem);
+}
+.display .display-battle .initiative .medallion {
+  --m: clamp(2.75rem, 6.4vmin, 5.5rem);
+}
+.display .display-battle .initiative-entry {
+  width: clamp(4.6rem, 11.5vmin, 9rem);
+}
+.display .display-battle .initiative-name {
+  font-size: clamp(0.9rem, 1.9vmin, 1.6rem);
+}
+.display .display-battle .anchor-caption,
+.display .display-battle .round-mark {
+  font-size: clamp(1rem, 2vmin, 1.7rem);
+}
+/* On the board a name keeps its room: a plate may reach over the squares beside it. */
+.display .display-board .token-plate {
+  max-width: calc(var(--cell) * 3.4);
+}
+.display .display-board .token-name {
+  font-size: clamp(0.8rem, calc(var(--cell) * 0.3), 1.6rem);
+}
+
+/* Whom the table waits for: a few lines, the same ask once, the rest counted */
+.display-waiting-times {
+  color: var(--gold-bright);
+  font-weight: 700;
+}
+.display-waiting-more {
+  margin: 0.5vmin 0 0;
+  color: var(--text-muted);
+  font-size: clamp(1rem, 2.6vmin, 2.2rem);
+}
+/* Over a cast the strip is smaller than the dice cast's own list. */
+.display-waiting-strip .display-waiting {
+  padding: 1.2vmin 3vmin;
+}
+.display-waiting-strip .display-waiting h2 {
+  margin-bottom: 0.4vmin;
+  font-size: clamp(1rem, 2.6vmin, 2.2rem);
+}
+.display-waiting-strip .display-waiting ul {
+  font-size: clamp(1rem, 2.6vmin, 2.2rem);
+}
+/* Beside the battlefield it stands at the foot, left: the turn order above stays whole. */
+.display-waiting-strip.is-low {
+  top: auto;
+  bottom: 2vmin;
+  left: 2vmin;
+  max-width: 46vw;
+  translate: none;
+}
+.display-waiting-strip.is-low .display-waiting {
+  background: color-mix(in srgb, var(--ink-950) 88%, transparent);
+  text-align: left;
+}
+
+/* The rolls cast in one screen: the waits, the newest roll large, the two before it side by side */
+.display > .display-cast > .display-dice {
+  height: 100dvh;
+  gap: 3vmin;
+  overflow: hidden;
+}
+.display > .display-cast .display-rolls {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 2vmin 6vmin;
+}
+.display > .display-cast .display-rolls li.is-latest {
+  grid-column: 1 / -1;
+}
+.display > .display-cast .display-rolls li:only-child,
+.display > .display-cast .display-rolls li:nth-child(2):last-child {
+  grid-column: 1 / -1;
+}
+
+/* A roll big over the cast hides it: what lies under does not read through the numbers. */
+.display-big-roll {
+  background: color-mix(in srgb, var(--ink-950) 96%, transparent);
+}
+
+/* The table is away: a small plate at the top, left, until the signal is back */
+.display-link-plate {
+  position: fixed;
+  top: 2vmin;
+  left: 2vmin;
+  z-index: 9;
+  max-width: 60vw;
+  margin: 0;
+  padding: 1vmin 2vmin;
+  border: 1px solid var(--danger);
+  border-radius: var(--radius-panel);
+  background: color-mix(in srgb, var(--ink-950) 92%, transparent);
+  color: var(--text);
+  font-size: clamp(1rem, 2.2vmin, 1.8rem);
+}
+
+/*
+ * The quiet corner on a TV: read from the sofa, reached with a remote, never a bar across the
+ * screen. While sound waits for its press only "Sound on" stays once the rest has gone.
+ */
+.display-corner {
+  max-width: calc(100vw - 24px);
+  justify-content: flex-end;
+  font-size: clamp(0.875rem, 1.7vmin, 1.5rem);
+}
+.display-corner button {
+  min-height: clamp(36px, 4.4vmin, 64px);
+  font-size: inherit;
+}
+.display-corner button:focus-visible {
+  outline: 3px solid var(--gold-bright);
+  outline-offset: 2px;
+}
+.display-corner.is-idle.is-waiting:not(:focus-within, :hover) {
+  opacity: 1;
+  padding: 0;
+  background: none;
+  pointer-events: auto;
+}
+.display-corner.is-idle.is-waiting:not(:focus-within, :hover) > :not(.display-sound-on) {
+  display: none;
+}
+.display-corner.is-idle.is-waiting:not(:focus-within, :hover) > .display-sound-on {
+  opacity: 0.8;
+}
+@media (max-width: 1023px) {
+  .display-corner {
+    left: auto;
+  }
+}
