@@ -177,3 +177,89 @@ What the search showed:
 | бросил низ | 0      | 6    | 82.0     | 0.0    | 18.0     | 4.25 (4–5)           | 92            | 50                         | 50               | 96                    | 0                     | 48 / 33 / 18                           |
 | бросил низ | 0      | 7    | 93.5     | 0.0    | 6.5      | 4.26 (4–5)           | 93            | 65                         | 59               | 98                    | 0                     | 48 / 44 / 6                            |
 | бросил низ | 0      | 8    | 92.5     | 0.0    | 7.5      | 4.08 (4–5)           | 84            | 73                         | 72               | 98                    | 0                     | 48 / 44 / 8                            |
+
+## Round 2: levers p, q, r on top of V1 (400 runs per cell; data `tune_final2.json`, log `tune_final2.log`)
+
+Note: V1 was re-run here with the same seeds and gives the same numbers as above. The run overwrote `tune_final.json`, so V2–V4 are kept only in the tables above and in `tune_final.log`.
+
+| Key | One-line change                                                                                                            |
+| --- | -------------------------------------------------------------------------------------------------------------------------- |
+| p   | «На 7–8 игроках доливка — в начале каждого раунда с раунда 3»                                                              |
+| q   | Dawn: Борук's peaceful silencing of Жаровня also holds in the battle («ворота» table: no Жаровня volley, no stair volleys) |
+| r   | Dawn: Мейра's stretcher-bearers also come when her column left by Камыш, even with Рынок 0 («ворота» table)                |
+
+Win % at 6 / 7 / 8 players. G0 = the same table at Ворота 0.
+
+| Set      | понемногу | G0       | ворота   | G0       | бросил низ | G0       | mean rounds |
+| -------- | --------- | -------- | -------- | -------- | ---------- | -------- | ----------- |
+| V1       | 81/92/96  | 85/92/93 | 66/84/88 | 66/79/87 | 63/86/82   | 60/88/84 | 3.9–4.31    |
+| V1+p     | 80/95/92  | 82/92/94 | 67/84/88 | 62/84/86 | 70/86/84   | 65/84/83 | 3.91–4.36   |
+| V1+q     | 80/90/95  | 78/90/94 | 70/83/86 | 71/91/90 | 72/84/85   | 63/83/84 | 3.95–4.34   |
+| V1+r     | 81/91/93  | 81/93/92 | 76/90/88 | 77/91/91 | 70/85/82   | 66/84/81 | 3.93–4.32   |
+| V1+q+r   | 82/92/92  | 82/92/94 | 76/91/90 | 84/94/94 | 66/84/80   | 64/80/82 | 3.97–4.29   |
+| V1+p+q   | 81/94/93  | 84/90/94 | 70/87/87 | 70/90/92 | 69/83/86   | 63/83/84 | 3.96–4.32   |
+| V1+p+r   | 86/94/93  | 80/92/94 | 78/89/91 | 76/86/91 | 70/84/84   | 62/84/85 | 3.9–4.34    |
+| V1+p+q+r | 78/92/92  | 80/93/92 | 81/92/92 | 84/92/95 | 72/86/83   | 64/87/84 | 3.97–4.31   |
+
+### Final table: V1 + r (recommended)
+
+| Стол       | Ворота | Игр. | Победа % | Уход % | Пощада % | Раунды ср. (p10–p90) | Герой упал, % | Доливка через арку, % боёв | Боковые входы, % | Залп кого-то задел, % | Соседи сняли врага, % | Конец: срыв / Сайр упал / знамя встало |
+| ---------- | ------ | ---- | -------- | ------ | -------- | -------------------- | ------------- | -------------------------- | ---------------- | --------------------- | --------------------- | -------------------------------------- |
+| понемногу  | 3      | 6    | 81.2     | 18.8   | 0.0      | 4.32 (4–5)           | 84            | 84                         | 0                | 0                     | 100                   | 40 / 38 / 19                           |
+| понемногу  | 3      | 7    | 91.2     | 8.8    | 0.0      | 4.24 (4–5)           | 80            | 91                         | 0                | 0                     | 100                   | 49 / 41 / 9                            |
+| понемногу  | 3      | 8    | 92.8     | 7.2    | 0.0      | 4.14 (4–5)           | 74            | 97                         | 0                | 0                     | 100                   | 44 / 48 / 7                            |
+| понемногу  | 0      | 6    | 80.8     | 19.2   | 0.0      | 4.21 (3–5)           | 85            | 84                         | 0                | 0                     | 100                   | 48 / 31 / 19                           |
+| понемногу  | 0      | 7    | 93.2     | 6.8    | 0.0      | 4.18 (4–5)           | 77            | 91                         | 0                | 0                     | 100                   | 48 / 44 / 7                            |
+| понемногу  | 0      | 8    | 92.5     | 7.5    | 0.0      | 3.99 (3–5)           | 73            | 93                         | 0                | 0                     | 100                   | 45 / 47 / 8                            |
+| ворота     | 4      | 6    | 76.2     | 23.8   | 0.0      | 4.05 (4–5)           | 98            | 34                         | 99               | 100                   | 100                   | 44 / 32 / 24                           |
+| ворота     | 4      | 7    | 90.2     | 9.8    | 0.0      | 4.1 (4–5)            | 94            | 40                         | 100              | 100                   | 100                   | 44 / 46 / 10                           |
+| ворота     | 4      | 8    | 88.0     | 12.0   | 0.0      | 3.94 (3–4)           | 91            | 57                         | 100              | 100                   | 100                   | 44 / 44 / 12                           |
+| ворота     | 0      | 6    | 77.0     | 23.0   | 0.0      | 4.14 (4–5)           | 94            | 90                         | 90               | 100                   | 100                   | 40 / 36 / 23                           |
+| ворота     | 0      | 7    | 91.0     | 9.0    | 0.0      | 4.08 (3–5)           | 91            | 93                         | 86               | 100                   | 100                   | 49 / 41 / 9                            |
+| ворота     | 0      | 8    | 91.2     | 8.8    | 0.0      | 3.93 (3–5)           | 89            | 96                         | 80               | 100                   | 100                   | 42 / 50 / 9                            |
+| бросил низ | 4      | 6    | 70.2     | 0.0    | 29.8     | 4.22 (4–5)           | 98            | 13                         | 91               | 100                   | 0                     | 43 / 27 / 30                           |
+| бросил низ | 4      | 7    | 85.2     | 0.0    | 14.8     | 4.2 (4–5)            | 97            | 17                         | 93               | 100                   | 0                     | 52 / 33 / 15                           |
+| бросил низ | 4      | 8    | 81.5     | 0.0    | 18.5     | 4.04 (3–5)           | 97            | 36                         | 97               | 100                   | 0                     | 48 / 34 / 18                           |
+| бросил низ | 0      | 6    | 66.0     | 0.0    | 34.0     | 4.24 (4–5)           | 99            | 86                         | 7                | 100                   | 0                     | 45 / 20 / 34                           |
+| бросил низ | 0      | 7    | 84.5     | 0.0    | 15.5     | 4.24 (4–5)           | 98            | 91                         | 7                | 100                   | 0                     | 47 / 36 / 16                           |
+| бросил низ | 0      | 8    | 81.0     | 0.0    | 19.0     | 4.07 (3–5)           | 95            | 96                         | 7                | 100                   | 0                     | 46 / 35 / 19                           |
+
+### What round 2 shows
+
+- **p does nothing measurable.** At 7–8 players the win rates move by ±3 points, which is within noise (±2–3 at 400 runs). The fight still ends in round 4, so one extra refill in round 4 barely acts, and F cannot grow. I do not recommend p: it adds DM bookkeeping and no difficulty.
+- **r is the smallest dawn fix with a real effect.** «ворота» at 6 players goes 66 → 76. q alone gives only 70, and q + r gives 76, no better than r. p + q + r reaches 81, the best seen, but p does not act at 6 players, so that gain is noise.
+  - **The target of about 85 % for «ворота» at 6 players is not reached.** The remaining gap comes from P7 being open (ЗБ 0) and from Жаровня's stair volleys.
+  - The next lever would be in the dawn rules, not the battle: «Пролом выигран — ЗБ не ниже 1», which would close P7. I did not test it.
+- **V1 + r is the recommended set.** Its V1 + p + r score of 82 against 95 for V1 + r comes from noise at 6 players, not from p.
+  - «понемногу» wins 81 % (6), 91 % (7), 93 % (8).
+  - «ворота» wins 76 / 90 / 88.
+  - «бросил низ» wins 70 / 85 / 82.
+  - Both defeat endings are reachable.
+  - Mean length is 3.9–4.3 rounds.
+  - Ворота 0 is about equal to the printed dawn: neither the easiest nor the hardest.
+
+### Exact Russian wording for the round-2 lines
+
+- **r (chosen):** «НОСИЛЬЩИКИ МЕЙРЫ (Рынок 1+ или колонна Мейры ушла по Камышу): …». In `battle-dm-card`: «Рынок 1+ или колонна ушла — носильщики…». In evening 8, scene 1: «Если Рынок не прорван или колонна ушла, Мейра Рунц, ночью вернувшаяся из-за поймы, приводит рыбаков с носилками».
+- **q (not chosen):** «Если Жаровня замолчала мирно, в битве за ворота она тоже молчит: новый расчёт Риорд ставит только на стену».
+- **p (not chosen):** «На 7–8 игроках доливка — в начале каждого раунда с раунда 3».
+- **m, with the horn kept as flavour:** «СОСЕДИ (союз): сигнал — три рога с раунда 2; соседи приходят в начале следующего раунда, не раньше раунда 3 (обещание нарушено или союз через гонца — на раунд позже), если решётка поднята, и держат дорогу за аркой: доливка идёт, но в конце каждого раунда соседи снимают одного противника, не Сайра, ближайшего к арке. Решётка опущена раньше — соседи не приходят». The simulator modelled arrival in round 3 (round 4 when late); with the horn blown in round 2, that timing is the same.
+
+### Checklist: where each chosen line must go
+
+| Line                                                          | Places in the text                                                                                                                                                                                                                                                                                                                                                         |
+| ------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| a, tear on rows 11–12 or at ≤ 20 HP, one try per round        | encounter `objective`; `battle-card` «Сорвать знамя…»; `battle-dm-card` «Сорвать знамя — только когда…»; evening 8 scene 2 `check`, scene 3 `play` and `check`, `dmNote`                                                                                                                                                                                                   |
+| b, threshold 20 from round 4                                  | encounter `tactics` ПОРОГ and `scaling` («порог отхода 33»); `battle-dm-card` «Сайр: … при 33 хитах…, раунды 1–2 … не отходит»; evening 8 scene 3 `play`, `dmNote` («до раунда 3 он не отходит»); campaign `AGENTS.md` («порог отхода 33»)                                                                                                                                 |
+| c, a downed hero does not hold a stair                        | encounter `objective` ЗНАМЯ and `tactics` (delete «может действием переложить»; носильщики «клетка пустеет»); `battle-card` «Встать на ступени…» (add «лежащий ступень не держит»); `battle-dm-card` «Рынок 1+ — носильщики (… цена носилок)»; evening 8 scene 2 `failForward`, scene 3 `play` and `choices`, `dmNote` («Носильщики могут освободить ступень»)             |
+| d, Ворота 0–1: Сайр on L2, refill every round from round 2    | `battle-dm-card` РАССВЕТ («Ворота 0–1 …»); encounter `tactics` ДОЛИВКА and `scaling` («Сайр на L1 на любом составе»); `world.scaling` ×3 («Сайр на L1»); evening 8 scene 1 `check` (клетка L1), scene 2 `play`, `dmNote`; `battle-card` blank line «Волны через арку — в раундах ___» (unchanged)                                                                          |
+| j, at Ворота 0 Сайр also stands still in rounds 1–2           | encounter `tactics` («Ворота 0 — идёт с раунда 1»); `battle-dm-card` («при 0 Сайр идёт с раунда 1»); evening 8 scene 2 `play` («при Воротах 0 идёт сразу»); `wall-scheme`: nothing                                                                                                                                                                                         |
+| f, guards on the stair flanks from round 1                    | encounter `tactics` ГВАРДЕЙЦЫ; `battle-dm-card` (add one line); evening 8 scene 3 `play` («Гвардейцы держатся рядом с ним»)                                                                                                                                                                                                                                                |
+| g, stair volleys in rounds 2 and 4                            | encounter `terrain` ЗАЛПЫ; `battle-card` «Куда целят катапульты…»; `battle-dm-card` «Залпы: …» (add «лежачих залп не задевает»); evening 8 scene 2 `play`; evening 7 scene 3 `play` (Харвен показывает зоны)                                                                                                                                                               |
+| n, portcullis not before round 4                              | encounter `objective` РЕШЁТКА; `battle-card` «Опустить решётку… не раньше раунда 2»; `battle-dm-card` «Решётка — не раньше раунда 2»; evening 8 scene 2 `choices` («с раунда 2») and `check`, `dmNote`                                                                                                                                                                     |
+| m, neighbours from round 3 outside the arch; refill continues | encounter `objective` СОСЕДИ; `battle-card` «Позвать соседей…»; `battle-dm-card` «Союз — соседи по сигналу…»; evening 8 scene 1 `choices`, scene 2 `choices` and `check`, scene 3 `play` («Пришли соседи — доливки нет»); evening 7 scene 3 `play` and `dmNote`; evening 6 `consequences[0]`; `erdik-terms` item 3 (keep); `cast` Эрдик `knows` («за время двух сигналов») |
+| r, stretcher-bearers when the column left                     | encounter `tactics` НОСИЛЬЩИКИ; `battle-dm-card`; evening 8 scene 1 `play`, scene 2 `failForward` («при Рынке 1+»), `dmNote`; evening 7 `consequences[1]` (add «в битве — носильщики») and `dmNote` («Мейра возвращается, если РН ≥ 1»)                                                                                                                                    |
+| Refill example                                                | evening 8 scene 2 `play`: «…сколько записано на карте битвы: F или F−1»                                                                                                                                                                                                                                                                                                    |
+| Duration                                                      | encounter `scaling`: «Правило держит бой 3–5 раундов, обычно 4»                                                                                                                                                                                                                                                                                                            |
+| Evening 8 timing                                              | evening 8 `dmNote` «Финал 20/60/40/20» and scene 3 `minutes` 40                                                                                                                                                                                                                                                                                                            |
+| `world.endings`, `night-order`, `wall-scheme`                 | No change needed: the end conditions are the same. Scene 1 of evening 8 should not promise Мейра only «при Рынке 1+» once r is adopted.                                                                                                                                                                                                                                    |

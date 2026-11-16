@@ -110,6 +110,8 @@ class Battle:
         if rd.get('lever_k'):                       # waves by gate value: 4-5 one wave, 2-3 three, 0-1 every round
             s.refill_rounds = (3,) if cv >= 4 else ((3, 5, 7) if cv >= 2 else tuple(range(2, 9)))
             s.target = s.F
+        if rd.get('lever_p') and n >= 7:            # 7-8 players: refill every round from round 3
+            s.refill_rounds = tuple(sorted(set(s.refill_rounds) | set(range(3, 9))))
         s.n_refilled = 0; s.n_side = 0; s.n_volley_hits = 0; s.n_nb_removed = 0
         s.no_move_r1 = cv == 5
         s.assign_roles()

@@ -16,7 +16,10 @@ LEVERS = {
  'j': dict(lever_j=True),
  'n': dict(port_round=4),                         # portcullis not before round 4
  'm': dict(lever_m=True),                         # neighbours from r3 (portcullis up) fight outside: refill goes on, they take 1/round
- 'k': dict(lever_k=True),                         # waves by gate: 4-5 r3 only; 2-3 r3/5/7; 0-1 every round from r2 (all to F)                         # Ворота 0: Сайр does not start moving in round 1
+ 'k': dict(lever_k=True),
+ 'p': dict(lever_p=True),                         # 7-8 players: refill every round from round 3
+ 'q': dict(),                                     # dawn: Борук's peaceful silencing of Жаровня holds in battle («ворота»)
+ 'r': dict(),                                     # dawn: stretcher-bearers also when Мейра's column left («ворота»)                         # waves by gate: 4-5 r3 only; 2-3 r3/5/7; 0-1 every round from r2 (all to F)                         # Ворота 0: Сайр does not start moving in round 1
 }
 TARGET = {'понемногу': (75, 90), 'ворота': (85, 95), 'бросил низ': (45, 70)}
 
@@ -25,14 +28,16 @@ def rd_for(combo):
     for k in combo: rd.update(LEVERS[k])
     return rd
 
-def dawn(t, gate0):
+def dawn(t, gate0, combo=''):
     d = dict(g.TABLES[t])
+    if t == 'ворота' and 'q' in combo: d['zharovnya_silent'] = True
+    if t == 'ворота' and 'r' in combo: d['market'] = 1          # stretchers only; Рынок stays breached
     if gate0: d['gates'] = 0
     return d
 
 def job(args):
     combo, t, n, gate0, runs = args
-    dw = dawn(t, gate0)
+    dw = dawn(t, gate0, combo)
     seed = zlib.crc32(f"{combo}|{t}|{n}|{gate0}".encode())
     r = g.run_cell(n, dw, rd_for(combo), g.policy(dw), runs, seed)
     r.update(combo=combo, table=t, gate0=gate0)
