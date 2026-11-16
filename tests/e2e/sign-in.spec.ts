@@ -1,5 +1,6 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect, type Page } from '@playwright/test';
 
+import { test } from './support/journey.ts';
 import { readsQuiet } from './support/live.ts';
 import { dockButton, openSheet } from './support/shell.ts';
 import {

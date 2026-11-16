@@ -1,5 +1,6 @@
-import { expect, test } from '@playwright/test';
+import { expect } from '@playwright/test';
 
+import { test } from './support/journey.ts';
 import {
   SIGN_IN_CAMPAIGNS,
   SIGN_IN_ORIGIN,

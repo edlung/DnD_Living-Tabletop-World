@@ -1,4 +1,4 @@
-import { expect as baseExpect, test } from '@playwright/test';
+import { expect as baseExpect } from '@playwright/test';
 
 import { UI_PARTY_CAMPAIGNS } from '../../apps/server/src/testing/ui-party-campaigns.ts';
 import { expectAccessible } from './support/axe.ts';
@@ -9,6 +9,7 @@ import {
   turnTray,
   expectAccepted,
 } from './support/combat.ts';
+import { test } from './support/journey.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
 import { openSheet } from './support/shell.ts';
 

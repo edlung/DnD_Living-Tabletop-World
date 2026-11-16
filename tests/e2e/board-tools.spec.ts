@@ -1,10 +1,11 @@
 import { randomUUID } from 'node:crypto';
 
-import { expect as baseExpect, test, type Page } from '@playwright/test';
+import { expect as baseExpect, type Page } from '@playwright/test';
 
 import { UI_PARTY_CAMPAIGNS } from '../../apps/server/src/testing/ui-party-campaigns.ts';
 import { expectAccessible } from './support/axe.ts';
 import { battlefield, clickSquare, square } from './support/combat.ts';
+import { test } from './support/journey.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
 
 /**
