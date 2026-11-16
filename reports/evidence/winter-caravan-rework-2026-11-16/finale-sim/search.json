@@ -1,0 +1,1202 @@
+[
+  [
+    110.7,
+    {
+      "run_only": true,
+      "noise_from": 4,
+      "pack_dist": [2, 3, 4, 5],
+      "people_only": true,
+      "otrog_max": 2,
+      "mule_zhelob": 2,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [100.0, 0.0, 0.0, 1.42],
+      "thrifty|0": [86.7, 13.3, 0.0, 1.09],
+      "average|1": [88.3, 11.7, 0.0, 0.53],
+      "average|0": [73.3, 26.7, 0.0, 0.87],
+      "wasteful|1": [0.0, 25.0, 75.0, 1.15],
+      "wasteful|0": [0.0, 38.3, 61.7, 0.23]
+    }
+  ],
+  [
+    110.7,
+    {
+      "run_only": true,
+      "noise_from": 4,
+      "pack_dist": [2, 3, 4, 5],
+      "people_only": true,
+      "otrog_max": 1,
+      "mule_zhelob": 2,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [100.0, 0.0, 0.0, 1.08],
+      "thrifty|0": [86.7, 13.3, 0.0, 1.09],
+      "average|1": [88.3, 11.7, 0.0, 0.53],
+      "average|0": [73.3, 26.7, 0.0, 0.87],
+      "wasteful|1": [0.0, 25.0, 75.0, 1.15],
+      "wasteful|0": [0.0, 38.3, 61.7, 0.23]
+    }
+  ],
+  [
+    114.3,
+    {
+      "run_only": true,
+      "noise_from": 4,
+      "pack_dist": [3],
+      "people_only": true,
+      "otrog_max": 2,
+      "mule_zhelob": 2,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [100.0, 0.0, 0.0, 1.47],
+      "thrifty|0": [90.0, 10.0, 0.0, 1.16],
+      "average|1": [88.3, 11.7, 0.0, 0.54],
+      "average|0": [75.0, 25.0, 0.0, 0.93],
+      "wasteful|1": [0.0, 25.0, 75.0, 1.15],
+      "wasteful|0": [0.0, 38.3, 61.7, 0.23]
+    }
+  ],
+  [
+    114.3,
+    {
+      "run_only": true,
+      "noise_from": 4,
+      "pack_dist": [3],
+      "people_only": true,
+      "otrog_max": 1,
+      "mule_zhelob": 2,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [100.0, 0.0, 0.0, 1.13],
+      "thrifty|0": [90.0, 10.0, 0.0, 1.16],
+      "average|1": [88.3, 11.7, 0.0, 0.54],
+      "average|0": [75.0, 25.0, 0.0, 0.93],
+      "wasteful|1": [0.0, 25.0, 75.0, 1.15],
+      "wasteful|0": [0.0, 38.3, 61.7, 0.23]
+    }
+  ],
+  [
+    116.6,
+    {
+      "run_only": true,
+      "noise_from": 4,
+      "pack_dist": [2, 3, 4, 5],
+      "people_only": true,
+      "otrog_max": 1,
+      "mule_zhelob": 1,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [81.7, 5.0, 13.3, 1.29],
+      "thrifty|0": [0.0, 1.7, 98.3, 0.98],
+      "average|1": [40.0, 0.0, 60.0, 0.83],
+      "average|0": [0.0, 0.0, 100.0, 1.14],
+      "wasteful|1": [0.0, 0.0, 100.0, 0.57],
+      "wasteful|0": [0.0, 0.0, 100.0, 0.29]
+    }
+  ],
+  [
+    117.6,
+    {
+      "run_only": true,
+      "noise_from": 4,
+      "pack_dist": [3],
+      "people_only": true,
+      "otrog_max": 1,
+      "mule_zhelob": 1,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [81.7, 5.0, 13.3, 1.34],
+      "thrifty|0": [0.0, 0.0, 100.0, 1.03],
+      "average|1": [40.0, 0.0, 60.0, 0.84],
+      "average|0": [0.0, 0.0, 100.0, 1.18],
+      "wasteful|1": [0.0, 0.0, 100.0, 0.52],
+      "wasteful|0": [0.0, 0.0, 100.0, 0.26]
+    }
+  ],
+  [
+    117.7,
+    {
+      "run_only": true,
+      "noise_from": 3,
+      "pack_dist": [2, 3, 4, 5],
+      "people_only": true,
+      "otrog_max": 2,
+      "mule_zhelob": 2,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [100.0, 0.0, 0.0, 1.42],
+      "thrifty|0": [86.7, 13.3, 0.0, 0.96],
+      "average|1": [88.3, 11.7, 0.0, 0.29],
+      "average|0": [73.3, 26.7, 0.0, 0.8],
+      "wasteful|1": [0.0, 25.0, 75.0, 1.15],
+      "wasteful|0": [0.0, 38.3, 61.7, 0.23]
+    }
+  ],
+  [
+    117.7,
+    {
+      "run_only": true,
+      "noise_from": 3,
+      "pack_dist": [2, 3, 4, 5],
+      "people_only": true,
+      "otrog_max": 1,
+      "mule_zhelob": 2,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [100.0, 0.0, 0.0, 1.08],
+      "thrifty|0": [86.7, 13.3, 0.0, 0.96],
+      "average|1": [88.3, 11.7, 0.0, 0.29],
+      "average|0": [73.3, 26.7, 0.0, 0.8],
+      "wasteful|1": [0.0, 25.0, 75.0, 1.15],
+      "wasteful|0": [0.0, 38.3, 61.7, 0.23]
+    }
+  ],
+  [
+    117.7,
+    {
+      "run_only": true,
+      "noise_from": 2,
+      "pack_dist": [2, 3, 4, 5],
+      "people_only": true,
+      "otrog_max": 2,
+      "mule_zhelob": 2,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [100.0, 0.0, 0.0, 1.42],
+      "thrifty|0": [86.7, 13.3, 0.0, 0.96],
+      "average|1": [88.3, 11.7, 0.0, 0.29],
+      "average|0": [73.3, 26.7, 0.0, 0.8],
+      "wasteful|1": [0.0, 25.0, 75.0, 1.15],
+      "wasteful|0": [0.0, 38.3, 61.7, 0.23]
+    }
+  ],
+  [
+    117.7,
+    {
+      "run_only": true,
+      "noise_from": 2,
+      "pack_dist": [2, 3, 4, 5],
+      "people_only": true,
+      "otrog_max": 1,
+      "mule_zhelob": 2,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [100.0, 0.0, 0.0, 1.08],
+      "thrifty|0": [86.7, 13.3, 0.0, 0.96],
+      "average|1": [88.3, 11.7, 0.0, 0.29],
+      "average|0": [73.3, 26.7, 0.0, 0.8],
+      "wasteful|1": [0.0, 25.0, 75.0, 1.15],
+      "wasteful|0": [0.0, 38.3, 61.7, 0.23]
+    }
+  ],
+  [
+    117.8,
+    {
+      "run_only": true,
+      "noise_from": 4,
+      "pack_dist": [1, 2, 3, 4],
+      "people_only": true,
+      "otrog_max": 1,
+      "mule_zhelob": 1,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [81.7, 3.3, 15.0, 1.25],
+      "thrifty|0": [0.0, 1.7, 98.3, 0.86],
+      "average|1": [40.0, 0.0, 60.0, 0.97],
+      "average|0": [0.0, 0.0, 100.0, 1.09],
+      "wasteful|1": [0.0, 0.0, 100.0, 0.52],
+      "wasteful|0": [0.0, 0.0, 100.0, 0.26]
+    }
+  ],
+  [
+    117.9,
+    {
+      "run_only": true,
+      "noise_from": 4,
+      "pack_dist": [1, 2, 3, 4],
+      "people_only": true,
+      "otrog_max": 2,
+      "mule_zhelob": 2,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [100.0, 0.0, 0.0, 1.36],
+      "thrifty|0": [86.7, 8.3, 5.0, 0.93],
+      "average|1": [88.3, 11.7, 0.0, 0.53],
+      "average|0": [78.3, 16.7, 5.0, 0.81],
+      "wasteful|1": [0.0, 25.0, 75.0, 1.1],
+      "wasteful|0": [0.0, 38.3, 61.7, 0.25]
+    }
+  ],
+  [
+    117.9,
+    {
+      "run_only": true,
+      "noise_from": 4,
+      "pack_dist": [1, 2, 3, 4],
+      "people_only": true,
+      "otrog_max": 1,
+      "mule_zhelob": 2,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [100.0, 0.0, 0.0, 1.04],
+      "thrifty|0": [86.7, 8.3, 5.0, 0.93],
+      "average|1": [88.3, 11.7, 0.0, 0.53],
+      "average|0": [78.3, 16.7, 5.0, 0.81],
+      "wasteful|1": [0.0, 25.0, 75.0, 1.1],
+      "wasteful|0": [0.0, 38.3, 61.7, 0.25]
+    }
+  ],
+  [
+    118.4,
+    {
+      "run_only": true,
+      "noise_from": 4,
+      "pack_dist": [3],
+      "people_only": true,
+      "otrog_max": 2,
+      "mule_zhelob": 1,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [100.0, 0.0, 0.0, 1.47],
+      "thrifty|0": [0.0, 0.0, 100.0, 1.03],
+      "average|1": [40.0, 60.0, 0.0, 1.16],
+      "average|0": [0.0, 0.0, 100.0, 1.18],
+      "wasteful|1": [0.0, 0.0, 100.0, 0.57],
+      "wasteful|0": [0.0, 0.0, 100.0, 0.26]
+    }
+  ],
+  [
+    119.2,
+    {
+      "run_only": true,
+      "noise_from": 4,
+      "pack_dist": [2, 3, 4, 5],
+      "people_only": true,
+      "otrog_max": 2,
+      "mule_zhelob": 1,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [100.0, 0.0, 0.0, 1.42],
+      "thrifty|0": [0.0, 1.7, 98.3, 0.98],
+      "average|1": [40.0, 60.0, 0.0, 0.93],
+      "average|0": [0.0, 0.0, 100.0, 1.14],
+      "wasteful|1": [0.0, 0.0, 100.0, 0.59],
+      "wasteful|0": [0.0, 0.0, 100.0, 0.29]
+    }
+  ],
+  [
+    119.6,
+    {
+      "run_only": true,
+      "noise_from": 4,
+      "pack_dist": [2, 3, 4],
+      "people_only": true,
+      "otrog_max": 1,
+      "mule_zhelob": 1,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [81.7, 5.0, 13.3, 1.28],
+      "thrifty|0": [0.0, 1.7, 98.3, 0.95],
+      "average|1": [40.0, 0.0, 60.0, 0.83],
+      "average|0": [0.0, 0.0, 100.0, 0.95],
+      "wasteful|1": [0.0, 0.0, 100.0, 0.55],
+      "wasteful|0": [0.0, 0.0, 100.0, 0.24]
+    }
+  ],
+  [
+    119.6,
+    {
+      "run_only": true,
+      "noise_from": 3,
+      "pack_dist": [1, 2, 3, 4],
+      "people_only": true,
+      "otrog_max": 2,
+      "mule_zhelob": 2,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [100.0, 0.0, 0.0, 1.36],
+      "thrifty|0": [83.3, 8.3, 8.3, 0.82],
+      "average|1": [88.3, 11.7, 0.0, 0.29],
+      "average|0": [75.0, 16.7, 8.3, 0.74],
+      "wasteful|1": [0.0, 25.0, 75.0, 1.1],
+      "wasteful|0": [0.0, 38.3, 61.7, 0.25]
+    }
+  ],
+  [
+    119.6,
+    {
+      "run_only": true,
+      "noise_from": 3,
+      "pack_dist": [1, 2, 3, 4],
+      "people_only": true,
+      "otrog_max": 1,
+      "mule_zhelob": 2,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [100.0, 0.0, 0.0, 1.04],
+      "thrifty|0": [83.3, 8.3, 8.3, 0.82],
+      "average|1": [88.3, 11.7, 0.0, 0.29],
+      "average|0": [75.0, 16.7, 8.3, 0.74],
+      "wasteful|1": [0.0, 25.0, 75.0, 1.1],
+      "wasteful|0": [0.0, 38.3, 61.7, 0.25]
+    }
+  ],
+  [
+    119.6,
+    {
+      "run_only": true,
+      "noise_from": 2,
+      "pack_dist": [1, 2, 3, 4],
+      "people_only": true,
+      "otrog_max": 2,
+      "mule_zhelob": 2,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [100.0, 0.0, 0.0, 1.36],
+      "thrifty|0": [83.3, 8.3, 8.3, 0.82],
+      "average|1": [88.3, 11.7, 0.0, 0.29],
+      "average|0": [75.0, 16.7, 8.3, 0.74],
+      "wasteful|1": [0.0, 25.0, 75.0, 1.1],
+      "wasteful|0": [0.0, 38.3, 61.7, 0.25]
+    }
+  ],
+  [
+    119.6,
+    {
+      "run_only": true,
+      "noise_from": 2,
+      "pack_dist": [1, 2, 3, 4],
+      "people_only": true,
+      "otrog_max": 1,
+      "mule_zhelob": 2,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [100.0, 0.0, 0.0, 1.04],
+      "thrifty|0": [83.3, 8.3, 8.3, 0.82],
+      "average|1": [88.3, 11.7, 0.0, 0.29],
+      "average|0": [75.0, 16.7, 8.3, 0.74],
+      "wasteful|1": [0.0, 25.0, 75.0, 1.1],
+      "wasteful|0": [0.0, 38.3, 61.7, 0.25]
+    }
+  ],
+  [
+    119.8,
+    {
+      "run_only": true,
+      "noise_from": 4,
+      "pack_dist": [1, 2, 3, 4, 5, 6],
+      "people_only": true,
+      "otrog_max": 1,
+      "mule_zhelob": 1,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [81.7, 5.0, 13.3, 1.27],
+      "thrifty|0": [0.0, 1.7, 98.3, 0.91],
+      "average|1": [40.0, 0.0, 60.0, 0.83],
+      "average|0": [0.0, 0.0, 100.0, 0.92],
+      "wasteful|1": [0.0, 0.0, 100.0, 0.57],
+      "wasteful|0": [0.0, 0.0, 100.0, 0.28]
+    }
+  ],
+  [
+    120.7,
+    {
+      "run_only": true,
+      "noise_from": 3,
+      "pack_dist": [3],
+      "people_only": true,
+      "otrog_max": 2,
+      "mule_zhelob": 2,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [100.0, 0.0, 0.0, 1.47],
+      "thrifty|0": [90.0, 10.0, 0.0, 1.02],
+      "average|1": [88.3, 11.7, 0.0, 0.29],
+      "average|0": [75.0, 25.0, 0.0, 0.86],
+      "wasteful|1": [0.0, 25.0, 75.0, 1.15],
+      "wasteful|0": [0.0, 38.3, 61.7, 0.23]
+    }
+  ],
+  [
+    120.7,
+    {
+      "run_only": true,
+      "noise_from": 3,
+      "pack_dist": [3],
+      "people_only": true,
+      "otrog_max": 1,
+      "mule_zhelob": 2,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [100.0, 0.0, 0.0, 1.13],
+      "thrifty|0": [90.0, 10.0, 0.0, 1.02],
+      "average|1": [88.3, 11.7, 0.0, 0.29],
+      "average|0": [75.0, 25.0, 0.0, 0.86],
+      "wasteful|1": [0.0, 25.0, 75.0, 1.15],
+      "wasteful|0": [0.0, 38.3, 61.7, 0.23]
+    }
+  ],
+  [
+    120.7,
+    {
+      "run_only": true,
+      "noise_from": 2,
+      "pack_dist": [3],
+      "people_only": true,
+      "otrog_max": 2,
+      "mule_zhelob": 2,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [100.0, 0.0, 0.0, 1.47],
+      "thrifty|0": [90.0, 10.0, 0.0, 1.02],
+      "average|1": [88.3, 11.7, 0.0, 0.29],
+      "average|0": [75.0, 25.0, 0.0, 0.86],
+      "wasteful|1": [0.0, 25.0, 75.0, 1.15],
+      "wasteful|0": [0.0, 38.3, 61.7, 0.23]
+    }
+  ],
+  [
+    120.7,
+    {
+      "run_only": true,
+      "noise_from": 2,
+      "pack_dist": [3],
+      "people_only": true,
+      "otrog_max": 1,
+      "mule_zhelob": 2,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [100.0, 0.0, 0.0, 1.13],
+      "thrifty|0": [90.0, 10.0, 0.0, 1.02],
+      "average|1": [88.3, 11.7, 0.0, 0.29],
+      "average|0": [75.0, 25.0, 0.0, 0.86],
+      "wasteful|1": [0.0, 25.0, 75.0, 1.15],
+      "wasteful|0": [0.0, 38.3, 61.7, 0.23]
+    }
+  ],
+  [
+    122.2,
+    {
+      "run_only": true,
+      "noise_from": 4,
+      "pack_dist": [1, 2, 3, 4, 5, 6],
+      "people_only": true,
+      "otrog_max": 2,
+      "mule_zhelob": 1,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [100.0, 0.0, 0.0, 1.4],
+      "thrifty|0": [0.0, 1.7, 98.3, 0.91],
+      "average|1": [40.0, 60.0, 0.0, 0.94],
+      "average|0": [0.0, 0.0, 100.0, 0.92],
+      "wasteful|1": [0.0, 0.0, 100.0, 0.59],
+      "wasteful|0": [0.0, 0.0, 100.0, 0.28]
+    }
+  ],
+  [
+    122.4,
+    {
+      "run_only": true,
+      "noise_from": 4,
+      "pack_dist": [2, 3, 4],
+      "people_only": true,
+      "otrog_max": 2,
+      "mule_zhelob": 1,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [100.0, 0.0, 0.0, 1.4],
+      "thrifty|0": [0.0, 1.7, 98.3, 0.95],
+      "average|1": [40.0, 60.0, 0.0, 0.93],
+      "average|0": [0.0, 0.0, 100.0, 0.95],
+      "wasteful|1": [0.0, 0.0, 100.0, 0.56],
+      "wasteful|0": [0.0, 0.0, 100.0, 0.24]
+    }
+  ],
+  [
+    122.4,
+    {
+      "run_only": true,
+      "noise_from": 4,
+      "pack_dist": [1, 2, 3, 4],
+      "people_only": true,
+      "otrog_max": 2,
+      "mule_zhelob": 1,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [100.0, 0.0, 0.0, 1.36],
+      "thrifty|0": [0.0, 1.7, 98.3, 0.86],
+      "average|1": [40.0, 60.0, 0.0, 0.94],
+      "average|0": [0.0, 0.0, 100.0, 1.09],
+      "wasteful|1": [0.0, 0.0, 100.0, 0.57],
+      "wasteful|0": [0.0, 0.0, 100.0, 0.26]
+    }
+  ],
+  [
+    130.1,
+    {
+      "run_only": true,
+      "noise_from": 4,
+      "pack_dist": [2, 3, 4],
+      "people_only": true,
+      "otrog_max": 2,
+      "mule_zhelob": 2,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [100.0, 0.0, 0.0, 1.4],
+      "thrifty|0": [95.0, 5.0, 0.0, 1.11],
+      "average|1": [88.3, 11.7, 0.0, 0.53],
+      "average|0": [85.0, 15.0, 0.0, 0.9],
+      "wasteful|1": [0.0, 25.0, 75.0, 1.15],
+      "wasteful|0": [0.0, 38.3, 61.7, 0.23]
+    }
+  ],
+  [
+    130.1,
+    {
+      "run_only": true,
+      "noise_from": 4,
+      "pack_dist": [2, 3, 4],
+      "people_only": true,
+      "otrog_max": 1,
+      "mule_zhelob": 2,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [100.0, 0.0, 0.0, 1.07],
+      "thrifty|0": [95.0, 5.0, 0.0, 1.11],
+      "average|1": [88.3, 11.7, 0.0, 0.53],
+      "average|0": [85.0, 15.0, 0.0, 0.9],
+      "wasteful|1": [0.0, 25.0, 75.0, 1.15],
+      "wasteful|0": [0.0, 38.3, 61.7, 0.23]
+    }
+  ],
+  [
+    130.5,
+    {
+      "run_only": true,
+      "noise_from": 4,
+      "pack_dist": [1, 2, 3, 4, 5, 6],
+      "people_only": true,
+      "otrog_max": 2,
+      "mule_zhelob": 2,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [100.0, 0.0, 0.0, 1.4],
+      "thrifty|0": [95.0, 5.0, 0.0, 1.07],
+      "average|1": [88.3, 11.7, 0.0, 0.53],
+      "average|0": [85.0, 15.0, 0.0, 0.88],
+      "wasteful|1": [0.0, 20.0, 80.0, 1.05],
+      "wasteful|0": [0.0, 28.3, 71.7, 0.23]
+    }
+  ],
+  [
+    130.5,
+    {
+      "run_only": true,
+      "noise_from": 4,
+      "pack_dist": [1, 2, 3, 4, 5, 6],
+      "people_only": true,
+      "otrog_max": 1,
+      "mule_zhelob": 2,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [100.0, 0.0, 0.0, 1.07],
+      "thrifty|0": [95.0, 5.0, 0.0, 1.07],
+      "average|1": [88.3, 11.7, 0.0, 0.53],
+      "average|0": [85.0, 15.0, 0.0, 0.88],
+      "wasteful|1": [0.0, 20.0, 80.0, 1.05],
+      "wasteful|0": [0.0, 28.3, 71.7, 0.23]
+    }
+  ],
+  [
+    136.7,
+    {
+      "run_only": true,
+      "noise_from": 3,
+      "pack_dist": [2, 3, 4],
+      "people_only": true,
+      "otrog_max": 2,
+      "mule_zhelob": 2,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [100.0, 0.0, 0.0, 1.4],
+      "thrifty|0": [95.0, 5.0, 0.0, 0.98],
+      "average|1": [88.3, 11.7, 0.0, 0.29],
+      "average|0": [85.0, 15.0, 0.0, 0.83],
+      "wasteful|1": [0.0, 25.0, 75.0, 1.15],
+      "wasteful|0": [0.0, 38.3, 61.7, 0.23]
+    }
+  ],
+  [
+    136.7,
+    {
+      "run_only": true,
+      "noise_from": 3,
+      "pack_dist": [2, 3, 4],
+      "people_only": true,
+      "otrog_max": 1,
+      "mule_zhelob": 2,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [100.0, 0.0, 0.0, 1.07],
+      "thrifty|0": [95.0, 5.0, 0.0, 0.98],
+      "average|1": [88.3, 11.7, 0.0, 0.29],
+      "average|0": [85.0, 15.0, 0.0, 0.83],
+      "wasteful|1": [0.0, 25.0, 75.0, 1.15],
+      "wasteful|0": [0.0, 38.3, 61.7, 0.23]
+    }
+  ],
+  [
+    136.7,
+    {
+      "run_only": true,
+      "noise_from": 3,
+      "pack_dist": [1, 2, 3, 4, 5, 6],
+      "people_only": true,
+      "otrog_max": 2,
+      "mule_zhelob": 2,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [100.0, 0.0, 0.0, 1.4],
+      "thrifty|0": [95.0, 5.0, 0.0, 0.98],
+      "average|1": [88.3, 11.7, 0.0, 0.29],
+      "average|0": [85.0, 15.0, 0.0, 0.83],
+      "wasteful|1": [0.0, 20.0, 80.0, 1.05],
+      "wasteful|0": [0.0, 28.3, 71.7, 0.23]
+    }
+  ],
+  [
+    136.7,
+    {
+      "run_only": true,
+      "noise_from": 3,
+      "pack_dist": [1, 2, 3, 4, 5, 6],
+      "people_only": true,
+      "otrog_max": 1,
+      "mule_zhelob": 2,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [100.0, 0.0, 0.0, 1.07],
+      "thrifty|0": [95.0, 5.0, 0.0, 0.98],
+      "average|1": [88.3, 11.7, 0.0, 0.29],
+      "average|0": [85.0, 15.0, 0.0, 0.83],
+      "wasteful|1": [0.0, 20.0, 80.0, 1.05],
+      "wasteful|0": [0.0, 28.3, 71.7, 0.23]
+    }
+  ],
+  [
+    136.7,
+    {
+      "run_only": true,
+      "noise_from": 2,
+      "pack_dist": [2, 3, 4],
+      "people_only": true,
+      "otrog_max": 2,
+      "mule_zhelob": 2,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [100.0, 0.0, 0.0, 1.4],
+      "thrifty|0": [95.0, 5.0, 0.0, 0.98],
+      "average|1": [88.3, 11.7, 0.0, 0.29],
+      "average|0": [85.0, 15.0, 0.0, 0.83],
+      "wasteful|1": [0.0, 25.0, 75.0, 1.15],
+      "wasteful|0": [0.0, 38.3, 61.7, 0.23]
+    }
+  ],
+  [
+    136.7,
+    {
+      "run_only": true,
+      "noise_from": 2,
+      "pack_dist": [2, 3, 4],
+      "people_only": true,
+      "otrog_max": 1,
+      "mule_zhelob": 2,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [100.0, 0.0, 0.0, 1.07],
+      "thrifty|0": [95.0, 5.0, 0.0, 0.98],
+      "average|1": [88.3, 11.7, 0.0, 0.29],
+      "average|0": [85.0, 15.0, 0.0, 0.83],
+      "wasteful|1": [0.0, 25.0, 75.0, 1.15],
+      "wasteful|0": [0.0, 38.3, 61.7, 0.23]
+    }
+  ],
+  [
+    136.7,
+    {
+      "run_only": true,
+      "noise_from": 2,
+      "pack_dist": [1, 2, 3, 4, 5, 6],
+      "people_only": true,
+      "otrog_max": 2,
+      "mule_zhelob": 2,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [100.0, 0.0, 0.0, 1.4],
+      "thrifty|0": [95.0, 5.0, 0.0, 0.98],
+      "average|1": [88.3, 11.7, 0.0, 0.29],
+      "average|0": [85.0, 15.0, 0.0, 0.83],
+      "wasteful|1": [0.0, 20.0, 80.0, 1.05],
+      "wasteful|0": [0.0, 28.3, 71.7, 0.23]
+    }
+  ],
+  [
+    136.7,
+    {
+      "run_only": true,
+      "noise_from": 2,
+      "pack_dist": [1, 2, 3, 4, 5, 6],
+      "people_only": true,
+      "otrog_max": 1,
+      "mule_zhelob": 2,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [100.0, 0.0, 0.0, 1.07],
+      "thrifty|0": [95.0, 5.0, 0.0, 0.98],
+      "average|1": [88.3, 11.7, 0.0, 0.29],
+      "average|0": [85.0, 15.0, 0.0, 0.83],
+      "wasteful|1": [0.0, 20.0, 80.0, 1.05],
+      "wasteful|0": [0.0, 28.3, 71.7, 0.23]
+    }
+  ],
+  [
+    153.6,
+    {
+      "run_only": true,
+      "noise_from": 3,
+      "pack_dist": [1, 2, 3, 4],
+      "people_only": true,
+      "otrog_max": 1,
+      "mule_zhelob": 1,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [81.7, 3.3, 15.0, 1.25],
+      "thrifty|0": [0.0, 1.7, 98.3, 0.97],
+      "average|1": [0.0, 40.0, 60.0, 0.82],
+      "average|0": [0.0, 0.0, 100.0, 1.07],
+      "wasteful|1": [0.0, 0.0, 100.0, 0.52],
+      "wasteful|0": [0.0, 0.0, 100.0, 0.26]
+    }
+  ],
+  [
+    153.6,
+    {
+      "run_only": true,
+      "noise_from": 2,
+      "pack_dist": [1, 2, 3, 4],
+      "people_only": true,
+      "otrog_max": 1,
+      "mule_zhelob": 1,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [81.7, 3.3, 15.0, 1.25],
+      "thrifty|0": [0.0, 1.7, 98.3, 0.97],
+      "average|1": [0.0, 40.0, 60.0, 0.82],
+      "average|0": [0.0, 0.0, 100.0, 1.07],
+      "wasteful|1": [0.0, 0.0, 100.0, 0.52],
+      "wasteful|0": [0.0, 0.0, 100.0, 0.26]
+    }
+  ],
+  [
+    154.4,
+    {
+      "run_only": true,
+      "noise_from": 3,
+      "pack_dist": [2, 3, 4, 5],
+      "people_only": true,
+      "otrog_max": 1,
+      "mule_zhelob": 1,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [81.7, 5.0, 13.3, 1.29],
+      "thrifty|0": [0.0, 1.7, 98.3, 1.18],
+      "average|1": [0.0, 33.3, 66.7, 0.67],
+      "average|0": [0.0, 0.0, 100.0, 1.15],
+      "wasteful|1": [0.0, 0.0, 100.0, 0.57],
+      "wasteful|0": [0.0, 0.0, 100.0, 0.29]
+    }
+  ],
+  [
+    154.4,
+    {
+      "run_only": true,
+      "noise_from": 2,
+      "pack_dist": [2, 3, 4, 5],
+      "people_only": true,
+      "otrog_max": 1,
+      "mule_zhelob": 1,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [81.7, 5.0, 13.3, 1.29],
+      "thrifty|0": [0.0, 1.7, 98.3, 1.18],
+      "average|1": [0.0, 33.3, 66.7, 0.67],
+      "average|0": [0.0, 0.0, 100.0, 1.15],
+      "wasteful|1": [0.0, 0.0, 100.0, 0.57],
+      "wasteful|0": [0.0, 0.0, 100.0, 0.29]
+    }
+  ],
+  [
+    155.0,
+    {
+      "run_only": true,
+      "noise_from": 3,
+      "pack_dist": [3],
+      "people_only": true,
+      "otrog_max": 2,
+      "mule_zhelob": 1,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [100.0, 0.0, 0.0, 1.47],
+      "thrifty|0": [0.0, 0.0, 100.0, 1.22],
+      "average|1": [0.0, 100.0, 0.0, 0.92],
+      "average|0": [0.0, 0.0, 100.0, 1.04],
+      "wasteful|1": [0.0, 0.0, 100.0, 0.57],
+      "wasteful|0": [0.0, 0.0, 100.0, 0.26]
+    }
+  ],
+  [
+    155.0,
+    {
+      "run_only": true,
+      "noise_from": 2,
+      "pack_dist": [3],
+      "people_only": true,
+      "otrog_max": 2,
+      "mule_zhelob": 1,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [100.0, 0.0, 0.0, 1.47],
+      "thrifty|0": [0.0, 0.0, 100.0, 1.22],
+      "average|1": [0.0, 100.0, 0.0, 0.92],
+      "average|0": [0.0, 0.0, 100.0, 1.04],
+      "wasteful|1": [0.0, 0.0, 100.0, 0.57],
+      "wasteful|0": [0.0, 0.0, 100.0, 0.26]
+    }
+  ],
+  [
+    155.6,
+    {
+      "run_only": true,
+      "noise_from": 3,
+      "pack_dist": [3],
+      "people_only": true,
+      "otrog_max": 1,
+      "mule_zhelob": 1,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [81.7, 5.0, 13.3, 1.34],
+      "thrifty|0": [0.0, 0.0, 100.0, 1.22],
+      "average|1": [0.0, 40.0, 60.0, 0.69],
+      "average|0": [0.0, 0.0, 100.0, 1.04],
+      "wasteful|1": [0.0, 0.0, 100.0, 0.52],
+      "wasteful|0": [0.0, 0.0, 100.0, 0.26]
+    }
+  ],
+  [
+    155.6,
+    {
+      "run_only": true,
+      "noise_from": 2,
+      "pack_dist": [3],
+      "people_only": true,
+      "otrog_max": 1,
+      "mule_zhelob": 1,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [81.7, 5.0, 13.3, 1.34],
+      "thrifty|0": [0.0, 0.0, 100.0, 1.22],
+      "average|1": [0.0, 40.0, 60.0, 0.69],
+      "average|0": [0.0, 0.0, 100.0, 1.04],
+      "wasteful|1": [0.0, 0.0, 100.0, 0.52],
+      "wasteful|0": [0.0, 0.0, 100.0, 0.26]
+    }
+  ],
+  [
+    156.6,
+    {
+      "run_only": true,
+      "noise_from": 3,
+      "pack_dist": [1, 2, 3, 4, 5, 6],
+      "people_only": true,
+      "otrog_max": 1,
+      "mule_zhelob": 1,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [81.7, 5.0, 13.3, 1.27],
+      "thrifty|0": [0.0, 1.7, 98.3, 1.13],
+      "average|1": [0.0, 30.0, 70.0, 0.71],
+      "average|0": [0.0, 0.0, 100.0, 0.86],
+      "wasteful|1": [0.0, 0.0, 100.0, 0.57],
+      "wasteful|0": [0.0, 0.0, 100.0, 0.28]
+    }
+  ],
+  [
+    156.6,
+    {
+      "run_only": true,
+      "noise_from": 2,
+      "pack_dist": [1, 2, 3, 4, 5, 6],
+      "people_only": true,
+      "otrog_max": 1,
+      "mule_zhelob": 1,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [81.7, 5.0, 13.3, 1.27],
+      "thrifty|0": [0.0, 1.7, 98.3, 1.13],
+      "average|1": [0.0, 30.0, 70.0, 0.71],
+      "average|0": [0.0, 0.0, 100.0, 0.86],
+      "wasteful|1": [0.0, 0.0, 100.0, 0.57],
+      "wasteful|0": [0.0, 0.0, 100.0, 0.28]
+    }
+  ],
+  [
+    158.0,
+    {
+      "run_only": true,
+      "noise_from": 3,
+      "pack_dist": [2, 3, 4],
+      "people_only": true,
+      "otrog_max": 1,
+      "mule_zhelob": 1,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [81.7, 5.0, 13.3, 1.28],
+      "thrifty|0": [0.0, 1.7, 98.3, 1.15],
+      "average|1": [0.0, 40.0, 60.0, 0.68],
+      "average|0": [0.0, 0.0, 100.0, 0.88],
+      "wasteful|1": [0.0, 0.0, 100.0, 0.55],
+      "wasteful|0": [0.0, 0.0, 100.0, 0.24]
+    }
+  ],
+  [
+    158.0,
+    {
+      "run_only": true,
+      "noise_from": 3,
+      "pack_dist": [2, 3, 4, 5],
+      "people_only": true,
+      "otrog_max": 2,
+      "mule_zhelob": 1,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [100.0, 0.0, 0.0, 1.42],
+      "thrifty|0": [0.0, 1.7, 98.3, 1.18],
+      "average|1": [0.0, 93.3, 6.7, 0.72],
+      "average|0": [0.0, 0.0, 100.0, 1.15],
+      "wasteful|1": [0.0, 0.0, 100.0, 0.59],
+      "wasteful|0": [0.0, 0.0, 100.0, 0.29]
+    }
+  ],
+  [
+    158.0,
+    {
+      "run_only": true,
+      "noise_from": 2,
+      "pack_dist": [2, 3, 4],
+      "people_only": true,
+      "otrog_max": 1,
+      "mule_zhelob": 1,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [81.7, 5.0, 13.3, 1.28],
+      "thrifty|0": [0.0, 1.7, 98.3, 1.15],
+      "average|1": [0.0, 40.0, 60.0, 0.68],
+      "average|0": [0.0, 0.0, 100.0, 0.88],
+      "wasteful|1": [0.0, 0.0, 100.0, 0.55],
+      "wasteful|0": [0.0, 0.0, 100.0, 0.24]
+    }
+  ],
+  [
+    158.0,
+    {
+      "run_only": true,
+      "noise_from": 2,
+      "pack_dist": [2, 3, 4, 5],
+      "people_only": true,
+      "otrog_max": 2,
+      "mule_zhelob": 1,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [100.0, 0.0, 0.0, 1.42],
+      "thrifty|0": [0.0, 1.7, 98.3, 1.18],
+      "average|1": [0.0, 93.3, 6.7, 0.72],
+      "average|0": [0.0, 0.0, 100.0, 1.15],
+      "wasteful|1": [0.0, 0.0, 100.0, 0.59],
+      "wasteful|0": [0.0, 0.0, 100.0, 0.29]
+    }
+  ],
+  [
+    159.4,
+    {
+      "run_only": true,
+      "noise_from": 3,
+      "pack_dist": [1, 2, 3, 4],
+      "people_only": true,
+      "otrog_max": 2,
+      "mule_zhelob": 1,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [100.0, 0.0, 0.0, 1.36],
+      "thrifty|0": [0.0, 1.7, 98.3, 0.97],
+      "average|1": [0.0, 100.0, 0.0, 0.73],
+      "average|0": [0.0, 0.0, 100.0, 1.07],
+      "wasteful|1": [0.0, 0.0, 100.0, 0.57],
+      "wasteful|0": [0.0, 0.0, 100.0, 0.26]
+    }
+  ],
+  [
+    159.4,
+    {
+      "run_only": true,
+      "noise_from": 2,
+      "pack_dist": [1, 2, 3, 4],
+      "people_only": true,
+      "otrog_max": 2,
+      "mule_zhelob": 1,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [100.0, 0.0, 0.0, 1.36],
+      "thrifty|0": [0.0, 1.7, 98.3, 0.97],
+      "average|1": [0.0, 100.0, 0.0, 0.73],
+      "average|0": [0.0, 0.0, 100.0, 1.07],
+      "wasteful|1": [0.0, 0.0, 100.0, 0.57],
+      "wasteful|0": [0.0, 0.0, 100.0, 0.26]
+    }
+  ],
+  [
+    160.0,
+    {
+      "run_only": true,
+      "noise_from": 3,
+      "pack_dist": [1, 2, 3, 4, 5, 6],
+      "people_only": true,
+      "otrog_max": 2,
+      "mule_zhelob": 1,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [100.0, 0.0, 0.0, 1.4],
+      "thrifty|0": [0.0, 1.7, 98.3, 1.13],
+      "average|1": [0.0, 90.0, 10.0, 0.77],
+      "average|0": [0.0, 0.0, 100.0, 0.86],
+      "wasteful|1": [0.0, 0.0, 100.0, 0.59],
+      "wasteful|0": [0.0, 0.0, 100.0, 0.28]
+    }
+  ],
+  [
+    160.0,
+    {
+      "run_only": true,
+      "noise_from": 2,
+      "pack_dist": [1, 2, 3, 4, 5, 6],
+      "people_only": true,
+      "otrog_max": 2,
+      "mule_zhelob": 1,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [100.0, 0.0, 0.0, 1.4],
+      "thrifty|0": [0.0, 1.7, 98.3, 1.13],
+      "average|1": [0.0, 90.0, 10.0, 0.77],
+      "average|0": [0.0, 0.0, 100.0, 0.86],
+      "wasteful|1": [0.0, 0.0, 100.0, 0.59],
+      "wasteful|0": [0.0, 0.0, 100.0, 0.28]
+    }
+  ],
+  [
+    161.8,
+    {
+      "run_only": true,
+      "noise_from": 3,
+      "pack_dist": [2, 3, 4],
+      "people_only": true,
+      "otrog_max": 2,
+      "mule_zhelob": 1,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [100.0, 0.0, 0.0, 1.4],
+      "thrifty|0": [0.0, 1.7, 98.3, 1.15],
+      "average|1": [0.0, 100.0, 0.0, 0.73],
+      "average|0": [0.0, 0.0, 100.0, 0.88],
+      "wasteful|1": [0.0, 0.0, 100.0, 0.56],
+      "wasteful|0": [0.0, 0.0, 100.0, 0.24]
+    }
+  ],
+  [
+    161.8,
+    {
+      "run_only": true,
+      "noise_from": 2,
+      "pack_dist": [2, 3, 4],
+      "people_only": true,
+      "otrog_max": 2,
+      "mule_zhelob": 1,
+      "walker_zhelob": 2
+    },
+    {
+      "thrifty|1": [100.0, 0.0, 0.0, 1.4],
+      "thrifty|0": [0.0, 1.7, 98.3, 1.15],
+      "average|1": [0.0, 100.0, 0.0, 0.73],
+      "average|0": [0.0, 0.0, 100.0, 0.88],
+      "wasteful|1": [0.0, 0.0, 100.0, 0.56],
+      "wasteful|0": [0.0, 0.0, 100.0, 0.24]
+    }
+  ]
+]
