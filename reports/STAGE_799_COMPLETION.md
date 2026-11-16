@@ -145,6 +145,14 @@ keepsakes.
   come; why WebKit drops its connection to the dev server is not known (Stage 790's report).
 - **The whole suite after the suite's own fixes.** Run whole on Stage 790's branch (346 of 346
   on Chromium in 28.5 minutes, one commit before its last); here only CI runs the whole.
+- **An iPad page that never shows its world.** With the reloads gone one failure is left in
+  CI, old and not explained: now and then on the iPad project a page that entered the world
+  never shows its dock, and the journey runs out of its three minutes
+  (`[ipad] evening-ritual.spec.ts:35` on this pull request's commit `f663f59d`; the same on
+  `main` before this package, `[ipad] dm-screen.spec.ts`). Stage 790's pull request was green
+  whole on the same code. CI keeps no screenshot, so a failing journey now writes what its pages
+  showed and which requests they still waited for into the job's log
+  (`tests/e2e/support/pages.ts`): the next occurrence can be read there.
 - **Paper.** The book's print was checked in Stage 770 as Chromium's PDF; no page was printed,
   and Safari's print was not tried.
 - **No real device**: not a phone (the keyboard over a card, the largest text under a thumb), not
@@ -164,6 +172,12 @@ keepsakes.
   development database was not touched.
 
 ## For the owner
+
+**Done since this was written**: on the owner's word of 2026-11-16 («доделывай и сливай») the
+whole package was merged into `main` as one merge of PR 47 (`2fc04704`) — the tree whose CI ran
+green whole, Chromium, the iPad project and WebKit — and PRs 37–46 are closed with it, their
+commits inside that merge. Nothing is deployed. Step 1 below is therefore history; steps 2 and 3
+stand, and so does what PR 32 needs.
 
 1. **Merge, in order**: PR 37 (the plan) → 38 → 39 → 40 → 41 → 42 → 43 → 44 → 46 → 47. Each is
    stacked on the one before; after a merge the next one's base moves to `main` by itself or by

@@ -9,10 +9,32 @@ import android.widget.LinearLayout
 import android.widget.TextView
 
 /**
- * The shell's two questions (docs/adr/0070-native-apps.md §1, §4): which server to play on, and
- * whether a code of another server may move the app there.
+ * The shell's questions (docs/adr/0070-native-apps.md §1, §4, §5): which server to play on,
+ * whether a code of another server may move the app there, and whether to notify when the table
+ * waits.
  */
 class Dialogs(private val activity: Activity, private val store: ServerStore) {
+    private var notify: AlertDialog? = null
+
+    /**
+     * Before the system's question about notifications, the shell's own, saying what they are for.
+     * Closed without an answer, it decides nothing.
+     */
+    fun askToNotify(onContinue: () -> Unit, onLater: () -> Unit) {
+        notify = AlertDialog.Builder(activity)
+            .setTitle(R.string.notify_title)
+            .setMessage(R.string.notify_text)
+            .setPositiveButton(R.string.notify_continue) { _, _ -> onContinue() }
+            .setNegativeButton(R.string.notify_later) { _, _ -> onLater() }
+            .setOnDismissListener { notify = null }
+            .show()
+    }
+
+    /** The activity is going; its open question goes with it. */
+    fun close() {
+        notify?.dismiss()
+    }
+
     fun chooseServer(onChosen: () -> Unit) {
         val content = activity.layoutInflater.inflate(R.layout.dialog_server, null)
         val field = content.findViewById<EditText>(R.id.server_field)
