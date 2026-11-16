@@ -72,6 +72,8 @@ test('the DM shows one picture and the words read aloud', async ({ browser }) =>
   await words.fill('Night falls.');
   await form.getByRole('button', { name: 'Show on the screens', exact: true }).click();
   await expect(story.locator('p')).toHaveText(['Night falls.'], LIVE);
+  // A line or two stand large.
+  await expect(story).toHaveAttribute('data-load', 'brief');
   await expect(story.locator('img.display-story-art')).toHaveAttribute('alt', '');
 
   // A riddle of twelve short lines: the form warns, and the screen still holds every line.

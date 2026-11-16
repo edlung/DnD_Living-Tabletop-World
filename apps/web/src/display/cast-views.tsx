@@ -348,13 +348,16 @@ function StoryCast(props: Props & { readonly entityId: string | null; readonly t
   const art = useApprovedImage(shown?.presentation.image ?? null);
   const name = nameIn(props.directory, props.entityId);
   const paragraphs = props.text.split(/\n+/).filter((line) => line.trim() !== '');
-  // Much text, or many short lines (a verse, a riddle), stands smaller so that all of it fits.
+  // Much text, or many short lines (a verse, a riddle), stands smaller so that all of it fits;
+  // a line or two stand large, to be read from across the room.
   const load =
     props.text.length > 450 || paragraphs.length > 6
       ? 'long'
       : props.text.length > 250 || paragraphs.length > 3
         ? 'mid'
-        : 'short';
+        : props.text.length <= 90 && paragraphs.length <= 2
+          ? 'brief'
+          : 'short';
   return (
     <section className="display-story" data-load={load} aria-label={t('A story read aloud')}>
       <img

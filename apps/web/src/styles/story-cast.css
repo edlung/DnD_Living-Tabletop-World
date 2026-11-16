@@ -47,6 +47,10 @@
   z-index: -1;
   background: linear-gradient(to bottom, transparent, rgb(5 9 14 / 0.9) 10vmin);
 }
+.display-story[data-load='brief'] .display-story-words {
+  font-size: clamp(1.6rem, 6.4vmin, 5rem);
+  text-align: center;
+}
 .display-story[data-load='mid'] .display-story-words {
   font-size: clamp(1.15rem, 3.6vmin, 3rem);
 }
