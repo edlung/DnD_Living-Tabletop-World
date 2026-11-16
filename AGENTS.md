@@ -8,6 +8,11 @@ The model selected in the session does the work. `EFFORT_MATRIX.md` and work-ord
 
 # Living Tabletop World Agent Instructions
 
+Owner request 2026-11-16 (`reviews/OWNER_TABLE_IDEAS_2026-11-16.json`): ten ideas borrowed from
+other D&D tools (Stages 800–890, `docs/TABLE_IDEAS_PLAN.md`, ADR 0073), each stage in its own pull
+request; technical checkpoints pass with the usual checks and reports; merges and deployment stay
+the owner's.
+
 Owner request 2026-11-02 (`reviews/OWNER_NATIVE_APPS_2026-11-02.json`): native apps — LTW Player
 (iOS, iPadOS, Android) and LTW DM (iOS, iPadOS) as shells around the server's client (Stage 700,
 `docs/NATIVE_APPS_PLAN.md`, ADR 0070). Native code lives in `apps/ios` and `apps/android`; each has

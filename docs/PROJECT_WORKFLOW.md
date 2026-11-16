@@ -2,6 +2,18 @@
 
 Updated 2026-10-15. The owner's current AGENTS instructions take precedence over older process banners.
 
+## Current request — ideas from other tables, 2026-11-16
+
+- Owner: «приступай к реализации этих улучшений. все что возможно сделай в облаке, доступ к github у
+  тебя есть.» — typed in a working session after a list of ten ideas borrowed from other D&D tools
+  was shown, and relayed to the cloud session that does the work
+  (`reviews/OWNER_TABLE_IDEAS_2026-11-16.json`). Program `docs/TABLE_IDEAS_PLAN.md` (Stages
+  800–890, ADR 0073, one section a stage).
+- Status: the plan is a draft pull request stacked on `claude/stage-799-package-close`. The stages
+  follow it without asking to start each (the standing word of 2026-11-15, applied by the
+  sessions' reading), each in its own pull request stacked on the one before; merges, deployment,
+  the family playtest and real devices stay the owner's.
+
 ## Current request — memory and ritual, 2026-11-15
 
 - Owner: the goal «Теплый и ламповый портал в увлекательные D&D миры», then «Да, план» for the
