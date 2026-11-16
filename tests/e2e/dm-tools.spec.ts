@@ -1,8 +1,9 @@
-import { expect, test } from '@playwright/test';
+import { expect } from '@playwright/test';
 
 import { expectAccepted, submit } from './support/combat.ts';
 import { dmRequest, playerCommand } from './support/authoring.ts';
 import { dmHistory, historyEntry, openHistory } from './support/dm.ts';
+import { test } from './support/journey.ts';
 import { collectApiBodies, enterWorld, TOKENS } from './support/session.ts';
 import { chooseLocation, openChronicle, openSheet } from './support/shell.ts';
 import campaigns from './fixtures/dm-tool-campaigns.json' with { type: 'json' };

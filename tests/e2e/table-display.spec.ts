@@ -1,7 +1,8 @@
-import { expect, test, type Browser, type Locator, type Page } from '@playwright/test';
+import { expect, type Browser, type Locator, type Page } from '@playwright/test';
 
 import boundary from '../../fixtures/ravenford/knowledge-boundary.json' with { type: 'json' };
 import { expectAccessible } from './support/axe.ts';
+import { test } from './support/journey.ts';
 import { isLiveStream } from './support/session.ts';
 import { openSheet, sceneRegion } from './support/shell.ts';
 import { SIGN_IN_CAMPAIGNS, SIGN_IN_ORIGIN, WORDS, joinAsDm, takeSeat } from './support/sign-in.ts';

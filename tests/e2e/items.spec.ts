@@ -1,6 +1,7 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect, type Page } from '@playwright/test';
 
 import { expectAccessible, WIDTHS } from './support/axe.ts';
+import { test } from './support/journey.ts';
 import { enterWorld, expectPlayerBoundary, TOKENS } from './support/session.ts';
 import { closeCharacter, openCharacter } from './support/shell.ts';
 

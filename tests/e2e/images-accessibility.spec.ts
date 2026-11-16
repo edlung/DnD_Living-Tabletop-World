@@ -1,7 +1,8 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect, type Page } from '@playwright/test';
 
 import { expectAccessible, WIDTHS } from './support/axe.ts';
 import { IMAGE_CAMPAIGNS, imagesRegion } from './support/images.ts';
+import { test } from './support/journey.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
 import { closeSheet, dockButton, openSheet, revealDockButton } from './support/shell.ts';
 

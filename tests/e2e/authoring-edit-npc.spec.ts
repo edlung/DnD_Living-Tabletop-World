@@ -1,4 +1,4 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect, type Page } from '@playwright/test';
 
 import {
   ADD_TO_THE_WORLD,
@@ -9,6 +9,7 @@ import {
   review,
 } from './support/authoring.ts';
 import { historyEntry, openHistory } from './support/dm.ts';
+import { test } from './support/journey.ts';
 import { collectApiBodies, enterWorld, TOKENS } from './support/session.ts';
 import { chooseLocation, closeSheet, sceneRegion } from './support/shell.ts';
 

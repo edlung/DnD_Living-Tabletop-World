@@ -1,10 +1,11 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect, type Page } from '@playwright/test';
 
 import { SIGN_IN_ORIGIN, signInSeed } from '../../apps/server/src/testing/ui-sign-in-links.ts';
 import {
   workshopInvitationToken,
   type WorkshopFixture,
 } from '../../apps/server/src/testing/ui-workshop-links.ts';
+import { test } from './support/journey.ts';
 import { TOKENS } from './support/session.ts';
 import { chooseLocation } from './support/shell.ts';
 import { expectUnreachable, holdsAny } from './support/sign-in.ts';

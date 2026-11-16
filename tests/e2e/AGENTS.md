@@ -18,6 +18,15 @@ including a read-only preview, exact retry and four-width layout/accessibility c
 and captures native `window.error` ResizeObserver messages as well as Playwright page errors.
 It changes no world state; keep its window listener, since `pageerror` misses these messages.
 
+- A journey closes the pages it opens. Playwright closes only the `page` fixture's context; a
+  context from `browser.newContext()` lives on in the worker's browser with its live stream, and
+  the server keeps reading every view for it — which slowed every later journey of that worker.
+  A spec that takes `browser` imports `test` from `support/journey.ts` (it closes what the journey
+  opened), or closes its own with `closePages` of `support/pages.ts`;
+  `tests/architecture/journey-pages.test.ts` holds every spec to one of the two.
+- In CI the two dev servers write a `[ltw:trace]` line when they tell their pages to reload, send
+  them an error, or a page comes back after losing its connection (`apps/web/dev-trace.ts`): read a
+  journey whose page reloaded under it against those lines in the job's log.
 - `apps/server/src/testing/ui-server.ts` composes the real World Engine and dev
   personas over deterministic in-memory storage. No external AI provider runs.
 - These are browser journeys through real HTTP projections, not mocked domain

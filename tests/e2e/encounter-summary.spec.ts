@@ -1,5 +1,6 @@
-import { expect, test, type Response } from '@playwright/test';
+import { expect, type Response } from '@playwright/test';
 
+import { test } from './support/journey.ts';
 import { collectApiBodies, enterWorld, expectPlayerBoundary, TOKENS } from './support/session.ts';
 import { openSheet } from './support/shell.ts';
 

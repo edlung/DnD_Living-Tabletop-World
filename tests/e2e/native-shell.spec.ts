@@ -1,5 +1,6 @@
-import { expect, test, type Browser, type Page } from '@playwright/test';
+import { expect, type Browser, type Page } from '@playwright/test';
 
+import { test } from './support/journey.ts';
 import { openSheet } from './support/shell.ts';
 import { SIGN_IN_CAMPAIGNS, SIGN_IN_ORIGIN, START, WORDS, joinAsDm } from './support/sign-in.ts';
 

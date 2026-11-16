@@ -1,5 +1,6 @@
-import { expect as baseExpect, test, type Page } from '@playwright/test';
+import { expect as baseExpect, type Page } from '@playwright/test';
 
+import { test } from './support/journey.ts';
 import { LIVE_URL, readsQuiet } from './support/live.ts';
 import { dockButton } from './support/shell.ts';
 import {

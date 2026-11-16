@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect } from '@playwright/test';
 
 import {
   assetsOf,
@@ -11,6 +11,7 @@ import {
   playerPresentation,
   TOMAS,
 } from './support/images.ts';
+import { test } from './support/journey.ts';
 import { collectApiBodies, enterWorld, TOKENS } from './support/session.ts';
 import { openSheet } from './support/shell.ts';
 
