@@ -21,10 +21,10 @@ test('по-русски: предыстория и личные заметки',
   const page = await freshPage(browser);
   await enterWorld(page, TOKENS.player, UI_PARTY_CAMPAIGNS.storyRu);
   const story = await openCharacter(page, 'История', 'Персонаж');
-  const backstory = story.getByRole('region', { name: 'Предыстория' });
-  await expect(backstory).toContainText('Это читаете вы и мастер. Больше никто за столом.', WAIT);
+  const backstory = story.getByRole('region', { name: 'История героя' });
+  await expect(backstory).toContainText('Это читаете вы и мастер, и каждый из вас может изменить текст.', WAIT);
   const notes = story.getByRole('region', { name: 'Мои заметки' });
-  await expect(notes).toContainText('Их читаете только вы: ни мастер, ни другие игроки.');
+  await expect(notes).toContainText('Их читаете только вы. Мастер и другие игроки их не видят.');
   await notes.getByRole('button', { name: 'Написать заметку', exact: true }).click();
   const form = notes.getByRole('form', { name: 'Новая заметка' });
   await form.getByLabel('Заметка', { exact: true }).fill('Мельник что-то скрывает.');

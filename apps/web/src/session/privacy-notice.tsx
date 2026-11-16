@@ -37,7 +37,7 @@ const SECTIONS = [
   },
   {
     title: 'Who sees it',
-    text: 'The people at your table, each as much as their character perceives, and the DM, who sees the whole campaign. The operator of the server can read its database to keep it running and safe.',
+    text: 'The people at your table, each as much as their character perceives, and the DM, who sees the whole campaign — except your private notes. The operator of the server can read its database to keep it running and safe.',
   },
   {
     title: 'What leaves the server',

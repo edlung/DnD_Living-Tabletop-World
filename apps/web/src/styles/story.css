@@ -55,3 +55,31 @@
   overflow-wrap: anywhere;
   white-space: pre-wrap;
 }
+
+/* Asked before a sheet closes on words nobody saved: over the sheet, at its top. */
+.hero-unsaved {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  display: grid;
+  gap: 8px;
+  margin: 8px;
+  padding: 12px 16px;
+  border: 1px solid var(--gold);
+  border-radius: var(--radius-panel);
+  background: var(--ink-850);
+  box-shadow: var(--shadow-soft);
+}
+.hero-unsaved p {
+  margin: 0;
+}
+.hero-unsaved button {
+  min-height: 44px;
+}
+.story-dm-note {
+  margin: 0;
+}
+.story-section button[aria-disabled='true'] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

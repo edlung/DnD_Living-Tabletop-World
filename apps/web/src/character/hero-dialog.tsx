@@ -7,9 +7,12 @@ import type {
 import { StatusPanel, useT } from '@ltw/ui';
 import {
   useCallback,
+  useEffect,
   useId,
   useLayoutEffect,
+  useMemo,
   useRef,
+  useState,
   type KeyboardEvent,
   type ReactNode,
 } from 'react';
@@ -25,6 +28,7 @@ import { OverviewTab } from './overview-tab.tsx';
 import { PrintSection } from './print-sheet.tsx';
 import { SkillsTab } from './skills-tab.tsx';
 import { SpellsTab } from './spells-tab.tsx';
+import { UnsavedContext, type Unsaved } from './story/unsaved.ts';
 
 /** Sections the world adds to the Overview tab for the sheet shown. */
 export type OverviewSections = (shown: {
@@ -159,27 +163,85 @@ export function HeroDialog({
     if (open && !dialog.open) dialog.showModal();
     if (!open && dialog.open) dialog.close();
   }, [open]);
+  // Words typed on the Story tab and not saved (ADR 0073 §5): the sheet asks before it closes.
+  const dirty = useRef(new Set<string>());
+  const unsaved = useMemo<Unsaved>(
+    () => ({
+      report: (key, is) => {
+        if (is) dirty.current.add(key);
+        else dirty.current.delete(key);
+      },
+    }),
+    [],
+  );
+  const [asking, setAsking] = useState(false);
+  const keep = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    if (asking) keep.current?.focus();
+  }, [asking]);
+  const close = () => {
+    if (dirty.current.size > 0) setAsking(true);
+    else onClose();
+  };
   return (
     <dialog
       ref={ref}
       className="hero-dialog"
       aria-label={t('Character: {name}', { name })}
-      onClose={onClose}
+      onCancel={(event) => {
+        if (dirty.current.size === 0) return;
+        event.preventDefault();
+        setAsking(true);
+      }}
+      onClose={() => {
+        dirty.current.clear();
+        setAsking(false);
+        onClose();
+      }}
     >
+      {asking && (
+        <div className="hero-unsaved" role="group" aria-label={t('Unsaved words')}>
+          <p role="alert">{t('You have not saved what you wrote. Close anyway?')}</p>
+          <div className="action-row">
+            <button
+              ref={keep}
+              type="button"
+              className="primary-button"
+              onClick={() => {
+                setAsking(false);
+              }}
+            >
+              {t('Keep writing')}
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                dirty.current.clear();
+                setAsking(false);
+                onClose();
+              }}
+            >
+              {t('Close without saving')}
+            </button>
+          </div>
+        </div>
+      )}
       {entityId !== null && (
-        <HeroContent
-          key={entityId}
-          api={api}
-          revision={revision}
-          entityId={entityId}
-          kind={kind}
-          tab={tab}
-          onTab={onTab}
-          onClose={onClose}
-          inventory={inventory}
-          overview={overview}
-          story={story}
-        />
+        <UnsavedContext.Provider value={unsaved}>
+          <HeroContent
+            key={entityId}
+            api={api}
+            revision={revision}
+            entityId={entityId}
+            kind={kind}
+            tab={tab}
+            onTab={onTab}
+            onClose={close}
+            inventory={inventory}
+            overview={overview}
+            story={story}
+          />
+        </UnsavedContext.Provider>
       )}
       {entityId !== null && <div className="hero-notice">{notice}</div>}
     </dialog>
@@ -285,9 +347,10 @@ function HeroContent({
               aria-labelledby={`${idBase}-tab-${shownTab}`}
               tabIndex={0}
             >
-              {shownTab === 'story' ? (
-                story
-              ) : !value.derived ? (
+              {/* The Story tab stays where it is while another tab shows: what is typed there
+                  and not saved is not lost to a look at the pack. */}
+              {hasStory && <div hidden={shownTab !== 'story'}>{story}</div>}
+              {shownTab === 'story' ? null : !value.derived ? (
                 <StatusPanel state="empty" label={t('No character sheet is recorded here.')} />
               ) : shownTab === 'overview' ? (
                 <>

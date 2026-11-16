@@ -1,14 +1,16 @@
 import {
+  MAX_PLAYER_NOTES,
   NOTE_BODY_CHARS,
   NOTE_TITLE_CHARS,
   type PlayerNoteView,
   type PlayerNotesResponse,
 } from '@ltw/contracts';
 import { useLanguage, useT } from '@ltw/ui';
-import { useCallback, useId, useRef, useState } from 'react';
+import { useCallback, useEffect, useId, useRef, useState } from 'react';
 
 import type { WorldApi } from '../../api/client.ts';
 import { useResource } from '../../api/resource.ts';
+import { useUnsaved } from './unsaved.ts';
 
 const wait = () => AbortSignal.timeout(20_000);
 
@@ -25,7 +27,7 @@ export function MyNotes({ api }: { readonly api: WorldApi }) {
     (signal: AbortSignal) => api.get<PlayerNotesResponse>('notes', signal),
     [api],
   );
-  const { resource, reread } = useResource('my-notes', load);
+  const { resource, reread, retry } = useResource('my-notes', load);
   // The note being written: a new one (its ID made here, so a retry is the same note) or one
   // opened to change.
   const [editing, setEditing] = useState<{
@@ -36,17 +38,41 @@ export function MyNotes({ api }: { readonly api: WorldApi }) {
   } | null>(null);
   const [asking, setAsking] = useState<string | null>(null);
   const [state, setState] = useState<'idle' | 'busy' | 'failed' | 'full'>('idle');
+  // The note whose deletion failed: its own row says so.
+  const [undeleted, setUndeleted] = useState<string | null>(null);
   const [said, setSaid] = useState('');
   const opener = useRef<HTMLButtonElement>(null);
+  const first = useRef<HTMLInputElement>(null);
+  const keepIt = useRef<HTMLButtonElement>(null);
+  const list = useRef<HTMLUListElement>(null);
+  // The control pressed goes away each time: what replaces it takes the focus.
+  const editingId = editing?.noteId ?? null;
+  useEffect(() => {
+    if (editingId !== null) first.current?.focus();
+  }, [editingId]);
+  useEffect(() => {
+    if (asking !== null) keepIt.current?.focus();
+  }, [asking]);
   const notes = resource.status === 'ready' ? resource.value.notes : [];
   const room = resource.status === 'ready' ? resource.value.room : false;
   const when = new Intl.DateTimeFormat(language === 'ru' ? 'ru-RU' : 'en-GB', {
     day: 'numeric',
     month: 'long',
   });
+  const written =
+    editing !== null &&
+    (editing.fresh
+      ? editing.title.trim() !== '' || editing.body.trim() !== ''
+      : notes.some(
+          (note) =>
+            note.noteId === editing.noteId &&
+            (note.title !== editing.title.trim() || note.body !== editing.body.trim()),
+        ));
+  useUnsaved('my-notes', written);
   const done = (word: string) => {
     setEditing(null);
     setAsking(null);
+    setUndeleted(null);
     setState('idle');
     setSaid(word);
     reread();
@@ -75,23 +101,41 @@ export function MyNotes({ api }: { readonly api: WorldApi }) {
   };
   const remove = (note: PlayerNoteView) => {
     setState('busy');
+    setUndeleted(null);
     void api.post(`notes/${encodeURIComponent(note.noteId)}/delete`, {}, wait(), true).then(
       () => {
         done(t('The note is deleted.'));
       },
       () => {
-        setState('failed');
+        setState('idle');
+        setUndeleted(note.noteId);
       },
     );
+  };
+  /** Back from the question to the note's own "Delete". */
+  const backTo = (noteId: string) => {
+    setAsking(null);
+    requestAnimationFrame(() => {
+      list.current
+        ?.querySelector<HTMLElement>(`[data-note="${CSS.escape(noteId)}"] [data-delete]`)
+        ?.focus();
+    });
   };
   return (
     <section className="hero-section story-section" aria-labelledby={`${ids}-title`}>
       <h3 id={`${ids}-title`}>{t('My notes')}</h3>
-      <p className="story-who">{t('Only you read these: not the DM, not the other players.')}</p>
+      <p className="story-who" id={`${ids}-who`}>
+        {t('Only you read these. The DM and the other players do not see them.')}
+      </p>
       {resource.status === 'error' && (
-        <p role="alert" className="authoring-notice error">
-          {t('Your notes could not be read. Close the sheet and open it again.')}
-        </p>
+        <div className="action-row">
+          <p role="alert" className="authoring-notice error">
+            {t('Your notes could not be read.')}
+          </p>
+          <button type="button" onClick={retry}>
+            {t('Try again')}
+          </button>
+        </div>
       )}
       <p role="status" className="story-status">
         {said}
@@ -101,8 +145,9 @@ export function MyNotes({ api }: { readonly api: WorldApi }) {
           <button
             ref={opener}
             type="button"
-            disabled={resource.status !== 'ready' || !room}
+            aria-disabled={resource.status !== 'ready' || !room}
             onClick={() => {
+              if (resource.status !== 'ready' || !room) return;
               setSaid('');
               setState('idle');
               setEditing({ noteId: crypto.randomUUID(), fresh: true, title: '', body: '' });
@@ -110,8 +155,12 @@ export function MyNotes({ api }: { readonly api: WorldApi }) {
           >
             {t('Write a note')}
           </button>
-          {resource.status === 'ready' && !room && (
-            <p className="muted">{t('The notebook is full: delete a note to write another.')}</p>
+          {resource.status === 'ready' && notes.length > 0 && (
+            <p className="muted">
+              {room
+                ? t('{count} of {max} notes', { count: notes.length, max: MAX_PLAYER_NOTES })
+                : t('The notebook is full: delete a note to write another.')}
+            </p>
           )}
         </div>
       ) : (
@@ -126,11 +175,13 @@ export function MyNotes({ api }: { readonly api: WorldApi }) {
         >
           <label htmlFor={`${ids}-note-title`}>{t('What it is about (optional)')}</label>
           <input
+            ref={first}
             id={`${ids}-note-title`}
             type="text"
             maxLength={NOTE_TITLE_CHARS}
             value={editing.title}
             autoComplete="off"
+            aria-describedby={`${ids}-who`}
             onChange={(event) => {
               setEditing({ ...editing, title: event.target.value });
             }}
@@ -141,10 +192,17 @@ export function MyNotes({ api }: { readonly api: WorldApi }) {
             rows={5}
             maxLength={NOTE_BODY_CHARS}
             value={editing.body}
+            aria-describedby={`${ids}-who ${ids}-room`}
             onChange={(event) => {
               setEditing({ ...editing, body: event.target.value });
             }}
           />
+          <p className="muted" id={`${ids}-room`}>
+            {t('{count} of {max} characters', {
+              count: editing.body.length,
+              max: NOTE_BODY_CHARS,
+            })}
+          </p>
           <div className="action-row">
             <button
               type="submit"
@@ -179,17 +237,21 @@ export function MyNotes({ api }: { readonly api: WorldApi }) {
         </form>
       )}
       {notes.length > 0 && (
-        <ul className="story-notes">
+        <ul className="story-notes" ref={list}>
           {notes.map((note) => (
-            <li key={note.noteId}>
+            <li key={note.noteId} data-note={note.noteId}>
               <h4>{note.title === '' ? t('A note') : note.title}</h4>
               {note.body !== '' && <p className="story-note-body">{note.body}</p>}
               <p className="muted">
                 {t('Changed {day}', { day: when.format(new Date(note.updatedAt)) })}
               </p>
               {asking === note.noteId ? (
-                <div className="action-row" role="group" aria-label={t('Delete this note?')}>
-                  <span>{t('Delete this note for good?')}</span>
+                <div
+                  className="action-row"
+                  role="group"
+                  aria-labelledby={`${ids}-ask-${note.noteId}`}
+                >
+                  <span id={`${ids}-ask-${note.noteId}`}>{t('Delete this note for good?')}</span>
                   <button
                     type="button"
                     aria-disabled={state === 'busy'}
@@ -200,9 +262,10 @@ export function MyNotes({ api }: { readonly api: WorldApi }) {
                     {t('Yes, delete it')}
                   </button>
                   <button
+                    ref={keepIt}
                     type="button"
                     onClick={() => {
-                      setAsking(null);
+                      backTo(note.noteId);
                     }}
                   >
                     {t('Keep it')}
@@ -212,8 +275,12 @@ export function MyNotes({ api }: { readonly api: WorldApi }) {
                 <div className="action-row">
                   <button
                     type="button"
-                    disabled={editing !== null}
+                    aria-disabled={editing !== null}
+                    aria-label={t('Change: {title}', {
+                      title: note.title === '' ? t('A note') : note.title,
+                    })}
                     onClick={() => {
+                      if (editing !== null) return;
                       setSaid('');
                       setState('idle');
                       setEditing({
@@ -228,8 +295,14 @@ export function MyNotes({ api }: { readonly api: WorldApi }) {
                   </button>
                   <button
                     type="button"
-                    disabled={editing !== null}
+                    data-delete
+                    aria-disabled={editing !== null}
+                    aria-label={t('Delete: {title}', {
+                      title: note.title === '' ? t('A note') : note.title,
+                    })}
                     onClick={() => {
+                      if (editing !== null) return;
+                      setUndeleted(null);
                       setAsking(note.noteId);
                     }}
                   >
@@ -237,12 +310,19 @@ export function MyNotes({ api }: { readonly api: WorldApi }) {
                   </button>
                 </div>
               )}
+              {undeleted === note.noteId && (
+                <p role="alert" className="authoring-notice error">
+                  {t('That was not deleted. Try again.')}
+                </p>
+              )}
             </li>
           ))}
         </ul>
       )}
       {resource.status === 'ready' && notes.length === 0 && editing === null && (
-        <p className="muted">{t('No notes yet: a clue, a name to remember, a plan.')}</p>
+        <p className="muted">
+          {t('No notes yet. Write down a clue, a name to remember, a plan.')}
+        </p>
       )}
     </section>
   );

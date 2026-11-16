@@ -75,10 +75,10 @@ test('a backstory is its player’s and the DM’s; a private note is its player
   const story = await openCharacter(elowen, 'Story');
   const backstory = story.getByRole('region', { name: 'Backstory' });
   await expect(backstory).toContainText(
-    'You and your DM read this. Nobody else at the table does.',
+    'You and the DM read this, and either of you may change it. Nobody else at the table sees it.',
   );
   const notes = story.getByRole('region', { name: 'My notes' });
-  await expect(notes).toContainText('Only you read these: not the DM, not the other players.');
+  await expect(notes).toContainText('Only you read these. The DM and the other players do not see them.');
   await expectAccessible(elowen, 'the Story tab, empty');
 
   // She writes where her hero comes from.
@@ -117,13 +117,17 @@ test('a backstory is its player’s and the DM’s; a private note is its player
   const dmStory = await openCharacter(dm, 'Story');
   const dmBackstory = dmStory.getByRole('region', { name: 'Backstory' });
   await expect(dmBackstory).toContainText(
-    'You and this hero’s player read this. Nobody else at the table does.',
+    'You and this hero’s player read this, and either of you may change it. Nobody else at the table sees it.',
   );
   await expect(dmBackstory.getByLabel(/^Where does Elowen Starwhisper come from/)).toHaveValue(
     STORY,
     LIVE,
   );
   await expect(dmStory.getByRole('region', { name: 'My notes' })).toHaveCount(0);
+  // The DM is told that notes exist, and that they are not the DM's to read.
+  await expect(dmStory).toContainText(
+    'This hero’s player may also keep private notes here. Only they read them — you do not.',
+  );
   await expectAccessible(dm, 'the Story tab as the DM reads it');
   // The DM adds a line for the child who told it aloud; the player reads it.
   await dmBackstory
@@ -155,9 +159,28 @@ test('a backstory is its player’s and the DM’s; a private note is its player
 
   // She deletes her note, for good, after being asked.
   const mine = told.getByRole('region', { name: 'My notes' });
-  await mine.getByRole('button', { name: 'Delete', exact: true }).click();
+  await mine.getByRole('button', { name: `Delete: ${NOTE_TITLE}`, exact: true }).click();
   await expect(mine.getByText('Delete this note for good?', { exact: true })).toBeVisible();
+  // The question holds the focus on the answer that loses nothing.
+  await expect(mine.getByRole('button', { name: 'Keep it', exact: true })).toBeFocused();
   await mine.getByRole('button', { name: 'Yes, delete it', exact: true }).click();
   await expect(mine.getByRole('status')).toHaveText('The note is deleted.', LIVE);
   await expect(mine.locator('.story-notes li')).toHaveCount(0);
+
+  // Words typed and not saved are not lost to another tab, and the sheet asks before it closes.
+  const field = told.getByLabel(/^Where does Elowen Starwhisper come from/);
+  await field.fill('A line she has not saved.');
+  await elowen.getByRole('tab', { name: 'Inventory', exact: true }).click();
+  await elowen.getByRole('tab', { name: 'Story', exact: true }).click();
+  await expect(field).toHaveValue('A line she has not saved.');
+  await elowen.getByRole('button', { name: 'Close the character sheet', exact: true }).click();
+  const ask = elowen.getByRole('group', { name: 'Unsaved words' });
+  await expect(ask).toContainText('You have not saved what you wrote. Close anyway?');
+  await expect(ask.getByRole('button', { name: 'Keep writing', exact: true })).toBeFocused();
+  await expectAccessible(elowen, 'the sheet asking about unsaved words');
+  await ask.getByRole('button', { name: 'Keep writing', exact: true }).click();
+  await expect(field).toHaveValue('A line she has not saved.');
+  await elowen.getByRole('button', { name: 'Close the character sheet', exact: true }).click();
+  await ask.getByRole('button', { name: 'Close without saving', exact: true }).click();
+  await expect(elowen.getByRole('dialog')).toHaveCount(0);
 });

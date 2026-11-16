@@ -22,8 +22,8 @@ registerRussian({
   'To play: to show each person what their character knows, to keep the story, and to let you come back.':
     'Чтобы играть: показывать каждому то, что знает его персонаж, хранить историю и пускать вас обратно.',
   'Who sees it': 'Кто видит',
-  'The people at your table, each as much as their character perceives, and the DM, who sees the whole campaign. The operator of the server can read its database to keep it running and safe.':
-    'Люди за вашим столом — каждый столько, сколько воспринимает его персонаж, — и мастер, который видит всю кампанию. Оператор сервера может читать его базу, чтобы сервер работал и был защищён.',
+  'The people at your table, each as much as their character perceives, and the DM, who sees the whole campaign — except your private notes. The operator of the server can read its database to keep it running and safe.':
+    'Люди за вашим столом — каждый столько, сколько воспринимает его персонаж, — и мастер, который видит всю кампанию, кроме ваших личных заметок. Оператор сервера может читать его базу, чтобы сервер работал и был защищён.',
   'What leaves the server': 'Что уходит с сервера',
   'Nothing, unless the server’s owner turns AI on. Then the text of a scene, an action or a question goes to the AI provider the owner chose, to write the narration or a character’s words; your login, your password and your sign-ins never do. Pictures come from the game’s own set unless the owner turns their making on.':
     'Ничего, если владелец сервера не включил ИИ. Тогда текст сцены, действия или вопроса уходит выбранному владельцем поставщику ИИ, чтобы написать рассказ или слова персонажа; ваш логин, пароль и входы — никогда. Картины берутся из собственного набора игры, если владелец не включил их создание.',

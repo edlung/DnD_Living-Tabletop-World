@@ -113,7 +113,16 @@ export function WorldHeroDialog({
         shown?.kind === 'character' && (isDm || shown.entityId === actorId) ? (
           <>
             <Backstory api={api} characterId={shown.entityId} name={shown.name} asDm={isDm} />
-            {!isDm && <MyNotes api={api} />}
+            {isDm ? (
+              // The DM is told that notes exist, and that they are not the DM's to read.
+              <p className="muted story-dm-note">
+                {t(
+                  'This hero’s player may also keep private notes here. Only they read them — you do not.',
+                )}
+              </p>
+            ) : (
+              <MyNotes api={api} />
+            )}
           </>
         ) : undefined
       }
