@@ -21,7 +21,10 @@ final class Alerts {
     private var awakeReasons = Set<String>()
     private var background: UIBackgroundTaskIdentifier = .invalid
     private let center = UNUserNotificationCenter.current()
-    private let askedKey = "ltw.asked-notifications"
+    /// The question about notifications was put, or found needless, in this launch.
+    private var asked = false
+    /// "No, thanks" to that question: the one thing the shell stores besides servers, nothing of the game.
+    private let declinedKey = "ltw.notifications-declined"
     private static let waitsID = "ltw.waits"
     private static let reminderID = "ltw.reminder"
 
@@ -33,17 +36,18 @@ final class Alerts {
     }
 
     /// The screen stays on while any reason holds it: a window's play session, the DM's TV.
-    func keepAwake(_ on: Bool, reason: String, asks: Bool = false) {
+    func keepAwake(_ on: Bool, reason: String) {
         if on { awakeReasons.insert(reason) } else { awakeReasons.remove(reason) }
         UIApplication.shared.isIdleTimerDisabled = !awakeReasons.isEmpty
-        if on && asks { askOnce() }
     }
 
-    /// The page's count of what waits: the badge, and news while out of view.
-    func onWaiting(_ count: Int) {
+    /// The page's count of what waits: the badge, and news while out of view. The first time
+    /// something waits, the window that heard it asks whether to notify.
+    func onWaiting(_ count: Int, in window: UIViewController) {
         let baseline = waiting
         waiting = count
         center.setBadgeCount(count, withCompletionHandler: nil)
+        if count > 0 { askToNotify(in: window) }
         guard let baseline else { return }
         if !inView && count > baseline { post(Self.waitsID, after: nil) }
         if count == 0 {
@@ -81,11 +85,39 @@ final class Alerts {
         background = .invalid
     }
 
-    /// Asked once, when a play session first keeps the screen on.
-    private func askOnce() {
-        guard !UserDefaults.standard.bool(forKey: askedKey) else { return }
-        UserDefaults.standard.set(true, forKey: askedKey)
-        center.requestAuthorization(options: [.alert, .sound, .badge]) { _, _ in }
+    /// Notifications are asked for where they matter (§5): when the table first waits for the
+    /// person, in view, with the shell's own question before the system's. A permission already
+    /// given or refused is left alone, and "No, thanks" is remembered for good.
+    private func askToNotify(in window: UIViewController) {
+        guard !asked, inView, Self.canAsk(in: window), !UserDefaults.standard.bool(forKey: declinedKey)
+        else { return }
+        asked = true
+        Task { [weak window] in
+            guard await center.notificationSettings().authorizationStatus == .notDetermined else { return }
+            guard let window, inView, Self.canAsk(in: window) else {
+                // The window took up something else meanwhile: the next count asks.
+                asked = false
+                return
+            }
+            let question = UIAlertController(
+                title: L("notify.title"), message: L("notify.text"), preferredStyle: .alert)
+            question.addAction(
+                UIAlertAction(title: L("notify.later"), style: .cancel) { [declinedKey] _ in
+                    UserDefaults.standard.set(true, forKey: declinedKey)
+                })
+            let go = UIAlertAction(title: L("notify.continue"), style: .default) { [center] _ in
+                center.requestAuthorization(options: [.alert, .sound, .badge]) { _, _ in }
+            }
+            question.addAction(go)
+            question.preferredAction = go
+            window.present(question, animated: true)
+        }
+    }
+
+    /// A game window on screen with nothing over it: the scanner, a sheet or the page's own dialog
+    /// is never interrupted.
+    private static func canAsk(in window: UIViewController) -> Bool {
+        window.viewIfLoaded?.window != nil && window.presentedViewController == nil
     }
 
     private func post(_ id: String, after seconds: TimeInterval?) {
