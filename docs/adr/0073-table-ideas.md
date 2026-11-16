@@ -86,7 +86,8 @@
 ### 2. A short way to a pause (Stage 810)
 
 1. **One press.** While a session plays and is not paused, a player's own screen shows "Ask for a
-   pause" among the table's questions over the stage. A press sends the request; the screen then
+   pause" among the table's questions over the stage — in a fight, in the fight's own layout,
+   clear of the turn order and the fight's controls. A press sends the request; the screen then
    says "Only the DM was told that you would like a pause", and later "The DM has seen that you
    asked for a pause. You can ask again in a minute." "Our table" in "How to play" keeps its
    button: the same request, offered there while a game plays.
