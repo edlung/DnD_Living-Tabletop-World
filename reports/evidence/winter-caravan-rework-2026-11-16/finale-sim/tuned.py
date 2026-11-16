@@ -76,7 +76,7 @@ def score(out):
     return round(miss, 1)
 
 
-BASE = dict(size_bonus=False, hold_gorlo=True, run_only=False, noise_from=G4, pack_dist=(3,), people_only=False, otrog_max=2, mule_zhelob=2, walker_zhelob=2, gorlo_from7=False)
+BASE = dict(fire_die=False, fire_pass='same', size_bonus=False, hold_gorlo=True, run_only=False, noise_from=G4, pack_dist=(3,), people_only=False, otrog_max=2, mule_zhelob=2, walker_zhelob=2, gorlo_from7=False)
 
 if __name__ == '__main__':
     mode = sys.argv[1] if len(sys.argv) > 1 else 'search'

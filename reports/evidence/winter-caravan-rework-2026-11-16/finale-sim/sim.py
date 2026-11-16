@@ -537,6 +537,8 @@ def tail_step(st, stayers, otrog_lighter):
         return None
     if p_reach < 1 and p_reach < st.plan.get('gamble', 0.01):
         return None
+    if RULES.get('fire_die') and noise:
+        opts.sort(key=lambda o: {'decoy': 0, 'sack': 1, 'fire': 2, 'bite': 3}[o[0]])
     for kind, who in opts:
         if kind == 'decoy':
             return ('decoy', who)
@@ -659,8 +661,23 @@ def pre_slide_turn(st):
             if st.pack + mv >= 8: st.pack_alive = False
             else: st.pack += mv
         elif (R < st.pack and st.pack - mv <= R) or (R >= st.pack and st.pack + mv >= R):
-            if fire_sec == R:
+            held = True
+            if fire_sec == R and RULES.get('fire_die'):
+                held = st.rng.randint(1, 6) <= 4
+                st.fire_rolls = getattr(st, 'fire_rolls', 0) + 1
+                if not held:
+                    st.fire_fails = getattr(st, 'fire_fails', 0) + 1
+                    st.log.append(f"Т{st.t}: к6 = 5–6, стая проходит огонь на {R}")
+            if fire_sec == R and held:
                 st.pack = R - 1
+            elif fire_sec == R and not held and RULES.get('fire_pass') == 'next':
+                excl2 = set(excl) | {p for p in st.persons if p.sec == R}
+                R2 = rearmost(st, None, tuple(excl2))
+                if R2 is not None and R2 < 8 and st.pack + mv >= R2:
+                    st.pack = R2; bite(st, R2)
+                    if 4 <= R2 <= 7: noise = True
+                else:
+                    st.pack = R
             elif sack_sec == R:
                 st.pack = R
             else:
