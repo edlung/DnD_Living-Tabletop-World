@@ -93,9 +93,24 @@
   }
 
   .print-book .keepsake-chapter,
-  .print-book .keepsake-gallery {
+  .print-book .keepsake-gallery,
+  .print-book .keepsake-kept {
     padding: 0 0 10mm;
     border-top: 0;
+  }
+  .print-book .keepsake-kept {
+    break-inside: avoid;
+  }
+  .print-book .keepsake-kept > h2 {
+    font-size: 22pt;
+  }
+  .print-book .keepsake-closing {
+    padding: 4mm 0;
+    border-top: 0;
+    break-inside: avoid;
+  }
+  .print-book .keepsake-closing blockquote {
+    font-size: 13pt;
   }
   .print-book .keepsake-chapter-head {
     break-inside: avoid;

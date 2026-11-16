@@ -26,6 +26,9 @@ import {
   type AgreementDependencies,
 } from '../agreement/agreement-routes.ts';
 import { InMemoryAgreementStore } from '../agreement/agreement-store.ts';
+import { registerEndingRoutes, type EndingDependencies } from '../ending/ending-routes.ts';
+import { InMemoryEndingStore } from '../ending/ending-store.ts';
+import { registerFinishedGuard } from '../ending/guard.ts';
 import { registerHandoutRoutes, type HandoutDependencies } from '../handouts/handout-routes.ts';
 import { InMemoryHandoutStore } from '../handouts/handout-store.ts';
 import { registerLibraryRoutes } from '../library/library-routes.ts';
@@ -161,6 +164,8 @@ export interface AppDependencies {
   readonly reflections?: ReflectionDependencies;
   /** The table's agreement (ADR 0071 §4). */
   readonly agreement?: AgreementDependencies;
+  /** A campaign's end and its heroes' keepsakes (ADR 0072 §2); in memory when absent. */
+  readonly ending?: EndingDependencies;
   /** The table's shared marks on the board (ADR 0057 §5); in memory when absent. */
   readonly marks?: MarkDependencies;
   /** Handouts (ADR 0044 §5): what the DM shows one player or the party; in memory when absent. */
@@ -197,6 +202,11 @@ export const memoryReflections = (): ReflectionDependencies => ({
 
 export const memoryAgreement = (): AgreementDependencies => ({
   store: new InMemoryAgreementStore(),
+  now: () => new Date().toISOString(),
+});
+
+export const memoryEnding = (): EndingDependencies => ({
+  store: new InMemoryEndingStore(),
   now: () => new Date().toISOString(),
 });
 
@@ -245,6 +255,10 @@ export function buildApp(input: AppDependencies): FastifyInstance {
   });
   if (deps.signIn) registerOriginCheck(app, deps.signIn.publicOrigin);
   if (deps.moves) registerMoveGuard(app, deps.moves);
+  // One end for its guard, its routes and the account's list (ADR 0072 §2): a finished campaign
+  // is read, not played.
+  const ending = deps.ending ?? memoryEnding();
+  registerFinishedGuard(app, ending.store);
 
   app.setNotFoundHandler((request, reply) => sendError(reply, request, 'NOT_FOUND'));
   app.setErrorHandler((error, request, reply) => {
@@ -318,6 +332,7 @@ export function buildApp(input: AppDependencies): FastifyInstance {
   const reflections = deps.reflections ?? memoryReflections();
   registerReflectionRoutes(app, { ...deps, reflections });
   registerAgreementRoutes(app, { ...deps, agreement: deps.agreement ?? memoryAgreement() });
+  registerEndingRoutes(app, { ...deps, ending });
   registerMarkRoutes(app, { ...deps, marks: deps.marks ?? memoryMarks() });
   // One set of handouts for the handout routes and the DM's library that gives them (ADR 0058 §3).
   const handouts = deps.handouts ?? memoryHandouts();
@@ -350,12 +365,14 @@ export function buildApp(input: AppDependencies): FastifyInstance {
         ...withAccounts,
         nextGameOf: async (campaignId) =>
           shownNextGame((await lobby.state.read(campaignId)).nextGame, lobby.now()),
+        ending: ending.store,
       });
       registerPrivacyRoutes(app, {
         ...withAccounts,
         chat: chat.store,
         table: table.store,
         reflections: reflections.store,
+        ending: ending.store,
       });
     }
     // The table's displays and join links (ADR 0042): pairing, the cast, the table's QR code.

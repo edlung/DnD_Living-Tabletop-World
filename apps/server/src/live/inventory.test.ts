@@ -34,6 +34,8 @@ const ALWAYS = [
   '/campaigns/ravenford/display/cast ?',
   // The table's agreement (ADR 0071 §4).
   '/campaigns/ravenford/agreement',
+  // A campaign's end and keepsakes (ADR 0072 §2).
+  '/campaigns/ravenford/ending',
 ];
 
 describe('the coverage inventory', () => {

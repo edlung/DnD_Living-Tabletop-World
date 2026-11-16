@@ -8,6 +8,8 @@ import { recapParagraphs } from '../chronicle/book-chapters.ts';
 import { Previously, usePreviously } from '../chronicle/previously.tsx';
 import { calendarHref, NextGameLine, useCalendarFile } from '../ritual/next-game.tsx';
 import { AgreementCard } from '../ritual/agreement.tsx';
+import { useEnding } from '../ritual/ending.ts';
+import { FinishedCard } from '../ritual/keepsake-card.tsx';
 import { StarsCard } from '../ritual/stars-card.tsx';
 import { Glyph } from '../visual/glyph.tsx';
 
@@ -26,6 +28,7 @@ export function LobbyBanner({
   actorId,
   isDm,
   onOpenChronicle,
+  onOpenBook,
 }: {
   readonly api: WorldApi;
   /** The acting character; none, no player's banner. */
@@ -33,6 +36,8 @@ export function LobbyBanner({
   readonly isDm: boolean;
   /** Opens the book at a chapter. */
   readonly onOpenChronicle: (chronicleId: string) => void;
+  /** Opens the campaign's whole book. */
+  readonly onOpenBook: () => void;
 }) {
   const t = useT();
   const language = useLanguage();
@@ -40,6 +45,7 @@ export function LobbyBanner({
   const lobby = useResource(`lobby:${actorId ?? ''}`, load);
   const [busy, setBusy] = useState(false);
   const calendarFile = useCalendarFile();
+  const end = useEnding(api);
   if (lobby.resource.status !== 'ready') return null;
   const { session, paused, characters } = lobby.resource.value;
   // A server from before moves sends none.
@@ -58,6 +64,22 @@ export function LobbyBanner({
           })}
         </span>
       </div>
+    );
+  }
+  // A finished adventure (ADR 0072 §2): everyone reads that it is read now, not played; a player
+  // chooses what their hero keeps, and still writes the last evening's star.
+  if (end.ending !== null && end.ending.ending !== null && session === null) {
+    return (
+      <>
+        <FinishedCard
+          api={api}
+          ending={end.ending}
+          characterId={isDm ? null : actorId}
+          onOpenBook={onOpenBook}
+          onChanged={end.reread}
+        />
+        {!isDm && actorId !== null && <StarsCard api={api} characterId={actorId} last />}
+      </>
     );
   }
   if (isDm || actorId === null) return null;

@@ -224,7 +224,8 @@ describe('the book of the campaign', () => {
     });
     expect(book.heroes).toEqual([ELOWEN]);
     expect(book.handouts.map((one) => one.handoutId)).toEqual(['for-all']);
-    expect(book.finished).toBe(false);
+    expect(book.ending).toBeNull();
+    expect(book.keepsakes).toEqual([]);
   });
 });
 

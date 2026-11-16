@@ -7,6 +7,7 @@ import {
   memoryMarks,
   memoryHandouts,
   memoryAgreement,
+  memoryEnding,
   memoryReflections,
   memoryTable,
   type AppDependencies,
@@ -59,6 +60,8 @@ export function buildLiveApp(
     reflections: deps.reflections ?? memoryReflections(),
     // And one agreement, so a page written or understood signals its readers (ADR 0071 §4).
     agreement: deps.agreement ?? memoryAgreement(),
+    // And one end, so a campaign finished or a keepsake chosen signals its readers (ADR 0072 §2).
+    ending: deps.ending ?? memoryEnding(),
     presence: registry,
   };
   const app = buildApp(shared);

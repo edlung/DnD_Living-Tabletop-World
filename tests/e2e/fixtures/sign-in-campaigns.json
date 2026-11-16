@@ -38,5 +38,6 @@
   "agreement": "ui-signin-agreement",
   "checkpoint": "ui-signin-checkpoint",
   "checkpointIpad": "ui-signin-checkpoint-ipad",
-  "book": "ui-signin-book"
+  "book": "ui-signin-book",
+  "ending": "ui-signin-ending"
 }

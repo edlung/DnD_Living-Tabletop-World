@@ -16,7 +16,8 @@ the family's devices stay the owner's. **Stage 720 is implemented** (`work-order
 (`reports/STAGE_760_COMPLETION.md`); Stage 750 waits for PR 32. **Part 2 was started by the owner's
 word of 2026-11-16, «продолжаем»**, typed after Stage 760's report — before the family playtest,
 so it is not re-read against one. **Stage 770 is implemented** (`work-orders/STAGE_770.md`,
-`reports/STAGE_770_COMPLETION.md`, ADR 0072 §1). It follows `docs/FULL_GAME_PLAN.md` (Stages
+`reports/STAGE_770_COMPLETION.md`, ADR 0072 §1). **Stage 780 is implemented**
+(`work-orders/STAGE_780.md`, `reports/STAGE_780_COMPLETION.md`, ADR 0072 §2). It follows `docs/FULL_GAME_PLAN.md` (Stages
 600–699) and `docs/NATIVE_APPS_PLAN.md` (Stage 700).
 
 The rules, the table, the TV and the DM's tools are complete. What is thin is the ritual around play:

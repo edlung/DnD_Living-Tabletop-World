@@ -38,6 +38,7 @@ export function TableAsks({
   onRun,
   onOpenSheet,
   onOpenChronicle,
+  onOpenBook,
   onReadHandout,
 }: {
   readonly api: WorldApi;
@@ -52,6 +53,8 @@ export function TableAsks({
   readonly onOpenSheet: (characterId: string) => void;
   /** Opens the book at a chapter (the recap's "Read on"). */
   readonly onOpenChronicle: (chronicleId: string) => void;
+  /** Opens the campaign's whole book (a finished adventure's card). */
+  readonly onOpenBook: () => void;
   /** Opens a handout where it is read (the Journal). */
   readonly onReadHandout: (handoutId: string) => void;
 }) {
@@ -84,7 +87,13 @@ export function TableAsks({
   useSlotRoom(slot);
   return (
     <div className="rest-banner-slot table-asks" aria-live="polite" ref={slot}>
-      <LobbyBanner api={api} actorId={actorId} isDm={isDm} onOpenChronicle={onOpenChronicle} />
+      <LobbyBanner
+        api={api}
+        actorId={actorId}
+        isDm={isDm}
+        onOpenChronicle={onOpenChronicle}
+        onOpenBook={onOpenBook}
+      />
       <RestBanner
         isDm={isDm}
         actorId={actorId}

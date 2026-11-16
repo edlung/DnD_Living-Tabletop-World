@@ -70,6 +70,7 @@ describe('accounts', () => {
           away: null,
           nextGame: null,
           chapters: 0,
+          finished: null,
         },
       ],
     });
@@ -98,6 +99,43 @@ describe('accounts', () => {
       expect([200, 201, 422]).toContain(written.statusCode);
     }
     expect((await accountOf(table, account)).campaigns[0]?.chapters).toBe(1);
+    // The DM closes the evening and finishes the adventure: the list says so, with the days
+    // played, the heroes who have a player and what each keeps (ADR 0072 §2).
+    const ended = await table.send(
+      'POST',
+      '/campaigns/ravenford/commands',
+      { cookie: dm },
+      {
+        commandId: 'accounts-test.end',
+        command: { type: 'EndSession', sessionId: 'ravenford-s1' },
+      },
+    );
+    expect(ended.statusCode).toBe(200);
+    expect(
+      (
+        await table.send(
+          'POST',
+          '/campaigns/ravenford/ending?perspective=DM',
+          { cookie: dm },
+          { finished: true, line: 'Home at last.' },
+        )
+      ).statusCode,
+    ).toBe(204);
+    const finished = (await accountOf(table, account)).campaigns[0]?.finished;
+    expect(finished).toEqual({
+      finishedAt: expect.any(String) as string,
+      played: { from: expect.any(String) as string, to: expect.any(String) as string },
+      heroes: expect.arrayContaining([expect.any(String)]) as string[],
+      keepsakes: [],
+    });
+    // Reopened so that the rest of this journey plays on.
+    await table.send(
+      'POST',
+      '/campaigns/ravenford/ending?perspective=DM',
+      { cookie: dm },
+      { finished: false },
+    );
+    expect((await accountOf(table, account)).campaigns[0]?.finished).toBeNull();
     // …and gives the calendar file for it: the account's own campaigns, nobody else's.
     const file = await table.send('GET', '/account/campaigns/ravenford/next-game.ics', {
       cookie: account,

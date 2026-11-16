@@ -17,10 +17,13 @@ import { WordsList } from './stars-list.tsx';
 export function StarsCard({
   api,
   characterId,
+  last = false,
 }: {
   readonly api: WorldApi;
   /** The character the player writes as. */
   readonly characterId: string;
+  /** The adventure is finished (ADR 0072 §2): no next game; the card stands under its end, quietly. */
+  readonly last?: boolean;
 }) {
   const t = useT();
   const ids = useId();
@@ -151,10 +154,15 @@ export function StarsCard({
             <p className="stars-line">
               {taken
                 ? t('Your star and wish were taken away.')
-                : t(
-                    'The game is over: “{title}”. Leave a star — what you liked — and a wish for next time.',
-                    { title: session.title },
-                  )}
+                : last
+                  ? t(
+                      'The last game: “{title}”. Leave a star — what you liked — and, if you like, a wish for the next adventure.',
+                      { title: session.title },
+                    )
+                  : t(
+                      'The game is over: “{title}”. Leave a star — what you liked — and a wish for next time.',
+                      { title: session.title },
+                    )}
             </p>
           )}
           {mine && <p className="stars-hint">{t('You can change them until the next game.')}</p>}
@@ -162,7 +170,7 @@ export function StarsCard({
             <button
               ref={opener}
               type="button"
-              className={mine ? undefined : 'primary-button'}
+              className={mine || last ? undefined : 'primary-button'}
               onClick={() => {
                 setStar(mine?.star ?? '');
                 setWish(mine?.wish ?? '');

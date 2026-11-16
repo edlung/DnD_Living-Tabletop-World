@@ -1,7 +1,9 @@
 import type {
+  CampaignEnding,
   ChronicleChapterView,
   EntityRef,
   HandoutView,
+  KeepsakeView,
   ReflectionView,
   SessionReflections,
   SessionView,
@@ -42,8 +44,10 @@ export interface KeepsakeBook {
   readonly places: readonly Pictured[];
   readonly faces: readonly Pictured[];
   readonly handouts: readonly HandoutView[];
-  /** "The end" or "To be continued": a campaign has no finished mark before Stage 780. */
-  readonly finished: boolean;
+  /** The adventure's end (ADR 0072 §2): "The end" and the DM's last words; null, "To be continued". */
+  readonly ending: CampaignEnding | null;
+  /** What the heroes keep, as the whole table reads it. */
+  readonly keepsakes: readonly KeepsakeView[];
 }
 
 const LONG_EVENING_MS = 12 * 3_600_000;
@@ -86,7 +90,8 @@ export function assembleBook(read: {
   readonly reflections: readonly SessionReflections[];
   readonly handouts: readonly HandoutView[];
   readonly entities: readonly EntityRef[];
-  readonly finished?: boolean;
+  readonly ending?: CampaignEnding | null;
+  readonly keepsakes?: readonly KeepsakeView[];
 }): KeepsakeBook {
   const chapters = read.chapters.filter((chapter) => chapter.perspective === PARTY);
   const sessions = new Map(read.sessions.map((session) => [session.sessionId, session]));
@@ -133,7 +138,8 @@ export function assembleBook(read: {
     places: pictured(chapters, placesOf),
     faces: pictured(chapters, peopleMet),
     handouts: read.handouts.filter((handout) => handout.to === 'party'),
-    finished: read.finished ?? false,
+    ending: read.ending ?? null,
+    keepsakes: read.keepsakes ?? [],
   };
 }
 

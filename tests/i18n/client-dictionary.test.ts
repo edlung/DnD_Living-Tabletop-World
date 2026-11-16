@@ -52,6 +52,7 @@ import '../../apps/web/src/i18n/ru-guide.ts';
 import '../../apps/web/src/i18n/ru-companion.ts';
 import '../../apps/web/src/i18n/ru-agreement.ts';
 import '../../apps/web/src/i18n/ru-keepsake.ts';
+import '../../apps/web/src/i18n/ru-ending.ts';
 import '../../apps/web/src/i18n/ru-ritual.ts';
 import '../../apps/web/src/i18n/ru-conditions.ts';
 import '../../apps/web/src/i18n/ru-weapons.ts';

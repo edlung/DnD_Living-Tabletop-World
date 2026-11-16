@@ -81,6 +81,10 @@ export const UI_PARTY_CAMPAIGNS = {
   bookRu: 'ui-book-ru',
   /** The same book with the curated pictures: the place, the faces, the gallery. */
   bookPictures: 'ui-book-pictures',
+  /** A campaign finished, its keepsakes, and reopened (Stage 780). */
+  ending: 'ui-ending',
+  endingIpad: 'ui-ending-ipad',
+  endingRu: 'ui-ending-ru',
 } as const;
 
 /**
@@ -137,6 +141,9 @@ export async function seedUiPartyCampaigns(engine: WorldEngine): Promise<void> {
     [UI_PARTY_CAMPAIGNS.bookIpad, 'en'],
     [UI_PARTY_CAMPAIGNS.bookRu, 'ru'],
     [UI_PARTY_CAMPAIGNS.bookPictures, 'en'],
+    [UI_PARTY_CAMPAIGNS.ending, 'en'],
+    [UI_PARTY_CAMPAIGNS.endingIpad, 'en'],
+    [UI_PARTY_CAMPAIGNS.endingRu, 'ru'],
   ] as const) {
     const seed = await loadSeed(
       language === 'ru' ? RAVENFORD_RU_FIXTURES_DIR : RAVENFORD_FIXTURES_DIR,

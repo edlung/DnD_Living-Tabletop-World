@@ -78,6 +78,11 @@ one page a campaign (`ltw_table_agreements`) and, for each character, the versio
 "Understood" to (`ltw_table_agreement_understood`): table data, not canonical state. Additive: an
 older build leaves both tables alone.
 
+Stage 780 (ADR 0072 §2): `0043_campaign_endings.sql` keeps a campaign's end beside the world — a
+row while it is finished (`ltw_campaign_endings`, deleted when the DM reopens it) and each hero's
+keepsake (`ltw_keepsakes`): table data, not canonical state. Additive: an older build leaves both
+tables alone, and plays a finished campaign on — it knows nothing of its end.
+
 Stage 680b (ADR 0058 §3–4): `0036_dm_library.sql` keeps the DM's library beside the world — handouts
 kept for later and random tables, one row an entry (its body at most 64 KB), replaced on save and
 deleted on the DM's word; a kept handout notes when it was last given. DM data, not canonical state:

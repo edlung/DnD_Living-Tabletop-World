@@ -1,5 +1,6 @@
 import type {
   ChronicleListResponse,
+  EndingResponse,
   HandoutsResponse,
   KnownEntitiesResponse,
   ReflectionsResponse,
@@ -44,14 +45,16 @@ export function useBook(
     async (signal: AbortSignal): Promise<ReadBook | null> => {
       if (!shown) return null;
       const spare = <T>(read: Promise<T>): Promise<T | null> => read.catch(() => null);
-      const [chronicle, sessions, identity, reflections, handouts, entities] = await Promise.all([
-        party.get<ChronicleListResponse>('chronicle', signal),
-        party.get<SessionListResponse>('sessions', signal, false),
-        party.get<SessionResponse>('session', signal, false),
-        spare(party.get<ReflectionsResponse>('reflections', signal, true, { book: 'true' })),
-        spare(party.get<HandoutsResponse>('handouts', signal)),
-        spare(party.get<KnownEntitiesResponse>('entities', signal)),
-      ]);
+      const [chronicle, sessions, identity, reflections, handouts, entities, ending] =
+        await Promise.all([
+          party.get<ChronicleListResponse>('chronicle', signal),
+          party.get<SessionListResponse>('sessions', signal, false),
+          party.get<SessionResponse>('session', signal, false),
+          spare(party.get<ReflectionsResponse>('reflections', signal, true, { book: 'true' })),
+          spare(party.get<HandoutsResponse>('handouts', signal)),
+          spare(party.get<KnownEntitiesResponse>('entities', signal)),
+          spare(party.get<EndingResponse>('ending', signal)),
+        ]);
       return {
         name: identity.campaign.name,
         book: assembleBook({
@@ -60,6 +63,8 @@ export function useBook(
           reflections: reflections?.sessions ?? [],
           handouts: handouts?.handouts ?? [],
           entities: entities?.entities ?? [],
+          ending: ending?.ending ?? null,
+          keepsakes: ending?.keepsakes ?? [],
         }),
       };
     },

@@ -355,6 +355,30 @@
   white-space: pre-line;
 }
 
+/* What the heroes keep, and the DM's last words, before "The end" */
+.keepsake-kept {
+  display: grid;
+  gap: 16px;
+  padding: 32px 0;
+  border-top: 1px solid color-mix(in srgb, var(--page-ink) 28%, transparent);
+}
+.keepsake-kept > h4 {
+  font-size: clamp(1.6rem, 4.5vw, 2.1rem);
+}
+.keepsake-closing {
+  display: grid;
+  gap: 8px;
+  max-width: 68ch;
+  margin: 0 auto;
+  padding: 24px 0;
+  border-top: 1px solid color-mix(in srgb, var(--page-ink) 28%, transparent);
+  text-align: center;
+}
+.keepsake-closing blockquote {
+  margin: 0;
+  font-size: 1.15rem;
+  font-style: italic;
+}
 .keepsake-empty,
 .keepsake-ending {
   margin: 0;

@@ -102,6 +102,7 @@ describe('fingerprints of the coverage views', () => {
           'lobby',
           'world-map',
           'agreement',
+          'ending',
         ].map((path) => [`/campaigns/ravenford/${path}?perspective=PARTY`, [200, path] as const]),
       ),
     });

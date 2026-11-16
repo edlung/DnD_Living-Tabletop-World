@@ -65,6 +65,8 @@ export function coverageInventory(target: LiveTarget): ViewRequest[] {
     { url: `${base}/display/cast`, optional: true },
     // The table's agreement (ADR 0071 §4): every member and the display read the same page.
     scoped('agreement'),
+    // A campaign's end and its heroes' keepsakes (ADR 0072 §2): every member and the display.
+    scoped('ending'),
   ];
   // The table's rolls and the DM's check requests (Stage 510): the dice the client animates; the
   // open short rest (Stage 530), when players spend Hit Point Dice.

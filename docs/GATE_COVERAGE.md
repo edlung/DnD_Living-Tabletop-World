@@ -881,3 +881,21 @@ write; the session view gains the real instants of its start and its end.
   player's book and paper hold neither a chapter told from a character nor a wish; nothing the
   player's browser read as the party does).
 - Next review obligation: none scheduled; the owner may order an independent repeat.
+
+## Stage 780: a campaign's end and keepsakes (2026-11-16)
+
+Stage 780 (`docs/adr/0072-keepsakes.md` §2) adds a campaign's end and its heroes' keepsakes, table
+data like stars, and a guard that refuses play in a finished campaign.
+
+- Boundary: the end and every keepsake are read by every member and a table display; nothing is
+  the DM's alone. A keepsake's name is taken by the server in its hero's own view (an
+  unidentified thing keeps the name that hero knows); a chapter kept is one told from the Party.
+  A player chooses for their own character, the DM for anyone; the party's view and a display
+  choose for nobody. The account's list shows of a finished campaign what a member reads as the
+  party, and no picture.
+- Deterministic regressions: `apps/server/src/ending/ending-routes.test.ts` (each reader and
+  writer, what may be kept, a table display, the guard on the real app, the list of what a
+  finished campaign still takes), `guard.test.ts`, `ending-store.integration.test.ts`, the live
+  inventory's and the move's coverage tests, `accounts.test.ts`, `privacy.test.ts`, the journeys
+  `tests/e2e/campaign-end.spec.ts` and `campaign-end-hub.spec.ts`.
+- Next review obligation: none scheduled; the owner may order an independent repeat.

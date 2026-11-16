@@ -8,6 +8,8 @@ import { recapParagraphs } from '../chronicle/book-chapters.ts';
 import { chapterMessage } from '../chronicle/chapter-message.ts';
 import { usePreviously } from '../chronicle/previously.tsx';
 import { AgreementTool } from '../ritual/agreement-tool.tsx';
+import { CampaignEnd } from '../ritual/campaign-end.tsx';
+import { useEnding } from '../ritual/ending.ts';
 import { EveningWords } from '../ritual/evening-words.tsx';
 import { NextGameForm } from '../ritual/next-game.tsx';
 import { Field } from '../session/account-forms.tsx';
@@ -57,6 +59,9 @@ export function SessionSheet({
   const load = useCallback((signal: AbortSignal) => api.get<LobbyResponse>('lobby', signal), [api]);
   const lobby = useResource('dm-lobby', load);
   useRereadOn(revision + round, lobby.reread);
+  // The adventure's end (ADR 0072 §2): finished, the campaign is read and has no next session.
+  const end = useEnding(api, revision + round);
+  const finished = (end.ending?.ending ?? null) !== null;
   const [failed, setFailed] = useState(false);
   // What the closing did: shown once the session is gone.
   const [ended, setEnded] = useState<EveningResult | null>(null);
@@ -122,7 +127,7 @@ export function SessionSheet({
               {t(STEP_WORDS[step])}
             </p>
           </div>
-        ) : table.session === null ? (
+        ) : table.session === null && finished ? null : table.session === null ? (
           <StartForm
             api={api}
             locked={locked}
@@ -176,13 +181,25 @@ export function SessionSheet({
           />
         )}
         {/* When the table meets again (ADR 0071 §3). */}
-        <NextGameForm
-          api={api}
-          next={table.nextGame ?? null}
-          onChanged={() => {
-            setRound((value) => value + 1);
-          }}
-        />
+        {!finished && (
+          <NextGameForm
+            api={api}
+            next={table.nextGame ?? null}
+            onChanged={() => {
+              setRound((value) => value + 1);
+            }}
+          />
+        )}
+        {end.ending !== null && step === null && (
+          <CampaignEnd
+            api={api}
+            ending={end.ending}
+            sessionOpen={table.session !== null}
+            onChanged={() => {
+              setRound((value) => value + 1);
+            }}
+          />
+        )}
         {/* How this table plays (ADR 0071 §4). */}
         <AgreementTool api={api} revision={revision + round} />
         {/* The DM's music (ADR 0059 §3): where the ambience plays, from the same moment. */}

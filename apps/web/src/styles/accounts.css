@@ -160,13 +160,18 @@
   height: 28px;
   color: var(--gold);
 }
-.hub-campaign h3 {
+.hub-campaign h3,
+.hub-campaign h4 {
   margin: 0;
   font-size: 1.15rem;
   overflow-wrap: anywhere;
 }
 .hub-campaign-text .muted {
   margin: 0.15rem 0 0;
+}
+/* A finished adventure's card is tall: its mark stands at its head, not at its middle. */
+.hub-campaign--finished {
+  align-items: start;
 }
 /* The campaign's book, then its door (ADR 0072 §1). */
 .hub-campaign-actions {

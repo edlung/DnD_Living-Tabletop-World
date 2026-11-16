@@ -31,6 +31,7 @@ import './i18n/ru-encounters.ts';
 import './i18n/ru-companion.ts';
 import './i18n/ru-agreement.ts';
 import './i18n/ru-keepsake.ts';
+import './i18n/ru-ending.ts';
 import './i18n/ru-ritual.ts';
 import './i18n/ru-conditions.ts';
 import './i18n/ru-weapons.ts';
@@ -105,6 +106,7 @@ import './styles/ritual.css';
 import './styles/stars.css';
 import './styles/agreement.css';
 import './styles/keepsake.css';
+import './styles/ending.css';
 import './styles/print.css';
 import './styles/print-book.css';
 

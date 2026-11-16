@@ -13,6 +13,7 @@ import {
   type NextGame,
 } from '@ltw/contracts';
 import { campaignRole, type WorldEngine } from '@ltw/domain';
+import type { EndingStore } from '../ending/ending-store.ts';
 import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod';
 
@@ -72,6 +73,8 @@ export interface AccountRouteDependencies {
   readonly moves?: CampaignMoves;
   /** When each campaign's table meets again, for the hub's cards (ADR 0071 §3). */
   readonly nextGameOf?: (campaignId: string) => Promise<NextGame | null>;
+  /** Each campaign's end and keepsakes, for the hub's finished adventures (ADR 0072 §2). */
+  readonly ending?: EndingStore;
 }
 
 const params = z.object({ campaignId: campaignIdSchema }).strict();
@@ -227,6 +230,7 @@ export function registerAccountRoutes(app: FastifyInstance, deps: AccountRouteDe
         await accounts.seats(account.accountId),
         deps.moves,
         deps.nextGameOf,
+        deps.ending ?? null,
       ),
     };
     return reply.send(response);

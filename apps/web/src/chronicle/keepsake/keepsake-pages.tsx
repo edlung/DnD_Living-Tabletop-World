@@ -3,6 +3,7 @@ import { useLanguage, useT } from '@ltw/ui';
 import { useId } from 'react';
 
 import type { WorldApi } from '../../api/client.ts';
+import { keptWords } from '../../ritual/ending.ts';
 import { readerLocale } from '../../ritual/next-game-words.ts';
 import {
   dayWords,
@@ -131,8 +132,31 @@ export function KeepsakePages({
         markId={`${ids}-gallery`}
         paper={paper}
       />
-      {book.evenings.length > 0 && (
-        <p className="keepsake-ending">{t(book.finished ? 'The end' : 'To be continued…')}</p>
+      {book.keepsakes.length > 0 && (
+        <section className="keepsake-kept" aria-labelledby={`${ids}-kept`}>
+          <Part id={`${ids}-kept`}>{t('What the heroes keep')}</Part>
+          <ul className="keepsake-stars">
+            {book.keepsakes.map((kept) => (
+              <li key={kept.hero.entityId}>
+                <strong>
+                  {keptWords(t, kept.hero.name ?? t('Someone at the table'), kept.kind, kept.label)}
+                </strong>
+                {kept.line !== '' && <span>{kept.line}</span>}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+      {book.ending !== null && book.ending.line !== '' && (
+        <figure className="keepsake-closing">
+          <figcaption className="keepsake-label">{t('The DM’s closing words')}</figcaption>
+          <blockquote>{book.ending.line}</blockquote>
+        </figure>
+      )}
+      {(book.evenings.length > 0 || book.ending !== null) && (
+        <p className="keepsake-ending">
+          {t(book.ending !== null ? 'The end' : 'To be continued…')}
+        </p>
       )}
     </article>
   );

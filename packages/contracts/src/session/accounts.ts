@@ -4,6 +4,7 @@ import type { ChatChannel, ChatVoice } from '../chat/chat.ts';
 import type { RollGroup, RollSubject } from '../dice/rolls.ts';
 import type { Language } from '../language/language.ts';
 import { CREDENTIAL_TOKEN_PATTERN } from './auth.ts';
+import type { KeepsakeKind } from './ending.ts';
 import type { CampaignAway, NextGame } from './lobby.ts';
 
 /**
@@ -93,6 +94,25 @@ export interface AccountCampaign {
    * (docs/adr/0072-keepsakes.md §1). A count, nothing of what they tell.
    */
   readonly chapters: number;
+  /**
+   * The adventure is over (docs/adr/0072-keepsakes.md §2): when its DM finished it, the days it
+   * was played, its heroes and what each keeps, as the whole table reads them. Null while it is
+   * played.
+   */
+  readonly finished: FinishedCampaign | null;
+}
+
+export interface FinishedCampaign {
+  readonly finishedAt: string;
+  /** The first and the last real day played; null when no evening was. */
+  readonly played: { readonly from: string; readonly to: string } | null;
+  readonly heroes: readonly string[];
+  readonly keepsakes: readonly {
+    readonly hero: string;
+    readonly kind: KeepsakeKind;
+    readonly label: string;
+    readonly line: string;
+  }[];
 }
 
 /** `GET /account`: the signed-in account, or 401. */
@@ -144,6 +164,14 @@ export interface AccountReflectionLine {
   readonly wish: string;
 }
 
+/** What one's hero keeps from a finished adventure, in a copy of one's data (ADR 0072 §2). */
+export interface AccountKeepsakeLine {
+  readonly at: string;
+  readonly hero: string;
+  readonly label: string;
+  readonly line: string;
+}
+
 /** A roll one made, in a copy of one's data. */
 export interface AccountRollLine {
   readonly at: string;
@@ -163,6 +191,9 @@ export interface AccountCampaignData {
   readonly chat: readonly AccountChatLine[];
   readonly rolls: readonly AccountRollLine[];
   readonly reflections: readonly AccountReflectionLine[];
+  readonly keepsakes: readonly AccountKeepsakeLine[];
+  /** A DM's last words to the table at a campaign's end; null for a player, or when none. */
+  readonly closingLine: string | null;
 }
 
 /**
