@@ -31,7 +31,7 @@ const WAIT = { timeout: 15_000 };
 const hintButton = (page: Page) =>
   page.getByRole('button', { name: 'What can I do?', exact: true });
 const hint = (page: Page) => page.locator('dialog.hint-dialog');
-const line = (page: Page, title: string) =>
+const line = (page: Page, title: string | RegExp) =>
   hint(page).locator('.hint-line').filter({ has: page.getByRole('heading', { name: title }) });
 
 async function openHint(page: Page): Promise<void> {
