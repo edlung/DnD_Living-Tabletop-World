@@ -1,6 +1,6 @@
 # Stage 840 completion — players' private notes and a hero's backstory
 
-Pull request: https://github.com/edlung/DnD_Living-Tabletop-World/pull/PRNUM (draft, stacked on
+Pull request: https://github.com/edlung/DnD_Living-Tabletop-World/pull/53 (draft, stacked on
 Stage 830's, https://github.com/edlung/DnD_Living-Tabletop-World/pull/52).
 
 Work order `work-orders/STAGE_840.md`; program `docs/TABLE_IDEAS_PLAN.md` (section 840); ADR 0073
