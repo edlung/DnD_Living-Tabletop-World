@@ -32,8 +32,7 @@ registerRussian({
   'The Chronicle is still empty': 'Хроника пока пуста',
   'Join the table': 'Присоединиться к столу',
   'QR code to join the table': 'QR-код, чтобы присоединиться к столу',
-  'Scan with your phone, sign in, and choose your character.':
-    'Отсканируйте телефоном, войдите и выберите персонажа.',
+  'Scan with your phone and choose your hero.': 'Наведите камеру телефона и выберите героя.',
   'Or open {address} and type this code.': 'Или откройте {address} и введите этот код.',
   'The DM has not opened the table to join yet.': 'Мастер ещё не открыл стол для входа.',
   'Last time': 'В прошлый раз',

@@ -7,9 +7,11 @@ import { Field } from './account-forms.tsx';
 import type { TableRefusal } from './table-flow.ts';
 
 /**
- * The table's join page (docs/adr/0042-table-display.md §5): the link's free seats — or first its
- * code, typed — then one chosen. The chosen seat's invitation goes to the usual join page, where
- * the person makes a login, signs in, or takes it in this browser only.
+ * The table's join page (docs/adr/0042-table-display.md §5; docs/adr/0073-table-ideas.md §7): the
+ * link's free seats — or first its code, typed — then one chosen, and the person sits down in
+ * this browser at once: a guest for an evening invents no login. Who wants one — to come back
+ * from another device — says so first, and the chosen seat's invitation then goes to the usual
+ * join page.
  */
 type Step =
   | { readonly kind: 'code' }
@@ -28,6 +30,7 @@ export function TableJoin({
   readonly onChoose: (
     key: TableKey | null,
     character: EntityRef,
+    how: 'here' | 'login',
   ) => Promise<'ok' | 'taken' | TableRefusal>;
 }) {
   const t = useT();
@@ -36,6 +39,8 @@ export function TableJoin({
   const [key, setKey] = useState<TableKey | null>(null);
   const [problem, setProblem] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  // "I want a login": off unless asked for — a guest sits down in this browser.
+  const [login, setLogin] = useState(false);
 
   const read = async (next: TableKey | null) => {
     setStep({ kind: 'reading' });
@@ -65,7 +70,7 @@ export function TableJoin({
   const choose = async (character: EntityRef) => {
     setBusy(true);
     setProblem(null);
-    const answer = await onChoose(key, character);
+    const answer = await onChoose(key, character, login ? 'login' : 'here');
     setBusy(false);
     if (answer === 'ok') return;
     if (answer === 'taken') {
@@ -136,6 +141,8 @@ export function TableJoin({
       offer={offer}
       busy={busy}
       problem={problem}
+      login={login}
+      onLogin={setLogin}
       onChoose={(character) => void choose(character)}
     />
   );
@@ -145,11 +152,16 @@ function TableOffer({
   offer,
   busy,
   problem,
+  login,
+  onLogin,
   onChoose,
 }: {
   readonly offer: TableOfferResponse;
   readonly busy: boolean;
   readonly problem: string | null;
+  /** The person asked for a login: the seat chosen goes to the join page. */
+  readonly login: boolean;
+  readonly onLogin: (login: boolean) => void;
   readonly onChoose: (character: EntityRef) => void;
 }) {
   const t = useT();
@@ -166,7 +178,13 @@ function TableOffer({
       {offer.characters.length === 0 ? (
         <p>{t('Every seat at this table is taken. Ask the DM.')}</p>
       ) : (
-        <ul className="table-seats">
+        <>
+          <p id={`${id}-how`}>
+            {login
+              ? t('Press a hero: next you choose a login and a password.')
+              : t('Press a hero to sit down and play on this device. Nothing to remember.')}
+          </p>
+          <ul className="table-seats" aria-describedby={`${id}-how`}>
           {offer.characters.map((character) => (
             <li key={character.entityId}>
               <button
@@ -182,7 +200,19 @@ function TableOffer({
               </button>
             </li>
           ))}
-        </ul>
+          </ul>
+          <label className="table-login">
+            <input
+              type="checkbox"
+              checked={login}
+              disabled={busy}
+              onChange={(event) => {
+                onLogin(event.target.checked);
+              }}
+            />
+            {t('I want a login, to come back to this table from another device')}
+          </label>
+        </>
       )}
     </section>
   );

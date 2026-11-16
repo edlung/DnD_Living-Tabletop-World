@@ -350,7 +350,7 @@ function JoinCast(props: Props) {
         {join?.link && join.code ? (
           <>
             <QrCode text={join.link} label={t('QR code to join the table')} />
-            <p>{t('Scan with your phone, sign in, and choose your character.')}</p>
+            <p>{t('Scan with your phone and choose your hero.')}</p>
             <p className="display-code">{`${join.code.slice(0, 4)} ${join.code.slice(4)}`}</p>
             <p className="display-hint">
               {t('Or open {address} and type this code.', {

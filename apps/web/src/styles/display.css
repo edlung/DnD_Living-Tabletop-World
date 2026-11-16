@@ -470,3 +470,19 @@
 .display-waiting-strip:empty {
   display: none;
 }
+
+/* "I want a login" under the table's free seats (docs/adr/0073-table-ideas.md §7): quiet, and
+   large enough for a thumb. */
+.table-login {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  margin-top: 12px;
+  color: var(--text-muted);
+}
+.table-login input {
+  flex: none;
+  width: 22px;
+  height: 22px;
+}

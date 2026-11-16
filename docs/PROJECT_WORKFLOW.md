@@ -24,8 +24,9 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   `claude/stage-840-notes-and-backstory`, stacked on 830's (ADR 0073 §5,
   `reports/STAGE_840_COMPLETION.md`); Stage 850 (a scene that brings its sound) on
   `claude/stage-850-scene-sound`, stacked on 840's (ADR 0073 §6,
-  `reports/STAGE_850_COMPLETION.md`, with the second checkpoint); each awaits the owner's
-  disposition.
+  `reports/STAGE_850_COMPLETION.md`, with the second checkpoint); Stage 860 (a shorter way in
+  for a guest) on `claude/stage-860-guest-way-in`, stacked on 850's (ADR 0073 §7,
+  `reports/STAGE_860_COMPLETION.md`); each awaits the owner's disposition.
 
 ## Current request — memory and ritual, 2026-11-15
 

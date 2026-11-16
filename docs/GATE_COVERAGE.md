@@ -1038,3 +1038,11 @@ it switches on.
   showing and by nothing else, the track not restarted, a deleted track, the DM's alone, bounds),
   `place-sound-store.integration.test.ts`, `campaigns/move/tables.integration.test.ts`, the
   journey `tests/e2e/place-sound.spec.ts`.
+
+## Stage 860: a shorter way in for a guest (2026-11-16)
+
+Stage 860 (`docs/adr/0073-table-ideas.md` §7) removes a page from a guest's way to a hero. No
+server read or write is added or changed: the table's link, its seats, its limits and the
+single-use invitation behind a seat are ADR 0042 §5–6's, and the sign-in a guest gets is the one
+"Only this browser" always gave. Regression: the journey `tests/e2e/table-display.spec.ts` (a
+seat taken with one press and no login; the login asked for; the DM's list of seats taken).

@@ -4,8 +4,8 @@
   улучшений…», quoted as relayed in `reviews/OWNER_TABLE_IDEAS_2026-11-16.json`; every point of §1
   is the session's and is marked in the plan, `docs/TABLE_IDEAS_PLAN.md` decisions 3–4, and stays
   the owner's to overrule). Later sections are added by their stages and are not in force until
-  then. §2–§6 are accepted on the same word; every point of them is the session's (the plan's
-  decisions 5–9). §1 amends ADR 0062 §1 (the notice names error reports), ADR 0042 §2 (a table display's one
+  then. §2–§7 are accepted on the same word; every point of them is the session's (the plan's
+  decisions 5–10). §1 amends ADR 0062 §1 (the notice names error reports), ADR 0042 §2 (a table display's one
   write), ADR 0033 (one more read in the DM's live inventory) and ADR 0061 §5 (a table that names
   a campaign and stays behind). §2 amends ADR 0071 §4.5 (a request for a pause is no longer a chat
   message) and ADR 0033 (one more read in the live inventory, for the DM and the asker). §3 amends ADR 0015
@@ -14,7 +14,9 @@
   tables move), ADR 0062 §1–3 (the notice, a person's copy, what deleting an account deletes) and
   ADR 0072 §2 (a finished campaign takes a private note). §6 amends ADR 0059 §1 and §3 (a place
   shown writes the table's sound; the display's "by the scene" follows the place it shows), ADR
-  0042 §3 (the cast's answer says what it did to the sound) and ADR 0061 §5 (one table moves).
+  0042 §3 (the cast's answer says what it did to the sound) and ADR 0061 §5 (one table moves). §7
+  amends ADR 0042 §5 (a seat chosen through the table's link is taken in this browser unless a
+  login is asked for) and changes no contract.
 - Context: The program after «Память и ритуал» borrows ten things other tools for the same hobby
   do well. This ADR holds their contracts, one section a stage. The first: the client reported
   nothing. A game's screen that failed while drawing fell back to a line about a "world response"
@@ -226,6 +228,28 @@
 5. **There is no "prepared scene" in the application**: a place is what the DM shows. A prepared
    encounter's or a handout's own sound is not in this section.
 
+### 7. A shorter way in for a guest (Stage 860)
+
+1. **Where the way was long.** A guest who scanned the table's code met "Join the table", then
+   "Choose your character", then a second page — "You are invited to a table" — whose first
+   choice was a new login: a name, a login and a password of ten characters, for someone who came
+   for one evening. Sitting down without a login was the third of three choices.
+2. **One press on a hero.** On the table's join page, pressing a free hero takes the seat's
+   single-use invitation (ADR 0042 §5) and redeems it at once in this browser — the sign-in that
+   "Only this browser" has always given (ADR 0036, ADR 0041). The page says so before the press:
+   "Press a hero to sit down and play on this device. Nothing to remember." From the code on the
+   screen to a hero: the scan, and one press.
+3. **A login for who wants one.** Under the heroes: "I want a login, to come back to this table
+   from another device". Ticked, a press on a hero goes to the usual join page, as before, with
+   its three choices. Nothing of that page changes, and an invitation the DM sends by link still
+   opens it.
+4. **What does not change.** The link, its hours, its code, its limits and its closing (ADR 0042
+   §5–6); a seat taken through it is a player without a login, whom the DM's close of the evening
+   may free ("Free the seats of players without a login", ADR 0071 §1) and the DM may revoke; a
+   browser already signed in to another seat is still asked before its sign-in is replaced.
+5. **The screen's words.** The table's display said "Scan with your phone, sign in, and choose
+   your character"; it says "Scan with your phone and choose your hero."
+
 ## Consequences
 
 - The DM's list can be written to by anyone at the table, and — without a campaign — the
@@ -278,6 +302,13 @@
 - Session's line "Now by the scene: …" follows the world's scene, and a display follows the
   place it shows: with "by the scene" chosen and a place shown that the party is not in, the two
   can name different ambiences. What the display plays is the place it shows.
+
+- A shorter way in is shorter for anyone who sees the table's code while the link is open. It
+  was one more page for them before, not a lock: the link's hours, its closing and the DM's sight
+  of who sat down are the guard, as they were.
+- A guest who sat down without a login and clears the browser, or comes with another phone next
+  week, has no way back to that seat but a new link — which is what a guest's seat is. Their
+  private notes (§5) stay with the old sign-in.
 
 ## Alternatives considered
 
