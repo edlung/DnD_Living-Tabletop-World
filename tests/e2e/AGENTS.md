@@ -31,6 +31,12 @@ It changes no world state; keep its window listener, since `pageerror` misses th
 - The journeys' dev servers do not reload a page that lost its connection to them
   (`LTW_VITE_NO_RELOAD`, `apps/web/vite.config.ts`): the dev client does, and in WebKit that
   connection was lost now and then under a journey, whose page then came back at its start.
+- Why it was lost (`reports/WEBKIT_NETWORK_CRASH_2026-11-16.md`): in the WebKit of Playwright
+  1.63 the network process of a page's browser died on a corrupted heap when the page aborted a
+  fetch, which the client does all the time. Playwright 1.65.1's WebKit does not; keep the
+  version at or above it. The sign of that death in a failed journey's `[journey]` block is
+  requests ending in "WebKit encountered an internal error" (a console line "Network process
+  crashed" beside the dev client's socket): look at the browser, not at the journey.
 - `apps/server/src/testing/ui-server.ts` composes the real World Engine and dev
   personas over deterministic in-memory storage. No external AI provider runs.
 - These are browser journeys through real HTTP projections, not mocked domain
