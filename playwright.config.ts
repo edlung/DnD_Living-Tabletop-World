@@ -36,7 +36,9 @@ export default defineConfig({
     // up (an evening closed, a card in the lobby); one at a time, none has waited so since. That
     // day's red runs had two more causes, answered elsewhere: journeys that left their pages open
     // (tests/e2e/support/journey.ts) and the dev client reloading a page (LTW_VITE_NO_RELOAD below).
-    // Same journeys, same assertions, one worker.
+    // Same journeys, same assertions, one worker. What lost those pages their connection was the
+    // browser: its network process died (reports/WEBKIT_NETWORK_CRASH_2026-11-16.md), and does
+    // not in the WebKit of Playwright 1.65.1.
     {
       name: 'ipad',
       workers: 1,
