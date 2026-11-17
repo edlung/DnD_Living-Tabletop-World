@@ -11,6 +11,7 @@ import {
   plateRoom,
   PLATE_SQUARES,
   projectPoint,
+  BASE_FRONT,
   squareAt,
   squareCenter,
   TILT,
@@ -127,7 +128,7 @@ describe('squares and pixels', () => {
 });
 
 describe('name plates', () => {
-  it('lie under the medallion when flat, on the figure’s base line scaled with it when tilted', () => {
+  it('lie under the medallion when flat, under the ring’s front scaled with the figure when tilted', () => {
     const flat = boardLayout(grid, 40, null);
     expect(plateAnchor(flat, { x: 2, y: 6 })).toEqual({
       x: 100,
@@ -137,12 +138,28 @@ describe('name plates', () => {
     });
     const tilted = boardLayout(grid, 48, TILT);
     const anchor = plateAnchor(tilted, { x: 2, y: 6 });
+    const front = projectPoint(tilted, { x: 2.5 * 48, y: (6 + BASE_FRONT) * 48 });
+    expect(anchor).toEqual({ x: front.x, y: front.y, scale: front.scale, edge: 'top' });
+    // Never over its own figure: the plate begins below the base line the figure stands on.
     const base = projectPoint(tilted, { x: 2.5 * 48, y: (6 + FIGURE_BASE) * 48 });
-    expect(anchor).toEqual({ x: base.x, y: base.y, scale: base.scale, edge: 'bottom' });
+    expect(anchor.y).toBeGreaterThan(base.y);
     // A plate further back is drawn higher and smaller, like the figure standing there.
     const behind = plateAnchor(tilted, { x: 2, y: 5 });
     expect(behind.y).toBeLessThan(anchor.y);
     expect(behind.scale).toBeLessThan(anchor.scale);
+  });
+
+  it('ride over their own figure’s head when one stands in front, never past the far edge', () => {
+    const tilted = boardLayout(grid, 48, TILT);
+    const at = { x: 6, y: 5 };
+    const front = [{ square: { x: 6, y: 6 }, span: 1 }];
+    expect(plateAnchor(tilted, at, 1, []).edge).toBe('top');
+    const crowded = plateAnchor(tilted, at, 1, front);
+    expect(crowded.edge).toBe('bottom');
+    expect(crowded.y).toBeLessThan(plateAnchor(tilted, at).y);
+    // In the far row the head would leave the board: the plate stays under the base.
+    const far = plateAnchor(tilted, { x: 6, y: 0 }, 1, [{ square: { x: 6, y: 1 }, span: 1 }]);
+    expect(far.edge).toBe('top');
   });
 
   it('are never wider than the room beside them in their row', () => {

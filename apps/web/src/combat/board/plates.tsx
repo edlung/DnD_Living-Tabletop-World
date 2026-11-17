@@ -45,6 +45,9 @@ export function BoardPlates({
 }) {
   const t = useT();
   const occupied = encounter.combatants.map((entry) => entry.position);
+  const standing = encounter.combatants
+    .filter((entry) => entry.mountedOn === undefined)
+    .map((entry) => ({ square: entry.position, span: spanOf(entry) }));
   return (
     <div className="board-plates" aria-hidden="true">
       {/* A rider's figure sits on its mount's: the mount's squares name it (ADR 0049 §10). */}
@@ -52,12 +55,13 @@ export function BoardPlates({
         .filter((combatant) => combatant.mountedOn === undefined)
         .map((combatant) => {
           // Under the middle of its space (docs/adr/0049-space-and-movement.md §1).
-          const anchor = plateAnchor(layout, combatant.position, spanOf(combatant));
+          const room = plateRoom(combatant.position, occupied);
+          const anchor = plateAnchor(layout, combatant.position, spanOf(combatant), standing, room);
           const style: PlateStyle = {
             left: anchor.x,
             top: anchor.y,
             '--plate-scale': anchor.scale,
-            '--plate-room': plateRoom(combatant.position, occupied),
+            '--plate-room': room,
           };
           return (
             <span
