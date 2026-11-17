@@ -15,7 +15,12 @@ devices stay the owner's. Status: **Stage 800 is implemented** (`work-orders/STA
 (`work-orders/STAGE_830.md`, `reports/STAGE_830_COMPLETION.md`, ADR 0073 §4) and **Stage 840**
 (`work-orders/STAGE_840.md`, `reports/STAGE_840_COMPLETION.md`, ADR 0073 §5) and **Stage 850**
 (`work-orders/STAGE_850.md`, `reports/STAGE_850_COMPLETION.md`, ADR 0073 §6, with the second
-checkpoint); the later stages follow.
+checkpoint), **Stage 860** (`work-orders/STAGE_860.md`, `reports/STAGE_860_COMPLETION.md`, ADR
+0073 §7) and **Stage 870** (`work-orders/STAGE_870.md`, `reports/STAGE_870_COMPLETION.md`, ADR
+0073 §8), **Stage 880** (`work-orders/STAGE_880.md`, `reports/STAGE_880_COMPLETION.md`, ADR 0073
+§9, with the third checkpoint) and **Stage 890** (`work-orders/STAGE_890.md`,
+`reports/STAGE_890_COMPLETION.md`, ADR 0073 §10, with the program's close): all ten are
+implemented and await the owner's disposition.
 
 It follows `docs/MEMORY_RITUAL_PLAN.md` (Stages 710–799, pull requests 37–47, none merged) and is
 stacked on its last branch, `claude/stage-799-package-close`. ADR 0073 holds its contracts, one

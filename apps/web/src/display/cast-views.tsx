@@ -70,6 +70,8 @@ export function CastView(props: Props) {
       return <AgreementCast api={props.api} refresh={props.refresh} />;
     case 'picture':
       return <PictureCast {...props} entityId={cast.entityId} />;
+    case 'story':
+      return <StoryCast {...props} entityId={cast.entityId} text={cast.text} />;
     case 'join':
       return <JoinCast {...props} />;
     case 'blank':
@@ -337,6 +339,47 @@ function PictureCast(props: Props & { readonly entityId: string }) {
   );
 }
 
+/**
+ * Theatre of the mind (docs/adr/0073-table-ideas.md §8): one large picture the party knows — the
+ * game's key art where there is none — and the words someone reads aloud, each paragraph its own.
+ */
+function StoryCast(props: Props & { readonly entityId: string | null; readonly text: string }) {
+  const t = useT();
+  const path =
+    props.entityId === null ? null : `entities/${encodeURIComponent(props.entityId)}/presentation`;
+  const shown = useRead(props, `story:${path ?? ''}`, (api, signal) =>
+    path === null ? Promise.resolve(null) : api.get<EntityPresentationResponse>(path, signal),
+  );
+  const art = useApprovedImage(shown?.presentation.image ?? null);
+  const name = nameIn(props.directory, props.entityId);
+  const paragraphs = props.text.split(/\n+/).filter((line) => line.trim() !== '');
+  // Much text, or many short lines (a verse, a riddle), stands smaller so that all of it fits;
+  // a line or two stand large, to be read from across the room.
+  const load =
+    props.text.length > 450 || paragraphs.length > 6
+      ? 'long'
+      : props.text.length > 250 || paragraphs.length > 3
+        ? 'mid'
+        : props.text.length <= 90 && paragraphs.length <= 2
+          ? 'brief'
+          : 'short';
+  return (
+    <section className="display-story" data-load={load} aria-label={t('A story read aloud')}>
+      <img
+        className="display-story-art"
+        src={art ?? textureUrl('brand-keyart')}
+        alt={art !== null && name !== null ? name : ''}
+      />
+      <div className="display-story-scrim" aria-hidden="true" />
+      <div className="display-story-words">
+        {paragraphs.map((paragraph, index) => (
+          <p key={`${String(index)}:${paragraph}`}>{paragraph}</p>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function JoinCast(props: Props) {
   const t = useT();
   const join = useRead(props, 'join', (api, signal) =>
@@ -355,7 +398,7 @@ function JoinCast(props: Props) {
         {join?.link && join.code ? (
           <>
             <QrCode text={join.link} label={t('QR code to join the table')} />
-            <p>{t('Scan with your phone, sign in, and choose your character.')}</p>
+            <p>{t('Scan with your phone and choose your hero.')}</p>
             <p className="display-code">{`${join.code.slice(0, 4)} ${join.code.slice(4)}`}</p>
             <p className="display-hint">
               {t('Or open {address} and type this code.', {

@@ -76,6 +76,9 @@ export function coverageInventory(target: LiveTarget): ViewRequest[] {
     views.push(scoped('chat'));
     // Handouts (§5): a new one signals its readers.
     views.push(scoped('handouts'));
+    // Sealed envelopes (ADR 0073 §9): one sealed, opened or taken away signals who reads them —
+    // from outside only: the inside is in no answer of the read.
+    views.push(scoped('envelopes'));
   }
   // Stars and wishes (ADR 0071 §2): a new one signals whoever reads it, the display's cast too.
   if (target.kind === 'CHARACTER' || target.kind === 'DM' || target.display === true) {

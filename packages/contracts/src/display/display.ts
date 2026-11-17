@@ -72,10 +72,13 @@ export interface DisplayListResponse {
 /**
  * What the TV shows (§3): a place's scene (null: wherever the party is — the place of the first
  * party character), the battlefield, the table's rolls, a title card, the Chronicle's newest
- * chapter, an approved picture of something the party knows, the join QR code with the last
- * chapter's recap, or nothing. The battlefield keeps the DM's zoom and whom to keep in view (null:
+ * chapter, an approved picture of something the party knows, a picture with words (the story
+ * cast), the join QR code with the last chapter's recap, or nothing. The battlefield keeps the DM's zoom and whom to keep in view (null:
  * whoever's turn it is), so a zoomed board follows the fight.
  */
+/** The words a story cast holds at most: a few lines read aloud, not a page. */
+export const STORY_CAST_CHARS = 600;
+
 export const castSchema = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('scene'), locationId: entityIdSchema.nullable() }).strict(),
   z
@@ -99,6 +102,18 @@ export const castSchema = z.discriminatedUnion('kind', [
   /** The table's agreement, for the first meeting (ADR 0071 §4). */
   z.object({ kind: z.literal('agreement') }).strict(),
   z.object({ kind: z.literal('picture'), entityId: entityIdSchema }).strict(),
+  /**
+   * Theatre of the mind (docs/adr/0073-table-ideas.md §8): one large picture of something the
+   * party knows — or none — and the words read aloud: the DM's own, or a paragraph of the party's
+   * chapters the DM chose.
+   */
+  z
+    .object({
+      kind: z.literal('story'),
+      entityId: entityIdSchema.nullable().default(null),
+      text: z.string().trim().min(1).max(STORY_CAST_CHARS),
+    })
+    .strict(),
   z.object({ kind: z.literal('join') }).strict(),
   z.object({ kind: z.literal('blank') }).strict(),
 ]);
