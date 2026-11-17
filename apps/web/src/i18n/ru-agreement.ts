@@ -24,7 +24,6 @@ registerRussian({
   Romance: 'Любовные истории',
   'Players’ characters fighting each other': 'Драки между героями игроков',
   Swearing: 'Грубые слова',
-  'I would like a pause, please.': 'Мне нужна пауза, пожалуйста.',
   // A player's card and dialog
   'Read the table’s agreement before the next game — the DM has updated it.':
     'Прочитайте договор стола перед следующей игрой — мастер его обновил.',
@@ -33,8 +32,8 @@ registerRussian({
   'Read it': 'Прочитать',
   Later: 'Позже',
   Understood: 'Понятно',
-  'The agreement and “Ask for a pause” stay in “How to play”.':
-    'Договор и кнопка «Попросить паузу» всегда есть в «Как играть».',
+  'The agreement stays in “How to play”. “Ask for a pause” is on the game screen while you play.':
+    'Договор всегда есть в «Как играть». Кнопка «Попросить паузу» — на экране игры, пока идёт игра.',
   'That did not go through. The page may have changed: read it and try again.':
     'Не получилось. Возможно, договор изменился: прочитайте его и попробуйте снова.',
   'The DM has not written it yet.': 'Мастер его ещё не написал.',
@@ -80,8 +79,7 @@ registerRussian({
   'Only the DM will see either of these.': 'И то и другое увидит только мастер.',
   'Pause asked': 'Просьба отправлена',
   'Whose pages': 'Чьи страницы',
-  'Only the DM was told that you would like a pause.':
-    'О том, что вам нужна пауза, узнал только мастер.',
+  'Only the DM was told that you would like a pause.': 'Просьбу о паузе увидит только мастер.',
   'That did not reach the DM. Say “pause” aloud — that always works.':
     'До мастера это не дошло. Скажите «пауза» вслух — это работает всегда.',
   'For players': 'Игрокам',
@@ -119,8 +117,8 @@ registerRussian({
   'During the game': 'Во время игры',
   'Players act from their phones and the world answers by the rules. What the rules do not decide is yours: ask for a check in Party, start a fight in Encounter.':
     'Игроки действуют с телефонов, мир отвечает по правилам. Что правила не решают — решаете вы: попросите проверку в «Отряде», начните бой в «Схватке».',
-  'Pause the game in Session whenever the table needs a break. When a player asks for a pause — it comes to you alone, in Chat — pause without saying who asked.':
-    'Ставьте игру на паузу в «Сессии», когда столу нужен перерыв. Когда игрок просит паузу — просьба приходит только вам, в «Чат», — сделайте паузу и не называйте, кто попросил.',
+  'Pause the game in Session whenever the table needs a break. When a player asks for a pause, a card appears on your screen and nowhere else — pause without saying who asked.':
+    'Ставьте игру на паузу в «Сессии», когда столу нужен перерыв. Когда игрок просит паузу, карточка появляется только на вашем экране — сделайте паузу и не называйте, кто попросил.',
   'A step went wrong? History shows what happened and undoes what the world allows.':
     'Что-то пошло не так? «История» покажет, что произошло, и отменит то, что мир позволяет отменить.',
   'The table’s screen': 'Экран стола',

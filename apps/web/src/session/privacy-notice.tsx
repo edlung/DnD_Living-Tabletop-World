@@ -24,7 +24,9 @@ export function PrivacyPage({ language: initial }: { readonly language: Language
 const KEPT = [
   'Your account: the login you chose, a hash of your password (never the password itself) and the name the table sees. No e-mail, no phone number.',
   'Your campaigns: which ones you sit in, your characters, and each campaign’s story as it is played.',
+  'Whether you come to the next game, if you answered: the table reads it, and it is deleted when that game begins or the date is changed or removed.',
   'What you write and roll: your chat messages, your dice rolls, the star and the wish you write when an evening ends (the table reads your star; your wish is for the DM alone), and what your hero keeps when an adventure ends (the table reads it).',
+  'Your hero’s story and your notes: the backstory you write for your hero (you and the DM read it) and your private notes (only you read them — the DM does not).',
   'Your sign-ins: when each began and when it ends, to keep you signed in. Cookies hold these sign-ins and nothing else.',
   'When a page breaks: which screen it was, which browser and what kind of error — not your name, your login or anything you wrote. The DM of your table and the server’s operator read these notes to mend the game; each is removed thirty days after the error last happened.',
 ] as const;
@@ -36,7 +38,7 @@ const SECTIONS = [
   },
   {
     title: 'Who sees it',
-    text: 'The people at your table, each as much as their character perceives, and the DM, who sees the whole campaign. The operator of the server can read its database to keep it running and safe.',
+    text: 'The people at your table, each as much as their character perceives, and the DM, who sees the whole campaign — except your private notes. The operator of the server can read its database to keep it running and safe.',
   },
   {
     title: 'What leaves the server',
@@ -52,7 +54,7 @@ const SECTIONS = [
   },
   {
     title: 'Your copy, and deleting your account',
-    text: 'On your account’s page, “Download my data” saves a copy: your account, your sign-ins and, in each campaign, your characters, your messages, your rolls, your stars and wishes, and what your heroes keep. “Delete my account” forgets your login, your name and your password and signs you out everywhere; your characters stay in their campaigns’ story. A DM’s account is deleted by the server’s operator, so that no campaign loses its DM.',
+    text: 'On your account’s page, “Download my data” saves a copy: your account, your sign-ins and, in each campaign, your characters, your messages, your rolls, your stars and wishes, what your heroes keep, their backstories and your private notes. “Delete my account” forgets your login, your name and your password, deletes your private notes and signs you out everywhere; your characters stay in their campaigns’ story. A DM’s account is deleted by the server’s operator, so that no campaign loses its DM.',
   },
   {
     title: 'Questions',

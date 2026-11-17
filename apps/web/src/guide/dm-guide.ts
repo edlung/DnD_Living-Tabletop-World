@@ -51,7 +51,7 @@ export function dmPagesOf(t: Translate): readonly GuidePage[] {
           'Players act from their phones and the world answers by the rules. What the rules do not decide is yours: ask for a check in Party, start a fight in Encounter.',
         ),
         t(
-          'Pause the game in Session whenever the table needs a break. When a player asks for a pause — it comes to you alone, in Chat — pause without saying who asked.',
+          'Pause the game in Session whenever the table needs a break. When a player asks for a pause, a card appears on your screen and nowhere else — pause without saying who asked.',
         ),
         t('A step went wrong? History shows what happened and undoes what the world allows.'),
       ],

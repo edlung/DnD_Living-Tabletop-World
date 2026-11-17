@@ -40,8 +40,7 @@ registerRussian({
   'The Chronicle is still empty': 'Хроника пока пуста',
   'Join the table': 'Присоединиться к столу',
   'QR code to join the table': 'QR-код, чтобы присоединиться к столу',
-  'Scan with your phone, sign in, and choose your character.':
-    'Отсканируйте телефоном, войдите и выберите персонажа.',
+  'Scan with your phone and choose your hero.': 'Наведите камеру телефона и выберите героя.',
   'Or open {address} and type this code.': 'Или откройте {address} и введите этот код.',
   'The DM has not opened the table to join yet.': 'Мастер ещё не открыл стол для входа.',
   'Last time': 'В прошлый раз',
@@ -135,10 +134,10 @@ registerRussian({
     'Слишком много попыток. Подождите минуту и попробуйте снова.',
   'This table link is closed or its code is wrong. Ask the DM.':
     'Ссылка стола закрыта или код неверен. Спросите мастера.',
-  'Choose your character': 'Выберите персонажа',
+  'Choose your hero': 'Выберите героя',
   'Every seat at this table is taken. Ask the DM.':
     'Все места за этим столом заняты. Спросите мастера.',
   'Play {name}': 'Играть: {name}',
-  'Someone took {name} a moment ago. Choose another character.':
-    '{name}: этого персонажа только что заняли. Выберите другого.',
+  'Someone took {name} a moment ago. Choose another hero.':
+    '{name}: этого героя только что заняли. Выберите другого.',
 });

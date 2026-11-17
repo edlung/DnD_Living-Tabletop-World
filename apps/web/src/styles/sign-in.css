@@ -190,3 +190,20 @@
   width: 18px;
   height: 18px;
 }
+
+/* A guest with a phone came to choose a hero (docs/adr/0073-table-ideas.md §7): on a phone the
+   page's own story gives way to the choice, which stands at the top. It is still read aloud. */
+@media (max-width: 767px) {
+  .sign-in-panel:has(.table-offer) .sign-in-story {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+  .sign-in-panel:has(.table-offer) .sign-in-divider {
+    display: none;
+  }
+}

@@ -460,6 +460,8 @@ export * from './session/cheers.ts';
 export * from './session/client-errors.ts';
 export * from './session/ending.ts';
 export * from './session/lobby.ts';
+export * from './session/notes.ts';
+export * from './session/pause.ts';
 export * from './session/reflections.ts';
 
 export * from './items/index.ts';

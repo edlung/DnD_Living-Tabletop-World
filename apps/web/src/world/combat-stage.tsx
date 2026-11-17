@@ -12,6 +12,7 @@ import { askedWindowOf, ReactionPrompt } from '../combat/reaction-prompt.tsx';
 import { ReadiedCard } from '../combat/readied-card.tsx';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
 import { Glyph } from '../visual/glyph.tsx';
+import { FIGHT_QUIET_ID } from './fight-quiet.ts';
 
 /**
  * While the viewed world has an encounter (docs/STAGE_320_DESIGN.md §5.5): the stage shows the
@@ -113,6 +114,9 @@ export function CombatStage({
           {t('Battlefield')}
         </button>
       </div>
+      {/* A player's quiet row in a fight — "What can I do?" and the way to a pause — is put here
+          (session/lobby-banner.tsx): in the fight's own layout, clear of the turn order. */}
+      <div id={FIGHT_QUIET_ID} className="fight-quiet" />
       <p
         ref={banner}
         className={`turn-banner${asked || myTurn ? ' turn-banner--yours' : ''}`}

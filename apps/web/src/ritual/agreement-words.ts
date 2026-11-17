@@ -93,17 +93,3 @@ export const sayUnderstood = (
   sent(
     api.post('agreement/understood', { version, characterId }, AbortSignal.timeout(20_000), true),
   );
-
-/**
- * A quiet word to the DM alone that the player wants a pause: the table's whisper to the DM
- * (docs/adr/0044-online-play.md §1) with fixed words, so nobody has to find any.
- */
-export const askForPause = (api: WorldApi, t: Translate): Promise<boolean> =>
-  sent(
-    api.post(
-      'chat',
-      { channel: 'dm', voice: 'out-of-character', text: t('I would like a pause, please.') },
-      AbortSignal.timeout(20_000),
-      true,
-    ),
-  );
