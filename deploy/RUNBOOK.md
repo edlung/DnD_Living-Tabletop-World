@@ -827,6 +827,30 @@ printf '%s\n' '/var/log/ltw/*.log {' '  weekly' '  rotate 8' '  compress' '  mis
   '  notifempty' '  copytruncate' '}' | sudo tee /etc/logrotate.d/ltw >/dev/null
 ```
 
+### Ошибки клиента · Client error reports (Stage 800, ADR 0073 §1)
+
+RU: когда страница игры ломается, она отправляет на этот сервер короткую заметку из фиксированных
+полей (экран, браузер, вид ошибки, место в коде приложения) — без текста ошибки, адресов, имён и
+слов игроков. Мастер видит заметки своей кампании на листе «Сессия». Заметки без кампании (вход,
+список кампаний) читает оператор:
+
+EN: when a page of the game breaks it sends this server a short note of fixed fields (the screen,
+the browser, the kind of error, the place in the application's own code) — no message text, no
+address, no name, no player's words. A DM reads their campaign's notes on the Session sheet. Notes
+of no campaign (signing in, the list of campaigns) are the operator's to read:
+
+```bash
+dc exec -T postgres psql -U ltw -d ltw -c \
+  "SELECT last_at, seen_count, campaign_id, role, page, part, kind, name, browser, browser_version, system, place, build FROM ltw_client_errors ORDER BY last_at DESC LIMIT 50"
+```
+
+RU: строка удаляется через 30 дней после последнего появления; `build` — ревизия сервера
+(`LTW_REVISION`), имя файла в `place` несёт хэш сборки клиента. Журнал сервера содержит только
+строку `client error reported` с ролью отправителя. EN: a row is removed 30 days after it was last
+seen; `build` is the server's revision (`LTW_REVISION`), and the file name in `place` carries the
+client build's hash. The server's log holds only the line `client error reported` with the
+sender's role.
+
 ## 10. Копия вне сервера · Off-host backup copy
 
 **RU.** Ожидает решения владельца о месте хранения (Q10). Копии содержат все секреты кампаний:

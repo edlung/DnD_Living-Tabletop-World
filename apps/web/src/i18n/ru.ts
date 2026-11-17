@@ -30,8 +30,6 @@ registerRussian({
   'Leave session': 'Выйти из сессии',
   'Opening your session…': 'Открываем вашу сессию…',
   'Gathering your view of the world…': 'Собираем ваш взгляд на мир…',
-  'This world response could not be displayed. Reconnect to try again.':
-    'Ответ мира не удалось показать. Подключитесь заново и повторите.',
   'Your shared world': 'Ваш общий мир',
   'DM view · all knowledge': 'Вид мастера · все знания',
   'Scoped perspective': 'Ограниченный вид',

@@ -4,13 +4,16 @@ import {
   Component,
   useCallback,
   useEffect,
+  useRef,
   useLayoutEffect,
   useMemo,
   useState,
   type ReactNode,
 } from 'react';
 
-import { WorldApi, type Connection } from '../api/client.ts';
+import { WorldApi, credentialOptions, type Connection } from '../api/client.ts';
+import { REPORT_NOTE } from '../report/broken-page.tsx';
+import { reportError, reportPage, reportSender } from '../report/reporter.ts';
 import { LiveActiveContext, LiveRefreshContext, LiveTargetContext } from '../api/live-context.ts';
 import { useResource } from '../api/resource.ts';
 import type { StandIn } from '../combat/stand-in.ts';
@@ -61,32 +64,67 @@ function LeaveButton({ onLeave }: { readonly onLeave: () => void }) {
   );
 }
 
-function BoundaryFallback({ onLeave }: { readonly onLeave: () => void }) {
+function BoundaryFallback({
+  onLeave,
+  reported,
+}: {
+  readonly onLeave: () => void;
+  /** A note of what broke left for the server: said only when it did. */
+  readonly reported: boolean;
+}) {
   const t = useT();
+  const again = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    again.current?.focus();
+  }, []);
   return (
-    <main className="connection-state">
+    <main className="connection-state session-broken">
       <Emblem />
       <StatusPanel
         state="error"
-        label={t('This world response could not be displayed. Reconnect to try again.')}
+        label={t('Something went wrong on this screen. The game itself is safe.')}
       />
-      <LeaveButton onLeave={onLeave} />
+      {/* Loading again is what helps, and what a child can do; leaving stays beside it. */}
+      <div className="action-row">
+        <button
+          ref={again}
+          type="button"
+          className="primary-button"
+          onClick={() => {
+            window.location.reload();
+          }}
+        >
+          {t('Load the game again')}
+        </button>
+        <LeaveButton onLeave={onLeave} />
+      </div>
+      <p>{t('If that does not help, tell your DM.')}</p>
+      {reported && <p className="muted">{t(REPORT_NOTE)}</p>}
     </main>
   );
 }
 
-/** Last-resort malformed-response boundary; no stale projection survives. */
+/**
+ * Last-resort boundary of a session's screens: no stale projection survives, and what broke is
+ * reported (docs/adr/0073-table-ideas.md §1).
+ */
 class SessionBoundary extends Component<
-  { children: ReactNode; onLeave: () => void },
-  { failed: boolean }
+  { children: ReactNode; onLeave: () => void; language: Language },
+  { failed: boolean; reported: boolean }
 > {
-  override state = { failed: false };
+  override state = { failed: false, reported: false };
   static getDerivedStateFromError() {
     return { failed: true };
   }
+  override componentDidCatch(error: unknown) {
+    this.setState({ reported: reportError('render', error) });
+  }
   override render() {
+    // The words are the campaign's language: its own provider went down with the screen.
     return this.state.failed ? (
-      <BoundaryFallback onLeave={this.props.onLeave} />
+      <LanguageProvider language={this.props.language}>
+        <BoundaryFallback onLeave={this.props.onLeave} reported={this.state.reported} />
+      </LanguageProvider>
     ) : (
       this.props.children
     );
@@ -112,6 +150,16 @@ export function App({ start }: { readonly start: PageStart }) {
   const [campaignLanguage, setCampaignLanguage] = useState<Language | null>(null);
   const { screen } = flow;
   const browser = browserLanguage();
+  // Told while drawing, so a first render that fails is placed (docs/adr/0073-table-ideas.md §1).
+  reportPage(screen.kind === 'hub' ? 'campaigns' : screen.kind === 'session' ? 'game' : 'sign-in');
+  reportSender(
+    screen.kind === 'session'
+      ? {
+          campaignId: screen.connection.campaignId,
+          headers: credentialOptions(screen.connection).headers,
+        }
+      : null,
+  );
   if (screen.kind === 'hub') {
     return (
       <LanguageProvider language={browser}>
@@ -156,7 +204,11 @@ export function App({ start }: { readonly start: PageStart }) {
           enabled={connection.kind === 'session'}
           onHub={flow.toHub}
         >
-          <SessionBoundary key={screen.key} onLeave={flow.leave}>
+          <SessionBoundary
+            key={screen.key}
+            onLeave={flow.leave}
+            language={campaignLanguage ?? browser}
+          >
             <SessionGate
               connection={connection}
               onLeave={flow.leave}

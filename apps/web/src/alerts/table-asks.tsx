@@ -1,6 +1,6 @@
 import type { EncounterView } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { BreakReminder } from '../comforts/break-reminder.tsx';
@@ -10,10 +10,13 @@ import { AnswerCheck } from '../dice/own-dice.tsx';
 import { useDiceSettings } from '../dice/settings.ts';
 import { useDiceTable } from '../dice/table.tsx';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
+import { PauseAsks } from '../pause/pause-asks.tsx';
+import { TroubleNotice } from '../report/screen-troubles.tsx';
 import { RestBanner } from '../rest/sheet-rest.tsx';
 import { nativeHaptic } from '../native/signals.ts';
 import { LobbyBanner } from '../session/lobby-banner.tsx';
 import { Glyph } from '../visual/glyph.tsx';
+import { FIGHT_QUIET_ID } from '../world/fight-quiet.ts';
 import { useScreenAwake, useTitleCount } from './screen.ts';
 import { useSlotRoom } from './slot-room.ts';
 import { newWaits, waitsOf, type Wait } from './waits.ts';
@@ -41,6 +44,7 @@ export function TableAsks({
   onOpenChronicle,
   onOpenBook,
   onReadHandout,
+  beside,
 }: {
   readonly api: WorldApi;
   readonly isDm: boolean;
@@ -58,6 +62,8 @@ export function TableAsks({
   readonly onOpenBook: () => void;
   /** Opens a handout where it is read (the Journal). */
   readonly onReadHandout: (handoutId: string) => void;
+  /** A player's own small button while a game plays ("What can I do?", ADR 0073 §3). */
+  readonly beside?: ReactNode;
 }) {
   const t = useT();
   const table = useDiceTable();
@@ -92,11 +98,17 @@ export function TableAsks({
         api={api}
         actorId={actorId}
         isDm={isDm}
+        fightSlot={encounter === null ? null : FIGHT_QUIET_ID}
         onOpenChronicle={onOpenChronicle}
         onOpenBook={onOpenBook}
+        beside={beside}
       />
+      {/* A player's quiet request for a pause (docs/adr/0073-table-ideas.md §2): the DM's alone. */}
+      {isDm && <PauseAsks api={api} />}
       {/* The DM's break reminder (docs/adr/0072-keepsakes.md §3): off unless the DM asked. */}
       {isDm && <BreakReminder api={api} />}
+      {/* What this table's screens reported when they broke (docs/adr/0073-table-ideas.md §1). */}
+      {isDm && <TroubleNotice api={api} />}
       <RestBanner
         isDm={isDm}
         actorId={actorId}

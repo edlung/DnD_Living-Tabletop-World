@@ -1,13 +1,16 @@
 import type { LobbyResponse } from '@ltw/contracts';
 import { useLanguage, useT } from '@ltw/ui';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
+import { createPortal } from 'react-dom';
 
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
 import { recapParagraphs } from '../chronicle/book-chapters.ts';
 import { Previously, usePreviously } from '../chronicle/previously.tsx';
+import { PauseAsk } from '../pause/pause-ask.tsx';
 import { calendarHref, NextGameLine, useCalendarFile } from '../ritual/next-game.tsx';
 import { AgreementCard } from '../ritual/agreement.tsx';
+import { ComingAsk } from '../ritual/coming.tsx';
 import { useEnding } from '../ritual/ending.ts';
 import { FinishedCard } from '../ritual/keepsake-card.tsx';
 import { StarsCard } from '../ritual/stars-card.tsx';
@@ -17,7 +20,8 @@ import { Glyph } from '../visual/glyph.tsx';
  * A player's view of the table around a session (docs/adr/0043-dm-screen.md §6): while no session
  * is open, "ready" for the one to come and "Previously…" to read meanwhile (ADR 0071 §1.4: the
  * party's last chapter, for the player who missed the evening too); while the DM has paused the
- * game, that it waits. Nothing
+ * game, that it waits; while it plays, the one-press way to ask for a pause
+ * (docs/adr/0073-table-ideas.md §2). Nothing
  * otherwise for a player, and nothing of this for the DM (the Session sheet is theirs). Everyone,
  * the DM too, reads when the campaign plays on another server since a move: here it is looked at,
  * not played (docs/adr/0061-local-mode.md §5). It lies first among the table's questions over the
@@ -29,11 +33,20 @@ export function LobbyBanner({
   isDm,
   onOpenChronicle,
   onOpenBook,
+  beside,
+  fightSlot = null,
 }: {
   readonly api: WorldApi;
   /** The acting character; none, no player's banner. */
   readonly actorId: string | null;
   readonly isDm: boolean;
+  /** A player's own small button for a game in play ("What can I do?"), beside the pause's. */
+  readonly beside?: ReactNode;
+  /**
+   * In a fight: the element of the fight's own layout that holds the quiet row, so that it lies
+   * clear of the turn order; none outside a fight.
+   */
+  readonly fightSlot?: string | null;
   /** Opens the book at a chapter. */
   readonly onOpenChronicle: (chronicleId: string) => void;
   /** Opens the campaign's whole book. */
@@ -46,6 +59,11 @@ export function LobbyBanner({
   const [busy, setBusy] = useState(false);
   const calendarFile = useCalendarFile();
   const end = useEnding(api);
+  // The fight's own place for the quiet row, once the fight's layout has drawn it.
+  const [slot, setSlot] = useState<HTMLElement | null>(null);
+  useEffect(() => {
+    setSlot(fightSlot === null ? null : document.getElementById(fightSlot));
+  }, [fightSlot]);
   if (lobby.resource.status !== 'ready') return null;
   const { session, paused, characters } = lobby.resource.value;
   // A server from before moves sends none.
@@ -86,7 +104,21 @@ export function LobbyBanner({
   const mine = characters.find((entry) => entry.character.entityId === actorId);
   // A game in play has no lobby; the table's agreement still asks to be read (a campaign may
   // begin with its first session already open).
-  if (session !== null && !paused) return <AgreementCard api={api} characterId={actorId} />;
+  // And the one-press way to a pause (ADR 0073 §2): told to the DM alone.
+  if (session !== null && !paused) {
+    const row = (
+      <div className="quiet-row">
+        {beside}
+        <PauseAsk api={api} />
+      </div>
+    );
+    return (
+      <>
+        <AgreementCard api={api} characterId={actorId} />
+        {fightSlot === null ? row : slot?.isConnected ? createPortal(row, slot) : null}
+      </>
+    );
+  }
   return (
     <>
       <div className="lobby-banner">
@@ -124,13 +156,23 @@ export function LobbyBanner({
           </>
         )}
       </div>
+      {/* Paused, every command waits: neither the hint nor the way to a pause has anything to say. */}
       {/* A server from before the date sends none. */}
       {session === null && lobby.resource.value.nextGame && (
-        <NextGameLine
-          next={lobby.resource.value.nextGame}
-          calendar={calendarFile ? calendarHref(api.campaignId) : null}
-          className="next-game--lobby"
-        />
+        <>
+          <NextGameLine
+            next={lobby.resource.value.nextGame}
+            calendar={calendarFile ? calendarHref(api.campaignId) : null}
+            className="next-game--lobby"
+          />
+          {/* "I'll come / I can't", beside the date (ADR 0073 §10). */}
+          <ComingAsk
+            api={api}
+            characters={characters}
+            characterId={actorId}
+            onChanged={lobby.reread}
+          />
+        </>
       )}
       {/* The table's agreement, until this player has said "Understood" (ADR 0071 §4). */}
       <AgreementCard api={api} characterId={actorId} />

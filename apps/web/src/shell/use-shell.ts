@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
+import { reportPart } from '../report/reporter.ts';
+
 /**
  * The dock's sheets (docs/STAGE_320_DESIGN.md §5.1); DM sheets only in the DM perspective (the
  * DM's Images, docs/STAGE_330_DESIGN.md "DM controls"), and Players only with production sign-in
@@ -69,8 +71,8 @@ function rememberSheet(key: string | undefined, sheet: SheetId | null): void {
   }
 }
 
-/** The character dialog's tabs (Stage 500). */
-export type HeroTab = 'overview' | 'skills' | 'spells' | 'inventory';
+/** The character dialog's tabs (Stage 500); Story is a hero's own player's and the DM's (ADR 0073 §5). */
+export type HeroTab = 'overview' | 'skills' | 'spells' | 'inventory' | 'story';
 
 export const sheetElementId = (id: SheetId) => `sheet-${id}`;
 export const dockButtonId = (id: SheetId | 'scene' | 'chronicle' | 'character') => `dock-${id}`;
@@ -105,6 +107,8 @@ export function useShell(rememberAs?: string) {
   const [hero, setHero] = useState<string | null>(null);
   const [heroTab, setHeroTab] = useState<HeroTab>('overview');
   const last = useRef<'sheet' | 'details'>('sheet');
+  // What is open, for a report of what broke (docs/adr/0073-table-ideas.md §1): a name only.
+  reportPart(chronicle ? 'chronicle' : hero !== null ? 'hero' : (sheet ?? 'none'));
   return {
     sheet,
     chronicle,

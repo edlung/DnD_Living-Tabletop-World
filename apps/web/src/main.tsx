@@ -43,8 +43,20 @@ import './i18n/ru-voice.ts';
 import './i18n/ru-moves.ts';
 import './i18n/ru-privacy.ts';
 import './i18n/ru-comforts.ts';
+import './i18n/ru-report.ts';
+import './i18n/ru-pause.ts';
+import './i18n/ru-hint.ts';
+import './i18n/ru-known.ts';
+import './i18n/ru-story.ts';
+import './i18n/ru-place-sound.ts';
+import './i18n/ru-guest.ts';
+import './i18n/ru-story-cast.ts';
+import './i18n/ru-envelopes.ts';
+import './i18n/ru-coming.ts';
 import { applyTextSize } from './dice/settings.ts';
 import { DisplayApp } from './display/display-app.tsx';
+import { RootBoundary } from './report/broken-page.tsx';
+import { reportPage, startErrorReports } from './report/reporter.ts';
 import { PrivacyPage } from './session/privacy-notice.tsx';
 import { startNative } from './native/start.ts';
 import { App } from './session/app.tsx';
@@ -112,6 +124,12 @@ import './styles/agreement.css';
 import './styles/keepsake.css';
 import './styles/ending.css';
 import './styles/comforts.css';
+import './styles/coming.css';
+import './styles/broken.css';
+import './styles/pause.css';
+import './styles/known.css';
+import './styles/story.css';
+import './styles/story-cast.css';
 import './styles/print.css';
 import './styles/print-book.css';
 
@@ -121,29 +139,40 @@ import './styles/print-book.css';
 // one, the page's first request — whether this browser is signed in — is sent exactly once.
 const root = document.getElementById('root');
 if (!root) throw new Error('Missing application root');
+// What breaks from here on is told to this game's own server (docs/adr/0073-table-ideas.md §1).
+startErrorReports();
 const display = window.location.pathname === '/display' || window.location.pathname === '/display/';
 // A person's own screen wears the text size they chose (docs/adr/0072-keepsakes.md §3); the
 // table's display is sized by its screen.
 if (!display) applyTextSize();
 if (display) {
   // The table's screen (docs/adr/0042-table-display.md): a device, not a person's sign-in.
+  reportPage('display');
   createRoot(root).render(
     <StrictMode>
-      <DisplayApp />
+      <RootBoundary selfReload>
+        <DisplayApp />
+      </RootBoundary>
     </StrictMode>,
   );
 } else if (window.location.pathname === '/privacy' || window.location.pathname === '/privacy/') {
   // The privacy notice (docs/adr/0062-account-privacy.md §1): readable before signing in.
+  reportPage('privacy');
   createRoot(root).render(
     <StrictMode>
-      <PrivacyPage language={navigator.language.toLowerCase().startsWith('ru') ? 'ru' : 'en'} />
+      <RootBoundary>
+        <PrivacyPage language={navigator.language.toLowerCase().startsWith('ru') ? 'ru' : 'en'} />
+      </RootBoundary>
     </StrictMode>,
   );
 } else if (isWorkshopPath(window.location.pathname)) {
   const start = workshopStart(window.location, window.history);
+  reportPage('workshop');
   createRoot(root).render(
     <StrictMode>
-      <WorkshopApp start={start} />
+      <RootBoundary>
+        <WorkshopApp start={start} />
+      </RootBoundary>
     </StrictMode>,
   );
 } else {
@@ -152,7 +181,9 @@ if (display) {
   const start = pageStart(takeInvitation(window.location, window.history), fetch, reset, table);
   createRoot(root).render(
     <StrictMode>
-      <App start={start} />
+      <RootBoundary>
+        <App start={start} />
+      </RootBoundary>
     </StrictMode>,
   );
 }

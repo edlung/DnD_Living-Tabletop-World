@@ -61,10 +61,13 @@ describe('the coverage inventory', () => {
       // Table talk (ADR 0044 §1) and handouts (§5).
       '/campaigns/ravenford/chat',
       '/campaigns/ravenford/handouts',
+      '/campaigns/ravenford/envelopes',
       // Stars and wishes (ADR 0071 §2).
       '/campaigns/ravenford/reflections',
       // Cheers at the table (ADR 0072 §3).
       '/campaigns/ravenford/cheers',
+      // A quiet request for a pause (ADR 0073 §2): a character reads its own.
+      '/campaigns/ravenford/pause-requests',
       // Crafting (ADR 0057 §9) and the table's shared marks on the board (§5).
       '/campaigns/ravenford/crafting',
       '/campaigns/ravenford/marks',
@@ -97,14 +100,19 @@ describe('the coverage inventory', () => {
       '/campaigns/ravenford/rest',
       '/campaigns/ravenford/chat',
       '/campaigns/ravenford/handouts',
+      '/campaigns/ravenford/envelopes',
       // Stars and wishes (ADR 0071 §2).
       '/campaigns/ravenford/reflections',
       '/campaigns/ravenford/cheers',
+      // A quiet request for a pause (ADR 0073 §2): the DM reads every one.
+      '/campaigns/ravenford/pause-requests',
       '/campaigns/ravenford/crafting',
       '/campaigns/ravenford/marks',
       '/campaigns/ravenford/chronicle/suggestions',
       '/campaigns/ravenford/dm/history',
       '/campaigns/ravenford/assets',
+      // What this table's screens reported when they broke (ADR 0073 §1): the DM's alone.
+      '/campaigns/ravenford/client-errors',
       '/campaigns/ravenford/entities/mira-vale/knowledge ?',
       '/campaigns/ravenford/entities/mira-vale/presentation ?',
       '/campaigns/ravenford/merchants/mira-vale ?',
@@ -141,6 +149,13 @@ describe('the coverage inventory', () => {
       '/campaigns/ravenford/check-requests',
       '/campaigns/ravenford/display/join ?',
     ]);
+    // A request for a pause (ADR 0073 §2) is never a display's or the party's view's to read.
+    for (const views of [
+      coverageInventory(target({ kind: 'PARTY', display: true })),
+      coverageInventory(target({})),
+    ]) {
+      expect(paths(views).some((path) => path.endsWith('/pause-requests'))).toBe(false);
+    }
     // The party's shared view on a person's screen cheers and reads none.
     expect(paths(coverageInventory(target({}))).some((path) => path.endsWith('/cheers'))).toBe(
       false,

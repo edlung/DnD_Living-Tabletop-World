@@ -368,7 +368,9 @@ function DisplayScreen({
           />
         </div>
       )}
-      <TableAmbience api={api} refresh={live.refresh} choice={choice} placeId={scenePlaceId} />
+      {/* "By the scene" is the scene the screen shows: the place cast, else where the scene is
+          played (docs/adr/0073-table-ideas.md §6). */}
+      <TableAmbience api={api} refresh={live.refresh} choice={choice} placeId={followed} />
       <TableMusic api={api} music={table?.sound.music ?? null} />
       <LinkPlate status={live.status} />
       {/* The table's cheers, for a moment over whatever is cast (ADR 0072 §3). */}

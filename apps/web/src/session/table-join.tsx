@@ -7,9 +7,11 @@ import { Field } from './account-forms.tsx';
 import type { TableRefusal } from './table-flow.ts';
 
 /**
- * The table's join page (docs/adr/0042-table-display.md §5): the link's free seats — or first its
- * code, typed — then one chosen. The chosen seat's invitation goes to the usual join page, where
- * the person makes a login, signs in, or takes it in this browser only.
+ * The table's join page (docs/adr/0042-table-display.md §5; docs/adr/0073-table-ideas.md §7): the
+ * link's free seats — or first its code, typed — then one chosen, and the person sits down in
+ * this browser at once: a guest for an evening invents no login. Who wants one — to come back
+ * from another device — says so first, and the chosen seat's invitation then goes to the usual
+ * join page.
  */
 type Step =
   | { readonly kind: 'code' }
@@ -28,6 +30,7 @@ export function TableJoin({
   readonly onChoose: (
     key: TableKey | null,
     character: EntityRef,
+    how: 'here' | 'login',
   ) => Promise<'ok' | 'taken' | TableRefusal>;
 }) {
   const t = useT();
@@ -36,6 +39,8 @@ export function TableJoin({
   const [key, setKey] = useState<TableKey | null>(null);
   const [problem, setProblem] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  // "I want a login": off unless asked for — a guest sits down in this browser.
+  const [login, setLogin] = useState(false);
 
   const read = async (next: TableKey | null) => {
     setStep({ kind: 'reading' });
@@ -65,12 +70,12 @@ export function TableJoin({
   const choose = async (character: EntityRef) => {
     setBusy(true);
     setProblem(null);
-    const answer = await onChoose(key, character);
+    const answer = await onChoose(key, character, login ? 'login' : 'here');
     setBusy(false);
     if (answer === 'ok') return;
     if (answer === 'taken') {
       setProblem(
-        t('Someone took {name} a moment ago. Choose another character.', { name: character.name }),
+        t('Someone took {name} a moment ago. Choose another hero.', { name: character.name }),
       );
       await read(key);
       return;
@@ -136,6 +141,8 @@ export function TableJoin({
       offer={offer}
       busy={busy}
       problem={problem}
+      login={login}
+      onLogin={setLogin}
       onChoose={(character) => void choose(character)}
     />
   );
@@ -145,44 +152,78 @@ function TableOffer({
   offer,
   busy,
   problem,
+  login,
+  onLogin,
   onChoose,
 }: {
   readonly offer: TableOfferResponse;
   readonly busy: boolean;
   readonly problem: string | null;
+  /** The person asked for a login: the seat chosen goes to the join page. */
+  readonly login: boolean;
+  readonly onLogin: (login: boolean) => void;
   readonly onChoose: (character: EntityRef) => void;
 }) {
   const t = useT();
   const id = useId();
+  // This browser may sit at the table already (a guest who scanned the code again): the way back.
+  const back = (
+    <p className="table-back">
+      {t('Already sat down on this device?')} <a href="/">{t('Open the table')}</a>
+    </p>
+  );
   return (
     <section className="table-offer" aria-labelledby={`${id}-title`}>
       <p className="eyebrow">{offer.campaignName}</p>
-      <h3 id={`${id}-title`}>{t('Choose your character')}</h3>
+      <h3 id={`${id}-title`}>{t('Choose your hero')}</h3>
       {problem && (
         <p className="account-error" role="alert">
           {problem}
         </p>
       )}
       {offer.characters.length === 0 ? (
-        <p>{t('Every seat at this table is taken. Ask the DM.')}</p>
+        <>
+          <p>{t('Every seat at this table is taken. Ask the DM.')}</p>
+          {back}
+        </>
       ) : (
-        <ul className="table-seats">
-          {offer.characters.map((character) => (
-            <li key={character.entityId}>
-              <button
-                className="table-seat"
-                disabled={busy}
-                aria-label={t('Play {name}', { name: character.name })}
-                onClick={() => {
-                  onChoose(character);
-                }}
-              >
-                <Glyph name="character" />
-                {character.name}
-              </button>
-            </li>
-          ))}
-        </ul>
+        <>
+          {/* Asked before the heroes: what a press does depends on it. */}
+          <label className="table-login">
+            <input
+              type="checkbox"
+              checked={login}
+              disabled={busy}
+              onChange={(event) => {
+                onLogin(event.target.checked);
+              }}
+            />
+            {t('I have a login or want one — to come back from any device')}
+          </label>
+          <p role="status">
+            {login
+              ? t('Press a hero: next you sign in or create a login.')
+              : t('Press a hero to sit down and play on this device. Nothing to remember.')}
+          </p>
+          <ul className="table-seats">
+            {offer.characters.map((character) => (
+              <li key={character.entityId}>
+                <button
+                  className="table-seat"
+                  aria-disabled={busy}
+                  aria-label={t('Play {name}', { name: character.name })}
+                  onClick={() => {
+                    if (!busy) onChoose(character);
+                  }}
+                >
+                  <Glyph name="character" />
+                  {character.name}
+                </button>
+              </li>
+            ))}
+          </ul>
+          {back}
+        </>
       )}
     </section>
   );

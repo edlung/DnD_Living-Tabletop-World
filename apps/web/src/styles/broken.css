@@ -1,0 +1,97 @@
+/*
+ * When a page breaks (docs/adr/0073-table-ideas.md §1): the plain screen shown in place of a
+ * blank one, and the DM's card of what this table's screens reported.
+ */
+.broken-page {
+  display: grid;
+  place-content: center;
+  min-height: 100dvh;
+  padding: 2rem var(--gutter, 16px);
+  background: var(--ink-950, #0c0f14);
+  color: var(--text, #f1e9d8);
+}
+.broken-panel {
+  display: grid;
+  gap: 0.75rem;
+  max-width: 32rem;
+  padding: 1.5rem;
+  border: 1px solid var(--line, #5b4a2c);
+  border-radius: var(--radius-panel, 12px);
+  background: var(--glass-raised, #1a2029);
+}
+.broken-panel h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+.broken-panel p {
+  margin: 0;
+}
+.broken-panel button {
+  min-height: 44px;
+}
+.broken-note {
+  color: var(--text-muted, #b9ad95);
+  font-size: 0.9rem;
+}
+
+.broken-panel h1:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 4px;
+}
+/* The session's own fallback (session/app.tsx): buttons a thumb can find. */
+.session-broken .action-row button {
+  min-height: 44px;
+}
+
+/* The DM's notice over the stage: one line and two buttons. */
+.trouble-notice button {
+  min-height: 44px;
+}
+@media (max-width: 767px) {
+  /* On a phone the stage shows through glass: this one is read over a busy scene. */
+  .trouble-notice {
+    background: var(--ink-900, #12161d);
+    backdrop-filter: none;
+  }
+}
+
+/* The DM's list on the Session sheet. */
+.trouble-group {
+  margin-bottom: 16px;
+}
+.trouble-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.trouble-list li {
+  display: grid;
+  gap: 2px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+}
+.trouble-list summary {
+  min-height: 32px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+.trouble-list code {
+  overflow-wrap: anywhere;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+.trouble-group .action-row button {
+  min-height: 44px;
+}
+.trouble-group .action-row button[aria-disabled='true'] {
+  opacity: 0.6;
+  cursor: progress;
+}
+.trouble-said:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}
