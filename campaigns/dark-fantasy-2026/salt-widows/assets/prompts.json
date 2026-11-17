@@ -501,6 +501,7 @@
   },
   {
    "id": "token-predator",
+   "facesLeft": true,
    "file": "token-predator.png",
    "kind": "token",
    "transparent": true,

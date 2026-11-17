@@ -993,7 +993,9 @@
       "references": [
         "cover.png",
         "cradle-crown.png"
-      ]
+      ],
+      "figureFile": "runtime/token-follower--figure.webp",
+   "figureSha256": "f366d6a08a79d5158b9041d47cba02ee9443f667462f02767f1172153688ce97"
     },
     {
       "id": "token-nest",

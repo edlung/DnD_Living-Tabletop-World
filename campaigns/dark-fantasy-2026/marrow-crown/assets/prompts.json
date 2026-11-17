@@ -517,6 +517,7 @@
   },
   {
    "id": "token-follower",
+   "facesLeft": true,
    "file": "token-follower.png",
    "kind": "token",
    "transparent": true,

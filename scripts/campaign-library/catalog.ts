@@ -165,16 +165,28 @@ async function picturesOf(
       derivedFrom: null,
     });
     if (asset.kind === 'location') locationFile.set(asset.subjects[0] ?? '', `${asset.id}.webp`);
-    // A cut-out figure doubles as the creature's tabletop figure on the battlefield.
-    if (asset.kind === 'token' || (asset.alpha && asset.width >= asset.height * 0.5))
+    // A cut-out figure doubles as the creature's tabletop figure on the battlefield; one drawn
+    // facing left stands as its mirrored file, so every figure faces right (`ArtPrompt.facesLeft`).
+    if (asset.kind === 'token' || (asset.alpha && asset.width >= asset.height * 0.5)) {
+      const mirrored = asset.figureFile
+        ? await (async () => {
+            const at = new URL(`assets/${asset.figureFile ?? ''}`, root);
+            const figure = new Uint8Array(await readFile(at));
+            if (sha(figure) !== asset.figureSha256)
+              throw new Error(`${asset.id}: figure bytes changed`);
+            return { source: relative(at), bytes: figure, sha256: sha(figure) };
+          })()
+        : {};
       pictures.push({
         ...base,
+        ...mirrored,
         file: `${asset.id}--figure.webp`,
         variant: 'derived',
         label: 'figure',
         purpose: 'figure',
         derivedFrom: `${asset.id}.webp`,
       });
+    }
   }
   for (const map of battleMaps(root)) {
     const reference = locationFile.get(map.location);
