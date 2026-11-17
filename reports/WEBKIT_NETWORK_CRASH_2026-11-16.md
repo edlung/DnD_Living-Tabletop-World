@@ -32,7 +32,7 @@ ran after "A journey that fails says what its pages were at" and all four show i
 "WebSocket network error: Network process crashed". The nine before that commit print nothing of
 their pages and are not attributed.
 
-**A lab run on the hosted runner** (run 43968923122, this branch's temporary workflow; the third
+**A lab run on the hosted runner** (run 43968923122, this branch's temporary workflow, since removed; the third
 shard and the WebKit projects alone, each printing the kernel log, memory and network processes
 every two seconds, the browser's stderr and a core dump's backtrace):
 
@@ -133,6 +133,14 @@ run on one.
 
 Whether Chromium 159 answers in that order more often than 153 did is not known: no job on 1.63.0
 among the sixteen read shows it, two of fourteen on 1.65.1 do.
+
+## With both changes
+
+Commit `bd54edad` (the browser, the screen's one request, the lab still beside them): CI green
+whole (run 43985505506), and in the lab (run 43985495175) the third shard green six times of six
+and the WebKit projects alone four of four — the third shard seven times in a row, counting CI's.
+Their reports were not read past the result. The lab (a temporary workflow and two scripts) is removed in the commit that writes this; what CI
+said of that commit is in the pull request.
 
 ## What else failed, and is not explained
 
