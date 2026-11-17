@@ -67,8 +67,7 @@
   }
 }
 
-/* The player's quiet row over the stage: the way to a pause (and, beside it, what a later stage
-   adds). */
+/* The player's quiet row over the stage: "What can I do?" (hint/) beside the way to a pause. */
 .quiet-row {
   display: flex;
   flex-wrap: wrap;
@@ -84,6 +83,71 @@
   .quiet-row {
     justify-content: flex-end;
   }
+}
+
+/* The hint's own page: each thing a turn holds, and whether it is still to use. */
+.hint-lines {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.hint-line {
+  display: grid;
+  gap: 4px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-left-width: 4px;
+  border-radius: var(--radius-control);
+}
+.hint-line[data-tone='open'] {
+  border-left-color: var(--teal);
+}
+.hint-line[data-tone='spent'] {
+  border-left-color: var(--text-muted);
+}
+.hint-line[data-tone='spent'] h3,
+.hint-line[data-tone='spent'] p {
+  color: var(--text-muted);
+}
+.hint-line h3 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+  margin: 0;
+  font-size: 1.05rem;
+}
+.hint-line p {
+  margin: 0;
+}
+.hint-tone {
+  padding: 1px 8px;
+  border: 1px solid currentcolor;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body, inherit);
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+.hint-examples {
+  margin: 2px 0 0;
+  padding-left: 1.2rem;
+}
+.hint-line button {
+  justify-self: start;
+  min-height: 44px;
+}
+/* The hint's own buttons a thumb can press. */
+.hint-dialog .guide-header button,
+.hint-dialog .guide-footer button {
+  min-height: 44px;
+  min-width: 44px;
+}
+.hint-examples ul {
+  margin: 2px 0 0;
+  padding-left: 1.2rem;
 }
 
 /* In a fight the quiet row lies in the fight's own layout (world/fight-quiet.ts): on a wide

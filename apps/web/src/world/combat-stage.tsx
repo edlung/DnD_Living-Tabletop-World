@@ -114,7 +114,7 @@ export function CombatStage({
           {t('Battlefield')}
         </button>
       </div>
-      {/* A player's quiet row in a fight — the way to a pause — is put here
+      {/* A player's quiet row in a fight — "What can I do?" and the way to a pause — is put here
           (session/lobby-banner.tsx): in the fight's own layout, clear of the turn order. */}
       <div id={FIGHT_QUIET_ID} className="fight-quiet" />
       <p

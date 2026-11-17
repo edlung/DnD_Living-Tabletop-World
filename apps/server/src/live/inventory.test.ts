@@ -61,6 +61,7 @@ describe('the coverage inventory', () => {
       // Table talk (ADR 0044 §1) and handouts (§5).
       '/campaigns/ravenford/chat',
       '/campaigns/ravenford/handouts',
+      '/campaigns/ravenford/envelopes',
       // Stars and wishes (ADR 0071 §2).
       '/campaigns/ravenford/reflections',
       // Cheers at the table (ADR 0072 §3).
@@ -99,6 +100,7 @@ describe('the coverage inventory', () => {
       '/campaigns/ravenford/rest',
       '/campaigns/ravenford/chat',
       '/campaigns/ravenford/handouts',
+      '/campaigns/ravenford/envelopes',
       // Stars and wishes (ADR 0071 §2).
       '/campaigns/ravenford/reflections',
       '/campaigns/ravenford/cheers',

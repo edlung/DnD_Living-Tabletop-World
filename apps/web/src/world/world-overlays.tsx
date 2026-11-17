@@ -12,6 +12,7 @@ import { DiceStage } from '../dice/dice-stage.tsx';
 import { useDiceTable } from '../dice/table.tsx';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
 import { handoutElementId } from '../handouts/handouts.tsx';
+import { TurnHintButton } from '../hint/turn-hint-button.tsx';
 import type { Recipient } from '../items/inventory-panel.tsx';
 import { ChronicleDialog } from '../shell/chronicle-dialog.tsx';
 import { focusOn, type Shell } from '../shell/use-shell.ts';
@@ -88,6 +89,19 @@ export function WorldOverlays({
             focusOn(document.getElementById(handoutElementId(handoutId)));
           });
         }}
+        beside={
+          !isDm && actorId !== null && sessionOpen ? (
+            <TurnHintButton
+              api={api}
+              actorId={actorId}
+              encounter={encounter}
+              onWay={(way) => {
+                if (way === 'character') shell.openHero(actorId, 'overview');
+                else shell.openSheet(way);
+              }}
+            />
+          ) : undefined
+        }
       />
       {shell.hero === null && (
         <>

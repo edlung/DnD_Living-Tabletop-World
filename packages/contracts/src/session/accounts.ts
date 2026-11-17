@@ -172,6 +172,22 @@ export interface AccountKeepsakeLine {
   readonly line: string;
 }
 
+/** One's hero's backstory, in a copy of one's data (ADR 0073 §5). */
+export interface AccountBackstoryLine {
+  readonly at: string;
+  readonly hero: string;
+  readonly body: string;
+}
+
+/** A private note one wrote, in a copy of one's data (ADR 0073 §5). */
+export interface AccountNoteLine {
+  readonly at: string;
+  /** The character it was written as. */
+  readonly hero: string;
+  readonly title: string;
+  readonly body: string;
+}
+
 /** A roll one made, in a copy of one's data. */
 export interface AccountRollLine {
   readonly at: string;
@@ -192,6 +208,10 @@ export interface AccountCampaignData {
   readonly rolls: readonly AccountRollLine[];
   readonly reflections: readonly AccountReflectionLine[];
   readonly keepsakes: readonly AccountKeepsakeLine[];
+  /** A player's own heroes' backstories; none for a DM (ADR 0073 §5). */
+  readonly backstories: readonly AccountBackstoryLine[];
+  /** The private notes the account's own seat wrote here. */
+  readonly notes: readonly AccountNoteLine[];
   /** A DM's last words to the table at a campaign's end; null for a player, or when none. */
   readonly closingLine: string | null;
 }

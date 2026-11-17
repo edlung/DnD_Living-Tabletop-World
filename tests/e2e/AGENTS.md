@@ -287,6 +287,25 @@ It changes no world state; keep its window listener, since `pageerror` misses th
 - The table's screen in a room (`display-room.spec.ts`, ADR 0042 amendment of 2026-11-15) owns the
   `room` sign-in campaign: a fight the scene cast follows, the waiting strip at the foot, the corner
   and a remote's keys, a lost network (`context.setOffline`) and the screen's own retry.
+- "I'll come / I can't" (ADR 0073 §10, Stage 890): `coming.spec.ts` owns `ui-coming`,
+  `ui-coming-ipad` and `ui-coming-ru`; it ends each campaign's session and sets its next game.
+- Sealed envelopes (ADR 0073 §9, Stage 880): `envelopes.spec.ts` owns `ui-envelopes`,
+  `ui-envelopes-ipad` and `ui-envelopes-ru`; its second journey ends the campaign's session (the
+  evening's chapter opens the envelope), so nothing else may share those campaigns.
+- Theatre of the mind (ADR 0073 §8, Stage 870): `story-cast.spec.ts` owns the `storyCast` sign-in
+  campaign with a paired TV at 1280×720 and `storyCastRu` (seeded from the Russian Ravenford).
+- A scene that brings its sound (ADR 0073 §6, Stage 850): `place-sound.spec.ts` owns the
+  `placeSound` sign-in campaign with a paired TV and `placeSoundRu` (seeded from the Russian
+  Ravenford); what plays is read from the TV's `data-ambience`, as `atmosphere.spec.ts` reads it.
+- A hero's backstory and private notes (ADR 0073 §5, Stage 840): `hero-story.spec.ts` owns the
+  `story` sign-in campaign (and `storyIpad` in WebKit) — the DM and two players by invitation;
+  `hero-story-words.spec.ts` owns `ui-story-ru`.
+- The party's encyclopedia (ADR 0073 §4, Stage 830): `party-known.spec.ts` owns `ui-known` (and
+  `ui-known-ipad` in WebKit, `ui-known-ru`): the page read by a player and by the DM, held to the
+  party's forbidden markers.
+- "What can I do?" (ADR 0073 §3, Stage 820): `turn-hint.spec.ts` owns the combat campaigns
+  `hint` (`hintIpad` in WebKit, `hintRu`), each the ambush at Elowen's first turn, and
+  `ui-hint-scene` for the hint outside a fight.
 - A short way to a pause (ADR 0073 §2, Stage 810): `pause.spec.ts` owns the `pause` sign-in
   campaign (and `pauseIpad` in WebKit) — the DM, two players by invitation and a paired TV;
   `pause-words.spec.ts` owns `ui-pause-ru`. A request is held in the server's memory for ten
