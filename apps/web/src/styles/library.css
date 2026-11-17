@@ -92,3 +92,63 @@
   font-weight: 600;
   overflow-wrap: anywhere;
 }
+
+/* Sealed envelopes (docs/adr/0073-table-ideas.md §9): the DM's list, and the party's view of one
+   from outside in the Journal. */
+.envelope-card .section-heading strong {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.envelope-card .glyph,
+.sealed-envelope .glyph {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  color: var(--gold-bright);
+}
+.envelope-card button,
+.envelope-form button {
+  min-height: 44px;
+}
+.envelope-card button[aria-disabled='true'],
+.envelope-form button[aria-disabled='true'] {
+  opacity: 0.6;
+  cursor: progress;
+}
+.sealed-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.sealed-envelope {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px;
+  border: 1px dashed color-mix(in srgb, var(--gold) 60%, transparent);
+  border-radius: var(--radius-control);
+  background: var(--glass-raised);
+}
+.sealed-envelope > div {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.sealed-envelope p {
+  margin: 2px 0 0;
+}
+.envelope-inside {
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.kept-handout .action-row button,
+.envelope-card .action-row button {
+  min-height: 44px;
+}
+.envelope-card:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}

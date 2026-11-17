@@ -135,17 +135,21 @@ test('a TV pairs by its code, shows what the DM casts, and the table joins by it
   const tableCode = await codeOn(tv);
   await expectAccessible(tv, 'the QR code to join on the screen');
 
-  // One person scans the QR code: the table's free seats, one taken, then the usual join page.
+  // One person scans the QR code: the table's free seats, and one press on a hero sits them down
+  // in this browser — no login, no second page (ADR 0073 §7).
   const phone = await freshPage(browser);
   await phone.goto(link);
   expect(phone.url()).toBe(`${SIGN_IN_ORIGIN}/`);
-  const seats = phone.getByRole('region', { name: 'Choose your character' });
+  const seats = phone.getByRole('region', { name: 'Choose your hero' });
   await expect(
     seats.getByRole('button', { name: 'Play Tamsin Quickfoot', exact: true }),
   ).toBeVisible();
+  await expect(seats).toContainText(
+    'Press a hero to sit down and play on this device. Nothing to remember.',
+  );
   await expectAccessible(phone, 'the table’s free seats');
   await seats.getByRole('button', { name: 'Play Tamsin Quickfoot', exact: true }).click();
-  await takeSeat(phone);
+  // The press itself sat them down: the world is the next thing they see.
   await expect(sceneRegion(phone)).toBeVisible(LIVE);
 
   // Another types the code the TV shows; the seat just taken is no longer offered.
@@ -153,12 +157,23 @@ test('a TV pairs by its code, shows what the DM casts, and the table joins by it
   await tablet.goto('/table');
   await tablet.getByLabel('Table code', { exact: true }).fill(tableCode);
   await tablet.getByRole('button', { name: 'Find the table', exact: true }).click();
-  const offered = tablet.getByRole('region', { name: 'Choose your character' });
+  const offered = tablet.getByRole('region', { name: 'Choose your hero' });
   await expect(
     offered.getByRole('button', { name: 'Play Maren Ashby', exact: true }),
   ).toBeVisible();
   await expect(offered.getByRole('button', { name: 'Play Tamsin Quickfoot' })).toHaveCount(0);
+  // This one wants a login, to come back from another device: the usual join page follows.
+  await offered
+    .getByLabel('I have a login or want one — to come back from any device', { exact: true })
+    .check();
+  await expect(offered).toContainText('Press a hero: next you sign in or create a login.');
+  // A device that sat down before finds its way back from the same page.
+  await expect(offered.getByRole('link', { name: 'Open the table', exact: true })).toHaveAttribute(
+    'href',
+    '/',
+  );
   await offered.getByRole('button', { name: 'Play Maren Ashby', exact: true }).click();
+  await expect(tablet.getByLabel('Login', { exact: true })).toBeVisible(LIVE);
   await takeSeat(tablet);
   await expect(sceneRegion(tablet)).toBeVisible(LIVE);
 
