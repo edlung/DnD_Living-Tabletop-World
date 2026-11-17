@@ -7,7 +7,7 @@ const CHANGES = new Set(['POST', 'PUT', 'PATCH', 'DELETE']);
 
 /**
  * What a finished campaign still takes (docs/adr/0072-keepsakes.md §2): its end and its
- * keepsakes, the last evening's stars, table talk and cheers, what its screens show, and who may
+ * keepsakes, the last evening's stars, table talk and cheers, a player's own notes, what its screens show, and who may
  * come in or must go. Everything else that changes a campaign is play, and is refused: a route added later
  * is refused until it is named here.
  */
@@ -18,6 +18,9 @@ export const OPEN_WHEN_FINISHED: ReadonlySet<string> = new Set([
   '/campaigns/:campaignId/chat',
   // Applause for the last page (ADR 0072 §3): table talk without words; nothing is stored.
   '/campaigns/:campaignId/cheers',
+  // A player's own notebook (ADR 0073 §5) is theirs to write in and to tidy, adventure over or not.
+  '/campaigns/:campaignId/notes',
+  '/campaigns/:campaignId/notes/:noteId/delete',
   // The DM clears what broken screens reported (ADR 0073 §1): operations data, not play.
   '/campaigns/:campaignId/client-errors/clear',
   // The table's screens: the stars and the book may be shown, a screen paired or put away.

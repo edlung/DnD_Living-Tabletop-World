@@ -18,6 +18,7 @@ import {
   memorySuggestions,
   resolvePerspective,
   suggestionsOfSession,
+  type Actor,
   type IdGenerator,
   type SuggestionScope,
 } from '@ltw/domain';
@@ -48,6 +49,16 @@ import {
 export interface ChronicleRouteDependencies extends RouteDependencies {
   readonly ai: IntentDeps;
   readonly chronicleIds: IdGenerator;
+  /**
+   * Told once a chapter of the party's is written for an evening (docs/adr/0073-table-ideas.md
+   * §9.4: an envelope sealed for that chapter opens). Table data only; its failure never fails the
+   * chapter.
+   */
+  readonly onPartyChapter?: (written: {
+    readonly campaignId: string;
+    readonly sessionId: string;
+    readonly actor: Actor;
+  }) => Promise<void>;
 }
 
 const campaignParams = z.object({ campaignId: campaignIdSchema }).strict();
@@ -157,6 +168,17 @@ export function registerChronicleRoutes(
       { status: result.status, rendering: rendered.status, traceId: rendered.traceId },
       'chronicle generated',
     );
+    if (
+      result.status === 'accepted' &&
+      body.sessionId !== undefined &&
+      access.perspective.kind === 'PARTY'
+    ) {
+      await deps
+        .onPartyChapter?.({ campaignId: params.campaignId, sessionId: body.sessionId, actor })
+        .catch((error: unknown) => {
+          request.log.error({ err: error }, 'envelopes not opened');
+        });
+    }
     const response: GenerateChronicleResponse = {
       result,
       chronicleId: result.status === 'rejected' ? null : commandId,

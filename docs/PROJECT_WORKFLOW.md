@@ -20,7 +20,20 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   `claude/stage-820-what-can-i-do`, stacked on 810's (ADR 0073 §3,
   `reports/STAGE_820_COMPLETION.md`, with the first checkpoint); Stage 830 (the party's
   encyclopedia) on `claude/stage-830-party-encyclopedia`, stacked on 820's (ADR 0073 §4,
-  `reports/STAGE_830_COMPLETION.md`); each awaits the owner's disposition.
+  `reports/STAGE_830_COMPLETION.md`); Stage 840 (private notes and a hero's backstory) on
+  `claude/stage-840-notes-and-backstory`, stacked on 830's (ADR 0073 §5,
+  `reports/STAGE_840_COMPLETION.md`); Stage 850 (a scene that brings its sound) on
+  `claude/stage-850-scene-sound`, stacked on 840's (ADR 0073 §6,
+  `reports/STAGE_850_COMPLETION.md`, with the second checkpoint); Stage 860 (a shorter way in
+  for a guest) on `claude/stage-860-guest-way-in`, stacked on 850's (ADR 0073 §7,
+  `reports/STAGE_860_COMPLETION.md`); Stage 870 (theatre of the mind on the table's screen) on
+  `claude/stage-870-story-cast`, stacked on 860's (ADR 0073 §8,
+  `reports/STAGE_870_COMPLETION.md`); Stage 880 (sealed envelopes) on
+  `claude/stage-880-sealed-envelopes`, stacked on 870's (ADR 0073 §9,
+  `reports/STAGE_880_COMPLETION.md`, with the third checkpoint); Stage 890 ("I'll come / I
+  can't") on `claude/stage-890-coming-answers`, stacked on 880's (ADR 0073 §10,
+  `reports/STAGE_890_COMPLETION.md`, with the program's close); each awaits the owner's
+  disposition.
 
 ## Current request — the apps and the table's screen, 2026-11-15
 
