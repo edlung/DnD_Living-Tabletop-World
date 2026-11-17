@@ -147,13 +147,23 @@ export function squareAt(point: Point, cell: number, grid: Grid): Square | null 
 /**
  * Where a combatant's name plate is drawn (design §5.5; the Stage 330 part B review): in the
  * plates' layer above every figure, so a figure standing in front never hides the plate of one
- * behind it. Tilted, the plate's bottom edge lies on the figure's base line (`FIGURE_BASE` of the
- * square, `board.css` `.board--tilted .token-figure`), scaled like the figure standing there;
- * flat, its top edge lies under the medallion (`MEDALLION_FOOT`). The same place the plate had
- * inside the token, which keeps its room there so the figure stands where it stood.
+ * behind it. Flat, its top edge lies under the medallion (`MEDALLION_FOOT`). Tilted, it never
+ * covers its own figure, base or ring (owner, 2026-11-17: the plate hid the figure's feet and
+ * base): its top edge lies just under the front of the figure's painted base (`BASE_FRONT`;
+ * `figures.css` stands the base in the middle of its square, `.board--tilted .token-figure`),
+ * scaled like the figure standing there. Where that would lie over a figure standing in front,
+ * the plate rides over its own figure's head instead, unless that covers more of the figures
+ * behind or leaves the board past its far edge.
  */
 export const FIGURE_BASE = 0.58;
+export const BASE_FRONT = 0.8;
 export const MEDALLION_FOOT = 0.84;
+/** A figure's painted height (`figures.css` `--mini-h` 1.9, less its margin) and width, in squares. */
+export const FIGURE_HEIGHT = 1.7;
+const FIGURE_WIDTH = 1;
+/** A plate's height, in squares, and the gap it keeps from a figure's head. */
+const PLATE_HEIGHT = 0.55;
+const HEAD_GAP = 0.06;
 
 export interface PlateAnchor extends Point {
   readonly scale: number;
@@ -161,7 +171,48 @@ export interface PlateAnchor extends Point {
   readonly edge: 'bottom' | 'top';
 }
 
-export function plateAnchor(layout: BoardLayout, square: Square, span = 1): PlateAnchor {
+/** A combatant standing on the board, for the plates' placement. */
+export interface Standing {
+  readonly square: Square;
+  readonly span: number;
+}
+
+interface Box {
+  readonly left: number;
+  readonly right: number;
+  readonly top: number;
+  readonly bottom: number;
+}
+
+const overlap = (a: Box, b: Box): number =>
+  Math.max(0, Math.min(a.right, b.right) - Math.max(a.left, b.left)) *
+  Math.max(0, Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top));
+
+/** Where a figure's base stands on screen and the box its body takes there. */
+function figureBox(
+  layout: BoardLayout,
+  { square, span }: Standing,
+): Box & { base: Point; scale: number } {
+  const x = (square.x + span / 2) * layout.cell;
+  const base = projectPoint(layout, { x, y: (square.y + FIGURE_BASE * span) * layout.cell });
+  const half = (FIGURE_WIDTH * span * layout.cell * base.scale) / 2;
+  return {
+    base,
+    scale: base.scale,
+    left: base.x - half,
+    right: base.x + half,
+    top: base.y - FIGURE_HEIGHT * span * layout.cell * base.scale,
+    bottom: base.y,
+  };
+}
+
+export function plateAnchor(
+  layout: BoardLayout,
+  square: Square,
+  span = 1,
+  others: readonly Standing[] = [],
+  room = PLATE_SQUARES,
+): PlateAnchor {
   // A figure spanning several squares stands in the middle of them (ADR 0049 §1).
   const x = (square.x + span / 2) * layout.cell;
   if (!layout.tilt) {
@@ -172,8 +223,28 @@ export function plateAnchor(layout: BoardLayout, square: Square, span = 1): Plat
       edge: 'top',
     };
   }
-  const base = projectPoint(layout, { x, y: (square.y + FIGURE_BASE * span) * layout.cell });
-  return { x: base.x, y: base.y, scale: base.scale, edge: 'bottom' };
+  const front = projectPoint(layout, { x, y: (square.y + BASE_FRONT * span) * layout.cell });
+  const below: PlateAnchor = { x: front.x, y: front.y, scale: front.scale, edge: 'top' };
+  const own = figureBox(layout, { square, span });
+  const headY = own.top - HEAD_GAP * layout.cell * own.scale;
+  const above: PlateAnchor = { x: own.base.x, y: headY, scale: own.scale, edge: 'bottom' };
+  const plateBox = (anchor: PlateAnchor): Box => {
+    const half = (room * layout.cell * anchor.scale) / 2;
+    const height = PLATE_HEIGHT * layout.cell * anchor.scale;
+    const top = anchor.edge === 'top' ? anchor.y : anchor.y - height;
+    return { left: anchor.x - half, right: anchor.x + half, top, bottom: top + height };
+  };
+  const figures = others
+    .filter((other) => other.square.x !== square.x || other.square.y !== square.y)
+    .map((other) => figureBox(layout, other));
+  const covered = (anchor: PlateAnchor) =>
+    figures.reduce((sum, figure) => sum + overlap(plateBox(anchor), figure), 0);
+  const under = covered(below);
+  if (under === 0) return below;
+  // Over the head only while the plate stays over the board, below its far edge: above it lie
+  // the board's view controls.
+  const farEdge = projectPoint(layout, { x, y: 0 }).y;
+  return plateBox(above).top >= farEdge && covered(above) < under ? above : below;
 }
 
 /** The widest a plate is drawn, in squares; its words shorten first, never its number. */
