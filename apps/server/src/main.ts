@@ -50,6 +50,7 @@ import { PostgresReflectionStore } from './reflections/postgres-reflection-store
 import { PostgresAgreementStore } from './agreement/postgres-agreement-store.ts';
 import { PostgresEndingStore } from './ending/postgres-ending-store.ts';
 import { PostgresMarkStore } from './marks/postgres-mark-store.ts';
+import { PostgresEnvelopeStore } from './envelopes/postgres-envelope-store.ts';
 import { PostgresPlaceSoundStore } from './display/postgres-place-sound-store.ts';
 import { PostgresNoteStore } from './notes/postgres-note-store.ts';
 import { buildLabel } from './client-errors/client-error-routes.ts';
@@ -61,6 +62,7 @@ import { VoiceRooms } from './voice/voice-rooms.ts';
 import { PostgresDmNoteStore } from './dm/postgres-note-store.ts';
 import { PostgresSavedEncounterStore } from './combat/postgres-saved-encounter-store.ts';
 import { PostgresLibraryStore } from './library/postgres-library-store.ts';
+import { PostgresComingStore } from './table/postgres-coming-store.ts';
 import { PostgresTableStateStore } from './table/postgres-table-state-store.ts';
 import { ReadyRegistry } from './table/table-state.ts';
 import { PostgresSubstitutionStore } from './dm/postgres-substitution-store.ts';
@@ -248,6 +250,8 @@ async function main(): Promise<void> {
     },
     marks: { store: new PostgresMarkStore(pool), now: () => new Date().toISOString() },
     handouts: { store: new PostgresHandoutStore(pool), now: () => new Date().toISOString() },
+    // Sealed envelopes (ADR 0073 §9; migration 0047).
+    envelopes: { store: new PostgresEnvelopeStore(pool), now: () => new Date().toISOString() },
     // The DM's music (ADR 0059 §3; migration 0038).
     music: new PostgresTrackStore(pool),
     // Places' own sounds (ADR 0073 §6; migration 0046).
@@ -258,6 +262,7 @@ async function main(): Promise<void> {
     voice: { rooms: new VoiceRooms(), relay: config.voiceRelay },
     lobby: {
       state: new PostgresTableStateStore(pool),
+      coming: new PostgresComingStore(pool),
       ready: new ReadyRegistry(),
       now: () => new Date().toISOString(),
     },

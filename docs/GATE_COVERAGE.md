@@ -1057,3 +1057,32 @@ Stage 870 (`docs/adr/0073-table-ideas.md` §8) adds a cast of one picture and th
 - Deterministic regressions: `apps/server/src/display/story-cast.test.ts` (the shape; the filter
   for a display and a player; over HTTP for the DM and a display), the journey
   `tests/e2e/story-cast.spec.ts`.
+
+## Stage 880: sealed envelopes (2026-11-16)
+
+Stage 880 (`docs/adr/0073-table-ideas.md` §9) lets the DM seal a kept handout for the party.
+
+- Boundary: the party's read of an envelope is its outside, built field by field — the inside is
+  in no answer of that route for any perspective, a display's included; a stranger gets 404, the
+  public view 403; only the DM seals, opens, deletes and reads the inside. An envelope whose
+  picture the party does not know does not open, by the DM's word or by the chapter, and its
+  outside never names the picture. Opened, the inside travels as a party handout does.
+- Deterministic regressions: `apps/server/src/envelopes/envelope-routes.test.ts` (the outside
+  only, for a player, the party's view, the DM and a display; one handout however often it is
+  opened; the copy taken at sealing; the party's chapter of the evening opens it and no other
+  chapter does; the unknown picture; roles; the live signal), `envelope-store.integration.test.ts`
+  (PostgreSQL), the journey `tests/e2e/envelopes.spec.ts` (what the player's page was sent while
+  it was sealed holds nothing of the inside).
+
+## Stage 890: "I'll come / I can't" for the next game (2026-11-16)
+
+Stage 890 (`docs/adr/0073-table-ideas.md` §10) lets the table answer the next game's date.
+
+- Boundary: an answer is read in the lobby's answer on the characters that perspective already
+  lists, so no character is revealed by it; a player answers for their own character only, and
+  is refused alike for another's hero, a hidden one and one that does not exist; a display reads
+  and answers nothing; the DM answers for anyone. An answer is read only for the instant it was
+  given for.
+- Deterministic regressions: `apps/server/src/table/coming.test.ts` (who answers and who reads;
+  the changed date; no date; refused bodies; the hidden character; a display; the live signal),
+  `coming-store.integration.test.ts` (PostgreSQL), the journey `tests/e2e/coming.spec.ts`.

@@ -6,6 +6,8 @@ import {
   type TableSound,
 } from '@ltw/contracts';
 
+import { InMemoryComingStore, type ComingStore } from './coming-store.ts';
+
 /**
  * The table's state around a session (docs/adr/0043-dm-screen.md §6): whether it plays at the
  * table or online, whether the DM paused the game, and which characters' players are absent —
@@ -83,11 +85,14 @@ export class ReadyRegistry {
 export interface LobbyDependencies {
   readonly state: TableStateStore;
   readonly ready: ReadyRegistry;
+  /** Who comes to the next game (ADR 0073 §10); a composition without it keeps answers in memory. */
+  readonly coming?: ComingStore;
   readonly now: () => string;
 }
 
 export const memoryLobby = (): LobbyDependencies => ({
   state: new InMemoryTableStateStore(),
   ready: new ReadyRegistry(),
+  coming: new InMemoryComingStore(),
   now: () => new Date().toISOString(),
 });

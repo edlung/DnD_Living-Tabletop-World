@@ -8,6 +8,7 @@ import {
   memoryHandouts,
   memoryAgreement,
   memoryEnding,
+  memoryEnvelopes,
   memoryReflections,
   memoryTable,
   type AppDependencies,
@@ -59,6 +60,8 @@ export function buildLiveApp(
     marks: deps.marks ?? memoryMarks(),
     // And one set of handouts, so a new one signals its readers (ADR 0044 §5).
     handouts: deps.handouts ?? memoryHandouts(),
+    // And one set of envelopes, so a sealed one signals the party (ADR 0073 §9).
+    envelopes: deps.envelopes ?? memoryEnvelopes(),
     // And one set of stars and wishes, so a new one signals its readers (ADR 0071 §2).
     reflections: deps.reflections ?? memoryReflections(),
     // And one agreement, so a page written or understood signals its readers (ADR 0071 §4).

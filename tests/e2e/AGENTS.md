@@ -287,6 +287,11 @@ It changes no world state; keep its window listener, since `pageerror` misses th
 - The table's screen in a room (`display-room.spec.ts`, ADR 0042 amendment of 2026-11-15) owns the
   `room` sign-in campaign: a fight the scene cast follows, the waiting strip at the foot, the corner
   and a remote's keys, a lost network (`context.setOffline`) and the screen's own retry.
+- "I'll come / I can't" (ADR 0073 §10, Stage 890): `coming.spec.ts` owns `ui-coming`,
+  `ui-coming-ipad` and `ui-coming-ru`; it ends each campaign's session and sets its next game.
+- Sealed envelopes (ADR 0073 §9, Stage 880): `envelopes.spec.ts` owns `ui-envelopes`,
+  `ui-envelopes-ipad` and `ui-envelopes-ru`; its second journey ends the campaign's session (the
+  evening's chapter opens the envelope), so nothing else may share those campaigns.
 - Theatre of the mind (ADR 0073 §8, Stage 870): `story-cast.spec.ts` owns the `storyCast` sign-in
   campaign with a paired TV at 1280×720 and `storyCastRu` (seeded from the Russian Ravenford).
 - A scene that brings its sound (ADR 0073 §6, Stage 850): `place-sound.spec.ts` owns the
