@@ -1,8 +1,12 @@
 import { randomBytes } from 'node:crypto';
 
 import type {
+  AccountBackstoryLine,
   AccountCampaignData,
   AccountChatLine,
+  AccountNoteLine,
+  AccountKeepsakeLine,
+  AccountReflectionLine,
   AccountDataResponse,
   AccountRollLine,
 } from '@ltw/contracts';
@@ -10,6 +14,9 @@ import { commanderOf, type WorldEngine } from '@ltw/domain';
 
 import type { CredentialStore } from '../auth/credential-store.ts';
 import type { ChatStore } from '../chat/chat-store.ts';
+import type { EndingStore } from '../ending/ending-store.ts';
+import type { NoteStore } from '../notes/note-store.ts';
+import type { ReflectionStore } from '../reflections/reflection-store.ts';
 import type { TableStore } from '../dice/table-store.ts';
 import type { AccountRecord, AccountStore } from './account-store.ts';
 import { campaignsOf } from './accounts.ts';
@@ -28,6 +35,11 @@ export interface PrivacyDependencies {
   readonly credentials: CredentialStore;
   readonly chat: ChatStore;
   readonly table: TableStore;
+  readonly reflections: ReflectionStore;
+  /** A campaign's end and keepsakes (ADR 0072 §2); a composition without them copies none. */
+  readonly ending?: EndingStore;
+  /** Backstories and private notes (ADR 0073 §5); a composition without them copies none. */
+  readonly notes?: NoteStore;
 }
 
 /** How much of a campaign's chat and rolls a copy reads: the newest, when there are more. */
@@ -41,10 +53,8 @@ export async function accountData(
   now: string,
 ): Promise<AccountDataResponse> {
   const campaigns: AccountCampaignData[] = [];
-  for (const campaign of await campaignsOf(
-    deps.engine,
-    await deps.accounts.seats(account.accountId),
-  )) {
+  const seats = await deps.accounts.seats(account.accountId);
+  for (const campaign of await campaignsOf(deps.engine, seats)) {
     const state = (await deps.engine.load(campaign.campaignId))?.state ?? null;
     const own = new Set(campaign.characters.map((character) => character.entityId));
     const kindOf = (who: string) => state?.entities.get(who)?.kind ?? null;
@@ -82,6 +92,62 @@ export async function accountData(
         subject: roll.subject,
         groups: roll.groups,
       }));
+    // Stars and wishes (ADR 0071 §2): a player's own characters', a DM's own.
+    const sessionTitle = (sessionId: string) => state?.sessions.get(sessionId)?.title ?? sessionId;
+    const reflections: AccountReflectionLine[] = (
+      await deps.reflections.ofCampaign(campaign.campaignId)
+    )
+      .filter((entry) =>
+        campaign.role === 'dm' ? entry.authorId === null : own.has(entry.authorId ?? ''),
+      )
+      .map((entry) => ({
+        at: entry.updatedAt,
+        session: sessionTitle(entry.sessionId),
+        author: named(entry.authorId),
+        star: entry.star,
+        wish: entry.wish,
+      }));
+    // What a player's own heroes keep from a finished adventure, and a DM's last words to the
+    // table (ADR 0072 §2).
+    const keepsakes: AccountKeepsakeLine[] =
+      campaign.role === 'dm' || !deps.ending
+        ? []
+        : (await deps.ending.keepsakes(campaign.campaignId))
+            .filter((kept) => own.has(kept.characterId))
+            .map((kept) => ({
+              at: kept.keptAt,
+              hero: named(kept.characterId) ?? kept.characterId,
+              label: kept.label,
+              line: kept.line,
+            }));
+    // A player's own heroes' backstories, and the private notes this account's own seat wrote
+    // (ADR 0073 §5): never a note of whoever held the seat before.
+    const backstories: AccountBackstoryLine[] = [];
+    const notes: AccountNoteLine[] = [];
+    if (deps.notes) {
+      if (campaign.role !== 'dm') {
+        for (const character of campaign.characters) {
+          const story = await deps.notes.backstory(campaign.campaignId, character.entityId);
+          if (story) {
+            backstories.push({ at: story.updatedAt, hero: character.name, body: story.body });
+          }
+        }
+      }
+      for (const seat of seats.filter((one) => one.campaignId === campaign.campaignId)) {
+        for (const note of await deps.notes.notesOfOwner(campaign.campaignId, seat.actorId)) {
+          notes.push({
+            at: note.updatedAt,
+            hero: named(note.characterId) ?? note.characterId,
+            title: note.title,
+            body: note.body,
+          });
+        }
+      }
+    }
+    const closing =
+      campaign.role === 'dm' && deps.ending
+        ? ((await deps.ending.read(campaign.campaignId))?.line ?? null)
+        : null;
     campaigns.push({
       campaignId: campaign.campaignId,
       name: campaign.name,
@@ -90,6 +156,11 @@ export async function accountData(
       characters: campaign.characters,
       chat,
       rolls,
+      reflections,
+      keepsakes,
+      backstories,
+      notes,
+      closingLine: closing === '' ? null : closing,
     });
   }
   const sessions = (await deps.accounts.sessionsOf(account.accountId)).map((session) => ({
@@ -113,12 +184,13 @@ export async function accountData(
 /**
  * Forgets the person behind an account: the account keeps nothing of them (`AccountStore.forget`:
  * its sign-ins revoked, its seats gone), then the campaign sessions of those seats end — in that
- * order, so no new campaign session is opened from the account in between. The characters stay in
- * their worlds: the DM sees their seats empty. False when no free login was found (nothing is
+ * order, so no new campaign session is opened from the account in between — and the private notes
+ * those seats wrote are deleted. The characters stay in their worlds, their backstories with them:
+ * the DM sees their seats empty. False when no free login was found (nothing is
  * written then).
  */
 export async function forgetAccount(
-  deps: Pick<PrivacyDependencies, 'accounts' | 'credentials'>,
+  deps: Pick<PrivacyDependencies, 'accounts' | 'credentials' | 'notes'>,
   accountId: string,
   now: string,
 ): Promise<boolean> {
@@ -137,6 +209,8 @@ export async function forgetAccount(
   if (!forgotten) return false;
   for (const seat of seats) {
     await deps.credentials.revokeActorSessions(seat.campaignId, seat.actorId, now);
+    // The person's private notes go with them (ADR 0073 §5): nobody else could ever read them.
+    await deps.notes?.forgetOwner(seat.campaignId, seat.actorId);
   }
   return true;
 }

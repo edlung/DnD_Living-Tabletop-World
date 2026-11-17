@@ -6,11 +6,13 @@ import type { WorldApi } from '../api/client.ts';
 import { TableMusic } from '../audio/table-music.tsx';
 import { TableAmbience } from '../audio/table-sound.tsx';
 import { ChronicleBook } from '../chronicle/chronicle-book.tsx';
+import { useBookRequest } from '../shell/book-request.ts';
 import { RollAnnouncer } from '../dice/announcer.tsx';
 import { DiceStage } from '../dice/dice-stage.tsx';
 import { useDiceTable } from '../dice/table.tsx';
 import type { ExplorationIntent } from '../exploration/use-action.ts';
 import { handoutElementId } from '../handouts/handouts.tsx';
+import { TurnHintButton } from '../hint/turn-hint-button.tsx';
 import type { Recipient } from '../items/inventory-panel.tsx';
 import { ChronicleDialog } from '../shell/chronicle-dialog.tsx';
 import { focusOn, type Shell } from '../shell/use-shell.ts';
@@ -63,6 +65,7 @@ export function WorldOverlays({
   const [announced, setAnnounced] = useState<RollEntry | null>(null);
   const announcer = <RollAnnouncer entry={announced} />;
   const table = useDiceTable();
+  useBookRequest(api.campaignId, shell.openBook);
   return (
     <>
       <TableAsks
@@ -77,6 +80,8 @@ export function WorldOverlays({
         onOpenSheet={(characterId) => {
           shell.openHero(characterId, 'overview');
         }}
+        onOpenChronicle={shell.openChronicle}
+        onOpenBook={shell.openBook}
         onReadHandout={(handoutId) => {
           shell.openSheet('journal');
           // Once the Journal shows, the handout takes focus and so comes into view.
@@ -84,6 +89,19 @@ export function WorldOverlays({
             focusOn(document.getElementById(handoutElementId(handoutId)));
           });
         }}
+        beside={
+          !isDm && actorId !== null && sessionOpen ? (
+            <TurnHintButton
+              api={api}
+              actorId={actorId}
+              encounter={encounter}
+              onWay={(way) => {
+                if (way === 'character') shell.openHero(actorId, 'overview');
+                else shell.openSheet(way);
+              }}
+            />
+          ) : undefined
+        }
       />
       {shell.hero === null && (
         <>
@@ -99,6 +117,9 @@ export function WorldOverlays({
             revision={revision}
             directory={directory}
             open={shell.chronicle}
+            wanted={shell.chronicleChapter}
+            whole={shell.chronicleWhole}
+            onWhole={shell.showWholeBook}
           />
         )}
       </ChronicleDialog>

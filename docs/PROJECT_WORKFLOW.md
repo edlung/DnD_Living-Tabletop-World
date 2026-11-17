@@ -2,7 +2,85 @@
 
 Updated 2026-10-15. The owner's current AGENTS instructions take precedence over older process banners.
 
-## Current request — campaign library release, 2026-11-14
+## Current request — ideas from other tables, 2026-11-16
+
+- Owner: «приступай к реализации этих улучшений. все что возможно сделай в облаке, доступ к github у
+  тебя есть.» — typed in a working session after a list of ten ideas borrowed from other D&D tools
+  was shown, and relayed to the cloud session that does the work
+  (`reviews/OWNER_TABLE_IDEAS_2026-11-16.json`). Program `docs/TABLE_IDEAS_PLAN.md` (Stages
+  800–890, ADR 0073, one section a stage).
+- Status: the plan is PR 48 (draft), stacked on `claude/stage-799-package-close`. The stages
+  follow it without asking to start each (the standing word of 2026-11-15, applied by the
+  sessions' reading), each in its own pull request stacked on the one before; merges, deployment,
+  the family playtest and real devices stay the owner's. Stage 800 (client error reports) is
+  implemented on `claude/stage-800-client-error-reports` (ADR 0073 §1,
+  `reports/STAGE_800_COMPLETION.md`); Stage 810 (a short way to a pause) on
+  `claude/stage-810-short-way-to-a-pause`, stacked on 800's (ADR 0073 §2,
+  `reports/STAGE_810_COMPLETION.md`); Stage 820 ("What can I do?") on
+  `claude/stage-820-what-can-i-do`, stacked on 810's (ADR 0073 §3,
+  `reports/STAGE_820_COMPLETION.md`, with the first checkpoint); Stage 830 (the party's
+  encyclopedia) on `claude/stage-830-party-encyclopedia`, stacked on 820's (ADR 0073 §4,
+  `reports/STAGE_830_COMPLETION.md`); Stage 840 (private notes and a hero's backstory) on
+  `claude/stage-840-notes-and-backstory`, stacked on 830's (ADR 0073 §5,
+  `reports/STAGE_840_COMPLETION.md`); Stage 850 (a scene that brings its sound) on
+  `claude/stage-850-scene-sound`, stacked on 840's (ADR 0073 §6,
+  `reports/STAGE_850_COMPLETION.md`, with the second checkpoint); Stage 860 (a shorter way in
+  for a guest) on `claude/stage-860-guest-way-in`, stacked on 850's (ADR 0073 §7,
+  `reports/STAGE_860_COMPLETION.md`); Stage 870 (theatre of the mind on the table's screen) on
+  `claude/stage-870-story-cast`, stacked on 860's (ADR 0073 §8,
+  `reports/STAGE_870_COMPLETION.md`); Stage 880 (sealed envelopes) on
+  `claude/stage-880-sealed-envelopes`, stacked on 870's (ADR 0073 §9,
+  `reports/STAGE_880_COMPLETION.md`, with the third checkpoint); Stage 890 ("I'll come / I
+  can't") on `claude/stage-890-coming-answers`, stacked on 880's (ADR 0073 §10,
+  `reports/STAGE_890_COMPLETION.md`, with the program's close); each awaits the owner's
+  disposition.
+
+## Current request — the apps and the table's screen, 2026-11-15
+
+- Owner: «давай доработаем приложения для iphone, android, ipad и вывод на телевизор». The session
+  surveyed `main` (`e268e158`) on the iOS simulators, the Android emulator and in browsers at TV
+  sizes, showed nineteen findings and asked; the owner chose three packages (the table's screen,
+  the apps, the layout) and the TV's sound "from the DM's iPad"; an Android TV app was offered and
+  not chosen. Scope `work-orders/NATIVE_TV_POLISH_2026-11-15.md`; branch `claude/native-tv-polish`
+  from `e268e158`; report `reports/NATIVE_TV_POLISH_2026-11-15.md`.
+- Status: implemented and verified (PR 32); on the owner's word of 2026-11-16 («сливаем») it is
+  merged into `main` once its CI, run again on `main` with the memory-and-ritual package, is green.
+  Not deployed, nothing published to a store.
+
+## Request — memory and ritual, 2026-11-15
+
+- Owner: the goal «Теплый и ламповый портал в увлекательные D&D миры», then «Да, план» for the
+  package «Память и ритуал»; seven product answers (`reviews/OWNER_MEMORY_RITUAL_2026-11-15.json`).
+  Program `docs/MEMORY_RITUAL_PLAN.md` (Stages 710–799: Part 1 before the family playtest, Part 2
+  after it); draft work order `work-orders/STAGE_710.md`.
+- Status: the plan is PR 37 (draft). Stage 710 was authorized by the owner on 2026-11-15 («Да,
+  этап 710») and implemented on `claude/stage-710-previously` (ADR 0071 §1, report
+  `reports/STAGE_710_COMPLETION.md`), awaiting the owner's disposition. On the owner's word of
+  the same day («не спрашивай меня, а действуй по плану до конца») the stages follow the plan, each
+  in its own pull request; merges and deployment stay the owner's. Stage 720 (stars and wishes) is
+  implemented on `claude/stage-720-stars-and-wishes`, stacked on 710's branch
+  (`reports/STAGE_720_COMPLETION.md`). Stage 730 (the next game) is implemented on
+  `claude/stage-730-next-game`, stacked on 720's (`reports/STAGE_730_COMPLETION.md`); Stage 740 (the
+  table's agreement and the DM's guide) on `claude/stage-740-agreement`, stacked on 730's
+  (`reports/STAGE_740_COMPLETION.md`); Stage 760 (the ritual's checkpoint) on
+  `claude/stage-760-ritual-checkpoint` (`reports/STAGE_760_COMPLETION.md`): Part 1 ends there;
+  Stage 750 waits for PR 32. On the owner's word of 2026-11-16 («продолжаем», typed after Stage
+  760's report) Part 2 goes on before the family playtest: Stage 770 (the book and the gallery)
+  on `claude/stage-770-book-and-gallery`, stacked on 760's (ADR 0072 §1,
+  `reports/STAGE_770_COMPLETION.md`); Stage 780 (a campaign's end, keepsakes, finished adventures in
+  the account's list) on `claude/stage-780-home-between-worlds`, stacked on 770's (ADR 0072 §2,
+  `reports/STAGE_780_COMPLETION.md`); Stage 790 (small comforts: text size, the DM's break
+  reminder, cheers at the table) on `claude/stage-790-small-comforts`, stacked on 780's (ADR 0072
+  §3, `reports/STAGE_790_COMPLETION.md`); Stage 799 (the package's close: one journey over Part
+  2, the adversarial pass, the handoff) on `claude/stage-799-package-close`, stacked on 790's
+  (`reports/STAGE_799_COMPLETION.md`): the package ends there, before the family playtest.
+  **Merged on the owner's word of 2026-11-16 («доделывай и сливай»)**: the whole stack went
+  into `main` as one merge of PR 47 (`2fc04704`), the tree CI ran green on, and PRs 37–46 are
+  closed with it. Not deployed; the family playtest is the owner's. Stage 750 still waits for
+  PR 32, whose two new journeys want the journey `test` of `tests/e2e/support/journey.ts`.
+  Off-host backup copies are a separate task on the owner's separate word.
+
+## Earlier request — campaign library release, 2026-11-14
 
 - Owner: «Давай закроем все пробелы» (after the eight reworked campaigns were found to lack drawn
   battle maps, the NPC manner of speech in the game's AI, pictures that travel with a campaign, and

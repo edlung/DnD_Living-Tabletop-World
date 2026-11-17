@@ -9,7 +9,8 @@
   margin: 0 0 0.2rem;
   color: var(--page-ink-muted);
   font-family: var(--font-display);
-  font-size: 0.82em;
+  /* Never under 12px, however small the book's page is drawn. */
+  font-size: max(12px, 0.82em);
   font-weight: 700;
   letter-spacing: var(--tracking-caps);
   text-transform: uppercase;

@@ -1,0 +1,169 @@
+/*
+ * A campaign's end and its heroes' keepsakes (docs/adr/0072-keepsakes.md §2): the player's card
+ * over the stage — parchment, like the stars card it stands beside — the DM's tool on the Session
+ * sheet, and the shelf of finished adventures in the account's list. The book's own pages are in
+ * `keepsake.css`.
+ */
+
+/* The DM's closing words to the table, said to be the DM's */
+.finished-words {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+}
+.finished-words figcaption {
+  font-size: 0.85rem;
+  font-weight: 700;
+  opacity: 0.85;
+}
+.finished-line {
+  margin: 0;
+  padding-left: 12px;
+  border-left: 2px solid color-mix(in srgb, currentcolor 45%, transparent);
+  font-style: italic;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+/* The player's form: one control with the things carried and the chapters, and a line */
+.keepsake-form select {
+  width: 100%;
+  border-color: var(--page-ink-muted);
+  background: var(--page);
+  color: var(--page-ink);
+  /* 16px: a smaller field makes a phone zoom the page when it takes focus. */
+  font-size: 1rem;
+}
+/* Nothing chosen, said on the control too. */
+.keepsake-form select[aria-invalid='true'] {
+  border: 2px solid var(--rubric);
+}
+/* The card's own buttons stay in reach when a short screen makes the card scroll. */
+.finished-card > .action-row {
+  position: sticky;
+  bottom: -12px;
+  margin: 4px 0 -12px;
+  padding: 8px 0 12px;
+  background: var(--page-ground);
+}
+/* On a phone the card is whole and the table's column scrolls (ADR 0071's slot): the end of an
+   adventure is not read through a keyhole. */
+@media (max-width: 767px) {
+  .previously-brief.stars-card.finished-card:not(:has(.keepsake-form)) {
+    max-height: none;
+    overflow: visible;
+  }
+  .previously-brief.stars-card.finished-card:not(:has(.keepsake-form)) > .action-row {
+    position: static;
+    margin: 4px 0 0;
+    padding: 0;
+  }
+}
+/* A short or narrow screen: the closing words keep two lines; the whole of them is in the book. */
+@media (max-height: 700px), (max-width: 767px) {
+  .finished-card .finished-line {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+  }
+}
+.keepsake-form button[aria-disabled='true'] {
+  cursor: progress;
+  opacity: 0.6;
+}
+.keepsake-line {
+  display: block;
+  color: var(--page-ink-muted);
+  font-style: italic;
+}
+.keepsake-list li {
+  overflow-wrap: anywhere;
+}
+
+/* The DM's tool, on the sheet's dark glass: the same form in the sheet's own inks */
+.campaign-end {
+  display: grid;
+  gap: 8px;
+}
+.campaign-end > * {
+  margin: 0;
+}
+.campaign-end summary {
+  min-height: 40px;
+  cursor: pointer;
+  font-weight: 700;
+  /* The summary's own line, so its words centre in the row the pointer takes. */
+  align-content: center;
+}
+.campaign-end details > :not(summary) {
+  margin: 8px 0 0;
+}
+.campaign-end details label {
+  display: block;
+  color: var(--text);
+  font-weight: 700;
+}
+.campaign-end textarea,
+.campaign-end select {
+  width: 100%;
+  max-width: 34rem;
+  font-size: 1rem;
+}
+.campaign-end .keepsake-form {
+  max-width: 34rem;
+}
+.campaign-end .stars-form label {
+  color: var(--text);
+}
+.campaign-end .stars-form textarea,
+.campaign-end .keepsake-form select {
+  border-color: var(--field-edge);
+  background: color-mix(in srgb, var(--ink-950) 70%, transparent);
+  color: var(--text);
+}
+/* On the sheet the form does not scroll inside a card: its buttons stand after its fields. */
+.campaign-end .stars-form .action-row {
+  position: static;
+  margin: 8px 0 0;
+  padding: 0;
+  background: none;
+}
+.campaign-end .stars-hint {
+  color: var(--text-muted);
+}
+.campaign-end .stars-failed {
+  color: var(--text);
+}
+.campaign-end button[aria-disabled='true'] {
+  cursor: progress;
+  opacity: 0.6;
+}
+/* The line of what was done stays to be heard; empty, it takes no room. */
+.campaign-end-said:empty {
+  height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+}
+
+/* The account's list: what the heroes of a finished adventure keep */
+.hub-keepsakes {
+  display: grid;
+  gap: 4px;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.95rem;
+}
+.hub-keepsakes li {
+  display: grid;
+  gap: 2px;
+  overflow-wrap: anywhere;
+}
+.hub-keepsakes span {
+  color: var(--text-muted);
+  font-style: italic;
+}

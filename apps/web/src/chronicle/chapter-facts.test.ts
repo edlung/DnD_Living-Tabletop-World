@@ -41,6 +41,7 @@ const chapter: ChronicleChapterView = {
   perspective: 'CHARACTER:elowen-starwhisper',
   from: 0,
   to: 36_000,
+  sessionId: null,
   generatedAt: 36_000,
   entries: [
     entry('e1', {

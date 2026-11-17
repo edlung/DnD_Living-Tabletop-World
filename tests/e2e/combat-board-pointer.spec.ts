@@ -124,6 +124,22 @@ function plateOverFigure(page: Page): Promise<PlateOverFigure | null> {
   });
 }
 
+/** The middle of a combatant's name plate, and whose plate it is. */
+async function plateCentre(page: Page, label: string): Promise<PlateOverFigure> {
+  const plate = page.locator('.board-plate').filter({ hasText: label }).locator('.token-plate');
+  const box = await plate.boundingBox();
+  const own = await page.locator('.board-square').evaluateAll(
+    (squares, name) =>
+      squares
+        .map((square) => square.getAttribute('aria-label') ?? '')
+        .find((text) => text.includes(`: ${name},`))
+        ?.split(':')[0] ?? '',
+    label,
+  );
+  if (!box || !own) throw new Error(`${label} has no plate on the board`);
+  return { x: box.x + box.width / 2, y: box.y + box.height / 2, own, label };
+}
+
 /**
  * With the approved figures standing on the tilted board and inside the medallions on the flat
  * one (the image journeys' battle campaign, read-only: choosing a square only reads its
@@ -171,9 +187,13 @@ test('a standing figure and its name plate choose their own combatant where they
     await expect(board.locator(pictures)).toHaveCount(5);
     for (const picture of await board.locator(pictures).all()) await expectServedPicture(picture);
 
-    const over = await plateOverFigure(page);
-    expect(over, `${view}: a plate lies over the figure of one in front`).not.toBeNull();
-    if (!over) continue;
+    // Flat, a plate lies over the medallion of one in front. Tilted, no plate covers a figure
+    // (owner, 2026-11-17): it lies under its own base, or over its own head when one stands in
+    // front; there its own plate is pressed where it shows.
+    const found = await plateOverFigure(page);
+    if (view === 'Tilted board') expect(found, `${view}: a plate over a figure`).toBeNull();
+    else expect(found, `${view}: a plate lies over the figure of one in front`).not.toBeNull();
+    const over = found ?? (await plateCentre(page, 'Unidentified creature 3'));
     // Nothing is chosen now: only the press on the plate can choose its combatant.
     await page.keyboard.press('Escape');
     await expect(board.getByRole('region', { name: /^Options for / })).toHaveCount(0);

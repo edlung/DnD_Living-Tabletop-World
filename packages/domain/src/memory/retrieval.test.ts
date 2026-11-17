@@ -217,6 +217,8 @@ describe('memory views', () => {
         title: 'Session 1: Arrival in Ravenford',
         startedAt: worldTimeAt(1, 10),
         endedAt: null,
+        playedFrom: expect.any(String) as string,
+        playedTo: null,
       },
     ]);
   });

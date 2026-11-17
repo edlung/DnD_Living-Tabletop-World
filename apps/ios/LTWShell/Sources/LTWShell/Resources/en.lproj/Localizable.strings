@@ -19,5 +19,9 @@
 "scan.notACode" = "This is not a table’s code.";
 "waits.title" = "The table is waiting for you";
 "waits.text" = "Open the game to answer.";
+"notify.title" = "Tell you when the table waits for you?";
+"notify.text" = "The app shows a notification when the table waits for your turn or roll while the app is out of view. Nothing else.";
+"notify.later" = "No, thanks";
+"notify.continue" = "Continue";
 "cancel" = "Cancel";
 "close" = "Close";

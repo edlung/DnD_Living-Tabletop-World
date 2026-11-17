@@ -11,8 +11,8 @@ import type pg from 'pg';
 import { FRESH_TABLE, type TableState, type TableStateStore } from './table-state.ts';
 
 /**
- * The table's state on PostgreSQL (migrations 0029, 0031, 0037): one row per campaign, replaced
- * whole. A row written before 0037 has no sound, and one before 690c no music: each reads as a
+ * The table's state on PostgreSQL (migrations 0029, 0031, 0037, 0041): one row per campaign,
+ * replaced whole. A row written before 0037 has no sound, and one before 690c no music: each reads as a
  * fresh table's.
  */
 const soundOf = (value: unknown): TableSound => {
@@ -40,9 +40,13 @@ export class PostgresTableStateStore implements TableStateStore {
       absent: string[];
       dice: TableDice;
       sound: unknown;
-    }>('SELECT mode, paused, absent, dice, sound FROM ltw_table_states WHERE campaign_id = $1', [
-      campaignId,
-    ]);
+      next_game_at: Date | null;
+      next_game_note: string;
+    }>(
+      `SELECT mode, paused, absent, dice, sound, next_game_at, next_game_note
+         FROM ltw_table_states WHERE campaign_id = $1`,
+      [campaignId],
+    );
     const row = rows[0];
     return row
       ? {
@@ -51,17 +55,23 @@ export class PostgresTableStateStore implements TableStateStore {
           absent: row.absent,
           dice: row.dice,
           sound: soundOf(row.sound),
+          nextGame:
+            row.next_game_at === null
+              ? null
+              : { at: row.next_game_at.toISOString(), note: row.next_game_note },
         }
       : FRESH_TABLE;
   }
 
   async write(campaignId: string, state: TableState, at: string): Promise<void> {
     await this.#pool.query(
-      `INSERT INTO ltw_table_states (campaign_id, mode, paused, absent, dice, sound, updated_at)
-       VALUES ($1, $2, $3, $4, $5, $6, $7)
+      `INSERT INTO ltw_table_states
+         (campaign_id, mode, paused, absent, dice, sound, updated_at, next_game_at, next_game_note)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
        ON CONFLICT (campaign_id) DO UPDATE
          SET mode = EXCLUDED.mode, paused = EXCLUDED.paused, absent = EXCLUDED.absent,
-             dice = EXCLUDED.dice, sound = EXCLUDED.sound, updated_at = EXCLUDED.updated_at`,
+             dice = EXCLUDED.dice, sound = EXCLUDED.sound, updated_at = EXCLUDED.updated_at,
+             next_game_at = EXCLUDED.next_game_at, next_game_note = EXCLUDED.next_game_note`,
       [
         campaignId,
         state.mode,
@@ -70,6 +80,8 @@ export class PostgresTableStateStore implements TableStateStore {
         state.dice,
         JSON.stringify(state.sound),
         at,
+        state.nextGame?.at ?? null,
+        state.nextGame?.note ?? '',
       ],
     );
   }

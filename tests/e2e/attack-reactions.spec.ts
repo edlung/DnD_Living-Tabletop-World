@@ -1,4 +1,4 @@
-import { expect as baseExpect, test, type Page } from '@playwright/test';
+import { expect as baseExpect, type Page } from '@playwright/test';
 
 import rulesSeed from '../../fixtures/ravenford/rules-seed.json' with { type: 'json' };
 import { expectAccessible } from './support/axe.ts';
@@ -9,6 +9,7 @@ import {
   submit,
   turnTray,
 } from './support/combat.ts';
+import { test } from './support/journey.ts';
 import { TOKENS } from './support/session.ts';
 
 /**

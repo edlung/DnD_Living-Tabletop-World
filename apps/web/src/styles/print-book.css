@@ -1,0 +1,182 @@
+/*
+ * The book of the campaign on paper (docs/adr/0072-keepsakes.md §1): never shown on the screen;
+ * printed, it is the page — black ink on white, the pictures in their own colours, the
+ * application hidden (`print.css`). No page size is named: A4 and Letter both take it. The cover
+ * is a page of its own, its words in the middle of it; chapters follow one another, a chapter's
+ * title never parted from its picture or its first lines; the gallery follows them, no picture
+ * cut in two. The application's own faces, and the page's number at the foot of each sheet where
+ * the browser draws page margins' boxes.
+ */
+.print-book {
+  display: none;
+}
+
+@media print {
+  @page book {
+    margin: 14mm 14mm 18mm;
+    @bottom-center {
+      content: counter(page);
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 9pt;
+    }
+  }
+  /* The cover carries no number. */
+  @page book:first {
+    @bottom-center {
+      content: none;
+    }
+  }
+  .print-book {
+    display: block;
+    page: book;
+    color: #000;
+    font-family: var(--font-body);
+    font-size: 11.5pt;
+    line-height: 1.5;
+  }
+  .print-book .keepsake {
+    padding: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+  }
+  .print-book h1,
+  .print-book h2,
+  .print-book h3 {
+    margin: 0;
+    color: #000;
+    font-family: var(--font-display);
+    line-height: 1.15;
+    break-after: avoid;
+  }
+  .print-book .keepsake-eyebrow,
+  .print-book .keepsake-day,
+  .print-book .keepsake-label,
+  .print-book .keepsake-played,
+  .print-book figcaption {
+    color: #333;
+  }
+  .print-book .keepsake-eyebrow,
+  .print-book .keepsake-day,
+  .print-book .keepsake-label {
+    font-family: inherit;
+    font-size: 9pt;
+  }
+
+  /* The cover: a page of its own, its words in the middle of it between two rules */
+  .print-book .keepsake-cover {
+    align-content: center;
+    gap: 8mm;
+    min-height: 225mm;
+    padding: 0;
+    break-after: page;
+  }
+  .print-book .keepsake-cover::before,
+  .print-book .keepsake-cover::after {
+    width: 40mm;
+    border-top: 1pt solid #000;
+    content: '';
+  }
+  .print-book .keepsake-cover h1 {
+    font-size: 44pt;
+  }
+  .print-book .keepsake-heroes {
+    gap: 6mm;
+  }
+  .print-book .keepsake-heroes .keepsake-face {
+    width: 40mm;
+  }
+  .print-book .keepsake-heroes .keepsake-face img {
+    width: 36mm;
+    height: 36mm;
+    box-shadow: none;
+  }
+
+  .print-book .keepsake-chapter,
+  .print-book .keepsake-gallery,
+  .print-book .keepsake-kept {
+    padding: 0 0 10mm;
+    border-top: 0;
+  }
+  .print-book .keepsake-kept {
+    break-inside: avoid;
+  }
+  .print-book .keepsake-kept > h2 {
+    font-size: 22pt;
+  }
+  .print-book .keepsake-closing {
+    padding: 4mm 0;
+    border-top: 0;
+    break-inside: avoid;
+  }
+  .print-book .keepsake-closing blockquote {
+    font-size: 13pt;
+  }
+  .print-book .keepsake-chapter-head {
+    break-inside: avoid;
+    break-after: avoid;
+  }
+  .print-book .keepsake-chapter-head h2,
+  .print-book .keepsake-gallery > h2 {
+    font-size: 22pt;
+  }
+  /* A picture not read when the print began leaves no empty frame on paper. */
+  .print-book .keepsake-plate.is-waiting {
+    display: none;
+  }
+  .print-book .keepsake-plate img {
+    max-height: 90mm;
+    box-shadow: none;
+    border-color: #000;
+  }
+  .print-book .keepsake-prose {
+    max-width: none;
+    margin: 0 0 3mm;
+    orphans: 3;
+    widows: 3;
+  }
+  .print-book .keepsake-aside,
+  .print-book .keepsake-face,
+  .print-book .keepsake-tile,
+  .print-book .keepsake-handout,
+  .print-book .keepsake-stars li {
+    break-inside: avoid;
+  }
+  .print-book .keepsake-face img,
+  .print-book .keepsake-tile img,
+  .print-book .keepsake-handout {
+    border-color: #000;
+  }
+  .print-book .keepsake-stars li {
+    border-left-color: #000;
+  }
+
+  .print-book .keepsake-gallery {
+    padding-top: 6mm;
+  }
+  /* A group goes to the next sheet whole rather than leave its heading behind. */
+  .print-book .keepsake-group {
+    break-inside: avoid;
+  }
+  .print-book .keepsake-group h3 {
+    font-size: 14pt;
+  }
+  .print-book .keepsake-tiles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 5mm;
+  }
+  .print-book .keepsake-tiles--faces {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .print-book .keepsake-handouts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 5mm;
+  }
+  .print-book .keepsake-ending {
+    padding: 8mm 0 0;
+    border-top: 0;
+    font-family: var(--font-display);
+    font-size: 16pt;
+    break-before: avoid;
+  }
+}

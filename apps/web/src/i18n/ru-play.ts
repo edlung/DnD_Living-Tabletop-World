@@ -102,7 +102,6 @@ registerRussian({
   'Write chapter': 'Написать главу',
   Title: 'Название',
   'Told from': 'С чьей стороны',
-  'Chapter I — Shadows on the Trade Road': 'Глава I — Тени на Торговой дороге',
   'Chapter written.': 'Глава написана.',
   'Chapter written as the plain record: the narrator was unavailable.':
     'Глава записана простым перечнем событий: рассказчик был недоступен.',

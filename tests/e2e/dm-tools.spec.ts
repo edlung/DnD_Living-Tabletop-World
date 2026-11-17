@@ -1,8 +1,9 @@
-import { expect, test } from '@playwright/test';
+import { expect } from '@playwright/test';
 
 import { expectAccepted, submit } from './support/combat.ts';
 import { dmRequest, playerCommand } from './support/authoring.ts';
 import { dmHistory, historyEntry, openHistory } from './support/dm.ts';
+import { test } from './support/journey.ts';
 import { collectApiBodies, enterWorld, TOKENS } from './support/session.ts';
 import { chooseLocation, openChronicle, openSheet } from './support/shell.ts';
 import campaigns from './fixtures/dm-tool-campaigns.json' with { type: 'json' };
@@ -95,6 +96,7 @@ test('a written chapter opens for the player with cited entries and a flashback'
   await enterWorld(dm, TOKENS.dm, campaign);
   await openChronicle(dm);
   await dm.getByText('Write a chapter (DM)', { exact: true }).click();
+  await dm.getByLabel('Title', { exact: true }).fill('Chapter I — Shadows on the Trade Road');
   await dm.getByLabel('Told from', { exact: true }).selectOption('CHARACTER:elowen-starwhisper');
   await dm.getByRole('button', { name: 'Write chapter' }).click();
   // The browser-test server has no narrator (ADR 0032, C): the chapter is the plain record, said so.

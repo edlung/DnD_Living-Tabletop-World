@@ -18,6 +18,25 @@ including a read-only preview, exact retry and four-width layout/accessibility c
 and captures native `window.error` ResizeObserver messages as well as Playwright page errors.
 It changes no world state; keep its window listener, since `pageerror` misses these messages.
 
+- A journey closes the pages it opens. Playwright closes only the `page` fixture's context; a
+  context from `browser.newContext()` lives on in the worker's browser with its live stream, and
+  the server keeps reading every view for it — which slowed every later journey of that worker.
+  A spec that takes `browser` imports `test` from `support/journey.ts` (it closes what the journey
+  opened), or closes its own with `closePages` of `support/pages.ts`;
+  `tests/architecture/journey-pages.test.ts` holds every spec to one of the two.
+- A journey that fails says what its pages were at, where it opened them with `freshPage` and
+  closes them with `test.afterEach(closePages)` (`support/pages.ts`): a `[journey]` block in the
+  job's log with what each page showed, the requests it still waited for and those that failed.
+  CI keeps no screenshot. Nothing a page of the sign-in servers shows is printed.
+- The journeys' dev servers do not reload a page that lost its connection to them
+  (`LTW_VITE_NO_RELOAD`, `apps/web/vite.config.ts`): the dev client does, and in WebKit that
+  connection was lost now and then under a journey, whose page then came back at its start.
+- Why it was lost (`reports/WEBKIT_NETWORK_CRASH_2026-11-16.md`): in the WebKit of Playwright
+  1.63 the network process of a page's browser died on a corrupted heap when the page aborted a
+  fetch, which the client does all the time. Playwright 1.65.1's WebKit does not; keep the
+  version at or above it. The sign of that death in a failed journey's `[journey]` block is
+  requests ending in "WebKit encountered an internal error" (a console line "Network process
+  crashed" beside the dev client's socket): look at the browser, not at the journey.
 - `apps/server/src/testing/ui-server.ts` composes the real World Engine and dev
   personas over deterministic in-memory storage. No external AI provider runs.
 - These are browser journeys through real HTTP projections, not mocked domain
@@ -265,6 +284,57 @@ It changes no world state; keep its window listener, since `pageerror` misses th
   journey pins places by their across and down fields, not by clicking.
   `editors.spec.ts` owns `ui-editors` and `ui-editors-ru` (party campaigns on the Old Trade Road);
   a creature made from the bestiary lists two edits (made, its numbers): take the newest.
+- The screen's code (`display-pairing.spec.ts`, no campaign): the first answer to "a code, please"
+  is held back by a route, and the page must have asked once and show the code it holds. A journey
+  whose TV stays at its code after the DM paired it was this (the report above, "The second cause").
 - Native apps (ADR 0070, `native-shell.spec.ts`): a stand-in shell installed with `addInitScript`
   records what the page posts, and the journey speaks for the shell with `ltw-native` events; it owns
   the `native` sign-in campaign. The apps themselves are checked on the simulator and the emulator.
+  `native-polish.spec.ts` uses the same stand-in (the TV's sound, the workshop's door, "Only this
+  app") with the `native` campaign's third DM link and `room`'s third; `takeSeat` accepts the
+  apps' "Only this app".
+- The table's screen in a room (`display-room.spec.ts`, ADR 0042 amendment of 2026-11-15) owns the
+  `room` sign-in campaign: a fight the scene cast follows, the waiting strip at the foot, the corner
+  and a remote's keys, a lost network (`context.setOffline`) and the screen's own retry.
+- "I'll come / I can't" (ADR 0073 §10, Stage 890): `coming.spec.ts` owns `ui-coming`,
+  `ui-coming-ipad` and `ui-coming-ru`; it ends each campaign's session and sets its next game.
+- Sealed envelopes (ADR 0073 §9, Stage 880): `envelopes.spec.ts` owns `ui-envelopes`,
+  `ui-envelopes-ipad` and `ui-envelopes-ru`; its second journey ends the campaign's session (the
+  evening's chapter opens the envelope), so nothing else may share those campaigns.
+- Theatre of the mind (ADR 0073 §8, Stage 870): `story-cast.spec.ts` owns the `storyCast` sign-in
+  campaign with a paired TV at 1280×720 and `storyCastRu` (seeded from the Russian Ravenford).
+- A scene that brings its sound (ADR 0073 §6, Stage 850): `place-sound.spec.ts` owns the
+  `placeSound` sign-in campaign with a paired TV and `placeSoundRu` (seeded from the Russian
+  Ravenford); what plays is read from the TV's `data-ambience`, as `atmosphere.spec.ts` reads it.
+- A hero's backstory and private notes (ADR 0073 §5, Stage 840): `hero-story.spec.ts` owns the
+  `story` sign-in campaign (and `storyIpad` in WebKit) — the DM and two players by invitation;
+  `hero-story-words.spec.ts` owns `ui-story-ru`.
+- The party's encyclopedia (ADR 0073 §4, Stage 830): `party-known.spec.ts` owns `ui-known` (and
+  `ui-known-ipad` in WebKit, `ui-known-ru`): the page read by a player and by the DM, held to the
+  party's forbidden markers.
+- "What can I do?" (ADR 0073 §3, Stage 820): `turn-hint.spec.ts` owns the combat campaigns
+  `hint` (`hintIpad` in WebKit, `hintRu`), each the ambush at Elowen's first turn, and
+  `ui-hint-scene` for the hint outside a fight.
+- A short way to a pause (ADR 0073 §2, Stage 810): `pause.spec.ts` owns the `pause` sign-in
+  campaign (and `pauseIpad` in WebKit) — the DM, two players by invitation and a paired TV;
+  `pause-words.spec.ts` owns `ui-pause-ru`. A request is held in the server's memory for ten
+  minutes: a journey that asks must have the DM answer ("Not now" or the pause), or the card stays
+  on the DM's screen for the rest of it.
+- Client error reports (ADR 0073 §1, Stage 800): `client-errors.spec.ts` owns `ui-troubles` (and
+  `ui-troubles-ipad` in WebKit, `ui-troubles-ru`), `client-errors-screens.spec.ts` the `troubles`
+  sign-in campaign with a paired TV. A screen is broken on purpose by a route that hands back a
+  body no component can draw (a chat message without fields, a null cast) — the one route
+  interception, and a real render error in the real boundary. An error thrown by `page.evaluate`
+  would not be reported: it names no script of the application. What the DM has looked at is kept
+  in `localStorage` (`ltw.troubles-seen:<campaign>`).
+- Small comforts (ADR 0072 §3, Stage 790): `comforts.spec.ts` owns `ui-comforts` (and
+  `ui-comforts-ipad` in WebKit), `comforts-screens.spec.ts` the `comforts` sign-in campaign with a
+  paired TV. The break reminder's count is the DM's browser's own (`ltw.break:<campaign>` in
+  `localStorage`): a journey seeds it a few seconds short of an hour (`addInitScript`, or
+  `evaluate` and a reload) instead of waiting or faking the clock — the count itself is
+  `apps/web/src/comforts/break-timer.test.ts`'s. A cheer is gone from a screen in 4 s and from
+  the server in 6: assert it where it shows, then that it went.
+- The package's close (Stage 799): `keepsakes-checkpoint.spec.ts` owns the `keepsakes` and
+  `keepsakesIpad` sign-in campaigns — a DM with a login, two invited players and a paired TV. At
+  a laptop's size the finished adventure's card lies over the top of an open sheet: the journey
+  cheers from Chat, whose row stands lower. The TV asks for nothing of a campaign's end.

@@ -30,15 +30,19 @@ final class Bridge: NSObject, WKScriptMessageHandler {
     func userContentController(
         _ userContentController: WKUserContentController, didReceive message: WKScriptMessage
     ) {
-        let source = message.frameInfo.securityOrigin
-        let sourceOrigin =
-            "\(source.protocol)://\(source.host)" + (source.port == 0 ? "" : ":\(source.port)")
         guard message.frameInfo.isMainFrame,
-            Origins.normalize(sourceOrigin, debug: Shell.debug) == origin(),
+            Self.origin(of: message.frameInfo.securityOrigin) == origin(),
             let text = message.body as? String,
             let parsed = PageMessage.parse(text)
         else { return }
         onMessage(parsed)
+    }
+
+    /// A frame's security origin as the shell writes origins, or nil when it is none a game has.
+    static func origin(of source: WKSecurityOrigin) -> String? {
+        Origins.normalize(
+            "\(source.protocol)://\(source.host)" + (source.port == 0 ? "" : ":\(source.port)"),
+            debug: Shell.debug)
     }
 
     /// One message to the page, as an argument — never text spliced into script.

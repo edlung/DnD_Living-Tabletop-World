@@ -1,10 +1,12 @@
 import type { Cast, CastKind, CastResponse, EncounterResponse, EntityRef } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
-import { useCallback, useId, useState, type SubmitEvent } from 'react';
+import { useCallback, useId, useMemo, useState, type SubmitEvent } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
 import { Glyph } from '../visual/glyph.tsx';
+import { PlaceSoundField } from './place-sound.tsx';
+import { StoryCastFields } from './story-cast-fields.tsx';
 
 /**
  * What the table's screens show (docs/adr/0042-table-display.md §3), on the DM's Table screen
@@ -18,7 +20,10 @@ const KINDS: readonly CastKind[] = [
   'dice',
   'title',
   'chronicle',
+  'stars',
+  'agreement',
   'picture',
+  'story',
   'join',
   'blank',
 ];
@@ -29,7 +34,10 @@ const KIND_WORDS: Readonly<Record<CastKind, string>> = {
   dice: 'The table’s rolls',
   title: 'A title card',
   chronicle: 'The Chronicle’s newest chapter',
+  stars: 'The evening’s stars',
+  agreement: 'The table’s agreement',
   picture: 'A picture',
+  story: 'A picture with words to read aloud',
   join: 'The QR code to join, with “last time”',
   blank: 'Nothing (a dark screen)',
 };
@@ -45,7 +53,8 @@ export function CastForm({
   readonly api: WorldApi;
   readonly current: Cast;
   readonly directory: readonly EntityRef[];
-  readonly onCast: () => void;
+  /** The screens were told; what showing a place did to the table's sound, if anything. */
+  readonly onCast: (sound: CastResponse['sound']) => void;
 }) {
   const t = useT();
   const id = useId();
@@ -58,6 +67,11 @@ export function CastForm({
   const [title, setTitle] = useState(current.kind === 'title' ? current.title : '');
   const [subtitle, setSubtitle] = useState(current.kind === 'title' ? current.subtitle : '');
   const [entityId, setEntityId] = useState(current.kind === 'picture' ? current.entityId : '');
+  // The story cast's picture and words (docs/adr/0073-table-ideas.md §8).
+  const [storyPicture, setStoryPicture] = useState(
+    current.kind === 'story' ? (current.entityId ?? '') : '',
+  );
+  const [storyText, setStoryText] = useState(current.kind === 'story' ? current.text : '');
   const [note, setNote] = useState<string | null>(null);
   const places = directory.filter((entity) => entity.kind === 'location');
   // Whom a zoomed board keeps in view: the fight's combatants, as the DM sees them.
@@ -81,6 +95,14 @@ export function CastForm({
           : { kind, title: title.trim(), subtitle: subtitle.trim() };
       case 'picture':
         return entityId === '' ? null : { kind, entityId };
+      case 'story':
+        return storyText.trim() === ''
+          ? null
+          : {
+              kind,
+              entityId: storyPicture === '' ? null : storyPicture,
+              text: storyText.trim(),
+            };
       default:
         return { kind };
     }
@@ -89,13 +111,25 @@ export function CastForm({
     event.preventDefault();
     const cast = build();
     if (cast === null) {
-      setNote(kind === 'title' ? t('Write the title first.') : t('Choose the picture first.'));
+      setNote(
+        kind === 'title'
+          ? t('Write the title first.')
+          : kind === 'story'
+            ? t('Write the words first.')
+            : t('Choose the picture first.'),
+      );
       return;
     }
     try {
-      await api.post<CastResponse>('display/cast', { cast }, AbortSignal.timeout(20_000));
+      const done = await api.post<CastResponse>(
+        'display/cast',
+        { cast },
+        AbortSignal.timeout(20_000),
+      );
       setNote(null);
-      onCast();
+      // The place may have brought its sound (ADR 0073 §6): the sheet says so, since this form
+      // is made anew with every cast.
+      onCast(done.sound);
     } catch {
       setNote(t('The screens could not be told. Try again.'));
     }
@@ -142,7 +176,32 @@ export function CastForm({
                 </option>
               ))}
             </select>
+            {place === PARTY_PLACE && (
+              <>
+                <p className="field-hint">
+                  {t(
+                    'While the party fights, the screens show the battlefield, and the scene again after it.',
+                  )}
+                </p>
+                <p className="field-hint">
+                  {t(
+                    'If the place the party is in has a kept sound, showing it switches that sound on.',
+                  )}
+                </p>
+              </>
+            )}
           </div>
+        )}
+        {/* The chosen place's own sound, switched on with it (docs/adr/0073-table-ideas.md §6). */}
+        {kind === 'scene' && place !== PARTY_PLACE && (
+          <PlaceSoundField
+            api={api}
+            locationId={place}
+            placeName={places.find((entity) => entity.entityId === place)?.name ?? t('this place')}
+          />
+        )}
+        {(kind === 'battlefield' || (kind === 'scene' && place === PARTY_PLACE)) && (
+          <UnseenFight api={api} fighting={fighters.length > 0} />
         )}
         {kind === 'battlefield' && (
           <div className="screen-cast-row">
@@ -229,6 +288,16 @@ export function CastForm({
             </p>
           </div>
         )}
+        {kind === 'story' && (
+          <StoryCastFields
+            api={api}
+            pictures={pictures}
+            entityId={storyPicture}
+            text={storyText}
+            onEntity={setStoryPicture}
+            onText={setStoryText}
+          />
+        )}
         {kind === 'join' && (
           <p className="field-hint">
             {t('Open the table link on the Players sheet: its QR code shows here.')}
@@ -245,5 +314,29 @@ export function CastForm({
         </button>
       </form>
     </section>
+  );
+}
+
+/**
+ * The screens read the PARTY perspective, which sees a fight only while a character someone plays
+ * takes part (ADR 0042 §3, ADR 0015 §6): a DM running a fight the screens cannot see is told so,
+ * instead of finding "No fight right now" on the TV.
+ */
+function UnseenFight({ api, fighting }: { readonly api: WorldApi; readonly fighting: boolean }) {
+  const t = useT();
+  const party = useMemo(() => api.as('PARTY'), [api]);
+  const load = useCallback(
+    (signal: AbortSignal) =>
+      fighting ? party.get<EncounterResponse>('encounter', signal) : Promise.resolve(null),
+    [party, fighting],
+  );
+  const seen = useResource(`screen-party-fight:${String(fighting)}`, load);
+  if (!fighting || seen.resource.status !== 'ready' || seen.resource.value?.encounter) return null;
+  return (
+    <p className="field-hint" role="status">
+      {t(
+        'The screens cannot show this fight yet: they see a fight only once a character someone plays takes part in it.',
+      )}
+    </p>
   );
 }

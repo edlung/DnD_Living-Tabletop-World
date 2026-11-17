@@ -64,6 +64,52 @@ pings with their end, the DM's pointer, strokes and shown areas, each the mark o
 table's data for the live session, not canonical state. Additive: an older build leaves both tables
 alone.
 
+Stage 720 (ADR 0071 §2): `0040_session_reflections.sql` keeps stars and wishes beside the world,
+one row for each author of each session (280 characters each), replaced when written again and
+removed when emptied: table data, not canonical state. Additive: an older build leaves the table
+alone.
+
+Stage 730 (ADR 0071 §3): `0041_next_game.sql` adds the next game to the table's state — an instant
+and a line of at most 120 characters, both the DM's: table data, not canonical state. Additive: an
+older build leaves the columns alone.
+
+Stage 740 (ADR 0071 §4): `0042_table_agreement.sql` keeps the table's agreement beside the world —
+one page a campaign (`ltw_table_agreements`) and, for each character, the version they said
+"Understood" to (`ltw_table_agreement_understood`): table data, not canonical state. Additive: an
+older build leaves both tables alone.
+
+Stage 780 (ADR 0072 §2): `0043_campaign_endings.sql` keeps a campaign's end beside the world — a
+row while it is finished (`ltw_campaign_endings`, deleted when the DM reopens it) and each hero's
+keepsake (`ltw_keepsakes`): table data, not canonical state. Additive: an older build leaves both
+tables alone, and plays a finished campaign on — it knows nothing of its end.
+
+Stage 890 (ADR 0073 §10): `0048_next_game_answers.sql` keeps who comes to the next game
+(`ltw_next_game_answers`, one row a character with the date it answered): table data, not
+canonical state. It moves with its campaign. Additive: an older build leaves the table alone and
+shows the date without answers.
+
+Stage 880 (ADR 0073 §9): `0047_envelopes.sql` keeps sealed envelopes (`ltw_envelopes`: the
+outside the party reads, the handout inside, what opens it, and when it opened): table data, not
+canonical state. It moves with its campaign. Additive: an older build leaves the table alone and
+opens nothing by itself.
+
+Stage 850 (ADR 0073 §6): `0046_place_sounds.sql` keeps a place's own sound (`ltw_place_sounds`,
+one row a place: an ambience and a track of the DM's), applied to the table's sound when the DM
+shows the place: table data, not canonical state. It moves with its campaign. Additive: an older
+build leaves the table alone.
+
+Stage 840 (ADR 0073 §5): `0045_backstories_and_notes.sql` keeps a hero's backstory
+(`ltw_backstories`, one text a character, its player's and the DM's) and a player's private notes
+(`ltw_player_notes`, kept under their writer's actor in the campaign and read by nobody else, the
+DM included): table data, not canonical state. Both move with their campaign. Additive: an older
+build leaves both tables alone.
+
+Stage 800 (ADR 0073 §1): `0044_client_errors.sql` keeps what a broken page told this server
+(`ltw_client_errors`): fixed fields only — no message, no address, no name — one row a distinct
+report of a campaign or of none, counted when seen again, removed after thirty days and by the
+DM's word. Operations data, not canonical state, and left behind when a campaign moves. Additive:
+an older build leaves the table alone.
+
 Stage 680b (ADR 0058 §3–4): `0036_dm_library.sql` keeps the DM's library beside the world — handouts
 kept for later and random tables, one row an entry (its body at most 64 KB), replaced on save and
 deleted on the DM's word; a kept handout notes when it was last given. DM data, not canonical state:

@@ -789,3 +789,300 @@ ADR 0023 amendments of 2026-10-27, ADR 0035 amendment "Gate 06 remediation"): ro
 PASS after remediation and retest: `reviews/ASTRA_GATE_06_REPORT.md`, evidence
 `reviews/evidence/gate-06/`. Every alpha row above was attacked on a deployment (the report's
 coverage table names the team per row). Open for the owner: G06-client-02.
+
+## Stage 710 delta to row 170 (2026-11-15)
+
+Stage 710 (`docs/adr/0071-memory-and-ritual.md` §1) changes the Chronicle surface Gate 05
+reviewed; Gate 05's report and findings stand as recorded.
+
+- Changed boundary: `GenerateChronicle` takes an optional `sessionId` (a chapter of one session's
+  memories, resting on the session; refused for an unknown session and for the DM's view); the
+  suggestions' route takes `session`; a player's client reads the chapters told from the Party as
+  PARTY and shows them in the player's book, in the lobby and on the table's screen.
+- Deterministic regressions: `packages/domain/src/chronicle/session-chapter.test.ts`,
+  `apps/server/src/http/chronicle-routes.test.ts` ("a session’s chapter"; a player's own view
+  lists no party chapter, the PARTY view no DM-told one), `apps/web/src/chronicle/book-chapters.test.ts`,
+  `apps/web/src/dm/evening.test.ts`, the journeys `tests/e2e/evening-ritual.spec.ts` (the player's
+  boundary on everything received and shown) and `tests/e2e/evening-ritual-screens.spec.ts` (the
+  PARTY markers on everything the TV received).
+- Next review obligation: none scheduled; the session's own attack pass is in
+  `reports/STAGE_710_COMPLETION.md`. The owner may order an independent repeat.
+
+## Stage 720: a new table surface (2026-11-15)
+
+Stage 720 (`docs/adr/0071-memory-and-ritual.md` §2) adds stars and wishes, table data like table
+talk (Gate 06's row for chat is its nearest kin).
+
+- Boundary: a wish reaches its author (that character's perspective) and the DM, by listing and by
+  live signal; the party's view, another player and a table display get stars only; a stranger
+  nothing. Writing: a player their own character's, the DM anyone's, between sessions.
+- Deterministic regressions: `apps/server/src/reflections/reflection-routes.test.ts` (each reader,
+  each writer, a table display, the window), `reflection-live.test.ts` (a wish alone signals the DM
+  only), `reflection-store.integration.test.ts`, `apps/server/src/accounts/privacy.test.ts` (a copy
+  holds one's own only), the move's coverage test, the journeys `tests/e2e/stars-and-wishes.spec.ts`
+  (what a player's browser received) and `evening-ritual-screens.spec.ts` (what the TV received).
+- Next review obligation: none scheduled; the owner may order an independent repeat.
+
+## Stage 730: the next game (2026-11-15)
+
+Stage 730 (`docs/adr/0071-memory-and-ritual.md` §3) adds a date and a line to the table's state and
+a calendar file. Nothing of the world is in either, so no perspective boundary moves.
+
+- Boundary: the DM alone writes the date; every member and a table display read it; the file is a
+  member's inside the campaign and the account's on its hub (a display is refused, a stranger and
+  another account's campaign find nothing) and carries the campaign's name, the
+  instant and the DM's line only. The line is free text into a file: escaped and folded by RFC 5545,
+  so it cannot add a property or an event.
+- Deterministic regressions: `apps/server/src/table/next-game.test.ts` (when a date is shown and
+  settable; the file's lines, escapes, folding, an injected `END:VEVENT`),
+  `lobby-routes.test.ts` (who sets and reads, the refusals, the file per role, a date that passed),
+  `table-state.integration.test.ts` (PostgreSQL holds it), `apps/server/src/accounts/accounts.test.ts`
+  (the hub's card), `apps/web/src/ritual/next-game-words.test.ts`, the journeys
+  `tests/e2e/next-game.spec.ts` and `next-game-file.spec.ts` (the saved file's text).
+- Next review obligation: none scheduled; the owner may order an independent repeat.
+
+## Stage 740: the table's agreement (2026-11-16)
+
+Stage 740 (`docs/adr/0071-memory-and-ritual.md` §4) adds the table's agreement, table data like
+table talk, and static pages of the guide.
+
+- Boundary: the page is the DM's to write and everyone's to read, a table display included — it
+  holds nothing of the world. Who has said "Understood" is sent to the DM alone. A player says it
+  for their own character, the DM for anyone; nobody for a version they were not shown. The quiet
+  request for a pause is a whisper to the DM (ADR 0044 §1's boundary, unchanged).
+- Deterministic regressions: `apps/server/src/agreement/agreement-routes.test.ts` (each reader and
+  writer, a table display, a page out of shape, versions), `agreement-store.integration.test.ts`,
+  the live inventory's and the move's coverage tests, the journeys `tests/e2e/agreement.spec.ts`
+  (what a player's browser received) and `agreement-screens.spec.ts` (what the TV received).
+- Next review obligation: none scheduled; the owner may order an independent repeat.
+
+## Stage 760: the ritual's checkpoint (2026-11-16)
+
+No new read. `tests/e2e/ritual-checkpoint.spec.ts` plays one evening with the DM, two players and
+the table's screen (Chromium, WebKit on an iPad) and looks through what each was sent: the TV the
+party's view and none of the party-forbidden markers; a player their own wish and not the other's;
+nobody but the DM the list of who agreed or another's request for a pause. The table of every new
+read of Stages 710–740 and its tests is in `reports/STAGE_760_COMPLETION.md`.
+
+## Stage 770: the book of the campaign (2026-11-16)
+
+Stage 770 (`docs/adr/0072-keepsakes.md` §1) gathers the party's chapters, their pictures, the
+evenings' stars and what was shown to the party into one page that prints. No new store and no
+write; the session view gains the real instants of its start and its end.
+
+- Boundary: every read the book is built from is made as PARTY, whoever opens it — the DM too. A
+  chapter told from anyone else, the DM's view of anything, and every wish are in none of them;
+  the page's assembly drops a chapter of another perspective again. Pictures are asked for the
+  world time their chapter ends and fetched for the time they were chosen for (Gate 06).
+- Deterministic regressions: `apps/web/src/chronicle/keepsake/book-model.test.ts` (the assembly),
+  `apps/server/src/reflections/reflection-routes.test.ts` (the book's read of every evening; the
+  DM as the party is sent no wish), `packages/domain/src/memory/decide.test.ts` (the two
+  instants; an end undone), the journey `tests/e2e/campaign-book.spec.ts` (the DM's and a
+  player's book and paper hold neither a chapter told from a character nor a wish; nothing the
+  player's browser read as the party does).
+- Next review obligation: none scheduled; the owner may order an independent repeat.
+
+## Stage 780: a campaign's end and keepsakes (2026-11-16)
+
+Stage 780 (`docs/adr/0072-keepsakes.md` §2) adds a campaign's end and its heroes' keepsakes, table
+data like stars, and a guard that refuses play in a finished campaign.
+
+- Boundary: the end and every keepsake are read by every member and a table display; nothing is
+  the DM's alone. A keepsake's name is taken by the server in its hero's own view (an
+  unidentified thing keeps the name that hero knows); a chapter kept is one told from the Party.
+  A player chooses for their own character, the DM for anyone; the party's view and a display
+  choose for nobody. The account's list shows of a finished campaign what a member reads as the
+  party, and no picture.
+- Deterministic regressions: `apps/server/src/ending/ending-routes.test.ts` (each reader and
+  writer, what may be kept, a table display, the guard on the real app, the list of what a
+  finished campaign still takes), `guard.test.ts`, `ending-store.integration.test.ts`, the live
+  inventory's and the move's coverage tests, `accounts.test.ts`, `privacy.test.ts`, the journeys
+  `tests/e2e/campaign-end.spec.ts` and `campaign-end-hub.spec.ts`.
+- Next review obligation: none scheduled; the owner may order an independent repeat.
+
+## Stage 790: small comforts (2026-11-16)
+
+Stage 790 (`docs/adr/0072-keepsakes.md` §3) adds cheers at the table, held in the server's memory
+for a few seconds and never stored; a text size and a break reminder that never leave the browser.
+
+- Boundary: one new read, `GET …/cheers`. A cheer is a mark of a fixed five and who gave it — no
+  free text — read by every member in a character's or the DM's view and by a table display; the
+  name is the reader's own (a character the reader does not know is unnamed). A player gives one
+  as the character they play, the DM as the DM; the party's shared view, a display and a stranger
+  give none. The read is in the live inventory for the same readers, so its signal reveals
+  nothing they may not read. The break shows a `title` cast whose two lines are fixed words.
+- Deterministic regressions: `apps/server/src/cheers/cheer-routes.test.ts` (each reader and
+  giver, the fixed marks, the few seconds, the rate, a finished campaign, a table display, the
+  live signal through the shared board), `cheer-board.test.ts`, `live/inventory.test.ts` (who
+  covers the read; the display's inventory), `apps/web/src/comforts/break-timer.test.ts`, the
+  journeys `tests/e2e/comforts.spec.ts` and `comforts-screens.spec.ts`.
+- Next review obligation: none scheduled; the owner may order an independent repeat.
+
+## Stage 799: the package's close (2026-11-16)
+
+One new journey and one fix. `tests/e2e/keepsakes-checkpoint.spec.ts` plays a last evening, a
+campaign's end and its book with the DM, two players and the table's screen (Chromium, WebKit on
+an iPad) and looks through what each was sent: the TV the party's view and none of the
+party-forbidden markers; a player her own wish and none of the markers forbidden to her
+character; the other player not that wish; of a cheer its ID, its mark and who gave it. The pass
+over every new read of Stages 770–790 found that the account's list named, of a finished
+campaign, a hero the party has not met when the DM had chosen a keepsake for one: the list now
+leaves that keepsake out (`apps/server/src/accounts/finished-campaigns.test.ts`, which fails
+without the fix). The table of every read and its tests is in `reports/STAGE_799_COMPLETION.md`.
+
+## Stage 800: client error reports (2026-11-16)
+
+Stage 800 (`docs/adr/0073-table-ideas.md` §1) lets a broken page tell the family's own server
+what broke, in fixed fields, and shows the DM a list.
+
+- Boundary: one new write, `POST /client-errors`, open to anyone who can load the page (a table
+  display too — its one write), and one new read, `GET …/client-errors`, the campaign's DM's
+  alone (404 for anyone else, as the DM's notes are). A report is enumerations, numbers and up to
+  three script file names of a strict pattern: no message, no address, no name, no account, no
+  character, nothing read from the world — so nothing of a perspective can travel in one. A
+  campaign is believed only for a member of it, from the sender's own credential. The read is in
+  the live inventory for the DM only: a player's stream is not signalled by a report.
+- Deterministic regressions: `apps/server/src/client-errors/client-error-routes.test.ts` (each
+  sender; fields refused, a message among them; the body's size; the limits; the DM's read and
+  clear and nobody else's; no secret marker and no actor in the list; a table display; a
+  session's claim on another campaign; the live signal to the DM and no player),
+  `client-error-store.test.ts` and `client-error-store.integration.test.ts` (PostgreSQL held to
+  the in-memory semantics; a row that says otherwise refused by the table's own checks),
+  `live/inventory.test.ts`, `campaigns/move/tables.integration.test.ts` (left behind, with its
+  reason), `apps/web/src/report/report.test.ts` (a message never travels; a frame of another
+  origin is dropped), `reporter.test.ts` (what is sent and what never is; a persona's token is a
+  header, never in the body), `trouble-words.test.ts` (the DM's words are the application's own
+  for every value), the journeys `tests/e2e/client-errors.spec.ts` (the report as sent, against
+  the forbidden markers and the typed chat line) and `client-errors-screens.spec.ts`.
+
+## Stage 810: a short way to a pause (2026-11-16)
+
+Stage 810 (`docs/adr/0073-table-ideas.md` §2) lets a player ask for a pause with one press and
+tells the DM alone.
+
+- Boundary: one new read, `GET …/pause-requests`, and two writes. That a named character's player
+  asked is the DM's and the asker's to read and nobody else's: another player's character view,
+  the party's shared view, the public view and a table display are refused (403), a stranger finds
+  no campaign. A request carries no words. The read is in the live inventory of the DM and of
+  each character's own view, which shows only that character's request — so another player's
+  stream is not signalled. Held in memory; no chat message, no table, no log line.
+- Deterministic regressions: `apps/server/src/pause/pause-routes.test.ts` (each asker and reader;
+  the other player's view empty; a body with words refused; one request a minute; the rate; seen
+  and gone; aged out; the pause answers; the session's end forgets; no chat message; a table
+  display; the live signal to the DM and the asker and not to the other player),
+  `pause-board.test.ts`, `live/inventory.test.ts` (a display and the party's view never cover the
+  read), the journeys `tests/e2e/pause.spec.ts` (what the other player's screen and the table's
+  screen show and were sent), `pause-words.spec.ts`, `agreement.spec.ts`,
+  `ritual-checkpoint.spec.ts`.
+
+## Stage 820: "What can I do?" (2026-11-16)
+
+Stage 820 (`docs/adr/0073-table-ideas.md` §3) tells a player in plain words what their hero can do
+now, from that hero's own reads.
+
+- Boundary: one additive field, `turn`, on a combatant in the fight's view — what is left of its
+  turn. It is sent for a combatant to the DM, to the character's own player, and to the player
+  whose character commands it; a foe's is not sent to a player, and the party's shared view and a
+  table display are sent nobody's. The hint reads the fight's view, the hero's own context, its
+  own sheet and its surroundings — reads the player already had — and names whoever acts only as
+  the view names them (a turn the fog hides is not named).
+- Deterministic regressions: `packages/combat/src/view.test.ts` ("what is left of a turn": each
+  viewer, and as it is spent), `apps/web/src/hint/turn-hint.test.ts` (a spent thing is never
+  offered; a hidden turn is not named; nothing is guessed without the budget), the journey
+  `tests/e2e/turn-hint.spec.ts` (the page's reads held to the player's boundary).
+
+## Stage 830: the party's encyclopedia (2026-11-16)
+
+Stage 830 (`docs/adr/0073-table-ideas.md` §4) gathers what the party knows on one page of the
+Chronicle. No server read is added.
+
+- Boundary: every read the page is built from is made in the PARTY perspective, whoever opens
+  it — the DM too — so the DM's secrets, a chapter told from the DM or one character and a record
+  the party does not hold are in none of them. The assembly keeps the rule again: a name comes
+  from the party's directory only; a chapter of another perspective tells nothing; a `SECRET`
+  record is left out.
+- Deterministic regressions: `apps/web/src/chronicle/known/known-model.test.ts` (no name from a
+  chapter or a record the directory does not list; another perspective's chapter untold; a secret
+  left out), the journey `tests/e2e/party-known.spec.ts` (the DM's page and everything it was
+  sent, against every marker forbidden to the party).
+
+## Stage 840: private notes and a hero's backstory (2026-11-16)
+
+Stage 840 (`docs/adr/0073-table-ideas.md` §5) gives a hero a backstory and a player a notebook.
+
+- Boundary: two new reads and their writes. A backstory (`GET …/entities/:id/backstory`) is its
+  character's own player's, in that character's view, and the DM's; another hero's player, the
+  party's shared view, the public view and a table display are refused, a stranger finds no
+  campaign. A private note (`GET …/notes`) is read under the asker's own actor as the character
+  whose view they hold: no request names another's notes, the DM's view is refused, and a DM in a
+  character's view reads the DM's own. Neither is in the live inventory. Neither is knowledge:
+  the World Engine reads nothing of them.
+- Deterministic regressions: `apps/server/src/notes/note-routes.test.ts` (each reader and writer;
+  the DM in both views; a note's ID is no way in; a table display; the live inventory),
+  `note-store.integration.test.ts` (PostgreSQL held to the in-memory semantics; another owner
+  cannot delete), `accounts/privacy.test.ts` (the copy holds the account's own notes and heroes'
+  backstories; deletion deletes its notes and no one else's),
+  `campaigns/move/tables.integration.test.ts`, the journey `tests/e2e/hero-story.spec.ts` (what
+  the DM and the other player were sent).
+
+## Stage 850: a scene that brings its sound (2026-11-16)
+
+Stage 850 (`docs/adr/0073-table-ideas.md` §6) lets a place carry a sound that the DM's showing of
+it switches on.
+
+- Boundary: a place's sound is the DM's alone to set and to read (`…/dm/place-sounds`, 404 for
+  anyone else). It reaches the table only as the table's one sound state, which every screen
+  already reads: an ambience's name and a track's ID, nothing of the place. The cast's answer
+  says whether the sound changed, to the DM who cast.
+- Deterministic regressions: `apps/server/src/display/place-sound.test.ts` (kept, applied by
+  showing and by nothing else, the track not restarted, a deleted track, the DM's alone, bounds),
+  `place-sound-store.integration.test.ts`, `campaigns/move/tables.integration.test.ts`, the
+  journey `tests/e2e/place-sound.spec.ts`.
+
+## Stage 860: a shorter way in for a guest (2026-11-16)
+
+Stage 860 (`docs/adr/0073-table-ideas.md` §7) removes a page from a guest's way to a hero. No
+server read or write is added or changed: the table's link, its seats, its limits and the
+single-use invitation behind a seat are ADR 0042 §5–6's, and the sign-in a guest gets is the one
+"Only this browser" always gave. Regression: the journey `tests/e2e/table-display.spec.ts` (a
+seat taken with one press and no login; the login asked for; the DM's list of seats taken).
+
+## Stage 870: theatre of the mind on the table's screen (2026-11-16)
+
+Stage 870 (`docs/adr/0073-table-ideas.md` §8) adds a cast of one picture and the words read aloud.
+
+- Boundary: below the DM a story cast's picture is filtered as a picture cast's is — one the
+  party does not know is none, and its ID does not travel; the words are the DM's own, shown as
+  written, as a title card's are. The paragraphs the form offers are read in the PARTY view.
+- Deterministic regressions: `apps/server/src/display/story-cast.test.ts` (the shape; the filter
+  for a display and a player; over HTTP for the DM and a display), the journey
+  `tests/e2e/story-cast.spec.ts`.
+
+## Stage 880: sealed envelopes (2026-11-16)
+
+Stage 880 (`docs/adr/0073-table-ideas.md` §9) lets the DM seal a kept handout for the party.
+
+- Boundary: the party's read of an envelope is its outside, built field by field — the inside is
+  in no answer of that route for any perspective, a display's included; a stranger gets 404, the
+  public view 403; only the DM seals, opens, deletes and reads the inside. An envelope whose
+  picture the party does not know does not open, by the DM's word or by the chapter, and its
+  outside never names the picture. Opened, the inside travels as a party handout does.
+- Deterministic regressions: `apps/server/src/envelopes/envelope-routes.test.ts` (the outside
+  only, for a player, the party's view, the DM and a display; one handout however often it is
+  opened; the copy taken at sealing; the party's chapter of the evening opens it and no other
+  chapter does; the unknown picture; roles; the live signal), `envelope-store.integration.test.ts`
+  (PostgreSQL), the journey `tests/e2e/envelopes.spec.ts` (what the player's page was sent while
+  it was sealed holds nothing of the inside).
+
+## Stage 890: "I'll come / I can't" for the next game (2026-11-16)
+
+Stage 890 (`docs/adr/0073-table-ideas.md` §10) lets the table answer the next game's date.
+
+- Boundary: an answer is read in the lobby's answer on the characters that perspective already
+  lists, so no character is revealed by it; a player answers for their own character only, and
+  is refused alike for another's hero, a hidden one and one that does not exist; a display reads
+  and answers nothing; the DM answers for anyone. An answer is read only for the instant it was
+  given for.
+- Deterministic regressions: `apps/server/src/table/coming.test.ts` (who answers and who reads;
+  the changed date; no date; refused bodies; the hidden character; a display; the live signal),
+  `coming-store.integration.test.ts` (PostgreSQL), the journey `tests/e2e/coming.spec.ts`.

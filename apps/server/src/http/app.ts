@@ -13,14 +13,51 @@ import type { CampaignQuestBooks } from '../campaigns/quest-books.ts';
 import { registerAccountRoutes } from '../accounts/account-routes.ts';
 import { registerPrivacyRoutes } from '../accounts/privacy-routes.ts';
 import { registerChatRoutes, type ChatDependencies } from '../chat/chat-routes.ts';
+import {
+  memoryCheers,
+  registerCheerRoutes,
+  type CheerDependencies,
+} from '../cheers/cheer-routes.ts';
+import {
+  memoryClientErrors,
+  registerClientErrorRoutes,
+  type ClientErrorDependencies,
+} from '../client-errors/client-error-routes.ts';
 import { InMemoryMarkStore } from '../marks/mark-store.ts';
+import { registerNoteRoutes, type NoteDependencies } from '../notes/note-routes.ts';
+import { InMemoryNoteStore } from '../notes/note-store.ts';
+import {
+  memoryPauses,
+  registerPauseRoutes,
+  type PauseDependencies,
+} from '../pause/pause-routes.ts';
 import { registerMarkRoutes, type MarkDependencies } from '../marks/mark-routes.ts';
 import { InMemoryChatStore } from '../chat/chat-store.ts';
+import {
+  registerReflectionRoutes,
+  type ReflectionDependencies,
+} from '../reflections/reflection-routes.ts';
+import { InMemoryReflectionStore } from '../reflections/reflection-store.ts';
+import {
+  registerAgreementRoutes,
+  type AgreementDependencies,
+} from '../agreement/agreement-routes.ts';
+import { InMemoryAgreementStore } from '../agreement/agreement-store.ts';
+import { registerEndingRoutes, type EndingDependencies } from '../ending/ending-routes.ts';
+import { InMemoryEndingStore } from '../ending/ending-store.ts';
+import { registerFinishedGuard } from '../ending/guard.ts';
+import {
+  openEnvelopesForChapter,
+  registerEnvelopeRoutes,
+  type EnvelopeDependencies,
+} from '../envelopes/envelope-routes.ts';
+import { InMemoryEnvelopeStore } from '../envelopes/envelope-store.ts';
 import { registerHandoutRoutes, type HandoutDependencies } from '../handouts/handout-routes.ts';
 import { InMemoryHandoutStore } from '../handouts/handout-store.ts';
 import { registerLibraryRoutes } from '../library/library-routes.ts';
 import type { AdventureBooks, AdventurePictures } from '../adventures/adventures.ts';
 import { registerLobbyRoutes } from '../table/lobby-routes.ts';
+import { shownNextGame } from '../table/next-game.ts';
 import { isAwayRefusal, registerMoveGuard } from '../campaigns/move/guard.ts';
 import { NOTHING_AWAY, type CampaignMoves } from '../campaigns/move/moves.ts';
 import { registerMusicRoutes } from '../music/music-routes.ts';
@@ -29,6 +66,8 @@ import { VoiceRooms } from '../voice/voice-rooms.ts';
 import { InMemoryTrackStore, type TrackStore } from '../music/track-store.ts';
 import { memoryLobby, type LobbyDependencies } from '../table/table-state.ts';
 import { registerDisplayRoutes } from '../display/display-routes.ts';
+import { InMemoryPlaceSoundStore, type PlaceSoundStore } from '../display/place-sound-store.ts';
+import { registerPlaceSoundRoutes, type PlaceSoundDependencies } from '../display/place-sound.ts';
 import { registerTableLinkRoutes } from '../display/table-links.ts';
 import { registerAuthRoutes } from '../auth/auth-routes.ts';
 import { registerMemberRoutes } from '../auth/member-routes.ts';
@@ -146,6 +185,24 @@ export interface AppDependencies {
   readonly lobby?: LobbyDependencies;
   /** Table talk (ADR 0044 §1): chat, whispers, the DM's word to one player; in memory when absent. */
   readonly chat?: ChatDependencies;
+  /** Stars and wishes at an evening's end (ADR 0071 §2); in memory when absent. */
+  readonly reflections?: ReflectionDependencies;
+  /** The table's agreement (ADR 0071 §4). */
+  readonly agreement?: AgreementDependencies;
+  /** A campaign's end and its heroes' keepsakes (ADR 0072 §2); in memory when absent. */
+  readonly ending?: EndingDependencies;
+  /** Cheers at the table (ADR 0072 §3): this process's memory, always. */
+  readonly cheers?: CheerDependencies;
+  /** Sealed envelopes (ADR 0073 §9); in memory when absent. */
+  readonly envelopes?: EnvelopeDependencies;
+  /** Places' own sounds (ADR 0073 §6); in memory when absent. */
+  readonly placeSounds?: PlaceSoundStore;
+  /** A hero's backstory and a player's private notes (ADR 0073 §5); in memory when absent. */
+  readonly notes?: NoteDependencies;
+  /** Requests for a pause (ADR 0073 §2): this process's memory, always. */
+  readonly pauses?: PauseDependencies;
+  /** What a broken page reports (ADR 0073 §1): operations data; in memory when absent. */
+  readonly clientErrors?: ClientErrorDependencies;
   /** The table's shared marks on the board (ADR 0057 §5); in memory when absent. */
   readonly marks?: MarkDependencies;
   /** Handouts (ADR 0044 §5): what the DM shows one player or the party; in memory when absent. */
@@ -172,6 +229,31 @@ export const memoryMarks = (): MarkDependencies => ({
 
 export const memoryChat = (): ChatDependencies => ({
   store: new InMemoryChatStore(),
+  now: () => new Date().toISOString(),
+});
+
+export const memoryReflections = (): ReflectionDependencies => ({
+  store: new InMemoryReflectionStore(),
+  now: () => new Date().toISOString(),
+});
+
+export const memoryAgreement = (): AgreementDependencies => ({
+  store: new InMemoryAgreementStore(),
+  now: () => new Date().toISOString(),
+});
+
+export const memoryNotes = (): NoteDependencies => ({
+  store: new InMemoryNoteStore(),
+  now: () => new Date().toISOString(),
+});
+
+export const memoryEnding = (): EndingDependencies => ({
+  store: new InMemoryEndingStore(),
+  now: () => new Date().toISOString(),
+});
+
+export const memoryEnvelopes = (): EnvelopeDependencies => ({
+  store: new InMemoryEnvelopeStore(),
   now: () => new Date().toISOString(),
 });
 
@@ -220,6 +302,10 @@ export function buildApp(input: AppDependencies): FastifyInstance {
   });
   if (deps.signIn) registerOriginCheck(app, deps.signIn.publicOrigin);
   if (deps.moves) registerMoveGuard(app, deps.moves);
+  // One end for its guard, its routes and the account's list (ADR 0072 §2): a finished campaign
+  // is read, not played.
+  const ending = deps.ending ?? memoryEnding();
+  registerFinishedGuard(app, ending.store);
 
   app.setNotFoundHandler((request, reply) => sendError(reply, request, 'NOT_FOUND'));
   app.setErrorHandler((error, request, reply) => {
@@ -263,7 +349,20 @@ export function buildApp(input: AppDependencies): FastifyInstance {
   registerAssetRoutes(app, deps);
   registerBattleMapUploadRoutes(app, deps);
   registerVisualRoutes(app, deps);
-  registerChronicleRoutes(app, { ...deps, chronicleIds: deps.authoring.ids });
+  // One set of handouts for the handout routes, the DM's library that gives them (ADR 0058 §3)
+  // and the envelopes that become them (ADR 0073 §9).
+  const handouts = deps.handouts ?? memoryHandouts();
+  const envelopes: EnvelopeDependencies = deps.envelopes ?? memoryEnvelopes();
+  registerChronicleRoutes(app, {
+    ...deps,
+    chronicleIds: deps.authoring.ids,
+    // An evening's chapter written: the envelopes sealed for it open.
+    onPartyChapter: async ({ campaignId, sessionId, actor }) => {
+      const state = (await deps.engine.load(campaignId))?.state;
+      if (!state) return;
+      await openEnvelopesForChapter({ envelopes, handouts }, state, actor, campaignId, sessionId);
+    },
+  });
   registerQuestRoutes(app, deps);
   registerPresenceRoutes(app, { ...deps, presence: deps.presence ?? NOBODY_CONNECTED });
   // One set of tracks for the music's routes and the lobby that plays them (ADR 0059 §3).
@@ -279,6 +378,13 @@ export function buildApp(input: AppDependencies): FastifyInstance {
     moves: deps.moves ?? NOTHING_AWAY,
   });
   registerMusicRoutes(app, { ...deps, lobby, music });
+  // A place's own sound (ADR 0073 §6): the DM's routes here, applied where a place is shown.
+  const placeSounds: PlaceSoundDependencies = {
+    store: deps.placeSounds ?? new InMemoryPlaceSoundStore(),
+    lobby,
+    music,
+  };
+  registerPlaceSoundRoutes(app, { ...deps, placeSounds });
   registerVoiceRoutes(app, {
     ...deps,
     lobby,
@@ -289,10 +395,23 @@ export function buildApp(input: AppDependencies): FastifyInstance {
   // One chat for its routes and a person's copy of their data (ADR 0062 §2).
   const chat = deps.chat ?? memoryChat();
   registerChatRoutes(app, { ...deps, chat });
+  // One set of stars and wishes for their routes and a person's copy of their data.
+  const reflections = deps.reflections ?? memoryReflections();
+  registerReflectionRoutes(app, { ...deps, reflections });
+  registerAgreementRoutes(app, { ...deps, agreement: deps.agreement ?? memoryAgreement() });
+  registerEndingRoutes(app, { ...deps, ending });
+  registerCheerRoutes(app, { ...deps, cheers: deps.cheers ?? memoryCheers() });
+  registerPauseRoutes(app, { ...deps, lobby, pauses: deps.pauses ?? memoryPauses() });
+  // One set of backstories and notes for their routes and a person's copy of their data.
+  const notes = deps.notes ?? memoryNotes();
+  registerNoteRoutes(app, { ...deps, notes });
+  registerClientErrorRoutes(app, {
+    ...deps,
+    clientErrors: deps.clientErrors ?? memoryClientErrors(),
+  });
   registerMarkRoutes(app, { ...deps, marks: deps.marks ?? memoryMarks() });
-  // One set of handouts for the handout routes and the DM's library that gives them (ADR 0058 §3).
-  const handouts = deps.handouts ?? memoryHandouts();
   registerHandoutRoutes(app, { ...deps, handouts });
+  registerEnvelopeRoutes(app, { ...deps, envelopes, handouts, library: deps.dm.library });
   registerDmRoutes(app, deps);
   registerUndoneRoutes(app, deps);
   // The roll and rest routes read the campaign's dice from the same table state (ADR 0044 §4).
@@ -317,13 +436,25 @@ export function buildApp(input: AppDependencies): FastifyInstance {
     // person's data, copied or deleted (ADR 0062).
     if (accounts && accountLimits) {
       const withAccounts = { ...deps, signIn: { ...deps.signIn, accounts, accountLimits } };
-      registerAccountRoutes(app, withAccounts);
-      registerPrivacyRoutes(app, { ...withAccounts, chat: chat.store, table: table.store });
+      registerAccountRoutes(app, {
+        ...withAccounts,
+        nextGameOf: async (campaignId) =>
+          shownNextGame((await lobby.state.read(campaignId)).nextGame, lobby.now()),
+        ending: ending.store,
+      });
+      registerPrivacyRoutes(app, {
+        ...withAccounts,
+        chat: chat.store,
+        table: table.store,
+        reflections: reflections.store,
+        ending: ending.store,
+        notes: notes.store,
+      });
     }
     // The table's displays and join links (ADR 0042): pairing, the cast, the table's QR code.
     const { displays, displayLimits, openLinks } = deps.signIn;
     if (displays && displayLimits && openLinks) {
-      const display = { ...signIn, displays, displayLimits, openLinks };
+      const display = { ...signIn, displays, displayLimits, openLinks, placeSounds };
       registerDisplayRoutes(app, display);
       registerTableLinkRoutes(app, display);
     }

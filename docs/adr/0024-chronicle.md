@@ -150,6 +150,7 @@ Anything else is a 404, identical to a nonexistent memory.
   - **Integrity.** A standing chapter tells only events whose command still stands, besides memories and knowledge that still exist.
   - **Version 4.** `ChronicleGenerated` moves to version 4. Version 3 chapters, recorded by the Gate 05 retest 1 writer, rest on everything before them, like version 2 chapters.
   - **What that writer may have left.** It accepted the undo of a told examination beneath its chapter. Such a history reads as recorded: the entry shows no source, integrity names it, and the earlier-writers audit names the undo. Undoing the chapter recovers. Histories: `fixtures/history/a488de4-cited-examinations.json`, `fixtures/history/a488de4-cited-examination-undone.json`.
+- 2026-11-15 (Stage 710, ADR 0071 §1): **a chapter may be one session's, and a member's book lists the party's chapters.** `GenerateChronicle` takes an optional `sessionId` (§4): of the window's memories the chapter tells only those recorded with that session and rests on the session too; it is refused for an unknown session and for the DM's view. The world's clock often stands still between evenings, so a window alone cannot tell them apart. A chapter without a session is unchanged, and `ChronicleGenerated` keeps version 4. The suggestions' route takes `session` (§6): the moments since that session started. A player's book reads the chapters told from the Party as PARTY beside the player's own (§5 is unchanged on the server).
 
 ## Invariants affected
 

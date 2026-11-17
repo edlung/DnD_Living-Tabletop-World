@@ -1,4 +1,4 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect, type Page } from '@playwright/test';
 
 import { SIGN_IN_ORIGIN, signInSeed } from '../../apps/server/src/testing/ui-sign-in-links.ts';
 import {
@@ -6,6 +6,7 @@ import {
   WORKSHOP_CAMPAIGN,
   type WorkshopFixture,
 } from '../../apps/server/src/testing/ui-workshop-links.ts';
+import { test } from './support/journey.ts';
 import { dmToken } from './support/sign-in.ts';
 
 test.use({ baseURL: SIGN_IN_ORIGIN, trace: 'off', screenshot: 'off', video: 'off' });

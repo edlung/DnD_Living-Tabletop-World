@@ -1,4 +1,4 @@
-import { expect as baseExpect, test, type Page } from '@playwright/test';
+import { expect as baseExpect, type Page } from '@playwright/test';
 
 import {
   battlefield,
@@ -10,6 +10,7 @@ import {
   turnTray,
 } from './support/combat.ts';
 import { dmHistory, historyEntry, openHistory } from './support/dm.ts';
+import { test } from './support/journey.ts';
 import { expectLive, LIVE_CAMPAIGNS, turnBanner } from './support/live.ts';
 import { collectApiBodies, TOKENS } from './support/session.ts';
 import { dockButton, expectOnTop, openSheet } from './support/shell.ts';

@@ -118,3 +118,72 @@ describe('the lobby', () => {
     expect((await lobby('DM', TOKENS.dm)).sound).toEqual({ ambience: 'none', music: null });
   });
 });
+
+/**
+ * The next game (docs/adr/0071-memory-and-ritual.md §3): the DM sets when the table meets again;
+ * every member reads it and may save it as a calendar file; a date that has passed is gone.
+ */
+describe('the next game', () => {
+  const HOUR = 3_600_000;
+  const inHours = (hours: number) => new Date(Date.now() + hours * HOUR).toISOString();
+  const set = (nextGame: unknown, perspective = 'DM', token: string = TOKENS.dm) =>
+    post(app, `${BASE}/lobby?perspective=${perspective}`, { nextGame }, token);
+  const file = (token: string, query = '') => get(app, `${BASE}/next-game.ics${query}`, token);
+
+  it('is the DM’s to set and every member’s to read, with the rest of the table unchanged', async () => {
+    expect((await lobby('PLAYER', TOKENS.player)).nextGame).toBeNull();
+    const at = inHours(6 * 24);
+    expect((await set({ at, note: '  At Grandma’s  ' })).statusCode).toBe(204);
+    for (const [perspective, token] of [
+      ['PLAYER', TOKENS.player],
+      ['PARTY', TOKENS.player],
+      ['DM', TOKENS.dm],
+    ] as const) {
+      expect((await lobby(perspective, token)).nextGame).toEqual({ at, note: 'At Grandma’s' });
+    }
+    // Another change of the table leaves the date; a player sets none.
+    expect(
+      (await post(app, `${BASE}/lobby?perspective=DM`, { paused: true }, TOKENS.dm)).statusCode,
+    ).toBe(204);
+    expect((await lobby('DM', TOKENS.dm)).nextGame).toEqual({ at, note: 'At Grandma’s' });
+    expect((await set({ at, note: '' }, 'PLAYER', TOKENS.player)).statusCode).toBe(403);
+    // Not a date long gone, far ahead, malformed, or with too long a line; null takes it away.
+    expect((await set({ at: inHours(-48), note: '' })).statusCode).toBe(422);
+    expect((await set({ at: inHours(3 * 366 * 24), note: '' })).statusCode).toBe(422);
+    expect((await set({ at: 'next Saturday', note: '' })).statusCode).toBe(400);
+    expect((await set({ at, note: 'x'.repeat(121) })).statusCode).toBe(400);
+    expect((await lobby('DM', TOKENS.dm)).nextGame).toEqual({ at, note: 'At Grandma’s' });
+    expect((await set(null)).statusCode).toBe(204);
+    expect((await lobby('PLAYER', TOKENS.player)).nextGame).toBeNull();
+  });
+
+  it('is saved as a calendar file by a member, and by nobody else', async () => {
+    expect((await file(TOKENS.player)).statusCode).toBe(404);
+    const at = inHours(6 * 24);
+    await set({ at, note: 'Bring dice; snacks' });
+    const saved = await file(TOKENS.player);
+    expect(saved.statusCode).toBe(200);
+    expect(saved.headers['content-type']).toBe('text/calendar; charset=utf-8');
+    expect(saved.headers['content-disposition']).toBe('inline; filename="next-game-ravenford.ics"');
+    const lines = saved.body.split('\r\n');
+    expect(lines).toContain(`DTSTART:${at.replace(/[-:]/g, '').replace(/\.\d{3}Z$/, 'Z')}`);
+    expect(lines).toContain('SUMMARY:The Missing Caravan');
+    expect(lines).toContain('DESCRIPTION:Bring dice\\; snacks');
+    expect(lines.filter((line) => line.startsWith('UID:'))).toHaveLength(1);
+    // Nothing of the world is in it: no place, no character, no session.
+    expect(saved.body).not.toMatch(/Elowen|Market Square|Session 1/);
+    expect((await file(TOKENS.dm)).statusCode).toBe(200);
+    expect((await file(TOKENS.outsider)).statusCode).toBe(404);
+    expect((await file(TOKENS.player, '?perspective=DM')).statusCode).toBe(400);
+  });
+
+  it('is shown through its own evening, and one already over is not set', async () => {
+    // Set for earlier today (a game that slipped): the evening's own date is still shown…
+    await set({ at: inHours(-2), note: '' });
+    expect((await lobby('PLAYER', TOKENS.player)).nextGame).not.toBeNull();
+    expect((await file(TOKENS.player)).statusCode).toBe(200);
+    // …and one from this morning could not be shown, so it is not set: the earlier date stays.
+    expect((await set({ at: inHours(-7), note: '' })).statusCode).toBe(422);
+    expect((await lobby('PLAYER', TOKENS.player)).nextGame).not.toBeNull();
+  });
+});

@@ -139,6 +139,11 @@ describe('sessions', () => {
     expect(player.json<SessionListResponse>().sessions.map((s) => s.sessionId)).toEqual([
       'ravenford-s1',
     ]);
+    // Each says when it was really played (ADR 0072 §1); an open one has no end yet.
+    for (const session of player.json<SessionListResponse>().sessions) {
+      expect(Number.isNaN(Date.parse(session.playedFrom))).toBe(false);
+      expect(session.playedTo === null).toBe(session.endedAt === null);
+    }
     expect((await get(app, `${BASE}/sessions`, TOKENS.outsider)).statusCode).toBe(404);
     expect((await get(app, '/campaigns/nope/sessions', TOKENS.dm)).statusCode).toBe(404);
     expect((await get(app, `${BASE}/sessions?perspective=DM`, TOKENS.player)).statusCode).toBe(400);

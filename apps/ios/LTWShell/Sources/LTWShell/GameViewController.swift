@@ -80,11 +80,12 @@ public final class GameViewController: UIViewController, WKNavigationDelegate, W
         case .ready:
             if Shell.kind == .dm { send(.tv(TVHub.shared.state)) }
         case .haptic(let kind): Alerts.shared.haptic(kind)
-        case .awake(let on): Alerts.shared.keepAwake(on, reason: awakeReason, asks: true)
-        case .waiting(let count): Alerts.shared.onWaiting(count)
+        case .awake(let on): Alerts.shared.keepAwake(on, reason: awakeReason)
+        case .waiting(let count): Alerts.shared.onWaiting(count, in: self)
         case .scan: scan()
         case .server: chooseServer()
         case .tvForget: if Shell.kind == .dm { TVHub.shared.forget() }
+        case .tvSound(let on, let volume): if Shell.kind == .dm { TVHub.shared.setSound(on: on, volume: volume) }
         // Back is Android's; the TV window speaks for itself (TVController).
         case .backResult, .tvCode, .tvPaired, .tvUnpaired: break
         }
@@ -327,12 +328,18 @@ public final class GameViewController: UIViewController, WKNavigationDelegate, W
         }
     }
 
-    /// The page's policy asks for no camera or microphone; nothing is granted.
+    /// The table's voice chat (ADR 0060): the microphone alone, and only for the main frame of the
+    /// chosen server — iOS then asks the person itself, the first time. The camera is the shell's
+    /// scanner's and never the page's.
     public func webView(
         _ webView: WKWebView, decideMediaCapturePermissionsFor origin: WKSecurityOrigin,
         initiatedBy frame: WKFrameInfo, type: WKMediaCaptureType
     ) async -> WKPermissionDecision {
-        .deny
+        guard type == .microphone, frame.isMainFrame, !self.origin.isEmpty,
+            Bridge.origin(of: origin) == self.origin,
+            Bridge.origin(of: frame.securityOrigin) == self.origin
+        else { return .deny }
+        return .grant
     }
 }
 #endif

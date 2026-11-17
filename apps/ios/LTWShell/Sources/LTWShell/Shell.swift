@@ -32,7 +32,7 @@ enum Shell {
     /// The features the page may use in this app's game window (§2).
     static var features: [String] {
         var list = ["haptics", "awake", "waiting", "scan", "server"]
-        if kind == .dm { list.append("tv") }
+        if kind == .dm { list += ["tv", "tv-sound"] }
         return list
     }
 

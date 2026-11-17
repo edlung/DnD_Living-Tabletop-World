@@ -236,17 +236,38 @@ describe('sessions', () => {
     );
 
     const state = await harness.state();
-    expect(state.sessions.get('s1')).toEqual({
+    const session = state.sessions.get('s1');
+    expect(session).toEqual({
       sessionId: 's1',
       title: 'One',
       startedAt: START + 7200,
       endedAt: START + 7200,
+      // The real evening (ADR 0072 §1): when its start and its end were recorded.
+      playedFrom: expect.any(String) as string,
+      playedTo: expect.any(String) as string,
     });
+    // The world's clock stood still; the real one did not.
+    expect(Date.parse(session?.playedTo ?? '')).toBeGreaterThan(
+      Date.parse(session?.playedFrom ?? ''),
+    );
     expect(state.activeSessionId).toBeNull();
     expectRejected(
       await harness.submit({ type: 'UndoCommand', targetCommandId: 'start' }),
       'UNDO_UNSAFE',
     );
+  });
+
+  it('an end undone leaves the evening open, its real end gone with it', async () => {
+    expectAccepted(await harness.submit({ type: 'StartSession', sessionId: 's1', title: 'One' }));
+    expectAccepted(
+      await harness.submit({ type: 'EndSession', sessionId: 's1' }, { commandId: 'end' }),
+    );
+    const started = (await harness.state()).sessions.get('s1')?.playedFrom;
+    expectAccepted(await harness.submit({ type: 'UndoCommand', targetCommandId: 'end' }));
+    const session = (await harness.state()).sessions.get('s1');
+    expect(session?.endedAt).toBeNull();
+    expect(session?.playedTo).toBeNull();
+    expect(session?.playedFrom).toBe(started);
   });
 
   it('undoes a session start while nothing depends on it', async () => {

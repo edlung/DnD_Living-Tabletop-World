@@ -6,6 +6,7 @@ import type {
   EncounterResponse,
   EntityPresentationResponse,
   EntityRef,
+  LobbyResponse,
   RollFeedResponse,
   ScenePresentationResponse,
 } from '@ltw/contracts';
@@ -26,6 +27,11 @@ import { Glyph } from '../visual/glyph.tsx';
 import { phaseGlyph, weatherGlyph } from '../visual/glyph-map.ts';
 import { QrCode } from '../visual/qr-code.tsx';
 import { textureUrl } from '../visual/ui-kit.ts';
+import { newestPartyChapter } from '../chronicle/book-chapters.ts';
+import { Previously } from '../chronicle/previously.tsx';
+import { NextGameLine } from '../ritual/next-game.tsx';
+import { AgreementCast } from '../ritual/agreement.tsx';
+import { StarsCast } from '../ritual/stars-cast.tsx';
 import { useRereadOn } from '../world/use-world-data.ts';
 import { DiceFaces } from './big-roll.tsx';
 import { PlaceCard } from './place-card.tsx';
@@ -58,8 +64,14 @@ export function CastView(props: Props) {
       return <TitleCard title={cast.title} subtitle={cast.subtitle} />;
     case 'chronicle':
       return <ChronicleCast {...props} />;
+    case 'stars':
+      return <StarsCast api={props.api} refresh={props.refresh} />;
+    case 'agreement':
+      return <AgreementCast api={props.api} refresh={props.refresh} />;
     case 'picture':
       return <PictureCast {...props} entityId={cast.entityId} />;
+    case 'story':
+      return <StoryCast {...props} entityId={cast.entityId} text={cast.text} />;
     case 'join':
       return <JoinCast {...props} />;
     case 'blank':
@@ -84,6 +96,10 @@ function useRead<T>(
   useRereadOn(refresh, read.reread);
   return read.resource.status === 'ready' ? read.resource.value : null;
 }
+
+/** How much larger than 16 px the page's type is (styles/display-tv.css): the board's squares follow. */
+const rootScale = () =>
+  Math.max(1, Number.parseFloat(getComputedStyle(document.documentElement).fontSize) / 16 || 1);
 
 const nameIn = (directory: readonly EntityRef[], id: string | null) =>
   directory.find((entity) => entity.entityId === id)?.name ?? null;
@@ -226,7 +242,7 @@ function Battle({
             choose: () => undefined,
             zoomIn: null,
             zoomOut: null,
-            maxCell: 140,
+            maxCell: Math.round(140 * rootScale()),
           }}
           onPick={() => undefined}
         />
@@ -295,17 +311,13 @@ function ChronicleCast(props: Props) {
   const list = useRead(props, 'chronicle', (api, signal) =>
     api.get<ChronicleListResponse>('chronicle', signal),
   );
-  const chapter = list?.chapters.at(-1) ?? null;
+  // "Previously…" (ADR 0071 §1.4): the party's newest chapter, as every other screen shows it.
+  const chapter = list ? newestPartyChapter(list.chapters) : null;
   if (!chapter)
     return <TitleCard title={t('The Chronicle is still empty')} subtitle={props.campaignName} />;
   return (
     <section className="display-chronicle" aria-label={chapter.title}>
-      <article>
-        <h1>{chapter.title}</h1>
-        {chapter.prose.paragraphs.slice(0, 4).map((paragraph, index) => (
-          <p key={index}>{paragraph.text}</p>
-        ))}
-      </article>
+      <Previously api={props.api} chapter={chapter} heading="h1" />
     </section>
   );
 }
@@ -317,12 +329,54 @@ function PictureCast(props: Props & { readonly entityId: string }) {
   );
   const art = useApprovedImage(shown?.presentation.image ?? null);
   const name = nameIn(props.directory, props.entityId);
-  if (!art) return <div className="display-blank" role="img" aria-label={props.campaignName} />;
+  // Nothing approved to show: its name on a title card, never a dark screen that looks broken.
+  if (!art) return <TitleCard title={name ?? props.campaignName} subtitle="" />;
   return (
     <figure className="display-picture">
       <img src={art} alt={name ?? ''} />
       {name && <figcaption>{name}</figcaption>}
     </figure>
+  );
+}
+
+/**
+ * Theatre of the mind (docs/adr/0073-table-ideas.md §8): one large picture the party knows — the
+ * game's key art where there is none — and the words someone reads aloud, each paragraph its own.
+ */
+function StoryCast(props: Props & { readonly entityId: string | null; readonly text: string }) {
+  const t = useT();
+  const path =
+    props.entityId === null ? null : `entities/${encodeURIComponent(props.entityId)}/presentation`;
+  const shown = useRead(props, `story:${path ?? ''}`, (api, signal) =>
+    path === null ? Promise.resolve(null) : api.get<EntityPresentationResponse>(path, signal),
+  );
+  const art = useApprovedImage(shown?.presentation.image ?? null);
+  const name = nameIn(props.directory, props.entityId);
+  const paragraphs = props.text.split(/\n+/).filter((line) => line.trim() !== '');
+  // Much text, or many short lines (a verse, a riddle), stands smaller so that all of it fits;
+  // a line or two stand large, to be read from across the room.
+  const load =
+    props.text.length > 450 || paragraphs.length > 6
+      ? 'long'
+      : props.text.length > 250 || paragraphs.length > 3
+        ? 'mid'
+        : props.text.length <= 90 && paragraphs.length <= 2
+          ? 'brief'
+          : 'short';
+  return (
+    <section className="display-story" data-load={load} aria-label={t('A story read aloud')}>
+      <img
+        className="display-story-art"
+        src={art ?? textureUrl('brand-keyart')}
+        alt={art !== null && name !== null ? name : ''}
+      />
+      <div className="display-story-scrim" aria-hidden="true" />
+      <div className="display-story-words">
+        {paragraphs.map((paragraph, index) => (
+          <p key={`${String(index)}:${paragraph}`}>{paragraph}</p>
+        ))}
+      </div>
+    </section>
   );
 }
 
@@ -335,6 +389,8 @@ function JoinCast(props: Props) {
     api.get<ChronicleListResponse>('chronicle', signal),
   );
   const last = chronicle?.chapters.at(-1) ?? null;
+  // When the table meets again (ADR 0071 §3), under the way in.
+  const lobby = useRead(props, 'lobby', (api, signal) => api.get<LobbyResponse>('lobby', signal));
   return (
     <section className="display-join" aria-label={t('Join the table')}>
       <div className="display-join-card">
@@ -342,7 +398,7 @@ function JoinCast(props: Props) {
         {join?.link && join.code ? (
           <>
             <QrCode text={join.link} label={t('QR code to join the table')} />
-            <p>{t('Scan with your phone, sign in, and choose your character.')}</p>
+            <p>{t('Scan with your phone and choose your hero.')}</p>
             <p className="display-code">{`${join.code.slice(0, 4)} ${join.code.slice(4)}`}</p>
             <p className="display-hint">
               {t('Or open {address} and type this code.', {
@@ -353,6 +409,7 @@ function JoinCast(props: Props) {
         ) : (
           <p>{t('The DM has not opened the table to join yet.')}</p>
         )}
+        {lobby?.nextGame && <NextGameLine next={lobby.nextGame} className="next-game--display" />}
       </div>
       {last && (
         <aside className="display-recap">

@@ -37,6 +37,10 @@
   translate: -50% 0;
   user-select: none;
 }
+/* Turned to its left: the picture mirrored about its middle, the base where it stood */
+.miniature.is-mirrored .miniature-art {
+  scale: -1 1;
+}
 .miniature.is-dead .miniature-art,
 .miniature.is-unconscious .miniature-art {
   filter: grayscale(1) brightness(0.6);
@@ -82,13 +86,28 @@
   filter: drop-shadow(0 0 1px var(--side)) drop-shadow(0 0 7px var(--side-glow))
     drop-shadow(0 4px 6px color-mix(in srgb, var(--umbra) 70%, transparent));
 }
-.board--tilted .token.has-miniature .token-plate {
-  position: relative;
-  z-index: 1;
-  margin-top: calc(var(--cell) * -0.2);
+/*
+ * Tilted, a figure stands on its painted base in the middle of its square and the plate lies
+ * below it (`geometry.ts` `BASE_FRONT`), so the token keeps no room for the plate. The square's
+ * ring is not drawn under a figure (owner, 2026-11-17: a ring half hidden by the base read as a
+ * halo, then as a broken arc): the side shows in the figure's outline, the turn and the selection
+ * in the light under its base, an area in its square's glow.
+ */
+.board--tilted .token.has-miniature .token-plate--room,
+.board--tilted .token.has-miniature .token-ring {
+  display: none;
+}
+.board--tilted .token.has-miniature .token-figure {
+  bottom: calc(var(--cell) * 0.3);
 }
 .token.has-miniature.is-current .miniature-light {
   background: radial-gradient(closest-side, var(--side-glow), transparent);
+  animation: turn-glow-light 1.8s ease-in-out infinite alternate;
+}
+@keyframes turn-glow-light {
+  to {
+    opacity: 0.55;
+  }
 }
 .token.has-miniature.is-selected .miniature-light {
   background: radial-gradient(closest-side, var(--teal-glow), transparent);
@@ -206,7 +225,7 @@
   font-size: 0.95rem;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 767px), (max-width: 1199px) and (max-height: 500px) {
   .object-button--figure .miniature,
   .world-objects:has(> li:nth-child(5)) .object-button--figure .miniature {
     --mini-h: 104px;

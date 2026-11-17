@@ -213,7 +213,7 @@
     max-width: calc(100vw - 152px - var(--panel-w));
   }
 }
-@media (max-width: 767px) {
+@media (max-width: 767px), (max-width: 1199px) and (max-height: 500px) {
   /* A phone's scene flows under a two-row top bar: the banner sits above the tab bar and the
      result (--outcome-h, shell/reserved-height.ts), the scene keeps room for it, and a sheet or
      panel over the whole screen hides it. */
@@ -228,7 +228,36 @@
     max-width: none;
     translate: none;
   }
-  .world-main:has(.rest-banner) .stage {
+  /* The lobby may hold several cards at once (ADR 0071): the column stops under the top bar's
+     real height (alerts/slot-room.ts) and scrolls there, each card whole, its hidden edge faded. */
+  .rest-banner-slot {
+    max-height: calc(
+      100dvh - var(--topbar-real-h, 9rem) - var(--dock-h) - var(--outcome-h, 0px) - 32px
+    );
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: none;
+  }
+  .rest-banner-slot > * {
+    flex-shrink: 0;
+  }
+  .rest-banner-slot[data-more-after] {
+    mask-image: linear-gradient(to bottom, #000 calc(100% - 28px), transparent);
+  }
+  .rest-banner-slot[data-more-before] {
+    mask-image: linear-gradient(to bottom, transparent, #000 28px);
+  }
+  .rest-banner-slot[data-more-before][data-more-after] {
+    mask-image: linear-gradient(
+      to bottom,
+      transparent,
+      #000 28px,
+      #000 calc(100% - 28px),
+      transparent
+    );
+  }
+  /* (The line that answers a request for a pause is as small as the button it replaces.) */
+  .world-main:has(.rest-banner:not(.pause-asked)) .stage {
     padding-bottom: calc(var(--dock-h) + var(--outcome-h, 0px) + 8rem);
   }
   .world-main:has(.sheet:not([hidden]), .detail-panel:not([hidden])) .rest-banner-slot {

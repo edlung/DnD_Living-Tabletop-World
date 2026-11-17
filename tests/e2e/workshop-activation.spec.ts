@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect } from '@playwright/test';
 
 import type {
   CampaignRevisionView,
@@ -7,6 +7,7 @@ import type {
   SessionResponse,
 } from '../../packages/contracts/src/index.ts';
 import { SIGN_IN_ORIGIN } from '../../apps/server/src/testing/ui-sign-in-links.ts';
+import { test } from './support/journey.ts';
 import { draftApi } from './support/workshop.ts';
 import {
   acknowledgeActivation,

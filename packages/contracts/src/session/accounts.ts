@@ -4,7 +4,8 @@ import type { ChatChannel, ChatVoice } from '../chat/chat.ts';
 import type { RollGroup, RollSubject } from '../dice/rolls.ts';
 import type { Language } from '../language/language.ts';
 import { CREDENTIAL_TOKEN_PATTERN } from './auth.ts';
-import type { CampaignAway } from './lobby.ts';
+import type { KeepsakeKind } from './ending.ts';
+import type { CampaignAway, NextGame } from './lobby.ts';
 
 /**
  * Accounts (docs/adr/0041-accounts.md, Stage 600): a login and a password that hold a person's seats
@@ -86,6 +87,32 @@ export interface AccountCampaign {
   readonly characters: readonly { readonly entityId: string; readonly name: string }[];
   /** Played on another server since a move; null at home (docs/adr/0061-local-mode.md §5). */
   readonly away: CampaignAway | null;
+  /** When its table meets again; null when no date is set or it has passed (ADR 0071 §3). */
+  readonly nextGame: NextGame | null;
+  /**
+   * How many chapters the party's story holds: above none, its book has something to read
+   * (docs/adr/0072-keepsakes.md §1). A count, nothing of what they tell.
+   */
+  readonly chapters: number;
+  /**
+   * The adventure is over (docs/adr/0072-keepsakes.md §2): when its DM finished it, the days it
+   * was played, its heroes and what each keeps, as the whole table reads them. Null while it is
+   * played.
+   */
+  readonly finished: FinishedCampaign | null;
+}
+
+export interface FinishedCampaign {
+  readonly finishedAt: string;
+  /** The first and the last real day played; null when no evening was. */
+  readonly played: { readonly from: string; readonly to: string } | null;
+  readonly heroes: readonly string[];
+  readonly keepsakes: readonly {
+    readonly hero: string;
+    readonly kind: KeepsakeKind;
+    readonly label: string;
+    readonly line: string;
+  }[];
 }
 
 /** `GET /account`: the signed-in account, or 401. */
@@ -126,6 +153,41 @@ export interface AccountChatLine {
   readonly text: string;
 }
 
+/** A star and a wish one wrote at an evening's end, in a copy of one's data (ADR 0071 §2). */
+export interface AccountReflectionLine {
+  readonly at: string;
+  /** The session's title. */
+  readonly session: string;
+  /** The character it was written as; null for the DM. */
+  readonly author: string | null;
+  readonly star: string;
+  readonly wish: string;
+}
+
+/** What one's hero keeps from a finished adventure, in a copy of one's data (ADR 0072 §2). */
+export interface AccountKeepsakeLine {
+  readonly at: string;
+  readonly hero: string;
+  readonly label: string;
+  readonly line: string;
+}
+
+/** One's hero's backstory, in a copy of one's data (ADR 0073 §5). */
+export interface AccountBackstoryLine {
+  readonly at: string;
+  readonly hero: string;
+  readonly body: string;
+}
+
+/** A private note one wrote, in a copy of one's data (ADR 0073 §5). */
+export interface AccountNoteLine {
+  readonly at: string;
+  /** The character it was written as. */
+  readonly hero: string;
+  readonly title: string;
+  readonly body: string;
+}
+
 /** A roll one made, in a copy of one's data. */
 export interface AccountRollLine {
   readonly at: string;
@@ -144,6 +206,14 @@ export interface AccountCampaignData {
   readonly characters: readonly { readonly entityId: string; readonly name: string }[];
   readonly chat: readonly AccountChatLine[];
   readonly rolls: readonly AccountRollLine[];
+  readonly reflections: readonly AccountReflectionLine[];
+  readonly keepsakes: readonly AccountKeepsakeLine[];
+  /** A player's own heroes' backstories; none for a DM (ADR 0073 §5). */
+  readonly backstories: readonly AccountBackstoryLine[];
+  /** The private notes the account's own seat wrote here. */
+  readonly notes: readonly AccountNoteLine[];
+  /** A DM's last words to the table at a campaign's end; null for a player, or when none. */
+  readonly closingLine: string | null;
 }
 
 /**

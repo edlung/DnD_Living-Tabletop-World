@@ -1,0 +1,42 @@
+{
+  "date": "2026-11-16",
+  "source": "The owner's word typed in a working session on 2026-11-16, after that session showed a list of ideas borrowed from other D&D tools. This record is written by the cloud session that the working session started: it did not see the owner type; the words below are quoted as that session relayed them in the task it handed over.",
+  "ownerInstruction": "приступай к реализации этих улучшений. все что возможно сделай в облаке, доступ к github у тебя есть.",
+  "shownToTheOwner": {
+    "note": "The ideas as the task relayed them, in the order the previous session recommended to the owner. The list is that session's; the order is its recommendation, not the owner's choice.",
+    "ideas": [
+      "Client error reports: today a crash on a child's phone is invisible. A small report — the error's name, the screen, the build, the browser; never world data, never words anyone typed — kept on the server where the DM or the operator can read it, rate-limited, named in the privacy notice.",
+      "A short way to a pause: a player's quiet request for a pause is three presses deep and reaches the DM only as an unread mark in Chat. One press from the player's screen during play, noticeable to the DM alone, unseen by other players and the TV.",
+      "\"What can I do?\" on a player's turn: a hint on the character's own screen that lists what the hero can do now, from what the server already knows, in a child's words.",
+      "The party's encyclopedia: between games, who the party met, where it has been, what it knows — from the PARTY perspective's knowledge and the party's chapters, beside the book of the campaign. Read only, PARTY only.",
+      "Players' private notes and a hero's backstory: planned in Stage 630 and never built. A backstory is read by its player and the DM; a private note is the player's alone.",
+      "A scene that brings its sound: a place or a prepared scene carries its ambience and music choice so that showing it switches them on together.",
+      "A shorter way in for a guest: the table's join link with every step removed that a grandmother with a phone does not need.",
+      "Theatre of the mind on the table's screen: a cast that is one large picture with the narrator's or the DM's words, for evenings without a battlefield.",
+      "Sealed envelopes: a handout the DM prepares in advance that opens for the party when the DM says or when a named chapter is written.",
+      "\"I'll come / I can't\" for the next game: an answer beside the date, read by the table; no notification from the app. docs/MEMORY_RITUAL_PLAN.md decision 14 had put it outside the earlier package."
+    ],
+    "notToBorrow": [
+      "marketplaces",
+      "subscriptions",
+      "achievements for their own sake",
+      "an AI game master in the DM's place",
+      "heavy map tools"
+    ]
+  },
+  "authorizedStages": ["800", "810", "820", "830", "840", "850", "860", "870", "880", "890"],
+  "authorization": "«приступай к реализации этих улучшений. все что возможно сделай в облаке, доступ к github у тебя есть.» — the session's reading (not the owner's words): the ten listed ideas are built in a cloud session, each stage in its own pull request; GitHub access is for branches and draft pull requests. No merge, no deployment, no word on any single design.",
+  "howToProceed": "The standing word of 2026-11-15 for this kind of program, «не спрашивай меня, а действуй по плану до конца» (reviews/OWNER_MEMORY_RITUAL_2026-11-15.json), is applied here by the session that handed the task over: the stages follow the plan without asking to start each; open product points are settled by the session and recorded as \"Session's decisions\"; the owner is travelling and reads the reports later. That word was given for the package «Память и ритуал»; applying it to this program is the sessions' reading, and the owner may withdraw it.",
+  "plan": "docs/TABLE_IDEAS_PLAN.md",
+  "delegation": "None recorded beyond the words above. Every decision of the plan marked (S) is the session's and stays the owner's to overrule; the only decisions marked (O) are the request itself and the earlier owner's answers the plan leans on.",
+  "reversal": "The tenth idea reverses docs/MEMORY_RITUAL_PLAN.md decision 14 (a session's default, marked (S) there), which left answers to the date outside the earlier package. The owner's new word asks for the listed ideas, and the list included it; Stage 890's report says so.",
+  "askedAtTheTime": "Merges into main, deployments, the family playtest, builds on the family's devices.",
+  "unchangedBoundaries": [
+    "World Engine authority: everything this program stores is table or operations data beside the world, never canonical, read by no World Engine decision",
+    "knowledge isolation: players and the table's display read the PARTY perspective or their own character's, never the DM's secrets; a private note is its player's alone",
+    "AI optional: every stage works without a key; no new paid call",
+    "no push service, no service worker, no third-party SDK (FULL_GAME_PLAN decision 10, ADR 0070): error reports stay on the family's own server",
+    "all art from the OpenAI image model; the app draws only game markup and reuses the UI kit's glyphs",
+    "human play acceptance is the owner's and is reported honestly"
+  ]
+}

@@ -51,6 +51,7 @@ export function Token({
   span = 1,
   cell = 0,
   riding = false,
+  facingLeft = false,
 }: {
   readonly combatant: EncounterCombatantView;
   /** Its name, or "Unidentified creature N" (`combat/labels.ts`). */
@@ -74,6 +75,8 @@ export function Token({
   readonly riding?: boolean;
   /** The board's square in pixels, to scale a spanning figure. */
   readonly cell?: number;
+  /** Its standing figure turns to its left, to the nearest opponent (`facing.ts`). */
+  readonly facingLeft?: boolean;
 }) {
   const t = useT();
   const standing = useHeldImage(figure);
@@ -114,7 +117,7 @@ export function Token({
           </span>
         )}
         {upright ? (
-          <Miniature url={standing.url} condition={condition} />
+          <Miniature url={standing.url} condition={condition} mirrored={facingLeft} />
         ) : (
           <Medallion
             image={image}

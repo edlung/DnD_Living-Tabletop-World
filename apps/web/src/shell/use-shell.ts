@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
+import { reportPart } from '../report/reporter.ts';
+
 /**
  * The dock's sheets (docs/STAGE_320_DESIGN.md §5.1); DM sheets only in the DM perspective (the
  * DM's Images, docs/STAGE_330_DESIGN.md "DM controls"), and Players only with production sign-in
@@ -69,8 +71,8 @@ function rememberSheet(key: string | undefined, sheet: SheetId | null): void {
   }
 }
 
-/** The character dialog's tabs (Stage 500). */
-export type HeroTab = 'overview' | 'skills' | 'spells' | 'inventory';
+/** The character dialog's tabs (Stage 500); Story is a hero's own player's and the DM's (ADR 0073 §5). */
+export type HeroTab = 'overview' | 'skills' | 'spells' | 'inventory' | 'story';
 
 export const sheetElementId = (id: SheetId) => `sheet-${id}`;
 export const dockButtonId = (id: SheetId | 'scene' | 'chronicle' | 'character') => `dock-${id}`;
@@ -97,13 +99,22 @@ export function useShell(rememberAs?: string) {
     rememberSheet(rememberAs, next);
   };
   const [chronicle, setChronicle] = useState(false);
+  // The Chronicle shows the campaign's whole book instead of its chapters (ADR 0072 §1).
+  const [whole, setWhole] = useState(false);
+  // The chapter the book was asked to open at (a recap's "Read on"); the book takes it once.
+  const [chapter, setChapter] = useState<{ readonly chronicleId: string } | null>(null);
   // The character dialog (Stage 500): whose sheet is open, and the tab it was last read at.
   const [hero, setHero] = useState<string | null>(null);
   const [heroTab, setHeroTab] = useState<HeroTab>('overview');
   const last = useRef<'sheet' | 'details'>('sheet');
+  // What is open, for a report of what broke (docs/adr/0073-table-ideas.md §1): a name only.
+  reportPart(chronicle ? 'chronicle' : hero !== null ? 'hero' : (sheet ?? 'none'));
   return {
     sheet,
     chronicle,
+    chronicleChapter: chapter,
+    chronicleWhole: whole,
+    showWholeBook: setWhole,
     hero,
     heroTab,
     /** Opens a character's dialog, at a tab when one is named (else where it was last read). */
@@ -137,7 +148,17 @@ export function useShell(rememberAs?: string) {
     dismissSheet: () => {
       setSheet(null);
     },
-    openChronicle: () => {
+    /** Opens the book, at a chapter when one is named (each asking is a new one). */
+    openChronicle: (chronicleId: string | null = null) => {
+      if (chronicleId !== null) {
+        setChapter({ chronicleId });
+        setWhole(false);
+      }
+      setChronicle(true);
+    },
+    /** Opens the Chronicle at the campaign's whole book. */
+    openBook: () => {
+      setWhole(true);
       setChronicle(true);
     },
     closeChronicle: () => {

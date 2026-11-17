@@ -1,0 +1,188 @@
+/* The table's agreement and the DM's guide (docs/adr/0071-memory-and-ritual.md §4). */
+.agreement-page {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+}
+.agreement-page dt {
+  margin-top: 8px;
+  color: var(--gold-bright);
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.agreement-page dt:first-child {
+  margin-top: 0;
+}
+.agreement-page dd {
+  margin: 0;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+.agreement-page ul {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding-left: 1.2em;
+}
+.agreement-own {
+  display: block;
+  font-style: italic;
+}
+/* The player's card in the lobby: glass, like the next game's line beside it. */
+.previously-brief.agreement-card {
+  width: min(100%, 560px);
+}
+.agreement-card .previously-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.agreement-card .previously-eyebrow .glyph {
+  width: 18px;
+  height: 18px;
+}
+/* The dialog sits in the lobby's slot, which lets presses through to the scene: not this. */
+.agreement-dialog {
+  pointer-events: auto;
+}
+/* On the DM's sheet. */
+.agreement-tool {
+  /* Its empty status lines are hidden in place, not at the page's far end. */
+  position: relative;
+  display: grid;
+  gap: 8px;
+}
+.agreement-tool > p,
+.agreement-tool h4 {
+  margin: 0;
+}
+.agreement-readers {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.agreement-readers li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 4px 12px;
+  min-height: 32px;
+}
+.agreement-readers li > :first-child {
+  overflow-wrap: anywhere;
+}
+.agreement-yes {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+.agreement-form fieldset {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.agreement-form legend {
+  padding: 0;
+  margin-bottom: 4px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+.agreement-form .choice-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  min-height: 28px;
+  line-height: 1.35;
+}
+.agreement-form .choice-row input {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  min-height: 0;
+  margin: 2px 0 0;
+  padding: 0;
+}
+/* Before the first evening. */
+.first-evening {
+  display: grid;
+  gap: 8px;
+}
+.first-evening-steps {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.first-evening-steps li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  line-height: 1.4;
+}
+.first-evening-steps .is-done {
+  color: var(--text-muted);
+}
+.first-evening-mark {
+  flex: none;
+  width: 1em;
+  color: var(--gold-bright);
+  font-weight: 700;
+  text-align: center;
+}
+/* The guide by role: two buttons, the pressed one marked by more than its colour. */
+.guide-parts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.guide-parts button[aria-pressed='true'] {
+  border-color: var(--gold);
+  color: var(--gold-bright);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+/* "Our table": what was asked is said above the buttons, where a short screen still shows it. */
+.our-table-asked {
+  margin: 0;
+  color: var(--gold-bright);
+  font-weight: 600;
+}
+.our-table-asked:empty {
+  display: none;
+}
+/* On the table's screen: the page in the screen's own size, under its heading's edge. */
+.display-agreement .display-stars-page {
+  width: min(92%, 44em);
+  font-size: clamp(1.1rem, 2.8vmin, 3.6rem);
+}
+.display-agreement .agreement-page {
+  gap: 0.6vmin;
+  text-align: left;
+}
+.display-agreement .agreement-page dt {
+  margin-top: 2vmin;
+  /* On the screen's parchment: the rubric's ink, never smaller than a TV can show. */
+  color: var(--rubric);
+  font-size: max(12px, 0.7em);
+}
+/* A long list takes two columns: the screen does not scroll. */
+.display-agreement .agreement-many {
+  display: block;
+  columns: 2;
+  column-gap: 2em;
+}
+.display-agreement .agreement-many li {
+  break-inside: avoid;
+  margin-bottom: 0.3em;
+}
+.display-agreement-then {
+  margin: 0;
+  font-size: 0.8em;
+  font-style: italic;
+}

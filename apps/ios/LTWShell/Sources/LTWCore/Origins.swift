@@ -21,8 +21,11 @@ public enum Origins {
     }
 
     private static let loopback: Set<String> = ["localhost", "127.0.0.1"]
+    /// The start page, a table's code, and the links that carry a token: a player's invitation, a
+    /// password reset, and the workshop's invitation of a co-author.
     private static let linkPaths: Set<String> = [
         "", "/", "/table", "/table/", "/join", "/join/", "/reset", "/reset/",
+        "/workshop/join", "/workshop/join/",
     ]
 
     /// A typed server as its origin, `https://host[:port]`, or nil.

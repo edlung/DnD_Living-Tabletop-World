@@ -1,5 +1,6 @@
-import { expect as baseExpect, test, type Page } from '@playwright/test';
+import { expect as baseExpect, type Page } from '@playwright/test';
 
+import { test } from './support/journey.ts';
 import { LIVE_URL, readsQuiet } from './support/live.ts';
 import { dockButton } from './support/shell.ts';
 import {
@@ -54,6 +55,10 @@ test('tabs still showing the DM’s world are signed out once another tab replac
   await openInvitation(player, link);
   const question = accessState(player, words.replaceQuestion);
   await expect(question).toContainText('You are signed in to “The Missing Caravan” as the DM.');
+  // The question takes the focus in an effect, a moment after its words are drawn: a key pressed
+  // in between is not counted as the person's (the choice never arms) and leaves the focus on
+  // "Keep". Every other journey that asks this question waits for that focus first.
+  await expect(question.getByRole('button', { name: words.keep })).toBeFocused();
   await player.keyboard.press('Tab');
   const replace = question.getByRole('button', { name: words.replace });
   await expect(replace).toBeFocused();

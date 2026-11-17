@@ -46,6 +46,8 @@ targetTemplates:
         LTWAllowsLoopback: $(LTW_ALLOWS_LOOPBACK)
         ITSAppUsesNonExemptEncryption: false
         NSCameraUsageDescription: The camera scans the table’s QR code. Nothing it sees leaves the device.
+        NSMicrophoneUsageDescription: The microphone is for the table’s voice chat. Its sound goes only to the people at the table.
+        NSLocalNetworkUsageDescription: The app connects to the game’s server on your home network, such as the DM’s laptop.
         NSAppTransportSecurity:
           NSAllowsLocalNetworking: true
         UILaunchScreen:

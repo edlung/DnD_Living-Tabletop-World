@@ -31,6 +31,7 @@ export function PartySheet({
   open,
   revision,
   locationId,
+  sessionId,
   directory,
   locked,
   onRun,
@@ -43,6 +44,8 @@ export function PartySheet({
   readonly directory: readonly EntityRef[];
   /** The viewed place: a ruling happens at the world time read there. */
   readonly locationId: string | null;
+  /** The session that plays: a ruling is one of its memories (ADR 0071 §1.2). */
+  readonly sessionId: string | null;
   readonly locked: boolean;
   readonly onRun: (command: DmTableCommand) => void;
   readonly onOpenSheet: (entityId: string) => void;
@@ -121,6 +124,7 @@ export function PartySheet({
           api={api}
           characters={characters.map((entry) => entry.character)}
           locationId={locationId}
+          sessionId={sessionId}
           revision={revision}
           locked={locked}
           onRun={onRun}
@@ -143,6 +147,7 @@ function RulingForm({
   api,
   characters,
   locationId,
+  sessionId,
   revision,
   locked,
   onRun,
@@ -150,6 +155,7 @@ function RulingForm({
   readonly api: WorldApi;
   readonly characters: readonly EntityRef[];
   readonly locationId: string | null;
+  readonly sessionId: string | null;
   readonly revision: number;
   readonly locked: boolean;
   readonly onRun: (command: DmTableCommand) => void;
@@ -187,6 +193,8 @@ function RulingForm({
       summary: summary.trim(),
       occurredAt: worldTime,
       participants: [...who],
+      // Recorded with the session that plays, so its chapter tells it (ADR 0071 §1.2).
+      ...(sessionId === null ? {} : { sessionId }),
       reason: reason.trim(),
     });
     setSummary('');
