@@ -48,6 +48,11 @@ const entrySchema = z
     generated: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
     references: z.array(z.string().min(1)),
     prompt: z.string().min(1),
+    /**
+     * A figure drawn facing left and mirrored when the set was built, so that every figure faces
+     * right (owner, 2026-11-17; `scripts/curated-set`, `apps/web/src/combat/board/facing.ts`).
+     */
+    mirrored: z.literal(true).optional(),
   })
   .strict();
 

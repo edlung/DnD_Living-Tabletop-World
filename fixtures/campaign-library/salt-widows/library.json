@@ -1361,8 +1361,8 @@
    "derivedFrom": null
   },
   {
-   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/token-predator.webp",
-   "sha256": "3dfb43e5eeb0a4dfda4545a261fc92195e85bf12ea17766fbe356467bd3d4969",
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/runtime/token-predator--figure.webp",
+   "sha256": "c574ea687de66e47f542a03397f69b5f2b372bb94b88f7d166b743d44390acee",
    "originalSha256": "5ec1a68c2acca944d3ba7e156996b657f31f83132153ee5c28517ceded2661dc",
    "generated": "2026-11-14",
    "prompt": "Generate one image and save it as token-predator.png in the current directory.\nGame token figure on a fully transparent background, top three-quarter view, no ground shadow. A pale eyeless salt predator like a shark that swims through salt crust, white rough hide, fins cutting through crystals.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",

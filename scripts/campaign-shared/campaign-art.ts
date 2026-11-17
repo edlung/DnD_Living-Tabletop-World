@@ -26,6 +26,12 @@ export interface ArtPrompt {
   srd?: string;
   /** First evening a player may see it, when the picture shows more than the entity's first appearance. */
   reveal?: number;
+  /**
+   * A cut-out drawn facing left: its tabletop figure is mirrored so that every figure faces right
+   * (owner, 2026-11-17; the board turns a figure to its nearest opponent,
+   * `apps/web/src/combat/board/facing.ts`). The picture itself stays as drawn.
+   */
+  facesLeft?: true;
 }
 export interface ArtAsset {
   id: string;
@@ -46,6 +52,24 @@ export interface ArtAsset {
   srd?: string;
   prompt: string;
   references: string[];
+  /** Its tabletop figure, the picture mirrored (`ArtPrompt.facesLeft`): runtime file and hash. */
+  figureFile?: string;
+  figureSha256?: string;
+}
+
+/**
+ * The tabletop figure of a cut-out drawn facing left: its runtime picture mirrored, written beside
+ * it as `runtime/<id>--figure.webp` (`ArtPrompt.facesLeft`).
+ */
+export async function writeMirroredFigure(
+  assetsDir: URL,
+  id: string,
+): Promise<{ figureFile: string; figureSha256: string }> {
+  const picture = await readFile(new URL(`runtime/${id}.webp`, assetsDir));
+  const figure = await sharp(picture).flop().webp({ quality: 88, effort: 5 }).toBuffer();
+  const figureFile = `runtime/${id}--figure.webp`;
+  await writeFile(new URL(figureFile, assetsDir), figure);
+  return { figureFile, figureSha256: hash(figure) };
 }
 
 /** What the art tools read from a campaign source; collection and fantasy sources both fit. */
@@ -166,6 +190,7 @@ export async function prepareArt(campaignDir: URL, s: ArtSource): Promise<ArtAss
       ...(entry.srd ? { srd: entry.srd } : {}),
       prompt: entry.prompt,
       references: entry.references,
+      ...(entry.facesLeft ? await writeMirroredFigure(dir, entry.id) : {}),
     });
   }
   await writeFile(

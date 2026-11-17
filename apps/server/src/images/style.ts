@@ -58,10 +58,13 @@ const VARIANT_PARTS: Readonly<Record<string, string>> = {
   dead: 'lying still and lifeless, eyes closed, no gore',
 };
 
+// Every figure faces right: the board turns one to its nearest opponent by mirroring it
+// (owner, 2026-11-17; apps/web/src/combat/board/facing.ts).
 const FIGURE =
   'Draw a full-body painted tabletop miniature of the same character standing on a round dark ' +
-  'stone base, three-quarter view from slightly above, isolated on a pure flat black background ' +
-  '(#000000), no cast shadow beyond the base. FRAMING: square 1:1.';
+  'stone base, three-quarter view from slightly above, body and gaze turned toward the ' +
+  "viewer's right, isolated on a pure flat black background (#000000), no cast shadow beyond " +
+  'the base. FRAMING: square 1:1.';
 
 const BATTLE_MAP =
   'Draw the same place seen straight from above as a tabletop battle map (orthographic ' +

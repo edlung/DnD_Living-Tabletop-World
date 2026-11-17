@@ -1520,8 +1520,8 @@
    "derivedFrom": null
   },
   {
-   "source": "campaigns/dark-fantasy-2026/marrow-crown/assets/runtime/token-follower.webp",
-   "sha256": "93cd9389542cdc4992a58e00b8f46a2be26c17eb36776413bcf723ce6112afcc",
+   "source": "campaigns/dark-fantasy-2026/marrow-crown/assets/runtime/token-follower--figure.webp",
+   "sha256": "f366d6a08a79d5158b9041d47cba02ee9443f667462f02767f1172153688ce97",
    "originalSha256": "38346a0e367829aaa99ce892135e60188b4f0251f11621caa291a7175bc38ddf",
    "generated": "2026-11-14",
    "prompt": "Generate one image and save it as token-follower.png in the current directory.\nGame token figure on a fully transparent background, top three-quarter view, no ground shadow. A long dry segmented shell like a spine, its front a beak ringed by four thin bone fingers, crawling.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and charcoal ink lines, crisp readable silhouettes, deep chiaroscuro lit by torches and bioluminescent marrow glow; palette of bone ivory and old yellowed white, salt grey, dried-blood rust and deep marrow red, torch amber, with near-black umber shadows. Dread, awe and endurance; unsettling organic architecture of bone and sinew but no gore, no open wounds, no corpses shown in detail, no horror-movie jump scare, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",

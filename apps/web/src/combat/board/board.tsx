@@ -21,6 +21,7 @@ import { dangersOf } from './dangers.ts';
 import { BoardPlates } from './plates.tsx';
 import { squareName } from './square-name.ts';
 import { TerrainCard } from './terrain-card.tsx';
+import { turnedLeft } from './facing.ts';
 import { footprint, spanOf } from './footprint.ts';
 import { CoverPiece, Token } from './token.tsx';
 import { usePaintStroke } from './paint-stroke.ts';
@@ -135,6 +136,7 @@ export function Board({
   );
   const walk = new Set(path.map(key));
   const destination = path.at(-1);
+  const facingLeft = turnedLeft(encounter.combatants);
   const mover = encounter.combatants.find((entry) => entry.entity.entityId === moverId);
   // The pointer over a square, or over the plate of the combatant standing on it (`plates.tsx`).
   const point = (square: Square, over: boolean) => {
@@ -299,6 +301,7 @@ export function Board({
               image={imageOf(occupant.entity.entityId)}
               figure={figureOf(occupant.entity.entityId)}
               tilted={tilt !== null}
+              facingLeft={facingLeft.has(occupant.entity.entityId)}
               current={occupant.entity.entityId === currentCombatantId}
               selected={isSelected}
               inArea={inArea}
@@ -313,6 +316,7 @@ export function Board({
               image={imageOf(rider.entity.entityId)}
               figure={figureOf(rider.entity.entityId)}
               tilted={tilt !== null}
+              facingLeft={facingLeft.has(rider.entity.entityId)}
               current={rider.entity.entityId === currentCombatantId}
               selected={false}
               inArea={affected.has(rider.entity.entityId)}

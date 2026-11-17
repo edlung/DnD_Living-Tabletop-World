@@ -965,7 +965,9 @@
       "references": [
         "cover.png",
         "empty-kitchen.png"
-      ]
+      ],
+      "figureFile": "runtime/token-predator--figure.webp",
+   "figureSha256": "c574ea687de66e47f542a03397f69b5f2b372bb94b88f7d166b743d44390acee"
     },
     {
       "id": "token-raider",

@@ -11,7 +11,7 @@ import { floodOut, load, toSharp } from '../ui-kit/pixels.ts';
  * Turns the GPT originals of a curated set (ADR 0035; Ravenford's, or an adventure's named by
  * `set`, its items naming their `entityIds`) into WebP files and writes
  * <out-dir>/manifest.json with provenance. Processing is mechanical: resize, crop the battle map
- * to the grid's 4:3, black to alpha for figures.
+ * to the grid's 4:3, black to alpha for figures, a left-facing figure mirrored (`mirror`).
  */
 interface GenerationItem {
   readonly name: string;
@@ -30,6 +30,12 @@ interface GenerationItem {
    * the 16 × 12 road map's 4:3 centre.
    */
   readonly grid?: readonly [number, number];
+  /**
+   * A figure drawn facing left, mirrored so that every figure faces right: the board turns a
+   * figure to its nearest opponent by mirroring it back (owner, 2026-11-17;
+   * `apps/web/src/combat/board/facing.ts`).
+   */
+  readonly mirror?: true;
 }
 
 /**
@@ -111,12 +117,14 @@ async function encode(item: GenerationItem, source: string): Promise<Buffer> {
         .webp({ quality: 84 })
         .toBuffer();
     }
-    case 'figure':
-      return toSharp(floodOut(await load(source), 30))
+    case 'figure': {
+      const figure = toSharp(floodOut(await load(source), 30));
+      return (item.mirror ? figure.flop() : figure)
         .trim({ threshold: 1 })
         .resize({ height: 1024, withoutEnlargement: true })
         .webp({ quality: 88, alphaQuality: 100 })
         .toBuffer();
+    }
   }
 }
 
@@ -149,6 +157,7 @@ for (const item of items) {
     generated: (await stat(source)).mtime.toISOString().slice(0, 10),
     references: item.refs.map((ref) => CONCEPTS[ref] ?? ref),
     prompt: item.prompt,
+    ...(item.mirror ? { mirrored: true } : {}),
   });
   console.log(`built ${file} (${String(Math.round(data.length / 1024))} KB)`);
 }
