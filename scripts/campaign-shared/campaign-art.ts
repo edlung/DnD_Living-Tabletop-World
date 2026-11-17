@@ -16,7 +16,7 @@ import { foeRoster, isKit, type KitEncounter } from './combat-kit.ts';
 export interface ArtPrompt {
   id: string;
   file: string;
-  kind: 'cover' | 'location' | 'portrait' | 'item' | 'token';
+  kind: 'cover' | 'location' | 'portrait' | 'item' | 'token' | 'figure';
   transparent: boolean;
   prompt: string;
   originalFile: string;
@@ -24,6 +24,12 @@ export interface ArtPrompt {
   references: string[];
   /** Token art: the SRD block whose foes this picture shows. */
   srd?: string;
+  /**
+   * Figure art: the hero or NPC whose tabletop figure this is (`<key>--figure`, a painted
+   * miniature on its base, owner 2026-11-17). It stands on the battlefield, derived from the
+   * portrait; the books never show it.
+   */
+  subject?: string;
   /** First evening a player may see it, when the picture shows more than the entity's first appearance. */
   reveal?: number;
   /**
@@ -52,6 +58,8 @@ export interface ArtAsset {
   srd?: string;
   prompt: string;
   references: string[];
+  /** A figure's hero or NPC (`ArtPrompt.subject`). */
+  subject?: string;
   /** Its tabletop figure, the picture mirrored (`ArtPrompt.facesLeft`): runtime file and hash. */
   figureFile?: string;
   figureSha256?: string;
@@ -102,6 +110,11 @@ export function artSubjects(
   s: ArtSource,
   entry: ArtPrompt,
 ): { subjects: string[]; reveal: number; title: string } {
+  if (entry.kind === 'figure') {
+    const key = entry.subject ?? '';
+    if (entry.id !== `${key}--figure`) throw new Error(`Figure ${entry.id} names no subject`);
+    return artSubjects(s, { ...entry, id: key, kind: 'portrait' });
+  }
   const region = s.world.locations.find((l) => l.parent === null);
   if (entry.kind === 'cover')
     return { subjects: region ? [region.key] : [], reveal: 0, title: s.world.title };
@@ -155,12 +168,18 @@ export async function prepareArt(campaignDir: URL, s: ArtSource): Promise<ArtAss
   for (const entry of prompts.images) {
     const original = await readFile(new URL(entry.file, dir));
     const meta = await sharp(original).metadata();
-    if (!meta.width || !meta.height || Math.min(meta.width, meta.height) < 1000)
-      throw new Error(`Image too small: ${entry.id}`);
+    // A standing figure is tall and narrow: its height is what must hold.
+    const side = entry.kind === 'figure' ? meta.height : Math.min(meta.width, meta.height);
+    if (side < 1000) throw new Error(`Image too small: ${entry.id}`);
     if (entry.transparent && !meta.hasAlpha) throw new Error(`Missing alpha: ${entry.id}`);
     if (!entry.originalFile || !entry.generatedAt)
       throw new Error(`Missing provenance: ${entry.id}`);
-    const webp = await sharp(original).webp({ quality: 88, effort: 5 }).toBuffer();
+    // A figure drawn facing left is itself mirrored; a cut-out keeps its picture and gets a
+    // mirrored figure file beside it (`writeMirroredFigure`).
+    const mirrorSelf = entry.kind === 'figure' && entry.facesLeft === true;
+    const webp = await (mirrorSelf ? sharp(original).flop() : sharp(original))
+      .webp({ quality: 88, effort: 5 })
+      .toBuffer();
     if (webp.byteLength > 1_500_000) throw new Error(`Runtime asset too large: ${entry.id}`);
     await writeFile(new URL(`runtime/${entry.id}.webp`, dir), webp);
     const found = artSubjects(s, entry);
@@ -190,7 +209,8 @@ export async function prepareArt(campaignDir: URL, s: ArtSource): Promise<ArtAss
       ...(entry.srd ? { srd: entry.srd } : {}),
       prompt: entry.prompt,
       references: entry.references,
-      ...(entry.facesLeft ? await writeMirroredFigure(dir, entry.id) : {}),
+      ...(entry.subject ? { subject: entry.subject } : {}),
+      ...(entry.facesLeft && !mirrorSelf ? await writeMirroredFigure(dir, entry.id) : {}),
     });
   }
   await writeFile(

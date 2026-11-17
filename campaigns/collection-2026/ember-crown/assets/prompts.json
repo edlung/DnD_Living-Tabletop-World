@@ -1,0 +1,547 @@
+{
+ "tool": "Codex CLI image generation on the owner ChatGPT subscription (CODEX_HOME=~/.codex-review-cli codex exec -i <references>)",
+ "style": "Match one consistent house style: original premium illustrated epic war fantasy for older teens and adults, muted painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Ember Reach, a river valley under low worn mountains, and Ore Crown, a walled mining and forge city at a river crossing under siege: thick weathered stone walls and squat towers, pale ash lying like snow on the battlements and drifting in the air, black banners of the city's hundreds, each with a golden crown of embers, hanging along the wall walks, steep stone streets, workshop awnings and forge glow; beyond the walls a wide trampled field with distant camp fires, and catapults seen only as far-off dark silhouettes against the sky, never in detail; palette of ash grey and soot black, cold slate-blue morning light, weathered stone ochre, rust-brown iron and leather, banner gold, linen white and muted wool green, with warm ember orange and forge amber; grim hope in the ash, a tight defence, quiet courage and the weight of choices; every person shown is clearly an adult. Banners show only plain colour fields and simple emblem shapes; papers, plans, tablets and tokens carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no captives in chains, no threats to children, no anatomy, no weapons pointed at the viewer; no siege machinery details, no firearms, no cannons, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+ "images": [
+  {
+   "id": "cover",
+   "file": "cover.png",
+   "kind": "cover",
+   "transparent": false,
+   "prompt": "Generate one image and save it as cover.png in the current directory.\nWide landscape key art, 3:2. A grey morning over Ore Crown. On the wall walk of the city's East Wall, pale ash lies on the merlons like snow, and a few iron grappling hooks have bitten over the merlon edges; a black banner with a golden crown of embers hangs from a squat corner tower. Below the wall huddle the soot-dark roofs of the coal-burners' quarter, and behind them the city climbs to an upper terrace. Across a trampled field beyond the wall, distant camp fires smoke and the dark silhouettes of catapults stand far off against a pale sky. On the wall walk stand eight adults: a dwarf woman with a short grey streak in her hair and a scratched shield, levering a hook off a merlon with a two-pronged fork on an ash-wood shaft; a short man in a faded cloak with a dispatch satchel and a copper horn on a strap; an elf woman with a travel staff and a linen sash of knotted cords; a man in a wide work scarf holding a leather case of folded plans; a half-orc woman with a dark braid, a mended pauldron and a wooden token on a cord; a dwarf woman in a dark vest with a bright headscarf and a heavy ring of keys; a soft-spoken older man with a cloth-bound notebook; a gnome woman in a wide cloak embroidered with stars, a small notebook bristling with coloured ribbon bookmarks. Ash drifting in the cold wind, grim hope.\n\nMatch one consistent house style: original premium illustrated epic war fantasy for older teens and adults, muted painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Ember Reach, a river valley under low worn mountains, and Ore Crown, a walled mining and forge city at a river crossing under siege: thick weathered stone walls and squat towers, pale ash lying like snow on the battlements and drifting in the air, black banners of the city's hundreds, each with a golden crown of embers, hanging along the wall walks, steep stone streets, workshop awnings and forge glow; beyond the walls a wide trampled field with distant camp fires, and catapults seen only as far-off dark silhouettes against the sky, never in detail; palette of ash grey and soot black, cold slate-blue morning light, weathered stone ochre, rust-brown iron and leather, banner gold, linen white and muted wool green, with warm ember orange and forge amber; grim hope in the ash, a tight defence, quiet courage and the weight of choices; every person shown is clearly an adult. Banners show only plain colour fields and simple emblem shapes; papers, plans, tablets and tokens carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no captives in chains, no threats to children, no anatomy, no weapons pointed at the viewer; no siege machinery details, no firearms, no cannons, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/cover.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "ember-reach",
+   "file": "ember-reach.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as ember-reach.png in the current directory.\nLandscape scene, 3:2. A panoramic view of the Ember Reach in the early morning: a broad river valley under low, worn mountains, old roads winding between small forge villages with smoking chimneys, a walled city at the river crossing with its lights still burning. Far across the valley floor, the tiny shapes of distant banners and the smoke of an encamped army. Cold air, ash haze, distance.\n\nMatch one consistent house style: original premium illustrated epic war fantasy for older teens and adults, muted painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Ember Reach, a river valley under low worn mountains, and Ore Crown, a walled mining and forge city at a river crossing under siege: thick weathered stone walls and squat towers, pale ash lying like snow on the battlements and drifting in the air, black banners of the city's hundreds, each with a golden crown of embers, hanging along the wall walks, steep stone streets, workshop awnings and forge glow; beyond the walls a wide trampled field with distant camp fires, and catapults seen only as far-off dark silhouettes against the sky, never in detail; palette of ash grey and soot black, cold slate-blue morning light, weathered stone ochre, rust-brown iron and leather, banner gold, linen white and muted wool green, with warm ember orange and forge amber; grim hope in the ash, a tight defence, quiet courage and the weight of choices; every person shown is clearly an adult. Banners show only plain colour fields and simple emblem shapes; papers, plans, tablets and tokens carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no captives in chains, no threats to children, no anatomy, no weapons pointed at the viewer; no siege machinery details, no firearms, no cannons, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/ember-reach.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "ore-crown",
+   "file": "ore-crown.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as ore-crown.png in the current directory.\nLandscape scene, 3:2. Ore Crown seen from a nearby rise at dawn: a walled city on a river crossing, thick stone walls with squat towers, upper streets climbing to a central terrace, workshop roofs and forge smoke in the western quarter, market stalls by the river in the south-east, the soot-dark houses of the coal-burners' quarter in the east. Black banners with golden ember crowns along the walls. Beyond the walls, a trampled field with distant camp fires and catapults as small dark silhouettes far away. Ash drifting over the roofs.\n\nMatch one consistent house style: original premium illustrated epic war fantasy for older teens and adults, muted painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Ember Reach, a river valley under low worn mountains, and Ore Crown, a walled mining and forge city at a river crossing under siege: thick weathered stone walls and squat towers, pale ash lying like snow on the battlements and drifting in the air, black banners of the city's hundreds, each with a golden crown of embers, hanging along the wall walks, steep stone streets, workshop awnings and forge glow; beyond the walls a wide trampled field with distant camp fires, and catapults seen only as far-off dark silhouettes against the sky, never in detail; palette of ash grey and soot black, cold slate-blue morning light, weathered stone ochre, rust-brown iron and leather, banner gold, linen white and muted wool green, with warm ember orange and forge amber; grim hope in the ash, a tight defence, quiet courage and the weight of choices; every person shown is clearly an adult. Banners show only plain colour fields and simple emblem shapes; papers, plans, tablets and tokens carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no captives in chains, no threats to children, no anatomy, no weapons pointed at the viewer; no siege machinery details, no firearms, no cannons, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/ore-crown.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "crown-yard",
+   "file": "crown-yard.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as crown-yard.png in the current directory.\nLandscape scene, 3:2. The Crown Yard, a high terrace in the middle of the city: under a patched canvas awning a long table holds a large painted plan of the city wall made only of plain shapes and lines, with small black banner counters set on it; a plain dark iron circlet lies at the edge of the plan. Beside the terrace an old timber barn glows with stove light, elderly townsfolk wrapped in blankets resting at its door. Wide stone steps descend from the terrace towards the gate yard below. Ash on the awning, defenders hurrying past.\n\nMatch one consistent house style: original premium illustrated epic war fantasy for older teens and adults, muted painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Ember Reach, a river valley under low worn mountains, and Ore Crown, a walled mining and forge city at a river crossing under siege: thick weathered stone walls and squat towers, pale ash lying like snow on the battlements and drifting in the air, black banners of the city's hundreds, each with a golden crown of embers, hanging along the wall walks, steep stone streets, workshop awnings and forge glow; beyond the walls a wide trampled field with distant camp fires, and catapults seen only as far-off dark silhouettes against the sky, never in detail; palette of ash grey and soot black, cold slate-blue morning light, weathered stone ochre, rust-brown iron and leather, banner gold, linen white and muted wool green, with warm ember orange and forge amber; grim hope in the ash, a tight defence, quiet courage and the weight of choices; every person shown is clearly an adult. Banners show only plain colour fields and simple emblem shapes; papers, plans, tablets and tokens carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no captives in chains, no threats to children, no anatomy, no weapons pointed at the viewer; no siege machinery details, no firearms, no cannons, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/crown-yard.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "north-gate",
+   "file": "north-gate.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as north-gate.png in the current directory.\nLandscape scene, 3:2. The North Gate from inside the city: an arch eight paces wide between two massive stone towers, a heavy iron portcullis grid hanging in the arch, signal horns hung on the western tower. In the gate yard a barricade of overturned carts and barrels; from the south a broad flight of stone steps comes down into the yard. Through the arch the open slope runs out towards a distant hill with small camp fires. Grey dawn, ash on the stones, defenders waiting.\n\nMatch one consistent house style: original premium illustrated epic war fantasy for older teens and adults, muted painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Ember Reach, a river valley under low worn mountains, and Ore Crown, a walled mining and forge city at a river crossing under siege: thick weathered stone walls and squat towers, pale ash lying like snow on the battlements and drifting in the air, black banners of the city's hundreds, each with a golden crown of embers, hanging along the wall walks, steep stone streets, workshop awnings and forge glow; beyond the walls a wide trampled field with distant camp fires, and catapults seen only as far-off dark silhouettes against the sky, never in detail; palette of ash grey and soot black, cold slate-blue morning light, weathered stone ochre, rust-brown iron and leather, banner gold, linen white and muted wool green, with warm ember orange and forge amber; grim hope in the ash, a tight defence, quiet courage and the weight of choices; every person shown is clearly an adult. Banners show only plain colour fields and simple emblem shapes; papers, plans, tablets and tokens carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no captives in chains, no threats to children, no anatomy, no weapons pointed at the viewer; no siege machinery details, no firearms, no cannons, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/north-gate.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "forge-ward",
+   "file": "forge-ward.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as forge-ward.png in the current directory.\nLandscape scene, 3:2. The Workers' Yards, the western quarter of workshops: rows of timber awnings over workbenches, racks of tools, a great stone forge glowing amber with a long iron quench trough beside it, sparks and steam; a gated passage leads north towards the gate yard, and the quarter's western wall rises behind the roofs. Workers in leather aprons with soot on their hands, ash and smoke under a low sky.\n\nMatch one consistent house style: original premium illustrated epic war fantasy for older teens and adults, muted painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Ember Reach, a river valley under low worn mountains, and Ore Crown, a walled mining and forge city at a river crossing under siege: thick weathered stone walls and squat towers, pale ash lying like snow on the battlements and drifting in the air, black banners of the city's hundreds, each with a golden crown of embers, hanging along the wall walks, steep stone streets, workshop awnings and forge glow; beyond the walls a wide trampled field with distant camp fires, and catapults seen only as far-off dark silhouettes against the sky, never in detail; palette of ash grey and soot black, cold slate-blue morning light, weathered stone ochre, rust-brown iron and leather, banner gold, linen white and muted wool green, with warm ember orange and forge amber; grim hope in the ash, a tight defence, quiet courage and the weight of choices; every person shown is clearly an adult. Banners show only plain colour fields and simple emblem shapes; papers, plans, tablets and tokens carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no captives in chains, no threats to children, no anatomy, no weapons pointed at the viewer; no siege machinery details, no firearms, no cannons, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/forge-ward.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "lower-market",
+   "file": "lower-market.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as lower-market.png in the current directory.\nLandscape scene, 3:2. The Lower Market by the river: trading rows under faded awnings now turned into field kitchens, steaming cauldrons and bread on boards for the defenders; a low river wall runs from a stepped fish landing in the west to a round water tower in the east, fishermen keeping watch on it with long poles. Grey river water, reeds, ash floating on the current, dusk lanterns.\n\nMatch one consistent house style: original premium illustrated epic war fantasy for older teens and adults, muted painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Ember Reach, a river valley under low worn mountains, and Ore Crown, a walled mining and forge city at a river crossing under siege: thick weathered stone walls and squat towers, pale ash lying like snow on the battlements and drifting in the air, black banners of the city's hundreds, each with a golden crown of embers, hanging along the wall walks, steep stone streets, workshop awnings and forge glow; beyond the walls a wide trampled field with distant camp fires, and catapults seen only as far-off dark silhouettes against the sky, never in detail; palette of ash grey and soot black, cold slate-blue morning light, weathered stone ochre, rust-brown iron and leather, banner gold, linen white and muted wool green, with warm ember orange and forge amber; grim hope in the ash, a tight defence, quiet courage and the weight of choices; every person shown is clearly an adult. Banners show only plain colour fields and simple emblem shapes; papers, plans, tablets and tokens carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no captives in chains, no threats to children, no anatomy, no weapons pointed at the viewer; no siege machinery details, no firearms, no cannons, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/lower-market.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "reed-causeway",
+   "file": "reed-causeway.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as reed-causeway.png in the current directory.\nLandscape scene, 3:2. The Reed Causeway at the city's southern edge: a small postern gate in the wall, an old timber pier half sunk among tall reeds, and a low raised road running away across dry islets of the floodplain towards distant farmsteads. Far out on the floodplain, the small shapes of enemy pickets and their camp fires. Mist on the water, bent reeds, quiet tension.\n\nMatch one consistent house style: original premium illustrated epic war fantasy for older teens and adults, muted painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Ember Reach, a river valley under low worn mountains, and Ore Crown, a walled mining and forge city at a river crossing under siege: thick weathered stone walls and squat towers, pale ash lying like snow on the battlements and drifting in the air, black banners of the city's hundreds, each with a golden crown of embers, hanging along the wall walks, steep stone streets, workshop awnings and forge glow; beyond the walls a wide trampled field with distant camp fires, and catapults seen only as far-off dark silhouettes against the sky, never in detail; palette of ash grey and soot black, cold slate-blue morning light, weathered stone ochre, rust-brown iron and leather, banner gold, linen white and muted wool green, with warm ember orange and forge amber; grim hope in the ash, a tight defence, quiet courage and the weight of choices; every person shown is clearly an adult. Banners show only plain colour fields and simple emblem shapes; papers, plans, tablets and tokens carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no captives in chains, no threats to children, no anatomy, no weapons pointed at the viewer; no siege machinery details, no firearms, no cannons, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/reed-causeway.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "banner-hill",
+   "file": "banner-hill.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as banner-hill.png in the current directory.\nLandscape scene, 3:2. Banner Hill at dusk: an open grassy hill north of the city with a long flat stone bench where communities meet, the camp fires of a neighbouring militia scattered over the slope, plain green and white ribbons tied to their spears. Lower on the slope, towards the city gate, a single catapult stands as a dark distant silhouette against the evening sky. The walled city on the horizon, banners on its towers.\n\nMatch one consistent house style: original premium illustrated epic war fantasy for older teens and adults, muted painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Ember Reach, a river valley under low worn mountains, and Ore Crown, a walled mining and forge city at a river crossing under siege: thick weathered stone walls and squat towers, pale ash lying like snow on the battlements and drifting in the air, black banners of the city's hundreds, each with a golden crown of embers, hanging along the wall walks, steep stone streets, workshop awnings and forge glow; beyond the walls a wide trampled field with distant camp fires, and catapults seen only as far-off dark silhouettes against the sky, never in detail; palette of ash grey and soot black, cold slate-blue morning light, weathered stone ochre, rust-brown iron and leather, banner gold, linen white and muted wool green, with warm ember orange and forge amber; grim hope in the ash, a tight defence, quiet courage and the weight of choices; every person shown is clearly an adult. Banners show only plain colour fields and simple emblem shapes; papers, plans, tablets and tokens carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no captives in chains, no threats to children, no anatomy, no weapons pointed at the viewer; no siege machinery details, no firearms, no cannons, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/banner-hill.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "white-pavilion",
+   "file": "white-pavilion.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as white-pavilion.png in the current directory.\nLandscape scene, 3:2. The White Pavilion on the southern field: a large open negotiation tent of white canvas with its side walls rolled up, two equal plain wooden tables facing each other with benches on both sides, the tables bare. A smaller closed tent stands a little apart. Behind, the orderly rows of a distant army camp and its smoke; between the pavilion and the city wall, open trampled ground. Cold light, wind in the canvas, careful silence.\n\nMatch one consistent house style: original premium illustrated epic war fantasy for older teens and adults, muted painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Ember Reach, a river valley under low worn mountains, and Ore Crown, a walled mining and forge city at a river crossing under siege: thick weathered stone walls and squat towers, pale ash lying like snow on the battlements and drifting in the air, black banners of the city's hundreds, each with a golden crown of embers, hanging along the wall walks, steep stone streets, workshop awnings and forge glow; beyond the walls a wide trampled field with distant camp fires, and catapults seen only as far-off dark silhouettes against the sky, never in detail; palette of ash grey and soot black, cold slate-blue morning light, weathered stone ochre, rust-brown iron and leather, banner gold, linen white and muted wool green, with warm ember orange and forge amber; grim hope in the ash, a tight defence, quiet courage and the weight of choices; every person shown is clearly an adult. Banners show only plain colour fields and simple emblem shapes; papers, plans, tablets and tokens carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no captives in chains, no threats to children, no anatomy, no weapons pointed at the viewer; no siege machinery details, no firearms, no cannons, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/white-pavilion.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "east-wall",
+   "file": "east-wall.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as east-wall.png in the current directory.\nLandscape scene, 3:2. The East Wall at grey morning, intact and strong: a long stretch of stone wall with a wall walk, running from a heavy round tower at the west end, where it meets an older section of wall, to a squat corner tower at the east end, a stone stair climbing inside that tower. Below the wall on the city side crowd the soot-dark houses of the coal-burners' quarter and a narrow lane with an old stone well. Pale ash lies on the merlons like snow; outside the wall the field stretches north to distant camp fires.\n\nMatch one consistent house style: original premium illustrated epic war fantasy for older teens and adults, muted painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Ember Reach, a river valley under low worn mountains, and Ore Crown, a walled mining and forge city at a river crossing under siege: thick weathered stone walls and squat towers, pale ash lying like snow on the battlements and drifting in the air, black banners of the city's hundreds, each with a golden crown of embers, hanging along the wall walks, steep stone streets, workshop awnings and forge glow; beyond the walls a wide trampled field with distant camp fires, and catapults seen only as far-off dark silhouettes against the sky, never in detail; palette of ash grey and soot black, cold slate-blue morning light, weathered stone ochre, rust-brown iron and leather, banner gold, linen white and muted wool green, with warm ember orange and forge amber; grim hope in the ash, a tight defence, quiet courage and the weight of choices; every person shown is clearly an adult. Banners show only plain colour fields and simple emblem shapes; papers, plans, tablets and tokens carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no captives in chains, no threats to children, no anatomy, no weapons pointed at the viewer; no siege machinery details, no firearms, no cannons, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/east-wall.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "tarna-brik",
+   "file": "tarna-brik.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as tarna-brik.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Tarna Brik, a 31-year-old dwarf woman, guard of the North Gate in the commander's flying relief squad, a fighter: a short grey streak in her hair, a shield covered in old scratches, a city baldric, ash on her shoulders, a two-pronged fork on an ash-wood shaft held upright, the shaft notched with small carved marks; steady, stubborn, protective. Behind her, the arch of a city gate between two towers at grey morning.\n\nMatch one consistent house style: original premium illustrated epic war fantasy for older teens and adults, muted painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Ember Reach, a river valley under low worn mountains, and Ore Crown, a walled mining and forge city at a river crossing under siege: thick weathered stone walls and squat towers, pale ash lying like snow on the battlements and drifting in the air, black banners of the city's hundreds, each with a golden crown of embers, hanging along the wall walks, steep stone streets, workshop awnings and forge glow; beyond the walls a wide trampled field with distant camp fires, and catapults seen only as far-off dark silhouettes against the sky, never in detail; palette of ash grey and soot black, cold slate-blue morning light, weathered stone ochre, rust-brown iron and leather, banner gold, linen white and muted wool green, with warm ember orange and forge amber; grim hope in the ash, a tight defence, quiet courage and the weight of choices; every person shown is clearly an adult. Banners show only plain colour fields and simple emblem shapes; papers, plans, tablets and tokens carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no captives in chains, no threats to children, no anatomy, no weapons pointed at the viewer; no siege machinery details, no firearms, no cannons, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/tarna-brik.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "ollir-pen",
+   "file": "ollir-pen.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as ollir-pen.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Ollir Pen, a 26-year-old man, city messenger, a rogue: short, a faded cloak, a dispatch satchel with copper clasps of different sizes, a copper messenger's horn on a strap, a white cloth on a short staff tucked into the satchel; quick, watchful, carrying news. Behind him, a long stone stair along the city wall with defenders on it.\n\nMatch one consistent house style: original premium illustrated epic war fantasy for older teens and adults, muted painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Ember Reach, a river valley under low worn mountains, and Ore Crown, a walled mining and forge city at a river crossing under siege: thick weathered stone walls and squat towers, pale ash lying like snow on the battlements and drifting in the air, black banners of the city's hundreds, each with a golden crown of embers, hanging along the wall walks, steep stone streets, workshop awnings and forge glow; beyond the walls a wide trampled field with distant camp fires, and catapults seen only as far-off dark silhouettes against the sky, never in detail; palette of ash grey and soot black, cold slate-blue morning light, weathered stone ochre, rust-brown iron and leather, banner gold, linen white and muted wool green, with warm ember orange and forge amber; grim hope in the ash, a tight defence, quiet courage and the weight of choices; every person shown is clearly an adult. Banners show only plain colour fields and simple emblem shapes; papers, plans, tablets and tokens carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no captives in chains, no threats to children, no anatomy, no weapons pointed at the viewer; no siege machinery details, no firearms, no cannons, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/ollir-pen.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "radeya-list",
+   "file": "radeya-list.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as radeya-list.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Radeya Sazhen, a 42-year-old elf woman, keeper of the shelter at the Crown Yard, a cleric: hair gathered short, a travel staff, a linen cord sash across her chest tied with many small knots, sleeves smudged with soot from the shelter stoves; warm, tired, resolute. Behind her, the stove-lit doorway of an old timber barn with elderly townsfolk wrapped in blankets.\n\nMatch one consistent house style: original premium illustrated epic war fantasy for older teens and adults, muted painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Ember Reach, a river valley under low worn mountains, and Ore Crown, a walled mining and forge city at a river crossing under siege: thick weathered stone walls and squat towers, pale ash lying like snow on the battlements and drifting in the air, black banners of the city's hundreds, each with a golden crown of embers, hanging along the wall walks, steep stone streets, workshop awnings and forge glow; beyond the walls a wide trampled field with distant camp fires, and catapults seen only as far-off dark silhouettes against the sky, never in detail; palette of ash grey and soot black, cold slate-blue morning light, weathered stone ochre, rust-brown iron and leather, banner gold, linen white and muted wool green, with warm ember orange and forge amber; grim hope in the ash, a tight defence, quiet courage and the weight of choices; every person shown is clearly an adult. Banners show only plain colour fields and simple emblem shapes; papers, plans, tablets and tokens carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no captives in chains, no threats to children, no anatomy, no weapons pointed at the viewer; no siege machinery details, no firearms, no cannons, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/radeya-list.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "demek-harr",
+   "file": "demek-harr.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as demek-harr.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Demek Harr, a 35-year-old man, city surveyor, a wizard: a wide work scarf, ink stains on his fingers, a leather case of folded wall plans with grey ash fingerprints on it, one plan half unfolded showing only blank lines; thoughtful, exacting. Behind him, a tall stretch of city wall where old and newer masonry meet.\n\nMatch one consistent house style: original premium illustrated epic war fantasy for older teens and adults, muted painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Ember Reach, a river valley under low worn mountains, and Ore Crown, a walled mining and forge city at a river crossing under siege: thick weathered stone walls and squat towers, pale ash lying like snow on the battlements and drifting in the air, black banners of the city's hundreds, each with a golden crown of embers, hanging along the wall walks, steep stone streets, workshop awnings and forge glow; beyond the walls a wide trampled field with distant camp fires, and catapults seen only as far-off dark silhouettes against the sky, never in detail; palette of ash grey and soot black, cold slate-blue morning light, weathered stone ochre, rust-brown iron and leather, banner gold, linen white and muted wool green, with warm ember orange and forge amber; grim hope in the ash, a tight defence, quiet courage and the weight of choices; every person shown is clearly an adult. Banners show only plain colour fields and simple emblem shapes; papers, plans, tablets and tokens carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no captives in chains, no threats to children, no anatomy, no weapons pointed at the viewer; no siege machinery details, no firearms, no cannons, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/demek-harr.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "vonda-kress",
+   "file": "vonda-kress.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as vonda-kress.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Vonda Kress, a 29-year-old half-orc woman, leader of the city reserve, a fighter: a dark braid, a mended pauldron, a carved wooden token of her home yard on a cord around her neck; frank, steady, trusted. Behind her, volunteers in mismatched gear gathered in a narrow ash-dusted street.\n\nMatch one consistent house style: original premium illustrated epic war fantasy for older teens and adults, muted painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Ember Reach, a river valley under low worn mountains, and Ore Crown, a walled mining and forge city at a river crossing under siege: thick weathered stone walls and squat towers, pale ash lying like snow on the battlements and drifting in the air, black banners of the city's hundreds, each with a golden crown of embers, hanging along the wall walks, steep stone streets, workshop awnings and forge glow; beyond the walls a wide trampled field with distant camp fires, and catapults seen only as far-off dark silhouettes against the sky, never in detail; palette of ash grey and soot black, cold slate-blue morning light, weathered stone ochre, rust-brown iron and leather, banner gold, linen white and muted wool green, with warm ember orange and forge amber; grim hope in the ash, a tight defence, quiet courage and the weight of choices; every person shown is clearly an adult. Banners show only plain colour fields and simple emblem shapes; papers, plans, tablets and tokens carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no captives in chains, no threats to children, no anatomy, no weapons pointed at the viewer; no siege machinery details, no firearms, no cannons, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/vonda-kress.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "sunya-fert",
+   "file": "sunya-fert.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as sunya-fert.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Sunya Fert, a 34-year-old dwarf woman, speaker for the Workers' Yards, a rogue: a dark vest, a bright patterned headscarf, a heavy ring of iron keys in her hand; shrewd, careful, loyal to her quarter. Behind her, workshop awnings, workbenches and a glowing forge.\n\nMatch one consistent house style: original premium illustrated epic war fantasy for older teens and adults, muted painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Ember Reach, a river valley under low worn mountains, and Ore Crown, a walled mining and forge city at a river crossing under siege: thick weathered stone walls and squat towers, pale ash lying like snow on the battlements and drifting in the air, black banners of the city's hundreds, each with a golden crown of embers, hanging along the wall walks, steep stone streets, workshop awnings and forge glow; beyond the walls a wide trampled field with distant camp fires, and catapults seen only as far-off dark silhouettes against the sky, never in detail; palette of ash grey and soot black, cold slate-blue morning light, weathered stone ochre, rust-brown iron and leather, banner gold, linen white and muted wool green, with warm ember orange and forge amber; grim hope in the ash, a tight defence, quiet courage and the weight of choices; every person shown is clearly an adult. Banners show only plain colour fields and simple emblem shapes; papers, plans, tablets and tokens carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no captives in chains, no threats to children, no anatomy, no weapons pointed at the viewer; no siege machinery details, no firearms, no cannons, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/sunya-fert.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "nel-tor",
+   "file": "nel-tor.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as nel-tor.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Nel Tor, a 55-year-old man, witness of the city's oaths, a cleric: a gentle face, a silvered clasp at his collar, a closed notebook bound in plain cloth, its page edges dusted with ash; patient, principled. Behind him, a lamplit terrace under a canvas awning with black banners.\n\nMatch one consistent house style: original premium illustrated epic war fantasy for older teens and adults, muted painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Ember Reach, a river valley under low worn mountains, and Ore Crown, a walled mining and forge city at a river crossing under siege: thick weathered stone walls and squat towers, pale ash lying like snow on the battlements and drifting in the air, black banners of the city's hundreds, each with a golden crown of embers, hanging along the wall walks, steep stone streets, workshop awnings and forge glow; beyond the walls a wide trampled field with distant camp fires, and catapults seen only as far-off dark silhouettes against the sky, never in detail; palette of ash grey and soot black, cold slate-blue morning light, weathered stone ochre, rust-brown iron and leather, banner gold, linen white and muted wool green, with warm ember orange and forge amber; grim hope in the ash, a tight defence, quiet courage and the weight of choices; every person shown is clearly an adult. Banners show only plain colour fields and simple emblem shapes; papers, plans, tablets and tokens carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no captives in chains, no threats to children, no anatomy, no weapons pointed at the viewer; no siege machinery details, no firearms, no cannons, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/nel-tor.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "irsa-med",
+   "file": "irsa-med.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as irsa-med.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Irsa Med, a 24-year-old gnome woman, apprentice of the city's watchers, a wizard: a roomy cloak embroidered with small stars, a little notebook with many coloured ribbon bookmarks, a pencil behind her ear; curious, careful, honest. Behind her, the view from a tower top over a wide field with catapults as small dark silhouettes far away.\n\nMatch one consistent house style: original premium illustrated epic war fantasy for older teens and adults, muted painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Ember Reach, a river valley under low worn mountains, and Ore Crown, a walled mining and forge city at a river crossing under siege: thick weathered stone walls and squat towers, pale ash lying like snow on the battlements and drifting in the air, black banners of the city's hundreds, each with a golden crown of embers, hanging along the wall walks, steep stone streets, workshop awnings and forge glow; beyond the walls a wide trampled field with distant camp fires, and catapults seen only as far-off dark silhouettes against the sky, never in detail; palette of ash grey and soot black, cold slate-blue morning light, weathered stone ochre, rust-brown iron and leather, banner gold, linen white and muted wool green, with warm ember orange and forge amber; grim hope in the ash, a tight defence, quiet courage and the weight of choices; every person shown is clearly an adult. Banners show only plain colour fields and simple emblem shapes; papers, plans, tablets and tokens carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no captives in chains, no threats to children, no anatomy, no weapons pointed at the viewer; no siege machinery details, no firearms, no cannons, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/irsa-med.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "ilvara-tal",
+   "file": "ilvara-tal.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as ilvara-tal.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Ilvara Darget, a 39-year-old woman, ruler of Ore Crown: a travel dress dusted with ash, one arm resting in a plain cloth sling, standing beside a long table with a wall plan of plain shapes and small banner counters; a simple dark iron circlet lies on the table beside her, not on her head; dignified, weary, unbowed. Behind her, a canvas awning on a high terrace over the city.\n\nMatch one consistent house style: original premium illustrated epic war fantasy for older teens and adults, muted painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Ember Reach, a river valley under low worn mountains, and Ore Crown, a walled mining and forge city at a river crossing under siege: thick weathered stone walls and squat towers, pale ash lying like snow on the battlements and drifting in the air, black banners of the city's hundreds, each with a golden crown of embers, hanging along the wall walks, steep stone streets, workshop awnings and forge glow; beyond the walls a wide trampled field with distant camp fires, and catapults seen only as far-off dark silhouettes against the sky, never in detail; palette of ash grey and soot black, cold slate-blue morning light, weathered stone ochre, rust-brown iron and leather, banner gold, linen white and muted wool green, with warm ember orange and forge amber; grim hope in the ash, a tight defence, quiet courage and the weight of choices; every person shown is clearly an adult. Banners show only plain colour fields and simple emblem shapes; papers, plans, tablets and tokens carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no captives in chains, no threats to children, no anatomy, no weapons pointed at the viewer; no siege machinery details, no firearms, no cannons, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/ilvara-tal.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "harven-orst",
+   "file": "harven-orst.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as harven-orst.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Harven Orst, a 48-year-old dwarf man, commander of the city's defenders: tall for a dwarf, a leather baldric, ash in his beard, small wooden order tablets tucked into his belt with only illegible marks; hard, calculating, carrying responsibility. Behind him, a gate yard with a barricade of carts.\n\nMatch one consistent house style: original premium illustrated epic war fantasy for older teens and adults, muted painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Ember Reach, a river valley under low worn mountains, and Ore Crown, a walled mining and forge city at a river crossing under siege: thick weathered stone walls and squat towers, pale ash lying like snow on the battlements and drifting in the air, black banners of the city's hundreds, each with a golden crown of embers, hanging along the wall walks, steep stone streets, workshop awnings and forge glow; beyond the walls a wide trampled field with distant camp fires, and catapults seen only as far-off dark silhouettes against the sky, never in detail; palette of ash grey and soot black, cold slate-blue morning light, weathered stone ochre, rust-brown iron and leather, banner gold, linen white and muted wool green, with warm ember orange and forge amber; grim hope in the ash, a tight defence, quiet courage and the weight of choices; every person shown is clearly an adult. Banners show only plain colour fields and simple emblem shapes; papers, plans, tablets and tokens carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no captives in chains, no threats to children, no anatomy, no weapons pointed at the viewer; no siege machinery details, no firearms, no cannons, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/harven-orst.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "meyra-runts",
+   "file": "meyra-runts.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as meyra-runts.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Meyra Runts, a 45-year-old woman, steward of the Lower Market: a wide belt, rolled-up short sleeves, a wooden spoon tucked behind her ear, a canvas apron with a deep pocket; brisk, practical, motherly. Behind her, market stalls turned into field kitchens with steaming cauldrons, and a low river wall.\n\nMatch one consistent house style: original premium illustrated epic war fantasy for older teens and adults, muted painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Ember Reach, a river valley under low worn mountains, and Ore Crown, a walled mining and forge city at a river crossing under siege: thick weathered stone walls and squat towers, pale ash lying like snow on the battlements and drifting in the air, black banners of the city's hundreds, each with a golden crown of embers, hanging along the wall walks, steep stone streets, workshop awnings and forge glow; beyond the walls a wide trampled field with distant camp fires, and catapults seen only as far-off dark silhouettes against the sky, never in detail; palette of ash grey and soot black, cold slate-blue morning light, weathered stone ochre, rust-brown iron and leather, banner gold, linen white and muted wool green, with warm ember orange and forge amber; grim hope in the ash, a tight defence, quiet courage and the weight of choices; every person shown is clearly an adult. Banners show only plain colour fields and simple emblem shapes; papers, plans, tablets and tokens carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no captives in chains, no threats to children, no anatomy, no weapons pointed at the viewer; no siege machinery details, no firearms, no cannons, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/meyra-runts.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "zhurna-kelt",
+   "file": "zhurna-kelt.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as zhurna-kelt.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Zhurna Kelt, a 53-year-old woman, head of the workshops of the Workers' Yards: a long silver braid, a leather apron, a polished smith's hammer at her belt, soot-blackened hands; proud, gruff, quietly burdened. Behind her, the amber glow of a great forge and a long iron quench trough.\n\nMatch one consistent house style: original premium illustrated epic war fantasy for older teens and adults, muted painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Ember Reach, a river valley under low worn mountains, and Ore Crown, a walled mining and forge city at a river crossing under siege: thick weathered stone walls and squat towers, pale ash lying like snow on the battlements and drifting in the air, black banners of the city's hundreds, each with a golden crown of embers, hanging along the wall walks, steep stone streets, workshop awnings and forge glow; beyond the walls a wide trampled field with distant camp fires, and catapults seen only as far-off dark silhouettes against the sky, never in detail; palette of ash grey and soot black, cold slate-blue morning light, weathered stone ochre, rust-brown iron and leather, banner gold, linen white and muted wool green, with warm ember orange and forge amber; grim hope in the ash, a tight defence, quiet courage and the weight of choices; every person shown is clearly an adult. Banners show only plain colour fields and simple emblem shapes; papers, plans, tablets and tokens carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no captives in chains, no threats to children, no anatomy, no weapons pointed at the viewer; no siege machinery details, no firearms, no cannons, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/zhurna-kelt.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "erdik-var",
+   "file": "erdik-var.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as erdik-var.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Erdik Kovyl, a 36-year-old half-elf man, elected leader of a neighbouring militia: a cloak of coarse undyed wool, a spear with a blue ribbon and a frayed white ribbon tied below its head; reserved, wary, honest. Behind him, a hillside at dusk with militia camp fires and a long stone bench.\n\nMatch one consistent house style: original premium illustrated epic war fantasy for older teens and adults, muted painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Ember Reach, a river valley under low worn mountains, and Ore Crown, a walled mining and forge city at a river crossing under siege: thick weathered stone walls and squat towers, pale ash lying like snow on the battlements and drifting in the air, black banners of the city's hundreds, each with a golden crown of embers, hanging along the wall walks, steep stone streets, workshop awnings and forge glow; beyond the walls a wide trampled field with distant camp fires, and catapults seen only as far-off dark silhouettes against the sky, never in detail; palette of ash grey and soot black, cold slate-blue morning light, weathered stone ochre, rust-brown iron and leather, banner gold, linen white and muted wool green, with warm ember orange and forge amber; grim hope in the ash, a tight defence, quiet courage and the weight of choices; every person shown is clearly an adult. Banners show only plain colour fields and simple emblem shapes; papers, plans, tablets and tokens carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no captives in chains, no threats to children, no anatomy, no weapons pointed at the viewer; no siege machinery details, no firearms, no cannons, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/erdik-var.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "garden-riord",
+   "file": "garden-riord.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as garden-riord.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Garden Riord, a 51-year-old man, the marshal besieging the city: a well-groomed grey beard, a plain unadorned breastplate, slowly pulling off a leather glove; composed, courteous, coldly certain. Behind him, the orderly rows of a distant army camp under a pale sky.\n\nMatch one consistent house style: original premium illustrated epic war fantasy for older teens and adults, muted painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Ember Reach, a river valley under low worn mountains, and Ore Crown, a walled mining and forge city at a river crossing under siege: thick weathered stone walls and squat towers, pale ash lying like snow on the battlements and drifting in the air, black banners of the city's hundreds, each with a golden crown of embers, hanging along the wall walks, steep stone streets, workshop awnings and forge glow; beyond the walls a wide trampled field with distant camp fires, and catapults seen only as far-off dark silhouettes against the sky, never in detail; palette of ash grey and soot black, cold slate-blue morning light, weathered stone ochre, rust-brown iron and leather, banner gold, linen white and muted wool green, with warm ember orange and forge amber; grim hope in the ash, a tight defence, quiet courage and the weight of choices; every person shown is clearly an adult. Banners show only plain colour fields and simple emblem shapes; papers, plans, tablets and tokens carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no captives in chains, no threats to children, no anatomy, no weapons pointed at the viewer; no siege machinery details, no firearms, no cannons, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/garden-riord.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "lessara-niv",
+   "file": "lessara-niv.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as lessara-niv.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Lessara Niv, a 33-year-old woman, an officer of the marshal who handles truces and prisoners: a neatly bandaged wrist, a simple plain envoy's badge, a cloak folded very precisely over her arm, empty-handed; measured, troubled, honest. Behind her, the inside of a white canvas negotiation tent with two bare wooden tables.\n\nMatch one consistent house style: original premium illustrated epic war fantasy for older teens and adults, muted painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Ember Reach, a river valley under low worn mountains, and Ore Crown, a walled mining and forge city at a river crossing under siege: thick weathered stone walls and squat towers, pale ash lying like snow on the battlements and drifting in the air, black banners of the city's hundreds, each with a golden crown of embers, hanging along the wall walks, steep stone streets, workshop awnings and forge glow; beyond the walls a wide trampled field with distant camp fires, and catapults seen only as far-off dark silhouettes against the sky, never in detail; palette of ash grey and soot black, cold slate-blue morning light, weathered stone ochre, rust-brown iron and leather, banner gold, linen white and muted wool green, with warm ember orange and forge amber; grim hope in the ash, a tight defence, quiet courage and the weight of choices; every person shown is clearly an adult. Banners show only plain colour fields and simple emblem shapes; papers, plans, tablets and tokens carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no captives in chains, no threats to children, no anatomy, no weapons pointed at the viewer; no siege machinery details, no firearms, no cannons, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/lessara-niv.png",
+   "generatedAt": "2026-11-17",
+   "references": [],
+   "reveal": 5
+  },
+  {
+   "id": "boruk-fain",
+   "file": "boruk-fain.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as boruk-fain.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Boruk Fain, a 28-year-old man, a runaway porter from the marshal's baggage train: a borrowed baggage-train jacket far too big for him, a porter's carrying strap across his shoulder, empty hands; anxious, hopeful, asking for shelter. Behind him, tall reeds and an old pier by a small gate in the city wall.\n\nMatch one consistent house style: original premium illustrated epic war fantasy for older teens and adults, muted painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Ember Reach, a river valley under low worn mountains, and Ore Crown, a walled mining and forge city at a river crossing under siege: thick weathered stone walls and squat towers, pale ash lying like snow on the battlements and drifting in the air, black banners of the city's hundreds, each with a golden crown of embers, hanging along the wall walks, steep stone streets, workshop awnings and forge glow; beyond the walls a wide trampled field with distant camp fires, and catapults seen only as far-off dark silhouettes against the sky, never in detail; palette of ash grey and soot black, cold slate-blue morning light, weathered stone ochre, rust-brown iron and leather, banner gold, linen white and muted wool green, with warm ember orange and forge amber; grim hope in the ash, a tight defence, quiet courage and the weight of choices; every person shown is clearly an adult. Banners show only plain colour fields and simple emblem shapes; papers, plans, tablets and tokens carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no captives in chains, no threats to children, no anatomy, no weapons pointed at the viewer; no siege machinery details, no firearms, no cannons, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/boruk-fain.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "ormund-sair",
+   "file": "ormund-sair.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as ormund-sair.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Ormund Sair, a 44-year-old man, captain of the marshal's guard and his standard-bearer: light scale armour under a grey cloak, a long two-handed greataxe held upright with its head down, and on his back on a short pole a furled grey banner with a silver hammer emblem, its edges singed by camp fires; disciplined, quiet, unhurried. Behind him, a grey dawn field with the city's gate towers in the distance.\n\nMatch one consistent house style: original premium illustrated epic war fantasy for older teens and adults, muted painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Ember Reach, a river valley under low worn mountains, and Ore Crown, a walled mining and forge city at a river crossing under siege: thick weathered stone walls and squat towers, pale ash lying like snow on the battlements and drifting in the air, black banners of the city's hundreds, each with a golden crown of embers, hanging along the wall walks, steep stone streets, workshop awnings and forge glow; beyond the walls a wide trampled field with distant camp fires, and catapults seen only as far-off dark silhouettes against the sky, never in detail; palette of ash grey and soot black, cold slate-blue morning light, weathered stone ochre, rust-brown iron and leather, banner gold, linen white and muted wool green, with warm ember orange and forge amber; grim hope in the ash, a tight defence, quiet courage and the weight of choices; every person shown is clearly an adult. Banners show only plain colour fields and simple emblem shapes; papers, plans, tablets and tokens carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no captives in chains, no threats to children, no anatomy, no weapons pointed at the viewer; no siege machinery details, no firearms, no cannons, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/ormund-sair.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "merlon-fork",
+   "file": "merlon-fork.png",
+   "kind": "item",
+   "transparent": true,
+   "prompt": "Generate one image and save it as merlon-fork.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A two-pronged fork on a long ash-wood shaft, the iron tines worn smooth by stone, a row of small notches carved along the shaft.\n\nMatch one consistent house style: original premium illustrated epic war fantasy for older teens and adults, muted painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Ember Reach, a river valley under low worn mountains, and Ore Crown, a walled mining and forge city at a river crossing under siege: thick weathered stone walls and squat towers, pale ash lying like snow on the battlements and drifting in the air, black banners of the city's hundreds, each with a golden crown of embers, hanging along the wall walks, steep stone streets, workshop awnings and forge glow; beyond the walls a wide trampled field with distant camp fires, and catapults seen only as far-off dark silhouettes against the sky, never in detail; palette of ash grey and soot black, cold slate-blue morning light, weathered stone ochre, rust-brown iron and leather, banner gold, linen white and muted wool green, with warm ember orange and forge amber; grim hope in the ash, a tight defence, quiet courage and the weight of choices; every person shown is clearly an adult. Banners show only plain colour fields and simple emblem shapes; papers, plans, tablets and tokens carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no captives in chains, no threats to children, no anatomy, no weapons pointed at the viewer; no siege machinery details, no firearms, no cannons, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/merlon-fork.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "relay-horn",
+   "file": "relay-horn.png",
+   "kind": "item",
+   "transparent": true,
+   "prompt": "Generate one image and save it as relay-horn.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A copper messenger's horn on a leather strap, the mouthpiece worn bright by use.\n\nMatch one consistent house style: original premium illustrated epic war fantasy for older teens and adults, muted painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Ember Reach, a river valley under low worn mountains, and Ore Crown, a walled mining and forge city at a river crossing under siege: thick weathered stone walls and squat towers, pale ash lying like snow on the battlements and drifting in the air, black banners of the city's hundreds, each with a golden crown of embers, hanging along the wall walks, steep stone streets, workshop awnings and forge glow; beyond the walls a wide trampled field with distant camp fires, and catapults seen only as far-off dark silhouettes against the sky, never in detail; palette of ash grey and soot black, cold slate-blue morning light, weathered stone ochre, rust-brown iron and leather, banner gold, linen white and muted wool green, with warm ember orange and forge amber; grim hope in the ash, a tight defence, quiet courage and the weight of choices; every person shown is clearly an adult. Banners show only plain colour fields and simple emblem shapes; papers, plans, tablets and tokens carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no captives in chains, no threats to children, no anatomy, no weapons pointed at the viewer; no siege machinery details, no firearms, no cannons, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/relay-horn.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "truce-cloth",
+   "file": "truce-cloth.png",
+   "kind": "item",
+   "transparent": true,
+   "prompt": "Generate one image and save it as truce-cloth.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A plain white cloth on a short wooden staff, its edge neatly hemmed, slightly dusted with ash.\n\nMatch one consistent house style: original premium illustrated epic war fantasy for older teens and adults, muted painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Ember Reach, a river valley under low worn mountains, and Ore Crown, a walled mining and forge city at a river crossing under siege: thick weathered stone walls and squat towers, pale ash lying like snow on the battlements and drifting in the air, black banners of the city's hundreds, each with a golden crown of embers, hanging along the wall walks, steep stone streets, workshop awnings and forge glow; beyond the walls a wide trampled field with distant camp fires, and catapults seen only as far-off dark silhouettes against the sky, never in detail; palette of ash grey and soot black, cold slate-blue morning light, weathered stone ochre, rust-brown iron and leather, banner gold, linen white and muted wool green, with warm ember orange and forge amber; grim hope in the ash, a tight defence, quiet courage and the weight of choices; every person shown is clearly an adult. Banners show only plain colour fields and simple emblem shapes; papers, plans, tablets and tokens carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no captives in chains, no threats to children, no anatomy, no weapons pointed at the viewer; no siege machinery details, no firearms, no cannons, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/truce-cloth.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "name-cords",
+   "file": "name-cords.png",
+   "kind": "item",
+   "transparent": true,
+   "prompt": "Generate one image and save it as name-cords.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A sash of braided linen cord worn across the shoulder, tied with many small knots along its length.\n\nMatch one consistent house style: original premium illustrated epic war fantasy for older teens and adults, muted painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Ember Reach, a river valley under low worn mountains, and Ore Crown, a walled mining and forge city at a river crossing under siege: thick weathered stone walls and squat towers, pale ash lying like snow on the battlements and drifting in the air, black banners of the city's hundreds, each with a golden crown of embers, hanging along the wall walks, steep stone streets, workshop awnings and forge glow; beyond the walls a wide trampled field with distant camp fires, and catapults seen only as far-off dark silhouettes against the sky, never in detail; palette of ash grey and soot black, cold slate-blue morning light, weathered stone ochre, rust-brown iron and leather, banner gold, linen white and muted wool green, with warm ember orange and forge amber; grim hope in the ash, a tight defence, quiet courage and the weight of choices; every person shown is clearly an adult. Banners show only plain colour fields and simple emblem shapes; papers, plans, tablets and tokens carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no captives in chains, no threats to children, no anatomy, no weapons pointed at the viewer; no siege machinery details, no firearms, no cannons, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/name-cords.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "survey-case",
+   "file": "survey-case.png",
+   "kind": "item",
+   "transparent": true,
+   "prompt": "Generate one image and save it as survey-case.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A worn leather case with rolled tower plans peeking out, their charcoal marks only illegible lines, an unmarked folding wooden rule tucked beside them, grey ash smudges on the leather.\n\nMatch one consistent house style: original premium illustrated epic war fantasy for older teens and adults, muted painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Ember Reach, a river valley under low worn mountains, and Ore Crown, a walled mining and forge city at a river crossing under siege: thick weathered stone walls and squat towers, pale ash lying like snow on the battlements and drifting in the air, black banners of the city's hundreds, each with a golden crown of embers, hanging along the wall walks, steep stone streets, workshop awnings and forge glow; beyond the walls a wide trampled field with distant camp fires, and catapults seen only as far-off dark silhouettes against the sky, never in detail; palette of ash grey and soot black, cold slate-blue morning light, weathered stone ochre, rust-brown iron and leather, banner gold, linen white and muted wool green, with warm ember orange and forge amber; grim hope in the ash, a tight defence, quiet courage and the weight of choices; every person shown is clearly an adult. Banners show only plain colour fields and simple emblem shapes; papers, plans, tablets and tokens carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no captives in chains, no threats to children, no anatomy, no weapons pointed at the viewer; no siege machinery details, no firearms, no cannons, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/survey-case.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "yard-token",
+   "file": "yard-token.png",
+   "kind": "item",
+   "transparent": true,
+   "prompt": "Generate one image and save it as yard-token.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A small wooden token on a cord, carved with a simple geometric yard emblem, its edges smoothed by handling.\n\nMatch one consistent house style: original premium illustrated epic war fantasy for older teens and adults, muted painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Ember Reach, a river valley under low worn mountains, and Ore Crown, a walled mining and forge city at a river crossing under siege: thick weathered stone walls and squat towers, pale ash lying like snow on the battlements and drifting in the air, black banners of the city's hundreds, each with a golden crown of embers, hanging along the wall walks, steep stone streets, workshop awnings and forge glow; beyond the walls a wide trampled field with distant camp fires, and catapults seen only as far-off dark silhouettes against the sky, never in detail; palette of ash grey and soot black, cold slate-blue morning light, weathered stone ochre, rust-brown iron and leather, banner gold, linen white and muted wool green, with warm ember orange and forge amber; grim hope in the ash, a tight defence, quiet courage and the weight of choices; every person shown is clearly an adult. Banners show only plain colour fields and simple emblem shapes; papers, plans, tablets and tokens carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no captives in chains, no threats to children, no anatomy, no weapons pointed at the viewer; no siege machinery details, no firearms, no cannons, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/yard-token.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "passage-keys",
+   "file": "passage-keys.png",
+   "kind": "item",
+   "transparent": true,
+   "prompt": "Generate one image and save it as passage-keys.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A bunch of heavy old iron keys of different sizes on a thick iron ring.\n\nMatch one consistent house style: original premium illustrated epic war fantasy for older teens and adults, muted painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Ember Reach, a river valley under low worn mountains, and Ore Crown, a walled mining and forge city at a river crossing under siege: thick weathered stone walls and squat towers, pale ash lying like snow on the battlements and drifting in the air, black banners of the city's hundreds, each with a golden crown of embers, hanging along the wall walks, steep stone streets, workshop awnings and forge glow; beyond the walls a wide trampled field with distant camp fires, and catapults seen only as far-off dark silhouettes against the sky, never in detail; palette of ash grey and soot black, cold slate-blue morning light, weathered stone ochre, rust-brown iron and leather, banner gold, linen white and muted wool green, with warm ember orange and forge amber; grim hope in the ash, a tight defence, quiet courage and the weight of choices; every person shown is clearly an adult. Banners show only plain colour fields and simple emblem shapes; papers, plans, tablets and tokens carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no captives in chains, no threats to children, no anatomy, no weapons pointed at the viewer; no siege machinery details, no firearms, no cannons, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/passage-keys.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "crown-hoop",
+   "file": "crown-hoop.png",
+   "kind": "item",
+   "transparent": true,
+   "prompt": "Generate one image and save it as crown-hoop.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A plain iron circlet without gems or ornament, dark with soot, a little pale ash caught on its rim.\n\nMatch one consistent house style: original premium illustrated epic war fantasy for older teens and adults, muted painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Ember Reach, a river valley under low worn mountains, and Ore Crown, a walled mining and forge city at a river crossing under siege: thick weathered stone walls and squat towers, pale ash lying like snow on the battlements and drifting in the air, black banners of the city's hundreds, each with a golden crown of embers, hanging along the wall walks, steep stone streets, workshop awnings and forge glow; beyond the walls a wide trampled field with distant camp fires, and catapults seen only as far-off dark silhouettes against the sky, never in detail; palette of ash grey and soot black, cold slate-blue morning light, weathered stone ochre, rust-brown iron and leather, banner gold, linen white and muted wool green, with warm ember orange and forge amber; grim hope in the ash, a tight defence, quiet courage and the weight of choices; every person shown is clearly an adult. Banners show only plain colour fields and simple emblem shapes; papers, plans, tablets and tokens carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no captives in chains, no threats to children, no anatomy, no weapons pointed at the viewer; no siege machinery details, no firearms, no cannons, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/crown-hoop.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "portcullis-chain",
+   "file": "portcullis-chain.png",
+   "kind": "item",
+   "transparent": true,
+   "prompt": "Generate one image and save it as portcullis-chain.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A coiled length of heavy new iron chain, the links still showing a blue tempering sheen, a few drops of water on the metal.\n\nMatch one consistent house style: original premium illustrated epic war fantasy for older teens and adults, muted painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Ember Reach, a river valley under low worn mountains, and Ore Crown, a walled mining and forge city at a river crossing under siege: thick weathered stone walls and squat towers, pale ash lying like snow on the battlements and drifting in the air, black banners of the city's hundreds, each with a golden crown of embers, hanging along the wall walks, steep stone streets, workshop awnings and forge glow; beyond the walls a wide trampled field with distant camp fires, and catapults seen only as far-off dark silhouettes against the sky, never in detail; palette of ash grey and soot black, cold slate-blue morning light, weathered stone ochre, rust-brown iron and leather, banner gold, linen white and muted wool green, with warm ember orange and forge amber; grim hope in the ash, a tight defence, quiet courage and the weight of choices; every person shown is clearly an adult. Banners show only plain colour fields and simple emblem shapes; papers, plans, tablets and tokens carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no captives in chains, no threats to children, no anatomy, no weapons pointed at the viewer; no siege machinery details, no firearms, no cannons, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/portcullis-chain.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "grey-hammer",
+   "file": "grey-hammer.png",
+   "kind": "item",
+   "transparent": true,
+   "prompt": "Generate one image and save it as grey-hammer.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A grey cloth war banner hanging from a pole, bearing a simple silver hammer emblem, its edges singed by camp fires.\n\nMatch one consistent house style: original premium illustrated epic war fantasy for older teens and adults, muted painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Ember Reach, a river valley under low worn mountains, and Ore Crown, a walled mining and forge city at a river crossing under siege: thick weathered stone walls and squat towers, pale ash lying like snow on the battlements and drifting in the air, black banners of the city's hundreds, each with a golden crown of embers, hanging along the wall walks, steep stone streets, workshop awnings and forge glow; beyond the walls a wide trampled field with distant camp fires, and catapults seen only as far-off dark silhouettes against the sky, never in detail; palette of ash grey and soot black, cold slate-blue morning light, weathered stone ochre, rust-brown iron and leather, banner gold, linen white and muted wool green, with warm ember orange and forge amber; grim hope in the ash, a tight defence, quiet courage and the weight of choices; every person shown is clearly an adult. Banners show only plain colour fields and simple emblem shapes; papers, plans, tablets and tokens carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no captives in chains, no threats to children, no anatomy, no weapons pointed at the viewer; no siege machinery details, no firearms, no cannons, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/grey-hammer.png",
+   "generatedAt": "2026-11-17",
+   "references": [],
+   "reveal": 5
+  },
+  {
+   "id": "token-warrior-infantry",
+   "file": "token-warrior-infantry.png",
+   "kind": "token",
+   "transparent": true,
+   "prompt": "Generate one image and save it as token-warrior-infantry.png in the current directory.\nGame token figure, square 1:1, on a fully transparent background, top three-quarter view, no ground shadow. An assault soldier of the besieging army: a grey padded jacket with a simple silver hammer emblem on the chest, ash smudged on the face, a spear held at the ready and a round leather shield slung on the back; grim, tired, determined.\n\nMatch one consistent house style: original premium illustrated epic war fantasy for older teens and adults, muted painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Ember Reach, a river valley under low worn mountains, and Ore Crown, a walled mining and forge city at a river crossing under siege: thick weathered stone walls and squat towers, pale ash lying like snow on the battlements and drifting in the air, black banners of the city's hundreds, each with a golden crown of embers, hanging along the wall walks, steep stone streets, workshop awnings and forge glow; beyond the walls a wide trampled field with distant camp fires, and catapults seen only as far-off dark silhouettes against the sky, never in detail; palette of ash grey and soot black, cold slate-blue morning light, weathered stone ochre, rust-brown iron and leather, banner gold, linen white and muted wool green, with warm ember orange and forge amber; grim hope in the ash, a tight defence, quiet courage and the weight of choices; every person shown is clearly an adult. Banners show only plain colour fields and simple emblem shapes; papers, plans, tablets and tokens carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no captives in chains, no threats to children, no anatomy, no weapons pointed at the viewer; no siege machinery details, no firearms, no cannons, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/token-warrior-infantry.png",
+   "generatedAt": "2026-11-17",
+   "references": [],
+   "srd": "warrior-infantry"
+  },
+  {
+   "id": "token-guard",
+   "file": "token-guard.png",
+   "kind": "token",
+   "transparent": true,
+   "prompt": "Generate one image and save it as token-guard.png in the current directory.\nGame token figure, square 1:1, on a fully transparent background, top three-quarter view, no ground shadow. A guardsman of the marshal: a grey cloak over mail, a tall shield bearing a simple silver hammer emblem, a spear held upright; stern, disciplined, unyielding.\n\nMatch one consistent house style: original premium illustrated epic war fantasy for older teens and adults, muted painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Ember Reach, a river valley under low worn mountains, and Ore Crown, a walled mining and forge city at a river crossing under siege: thick weathered stone walls and squat towers, pale ash lying like snow on the battlements and drifting in the air, black banners of the city's hundreds, each with a golden crown of embers, hanging along the wall walks, steep stone streets, workshop awnings and forge glow; beyond the walls a wide trampled field with distant camp fires, and catapults seen only as far-off dark silhouettes against the sky, never in detail; palette of ash grey and soot black, cold slate-blue morning light, weathered stone ochre, rust-brown iron and leather, banner gold, linen white and muted wool green, with warm ember orange and forge amber; grim hope in the ash, a tight defence, quiet courage and the weight of choices; every person shown is clearly an adult. Banners show only plain colour fields and simple emblem shapes; papers, plans, tablets and tokens carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no captives in chains, no threats to children, no anatomy, no weapons pointed at the viewer; no siege machinery details, no firearms, no cannons, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/token-guard.png",
+   "generatedAt": "2026-11-17",
+   "references": [],
+   "srd": "guard"
+  },
+  {
+   "id": "token-berserker",
+   "file": "token-berserker.png",
+   "kind": "token",
+   "transparent": true,
+   "prompt": "Generate one image and save it as token-berserker.png in the current directory.\nGame token figure, square 1:1, on a fully transparent background, top three-quarter view, no ground shadow. A tall guard captain in light scale armour under a grey cloak, a long two-handed greataxe held across his body, a furled grey banner with a silver hammer emblem on a short pole strapped to his back; striding forward without looking aside.\n\nMatch one consistent house style: original premium illustrated epic war fantasy for older teens and adults, muted painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Ember Reach, a river valley under low worn mountains, and Ore Crown, a walled mining and forge city at a river crossing under siege: thick weathered stone walls and squat towers, pale ash lying like snow on the battlements and drifting in the air, black banners of the city's hundreds, each with a golden crown of embers, hanging along the wall walks, steep stone streets, workshop awnings and forge glow; beyond the walls a wide trampled field with distant camp fires, and catapults seen only as far-off dark silhouettes against the sky, never in detail; palette of ash grey and soot black, cold slate-blue morning light, weathered stone ochre, rust-brown iron and leather, banner gold, linen white and muted wool green, with warm ember orange and forge amber; grim hope in the ash, a tight defence, quiet courage and the weight of choices; every person shown is clearly an adult. Banners show only plain colour fields and simple emblem shapes; papers, plans, tablets and tokens carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no captives in chains, no threats to children, no anatomy, no weapons pointed at the viewer; no siege machinery details, no firearms, no cannons, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/token-berserker.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "ormund-sair.png"
+   ],
+   "srd": "berserker",
+   "reveal": 5
+  },
+  {
+   "id": "tarna-brik--figure",
+   "file": "tarna-brik--figure.png",
+   "kind": "figure",
+   "transparent": true,
+   "prompt": "Generate one image with the built-in image_gen tool and save it as tarna-brik--figure.png in the current directory. The attached image is the approved portrait of Tarna Brik.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Tarna Brik, a 31-year-old dwarf woman, guard of the North Gate in the commander's flying relief squad, a fighter: a short grey streak in her hair, a shield covered in old scratches, a city baldric, ash on her shoulders, a two-pronged fork on an ash-wood shaft held upright, the shaft notched with small carved marks; steady, stubborn, protective. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/tarna-brik--figure.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "tarna-brik.png"
+   ],
+   "subject": "tarna-brik",
+   "facesLeft": true
+  },
+  {
+   "id": "ollir-pen--figure",
+   "file": "ollir-pen--figure.png",
+   "kind": "figure",
+   "transparent": true,
+   "prompt": "Generate one image with the built-in image_gen tool and save it as ollir-pen--figure.png in the current directory. The attached image is the approved portrait of Ollir Pen.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Ollir Pen, a 26-year-old man, city messenger, a rogue: short, a faded cloak, a dispatch satchel with copper clasps of different sizes, a copper messenger's horn on a strap, a white cloth on a short staff tucked into the satchel; quick, watchful, carrying news. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/ollir-pen--figure.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "ollir-pen.png"
+   ],
+   "subject": "ollir-pen"
+  },
+  {
+   "id": "radeya-list--figure",
+   "file": "radeya-list--figure.png",
+   "kind": "figure",
+   "transparent": true,
+   "prompt": "Generate one image with the built-in image_gen tool and save it as radeya-list--figure.png in the current directory. The attached image is the approved portrait of Radeya Sazhen.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Radeya Sazhen, a 42-year-old elf woman, keeper of the shelter at the Crown Yard, a cleric: hair gathered short, a travel staff, a linen cord sash across her chest tied with many small knots, sleeves smudged with soot from the shelter stoves; warm, tired, resolute. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/radeya-list--figure.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "radeya-list.png"
+   ],
+   "subject": "radeya-list"
+  },
+  {
+   "id": "demek-harr--figure",
+   "file": "demek-harr--figure.png",
+   "kind": "figure",
+   "transparent": true,
+   "prompt": "Generate one image with the built-in image_gen tool and save it as demek-harr--figure.png in the current directory. The attached image is the approved portrait of Demek Harr.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Demek Harr, a 35-year-old man, city surveyor, a wizard: a wide work scarf, ink stains on his fingers, a leather case of folded wall plans with grey ash fingerprints on it, one plan half unfolded showing only blank lines; thoughtful, exacting. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/demek-harr--figure.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "demek-harr.png"
+   ],
+   "subject": "demek-harr"
+  },
+  {
+   "id": "vonda-kress--figure",
+   "file": "vonda-kress--figure.png",
+   "kind": "figure",
+   "transparent": true,
+   "prompt": "Generate one image with the built-in image_gen tool and save it as vonda-kress--figure.png in the current directory. The attached image is the approved portrait of Vonda Kress.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Vonda Kress, a 29-year-old half-orc woman, leader of the city reserve, a fighter: a dark braid, a mended pauldron, a carved wooden token of her home yard on a cord around her neck; frank, steady, trusted. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/vonda-kress--figure.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "vonda-kress.png"
+   ],
+   "subject": "vonda-kress",
+   "facesLeft": true
+  },
+  {
+   "id": "sunya-fert--figure",
+   "file": "sunya-fert--figure.png",
+   "kind": "figure",
+   "transparent": true,
+   "prompt": "Generate one image with the built-in image_gen tool and save it as sunya-fert--figure.png in the current directory. The attached image is the approved portrait of Sunya Fert.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Sunya Fert, a 34-year-old dwarf woman, speaker for the Workers' Yards, a rogue: a dark vest, a bright patterned headscarf, a heavy ring of iron keys in her hand; shrewd, careful, loyal to her quarter. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/sunya-fert--figure.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "sunya-fert.png"
+   ],
+   "subject": "sunya-fert",
+   "facesLeft": true
+  },
+  {
+   "id": "nel-tor--figure",
+   "file": "nel-tor--figure.png",
+   "kind": "figure",
+   "transparent": true,
+   "prompt": "Generate one image with the built-in image_gen tool and save it as nel-tor--figure.png in the current directory. The attached image is the approved portrait of Nel Tor.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Nel Tor, a 55-year-old man, witness of the city's oaths, a cleric: a gentle face, a silvered clasp at his collar, a closed notebook bound in plain cloth, its page edges dusted with ash; patient, principled. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/nel-tor--figure.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "nel-tor.png"
+   ],
+   "subject": "nel-tor"
+  },
+  {
+   "id": "irsa-med--figure",
+   "file": "irsa-med--figure.png",
+   "kind": "figure",
+   "transparent": true,
+   "prompt": "Generate one image with the built-in image_gen tool and save it as irsa-med--figure.png in the current directory. The attached image is the approved portrait of Irsa Med.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Irsa Med, a 24-year-old gnome woman, apprentice of the city's watchers, a wizard: a roomy cloak embroidered with small stars, a little notebook with many coloured ribbon bookmarks, a pencil behind her ear; curious, careful, honest. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/ember-crown/out/irsa-med--figure.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "irsa-med.png"
+   ],
+   "subject": "irsa-med"
+  }
+ ]
+}

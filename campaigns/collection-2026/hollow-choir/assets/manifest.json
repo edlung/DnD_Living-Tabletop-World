@@ -1,0 +1,1153 @@
+{
+  "about": "Original artwork for Хор Пустых Комнат. PNG originals from OpenAI image generation through Codex CLI; WebP conversions preserve content and alpha. No project provider was called.",
+  "generator": "codex-cli-imagegen",
+  "assets": [
+    {
+      "id": "cover",
+      "title": "Хор Пустых Комнат",
+      "file": "cover.png",
+      "runtimeFile": "runtime/cover.webp",
+      "sha256": "24c07c9cbb1c1c8c9e6597a8f125ba61fecf0e60e2e827fdbe562171b0696d16",
+      "runtimeSha256": "475b17962b651758d9cb4334257fddd9ad0dc9f328c4400d592284c28f00e4f8",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/cover.png",
+      "revealFromEvening": 0,
+      "subjects": [],
+      "kind": "cover",
+      "prompt": "Generate one image and save it as cover.png in the current directory.\nWide landscape key art, 3:2. Night on a stony slope with bare elms: a tall old stone manor stands above the dry stone bed of a long-abandoned fortress moat, twelve warm windows glowing across its dark facade, an open porch in the middle with a lantern hanging on a chain. Far below by the road, a washed-out bridge and a night mail coach stalled beside it, its lamps still lit. Up the slope toward the porch walks a small company of travellers with lanterns and candles in mist: a young porter in work gloves leads with someone else's bags in both hands, and at the top of the porch steps a tall host with silver temples in an old, impeccable frock coat raises a lantern in courteous welcome. In the foreground eight adults pause and look up at the house: a grey-streaked woman in plain road armour with a brass tinderbox at her belt; a young man with a worn magnifying glass on a cord; a calm woman in a clay-coloured cloak with a small open-palm symbol; a man in dark spectacles with a leather folder under his arm; a broad-handed woman with a short braid, a scuffed shield and a folding wooden ruler; a young woman in a short cloak clutching a string-tied parcel; an older man with a silver beard and a worn staff; a young woman in a checked scarf with a bundle of index cards. Warm windows, cold air, an invitation that feels like a held breath.\n\nMatch one consistent house style: original premium illustrated gothic psychological horror for adult players, painterly oil and gouache with soft glazed shadows, confident ink lines and crisp readable silhouettes; an old stone manor above a long-dry fortress moat in a damp autumn principality of coach roads and quiet household magic, its dampness felt only in wet wool, cold stone and mist; narrow stairs and worn steps, long corridors of doors, brass grilles and humming pipes that seem to carry many distant voices at once; warm candlelight as the only safe light, small flames holding back deep, patient shadow; palette of candle amber and honey gold, smoke umber and soot black, faded wallpaper green and dusty rose, cold stone grey, tarnished brass and a pale ash blue in the dark; dread through presence, absence and empty space rather than violence; every person shown is clearly an adult over 21. Papers, plaques, books and tags carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no exposed anatomy, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "hollow-estate",
+      "title": "Усадьба над сухим рвом",
+      "file": "hollow-estate.png",
+      "runtimeFile": "runtime/hollow-estate.webp",
+      "sha256": "14c8010410619c4725e8f84670b5d3899ccbe8f96a9943239da1fc3f69975b70",
+      "runtimeSha256": "e92453c212343417e210f07ea4971e732617ca8f28616f8eb449e80b28acb5ea",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/hollow-estate.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "hollow-estate"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as hollow-estate.png in the current directory.\nLandscape scene, 3:2. Wide view of an estate at night: a rocky slope with bare elms, a tall stone manor above the dry, grass-grown bed of an old fortress moat, twelve warm windows across its facade and a porch in the middle. Below, along the road, a washed-out stone bridge over the moat and a night mail coach standing beside it. Mist in the hollows, a single lantern moving up the slope.\n\nMatch one consistent house style: original premium illustrated gothic psychological horror for adult players, painterly oil and gouache with soft glazed shadows, confident ink lines and crisp readable silhouettes; an old stone manor above a long-dry fortress moat in a damp autumn principality of coach roads and quiet household magic, its dampness felt only in wet wool, cold stone and mist; narrow stairs and worn steps, long corridors of doors, brass grilles and humming pipes that seem to carry many distant voices at once; warm candlelight as the only safe light, small flames holding back deep, patient shadow; palette of candle amber and honey gold, smoke umber and soot black, faded wallpaper green and dusty rose, cold stone grey, tarnished brass and a pale ash blue in the dark; dread through presence, absence and empty space rather than violence; every person shown is clearly an adult over 21. Papers, plaques, books and tags carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no exposed anatomy, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "arrival-hall",
+      "title": "Вестибюль с часами",
+      "file": "arrival-hall.png",
+      "runtimeFile": "runtime/arrival-hall.webp",
+      "sha256": "59df6cb9bf55fb7c9d64abe5fba8b4093fdf6ff7221e3b41dd4cdaa6679d2c0b",
+      "runtimeSha256": "93e252d05bff1f0c4b86bec8e6470c25fc716334d41d9c3030c8f7be5d749bce",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/arrival-hall.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "arrival-hall"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as arrival-hall.png in the current directory.\nLandscape scene, 3:2. Interior of a manor vestibule by candlelight: brass drip trays beneath dripping wet travelling cloaks on hooks, a reading lectern holding a thick leather guest book, and a floor-standing clock twice the height of a person, its pendulum swinging behind cloudy glass. Where the front door should be, the wall is only smooth wallpaper patterned with stair balusters, seamless and calm. Warm wax light, wet wool, a hush.\n\nMatch one consistent house style: original premium illustrated gothic psychological horror for adult players, painterly oil and gouache with soft glazed shadows, confident ink lines and crisp readable silhouettes; an old stone manor above a long-dry fortress moat in a damp autumn principality of coach roads and quiet household magic, its dampness felt only in wet wool, cold stone and mist; narrow stairs and worn steps, long corridors of doors, brass grilles and humming pipes that seem to carry many distant voices at once; warm candlelight as the only safe light, small flames holding back deep, patient shadow; palette of candle amber and honey gold, smoke umber and soot black, faded wallpaper green and dusty rose, cold stone grey, tarnished brass and a pale ash blue in the dark; dread through presence, absence and empty space rather than violence; every person shown is clearly an adult over 21. Papers, plaques, books and tags carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no exposed anatomy, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "desire-gallery",
+      "title": "Галерея дверей",
+      "file": "desire-gallery.png",
+      "runtimeFile": "runtime/desire-gallery.webp",
+      "sha256": "8f5e33e4884a3687687f08bddbceabd10268d418d4e26fb84f53e051ddcc5c2c",
+      "runtimeSha256": "0f194591b32f8ddc7e6cac7e7bf6730bb7c6e72e1905caf405b2fce86985b79f",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/desire-gallery.png",
+      "revealFromEvening": 3,
+      "subjects": [
+        "desire-gallery"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as desire-gallery.png in the current directory.\nLandscape scene, 3:2. A long manor gallery lined on both sides with identical doors that bear no numbers; between them small brass ventilation grilles breathe warm air, and the far end fades into dimness. A few old drops of wax lie on the thresholds, and the parquet beyond each door looks almost unworn. Candlelight, faint drifting haze, a sense of many voices just out of hearing.\n\nMatch one consistent house style: original premium illustrated gothic psychological horror for adult players, painterly oil and gouache with soft glazed shadows, confident ink lines and crisp readable silhouettes; an old stone manor above a long-dry fortress moat in a damp autumn principality of coach roads and quiet household magic, its dampness felt only in wet wool, cold stone and mist; narrow stairs and worn steps, long corridors of doors, brass grilles and humming pipes that seem to carry many distant voices at once; warm candlelight as the only safe light, small flames holding back deep, patient shadow; palette of candle amber and honey gold, smoke umber and soot black, faded wallpaper green and dusty rose, cold stone grey, tarnished brass and a pale ash blue in the dark; dread through presence, absence and empty space rather than violence; every person shown is clearly an adult over 21. Papers, plaques, books and tags carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no exposed anatomy, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "quiet-parlor",
+      "title": "Большая гостиная",
+      "file": "quiet-parlor.png",
+      "runtimeFile": "runtime/quiet-parlor.webp",
+      "sha256": "4b43ef5da1258dd65ecff2f54e4460fe0a41e08c73f6400655a480dd10c57da4",
+      "runtimeSha256": "f51abf052df1a294732cd866ca8ded0ab949a268fcd36cc79101e10e8f6cb885",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/quiet-parlor.png",
+      "revealFromEvening": 2,
+      "subjects": [
+        "quiet-parlor"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as quiet-parlor.png in the current directory.\nLandscape scene, 3:2. A great parlour in an old manor: a long dining table laid across the southern half of the room, heavy sideboards, tall high-backed chairs, candelabra filled with wax dummy candles, a cold fireplace in the south wall. The north wall is papered in pale wallpaper with a repeating pattern of candles; in the north-east corner, a plain door to the kitchen. Warm table light and a cold, waiting room around it.\n\nMatch one consistent house style: original premium illustrated gothic psychological horror for adult players, painterly oil and gouache with soft glazed shadows, confident ink lines and crisp readable silhouettes; an old stone manor above a long-dry fortress moat in a damp autumn principality of coach roads and quiet household magic, its dampness felt only in wet wool, cold stone and mist; narrow stairs and worn steps, long corridors of doors, brass grilles and humming pipes that seem to carry many distant voices at once; warm candlelight as the only safe light, small flames holding back deep, patient shadow; palette of candle amber and honey gold, smoke umber and soot black, faded wallpaper green and dusty rose, cold stone grey, tarnished brass and a pale ash blue in the dark; dread through presence, absence and empty space rather than violence; every person shown is clearly an adult over 21. Papers, plaques, books and tags carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no exposed anatomy, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "warm-kitchen",
+      "title": "Кухня",
+      "file": "warm-kitchen.png",
+      "runtimeFile": "runtime/warm-kitchen.webp",
+      "sha256": "3e3d94315bd9813a5157f56111b312124ef250f3c69e6f5c3d9dc947abc4da6c",
+      "runtimeSha256": "8757768bbd542573cabe77f0bb54f755fc41026e93f4aa2eaabf1887fe9d9987",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/warm-kitchen.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "warm-kitchen"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as warm-kitchen.png in the current directory.\nLandscape scene, 3:2. A low vaulted manor kitchen: a warm iron stove glowing, a long scrubbed table, copper pans, a chalkboard on the wall covered in faint illegible chalk marks, a locked pantry door with a heavy padlock, a small tin matchbox on the shelf by the stove. Two doors, one toward a terrace and one toward the parlour. The only room in the house that feels kind.\n\nMatch one consistent house style: original premium illustrated gothic psychological horror for adult players, painterly oil and gouache with soft glazed shadows, confident ink lines and crisp readable silhouettes; an old stone manor above a long-dry fortress moat in a damp autumn principality of coach roads and quiet household magic, its dampness felt only in wet wool, cold stone and mist; narrow stairs and worn steps, long corridors of doors, brass grilles and humming pipes that seem to carry many distant voices at once; warm candlelight as the only safe light, small flames holding back deep, patient shadow; palette of candle amber and honey gold, smoke umber and soot black, faded wallpaper green and dusty rose, cold stone grey, tarnished brass and a pale ash blue in the dark; dread through presence, absence and empty space rather than violence; every person shown is clearly an adult over 21. Papers, plaques, books and tags carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no exposed anatomy, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "workroom",
+      "title": "Часовая мастерская",
+      "file": "workroom.png",
+      "runtimeFile": "runtime/workroom.webp",
+      "sha256": "db3b427671145d1cb7fa094d5d62ca48d89ef16c409604d442f7e0af386934cc",
+      "runtimeSha256": "a945a65c4fca4d0305e7bd08dec5ed107ff28b089904c8c3d24e08155479261c",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/workroom.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "workroom"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as workroom.png in the current directory.\nLandscape scene, 3:2. A clockmaker's workroom in an old manor: a workbench strewn with disassembled brass clock wheels and springs, a large model of a striking mechanism, an oil lamp. Along the wall copper pipes with small blank tags run down into the floor and seem to hum. Above the workbench a long brass key hangs on a nail. Clock oil, brass filings, warm lamplight.\n\nMatch one consistent house style: original premium illustrated gothic psychological horror for adult players, painterly oil and gouache with soft glazed shadows, confident ink lines and crisp readable silhouettes; an old stone manor above a long-dry fortress moat in a damp autumn principality of coach roads and quiet household magic, its dampness felt only in wet wool, cold stone and mist; narrow stairs and worn steps, long corridors of doors, brass grilles and humming pipes that seem to carry many distant voices at once; warm candlelight as the only safe light, small flames holding back deep, patient shadow; palette of candle amber and honey gold, smoke umber and soot black, faded wallpaper green and dusty rose, cold stone grey, tarnished brass and a pale ash blue in the dark; dread through presence, absence and empty space rather than violence; every person shown is clearly an adult over 21. Papers, plaques, books and tags carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no exposed anatomy, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "winter-garden",
+      "title": "Зимний сад",
+      "file": "winter-garden.png",
+      "runtimeFile": "runtime/winter-garden.webp",
+      "sha256": "7685050cdda1bdc377802c4668e66132450dbdcd88881e1168e39f71e6317284",
+      "runtimeSha256": "5f43f064269e876d66c130d8c88884e440e2fd99489697415f8b6788485b71d0",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/winter-garden.png",
+      "revealFromEvening": 5,
+      "subjects": [
+        "winter-garden"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as winter-garden.png in the current directory.\nLandscape scene, 3:2. A glass-roofed winter garden inside a manor: tubs of pale ferns, wrought-iron benches along gravel paths, the glass panes papered over from outside so only the plain paper backs of wallpaper show through, pale and blind. A glass door in the north and a wooden door in the south. Candlelight among fern fronds, a still, listening air.\n\nMatch one consistent house style: original premium illustrated gothic psychological horror for adult players, painterly oil and gouache with soft glazed shadows, confident ink lines and crisp readable silhouettes; an old stone manor above a long-dry fortress moat in a damp autumn principality of coach roads and quiet household magic, its dampness felt only in wet wool, cold stone and mist; narrow stairs and worn steps, long corridors of doors, brass grilles and humming pipes that seem to carry many distant voices at once; warm candlelight as the only safe light, small flames holding back deep, patient shadow; palette of candle amber and honey gold, smoke umber and soot black, faded wallpaper green and dusty rose, cold stone grey, tarnished brass and a pale ash blue in the dark; dread through presence, absence and empty space rather than violence; every person shown is clearly an adult over 21. Papers, plaques, books and tags carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no exposed anatomy, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "service-terrace",
+      "title": "Терраса, которой нет",
+      "file": "service-terrace.png",
+      "runtimeFile": "runtime/service-terrace.webp",
+      "sha256": "6848212d47418d614db2db9b3fcb03948d3c7779745aa479d0f6720c9bf3ef9f",
+      "runtimeSha256": "ceed89f10832fe22ec109d8c6eda2860a635f8cb46365c19b1fffbda3d6d820d",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/service-terrace.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "service-terrace"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as service-terrace.png in the current directory.\nLandscape scene, 3:2. A kitchen door opens onto an impossible terrace: stone balustrades under a ceiling painted with a calm sky and clouds, an even, lifeless light without a sun. Beyond the balustrade lies not a garden but the same warm kitchen again, as if seen from outside. Quiet, uncanny, unhurried.\n\nMatch one consistent house style: original premium illustrated gothic psychological horror for adult players, painterly oil and gouache with soft glazed shadows, confident ink lines and crisp readable silhouettes; an old stone manor above a long-dry fortress moat in a damp autumn principality of coach roads and quiet household magic, its dampness felt only in wet wool, cold stone and mist; narrow stairs and worn steps, long corridors of doors, brass grilles and humming pipes that seem to carry many distant voices at once; warm candlelight as the only safe light, small flames holding back deep, patient shadow; palette of candle amber and honey gold, smoke umber and soot black, faded wallpaper green and dusty rose, cold stone grey, tarnished brass and a pale ash blue in the dark; dread through presence, absence and empty space rather than violence; every person shown is clearly an adult over 21. Papers, plaques, books and tags carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no exposed anatomy, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "outer-porch",
+      "title": "Крыльцо",
+      "file": "outer-porch.png",
+      "runtimeFile": "runtime/outer-porch.webp",
+      "sha256": "a8c5185b3a63b676133d9372d9c8d9111de9c3d0fd4e6d55f6603dc089282e22",
+      "runtimeSha256": "a24138cd1169ab5ae6b7a65e139ed474bf170363d85d2f2c9bff2e1e9c0fcabb",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/outer-porch.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "outer-porch"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as outer-porch.png in the current directory.\nLandscape scene, 3:2. The porch of an old stone manor at night: three wide stone steps down to the road, a lantern hanging on a chain, the estate gates standing open. From the porch the slope falls toward a washed-out bridge over the dry moat, where a night mail coach waits with its lamps lit. Mist, bare elms, the warm door behind.\n\nMatch one consistent house style: original premium illustrated gothic psychological horror for adult players, painterly oil and gouache with soft glazed shadows, confident ink lines and crisp readable silhouettes; an old stone manor above a long-dry fortress moat in a damp autumn principality of coach roads and quiet household magic, its dampness felt only in wet wool, cold stone and mist; narrow stairs and worn steps, long corridors of doors, brass grilles and humming pipes that seem to carry many distant voices at once; warm candlelight as the only safe light, small flames holding back deep, patient shadow; palette of candle amber and honey gold, smoke umber and soot black, faded wallpaper green and dusty rose, cold stone grey, tarnished brass and a pale ash blue in the dark; dread through presence, absence and empty space rather than violence; every person shown is clearly an adult over 21. Papers, plaques, books and tags carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no exposed anatomy, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "counting-stair",
+      "title": "Лестница Счёта",
+      "file": "counting-stair.png",
+      "runtimeFile": "runtime/counting-stair.webp",
+      "sha256": "b82aabe1167724b2ef26b0d3741c4aa8f372d49d6561513c8c20d61db8603241",
+      "runtimeSha256": "02371df2e840296d5280d3222cfd79fc80a6582065bca1ed8f5481b98b13e2fc",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/counting-stair.png",
+      "revealFromEvening": 6,
+      "subjects": [
+        "counting-stair"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as counting-stair.png in the current directory.\nLandscape scene, 3:2. Looking down a narrow stone stair inside a tight vertical shaft: three steep flights and two small landings, each landing with empty niches cut into the wall, and far below a low gate. The steps are worn hollow in the middle as if countless people had walked them together. A single candle at the top, cold air rising from below. Breathless, close, urgent.\n\nMatch one consistent house style: original premium illustrated gothic psychological horror for adult players, painterly oil and gouache with soft glazed shadows, confident ink lines and crisp readable silhouettes; an old stone manor above a long-dry fortress moat in a damp autumn principality of coach roads and quiet household magic, its dampness felt only in wet wool, cold stone and mist; narrow stairs and worn steps, long corridors of doors, brass grilles and humming pipes that seem to carry many distant voices at once; warm candlelight as the only safe light, small flames holding back deep, patient shadow; palette of candle amber and honey gold, smoke umber and soot black, faded wallpaper green and dusty rose, cold stone grey, tarnished brass and a pale ash blue in the dark; dread through presence, absence and empty space rather than violence; every person shown is clearly an adult over 21. Papers, plaques, books and tags carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no exposed anatomy, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "urm-crypt",
+      "title": "Склеп Урмов",
+      "file": "urm-crypt.png",
+      "runtimeFile": "runtime/urm-crypt.webp",
+      "sha256": "6ce41624ee2aa5f4eaa92c5a723637a0417ce718eba773d0e06e676f38720078",
+      "runtimeSha256": "3f7f7bd0315076d63ae6f5e77869cc9d161c8211b5b17f75655684ff324d7036",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/urm-crypt.png",
+      "revealFromEvening": 4,
+      "subjects": [
+        "urm-crypt"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as urm-crypt.png in the current directory.\nLandscape scene, 3:2. A vaulted family crypt beneath a manor gallery: niches in two rows along the walls, each holding a candle stub burning with a cold, pale light above a small blank plaque. At the east end, a stone altar with a heavy dark wooden box; in the east wall an iron grille opening into darkness. Hushed, solemn, the stone itself seeming to hum.\n\nMatch one consistent house style: original premium illustrated gothic psychological horror for adult players, painterly oil and gouache with soft glazed shadows, confident ink lines and crisp readable silhouettes; an old stone manor above a long-dry fortress moat in a damp autumn principality of coach roads and quiet household magic, its dampness felt only in wet wool, cold stone and mist; narrow stairs and worn steps, long corridors of doors, brass grilles and humming pipes that seem to carry many distant voices at once; warm candlelight as the only safe light, small flames holding back deep, patient shadow; palette of candle amber and honey gold, smoke umber and soot black, faded wallpaper green and dusty rose, cold stone grey, tarnished brass and a pale ash blue in the dark; dread through presence, absence and empty space rather than violence; every person shown is clearly an adult over 21. Papers, plaques, books and tags carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no exposed anatomy, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "dry-moat",
+      "title": "Сухой ров",
+      "file": "dry-moat.png",
+      "runtimeFile": "runtime/dry-moat.webp",
+      "sha256": "f353f657c64311b5f83725f1f3f94ae444f6120b0edef942330c7566cd9fdea2",
+      "runtimeSha256": "b8301674f915a43cabfa5b2827d0762d94ffafdd303976a4b258c8dcbf6b63dc",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/dry-moat.png",
+      "revealFromEvening": 6,
+      "subjects": [
+        "dry-moat"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as dry-moat.png in the current directory.\nLandscape scene, 3:2. The stone floor of a long-dry fortress moat beneath the outer wall of a manor, in the first grey light before dawn: dry grass between the stones, a low arched gate set in the wall, a path climbing the slope toward a road and a distant bridge. Still air, a pale sky, open space after a long night.\n\nMatch one consistent house style: original premium illustrated gothic psychological horror for adult players, painterly oil and gouache with soft glazed shadows, confident ink lines and crisp readable silhouettes; an old stone manor above a long-dry fortress moat in a damp autumn principality of coach roads and quiet household magic, its dampness felt only in wet wool, cold stone and mist; narrow stairs and worn steps, long corridors of doors, brass grilles and humming pipes that seem to carry many distant voices at once; warm candlelight as the only safe light, small flames holding back deep, patient shadow; palette of candle amber and honey gold, smoke umber and soot black, faded wallpaper green and dusty rose, cold stone grey, tarnished brass and a pale ash blue in the dark; dread through presence, absence and empty space rather than violence; every person shown is clearly an adult over 21. Papers, plaques, books and tags carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no exposed anatomy, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "vera-reed",
+      "title": "Ядвига Рид",
+      "file": "vera-reed.png",
+      "runtimeFile": "runtime/vera-reed.webp",
+      "sha256": "cb6f3e8a2a8f901a45ce695713b9728118ec27619caf630ee600ab0855e2fecd",
+      "runtimeSha256": "c8bae73cdabb593c1c404948382ad551c5a8c5949a5bb9be57cdc5fe16261f88",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/vera-reed.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "vera-reed"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as vera-reed.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Yadviga Rid, a 38-year-old woman, former head of a road watch, a fighter: a grey streak in her hair, plain road armour with no insignia, a sheathed sword, an old watch tinderbox in a dented brass box at her belt; one hand resting on a door frame as she counts the exits. Behind her, the warm candlelit vestibule of a manor.\n\nMatch one consistent house style: original premium illustrated gothic psychological horror for adult players, painterly oil and gouache with soft glazed shadows, confident ink lines and crisp readable silhouettes; an old stone manor above a long-dry fortress moat in a damp autumn principality of coach roads and quiet household magic, its dampness felt only in wet wool, cold stone and mist; narrow stairs and worn steps, long corridors of doors, brass grilles and humming pipes that seem to carry many distant voices at once; warm candlelight as the only safe light, small flames holding back deep, patient shadow; palette of candle amber and honey gold, smoke umber and soot black, faded wallpaper green and dusty rose, cold stone grey, tarnished brass and a pale ash blue in the dark; dread through presence, absence and empty space rather than violence; every person shown is clearly an adult over 21. Papers, plaques, books and tags carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no exposed anatomy, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "anton-grey",
+      "title": "Антон Грей",
+      "file": "anton-grey.png",
+      "runtimeFile": "runtime/anton-grey.webp",
+      "sha256": "801b43afc4b16f51a4ef35142f89af099551408e71381d1e341ceaf3fdcbafaa",
+      "runtimeSha256": "be99b9d2122330aec3cff26424aed3796c3d640969ab3137f3b1eae10d2df0eb",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/anton-grey.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "anton-grey"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as anton-grey.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Anton Grey, a 29-year-old man, appraiser of road pledges, a rogue: a worn magnifying glass on a cord, plain gloves, a short dagger at his hip, a stub of white chalk wrapped in paper covered in illegible marks; he looks at a door as if pricing it. Behind him, a long gallery of unnumbered doors.\n\nMatch one consistent house style: original premium illustrated gothic psychological horror for adult players, painterly oil and gouache with soft glazed shadows, confident ink lines and crisp readable silhouettes; an old stone manor above a long-dry fortress moat in a damp autumn principality of coach roads and quiet household magic, its dampness felt only in wet wool, cold stone and mist; narrow stairs and worn steps, long corridors of doors, brass grilles and humming pipes that seem to carry many distant voices at once; warm candlelight as the only safe light, small flames holding back deep, patient shadow; palette of candle amber and honey gold, smoke umber and soot black, faded wallpaper green and dusty rose, cold stone grey, tarnished brass and a pale ash blue in the dark; dread through presence, absence and empty space rather than violence; every person shown is clearly an adult over 21. Papers, plaques, books and tags carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no exposed anatomy, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "mara-elm",
+      "title": "Божена Эльм",
+      "file": "mara-elm.png",
+      "runtimeFile": "runtime/mara-elm.webp",
+      "sha256": "3aeb2423c87dabf49490f036685b7fbc8d401ecf1781cae07a8f73a8db1b0cbe",
+      "runtimeSha256": "a80e5fa7ab6b451ecdc97bde84c937b972032dbeb220c7ad13c0e755a66fcad2",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/mara-elm.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "mara-elm"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as mara-elm.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Bozhena Elm, a 46-year-old woman, servant of a roadside hospice, a cleric: a cloak the colour of dry clay, a small open-palm symbol, a plain staff, a linen pouch at her belt with three thin yellow candles tied with a knotted thread; a calm, low-voiced presence. Behind her, a low vaulted kitchen with a warm stove.\n\nMatch one consistent house style: original premium illustrated gothic psychological horror for adult players, painterly oil and gouache with soft glazed shadows, confident ink lines and crisp readable silhouettes; an old stone manor above a long-dry fortress moat in a damp autumn principality of coach roads and quiet household magic, its dampness felt only in wet wool, cold stone and mist; narrow stairs and worn steps, long corridors of doors, brass grilles and humming pipes that seem to carry many distant voices at once; warm candlelight as the only safe light, small flames holding back deep, patient shadow; palette of candle amber and honey gold, smoke umber and soot black, faded wallpaper green and dusty rose, cold stone grey, tarnished brass and a pale ash blue in the dark; dread through presence, absence and empty space rather than violence; every person shown is clearly an adult over 21. Papers, plaques, books and tags carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no exposed anatomy, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "ilya-fenn",
+      "title": "Илья Фенн",
+      "file": "ilya-fenn.png",
+      "runtimeFile": "runtime/ilya-fenn.webp",
+      "sha256": "629c4b685d3a4ff129b3dd677c2597dfd973ee7715a8c6bbe565b2b870402df8",
+      "runtimeSha256": "510ac48955db7dc248e7967ce0fcd2414deeaf7c7d8cd52d5719ce7ee0bf9d67",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/ilya-fenn.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "ilya-fenn"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as ilya-fenn.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Ilya Fenn, a 34-year-old man, master of light drawings, a wizard: dark spectacles on a cord, sleeves dusted with chalk, a staff, a leather folder holding a thin silvery card on which the faint image of a room is slowly appearing. Behind him, a candlelit manor gallery.\n\nMatch one consistent house style: original premium illustrated gothic psychological horror for adult players, painterly oil and gouache with soft glazed shadows, confident ink lines and crisp readable silhouettes; an old stone manor above a long-dry fortress moat in a damp autumn principality of coach roads and quiet household magic, its dampness felt only in wet wool, cold stone and mist; narrow stairs and worn steps, long corridors of doors, brass grilles and humming pipes that seem to carry many distant voices at once; warm candlelight as the only safe light, small flames holding back deep, patient shadow; palette of candle amber and honey gold, smoke umber and soot black, faded wallpaper green and dusty rose, cold stone grey, tarnished brass and a pale ash blue in the dark; dread through presence, absence and empty space rather than violence; every person shown is clearly an adult over 21. Papers, plaques, books and tags carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no exposed anatomy, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "roza-flint",
+      "title": "Беата Кремень",
+      "file": "roza-flint.png",
+      "runtimeFile": "runtime/roza-flint.webp",
+      "sha256": "c30be9db9eccfc1d4aeb8049fcd5627a2bd65892f8fb4f9ee1734a11a6580814",
+      "runtimeSha256": "92808cf516c6a78c6821561588e186a2147deab2d10c4da6c67a43bcee96bfb6",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/roza-flint.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "roza-flint"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as roza-flint.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Beata Kremen, a 51-year-old woman, master builder of stone stairs, a fighter: broad palms, a short braid, a plain shield marked by road work, a sheathed sword, a folding wooden ruler on brass hinges with a notch for every step; steady and practical. Behind her, the worn stone steps of a manor porch at night.\n\nMatch one consistent house style: original premium illustrated gothic psychological horror for adult players, painterly oil and gouache with soft glazed shadows, confident ink lines and crisp readable silhouettes; an old stone manor above a long-dry fortress moat in a damp autumn principality of coach roads and quiet household magic, its dampness felt only in wet wool, cold stone and mist; narrow stairs and worn steps, long corridors of doors, brass grilles and humming pipes that seem to carry many distant voices at once; warm candlelight as the only safe light, small flames holding back deep, patient shadow; palette of candle amber and honey gold, smoke umber and soot black, faded wallpaper green and dusty rose, cold stone grey, tarnished brass and a pale ash blue in the dark; dread through presence, absence and empty space rather than violence; every person shown is clearly an adult over 21. Papers, plaques, books and tags carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no exposed anatomy, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "nina-slate",
+      "title": "Карина Слейт",
+      "file": "nina-slate.png",
+      "runtimeFile": "runtime/nina-slate.webp",
+      "sha256": "86c7d7c70c3fecf6bfa47f3ddeeb937f8215f7818ae2126b0bf5989143ac7256",
+      "runtimeSha256": "1377d80cfd60d9f46e90ca1e6f260a3b473c88f0d7a16ad48e8acd838b1946c2",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/nina-slate.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "nina-slate"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as nina-slate.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Karina Sleit, a 27-year-old woman, courier of private parcels, a rogue: a short cloak with inner pockets, a smooth wooden button, a small hand crossbow holstered at her hip, a string-tied parcel with a blank label under her arm; alert, the one who walks last. Behind her, a dim corridor of doors.\n\nMatch one consistent house style: original premium illustrated gothic psychological horror for adult players, painterly oil and gouache with soft glazed shadows, confident ink lines and crisp readable silhouettes; an old stone manor above a long-dry fortress moat in a damp autumn principality of coach roads and quiet household magic, its dampness felt only in wet wool, cold stone and mist; narrow stairs and worn steps, long corridors of doors, brass grilles and humming pipes that seem to carry many distant voices at once; warm candlelight as the only safe light, small flames holding back deep, patient shadow; palette of candle amber and honey gold, smoke umber and soot black, faded wallpaper green and dusty rose, cold stone grey, tarnished brass and a pale ash blue in the dark; dread through presence, absence and empty space rather than violence; every person shown is clearly an adult over 21. Papers, plaques, books and tags carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no exposed anatomy, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "david-ash",
+      "title": "Иероним Пасек",
+      "file": "david-ash.png",
+      "runtimeFile": "runtime/david-ash.webp",
+      "sha256": "5352ea2066ea25a74dd9b13a42df6977c3dca90345964ee0ed0cdd096117cb9f",
+      "runtimeSha256": "0e5c0f71f6886c81e120e250504a46b1e8ea6ba1be6a0e75c92b275e6feb865b",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/david-ash.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "david-ash"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as david-ash.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Ieronim Pasek, a 62-year-old man, keeper of roadside memorial gardens, a cleric: a silver beard, a small box of seeds, a staff with a worn grip, a folded list of names in illegible handwriting tucked into an inner pocket; gentle and grave. Behind him, bare elms on a stony slope at night.\n\nMatch one consistent house style: original premium illustrated gothic psychological horror for adult players, painterly oil and gouache with soft glazed shadows, confident ink lines and crisp readable silhouettes; an old stone manor above a long-dry fortress moat in a damp autumn principality of coach roads and quiet household magic, its dampness felt only in wet wool, cold stone and mist; narrow stairs and worn steps, long corridors of doors, brass grilles and humming pipes that seem to carry many distant voices at once; warm candlelight as the only safe light, small flames holding back deep, patient shadow; palette of candle amber and honey gold, smoke umber and soot black, faded wallpaper green and dusty rose, cold stone grey, tarnished brass and a pale ash blue in the dark; dread through presence, absence and empty space rather than violence; every person shown is clearly an adult over 21. Papers, plaques, books and tags carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no exposed anatomy, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "sofia-mere",
+      "title": "София Мер",
+      "file": "sofia-mere.png",
+      "runtimeFile": "runtime/sofia-mere.webp",
+      "sha256": "27a0b82a78d75b43c4deca5d51fa00d05527898e5401a875584169c4ec4e56c0",
+      "runtimeSha256": "d30531c847e75cb17bd406f8becb4a3ed89c878635105b585d6b1a4329980cd4",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/sofia-mere.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "sofia-mere"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as sofia-mere.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Sofia Mer, a 31-year-old woman, researcher of household charms, a wizard: three different pencils, a checked scarf, a staff, a neat stack of index cards held with a rubber band; curious, counting under her breath. Behind her, a great parlour with a long candlelit table.\n\nMatch one consistent house style: original premium illustrated gothic psychological horror for adult players, painterly oil and gouache with soft glazed shadows, confident ink lines and crisp readable silhouettes; an old stone manor above a long-dry fortress moat in a damp autumn principality of coach roads and quiet household magic, its dampness felt only in wet wool, cold stone and mist; narrow stairs and worn steps, long corridors of doors, brass grilles and humming pipes that seem to carry many distant voices at once; warm candlelight as the only safe light, small flames holding back deep, patient shadow; palette of candle amber and honey gold, smoke umber and soot black, faded wallpaper green and dusty rose, cold stone grey, tarnished brass and a pale ash blue in the dark; dread through presence, absence and empty space rather than violence; every person shown is clearly an adult over 21. Papers, plaques, books and tags carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no exposed anatomy, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "gaspar-urm",
+      "title": "Гаспар Урм",
+      "file": "gaspar-urm.png",
+      "runtimeFile": "runtime/gaspar-urm.webp",
+      "sha256": "e788867bf47540229aee2983b3bcb16def75b10948b135e4f9d314b27aa2559a",
+      "runtimeSha256": "e0a83d540f447d81b212ca576abf2c2f2e817bf064f862b86b288cf299b7f485",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/gaspar-urm.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "gaspar-urm"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as gaspar-urm.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Gaspar Urm, a tall man who looks about fifty, the master of the manor: silver temples, an old but impeccable frock coat, a pocket watch on a chain that he never glances at, a lantern in his warm, dry hand; courteous, composed, unhurried. Behind him, the candlelit vestibule of his manor with a lectern and a thick guest book.\n\nMatch one consistent house style: original premium illustrated gothic psychological horror for adult players, painterly oil and gouache with soft glazed shadows, confident ink lines and crisp readable silhouettes; an old stone manor above a long-dry fortress moat in a damp autumn principality of coach roads and quiet household magic, its dampness felt only in wet wool, cold stone and mist; narrow stairs and worn steps, long corridors of doors, brass grilles and humming pipes that seem to carry many distant voices at once; warm candlelight as the only safe light, small flames holding back deep, patient shadow; palette of candle amber and honey gold, smoke umber and soot black, faded wallpaper green and dusty rose, cold stone grey, tarnished brass and a pale ash blue in the dark; dread through presence, absence and empty space rather than violence; every person shown is clearly an adult over 21. Papers, plaques, books and tags carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no exposed anatomy, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "irina-vard",
+      "title": "Ирина Вард",
+      "file": "irina-vard.png",
+      "runtimeFile": "runtime/irina-vard.webp",
+      "sha256": "3ae0278e08889f771649e02a9361b3c8ba27bf8a594b6a0a61b9d3b718015286",
+      "runtimeSha256": "c31db634ea2b444e272bdf5746cf6a82452a5eeb4ddd835b0478733abb0b2598",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/irina-vard.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "irina-vard"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as irina-vard.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Irina Vard, a 66-year-old woman, a coach passenger: a pale walking cane, a thick travelling shawl, a small bundle wrapped in a handkerchief in her pocket; she holds a candle low and gazes past the viewer at something tall in the room; quiet, as if she has seen it all before. Behind her, a dim manor vestibule.\n\nMatch one consistent house style: original premium illustrated gothic psychological horror for adult players, painterly oil and gouache with soft glazed shadows, confident ink lines and crisp readable silhouettes; an old stone manor above a long-dry fortress moat in a damp autumn principality of coach roads and quiet household magic, its dampness felt only in wet wool, cold stone and mist; narrow stairs and worn steps, long corridors of doors, brass grilles and humming pipes that seem to carry many distant voices at once; warm candlelight as the only safe light, small flames holding back deep, patient shadow; palette of candle amber and honey gold, smoke umber and soot black, faded wallpaper green and dusty rose, cold stone grey, tarnished brass and a pale ash blue in the dark; dread through presence, absence and empty space rather than violence; every person shown is clearly an adult over 21. Papers, plaques, books and tags carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no exposed anatomy, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "agata-norr",
+      "title": "Бронислава Ковш",
+      "file": "agata-norr.png",
+      "runtimeFile": "runtime/agata-norr.webp",
+      "sha256": "a6414278ed72b9bc88104ee43a3ac5c4299e4fe3fcbf24d712a4573f0ed164de",
+      "runtimeSha256": "3d7f58417c3c058cfc86838fe12d9056197bb709c26658c179fec53c02f4ead1",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/agata-norr.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "agata-norr"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as agata-norr.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Bronislava Kovsh, a 57-year-old woman, the manor's cook: a cook's apron over a travelling dress, flour on her wrists, a heavy ring of keys at her belt, a wooden ladle in hand; brisk and warm. Behind her, a vaulted kitchen with a glowing stove.\n\nMatch one consistent house style: original premium illustrated gothic psychological horror for adult players, painterly oil and gouache with soft glazed shadows, confident ink lines and crisp readable silhouettes; an old stone manor above a long-dry fortress moat in a damp autumn principality of coach roads and quiet household magic, its dampness felt only in wet wool, cold stone and mist; narrow stairs and worn steps, long corridors of doors, brass grilles and humming pipes that seem to carry many distant voices at once; warm candlelight as the only safe light, small flames holding back deep, patient shadow; palette of candle amber and honey gold, smoke umber and soot black, faded wallpaper green and dusty rose, cold stone grey, tarnished brass and a pale ash blue in the dark; dread through presence, absence and empty space rather than violence; every person shown is clearly an adult over 21. Papers, plaques, books and tags carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no exposed anatomy, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "dorota-vess",
+      "title": "Дорота Весс",
+      "file": "dorota-vess.png",
+      "runtimeFile": "runtime/dorota-vess.webp",
+      "sha256": "1cb43e95ecd1014e9f5b9deda9cad39e26ca4e3bb54478b875d180a3fb56d280",
+      "runtimeSha256": "cbb7ef967e77d61eb420aa36cb9f26681f9dddc5322e2adfe8c6b10917fc7989",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/dorota-vess.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "dorota-vess"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as dorota-vess.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Dorota Vess, a 44-year-old woman, former manager of a roadside hospice, a coach passenger: a strict travelling dress, a small notebook with a pencil on a cord; precise, counting the people in the room. Behind her, a candlelit gallery of doors.\n\nMatch one consistent house style: original premium illustrated gothic psychological horror for adult players, painterly oil and gouache with soft glazed shadows, confident ink lines and crisp readable silhouettes; an old stone manor above a long-dry fortress moat in a damp autumn principality of coach roads and quiet household magic, its dampness felt only in wet wool, cold stone and mist; narrow stairs and worn steps, long corridors of doors, brass grilles and humming pipes that seem to carry many distant voices at once; warm candlelight as the only safe light, small flames holding back deep, patient shadow; palette of candle amber and honey gold, smoke umber and soot black, faded wallpaper green and dusty rose, cold stone grey, tarnished brass and a pale ash blue in the dark; dread through presence, absence and empty space rather than violence; every person shown is clearly an adult over 21. Papers, plaques, books and tags carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no exposed anatomy, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "martin-sekh",
+      "title": "Мартин Сех",
+      "file": "martin-sekh.png",
+      "runtimeFile": "runtime/martin-sekh.webp",
+      "sha256": "af05be393e7fd53bc8ba932f7b2f5631bfa313c2a49f74924bdab6a71eb16651",
+      "runtimeSha256": "729eaedcff32ee1b90a8e7cf9bf96a9322b68de68a9c5790755b7773cd88aff7",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/martin-sekh.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "martin-sekh"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as martin-sekh.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Martin Sekh, a 49-year-old man, clockmaker and engineer: an engineer's waistcoat, a loupe pushed up on his forehead, fingers stained with clock oil, a small screwdriver in hand; exact and unhurried. Behind him, a workbench of brass clock wheels and copper pipes.\n\nMatch one consistent house style: original premium illustrated gothic psychological horror for adult players, painterly oil and gouache with soft glazed shadows, confident ink lines and crisp readable silhouettes; an old stone manor above a long-dry fortress moat in a damp autumn principality of coach roads and quiet household magic, its dampness felt only in wet wool, cold stone and mist; narrow stairs and worn steps, long corridors of doors, brass grilles and humming pipes that seem to carry many distant voices at once; warm candlelight as the only safe light, small flames holding back deep, patient shadow; palette of candle amber and honey gold, smoke umber and soot black, faded wallpaper green and dusty rose, cold stone grey, tarnished brass and a pale ash blue in the dark; dread through presence, absence and empty space rather than violence; every person shown is clearly an adult over 21. Papers, plaques, books and tags carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no exposed anatomy, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "lidia-arren",
+      "title": "Эвелина Аррен",
+      "file": "lidia-arren.png",
+      "runtimeFile": "runtime/lidia-arren.webp",
+      "sha256": "80147beaceda3ffa286fc78192ee583347ff2c681cec2def6d8564f875f5369f",
+      "runtimeSha256": "7cbfeed4f4a5c7579f7a2882d5c6bab349c1a12d42cfb36403dbccdb9efa8f3e",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/lidia-arren.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "lidia-arren"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as lidia-arren.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Evelina Arren, a 41-year-old woman, a healer from the town downriver: a physician's bag, a wool waistcoat, a dark glass vial on a chain around her neck with a wax-sealed stopper; gentle, measured, breathing slowly. Behind her, tubs of pale ferns in a glass-roofed winter garden.\n\nMatch one consistent house style: original premium illustrated gothic psychological horror for adult players, painterly oil and gouache with soft glazed shadows, confident ink lines and crisp readable silhouettes; an old stone manor above a long-dry fortress moat in a damp autumn principality of coach roads and quiet household magic, its dampness felt only in wet wool, cold stone and mist; narrow stairs and worn steps, long corridors of doors, brass grilles and humming pipes that seem to carry many distant voices at once; warm candlelight as the only safe light, small flames holding back deep, patient shadow; palette of candle amber and honey gold, smoke umber and soot black, faded wallpaper green and dusty rose, cold stone grey, tarnished brass and a pale ash blue in the dark; dread through presence, absence and empty space rather than violence; every person shown is clearly an adult over 21. Papers, plaques, books and tags carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no exposed anatomy, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "egor-nell",
+      "title": "Егор Нелл",
+      "file": "egor-nell.png",
+      "runtimeFile": "runtime/egor-nell.webp",
+      "sha256": "94efcd4664a63a6cad5ebb4bf26da238240c31d7da89464c1ef916bbd67b3993",
+      "runtimeSha256": "634581d6530527d8e767ebe26a790a8a0c7ef1a7a6d735f1603b0ab5657c83df",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/egor-nell.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "egor-nell"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as egor-nell.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Egor Nell, a 28-year-old man, porter of the mail coach: thick work gloves, a wide strap across his shoulder, other people's bags in both hands; cheerful and tireless. Behind him, the porch of a stone manor at night with a lantern on a chain.\n\nMatch one consistent house style: original premium illustrated gothic psychological horror for adult players, painterly oil and gouache with soft glazed shadows, confident ink lines and crisp readable silhouettes; an old stone manor above a long-dry fortress moat in a damp autumn principality of coach roads and quiet household magic, its dampness felt only in wet wool, cold stone and mist; narrow stairs and worn steps, long corridors of doors, brass grilles and humming pipes that seem to carry many distant voices at once; warm candlelight as the only safe light, small flames holding back deep, patient shadow; palette of candle amber and honey gold, smoke umber and soot black, faded wallpaper green and dusty rose, cold stone grey, tarnished brass and a pale ash blue in the dark; dread through presence, absence and empty space rather than violence; every person shown is clearly an adult over 21. Papers, plaques, books and tags carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no exposed anatomy, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "tadeush-ren",
+      "title": "Тадеуш Рен",
+      "file": "tadeush-ren.png",
+      "runtimeFile": "runtime/tadeush-ren.webp",
+      "sha256": "d06e33890a47c00efe688bbbc8ed003f663e9eb89b8634463fceedad40b04d1e",
+      "runtimeSha256": "b3e6c3417868c378672218642366390a226b4f52f32c8104f5a0374d30b0fc7a",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/tadeush-ren.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "tadeush-ren"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as tadeush-ren.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Tadeush Ren, a 38-year-old man, an architect and coach passenger: an architect's waistcoat, a folding rule, a drawing board with tracing paper of illegible lines, a pencil behind his ear; pacing out the room as he sketches. Behind him, a long parlour with high-backed chairs.\n\nMatch one consistent house style: original premium illustrated gothic psychological horror for adult players, painterly oil and gouache with soft glazed shadows, confident ink lines and crisp readable silhouettes; an old stone manor above a long-dry fortress moat in a damp autumn principality of coach roads and quiet household magic, its dampness felt only in wet wool, cold stone and mist; narrow stairs and worn steps, long corridors of doors, brass grilles and humming pipes that seem to carry many distant voices at once; warm candlelight as the only safe light, small flames holding back deep, patient shadow; palette of candle amber and honey gold, smoke umber and soot black, faded wallpaper green and dusty rose, cold stone grey, tarnished brass and a pale ash blue in the dark; dread through presence, absence and empty space rather than violence; every person shown is clearly an adult over 21. Papers, plaques, books and tags carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no exposed anatomy, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "pantry-candles",
+      "title": "Свечи из кладовой",
+      "file": "pantry-candles.png",
+      "runtimeFile": "runtime/pantry-candles.webp",
+      "sha256": "ff0128f18bc6fcadfd42098b6b1688de38e7bcce06ac96b9ead21a1cbf2e023e",
+      "runtimeSha256": "032ce47b509c83a58d4c6c908767c4cf9679831e4bffe3e9d11e090ae334dd9b",
+      "width": 1254,
+      "height": 1254,
+      "alpha": true,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/pantry-candles.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "pantry-candles"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as pantry-candles.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. Two plain wooden crates side by side, each holding a dozen white candles wrapped in waxed paper.\n\nMatch one consistent house style: original premium illustrated gothic psychological horror for adult players, painterly oil and gouache with soft glazed shadows, confident ink lines and crisp readable silhouettes; an old stone manor above a long-dry fortress moat in a damp autumn principality of coach roads and quiet household magic, its dampness felt only in wet wool, cold stone and mist; narrow stairs and worn steps, long corridors of doors, brass grilles and humming pipes that seem to carry many distant voices at once; warm candlelight as the only safe light, small flames holding back deep, patient shadow; palette of candle amber and honey gold, smoke umber and soot black, faded wallpaper green and dusty rose, cold stone grey, tarnished brass and a pale ash blue in the dark; dread through presence, absence and empty space rather than violence; every person shown is clearly an adult over 21. Papers, plaques, books and tags carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no exposed anatomy, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "kitchen-matches",
+      "title": "Серные спички",
+      "file": "kitchen-matches.png",
+      "runtimeFile": "runtime/kitchen-matches.webp",
+      "sha256": "189e139f5c90425f4babce7f1f94cf32647e1cccb720bd9f09f9047d51b20d31",
+      "runtimeSha256": "a38eee2f6e194d7e8aad319feeb9a597ae2ee8a83185e3b50590e55152746496",
+      "width": 1254,
+      "height": 1254,
+      "alpha": true,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/kitchen-matches.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "kitchen-matches"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as kitchen-matches.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A small tin matchbox worn at the corners, slid half open, with six sulphur matches with dark heads.\n\nMatch one consistent house style: original premium illustrated gothic psychological horror for adult players, painterly oil and gouache with soft glazed shadows, confident ink lines and crisp readable silhouettes; an old stone manor above a long-dry fortress moat in a damp autumn principality of coach roads and quiet household magic, its dampness felt only in wet wool, cold stone and mist; narrow stairs and worn steps, long corridors of doors, brass grilles and humming pipes that seem to carry many distant voices at once; warm candlelight as the only safe light, small flames holding back deep, patient shadow; palette of candle amber and honey gold, smoke umber and soot black, faded wallpaper green and dusty rose, cold stone grey, tarnished brass and a pale ash blue in the dark; dread through presence, absence and empty space rather than violence; every person shown is clearly an adult over 21. Papers, plaques, books and tags carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no exposed anatomy, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "chapel-candles",
+      "title": "Церковные свечи Божены",
+      "file": "chapel-candles.png",
+      "runtimeFile": "runtime/chapel-candles.webp",
+      "sha256": "21f272f139753308ab8071cfbdf24795e711f5b6805b5b16494c2d05ef885c0a",
+      "runtimeSha256": "bbd36cb1ddf9dd255797e78f83f502382a222caa39f19e8cfb1936362bf0c2af",
+      "width": 1254,
+      "height": 1254,
+      "alpha": true,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/chapel-candles.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "chapel-candles"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as chapel-candles.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. Three thin yellow church candles in a small canvas pouch, tied together with a thread full of little knots.\n\nMatch one consistent house style: original premium illustrated gothic psychological horror for adult players, painterly oil and gouache with soft glazed shadows, confident ink lines and crisp readable silhouettes; an old stone manor above a long-dry fortress moat in a damp autumn principality of coach roads and quiet household magic, its dampness felt only in wet wool, cold stone and mist; narrow stairs and worn steps, long corridors of doors, brass grilles and humming pipes that seem to carry many distant voices at once; warm candlelight as the only safe light, small flames holding back deep, patient shadow; palette of candle amber and honey gold, smoke umber and soot black, faded wallpaper green and dusty rose, cold stone grey, tarnished brass and a pale ash blue in the dark; dread through presence, absence and empty space rather than violence; every person shown is clearly an adult over 21. Papers, plaques, books and tags carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no exposed anatomy, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "tinderbox",
+      "title": "Огниво Ядвиги",
+      "file": "tinderbox.png",
+      "runtimeFile": "runtime/tinderbox.webp",
+      "sha256": "22916459d3a40ffa921e272539825dea8f128fe84a555b83f24ee079d4347c55",
+      "runtimeSha256": "52eaa396e00c1816d4fea61a60ed6ccaf8091809b15c3caf5b12f57e366748f8",
+      "width": 1254,
+      "height": 1254,
+      "alpha": true,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/tinderbox.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "tinderbox"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as tinderbox.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. An old watchman's tinderbox: a brass box with a dented lid, open to show a flint worn to a shine and dry tinder.\n\nMatch one consistent house style: original premium illustrated gothic psychological horror for adult players, painterly oil and gouache with soft glazed shadows, confident ink lines and crisp readable silhouettes; an old stone manor above a long-dry fortress moat in a damp autumn principality of coach roads and quiet household magic, its dampness felt only in wet wool, cold stone and mist; narrow stairs and worn steps, long corridors of doors, brass grilles and humming pipes that seem to carry many distant voices at once; warm candlelight as the only safe light, small flames holding back deep, patient shadow; palette of candle amber and honey gold, smoke umber and soot black, faded wallpaper green and dusty rose, cold stone grey, tarnished brass and a pale ash blue in the dark; dread through presence, absence and empty space rather than violence; every person shown is clearly an adult over 21. Papers, plaques, books and tags carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no exposed anatomy, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "door-chalk",
+      "title": "Мел Антона",
+      "file": "door-chalk.png",
+      "runtimeFile": "runtime/door-chalk.webp",
+      "sha256": "d738e76cbb6694a8829a4919b34cd7af9f86c1b00efeb3e8405a21b8ddfc7bee",
+      "runtimeSha256": "1043dc20e228769fe72ac0ce0c78a6e51fea815ff26f2576cbff6ab38473d23e",
+      "width": 1254,
+      "height": 1254,
+      "alpha": true,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/door-chalk.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "door-chalk"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as door-chalk.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A short stick of white chalk half wrapped in a scrap of paper covered in a column of illegible pencil marks.\n\nMatch one consistent house style: original premium illustrated gothic psychological horror for adult players, painterly oil and gouache with soft glazed shadows, confident ink lines and crisp readable silhouettes; an old stone manor above a long-dry fortress moat in a damp autumn principality of coach roads and quiet household magic, its dampness felt only in wet wool, cold stone and mist; narrow stairs and worn steps, long corridors of doors, brass grilles and humming pipes that seem to carry many distant voices at once; warm candlelight as the only safe light, small flames holding back deep, patient shadow; palette of candle amber and honey gold, smoke umber and soot black, faded wallpaper green and dusty rose, cold stone grey, tarnished brass and a pale ash blue in the dark; dread through presence, absence and empty space rather than violence; every person shown is clearly an adult over 21. Papers, plaques, books and tags carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no exposed anatomy, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "stair-rule",
+      "title": "Складная рейка Беаты",
+      "file": "stair-rule.png",
+      "runtimeFile": "runtime/stair-rule.webp",
+      "sha256": "3665207513121e1489692a3678adfbe548d934e90a7915a08534e02e7b36b453",
+      "runtimeSha256": "cb5babf741b3470117a6d6d7e595273e81506f02b0b6b18a2d56b0e6d8320cfc",
+      "width": 1254,
+      "height": 1254,
+      "alpha": true,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/stair-rule.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "stair-rule"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as stair-rule.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A folding wooden ruler on brass hinges, partly unfolded, with a small notch cut for every step and the paint worn off the notches by fingers.\n\nMatch one consistent house style: original premium illustrated gothic psychological horror for adult players, painterly oil and gouache with soft glazed shadows, confident ink lines and crisp readable silhouettes; an old stone manor above a long-dry fortress moat in a damp autumn principality of coach roads and quiet household magic, its dampness felt only in wet wool, cold stone and mist; narrow stairs and worn steps, long corridors of doors, brass grilles and humming pipes that seem to carry many distant voices at once; warm candlelight as the only safe light, small flames holding back deep, patient shadow; palette of candle amber and honey gold, smoke umber and soot black, faded wallpaper green and dusty rose, cold stone grey, tarnished brass and a pale ash blue in the dark; dread through presence, absence and empty space rather than violence; every person shown is clearly an adult over 21. Papers, plaques, books and tags carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no exposed anatomy, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "light-sheet",
+      "title": "Световой лист Ильи",
+      "file": "light-sheet.png",
+      "runtimeFile": "runtime/light-sheet.webp",
+      "sha256": "9b7f8c6b2c2fd40700b0175184f4a50e00344a5e6db647530ed6af95b791d08b",
+      "runtimeSha256": "c6a611c64026bd8aaada4e01a54a211526745c9cf6b338e27535d49f2e38f93d",
+      "width": 1254,
+      "height": 1254,
+      "alpha": true,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/light-sheet.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "light-sheet"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as light-sheet.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. An open leather folder holding a thin silvery card on which the faint image of an empty room is slowly emerging, as if developing in light.\n\nMatch one consistent house style: original premium illustrated gothic psychological horror for adult players, painterly oil and gouache with soft glazed shadows, confident ink lines and crisp readable silhouettes; an old stone manor above a long-dry fortress moat in a damp autumn principality of coach roads and quiet household magic, its dampness felt only in wet wool, cold stone and mist; narrow stairs and worn steps, long corridors of doors, brass grilles and humming pipes that seem to carry many distant voices at once; warm candlelight as the only safe light, small flames holding back deep, patient shadow; palette of candle amber and honey gold, smoke umber and soot black, faded wallpaper green and dusty rose, cold stone grey, tarnished brass and a pale ash blue in the dark; dread through presence, absence and empty space rather than violence; every person shown is clearly an adult over 21. Papers, plaques, books and tags carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no exposed anatomy, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "irina-stub",
+      "title": "Огарок Ирины",
+      "file": "irina-stub.png",
+      "runtimeFile": "runtime/irina-stub.webp",
+      "sha256": "b91cecf45f9b7dc4419cbac3552deafd76db4ad81a35bbd63181189d9a6803db",
+      "runtimeSha256": "d569d07e37defc0a38c053fd3f0a128a7de46bc010d4201043b5a06941ebb3ed",
+      "width": 1254,
+      "height": 1254,
+      "alpha": true,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/irina-stub.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "irina-stub"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as irina-stub.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A finger-thick candle stub of dry yellow wax with a black wick, lying in an unfolded handkerchief.\n\nMatch one consistent house style: original premium illustrated gothic psychological horror for adult players, painterly oil and gouache with soft glazed shadows, confident ink lines and crisp readable silhouettes; an old stone manor above a long-dry fortress moat in a damp autumn principality of coach roads and quiet household magic, its dampness felt only in wet wool, cold stone and mist; narrow stairs and worn steps, long corridors of doors, brass grilles and humming pipes that seem to carry many distant voices at once; warm candlelight as the only safe light, small flames holding back deep, patient shadow; palette of candle amber and honey gold, smoke umber and soot black, faded wallpaper green and dusty rose, cold stone grey, tarnished brass and a pale ash blue in the dark; dread through presence, absence and empty space rather than violence; every person shown is clearly an adult over 21. Papers, plaques, books and tags carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no exposed anatomy, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "threshold-book",
+      "title": "Книга порога",
+      "file": "threshold-book.png",
+      "runtimeFile": "runtime/threshold-book.webp",
+      "sha256": "63660aee7f36b547973e63659c47fac81e258dffe438ef50ee699e530786d08a",
+      "runtimeSha256": "547adfa589e981d4fb8d412bcc2ad80119feb7f5f20b1c9738ef063f803aeb8f",
+      "width": 1254,
+      "height": 1254,
+      "alpha": true,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/threshold-book.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "threshold-book"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as threshold-book.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A thick old guest book bound in worn brown leather, lying open, its pages filled with rows of illegible signatures, a quill pen resting in the gutter.\n\nMatch one consistent house style: original premium illustrated gothic psychological horror for adult players, painterly oil and gouache with soft glazed shadows, confident ink lines and crisp readable silhouettes; an old stone manor above a long-dry fortress moat in a damp autumn principality of coach roads and quiet household magic, its dampness felt only in wet wool, cold stone and mist; narrow stairs and worn steps, long corridors of doors, brass grilles and humming pipes that seem to carry many distant voices at once; warm candlelight as the only safe light, small flames holding back deep, patient shadow; palette of candle amber and honey gold, smoke umber and soot black, faded wallpaper green and dusty rose, cold stone grey, tarnished brass and a pale ash blue in the dark; dread through presence, absence and empty space rather than violence; every person shown is clearly an adult over 21. Papers, plaques, books and tags carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no exposed anatomy, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "clock-key",
+      "title": "Ключ от шкафа часов",
+      "file": "clock-key.png",
+      "runtimeFile": "runtime/clock-key.webp",
+      "sha256": "386bf1a92dacb0c7391ec94fa1e93ff979833307024fce7f30860a8acbdec47c",
+      "runtimeSha256": "99b604070e7f70a6a8042bc3fbf90e6a788c50f2c977ac5787e4ea3b48cdc0aa",
+      "width": 1254,
+      "height": 1254,
+      "alpha": true,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/clock-key.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "clock-key"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as clock-key.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A long brass key with an elaborate stepped bit and a ring bow, polished by use.\n\nMatch one consistent house style: original premium illustrated gothic psychological horror for adult players, painterly oil and gouache with soft glazed shadows, confident ink lines and crisp readable silhouettes; an old stone manor above a long-dry fortress moat in a damp autumn principality of coach roads and quiet household magic, its dampness felt only in wet wool, cold stone and mist; narrow stairs and worn steps, long corridors of doors, brass grilles and humming pipes that seem to carry many distant voices at once; warm candlelight as the only safe light, small flames holding back deep, patient shadow; palette of candle amber and honey gold, smoke umber and soot black, faded wallpaper green and dusty rose, cold stone grey, tarnished brass and a pale ash blue in the dark; dread through presence, absence and empty space rather than violence; every person shown is clearly an adult over 21. Papers, plaques, books and tags carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no exposed anatomy, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "sleep-drops",
+      "title": "Сонные капли Эвелины",
+      "file": "sleep-drops.png",
+      "runtimeFile": "runtime/sleep-drops.webp",
+      "sha256": "4fc924b819b931cf4ab671ada81f586f5f762648ce7a8c0e667a477704ba9c88",
+      "runtimeSha256": "57633393f5fc219ca7d33bbdbf210bc79fd495d95affc19fa225c97270288941",
+      "width": 1254,
+      "height": 1254,
+      "alpha": true,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/sleep-drops.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "sleep-drops"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as sleep-drops.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A small dark glass vial on a fine chain, its stopper sealed with wax.\n\nMatch one consistent house style: original premium illustrated gothic psychological horror for adult players, painterly oil and gouache with soft glazed shadows, confident ink lines and crisp readable silhouettes; an old stone manor above a long-dry fortress moat in a damp autumn principality of coach roads and quiet household magic, its dampness felt only in wet wool, cold stone and mist; narrow stairs and worn steps, long corridors of doors, brass grilles and humming pipes that seem to carry many distant voices at once; warm candlelight as the only safe light, small flames holding back deep, patient shadow; palette of candle amber and honey gold, smoke umber and soot black, faded wallpaper green and dusty rose, cold stone grey, tarnished brass and a pale ash blue in the dark; dread through presence, absence and empty space rather than violence; every person shown is clearly an adult over 21. Papers, plaques, books and tags carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no exposed anatomy, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "urm-candles",
+      "title": "Свечи Урмов",
+      "file": "urm-candles.png",
+      "runtimeFile": "runtime/urm-candles.webp",
+      "sha256": "9f960353c05f054fc0692896fd50f6cf5d0b75e3ec8d2c07de26d60146803408",
+      "runtimeSha256": "33f413daec9b0ba3687d0d46a5503fbd963b94535bf22cd27014f9215dbcd4d1",
+      "width": 1254,
+      "height": 1254,
+      "alpha": true,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/urm-candles.png",
+      "revealFromEvening": 4,
+      "subjects": [
+        "urm-candles"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as urm-candles.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A heavy box of black wood with worn handles, its lid open to show eight thick candles of grey wax, each stamped with a small crest shaped like a stair.\n\nMatch one consistent house style: original premium illustrated gothic psychological horror for adult players, painterly oil and gouache with soft glazed shadows, confident ink lines and crisp readable silhouettes; an old stone manor above a long-dry fortress moat in a damp autumn principality of coach roads and quiet household magic, its dampness felt only in wet wool, cold stone and mist; narrow stairs and worn steps, long corridors of doors, brass grilles and humming pipes that seem to carry many distant voices at once; warm candlelight as the only safe light, small flames holding back deep, patient shadow; palette of candle amber and honey gold, smoke umber and soot black, faded wallpaper green and dusty rose, cold stone grey, tarnished brass and a pale ash blue in the dark; dread through presence, absence and empty space rather than violence; every person shown is clearly an adult over 21. Papers, plaques, books and tags carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no exposed anatomy, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "token-ghoul",
+      "title": "token-ghoul",
+      "file": "token-ghoul.png",
+      "runtimeFile": "runtime/token-ghoul.webp",
+      "sha256": "7b7c4129006f28b07855109c3b1cfe3c26b94724a11e744cd6a1e80ab20701ed",
+      "runtimeSha256": "72af5fa58a69ade19576d87d6b1b0e29bb089eeec65f0c0263bb1c6607348d80",
+      "width": 1254,
+      "height": 1254,
+      "alpha": true,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/token-ghoul.png",
+      "revealFromEvening": 2,
+      "subjects": [
+        "first-supper-foe-3",
+        "first-supper-foe-4",
+        "garden-glass-foe-1",
+        "garden-glass-foe-2",
+        "garden-glass-foe-3",
+        "six-strokes-foe-1",
+        "six-strokes-foe-2"
+      ],
+      "kind": "token",
+      "srd": "ghoul",
+      "prompt": "Generate one image and save it as token-ghoul.png in the current directory.\nGame token figure, square 1:1, on a fully transparent background, top three-quarter view, no ground shadow. A silent servant of the house in a buttonless livery and white gloves, where the face should be only smooth pale cloth; it holds an empty silver tray before it like a shield; upright, patient, uncanny.\n\nMatch one consistent house style: original premium illustrated gothic psychological horror for adult players, painterly oil and gouache with soft glazed shadows, confident ink lines and crisp readable silhouettes; an old stone manor above a long-dry fortress moat in a damp autumn principality of coach roads and quiet household magic, its dampness felt only in wet wool, cold stone and mist; narrow stairs and worn steps, long corridors of doors, brass grilles and humming pipes that seem to carry many distant voices at once; warm candlelight as the only safe light, small flames holding back deep, patient shadow; palette of candle amber and honey gold, smoke umber and soot black, faded wallpaper green and dusty rose, cold stone grey, tarnished brass and a pale ash blue in the dark; dread through presence, absence and empty space rather than violence; every person shown is clearly an adult over 21. Papers, plaques, books and tags carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no exposed anatomy, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "token-specter",
+      "title": "token-specter",
+      "file": "token-specter.png",
+      "runtimeFile": "runtime/token-specter.webp",
+      "sha256": "a14b70325d7a5b95b563ffa94b9d7bd9b6160532d09dc6a533065477cc047f40",
+      "runtimeSha256": "e8ea95e5c36b243b2d69b20cf14fda42615ecdf4b74097c89dabc4fa3aca0305",
+      "width": 1254,
+      "height": 1254,
+      "alpha": true,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/token-specter.png",
+      "revealFromEvening": 2,
+      "subjects": [
+        "first-supper-foe-1",
+        "first-supper-foe-2",
+        "niche-guards-foe-1",
+        "niche-guards-foe-2",
+        "niche-guards-foe-3"
+      ],
+      "kind": "token",
+      "srd": "specter",
+      "prompt": "Generate one image and save it as token-specter.png in the current directory.\nGame token figure, square 1:1, on a fully transparent background, top three-quarter view, no ground shadow. A pale, translucent figure in old-fashioned travelling clothes, its face like steam rising from a cup, mouth open on a single long note, both hands reaching toward a small candle flame; drifting, mournful.\n\nMatch one consistent house style: original premium illustrated gothic psychological horror for adult players, painterly oil and gouache with soft glazed shadows, confident ink lines and crisp readable silhouettes; an old stone manor above a long-dry fortress moat in a damp autumn principality of coach roads and quiet household magic, its dampness felt only in wet wool, cold stone and mist; narrow stairs and worn steps, long corridors of doors, brass grilles and humming pipes that seem to carry many distant voices at once; warm candlelight as the only safe light, small flames holding back deep, patient shadow; palette of candle amber and honey gold, smoke umber and soot black, faded wallpaper green and dusty rose, cold stone grey, tarnished brass and a pale ash blue in the dark; dread through presence, absence and empty space rather than violence; every person shown is clearly an adult over 21. Papers, plaques, books and tags carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no exposed anatomy, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "token-ghast",
+      "title": "token-ghast",
+      "file": "token-ghast.png",
+      "runtimeFile": "runtime/token-ghast.webp",
+      "sha256": "c381298bd1f5ef033dca9be2dbac4695d0e6172deefc72dbcd7836a4daf719ba",
+      "runtimeSha256": "0f6f9661ca1d2a39129729cb6b8a230a54a44e2c5c544a6d8e79246bb61cce47",
+      "width": 1254,
+      "height": 1254,
+      "alpha": true,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/token-ghast.png",
+      "revealFromEvening": 6,
+      "subjects": [
+        "six-strokes-boss"
+      ],
+      "kind": "token",
+      "srd": "ghast",
+      "prompt": "Generate one image and save it as token-ghast.png in the current directory.\nGame token figure, square 1:1, on a fully transparent background, top three-quarter view, no ground shadow. A tall, gaunt gatekeeper with ash-grey skin and unnaturally long arms, dressed in the rags of a once-fine frock coat, an ageless face; one hand rests on the leaf of a low gate while the other sweeps through the air as if blowing out candles; courteous, terrible.\n\nMatch one consistent house style: original premium illustrated gothic psychological horror for adult players, painterly oil and gouache with soft glazed shadows, confident ink lines and crisp readable silhouettes; an old stone manor above a long-dry fortress moat in a damp autumn principality of coach roads and quiet household magic, its dampness felt only in wet wool, cold stone and mist; narrow stairs and worn steps, long corridors of doors, brass grilles and humming pipes that seem to carry many distant voices at once; warm candlelight as the only safe light, small flames holding back deep, patient shadow; palette of candle amber and honey gold, smoke umber and soot black, faded wallpaper green and dusty rose, cold stone grey, tarnished brass and a pale ash blue in the dark; dread through presence, absence and empty space rather than violence; every person shown is clearly an adult over 21. Papers, plaques, books and tags carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no exposed anatomy, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "vera-reed--figure",
+      "title": "Ядвига Рид",
+      "file": "vera-reed--figure.png",
+      "runtimeFile": "runtime/vera-reed--figure.webp",
+      "sha256": "511ad985991bf2623532c353ae189d0f8b45c0e1b4278fca1571548df2c18cf2",
+      "runtimeSha256": "36b67424f1a62af87b1b7a826abd6c9e520081b79e8a6bd336aee794b0f9d07d",
+      "width": 887,
+      "height": 1774,
+      "alpha": true,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/vera-reed--figure.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "vera-reed"
+      ],
+      "kind": "figure",
+      "prompt": "Generate one image with the built-in image_gen tool and save it as vera-reed--figure.png in the current directory. The attached image is the approved portrait of Yadviga Rid.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Yadviga Rid, a 38-year-old woman, former head of a road watch, a fighter: a grey streak in her hair, plain road armour with no insignia, a sheathed sword, an old watch tinderbox in a dented brass box at her belt; one hand resting on a door frame as she counts the exits. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "vera-reed.png"
+      ],
+      "subject": "vera-reed"
+    },
+    {
+      "id": "anton-grey--figure",
+      "title": "Антон Грей",
+      "file": "anton-grey--figure.png",
+      "runtimeFile": "runtime/anton-grey--figure.webp",
+      "sha256": "c705d9618bc69348701dbd26a410a389bf49f7aab394ea85acfc7e2bf0aaa02a",
+      "runtimeSha256": "943028e3648ba45687683fe0cc7f97a47c4397287a04b0f369651b0b1390a721",
+      "width": 887,
+      "height": 1774,
+      "alpha": true,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/anton-grey--figure.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "anton-grey"
+      ],
+      "kind": "figure",
+      "prompt": "Generate one image with the built-in image_gen tool and save it as anton-grey--figure.png in the current directory. The attached image is the approved portrait of Anton Grey.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Anton Grey, a 29-year-old man, appraiser of road pledges, a rogue: a worn magnifying glass on a cord, plain gloves, a short dagger at his hip, a stub of white chalk wrapped in paper covered in illegible marks; he looks at a door as if pricing it. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "anton-grey.png"
+      ],
+      "subject": "anton-grey"
+    },
+    {
+      "id": "mara-elm--figure",
+      "title": "Божена Эльм",
+      "file": "mara-elm--figure.png",
+      "runtimeFile": "runtime/mara-elm--figure.webp",
+      "sha256": "52319fefc6222b7694897b8fd456cac007be57285e9715d28d95d04690059cf8",
+      "runtimeSha256": "b85a599ea68e201f3b2a2f9f6c430245eb45672f4afc4039d1177506c1da5564",
+      "width": 887,
+      "height": 1774,
+      "alpha": true,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/mara-elm--figure.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "mara-elm"
+      ],
+      "kind": "figure",
+      "prompt": "Generate one image with the built-in image_gen tool and save it as mara-elm--figure.png in the current directory. The attached image is the approved portrait of Bozhena Elm.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Bozhena Elm, a 46-year-old woman, servant of a roadside hospice, a cleric: a cloak the colour of dry clay, a small open-palm symbol, a plain staff, a linen pouch at her belt with three thin yellow candles tied with a knotted thread; a calm, low-voiced presence. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "mara-elm.png"
+      ],
+      "subject": "mara-elm"
+    },
+    {
+      "id": "ilya-fenn--figure",
+      "title": "Илья Фенн",
+      "file": "ilya-fenn--figure.png",
+      "runtimeFile": "runtime/ilya-fenn--figure.webp",
+      "sha256": "3b12ffc2761f356a5373009442cb8635683ab010c7ce2081a91a0912ed164dc9",
+      "runtimeSha256": "eb2311b44c49b1390fc90c8c3b0788a3248873d18d0345696e6336284c24b8b3",
+      "width": 887,
+      "height": 1774,
+      "alpha": true,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/ilya-fenn--figure.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "ilya-fenn"
+      ],
+      "kind": "figure",
+      "prompt": "Generate one image with the built-in image_gen tool and save it as ilya-fenn--figure.png in the current directory. The attached image is the approved portrait of Ilya Fenn.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Ilya Fenn, a 34-year-old man, master of light drawings, a wizard: dark spectacles on a cord, sleeves dusted with chalk, a staff, a leather folder holding a thin silvery card on which the faint image of a room is slowly appearing. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "ilya-fenn.png"
+      ],
+      "subject": "ilya-fenn"
+    },
+    {
+      "id": "roza-flint--figure",
+      "title": "Беата Кремень",
+      "file": "roza-flint--figure.png",
+      "runtimeFile": "runtime/roza-flint--figure.webp",
+      "sha256": "8c47a6adc029843b974aaa2b305978157a8c1fb07cc8359efb6f625011e204ba",
+      "runtimeSha256": "8204be30dfc1e2aac3ec48674a8690ccce71c1fa6875e749de97f793a6fba949",
+      "width": 887,
+      "height": 1774,
+      "alpha": true,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/roza-flint--figure.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "roza-flint"
+      ],
+      "kind": "figure",
+      "prompt": "Generate one image with the built-in image_gen tool and save it as roza-flint--figure.png in the current directory. The attached image is the approved portrait of Beata Kremen.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Beata Kremen, a 51-year-old woman, master builder of stone stairs, a fighter: broad palms, a short braid, a plain shield marked by road work, a sheathed sword, a folding wooden ruler on brass hinges with a notch for every step; steady and practical. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "roza-flint.png"
+      ],
+      "subject": "roza-flint"
+    },
+    {
+      "id": "nina-slate--figure",
+      "title": "Карина Слейт",
+      "file": "nina-slate--figure.png",
+      "runtimeFile": "runtime/nina-slate--figure.webp",
+      "sha256": "0a3304e2438f40fcbbe42d75b973dc7c3b938b136d51a8a92ce5185d3629748b",
+      "runtimeSha256": "b0b44bca0ad15683ee9e64f115681d35b662697ac436c3a63019bea8b3b9056b",
+      "width": 887,
+      "height": 1774,
+      "alpha": true,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/nina-slate--figure.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "nina-slate"
+      ],
+      "kind": "figure",
+      "prompt": "Generate one image with the built-in image_gen tool and save it as nina-slate--figure.png in the current directory. The attached image is the approved portrait of Karina Sleit.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Karina Sleit, a 27-year-old woman, courier of private parcels, a rogue: a short cloak with inner pockets, a smooth wooden button, a small hand crossbow holstered at her hip, a string-tied parcel with a blank label under her arm; alert, the one who walks last. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "nina-slate.png"
+      ],
+      "subject": "nina-slate"
+    },
+    {
+      "id": "david-ash--figure",
+      "title": "Иероним Пасек",
+      "file": "david-ash--figure.png",
+      "runtimeFile": "runtime/david-ash--figure.webp",
+      "sha256": "81e13476e933ba06a83ef1a15d8730f1b028ad24fec3ddcdb423aaecde6480ad",
+      "runtimeSha256": "26d505b2ceb84f34c0860d9bcd3914df53360072cd0c7dd6432da50dbe7c090a",
+      "width": 887,
+      "height": 1774,
+      "alpha": true,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/david-ash--figure.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "david-ash"
+      ],
+      "kind": "figure",
+      "prompt": "Generate one image with the built-in image_gen tool and save it as david-ash--figure.png in the current directory. The attached image is the approved portrait of Ieronim Pasek.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Ieronim Pasek, a 62-year-old man, keeper of roadside memorial gardens, a cleric: a silver beard, a small box of seeds, a staff with a worn grip, a folded list of names in illegible handwriting tucked into an inner pocket; gentle and grave. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "david-ash.png"
+      ],
+      "subject": "david-ash"
+    },
+    {
+      "id": "sofia-mere--figure",
+      "title": "София Мер",
+      "file": "sofia-mere--figure.png",
+      "runtimeFile": "runtime/sofia-mere--figure.webp",
+      "sha256": "d6525e073f1ae7ed991da9076ba43ce881d460effadf61d5c1c7192b2ac2a149",
+      "runtimeSha256": "a7cb23c87e8ae915effa162732dfb512cfb81f9105479eab8c97de23030c3c00",
+      "width": 887,
+      "height": 1774,
+      "alpha": true,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/hollow-choir/out/sofia-mere--figure.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "sofia-mere"
+      ],
+      "kind": "figure",
+      "prompt": "Generate one image with the built-in image_gen tool and save it as sofia-mere--figure.png in the current directory. The attached image is the approved portrait of Sofia Mer.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Sofia Mer, a 31-year-old woman, researcher of household charms, a wizard: three different pencils, a checked scarf, a staff, a neat stack of index cards held with a rubber band; curious, counting under her breath. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "sofia-mere.png"
+      ],
+      "subject": "sofia-mere"
+    }
+  ]
+}

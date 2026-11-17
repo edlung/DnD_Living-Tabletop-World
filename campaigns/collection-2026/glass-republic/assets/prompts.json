@@ -1,0 +1,619 @@
+{
+ "tool": "Codex CLI image generation on the owner ChatGPT subscription (CODEX_HOME=~/.codex-review-cli codex exec -i <references>)",
+ "style": "Match one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+ "images": [
+  {
+   "id": "cover",
+   "file": "cover.png",
+   "kind": "cover",
+   "transparent": false,
+   "prompt": "Generate one image and save it as cover.png in the current directory.\nWide landscape key art, 3:2. A rehearsal morning in the glass capital of Vitrazh, seen from the tall double windows of a quiet tea room facing the parade square. Across the square banner-bearers carry long poles of furled regimental banners onto an empty wooden platform again and again; beyond them rises a pale stone chamber house with a broad staircase and a long balcony over the square, and a high gallery of signal frames whose coloured panes catch the sun. At a table by the window sits the group's curator, a 49-year-old woman in a light grey suit with a small pendant on a thin chain and ink-stained fingertips, laying a pair of gloves on the table. In the foreground stand eight adults: a straight-backed woman in a dark cloak with an old brass guard's badge at her collar; a young courier with a satchel of coloured pockets and a light cane; a greying healer with a worn medical satchel and rolled-up sleeves; a woman in copper-rimmed spectacles holding a palm-sized green glass pane in a leather frame; a short-haired man in a plain grey coat with its old insignia removed; a young woman in a plain coat and heavy work gloves with a bundle of receipts under a strap; an older man in a dark scarf with a carved wooden pendant; a woman with dye-stained fingers and a bag of coloured glass. Coloured light on their faces, polite tension, a city holding its breath.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/cover.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "glass-state",
+   "file": "glass-state.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as glass-state.png in the current directory.\nLandscape scene, 3:2. A panoramic view of the Republic of Vitrazh in late afternoon: a small capital on a slow canal, its roofs, towers and many windows set with coloured panes that catch the low sun; at its heart a wide parade square with a pale stone chamber house and a high gallery of signal frames; beyond the city walls, roads winding through autumn fields where long columns of returning regiments march under furled banners. Calm on the surface, a held breath.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/glass-state.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "double-glass",
+   "file": "double-glass.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as double-glass.png in the current directory.\nLandscape scene, 3:2. The Two Panes tea room in the morning: a quiet tea room between an office quarter and the parade square, its tall double-paned windows softening the street music; small tables, porcelain cups and rising steam; by the window onto the square a corner table with a pair of grey gloves laid on it and an empty chair. Through the glass, the square with an empty wooden rehearsal platform and the high gallery of coloured panes beyond. Hushed voices, careful glances.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/double-glass.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "fold-house",
+   "file": "fold-house.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as fold-house.png in the current directory.\nLandscape scene, 3:2. The Fold House courier office: a long issuing hall where letters are sorted by the colour of their paper folds into rows of pigeonhole shelves with blank tags; a clerk's issuing desk with a fat ledger, ink pots and stacks of folded letters in many colours; at the back a small door to a private conversation room. Dust drifting in coloured window light, bustle and whispers.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/fold-house.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "blue-bath",
+   "file": "blue-bath.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as blue-bath.png in the current directory.\nLandscape scene, 3:2. The Blue Baths in the evening, closed for bathing: a dry resting hall of blue-tiled walls and wooden benches with travel cloaks and packed bags lying on them; steam drifting from a corridor behind a frosted glass door; on the hostess's table a dark blue glass pane lies beside a lamp. Quiet departures, a figure walking away down the corridor without looking back.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/blue-bath.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "flag-yard",
+   "file": "flag-yard.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as flag-yard.png in the current directory.\nLandscape scene, 3:2. The Banner Yard at a midday rehearsal: a broad paved yard with tall wooden racks of furled regimental banners and wide aisles, a wooden platform where banner-bearers practise raising long poles toward a distant balcony; at one side a sober stone headquarters house with a porch and sentries at ease. Drums at rest, dust, discipline.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/flag-yard.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "civil-house",
+   "file": "civil-house.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as civil-house.png in the current directory.\nLandscape scene, 3:2. The Chamber of the Republic seen from the parade square: a pale stone house of open sessions with a broad grand staircase up to tall glass front doors, a long balcony with stone railings above the square, a lower side gate into an inner courtyard; adult attendants in plain livery at the doors, festival bunting and empty banner poles along the facade. Dignified, open, watchful.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/civil-house.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "return-gallery",
+   "file": "return-gallery.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as return-gallery.png in the current directory.\nLandscape scene, 3:2. The Gallery of Return in the evening: a tall arcaded gallery high above the square with rows of large signal frames, each holding a pane of coloured glass, red, milky white, clear, green, copper and blue, lit from behind so the whole city can see their colours; signal-keepers in work coats sliding panes in and out; a heavy bound book of customs lies closed on a lectern. Glowing colour over the rooftops.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/return-gallery.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "copper-quay",
+   "file": "copper-quay.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as copper-quay.png in the current directory.\nLandscape scene, 3:2. Copper Quay: the porters' and boatmen's cooperatives sharing a workshop, a canteen and a long roofed shelter for meetings; under the shelter a board with chalk and blank sheets pinned to it, benches, coiled ropes and hand carts; at the lower stone steps small boats are tied up on the canal. Warm work light, tired adult porters, plain dignity.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/copper-quay.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "quiet-garden",
+   "file": "quiet-garden.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as quiet-garden.png in the current directory.\nLandscape scene, 3:2. The Quiet Garden: a garden inside a low stone wall with a round guest pavilion, benches set facing each other along a gravel path, flower beds, an east gate opening onto the canal and a stone street-stair leading down from the garden. Late afternoon, long shadows, a place for discreet conversations.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/quiet-garden.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "reserve-court",
+   "file": "reserve-court.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as reserve-court.png in the current directory.\nLandscape scene, 3:2. The Reserve Court: the training yard of the volunteer city reserve; under a roofed shelter folding tables and racks of crossbows issued for the festival watch, adult volunteers in field jackets; by the gate a lantern and a posted duty roster shown only as illegible marks. Plain, earnest, uneasy.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/reserve-court.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "banner-hall",
+   "file": "banner-hall.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as banner-hall.png in the current directory.\nLandscape scene, 3:2. The Hall of Banners inside the Chamber: a ballroom of twelve tall columns in four rows on a polished parquet floor, deputies' benches along the north and south walls, wide western doors to a vestibule; on the eastern wall tall glass doors onto a balcony with the lit square beyond; in a far corner a narrow plain service door; banner stands and a great crystal chandelier. Attendants setting out benches and washing the glass doors; empty, polished, expectant.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/banner-hall.png",
+   "generatedAt": "2026-11-17",
+   "references": [],
+   "reveal": 7
+  },
+  {
+   "id": "chamber-balcony",
+   "file": "chamber-balcony.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as chamber-balcony.png in the current directory.\nLandscape scene, 3:2. The Chamber balcony seen from the square below in grey afternoon light: a long balcony with heavy stone railings and tall glass doors behind it, high above the parade square; regimental banners raised to the railings and lowered again in rehearsal, unlit festival lamps along the cornice. Grand and exposed, the whole city looking up.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/chamber-balcony.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "copper-steps",
+   "file": "copper-steps.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as copper-steps.png in the current directory.\nLandscape scene, 3:2. The Copper Steps at dusk: a stone street-stair descending from a garden wall down to a canal quay; at the top a parapet over the canal, in the middle a covered passage beneath the parapet, lower down the corner of an old house and wet, gleaming steps; at the foot, boats and the quay. Lamps just lit, footsteps echoing.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/copper-steps.png",
+   "generatedAt": "2026-11-17",
+   "references": [],
+   "reveal": 3
+  },
+  {
+   "id": "h-mara",
+   "file": "h-mara.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as h-mara.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Taisiya Lange, a 34-year-old woman, former guard of the Chamber, a fighter: straight bearing, a dark cloak, a neatly darned cuff, an old brass guard's badge with a small glass insert just under her collar, a sheathed sword at her hip; a level, steady gaze. Behind her, the tall glass doors of a pale stone chamber house.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/h-mara.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "h-ilan",
+   "file": "h-ilan.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as h-ilan.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Ilan Korvin, a 29-year-old man, private courier, a rogue: a satchel with many coloured pockets, a light walking cane, a copper courier token on a cord at his neck with its stamped number worn illegible; attentive, quick eyes. Behind him, rows of pigeonhole shelves full of folded letters in many colours.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/h-ilan.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "h-sava",
+   "file": "h-sava.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as h-sava.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Efrem Vaida, a 46-year-old man, healer of the office quarter, a cleric: a worn medical satchel, rolled-up sleeves, a copper vow-of-aid sign on a chain; tired, kind and resolved. Behind him, a volunteers' yard in soft coloured light.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/h-sava.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "h-tera",
+   "file": "h-tera.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as h-tera.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Tera Quinn, a 39-year-old woman, interpreter of the gallery's signal frames, a wizard: copper-rimmed spectacles, a rolled cloak over one arm, a notebook of colour swatches, a palm-sized green glass pane in a leather frame at her belt; a precise, thoughtful look. Behind her, signal frames with glowing coloured panes.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/h-tera.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "h-nadir",
+   "file": "h-nadir.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as h-nadir.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Nadir Ro, a 42-year-old man, retired court bailiff who served a company in the war, a fighter: a plain grey coat with its old insignia removed, short hair, a wooden field tag on a leather cord in his hand, a sheathed sword; standing slightly back from a doorway, watchful and reserved. Behind him, racks of furled regimental banners.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/h-nadir.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "h-lis",
+   "file": "h-lis.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as h-lis.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Zarina Moyl, a 27-year-old woman, buyers' representative of the quay cooperatives, a rogue: a plain coat, heavy work gloves, a bundle of receipts under a leather strap; a shrewd, counting look. Behind her, a roofed quay shelter and boats on a canal.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/h-lis.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "h-vey",
+   "file": "h-vey.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as h-vey.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Matias Obert, a 52-year-old man, keeper of vows and witness of bargains, a cleric: calm posture, a dark scarf, a simple carved wooden pendant without any official seal, hands folded; a patient, listening gaze. Behind him, a quiet room lit through a single coloured window.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/h-vey.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "h-ora",
+   "file": "h-ora.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as h-ora.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Ora Mill, a 31-year-old woman, craftswoman of festival lights, a wizard: dye stains on her fingers, a work cloak, a shoulder bag with pieces of coloured glass, holding a red pane up to the light; curious and sharp-eyed. Behind her, a high gallery of signal frames over a square at dusk.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/h-ora.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "n-vera",
+   "file": "n-vera.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as n-vera.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Kassia Ammer, a 49-year-old woman, head of the White Thread, the government's intelligence service, and curator of the bypass group: a light grey suit, a small amber pendant on a thin chain, fingertips stained with ink of three colours, laying a pair of gloves on a table before she speaks; composed, quiet, unreadable. Behind her, a tea-room window with the parade square beyond.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/n-vera.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "n-lev",
+   "file": "n-lev.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as n-lev.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Rostislav Pell, a 36-year-old man, a courier of the White Thread who has gone missing: a worn travelling cloak, an empty courier's case on a strap, fingers touching the lining of his cloak, eyes on the exit; nervous and hunted. Behind him, the round pavilion of a walled garden.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/n-lev.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "n-oren",
+   "file": "n-oren.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as n-oren.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Oren Valt, a 56-year-old man, general commanding the returning regiments: a general's uniform without any medals, grey temples, gloves held in his left hand; courteous, soft-spoken, unhurried. Behind him, a banner yard with a rehearsal platform.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/n-oren.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "n-ada",
+   "file": "n-ada.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as n-ada.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Severina Lint, a 58-year-old woman, chancellor of the republic: a severe cardigan under the chancellor's chain of office, spectacles on a cord, a speech sheet with pencil marks shown only as illegible marks; weary and exact. Behind her, a small rotunda office with a tall window.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/n-ada.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "n-mirel",
+   "file": "n-mirel.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as n-mirel.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Ivetta Somm, a 44-year-old woman, keeper of the Blue Baths who helps former officials change work and leave: a bath robe over a travelling dress, hair under a headscarf, a dark blue glass pane on the table before her; a soft, businesslike half-smile. Behind her, blue-tiled walls and drifting steam.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/n-mirel.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "n-enna",
+   "file": "n-enna.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as n-enna.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Enna Rei, a 42-year-old woman, elected commander of the volunteer city reserve: a field jacket, chalk on her sleeve, a direct gaze that asks a question only once. Behind her, a yard with racks of crossbows under a roofed shelter.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/n-enna.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "n-doran",
+   "file": "n-doran.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as n-doran.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Fabian Rusht, a 24-year-old man, clearly an adult, clerk of the Fold House: ink on his cuffs, an issue ledger under his elbow, a pencil behind his ear; hurried and flustered. Behind him, pigeonhole shelves of folded letters.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/n-doran.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "n-rada",
+   "file": "n-rada.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as n-rada.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Gelena Shir, a 47-year-old woman, elder of the quay cooperatives: a work vest over a festive shirt, a copper-coloured glass on a braided cord at her neck; a weighty, patient look of someone who listens to the end. Behind her, a roofed quay shelter and boats.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/n-rada.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "n-senn",
+   "file": "n-senn.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as n-senn.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Bogdan Olshev, a 33-year-old man, captain of the banner-bearers: a captain's ribbon on his sleeve, boots polished to a shine, a furled banner pole on his shoulder, hoarse from rehearsals; stubborn and proud. Behind him, banner-bearers on a wooden platform.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/n-senn.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "n-yula",
+   "file": "n-yula.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as n-yula.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Yula Ner, a 61-year-old woman, representative of the Chamber: a wide scarf, a stack of summonses under her arm shown only as illegible marks; a tired, tenacious gaze. Behind her, deputies' benches in a columned hall.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/n-yula.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "n-zenon",
+   "file": "n-zenon.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as n-zenon.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Zenon Karkh, a 45-year-old man, a major who commands the Chamber's honour guard for the festival: a ceremonial cloak of the banner guard, grey stubble, a ceremonial greataxe resting on his shoulder; terse, by-the-book, unsmiling. Behind him, the tall glass doors of the Chamber.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/n-zenon.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "yesterday-order",
+   "file": "yesterday-order.png",
+   "kind": "item",
+   "transparent": true,
+   "prompt": "Generate one image and save it as yesterday-order.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A sheet of official paper folded in half: a few lines of plain writing at the top and a brief signature, all shown only as illegible marks, and below them a wide blank field.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/yesterday-order.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "second-glass",
+   "file": "second-glass.png",
+   "kind": "item",
+   "transparent": true,
+   "prompt": "Generate one image and save it as second-glass.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A palm-sized pane of green glass set in a worn leather frame with stitched edges.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/second-glass.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "guard-gorget",
+   "file": "guard-gorget.png",
+   "kind": "item",
+   "transparent": true,
+   "prompt": "Generate one image and save it as guard-gorget.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. An old brass guard's badge with a small clear glass insert, on a worn leather strap; its engraved number almost worn away to nothing.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/guard-gorget.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "courier-token",
+   "file": "courier-token.png",
+   "kind": "item",
+   "transparent": true,
+   "prompt": "Generate one image and save it as courier-token.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A copper courier token on a cord, with a punched hole and a stamped number worn into illegible marks; its edges rubbed smooth by fingers.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/courier-token.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "healer-sign",
+   "file": "healer-sign.png",
+   "kind": "item",
+   "transparent": true,
+   "prompt": "Generate one image and save it as healer-sign.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A copper sign of the vow of aid on a fine chain, a simple open-hand emblem, the kind healers of the office quarter wear.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/healer-sign.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "field-tally",
+   "file": "field-tally.png",
+   "kind": "item",
+   "transparent": true,
+   "prompt": "Generate one image and save it as field-tally.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A wooden company tag on a leather cord, with a name and a number burned into it shown only as illegible scorched marks.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/field-tally.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "buyer-receipts",
+   "file": "buyer-receipts.png",
+   "kind": "item",
+   "transparent": true,
+   "prompt": "Generate one image and save it as buyer-receipts.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A thick bundle of quay buyers' receipts tied with twine, signatures and sums shown only as illegible marks.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/buyer-receipts.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "green-glass",
+   "file": "green-glass.png",
+   "kind": "item",
+   "transparent": true,
+   "prompt": "Generate one image and save it as green-glass.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A round disc of green glass the size of a saucer, with a chalk mark on its rim.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/green-glass.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "copper-glass",
+   "file": "copper-glass.png",
+   "kind": "item",
+   "transparent": true,
+   "prompt": "Generate one image and save it as copper-glass.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A copper-red piece of glass on a braided cord, glowing warmly.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/copper-glass.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "clear-glass",
+   "file": "clear-glass.png",
+   "kind": "item",
+   "transparent": true,
+   "prompt": "Generate one image and save it as clear-glass.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A clear glass pane in a silver mount, finely engraved with the outline of a long balcony with stone railings.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/clear-glass.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "blue-glass",
+   "file": "blue-glass.png",
+   "kind": "item",
+   "transparent": true,
+   "prompt": "Generate one image and save it as blue-glass.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A dark blue glass pane without any marks, lying beside a few blank travel passes.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/blue-glass.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "amber-pane",
+   "file": "amber-pane.png",
+   "kind": "item",
+   "transparent": true,
+   "prompt": "Generate one image and save it as amber-pane.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A small strip of amber glass two fingers wide, its edges bound with thread, lying on a scrap of worn cloak lining.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/amber-pane.png",
+   "generatedAt": "2026-11-17",
+   "references": [],
+   "reveal": 5
+  },
+  {
+   "id": "token-spy",
+   "file": "token-spy.png",
+   "kind": "token",
+   "transparent": true,
+   "prompt": "Generate one image and save it as token-spy.png in the current directory.\nGame token figure, square 1:1, on a fully transparent background, top three-quarter view, no ground shadow. A quiet agent in a plain grey hooded cloak without any insignia, a short blade held low and a small hand crossbow half hidden under the cloak, pointed at the ground; silent, nameless, watchful.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/token-spy.png",
+   "generatedAt": "2026-11-17",
+   "references": [],
+   "srd": "spy",
+   "reveal": 3
+  },
+  {
+   "id": "token-guard",
+   "file": "token-guard.png",
+   "kind": "token",
+   "transparent": true,
+   "prompt": "Generate one image and save it as token-guard.png in the current directory.\nGame token figure, square 1:1, on a fully transparent background, top three-quarter view, no ground shadow. A city guard with a white thread tied around one sleeve, a spear held upright and a round shield, a small badge of milky glass on the chest; dutiful and impersonal.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/token-guard.png",
+   "generatedAt": "2026-11-17",
+   "references": [],
+   "srd": "guard",
+   "reveal": 6
+  },
+  {
+   "id": "token-berserker",
+   "file": "token-berserker.png",
+   "kind": "token",
+   "transparent": true,
+   "prompt": "Generate one image and save it as token-berserker.png in the current directory.\nGame token figure, square 1:1, on a fully transparent background, top three-quarter view, no ground shadow. A broad-shouldered major in the ceremonial cloak of the banner guard, grey stubble, a heavy ceremonial greataxe held lowered in both hands; stern, terse, by-the-book.\n\nMatch one consistent house style: original premium illustrated political-intrigue fantasy for adult audiences only (21+), painterly oil and gouache with restrained ink lines, crisp readable silhouettes and a muted, slightly desaturated finish; Vitrazh, a small city republic whose capital lives behind glass: tall double-paned windows, pale stone arcades and wrought-iron balconies over a wide parade square by a slow canal, a high gallery of signal frames holding large panes of coloured glass, stained-glass light falling in soft coloured patches across stone, parquet and faces, long regimental banners of plain colour fields hanging from poles and railings; palette of smoke grey and slate blue, cold window-glass silver, deep ink black, worn brass and copper, faded banner crimson, bottle green, cobalt blue and milky white glass, with warm candle-gold accents; the quiet tension of polite threats, watchful eyes and closed doors; every person shown is clearly a mature adult. Weapons are only blades, spears, axes and crossbows, kept lowered or sheathed; no firearms, no guns, no gunpowder, no cannons, none exist in this world. Banners and glass panes show only plain colour fields and simple geometric shapes; papers, letters, seals and notices carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no torture, no anatomy, no weapons pointed at the viewer. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/token-berserker.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "n-zenon.png"
+   ],
+   "srd": "berserker",
+   "reveal": 8
+  },
+  {
+   "id": "h-mara--figure",
+   "file": "h-mara--figure.png",
+   "kind": "figure",
+   "transparent": true,
+   "prompt": "Generate one image with the built-in image_gen tool and save it as h-mara--figure.png in the current directory. The attached image is the approved portrait of Taisiya Lange.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Taisiya Lange, a 34-year-old woman, former guard of the Chamber, a fighter: straight bearing, a dark cloak, a neatly darned cuff, an old brass guard's badge with a small glass insert just under her collar, a sheathed sword at her hip; a level, steady gaze. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/h-mara--figure.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "h-mara.png"
+   ],
+   "subject": "h-mara"
+  },
+  {
+   "id": "h-ilan--figure",
+   "file": "h-ilan--figure.png",
+   "kind": "figure",
+   "transparent": true,
+   "prompt": "Generate one image with the built-in image_gen tool and save it as h-ilan--figure.png in the current directory. The attached image is the approved portrait of Ilan Korvin.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Ilan Korvin, a 29-year-old man, private courier, a rogue: a satchel with many coloured pockets, a light walking cane, a copper courier token on a cord at his neck with its stamped number worn illegible; attentive, quick eyes. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/h-ilan--figure.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "h-ilan.png"
+   ],
+   "subject": "h-ilan"
+  },
+  {
+   "id": "h-sava--figure",
+   "file": "h-sava--figure.png",
+   "kind": "figure",
+   "transparent": true,
+   "prompt": "Generate one image with the built-in image_gen tool and save it as h-sava--figure.png in the current directory. The attached image is the approved portrait of Efrem Vaida.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Efrem Vaida, a 46-year-old man, healer of the office quarter, a cleric: a worn medical satchel, rolled-up sleeves, a copper vow-of-aid sign on a chain; tired, kind and resolved. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/h-sava--figure.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "h-sava.png"
+   ],
+   "subject": "h-sava"
+  },
+  {
+   "id": "h-tera--figure",
+   "file": "h-tera--figure.png",
+   "kind": "figure",
+   "transparent": true,
+   "prompt": "Generate one image with the built-in image_gen tool and save it as h-tera--figure.png in the current directory. The attached image is the approved portrait of Tera Quinn.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Tera Quinn, a 39-year-old woman, interpreter of the gallery's signal frames, a wizard: copper-rimmed spectacles, a rolled cloak over one arm, a notebook of colour swatches, a palm-sized green glass pane in a leather frame at her belt; a precise, thoughtful look. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/h-tera--figure.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "h-tera.png"
+   ],
+   "subject": "h-tera"
+  },
+  {
+   "id": "h-nadir--figure",
+   "file": "h-nadir--figure.png",
+   "kind": "figure",
+   "transparent": true,
+   "prompt": "Generate one image with the built-in image_gen tool and save it as h-nadir--figure.png in the current directory. The attached image is the approved portrait of Nadir Ro.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Nadir Ro, a 42-year-old man, retired court bailiff who served a company in the war, a fighter: a plain grey coat with its old insignia removed, short hair, a wooden field tag on a leather cord in his hand, a sheathed sword; standing slightly back from a doorway, watchful and reserved. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/h-nadir--figure.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "h-nadir.png"
+   ],
+   "subject": "h-nadir"
+  },
+  {
+   "id": "h-lis--figure",
+   "file": "h-lis--figure.png",
+   "kind": "figure",
+   "transparent": true,
+   "prompt": "Generate one image with the built-in image_gen tool and save it as h-lis--figure.png in the current directory. The attached image is the approved portrait of Zarina Moyl.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Zarina Moyl, a 27-year-old woman, buyers' representative of the quay cooperatives, a rogue: a plain coat, heavy work gloves, a bundle of receipts under a leather strap; a shrewd, counting look. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/h-lis--figure.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "h-lis.png"
+   ],
+   "subject": "h-lis"
+  },
+  {
+   "id": "h-vey--figure",
+   "file": "h-vey--figure.png",
+   "kind": "figure",
+   "transparent": true,
+   "prompt": "Generate one image with the built-in image_gen tool and save it as h-vey--figure.png in the current directory. The attached image is the approved portrait of Matias Obert.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Matias Obert, a 52-year-old man, keeper of vows and witness of bargains, a cleric: calm posture, a dark scarf, a simple carved wooden pendant without any official seal, hands folded; a patient, listening gaze. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/h-vey--figure.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "h-vey.png"
+   ],
+   "subject": "h-vey"
+  },
+  {
+   "id": "h-ora--figure",
+   "file": "h-ora--figure.png",
+   "kind": "figure",
+   "transparent": true,
+   "prompt": "Generate one image with the built-in image_gen tool and save it as h-ora--figure.png in the current directory. The attached image is the approved portrait of Ora Mill.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Ora Mill, a 31-year-old woman, craftswoman of festival lights, a wizard: dye stains on her fingers, a work cloak, a shoulder bag with pieces of coloured glass, holding a red pane up to the light; curious and sharp-eyed. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/glass-republic/out/h-ora--figure.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "h-ora.png"
+   ],
+   "subject": "h-ora"
+  }
+ ]
+}

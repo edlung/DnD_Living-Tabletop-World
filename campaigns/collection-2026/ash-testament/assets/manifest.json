@@ -1,0 +1,1181 @@
+{
+  "about": "Original artwork for Завещание Пепла. PNG originals from OpenAI image generation through Codex CLI; WebP conversions preserve content and alpha. No project provider was called.",
+  "generator": "codex-cli-imagegen",
+  "assets": [
+    {
+      "id": "cover",
+      "title": "Завещание Пепла",
+      "file": "cover.png",
+      "runtimeFile": "runtime/cover.webp",
+      "sha256": "fdf2560f2854686ec8a1f8415eced176bac11e4d5e07018e26c74668e37cbec9",
+      "runtimeSha256": "a18f6a8562be4c2a13e273ff08f8797d727b89d8959afbe98d650ec3710c3df8",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/cover.png",
+      "revealFromEvening": 0,
+      "subjects": [],
+      "kind": "cover",
+      "prompt": "Generate one image and save it as cover.png in the current directory.\nWide landscape key art, 3:2. Grey morning on the Ash Tract. Ash lies on the road like snow that will not melt. Beside the charred log frame of a burnt-out road station stands a tall mast with a torn scrap of black cloth fluttering at its top, and under it a weathered notice board with pinned sheets covered in illegible marks. Out of a copse of charred trunks like spent matches steps a 49-year-old man in a quartermaster jacket without insignia, an oilcloth packet on a cord at his chest, ash in the creases of his face; he has just tossed a short copper baton tied with a black ribbon onto the ash at the feet of eight adults standing on the road. The eight: a woman in a faded greatcoat with a brass spyglass on a strap; a man in a worn leather jacket with a curved serrated knife at his belt; a calm woman with cropped hair and a canvas medic satchel; a young man in a long cloak with a scorched hem and a small steel mirror on a cord; a light-eyed woman in a dark jacket of foreign cut with an iron bridge emblem at her collar; a man with a bunch of keys at his belt and a hat with a scorched brim; a woman in a grey travel cloak with a string of copper tags at her neck; a prematurely grey man in a patched kaftan holding a small pale light. Far back among the trunks, faint grey shapes of a road patrol. Stillness, surprise, a decision about to be made.\n\nMatch one consistent house style: original premium illustrated post-war frontier western for adults over twenty-one, painterly oil and gouache with confident ink lines and crisp readable silhouettes, muted and painterly; the Ashen March, a fictional borderland between an old front line and a slow district river, nine months after the war; a rutted post road running through ash country, tall weathered wooden road-guard signal masts at each stage with plain cloth flags, burnt fields and charred copses whose trunks look like spent matches, grey ash lying in wheel ruts and drifting on still water, rope-drawn river ferries, short plank footbridges and causeways over reed marsh; weary adults in faded greatcoats, field jackets and travel cloaks without insignia; palette of ash grey and charcoal, scorched umber, faded greatcoat grey-green, river slate blue, dry reed ochre, dull brass and darkened copper, bone white, with low amber lantern and campfire light and a cold rose dawn; quiet, sombre and humane, tension carried by faces, posture and distance rather than violence; every person shown is clearly an adult over twenty-one. Flags show only plain colour fields and simple geometric shapes; papers, boards, tags, plaques and badges carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no anatomy, no weapons pointed at the viewer; no firearms, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "ashen-march",
+      "title": "Пепельная Межа",
+      "file": "ashen-march.png",
+      "runtimeFile": "runtime/ashen-march.webp",
+      "sha256": "a076bc34a0e773a64787cb41b0671f42e0050cb656d9e4b584d209bbbb031c19",
+      "runtimeSha256": "631d24e989e2419aa4e9aef4ce53d97ccd342baf3521b6d0f3ea80009e85fadf",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/ashen-march.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "ashen-march"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as ashen-march.png in the current directory.\nLandscape scene, 3:2. The Ashen March from a low rise: heathland and burnt fields between an old front line and a wide slow river on the horizon; a rutted post road runs away into the distance with a tall wooden mast at each stage, torn black cloth scraps fluttering at their tops; at the foot of the nearest mast a small brass plaque with illegible marks. Grey ash in the ruts and on standing water, reed marsh crossed by short plank causeways, a rope ferry on the far river. Overcast late afternoon, wide and quiet.\n\nMatch one consistent house style: original premium illustrated post-war frontier western for adults over twenty-one, painterly oil and gouache with confident ink lines and crisp readable silhouettes, muted and painterly; the Ashen March, a fictional borderland between an old front line and a slow district river, nine months after the war; a rutted post road running through ash country, tall weathered wooden road-guard signal masts at each stage with plain cloth flags, burnt fields and charred copses whose trunks look like spent matches, grey ash lying in wheel ruts and drifting on still water, rope-drawn river ferries, short plank footbridges and causeways over reed marsh; weary adults in faded greatcoats, field jackets and travel cloaks without insignia; palette of ash grey and charcoal, scorched umber, faded greatcoat grey-green, river slate blue, dry reed ochre, dull brass and darkened copper, bone white, with low amber lantern and campfire light and a cold rose dawn; quiet, sombre and humane, tension carried by faces, posture and distance rather than violence; every person shown is clearly an adult over twenty-one. Flags show only plain colour fields and simple geometric shapes; papers, boards, tags, plaques and badges carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no anatomy, no weapons pointed at the viewer; no firearms, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "crown-yard",
+      "title": "Казённый двор",
+      "file": "crown-yard.png",
+      "runtimeFile": "runtime/crown-yard.webp",
+      "sha256": "6580b9b56dc34c43dcb749ee3c3c6d0ec40dc877d4aa265143001a4fba932db0",
+      "runtimeSha256": "3e27e17034c8b3317573932799c7257b9a9a8d2e4b0ef6259d007c3db65ac2fc",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/crown-yard.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "crown-yard"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as crown-yard.png in the current directory.\nLandscape scene, 3:2. Crown Yard, the road-guard headquarters beyond a rusty river crossing: a long timber barracks, stables with a few tethered horses, an empty parade ground of packed earth and a tall mast with a black flag. On the gate a painted-over emblem panel whose old shape still shows faintly through the paint. Grey morning, mud and ash in the ruts, orderly and cold.\n\nMatch one consistent house style: original premium illustrated post-war frontier western for adults over twenty-one, painterly oil and gouache with confident ink lines and crisp readable silhouettes, muted and painterly; the Ashen March, a fictional borderland between an old front line and a slow district river, nine months after the war; a rutted post road running through ash country, tall weathered wooden road-guard signal masts at each stage with plain cloth flags, burnt fields and charred copses whose trunks look like spent matches, grey ash lying in wheel ruts and drifting on still water, rope-drawn river ferries, short plank footbridges and causeways over reed marsh; weary adults in faded greatcoats, field jackets and travel cloaks without insignia; palette of ash grey and charcoal, scorched umber, faded greatcoat grey-green, river slate blue, dry reed ochre, dull brass and darkened copper, bone white, with low amber lantern and campfire light and a cold rose dawn; quiet, sombre and humane, tension carried by faces, posture and distance rather than violence; every person shown is clearly an adult over twenty-one. Flags show only plain colour fields and simple geometric shapes; papers, boards, tags, plaques and badges carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no anatomy, no weapons pointed at the viewer; no firearms, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "ash-tract",
+      "title": "Горелая мачта",
+      "file": "ash-tract.png",
+      "runtimeFile": "runtime/ash-tract.webp",
+      "sha256": "dfe31b0dd2eb671578543a25b4818b05299afb38645501e0654c60fd23da3a0c",
+      "runtimeSha256": "80eb78de7c473f0e257d4f57f7491de060ffe6da40842dc02564ad89be3c198e",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/ash-tract.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "ash-tract"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as ash-tract.png in the current directory.\nLandscape scene, 3:2. The Burnt Mast on the Ash Tract: the charred log frame of a burnt road station, a tall mast with a torn scrap of black flag and a weathered notice board beneath it with pinned sheets of illegible marks. All around, an ash copse of charred trunks like spent matches and a hollow where ash lies ankle-deep on the road. Pale overcast morning, the silence of a place after fire.\n\nMatch one consistent house style: original premium illustrated post-war frontier western for adults over twenty-one, painterly oil and gouache with confident ink lines and crisp readable silhouettes, muted and painterly; the Ashen March, a fictional borderland between an old front line and a slow district river, nine months after the war; a rutted post road running through ash country, tall weathered wooden road-guard signal masts at each stage with plain cloth flags, burnt fields and charred copses whose trunks look like spent matches, grey ash lying in wheel ruts and drifting on still water, rope-drawn river ferries, short plank footbridges and causeways over reed marsh; weary adults in faded greatcoats, field jackets and travel cloaks without insignia; palette of ash grey and charcoal, scorched umber, faded greatcoat grey-green, river slate blue, dry reed ochre, dull brass and darkened copper, bone white, with low amber lantern and campfire light and a cold rose dawn; quiet, sombre and humane, tension carried by faces, posture and distance rather than violence; every person shown is clearly an adult over twenty-one. Flags show only plain colour fields and simple geometric shapes; papers, boards, tags, plaques and badges carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no anatomy, no weapons pointed at the viewer; no firearms, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "skol-weighhouse",
+      "title": "Весовая станция «Скол»",
+      "file": "skol-weighhouse.png",
+      "runtimeFile": "runtime/skol-weighhouse.webp",
+      "sha256": "6a8681fbf2930ce53fdc4bb6163017f253a72f731290428fd514075ddad2d6d9",
+      "runtimeSha256": "ba12f26866e5a0a94ab46965ba26c427c1c4e0130239166863723457bb886148",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/skol-weighhouse.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "skol-weighhouse"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as skol-weighhouse.png in the current directory.\nLandscape scene, 3:2. Skol, an abandoned weighhouse on the post road: a long timber table, a large platform scale for wagons, a covered yard with two gateways opening onto the road. At the yard mast a small brass plaque with illegible marks; on the inner wall a closed station ledger hangs on a hook. Dusk, a lantern lit on the table, dust and ash on the scale beam.\n\nMatch one consistent house style: original premium illustrated post-war frontier western for adults over twenty-one, painterly oil and gouache with confident ink lines and crisp readable silhouettes, muted and painterly; the Ashen March, a fictional borderland between an old front line and a slow district river, nine months after the war; a rutted post road running through ash country, tall weathered wooden road-guard signal masts at each stage with plain cloth flags, burnt fields and charred copses whose trunks look like spent matches, grey ash lying in wheel ruts and drifting on still water, rope-drawn river ferries, short plank footbridges and causeways over reed marsh; weary adults in faded greatcoats, field jackets and travel cloaks without insignia; palette of ash grey and charcoal, scorched umber, faded greatcoat grey-green, river slate blue, dry reed ochre, dull brass and darkened copper, bone white, with low amber lantern and campfire light and a cold rose dawn; quiet, sombre and humane, tension carried by faces, posture and distance rather than violence; every person shown is clearly an adult over twenty-one. Flags show only plain colour fields and simple geometric shapes; papers, boards, tags, plaques and badges carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no anatomy, no weapons pointed at the viewer; no firearms, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "rope-ferry",
+      "title": "Верёвочная",
+      "file": "rope-ferry.png",
+      "runtimeFile": "runtime/rope-ferry.webp",
+      "sha256": "443a3b1cada1d22a72011b6011f5a40946f4c2497dccb733103a2d9bbba0c917",
+      "runtimeSha256": "443d618bb743b6f6c81169612a84ce8807ab2e4bf6e1208f5e38685c1c0ecaa8",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/rope-ferry.png",
+      "revealFromEvening": 2,
+      "subjects": [
+        "rope-ferry"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as rope-ferry.png in the current directory.\nLandscape scene, 3:2. Rope Ferry: a flat timber ferry hauled along a heavy rope stretched between two wooden capstans across the slow district river. On the west bank a willow clearing and boggy willow thickets; on the east bank the ferryman's log hut with a tally board of plain carved notches on its wall, and the crossing mast. Grey ash floats on the water; the rope sags, wet. Cool overcast midday.\n\nMatch one consistent house style: original premium illustrated post-war frontier western for adults over twenty-one, painterly oil and gouache with confident ink lines and crisp readable silhouettes, muted and painterly; the Ashen March, a fictional borderland between an old front line and a slow district river, nine months after the war; a rutted post road running through ash country, tall weathered wooden road-guard signal masts at each stage with plain cloth flags, burnt fields and charred copses whose trunks look like spent matches, grey ash lying in wheel ruts and drifting on still water, rope-drawn river ferries, short plank footbridges and causeways over reed marsh; weary adults in faded greatcoats, field jackets and travel cloaks without insignia; palette of ash grey and charcoal, scorched umber, faded greatcoat grey-green, river slate blue, dry reed ochre, dull brass and darkened copper, bone white, with low amber lantern and campfire light and a cold rose dawn; quiet, sombre and humane, tension carried by faces, posture and distance rather than violence; every person shown is clearly an adult over twenty-one. Flags show only plain colour fields and simple geometric shapes; papers, boards, tags, plaques and badges carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no anatomy, no weapons pointed at the viewer; no firearms, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "veterans-yard",
+      "title": "Двор демобилизованных",
+      "file": "veterans-yard.png",
+      "runtimeFile": "runtime/veterans-yard.webp",
+      "sha256": "de8f043b15bf902a61686fa48d63f2bc784d01850c21413500e2eb30dfa6f37a",
+      "runtimeSha256": "f49fa47f47145388dc9b262b212bf2ee87b240c2a32fec585a00fcc9b3345754",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/veterans-yard.png",
+      "revealFromEvening": 3,
+      "subjects": [
+        "veterans-yard"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as veterans-yard.png in the current directory.\nLandscape scene, 3:2. Veterans' Yard, a former cavalry camp turned workshops: a smoking forge, a saddlery, open sheds hung with harness and tack, adults at work. Over the gate an empty crossbar where a banner once hung; beside the gate the yard mast. A northern road runs straight from the yard toward the post road. Late afternoon, warm forge glow against grey sky.\n\nMatch one consistent house style: original premium illustrated post-war frontier western for adults over twenty-one, painterly oil and gouache with confident ink lines and crisp readable silhouettes, muted and painterly; the Ashen March, a fictional borderland between an old front line and a slow district river, nine months after the war; a rutted post road running through ash country, tall weathered wooden road-guard signal masts at each stage with plain cloth flags, burnt fields and charred copses whose trunks look like spent matches, grey ash lying in wheel ruts and drifting on still water, rope-drawn river ferries, short plank footbridges and causeways over reed marsh; weary adults in faded greatcoats, field jackets and travel cloaks without insignia; palette of ash grey and charcoal, scorched umber, faded greatcoat grey-green, river slate blue, dry reed ochre, dull brass and darkened copper, bone white, with low amber lantern and campfire light and a cold rose dawn; quiet, sombre and humane, tension carried by faces, posture and distance rather than violence; every person shown is clearly an adult over twenty-one. Flags show only plain colour fields and simple geometric shapes; papers, boards, tags, plaques and badges carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no anatomy, no weapons pointed at the viewer; no firearms, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "quarry-spur",
+      "title": "Ответвление Сухой Чаши",
+      "file": "quarry-spur.png",
+      "runtimeFile": "runtime/quarry-spur.webp",
+      "sha256": "0457c0efd6146e8e45ef591839e043f7e68a5d3c292e05fb80f9cbbe7418be39",
+      "runtimeSha256": "8b10a9142c4d6cb543065f944440b750e339339d34d0339a5b9241d4ac32664a",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/quarry-spur.png",
+      "revealFromEvening": 4,
+      "subjects": [
+        "quarry-spur"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as quarry-spur.png in the current directory.\nLandscape scene, 3:2. Quarry Spur: a fork where a side road turns off toward the rim of an old stone quarry in the distance. At the fork a carpentry workshop of adult craftspeople building plank walkways and small footbridges, stacks of fresh timber, a workshop cart with a patient horse; nearby a board covered with canvas and the spur mast. Clear cold light, sawdust over ash.\n\nMatch one consistent house style: original premium illustrated post-war frontier western for adults over twenty-one, painterly oil and gouache with confident ink lines and crisp readable silhouettes, muted and painterly; the Ashen March, a fictional borderland between an old front line and a slow district river, nine months after the war; a rutted post road running through ash country, tall weathered wooden road-guard signal masts at each stage with plain cloth flags, burnt fields and charred copses whose trunks look like spent matches, grey ash lying in wheel ruts and drifting on still water, rope-drawn river ferries, short plank footbridges and causeways over reed marsh; weary adults in faded greatcoats, field jackets and travel cloaks without insignia; palette of ash grey and charcoal, scorched umber, faded greatcoat grey-green, river slate blue, dry reed ochre, dull brass and darkened copper, bone white, with low amber lantern and campfire light and a cold rose dawn; quiet, sombre and humane, tension carried by faces, posture and distance rather than violence; every person shown is clearly an adult over twenty-one. Flags show only plain colour fields and simple geometric shapes; papers, boards, tags, plaques and badges carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no anatomy, no weapons pointed at the viewer; no firearms, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "dry-porch",
+      "title": "Постоялый двор «Сухое крыльцо»",
+      "file": "dry-porch.png",
+      "runtimeFile": "runtime/dry-porch.webp",
+      "sha256": "b45dfe908436f8bc445bdc7791c6f1648da27a9fd2658db5a158a7a7e2149d27",
+      "runtimeSha256": "3bbba666954113ebf18b51885c9b3702afb84467be1ab387cb6442462ec9e5ef",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/dry-porch.png",
+      "revealFromEvening": 5,
+      "subjects": [
+        "dry-porch"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as dry-porch.png in the current directory.\nLandscape scene, 3:2. The Dry Porch, a coaching inn with a long covered veranda and a blank rules board by the gate; a mast at the gate with travellers settling for the night beneath it. In the middle of the yard a black square of scorched earth, grey ash pushing up through the cracks of the boards around it. A wooden footbridge leads to the inn across a dry ravine. Evening, lamplight on the veranda.\n\nMatch one consistent house style: original premium illustrated post-war frontier western for adults over twenty-one, painterly oil and gouache with confident ink lines and crisp readable silhouettes, muted and painterly; the Ashen March, a fictional borderland between an old front line and a slow district river, nine months after the war; a rutted post road running through ash country, tall weathered wooden road-guard signal masts at each stage with plain cloth flags, burnt fields and charred copses whose trunks look like spent matches, grey ash lying in wheel ruts and drifting on still water, rope-drawn river ferries, short plank footbridges and causeways over reed marsh; weary adults in faded greatcoats, field jackets and travel cloaks without insignia; palette of ash grey and charcoal, scorched umber, faded greatcoat grey-green, river slate blue, dry reed ochre, dull brass and darkened copper, bone white, with low amber lantern and campfire light and a cold rose dawn; quiet, sombre and humane, tension carried by faces, posture and distance rather than violence; every person shown is clearly an adult over twenty-one. Flags show only plain colour fields and simple geometric shapes; papers, boards, tags, plaques and badges carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no anatomy, no weapons pointed at the viewer; no firearms, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "officers-well",
+      "title": "Офицерский колодец",
+      "file": "officers-well.png",
+      "runtimeFile": "runtime/officers-well.webp",
+      "sha256": "43756b1befbffa5934c6a8b66e3275565a7ec07a92d2e32588cb250fd6bf7bd9",
+      "runtimeSha256": "d82e31cef522beaac10cf01fd38bac8b1724f7b13641cae7b987fda55196d219",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/officers-well.png",
+      "revealFromEvening": 6,
+      "subjects": [
+        "officers-well"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as officers-well.png in the current directory.\nLandscape scene, 3:2. Officers' Well: a stone well with a log frame at the fork of a northern road and an eastern path, a mast beside it and a trampled clearing for a halt with a small campfire. Along the eastern path a burnt grove of charred thickets and black stumps fades into darkness. Night, low campfire light, a few stars through haze.\n\nMatch one consistent house style: original premium illustrated post-war frontier western for adults over twenty-one, painterly oil and gouache with confident ink lines and crisp readable silhouettes, muted and painterly; the Ashen March, a fictional borderland between an old front line and a slow district river, nine months after the war; a rutted post road running through ash country, tall weathered wooden road-guard signal masts at each stage with plain cloth flags, burnt fields and charred copses whose trunks look like spent matches, grey ash lying in wheel ruts and drifting on still water, rope-drawn river ferries, short plank footbridges and causeways over reed marsh; weary adults in faded greatcoats, field jackets and travel cloaks without insignia; palette of ash grey and charcoal, scorched umber, faded greatcoat grey-green, river slate blue, dry reed ochre, dull brass and darkened copper, bone white, with low amber lantern and campfire light and a cold rose dawn; quiet, sombre and humane, tension carried by faces, posture and distance rather than violence; every person shown is clearly an adult over twenty-one. Flags show only plain colour fields and simple geometric shapes; papers, boards, tags, plaques and badges carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no anatomy, no weapons pointed at the viewer; no firearms, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "two-roads",
+      "title": "Две вехи",
+      "file": "two-roads.png",
+      "runtimeFile": "runtime/two-roads.webp",
+      "sha256": "353c340fda694e03cc312d00d48b69404759cf68fec932c23731d48350749d71",
+      "runtimeSha256": "3730d7e4b266d636bd23445d28fa579e42bed24e9455f7c5427bfb976f3df13e",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/two-roads.png",
+      "revealFromEvening": 7,
+      "subjects": [
+        "two-roads"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as two-roads.png in the current directory.\nLandscape scene, 3:2. Two Marks: a fork where a road turns onto a long plank causeway across a reed bog and a dry road bends away around the marsh; two wooden waymarkers and a mast stand at the fork. Seen from high on the mast in low sunset light, the causeway runs far east over the reeds toward a distant marker post. Golden dusk, long shadows, mist rising from the bog.\n\nMatch one consistent house style: original premium illustrated post-war frontier western for adults over twenty-one, painterly oil and gouache with confident ink lines and crisp readable silhouettes, muted and painterly; the Ashen March, a fictional borderland between an old front line and a slow district river, nine months after the war; a rutted post road running through ash country, tall weathered wooden road-guard signal masts at each stage with plain cloth flags, burnt fields and charred copses whose trunks look like spent matches, grey ash lying in wheel ruts and drifting on still water, rope-drawn river ferries, short plank footbridges and causeways over reed marsh; weary adults in faded greatcoats, field jackets and travel cloaks without insignia; palette of ash grey and charcoal, scorched umber, faded greatcoat grey-green, river slate blue, dry reed ochre, dull brass and darkened copper, bone white, with low amber lantern and campfire light and a cold rose dawn; quiet, sombre and humane, tension carried by faces, posture and distance rather than violence; every person shown is clearly an adult over twenty-one. Flags show only plain colour fields and simple geometric shapes; papers, boards, tags, plaques and badges carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no anatomy, no weapons pointed at the viewer; no firearms, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "long-planks",
+      "title": "Долгий настил",
+      "file": "long-planks.png",
+      "runtimeFile": "runtime/long-planks.webp",
+      "sha256": "320e295513633fd98fded4ee3abe81101c89ba4331edbefb6e354bfe7f980958",
+      "runtimeSha256": "36afc52c6d959edfc3e302189bfa41c097f9517b94b7cfab0080f84ac9509b0d",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/long-planks.png",
+      "revealFromEvening": 8,
+      "subjects": [
+        "long-planks"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as long-planks.png in the current directory.\nLandscape scene, 3:2. The Long Planks: a log-and-plank causeway six paces wide across a reed bog, wooden piles with iron lantern hooks along it, rotten board edges sinking into the reeds, a burnt-through span in the middle, loose planks shifting underfoot; the clean central spine runs the whole length. At the far east end, on the south edge, a district marker post; beyond it firmer land. Empty causeway at dusk, mist over black water, a few lantern hooks catching the last light.\n\nMatch one consistent house style: original premium illustrated post-war frontier western for adults over twenty-one, painterly oil and gouache with confident ink lines and crisp readable silhouettes, muted and painterly; the Ashen March, a fictional borderland between an old front line and a slow district river, nine months after the war; a rutted post road running through ash country, tall weathered wooden road-guard signal masts at each stage with plain cloth flags, burnt fields and charred copses whose trunks look like spent matches, grey ash lying in wheel ruts and drifting on still water, rope-drawn river ferries, short plank footbridges and causeways over reed marsh; weary adults in faded greatcoats, field jackets and travel cloaks without insignia; palette of ash grey and charcoal, scorched umber, faded greatcoat grey-green, river slate blue, dry reed ochre, dull brass and darkened copper, bone white, with low amber lantern and campfire light and a cold rose dawn; quiet, sombre and humane, tension carried by faces, posture and distance rather than violence; every person shown is clearly an adult over twenty-one. Flags show only plain colour fields and simple geometric shapes; papers, boards, tags, plaques and badges carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no anatomy, no weapons pointed at the viewer; no firearms, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "border-landing",
+      "title": "Пограничная пристань",
+      "file": "border-landing.png",
+      "runtimeFile": "runtime/border-landing.webp",
+      "sha256": "64d054a6d8f4c45ff39f631b08edfabb9ec7c268db1d457017594fa00b4e8aa0",
+      "runtimeSha256": "3b553b1bd65189b523f70ac3e75c163035dee8dafd288c81df59209a52326dc2",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/border-landing.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "border-landing"
+      ],
+      "kind": "location",
+      "prompt": "Generate one image and save it as border-landing.png in the current directory.\nLandscape scene, 3:2. Border Landing: a plank slope down to the river, a canvas canopy over a plain table with a lidded wooden document box and a closed register book, a timber watchtower with two district guards. From here the far end of a causeway and a marker post can be seen across the reeds. Clear cold morning, still river, a sense of arrival.\n\nMatch one consistent house style: original premium illustrated post-war frontier western for adults over twenty-one, painterly oil and gouache with confident ink lines and crisp readable silhouettes, muted and painterly; the Ashen March, a fictional borderland between an old front line and a slow district river, nine months after the war; a rutted post road running through ash country, tall weathered wooden road-guard signal masts at each stage with plain cloth flags, burnt fields and charred copses whose trunks look like spent matches, grey ash lying in wheel ruts and drifting on still water, rope-drawn river ferries, short plank footbridges and causeways over reed marsh; weary adults in faded greatcoats, field jackets and travel cloaks without insignia; palette of ash grey and charcoal, scorched umber, faded greatcoat grey-green, river slate blue, dry reed ochre, dull brass and darkened copper, bone white, with low amber lantern and campfire light and a cold rose dawn; quiet, sombre and humane, tension carried by faces, posture and distance rather than violence; every person shown is clearly an adult over twenty-one. Flags show only plain colour fields and simple geometric shapes; papers, boards, tags, plaques and badges carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no anatomy, no weapons pointed at the viewer; no firearms, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "nika-roi",
+      "title": "Анфиса Рой",
+      "file": "nika-roi.png",
+      "runtimeFile": "runtime/nika-roi.webp",
+      "sha256": "b4f414f26741584f853f33d225e59174f433de834da03c3173b8e786bb70a39e",
+      "runtimeSha256": "4bd601a73830c7ffc51f881b30ec7a7d070fa37021a5dc7839db3acccf877cae",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/nika-roi.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "nika-roi"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as nika-roi.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Anfisa Roi, a 36-year-old woman, former lookout of the Dry Bridge post: a faded greatcoat with the patches removed, a brass post spyglass on a strap, ash in the seams of her boots, eyes on a distant mast before people. Behind her, a post road through burnt fields with masts receding into haze.\n\nMatch one consistent house style: original premium illustrated post-war frontier western for adults over twenty-one, painterly oil and gouache with confident ink lines and crisp readable silhouettes, muted and painterly; the Ashen March, a fictional borderland between an old front line and a slow district river, nine months after the war; a rutted post road running through ash country, tall weathered wooden road-guard signal masts at each stage with plain cloth flags, burnt fields and charred copses whose trunks look like spent matches, grey ash lying in wheel ruts and drifting on still water, rope-drawn river ferries, short plank footbridges and causeways over reed marsh; weary adults in faded greatcoats, field jackets and travel cloaks without insignia; palette of ash grey and charcoal, scorched umber, faded greatcoat grey-green, river slate blue, dry reed ochre, dull brass and darkened copper, bone white, with low amber lantern and campfire light and a cold rose dawn; quiet, sombre and humane, tension carried by faces, posture and distance rather than violence; every person shown is clearly an adult over twenty-one. Flags show only plain colour fields and simple geometric shapes; papers, boards, tags, plaques and badges carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no anatomy, no weapons pointed at the viewer; no firearms, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "stas-remen",
+      "title": "Стас Ремень",
+      "file": "stas-remen.png",
+      "runtimeFile": "runtime/stas-remen.webp",
+      "sha256": "b2340cc8a42bd1950db763f5b1eab2db8e7f53b64a67a0e560b0243f7a27c463",
+      "runtimeSha256": "6bf7704ea93020408bcb29c392f7019210ebc420dc59f2de7614c7dfd77f4d2b",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/stas-remen.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "stas-remen"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as stas-remen.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Stas Remen, a 34-year-old man, road broker of the post: a worn leather jacket, a curved rope-cutter knife with a serrated spine at his belt, tar-stained fingers and the smile of someone who knows the price of every toll on the March. Behind him, a river crossing with a barrier pole.\n\nMatch one consistent house style: original premium illustrated post-war frontier western for adults over twenty-one, painterly oil and gouache with confident ink lines and crisp readable silhouettes, muted and painterly; the Ashen March, a fictional borderland between an old front line and a slow district river, nine months after the war; a rutted post road running through ash country, tall weathered wooden road-guard signal masts at each stage with plain cloth flags, burnt fields and charred copses whose trunks look like spent matches, grey ash lying in wheel ruts and drifting on still water, rope-drawn river ferries, short plank footbridges and causeways over reed marsh; weary adults in faded greatcoats, field jackets and travel cloaks without insignia; palette of ash grey and charcoal, scorched umber, faded greatcoat grey-green, river slate blue, dry reed ochre, dull brass and darkened copper, bone white, with low amber lantern and campfire light and a cold rose dawn; quiet, sombre and humane, tension carried by faces, posture and distance rather than violence; every person shown is clearly an adult over twenty-one. Flags show only plain colour fields and simple geometric shapes; papers, boards, tags, plaques and badges carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no anatomy, no weapons pointed at the viewer; no firearms, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "vera-klen",
+      "title": "Пелагея Клён",
+      "file": "vera-klen.png",
+      "runtimeFile": "runtime/vera-klen.webp",
+      "sha256": "d6fe81dae4f87e765022104030e7f44dc020b8958743309b38ecd2e560607620",
+      "runtimeSha256": "5e91d788dcb7ddfca8ac4c66aa7069c9d479bf53c3e42ab2f472ed9fed5583cc",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/vera-klen.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "vera-klen"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as vera-klen.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Pelageya Klen, a 41-year-old woman, field healer of the post: a canvas satchel over her shoulder stitched with a plain geometric sign of road mercy, close-cropped hair, clean hands, a level unhurried gaze. Behind her, a quiet campfire halt under a mast.\n\nMatch one consistent house style: original premium illustrated post-war frontier western for adults over twenty-one, painterly oil and gouache with confident ink lines and crisp readable silhouettes, muted and painterly; the Ashen March, a fictional borderland between an old front line and a slow district river, nine months after the war; a rutted post road running through ash country, tall weathered wooden road-guard signal masts at each stage with plain cloth flags, burnt fields and charred copses whose trunks look like spent matches, grey ash lying in wheel ruts and drifting on still water, rope-drawn river ferries, short plank footbridges and causeways over reed marsh; weary adults in faded greatcoats, field jackets and travel cloaks without insignia; palette of ash grey and charcoal, scorched umber, faded greatcoat grey-green, river slate blue, dry reed ochre, dull brass and darkened copper, bone white, with low amber lantern and campfire light and a cold rose dawn; quiet, sombre and humane, tension carried by faces, posture and distance rather than violence; every person shown is clearly an adult over twenty-one. Flags show only plain colour fields and simple geometric shapes; papers, boards, tags, plaques and badges carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no anatomy, no weapons pointed at the viewer; no firearms, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "mark-ostrov",
+      "title": "Елисей Дымов",
+      "file": "mark-ostrov.png",
+      "runtimeFile": "runtime/mark-ostrov.webp",
+      "sha256": "ad139f69eebb2146702bc5d413eae579432ea1f2ce0044b0ba3fde4c690e3f2d",
+      "runtimeSha256": "f6840f6f38f60372896edc5cd71f9d3ddad322d76907efec0a6f63fb2f9ae0c0",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/mark-ostrov.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "mark-ostrov"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as mark-ostrov.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Yelisei Dymov, a 32-year-old man, signaller and sorcerer of the post: a long cloak with a scorched hem, a small steel mirror with a sighting slit on a cord, a notebook of mast signs tucked under his arm, ink-stained fingers. Behind him, a mast with plain coloured signal flags against a pale sky.\n\nMatch one consistent house style: original premium illustrated post-war frontier western for adults over twenty-one, painterly oil and gouache with confident ink lines and crisp readable silhouettes, muted and painterly; the Ashen March, a fictional borderland between an old front line and a slow district river, nine months after the war; a rutted post road running through ash country, tall weathered wooden road-guard signal masts at each stage with plain cloth flags, burnt fields and charred copses whose trunks look like spent matches, grey ash lying in wheel ruts and drifting on still water, rope-drawn river ferries, short plank footbridges and causeways over reed marsh; weary adults in faded greatcoats, field jackets and travel cloaks without insignia; palette of ash grey and charcoal, scorched umber, faded greatcoat grey-green, river slate blue, dry reed ochre, dull brass and darkened copper, bone white, with low amber lantern and campfire light and a cold rose dawn; quiet, sombre and humane, tension carried by faces, posture and distance rather than violence; every person shown is clearly an adult over twenty-one. Flags show only plain colour fields and simple geometric shapes; papers, boards, tags, plaques and badges carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no anatomy, no weapons pointed at the viewer; no firearms, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "yara-som",
+      "title": "Роксана Тур",
+      "file": "yara-som.png",
+      "runtimeFile": "runtime/yara-som.webp",
+      "sha256": "b074efede5ea73a35229296906f3252658232e2d9f3b983bbdc805644a5136a0",
+      "runtimeSha256": "a98387e83b434d68e1cbab03545254e45c8fed1266a19e27114eaa6a41db4534",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/yara-som.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "yara-som"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as yara-som.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Roksana Tur, a 38-year-old woman, a scout from the other side of the March, now a guide with the post: a dark jacket of foreign cut, an iron bridge emblem on a strap at her collar, light eyes, the easy stance of someone who knows which plank is rotten. Behind her, a reed marsh with a short plank footbridge.\n\nMatch one consistent house style: original premium illustrated post-war frontier western for adults over twenty-one, painterly oil and gouache with confident ink lines and crisp readable silhouettes, muted and painterly; the Ashen March, a fictional borderland between an old front line and a slow district river, nine months after the war; a rutted post road running through ash country, tall weathered wooden road-guard signal masts at each stage with plain cloth flags, burnt fields and charred copses whose trunks look like spent matches, grey ash lying in wheel ruts and drifting on still water, rope-drawn river ferries, short plank footbridges and causeways over reed marsh; weary adults in faded greatcoats, field jackets and travel cloaks without insignia; palette of ash grey and charcoal, scorched umber, faded greatcoat grey-green, river slate blue, dry reed ochre, dull brass and darkened copper, bone white, with low amber lantern and campfire light and a cold rose dawn; quiet, sombre and humane, tension carried by faces, posture and distance rather than violence; every person shown is clearly an adult over twenty-one. Flags show only plain colour fields and simple geometric shapes; papers, boards, tags, plaques and badges carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no anatomy, no weapons pointed at the viewer; no firearms, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "leon-klyuch",
+      "title": "Леон Ключ",
+      "file": "leon-klyuch.png",
+      "runtimeFile": "runtime/leon-klyuch.webp",
+      "sha256": "9b27fa20efa5718e445ed9d42ffaf3675c11fd47e0a620918a28912f3bc3fbcc",
+      "runtimeSha256": "500888f5c5603df58bcb45831cbcba9b3fa1bafcaef3d710caf590e40a144878",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/leon-klyuch.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "leon-klyuch"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as leon-klyuch.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Leon Klyuch, a 31-year-old man, a guide of the March's inns and yards: a ring of other people's keys at his belt, a hat with a scorched brim, a light-footed stance and a friendly, memorising look. Behind him, the gate of a roadside inn with a lantern.\n\nMatch one consistent house style: original premium illustrated post-war frontier western for adults over twenty-one, painterly oil and gouache with confident ink lines and crisp readable silhouettes, muted and painterly; the Ashen March, a fictional borderland between an old front line and a slow district river, nine months after the war; a rutted post road running through ash country, tall weathered wooden road-guard signal masts at each stage with plain cloth flags, burnt fields and charred copses whose trunks look like spent matches, grey ash lying in wheel ruts and drifting on still water, rope-drawn river ferries, short plank footbridges and causeways over reed marsh; weary adults in faded greatcoats, field jackets and travel cloaks without insignia; palette of ash grey and charcoal, scorched umber, faded greatcoat grey-green, river slate blue, dry reed ochre, dull brass and darkened copper, bone white, with low amber lantern and campfire light and a cold rose dawn; quiet, sombre and humane, tension carried by faces, posture and distance rather than violence; every person shown is clearly an adult over twenty-one. Flags show only plain colour fields and simple geometric shapes; papers, boards, tags, plaques and badges carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no anatomy, no weapons pointed at the viewer; no firearms, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "ada-vyaz",
+      "title": "Ада Полынь",
+      "file": "ada-vyaz.png",
+      "runtimeFile": "runtime/ada-vyaz.webp",
+      "sha256": "ff26cfc35dbfca7425b315b2e4055d6edcae889c57695d9ab4b006038f7efa1e",
+      "runtimeSha256": "c618ceb5f9f0a776de8b94f489e8ec5d13722e4e2af9b2a2ef2e55c0d125a5f6",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/ada-vyaz.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "ada-vyaz"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as ada-vyaz.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Ada Polyn, a 45-year-old woman, keeper of road vows: a grey travel cloak, a string of small copper tags stamped with illegible marks around her neck, heavy boots, a calm gaze that weighs every promise. Behind her, the foot of a mast at dusk.\n\nMatch one consistent house style: original premium illustrated post-war frontier western for adults over twenty-one, painterly oil and gouache with confident ink lines and crisp readable silhouettes, muted and painterly; the Ashen March, a fictional borderland between an old front line and a slow district river, nine months after the war; a rutted post road running through ash country, tall weathered wooden road-guard signal masts at each stage with plain cloth flags, burnt fields and charred copses whose trunks look like spent matches, grey ash lying in wheel ruts and drifting on still water, rope-drawn river ferries, short plank footbridges and causeways over reed marsh; weary adults in faded greatcoats, field jackets and travel cloaks without insignia; palette of ash grey and charcoal, scorched umber, faded greatcoat grey-green, river slate blue, dry reed ochre, dull brass and darkened copper, bone white, with low amber lantern and campfire light and a cold rose dawn; quiet, sombre and humane, tension carried by faces, posture and distance rather than violence; every person shown is clearly an adult over twenty-one. Flags show only plain colour fields and simple geometric shapes; papers, boards, tags, plaques and badges carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no anatomy, no weapons pointed at the viewer; no firearms, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "osip-len",
+      "title": "Осип Лён",
+      "file": "osip-len.png",
+      "runtimeFile": "runtime/osip-len.webp",
+      "sha256": "116f31982d532a21ae04b48d28ba84192c17f3e2e87a284f6549d86003bda90c",
+      "runtimeSha256": "36ac6fb16b36cdf8da405bee6b24b0a2fd85aed1cf1325baec9a39d04c779151",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/osip-len.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "osip-len"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as osip-len.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Osip Len, a 37-year-old man, a master of small road charms: a patched kaftan with pockets full of candle stubs and chalk, hair gone grey too early, a soft small light floating above his palm. Behind him, a dark road at night.\n\nMatch one consistent house style: original premium illustrated post-war frontier western for adults over twenty-one, painterly oil and gouache with confident ink lines and crisp readable silhouettes, muted and painterly; the Ashen March, a fictional borderland between an old front line and a slow district river, nine months after the war; a rutted post road running through ash country, tall weathered wooden road-guard signal masts at each stage with plain cloth flags, burnt fields and charred copses whose trunks look like spent matches, grey ash lying in wheel ruts and drifting on still water, rope-drawn river ferries, short plank footbridges and causeways over reed marsh; weary adults in faded greatcoats, field jackets and travel cloaks without insignia; palette of ash grey and charcoal, scorched umber, faded greatcoat grey-green, river slate blue, dry reed ochre, dull brass and darkened copper, bone white, with low amber lantern and campfire light and a cold rose dawn; quiet, sombre and humane, tension carried by faces, posture and distance rather than violence; every person shown is clearly an adult over twenty-one. Flags show only plain colour fields and simple geometric shapes; papers, boards, tags, plaques and badges carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no anatomy, no weapons pointed at the viewer; no firearms, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "efim-krai",
+      "title": "Ефим Сажин",
+      "file": "efim-krai.png",
+      "runtimeFile": "runtime/efim-krai.webp",
+      "sha256": "e4338ea01cfccea68bd654149295b9c05a2e75ca0e4339737774689806490304",
+      "runtimeSha256": "5947c4616b1890e3598a4d04293a572f904a0b495114b958c210adfd078c12bc",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/efim-krai.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "efim-krai"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as efim-krai.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Yefim Sazhin, a 49-year-old man, former quartermaster of the road guard: a quartermaster jacket without insignia, a short copper baton with a black ribbon held in one hand, an oilcloth packet tied on a cord at his chest, ash in the lines of his face, a measured, composed expression. Behind him, a charred copse and an ash-covered road.\n\nMatch one consistent house style: original premium illustrated post-war frontier western for adults over twenty-one, painterly oil and gouache with confident ink lines and crisp readable silhouettes, muted and painterly; the Ashen March, a fictional borderland between an old front line and a slow district river, nine months after the war; a rutted post road running through ash country, tall weathered wooden road-guard signal masts at each stage with plain cloth flags, burnt fields and charred copses whose trunks look like spent matches, grey ash lying in wheel ruts and drifting on still water, rope-drawn river ferries, short plank footbridges and causeways over reed marsh; weary adults in faded greatcoats, field jackets and travel cloaks without insignia; palette of ash grey and charcoal, scorched umber, faded greatcoat grey-green, river slate blue, dry reed ochre, dull brass and darkened copper, bone white, with low amber lantern and campfire light and a cold rose dawn; quiet, sombre and humane, tension carried by faces, posture and distance rather than violence; every person shown is clearly an adult over twenty-one. Flags show only plain colour fields and simple geometric shapes; papers, boards, tags, plaques and badges carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no anatomy, no weapons pointed at the viewer; no firearms, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "cover.png"
+      ]
+    },
+    {
+      "id": "ruma-sedykh",
+      "title": "Рума Седых",
+      "file": "ruma-sedykh.png",
+      "runtimeFile": "runtime/ruma-sedykh.webp",
+      "sha256": "aebdecd5d6e4b1662f6939ebd88303d65cec59fbad32ce43c2821e307e54ebb6",
+      "runtimeSha256": "431a55eac76d4155844c6bb764511ec996aabf053de206e51f3781f4bdff36e5",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/ruma-sedykh.png",
+      "revealFromEvening": 5,
+      "subjects": [
+        "ruma-sedykh"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as ruma-sedykh.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Ruma Sedykh, a 55-year-old woman, former major and chief of the road guard: a commander's jacket buttoned to the throat, a scrap of black cloth where a cockade would be, a grey braid beneath a peaked cap, hands clasped behind her back, quiet authority. Behind her, a column of veterans in grey greatcoats halted beneath a mast at dusk.\n\nMatch one consistent house style: original premium illustrated post-war frontier western for adults over twenty-one, painterly oil and gouache with confident ink lines and crisp readable silhouettes, muted and painterly; the Ashen March, a fictional borderland between an old front line and a slow district river, nine months after the war; a rutted post road running through ash country, tall weathered wooden road-guard signal masts at each stage with plain cloth flags, burnt fields and charred copses whose trunks look like spent matches, grey ash lying in wheel ruts and drifting on still water, rope-drawn river ferries, short plank footbridges and causeways over reed marsh; weary adults in faded greatcoats, field jackets and travel cloaks without insignia; palette of ash grey and charcoal, scorched umber, faded greatcoat grey-green, river slate blue, dry reed ochre, dull brass and darkened copper, bone white, with low amber lantern and campfire light and a cold rose dawn; quiet, sombre and humane, tension carried by faces, posture and distance rather than violence; every person shown is clearly an adult over twenty-one. Flags show only plain colour fields and simple geometric shapes; papers, boards, tags, plaques and badges carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no anatomy, no weapons pointed at the viewer; no firearms, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "kondrat-obukh",
+      "title": "Кондрат Обух",
+      "file": "kondrat-obukh.png",
+      "runtimeFile": "runtime/kondrat-obukh.webp",
+      "sha256": "4b62d379bcf9d3a04ebe134b6c7ef1ec2e78762dc4e25bed19c1f7e3a92a728d",
+      "runtimeSha256": "95c21bc139da568279566e66a5c5fa3d1aa845a044684dcdac7c32ab6ac437b6",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/kondrat-obukh.png",
+      "revealFromEvening": 5,
+      "subjects": [
+        "kondrat-obukh"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as kondrat-obukh.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Kondrat Obukh, a 48-year-old man, sergeant-major of the road guard: broad and heavy-set, grey stubble, a wide sergeant's belt, a scrap of black cloth on his sleeve, a greataxe resting on his shoulder; smiling and counting something on his fingers. Behind him, mounted outriders of the road guard waiting at a mast in grey light.\n\nMatch one consistent house style: original premium illustrated post-war frontier western for adults over twenty-one, painterly oil and gouache with confident ink lines and crisp readable silhouettes, muted and painterly; the Ashen March, a fictional borderland between an old front line and a slow district river, nine months after the war; a rutted post road running through ash country, tall weathered wooden road-guard signal masts at each stage with plain cloth flags, burnt fields and charred copses whose trunks look like spent matches, grey ash lying in wheel ruts and drifting on still water, rope-drawn river ferries, short plank footbridges and causeways over reed marsh; weary adults in faded greatcoats, field jackets and travel cloaks without insignia; palette of ash grey and charcoal, scorched umber, faded greatcoat grey-green, river slate blue, dry reed ochre, dull brass and darkened copper, bone white, with low amber lantern and campfire light and a cold rose dawn; quiet, sombre and humane, tension carried by faces, posture and distance rather than violence; every person shown is clearly an adult over twenty-one. Flags show only plain colour fields and simple geometric shapes; papers, boards, tags, plaques and badges carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no anatomy, no weapons pointed at the viewer; no firearms, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "platon-sazhin",
+      "title": "Платон Сажин",
+      "file": "platon-sazhin.png",
+      "runtimeFile": "runtime/platon-sazhin.webp",
+      "sha256": "1b3504f04af8702eaa94ff0b9796b78197c4a9caad35b34b1f45a28a21c48c81",
+      "runtimeSha256": "79ef24a0e0cc5ab86eb0bcbe2887afa1f03d4706045b8adaaf682ae969f6ae1f",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/platon-sazhin.png",
+      "revealFromEvening": 6,
+      "subjects": [
+        "platon-sazhin"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as platon-sazhin.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Platon Sazhin, a 25-year-old man, a foot soldier of the road guard: a grey greatcoat with a scrap of black cloth on the sleeve, a spear held upright, strong dark brows, eyes lowered. Behind him, a column's campfires along a road at night.\n\nMatch one consistent house style: original premium illustrated post-war frontier western for adults over twenty-one, painterly oil and gouache with confident ink lines and crisp readable silhouettes, muted and painterly; the Ashen March, a fictional borderland between an old front line and a slow district river, nine months after the war; a rutted post road running through ash country, tall weathered wooden road-guard signal masts at each stage with plain cloth flags, burnt fields and charred copses whose trunks look like spent matches, grey ash lying in wheel ruts and drifting on still water, rope-drawn river ferries, short plank footbridges and causeways over reed marsh; weary adults in faded greatcoats, field jackets and travel cloaks without insignia; palette of ash grey and charcoal, scorched umber, faded greatcoat grey-green, river slate blue, dry reed ochre, dull brass and darkened copper, bone white, with low amber lantern and campfire light and a cold rose dawn; quiet, sombre and humane, tension carried by faces, posture and distance rather than violence; every person shown is clearly an adult over twenty-one. Flags show only plain colour fields and simple geometric shapes; papers, boards, tags, plaques and badges carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no anatomy, no weapons pointed at the viewer; no firearms, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "olet-morin",
+      "title": "Олет Морин",
+      "file": "olet-morin.png",
+      "runtimeFile": "runtime/olet-morin.webp",
+      "sha256": "d1bc67c6b9fe87a3e7062bf4d141cbc4432eec72639d46b2dc55e7b6adf7370c",
+      "runtimeSha256": "f7da4703dfa2ffa796878acfc26f30649dd782a2bf5e701c5e02ad82e5677fb0",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/olet-morin.png",
+      "revealFromEvening": 3,
+      "subjects": [
+        "olet-morin"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as olet-morin.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Olet Morin, a 39-year-old man, former sergeant of the cavalry camp and head of its workshops: a leather apron, a worn regimental badge on a rope with its emblem rubbed smooth, hands dark with tar, stitching a harness without looking up. Behind him, a forge and sheds hung with tack.\n\nMatch one consistent house style: original premium illustrated post-war frontier western for adults over twenty-one, painterly oil and gouache with confident ink lines and crisp readable silhouettes, muted and painterly; the Ashen March, a fictional borderland between an old front line and a slow district river, nine months after the war; a rutted post road running through ash country, tall weathered wooden road-guard signal masts at each stage with plain cloth flags, burnt fields and charred copses whose trunks look like spent matches, grey ash lying in wheel ruts and drifting on still water, rope-drawn river ferries, short plank footbridges and causeways over reed marsh; weary adults in faded greatcoats, field jackets and travel cloaks without insignia; palette of ash grey and charcoal, scorched umber, faded greatcoat grey-green, river slate blue, dry reed ochre, dull brass and darkened copper, bone white, with low amber lantern and campfire light and a cold rose dawn; quiet, sombre and humane, tension carried by faces, posture and distance rather than violence; every person shown is clearly an adult over twenty-one. Flags show only plain colour fields and simple geometric shapes; papers, boards, tags, plaques and badges carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no anatomy, no weapons pointed at the viewer; no firearms, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "lidiya-tal",
+      "title": "Агафья Свая",
+      "file": "lidiya-tal.png",
+      "runtimeFile": "runtime/lidiya-tal.webp",
+      "sha256": "c976df8a96a186f80379aff43bee565729da5d5814aa1dc36e1592de3d77bf0b",
+      "runtimeSha256": "338fae748ab2e1b9a9fc5448ee566b2de44c20cf255dd9155cbfa3fefb85156c",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/lidiya-tal.png",
+      "revealFromEvening": 4,
+      "subjects": [
+        "lidiya-tal"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as lidiya-tal.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Agafya Svaya, a 46-year-old woman, eldest of the bridge builders who run a workshop by the quarry fork: a work jacket with a plain bridge emblem, a straight back, a wooden measuring rod at her belt, grey hair under a headscarf, a precise and patient look. Behind her, fresh plank walkways stacked in a workshop.\n\nMatch one consistent house style: original premium illustrated post-war frontier western for adults over twenty-one, painterly oil and gouache with confident ink lines and crisp readable silhouettes, muted and painterly; the Ashen March, a fictional borderland between an old front line and a slow district river, nine months after the war; a rutted post road running through ash country, tall weathered wooden road-guard signal masts at each stage with plain cloth flags, burnt fields and charred copses whose trunks look like spent matches, grey ash lying in wheel ruts and drifting on still water, rope-drawn river ferries, short plank footbridges and causeways over reed marsh; weary adults in faded greatcoats, field jackets and travel cloaks without insignia; palette of ash grey and charcoal, scorched umber, faded greatcoat grey-green, river slate blue, dry reed ochre, dull brass and darkened copper, bone white, with low amber lantern and campfire light and a cold rose dawn; quiet, sombre and humane, tension carried by faces, posture and distance rather than violence; every person shown is clearly an adult over twenty-one. Flags show only plain colour fields and simple geometric shapes; papers, boards, tags, plaques and badges carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no anatomy, no weapons pointed at the viewer; no firearms, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "arsen-lug",
+      "title": "Арсен Луг",
+      "file": "arsen-lug.png",
+      "runtimeFile": "runtime/arsen-lug.webp",
+      "sha256": "7a4e9b2c477a8f72bf661d364b2e1f24e65808ff6224d403df16379abaaf9044",
+      "runtimeSha256": "1c8bb1b59703275da459e9074568babffa9f3f93b0993c7b3f541b862ee86a98",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/arsen-lug.png",
+      "revealFromEvening": 4,
+      "subjects": [
+        "arsen-lug"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as arsen-lug.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Arsen Lug, a 40-year-old man, a carpenter at the bridge builders' workshop: a dark shirt, a small tin tag on a cord worn outside with its stamped mark worn illegible, a wood plane in his hand, a straight, long, unblinking look. Behind him, a carpentry bench and curls of shavings.\n\nMatch one consistent house style: original premium illustrated post-war frontier western for adults over twenty-one, painterly oil and gouache with confident ink lines and crisp readable silhouettes, muted and painterly; the Ashen March, a fictional borderland between an old front line and a slow district river, nine months after the war; a rutted post road running through ash country, tall weathered wooden road-guard signal masts at each stage with plain cloth flags, burnt fields and charred copses whose trunks look like spent matches, grey ash lying in wheel ruts and drifting on still water, rope-drawn river ferries, short plank footbridges and causeways over reed marsh; weary adults in faded greatcoats, field jackets and travel cloaks without insignia; palette of ash grey and charcoal, scorched umber, faded greatcoat grey-green, river slate blue, dry reed ochre, dull brass and darkened copper, bone white, with low amber lantern and campfire light and a cold rose dawn; quiet, sombre and humane, tension carried by faces, posture and distance rather than violence; every person shown is clearly an adult over twenty-one. Flags show only plain colour fields and simple geometric shapes; papers, boards, tags, plaques and badges carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no anatomy, no weapons pointed at the viewer; no firearms, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "semen-uzlov",
+      "title": "Семён Узлов",
+      "file": "semen-uzlov.png",
+      "runtimeFile": "runtime/semen-uzlov.webp",
+      "sha256": "a7641c734810a20a3fc071388e6389e368f068e604ade505a81c81d11712a400",
+      "runtimeSha256": "e05b3ae36891a059427043430460f7433e6c84133b94640a73258830789f613b",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/semen-uzlov.png",
+      "revealFromEvening": 2,
+      "subjects": [
+        "semen-uzlov"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as semen-uzlov.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Semyon Uzlov, a 44-year-old man, ferryman of the rope ferry: an apron over an old uniform, palms dark with tar, broad shoulders; on the log wall behind him a tally board cut with rows of plain notches, and through the window the ferry rope over the river.\n\nMatch one consistent house style: original premium illustrated post-war frontier western for adults over twenty-one, painterly oil and gouache with confident ink lines and crisp readable silhouettes, muted and painterly; the Ashen March, a fictional borderland between an old front line and a slow district river, nine months after the war; a rutted post road running through ash country, tall weathered wooden road-guard signal masts at each stage with plain cloth flags, burnt fields and charred copses whose trunks look like spent matches, grey ash lying in wheel ruts and drifting on still water, rope-drawn river ferries, short plank footbridges and causeways over reed marsh; weary adults in faded greatcoats, field jackets and travel cloaks without insignia; palette of ash grey and charcoal, scorched umber, faded greatcoat grey-green, river slate blue, dry reed ochre, dull brass and darkened copper, bone white, with low amber lantern and campfire light and a cold rose dawn; quiet, sombre and humane, tension carried by faces, posture and distance rather than violence; every person shown is clearly an adult over twenty-one. Flags show only plain colour fields and simple geometric shapes; papers, boards, tags, plaques and badges carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no anatomy, no weapons pointed at the viewer; no firearms, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "tikhon-shelest",
+      "title": "Игнат Половик",
+      "file": "tikhon-shelest.png",
+      "runtimeFile": "runtime/tikhon-shelest.webp",
+      "sha256": "144cac8055f4ecb7b409fd05d03a03a0038b62252885b48067481f116fcfc811",
+      "runtimeSha256": "6a06e797200a92378229ead404bb5162087111b69e1aa93ff6bb4025bec1434d",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/tikhon-shelest.png",
+      "revealFromEvening": 5,
+      "subjects": [
+        "tikhon-shelest"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as tikhon-shelest.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Ignat Polovik, a 52-year-old man, host of the Dry Porch inn: rolled-up sleeves, a heavy bunch of keys, a blank rules board at his elbow, a tired, hospitable face. Behind him, a lamplit veranda.\n\nMatch one consistent house style: original premium illustrated post-war frontier western for adults over twenty-one, painterly oil and gouache with confident ink lines and crisp readable silhouettes, muted and painterly; the Ashen March, a fictional borderland between an old front line and a slow district river, nine months after the war; a rutted post road running through ash country, tall weathered wooden road-guard signal masts at each stage with plain cloth flags, burnt fields and charred copses whose trunks look like spent matches, grey ash lying in wheel ruts and drifting on still water, rope-drawn river ferries, short plank footbridges and causeways over reed marsh; weary adults in faded greatcoats, field jackets and travel cloaks without insignia; palette of ash grey and charcoal, scorched umber, faded greatcoat grey-green, river slate blue, dry reed ochre, dull brass and darkened copper, bone white, with low amber lantern and campfire light and a cold rose dawn; quiet, sombre and humane, tension carried by faces, posture and distance rather than violence; every person shown is clearly an adult over twenty-one. Flags show only plain colour fields and simple geometric shapes; papers, boards, tags, plaques and badges carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no anatomy, no weapons pointed at the viewer; no firearms, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "nella-ark",
+      "title": "Нелла Арк",
+      "file": "nella-ark.png",
+      "runtimeFile": "runtime/nella-ark.webp",
+      "sha256": "38e4f25ad78f2a77b65e9178ded1784f6c15ad8162bfb3bee5bb5856f3099c0f",
+      "runtimeSha256": "4bc1870e5ce7647e9544d8581fa9576d9c5ffe31b8c6fafacbba74ff5089bffe",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/nella-ark.png",
+      "revealFromEvening": 8,
+      "subjects": [
+        "nella-ark"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as nella-ark.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Nella Ark, a 38-year-old woman, representative of the district table: a neat travel suit, a leather document case under her arm, a narrow-brimmed hat, a dry, attentive expression. Behind her, a timber watchtower with two district guards and a river landing.\n\nMatch one consistent house style: original premium illustrated post-war frontier western for adults over twenty-one, painterly oil and gouache with confident ink lines and crisp readable silhouettes, muted and painterly; the Ashen March, a fictional borderland between an old front line and a slow district river, nine months after the war; a rutted post road running through ash country, tall weathered wooden road-guard signal masts at each stage with plain cloth flags, burnt fields and charred copses whose trunks look like spent matches, grey ash lying in wheel ruts and drifting on still water, rope-drawn river ferries, short plank footbridges and causeways over reed marsh; weary adults in faded greatcoats, field jackets and travel cloaks without insignia; palette of ash grey and charcoal, scorched umber, faded greatcoat grey-green, river slate blue, dry reed ochre, dull brass and darkened copper, bone white, with low amber lantern and campfire light and a cold rose dawn; quiet, sombre and humane, tension carried by faces, posture and distance rather than violence; every person shown is clearly an adult over twenty-one. Flags show only plain colour fields and simple geometric shapes; papers, boards, tags, plaques and badges carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no anatomy, no weapons pointed at the viewer; no firearms, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "dina-vetrova",
+      "title": "Фёкла Стремя",
+      "file": "dina-vetrova.png",
+      "runtimeFile": "runtime/dina-vetrova.webp",
+      "sha256": "5351cc5b7f3f3ed08d92c712c88fa7a81b72fc597074334dafc073a373ea9eb0",
+      "runtimeSha256": "a10845f8e70ded71c935c3f3274bc9b43b47572917c4aa4f7c1852e9d42afafe",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/dina-vetrova.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "dina-vetrova"
+      ],
+      "kind": "portrait",
+      "prompt": "Generate one image and save it as dina-vetrova.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Fyokla Stremya, a 42-year-old woman, a mounted courier of the Ashen March: a postal cape, a satchel with a copper buckle, a small arrivals notebook in her hand; behind her a lathered horse tethered at a mast. Brisk and alert.\n\nMatch one consistent house style: original premium illustrated post-war frontier western for adults over twenty-one, painterly oil and gouache with confident ink lines and crisp readable silhouettes, muted and painterly; the Ashen March, a fictional borderland between an old front line and a slow district river, nine months after the war; a rutted post road running through ash country, tall weathered wooden road-guard signal masts at each stage with plain cloth flags, burnt fields and charred copses whose trunks look like spent matches, grey ash lying in wheel ruts and drifting on still water, rope-drawn river ferries, short plank footbridges and causeways over reed marsh; weary adults in faded greatcoats, field jackets and travel cloaks without insignia; palette of ash grey and charcoal, scorched umber, faded greatcoat grey-green, river slate blue, dry reed ochre, dull brass and darkened copper, bone white, with low amber lantern and campfire light and a cold rose dawn; quiet, sombre and humane, tension carried by faces, posture and distance rather than violence; every person shown is clearly an adult over twenty-one. Flags show only plain colour fields and simple geometric shapes; papers, boards, tags, plaques and badges carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no anatomy, no weapons pointed at the viewer; no firearms, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "intendant-baton",
+      "title": "Жезл интенданта",
+      "file": "intendant-baton.png",
+      "runtimeFile": "runtime/intendant-baton.webp",
+      "sha256": "aa01977c8430bd84fca19717ff2a2a3101bff16e108760892cd5d7f3b1a861b2",
+      "runtimeSha256": "a47c3b0fcc484d7050e56246e66f9539eb279e632e7a17863425fe5e5fb9aa7c",
+      "width": 1254,
+      "height": 1254,
+      "alpha": true,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/intendant-baton.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "intendant-baton"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as intendant-baton.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A forearm-length copper baton, darkened by ash, with plain notches cut into the grip and a black ribbon knotted below the pommel; the grip is polished bright by a hand.\n\nMatch one consistent house style: original premium illustrated post-war frontier western for adults over twenty-one, painterly oil and gouache with confident ink lines and crisp readable silhouettes, muted and painterly; the Ashen March, a fictional borderland between an old front line and a slow district river, nine months after the war; a rutted post road running through ash country, tall weathered wooden road-guard signal masts at each stage with plain cloth flags, burnt fields and charred copses whose trunks look like spent matches, grey ash lying in wheel ruts and drifting on still water, rope-drawn river ferries, short plank footbridges and causeways over reed marsh; weary adults in faded greatcoats, field jackets and travel cloaks without insignia; palette of ash grey and charcoal, scorched umber, faded greatcoat grey-green, river slate blue, dry reed ochre, dull brass and darkened copper, bone white, with low amber lantern and campfire light and a cold rose dawn; quiet, sombre and humane, tension carried by faces, posture and distance rather than violence; every person shown is clearly an adult over twenty-one. Flags show only plain colour fields and simple geometric shapes; papers, boards, tags, plaques and badges carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no anatomy, no weapons pointed at the viewer; no firearms, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "efim-packet",
+      "title": "Клеёнчатый пакет",
+      "file": "efim-packet.png",
+      "runtimeFile": "runtime/efim-packet.webp",
+      "sha256": "0d15c0279b763a89040a1f5681c6b7b7487e9d8187cc8f4a1182c3749d82e3e1",
+      "runtimeSha256": "66e38581b5019e6ad8085bfffaf94c24ace4109cd2e619069b1f62ce339473bc",
+      "width": 1254,
+      "height": 1254,
+      "alpha": true,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/efim-packet.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "efim-packet"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as efim-packet.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A closed packet made from a piece of tent cloth, its seams glued, tied crosswise with a cord, the knot sealed with a blob of wax; the outline of folded sheets shows faintly through the cloth.\n\nMatch one consistent house style: original premium illustrated post-war frontier western for adults over twenty-one, painterly oil and gouache with confident ink lines and crisp readable silhouettes, muted and painterly; the Ashen March, a fictional borderland between an old front line and a slow district river, nine months after the war; a rutted post road running through ash country, tall weathered wooden road-guard signal masts at each stage with plain cloth flags, burnt fields and charred copses whose trunks look like spent matches, grey ash lying in wheel ruts and drifting on still water, rope-drawn river ferries, short plank footbridges and causeways over reed marsh; weary adults in faded greatcoats, field jackets and travel cloaks without insignia; palette of ash grey and charcoal, scorched umber, faded greatcoat grey-green, river slate blue, dry reed ochre, dull brass and darkened copper, bone white, with low amber lantern and campfire light and a cold rose dawn; quiet, sombre and humane, tension carried by faces, posture and distance rather than violence; every person shown is clearly an adult over twenty-one. Flags show only plain colour fields and simple geometric shapes; papers, boards, tags, plaques and badges carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no anatomy, no weapons pointed at the viewer; no firearms, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "post-spyglass",
+      "title": "Труба поста",
+      "file": "post-spyglass.png",
+      "runtimeFile": "runtime/post-spyglass.webp",
+      "sha256": "4660c16e8038f7054af04b3fd54b60b835f9c73eedb6c8d2eac74a59a967fda4",
+      "runtimeSha256": "a83663159bf12a61807c82da29bd9d019827fbb7b9a368c6b8a5d55df0a57501",
+      "width": 1254,
+      "height": 1254,
+      "alpha": true,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/post-spyglass.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "post-spyglass"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as post-spyglass.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A brass three-draw spyglass, its barrel scratched with faint worn marks, the eyepiece wrapped in leather, the lens cap hanging on a small chain.\n\nMatch one consistent house style: original premium illustrated post-war frontier western for adults over twenty-one, painterly oil and gouache with confident ink lines and crisp readable silhouettes, muted and painterly; the Ashen March, a fictional borderland between an old front line and a slow district river, nine months after the war; a rutted post road running through ash country, tall weathered wooden road-guard signal masts at each stage with plain cloth flags, burnt fields and charred copses whose trunks look like spent matches, grey ash lying in wheel ruts and drifting on still water, rope-drawn river ferries, short plank footbridges and causeways over reed marsh; weary adults in faded greatcoats, field jackets and travel cloaks without insignia; palette of ash grey and charcoal, scorched umber, faded greatcoat grey-green, river slate blue, dry reed ochre, dull brass and darkened copper, bone white, with low amber lantern and campfire light and a cold rose dawn; quiet, sombre and humane, tension carried by faces, posture and distance rather than violence; every person shown is clearly an adult over twenty-one. Flags show only plain colour fields and simple geometric shapes; papers, boards, tags, plaques and badges carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no anatomy, no weapons pointed at the viewer; no firearms, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "rope-cutter",
+      "title": "Стропорез Стаса",
+      "file": "rope-cutter.png",
+      "runtimeFile": "runtime/rope-cutter.webp",
+      "sha256": "18900cfb1390e2538d1c787e0d6d339e272b1841fbfec02f3ada3b72d56d9f6f",
+      "runtimeSha256": "732998d435a75b5b7678d1a38e2107dca42cad7c18ffea683bf0699008876aba",
+      "width": 1254,
+      "height": 1254,
+      "alpha": true,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/rope-cutter.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "rope-cutter"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as rope-cutter.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A curved rope-cutting knife with a serrated spine, its grip wrapped in tarred cord.\n\nMatch one consistent house style: original premium illustrated post-war frontier western for adults over twenty-one, painterly oil and gouache with confident ink lines and crisp readable silhouettes, muted and painterly; the Ashen March, a fictional borderland between an old front line and a slow district river, nine months after the war; a rutted post road running through ash country, tall weathered wooden road-guard signal masts at each stage with plain cloth flags, burnt fields and charred copses whose trunks look like spent matches, grey ash lying in wheel ruts and drifting on still water, rope-drawn river ferries, short plank footbridges and causeways over reed marsh; weary adults in faded greatcoats, field jackets and travel cloaks without insignia; palette of ash grey and charcoal, scorched umber, faded greatcoat grey-green, river slate blue, dry reed ochre, dull brass and darkened copper, bone white, with low amber lantern and campfire light and a cold rose dawn; quiet, sombre and humane, tension carried by faces, posture and distance rather than violence; every person shown is clearly an adult over twenty-one. Flags show only plain colour fields and simple geometric shapes; papers, boards, tags, plaques and badges carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no anatomy, no weapons pointed at the viewer; no firearms, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "field-kit",
+      "title": "Укладка Пелагеи",
+      "file": "field-kit.png",
+      "runtimeFile": "runtime/field-kit.webp",
+      "sha256": "1020b9f38d775b28afb2594ac05dd16eeda4c98452366ba5cc96d9af2ded2632",
+      "runtimeSha256": "d25fc6afa5931cb84498dc500d2b79e7154ea1774ed47f53d229fabd92a3f103",
+      "width": 1254,
+      "height": 1254,
+      "alpha": true,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/field-kit.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "field-kit"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as field-kit.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A canvas shoulder satchel stitched with a plain geometric sign of road mercy, its flap open on rolled bandages, wooden splints, a stoppered flask and thread wrapped in waxed paper; a little grey ash in the seams.\n\nMatch one consistent house style: original premium illustrated post-war frontier western for adults over twenty-one, painterly oil and gouache with confident ink lines and crisp readable silhouettes, muted and painterly; the Ashen March, a fictional borderland between an old front line and a slow district river, nine months after the war; a rutted post road running through ash country, tall weathered wooden road-guard signal masts at each stage with plain cloth flags, burnt fields and charred copses whose trunks look like spent matches, grey ash lying in wheel ruts and drifting on still water, rope-drawn river ferries, short plank footbridges and causeways over reed marsh; weary adults in faded greatcoats, field jackets and travel cloaks without insignia; palette of ash grey and charcoal, scorched umber, faded greatcoat grey-green, river slate blue, dry reed ochre, dull brass and darkened copper, bone white, with low amber lantern and campfire light and a cold rose dawn; quiet, sombre and humane, tension carried by faces, posture and distance rather than violence; every person shown is clearly an adult over twenty-one. Flags show only plain colour fields and simple geometric shapes; papers, boards, tags, plaques and badges carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no anatomy, no weapons pointed at the viewer; no firearms, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "signal-mirror",
+      "title": "Зеркальце связиста",
+      "file": "signal-mirror.png",
+      "runtimeFile": "runtime/signal-mirror.webp",
+      "sha256": "75f5b73cf2500147810f99631a11f975cd6fee805e8f004c84a82b3574addce4",
+      "runtimeSha256": "f57bd6dc75c3f6adb98ad5287ca646b025307d33bf7cab78a433a781120afdfa",
+      "width": 1254,
+      "height": 1254,
+      "alpha": true,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/signal-mirror.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "signal-mirror"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as signal-mirror.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A small steel signal mirror with a sighting slit through its centre, on a cord, tilted to show a cold reflected glint; its back edge engraved with a grid of simple geometric signs.\n\nMatch one consistent house style: original premium illustrated post-war frontier western for adults over twenty-one, painterly oil and gouache with confident ink lines and crisp readable silhouettes, muted and painterly; the Ashen March, a fictional borderland between an old front line and a slow district river, nine months after the war; a rutted post road running through ash country, tall weathered wooden road-guard signal masts at each stage with plain cloth flags, burnt fields and charred copses whose trunks look like spent matches, grey ash lying in wheel ruts and drifting on still water, rope-drawn river ferries, short plank footbridges and causeways over reed marsh; weary adults in faded greatcoats, field jackets and travel cloaks without insignia; palette of ash grey and charcoal, scorched umber, faded greatcoat grey-green, river slate blue, dry reed ochre, dull brass and darkened copper, bone white, with low amber lantern and campfire light and a cold rose dawn; quiet, sombre and humane, tension carried by faces, posture and distance rather than violence; every person shown is clearly an adult over twenty-one. Flags show only plain colour fields and simple geometric shapes; papers, boards, tags, plaques and badges carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no anatomy, no weapons pointed at the viewer; no firearms, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "bridge-badge",
+      "title": "Знак мостового мастера",
+      "file": "bridge-badge.png",
+      "runtimeFile": "runtime/bridge-badge.webp",
+      "sha256": "b6e07c6a3dfa67b84cc4b6548f05132c7578c8751ff138d1ebc5d449bfa4c315",
+      "runtimeSha256": "3bf97e637b3f93fc2e25d32589f2055f0854f49d56dcdd01ae145934bac95f64",
+      "width": 1254,
+      "height": 1254,
+      "alpha": true,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/bridge-badge.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "bridge-badge"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as bridge-badge.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. An iron bridge-shaped emblem with worn edges on a new leather strap.\n\nMatch one consistent house style: original premium illustrated post-war frontier western for adults over twenty-one, painterly oil and gouache with confident ink lines and crisp readable silhouettes, muted and painterly; the Ashen March, a fictional borderland between an old front line and a slow district river, nine months after the war; a rutted post road running through ash country, tall weathered wooden road-guard signal masts at each stage with plain cloth flags, burnt fields and charred copses whose trunks look like spent matches, grey ash lying in wheel ruts and drifting on still water, rope-drawn river ferries, short plank footbridges and causeways over reed marsh; weary adults in faded greatcoats, field jackets and travel cloaks without insignia; palette of ash grey and charcoal, scorched umber, faded greatcoat grey-green, river slate blue, dry reed ochre, dull brass and darkened copper, bone white, with low amber lantern and campfire light and a cold rose dawn; quiet, sombre and humane, tension carried by faces, posture and distance rather than violence; every person shown is clearly an adult over twenty-one. Flags show only plain colour fields and simple geometric shapes; papers, boards, tags, plaques and badges carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no anatomy, no weapons pointed at the viewer; no firearms, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "toll-token",
+      "title": "Жетон «К. О.»",
+      "file": "toll-token.png",
+      "runtimeFile": "runtime/toll-token.webp",
+      "sha256": "de3e70917360c64824c547b5eff0db2268744c15302cf0788d89da86f9a3bc94",
+      "runtimeSha256": "bd6384fc6613356896f904d6e7255e799f9bc7bd9303599722241c4d2c6ce803",
+      "width": 1254,
+      "height": 1254,
+      "alpha": true,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/toll-token.png",
+      "revealFromEvening": 2,
+      "subjects": [
+        "toll-token"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as toll-token.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A brass token on a rawhide cord, stamped with worn illegible marks and a single notch on its edge, dulled with river silt.\n\nMatch one consistent house style: original premium illustrated post-war frontier western for adults over twenty-one, painterly oil and gouache with confident ink lines and crisp readable silhouettes, muted and painterly; the Ashen March, a fictional borderland between an old front line and a slow district river, nine months after the war; a rutted post road running through ash country, tall weathered wooden road-guard signal masts at each stage with plain cloth flags, burnt fields and charred copses whose trunks look like spent matches, grey ash lying in wheel ruts and drifting on still water, rope-drawn river ferries, short plank footbridges and causeways over reed marsh; weary adults in faded greatcoats, field jackets and travel cloaks without insignia; palette of ash grey and charcoal, scorched umber, faded greatcoat grey-green, river slate blue, dry reed ochre, dull brass and darkened copper, bone white, with low amber lantern and campfire light and a cold rose dawn; quiet, sombre and humane, tension carried by faces, posture and distance rather than violence; every person shown is clearly an adult over twenty-one. Flags show only plain colour fields and simple geometric shapes; papers, boards, tags, plaques and badges carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no anatomy, no weapons pointed at the viewer; no firearms, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "burnt-strip",
+      "title": "Лоскут из костра",
+      "file": "burnt-strip.png",
+      "runtimeFile": "runtime/burnt-strip.webp",
+      "sha256": "0ba7e9d29ac9c9786b6c1960e3231982fd524a3021748ef5491037f09a2d9af2",
+      "runtimeSha256": "2585aa11f0f06c8244df5ab425776ff2e9a4b6980dfae11fa05d5db4b9ef608c",
+      "width": 1254,
+      "height": 1254,
+      "alpha": true,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/burnt-strip.png",
+      "revealFromEvening": 5,
+      "subjects": [
+        "burnt-strip"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as burnt-strip.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A palm-sized scorched scrap of a regimental standard: black fringe, charred edges, and along one edge a surviving strip of gold embroidery.\n\nMatch one consistent house style: original premium illustrated post-war frontier western for adults over twenty-one, painterly oil and gouache with confident ink lines and crisp readable silhouettes, muted and painterly; the Ashen March, a fictional borderland between an old front line and a slow district river, nine months after the war; a rutted post road running through ash country, tall weathered wooden road-guard signal masts at each stage with plain cloth flags, burnt fields and charred copses whose trunks look like spent matches, grey ash lying in wheel ruts and drifting on still water, rope-drawn river ferries, short plank footbridges and causeways over reed marsh; weary adults in faded greatcoats, field jackets and travel cloaks without insignia; palette of ash grey and charcoal, scorched umber, faded greatcoat grey-green, river slate blue, dry reed ochre, dull brass and darkened copper, bone white, with low amber lantern and campfire light and a cold rose dawn; quiet, sombre and humane, tension carried by faces, posture and distance rather than violence; every person shown is clearly an adult over twenty-one. Flags show only plain colour fields and simple geometric shapes; papers, boards, tags, plaques and badges carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no anatomy, no weapons pointed at the viewer; no firearms, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "hireling-chit",
+      "title": "Расписка из рощи",
+      "file": "hireling-chit.png",
+      "runtimeFile": "runtime/hireling-chit.webp",
+      "sha256": "ca1b4d5da0af2f3a14b1551adeb5a39a9ae28e183bb6c6a5669d1bb80429be6c",
+      "runtimeSha256": "7b48635f2c9ca43702e9453be36d0758d529723eed805d3cb6989bc9a878b6e8",
+      "width": 1254,
+      "height": 1254,
+      "alpha": true,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/hireling-chit.png",
+      "revealFromEvening": 6,
+      "subjects": [
+        "hireling-chit"
+      ],
+      "kind": "item",
+      "prompt": "Generate one image and save it as hireling-chit.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A crumpled scrap of paper folded into a narrow strip, faint pencil smudges showing only along the creases.\n\nMatch one consistent house style: original premium illustrated post-war frontier western for adults over twenty-one, painterly oil and gouache with confident ink lines and crisp readable silhouettes, muted and painterly; the Ashen March, a fictional borderland between an old front line and a slow district river, nine months after the war; a rutted post road running through ash country, tall weathered wooden road-guard signal masts at each stage with plain cloth flags, burnt fields and charred copses whose trunks look like spent matches, grey ash lying in wheel ruts and drifting on still water, rope-drawn river ferries, short plank footbridges and causeways over reed marsh; weary adults in faded greatcoats, field jackets and travel cloaks without insignia; palette of ash grey and charcoal, scorched umber, faded greatcoat grey-green, river slate blue, dry reed ochre, dull brass and darkened copper, bone white, with low amber lantern and campfire light and a cold rose dawn; quiet, sombre and humane, tension carried by faces, posture and distance rather than violence; every person shown is clearly an adult over twenty-one. Flags show only plain colour fields and simple geometric shapes; papers, boards, tags, plaques and badges carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no anatomy, no weapons pointed at the viewer; no firearms, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "token-warrior-infantry",
+      "title": "token-warrior-infantry",
+      "file": "token-warrior-infantry.png",
+      "runtimeFile": "runtime/token-warrior-infantry.webp",
+      "sha256": "680909cb24843c70a880263671e8545ef46a1c2946175d136b052e29845cc74d",
+      "runtimeSha256": "e1ad08b95c37c6f14ed71b11684a041f426dffe249902e2f279432a5f5be6929",
+      "width": 1254,
+      "height": 1254,
+      "alpha": true,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/token-warrior-infantry.png",
+      "revealFromEvening": 1,
+      "subjects": [
+        "ash-patrol-foe-1",
+        "ash-patrol-foe-2",
+        "ash-patrol-foe-3",
+        "ash-patrol-foe-4",
+        "ash-patrol-foe-5",
+        "ferry-cable-foe-1",
+        "ferry-cable-foe-2",
+        "ferry-cable-foe-3",
+        "long-planks-ambush-foe-1",
+        "long-planks-ambush-foe-2"
+      ],
+      "kind": "token",
+      "srd": "warrior-infantry",
+      "prompt": "Generate one image and save it as token-warrior-infantry.png in the current directory.\nGame token figure, square 1:1, on a fully transparent background, top three-quarter view, no ground shadow. A road-guard foot soldier in a grey greatcoat with a scrap of black cloth on the sleeve, a spear held upright, a small brass horn on a cord, ash up to the knees; steady and watchful.\n\nMatch one consistent house style: original premium illustrated post-war frontier western for adults over twenty-one, painterly oil and gouache with confident ink lines and crisp readable silhouettes, muted and painterly; the Ashen March, a fictional borderland between an old front line and a slow district river, nine months after the war; a rutted post road running through ash country, tall weathered wooden road-guard signal masts at each stage with plain cloth flags, burnt fields and charred copses whose trunks look like spent matches, grey ash lying in wheel ruts and drifting on still water, rope-drawn river ferries, short plank footbridges and causeways over reed marsh; weary adults in faded greatcoats, field jackets and travel cloaks without insignia; palette of ash grey and charcoal, scorched umber, faded greatcoat grey-green, river slate blue, dry reed ochre, dull brass and darkened copper, bone white, with low amber lantern and campfire light and a cold rose dawn; quiet, sombre and humane, tension carried by faces, posture and distance rather than violence; every person shown is clearly an adult over twenty-one. Flags show only plain colour fields and simple geometric shapes; papers, boards, tags, plaques and badges carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no anatomy, no weapons pointed at the viewer; no firearms, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "token-bandit",
+      "title": "token-bandit",
+      "file": "token-bandit.png",
+      "runtimeFile": "runtime/token-bandit.webp",
+      "sha256": "d5cc0847dfdaaaee644b2f60ced557940e0777fd45ee89813d3f966e972c52d4",
+      "runtimeSha256": "954b004f569df68b744eb4a6a82e6a05004adc71dd79141a7751471ba52707bf",
+      "width": 1254,
+      "height": 1254,
+      "alpha": true,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/token-bandit.png",
+      "revealFromEvening": 2,
+      "subjects": [
+        "ferry-cable-foe-4",
+        "ferry-cable-foe-5",
+        "ferry-cable-foe-6",
+        "burnt-grove-foe-1",
+        "burnt-grove-foe-2",
+        "burnt-grove-foe-3",
+        "long-planks-ambush-foe-3",
+        "long-planks-ambush-foe-4",
+        "long-planks-ambush-foe-5"
+      ],
+      "kind": "token",
+      "srd": "bandit",
+      "prompt": "Generate one image and save it as token-bandit.png in the current directory.\nGame token figure, square 1:1, on a fully transparent background, top three-quarter view, no ground shadow. A hired roadside tough in a dark damp cloak, face wrapped up to the eyes, a light crossbow carried lowered, a short cleaver at the belt and a satchel over the shoulder; silent.\n\nMatch one consistent house style: original premium illustrated post-war frontier western for adults over twenty-one, painterly oil and gouache with confident ink lines and crisp readable silhouettes, muted and painterly; the Ashen March, a fictional borderland between an old front line and a slow district river, nine months after the war; a rutted post road running through ash country, tall weathered wooden road-guard signal masts at each stage with plain cloth flags, burnt fields and charred copses whose trunks look like spent matches, grey ash lying in wheel ruts and drifting on still water, rope-drawn river ferries, short plank footbridges and causeways over reed marsh; weary adults in faded greatcoats, field jackets and travel cloaks without insignia; palette of ash grey and charcoal, scorched umber, faded greatcoat grey-green, river slate blue, dry reed ochre, dull brass and darkened copper, bone white, with low amber lantern and campfire light and a cold rose dawn; quiet, sombre and humane, tension carried by faces, posture and distance rather than violence; every person shown is clearly an adult over twenty-one. Flags show only plain colour fields and simple geometric shapes; papers, boards, tags, plaques and badges carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no anatomy, no weapons pointed at the viewer; no firearms, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": []
+    },
+    {
+      "id": "token-berserker",
+      "title": "token-berserker",
+      "file": "token-berserker.png",
+      "runtimeFile": "runtime/token-berserker.webp",
+      "sha256": "dfa2e82e865eddfe937db41ebc00bd57fb30542851f1c6f41628f666a16f0b03",
+      "runtimeSha256": "a233e92f6d90e25cda4681198a322e6add844c8bc84174bba8f112c8934a26fd",
+      "width": 1254,
+      "height": 1254,
+      "alpha": true,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/token-berserker.png",
+      "revealFromEvening": 8,
+      "subjects": [
+        "long-planks-ambush-boss"
+      ],
+      "kind": "token",
+      "srd": "berserker",
+      "prompt": "Generate one image and save it as token-berserker.png in the current directory.\nGame token figure, square 1:1, on a fully transparent background, top three-quarter view, no ground shadow. A broad, heavy-set sergeant-major with grey stubble, a wide sergeant's belt and a scrap of black cloth on his sleeve, a greataxe resting on his shoulder; smiling, counting on his fingers.\n\nMatch one consistent house style: original premium illustrated post-war frontier western for adults over twenty-one, painterly oil and gouache with confident ink lines and crisp readable silhouettes, muted and painterly; the Ashen March, a fictional borderland between an old front line and a slow district river, nine months after the war; a rutted post road running through ash country, tall weathered wooden road-guard signal masts at each stage with plain cloth flags, burnt fields and charred copses whose trunks look like spent matches, grey ash lying in wheel ruts and drifting on still water, rope-drawn river ferries, short plank footbridges and causeways over reed marsh; weary adults in faded greatcoats, field jackets and travel cloaks without insignia; palette of ash grey and charcoal, scorched umber, faded greatcoat grey-green, river slate blue, dry reed ochre, dull brass and darkened copper, bone white, with low amber lantern and campfire light and a cold rose dawn; quiet, sombre and humane, tension carried by faces, posture and distance rather than violence; every person shown is clearly an adult over twenty-one. Flags show only plain colour fields and simple geometric shapes; papers, boards, tags, plaques and badges carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no anatomy, no weapons pointed at the viewer; no firearms, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "kondrat-obukh.png"
+      ]
+    },
+    {
+      "id": "nika-roi--figure",
+      "title": "Анфиса Рой",
+      "file": "nika-roi--figure.png",
+      "runtimeFile": "runtime/nika-roi--figure.webp",
+      "sha256": "3ae414d6ea3dff336fe2052f84f385412192e7525d233a8558586df7c5e64397",
+      "runtimeSha256": "bcf41f89af2668dcae7b90458996359837fc29dc6f3ef806064bb56867745ae7",
+      "width": 887,
+      "height": 1774,
+      "alpha": true,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/nika-roi--figure.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "nika-roi"
+      ],
+      "kind": "figure",
+      "prompt": "Generate one image with the built-in image_gen tool and save it as nika-roi--figure.png in the current directory. The attached image is the approved portrait of Anfisa Roi.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Anfisa Roi, a 36-year-old woman, former lookout of the Dry Bridge post: a faded greatcoat with the patches removed, a brass post spyglass on a strap, ash in the seams of her boots, eyes on a distant mast before people. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "nika-roi.png"
+      ],
+      "subject": "nika-roi"
+    },
+    {
+      "id": "stas-remen--figure",
+      "title": "Стас Ремень",
+      "file": "stas-remen--figure.png",
+      "runtimeFile": "runtime/stas-remen--figure.webp",
+      "sha256": "6c0b19162f23978736daf7af5c36013ea292b7657f5ea903b5c0f2ec37324ed9",
+      "runtimeSha256": "8ab2a5095c7760e58223a8156cdc7182785880ce2d9bd3dce5537fae24eae938",
+      "width": 887,
+      "height": 1774,
+      "alpha": true,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/stas-remen--figure.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "stas-remen"
+      ],
+      "kind": "figure",
+      "prompt": "Generate one image with the built-in image_gen tool and save it as stas-remen--figure.png in the current directory. The attached image is the approved portrait of Stas Remen.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Stas Remen, a 34-year-old man, road broker of the post: a worn leather jacket, a curved rope-cutter knife with a serrated spine at his belt, tar-stained fingers and the smile of someone who knows the price of every toll on the March. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "stas-remen.png"
+      ],
+      "subject": "stas-remen"
+    },
+    {
+      "id": "vera-klen--figure",
+      "title": "Пелагея Клён",
+      "file": "vera-klen--figure.png",
+      "runtimeFile": "runtime/vera-klen--figure.webp",
+      "sha256": "3421e05d2a80a504d38645b90d7de1d639140311c16877cf156a6257fb734642",
+      "runtimeSha256": "f2577e819d905d4f6599b715383cccc37677f5d85259e1075cd78a968fc9ab2e",
+      "width": 887,
+      "height": 1774,
+      "alpha": true,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/vera-klen--figure.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "vera-klen"
+      ],
+      "kind": "figure",
+      "prompt": "Generate one image with the built-in image_gen tool and save it as vera-klen--figure.png in the current directory. The attached image is the approved portrait of Pelageya Klen.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Pelageya Klen, a 41-year-old woman, field healer of the post: a canvas satchel over her shoulder stitched with a plain geometric sign of road mercy, close-cropped hair, clean hands, a level unhurried gaze. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "vera-klen.png"
+      ],
+      "subject": "vera-klen"
+    },
+    {
+      "id": "mark-ostrov--figure",
+      "title": "Елисей Дымов",
+      "file": "mark-ostrov--figure.png",
+      "runtimeFile": "runtime/mark-ostrov--figure.webp",
+      "sha256": "d122567f9d79357432396706d184d98940b43a54b1d138c127af84a38db2c476",
+      "runtimeSha256": "902b65b0ef73ba420de638d94b0d3ae136ba2b0d3c3e328b5d3cceb23ceff372",
+      "width": 887,
+      "height": 1774,
+      "alpha": true,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/mark-ostrov--figure.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "mark-ostrov"
+      ],
+      "kind": "figure",
+      "prompt": "Generate one image with the built-in image_gen tool and save it as mark-ostrov--figure.png in the current directory. The attached image is the approved portrait of Yelisei Dymov.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Yelisei Dymov, a 32-year-old man, signaller and sorcerer of the post: a long cloak with a scorched hem, a small steel mirror with a sighting slit on a cord, a notebook of mast signs tucked under his arm, ink-stained fingers. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "mark-ostrov.png"
+      ],
+      "subject": "mark-ostrov"
+    },
+    {
+      "id": "yara-som--figure",
+      "title": "Роксана Тур",
+      "file": "yara-som--figure.png",
+      "runtimeFile": "runtime/yara-som--figure.webp",
+      "sha256": "8ab784b9ed83a4f4bb6d0f955e157106d1a31d89e52f281ddae5c1fc08d4009a",
+      "runtimeSha256": "c5a30e9033852039e2da905809b5b5b216e7c3cb8957f74b5b6d4cb6849bb393",
+      "width": 887,
+      "height": 1774,
+      "alpha": true,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/yara-som--figure.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "yara-som"
+      ],
+      "kind": "figure",
+      "prompt": "Generate one image with the built-in image_gen tool and save it as yara-som--figure.png in the current directory. The attached image is the approved portrait of Roksana Tur.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Roksana Tur, a 38-year-old woman, a scout from the other side of the March, now a guide with the post: a dark jacket of foreign cut, an iron bridge emblem on a strap at her collar, light eyes, the easy stance of someone who knows which plank is rotten. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "yara-som.png"
+      ],
+      "subject": "yara-som"
+    },
+    {
+      "id": "leon-klyuch--figure",
+      "title": "Леон Ключ",
+      "file": "leon-klyuch--figure.png",
+      "runtimeFile": "runtime/leon-klyuch--figure.webp",
+      "sha256": "1299345e7aaf4404efb28abb2f1890200cd20035078acc8f49599b7e559f3731",
+      "runtimeSha256": "6462c971c200083d05f4bc95f88496ea24fe7aa9b677310e2e8503a2d444e43c",
+      "width": 887,
+      "height": 1774,
+      "alpha": true,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/leon-klyuch--figure.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "leon-klyuch"
+      ],
+      "kind": "figure",
+      "prompt": "Generate one image with the built-in image_gen tool and save it as leon-klyuch--figure.png in the current directory. The attached image is the approved portrait of Leon Klyuch.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Leon Klyuch, a 31-year-old man, a guide of the March's inns and yards: a ring of other people's keys at his belt, a hat with a scorched brim, a light-footed stance and a friendly, memorising look. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "leon-klyuch.png"
+      ],
+      "subject": "leon-klyuch"
+    },
+    {
+      "id": "ada-vyaz--figure",
+      "title": "Ада Полынь",
+      "file": "ada-vyaz--figure.png",
+      "runtimeFile": "runtime/ada-vyaz--figure.webp",
+      "sha256": "16b3c9db8f5345688083bbf336e22615d10c5e1bf33f5aa2d575bd9a629a188e",
+      "runtimeSha256": "e7b46d83cb1fdee0b6f91b855ea66278978cc07c25f0371e894f5e2a5b418974",
+      "width": 887,
+      "height": 1774,
+      "alpha": true,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/ada-vyaz--figure.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "ada-vyaz"
+      ],
+      "kind": "figure",
+      "prompt": "Generate one image with the built-in image_gen tool and save it as ada-vyaz--figure.png in the current directory. The attached image is the approved portrait of Ada Polyn.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Ada Polyn, a 45-year-old woman, keeper of road vows: a grey travel cloak, a string of small copper tags stamped with illegible marks around her neck, heavy boots, a calm gaze that weighs every promise. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "ada-vyaz.png"
+      ],
+      "subject": "ada-vyaz"
+    },
+    {
+      "id": "osip-len--figure",
+      "title": "Осип Лён",
+      "file": "osip-len--figure.png",
+      "runtimeFile": "runtime/osip-len--figure.webp",
+      "sha256": "f0e4e146694588b4d12d673ad681403b1aba85db0d60b3865fd67f1dcefb030a",
+      "runtimeSha256": "10d1c114522409d2af536ed612ea7ccf0b63fe38f575f3dc0189a17509d22f2b",
+      "width": 887,
+      "height": 1774,
+      "alpha": true,
+      "generated": "2026-11-17",
+      "source": "codex-cli imagegen",
+      "originalFile": "collection-2026-rework-2026-11-17/ash-testament/out/osip-len--figure.png",
+      "revealFromEvening": 0,
+      "subjects": [
+        "osip-len"
+      ],
+      "kind": "figure",
+      "prompt": "Generate one image with the built-in image_gen tool and save it as osip-len--figure.png in the current directory. The attached image is the approved portrait of Osip Len.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Osip Len, a 37-year-old man, a master of small road charms: a patched kaftan with pockets full of candle stubs and chalk, hair gone grey too early, a soft small light floating above his palm. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+      "references": [
+        "osip-len.png"
+      ],
+      "subject": "osip-len"
+    }
+  ]
+}

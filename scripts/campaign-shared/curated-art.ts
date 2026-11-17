@@ -54,13 +54,15 @@ export async function curatedArt<S extends ArtSource>(
         fileURLToPath(new URL(`assets/${asset.runtimeFile}`, dir)),
         join(directory, file),
       );
+      // A hero's or NPC's tabletop figure stands derived from its portrait (`ArtPrompt.subject`).
+      const standing = asset.kind === 'figure' && asset.subject;
       assets.push({
         file,
         entityIds,
-        variant: 'reference',
-        label: null,
-        purpose: 'image',
-        derivedFrom: null,
+        variant: standing ? 'derived' : 'reference',
+        label: standing ? 'figure' : null,
+        purpose: standing ? 'figure' : 'image',
+        derivedFrom: standing ? `${asset.subject ?? ''}.webp` : null,
         mediaType: 'image/webp',
         sha256: asset.runtimeSha256,
         originalSha256: asset.sha256,
