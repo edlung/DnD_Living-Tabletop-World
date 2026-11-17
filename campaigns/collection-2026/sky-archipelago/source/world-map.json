@@ -1,0 +1,110 @@
+{
+  "region": "azure-rift",
+  "name": "Трасса Лазурного Разлома",
+  "description": "Острова над облаками сверху, без подписей: порт, перевалы и этапы гонки.",
+  "pins": [
+    {
+      "place": "port-helium",
+      "x": 0.13,
+      "y": 0.72
+    },
+    {
+      "place": "upside-quay",
+      "x": 0.135,
+      "y": 0.31
+    },
+    {
+      "place": "lattice-crossing",
+      "x": 0.31,
+      "y": 0.18
+    },
+    {
+      "place": "glass-shoals",
+      "x": 0.32,
+      "y": 0.48
+    },
+    {
+      "place": "wind-school",
+      "x": 0.5,
+      "y": 0.8
+    },
+    {
+      "place": "signpost-fork",
+      "x": 0.55,
+      "y": 0.47
+    },
+    {
+      "place": "hollow-summit",
+      "x": 0.6,
+      "y": 0.17
+    },
+    {
+      "place": "judges-terrace",
+      "x": 0.87,
+      "y": 0.19
+    },
+    {
+      "place": "crown-ring",
+      "x": 0.83,
+      "y": 0.5
+    }
+  ],
+  "routes": [
+    {
+      "from": "port-helium",
+      "to": "upside-quay",
+      "miles": 20,
+      "terrain": "grassland",
+      "road": false
+    },
+    {
+      "from": "upside-quay",
+      "to": "lattice-crossing",
+      "miles": 23,
+      "terrain": "grassland",
+      "road": false
+    },
+    {
+      "from": "lattice-crossing",
+      "to": "glass-shoals",
+      "miles": 22,
+      "terrain": "grassland",
+      "road": false
+    },
+    {
+      "from": "glass-shoals",
+      "to": "wind-school",
+      "miles": 25,
+      "terrain": "grassland",
+      "road": false
+    },
+    {
+      "from": "wind-school",
+      "to": "signpost-fork",
+      "miles": 3,
+      "terrain": "grassland",
+      "road": false
+    },
+    {
+      "from": "signpost-fork",
+      "to": "hollow-summit",
+      "miles": 20,
+      "terrain": "grassland",
+      "road": false
+    },
+    {
+      "from": "hollow-summit",
+      "to": "judges-terrace",
+      "miles": 27,
+      "terrain": "grassland",
+      "road": false
+    },
+    {
+      "from": "judges-terrace",
+      "to": "crown-ring",
+      "miles": 3,
+      "terrain": "grassland",
+      "road": false
+    }
+  ]
+}

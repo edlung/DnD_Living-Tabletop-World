@@ -17,6 +17,7 @@ import { languageSchema } from '../language/language.ts';
 import { ATTITUDES } from '../relationships/commands.ts';
 import { DISCLOSURES } from '../investigation/commands.ts';
 import { questDefinitionSchema } from '../quest/definitions.ts';
+import { MAX_MAP_PINS, MAX_ROUTE_MILES, TRAVEL_TERRAINS } from '../travel/travel.ts';
 import { WEATHERS } from '../visual/commands.ts';
 import {
   campaignClueSchema,
@@ -130,6 +131,39 @@ export const campaignKnowledgeSchema = z
   })
   .strict();
 
+/**
+ * The world map (docs/adr/0057-encounters-maps-loot.md §10, ADR 0058 notes of 2026-11-17): a place
+ * whose approved picture is a map, with the places it shows pinned where the picture shows them, as
+ * fractions of its width and height. The compiler turns it into the World Engine's `SetMapPins`.
+ */
+export const campaignMapSchema = z
+  .object({
+    region: campaignKeySchema,
+    pins: z
+      .array(
+        z
+          .object({
+            place: campaignKeySchema,
+            x: z.number().min(0).max(1),
+            y: z.number().min(0).max(1),
+          })
+          .strict(),
+      )
+      .min(1)
+      .max(MAX_MAP_PINS),
+  })
+  .strict();
+/** A route between two places: its miles, the predominant terrain and whether a good road runs. */
+export const campaignRouteSchema = z
+  .object({
+    from: campaignKeySchema,
+    to: campaignKeySchema,
+    miles: z.number().int().min(1).max(MAX_ROUTE_MILES),
+    terrain: z.enum(TRAVEL_TERRAINS),
+    road: z.boolean(),
+  })
+  .strict();
+
 /** Strict content only: owner identity, canonical IDs, digests and provenance are server data. */
 export const campaignPackageSchema = z
   .object({
@@ -155,6 +189,9 @@ export const campaignPackageSchema = z
       .max(500),
     /** Absent from packages saved before Stage 470: such a revision keeps its bytes and digest. */
     possessions: z.array(campaignPossessionSchema).max(500).exactOptional(),
+    /** Absent from packages saved before the world maps of 2026-11-17, as `possessions` is. */
+    maps: z.array(campaignMapSchema).max(16).exactOptional(),
+    routes: z.array(campaignRouteSchema).max(500).exactOptional(),
     clues: z.array(campaignClueSchema).max(500),
     conflicts: z.array(campaignConflictSchema).max(100),
     situations: z.array(campaignSituationSchema).max(200),
@@ -169,6 +206,8 @@ export const campaignPackageSchema = z
 export type CampaignPackage = z.infer<typeof campaignPackageSchema>;
 export type CampaignEntity = z.infer<typeof campaignEntitySchema>;
 export type CampaignPossession = z.infer<typeof campaignPossessionSchema>;
+export type CampaignMap = z.infer<typeof campaignMapSchema>;
+export type CampaignRoute = z.infer<typeof campaignRouteSchema>;
 export type CampaignKnowledge = z.infer<typeof campaignKnowledgeSchema>;
 export type CampaignScope = z.infer<typeof campaignKnowledgeScopeSchema>;
 

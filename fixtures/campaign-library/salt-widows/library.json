@@ -14,35 +14,35 @@
    "players": 3,
    "label": "3 игрока",
    "file": "packages/3-players.json",
-   "digest": "10677dcbc02507562eec5c594602178431df7afa54b6a79514dd8b0a9d0f5e66"
+   "digest": "6cfc38c43814fc108b724dfbcc6014694af3b1d8a16f76ad5b61a640bec1d24a"
   },
   {
    "id": "4-players",
    "players": 4,
    "label": "4 игрока",
    "file": "packages/4-players.json",
-   "digest": "fcf2eeced204af14b1aca69097d33dcaa1b46265237c1bbd12d55339fb5eb02d"
+   "digest": "fad8611366e2ce3701972b89e86dc3e72c06c518a9cb912f5f6108e42c2d3923"
   },
   {
    "id": "5-players",
    "players": 5,
    "label": "5 игроков",
    "file": "packages/5-players.json",
-   "digest": "1f93826d87f2ee07ae767f2cdc0eeee420fdf160d847efa84044ff48522a3e35"
+   "digest": "aa8868328e3accfb4b59800202dbae20a4b77e05262965dee99d64d29cddbe09"
   },
   {
    "id": "6-players",
    "players": 6,
    "label": "6 игроков",
    "file": "packages/6-players.json",
-   "digest": "955c6c4d6b73871b70b3c2873cefcbb164458eb7774d96f9607075999719e6ac"
+   "digest": "ba2137c96ed82b99a90373ae98a820549c91d4774db8f8b4eec6e4a0c8619116"
   },
   {
    "id": "7-players",
    "players": 7,
    "label": "7 игроков",
    "file": "packages/7-players.json",
-   "digest": "04c572f15b94c5ceb435cc96aa2a9db44b4fccf90367e2423fc23ba3f18750c1"
+   "digest": "201c550b06d3b4577eaf6dff24ad068ae6dd4df5b24c60c312c95649b126ff2e"
   }
  ],
  "generator": "codex-cli imagegen",
@@ -1872,6 +1872,38 @@
     ],
     "7-players": [
      "widows-line"
+    ]
+   }
+  },
+  {
+   "file": "world-map.webp",
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/world-map/world-map.webp",
+   "sha256": "ca72afe4ff121a1b1fb3cc5f39ee477f4f3e4d8d59c1e7cc55bdeab96f66a9e0",
+   "originalSha256": "d9c50053efeddf5e9820183f4399a5ae9bf6ed2b74ee06845c1cbda3b7f151b2",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as salt-widows--world-map.png in the current directory.\n\nA world map for a tabletop role-playing campaign, landscape 3:2, seen straight from above like a hand-painted illustrated map (orthographic top-down view, no perspective, no horizon, no sky). A top-down illustrated regional map of a vast dry seabed covered in blinding white salt crust, harsh glare and long blue shadows, with streaks of wind-blown salt running from left to right. Along the top edge runs the old sea cliff and shoreline: in the upper left corner a cluster of dark cliff-top houses, with a long stone stairway descending the cliff just below them; the shoreline curves east across the top to a low rocky pass in the upper right. Faint sled-runner tracks loop through the white bed in one great loop: from the stairway down to a plain of flat square slabs in the left-centre, west and south to black fragments of a giant shell jutting from the salt at the left middle, east to a stone platform with clay jars and two campfires, then south to a narrow tooth-shaped rock ridge near the bottom centre, a round tide-marked tower just beyond it, and a small stone cookhouse with a smoking chimney on a dark islet at the lower right. From there the tracks turn north through a rust-red canyon to a huge round basin ringed by stone ribs right of centre, and run east along a straight strip of thin crust lined with poles hung with black scarves up to the pass. No people, no lettering.\n\nDraw every place described above as a small, clearly recognisable landmark exactly at its stated position, with the roads, paths, corridors or waterways between them visible, so that markers can later be pinned on each landmark. Fill the whole picture edge to edge with the mapped land (no border, no frame, no cartouche, no legend, no compass rose, no scale bar, no grid). Absolutely no text, letters, numbers, labels or symbols that read as letters anywhere on the map. No people, no creatures, no figures.\n\nThe attached image is this campaign's cover: match its painting technique, palette, light and mood, but not its composition.\n\nMatch one consistent house style: original premium illustrated dark fantasy for adults, painterly gouache and oil with heavy textured brushwork and fine ink lines, crisp readable silhouettes, vast empty horizons, harsh white glare and long blue shadows; palette of blinding salt white and bone grey, bleached driftwood tan, rust red, deep indigo night and dusty teal, with black widow-scarf accents. Desolation, grief, obsession and hard-won courage; no gore, no open wounds, no corpses in detail, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "salt-widows-cover.png"
+   ],
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null,
+   "subjects": {
+    "3-players": [
+     "world-map"
+    ],
+    "4-players": [
+     "world-map"
+    ],
+    "5-players": [
+     "world-map"
+    ],
+    "6-players": [
+     "world-map"
+    ],
+    "7-players": [
+     "world-map"
     ]
    }
   }

@@ -1,0 +1,143 @@
+{
+  "region": "tin-noon-road",
+  "name": "Тракт и казино",
+  "description": "Тракт Жестяного Полдня сверху, без подписей: дорога, торжок и шагающее казино в разрезе.",
+  "pins": [
+    {
+      "place": "parasol-landing",
+      "x": 0.075,
+      "y": 0.42
+    },
+    {
+      "place": "mask-laundry",
+      "x": 0.24,
+      "y": 0.28
+    },
+    {
+      "place": "copper-till",
+      "x": 0.24,
+      "y": 0.58
+    },
+    {
+      "place": "echo-salon",
+      "x": 0.44,
+      "y": 0.48
+    },
+    {
+      "place": "folded-gallery",
+      "x": 0.45,
+      "y": 0.2
+    },
+    {
+      "place": "coat-gate",
+      "x": 0.44,
+      "y": 0.66
+    },
+    {
+      "place": "prize-square",
+      "x": 0.66,
+      "y": 0.47
+    },
+    {
+      "place": "casino-legs",
+      "x": 0.44,
+      "y": 0.83
+    },
+    {
+      "place": "ribbon-market",
+      "x": 0.1,
+      "y": 0.85
+    },
+    {
+      "place": "copper-boundary",
+      "x": 0.93,
+      "y": 0.48
+    }
+  ],
+  "routes": [
+    {
+      "from": "ribbon-market",
+      "to": "coat-gate",
+      "miles": 1,
+      "terrain": "grassland",
+      "road": true
+    },
+    {
+      "from": "coat-gate",
+      "to": "echo-salon",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "echo-salon",
+      "to": "folded-gallery",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "echo-salon",
+      "to": "copper-till",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "echo-salon",
+      "to": "mask-laundry",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "coat-gate",
+      "to": "prize-square",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "folded-gallery",
+      "to": "prize-square",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "mask-laundry",
+      "to": "parasol-landing",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "parasol-landing",
+      "to": "casino-legs",
+      "miles": 1,
+      "terrain": "urban",
+      "road": false
+    },
+    {
+      "from": "copper-till",
+      "to": "casino-legs",
+      "miles": 1,
+      "terrain": "urban",
+      "road": false
+    },
+    {
+      "from": "casino-legs",
+      "to": "ribbon-market",
+      "miles": 1,
+      "terrain": "grassland",
+      "road": false
+    },
+    {
+      "from": "ribbon-market",
+      "to": "copper-boundary",
+      "miles": 40,
+      "terrain": "hill",
+      "road": true
+    }
+  ]
+}

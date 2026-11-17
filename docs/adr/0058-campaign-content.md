@@ -158,6 +158,27 @@
   happens (a GPT top-down map drawn over that fight's grid and cut to it). An edited package is not
   recognised and gets none; a picture that fails is logged and leaves the campaign published.
 
+## Notes from the implementation (world maps of the library, 2026-11-17)
+
+- Owner request 2026-11-17 («нужны карты мира для кампаний»): every library campaign starts with
+  its world map (ADR 0057 §10), as The Bells of Hollowmere does.
+- The package gains two optional sections, absent from packages saved before them (their bytes and
+  digests are kept): `maps` — a place whose picture is a map, with the places pinned on it as
+  fractions of the picture's width and height — and `routes` — two places, miles, terrain and a
+  good road. The compiler checks them as the World Engine would (places active, a place pinned once,
+  a map a place, a route between two different places, one a pair) and plans `SetMapPins` and
+  `SetRoute` after every place exists; the activation's initial allowlist decides both.
+- A library campaign's region keeps its painted landscape. Its map is a place of its own inside the
+  region (key `world-map`, type `region`) whose reference picture is a GPT map of the region from
+  above, without lettering, made in the campaign's style (cover as reference; originals in
+  `~/Documents/living-tabletop-world-art/world-maps-2026-11-17/`). A public line about the map lets
+  every perspective see it; a player's map pins only the places that player knows. Pins and routes
+  are authored in the campaign's `source/world-map.json` (miles and terrain from the campaign's
+  texts; a place nearer than a mile is a mile, the engine's least), the picture is in
+  `assets/world-map/` (`scripts/campaign-library/world-maps.ts`), and the library's builder adds all
+  of it to each variant (`scripts/campaign-shared/world-map.ts`). The campaigns' own `variants/`
+  and offline books are unchanged.
+
 ## Invariants affected
 
 Preserves 1, 8 and 9: every change to the world is the World Engine's, every die its own; a player

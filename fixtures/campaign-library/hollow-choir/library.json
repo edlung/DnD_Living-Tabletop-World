@@ -14,28 +14,28 @@
    "players": 5,
    "label": "5 игроков",
    "file": "packages/5-players.json",
-   "digest": "7c1585d946699ab70fb07c37967296c06f07897b3e03ec2ea2a63b32fbd494b7"
+   "digest": "439018ca32e7a1070208ceb78c2ea16a211249fdab766af6d1891d7b58c06e33"
   },
   {
    "id": "6-players",
    "players": 6,
    "label": "6 игроков",
    "file": "packages/6-players.json",
-   "digest": "4ee94f609d652c684942bf063aea171483f19f3461b19578f51ff05592617425"
+   "digest": "34af2bed86c37f903b63cd098862c4de456b82826941a5e64a259f44f387d51a"
   },
   {
    "id": "7-players",
    "players": 7,
    "label": "7 игроков",
    "file": "packages/7-players.json",
-   "digest": "88446802ec9369ab5d3d492435758f1518a0cf5d753b739c3adacec7111a745d"
+   "digest": "cd59faf08ba7ef0829d4b0d5f41ef9dcd414593c1ebc1265aa29d5ad3227b4de"
   },
   {
    "id": "8-players",
    "players": 8,
    "label": "8 игроков",
    "file": "packages/8-players.json",
-   "digest": "d60b955125dfcbce518cfc603c169405f30c6c05733e2f63fde6897008656308"
+   "digest": "72eeb8e78e12cd8379ab2a221a28d843aa07a37599e7af388811fb05316b0e93"
   }
  ],
  "generator": "codex-cli imagegen",
@@ -1721,6 +1721,35 @@
     ],
     "8-players": [
      "counting-stair"
+    ]
+   }
+  },
+  {
+   "file": "world-map.webp",
+   "source": "campaigns/collection-2026/hollow-choir/assets/world-map/world-map.webp",
+   "sha256": "eb5f907859ca8748fd64bfa381b29f8fb03650fb592e62e6fd6e6b961bd238d4",
+   "originalSha256": "a339a158ef6d807160b2e8bede4222e698fe6ea8dd57c0f4cbf94392217c4f77",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as hollow-choir--world-map.png in the current directory.\n\nA world map for a tabletop role-playing campaign, landscape 3:2, seen straight from above like a hand-painted illustrated map (orthographic top-down view, no perspective, no horizon, no sky). An illustrated top-down cutaway plan of an old stone manor on a rocky slope above a long-dry moat, as if the roof were lifted off, in candle amber, smoke umber, faded green and cold stone grey. The manor fills most of the picture. In the middle of its south facade, near the bottom centre, three wide stone steps with a hanging lantern. Behind them, just below the centre, an entrance hall with a tall longcase clock; right of it, a plain panelled wall. Across the middle runs a long east-west corridor lined with identical doors. Nothing is drawn underground: no cellars, crypts or shafts. On the left, a long drawing room with a long table and a cold fireplace; above it, in the upper left, a low vaulted kitchen with a glowing stove, and in the far upper left corner a terrace under a painted sky. Upper centre, a glass-roofed winter garden with fern tubs. On the right, a clockmaker's workroom with copper pipes. Along the bottom edge, the dry moat with dry grass and a low gate on the lower right; a flooded bridge and a small coach at the lower left. No people, no text.\n\nDraw every place described above as a small, clearly recognisable landmark exactly at its stated position, with the roads, paths, corridors or waterways between them visible, so that markers can later be pinned on each landmark. Fill the whole picture edge to edge with the mapped land (no border, no frame, no cartouche, no legend, no compass rose, no scale bar, no grid). Absolutely no text, letters, numbers, labels or symbols that read as letters anywhere on the map. No people, no creatures, no figures.\n\nThe attached image is this campaign's cover: match its painting technique, palette, light and mood, but not its composition.\n\nMatch one consistent house style: original premium illustrated gothic psychological horror for adult players, painterly oil and gouache with soft glazed shadows, confident ink lines and crisp readable silhouettes; an old stone manor above a long-dry fortress moat in a damp autumn principality of coach roads and quiet household magic, its dampness felt only in wet wool, cold stone and mist; narrow stairs and worn steps, long corridors of doors, brass grilles and humming pipes that seem to carry many distant voices at once; warm candlelight as the only safe light, small flames holding back deep, patient shadow; palette of candle amber and honey gold, smoke umber and soot black, faded wallpaper green and dusty rose, cold stone grey, tarnished brass and a pale ash blue in the dark; dread through presence, absence and empty space rather than violence; every person shown is clearly an adult over 21. Papers, plaques, books and tags carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no exposed anatomy, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "hollow-choir-cover.png"
+   ],
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null,
+   "subjects": {
+    "5-players": [
+     "world-map"
+    ],
+    "6-players": [
+     "world-map"
+    ],
+    "7-players": [
+     "world-map"
+    ],
+    "8-players": [
+     "world-map"
     ]
    }
   }

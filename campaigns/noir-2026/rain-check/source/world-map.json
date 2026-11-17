@@ -1,0 +1,181 @@
+{
+  "region": "latren",
+  "name": "Улицы Латрена",
+  "description": "Город сверху, без подписей: кварталы, трамвайные линии, шлюз, рынок и кладбище на севере.",
+  "pins": [
+    {
+      "place": "rain-cemetery",
+      "x": 0.52,
+      "y": 0.07
+    },
+    {
+      "place": "nina-flat",
+      "x": 0.16,
+      "y": 0.2
+    },
+    {
+      "place": "clock-roofs",
+      "x": 0.56,
+      "y": 0.25
+    },
+    {
+      "place": "exact-house",
+      "x": 0.675,
+      "y": 0.24
+    },
+    {
+      "place": "covered-market",
+      "x": 0.24,
+      "y": 0.39
+    },
+    {
+      "place": "alteration-room",
+      "x": 0.29,
+      "y": 0.51
+    },
+    {
+      "place": "lantern-theatre",
+      "x": 0.73,
+      "y": 0.48
+    },
+    {
+      "place": "waiting-hotel",
+      "x": 0.46,
+      "y": 0.53
+    },
+    {
+      "place": "tram-depot",
+      "x": 0.92,
+      "y": 0.37
+    },
+    {
+      "place": "dry-dock",
+      "x": 0.07,
+      "y": 0.6
+    },
+    {
+      "place": "water-gallery",
+      "x": 0.53,
+      "y": 0.74
+    },
+    {
+      "place": "lock-precinct",
+      "x": 0.68,
+      "y": 0.7
+    }
+  ],
+  "routes": [
+    {
+      "from": "rain-cemetery",
+      "to": "dry-dock",
+      "miles": 3,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "rain-cemetery",
+      "to": "waiting-hotel",
+      "miles": 2,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "waiting-hotel",
+      "to": "water-gallery",
+      "miles": 2,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "water-gallery",
+      "to": "tram-depot",
+      "miles": 3,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "dry-dock",
+      "to": "covered-market",
+      "miles": 2,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "covered-market",
+      "to": "alteration-room",
+      "miles": 1,
+      "terrain": "urban",
+      "road": false
+    },
+    {
+      "from": "covered-market",
+      "to": "waiting-hotel",
+      "miles": 2,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "water-gallery",
+      "to": "lantern-theatre",
+      "miles": 2,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "lantern-theatre",
+      "to": "tram-depot",
+      "miles": 2,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "water-gallery",
+      "to": "lock-precinct",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "lock-precinct",
+      "to": "tram-depot",
+      "miles": 3,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "lock-precinct",
+      "to": "clock-roofs",
+      "miles": 4,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "clock-roofs",
+      "to": "exact-house",
+      "miles": 1,
+      "terrain": "urban",
+      "road": false
+    },
+    {
+      "from": "lantern-theatre",
+      "to": "exact-house",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "nina-flat",
+      "to": "rain-cemetery",
+      "miles": 2,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "dry-dock",
+      "to": "water-gallery",
+      "miles": 3,
+      "terrain": "coastal",
+      "road": false
+    }
+  ]
+}

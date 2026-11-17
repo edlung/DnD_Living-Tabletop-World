@@ -1,0 +1,153 @@
+{
+  "region": "salt-sea",
+  "name": "Берега Соли Отлива",
+  "description": "Соляное море сверху, без подписей: берег, отмели, башни и дороги парусных саней.",
+  "pins": [
+    {
+      "place": "widows-threshold",
+      "x": 0.08,
+      "y": 0.07
+    },
+    {
+      "place": "sunken-steps",
+      "x": 0.13,
+      "y": 0.2
+    },
+    {
+      "place": "bell-salt",
+      "x": 0.25,
+      "y": 0.35
+    },
+    {
+      "place": "black-molt",
+      "x": 0.085,
+      "y": 0.49
+    },
+    {
+      "place": "three-wells",
+      "x": 0.38,
+      "y": 0.53
+    },
+    {
+      "place": "storm-fang",
+      "x": 0.43,
+      "y": 0.75
+    },
+    {
+      "place": "zero-tide-tower",
+      "x": 0.545,
+      "y": 0.86
+    },
+    {
+      "place": "empty-kitchen",
+      "x": 0.84,
+      "y": 0.8
+    },
+    {
+      "place": "red-cut",
+      "x": 0.75,
+      "y": 0.63
+    },
+    {
+      "place": "no-tide-cauldron",
+      "x": 0.65,
+      "y": 0.32
+    },
+    {
+      "place": "widows-line",
+      "x": 0.87,
+      "y": 0.2
+    },
+    {
+      "place": "dry-return",
+      "x": 0.94,
+      "y": 0.07
+    }
+  ],
+  "routes": [
+    {
+      "from": "widows-threshold",
+      "to": "sunken-steps",
+      "miles": 1,
+      "terrain": "hill",
+      "road": false
+    },
+    {
+      "from": "sunken-steps",
+      "to": "bell-salt",
+      "miles": 12,
+      "terrain": "desert",
+      "road": false
+    },
+    {
+      "from": "bell-salt",
+      "to": "black-molt",
+      "miles": 12,
+      "terrain": "desert",
+      "road": false
+    },
+    {
+      "from": "black-molt",
+      "to": "three-wells",
+      "miles": 12,
+      "terrain": "desert",
+      "road": false
+    },
+    {
+      "from": "three-wells",
+      "to": "storm-fang",
+      "miles": 12,
+      "terrain": "desert",
+      "road": false
+    },
+    {
+      "from": "storm-fang",
+      "to": "zero-tide-tower",
+      "miles": 3,
+      "terrain": "desert",
+      "road": false
+    },
+    {
+      "from": "zero-tide-tower",
+      "to": "empty-kitchen",
+      "miles": 5,
+      "terrain": "desert",
+      "road": false
+    },
+    {
+      "from": "empty-kitchen",
+      "to": "red-cut",
+      "miles": 12,
+      "terrain": "desert",
+      "road": false
+    },
+    {
+      "from": "red-cut",
+      "to": "no-tide-cauldron",
+      "miles": 8,
+      "terrain": "desert",
+      "road": false
+    },
+    {
+      "from": "no-tide-cauldron",
+      "to": "widows-line",
+      "miles": 2,
+      "terrain": "desert",
+      "road": false
+    },
+    {
+      "from": "widows-line",
+      "to": "dry-return",
+      "miles": 12,
+      "terrain": "desert",
+      "road": false
+    },
+    {
+      "from": "dry-return",
+      "to": "widows-threshold",
+      "miles": 24,
+      "terrain": "coastal",
+      "road": false
+    }
+  ]
+}

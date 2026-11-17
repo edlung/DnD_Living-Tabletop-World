@@ -5,6 +5,7 @@ export const WORKSHOP_FIXTURES = [
   'package-import',
   'library',
   'library-figures',
+  'library-map',
   'acorn-import',
   'pearl-import',
   'journey',

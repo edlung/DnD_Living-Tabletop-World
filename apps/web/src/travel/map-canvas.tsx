@@ -1,17 +1,19 @@
 import type { MapPinView, RouteView, ScenePresentationResponse } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
-import { useCallback, type MouseEvent } from 'react';
+import { useCallback, useLayoutEffect, useRef, useState, type MouseEvent } from 'react';
 
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
 import { useApprovedImage, withPictureTimes } from '../visual/approved-images.ts';
 import { textureUrl } from '../visual/ui-kit.ts';
+import { pinSides, type PinLabel } from './pin-labels.ts';
 
 /**
  * A region's map (docs/adr/0057-encounters-maps-loot.md §10): the region's approved picture — the
  * parchment until it has one — with its pinned places, each a button that opens the place, the
  * routes between them drawn under the pins, and where the party stands marked. The DM's editor
- * places a pin where the map is clicked.
+ * places a pin where the map is clicked. Names never stack: one with no free side waits for the
+ * pointer or focus (`pin-labels.ts`), and the button keeps it as its label.
  */
 export function MapCanvas({
   api,
@@ -42,6 +44,8 @@ export function MapCanvas({
   );
   const { resource } = useResource(`region-map:${regionId}`, load);
   const url = useApprovedImage(resource.status === 'ready' ? resource.value.location.image : null);
+  const canvas = useRef<HTMLDivElement>(null);
+  const sides = usePinSides(canvas, pins, hereId);
   const at = new Map(pins.map((pin) => [pin.place.entityId, pin]));
   const drawn = routes.flatMap((route) => {
     const from = at.get(route.from.entityId);
@@ -58,7 +62,7 @@ export function MapCanvas({
     );
   };
   return (
-    <div className={`map-canvas${onPin ? ' map-canvas--pinning' : ''}`}>
+    <div ref={canvas} className={`map-canvas${onPin ? ' map-canvas--pinning' : ''}`}>
       <img className="map-art" src={url ?? textureUrl('parchment')} alt="" aria-hidden="true" />
       <svg
         className="map-routes"
@@ -88,13 +92,17 @@ export function MapCanvas({
       <div className="map-hit" onClick={pinHere}>
         {pins.map((pin) => {
           const here = pin.place.entityId === hereId;
-          // Near the right edge the name goes on the dot's left, inside the map.
-          const side = pin.x > 0.6 ? ' map-pin--left' : '';
+          // Until measured, near the right edge the name goes on the dot's left, inside the map.
+          const label = sides[pin.place.entityId] ?? {
+            side: pin.x > 0.6 ? 'left' : 'right',
+            quiet: false,
+          };
           return (
             <button
               key={pin.place.entityId}
               type="button"
-              className={`map-pin${here ? ' map-pin--here' : ''}${side}`}
+              data-place={pin.place.entityId}
+              className={`map-pin${here ? ' map-pin--here' : ''}${label.side === 'left' ? ' map-pin--left' : ''}${label.quiet ? ' map-pin--quiet' : ''}`}
               style={{ left: `${String(pin.x * 100)}%`, top: `${String(pin.y * 100)}%` }}
               aria-label={
                 here ? t('{place}, where you are', { place: pin.place.name }) : pin.place.name
@@ -111,4 +119,53 @@ export function MapCanvas({
       </div>
     </div>
   );
+}
+
+/** Each pin's side, measured against the drawn names whenever the map or its pins change size. */
+function usePinSides(
+  canvas: { readonly current: HTMLDivElement | null },
+  pins: readonly MapPinView[],
+  hereId: string | null,
+): Record<string, PinLabel> {
+  const [sides, setSides] = useState<Record<string, PinLabel>>({});
+  const key = pins
+    .map((pin) => `${pin.place.entityId}@${String(pin.x)},${String(pin.y)}`)
+    .join('|');
+  useLayoutEffect(() => {
+    const box = canvas.current;
+    if (!box) return;
+    const measure = () => {
+      // Measured as drawn: the dot's centre and the name's plate, relative to the map's box.
+      const frame = { width: box.clientWidth, height: box.clientHeight };
+      const origin = box.getBoundingClientRect();
+      const left = origin.left + box.clientLeft;
+      const top = origin.top + box.clientTop;
+      const boxes = [...box.querySelectorAll<HTMLElement>('.map-pin')].flatMap((button) => {
+        const id = button.dataset['place'];
+        const dot = button.querySelector<HTMLElement>('.map-pin-dot')?.getBoundingClientRect();
+        const name = button.querySelector<HTMLElement>('.map-pin-name')?.getBoundingClientRect();
+        return id && dot && name
+          ? [
+              {
+                id,
+                x: dot.left + dot.width / 2 - left,
+                y: dot.top + dot.height / 2 - top,
+                width: name.width,
+                height: name.height,
+              },
+            ]
+          : [];
+      });
+      const next = pinSides(boxes, frame, hereId);
+      setSides((now) => (JSON.stringify(now) === JSON.stringify(next) ? now : next));
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(box);
+    return () => {
+      observer.disconnect();
+    };
+    // The pins' identities and places are the key: a new array of the same pins measures nothing.
+  }, [canvas, key, hereId]);
+  return sides;
 }

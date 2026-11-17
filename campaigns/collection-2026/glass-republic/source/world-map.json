@@ -1,0 +1,167 @@
+{
+  "region": "glass-state",
+  "name": "Улицы Витража",
+  "description": "Столица сверху, без подписей: площадь, палата, галерея, канал и тихие кварталы.",
+  "pins": [
+    {
+      "place": "reserve-court",
+      "x": 0.12,
+      "y": 0.16
+    },
+    {
+      "place": "return-gallery",
+      "x": 0.48,
+      "y": 0.16
+    },
+    {
+      "place": "civil-house",
+      "x": 0.265,
+      "y": 0.66
+    },
+    {
+      "place": "banner-hall",
+      "x": 0.26,
+      "y": 0.38
+    },
+    {
+      "place": "chamber-balcony",
+      "x": 0.345,
+      "y": 0.42
+    },
+    {
+      "place": "flag-yard",
+      "x": 0.71,
+      "y": 0.5
+    },
+    {
+      "place": "double-glass",
+      "x": 0.54,
+      "y": 0.8
+    },
+    {
+      "place": "fold-house",
+      "x": 0.245,
+      "y": 0.84
+    },
+    {
+      "place": "blue-bath",
+      "x": 0.13,
+      "y": 0.8
+    },
+    {
+      "place": "quiet-garden",
+      "x": 0.79,
+      "y": 0.17
+    },
+    {
+      "place": "copper-steps",
+      "x": 0.84,
+      "y": 0.36
+    },
+    {
+      "place": "copper-quay",
+      "x": 0.88,
+      "y": 0.6
+    }
+  ],
+  "routes": [
+    {
+      "from": "civil-house",
+      "to": "banner-hall",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "banner-hall",
+      "to": "chamber-balcony",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "flag-yard",
+      "to": "civil-house",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "double-glass",
+      "to": "flag-yard",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "double-glass",
+      "to": "civil-house",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "return-gallery",
+      "to": "civil-house",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "return-gallery",
+      "to": "flag-yard",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "reserve-court",
+      "to": "civil-house",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "double-glass",
+      "to": "fold-house",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "double-glass",
+      "to": "blue-bath",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "blue-bath",
+      "to": "quiet-garden",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "quiet-garden",
+      "to": "copper-steps",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "copper-steps",
+      "to": "copper-quay",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "flag-yard",
+      "to": "copper-quay",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    }
+  ]
+}

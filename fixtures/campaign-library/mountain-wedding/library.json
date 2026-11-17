@@ -14,42 +14,42 @@
    "players": 3,
    "label": "3 игрока",
    "file": "packages/3-players.json",
-   "digest": "3dd81e113362066c556dda5479ef0b3110198fda8040254a208ef5b7aed4fe82"
+   "digest": "d64ccf876b98ce6a46a698f2f783772fd1c161e05aeb0ba7f30e424758a26b55"
   },
   {
    "id": "4-players",
    "players": 4,
    "label": "4 игрока",
    "file": "packages/4-players.json",
-   "digest": "565faaf06bc877a6ca4bacba5219424b62821dcfc9ea1440e8dee16a45ffa8b8"
+   "digest": "a851268be1afa7739999119d0ce962ebdb791b17ba3772974f0595bf6eb43fe6"
   },
   {
    "id": "5-players",
    "players": 5,
    "label": "5 игроков",
    "file": "packages/5-players.json",
-   "digest": "901cf8e3edce89247e0f891a65989ca3e8b22caf5142005bc27df11c1b68b0b9"
+   "digest": "5e0718e40e1c8b9da8cf057b0d14f56b91ea8fe8d9eb11a1335da73b1fe392be"
   },
   {
    "id": "6-players",
    "players": 6,
    "label": "6 игроков",
    "file": "packages/6-players.json",
-   "digest": "989d0e46aaee2c6b36434748a6cbb86fb6fe31bff717a8d4f56da27878710a9c"
+   "digest": "48984143efdf1c75e81673cad9c9d33639851c41ce7cd55b60256ce685fb776e"
   },
   {
    "id": "7-players",
    "players": 7,
    "label": "7 игроков",
    "file": "packages/7-players.json",
-   "digest": "7567274086ae4f97ea7f2ce412ed7053bf4a95f7df7239e2d09b50c5f0f736d7"
+   "digest": "ef95355f65134410375323e3544a07cc692d14c3537082ba200604a1b1c2d7f9"
   },
   {
    "id": "8-players",
    "players": 8,
    "label": "8 игроков",
    "file": "packages/8-players.json",
-   "digest": "57120cff9673ad80ff61ef658c86f6575864ff92f092876133cc9f45708b0da9"
+   "digest": "f24ff189a4477436a7419dd1c14ed627972852cf13e474f5cb91d0bee4862f61"
   }
  ],
  "generator": "codex-cli imagegen",
@@ -1868,6 +1868,41 @@
     ],
     "8-players": [
      "high-cleft"
+    ]
+   }
+  },
+  {
+   "file": "world-map.webp",
+   "source": "campaigns/fantasy-2026/mountain-wedding/assets/world-map/world-map.webp",
+   "sha256": "718ebec4dc788ecaee15b81f13d7694ee5a6c165b50653c81a404bd4dd8f63dc",
+   "originalSha256": "b0434bb7f02b4051cc3b58b79f69c52225dff55e332bff2cebd39c7780c53b4a",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as mountain-wedding--world-map.png in the current directory.\n\nA world map for a tabletop role-playing campaign, landscape 3:2, seen straight from above like a hand-painted illustrated map (orthographic top-down view, no perspective, no horizon, no sky). A top-down illustrated map of a ring of colossal living mountains seen from high above in pale gold sunlight. The western half is a massive red sandstone mountain, the eastern half a cool silver granite peak; between them lies a valley floor of rust and grey stone. At the top, slightly right of centre, the two summits lean towards each other over a narrow deep fissure. In the upper left, the red mountain's broad shoulder is cut by deep folds, its outer ledge jutting like a bent elbow; below it a low round valley where red and silver rock nearly touch. In the upper centre-left, an almost circular flat clearing with a small island of slabs in its middle and gaps on its east and west sides. On the right, the silver mountain's long ridge is stepped with ledges and marked by a bright white quartz stripe. In the lower left, wide flat red steps at the western mountain's foot, and above them a semicircle of stepped ledges around an empty bowl. Near the centre, a tiny house with streaming ribbons stands on a lone still rock pillar. Below it a sandy ravine holds giant stone footprints, and in the lower right a natural stone arch spans a shallow chasm. No people, no faces, no lettering.\n\nDraw every place described above as a small, clearly recognisable landmark exactly at its stated position, with the roads, paths, corridors or waterways between them visible, so that markers can later be pinned on each landmark. Fill the whole picture edge to edge with the mapped land (no border, no frame, no cartouche, no legend, no compass rose, no scale bar, no grid). Absolutely no text, letters, numbers, labels or symbols that read as letters anywhere on the map. No people, no creatures, no figures.\n\nThe attached image is this campaign's cover: match its painting technique, palette, light and mood, but not its composition.\n\nMatch one consistent house style: original premium illustrated mythic fantasy for ages 12 and up, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, vast sense of scale where living mountains dwarf tiny people, strong wind and motion; palette of warm red sandstone and rust, cool silver granite and quartz white, high-altitude sky blue and pale gold sunlight, with deep violet-grey shadows. Awe, tenderness and courage; no horror, no gore, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "mountain-wedding-cover.png"
+   ],
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null,
+   "subjects": {
+    "3-players": [
+     "world-map"
+    ],
+    "4-players": [
+     "world-map"
+    ],
+    "5-players": [
+     "world-map"
+    ],
+    "6-players": [
+     "world-map"
+    ],
+    "7-players": [
+     "world-map"
+    ],
+    "8-players": [
+     "world-map"
     ]
    }
   }
