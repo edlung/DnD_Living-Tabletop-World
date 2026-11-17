@@ -10,6 +10,7 @@ import { Previously, usePreviously } from '../chronicle/previously.tsx';
 import { PauseAsk } from '../pause/pause-ask.tsx';
 import { calendarHref, NextGameLine, useCalendarFile } from '../ritual/next-game.tsx';
 import { AgreementCard } from '../ritual/agreement.tsx';
+import { ComingAsk } from '../ritual/coming.tsx';
 import { useEnding } from '../ritual/ending.ts';
 import { FinishedCard } from '../ritual/keepsake-card.tsx';
 import { StarsCard } from '../ritual/stars-card.tsx';
@@ -158,11 +159,20 @@ export function LobbyBanner({
       {/* Paused, every command waits: neither the hint nor the way to a pause has anything to say. */}
       {/* A server from before the date sends none. */}
       {session === null && lobby.resource.value.nextGame && (
-        <NextGameLine
-          next={lobby.resource.value.nextGame}
-          calendar={calendarFile ? calendarHref(api.campaignId) : null}
-          className="next-game--lobby"
-        />
+        <>
+          <NextGameLine
+            next={lobby.resource.value.nextGame}
+            calendar={calendarFile ? calendarHref(api.campaignId) : null}
+            className="next-game--lobby"
+          />
+          {/* "I'll come / I can't", beside the date (ADR 0073 §10). */}
+          <ComingAsk
+            api={api}
+            characters={characters}
+            characterId={actorId}
+            onChanged={lobby.reread}
+          />
+        </>
       )}
       {/* The table's agreement, until this player has said "Understood" (ADR 0071 §4). */}
       <AgreementCard api={api} characterId={actorId} />
