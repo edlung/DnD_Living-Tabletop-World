@@ -101,7 +101,8 @@ export function partyPlace(state: WorldState): string | null {
 
 /**
  * The cast as anyone below the DM reads it: a place, a picture or a combatant the party does not
- * know is none — a scene without a place, a dark screen, whoever acts — so not even its ID reaches
+ * know is none — a scene without a place, a dark screen, words without their picture, whoever
+ * acts — so not even its ID reaches
  * a display or a player. The join card is the table's screen's only: a player's shared view online
  * shows nothing then (ADR 0042 §5, ADR 0044 §5).
  */
@@ -123,6 +124,12 @@ export function castForParty(
       };
     case 'picture':
       return { cast: seen(cast.entityId) ? cast : { kind: 'blank' }, place: shown };
+    case 'story':
+      // The words are the DM's, as a title card's are; a picture the party does not know is none.
+      return {
+        cast: { ...cast, entityId: seen(cast.entityId) ? cast.entityId : null },
+        place: shown,
+      };
     case 'battlefield':
       return { cast: { ...cast, focus: seen(cast.focus) ? cast.focus : null }, place: shown };
     case 'join':
@@ -347,7 +354,7 @@ export function registerDisplayRoutes(app: FastifyInstance, deps: DisplayRouteDe
     const named =
       body.cast.kind === 'scene'
         ? body.cast.locationId
-        : body.cast.kind === 'picture'
+        : body.cast.kind === 'picture' || body.cast.kind === 'story'
           ? body.cast.entityId
           : body.cast.kind === 'battlefield'
             ? body.cast.focus

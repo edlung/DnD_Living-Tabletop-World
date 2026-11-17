@@ -6,6 +6,7 @@ import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
 import { Glyph } from '../visual/glyph.tsx';
 import { PlaceSoundField } from './place-sound.tsx';
+import { StoryCastFields } from './story-cast-fields.tsx';
 
 /**
  * What the table's screens show (docs/adr/0042-table-display.md §3), on the DM's Table screen
@@ -22,6 +23,7 @@ const KINDS: readonly CastKind[] = [
   'stars',
   'agreement',
   'picture',
+  'story',
   'join',
   'blank',
 ];
@@ -35,6 +37,7 @@ const KIND_WORDS: Readonly<Record<CastKind, string>> = {
   stars: 'The evening’s stars',
   agreement: 'The table’s agreement',
   picture: 'A picture',
+  story: 'A picture with words to read aloud',
   join: 'The QR code to join, with “last time”',
   blank: 'Nothing (a dark screen)',
 };
@@ -64,6 +67,11 @@ export function CastForm({
   const [title, setTitle] = useState(current.kind === 'title' ? current.title : '');
   const [subtitle, setSubtitle] = useState(current.kind === 'title' ? current.subtitle : '');
   const [entityId, setEntityId] = useState(current.kind === 'picture' ? current.entityId : '');
+  // The story cast's picture and words (docs/adr/0073-table-ideas.md §8).
+  const [storyPicture, setStoryPicture] = useState(
+    current.kind === 'story' ? (current.entityId ?? '') : '',
+  );
+  const [storyText, setStoryText] = useState(current.kind === 'story' ? current.text : '');
   const [note, setNote] = useState<string | null>(null);
   const places = directory.filter((entity) => entity.kind === 'location');
   // Whom a zoomed board keeps in view: the fight's combatants, as the DM sees them.
@@ -87,6 +95,14 @@ export function CastForm({
           : { kind, title: title.trim(), subtitle: subtitle.trim() };
       case 'picture':
         return entityId === '' ? null : { kind, entityId };
+      case 'story':
+        return storyText.trim() === ''
+          ? null
+          : {
+              kind,
+              entityId: storyPicture === '' ? null : storyPicture,
+              text: storyText.trim(),
+            };
       default:
         return { kind };
     }
@@ -95,7 +111,13 @@ export function CastForm({
     event.preventDefault();
     const cast = build();
     if (cast === null) {
-      setNote(kind === 'title' ? t('Write the title first.') : t('Choose the picture first.'));
+      setNote(
+        kind === 'title'
+          ? t('Write the title first.')
+          : kind === 'story'
+            ? t('Write the words first.')
+            : t('Choose the picture first.'),
+      );
       return;
     }
     try {
@@ -265,6 +287,16 @@ export function CastForm({
               {t('A screen shows only an approved picture the party knows.')}
             </p>
           </div>
+        )}
+        {kind === 'story' && (
+          <StoryCastFields
+            api={api}
+            pictures={pictures}
+            entityId={storyPicture}
+            text={storyText}
+            onEntity={setStoryPicture}
+            onText={setStoryText}
+          />
         )}
         {kind === 'join' && (
           <p className="field-hint">

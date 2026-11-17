@@ -1,4 +1,4 @@
-import { NEXT_GAME_NOTE_CHARS, type NextGame } from '@ltw/contracts';
+import { NEXT_GAME_NOTE_CHARS, type LobbyCharacter, type NextGame } from '@ltw/contracts';
 import { useLanguage, useT } from '@ltw/ui';
 import { useEffect, useId, useRef, useState, type SubmitEvent } from 'react';
 
@@ -6,6 +6,7 @@ import type { WorldApi } from '../api/client.ts';
 import { nativeShell } from '../native/shell.ts';
 import { useSignInKind } from '../session/sign-in-kind.ts';
 import { Glyph } from '../visual/glyph.tsx';
+import { ComingForDm } from './coming.tsx';
 import {
   fromLocalInput,
   msToNextDay,
@@ -105,10 +106,13 @@ type FormState = 'busy' | 'kept' | 'removed' | 'failed' | 'not-removed' | 'undat
 export function NextGameForm({
   api,
   next,
+  characters,
   onChanged,
 }: {
   readonly api: WorldApi;
   readonly next: NextGame | null;
+  /** The heroes at the table, each with their answer to the date (ADR 0073 §10). */
+  readonly characters: readonly LobbyCharacter[];
   /** The table's state was written: the sheet reads it again. */
   readonly onChanged: () => void;
 }) {
@@ -175,6 +179,8 @@ export function NextGameForm({
           )}
         </p>
       )}
+      {/* Who answered the date (ADR 0073 §10), right under it. */}
+      {next && <ComingForDm api={api} characters={characters} onChanged={onChanged} />}
       <form className="hand-form" noValidate onSubmit={submit}>
         <label htmlFor={`${ids}-when`}>{t('Day and time')}</label>
         <input

@@ -83,6 +83,16 @@ row while it is finished (`ltw_campaign_endings`, deleted when the DM reopens it
 keepsake (`ltw_keepsakes`): table data, not canonical state. Additive: an older build leaves both
 tables alone, and plays a finished campaign on — it knows nothing of its end.
 
+Stage 890 (ADR 0073 §10): `0048_next_game_answers.sql` keeps who comes to the next game
+(`ltw_next_game_answers`, one row a character with the date it answered): table data, not
+canonical state. It moves with its campaign. Additive: an older build leaves the table alone and
+shows the date without answers.
+
+Stage 880 (ADR 0073 §9): `0047_envelopes.sql` keeps sealed envelopes (`ltw_envelopes`: the
+outside the party reads, the handout inside, what opens it, and when it opened): table data, not
+canonical state. It moves with its campaign. Additive: an older build leaves the table alone and
+opens nothing by itself.
+
 Stage 850 (ADR 0073 §6): `0046_place_sounds.sql` keeps a place's own sound (`ltw_place_sounds`,
 one row a place: an ambience and a track of the DM's), applied to the table's sound when the DM
 shows the place: table data, not canonical state. It moves with its campaign. Additive: an older

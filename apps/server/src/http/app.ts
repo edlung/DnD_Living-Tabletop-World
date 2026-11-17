@@ -46,6 +46,12 @@ import { InMemoryAgreementStore } from '../agreement/agreement-store.ts';
 import { registerEndingRoutes, type EndingDependencies } from '../ending/ending-routes.ts';
 import { InMemoryEndingStore } from '../ending/ending-store.ts';
 import { registerFinishedGuard } from '../ending/guard.ts';
+import {
+  openEnvelopesForChapter,
+  registerEnvelopeRoutes,
+  type EnvelopeDependencies,
+} from '../envelopes/envelope-routes.ts';
+import { InMemoryEnvelopeStore } from '../envelopes/envelope-store.ts';
 import { registerHandoutRoutes, type HandoutDependencies } from '../handouts/handout-routes.ts';
 import { InMemoryHandoutStore } from '../handouts/handout-store.ts';
 import { registerLibraryRoutes } from '../library/library-routes.ts';
@@ -187,6 +193,8 @@ export interface AppDependencies {
   readonly ending?: EndingDependencies;
   /** Cheers at the table (ADR 0072 §3): this process's memory, always. */
   readonly cheers?: CheerDependencies;
+  /** Sealed envelopes (ADR 0073 §9); in memory when absent. */
+  readonly envelopes?: EnvelopeDependencies;
   /** Places' own sounds (ADR 0073 §6); in memory when absent. */
   readonly placeSounds?: PlaceSoundStore;
   /** A hero's backstory and a player's private notes (ADR 0073 §5); in memory when absent. */
@@ -241,6 +249,11 @@ export const memoryNotes = (): NoteDependencies => ({
 
 export const memoryEnding = (): EndingDependencies => ({
   store: new InMemoryEndingStore(),
+  now: () => new Date().toISOString(),
+});
+
+export const memoryEnvelopes = (): EnvelopeDependencies => ({
+  store: new InMemoryEnvelopeStore(),
   now: () => new Date().toISOString(),
 });
 
@@ -336,7 +349,20 @@ export function buildApp(input: AppDependencies): FastifyInstance {
   registerAssetRoutes(app, deps);
   registerBattleMapUploadRoutes(app, deps);
   registerVisualRoutes(app, deps);
-  registerChronicleRoutes(app, { ...deps, chronicleIds: deps.authoring.ids });
+  // One set of handouts for the handout routes, the DM's library that gives them (ADR 0058 §3)
+  // and the envelopes that become them (ADR 0073 §9).
+  const handouts = deps.handouts ?? memoryHandouts();
+  const envelopes: EnvelopeDependencies = deps.envelopes ?? memoryEnvelopes();
+  registerChronicleRoutes(app, {
+    ...deps,
+    chronicleIds: deps.authoring.ids,
+    // An evening's chapter written: the envelopes sealed for it open.
+    onPartyChapter: async ({ campaignId, sessionId, actor }) => {
+      const state = (await deps.engine.load(campaignId))?.state;
+      if (!state) return;
+      await openEnvelopesForChapter({ envelopes, handouts }, state, actor, campaignId, sessionId);
+    },
+  });
   registerQuestRoutes(app, deps);
   registerPresenceRoutes(app, { ...deps, presence: deps.presence ?? NOBODY_CONNECTED });
   // One set of tracks for the music's routes and the lobby that plays them (ADR 0059 §3).
@@ -384,9 +410,8 @@ export function buildApp(input: AppDependencies): FastifyInstance {
     clientErrors: deps.clientErrors ?? memoryClientErrors(),
   });
   registerMarkRoutes(app, { ...deps, marks: deps.marks ?? memoryMarks() });
-  // One set of handouts for the handout routes and the DM's library that gives them (ADR 0058 §3).
-  const handouts = deps.handouts ?? memoryHandouts();
   registerHandoutRoutes(app, { ...deps, handouts });
+  registerEnvelopeRoutes(app, { ...deps, envelopes, handouts, library: deps.dm.library });
   registerDmRoutes(app, deps);
   registerUndoneRoutes(app, deps);
   // The roll and rest routes read the campaign's dice from the same table state (ADR 0044 §4).

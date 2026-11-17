@@ -1,8 +1,10 @@
 import {
   campaignIdSchema,
   lobbyChangeRequestSchema,
+  lobbyComingRequestSchema,
   lobbyReadyRequestSchema,
   musicAfter,
+  type ComingAnswer,
   type LobbyResponse,
 } from '@ltw/contracts';
 import { campaignOptions, campaignRole } from '@ltw/domain';
@@ -22,6 +24,7 @@ import type { PresenceSource } from '../live/registry.ts';
 import type { CampaignMoves } from '../campaigns/move/moves.ts';
 import type { TrackStore } from '../music/track-store.ts';
 import type { VoiceRooms } from '../voice/voice-rooms.ts';
+import { InMemoryComingStore } from './coming-store.ts';
 import { sendNextGame, settable, shownNextGame } from './next-game.ts';
 import type { LobbyDependencies } from './table-state.ts';
 
@@ -30,8 +33,9 @@ import type { LobbyDependencies } from './table-state.ts';
  * perspective's own characters, as presence lists them), who said "ready" for the session to
  * come, whose player is absent; the table's mode and whether the DM paused it; what the table
  * hears (docs/adr/0059-atmosphere.md); when the table meets again, and that date as a calendar
- * file (docs/adr/0071-memory-and-ritual.md §3). A player says "ready" for their own character; the
- * DM changes the rest.
+ * file (docs/adr/0071-memory-and-ritual.md §3), and who said they come
+ * (docs/adr/0073-table-ideas.md §10). A player says "ready" and "I'll come" for their own
+ * character; the DM for anyone, and the DM changes the rest.
  */
 export interface LobbyRouteDependencies extends RouteDependencies {
   readonly lobby: LobbyDependencies;
@@ -49,6 +53,8 @@ const query = z.object({ perspective: z.string() }).strict();
 
 export function registerLobbyRoutes(app: FastifyInstance, deps: LobbyRouteDependencies): void {
   const { lobby } = deps;
+  // A composition that gave the lobby no store for the answers keeps them for this process.
+  const coming = lobby.coming ?? new InMemoryComingStore();
 
   app.get('/campaigns/:campaignId/lobby', async (request, reply) => {
     const ready = await withPerspective(request, reply, deps, { params, query });
@@ -62,6 +68,10 @@ export function registerLobbyRoutes(app: FastifyInstance, deps: LobbyRouteDepend
     const here = presenceView(state, context.perspective, (actorId) =>
       deps.presence.connected(path.campaignId, actorId),
     );
+    const nextGame = shownNextGame(table.nextGame, lobby.now());
+    // Answers are for the date as it stands: none without one, none given for another.
+    const comes: ReadonlyMap<string, ComingAnswer> =
+      nextGame === null ? new Map() : await coming.read(path.campaignId, nextGame.at);
     const body: LobbyResponse = {
       perspective: context.perspective.label,
       mode: table.mode,
@@ -73,11 +83,12 @@ export function registerLobbyRoutes(app: FastifyInstance, deps: LobbyRouteDepend
         present,
         ready: sayReady.has(character.entityId),
         absent: table.absent.includes(character.entityId),
+        coming: comes.get(character.entityId) ?? null,
       })),
       options: campaignOptions(state),
       sound: table.sound,
       away: await deps.moves.awayOf(path.campaignId),
-      nextGame: shownNextGame(table.nextGame, lobby.now()),
+      nextGame,
     };
     return reply.send(body);
   });
@@ -117,6 +128,25 @@ export function registerLobbyRoutes(app: FastifyInstance, deps: LobbyRouteDepend
     if (state.entities.get(body.characterId)?.kind !== 'character')
       return sendError(reply, request, 'UNPROCESSABLE');
     lobby.ready.set(path.campaignId, body.characterId, body.ready, state.activeSessionId);
+    return reply.code(204).send();
+  });
+
+  // "I'll come / I can't" for the next game (ADR 0073 §10): table data, read in the lobby's answer.
+  app.post('/campaigns/:campaignId/lobby/coming', async (request, reply) => {
+    const ready = await withBody(request, reply, deps, { params, body: lobbyComingRequestSchema });
+    if (!ready) return reply;
+    const { context, params: path, body } = ready;
+    const { perspective, state } = context;
+    // A player for their own character; the DM for anyone — a child who said it aloud.
+    const own = perspective.kind === 'CHARACTER' && perspective.holderId === body.characterId;
+    if (perspective.kind !== 'DM' && !own) return sendError(reply, request, 'FORBIDDEN');
+    if (state.entities.get(body.characterId)?.kind !== 'character')
+      return sendError(reply, request, 'UNPROCESSABLE');
+    const now = lobby.now();
+    const next = shownNextGame((await lobby.state.read(path.campaignId)).nextGame, now);
+    // No date, nothing to answer.
+    if (next === null) return sendError(reply, request, 'UNPROCESSABLE');
+    await coming.set(path.campaignId, body.characterId, next.at, body.coming, now);
     return reply.code(204).send();
   });
 
@@ -162,6 +192,10 @@ export function registerLobbyRoutes(app: FastifyInstance, deps: LobbyRouteDepend
             : { at: new Date(body.nextGame.at).toISOString(), note: body.nextGame.note },
     };
     await lobby.state.write(path.campaignId, next, now);
+    // Another date, or none: the answers were for the old one (they would not be read anyway).
+    if ((next.nextGame?.at ?? null) !== (before.nextGame?.at ?? null)) {
+      await coming.clear(path.campaignId);
+    }
     if (before.mode === 'online' && next.mode !== 'online') deps.voice?.end(path.campaignId);
     request.log.info(
       {
