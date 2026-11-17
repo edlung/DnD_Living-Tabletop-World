@@ -1,0 +1,1624 @@
+{
+ "id": "velvet-ledger",
+ "title": "Бархатный Реестр",
+ "genre": "Оккультно-индустриальный нуар",
+ "audience": "21+",
+ "pitch": "В Вельтене обещания греют дома, долги отбрасывают настоящие тени, а Бархатная биржа торгует обязательствами. На рассвете дом Яна Отека описывают за двадцать шесть колоколов, которых он не брал, и выставляют лотом к последнему колоколу квартала — через восемь торговых дней. У каждого из вас в той же Книге своя строка. Каждое утро глашатай читает цену вашего лота, каждый вечер колокол её двигает. Выиграть можно только цифрой на доске — и только если понять, что на самом деле продаётся вместе с домом.",
+ "tone": "Бархат, мокрая пенька, чернила, которые не сохнут, и колокол, который считает. Сухой юмор людей, торгующихся за собственный порог. Мрачность — от цифры на доске и от того, кто её двигает, а не от подробностей насилия.",
+ "duration": "8 сессий; Около трёх часов: три сцены по 50 минут и перерыв 15 минут. Последний вечер примерно на полчаса длиннее: сцены 20, 70 и 70 минут и перерыв 15 минут. Обсуждение границ перед первым вечером",
+ "cover": "campaigns/collection-2026/velvet-ledger/assets/runtime/cover.webp",
+ "defaultVariant": "6-players",
+ "variants": [
+  {
+   "id": "6-players",
+   "players": 6,
+   "label": "6 игроков",
+   "file": "packages/6-players.json",
+   "digest": "8722b7485044fb15de8e85b7560526205eb6abbcd00c5ae91f4e08b600e9b4f7"
+  },
+  {
+   "id": "7-players",
+   "players": 7,
+   "label": "7 игроков",
+   "file": "packages/7-players.json",
+   "digest": "5e129c08f1b41f9aa20b0a20a54323e8246595d649faf0a1635a4d351d3cd491"
+  },
+  {
+   "id": "8-players",
+   "players": 8,
+   "label": "8 игроков",
+   "file": "packages/8-players.json",
+   "digest": "7aab6f7165b1e8bd9a876e22a3a73e73f777fbb470ad49f74aee4f9635f14613"
+  }
+ ],
+ "generator": "codex-cli imagegen",
+ "pictures": [
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/velten-city.webp",
+   "sha256": "c10cfc4100d4f3f39386b866fe618c4b1b497864998f503f43b592c0a3e5de70",
+   "originalSha256": "e119f3fd2b4d2eb60a979fdca1bf12d006697de33788c0c22f5b48acba2b205e",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as velten-city.png in the current directory.\nLandscape scene, 3:2. A panoramic view of the city of Velten at dusk: dark brick districts and steaming brass heat pipes gathered around great furnaces glowing amber through soot, trams drawn along enchanted chains between the rooftops, shift clocks hanging over crossroads, the grand exchange building with its bell tower rising above wet slate roofs, iron lattice girders over a canal. Rain-slick streets, gaslight, chimney smoke.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "velten-city"
+    ],
+    "7-players": [
+     "velten-city"
+    ],
+    "8-players": [
+     "velten-city"
+    ]
+   },
+   "file": "velten-city.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/night-ledger-office.webp",
+   "sha256": "057ed77fab25b669b030120a74e2d7acb2eedd78b8541c42c8f6692a0f383908",
+   "originalSha256": "1cfe7902135863cf6153832f02283305eea626ccd3f44f30244dc5d8b124c35b",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as night-ledger-office.png in the current directory.\nLandscape scene, 3:2. Interior of a former tram ticket office turned into a small after-hours office: a long table with eight chairs, a lockable cabinet, the old ticket window with its grille, a faded tram timetable on the wall covered in pencilled figures rendered as illegible marks, cooling glasses of tea, inkwells, a single warm lamp. Rain streaks the night window; a worn, welcoming refuge.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "night-ledger-office"
+    ],
+    "7-players": [
+     "night-ledger-office"
+    ],
+    "8-players": [
+     "night-ledger-office"
+    ]
+   },
+   "file": "night-ledger-office.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/municipal-archive.webp",
+   "sha256": "cca1a28e671d6a24742c36f0e58a1605ece56e1f5cde4219385119d00e2fd7e7",
+   "originalSha256": "276c03346586e68cb029616c0582e29944dc1fee0ed42ebfe8b09a28453de12f",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as municipal-archive.png in the current directory.\nLandscape scene, 3:2. Interior of the Chamber of Agreements, a civic archive of certified copies: tall shelves of bound copies, green-shaded lamps, brass pneumatic catalogue tubes running along the walls, a polished issue counter with neat stacks of blank request forms, a notice board by the entrance with illegible sheets. Orderly, hushed, bureaucratic.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "municipal-archive"
+    ],
+    "7-players": [
+     "municipal-archive"
+    ],
+    "8-players": [
+     "municipal-archive"
+    ]
+   },
+   "file": "municipal-archive.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/nine-pipe-foundry.webp",
+   "sha256": "a2bb8038b5f0c4f00e75f865e5d06176920f62d4f762f2d3d4f76454367629a0",
+   "originalSha256": "2ca6a776193296de9f55de26862e439496d399d4c7764f623e9dd4d8ad29a716",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as nine-pipe-foundry.png in the current directory.\nLandscape scene, 3:2. A large foundry crowned by nine tall exhaust stacks: the glow of molten metal, chains and ladles, a yellow line painted on the floor where the shift leaves its tools, a canteen with long tables and a small union cash desk, a chalk board with illegible tallies. Soot, heat haze, tired strong workers in heavy jackets.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "nine-pipe-foundry"
+    ],
+    "7-players": [
+     "nine-pipe-foundry"
+    ],
+    "8-players": [
+     "nine-pipe-foundry"
+    ]
+   },
+   "file": "nine-pipe-foundry.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/quiet-clinic.webp",
+   "sha256": "a00a83a96d7ff66f5dbfeca0d2cbdd5bf0be3917398b934806bb115535e3a455",
+   "originalSha256": "b1a7193e0edbf60e66ae679a9e7d356813a7d28f59284aca5d6f92b47f6320b6",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as quiet-clinic.png in the current directory.\nLandscape scene, 3:2. A small quiet infirmary for people who cannot sleep: soft curtains muting grey daylight, a row of narrow cots with adults resting under blankets, half of them restless, a reception table with small cards, and by the window one empty bed made up with careful widow's neatness. Hushed, tender, melancholy.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "quiet-clinic"
+    ],
+    "7-players": [
+     "quiet-clinic"
+    ],
+    "8-players": [
+     "quiet-clinic"
+    ]
+   },
+   "file": "quiet-clinic.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/velvet-exchange.webp",
+   "sha256": "196f6094b4d5780f8e9b800f2575579bd7627db1e8eb6b66e156f7ad929568cb",
+   "originalSha256": "bcf77cc191ea2f67bc3b830fc9fdfa4c853b681101dd19a15e3b4018494d12c2",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as velvet-exchange.png in the current directory.\nLandscape scene, 3:2. The trading floor of the Velvet Exchange: a grand hall divided by velvet-draped partitions, a huge price board made of rows of small blank brass plaques, a speaker's rostrum in the centre, a great copper bell hanging under the vaulted ceiling, a pawn window set into the side wall, clerks copying at a long desk, traders in coats raising their hands. Brass, velvet, gaslight, a tense hum.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "velvet-exchange"
+    ],
+    "7-players": [
+     "velvet-exchange"
+    ],
+    "8-players": [
+     "velvet-exchange"
+    ]
+   },
+   "file": "velvet-exchange.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/counterweight-station.webp",
+   "sha256": "032f6bfad57740f07167ced1ab4c068f1bfd385cc6e3cdcff0f1c338641ea745",
+   "originalSha256": "826534bfdd16f91553f967095cf52c824d98ce7c7e4a17b6dc1df3459eef184f",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as counterweight-station.png in the current directory.\nLandscape scene, 3:2. Counterweight Station above a canal: a lattice of iron girders from which hundreds of heavy weights hang on chains, each weight with a chalk mark rendered as illegible scribbles, long shadows falling across the dark water below, an engineer's catwalk, oilskin visitor capes hanging on hooks by the entrance. Grey mist, dripping iron, an uncanny balance.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "counterweight-station"
+    ],
+    "7-players": [
+     "counterweight-station"
+    ],
+    "8-players": [
+     "counterweight-station"
+    ]
+   },
+   "file": "counterweight-station.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/ash-printworks.webp",
+   "sha256": "92043f27f1f0387d548ca3cfb3ee5aa5ebee56ff02f56cb9cf2333760c624556",
+   "originalSha256": "68a2746bb900be1b70097dd202c78664f6b32a8701626d1a0f90804f4768571c",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as ash-printworks.png in the current directory.\nLandscape scene, 3:2. Interior of a low printworks: a heavy iron press, sheets of paper drying on lines strung across the room, all blank or illegible, cases of type, pots of hot wax, a counter with a thick order book, warm lamplight and drifting steam. Ink-stained, busy, close.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "ash-printworks"
+    ],
+    "7-players": [
+     "ash-printworks"
+    ],
+    "8-players": [
+     "ash-printworks"
+    ]
+   },
+   "file": "ash-printworks.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/open-court.webp",
+   "sha256": "4f2e01f07a14b534f83d68fa207afc8af711d8cf41ff7f85507e27fc084accac",
+   "originalSha256": "afba5803268d81ddeef7a4b83335289efb5e54f2530d7c58e9cd25759be8d068",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as open-court.png in the current directory.\nLandscape scene, 3:2. The Open Court, a public hall of applications rather than a courtroom: a long application desk with neat stacks of blank forms, banks of wooden filing drawers, sample notices pinned to the wall as illegible sheets, a wall clock above the attorneys' desk, benches of waiting townsfolk. Plain, civic, a hopeful morning light.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "open-court"
+    ],
+    "7-players": [
+     "open-court"
+    ],
+    "8-players": [
+     "open-court"
+    ]
+   },
+   "file": "open-court.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/cord-row.webp",
+   "sha256": "0c63b71a55e3ac2fadfafe2e0c89254f707799e497a8f3f15a4f43cba1cc88ea",
+   "originalSha256": "6951b1b934a914edf16cba5d2b5b797cf58b5a4bcb92305df9540d9f7796ec39",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as cord-row.png in the current directory.\nLandscape scene, 3:2. Cord Row, a street of cord-makers and small shops at evening: awnings hung with skeins of velvet cord in wine, black and plum, wet cobbles, barrels and stalls, lanterns hanging from the awning hooks, narrow houses of poor debtors, long still shadows lying on several thresholds. Damp hemp, cobbler's glue, neighbourly poverty.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "cord-row"
+    ],
+    "7-players": [
+     "cord-row"
+    ],
+    "8-players": [
+     "cord-row"
+    ]
+   },
+   "file": "cord-row.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/otek-house.webp",
+   "sha256": "a5fe5dc2292c8bba41efa6047fad755108cc04f827237e10e615b3939f0b2c48",
+   "originalSha256": "0ea6182525d5ae1022fd1c348a295cd08c449c513de9a5f0753ec137b384db65",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as otek-house.png in the current directory.\nLandscape scene, 3:2. Interior of a narrow house above a former sewing shop: a squat stove glowing warm, a bed with a velvet canopy, an old sewing machine, a framed painted portrait of the late mistress of the house, a kind middle-aged woman, a chest of letters; every piece of furniture is tied with velvet cord and a blank paper inventory tag. Through the open door a small dented brass bell hangs on a velvet cord above the threshold, and a shadow lies on the threshold that does not match the light. Grief, intimacy, quiet dispossession.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "otek-house"
+    ],
+    "7-players": [
+     "otek-house"
+    ],
+    "8-players": [
+     "otek-house"
+    ]
+   },
+   "file": "otek-house.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/velvet-bank.webp",
+   "sha256": "6fba41a430b8b7fca86d8099107f25fecfd2fd57e50de3d43d9b0e6f76c30e41",
+   "originalSha256": "9e7fb0e69dbdb9ebafefa10c9fe87c18e95c62b0736ebff714d6545cdb83e682",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as velvet-bank.png in the current directory.\nLandscape scene, 3:2. The counting hall of the Velvet House bank: rows of polished wooden counters running the length of the hall, brass lamps above them, an iron safe grille at the far end beneath an overhanging gallery, a main door and a side door each fitted with a rolled-up iron shutter, a calm queue of depositors. Polished brass, velvet ropes, cold prosperity.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "velvet-bank"
+    ],
+    "7-players": [
+     "velvet-bank"
+    ],
+    "8-players": [
+     "velvet-bank"
+    ]
+   },
+   "file": "velvet-bank.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/ledger-vault.webp",
+   "sha256": "bc8250ab6dc672287c52ddc3dba997870a4ac809cfcbe3b94cf43c7a685e1e7e",
+   "originalSha256": "bfc50a9f1b112c7a2c9e3aa31d40ef07f259b1fe5e9b8696065c0c556be27efd",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as ledger-vault.png in the current directory.\nLandscape scene, 3:2. A low vaulted cellar beneath an exchange floor: on a bronze lectern in a pool of candlelight lies a thick open tome bound in faded cherry velvet, its pages glistening with ink that never dries, the writing only illegible strokes; damp stone, a narrow stair rising toward a thin line of light. Hushed, sacred, ominous.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "ledger-vault"
+    ],
+    "7-players": [
+     "ledger-vault"
+    ],
+    "8-players": [
+     "ledger-vault"
+    ]
+   },
+   "file": "ledger-vault.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/velvet-hall.webp",
+   "sha256": "1c6e7ea3a2987588492242c2d8aa1d256d9f831c6bbe925c83b4885e3e752ac9",
+   "originalSha256": "f0676d5775cb1bebcdd63876308576719e707badfef4ed8559b6f8afd66f35b5",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as velvet-hall.png in the current directory.\nLandscape scene, 3:2. The ballroom of the Velvet House: a parquet floor with couples in black velvet half-masks waltzing in the centre, columns along both long walls, an orchestra in the upper gallery, a raised gallery at the far end with a card table, tall doors opening onto a staircase. Chandeliers, deep wine velvet drapes, elegance with an edge.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "velvet-hall"
+    ],
+    "7-players": [
+     "velvet-hall"
+    ],
+    "8-players": [
+     "velvet-hall"
+    ]
+   },
+   "file": "velvet-hall.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/vera-shtal.webp",
+   "sha256": "226e49b72cf91ccd85f97a488f0e4e403fd8f4e3d8afd11152b7a4d52eafefec",
+   "originalSha256": "c2c6f502da3291d093da150e1a2fa76ceb1b725b9aefc73c619bcec8eea22461",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as vera-shtal.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Olga Brandt, a 41-year-old woman, former bailiff of a banking house, now a fighter: a straight back, a worn uniform bailiff's cloak with all insignia removed, a shield whose emblem has been carefully pried off, an old dark-burgundy velvet training cord with service knots wound around her wrist; a steady, principled gaze. Behind her, a wet street of cord-makers' awnings at dawn.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "6-players": [
+     "vera-shtal"
+    ],
+    "7-players": [
+     "vera-shtal"
+    ],
+    "8-players": [
+     "vera-shtal"
+    ]
+   },
+   "file": "vera-shtal.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/yan-otek.webp",
+   "sha256": "7a55fe98e24de9715913da5d415dd210eca3db49ea2b056ddae74086a6f06b88",
+   "originalSha256": "2fb5bfcc6f091ad13c0ce755bce677548aa8d0cec4fb816d2b63798416e5dc23",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as yan-otek.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Yan Otek, a 32-year-old man, contract courier and rogue: a grey vest with many flat pockets, cycling gloves, a waterproof satchel across his chest, a black mourning band on his sleeve; quick, guarded, grieving eyes. Behind him, the narrow doorway of a house on a street of cord-makers.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "6-players": [
+     "yan-otek"
+    ],
+    "7-players": [
+     "yan-otek"
+    ],
+    "8-players": [
+     "yan-otek"
+    ]
+   },
+   "file": "yan-otek.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/mira-lenn.webp",
+   "sha256": "f4c8bae66c6bc0885911e4fe8694f55c921804cfccb0380f9081d69fb9230e32",
+   "originalSha256": "fff39fed2d9f1668e0510455663e8b17f88d81f4068071cae516a1f27d2a3ac5",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as mira-lenn.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Agnia Sver, a 36-year-old woman, keeper of a weavers' street mutual-aid fund and a cleric: a dark scarf, a silver counting bead on a cord at her neck, a closed case of clean bandages, a dues notebook under her arm; warm but unyielding. Behind her, a weavers' street with lit windows.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "6-players": [
+     "mira-lenn"
+    ],
+    "7-players": [
+     "mira-lenn"
+    ],
+    "8-players": [
+     "mira-lenn"
+    ]
+   },
+   "file": "mira-lenn.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/lev-sorin.webp",
+   "sha256": "287378ec786a99f8ab7c08dc147e95cca1b573fe331e2c8227a34f8c31b9d167",
+   "originalSha256": "7518fff5422312e449eaf0d67ef5a159541a28696a6c1494f28e1f3d26a95743",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as lev-sorin.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Pavel Sorin, a 29-year-old man, chronoscopist of the city meters and a wizard: fogged round spectacles, a brass pencil case, a palm-sized brass chronoscope in a leather case on his belt, ink on his cuffs, neat and precise; curious, careful. Behind him, iron girders with hanging counterweights in mist.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "6-players": [
+     "lev-sorin"
+    ],
+    "7-players": [
+     "lev-sorin"
+    ],
+    "8-players": [
+     "lev-sorin"
+    ]
+   },
+   "file": "lev-sorin.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/rada-ven.webp",
+   "sha256": "3bc03827da18d24d1b373f7d9de437af076d61241ccba924fd8af6173853f8db",
+   "originalSha256": "86beadc9d7cf71db810c19f6cae2991b784d78672f3ccb303c2d05a900f36663",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as rada-ven.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Ulyana Ven, a 47-year-old woman, night-shift negotiator of a foundry and a fighter: close-cropped grey hair, a heavy work jacket, a hammer in a locked tool case, work mittens with careful hand stitching; solid, unhurried authority. Behind her, the glow of a foundry and its tall stacks.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "6-players": [
+     "rada-ven"
+    ],
+    "7-players": [
+     "rada-ven"
+    ],
+    "8-players": [
+     "rada-ven"
+    ]
+   },
+   "file": "rada-ven.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/daniil-kest.webp",
+   "sha256": "f91b5fb19a7eed01c408af7d3a56e406d7a1130a7a36013db6a3f2c168c9475e",
+   "originalSha256": "a0fa706a521d9f3cd2d8eb4df670f08ca31fc9df72d6ba8666af4fca5fc34b88",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as daniil-kest.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Daniil Kest, a 38-year-old man, independent auditor and rogue: impeccably brushed boots, a pocket ruler, a notebook bristling with coloured bookmarks, a pencil behind his ear; dry, sharp, faintly amused. Behind him, the blank brass price board of an exchange hall.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "6-players": [
+     "daniil-kest"
+    ],
+    "7-players": [
+     "daniil-kest"
+    ],
+    "8-players": [
+     "daniil-kest"
+    ]
+   },
+   "file": "daniil-kest.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/sev-erda.webp",
+   "sha256": "79342a0b8c57db0414892be0bc8118c0967f95b8a47232622437580a45895892",
+   "originalSha256": "4b7ed08a90a04eb427e89972983e5f51146eba42e20910c681a154d6f8967c01",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as sev-erda.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Arseny Erda, a 54-year-old man, advocate for people who inherited debts, and a cleric: a warm black suit, a wooden community token on a cord, a soft-spoken patient manner, one hand resting on the back of an empty chair he keeps free for whoever comes. Behind him, a quiet lamplit office.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "6-players": [],
+    "7-players": [
+     "sev-erda"
+    ],
+    "8-players": [
+     "sev-erda"
+    ]
+   },
+   "file": "sev-erda.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/eva-tarn.webp",
+   "sha256": "7a4a44688a62979a5a0df827f102d77fa5b780dfe6f159d0e0f211735c44ff80",
+   "originalSha256": "5230fc030d884f13982b7ced27951ed3b21f7f3157be324b20da912423f2d0f6",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as eva-tarn.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Eva Tarn, a 26-year-old woman, chemist of printing inks and a wizard: violet ink stains on her fingers, a protective apron over her coat, a few blank sample cards in her breast pocket; inquisitive and quick. Behind her, paper sheets drying on lines in a printworks.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "6-players": [],
+    "7-players": [],
+    "8-players": [
+     "eva-tarn"
+    ]
+   },
+   "file": "eva-tarn.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/levna-nor.webp",
+   "sha256": "fb877c9b3365cad42a17be6b190aa1e24c25fc39050a07f77c94e2d63fb9605d",
+   "originalSha256": "ecca7f4894329b8529ec0eb2d206a1befa53d1e475115db996d29bcee9ceb19d",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as levna-nor.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Levna Nor, a 39-year-old woman, exchange copy clerk who reads debtors their accounts after her shift: a neat coat, a cracked lacquered handbag, an ink dot on her thumb, a small abacus in her pocket, counting briskly on her fingers as she explains. Behind her, a long table in a former ticket office at night.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "levna-nor"
+    ],
+    "7-players": [
+     "levna-nor"
+    ],
+    "8-players": [
+     "levna-nor"
+    ]
+   },
+   "file": "levna-nor.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/marena-voss.webp",
+   "sha256": "c46ee4004bd008947a4d4dbed131b885334b293b722b656b8807461a57476aa9",
+   "originalSha256": "a88655e55f250b5c81d88b069264319667b0375d95973eedd8a0236aec011fd3",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as marena-voss.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Marena Voss, a 52-year-old woman, keeper of a civic archive of certified copies: a grey suit, thin gloves, a folding portfolio with a plain embossed crest, a watch on a chain over her lapel that she glances at; precise and by the book. Behind her, green-shaded lamps and brass catalogue tubes.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "marena-voss"
+    ],
+    "7-players": [
+     "marena-voss"
+    ],
+    "8-players": [
+     "marena-voss"
+    ]
+   },
+   "file": "marena-voss.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/savel-ark.webp",
+   "sha256": "622944a2926066537859b3f204849984f0b1704fcd8ef38c7b7bc1516b733bbe",
+   "originalSha256": "ecbe85a5c223c58fa6abcccd443fa2426c034b1ef4c95431082dd224e5ed2d12",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as savel-ark.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Orest Valm, a 57-year-old man, director of the Velvet Exchange and senior partner of its banking house: a soft velvet collar, a trimmed beard, a cane with a small bronze tongue-shaped finial, crisp dry cuffs; composed, courteous, a man who never raises his voice. Behind him, the gallery above a busy exchange floor.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "savel-ark"
+    ],
+    "7-players": [
+     "savel-ark"
+    ],
+    "8-players": [
+     "savel-ark"
+    ]
+   },
+   "file": "savel-ark.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/inga-reil.webp",
+   "sha256": "f84c12524ac5319804f2c2cebf6577faf41fe5a489971789c7cea0506dfbc86b",
+   "originalSha256": "3132e83655bd6d9fb9bc7a77c433506e80f05316e74aa2af1ea317890299f221",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as inga-reil.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Inga Reil, a 43-year-old woman, elected union representative of a foundry: a leather work apron, a wide folder of shift rosters, fresh darning on her sleeve; blunt, tough, unapologetic. Behind her, a foundry canteen and a chalk tally board.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "inga-reil"
+    ],
+    "7-players": [
+     "inga-reil"
+    ],
+    "8-players": [
+     "inga-reil"
+    ]
+   },
+   "file": "inga-reil.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/timon-lest.webp",
+   "sha256": "a62944b2eb0e31d6197354f5cd68c5612d7e7a2809b68859f53a9e0c23b2bae0",
+   "originalSha256": "a35997549020af06421212ec950e621dd7f87c197e8db51b0c4dd718c1c62036",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as timon-lest.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Vaclav Lest, a 61-year-old man, senior engineer of Counterweight Station: a moustache, a heavy engineer's waistcoat, a bunch of keys with large blank tags, a stick of chalk behind his ear, tapping a girder with the chalk; gruff and exact. Behind him, iron girders with hanging weights over a canal.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "timon-lest"
+    ],
+    "7-players": [
+     "timon-lest"
+    ],
+    "8-players": [
+     "timon-lest"
+    ]
+   },
+   "file": "timon-lest.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/dara-ves.webp",
+   "sha256": "489ed16c1b147963641303f15a0a115e3b1da1576182ad998b4103eb4da18b93",
+   "originalSha256": "df52a1ba835aab6385e11837c9a2f93659c2787da30399a2285f40df51948297",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as dara-ves.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Sofya Ves, a 34-year-old woman, healer of an infirmary for the sleepless: a white apron over a dark dress, tired kind eyes, keys to a card cabinet at her belt, speaking softly. Behind her, a curtained ward with narrow cots.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "dara-ves"
+    ],
+    "7-players": [
+     "dara-ves"
+    ],
+    "8-players": [
+     "dara-ves"
+    ]
+   },
+   "file": "dara-ves.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/askar-mel.webp",
+   "sha256": "11bbb90250c69db9c7f1157243613a19280124d1b49c6f2c5b10f5e05d6b4bf1",
+   "originalSha256": "dd0b12cac1c66199d6c8836af83cebc1242a1ed1da0046970fcdb1d6c9e17df6",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as askar-mel.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Askar Mel, a 46-year-old man, printer: rolled-up sleeves, soot on his elbows, a type gauge in his breast pocket, one hand raised asking to wait until the press stops. Behind him, a heavy iron press and sheets drying on lines.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "askar-mel"
+    ],
+    "7-players": [
+     "askar-mel"
+    ],
+    "8-players": [
+     "askar-mel"
+    ]
+   },
+   "file": "askar-mel.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/naya-oren.webp",
+   "sha256": "a68a13de4ecb60b9ce7686b41c87fc231fb6ba02ea0449d526d413b8dde93af1",
+   "originalSha256": "2c10bbd50f75de9b0a01b81b3ff033f85cb5adbf37e5bce3b6750e51daa60ea3",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as naya-oren.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Naya Oren, a 48-year-old woman, attorney at a public applications desk: a dark-blue attorney's robe, a simple ring, a briefcase of blank forms; calm and methodical. Behind her, a long desk with neat stacks of blank forms.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "naya-oren"
+    ],
+    "7-players": [
+     "naya-oren"
+    ],
+    "8-players": [
+     "naya-oren"
+    ]
+   },
+   "file": "naya-oren.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/gaspar-til.webp",
+   "sha256": "87d58e9d8cea72d8436e1c75c64e52545a92e010ca90a6ed91dc8f5eed288fdb",
+   "originalSha256": "d9b075a7d4e37b21b74636415c1c7871ad5fd105a4640b3da2a82ac4e8def557",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as gaspar-til.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Baltazar Til, a 44-year-old man, crier of the exchange: a long velvet crier's frock coat, a blank brass price plaque in his hand, mouth open mid-announcement in a voice that carries through three halls. Behind him, a crowded trading floor.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "gaspar-til"
+    ],
+    "7-players": [
+     "gaspar-til"
+    ],
+    "8-players": [
+     "gaspar-til"
+    ]
+   },
+   "file": "gaspar-til.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/kornel-shay.webp",
+   "sha256": "0a8cd3fb29576f27f977f9973699c87c4878abd92ad86622905971bc536f85a0",
+   "originalSha256": "bd8ac92083586cdfbe58d3e423fdc6693180e7bc87f0105f1ae9a9955cfd5341",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as kornel-shay.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Kornel Shay, a 58-year-old man, judge of the bell at the exchange: a black judge's robe, a gavel with a velvet head, a widower's ring on his little finger; terse and measured. Behind him, a great copper bell hanging high under a vaulted ceiling.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "kornel-shay"
+    ],
+    "7-players": [
+     "kornel-shay"
+    ],
+    "8-players": [
+     "kornel-shay"
+    ]
+   },
+   "file": "kornel-shay.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/viktor-dorn.webp",
+   "sha256": "27b86ab1baab53cfbb1ab3fb4b27e1f2011d40b6b69a535317e1e9d7feccbfaa",
+   "originalSha256": "9d68682f96bdaa459f75d9cede45f1fb85824ee4a65346cdfca52a7433abbdf4",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as viktor-dorn.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Viktor Dorn, a 38-year-old man, inventory agent of a banking house: grey gloves, a velvet cord around his wrist in place of a bracelet, quiet shoes, a ring of blank inventory tags; coldly polite. Behind him, a doorway on a wet street of cord-makers' awnings at dawn.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "6-players": [
+     "viktor-dorn"
+    ],
+    "7-players": [
+     "viktor-dorn"
+    ],
+    "8-players": [
+     "viktor-dorn"
+    ]
+   },
+   "file": "viktor-dorn.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/tadeush-krin.webp",
+   "sha256": "3fe2a96b67cca1bccadaca08598c7eaf2e178f8f7254c004a58e26e814d926de",
+   "originalSha256": "9a40c5e78afb989e4de77c116caf64eb2fe74721c3ed42764ae9576c06015620",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as tadeush-krin.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Lukash Krin, a 52-year-old man, cobbler: a cobbler's apron, hands wound with waxed thread, spectacles on a cord, grumbling over a boot sole without looking up. Behind him, a tiny cobbler's stall under an awning.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "tadeush-krin"
+    ],
+    "7-players": [
+     "tadeush-krin"
+    ],
+    "8-players": [
+     "tadeush-krin"
+    ]
+   },
+   "file": "tadeush-krin.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/luiza-tamm.webp",
+   "sha256": "5377206ea75f63afa73d696ed25d2cd8defde92bff33d2191aa7378c8f45e127",
+   "originalSha256": "10d70f0b64c8ce7fe91531ff9b218bed028632f048f07cf8acd54d9395f9dbe5",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as luiza-tamm.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Luiza Tamm, a 29-year-old woman, cord-maker: velvet lint on her fingers, skeins of velvet cord over her shoulder, quick hands braiding a cord as she talks. Behind her, an awning hung with skeins of cord.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "luiza-tamm"
+    ],
+    "7-players": [
+     "luiza-tamm"
+    ],
+    "8-players": [
+     "luiza-tamm"
+    ]
+   },
+   "file": "luiza-tamm.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/efimiya-surma.webp",
+   "sha256": "7980d4dc6039a76bc79889691bc0a1f267572f98e3b3b4dcba223a59816bb379",
+   "originalSha256": "aa97b92364200fa0c9cb49d42225a3ed5864bd929ee5d3ad32992325c5650bf2",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as efimiya-surma.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Efimiya Surma, a 50-year-old woman, head of a rival banking house: a dress the colour of metal oxide, a signet ring set with a grey antimony crystal, a fan made like an abacus in her hand; shrewd, amused, bargaining even in a compliment. Behind her, a ballroom box with velvet drapes.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "efimiya-surma"
+    ],
+    "7-players": [
+     "efimiya-surma"
+    ],
+    "8-players": [
+     "efimiya-surma"
+    ]
+   },
+   "file": "efimiya-surma.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/kvasci-envoy.webp",
+   "sha256": "b6b10f00a7977c45a125d798b78cd4dffba48d6824964a10c9770c2941631855",
+   "originalSha256": "d3307d1ece2999df6d3d94cff82c39e63d281981a2ef235dff65275ffd3b67c1",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as kvasci-envoy.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Ottokar Brig, a 48-year-old man, envoy of the House of Alum, the third banking house of the city, on the Velvet Exchange: lean and dry, a grey frock coat with a small crystal pin of his house, a pencil for figuring interest tucked behind his ear, a folder of his house's papers under his arm; precise, unhurried, speaks only in percentages. Behind him, the trading floor of the Velvet Exchange under brass bells and velvet ropes.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "6-players": [
+     "kvasci-envoy"
+    ],
+    "7-players": [
+     "kvasci-envoy"
+    ],
+    "8-players": [
+     "kvasci-envoy"
+    ]
+   },
+   "file": "kvasci-envoy.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/door-bell.webp",
+   "sha256": "d7aea7e2b21f80285da77a308d472110ff7527a6b6b31117c0741dd8be6496fa",
+   "originalSha256": "062e76678651d45c4452209a704eebf3447680a5e2c33ab8b8386908ec25fb13",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as door-bell.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A small brass door bell with a dent on its side, hanging from a velvet cord the colour of old wine; a small blank paper inventory tag is tied to it with a doubled cord.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "door-bell"
+    ],
+    "7-players": [
+     "door-bell"
+    ],
+    "8-players": [
+     "door-bell"
+    ]
+   },
+   "file": "door-bell.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/velvet-cord.webp",
+   "sha256": "6eea5532840f2e24e3380c2a6a521d9a1f9f85dd67522a06b95214ffb426a1dc",
+   "originalSha256": "9d7f38529e7582b76b806d9cb013a420d1e2b406bcdb721befee9a81d23c4ee4",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as velvet-cord.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. An old dark-burgundy velvet bailiff's cord, loosely coiled, ending in a distinctive service knot.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "velvet-cord"
+    ],
+    "7-players": [
+     "velvet-cord"
+    ],
+    "8-players": [
+     "velvet-cord"
+    ]
+   },
+   "file": "velvet-cord.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/chronoscope.webp",
+   "sha256": "ce2eb1c152bb3432462fdee82d963a3c20cadfa6cffe07d8c55ed1bc6ccf4dbf",
+   "originalSha256": "1b48c3e337f6446f5b456fb48136825e62caa5b2a0c4cc9ae0d2144ac5bd39e1",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as chronoscope.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A palm-sized brass cylinder instrument with a small glass window and a thin needle, a wax verification seal on its side, hanging from a leather shoulder strap.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "chronoscope"
+    ],
+    "7-players": [
+     "chronoscope"
+    ],
+    "8-players": [
+     "chronoscope"
+    ]
+   },
+   "file": "chronoscope.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/irena-note.webp",
+   "sha256": "fd08ebcc22d3cf7e2cd87d8d4167e1e8277831ca294eaad8e31343f00da19606",
+   "originalSha256": "4d55196a00b62d3c53305e2ffe31a48506292b2144129e7e5d4094819071eddf",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as irena-note.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A sheet of paper folded in four and half opened, filled with warm, neat handwriting rendered as illegible strokes.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "irena-note"
+    ],
+    "7-players": [
+     "irena-note"
+    ],
+    "8-players": [
+     "irena-note"
+    ]
+   },
+   "file": "irena-note.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/artel-box.webp",
+   "sha256": "d8c0b81c1731b0d0fe2356bff81d4b7112f6e3d7a7ec9f7eb7c904ca90b44546",
+   "originalSha256": "ddefaf516d201ace1bd157a70636684fc6fa690dd1bf7991c828e909a4c1de3e",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as artel-box.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A tin strongbox with a velvet lining and a small padlock, its lid ajar, showing folded papers tied with cord.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "artel-box"
+    ],
+    "7-players": [
+     "artel-box"
+    ],
+    "8-players": [
+     "artel-box"
+    ]
+   },
+   "file": "artel-box.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/judge-paper.webp",
+   "sha256": "77fa89a34acddc4d54269ac5ad07ea480e03f6d93e904d69aa20560f675ea29b",
+   "originalSha256": "d4e0d3cb39052ce572d8886d2a9cb01a9b0329158e1a75dff0487c87d331c6f4",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as judge-paper.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A heavy sheet of debt paper with two signature flourishes and, below them, a fresh glistening line of ink; all writing is illegible strokes.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "judge-paper"
+    ],
+    "7-players": [
+     "judge-paper"
+    ],
+    "8-players": [
+     "judge-paper"
+    ]
+   },
+   "file": "judge-paper.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/counterweight-list.webp",
+   "sha256": "92239d89e0489d564e7e6185f4e0d823cda977385da722929e59e0fe0ce2bdea",
+   "originalSha256": "e382eff45a1eb84d476253ba629a88c494dbdb139a2fd090afc3a974ab5af047",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as counterweight-list.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. The back of a station waybill covered in columns of chalk marks rendered as illegible scribbles, chalk dust crumbling from the sheet.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "counterweight-list"
+    ],
+    "7-players": [
+     "counterweight-list"
+    ],
+    "8-players": [
+     "counterweight-list"
+    ]
+   },
+   "file": "counterweight-list.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/heir-stamp.webp",
+   "sha256": "1a56b15bc05169d23191e0f22f73e9868de8c17fdd24b3c8712b15e51bd589b1",
+   "originalSha256": "1669151c971edea8a3436cad696cbdbeb21a5417e4516d89c70769277af2bb6c",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as heir-stamp.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A form sheet from a public office with a round blue stamp impression and a signature flourish; all writing is illegible strokes.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "heir-stamp"
+    ],
+    "7-players": [
+     "heir-stamp"
+    ],
+    "8-players": [
+     "heir-stamp"
+    ]
+   },
+   "file": "heir-stamp.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/union-pai.webp",
+   "sha256": "a3819dcff54ca2054515ee718d61c967ba7cc57a89dfa66a27937a808760b65c",
+   "originalSha256": "813603d81907b7d5be6d79c73030eac1873295c9b151857f5ec45cf86fc4a1d1",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as union-pai.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A thick stack of twelve share certificates with ornamental engraving and illegible marks, bound with a ribbon and a red wax seal.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "union-pai"
+    ],
+    "7-players": [
+     "union-pai"
+    ],
+    "8-players": [
+     "union-pai"
+    ]
+   },
+   "file": "union-pai.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/copy-book.webp",
+   "sha256": "a923363106d4fa5134232954ed80d88e7bd65dfe64789e1e9821336ddcedaf1c",
+   "originalSha256": "412dee40e26177c156787276fb0edf755e685b7068353b0d005167d75e00f14e",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as copy-book.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A narrow notebook bound in oilcloth and held shut with an elastic band, small ink dots on the edges of its pages.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "copy-book"
+    ],
+    "7-players": [
+     "copy-book"
+    ],
+    "8-players": [
+     "copy-book"
+    ]
+   },
+   "file": "copy-book.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/token-tough.webp",
+   "sha256": "6705910e6e063592516aeb63b034c9c866ea20415b731ad40e9483a520c6193b",
+   "originalSha256": "44629a605cd874742cc3757bd02488c0e405f441037322f2b0148145e072fd0d",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as token-tough.png in the current directory.\nGame token figure, square 1:1, on a fully transparent background, top three-quarter view, no ground shadow. A heavy-set debt collector of a banking house in a grey coat with a velvet armband, a lowered cudgel in one hand and a lantern with a velvet shutter in the other, a ring of blank tags at the belt; stern.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "bank-doors-foe-1",
+     "bank-doors-foe-2",
+     "bank-doors-foe-3",
+     "cord-row-night-foe-1",
+     "cord-row-night-foe-2",
+     "cord-row-night-foe-3"
+    ],
+    "7-players": [
+     "bank-doors-foe-1",
+     "bank-doors-foe-2",
+     "bank-doors-foe-3",
+     "bank-doors-foe-4",
+     "cord-row-night-foe-1",
+     "cord-row-night-foe-2",
+     "cord-row-night-foe-3",
+     "cord-row-night-foe-4"
+    ],
+    "8-players": [
+     "bank-doors-foe-1",
+     "bank-doors-foe-2",
+     "bank-doors-foe-3",
+     "bank-doors-foe-4",
+     "cord-row-night-foe-1",
+     "cord-row-night-foe-2",
+     "cord-row-night-foe-3",
+     "cord-row-night-foe-4"
+    ]
+   },
+   "file": "token-tough.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/token-tough.webp",
+   "sha256": "6705910e6e063592516aeb63b034c9c866ea20415b731ad40e9483a520c6193b",
+   "originalSha256": "44629a605cd874742cc3757bd02488c0e405f441037322f2b0148145e072fd0d",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as token-tough.png in the current directory.\nGame token figure, square 1:1, on a fully transparent background, top three-quarter view, no ground shadow. A heavy-set debt collector of a banking house in a grey coat with a velvet armband, a lowered cudgel in one hand and a lantern with a velvet shutter in the other, a ring of blank tags at the belt; stern.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "bank-doors-foe-1",
+     "bank-doors-foe-2",
+     "bank-doors-foe-3",
+     "cord-row-night-foe-1",
+     "cord-row-night-foe-2",
+     "cord-row-night-foe-3"
+    ],
+    "7-players": [
+     "bank-doors-foe-1",
+     "bank-doors-foe-2",
+     "bank-doors-foe-3",
+     "bank-doors-foe-4",
+     "cord-row-night-foe-1",
+     "cord-row-night-foe-2",
+     "cord-row-night-foe-3",
+     "cord-row-night-foe-4"
+    ],
+    "8-players": [
+     "bank-doors-foe-1",
+     "bank-doors-foe-2",
+     "bank-doors-foe-3",
+     "bank-doors-foe-4",
+     "cord-row-night-foe-1",
+     "cord-row-night-foe-2",
+     "cord-row-night-foe-3",
+     "cord-row-night-foe-4"
+    ]
+   },
+   "file": "token-tough--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "token-tough.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/token-spy.webp",
+   "sha256": "6d6ef474a7bc83f068303db47ac4d98af3f1e52678cea44e95bc763d8c611460",
+   "originalSha256": "c630304be9f342fe7042959bb3fe00fa49b1b9c8ba89792edb7e6f0406338606",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as token-spy.png in the current directory.\nGame token figure, square 1:1, on a fully transparent background, top three-quarter view, no ground shadow. A lean, quiet agent of a banking house in a dark cloak and a black velvet half-mask, grey gloves, a slim blade sheathed at the hip and a small hand crossbow holstered under the cloak, a velvet cord around the wrist; poised and watchful.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "velvet-waltz-foe-1",
+     "velvet-waltz-foe-2",
+     "velvet-waltz-foe-3",
+     "bank-doors-boss",
+     "cord-row-night-boss"
+    ],
+    "7-players": [
+     "velvet-waltz-foe-1",
+     "velvet-waltz-foe-2",
+     "velvet-waltz-foe-3",
+     "velvet-waltz-foe-4",
+     "bank-doors-boss",
+     "cord-row-night-boss"
+    ],
+    "8-players": [
+     "velvet-waltz-foe-1",
+     "velvet-waltz-foe-2",
+     "velvet-waltz-foe-3",
+     "velvet-waltz-foe-4",
+     "bank-doors-boss",
+     "cord-row-night-boss"
+    ]
+   },
+   "file": "token-spy.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/token-spy.webp",
+   "sha256": "6d6ef474a7bc83f068303db47ac4d98af3f1e52678cea44e95bc763d8c611460",
+   "originalSha256": "c630304be9f342fe7042959bb3fe00fa49b1b9c8ba89792edb7e6f0406338606",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as token-spy.png in the current directory.\nGame token figure, square 1:1, on a fully transparent background, top three-quarter view, no ground shadow. A lean, quiet agent of a banking house in a dark cloak and a black velvet half-mask, grey gloves, a slim blade sheathed at the hip and a small hand crossbow holstered under the cloak, a velvet cord around the wrist; poised and watchful.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "velvet-waltz-foe-1",
+     "velvet-waltz-foe-2",
+     "velvet-waltz-foe-3",
+     "bank-doors-boss",
+     "cord-row-night-boss"
+    ],
+    "7-players": [
+     "velvet-waltz-foe-1",
+     "velvet-waltz-foe-2",
+     "velvet-waltz-foe-3",
+     "velvet-waltz-foe-4",
+     "bank-doors-boss",
+     "cord-row-night-boss"
+    ],
+    "8-players": [
+     "velvet-waltz-foe-1",
+     "velvet-waltz-foe-2",
+     "velvet-waltz-foe-3",
+     "velvet-waltz-foe-4",
+     "bank-doors-boss",
+     "cord-row-night-boss"
+    ]
+   },
+   "file": "token-spy--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "token-spy.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/vera-shtal--figure.webp",
+   "sha256": "c61935e51067a262353654a3cf098e2e61a385a8fde13124dbf57ddcb5d47879",
+   "originalSha256": "30c8fc55e629688282f789b5f24b154f672145d8ec0c0899bfcf2a256115539f",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image with the built-in image_gen tool and save it as vera-shtal--figure.png in the current directory. The attached image is the approved portrait of Olga Brandt.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Olga Brandt, a 41-year-old woman, former bailiff of a banking house, now a fighter: a straight back, a worn uniform bailiff's cloak with all insignia removed, a shield whose emblem has been carefully pried off, an old dark-burgundy velvet training cord with service knots wound around her wrist; a steady, principled gaze. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "vera-shtal.png"
+   ],
+   "subjects": {
+    "6-players": [
+     "vera-shtal"
+    ],
+    "7-players": [
+     "vera-shtal"
+    ],
+    "8-players": [
+     "vera-shtal"
+    ]
+   },
+   "file": "vera-shtal--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "vera-shtal.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/yan-otek--figure.webp",
+   "sha256": "6d88c479266b71900d7cdb4129ee335faf742ebe910276f4b10cfc44a4177094",
+   "originalSha256": "5c5527f2e0edb5ccb106d40316df2846911707308ec2b5f80684a48a6052cb83",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image with the built-in image_gen tool and save it as yan-otek--figure.png in the current directory. The attached image is the approved portrait of Yan Otek.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Yan Otek, a 32-year-old man, contract courier and rogue: a grey vest with many flat pockets, cycling gloves, a waterproof satchel across his chest, a black mourning band on his sleeve; quick, guarded, grieving eyes. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "yan-otek.png"
+   ],
+   "subjects": {
+    "6-players": [
+     "yan-otek"
+    ],
+    "7-players": [
+     "yan-otek"
+    ],
+    "8-players": [
+     "yan-otek"
+    ]
+   },
+   "file": "yan-otek--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "yan-otek.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/mira-lenn--figure.webp",
+   "sha256": "681360b74109cddc548a96c60625c890d79a04c22e34d9b303ab6ac89ba08812",
+   "originalSha256": "178631d2ea0a71da72d9be06a243d822c658f5895319775b78d299625b70460a",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image with the built-in image_gen tool and save it as mira-lenn--figure.png in the current directory. The attached image is the approved portrait of Agnia Sver.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Agnia Sver, a 36-year-old woman, keeper of a weavers' street mutual-aid fund and a cleric: a dark scarf, a silver counting bead on a cord at her neck, a closed case of clean bandages, a dues notebook under her arm; warm but unyielding. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "mira-lenn.png"
+   ],
+   "subjects": {
+    "6-players": [
+     "mira-lenn"
+    ],
+    "7-players": [
+     "mira-lenn"
+    ],
+    "8-players": [
+     "mira-lenn"
+    ]
+   },
+   "file": "mira-lenn--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "mira-lenn.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/lev-sorin--figure.webp",
+   "sha256": "8ae0c6be9cfffceedbad37affcece5a5368ba2229ea1160607fab9d6a534e1ed",
+   "originalSha256": "bc97c61bd11b59d9d65fd1568f6e2c5737930165aab40e35f231ec73e68d5979",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image with the built-in image_gen tool and save it as lev-sorin--figure.png in the current directory. The attached image is the approved portrait of Pavel Sorin.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Pavel Sorin, a 29-year-old man, chronoscopist of the city meters and a wizard: fogged round spectacles, a brass pencil case, a palm-sized brass chronoscope in a leather case on his belt, ink on his cuffs, neat and precise; curious, careful. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "lev-sorin.png"
+   ],
+   "subjects": {
+    "6-players": [
+     "lev-sorin"
+    ],
+    "7-players": [
+     "lev-sorin"
+    ],
+    "8-players": [
+     "lev-sorin"
+    ]
+   },
+   "file": "lev-sorin--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "lev-sorin.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/rada-ven--figure.webp",
+   "sha256": "6bd881482751d60719305004d2948d3a236daf8b8e0ae08176a25c6bb252475c",
+   "originalSha256": "c69c265674b6c3c5abf92202c1e6b9d9489c8e19eec73362db208b533c1f70f6",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image with the built-in image_gen tool and save it as rada-ven--figure.png in the current directory. The attached image is the approved portrait of Ulyana Ven.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Ulyana Ven, a 47-year-old woman, night-shift negotiator of a foundry and a fighter: close-cropped grey hair, a heavy work jacket, a hammer in a locked tool case, work mittens with careful hand stitching; solid, unhurried authority. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "rada-ven.png"
+   ],
+   "subjects": {
+    "6-players": [
+     "rada-ven"
+    ],
+    "7-players": [
+     "rada-ven"
+    ],
+    "8-players": [
+     "rada-ven"
+    ]
+   },
+   "file": "rada-ven--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "rada-ven.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/daniil-kest--figure.webp",
+   "sha256": "4f2cccdf6d9fe6f478486ffd43b9da7e6bfa3017e8fba26d9b244c508ac42e6d",
+   "originalSha256": "344535732d080bb1476dbe41399574ec3e8c337af7a7f474e81bf7550975e023",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image with the built-in image_gen tool and save it as daniil-kest--figure.png in the current directory. The attached image is the approved portrait of Daniil Kest.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Daniil Kest, a 38-year-old man, independent auditor and rogue: impeccably brushed boots, a pocket ruler, a notebook bristling with coloured bookmarks, a pencil behind his ear; dry, sharp, faintly amused. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "daniil-kest.png"
+   ],
+   "subjects": {
+    "6-players": [
+     "daniil-kest"
+    ],
+    "7-players": [
+     "daniil-kest"
+    ],
+    "8-players": [
+     "daniil-kest"
+    ]
+   },
+   "file": "daniil-kest--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "daniil-kest.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/sev-erda--figure.webp",
+   "sha256": "a8090eb4ccc7c91671064a11e064dcd89ea23bd700f9b8a476cbf54fb9e4020f",
+   "originalSha256": "20901e1ed9e26b3f756dfc0524edf46d05ac95e73cac686ac10a8edeec28e128",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image with the built-in image_gen tool and save it as sev-erda--figure.png in the current directory. The attached image is the approved portrait of Arseny Erda.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Arseny Erda, a 54-year-old man, advocate for people who inherited debts, and a cleric: a warm black suit, a wooden community token on a cord, a soft-spoken patient manner, one hand resting on the back of an empty chair he keeps free for whoever comes. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "sev-erda.png"
+   ],
+   "subjects": {
+    "6-players": [],
+    "7-players": [
+     "sev-erda"
+    ],
+    "8-players": [
+     "sev-erda"
+    ]
+   },
+   "file": "sev-erda--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "sev-erda.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/velvet-ledger/assets/runtime/eva-tarn--figure.webp",
+   "sha256": "4f1c970f4f8dc7c6d1342fd7c0d72f10058fc021df2f0fe3c9a7413b8119b5d8",
+   "originalSha256": "3701034627ee8c1361f7bdb4c25825b6f658efda257fbbd6cfda2b6caa151475",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image with the built-in image_gen tool and save it as eva-tarn--figure.png in the current directory. The attached image is the approved portrait of Eva Tarn.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Eva Tarn, a 26-year-old woman, chemist of printing inks and a wizard: violet ink stains on her fingers, a protective apron over her coat, a few blank sample cards in her breast pocket; inquisitive and quick. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "eva-tarn.png"
+   ],
+   "subjects": {
+    "6-players": [],
+    "7-players": [],
+    "8-players": [
+     "eva-tarn"
+    ]
+   },
+   "file": "eva-tarn--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "eva-tarn.webp"
+  },
+  {
+   "file": "velvet-hall--map.webp",
+   "source": "campaigns/collection-2026/velvet-ledger/assets/battle-maps/velvet-hall.webp",
+   "sha256": "e41aba48bc26b5d3dabbc6baf342ecb134bb9ebe038df653b95d83cad0fbb7ea",
+   "originalSha256": "0f64cf69c66acc47ed9fb3db0b7d91950efbb2427fbeeb1d374c013caad4a417",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as velvet-ledger--velvet-hall.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Бархатный зал» — Бальный зал Бархатного дома: паркет, колонны вдоль северной и южной стен, оркестр на хорах, галерея на востоке со столом для карт и западные двери на лестницу. На балах здесь танцуют маски и делят город три банкирских дома.\n\nThe first reference image is the exact layout of the playable field: a 18 by 12 square grid drawn in the middle of the canvas filling it. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Бальный зал Бархатного дома: паркет, вальсирующие пары в середине — подвижные препятствия и трудная местность, их клетки сдвигаются каждый раунд по кругу. Колонны вдоль северной и южной стен дают укрытие наполовину. На западе — западные двери на лестницу: здесь отряд входит в зал, сюда выводят гостей, это выход из боя. На востоке галерея со столом и картой раздела и лестница вниз в зал; туда маски ведут гостей. Под потолком бархатные драпировки, музыканты в нише у северной стены.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/velvet-ledger--velvet-hall.layout.png",
+    "velvet-hall.png"
+   ],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "velvet-hall.webp",
+   "subjects": {
+    "6-players": [
+     "velvet-hall"
+    ],
+    "7-players": [
+     "velvet-hall"
+    ],
+    "8-players": [
+     "velvet-hall"
+    ]
+   }
+  },
+  {
+   "file": "velvet-bank--map.webp",
+   "source": "campaigns/collection-2026/velvet-ledger/assets/battle-maps/velvet-bank.webp",
+   "sha256": "8e24cb3a64199007791674a7e5e018d481865994bf8b4e8db9ae89d129cfc56b",
+   "originalSha256": "8a0991ab27fe16d521442887b9d5e8a917c7b43b2efe0e016200b3680a559dac",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as velvet-ledger--velvet-bank.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Контора банка Бархатного дома» — Зал стоек с рядами конторок; на востоке — стойка выдачи, сейфовая решётка и лестница на галерею. Двери — западная главная и северная боковая — закрываются железными шторами. Здесь выдают вклады и держат мелкие займы города.\n\nThe first reference image is the exact layout of the playable field: a 14 by 10 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Зал стоек банка Бархатного дома: ряды конторок с запада на восток дают укрытие наполовину. Отряд стоит в очереди у западной главной двери; северная боковая дверь — на северной стене. В восточной половине — стойка выдачи, сейфовая решётка и лестница на галерею, откуда бьёт арбалет вышибалы. Обе двери под железными шторами. Пол усыпан бланками и монетами, медные лампы над стойками.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/velvet-ledger--velvet-bank.layout.png",
+    "velvet-bank.png"
+   ],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "velvet-bank.webp",
+   "subjects": {
+    "6-players": [
+     "velvet-bank"
+    ],
+    "7-players": [
+     "velvet-bank"
+    ],
+    "8-players": [
+     "velvet-bank"
+    ]
+   }
+  },
+  {
+   "file": "cord-row--map.webp",
+   "source": "campaigns/collection-2026/velvet-ledger/assets/battle-maps/cord-row.webp",
+   "sha256": "838bad543e503d9701038dcda0038a72856754599de50e0f58e28dc929e75d10",
+   "originalSha256": "a979cf706bc2db4d229f1986b273e08444de5fabf4b1a18181e4ba4a630e2f0f",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as velvet-ledger--cord-row.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Шнуровой ряд» — Улица шнурниц и мелких лавок: под навесами висят мотки бархатного шнура, пахнет мокрой пенькой и сапожным клеем. Здесь живут мелкие должники, у многих над порогом лежит тень. По вечерам ряд освещают фонари на крюках навесов.\n\nThe first reference image is the exact layout of the playable field: a 16 by 12 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Шнуровой ряд ночью: ряды навесов с мотками бархатного шнура дают укрытие наполовину. Бочки и лотки — трудная местность. Дом номер семь — в южном конце ряда, колокольчик над его дверью; отряд стоит здесь. Фонари на столбах освещают проходы между навесами, под навесами темно. Ночные входят с северного конца.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/velvet-ledger--cord-row.layout.png",
+    "cord-row.png"
+   ],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "cord-row.webp",
+   "subjects": {
+    "6-players": [
+     "cord-row"
+    ],
+    "7-players": [
+     "cord-row"
+    ],
+    "8-players": [
+     "cord-row"
+    ]
+   }
+  }
+ ]
+}

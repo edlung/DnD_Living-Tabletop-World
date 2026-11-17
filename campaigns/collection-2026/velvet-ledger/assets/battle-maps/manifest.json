@@ -1,0 +1,59 @@
+{
+ "about": "Top-down battle maps (OpenAI image generation through Codex CLI), each drawn over its fight grid and cut to it; originals in ~/Documents/living-tabletop-world-art/.",
+ "maps": [
+  {
+   "location": "velvet-hall",
+   "encounter": "velvet-waltz",
+   "grid": [
+    18,
+    12
+   ],
+   "file": "velvet-hall.webp",
+   "sha256": "e41aba48bc26b5d3dabbc6baf342ecb134bb9ebe038df653b95d83cad0fbb7ea",
+   "originalSha256": "0f64cf69c66acc47ed9fb3db0b7d91950efbb2427fbeeb1d374c013caad4a417",
+   "originalFile": "battle-maps-2026-11-17/out/velvet-ledger--velvet-hall.png",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as velvet-ledger--velvet-hall.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Бархатный зал» — Бальный зал Бархатного дома: паркет, колонны вдоль северной и южной стен, оркестр на хорах, галерея на востоке со столом для карт и западные двери на лестницу. На балах здесь танцуют маски и делят город три банкирских дома.\n\nThe first reference image is the exact layout of the playable field: a 18 by 12 square grid drawn in the middle of the canvas filling it. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Бальный зал Бархатного дома: паркет, вальсирующие пары в середине — подвижные препятствия и трудная местность, их клетки сдвигаются каждый раунд по кругу. Колонны вдоль северной и южной стен дают укрытие наполовину. На западе — западные двери на лестницу: здесь отряд входит в зал, сюда выводят гостей, это выход из боя. На востоке галерея со столом и картой раздела и лестница вниз в зал; туда маски ведут гостей. Под потолком бархатные драпировки, музыканты в нише у северной стены.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/velvet-ledger--velvet-hall.layout.png",
+    "velvet-hall.png"
+   ]
+  },
+  {
+   "location": "velvet-bank",
+   "encounter": "bank-doors",
+   "grid": [
+    14,
+    10
+   ],
+   "file": "velvet-bank.webp",
+   "sha256": "8e24cb3a64199007791674a7e5e018d481865994bf8b4e8db9ae89d129cfc56b",
+   "originalSha256": "8a0991ab27fe16d521442887b9d5e8a917c7b43b2efe0e016200b3680a559dac",
+   "originalFile": "battle-maps-2026-11-17/out/velvet-ledger--velvet-bank.png",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as velvet-ledger--velvet-bank.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Контора банка Бархатного дома» — Зал стоек с рядами конторок; на востоке — стойка выдачи, сейфовая решётка и лестница на галерею. Двери — западная главная и северная боковая — закрываются железными шторами. Здесь выдают вклады и держат мелкие займы города.\n\nThe first reference image is the exact layout of the playable field: a 14 by 10 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Зал стоек банка Бархатного дома: ряды конторок с запада на восток дают укрытие наполовину. Отряд стоит в очереди у западной главной двери; северная боковая дверь — на северной стене. В восточной половине — стойка выдачи, сейфовая решётка и лестница на галерею, откуда бьёт арбалет вышибалы. Обе двери под железными шторами. Пол усыпан бланками и монетами, медные лампы над стойками.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/velvet-ledger--velvet-bank.layout.png",
+    "velvet-bank.png"
+   ]
+  },
+  {
+   "location": "cord-row",
+   "encounter": "cord-row-night",
+   "grid": [
+    16,
+    12
+   ],
+   "file": "cord-row.webp",
+   "sha256": "838bad543e503d9701038dcda0038a72856754599de50e0f58e28dc929e75d10",
+   "originalSha256": "a979cf706bc2db4d229f1986b273e08444de5fabf4b1a18181e4ba4a630e2f0f",
+   "originalFile": "battle-maps-2026-11-17/out/velvet-ledger--cord-row.png",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as velvet-ledger--cord-row.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Шнуровой ряд» — Улица шнурниц и мелких лавок: под навесами висят мотки бархатного шнура, пахнет мокрой пенькой и сапожным клеем. Здесь живут мелкие должники, у многих над порогом лежит тень. По вечерам ряд освещают фонари на крюках навесов.\n\nThe first reference image is the exact layout of the playable field: a 16 by 12 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Шнуровой ряд ночью: ряды навесов с мотками бархатного шнура дают укрытие наполовину. Бочки и лотки — трудная местность. Дом номер семь — в южном конце ряда, колокольчик над его дверью; отряд стоит здесь. Фонари на столбах освещают проходы между навесами, под навесами темно. Ночные входят с северного конца.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated occult-industrial noir for adult players, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the city of Velten in dark brick and wet brass, steaming heat pipes, trams drawn along enchanted chains, gaslight on rain-slick cobbles; textures of crushed velvet, damp hemp cord and black ink that never quite dries; palette of soot black and charcoal, deep wine and oxblood velvet, tarnished brass gold, ink violet, pale gaslight amber and a cold dawn grey-blue; quiet tension and dry wit; every person shown is clearly an adult over 21. Tags, papers, plaques and boards carry only blank or illegible marks. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/velvet-ledger--cord-row.layout.png",
+    "cord-row.png"
+   ]
+  }
+ ]
+}

@@ -36,6 +36,34 @@ export const LIBRARY: readonly LibrarySource[] = [
   },
   { id: 'mountain-wedding', series: 'fantasy-2026', genre: 'Мифическое фэнтези', audience: '12+' },
   { id: 'moon-pearl', series: null, genre: 'Семейное морское расследование', audience: '8+' },
+  // Reworked by the cloud series of 2026-11-16 (PR #45), art and hero figures 2026-11-17.
+  {
+    id: 'ember-crown',
+    series: 'collection-2026',
+    genre: 'Эпическое военное фэнтези',
+    audience: '16+',
+  },
+  { id: 'salt-meridian', series: 'collection-2026', genre: 'Морская авантюра', audience: '16+' },
+  { id: 'winter-caravan', series: 'collection-2026', genre: 'Зимнее выживание', audience: '16+' },
+  {
+    id: 'ash-testament',
+    series: 'collection-2026',
+    genre: 'Послевоенный вестерн',
+    audience: '21+',
+  },
+  {
+    id: 'glass-republic',
+    series: 'collection-2026',
+    genre: 'Политический шпионский триллер',
+    audience: '21+',
+  },
+  { id: 'hollow-choir', series: 'collection-2026', genre: 'Готический хоррор', audience: '21+' },
+  {
+    id: 'velvet-ledger',
+    series: 'collection-2026',
+    genre: 'Оккультно-индустриальный нуар',
+    audience: '21+',
+  },
 ];
 
 export interface LibrarySource {

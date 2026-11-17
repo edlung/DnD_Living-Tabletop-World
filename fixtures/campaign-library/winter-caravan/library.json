@@ -1,0 +1,1535 @@
+{
+ "id": "winter-caravan",
+ "title": "Караван Белой Ночи",
+ "genre": "Зимнее выживание",
+ "audience": "16+",
+ "pitch": "Через час после выхода буран ставит обоз «Белая Ночь» в круг на первом подъёме. Четверо саней семенного зерна, шерсти и припасов должны перейти Инейский хребет, а у вас лист: четырнадцать мешков еды, шесть вязанок дров и семь ночёвок до перевала. Каждую ночь вы платите карандашом. За обозом идёт волчья стая — не так, как ходят волки. Последний подъём к перевалу вы пройдёте бегом — и узнаете, сколько людей дошло до Южной Лощины.",
+ "tone": "Скрип полозьев, иней на постромках, цепочки следов на насте. Усталые люди считают мешки и вязанки и всё равно отдают последнюю долю тому, кто слабее. Тишина перед карнизом. Страх — от холода, темноты за кругом саней и белого силуэта на гребне, а не от подробностей ран.",
+ "duration": "8 сессий; Около трёх часов: три сцены по 50 минут и перерыв 15 минут; в последний вечер сцены 45, 75 и 30 минут; обсуждение границ перед первым вечером",
+ "cover": "campaigns/collection-2026/winter-caravan/assets/runtime/cover.webp",
+ "defaultVariant": "6-players",
+ "variants": [
+  {
+   "id": "6-players",
+   "players": 6,
+   "label": "6 игроков",
+   "file": "packages/6-players.json",
+   "digest": "c9891b402aeb99b3e7f81177773fa1a918c5cc1a499c31aab65970dfcba8f515"
+  },
+  {
+   "id": "7-players",
+   "players": 7,
+   "label": "7 игроков",
+   "file": "packages/7-players.json",
+   "digest": "247eedcac5eeb756bda042404270141e9d0af75eefad916e0e100c3e156be931"
+  },
+  {
+   "id": "8-players",
+   "players": 8,
+   "label": "8 игроков",
+   "file": "packages/8-players.json",
+   "digest": "e2d9aa9d407b1a8bf145b6458004131fc7a75477332414742629694ad5a59b8b"
+  }
+ ],
+ "generator": "codex-cli imagegen",
+ "pictures": [
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/frost-spine.webp",
+   "sha256": "29a37c133051237a26106f04d0f15a3f9bc79b491993da9c00c9d2034f788bff",
+   "originalSha256": "71725ac7058ad87cf17c7c452c54778e02bb95ccc6202e589c325cff24c255bb",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as frost-spine.png in the current directory.\nLandscape scene, 3:2. A panoramic view of the Frost Spine in deep winter: forested valleys of cedar and fir climbing to bare rock ribs and high wind-scoured snowfields under a low pale sun, a single sledge road winding from a small northern village up through the valleys toward a distant high saddle, a thin thread of smoke from a lonely waystation by a frozen river. Vast, cold, quiet.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "frost-spine"
+    ],
+    "7-players": [
+     "frost-spine"
+    ],
+    "8-players": [
+     "frost-spine"
+    ]
+   },
+   "file": "frost-spine.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/felt-yard.webp",
+   "sha256": "8f5025e03d49fa8ffc06343dedd6888c375bcffdf8a3d6a1084d44a267b36ea3",
+   "originalSha256": "1798147c69b632a6b6f0459f3535b4c744e078b96fb733fd403c14e27b6cb857",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as felt-yard.png in the current directory.\nLandscape scene, 3:2. A northern roadside village on a grey winter morning: long open sheds for sledges, big wooden scales with iron weights for bales and sacks, a large iron communal pot steaming over a fire in the trodden yard, felt-roofed log houses, bales of wool under snow, mules in a pen, four loaded sledges under pale felt tents waiting to set out. Busy, practical, late.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "felt-yard"
+    ],
+    "7-players": [
+     "felt-yard"
+    ],
+    "8-players": [
+     "felt-yard"
+    ]
+   },
+   "file": "felt-yard.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/cedar-edge.webp",
+   "sha256": "5d07b3be986cb1de73b8652c3184c64f3039f21ad800ea52aa9b5eb775c73c0f",
+   "originalSha256": "929e84e79829adb06a6cdeaab631522076123387d08f672a629ba985a6423ee4",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as cedar-edge.png in the current directory.\nLandscape scene, 3:2. A wide clearing under huge old cedars at the foot of the first climb, in a lull of the blizzard: the broad dark cedars hold back the wind, dry brushwood lies heaped under their low branches, a small log hut of a forest warden with a smoking chimney and snowshoes leaning by the door, the sledge road climbing away into whirling white. Shelter at the edge of the storm.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "cedar-edge"
+    ],
+    "7-players": [
+     "cedar-edge"
+    ],
+    "8-players": [
+     "cedar-edge"
+    ]
+   },
+   "file": "cedar-edge.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/smoke-junction.webp",
+   "sha256": "a119ba03d748e4655eaf280ce00a75cbda31e681569354117ba1c08daf69f83f",
+   "originalSha256": "b5e4155f09361bbf791ecd9b0791c1ce89af701251721f7986cd27c3186b6a67",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as smoke-junction.png in the current directory.\nLandscape scene, 3:2. A tiny crossing on a mountain river in winter: three log houses, a barn and an open shed on the south bank beside a stone ford, the river frozen over from bank to bank with dark water murmuring under thin ice along the north bank, firewood stacked high under the eaves, chimney smoke drifting low across the ice. Late afternoon, cold blue light and one warm window.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "smoke-junction"
+    ],
+    "7-players": [
+     "smoke-junction"
+    ],
+    "8-players": [
+     "smoke-junction"
+    ]
+   },
+   "file": "smoke-junction.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/slate-shelf.webp",
+   "sha256": "8db19dd9fcacad4a0d217ba6ac0f23faa58b61bd781ee93da9e6beb852c64036",
+   "originalSha256": "e08c925662d8467fd82798ac6dc2813c0bad0051fd5e5150f6b2dffcf94c71cf",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as slate-shelf.png in the current directory.\nLandscape scene, 3:2. A narrow mountain road pressed against a sheer rock wall, a thick overhang of snow hanging along the top of the rock like a felt awning, a steep drop below into blue shadow; small flat ledges by the cliff and a sheltering stone overhang where travellers could spend a night. Bright midday sun, glittering snow, held breath.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "slate-shelf"
+    ],
+    "7-players": [
+     "slate-shelf"
+    ],
+    "8-players": [
+     "slate-shelf"
+    ]
+   },
+   "file": "slate-shelf.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/three-basins.webp",
+   "sha256": "965463f7c86ca31bc0057db80e77ae173d617818f340690a7f159a2fa7d723bd",
+   "originalSha256": "c5b4c734c32298a8e4f50b334712ba3b14c81c100948ee6390fffd75f8242c3d",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as three-basins.png in the current directory.\nLandscape scene, 3:2. Three high mountain basins stepped one above another in winter: the lowest with a stream running dark between snowbanks, the middle one holding a frozen lake swept clean by the wind, the highest beneath a great humped back of bare stone; rocky ridges between them and a faint wardens' trail leading to a stone cairn. Clear, still, very cold air.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "three-basins"
+    ],
+    "7-players": [
+     "three-basins"
+    ],
+    "8-players": [
+     "three-basins"
+    ]
+   },
+   "file": "three-basins.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/wool-wall.webp",
+   "sha256": "8cc86e7fae6f2afd8e4720b4da54b024b0f9d8c00ca1ee4fe18f0c2e7d3f51ed",
+   "originalSha256": "350fa19f74a1f87d7c9bdc25d80981393da50a6b69395fa3418e5f9c26f8b49a",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as wool-wall.png in the current directory.\nLandscape scene, 3:2. A low log winter lodge half buried in snow: an animal pen, a woodpile drifted over up to the roof, warm smoke from the chimney of a big stove, and through the open door felt hangings covered in simple drawings of sledges and mules left by earlier guests; a row of small notches cut into the doorframe. High above, beyond the lodge, a broad white snow chute lies under a jagged ridge. Midday, warm smoke against the cold.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "wool-wall"
+    ],
+    "7-players": [
+     "wool-wall"
+    ],
+    "8-players": [
+     "wool-wall"
+    ]
+   },
+   "file": "wool-wall.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/last-ledge.webp",
+   "sha256": "01cf204b3a3e5e4834f456a202bb90359aa4707e06499e1cf3b98a2feddf8be4",
+   "originalSha256": "135fc1f6abe277ee5810b3036344bac5c33ba95ef070a8f6f44d252d4e5f6b3b",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as last-ledge.png in the current directory.\nLandscape scene, 3:2. A flat stone terrace high on the mountain at dawn, the last camp before the pass: frost-covered rock, a trail climbing up from far below, and above it a wide slope of broken stone and snow rising toward the high saddle; almost no wind, one small campfire glowing on the terrace, long blue shadows. Exposed, quiet, the last level ground.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "last-ledge"
+    ],
+    "7-players": [
+     "last-ledge"
+    ],
+    "8-players": [
+     "last-ledge"
+    ]
+   },
+   "file": "last-ledge.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/white-night-pass.webp",
+   "sha256": "9a6e972dd2fa50d788989d4afd94772384ef50e720fddb12841ee53ac0e0d771",
+   "originalSha256": "391ca45b7c4405f88a630e64101a47b597da3f83c08b18db81f8c055da4223c7",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as white-night-pass.png in the current directory.\nLandscape scene, 3:2. The high pass in hard morning light: a wide slope of broken stone leading into a broad white snow chute beneath a heavy overhanging snow cornice on the eastern ridge; across the chute, facing the cornice, a dark rocky spur; at the top of the chute two stone shoulders form a narrow gate to the saddle, and beyond it a southern slope falls toward the first dark firs. Far up on the eastern ridge, small against the pale sky, the silhouette of a huge white wolf walks along the crest. Immense, silent, dangerous.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "white-night-pass"
+    ],
+    "7-players": [
+     "white-night-pass"
+    ],
+    "8-players": [
+     "white-night-pass"
+    ]
+   },
+   "file": "white-night-pass.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/south-hollow.webp",
+   "sha256": "66e03ae46946b51e42bf0bda6239a1ad1d04e3aaecd3012879e6e254ac586ee2",
+   "originalSha256": "8a924bc7a589db5f8db220dc46a3564395c5b1d452bbbae081ce961bdae6655f",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as south-hollow.png in the current directory.\nLandscape scene, 3:2. Small farmsteads in a sheltered valley around a spring that never freezes, steam rising from open dark water among the snow; at the foot of the slope, beside the first dark firs, a tall signal fire burns on a stone hearth; a big barn stands with its doors open and empty inside. Dusk, deep blue snow, amber firelight, waiting.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "south-hollow"
+    ],
+    "7-players": [
+     "south-hollow"
+    ],
+    "8-players": [
+     "south-hollow"
+    ]
+   },
+   "file": "south-hollow.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/radan-seam.webp",
+   "sha256": "22eeaa531d1679a3652ab4e1c1854132f051697cf7f439ba328bdcde05b2b257",
+   "originalSha256": "7709106c83edfeb92ed7d2b2f7a5f2f09340a2bb26847ce3447e881181a3abe5",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as radan-seam.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Ostap Shov, a 34-year-old man, master of harness, ropes and rope-lines of the caravan, a fighter: a short grey streak in his dark hair, mittens on a cord, a neatly patched blue sheepskin coat, a coil of hemp rope with knots every few paces slung over his shoulder; steady, protective, already looking for whoever is missing. Behind him, sledges circling in a blizzard.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "6-players": [
+     "radan-seam"
+    ],
+    "7-players": [
+     "radan-seam"
+    ],
+    "8-players": [
+     "radan-seam"
+    ]
+   },
+   "file": "radan-seam.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/keya-larch.webp",
+   "sha256": "5dcf4c380469370f02ab6856c7722964f02e9900dd43141188d62b82fbb79463",
+   "originalSha256": "3c7570a1bcca306343163ec63314d6fda865b77ce8c96029ea179f6512a90286",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as keya-larch.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Keya Listvennitsa, a 27-year-old woman, the caravan's tracker, a rogue: a dark braid tucked under a flat cap, an elbow-long wooden measuring rod with notches at her belt, a small larch tree burned into its end; sharp, watchful eyes turned to the snow. Behind her, a dawn snowfield crossed by lines of animal tracks.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "6-players": [
+     "keya-larch"
+    ],
+    "7-players": [
+     "keya-larch"
+    ],
+    "8-players": [
+     "keya-larch"
+    ]
+   },
+   "file": "keya-larch.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/olma-pack.webp",
+   "sha256": "9aa25c5bb15e9be7221b6de37f6eb7a3199b254ca73ed04b0b61c0df163e2abf",
+   "originalSha256": "d617645b2309f9fc74c57378a1df5843797c311d5367b52b3e028c36f05678b2",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as olma-pack.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Olma Vyuk, a 42-year-old woman, a cleric and keeper of the common pot and the rations: a wide wool scarf, a polished copper spoon on a chain at her chest; calm, low-voiced, honest even when nobody wants to hear it. Behind her, a steaming pot over a small evening fire and wooden bowls held out in the dusk.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "6-players": [
+     "olma-pack"
+    ],
+    "7-players": [
+     "olma-pack"
+    ],
+    "8-players": [
+     "olma-pack"
+    ]
+   },
+   "file": "olma-pack.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/sevar-pole.webp",
+   "sha256": "90a074a4928540973d375f2b900bf5bb149bb54317ba3a9481259b704d964585",
+   "originalSha256": "704aa55f6c0471245ec9b08a3f5db02765ee85721e6127a73e7fb575d0312ba5",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as sevar-pole.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Sevar Shest, a 25-year-old man, a wizard who keeps the route sketch: round spectacles, a notebook in a leather case with a pencil, identical neat knots on all the ties of his clothes; earnest and exact. Behind him, a sledge camp at dusk with tents of pale felt.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "6-players": [
+     "sevar-pole"
+    ],
+    "7-players": [
+     "sevar-pole"
+    ],
+    "8-players": [
+     "sevar-pole"
+    ]
+   },
+   "file": "sevar-pole.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/tirna-hearth.webp",
+   "sha256": "149545bb29b14b8a165824e821b2795189a00499c4f375eb2f76ec263fbc7eed",
+   "originalSha256": "6ad3ef9f9a87a18c132cddd8abd92309cb894e16ca8f885f3e24e2914bc08262",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as tirna-hearth.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Tirna Ochag, a 31-year-old woman, driver of the caravan's six mules, a fighter: short-cropped chestnut hair, a bright orange patch on her collar, a short curved knife in a wooden sheath at her belt, one hand resting on the neck of a frost-rimed mule; fierce, tender with animals. Behind her, mules in harness breathing steam.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "6-players": [
+     "tirna-hearth"
+    ],
+    "7-players": [
+     "tirna-hearth"
+    ],
+    "8-players": [
+     "tirna-hearth"
+    ]
+   },
+   "file": "tirna-hearth.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/levrin-slope.webp",
+   "sha256": "1da4f03b108cd829f3b001cc6c710584b1436cbec1c6db6ba851b4829f973a7f",
+   "originalSha256": "c0b78141a527b97e99b545cff0bf0b0aaac968a377355e3946b5fc26396375a3",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as levrin-slope.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Levrin Otkos, a 29-year-old man, a rogue, trader and negotiator of the caravan: a patchwork waistcoat under a warm jacket, a pea-sized earring, a cord of twenty carved buttons of bone and wood and one of copper around his wrist; an easy, knowing smile. Behind him, a lamplit log room with wool bales and sacks.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "6-players": [
+     "levrin-slope"
+    ],
+    "7-players": [
+     "levrin-slope"
+    ],
+    "8-players": [
+     "levrin-slope"
+    ]
+   },
+   "file": "levrin-slope.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/eyra-beam.webp",
+   "sha256": "fa1e3cc992e719e97e8eec1e7a1e15b088986d38b84efb916be87d6f8d53486f",
+   "originalSha256": "e4538d14c54940bea43712432c8d9bb30f5cbbde679f32032d81b51ea45b523f",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as eyra-beam.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Eyra Brus, a 38-year-old woman, a cleric who helps tired travellers: a bleached canvas travel bag, a dark green cap, sitting down close beside someone so as to listen; warm, patient, steady. Behind her, a small campfire in the lee of a sledge and a weary traveller wrapped in felt.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "6-players": [],
+    "7-players": [
+     "eyra-beam"
+    ],
+    "8-players": [
+     "eyra-beam"
+    ]
+   },
+   "file": "eyra-beam.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/yust-edge.webp",
+   "sha256": "e1d702e744b36943b8fc43a2142279497df3aefe05caa8bd78525353bf89a44e",
+   "originalSha256": "2d3817e2850d6593ba1ff8af721db8066e436533f52021e28362cc1eb81b554a",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as yust-edge.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Yust Gran, a 46-year-old man, a wizard, teacher of practical magic and a sceptic: long eyebrows white with frost, a worn travelling cloak, a wooden mug covered in small painted pictures in his hands; dry, doubtful and kind. Behind him, a snowy slope and a line of sledges climbing.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "6-players": [],
+    "7-players": [],
+    "8-players": [
+     "yust-edge"
+    ]
+   },
+   "file": "yust-edge.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/bresha-kalt.webp",
+   "sha256": "0a3d6f4f5588238f9a815ae5719702663ffb0e036f10f18eff464f8ee44db3e3",
+   "originalSha256": "4c7d7ae384ffc47ad736c75c891e9fdc55adb2105c5bcf7773e7a895dc554a83",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as bresha-kalt.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Bresha Kalt, a 51-year-old woman, master of the caravan: big and solid, a white stripe on her sleeve, a stick of chalk in her fingers, a blank chalk mark on the crate beside her; burdened, determined, carrying the load and the people. Behind her, loaded sledges under pale felt tents in a village yard.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "6-players": [
+     "bresha-kalt"
+    ],
+    "7-players": [
+     "bresha-kalt"
+    ],
+    "8-players": [
+     "bresha-kalt"
+    ]
+   },
+   "file": "bresha-kalt.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/tarma-bor.webp",
+   "sha256": "98fea48a1544c49383bafef798c119e2b9634039069dee4cef97f413942cb1df",
+   "originalSha256": "eda147308923e44c6e568d8257d0062a79d0be6c735e4868043d4cd7a682b87d",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as tarma-bor.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Tarma Vyaz, a 44-year-old woman, a master of sledge runners: grey temples, a leather apron over her sheepskin coat, one hand on a long curved wooden runner she bent herself; a short laugh like a cough, practical and proud. Behind her, a new sledge under a felt tent.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "tarma-bor"
+    ],
+    "7-players": [
+     "tarma-bor"
+    ],
+    "8-players": [
+     "tarma-bor"
+    ]
+   },
+   "file": "tarma-bor.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/selda-nest.webp",
+   "sha256": "bfb950ee1485551aede48a26169f494e86de29f03f2e038588cc32e1873c8970",
+   "originalSha256": "4a6dc3e25030caf5baecaede3ba1148ea6eac4678e4827b39387587c952428d7",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as selda-nest.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Selda Nest, a 36-year-old woman, cook of the caravan: a red headscarf, a sooty small pot at her belt, several wooden spoons of different lengths; brisk and warm, quietly thinner than she should be. Behind her, a kitchen sledge with a big copper cauldron and sacks.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "selda-nest"
+    ],
+    "7-players": [
+     "selda-nest"
+    ],
+    "8-players": [
+     "selda-nest"
+    ]
+   },
+   "file": "selda-nest.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/kheret-vall.webp",
+   "sha256": "3053b3ad9d9c163c1d643706969daf4a86332e2aa922ef0a67b213a400417dc2",
+   "originalSha256": "cd119d74dc7ed659f297df1d500584edb86ea07c12a7fb596d1d2c0632454f93",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as kheret-vall.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Kheret Vall, a 58-year-old man, forest warden and hired guide: tall, a short beard rimmed with frost, a travelling pole in a red cloth case; separates what he has seen from what he thinks, weathered and reserved. Behind him, old cedars and a small log hut.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "cover.png"
+   ],
+   "subjects": {
+    "6-players": [
+     "kheret-vall"
+    ],
+    "7-players": [
+     "kheret-vall"
+    ],
+    "8-players": [
+     "kheret-vall"
+    ]
+   },
+   "file": "kheret-vall.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/oshven-il.webp",
+   "sha256": "8f5e64ad3d6125c5432438da087789c3da691d9bcfe71c563be1c1aff169e543",
+   "originalSha256": "4f7758440dcc1b2e62cb866f7fdc48a769c63134039bb180925efb286771f343",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as oshven-il.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Oshven Il, a 47-year-old man, keeper of a river crossing: a round face, a black fur hat, a book of bound birch bark tucked inside his coat; hospitable but with eyes that slide away. Behind him, a barn and stacked firewood on a frozen river bank.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "oshven-il"
+    ],
+    "7-players": [
+     "oshven-il"
+    ],
+    "8-players": [
+     "oshven-il"
+    ]
+   },
+   "file": "oshven-il.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/malken-rusk.webp",
+   "sha256": "dc705bb412d33e63c11109d5a5953203a5868e3548acfc049530cb8ff7f1ef3d",
+   "originalSha256": "1a6e386773b59ae2c457ddfe75186acb1e6c7c7f57a5f3c40504a957689e6ba6",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as malken-rusk.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Malken Rusk, a 24-year-old man, a runner with a light sled: a narrow face, long eyelashes white with frost, a wool sash tied at his side, the harness straps of a small sled over his shoulder; restless and quietly frightened. Behind him, river ice and a snowy road climbing south.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "malken-rusk"
+    ],
+    "7-players": [
+     "malken-rusk"
+    ],
+    "8-players": [
+     "malken-rusk"
+    ]
+   },
+   "file": "malken-rusk.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/yavra-kest.webp",
+   "sha256": "159bbb6657d016ce3abecef835b031a20024a901216d28ebf2429a6d3a717037",
+   "originalSha256": "a7cc28d99aaf87a39bb146ef37ff3ff8d18320725bf0ab6a377b4133d9904852",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as yavra-kest.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Yavra Kest, a 63-year-old woman, keeper of a winter lodge: broad shoulders, silver eyebrows, an apron with a pocket full of birch-bark notes, a small knife and a strip of bark in her hands; grave, unhurried, used to not being believed. Behind her, the warm interior of a log lodge with a big stove and felt hangings.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "yavra-kest"
+    ],
+    "7-players": [
+     "yavra-kest"
+    ],
+    "8-players": [
+     "yavra-kest"
+    ]
+   },
+   "file": "yavra-kest.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/alda-shorn.webp",
+   "sha256": "61b62c329a81ed6ff134de330837b6eb30ec7df4ce9c5950ddd53e1de3b53bd5",
+   "originalSha256": "a19f45aab9f54293c0a0bb7ff974cd966827a13e7509776135b4afca671d6636",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as alda-shorn.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Alda Shorn, a 40-year-old woman, receiver of winter cargo for a valley settlement: a dark felt waistcoat, cheeks red from the wind, a bunch of plain iron barn keys at her belt; practical and kind, counting people before anything else. Behind her, a signal fire burning at the edge of dark firs at dusk.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "alda-shorn"
+    ],
+    "7-players": [
+     "alda-shorn"
+    ],
+    "8-players": [
+     "alda-shorn"
+    ]
+   },
+   "file": "alda-shorn.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/vavila-ukhab.webp",
+   "sha256": "ab3f3e9ce94cadabb67ebd0d9bd9d95cbc1702135925740aeeaa87169ff97cad",
+   "originalSha256": "e9bbc9314ec3d93053128b0b121dc3d80a4aae5c0f860c539ecf75904defa302",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as vavila-ukhab.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Vavila Ukhab, a 52-year-old man, a sledge driver: stocky, a sheepskin coat belted with old reins, a moustache white with frost, a kerchief at his neck; jokes easily and stubbornly. Behind him, a kitchen sledge and a patient mule.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "vavila-ukhab"
+    ],
+    "7-players": [
+     "vavila-ukhab"
+    ],
+    "8-players": [
+     "vavila-ukhab"
+    ]
+   },
+   "file": "vavila-ukhab.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/glafira-lyamka.webp",
+   "sha256": "dbc19b46859c6f9bc658d6a962db082e349b454ee7fb8f7971716f76ea8c6240",
+   "originalSha256": "8c20b76a501a267bd777057d536e85595700006e11c8420d555ef556d172a4d5",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as glafira-lyamka.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Glafira Lyamka, a 33-year-old woman, a hired sledge driver: thin, a long felt cloak, a small bell on her mitten; tense, honest, thinking of home. Behind her, a grey mule and a sledge loaded with wool bales on a snowy road.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "glafira-lyamka"
+    ],
+    "7-players": [
+     "glafira-lyamka"
+    ],
+    "8-players": [
+     "glafira-lyamka"
+    ]
+   },
+   "file": "glafira-lyamka.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/rope-coil.webp",
+   "sha256": "78d86a889eacb5ad9bc058216f16312d371908832cf49c6d99470521d50d8464",
+   "originalSha256": "ba537f3ca6bc61b9d57ddd88d29bdfe390ccac64d7d829300aef55ecd93216e3",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as rope-coil.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A coil of thick hemp rope about forty paces long, with a knot tied every few paces and a leather loop at one end, hoarfrost on its fibres.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "rope-coil"
+    ],
+    "7-players": [
+     "rope-coil"
+    ],
+    "8-players": [
+     "rope-coil"
+    ]
+   },
+   "file": "rope-coil.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/marking-rod.webp",
+   "sha256": "84a780a0a9f185ff3128fb9c3a93597442e4ffee4eace4d1ec5f8c256cd90ec6",
+   "originalSha256": "d3a16c79f2078ea5d0519e97377485ebc527d9253a76ff3b60eee737c77ea451",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as marking-rod.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. An elbow-long wooden measuring rod with plain notches cut along one edge for paw width, stride and snow depth, a small larch tree burned into its end; no numbers.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "marking-rod"
+    ],
+    "7-players": [
+     "marking-rod"
+    ],
+    "8-players": [
+     "marking-rod"
+    ]
+   },
+   "file": "marking-rod.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/ration-spoon.webp",
+   "sha256": "c607c50c3e36bc23e4e3b32b2eb5a49c9cc70bcc448e829e4a8824ce12e42408",
+   "originalSha256": "6c697a4be191a26fe3fbf1c072701728de54b0652b64f5fa69d2603cc47805ae",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as ration-spoon.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A copper ladle-spoon polished to a bright shine, hanging from a fine chain.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "ration-spoon"
+    ],
+    "7-players": [
+     "ration-spoon"
+    ],
+    "8-players": [
+     "ration-spoon"
+    ]
+   },
+   "file": "ration-spoon.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/route-notebook.webp",
+   "sha256": "a40ec84210f1bc35459721375ff37ff5240479d3be68742e4c9b86c7093a7707",
+   "originalSha256": "d6f8821e713dfbb345b23556e4bb9874536e9d16e60481f280edc3f88b7f080a",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as route-notebook.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A notebook in a worn leather case lying open: a sketch of a mountain route with lines and small camp marks, careful drawings of paw prints, and little drawings of mules in the margins; all writing rendered as illegible marks.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "route-notebook"
+    ],
+    "7-players": [
+     "route-notebook"
+    ],
+    "8-players": [
+     "route-notebook"
+    ]
+   },
+   "file": "route-notebook.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/trace-knife.webp",
+   "sha256": "15c8e7cfafc636cc24370e3d3e55bd1b61c634dfdcee95efb6f1cad4ec1d7989",
+   "originalSha256": "9c7731d1a33a045f4bc9694c60bd7c5283f2bdf8caada6c905e1d97c254642af",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as trace-knife.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A short curved knife in a simple wooden sheath, the worn handle showing, lying on its side.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "trace-knife"
+    ],
+    "7-players": [
+     "trace-knife"
+    ],
+    "8-players": [
+     "trace-knife"
+    ]
+   },
+   "file": "trace-knife.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/button-tally.webp",
+   "sha256": "819767db044e7499d28c22d7e5419f81cfc48f4d8402412132112882d899a2cd",
+   "originalSha256": "d94be008d4cd9afe71c490259577c049a56920917162883be73c454d26802d83",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as button-tally.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A cord threaded with twenty carved buttons, most of bone and wood and one of copper, tied in a loop.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "button-tally"
+    ],
+    "7-players": [
+     "button-tally"
+    ],
+    "8-players": [
+     "button-tally"
+    ]
+   },
+   "file": "button-tally.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/oshven-horn.webp",
+   "sha256": "25b78bb42ddb4c9ee2a87bff58e43238c5a8cc4a8442104eeb548975f36937f5",
+   "originalSha256": "c62d386d020cb8512cf5fbd0b8ed4a9b8020345eaddc95417a93d51170103ed4",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as oshven-horn.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A cow horn signal horn in a copper mount on a leather strap, the mouthpiece worn smooth by use.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "oshven-horn"
+    ],
+    "7-players": [
+     "oshven-horn"
+    ],
+    "8-players": [
+     "oshven-horn"
+    ]
+   },
+   "file": "oshven-horn.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/malken-sled.webp",
+   "sha256": "ab2c7b8c7622478efbedfd7f47018739e0d95e7a2ff8c50767ca76b5eb64eefc",
+   "originalSha256": "c749a220d7a7eea35791600b1e876db46a842aba432513929519bdee6892f03b",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as malken-sled.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A light narrow sled on wide runners shod with birch, a felt pad on its deck and harness straps for two people; a small carved notch pattern on the front.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "malken-sled"
+    ],
+    "7-players": [
+     "malken-sled"
+    ],
+    "8-players": [
+     "malken-sled"
+    ]
+   },
+   "file": "malken-sled.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/kitchen-cauldron.webp",
+   "sha256": "e1bf6aaf981f79e7ca315f7ef558f4759cb139e5ed8d35eeca465dea24377630",
+   "originalSha256": "7c876efe7171fb54705a670bf259352960ca547d3ba81122ab24d945cc2636a9",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as kitchen-cauldron.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A large copper cauldron with a sooty blackened bottom and two lugs for a carrying pole, scrubbed bright inside.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "kitchen-cauldron"
+    ],
+    "7-players": [
+     "kitchen-cauldron"
+    ],
+    "8-players": [
+     "kitchen-cauldron"
+    ]
+   },
+   "file": "kitchen-cauldron.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/yavra-torches.webp",
+   "sha256": "9ae9675f38cb4a42f115608b5116b7842c13107bc6146124245844d494c798d3",
+   "originalSha256": "5170a4961a998581e8d037f3ab8e8fb89af67bac967d88181c8d0a8cefb7fd86",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as yavra-torches.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. Two unlit pitch torches on birch handles, their heads wrapped in tarred tow, lying crossed.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "yavra-torches"
+    ],
+    "7-players": [
+     "yavra-torches"
+    ],
+    "8-players": [
+     "yavra-torches"
+    ]
+   },
+   "file": "yavra-torches.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/token-wolf.webp",
+   "sha256": "cad660c44e990dd4f88bc966b1817837bfe6dafde90c7d2ae71d8536d5e21e14",
+   "originalSha256": "2deeb442aaea270e315ada346868dbdcc6d19f7e98f74a4e7acca495a45b2a7d",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as token-wolf.png in the current directory.\nGame token figure, square 1:1, on a fully transparent background, top three-quarter view, no ground shadow. A lean grey mountain wolf with hoarfrost on its scruff, head low and tail low, trotting past with its eyes on something beyond the viewer; wary, hungry, not snarling.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "pack-on-the-ford-foe-1",
+     "pack-on-the-ford-foe-2",
+     "pack-on-the-ford-foe-3",
+     "pack-on-the-ford-foe-4",
+     "pack-on-the-ford-foe-5",
+     "pack-on-the-ford-foe-6",
+     "strange-burrow-foe-3",
+     "strange-burrow-foe-4",
+     "strange-burrow-foe-5",
+     "fire-on-the-tarn-foe-1",
+     "fire-on-the-tarn-foe-2",
+     "fire-on-the-tarn-foe-3",
+     "fire-on-the-tarn-foe-4",
+     "fire-on-the-tarn-foe-5",
+     "white-at-the-ledge-foe-1",
+     "white-at-the-ledge-foe-2",
+     "white-at-the-ledge-foe-3"
+    ],
+    "7-players": [
+     "pack-on-the-ford-foe-1",
+     "pack-on-the-ford-foe-2",
+     "pack-on-the-ford-foe-3",
+     "pack-on-the-ford-foe-4",
+     "pack-on-the-ford-foe-5",
+     "pack-on-the-ford-foe-6",
+     "pack-on-the-ford-foe-7",
+     "strange-burrow-foe-3",
+     "strange-burrow-foe-4",
+     "strange-burrow-foe-5",
+     "strange-burrow-foe-6",
+     "fire-on-the-tarn-foe-1",
+     "fire-on-the-tarn-foe-2",
+     "fire-on-the-tarn-foe-3",
+     "fire-on-the-tarn-foe-4",
+     "fire-on-the-tarn-foe-5",
+     "white-at-the-ledge-foe-1",
+     "white-at-the-ledge-foe-2",
+     "white-at-the-ledge-foe-3",
+     "white-at-the-ledge-foe-4"
+    ],
+    "8-players": [
+     "pack-on-the-ford-foe-1",
+     "pack-on-the-ford-foe-2",
+     "pack-on-the-ford-foe-3",
+     "pack-on-the-ford-foe-4",
+     "pack-on-the-ford-foe-5",
+     "pack-on-the-ford-foe-6",
+     "pack-on-the-ford-foe-7",
+     "pack-on-the-ford-foe-8",
+     "strange-burrow-foe-3",
+     "strange-burrow-foe-4",
+     "strange-burrow-foe-5",
+     "strange-burrow-foe-6",
+     "fire-on-the-tarn-foe-1",
+     "fire-on-the-tarn-foe-2",
+     "fire-on-the-tarn-foe-3",
+     "fire-on-the-tarn-foe-4",
+     "fire-on-the-tarn-foe-5",
+     "fire-on-the-tarn-foe-6",
+     "white-at-the-ledge-foe-1",
+     "white-at-the-ledge-foe-2",
+     "white-at-the-ledge-foe-3",
+     "white-at-the-ledge-foe-4"
+    ]
+   },
+   "file": "token-wolf.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/token-wolf.webp",
+   "sha256": "cad660c44e990dd4f88bc966b1817837bfe6dafde90c7d2ae71d8536d5e21e14",
+   "originalSha256": "2deeb442aaea270e315ada346868dbdcc6d19f7e98f74a4e7acca495a45b2a7d",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as token-wolf.png in the current directory.\nGame token figure, square 1:1, on a fully transparent background, top three-quarter view, no ground shadow. A lean grey mountain wolf with hoarfrost on its scruff, head low and tail low, trotting past with its eyes on something beyond the viewer; wary, hungry, not snarling.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "pack-on-the-ford-foe-1",
+     "pack-on-the-ford-foe-2",
+     "pack-on-the-ford-foe-3",
+     "pack-on-the-ford-foe-4",
+     "pack-on-the-ford-foe-5",
+     "pack-on-the-ford-foe-6",
+     "strange-burrow-foe-3",
+     "strange-burrow-foe-4",
+     "strange-burrow-foe-5",
+     "fire-on-the-tarn-foe-1",
+     "fire-on-the-tarn-foe-2",
+     "fire-on-the-tarn-foe-3",
+     "fire-on-the-tarn-foe-4",
+     "fire-on-the-tarn-foe-5",
+     "white-at-the-ledge-foe-1",
+     "white-at-the-ledge-foe-2",
+     "white-at-the-ledge-foe-3"
+    ],
+    "7-players": [
+     "pack-on-the-ford-foe-1",
+     "pack-on-the-ford-foe-2",
+     "pack-on-the-ford-foe-3",
+     "pack-on-the-ford-foe-4",
+     "pack-on-the-ford-foe-5",
+     "pack-on-the-ford-foe-6",
+     "pack-on-the-ford-foe-7",
+     "strange-burrow-foe-3",
+     "strange-burrow-foe-4",
+     "strange-burrow-foe-5",
+     "strange-burrow-foe-6",
+     "fire-on-the-tarn-foe-1",
+     "fire-on-the-tarn-foe-2",
+     "fire-on-the-tarn-foe-3",
+     "fire-on-the-tarn-foe-4",
+     "fire-on-the-tarn-foe-5",
+     "white-at-the-ledge-foe-1",
+     "white-at-the-ledge-foe-2",
+     "white-at-the-ledge-foe-3",
+     "white-at-the-ledge-foe-4"
+    ],
+    "8-players": [
+     "pack-on-the-ford-foe-1",
+     "pack-on-the-ford-foe-2",
+     "pack-on-the-ford-foe-3",
+     "pack-on-the-ford-foe-4",
+     "pack-on-the-ford-foe-5",
+     "pack-on-the-ford-foe-6",
+     "pack-on-the-ford-foe-7",
+     "pack-on-the-ford-foe-8",
+     "strange-burrow-foe-3",
+     "strange-burrow-foe-4",
+     "strange-burrow-foe-5",
+     "strange-burrow-foe-6",
+     "fire-on-the-tarn-foe-1",
+     "fire-on-the-tarn-foe-2",
+     "fire-on-the-tarn-foe-3",
+     "fire-on-the-tarn-foe-4",
+     "fire-on-the-tarn-foe-5",
+     "fire-on-the-tarn-foe-6",
+     "white-at-the-ledge-foe-1",
+     "white-at-the-ledge-foe-2",
+     "white-at-the-ledge-foe-3",
+     "white-at-the-ledge-foe-4"
+    ]
+   },
+   "file": "token-wolf--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "token-wolf.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/token-dire-wolf.webp",
+   "sha256": "3d364da24c52db84cea84598ac5e949fb62fd38f03455f53d32a51bc79f5753b",
+   "originalSha256": "1f4efcb6ba49e7aca489bddf14f37668d6e013ea45da40a3cebb4a88d6c3114c",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as token-dire-wolf.png in the current directory.\nGame token figure, square 1:1, on a fully transparent background, top three-quarter view, no ground shadow. A large grizzled grey wolf, a pack leader, broad chest white with frost, an old notch in one ear, standing square and steady with a level stare; formidable, protective of the young behind it.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "strange-burrow-foe-1",
+     "strange-burrow-foe-2"
+    ],
+    "7-players": [
+     "strange-burrow-foe-1",
+     "strange-burrow-foe-2"
+    ],
+    "8-players": [
+     "strange-burrow-foe-1",
+     "strange-burrow-foe-2"
+    ]
+   },
+   "file": "token-dire-wolf.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/token-dire-wolf.webp",
+   "sha256": "3d364da24c52db84cea84598ac5e949fb62fd38f03455f53d32a51bc79f5753b",
+   "originalSha256": "1f4efcb6ba49e7aca489bddf14f37668d6e013ea45da40a3cebb4a88d6c3114c",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as token-dire-wolf.png in the current directory.\nGame token figure, square 1:1, on a fully transparent background, top three-quarter view, no ground shadow. A large grizzled grey wolf, a pack leader, broad chest white with frost, an old notch in one ear, standing square and steady with a level stare; formidable, protective of the young behind it.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "strange-burrow-foe-1",
+     "strange-burrow-foe-2"
+    ],
+    "7-players": [
+     "strange-burrow-foe-1",
+     "strange-burrow-foe-2"
+    ],
+    "8-players": [
+     "strange-burrow-foe-1",
+     "strange-burrow-foe-2"
+    ]
+   },
+   "file": "token-dire-wolf--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "token-dire-wolf.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/token-winter-wolf.webp",
+   "sha256": "fa3a2533c31baf5d220a874102db480c943a3b6df1c229b7e9f51f1b6fea798b",
+   "originalSha256": "a7557a6c21f29a608f8d40af7f477e4d22eb4b3a406fbb757df6e0e9789e9bcf",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as token-winter-wolf.png in the current directory.\nGame token figure, square 1:1, on a fully transparent background, top three-quarter view, no ground shadow. A huge old white she-wolf the size of a pony, white as crusted snow, pale blue eyes, walking low and deliberate with her mouth closed; a thin crust of ice forms on the snow around her paws. Silent, patient, ancient.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "white-at-the-ledge-boss"
+    ],
+    "7-players": [
+     "white-at-the-ledge-boss"
+    ],
+    "8-players": [
+     "white-at-the-ledge-boss"
+    ]
+   },
+   "file": "token-winter-wolf.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/token-winter-wolf.webp",
+   "sha256": "fa3a2533c31baf5d220a874102db480c943a3b6df1c229b7e9f51f1b6fea798b",
+   "originalSha256": "a7557a6c21f29a608f8d40af7f477e4d22eb4b3a406fbb757df6e0e9789e9bcf",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as token-winter-wolf.png in the current directory.\nGame token figure, square 1:1, on a fully transparent background, top three-quarter view, no ground shadow. A huge old white she-wolf the size of a pony, white as crusted snow, pale blue eyes, walking low and deliberate with her mouth closed; a thin crust of ice forms on the snow around her paws. Silent, patient, ancient.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "white-at-the-ledge-boss"
+    ],
+    "7-players": [
+     "white-at-the-ledge-boss"
+    ],
+    "8-players": [
+     "white-at-the-ledge-boss"
+    ]
+   },
+   "file": "token-winter-wolf--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "token-winter-wolf.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/radan-seam--figure.webp",
+   "sha256": "d7d87ca033b8a5f36c272a2025059b9c2bfb21382faaca1b43c34a4a457a2e22",
+   "originalSha256": "ff35355ec053ea67cf8ac770a2afe1684017fb2b00a1f34024e26c5734ef6d16",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image with the built-in image_gen tool and save it as radan-seam--figure.png in the current directory. The attached image is the approved portrait of Ostap Shov.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Ostap Shov, a 34-year-old man, master of harness, ropes and rope-lines of the caravan, a fighter: a short grey streak in his dark hair, mittens on a cord, a neatly patched blue sheepskin coat, a coil of hemp rope with knots every few paces slung over his shoulder; steady, protective, already looking for whoever is missing. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "radan-seam.png"
+   ],
+   "subjects": {
+    "6-players": [
+     "radan-seam"
+    ],
+    "7-players": [
+     "radan-seam"
+    ],
+    "8-players": [
+     "radan-seam"
+    ]
+   },
+   "file": "radan-seam--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "radan-seam.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/keya-larch--figure.webp",
+   "sha256": "bd11356d1d691f02ed03312094ac92109c4f27c5b6602465e0a4f4455adce853",
+   "originalSha256": "bbc008b92951a5959b0881e99b80be117f697e48432ff965ed4c03a868e602be",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image with the built-in image_gen tool and save it as keya-larch--figure.png in the current directory. The attached image is the approved portrait of Keya Listvennitsa.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Keya Listvennitsa, a 27-year-old woman, the caravan's tracker, a rogue: a dark braid tucked under a flat cap, an elbow-long wooden measuring rod with notches at her belt, a small larch tree burned into its end; sharp, watchful eyes turned to the snow. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "keya-larch.png"
+   ],
+   "subjects": {
+    "6-players": [
+     "keya-larch"
+    ],
+    "7-players": [
+     "keya-larch"
+    ],
+    "8-players": [
+     "keya-larch"
+    ]
+   },
+   "file": "keya-larch--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "keya-larch.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/olma-pack--figure.webp",
+   "sha256": "41a9fa66860aba041b31e9c281da9d728f8f4ff10f710d98581f7b43a1e468be",
+   "originalSha256": "3e7222ee654ca28939c305d93505f48f164d6cbb63d2875c8f57105706ba64fd",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image with the built-in image_gen tool and save it as olma-pack--figure.png in the current directory. The attached image is the approved portrait of Olma Vyuk.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Olma Vyuk, a 42-year-old woman, a cleric and keeper of the common pot and the rations: a wide wool scarf, a polished copper spoon on a chain at her chest; calm, low-voiced, honest even when nobody wants to hear it. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "olma-pack.png"
+   ],
+   "subjects": {
+    "6-players": [
+     "olma-pack"
+    ],
+    "7-players": [
+     "olma-pack"
+    ],
+    "8-players": [
+     "olma-pack"
+    ]
+   },
+   "file": "olma-pack--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "olma-pack.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/sevar-pole--figure.webp",
+   "sha256": "16a064271246ad39904fb1efe3a6ccf3c54273c28db83555b0e313ac22a4b715",
+   "originalSha256": "193c82b2b8fd4225251fc47ffa5df9503795e214a8dc1b8b2ba86643e49f2ca8",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image with the built-in image_gen tool and save it as sevar-pole--figure.png in the current directory. The attached image is the approved portrait of Sevar Shest.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Sevar Shest, a 25-year-old man, a wizard who keeps the route sketch: round spectacles, a notebook in a leather case with a pencil, identical neat knots on all the ties of his clothes; earnest and exact. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "sevar-pole.png"
+   ],
+   "subjects": {
+    "6-players": [
+     "sevar-pole"
+    ],
+    "7-players": [
+     "sevar-pole"
+    ],
+    "8-players": [
+     "sevar-pole"
+    ]
+   },
+   "file": "sevar-pole--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "sevar-pole.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/tirna-hearth--figure.webp",
+   "sha256": "dd972a5c50bb4fe1c11dbb3eed51f8d4809f5a1a4259d873cfb2cf991d215416",
+   "originalSha256": "7c62d013327e5ab99749ba9b7c3a9ae1e45a0b21233584f72406c57d8cb5297f",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image with the built-in image_gen tool and save it as tirna-hearth--figure.png in the current directory. The attached image is the approved portrait of Tirna Ochag.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Tirna Ochag, a 31-year-old woman, driver of the caravan's six mules, a fighter: short-cropped chestnut hair, a bright orange patch on her collar, a short curved knife in a wooden sheath at her belt, one hand resting on the neck of a frost-rimed mule; fierce, tender with animals. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "tirna-hearth.png"
+   ],
+   "subjects": {
+    "6-players": [
+     "tirna-hearth"
+    ],
+    "7-players": [
+     "tirna-hearth"
+    ],
+    "8-players": [
+     "tirna-hearth"
+    ]
+   },
+   "file": "tirna-hearth--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "tirna-hearth.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/levrin-slope--figure.webp",
+   "sha256": "8b431f580fdbee99ed12cf9d863065f4a3c912ec6bea62c8ee823b3eb846971d",
+   "originalSha256": "70df52530b9644933c5d8b39027d4d7595a78ab5b931a92bb10046c1f8844f7e",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image with the built-in image_gen tool and save it as levrin-slope--figure.png in the current directory. The attached image is the approved portrait of Levrin Otkos.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Levrin Otkos, a 29-year-old man, a rogue, trader and negotiator of the caravan: a patchwork waistcoat under a warm jacket, a pea-sized earring, a cord of twenty carved buttons of bone and wood and one of copper around his wrist; an easy, knowing smile. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "levrin-slope.png"
+   ],
+   "subjects": {
+    "6-players": [
+     "levrin-slope"
+    ],
+    "7-players": [
+     "levrin-slope"
+    ],
+    "8-players": [
+     "levrin-slope"
+    ]
+   },
+   "file": "levrin-slope--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "levrin-slope.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/eyra-beam--figure.webp",
+   "sha256": "51fa7ba320a34a67344d205284b6885f83765de07570aa2f455d2f2f89f4feb8",
+   "originalSha256": "6a50f1ece3038d172c720f9a90ae4e2d7d7f098a2d3b3d8663c93948cef55d04",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image with the built-in image_gen tool and save it as eyra-beam--figure.png in the current directory. The attached image is the approved portrait of Eyra Brus.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Eyra Brus, a 38-year-old woman, a cleric who helps tired travellers: a bleached canvas travel bag, a dark green cap, sitting down close beside someone so as to listen; warm, patient, steady. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "eyra-beam.png"
+   ],
+   "subjects": {
+    "6-players": [],
+    "7-players": [
+     "eyra-beam"
+    ],
+    "8-players": [
+     "eyra-beam"
+    ]
+   },
+   "file": "eyra-beam--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "eyra-beam.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/runtime/yust-edge--figure.webp",
+   "sha256": "45203c63dcbfae0386b5f364c2d948bee1d2a443ce4422fefc89cbf50f9559d9",
+   "originalSha256": "c80055515610d1d382988e4b352bf77a98e433cf86880d09c85650a1a3bccfc3",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image with the built-in image_gen tool and save it as yust-edge--figure.png in the current directory. The attached image is the approved portrait of Yust Gran.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Yust Gran, a 46-year-old man, a wizard, teacher of practical magic and a sceptic: long eyebrows white with frost, a worn travelling cloak, a wooden mug covered in small painted pictures in his hands; dry, doubtful and kind. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "yust-edge.png"
+   ],
+   "subjects": {
+    "6-players": [],
+    "7-players": [],
+    "8-players": [
+     "yust-edge"
+    ]
+   },
+   "file": "yust-edge--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "yust-edge.webp"
+  },
+  {
+   "file": "smoke-junction--map.webp",
+   "source": "campaigns/collection-2026/winter-caravan/assets/battle-maps/smoke-junction.webp",
+   "sha256": "c51be840d8df3be7ab031f75c878b0db6ed640b0634abd8ea9420c968ca676de",
+   "originalSha256": "f0d24d694a16aa4192d48f40d89857264436fe7b05460fb57516b4e97be15e6a",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as winter-caravan--smoke-junction.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Дымный Разъезд» — Три дома, амбар и навес на южном берегу, у каменного брода. Река подо льдом шумит у северного берега. Хозяин Ошвен Иль продаёт мешки и дрова и пускает под крышу.\n\nThe first reference image is the exact layout of the playable field: a 18 by 14 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Поле 18 × 14: столбцы A–R с запада, ряд 1 — северный край. Река течёт с востока на запад, брод пересекает её с севера на юг: обоз идёт с северного берега к Разъезду на южном. Ряды 1–3 — северный берег: снег у ив, у воды две каменные плиты брода (I3, J3) — укрытие наполовину. Наискось через середину, от H1 к D12, тянется гряда брода: торосы и наметённый снег на плитах (труднопроходимые клетки); плита посреди реки в G6 — укрытие наполовину. Скопление K11–M13 у южного берега — тонкий лёд над быстриной (труднопроходимо, мул проваливается по колено). Остальное — гладкий лёд. Мулы стоят на гряде в G–I, ряды 6–9; отряд — у западного края (A–C), ниже по течению, и бежит к мулам наперегонки со стаей, которая выходит с восточного (P–R).\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/winter-caravan--smoke-junction.layout.png",
+    "smoke-junction.png"
+   ],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "smoke-junction.webp",
+   "subjects": {
+    "6-players": [
+     "smoke-junction"
+    ],
+    "7-players": [
+     "smoke-junction"
+    ],
+    "8-players": [
+     "smoke-junction"
+    ]
+   }
+  },
+  {
+   "file": "slate-shelf--map.webp",
+   "source": "campaigns/collection-2026/winter-caravan/assets/battle-maps/slate-shelf.webp",
+   "sha256": "65e689826fa9cbb8c79c6220fefbfc644ef965b9f938134081a0f543c6f3923f",
+   "originalSha256": "6a76187cf08634232557b8b458f6adb4eec067f5fd26837297e53beb20248005",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as winter-caravan--slate-shelf.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Скальная Полка» — Дорога прижата к скале, над ней висит снежный карниз, внизу обрыв. Небольшие площадки у скалы, под навесом камня можно переночевать.\n\nThe first reference image is the exact layout of the playable field: a 18 by 8 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Поле 18 × 8: столбцы A–R с запада, ряд 1 — северная стена шурфа. Узкий шурф в лавинном языке с запада на восток, стены плотного снега в рост. Западный край (A–C) — устье к саням обоза; восточный (P–R) — чужой лаз, стены в ледяной корке, борозды когтей шириной в лопату. Рыхлые осыпи там, где копали люди, в D–G рядов 1–7, и осыпь у лаза в L–O рядов 2–6 — труднопроходимые. Обломок Кухонных саней в I7 и ледяная глыба у лаза в O4 — укрытие наполовину. Мешки и вязанки лежат на дне у обломков саней, в I–L.\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/winter-caravan--slate-shelf.layout.png",
+    "slate-shelf.png"
+   ],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "slate-shelf.webp",
+   "subjects": {
+    "6-players": [
+     "slate-shelf"
+    ],
+    "7-players": [
+     "slate-shelf"
+    ],
+    "8-players": [
+     "slate-shelf"
+    ]
+   }
+  },
+  {
+   "file": "three-basins--map.webp",
+   "source": "campaigns/collection-2026/winter-caravan/assets/battle-maps/three-basins.webp",
+   "sha256": "269dc3d5744f075d0818bdc9fddb591014b61b18e99959f536f9c81d7694a55b",
+   "originalSha256": "a3a10524f3df88112b1076358d37b0c2b9cfc7f0e61e3e817f82035ecef91067",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as winter-caravan--three-basins.png in the current directory.\n\nA tabletop battle map, landscape 3:2, seen straight from above (orthographic top-down), of this place: «Три Чаши» — Три горные котловины: Нижняя с ручьём, Средняя с замёрзшим озером, Верхняя под каменной спиной. Между ними — каменные гребни и тропа обходчиков к туру.\n\nThe first reference image is the exact layout of the playable field: a 18 by 14 square grid drawn in the middle of the canvas. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on. The flat grey area outside the grid is the same place continuing beyond the field: fill it with matching terrain of lesser importance, no key features there.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Поле 18 × 14: столбцы A–R с запада, ряд 1 — север. A–C, ряды 4–10 — круг саней на берегу, костёр в B7, мулы внутри круга, в столбце C. Камни у берега в E5 и E6 — укрытие наполовину. Восточнее — лёд озера: широкое поле наста и проталин от F3 до L11 и полоса от L2 до O6 (труднопроходимые клетки); вмёрзшие валуны в M8 и O2 — укрытие наполовину. Стая выходит с восточного края (P–R).\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/winter-caravan--three-basins.layout.png",
+    "three-basins.png"
+   ],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "three-basins.webp",
+   "subjects": {
+    "6-players": [
+     "three-basins"
+    ],
+    "7-players": [
+     "three-basins"
+    ],
+    "8-players": [
+     "three-basins"
+    ]
+   }
+  },
+  {
+   "file": "last-ledge--map.webp",
+   "source": "campaigns/collection-2026/winter-caravan/assets/battle-maps/last-ledge.webp",
+   "sha256": "9e4e6e523b0f1c1ec9799ab51c73866087d7a67afef97c0d9dac801c74728276",
+   "originalSha256": "e06aac15a95e9bfd5da64575235b76d1c31e4207d82af23f27774a0cf77eebf4",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as winter-caravan--last-ledge.png in the current directory.\n\nA tabletop battle map, portrait 2:3, seen straight from above (orthographic top-down), of this place: «Последняя Площадка» — Ровная каменная терраса под Мореной, последняя стоянка перед перевалом. Снизу к ней тянется тропа от зимовья; вверх уходит широкая Морена к Белому Желобу. Ветер здесь тише, но костёр виден со всех гребней.\n\nThe first reference image is the exact layout of the playable field: a 12 by 18 square grid drawn in the middle of the canvas filling it. Keep the same composition and positions: every dark or black square is a solid obstacle that blocks movement or gives full cover, every mid-grey square is a low obstacle that gives partial cover, every square with diagonal hatching is difficult ground. Choose obstacles that belong to this place (for example crates, pillars, rocks, machinery, furniture, rigging) and draw them exactly on those squares, at the scale of one square each. Plain light squares are open floor or ground the figures walk on.\n\nWhat this field is, in the campaign's own words (Russian; use it to decide what each kind of square looks like, e.g. hatched squares may be water, rubble, a gap between roofs or a drop, not just rough floor): Поле 12 × 18: столбцы A–L с запада, ряд 1 — северный край. Север — вниз, к зимовью; юг — вверх, к Морене. Ряды 13–18 — ровная каменная терраса Площадки; у западного края, в B13, брошенные сани, обложенные снегом, — укрытие на три четверти. Ряды 1–12 — склон от тропы зимовья; валун в K7 — укрытие на три четверти. Наискось через поле, от C4 до K15, тянется гряда старой морены — труднопроходимые клетки. Отряд стоит на южном краю (ряды 16–18), противники выходят с северного (ряды 1–3).\n\nThe second reference image shows how this place looks; match its materials, colours and mood from above.\n\nNo grid lines, no people, no creatures, no figures, no text, no letters, no numbers, no labels, no compass, no frame. Even soft light from above so the ground reads clearly under game tokens.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ref/winter-caravan--last-ledge.layout.png",
+    "last-ledge.png"
+   ],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "last-ledge.webp",
+   "subjects": {
+    "6-players": [
+     "last-ledge"
+    ],
+    "7-players": [
+     "last-ledge"
+    ],
+    "8-players": [
+     "last-ledge"
+    ]
+   }
+  }
+ ]
+}

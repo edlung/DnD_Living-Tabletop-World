@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
 import { mkdir, readFile, stat, writeFile } from 'node:fs/promises';
-import { join } from 'node:path';
+import { basename, join } from 'node:path';
 
 import sharp from 'sharp';
 
@@ -66,7 +66,7 @@ export async function prepareBattleMaps(workspace: string): Promise<number> {
       file,
       sha256: sha(runtime),
       originalSha256: sha(original),
-      originalFile: `battle-maps-2026-11-14/out/${job.id}.png`,
+      originalFile: `${basename(workspace)}/out/${job.id}.png`,
       generated,
       prompt: prompt.trim(),
       references: [`ref/${job.id}.layout.png`, `${job.location}.png`],
