@@ -76,6 +76,9 @@ export function coverageInventory(target: LiveTarget): ViewRequest[] {
     views.push(scoped('chat'));
     // Handouts (§5): a new one signals its readers.
     views.push(scoped('handouts'));
+    // Sealed envelopes (ADR 0073 §9): one sealed, opened or taken away signals who reads them —
+    // from outside only: the inside is in no answer of the read.
+    views.push(scoped('envelopes'));
   }
   // Stars and wishes (ADR 0071 §2): a new one signals whoever reads it, the display's cast too.
   if (target.kind === 'CHARACTER' || target.kind === 'DM' || target.display === true) {
@@ -85,6 +88,9 @@ export function coverageInventory(target: LiveTarget): ViewRequest[] {
   if (target.kind === 'CHARACTER' || target.kind === 'DM' || target.display === true) {
     views.push(scoped('cheers'));
   }
+  // A quiet request for a pause (ADR 0073 §2): the DM reads every one, a character its own —
+  // so another player's stream is never signalled by one.
+  if (target.kind === 'CHARACTER' || target.kind === 'DM') views.push(scoped('pause-requests'));
   // Crafting (ADR 0057 §9): a project's days of work, a character's own and the DM's.
   if (target.kind === 'CHARACTER' || target.kind === 'DM') views.push(scoped('crafting'));
   // The table's shared marks on the board (ADR 0057 §5): every member's and the display's.
@@ -115,6 +121,8 @@ export function coverageInventory(target: LiveTarget): ViewRequest[] {
     // The asset lineage (DM only; no perspective): the DM's image controls follow each job from
     // queued to a candidate as the asset worker reports it (Stage 330 part B).
     views.push({ url: `${base}/assets`, optional: false });
+    // What this table's screens reported when they broke (ADR 0073 §1): the DM's alone.
+    views.push({ url: `${base}/client-errors`, optional: false });
   }
   if (target.focus !== null) {
     const entity = `entities/${encodeURIComponent(target.focus)}`;

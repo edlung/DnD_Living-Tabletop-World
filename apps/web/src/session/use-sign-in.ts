@@ -374,16 +374,28 @@ export function useSignIn(
       const key = keyOf(typed);
       return key === null ? ('refused' as const) : readTableOffer(transport, key);
     },
-    /** A free seat chosen: its single-use invitation goes to the usual join page. */
-    tableChoose: async (typed: TableKey | null, character: EntityRef) => {
+    /**
+     * A free seat chosen (docs/adr/0073-table-ideas.md §7): its single-use invitation is taken at
+     * once, in this browser — a guest sits down with one press — or, asked for a login, goes to
+     * the usual join page.
+     */
+    tableChoose: async (typed: TableKey | null, character: EntityRef, how: 'here' | 'login') => {
       const key = keyOf(typed);
       if (key === null) return 'refused' as const;
       const answer = await takeTableSeat(transport, key, character.entityId);
       if (typeof answer === 'string') return answer;
       tableKey.current?.forget();
       tableKey.current = null;
-      seatHolder.current = holdInvitation(answer.token);
-      next({ kind: 'invited' });
+      const invitation = holdInvitation(answer.token);
+      seatHolder.current = invitation;
+      if (how === 'login') {
+        next({ kind: 'invited' });
+        return 'ok' as const;
+      }
+      const generation = next({ kind: 'joining' });
+      void takeSeat(invitation, transport, null).then((outcome) => {
+        if (outcome !== null) apply(outcome, generation);
+      });
       return 'ok' as const;
     },
     /** The person keeps this browser's sign-in: the invitation is forgotten, unused. */

@@ -188,6 +188,7 @@ export function SessionSheet({
           <NextGameForm
             api={api}
             next={table.nextGame ?? null}
+            characters={table.characters}
             onChanged={() => {
               setRound((value) => value + 1);
             }}

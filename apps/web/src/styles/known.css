@@ -1,0 +1,184 @@
+/*
+ * The party's encyclopedia inside the Chronicle (docs/adr/0073-table-ideas.md §4): one parchment
+ * page that scrolls (keepsake.css holds the page itself), people, places and things as cards with
+ * a picture where the party has one.
+ */
+.known-page {
+  padding: 16px clamp(16px, 6vw, 64px) 48px;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+.known-head h2 {
+  margin: 8px 0 4px;
+  color: var(--page-ink);
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4vw, 2.1rem);
+}
+.known-head p {
+  margin: 0 0 12px;
+}
+.known-find {
+  display: grid;
+  gap: 4px;
+  max-width: 24rem;
+}
+/* On parchment: the page's ink, not the glass's muted text (`base.css`). */
+.known-find label {
+  color: var(--page-ink);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+.known-page :focus-visible,
+.known-page:focus-visible {
+  outline-color: var(--rubric);
+}
+.known-partial {
+  min-height: 0;
+  margin: 0 0 8px;
+}
+.known-partial:empty {
+  display: none;
+}
+.known-partial button {
+  min-height: 44px;
+  border-color: var(--page-ink);
+  background: transparent;
+  color: var(--page-ink);
+}
+.known-find input {
+  min-height: 44px;
+  font-size: 1rem;
+  border-color: var(--page-ink);
+  background: rgb(255 255 255 / 0.55);
+  color: var(--page-ink);
+}
+.known-find p {
+  min-height: 1.5em;
+  margin: 0;
+  font-size: 0.95rem;
+}
+.known-section {
+  margin-top: 28px;
+}
+.known-section h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid color-mix(in srgb, var(--page-ink) 40%, transparent);
+  color: var(--page-ink);
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+}
+.known-section h3 .glyph {
+  width: 22px;
+  height: 22px;
+}
+.known-section h3 small {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+.known-entries,
+.known-facts,
+.known-quests {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.known-entries {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr));
+  gap: 16px;
+}
+.known-entry {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+  padding: 12px;
+  border: 1px solid color-mix(in srgb, var(--page-ink) 30%, transparent);
+  border-radius: 6px;
+  background: rgb(255 255 255 / 0.28);
+}
+/* No picture: the words take the whole card. */
+.known-entry > .known-entry-text:first-child {
+  grid-column: 1 / -1;
+}
+.known-entry .keepsake-tile {
+  width: 88px;
+  margin: 0;
+}
+.known-entry .keepsake-tile img {
+  display: block;
+  width: 88px;
+  height: 88px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+.known-entry h4 {
+  margin: 0 0 4px;
+  color: var(--page-ink);
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+}
+.known-facts li {
+  margin: 0 0 6px;
+}
+.known-facts li:last-child {
+  margin-bottom: 0;
+}
+.known-section > .known-facts li {
+  padding-left: 14px;
+  border-left: 3px solid color-mix(in srgb, var(--page-ink) 35%, transparent);
+}
+/* A rumour is not a fact: the page says which a line is. */
+.known-type {
+  display: inline-block;
+  margin-right: 6px;
+  padding: 0 6px;
+  border: 1px solid currentcolor;
+  border-radius: var(--radius-pill);
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  vertical-align: 0.1em;
+}
+.known-none {
+  margin: 0;
+  font-style: italic;
+}
+.known-chapters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 8px;
+  margin: 8px 0 0;
+  font-size: 0.95rem;
+}
+.known-chapters button {
+  min-height: 44px;
+  padding: 2px 10px;
+  border-color: color-mix(in srgb, var(--page-ink) 55%, transparent);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--page-ink);
+  font-size: 0.95rem;
+  text-align: left;
+}
+.known-chapters button:hover:enabled {
+  border-color: var(--page-ink);
+  background: color-mix(in srgb, var(--page-ink) 12%, transparent);
+}
+.known-quests li {
+  margin-bottom: 12px;
+}
+.known-quests p {
+  margin: 2px 0 0;
+}
+.known-quests .known-type {
+  margin-left: 8px;
+}

@@ -28,5 +28,8 @@
   "spells": "ui-combat-spells",
   "bestiary": "ui-combat-bestiary",
   "breath": "ui-combat-breath",
-  "metamagic": "ui-combat-metamagic"
+  "metamagic": "ui-combat-metamagic",
+  "hint": "ui-combat-hint",
+  "hintIpad": "ui-combat-hint-ipad",
+  "hintRu": "ui-combat-hint-ru"
 }

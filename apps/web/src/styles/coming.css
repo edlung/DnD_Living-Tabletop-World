@@ -1,0 +1,107 @@
+/* "I'll come / I can't" (ADR 0073 §10): under the date in the lobby, on the same glass
+   as the date's own line (`stars.css`), and on the DM's Session sheet. */
+.coming {
+  display: grid;
+  gap: 8px;
+}
+.coming--lobby {
+  width: min(100%, 560px);
+  padding: 8px 12px 10px 16px;
+  border: 1px solid color-mix(in srgb, var(--gold) 55%, transparent);
+  border-radius: var(--radius-panel);
+  background: var(--glass-raised);
+  box-shadow: var(--shadow-soft);
+  color: var(--text);
+  text-align: left;
+  pointer-events: auto;
+}
+.coming-ask {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.coming-ask > span {
+  flex: 1 1 8rem;
+  font-weight: 600;
+}
+.coming button {
+  min-height: 44px;
+}
+.coming button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+/* The answer given: a mark as well as a colour. */
+.coming button[aria-pressed='true'] {
+  border-color: var(--gold-bright);
+  box-shadow: inset 0 0 0 1px var(--gold-bright);
+}
+.coming button > .glyph {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  color: var(--gold-bright);
+}
+.coming-yours {
+  margin: 0;
+}
+.coming button[aria-disabled='true'] {
+  opacity: 0.6;
+  cursor: progress;
+}
+.coming-lines,
+.coming-heroes {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.coming-lines {
+  font-size: 0.95rem;
+  overflow-wrap: anywhere;
+}
+.coming-failed {
+  margin: 0;
+  color: var(--danger);
+}
+.coming--dm h4,
+.coming--dm p {
+  margin: 0;
+}
+.coming-heroes > li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 12px;
+}
+.coming-name {
+  flex: 1 1 8rem;
+  min-width: 0;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.coming-said {
+  flex: 0 1 auto;
+  color: var(--text-muted);
+}
+.coming-buttons {
+  display: inline-flex;
+  gap: 8px;
+}
+/* Where the date's own line gives way to the stars, its question does too. */
+.rest-banner-slot:has(.stars-form) .coming--lobby {
+  display: none;
+}
+@media (max-height: 560px) {
+  .rest-banner-slot:has(.stars-card) .coming--lobby {
+    display: none;
+  }
+  /* A short screen keeps the question and puts the table's answers away. */
+  .coming--lobby .coming-lines,
+  .coming--lobby .coming-yours {
+    display: none;
+  }
+}

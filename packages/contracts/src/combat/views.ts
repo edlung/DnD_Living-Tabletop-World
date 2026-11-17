@@ -18,6 +18,28 @@ export interface ConditionNoteView {
 }
 
 /**
+ * What a combatant has left this turn, as the rules hold it (docs/adr/0073-table-ideas.md §3). The
+ * action, the bonus action, movement and further attacks exist on its own turn only; the reaction
+ * is the round's.
+ */
+export interface EncounterTurnView {
+  /** It is this combatant's turn. */
+  readonly own: boolean;
+  readonly action: boolean;
+  readonly bonusAction: boolean;
+  readonly reaction: boolean;
+  /** Feet of its walking speed left, Dash included; 0 off its turn. */
+  readonly movementLeftFt: number;
+  /** Attacks left from the Attack action it has taken (Extra Attack); 0 when none. */
+  readonly attacksLeft: number;
+  /**
+   * A condition holds it (Stunned, Paralyzed…): the rules refuse its moves, actions and reactions,
+   * and everything above reads as nothing left.
+   */
+  readonly incapacitated: boolean;
+}
+
+/**
  * Perspective-scoped encounter view (docs/adr/0015-combat-engine.md §6).
  * Everything on the battlefield is visible to its combatants; initiative
  * rolls, stat blocks and non-party hit points are DM data.
@@ -109,6 +131,11 @@ export interface EncounterCombatantView {
     readonly attackId: string;
     readonly trigger: string;
   };
+  /**
+   * What is left of its turn (docs/adr/0073-table-ideas.md §3): the DM's to see, its own player's,
+   * and the player's whose character commands it. Nobody else's — not the party's shared view.
+   */
+  readonly turn?: EncounterTurnView;
   /** DM only; never an object's. */
   readonly initiative?: {
     readonly roll: number;

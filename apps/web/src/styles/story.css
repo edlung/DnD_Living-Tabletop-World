@@ -1,0 +1,110 @@
+/*
+ * The Story tab of a character's sheet (docs/adr/0073-table-ideas.md §5): the hero's backstory
+ * and its player's private notes. Each says first who reads it.
+ */
+.story-section {
+  display: grid;
+  gap: 8px;
+}
+/* Who reads this: said before a word is typed, and not in small print. */
+.story-who {
+  margin: 0;
+  padding: 8px 12px;
+  border-left: 4px solid var(--gold);
+  border-radius: var(--radius-control);
+  background: var(--glass-raised);
+}
+.story-section textarea {
+  width: 100%;
+  min-height: 7rem;
+  resize: vertical;
+}
+.story-section input[type='text'] {
+  width: 100%;
+}
+.story-section button {
+  min-height: 44px;
+}
+.story-section button[aria-disabled='true'] {
+  opacity: 0.6;
+  cursor: default;
+}
+.story-status {
+  min-height: 1.4em;
+  margin: 0;
+}
+.story-notes {
+  display: grid;
+  gap: 12px;
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.story-notes li {
+  display: grid;
+  gap: 4px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+}
+.story-notes h4,
+.story-notes p {
+  margin: 0;
+}
+.story-note-body {
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+/* Asked before a sheet closes on words nobody saved: over the sheet, at its top. */
+.hero-unsaved {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  display: grid;
+  gap: 8px;
+  margin: 8px;
+  padding: 12px 16px;
+  border: 1px solid var(--gold);
+  border-radius: var(--radius-panel);
+  background: var(--ink-850);
+  box-shadow: var(--shadow-soft);
+}
+.hero-unsaved p {
+  margin: 0;
+}
+.hero-unsaved button {
+  min-height: 44px;
+}
+.story-dm-note {
+  margin: 0;
+}
+.story-section button[aria-disabled='true'] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Five tabs on a phone (the Story tab is the fifth): they share the row by their words, a little
+   smaller on the narrowest screens, and the row scrolls sideways before two of them ever meet
+   ("Заклинания" and "Снаряжение" did at 390 px). */
+@media (max-width: 599px) {
+  .hero-tabs {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .hero-tabs .hero-tab {
+    flex: 1 0 auto;
+  }
+}
+@media (max-width: 419px) {
+  .hero-tabs .hero-tab {
+    padding: 8px 4px;
+    font-size: 0.9rem;
+  }
+}
+@media (max-width: 359px) {
+  .hero-tabs .hero-tab {
+    padding: 8px 2px;
+    font-size: 0.82rem;
+  }
+}

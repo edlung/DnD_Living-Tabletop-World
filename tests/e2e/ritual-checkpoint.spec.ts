@@ -136,6 +136,11 @@ test('one evening from the agreement to “Previously…”, on every screen', a
     'Only the DM was told that you would like a pause.',
   );
   await guide.getByRole('button', { name: 'Close the guide', exact: true }).click();
+  // The DM alone reads it, on a card (ADR 0073 §2), and answers.
+  const asked = dm.locator('.pause-card');
+  await expect(asked).toContainText('Elowen Starwhisper asks for a pause.', LIVE);
+  await asked.getByRole('button', { name: 'Not now', exact: true }).click();
+  await expect(asked).toHaveCount(0, LIVE);
 
   // 3. The evening closes with its chapter; the TV stays paired and asks for stars and wishes.
   await sheet.getByRole('button', { name: 'End the session', exact: true }).click();
@@ -225,8 +230,6 @@ test('one evening from the agreement to “Previously…”, on every screen', a
   expect(toElowen).not.toContain('"readers":[');
   const toBrann = await brannReceived();
   expect(toBrann, 'a player received another’s wish').not.toContain(ELOWEN_WISH);
-  expect(toBrann, 'a player received another’s request for a pause').not.toContain(
-    'I would like a pause, please.',
-  );
+  expect(toBrann, 'a player received another’s request for a pause').not.toMatch(/"asks":\[\{/);
   expect(toBrann).not.toContain('"readers":[');
 });

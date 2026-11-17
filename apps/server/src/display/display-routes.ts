@@ -45,6 +45,7 @@ import { sendError } from '../http/errors.ts';
 import { authenticate, parseInput, type RouteDependencies } from '../http/request-context.ts';
 import { clientGroup } from '../platform/net/addresses.ts';
 import { DISPLAY_COOKIE } from './display-authenticator.ts';
+import { applyPlaceSound, type PlaceSoundDependencies } from './place-sound.ts';
 import type { DisplayLimits } from './display-limits.ts';
 import type { DisplayRecord, DisplayStore } from './display-store.ts';
 import type { OpenTableLinks } from './table-links.ts';
@@ -60,6 +61,8 @@ export interface DisplayRouteDependencies extends RouteDependencies {
   readonly displays: DisplayStore;
   readonly displayLimits: DisplayLimits;
   readonly openLinks: OpenTableLinks;
+  /** Places' own sounds (ADR 0073 §6): applied when the DM shows a place; none when absent. */
+  readonly placeSounds?: PlaceSoundDependencies;
 }
 
 const DAY_MS = 24 * 60 * 60_000;
@@ -98,7 +101,8 @@ export function partyPlace(state: WorldState): string | null {
 
 /**
  * The cast as anyone below the DM reads it: a place, a picture or a combatant the party does not
- * know is none — a scene without a place, a dark screen, whoever acts — so not even its ID reaches
+ * know is none — a scene without a place, a dark screen, words without their picture, whoever
+ * acts — so not even its ID reaches
  * a display or a player. The join card is the table's screen's only: a player's shared view online
  * shows nothing then (ADR 0042 §5, ADR 0044 §5).
  */
@@ -120,6 +124,12 @@ export function castForParty(
       };
     case 'picture':
       return { cast: seen(cast.entityId) ? cast : { kind: 'blank' }, place: shown };
+    case 'story':
+      // The words are the DM's, as a title card's are; a picture the party does not know is none.
+      return {
+        cast: { ...cast, entityId: seen(cast.entityId) ? cast.entityId : null },
+        place: shown,
+      };
     case 'battlefield':
       return { cast: { ...cast, focus: seen(cast.focus) ? cast.focus : null }, place: shown };
     case 'join':
@@ -344,7 +354,7 @@ export function registerDisplayRoutes(app: FastifyInstance, deps: DisplayRouteDe
     const named =
       body.cast.kind === 'scene'
         ? body.cast.locationId
-        : body.cast.kind === 'picture'
+        : body.cast.kind === 'picture' || body.cast.kind === 'story'
           ? body.cast.entityId
           : body.cast.kind === 'battlefield'
             ? body.cast.focus
@@ -353,7 +363,14 @@ export function registerDisplayRoutes(app: FastifyInstance, deps: DisplayRouteDe
       return sendError(reply, request, 'NOT_FOUND');
     }
     const revision = await displays.writeCast(path.campaignId, body.cast, now());
-    const response: CastResponse = { cast: body.cast, revision };
+    // A place shown brings its sound (ADR 0073 §6): the place named, or where the party is now.
+    const shownPlace =
+      body.cast.kind === 'scene' ? (body.cast.locationId ?? partyPlace(state)) : null;
+    const sound =
+      shownPlace === null || !deps.placeSounds
+        ? null
+        : await applyPlaceSound(deps.placeSounds, path.campaignId, shownPlace);
+    const response: CastResponse = { cast: body.cast, revision, ...(sound ? { sound } : {}) };
     return reply.send(response);
   });
 

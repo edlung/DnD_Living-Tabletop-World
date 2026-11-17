@@ -1,0 +1,191 @@
+/*
+ * A quiet request for a pause (docs/adr/0073-table-ideas.md §2): the player's small button among
+ * the table's questions over the stage, the line that answers it, and the DM's card.
+ */
+.pause-ask {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  pointer-events: auto;
+}
+/* Small and quiet: it is there all evening, and pressed perhaps once. */
+.pause-ask-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 6px 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: var(--glass-raised);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(var(--blur));
+  color: var(--text);
+  font-size: 0.95rem;
+}
+.pause-ask-button > .glyph {
+  width: 20px;
+  height: 20px;
+  color: var(--gold-bright);
+}
+.pause-ask-button[aria-disabled='true'] {
+  opacity: 0.6;
+  cursor: progress;
+}
+.pause-asked {
+  border-radius: var(--radius-panel);
+}
+.pause-asked:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}
+.pause-card button[aria-disabled='true'] {
+  opacity: 0.6;
+  cursor: progress;
+}
+@media (max-width: 767px) {
+  /* On a phone the column fills the width: the button keeps to the right, out of the thumb's way
+     to the dock's first tabs. */
+  .pause-ask {
+    justify-items: end;
+  }
+}
+
+@media (max-width: 767px) {
+  /* A request for a pause is told nowhere else: on a phone it stays over an open sheet, where
+     the table's other questions give way (`rest.css`), and stands alone there. */
+  .world-main:has(.sheet:not([hidden]), .detail-panel:not([hidden]))
+    .rest-banner-slot:has(.pause-card, .pause-said) {
+    display: flex;
+    /* Over a phone's sheet (`responsive.css`: 40). */
+    z-index: 41;
+  }
+  .world-main:has(.sheet:not([hidden]), .detail-panel:not([hidden]))
+    .rest-banner-slot:has(.pause-card, .pause-said)
+    > :not(.pause-card, .pause-said) {
+    display: none;
+  }
+}
+
+/* The player's quiet row over the stage: "What can I do?" (hint/) beside the way to a pause. */
+.quiet-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 8px;
+  pointer-events: none;
+}
+.quiet-row > * {
+  pointer-events: auto;
+}
+@media (max-width: 767px) {
+  .quiet-row {
+    justify-content: flex-end;
+  }
+}
+
+/* The hint's own page: each thing a turn holds, and whether it is still to use. */
+.hint-lines {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.hint-line {
+  display: grid;
+  gap: 4px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-left-width: 4px;
+  border-radius: var(--radius-control);
+}
+.hint-line[data-tone='open'] {
+  border-left-color: var(--teal);
+}
+.hint-line[data-tone='spent'] {
+  border-left-color: var(--text-muted);
+}
+.hint-line[data-tone='spent'] h3,
+.hint-line[data-tone='spent'] p {
+  color: var(--text-muted);
+}
+.hint-line h3 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+  margin: 0;
+  font-size: 1.05rem;
+}
+.hint-line p {
+  margin: 0;
+}
+.hint-tone {
+  padding: 1px 8px;
+  border: 1px solid currentcolor;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body, inherit);
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+.hint-examples {
+  margin: 2px 0 0;
+  padding-left: 1.2rem;
+}
+.hint-line button {
+  justify-self: start;
+  min-height: 44px;
+}
+/* The hint's own buttons a thumb can press. */
+.hint-dialog .guide-header button,
+.hint-dialog .guide-footer button {
+  min-height: 44px;
+  min-width: 44px;
+}
+.hint-examples ul {
+  margin: 2px 0 0;
+  padding-left: 1.2rem;
+}
+
+/* In a fight the quiet row lies in the fight's own layout (world/fight-quiet.ts): on a wide
+   screen at the stage's lower right, above the dock's band, where nothing else is; where the
+   fight's parts stand one under another, in that column, under the switch. */
+.fight-quiet {
+  position: absolute;
+  right: 16px;
+  bottom: calc(var(--dock-h) + 24px);
+  z-index: 4;
+}
+.fight-quiet:empty {
+  display: none;
+}
+.fight-quiet .quiet-row {
+  flex-direction: column;
+  align-items: flex-end;
+}
+@media (max-width: 1199px) {
+  .stage--battle .fight-quiet {
+    position: relative;
+    inset: auto;
+    align-self: center;
+  }
+  .stage--battle .fight-quiet .quiet-row {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+  }
+}
+@media (max-width: 767px) {
+  .fight-quiet {
+    position: relative;
+    inset: auto;
+    margin: 0 12px 12px;
+  }
+  .fight-quiet .quiet-row {
+    flex-direction: row;
+    justify-content: center;
+  }
+}

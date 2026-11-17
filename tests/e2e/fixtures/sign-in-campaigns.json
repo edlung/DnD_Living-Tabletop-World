@@ -43,5 +43,14 @@
   "ending": "ui-signin-ending",
   "comforts": "ui-signin-comforts",
   "keepsakes": "ui-signin-keepsakes",
-  "keepsakesIpad": "ui-signin-keepsakes-ipad"
+  "keepsakesIpad": "ui-signin-keepsakes-ipad",
+  "troubles": "ui-signin-troubles",
+  "pause": "ui-signin-pause",
+  "pauseIpad": "ui-signin-pause-ipad",
+  "story": "ui-signin-story",
+  "storyIpad": "ui-signin-story-ipad",
+  "placeSound": "ui-signin-place-sound",
+  "placeSoundRu": "ui-signin-place-sound-ru",
+  "storyCast": "ui-signin-story-cast",
+  "storyCastRu": "ui-signin-story-cast-ru"
 }
