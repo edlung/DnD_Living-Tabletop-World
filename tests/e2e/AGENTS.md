@@ -31,6 +31,12 @@ It changes no world state; keep its window listener, since `pageerror` misses th
 - The journeys' dev servers do not reload a page that lost its connection to them
   (`LTW_VITE_NO_RELOAD`, `apps/web/vite.config.ts`): the dev client does, and in WebKit that
   connection was lost now and then under a journey, whose page then came back at its start.
+- Why it was lost (`reports/WEBKIT_NETWORK_CRASH_2026-11-16.md`): in the WebKit of Playwright
+  1.63 the network process of a page's browser died on a corrupted heap when the page aborted a
+  fetch, which the client does all the time. Playwright 1.65.1's WebKit does not; keep the
+  version at or above it. The sign of that death in a failed journey's `[journey]` block is
+  requests ending in "WebKit encountered an internal error" (a console line "Network process
+  crashed" beside the dev client's socket): look at the browser, not at the journey.
 - `apps/server/src/testing/ui-server.ts` composes the real World Engine and dev
   personas over deterministic in-memory storage. No external AI provider runs.
 - These are browser journeys through real HTTP projections, not mocked domain
@@ -278,6 +284,9 @@ It changes no world state; keep its window listener, since `pageerror` misses th
   journey pins places by their across and down fields, not by clicking.
   `editors.spec.ts` owns `ui-editors` and `ui-editors-ru` (party campaigns on the Old Trade Road);
   a creature made from the bestiary lists two edits (made, its numbers): take the newest.
+- The screen's code (`display-pairing.spec.ts`, no campaign): the first answer to "a code, please"
+  is held back by a route, and the page must have asked once and show the code it holds. A journey
+  whose TV stays at its code after the DM paired it was this (the report above, "The second cause").
 - Native apps (ADR 0070, `native-shell.spec.ts`): a stand-in shell installed with `addInitScript`
   records what the page posts, and the journey speaks for the shell with `ltw-native` events; it owns
   the `native` sign-in campaign. The apps themselves are checked on the simulator and the emulator.

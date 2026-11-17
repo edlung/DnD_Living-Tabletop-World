@@ -44,8 +44,9 @@ function uiKitUrlsInDevelopment(): Plugin {
 
 /**
  * The dev client reloads a page whose connection to this server (the one hot reloading uses) was
- * lost and found again. In WebKit that connection now and then closes under a browser journey,
- * and the journey's page came back signed in but at its start, the sheet it was using shut. Under
+ * lost and found again. In WebKit that connection now and then closes under a browser journey
+ * (the browser's network process died: reports/WEBKIT_NETWORK_CRASH_2026-11-16.md), and the
+ * journey's page came back signed in but at its start, the sheet it was using shut. Under
  * `LTW_VITE_NO_RELOAD` (the journeys' servers, playwright.config.ts) the client keeps its
  * connection as ever and only that reload is taken out: a journey edits no source, so a page
  * that lost the connection has lost nothing. The client's text is Vite's own; if it no longer
