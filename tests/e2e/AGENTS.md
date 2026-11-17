@@ -284,6 +284,9 @@ It changes no world state; keep its window listener, since `pageerror` misses th
   journey pins places by their across and down fields, not by clicking.
   `editors.spec.ts` owns `ui-editors` and `ui-editors-ru` (party campaigns on the Old Trade Road);
   a creature made from the bestiary lists two edits (made, its numbers): take the newest.
+- The screen's code (`display-pairing.spec.ts`, no campaign): the first answer to "a code, please"
+  is held back by a route, and the page must have asked once and show the code it holds. A journey
+  whose TV stays at its code after the DM paired it was this (the report above, "The second cause").
 - Native apps (ADR 0070, `native-shell.spec.ts`): a stand-in shell installed with `addInitScript`
   records what the page posts, and the journey speaks for the shell with `ltw-native` events; it owns
   the `native` sign-in campaign. The apps themselves are checked on the simulator and the emulator.

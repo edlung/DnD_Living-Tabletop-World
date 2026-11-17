@@ -19,7 +19,8 @@ screen that never comes, wherever it happened to be. Each page has its own netwo
 is why one page of a journey showed the failures and the others did not.
 
 The fix is the browser: **Playwright 1.65.1** (WebKit build 2388, libsoup 3.6.6) does not crash on
-the same journeys. `package.json` and the lockfile change; nothing of the suite or the client does.
+the same journeys: `package.json` and the lockfile change. With the crash out of the way a
+second, smaller cause of red runs showed, in the client; it is answered below too.
 
 ## The evidence
 
@@ -87,33 +88,62 @@ socket "closed now and then in WebKit" was this crash.
 
 ## The fix, and what CI said of it
 
-`@playwright/test` 1.63.0 → 1.65.1 (the lockfile's four Playwright entries). The journeys, their
-servers and the client are untouched; the one-worker rule for the WebKit projects and
-`LTW_VITE_NO_RELOAD` stay as they are.
+`@playwright/test` 1.63.0 → 1.65.1 (the lockfile's four Playwright entries). For the crash,
+nothing of the journeys, their servers or the client changes; the one-worker rule for the WebKit
+projects and `LTW_VITE_NO_RELOAD` stay as they are.
 
-On commit `2d572162` (the change, with the lab still beside it):
+Two rounds, the lab still beside the change (commits `2d572162` and `d068e796`; the second
+differs from the first in documents only):
 
-| Where                                                    | The WebKit journeys | The job            |
-| -------------------------------------------------------- | ------------------- | ------------------ |
-| CI, run 43978693958, all eight jobs                      | 18 of 18            | green, "CI passed" |
-| lab, run 43978688662: the third shard, six times         | 18 of 18 each time  | 5 green, 1 red     |
-| lab, the same run: the WebKit projects alone, four times | 18 of 18 each time  | 4 green            |
-| the container: the WebKit projects alone, three times    | 18, 17 and 18 of 18 | —                  |
+| Where                                                            | The WebKit journeys       | The job            |
+| ---------------------------------------------------------------- | ------------------------- | ------------------ |
+| CI, runs 43978693958 and 43982212401, all eight jobs each        | 18 of 18 both times       | green, "CI passed" |
+| lab, runs 43978688662 and 43982206352: the third shard, 12 times | 18 of 18 in 11, 17 in one | 10 green, 2 red    |
+| lab, the same runs: the WebKit projects alone, 8 times           | 18 of 18 each time        | 8 green            |
+| the container: the WebKit projects alone, three times            | 18, 17 and 18 of 18       | —                  |
 
-In the ten lab jobs: no heap message in the browsers' stderr, no request lost to a dead network
-process, no core dump. Before the change, the same lab on 1.63.0 (run 43968923122): the third
-shard red in the two jobs read of four, the WebKit projects alone red in two of three.
+No network process died: in the eleven lab jobs whose reports were read (the first round's ten
+and the second's red one) there is no heap message in the browsers' stderr, no request lost to a
+dead network process and no core dump; the second round's nine green jobs were not read past
+their result. Before the change, the same lab on 1.63.0 (run 43968923122) had the third shard red
+in three of four jobs and the WebKit projects alone red in two of three.
 
-Two journeys failed on the new browsers, neither with a sign of the crash:
+So the third shard went from red most of the time to green in 12 runs of 14. The two red ones
+are other failures, which the crash had been standing in front of.
 
-- **CI, lab job 133689370207, Chromium**: `native-polish.spec.ts:58` — the TV's page was still
-  at its pairing code fifteen seconds after "Pair this TV". The spec keeps no trace. Alone it
-  passed ten times of ten in the container on 1.65.1, and it passed in the other six jobs of the
-  commit. Not explained; whether 1.63.0 does it too is not known (the journey came to `main` the
-  same evening).
-- **The container, WebKit**: `campaign-book.spec.ts:63`, once in three — the chapter in the book
-  lacked the line the DM had typed before "Yes, end the session" (line 140, the default five
-  seconds). Not seen on CI in eleven runs of the journey. Not explained.
+## The second cause: a screen that shows one code and holds another
+
+Both red jobs have a Chromium journey whose TV stayed at its pairing code after the DM paired it
+(`native-polish.spec.ts:58`, job 133689370207; `release.spec.ts:86`, job 133701234043 — there the
+DM's sheet already said "The screen is paired").
+
+The page of the table's screen asked for its code twice when it loaded — in development React
+runs an effect twice, and the journeys' servers are development ones — and each answer sets the
+screen's cookie. The page showed the code of the request made last; the browser kept the cookie
+of the answer that came last. When the first answer overtook nothing, the two agreed; when it
+came after the second, the DM typed a code the screen no longer answered for, and the screen
+asked "am I paired?" for the other one for good.
+
+Shown, not inferred: with the first answer held back by a route, the page asked twice, showed the
+second code and its `GET /display/session` answered with the first one's expiry.
+`apps/web/src/display/display-app.tsx` now shares one request among whoever asks while it is on
+its way, and `tests/e2e/display-pairing.spec.ts` holds it (it fails on the old client: two codes
+asked). A built client asks once at load, so a real TV was not at risk from this path; nothing was
+run on one.
+
+Whether Chromium 159 answers in that order more often than 153 did is not known: no job on 1.63.0
+among the sixteen read shows it, two of fourteen on 1.65.1 do.
+
+## What else failed, and is not explained
+
+- **CI, lab job 133701234043, WebKit**: `comforts.spec.ts:129`, line 182 — the break's card was
+  there with its words and was not focused ("inactive", fourteen looks in five seconds). No sign
+  of the crash. Once in 22 runs of the journey on the new browser. The card takes the focus in
+  the same moment the lobby is read again (`apps/web/src/comforts/break-reminder.tsx`); whether
+  that is the reason was not tested.
+- **The container, WebKit**: `campaign-book.spec.ts:63`, once in three whole runs — the chapter in
+  the book lacked the line the DM had typed before "Yes, end the session" (line 140, the default
+  five seconds). Alone, the journey passed eight times of eight there; not seen on CI in 22 runs.
 
 ## Not verified
 
@@ -126,8 +156,8 @@ Two journeys failed on the new browsers, neither with a sign of the crash:
   locally, and CI's runs above.
 - **Safari itself.** The crash is in the Linux port's network process (libsoup); Safari on an iPad
   or a Mac uses another network stack. Nothing here was run on a real device.
-- **Chromium on 1.65.1 beyond one whole CI run** of all three shards: its Chromium is six versions
-  newer than 1.63.0's.
+- **Chromium on 1.65.1 beyond two whole CI runs** of all three shards and the third shard's
+  fourteen: its Chromium is six versions newer than 1.63.0's.
 - **Failures of other causes** in the jobs read before the journey logging existed.
 
 ## The open pull requests

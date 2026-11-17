@@ -29,6 +29,7 @@ import {
   forgetDisplay,
   readDisplaySession,
   requestPairing,
+  type PairingAnswer,
   spacedCode,
   type SessionAnswer,
 } from './display-flow.ts';
@@ -61,10 +62,19 @@ export function DisplayApp({ transport = fetch }: { readonly transport?: typeof 
   const [stage, setStage] = useState<Stage>({ kind: 'checking' });
   const generation = useRef(0);
 
-  /** Pairs anew: a fresh code for the DM to type. */
+  /**
+   * Pairs anew: a fresh code for the DM to type. One request at a time — each answer sets the
+   * screen's cookie, so of two sent together the browser keeps the cookie of whichever came last
+   * while the page shows the code of the one asked last: the DM then pairs a code this screen no
+   * longer answers for, and it waits for good. Whoever asks while one is on its way shares it.
+   */
+  const asking = useRef<Promise<PairingAnswer> | null>(null);
   const pairAgain = useCallback(async () => {
     const mine = (generation.current += 1);
-    const answer = await requestPairing(transport);
+    asking.current ??= requestPairing(transport).finally(() => {
+      asking.current = null;
+    });
+    const answer = await asking.current;
     if (mine !== generation.current) return;
     setStage(
       answer === 'limited'
