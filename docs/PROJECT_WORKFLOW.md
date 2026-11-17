@@ -30,7 +30,9 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   `claude/stage-870-story-cast`, stacked on 860's (ADR 0073 §8,
   `reports/STAGE_870_COMPLETION.md`); Stage 880 (sealed envelopes) on
   `claude/stage-880-sealed-envelopes`, stacked on 870's (ADR 0073 §9,
-  `reports/STAGE_880_COMPLETION.md`, with the third checkpoint); each awaits the owner's
+  `reports/STAGE_880_COMPLETION.md`, with the third checkpoint); Stage 890 ("I'll come / I
+  can't") on `claude/stage-890-coming-answers`, stacked on 880's (ADR 0073 §10,
+  `reports/STAGE_890_COMPLETION.md`, with the program's close); each awaits the owner's
   disposition.
 
 ## Current request — the apps and the table's screen, 2026-11-15

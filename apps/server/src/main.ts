@@ -62,6 +62,7 @@ import { VoiceRooms } from './voice/voice-rooms.ts';
 import { PostgresDmNoteStore } from './dm/postgres-note-store.ts';
 import { PostgresSavedEncounterStore } from './combat/postgres-saved-encounter-store.ts';
 import { PostgresLibraryStore } from './library/postgres-library-store.ts';
+import { PostgresComingStore } from './table/postgres-coming-store.ts';
 import { PostgresTableStateStore } from './table/postgres-table-state-store.ts';
 import { ReadyRegistry } from './table/table-state.ts';
 import { PostgresSubstitutionStore } from './dm/postgres-substitution-store.ts';
@@ -261,6 +262,7 @@ async function main(): Promise<void> {
     voice: { rooms: new VoiceRooms(), relay: config.voiceRelay },
     lobby: {
       state: new PostgresTableStateStore(pool),
+      coming: new PostgresComingStore(pool),
       ready: new ReadyRegistry(),
       now: () => new Date().toISOString(),
     },

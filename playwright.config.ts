@@ -42,7 +42,7 @@ export default defineConfig({
       workers: 1,
       use: { ...devices['iPad Pro 11 landscape'] },
       testMatch:
-        /(dm-screen|evening-ritual|stars-and-wishes|next-game|agreement|ritual-checkpoint|campaign-book|campaign-end|comforts|keepsakes-checkpoint|client-errors|pause|turn-hint|party-known|hero-story|envelopes)\.spec\.ts$/,
+        /(dm-screen|evening-ritual|stars-and-wishes|next-game|agreement|ritual-checkpoint|campaign-book|campaign-end|comforts|keepsakes-checkpoint|client-errors|pause|turn-hint|party-known|hero-story|envelopes|coming)\.spec\.ts$/,
     },
     // Release 1.0's journeys in Safari's engine too (work-orders/STAGE_699.md, 699b).
     {
