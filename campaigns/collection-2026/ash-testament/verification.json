@@ -1,58 +1,58 @@
 {
-  "modelRequested": "gpt-6-astra",
+  "modelRequested": "claude-opus-5-5",
   "effortRequested": "max",
   "humanPlaytest": "NOT_RUN",
   "validation": "isolated canonical compiler; no database or real activation",
   "variants": [
     {
       "size": 5,
-      "sha256": "57c519ede1bbdc889c13f55bfcd39c62e06821d872159492480e150284d720c7",
+      "sha256": "345b28275c789291355bfbcbd3ac22962008b0f162a2abd6e1eea8ee51d9576b",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
       "counts": {
-        "entities": 52,
-        "knowledge": 118,
-        "encounters": 3,
+        "entities": 73,
+        "knowledge": 151,
+        "encounters": 4,
         "quests": 8
       }
     },
     {
       "size": 6,
-      "sha256": "d241a74415fc8b196c4205920edcf60875ae41f90a3a8f8ef1441ea243c76840",
+      "sha256": "4fd44e5cd4706278193e550f7a0c8a5e926efe50b52cc169d292e036d2d2a352",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
       "counts": {
-        "entities": 54,
-        "knowledge": 120,
-        "encounters": 3,
+        "entities": 77,
+        "knowledge": 153,
+        "encounters": 4,
         "quests": 8
       }
     },
     {
       "size": 7,
-      "sha256": "be8a8d98372465c750b277341a2d4000a732560e239fd61865690bf50d609e94",
+      "sha256": "32ff78fe3e68c7f092ed9342a6c212001958fb28b5ab591ad3061c357606f99d",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
       "counts": {
-        "entities": 59,
-        "knowledge": 122,
-        "encounters": 3,
+        "entities": 83,
+        "knowledge": 155,
+        "encounters": 4,
         "quests": 8
       }
     },
     {
       "size": 8,
-      "sha256": "26063d12da7955ad566bc4a9b7e8d384e62efd64c0941b304afc1bd1b64e5e7e",
+      "sha256": "1ccee9ec8f3e393b06630436d0b495a6158e247258d16c4563c86b4feb18850a",
       "compilerVersion": 1,
       "readiness": "READY",
       "findings": [],
       "counts": {
-        "entities": 64,
-        "knowledge": 124,
-        "encounters": 3,
+        "entities": 87,
+        "knowledge": 157,
+        "encounters": 4,
         "quests": 8
       }
     }

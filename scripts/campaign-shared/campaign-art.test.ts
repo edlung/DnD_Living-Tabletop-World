@@ -50,7 +50,16 @@ describe.each(illustrated)('%s pictures', (_id, series, slug) => {
       expect(new Set(covered)).toEqual(new Set(foes.map((f) => f.key)));
     }
     for (const asset of art.values()) {
-      expect(asset.alpha).toBe(asset.kind === 'token');
+      // Cut-outs (foes, figures) stand on transparency; scenes and portraits never do; an item
+      // may be either.
+      if (asset.kind === 'token' || asset.kind === 'figure')
+        expect(asset.alpha, asset.id).toBe(true);
+      else if (asset.kind !== 'item') expect(asset.alpha, asset.id).toBe(false);
+      if (asset.kind === 'figure')
+        expect(
+          s.cast.heroes.some((h) => h.key === asset.subject),
+          asset.id,
+        ).toBe(true);
       if (asset.kind === 'item') {
         const item = s.items.find((i) => i.key === asset.id);
         expect(asset.revealFromEvening).toBeGreaterThanOrEqual(item?.appears ?? 0);

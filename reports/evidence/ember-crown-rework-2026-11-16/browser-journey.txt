@@ -1,0 +1,16 @@
+[WebServer] $ pnpm --filter @ltw/web run dev --host 127.0.0.1 --port 4310
+[WebServer] $ vite --host 127.0.0.1 --port 4310
+[WebServer] $ pnpm --filter @ltw/web run dev --host 127.0.0.1 --port 4312
+[WebServer] $ vite --host 127.0.0.1 --port 4312
+
+Running 1 test using 1 worker
+
+[collection-2026__ember-crown] imported
+[collection-2026__ember-crown] activated 6c75b0a1-54f7-4690-a7b9-a70858c11be3
+[collection-2026__ember-crown] player joined as Тарна Брик
+[collection-2026__ember-crown] sheet opened
+[collection-2026__ember-crown] encounter started: Крюки на зубцах
+[collection-2026__ember-crown] journal quests at start: 0
+  ✓  1 [chromium] › tests/e2e/zz-collection-journey.spec.ts:18:3 › table journey: collection-2026/ember-crown (42.4s)
+
+  1 passed (1.2m)

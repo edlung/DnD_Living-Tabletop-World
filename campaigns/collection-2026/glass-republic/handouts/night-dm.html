@@ -1,0 +1,352 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ночь знамён: лист ведущего · Стеклянная Республика</title><style>:root {
+  color-scheme: light;
+  font-family: Georgia, 'Times New Roman', serif;
+  color: #202f3b;
+  background: #f4f0e8;
+  font-size: 18px;
+  line-height: 1.65;
+  --line: #c5c5ba;
+  --ink: #163e50;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+header,
+main,
+footer {
+  width: min(1200px, calc(100% - 64px));
+  margin-inline: auto;
+}
+header {
+  padding-block: 64px 32px;
+  border-bottom: 1px solid var(--line);
+}
+main {
+  display: grid;
+  gap: 32px;
+  padding-block: 32px 64px;
+}
+footer {
+  border-top: 1px solid var(--line);
+  padding-block: 24px 48px;
+  font:
+    14px/1.6 system-ui,
+    sans-serif;
+}
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+  text-wrap: balance;
+}
+h1 {
+  font-size: clamp(2rem, 5vw, 3.8rem);
+  max-width: 20ch;
+  margin: 16px 0 24px;
+  font-weight: 500;
+}
+h2 {
+  font-size: 1.65rem;
+  margin: 0 0 16px;
+  font-weight: 500;
+}
+h3 {
+  font-size: 1.15rem;
+  margin: 24px 0 8px;
+}
+p {
+  max-width: 70ch;
+  margin: 0 0 16px;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+p:last-child,
+ul:last-child {
+  margin-bottom: 0;
+}
+ul,
+ol {
+  padding-left: 24px;
+  margin-block: 0 16px;
+  max-width: 75ch;
+}
+li {
+  margin-block: 8px;
+}
+a {
+  color: var(--ink);
+  text-underline-offset: 4px;
+  overflow-wrap: anywhere;
+}
+a:hover {
+  color: #7c3919;
+}
+a:focus-visible,
+summary:focus-visible {
+  outline: 3px solid #a84919;
+  outline-offset: 4px;
+}
+nav,
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+}
+nav a,
+.actions a,
+.card-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font:
+    16px/1.5 system-ui,
+    sans-serif;
+}
+.eyebrow {
+  font:
+    700 13px/1.6 system-ui,
+    sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #495c65;
+}
+.lead {
+  font-size: 1.3rem;
+  max-width: 60ch;
+}
+.panel {
+  border: 1px solid var(--line);
+  padding: 32px;
+  background: #fffcf6;
+  min-width: 0;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: 24px;
+  align-items: start;
+}
+.ribbon {
+  border-left: 4px solid #ab6a35;
+  padding: 16px 24px;
+  background: #e8e0d1;
+}
+.adult {
+  color: #773424;
+  font-weight: 700;
+}
+.read-aloud {
+  border-left: 4px solid #748d91;
+  padding: 16px 24px;
+  background: #eaf0ee;
+  font-style: italic;
+}
+.scene + .scene {
+  margin-top: 32px;
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+}
+.meta {
+  font:
+    16px/1.6 system-ui,
+    sans-serif;
+  color: #495c65;
+}
+.map {
+  max-width: 700px;
+  min-width: 560px;
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid #495c65;
+  background: white;
+}
+.map-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+}
+.map-scroll:focus-visible {
+  outline: 3px solid #a84919;
+  outline-offset: 4px;
+}
+.map-hint {
+  display: none;
+}
+.map text {
+  font:
+    bold 13px system-ui,
+    sans-serif;
+}
+.map-title {
+  font:
+    16px/1.5 system-ui,
+    sans-serif;
+}
+.skip {
+  position: absolute;
+  top: -100px;
+  padding: 16px;
+  background: white;
+}
+.skip:focus {
+  top: 0;
+}
+details {
+  border-top: 1px solid var(--line);
+  padding-block: 16px;
+}
+summary {
+  min-height: 44px;
+  cursor: pointer;
+  font-weight: 700;
+}
+details > div {
+  margin-top: 16px;
+}
+.handout {
+  max-width: 75ch;
+  border: 2px solid #8c9a9d;
+  padding: 32px;
+  background: white;
+}
+@media (max-width: 600px) {
+  .map-scroll {
+    mask-image: linear-gradient(to right, #000 calc(100% - 16px), transparent);
+  }
+  .map-hint {
+    display: block;
+    margin-top: 8px;
+  }
+  :root {
+    font-size: 17px;
+  }
+  header,
+  main,
+  footer {
+    width: calc(100% - 32px);
+  }
+  header {
+    padding-top: 32px;
+  }
+  .panel,
+  .handout {
+    padding: 24px;
+  }
+  .grid {
+    gap: 16px;
+  }
+}
+@media print {
+  .map {
+    min-width: 0;
+    max-width: 100%;
+  }
+  .map-scroll {
+    overflow: visible;
+    mask-image: none;
+  }
+  .map-hint {
+    display: none;
+  }
+  :root {
+    color: #000;
+    background: #fff;
+    font-size: 11pt;
+  }
+  header,
+  main,
+  footer {
+    width: 100%;
+  }
+  nav,
+  .actions,
+  .skip {
+    display: none;
+  }
+  header {
+    padding: 0 0 16px;
+  }
+  .panel {
+    background: white;
+    padding: 16px;
+    break-inside: avoid;
+  }
+  .scene {
+    break-inside: avoid;
+  }
+  .grid {
+    display: block;
+  }
+  .grid > * {
+    margin-block: 16px;
+  }
+  a {
+    color: black;
+  }
+}
+
+/* Pictures of reworked campaigns (assets/manifest.json); campaigns without art have none. */
+img.art {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 0 1rem;
+  border-radius: 12px;
+}
+img.art.cover {
+  aspect-ratio: 3 / 2;
+  max-height: 60vh;
+  object-fit: cover;
+}
+img.art.portrait {
+  max-width: 320px;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+}
+img.art.token {
+  max-width: 180px;
+  border-radius: 0;
+}
+.tokens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.section-title {
+  margin: 2rem 0 1rem;
+}
+.faces {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0 0 1rem;
+}
+.faces figure {
+  width: 96px;
+  margin: 0;
+  text-align: center;
+  font-size: 0.85rem;
+}
+img.art.thumb,
+img.art.thumb.portrait {
+  width: 96px;
+  max-width: 96px;
+  aspect-ratio: 2 / 3;
+  margin: 0 0 0.25rem;
+  border-radius: 8px;
+}
+</style></head><body><a class="skip" href="#main">К содержанию</a><header><div class="eyebrow">Стеклянная Республика</div><h1>Ночь знамён: лист ведущего</h1></header><main id="main"><article class="handout"><p>ЛИСТ ВЕДУЩЕГО. Только ведущему.
+Рассвет — АР, Нить — НИ, Город — прочие.
+Дом сам: 3–4 — АР, РЕ, ПР на ПЛ, НИ на ГВ, ПА в Зале; 5–6 — АР и ПР у НД, ПА и РЕ у ПД, НИ на ГВ. Стекло у отряда — дом там, где назвал стол, и за Город. Стекло у Кассии: до 04:00 РЕ в казармах, ПР дома, ПА не выше 4. Пустые ПД — за Городом.
+22 — «Богдан»: пара на ЗД с листом — поздний отказ, АР −1; бирка Надира или услуга знаменосцам — без броска, иначе СЛ 15.
+23 — Рассвет у НД (АР 3–6); держал — офицеры внутри.
+00 — Рассвет закрывает ПД силой АР (офицеры внутри) или 2 (дверная команда). Отставка Северины.
+01 — Нить уходит с ГВ на ПЛ; Орен предупреждён — НИ −2. Рассвет на ГВ силой АР (АР ≥ 3). Красный: Город на ПЛ −1; зелёный: +1; белый (лист у отряда): АР −2, если лист не показан, иначе как зелёный. Аресты: ТД ≤ 2 — ТД −1; ещё и имена в списке, а пристань пуста — ПР −2.
+02 — Орен входит дверью Рассвета, иначе к ПД с АР (АР ≤ 2 — на ЗД). «Орен»: торг — депутатов −1, АР +1; поля — предупреждён, АР +1, НИ −2 (поля впервые). «Кассия»: подписанный мандат.
+03 — отряд в Зале знамён, кроме пары, оставленной у ПД. В 03:00 Рассвет закрывает ПД, если их не держит Город (дом со стороны Города или пара отряда). Бой «Вывод по списку».
+04 — Палата открыта изнутри: пары встают где угодно. Удар: НИ + дома, чьи стёкла у Кассии (РЕ, ПР, ПА), + 2 за пару с Нитью ≥ АР + 2 за пару с Рассветом — Орен и Карх под стражей, АР −2, ПД Нити — только где их держал Рассвет; иначе НИ −2. Удара нет при НИ ≤ 2 без зелёного; Орен предупреждён — не удаётся.
+05 — за спиной лидер держателя ПД: Орен, Кассия или Юла (увели — Энна у ПД, Гелена на ПЛ, иначе служитель). Без ключа держатель ПД выводит отряд на балкон — отряд всё равно отвечает; ключ даёт только право выбрать, кого взять к перилам. Приказ Орена — «Знамёна генералу»; мандат Кассии — «Белый мандат»; отряд сам выпускает Юлу с листом третьим — «Площадь». Иной текст полки не исполняют — это молчание: читает лидер держателя ПД после 04:00.</p></article></main><footer>Living Tabletop World · Авторская коллекция · 2026</footer></body></html>

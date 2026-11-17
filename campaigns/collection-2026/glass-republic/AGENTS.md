@@ -1,14 +1,20 @@
-# Стеклянная Республика
+# «Стеклянная Республика»
 
-Scope: `work-orders/TEN_CAMPAIGNS_2026-11-08.md`. Authored Russian 21+ political espionage
-campaign; every participant and fictional human is at least 21. Read README, then selected
-source fields. Source contract: `scripts/campaign-collection/CONTENT_CONTRACT.md`.
+Кампания переписана 16 ноября 2026 по `campaigns/distinctness/glass-republic-brief.md` и скелету
+`glass-republic-skeleton.md` (формат `scripts/campaign-collection/CONTENT_CONTRACT.md` с полем
+`world.engine` = `political-factions`, `items.json` и встречами с `foes`/`boss`/`layout`/`mandatory`).
 
-This author owns README, this file and source JSON only. Shared tooling builds native packages,
-party variants and local books. Never infer activation, executed future events, player knowledge
-or NPC omniscience from prepared scenes. Parent collection contains DM-private material.
+Читайте `README.md`, затем нужные ключи в `source/` по полю. Четыре файла сессий содержат по два
+вечера. Не загружайте целиком производные пакеты и HTML; правится только `source/` и этот README.
 
-Preserve the plot engine: rival human intelligence networks exploit a military coup; player
-actions secure or revoke concrete officers’ commitments and carry out the selected response.
-No ancient apparatus, election fraud, occupation curse, museum theft or final evidence hearing.
-All heroes use existing level-3 classes; fictional signals add no mechanics.
+`truth`, тайны и знания NPC, янтарные поля, удар Нити в 04:00, условия выдачи раздаток, содержание
+улик, встречи, лист `night-dm` и все сессии — только ведущему. Игрокам видны поля героев, описания
+мест, `look`/`public`/`voice` NPC, `appearance` улик и `text` раздаток; они не раскрывают правду.
+
+Держите правила целыми: давление — только схема фракций (шесть домов, 0–6, стёкла четырёх
+городских домов); влияние двигают лишь движения из скелета (раздел 2.4), вслух числом и причиной;
+ночь знамён идёт по часам по `night-card` (игрокам, без 04:00) и `night-dm` (ведущему) — меняйте их
+вместе с `dmNote` вечера 8 и встречей `banner-hall-list`. Финал — один выбор на балконе, три исхода,
+без эпилогов и голосования. Клетки встреч — по печатной карте движка (`layoutFor`): столбцы с
+запада, ряд 1 на севере. Огнестрельного оружия нет. Все названные люди старше 21 года. Растровых
+иллюстраций нет; платные вызовы — только по решению владельца.

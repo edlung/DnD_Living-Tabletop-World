@@ -36,6 +36,34 @@ export const LIBRARY: readonly LibrarySource[] = [
   },
   { id: 'mountain-wedding', series: 'fantasy-2026', genre: 'Мифическое фэнтези', audience: '12+' },
   { id: 'moon-pearl', series: null, genre: 'Семейное морское расследование', audience: '8+' },
+  // Reworked by the cloud series of 2026-11-16 (PR #45), art and hero figures 2026-11-17.
+  {
+    id: 'ember-crown',
+    series: 'collection-2026',
+    genre: 'Эпическое военное фэнтези',
+    audience: '16+',
+  },
+  { id: 'salt-meridian', series: 'collection-2026', genre: 'Морская авантюра', audience: '16+' },
+  { id: 'winter-caravan', series: 'collection-2026', genre: 'Зимнее выживание', audience: '16+' },
+  {
+    id: 'ash-testament',
+    series: 'collection-2026',
+    genre: 'Послевоенный вестерн',
+    audience: '21+',
+  },
+  {
+    id: 'glass-republic',
+    series: 'collection-2026',
+    genre: 'Политический шпионский триллер',
+    audience: '21+',
+  },
+  { id: 'hollow-choir', series: 'collection-2026', genre: 'Готический хоррор', audience: '21+' },
+  {
+    id: 'velvet-ledger',
+    series: 'collection-2026',
+    genre: 'Оккультно-индустриальный нуар',
+    audience: '21+',
+  },
 ];
 
 export interface LibrarySource {
@@ -156,6 +184,18 @@ async function picturesOf(
       }),
       subjects,
     };
+    // A hero's or NPC's painted tabletop figure: its own picture, derived from the portrait.
+    if (asset.kind === 'figure') {
+      pictures.push({
+        ...base,
+        file: `${asset.id}.webp`,
+        variant: 'derived',
+        label: 'figure',
+        purpose: 'figure',
+        derivedFrom: `${asset.subject ?? ''}.webp`,
+      });
+      continue;
+    }
     pictures.push({
       ...base,
       file: `${asset.id}.webp`,
@@ -165,9 +205,10 @@ async function picturesOf(
       derivedFrom: null,
     });
     if (asset.kind === 'location') locationFile.set(asset.subjects[0] ?? '', `${asset.id}.webp`);
-    // A cut-out figure doubles as the creature's tabletop figure on the battlefield; one drawn
+    // A foe's cut-out (a token; an older manifest's every cut-out) doubles as its tabletop figure
+    // on the battlefield, never an item's; one drawn
     // facing left stands as its mirrored file, so every figure faces right (`ArtPrompt.facesLeft`).
-    if (asset.kind === 'token' || (asset.alpha && asset.width >= asset.height * 0.5)) {
+    if (asset.kind === 'token') {
       const mirrored = asset.figureFile
         ? await (async () => {
             const at = new URL(`assets/${asset.figureFile ?? ''}`, root);

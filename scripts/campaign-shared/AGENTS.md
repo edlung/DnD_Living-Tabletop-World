@@ -21,3 +21,8 @@ points, addressed as `<series>/<slug>`. For `noir-2026` the writer also has a `c
   equal entity keys); `curated-art.ts` binds them to one exact authored package;
   `import-art.ts` transfers them into an activated campaign named by an explicit `DATABASE_URL`,
   read-only without `--confirm`. `campaign-art.test.ts` covers every illustrated campaign.
+- Figures (owner, 2026-11-17): every figure picture faces right; the board mirrors one toward its
+  nearest opponent. A hero's painted miniature is an art entry of kind `figure` with id
+  `<key>--figure` and `subject: <key>`; it stands derived from the portrait (library and curated
+  import) and never appears in the books. `facesLeft: true` mirrors a left-facing figure itself, or
+  writes `runtime/<id>--figure.webp` beside a left-facing token.

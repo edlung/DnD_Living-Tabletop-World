@@ -1,0 +1,591 @@
+{
+ "tool": "Codex CLI image generation on the owner ChatGPT subscription (CODEX_HOME=~/.codex-review-cli codex exec -i <references>)",
+ "style": "Match one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+ "images": [
+  {
+   "id": "cover",
+   "file": "cover.png",
+   "kind": "cover",
+   "transparent": false,
+   "prompt": "Generate one image and save it as cover.png in the current directory.\nWide landscape key art, 3:2. Dusk over Knot Port, a harbour town of three wooden piers joined by plank walkways. A small weathered sailing ship is rafted alongside an old, heavy transport at the pier, a gangplank laid between their rails; on the transport's deck adult islanders sit on bundles and rolled bedding. Along the pier walk four sentries of a privateer flotilla with black mourning ribbons on their sleeves; the eldest carries dull lead seals on a cord and is clipping one onto the transport's bow mooring line. Over the roadstead patrol lights are being lit one by one, and mourning ribbons flutter from the masts of anchored patrol boats. At the small ship's rail stands its captain, a 42-year-old woman in a blue jacket with knotted toggles and a headscarf over grey strands, not looking back. In the foreground on the small ship's deck stand eight adults: a broad-shouldered helmsman with a faded neckerchief and an iron grapnel on a tarred line; a short-haired chart-maker with pencils behind her ear; a calm healer holding a shuttered copper lantern; a tall man in round spectacles with sample boxes on his belt; a short sturdy carpenter in a red work vest with an axe on her belt; a smiling broker in a short cloak with tally boards on a baldric; a freckled singer with short braids and a wooden whistle; a grey-haired weather watcher in a green cape with a small folding wind gauge. Two moons over the masts, salt and tar, quiet resolve.\n\nMatch one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/cover.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "whale-arc",
+   "file": "whale-arc.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as whale-arc.png in the current directory.\nLandscape scene, 3:2. A panoramic view of the Whale Arc at dusk: a curving chain of rocky grey limestone islands around a shallow turquoise inner sea, reefs showing as pale bands under the water, small sails scattered between the islands, a patrol boat's light on the horizon. In the sky the large pale moon and the smaller amber moon hang near each other above the sea. Wind, distance, salt haze.\n\nMatch one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/whale-arc.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "knot-port",
+   "file": "knot-port.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as knot-port.png in the current directory.\nLandscape scene, 3:2. Knot Port at dusk: three wooden piers linked by plank walkways and rope bridges, a narrow chart office with lit windows above the water, warehouses with a shallow dry creek behind them where the water drains to mud. Black mourning ribbons of the flotilla flutter over the roadstead, patrol lights are being lit on anchored boats, a notice board at the head of the pier holds a posted order shown only as illegible marks. Tar barrels, coiled mooring lines, wet planks.\n\nMatch one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/knot-port.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "double-reef",
+   "file": "double-reef.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as double-reef.png in the current directory.\nLandscape scene, 3:2. The Double Reef at night under moonlight and no fire anywhere: two long rows of flat dark rocks running side by side, between them a pale-bottomed lagoon with a deep, dark round well in its middle; at low water the rocks stand bare and wet, a narrow cat's passage opens to the north between them. A small sailing ship with furled sails hides in the shadow of the rocks. Still water, mist, total quiet.\n\nMatch one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/double-reef.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "floating-row",
+   "file": "floating-row.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as floating-row.png in the current directory.\nLandscape scene, 3:2. The Floating Row by day: a ring of trading barges moored together under patched canvas awnings, all flying a single faded striped market flag; stalls of salt sacks, dried fish, tar pots and rope, plank walkways between the hulls, a narrow back channel slipping out toward the shallows. Bustle, haggling, gulls, wet salt glittering on the decks.\n\nMatch one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/floating-row.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "bowl-island",
+   "file": "bowl-island.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as bowl-island.png in the current directory.\nLandscape scene, 3:2. Bowl Island: a village of whitewashed stone houses climbing limestone terraces around a round bay; shallow salt pans drying on the terraces, villagers tying bundles for a journey; above the lowest terrace a pale horizontal line of old silt runs across the cliff face. At the mouth of the bay a small patrol tender rides at anchor with a black mourning ribbon at its masthead. Late afternoon light, glare off the salt.\n\nMatch one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/bowl-island.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "survey-hull",
+   "file": "survey-hull.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as survey-hull.png in the current directory.\nLandscape scene, 3:2. A small survey ship lying on a flat stone tidal terrace as the water falls away, flying a plain neutral pennant; on its deck copper measuring cups and long graduated measuring staves dry in the sun, their markings shown only as plain ticks. Puddles, seaweed, a wide empty horizon on the deep side of the sea. Morning light, salt rings on the rigging.\n\nMatch one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/survey-hull.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "tide-bench",
+   "file": "tide-bench.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as tide-bench.png in the current directory.\nLandscape scene, 3:2. The Tide Bench: a high sandspit with three simple canvas awnings on poles and broad stone steps leading down into calm water, the lowest step already wet. A rowing boat flying a plain white flag approaches; nobody under the awnings carries a weapon. Overcast sea light, gulls, tense calm.\n\nMatch one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/tide-bench.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "brine-throat",
+   "file": "brine-throat.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as brine-throat.png in the current directory.\nLandscape scene, 3:2. Brine Throat at dusk: a stone warehouse built above a hidden anchorage between tall rocks; its main sea gate faces open water, while a narrow side passage between the rocks is just wide enough for a small boat at low water. In the yard stand water barrels and folded spare sails; a few shuttered lanterns glow low. Fog creeping in from the sea, a smugglers' quiet.\n\nMatch one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/brine-throat.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "three-mouths",
+   "file": "three-mouths.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as three-mouths.png in the current directory.\nLandscape scene, 3:2. The Three Mouths at night, seen from above the inner sea: three outlets to the open ocean between rocky headlands; a narrow shallow northern mouth, a deep middle mouth with a heavy iron chain stretched low across it between two rocks, and a long outer mouth where the flotilla's ships ride at anchor with rows of lights. To the south a wide calm assembly water. Beyond the mouths, open dark ocean under two moons. Strategic, vast, tense.\n\nMatch one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/three-mouths.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "chain-rock",
+   "file": "chain-rock.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as chain-rock.png in the current directory.\nLandscape scene, 3:2. Chain Rock at night: a steep rock between two sea passages; on its northern ledge a massive wooden chain winch with an iron lever, a heavy counterweight basket hanging over the drop, and a tall signal mast with a flag locker; the rock is split by a narrow tidal channel crossed by two stone causeways. Watchmen's lanterns burn by the winch; at low water a strip of wet sand leads to it from a southern spit. Spray, wind, looming darkness.\n\nMatch one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/chain-rock.png",
+   "generatedAt": "2026-11-17",
+   "references": [],
+   "reveal": 7
+  },
+  {
+   "id": "hundred-pennants",
+   "file": "hundred-pennants.png",
+   "kind": "location",
+   "transparent": false,
+   "prompt": "Generate one image and save it as hundred-pennants.png in the current directory.\nLandscape scene, 3:2. The flagship of the privateer flotilla under sail at dusk: the largest ship of the Arc, tall masts strung with a hundred long narrow pennants and a hundred small lights beginning to glow, a black mourning ribbon streaming from the stern; a closed, smooth wooden hull without any gunports. Seen from low on the water, menacing and splendid.\n\nMatch one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/hundred-pennants.png",
+   "generatedAt": "2026-11-17",
+   "references": [],
+   "reveal": 5
+  },
+  {
+   "id": "egor-fal",
+   "file": "egor-fal.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as egor-fal.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Prokhor Fal, a 31-year-old man, helmsman of a small sailing ship, a fighter: broad-shouldered, a faded neckerchief at his throat, neatly darned sleeves, a three-pronged iron grapnel on a tarred line coiled at his belt, one hand on the tiller; steady, patient eyes. Behind him, a harbour at dusk with patrol lights coming on.\n\nMatch one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/egor-fal.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "sana-poloz",
+   "file": "sana-poloz.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as sana-poloz.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Arina Poloz, a 28-year-old woman, chart-maker of side passages, a rogue: short dark hair, several pencils tucked behind her ear, a jacket with wide dry pockets, a waxed chart folded in four in her hand; quick, sly, measuring look. Behind her, a narrow passage between reef rocks.\n\nMatch one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/sana-poloz.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "lada-kelp",
+   "file": "lada-kelp.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as lada-kelp.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Vasilisa Kelp, a 36-year-old woman, ship's healer, a cleric: calm, a small silver ring on a cord around her neck, a satchel marked with coloured stitches, a shuttered copper lantern throwing a small circle of light only downward. Behind her, a dark deck at night.\n\nMatch one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/lada-kelp.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "miren-list",
+   "file": "miren-list.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as miren-list.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Foma Slyuda, a 44-year-old man, scholar of salt and tides, a wizard: tall, round-rimmed spectacles, closed little boxes of stone samples hanging from his belt, holding up a glass tube in a brass housing with pale sediment inside; absorbed, hopeful. Behind him, limestone shore and sea at low water.\n\nMatch one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/miren-list.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "rusya-vyaz",
+   "file": "rusya-vyaz.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as rusya-vyaz.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Rusya Nagel, a 26-year-old woman, ship's carpenter, a fighter: short and sturdy, a red work vest, a cleanly shaved nape, a carved wooden tool case on her shoulder and a carpenter's axe with a brass poll resting at her belt; practical, stubborn grin. Behind her, the planked side of an old ship.\n\nMatch one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/rusya-vyaz.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "nik-utok",
+   "file": "nik-utok.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as nik-utok.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Nik Utok, a 33-year-old man, storekeeper and go-between, a rogue: a smiling face, a short cloak, tally boards and a few blank tags hanging from a baldric; charming and calculating. Behind him, stacked barrels and salt sacks in a harbour warehouse.\n\nMatch one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/nik-utok.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "asya-kapel",
+   "file": "asya-kapel.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as asya-kapel.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Asya Kapel, a 27-year-old woman, singer of the shore rowing crews, a cleric: freckled, short braids, a wooden whistle on a cord, many simple bracelets on her wrists; warm, open, keeping a rhythm. Behind her, a rowing boat gliding without lights at dusk.\n\nMatch one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/asya-kapel.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "denis-vetr",
+   "file": "denis-vetr.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as denis-vetr.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Denis Vetr, a 52-year-old man, weather watcher, a wizard: grey hair, thick eyebrows, a green cape, a small folding wind gauge with spinning cups held up to the breeze; serious, haunted by an old mistake. Behind him, fog rolling in over the sea.\n\nMatch one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/denis-vetr.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "rada-vesh",
+   "file": "rada-vesh.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as rada-vesh.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Evdokia Vesh, a 42-year-old woman, owner and captain of a small sailing ship: a blue jacket with knotted toggles, grey strands under a headscarf, salt in the creases around her eyes, one hand on the ship's rail and the other on a mooring line; calm, guarded, weighing the tide. Behind her, two ships rafted together at a pier at dusk.\n\nMatch one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/rada-vesh.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "cover.png"
+   ]
+  },
+  {
+   "id": "olger-talen",
+   "file": "olger-talen.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as olger-talen.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Olger Talen, a 61-year-old man, chart-maker of the port atlas: thin, ink-stained fingers, a reading lens on a cord, a clean collar even in the rain; precise, tired, sleepless eyes. Behind him, a cramped chart office with tide sheets hung to dry, their markings only illegible, rain on the window.\n\nMatch one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/olger-talen.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "nera-losk",
+   "file": "nera-losk.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as nera-losk.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Nera Losk, a 34-year-old woman, reef pilot: sun-tanned, a belt with stones in netting, a white cloth over her hair, a small slate board on a cord with a few chalked colour squares; laconic, sure-footed. Behind her, flat reef rocks at dusk with no fire anywhere.\n\nMatch one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/nera-losk.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "zoya-ryab",
+   "file": "zoya-ryab.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as zoya-ryab.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Faina Klyost, a 47-year-old woman, keeper of the market register: a loud, lively face, an amber button at her collar, a folding writing desk on straps over her shoulder, fingers stained with ink and salt; shrewd and talkative. Behind her, trading barges under striped awnings.\n\nMatch one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/zoya-ryab.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "damir-skat",
+   "file": "damir-skat.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as damir-skat.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Filat Obruch, a 55-year-old man, cooper and elder of an island village: green threads braided into his beard, broad palms, measuring rods at his belt, a simple hoop-shaped mark burned into his leather belt; dignified, quietly stubborn. Behind him, limestone terraces with drying salt pans.\n\nMatch one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/damir-skat.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "teya-run",
+   "file": "teya-run.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as teya-run.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Varvara Zyb, a 29-year-old woman, tide observer of a survey ship: an apron over her jacket, a long measuring staff slung across her back, pale silt on her sleeves; earnest, frightened but brave. Behind her, a survey ship lying on a stone tidal terrace.\n\nMatch one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/teya-run.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "inna-solve",
+   "file": "inna-solve.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as inna-solve.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Inna Solve, a 46-year-old woman, administrator of a privateer flotilla: a light waterproof coat, a plain watch, a folder of receipts under her arm; composed, burdened, careful. Behind her, a high sandspit with canvas awnings and a rowing boat flying a white-over-blue flag.\n\nMatch one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/inna-solve.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "tar-kill",
+   "file": "tar-kill.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as tar-kill.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Tar Kill, a 39-year-old man, boatswain of the flotilla's flagship: a grey scarf, a boatswain's pipe on a chain, an axe at his belt, tar-blackened hands; gruff, weary, carrying a heavy silence. Behind him, the crowded deck of a great ship strung with many narrow pennants.\n\nMatch one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/tar-kill.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "arvid-krechet",
+   "file": "arvid-krechet.png",
+   "kind": "portrait",
+   "transparent": false,
+   "prompt": "Generate one image and save it as arvid-krechet.png in the current directory.\nCharacter portrait, vertical 2:3, waist-up. Arvid Krechet, a 49-year-old man, captain of the flotilla's flagship: tall, close-cropped hair, a black mourning ribbon on his sleeve, a heavy boarding axe resting on his shoulder, a bundle of lead seals stamped with a fan of pennants at his belt; a polite, confident smile. Behind him, the stern of a great ship with a hundred pennants and lights at dusk.\n\nMatch one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/arvid-krechet.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "grapnel-line",
+   "file": "grapnel-line.png",
+   "kind": "item",
+   "transparent": true,
+   "prompt": "Generate one image and save it as grapnel-line.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A three-pronged iron grapnel on a coiled tarred line; its prongs worn bright with use, knots tied along the line at even intervals, white salt crusted in the knots.\n\nMatch one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/grapnel-line.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "side-chart",
+   "file": "side-chart.png",
+   "kind": "item",
+   "transparent": true,
+   "prompt": "Generate one image and save it as side-chart.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A sheet of waxed paper folded in four and half opened, covered with fine pencil coastlines, narrow passages and soundings shown only as illegible marks, its edges soft from use.\n\nMatch one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/side-chart.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "shuttered-lantern",
+   "file": "shuttered-lantern.png",
+   "kind": "item",
+   "transparent": true,
+   "prompt": "Generate one image and save it as shuttered-lantern.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A copper ship's lantern with a sliding shutter that lets light fall only downward in a small warm cone; dented, polished by hands, a carrying ring on top.\n\nMatch one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/shuttered-lantern.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "salt-gauge",
+   "file": "salt-gauge.png",
+   "kind": "item",
+   "transparent": true,
+   "prompt": "Generate one image and save it as salt-gauge.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A glass tube in a brass housing, half filled with clear water and a layer of pale fine sediment, plain graduation ticks along the brass without any numbers; a small leather loop for a belt.\n\nMatch one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/salt-gauge.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "carpenter-axe",
+   "file": "carpenter-axe.png",
+   "kind": "item",
+   "transparent": true,
+   "prompt": "Generate one image and save it as carpenter-axe.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A ship carpenter's axe with a brass poll and a short handle wrapped in tarred twine; the blade dusted with dried salt but keen.\n\nMatch one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/carpenter-axe.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "market-flag",
+   "file": "market-flag.png",
+   "kind": "item",
+   "transparent": true,
+   "prompt": "Generate one image and save it as market-flag.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A sun-faded striped market banner of canvas, gently rippling, with dried salt caked in its seam and a short rope at the hoist.\n\nMatch one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/market-flag.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "signal-book",
+   "file": "signal-book.png",
+   "kind": "item",
+   "transparent": true,
+   "prompt": "Generate one image and save it as signal-book.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A thick book in a worn oilcloth cover from a navigator's box, lying closed with a frayed ribbon marker and a strap; salt stains on the cover.\n\nMatch one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/signal-book.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "patrol-pennant",
+   "file": "patrol-pennant.png",
+   "kind": "item",
+   "transparent": true,
+   "prompt": "Generate one image and save it as patrol-pennant.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A long narrow patrol pennant on a short staff, a black mourning ribbon tied at the staff; the cloth wet and heavy, glittering with salt.\n\nMatch one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/patrol-pennant.png",
+   "generatedAt": "2026-11-17",
+   "references": []
+  },
+  {
+   "id": "tide-sheet",
+   "file": "tide-sheet.png",
+   "kind": "item",
+   "transparent": true,
+   "prompt": "Generate one image and save it as tide-sheet.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A sheet of heavy paper half drawn out of a waterproof oiled tube case, only its face side visible: a measured table of rows and columns with entries shown as illegible marks; a little pale silt on the case.\n\nMatch one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/tide-sheet.png",
+   "generatedAt": "2026-11-17",
+   "references": [],
+   "reveal": 5
+  },
+  {
+   "id": "admiral-log",
+   "file": "admiral-log.png",
+   "kind": "item",
+   "transparent": true,
+   "prompt": "Generate one image and save it as admiral-log.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A ship's logbook lying closed: a sailcloth cover, copper corner guards, salt crusted in the page edges, a ribbon marker hanging out.\n\nMatch one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/admiral-log.png",
+   "generatedAt": "2026-11-17",
+   "references": [],
+   "reveal": 5
+  },
+  {
+   "id": "chain-map",
+   "file": "chain-map.png",
+   "kind": "item",
+   "transparent": true,
+   "prompt": "Generate one image and save it as chain-map.png in the current directory.\nItem illustration, square 1:1, a single object centered on a fully transparent background, no ground shadow. A sheet of fine paper with a careful pen drawing of a steep sea rock seen from above, with a winch, a lever, a hanging basket, a mast and a narrow channel crossed by two causeways; all notes and soundings are only illegible marks.\n\nMatch one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/chain-map.png",
+   "generatedAt": "2026-11-17",
+   "references": [],
+   "reveal": 7
+  },
+  {
+   "id": "token-guard",
+   "file": "token-guard.png",
+   "kind": "token",
+   "transparent": true,
+   "prompt": "Generate one image and save it as token-guard.png in the current directory.\nGame token figure, square 1:1, on a fully transparent background, top three-quarter view, no ground shadow. A flotilla sentry in a tarred sea jacket with a black mourning ribbon on the sleeve, a spear held upright, a cord of dull lead seals and a whistle at the belt; dutiful, waiting for the watch to change.\n\nMatch one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/token-guard.png",
+   "generatedAt": "2026-11-17",
+   "references": [],
+   "srd": "guard"
+  },
+  {
+   "id": "token-sahuagin-warrior",
+   "file": "token-sahuagin-warrior.png",
+   "kind": "token",
+   "transparent": true,
+   "prompt": "Generate one image and save it as token-sahuagin-warrior.png in the current directory.\nGame token figure, square 1:1, on a fully transparent background, top three-quarter view, no ground shadow. A silent reef-dweller warrior with grey-green scales glinting with salt in lantern light and a fin-like crest running from the crown to the shoulders, a broken shard of coral held low, seawater dripping; strange, wary and dignified.\n\nMatch one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/token-sahuagin-warrior.png",
+   "generatedAt": "2026-11-17",
+   "references": [],
+   "srd": "sahuagin-warrior"
+  },
+  {
+   "id": "token-bandit",
+   "file": "token-bandit.png",
+   "kind": "token",
+   "transparent": true,
+   "prompt": "Generate one image and save it as token-bandit.png in the current directory.\nGame token figure, square 1:1, on a fully transparent background, top three-quarter view, no ground shadow. A flotilla sailor in a tar-stained jacket with a black mourning ribbon, a cutlass held low and a boarding hook on a coiled line; weathered, underpaid, wary.\n\nMatch one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/token-bandit.png",
+   "generatedAt": "2026-11-17",
+   "references": [],
+   "srd": "bandit",
+   "facesLeft": true
+  },
+  {
+   "id": "token-pirate",
+   "file": "token-pirate.png",
+   "kind": "token",
+   "transparent": true,
+   "prompt": "Generate one image and save it as token-pirate.png in the current directory.\nGame token figure, square 1:1, on a fully transparent background, top three-quarter view, no ground shadow. A patrol-tender skipper with two sheathed knives, a whistle on a cord and a narrow patrol pennant tucked into the belt; sharp-eyed, curt, commanding.\n\nMatch one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/token-pirate.png",
+   "generatedAt": "2026-11-17",
+   "references": [],
+   "srd": "pirate"
+  },
+  {
+   "id": "token-berserker",
+   "file": "token-berserker.png",
+   "kind": "token",
+   "transparent": true,
+   "prompt": "Generate one image and save it as token-berserker.png in the current directory.\nGame token figure, square 1:1, on a fully transparent background, top three-quarter view, no ground shadow. A tall, close-cropped flagship captain with a black mourning ribbon on his sleeve, a heavy boarding axe resting on his shoulder and a bundle of lead seals stamped with a fan of pennants at his belt; polite, loud, smiling.\n\nMatch one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/token-berserker.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "arvid-krechet.png"
+   ],
+   "srd": "berserker"
+  },
+  {
+   "id": "egor-fal--figure",
+   "file": "egor-fal--figure.png",
+   "kind": "figure",
+   "transparent": true,
+   "prompt": "Generate one image with the built-in image_gen tool and save it as egor-fal--figure.png in the current directory. The attached image is the approved portrait of Prokhor Fal.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Prokhor Fal, a 31-year-old man, helmsman of a small sailing ship, a fighter: broad-shouldered, a faded neckerchief at his throat, neatly darned sleeves, a three-pronged iron grapnel on a tarred line coiled at his belt, one hand on the tiller; steady, patient eyes. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/egor-fal--figure.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "egor-fal.png"
+   ],
+   "subject": "egor-fal"
+  },
+  {
+   "id": "sana-poloz--figure",
+   "file": "sana-poloz--figure.png",
+   "kind": "figure",
+   "transparent": true,
+   "prompt": "Generate one image with the built-in image_gen tool and save it as sana-poloz--figure.png in the current directory. The attached image is the approved portrait of Arina Poloz.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Arina Poloz, a 28-year-old woman, chart-maker of side passages, a rogue: short dark hair, several pencils tucked behind her ear, a jacket with wide dry pockets, a waxed chart folded in four in her hand; quick, sly, measuring look. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/sana-poloz--figure.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "sana-poloz.png"
+   ],
+   "subject": "sana-poloz"
+  },
+  {
+   "id": "lada-kelp--figure",
+   "file": "lada-kelp--figure.png",
+   "kind": "figure",
+   "transparent": true,
+   "prompt": "Generate one image with the built-in image_gen tool and save it as lada-kelp--figure.png in the current directory. The attached image is the approved portrait of Vasilisa Kelp.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Vasilisa Kelp, a 36-year-old woman, ship's healer, a cleric: calm, a small silver ring on a cord around her neck, a satchel marked with coloured stitches, a shuttered copper lantern throwing a small circle of light only downward. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/lada-kelp--figure.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "lada-kelp.png"
+   ],
+   "subject": "lada-kelp"
+  },
+  {
+   "id": "miren-list--figure",
+   "file": "miren-list--figure.png",
+   "kind": "figure",
+   "transparent": true,
+   "prompt": "Generate one image with the built-in image_gen tool and save it as miren-list--figure.png in the current directory. The attached image is the approved portrait of Foma Slyuda.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Foma Slyuda, a 44-year-old man, scholar of salt and tides, a wizard: tall, round-rimmed spectacles, closed little boxes of stone samples hanging from his belt, holding up a glass tube in a brass housing with pale sediment inside; absorbed, hopeful. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/miren-list--figure.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "miren-list.png"
+   ],
+   "subject": "miren-list"
+  },
+  {
+   "id": "rusya-vyaz--figure",
+   "file": "rusya-vyaz--figure.png",
+   "kind": "figure",
+   "transparent": true,
+   "prompt": "Generate one image with the built-in image_gen tool and save it as rusya-vyaz--figure.png in the current directory. The attached image is the approved portrait of Rusya Nagel.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Rusya Nagel, a 26-year-old woman, ship's carpenter, a fighter: short and sturdy, a red work vest, a cleanly shaved nape, a carved wooden tool case on her shoulder and a carpenter's axe with a brass poll resting at her belt; practical, stubborn grin. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/rusya-vyaz--figure.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "rusya-vyaz.png"
+   ],
+   "subject": "rusya-vyaz"
+  },
+  {
+   "id": "nik-utok--figure",
+   "file": "nik-utok--figure.png",
+   "kind": "figure",
+   "transparent": true,
+   "prompt": "Generate one image with the built-in image_gen tool and save it as nik-utok--figure.png in the current directory. The attached image is the approved portrait of Nik Utok.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Nik Utok, a 33-year-old man, storekeeper and go-between, a rogue: a smiling face, a short cloak, tally boards and a few blank tags hanging from a baldric; charming and calculating. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/nik-utok--figure.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "nik-utok.png"
+   ],
+   "subject": "nik-utok"
+  },
+  {
+   "id": "asya-kapel--figure",
+   "file": "asya-kapel--figure.png",
+   "kind": "figure",
+   "transparent": true,
+   "prompt": "Generate one image with the built-in image_gen tool and save it as asya-kapel--figure.png in the current directory. The attached image is the approved portrait of Asya Kapel.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Asya Kapel, a 27-year-old woman, singer of the shore rowing crews, a cleric: freckled, short braids, a wooden whistle on a cord, many simple bracelets on her wrists; warm, open, keeping a rhythm. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/asya-kapel--figure.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "asya-kapel.png"
+   ],
+   "subject": "asya-kapel"
+  },
+  {
+   "id": "denis-vetr--figure",
+   "file": "denis-vetr--figure.png",
+   "kind": "figure",
+   "transparent": true,
+   "prompt": "Generate one image with the built-in image_gen tool and save it as denis-vetr--figure.png in the current directory. The attached image is the approved portrait of Denis Vetr.\n\nFull-body painted tabletop miniature of the same character: a sculpted, hand-painted resin figure with fine painted detail, standing on a round dark weathered stone base, three-quarter view from slightly above, in a calm ready stance, the whole body and the gaze turned toward the viewer's right (the figure faces right, never left or straight at the viewer). Keep the face, hair, build, clothing and carried things exactly as in the portrait: Denis Vetr, a 52-year-old man, weather watcher, a wizard: grey hair, thick eyebrows, a green cape, a small folding wind gauge with spinning cups held up to the breeze; serious, haunted by an old mistake. Vertical framing about 1:2, the whole figure and base in frame. Fully transparent background, no cast shadow beyond the base. Every person shown is clearly an adult. No gore, no blood. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "originalFile": "collection-2026-rework-2026-11-17/salt-meridian/out/denis-vetr--figure.png",
+   "generatedAt": "2026-11-17",
+   "references": [
+    "denis-vetr.png"
+   ],
+   "subject": "denis-vetr"
+  }
+ ]
+}

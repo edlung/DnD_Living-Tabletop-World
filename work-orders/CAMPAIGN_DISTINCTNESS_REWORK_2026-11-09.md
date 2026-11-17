@@ -90,3 +90,34 @@ writer now lets every parallel request finish when one answer is rejected.
 rain-check-brief.md`, `reports/RAIN_CHECK_REWORK_2026-11-14.md`); the noir tools joined the shared
 series registry (items, pictures in books, Sonnet writer with a `case` job). All eight candidates picked
 on 2026-11-13 are now reworked.
+
+2026-11-16: owner decision — the 45 remaining campaigns are reworked in cloud sessions, the writer is
+Claude Opus 5.5 high in-session (no Sonnet, no paid calls), art later (prompts and `style.txt`
+prepared, nothing generated), a pilot with the rest of `collection-2026` first. `collection-2026/
+velvet-ledger` done (`campaigns/distinctness/velvet-ledger-brief.md`, `reports/VELVET_LEDGER_REWORK_
+2026-11-16.md`); not added to `fixtures/campaign-library/`. The collection tools now allow fewer than
+eight evenings (books test, stale evening pages, map titles); packages must stay under the web import
+limit of 512 KiB.
+
+2026-11-16: `collection-2026/hollow-choir` done the same way (`campaigns/distinctness/hollow-choir-brief.md`,
+`reports/HOLLOW_CHOIR_REWORK_2026-11-16.md`): one night in six evenings of five scenes.
+
+2026-11-16: `collection-2026/winter-caravan` done the same way (`campaigns/distinctness/winter-caravan-brief.md`,
+`reports/WINTER_CARAVAN_REWORK_2026-11-16.md`). Paused at the owner's request after it:
+`salt-meridian` is a tuned draft before critics; `ash-testament` has its brief only.
+
+2026-11-16: resumed at the owner's request. `collection-2026/salt-meridian` done the same way
+(`campaigns/distinctness/salt-meridian-brief.md`, `reports/SALT_MERIDIAN_REWORK_2026-11-16.md`): a
+blockade run under an alarm track, ending in the breakthrough of the Three Mouths.
+
+2026-11-16: `collection-2026/ash-testament` done the same way (`campaigns/distinctness/ash-testament-brief.md`,
+`reports/ASH_TESTAMENT_REWORK_2026-11-16.md`): an escort of a surrendered witness under burnt flags on
+the masts, ending in the ambush on the long planks.
+
+2026-11-16: `collection-2026/glass-republic` done the same way (`campaigns/distinctness/glass-republic-brief.md`,
+`reports/GLASS_REPUBLIC_REWORK_2026-11-16.md`): a round of six factions, the curator who knew from the
+first page, and the coup night by the hour with one choice on the balcony.
+
+2026-11-16: `collection-2026/ember-crown` done the same way (`campaigns/distinctness/ember-crown-brief.md`,
+`reports/EMBER_CROWN_REWORK_2026-11-16.md`): wall sectors with banners, the east wall falling in
+evening 4, and the battle for the North Gate. All seven campaigns of the series are reworked.

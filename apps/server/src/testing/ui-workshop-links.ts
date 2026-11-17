@@ -4,6 +4,7 @@ import { createHmac } from 'node:crypto';
 export const WORKSHOP_FIXTURES = [
   'package-import',
   'library',
+  'library-figures',
   'acorn-import',
   'pearl-import',
   'journey',
