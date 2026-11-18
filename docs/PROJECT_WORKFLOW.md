@@ -2,6 +2,24 @@
 
 Updated 2026-10-15. The owner's current AGENTS instructions take precedence over older process banners.
 
+## Request — the library's fifteen campaigns, their figures and world maps, 2026-11-17
+
+- Owner: «давай запустим генерацию картинок для компаний, которые в этом нуждаются», then «нужны
+  карты мира для кампаний», «сливай PR и выкачивай» and «собери проект в кучу чтобы он был
+  цельным … мне нужен готовый продукт!».
+- Done: PR 62 (name plates under tilted-board figures, no ring), PR 63 (figures turn to face the
+  nearest opponent), PR 64 (the seven reworked collection-2026 campaigns' art, 56 hero figures and
+  27 battle maps; the library now has fifteen campaigns; report
+  `reports/COLLECTION_2026_ART_2026-11-17.md`), PR 65 (world maps and routes for the library;
+  report `reports/WORLD_MAPS_2026-11-17.md`), PR 66 (vite/vitest dev advisories; the CI journeys'
+  browser install gets its own time limit). All merged on green CI; `main` 20591cd9 green in CI
+  and locally (unit 4861, integration 410).
+- Deployed to the VPS on 2026-11-18: git bundle `8fabf738..20591cd9`, tag `20591cd92ef6`
+  (previous `8fabf7386b55`), protected dump `ltw-predeploy-20261118T080331Z.dump`; every service
+  healthy, `readyz` 200, no errors in the logs, the image holds the fifteen library campaigns and
+  the site serves the bundle built from the same commit. Not checked signed in on the live site
+  (that needs the owner's sign-in). Next, the owner's: the family playtest and the v1.0 tag.
+
 ## Current request — ideas from other tables, 2026-11-16
 
 - Owner: «приступай к реализации этих улучшений. все что возможно сделай в облаке, доступ к github у
