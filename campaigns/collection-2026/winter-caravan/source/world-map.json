@@ -1,0 +1,110 @@
+{
+  "region": "frost-spine",
+  "name": "Тракт через Инейский хребет",
+  "description": "Зимняя дорога каравана сверху, без подписей: река, перевалы, ночёвки и спуск на юг.",
+  "pins": [
+    {
+      "place": "felt-yard",
+      "x": 0.09,
+      "y": 0.1
+    },
+    {
+      "place": "cedar-edge",
+      "x": 0.25,
+      "y": 0.41
+    },
+    {
+      "place": "smoke-junction",
+      "x": 0.47,
+      "y": 0.36
+    },
+    {
+      "place": "slate-shelf",
+      "x": 0.71,
+      "y": 0.34
+    },
+    {
+      "place": "three-basins",
+      "x": 0.8,
+      "y": 0.52
+    },
+    {
+      "place": "wool-wall",
+      "x": 0.46,
+      "y": 0.59
+    },
+    {
+      "place": "last-ledge",
+      "x": 0.18,
+      "y": 0.7
+    },
+    {
+      "place": "white-night-pass",
+      "x": 0.58,
+      "y": 0.86
+    },
+    {
+      "place": "south-hollow",
+      "x": 0.83,
+      "y": 0.88
+    }
+  ],
+  "routes": [
+    {
+      "from": "felt-yard",
+      "to": "cedar-edge",
+      "miles": 3,
+      "terrain": "forest",
+      "road": true
+    },
+    {
+      "from": "cedar-edge",
+      "to": "smoke-junction",
+      "miles": 8,
+      "terrain": "forest",
+      "road": true
+    },
+    {
+      "from": "smoke-junction",
+      "to": "slate-shelf",
+      "miles": 8,
+      "terrain": "mountain",
+      "road": true
+    },
+    {
+      "from": "slate-shelf",
+      "to": "three-basins",
+      "miles": 5,
+      "terrain": "mountain",
+      "road": true
+    },
+    {
+      "from": "three-basins",
+      "to": "wool-wall",
+      "miles": 6,
+      "terrain": "mountain",
+      "road": false
+    },
+    {
+      "from": "wool-wall",
+      "to": "last-ledge",
+      "miles": 4,
+      "terrain": "mountain",
+      "road": false
+    },
+    {
+      "from": "last-ledge",
+      "to": "white-night-pass",
+      "miles": 2,
+      "terrain": "arctic",
+      "road": false
+    },
+    {
+      "from": "white-night-pass",
+      "to": "south-hollow",
+      "miles": 4,
+      "terrain": "mountain",
+      "road": false
+    }
+  ]
+}

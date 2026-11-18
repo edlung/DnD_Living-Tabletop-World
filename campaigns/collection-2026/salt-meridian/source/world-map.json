@@ -1,0 +1,136 @@
+{
+  "region": "whale-arc",
+  "name": "Воды Китовой Дуги",
+  "description": "Внутреннее море сверху, без подписей: порт, острова, рифы, плавучий ряд и устья.",
+  "pins": [
+    {
+      "place": "knot-port",
+      "x": 0.15,
+      "y": 0.82
+    },
+    {
+      "place": "double-reef",
+      "x": 0.08,
+      "y": 0.47
+    },
+    {
+      "place": "floating-row",
+      "x": 0.3,
+      "y": 0.53
+    },
+    {
+      "place": "bowl-island",
+      "x": 0.57,
+      "y": 0.8
+    },
+    {
+      "place": "survey-hull",
+      "x": 0.9,
+      "y": 0.62
+    },
+    {
+      "place": "tide-bench",
+      "x": 0.62,
+      "y": 0.43
+    },
+    {
+      "place": "brine-throat",
+      "x": 0.14,
+      "y": 0.15
+    },
+    {
+      "place": "chain-rock",
+      "x": 0.39,
+      "y": 0.1
+    },
+    {
+      "place": "three-mouths",
+      "x": 0.64,
+      "y": 0.17
+    },
+    {
+      "place": "hundred-pennants",
+      "x": 0.88,
+      "y": 0.16
+    }
+  ],
+  "routes": [
+    {
+      "from": "knot-port",
+      "to": "double-reef",
+      "miles": 14,
+      "terrain": "coastal",
+      "road": false
+    },
+    {
+      "from": "double-reef",
+      "to": "floating-row",
+      "miles": 15,
+      "terrain": "coastal",
+      "road": false
+    },
+    {
+      "from": "floating-row",
+      "to": "bowl-island",
+      "miles": 15,
+      "terrain": "coastal",
+      "road": false
+    },
+    {
+      "from": "bowl-island",
+      "to": "survey-hull",
+      "miles": 16,
+      "terrain": "coastal",
+      "road": false
+    },
+    {
+      "from": "survey-hull",
+      "to": "tide-bench",
+      "miles": 12,
+      "terrain": "coastal",
+      "road": false
+    },
+    {
+      "from": "tide-bench",
+      "to": "brine-throat",
+      "miles": 23,
+      "terrain": "coastal",
+      "road": false
+    },
+    {
+      "from": "brine-throat",
+      "to": "chain-rock",
+      "miles": 10,
+      "terrain": "coastal",
+      "road": false
+    },
+    {
+      "from": "brine-throat",
+      "to": "three-mouths",
+      "miles": 21,
+      "terrain": "coastal",
+      "road": false
+    },
+    {
+      "from": "chain-rock",
+      "to": "three-mouths",
+      "miles": 1,
+      "terrain": "coastal",
+      "road": false
+    },
+    {
+      "from": "survey-hull",
+      "to": "hundred-pennants",
+      "miles": 1,
+      "terrain": "coastal",
+      "road": false
+    },
+    {
+      "from": "hundred-pennants",
+      "to": "three-mouths",
+      "miles": 2,
+      "terrain": "coastal",
+      "road": false
+    }
+  ]
+}

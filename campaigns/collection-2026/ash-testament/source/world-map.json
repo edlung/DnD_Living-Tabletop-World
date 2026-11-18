@@ -1,0 +1,141 @@
+{
+  "region": "ashen-march",
+  "name": "Дороги Пепельной Межи",
+  "description": "Пустошь после войны сверху, без подписей: дороги, вехи, переправа, река и пограничная пристань.",
+  "pins": [
+    {
+      "place": "crown-yard",
+      "x": 0.075,
+      "y": 0.33
+    },
+    {
+      "place": "ash-tract",
+      "x": 0.22,
+      "y": 0.56
+    },
+    {
+      "place": "skol-weighhouse",
+      "x": 0.25,
+      "y": 0.34
+    },
+    {
+      "place": "rope-ferry",
+      "x": 0.39,
+      "y": 0.47
+    },
+    {
+      "place": "veterans-yard",
+      "x": 0.55,
+      "y": 0.2
+    },
+    {
+      "place": "quarry-spur",
+      "x": 0.8,
+      "y": 0.25
+    },
+    {
+      "place": "dry-porch",
+      "x": 0.87,
+      "y": 0.44
+    },
+    {
+      "place": "officers-well",
+      "x": 0.53,
+      "y": 0.47
+    },
+    {
+      "place": "two-roads",
+      "x": 0.51,
+      "y": 0.69
+    },
+    {
+      "place": "long-planks",
+      "x": 0.72,
+      "y": 0.725
+    },
+    {
+      "place": "border-landing",
+      "x": 0.9,
+      "y": 0.76
+    }
+  ],
+  "routes": [
+    {
+      "from": "crown-yard",
+      "to": "ash-tract",
+      "miles": 36,
+      "terrain": "grassland",
+      "road": true
+    },
+    {
+      "from": "ash-tract",
+      "to": "skol-weighhouse",
+      "miles": 8,
+      "terrain": "forest",
+      "road": true
+    },
+    {
+      "from": "skol-weighhouse",
+      "to": "rope-ferry",
+      "miles": 12,
+      "terrain": "grassland",
+      "road": true
+    },
+    {
+      "from": "rope-ferry",
+      "to": "veterans-yard",
+      "miles": 12,
+      "terrain": "grassland",
+      "road": true
+    },
+    {
+      "from": "veterans-yard",
+      "to": "quarry-spur",
+      "miles": 12,
+      "terrain": "hill",
+      "road": true
+    },
+    {
+      "from": "quarry-spur",
+      "to": "dry-porch",
+      "miles": 12,
+      "terrain": "hill",
+      "road": true
+    },
+    {
+      "from": "dry-porch",
+      "to": "officers-well",
+      "miles": 12,
+      "terrain": "swamp",
+      "road": false
+    },
+    {
+      "from": "officers-well",
+      "to": "two-roads",
+      "miles": 12,
+      "terrain": "grassland",
+      "road": true
+    },
+    {
+      "from": "two-roads",
+      "to": "long-planks",
+      "miles": 1,
+      "terrain": "swamp",
+      "road": false
+    },
+    {
+      "from": "long-planks",
+      "to": "border-landing",
+      "miles": 2,
+      "terrain": "swamp",
+      "road": false
+    },
+    {
+      "from": "two-roads",
+      "to": "border-landing",
+      "miles": 6,
+      "terrain": "grassland",
+      "road": true
+    }
+  ]
+}

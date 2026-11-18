@@ -14,28 +14,28 @@
    "players": 5,
    "label": "5 игроков",
    "file": "packages/5-players.json",
-   "digest": "a8d1b8ac4db390398738f2b51ad61f37f8698c029bbf25c0adade38c9a5384aa"
+   "digest": "3434829616b0c65de44b4322186f4578b8bcf606a348f1c9f414b67ce0214057"
   },
   {
    "id": "6-players",
    "players": 6,
    "label": "6 игроков",
    "file": "packages/6-players.json",
-   "digest": "3d2b8d556e11f9645ff253b17dcb1be148b43f0a6ee8d0c6f85fe06a9fe403fe"
+   "digest": "2e215454242e101a5ca7009f13abf6ded2cff1067931e0f967b2cd72508e5ecf"
   },
   {
    "id": "7-players",
    "players": 7,
    "label": "7 игроков",
    "file": "packages/7-players.json",
-   "digest": "10a5b9667cdc3813edec1bfc05fb4c5bdd5cc58017822659f62d2bc91c5b9bcb"
+   "digest": "6defacc13ddeffd6806c46f5884e2a5b9f07c957e79c9f6a7cafc12c99d535fb"
   },
   {
    "id": "8-players",
    "players": 8,
    "label": "8 игроков",
    "file": "packages/8-players.json",
-   "digest": "551fde2e8f93bdb192258842631b49f1bb26373a5c8484da9ce5f9815c42e9f2"
+   "digest": "9d9d37c70b765236801cceeb72a9febe60317985040bf8f06b5f903b5fd96e2a"
   }
  ],
  "generator": "codex-cli imagegen",
@@ -1808,6 +1808,35 @@
     ],
     "8-players": [
      "long-planks"
+    ]
+   }
+  },
+  {
+   "file": "world-map.webp",
+   "source": "campaigns/collection-2026/ash-testament/assets/world-map/world-map.webp",
+   "sha256": "a26c685b7a1cc519546ade03bb598cfc763f8f1e2364752633e2abeacccdbaef",
+   "originalSha256": "929e4577ae94abe0de642e38677daeff046cb63340f4732029bcf3464ea24692",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as ash-testament--world-map.png in the current directory.\n\nA world map for a tabletop role-playing campaign, landscape 3:2, seen straight from above like a hand-painted illustrated map (orthographic top-down view, no perspective, no horizon, no sky). A muted illustrated borderland map seen from above: grey ash country, burnt fields, black matchstick copses and reed marsh. A slow slate-blue river enters at the top just left of centre, flows down through the middle, bends east along the bottom and leaves through the right edge. A rutted post road with a tall wooden signal mast at each stop runs left to right. At the far left, a walled military compound. Lower and right, a charred log station in a burnt copse; then a long abandoned weighhouse in the upper left third. Just left of centre, a rope ferry crosses the river on a cable, a ferryman's hut on the east bank. In the upper middle, a former horse camp of long workshops with a forge; at the top right, a road fork by a timber workshop and a pale quarry pit. On the right, an inn with a long veranda behind a plank bridge over a dry ravine; near the centre, a stone well at a fork with a burnt grove east of it. Lower centre, two waymarks at a fork: a long plank causeway crosses the marsh east to a river slipway and watchtower near the right edge, and a dry road curves around the marsh. No people, no text.\n\nDraw every place described above as a small, clearly recognisable landmark exactly at its stated position, with the roads, paths, corridors or waterways between them visible, so that markers can later be pinned on each landmark. Fill the whole picture edge to edge with the mapped land (no border, no frame, no cartouche, no legend, no compass rose, no scale bar, no grid). Absolutely no text, letters, numbers, labels or symbols that read as letters anywhere on the map. No people, no creatures, no figures.\n\nThe attached image is this campaign's cover: match its painting technique, palette, light and mood, but not its composition.\n\nMatch one consistent house style: original premium illustrated post-war frontier western for adults over twenty-one, painterly oil and gouache with confident ink lines and crisp readable silhouettes, muted and painterly; the Ashen March, a fictional borderland between an old front line and a slow district river, nine months after the war; a rutted post road running through ash country, tall weathered wooden road-guard signal masts at each stage with plain cloth flags, burnt fields and charred copses whose trunks look like spent matches, grey ash lying in wheel ruts and drifting on still water, rope-drawn river ferries, short plank footbridges and causeways over reed marsh; weary adults in faded greatcoats, field jackets and travel cloaks without insignia; palette of ash grey and charcoal, scorched umber, faded greatcoat grey-green, river slate blue, dry reed ochre, dull brass and darkened copper, bone white, with low amber lantern and campfire light and a cold rose dawn; quiet, sombre and humane, tension carried by faces, posture and distance rather than violence; every person shown is clearly an adult over twenty-one. Flags show only plain colour fields and simple geometric shapes; papers, boards, tags, plaques and badges carry only blank or illegible marks. No gore, no blood, no wounds, no corpses, no executions, no anatomy, no weapons pointed at the viewer; no firearms, no gunpowder. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "ash-testament-cover.png"
+   ],
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null,
+   "subjects": {
+    "5-players": [
+     "world-map"
+    ],
+    "6-players": [
+     "world-map"
+    ],
+    "7-players": [
+     "world-map"
+    ],
+    "8-players": [
+     "world-map"
     ]
    }
   }

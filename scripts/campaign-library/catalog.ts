@@ -11,6 +11,12 @@ import {
   type ArtSource,
 } from '../campaign-shared/campaign-art.ts';
 import { campaignOf } from '../campaign-shared/series.ts';
+import {
+  WORLD_MAP_KEY,
+  withWorldMap,
+  worldMapOf,
+  type WorldMap,
+} from '../campaign-shared/world-map.ts';
 
 /**
  * The campaign library (work-orders/CAMPAIGN_LIBRARY_RELEASE_2026-11-14.md): the reworked campaigns
@@ -117,8 +123,15 @@ const sha = (bytes: Uint8Array | string) => createHash('sha256').update(bytes).d
 const playersLabel = (n: number) =>
   `${String(n)} ${n === 1 ? 'игрок' : n >= 2 && n <= 4 ? 'игрока' : 'игроков'}`;
 
-function variantOf(id: string, label: string, content: unknown): LibraryVariant {
-  const parsed = campaignPackageSchema.parse(content);
+function variantOf(
+  id: string,
+  label: string,
+  content: unknown,
+  map: WorldMap | null,
+): LibraryVariant {
+  const authored = campaignPackageSchema.parse(content);
+  // The world map joins the package only with its picture (ADR 0057 §10): pins need the map.
+  const parsed = map?.picture ? campaignPackageSchema.parse(withWorldMap(authored, map)) : authored;
   return {
     id,
     players: parsed.party.length,
@@ -254,6 +267,41 @@ async function picturesOf(
   return pictures;
 }
 
+/** The world map's picture, bound to the map place of every variant that has it. */
+async function worldMapPicture(
+  root: URL,
+  map: WorldMap | null,
+  variants: readonly LibraryVariant[],
+): Promise<LibraryPicture[]> {
+  const picture = map?.picture;
+  if (!picture) return [];
+  const at = new URL(`assets/world-map/${picture.file}`, root);
+  const bytes = new Uint8Array(await readFile(at));
+  if (sha(bytes) !== picture.sha256) throw new Error(`${root.href}: world map bytes changed`);
+  return [
+    {
+      file: `${WORLD_MAP_KEY}.webp`,
+      source: relative(at),
+      bytes,
+      sha256: picture.sha256,
+      originalSha256: picture.originalSha256,
+      generated: picture.generated,
+      prompt: picture.prompt,
+      references: picture.references,
+      variant: 'reference',
+      label: null,
+      purpose: 'image',
+      derivedFrom: null,
+      subjects: Object.fromEntries(
+        variants.map((v) => [
+          v.id,
+          v.content.entities.some((e) => e.key === WORLD_MAP_KEY) ? [WORLD_MAP_KEY] : [],
+        ]),
+      ),
+    },
+  ];
+}
+
 /** One library campaign: its packages (built from source now) and its bound pictures. */
 export async function libraryCampaign(source: LibrarySource): Promise<LibraryCampaign> {
   if (source.series === null) return moonPearl(source);
@@ -262,10 +310,11 @@ export async function libraryCampaign(source: LibrarySource): Promise<LibraryCam
     world: ArtSource['world'] & { minPlayers: number; maxPlayers: number };
   };
   const root = new URL(`${slug}/`, series.root);
+  const map = worldMapOf(root);
   const variants: LibraryVariant[] = [];
   for (let size = s.world.minPlayers; size <= s.world.maxPlayers; size++)
     variants.push(
-      variantOf(`${String(size)}-players`, playersLabel(size), series.buildPackage(s, size)),
+      variantOf(`${String(size)}-players`, playersLabel(size), series.buildPackage(s, size), map),
     );
   const art = [...artOf(root).values()];
   const pictures = await picturesOf(
@@ -285,7 +334,7 @@ export async function libraryCampaign(source: LibrarySource): Promise<LibraryCam
     root,
     variants,
     defaultVariant: `${String(s.world.defaultPlayers)}-players`,
-    pictures,
+    pictures: [...pictures, ...(await worldMapPicture(root, map, variants))],
   };
 }
 
@@ -299,13 +348,14 @@ async function moonPearl(source: LibrarySource): Promise<LibraryCampaign> {
     return keys.map((key) => pkg.entities.find((e) => e.key === key)?.name ?? key);
   };
   const full = read('four-players');
+  const map = worldMapOf(root);
   const heroes = campaignPackageSchema.parse(full).party;
-  const variants = [variantOf('four-players', playersLabel(4), full)];
+  const variants = [variantOf('four-players', playersLabel(4), full, map)];
   for (const hero of heroes) {
     const file = `without-${hero}`;
     if (!existsSync(new URL(`variants/${file}.json`, root))) continue;
     variants.push(
-      variantOf(file, `3 игрока, без героя «${named([hero], full)[0] ?? hero}»`, read(file)),
+      variantOf(file, `3 игрока, без героя «${named([hero], full)[0] ?? hero}»`, read(file), map),
     );
   }
   const manifest = JSON.parse(readFileSync(new URL('assets/manifest.json', root), 'utf8')) as {
@@ -330,5 +380,11 @@ async function moonPearl(source: LibrarySource): Promise<LibraryCampaign> {
     (asset) => Object.fromEntries(variants.map((v) => [v.id, asset.subjects])),
     variants,
   );
-  return { source, root, variants, defaultVariant: 'four-players', pictures };
+  return {
+    source,
+    root,
+    variants,
+    defaultVariant: 'four-players',
+    pictures: [...pictures, ...(await worldMapPicture(root, map, variants))],
+  };
 }

@@ -1,0 +1,174 @@
+{
+  "region": "thread-station",
+  "name": "Кольцо станции «Нитка»",
+  "description": "План станции сверху, без подписей: колесо, коридоры кольца, блоки, причалы и обшивка снаружи.",
+  "pins": [
+    {
+      "place": "receiving-wheel",
+      "x": 0.5,
+      "y": 0.5
+    },
+    {
+      "place": "communal-mess",
+      "x": 0.5,
+      "y": 0.11
+    },
+    {
+      "place": "petition-booth",
+      "x": 0.645,
+      "y": 0.12
+    },
+    {
+      "place": "folded-yard",
+      "x": 0.27,
+      "y": 0.27
+    },
+    {
+      "place": "twentieth-berth",
+      "x": 0.085,
+      "y": 0.5
+    },
+    {
+      "place": "quiet-infirmary",
+      "x": 0.23,
+      "y": 0.68
+    },
+    {
+      "place": "block-b",
+      "x": 0.5,
+      "y": 0.88
+    },
+    {
+      "place": "transit-deck",
+      "x": 0.7,
+      "y": 0.74
+    },
+    {
+      "place": "airlock-three",
+      "x": 0.735,
+      "y": 0.54
+    },
+    {
+      "place": "farewell-berth",
+      "x": 0.72,
+      "y": 0.27
+    },
+    {
+      "place": "glass-walk",
+      "x": 0.76,
+      "y": 0.42
+    },
+    {
+      "place": "outer-hull",
+      "x": 0.92,
+      "y": 0.55
+    }
+  ],
+  "routes": [
+    {
+      "from": "receiving-wheel",
+      "to": "block-b",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "receiving-wheel",
+      "to": "communal-mess",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "receiving-wheel",
+      "to": "petition-booth",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "communal-mess",
+      "to": "folded-yard",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "communal-mess",
+      "to": "petition-booth",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "folded-yard",
+      "to": "twentieth-berth",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "twentieth-berth",
+      "to": "quiet-infirmary",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "quiet-infirmary",
+      "to": "block-b",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "block-b",
+      "to": "transit-deck",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "transit-deck",
+      "to": "airlock-three",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "airlock-three",
+      "to": "farewell-berth",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "airlock-three",
+      "to": "glass-walk",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "glass-walk",
+      "to": "farewell-berth",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "petition-booth",
+      "to": "farewell-berth",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "airlock-three",
+      "to": "outer-hull",
+      "miles": 1,
+      "terrain": "urban",
+      "road": false
+    }
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "region": "copper-crown",
+  "name": "Склоны Медного Венца",
+  "description": "Две горы сверху, без подписей: террасы, рёбра, мост и тропы между ними.",
+  "pins": [
+    {
+      "place": "red-shoulder",
+      "x": 0.13,
+      "y": 0.25
+    },
+    {
+      "place": "two-foot-circle",
+      "x": 0.26,
+      "y": 0.43
+    },
+    {
+      "place": "open-ring",
+      "x": 0.375,
+      "y": 0.22
+    },
+    {
+      "place": "high-cleft",
+      "x": 0.58,
+      "y": 0.08
+    },
+    {
+      "place": "silver-rib",
+      "x": 0.84,
+      "y": 0.35
+    },
+    {
+      "place": "knee-amphitheatre",
+      "x": 0.175,
+      "y": 0.66
+    },
+    {
+      "place": "walker-house",
+      "x": 0.49,
+      "y": 0.44
+    },
+    {
+      "place": "heel-terrace",
+      "x": 0.1,
+      "y": 0.84
+    },
+    {
+      "place": "dry-throat",
+      "x": 0.44,
+      "y": 0.72
+    },
+    {
+      "place": "tilted-bridge",
+      "x": 0.72,
+      "y": 0.84
+    }
+  ],
+  "routes": [
+    {
+      "from": "heel-terrace",
+      "to": "knee-amphitheatre",
+      "miles": 3,
+      "terrain": "mountain",
+      "road": false
+    },
+    {
+      "from": "heel-terrace",
+      "to": "walker-house",
+      "miles": 4,
+      "terrain": "hill",
+      "road": false
+    },
+    {
+      "from": "walker-house",
+      "to": "dry-throat",
+      "miles": 1,
+      "terrain": "hill",
+      "road": false
+    },
+    {
+      "from": "walker-house",
+      "to": "silver-rib",
+      "miles": 3,
+      "terrain": "mountain",
+      "road": false
+    },
+    {
+      "from": "knee-amphitheatre",
+      "to": "dry-throat",
+      "miles": 2,
+      "terrain": "hill",
+      "road": false
+    },
+    {
+      "from": "dry-throat",
+      "to": "tilted-bridge",
+      "miles": 2,
+      "terrain": "hill",
+      "road": false
+    },
+    {
+      "from": "tilted-bridge",
+      "to": "open-ring",
+      "miles": 3,
+      "terrain": "mountain",
+      "road": false
+    },
+    {
+      "from": "open-ring",
+      "to": "two-foot-circle",
+      "miles": 2,
+      "terrain": "hill",
+      "road": false
+    },
+    {
+      "from": "open-ring",
+      "to": "high-cleft",
+      "miles": 2,
+      "terrain": "mountain",
+      "road": false
+    },
+    {
+      "from": "two-foot-circle",
+      "to": "red-shoulder",
+      "miles": 3,
+      "terrain": "mountain",
+      "road": false
+    },
+    {
+      "from": "red-shoulder",
+      "to": "high-cleft",
+      "miles": 2,
+      "terrain": "mountain",
+      "road": false
+    },
+    {
+      "from": "silver-rib",
+      "to": "high-cleft",
+      "miles": 3,
+      "terrain": "mountain",
+      "road": false
+    }
+  ]
+}

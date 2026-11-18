@@ -1,0 +1,124 @@
+{
+  "region": "ember-reach",
+  "name": "Рудный Венец и его стены",
+  "description": "Город на переправе сверху, без подписей: стены, ворота, кварталы, река и поле за ними.",
+  "pins": [
+    {
+      "place": "banner-hill",
+      "x": 0.53,
+      "y": 0.07
+    },
+    {
+      "place": "north-gate",
+      "x": 0.49,
+      "y": 0.17
+    },
+    {
+      "place": "forge-ward",
+      "x": 0.15,
+      "y": 0.49
+    },
+    {
+      "place": "east-wall",
+      "x": 0.76,
+      "y": 0.22
+    },
+    {
+      "place": "crown-yard",
+      "x": 0.43,
+      "y": 0.44
+    },
+    {
+      "place": "lower-market",
+      "x": 0.73,
+      "y": 0.55
+    },
+    {
+      "place": "reed-causeway",
+      "x": 0.45,
+      "y": 0.77
+    },
+    {
+      "place": "ore-crown",
+      "x": 0.6,
+      "y": 0.79
+    },
+    {
+      "place": "white-pavilion",
+      "x": 0.81,
+      "y": 0.88
+    }
+  ],
+  "routes": [
+    {
+      "from": "banner-hill",
+      "to": "north-gate",
+      "miles": 1,
+      "terrain": "hill",
+      "road": false
+    },
+    {
+      "from": "north-gate",
+      "to": "crown-yard",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "north-gate",
+      "to": "forge-ward",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "north-gate",
+      "to": "east-wall",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "east-wall",
+      "to": "lower-market",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "lower-market",
+      "to": "reed-causeway",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "reed-causeway",
+      "to": "forge-ward",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "crown-yard",
+      "to": "lower-market",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "lower-market",
+      "to": "ore-crown",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "ore-crown",
+      "to": "white-pavilion",
+      "miles": 1,
+      "terrain": "grassland",
+      "road": false
+    }
+  ]
+}

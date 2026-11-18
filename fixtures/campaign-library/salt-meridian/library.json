@@ -14,28 +14,28 @@
    "players": 5,
    "label": "5 игроков",
    "file": "packages/5-players.json",
-   "digest": "834568af30b0ec1cffed875aadfdf754a4b324e5e7798acac41b77688d00ba0f"
+   "digest": "f9f1db5ba82508fd3c716e4cfd5c62cd5a7d317e25f65ad79a6331b4c6cfd1d1"
   },
   {
    "id": "6-players",
    "players": 6,
    "label": "6 игроков",
    "file": "packages/6-players.json",
-   "digest": "0b5755ba9850bcdf51ee794939008edaafaff45a328fd4b55a5adf07f08a7524"
+   "digest": "cb041784dbda3cf876b6c1472e3f78365e491d4fb8c260fc4c7e7fd4e38cdc9f"
   },
   {
    "id": "7-players",
    "players": 7,
    "label": "7 игроков",
    "file": "packages/7-players.json",
-   "digest": "5b2c41852a597805bacb4e8cf4b55408d749d792ac4af419aab0e0c91a66a8dd"
+   "digest": "d2af502a560390562d5521ea36264e4c4afc079e7f47f9a2f4156e67f2f4984a"
   },
   {
    "id": "8-players",
    "players": 8,
    "label": "8 игроков",
    "file": "packages/8-players.json",
-   "digest": "47e130f351876eb53e2908ac18d102abe5a8d8a741d6ff3e5a6a6d23a0e717a7"
+   "digest": "cb2e3cfff77002e4b10803b5ac5274d033ce3c056044637aab6f6f3f81350762"
   }
  ],
  "generator": "codex-cli imagegen",
@@ -1890,6 +1890,35 @@
     ],
     "8-players": [
      "chain-rock"
+    ]
+   }
+  },
+  {
+   "file": "world-map.webp",
+   "source": "campaigns/collection-2026/salt-meridian/assets/world-map/world-map.webp",
+   "sha256": "bc71e7e38ddcbbb12cf36d349597f6c71130224a52311256636bc24b5abcbdb3",
+   "originalSha256": "36358f7fd14fe975e7f6b320507e3c9bc76407e980b8a6cd8df946cc9eeae750",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as salt-meridian--world-map.png in the current directory.\n\nA world map for a tabletop role-playing campaign, landscape 3:2, seen straight from above like a hand-painted illustrated map (orthographic top-down view, no perspective, no horizon, no sky). A top-down illustrated sea chart of an archipelago of grey limestone islands ringing a shallow turquoise inner sea, seen straight from above, with pale sandbars, white salt crusts and two faint moons reflected on the water; thin dotted sailing lines link the places. In the lower left corner a harbour town with three piers joined by walkways and warehouses. On the left edge, two parallel rows of flat rocks enclose a pale lagoon with one dark deep pool. Left of centre, a ring of moored trade barges under striped awnings. Near the bottom, right of centre, an island village on stepped limestone terraces with salt pans and a white silt line on the cliff. On the right, a small survey ship aground on a broad tidal terrace. Right of centre, a high sand spit with three awnings and stone steps into the water. In the upper left, a warehouse on rocks above a hidden anchorage between cliffs. Along the top, the sea narrows into three channels to the open ocean: a steep rock with a chain winch and signal mast stands between the two western channels, and the eastern channel is crowded with anchored warships; at the upper right a great flagship strung with countless small pennants. No people, no text.\n\nDraw every place described above as a small, clearly recognisable landmark exactly at its stated position, with the roads, paths, corridors or waterways between them visible, so that markers can later be pinned on each landmark. Fill the whole picture edge to edge with the mapped land (no border, no frame, no cartouche, no legend, no compass rose, no scale bar, no grid). Absolutely no text, letters, numbers, labels or symbols that read as letters anywhere on the map. No people, no creatures, no figures.\n\nThe attached image is this campaign's cover: match its painting technique, palette, light and mood, but not its composition.\n\nMatch one consistent house style: original premium illustrated age-of-sail fantasy adventure for older teens and adults, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Whale Arc, an archipelago of grey limestone islands around a shallow inner sea under two moons, a large pale elder moon and a smaller amber younger moon; small wooden sailing ships with patched canvas and tarred rope, salt drying in crusted rings on the rigging, strings of coloured signal flags snapping in the wind, shuttered lanterns and patrol lights reflected on black night water, sea mist drifting over flat reefs; palette of deep night-sea indigo and slate grey, weathered driftwood brown, tar black, sailcloth cream, salt-crust white, sun-faded signal red, ochre yellow and sea-glass green, with warm lantern amber; brisk salt-spray adventure, cunning and quiet courage; every person shown is clearly an adult. Signal flags show only plain colour fields and simple geometric shapes; papers, charts, seals and boards carry only blank or illegible marks. No gore, no wounds, no anatomy, no weapons pointed at the viewer; no firearms, no cannons, no gunpowder, no gunports. No franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "salt-meridian-cover.png"
+   ],
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null,
+   "subjects": {
+    "5-players": [
+     "world-map"
+    ],
+    "6-players": [
+     "world-map"
+    ],
+    "7-players": [
+     "world-map"
+    ],
+    "8-players": [
+     "world-map"
     ]
    }
   }

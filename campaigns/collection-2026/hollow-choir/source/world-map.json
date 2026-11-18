@@ -1,0 +1,63 @@
+{
+  "region": "hollow-estate",
+  "name": "Комнаты усадьбы",
+  "description": "План дома с поднятой крышей, каким он бывает в полночь: комнаты, коридор, крыльцо и сухой ров.",
+  "pins": [
+    {
+      "place": "outer-porch",
+      "x": 0.5,
+      "y": 0.78
+    },
+    {
+      "place": "arrival-hall",
+      "x": 0.5,
+      "y": 0.56
+    },
+    {
+      "place": "counting-stair",
+      "x": 0.585,
+      "y": 0.47
+    },
+    {
+      "place": "desire-gallery",
+      "x": 0.42,
+      "y": 0.365
+    },
+    {
+      "place": "urm-crypt",
+      "x": 0.29,
+      "y": 0.41
+    },
+    {
+      "place": "quiet-parlor",
+      "x": 0.27,
+      "y": 0.58
+    },
+    {
+      "place": "warm-kitchen",
+      "x": 0.33,
+      "y": 0.2
+    },
+    {
+      "place": "service-terrace",
+      "x": 0.11,
+      "y": 0.14
+    },
+    {
+      "place": "winter-garden",
+      "x": 0.54,
+      "y": 0.2
+    },
+    {
+      "place": "workroom",
+      "x": 0.84,
+      "y": 0.27
+    },
+    {
+      "place": "dry-moat",
+      "x": 0.86,
+      "y": 0.89
+    }
+  ],
+  "routes": []
+}

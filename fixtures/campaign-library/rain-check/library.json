@@ -14,42 +14,42 @@
    "players": 3,
    "label": "3 игрока",
    "file": "packages/3-players.json",
-   "digest": "38cc56034394a08f1a1a92d2b986292ea209a5e8f773d0a29896e53e539232a8"
+   "digest": "082800735a937b0e1f616d7aa2e301b8179ba542f1c696ec3243b59d0345051a"
   },
   {
    "id": "4-players",
    "players": 4,
    "label": "4 игрока",
    "file": "packages/4-players.json",
-   "digest": "41862b57a57367a832fd920d59fdc8f57475d1e8c977205a1073b3c1f0f66c8c"
+   "digest": "95f251cf05459de97497abf4643f3d90d59c0ba7dd0c923595ac3f57c6953775"
   },
   {
    "id": "5-players",
    "players": 5,
    "label": "5 игроков",
    "file": "packages/5-players.json",
-   "digest": "c2cc9ad2e2b09efd1f0ca16cf46dfa95c5bb638989c1ca4b0de71fb6e5006cbf"
+   "digest": "ee01951938cc5361e65d2be388673472665a8ab179a38db8b43efbc0c2eca1d4"
   },
   {
    "id": "6-players",
    "players": 6,
    "label": "6 игроков",
    "file": "packages/6-players.json",
-   "digest": "42ee7c1f9814e1f0f81e84f55f5c80f27df690bbde794f58e7c109d67be44957"
+   "digest": "bc8541698f3fc5160fe1a7edb51f4ff9e67f4da59b786de673b898a62772d257"
   },
   {
    "id": "7-players",
    "players": 7,
    "label": "7 игроков",
    "file": "packages/7-players.json",
-   "digest": "26c12f9e084b6c160fd84dae901693622ecd784ba49f324fd4f63cd3fe383471"
+   "digest": "959be3ff0ced5769a79e1d465c9f0da46d24d565716061b50531fa5955101fb0"
   },
   {
    "id": "8-players",
    "players": 8,
    "label": "8 игроков",
    "file": "packages/8-players.json",
-   "digest": "0d623a8020cf27d59de752dfb905ab309f801373ef55e39082f72683907573b9"
+   "digest": "68fab70a794218519f5cef530fc05548cec2b4895e73a6ae3e90fba3b0be20d2"
   }
  ],
  "generator": "codex-cli imagegen",
@@ -2054,6 +2054,41 @@
     ],
     "8-players": [
      "clock-roofs"
+    ]
+   }
+  },
+  {
+   "file": "world-map.webp",
+   "source": "campaigns/noir-2026/rain-check/assets/world-map/world-map.webp",
+   "sha256": "c8019af7d68b79eb6fedc9f6df099b670551eed5f60a252354683d428f7db304",
+   "originalSha256": "17fe0b9fe020cbf7c031bf84b4bafc38249d8f25820897156d7c01cc2a7fcc0e",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as rain-check--world-map.png in the current directory.\n\nA world map for a tabletop role-playing campaign, landscape 3:2, seen straight from above like a hand-painted illustrated map (orthographic top-down view, no perspective, no horizon, no sky). A top-down illustrated map of a rain-soaked 1930s-style European city at dusk, wet slate roofs, shining cobbled streets and puddles reflecting amber lamps and red neon. A dark canal enters from a harbour at the left edge and winds east across the lower half of the city. On its mouth at the left, a timber wharf with tall cranes and numbered sheds. Near the lower centre the canal passes a lock with an iron grate, a small bridge and a glowing glass gallery; just east of it, on the canal street, a squat brick police station. Thin tram rails thread the streets: a turning loop beside a long lodging house with a tin awning near the centre, a glass-roofed market hall with a red neon fish sign and a tiny tailor's booth at its corner in the left-centre, a walled yew cemetery with a small chapel and a tram loop at its gate along the top edge, and a narrow tenement in the upper left. In the upper centre a dense block of wet roofs with planks across the gaps meets a stone office building with a tall clock tower. Right of centre an oval theatre with a lantern on its roof; at the right edge a tram depot shed where many rails fan in. No people, no lettering.\n\nDraw every place described above as a small, clearly recognisable landmark exactly at its stated position, with the roads, paths, corridors or waterways between them visible, so that markers can later be pinned on each landmark. Fill the whole picture edge to edge with the mapped land (no border, no frame, no cartouche, no legend, no compass rose, no scale bar, no grid). Absolutely no text, letters, numbers, labels or symbols that read as letters anywhere on the map. No people, no creatures, no figures.\n\nThe attached image is this campaign's cover: match its painting technique, palette, light and mood, but not its composition.\n\nMatch one consistent house style: original premium illustrated noir for adults, painterly gouache and oil with confident ink lines and crisp readable silhouettes, a fictional rain-soaked 1930s-inspired European city of trams, dial telephones, paper insurance policies and hat brims; perpetual rain, wet cobbles and slate roofs, neon signs reflected in puddles; palette of wet asphalt black, slate blue and graphite, sodium-lamp amber, with a single accent of neon red and one of cold teal; melancholy, tension and grief, film-noir light and shadow. No gore, no blood, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "rain-check-cover.png"
+   ],
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null,
+   "subjects": {
+    "3-players": [
+     "world-map"
+    ],
+    "4-players": [
+     "world-map"
+    ],
+    "5-players": [
+     "world-map"
+    ],
+    "6-players": [
+     "world-map"
+    ],
+    "7-players": [
+     "world-map"
+    ],
+    "8-players": [
+     "world-map"
     ]
    }
   }

@@ -63,6 +63,36 @@
   padding: 0 0 0 0.5rem;
   transform: translate(calc(-100% + 10px), -50%);
 }
+/* No free side for its name (travel/pin-labels.ts): the button is its dot alone and the name waits
+   for the pointer or focus, drawn over the map on the side that fits it; the button keeps the name
+   as its label. */
+/* A dot alone is still a 32 px target, its centre where the place is. */
+.map-pin--quiet,
+.map-pin--quiet.map-pin--left {
+  justify-content: center;
+  min-width: 32px;
+  padding: 0;
+  transform: translate(-16px, -50%);
+}
+.map-pin--quiet .map-pin-name {
+  position: absolute;
+  top: 50%;
+  left: calc(100% - 6px + 0.25rem);
+  translate: 0 -50%;
+  visibility: hidden;
+}
+.map-pin--quiet.map-pin--left .map-pin-name {
+  right: calc(100% - 6px + 0.25rem);
+  left: auto;
+}
+.map-pin--quiet:hover,
+.map-pin--quiet:focus-visible {
+  z-index: 1;
+}
+.map-pin--quiet:hover .map-pin-name,
+.map-pin--quiet:focus-visible .map-pin-name {
+  visibility: visible;
+}
 .map-pin-dot {
   flex: none;
   width: 20px;
@@ -71,6 +101,9 @@
   border-radius: 50%;
   background: var(--gold);
   box-shadow: 0 0 0 2px color-mix(in srgb, var(--gold) 40%, transparent);
+}
+.map-pin--here {
+  z-index: 1;
 }
 .map-pin--here .map-pin-dot {
   background: var(--teal);

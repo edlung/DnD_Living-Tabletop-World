@@ -16,6 +16,7 @@ import {
 import { validatePossessions } from './possessions.ts';
 import { validateEntities, validateIdentities, validateKnowledge } from './references.ts';
 import { rewriteQuests, validateStory } from './story.ts';
+import { validateWorldMap } from './world-map.ts';
 
 export type { CampaignPlan } from './context.ts';
 
@@ -39,6 +40,7 @@ export function buildCampaignPlan(
   validateEntities(context);
   validateKnowledge(context);
   validatePossessions(context);
+  validateWorldMap(context);
   validateStory(context);
   // A bestiary creature's stat block is the SRD's, written by the server before any plan (ADR 0058).
   for (const entity of content.entities)
@@ -210,6 +212,32 @@ export function buildCampaignPlan(
         `entities.${entity.key}.status`,
       );
   }
+  // The world map (ADR 0057 §10): each map's pins, then every route between two places.
+  for (const map of [...(content.maps ?? [])].sort((a, b) => compareKey(a.region, b.region)))
+    add(
+      {
+        type: 'SetMapPins',
+        regionId: identity(identities.entities, map.region),
+        pins: map.pins.map((pin) => ({
+          placeId: identity(identities.entities, pin.place),
+          x: pin.x,
+          y: pin.y,
+        })),
+      },
+      `maps.${map.region}`,
+    );
+  for (const route of [...(content.routes ?? [])].sort(
+    (a, b) => compareKey(a.from, b.from) || compareKey(a.to, b.to),
+  ))
+    add(
+      {
+        type: 'SetRoute',
+        fromId: identity(identities.entities, route.from),
+        toId: identity(identities.entities, route.to),
+        route: { miles: route.miles, terrain: route.terrain, road: route.road },
+      },
+      `routes.${route.from}~${route.to}`,
+    );
   for (const location of locations)
     if (location.location?.parent === null && location.status === 'active')
       add(

@@ -1,0 +1,165 @@
+{
+  "region": "velten-city",
+  "name": "Кварталы Вельтеня",
+  "description": "Город сверху, без подписей: биржа, банк, конторы, трамвайные линии, канал и литейная.",
+  "pins": [
+    {
+      "place": "ash-printworks",
+      "x": 0.15,
+      "y": 0.14
+    },
+    {
+      "place": "velvet-bank",
+      "x": 0.45,
+      "y": 0.12
+    },
+    {
+      "place": "open-court",
+      "x": 0.67,
+      "y": 0.13
+    },
+    {
+      "place": "velvet-hall",
+      "x": 0.87,
+      "y": 0.12
+    },
+    {
+      "place": "night-ledger-office",
+      "x": 0.28,
+      "y": 0.34
+    },
+    {
+      "place": "municipal-archive",
+      "x": 0.79,
+      "y": 0.42
+    },
+    {
+      "place": "velvet-exchange",
+      "x": 0.5,
+      "y": 0.45
+    },
+    {
+      "place": "ledger-vault",
+      "x": 0.56,
+      "y": 0.56
+    },
+    {
+      "place": "quiet-clinic",
+      "x": 0.09,
+      "y": 0.47
+    },
+    {
+      "place": "cord-row",
+      "x": 0.17,
+      "y": 0.75
+    },
+    {
+      "place": "otek-house",
+      "x": 0.33,
+      "y": 0.85
+    },
+    {
+      "place": "counterweight-station",
+      "x": 0.58,
+      "y": 0.76
+    },
+    {
+      "place": "nine-pipe-foundry",
+      "x": 0.83,
+      "y": 0.77
+    }
+  ],
+  "routes": [
+    {
+      "from": "velvet-exchange",
+      "to": "ledger-vault",
+      "miles": 1,
+      "terrain": "urban",
+      "road": false
+    },
+    {
+      "from": "velvet-exchange",
+      "to": "cord-row",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "cord-row",
+      "to": "otek-house",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "velvet-exchange",
+      "to": "night-ledger-office",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "velvet-exchange",
+      "to": "open-court",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "open-court",
+      "to": "municipal-archive",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "velvet-exchange",
+      "to": "velvet-bank",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "velvet-exchange",
+      "to": "velvet-hall",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "velvet-exchange",
+      "to": "ash-printworks",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "velvet-exchange",
+      "to": "counterweight-station",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "counterweight-station",
+      "to": "nine-pipe-foundry",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "cord-row",
+      "to": "quiet-clinic",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "cord-row",
+      "to": "ash-printworks",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    }
+  ]
+}

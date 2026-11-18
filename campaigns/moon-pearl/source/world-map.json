@@ -1,0 +1,181 @@
+{
+  "region": "sea",
+  "name": "Улицы Перламутра",
+  "description": "Город сверху, без подписей: набережные, мостики, каналы, музей и рынок.",
+  "pins": [
+    {
+      "place": "glass",
+      "x": 0.45,
+      "y": 0.09
+    },
+    {
+      "place": "archive",
+      "x": 0.2,
+      "y": 0.15
+    },
+    {
+      "place": "theatre",
+      "x": 0.68,
+      "y": 0.13
+    },
+    {
+      "place": "reef",
+      "x": 0.82,
+      "y": 0.42
+    },
+    {
+      "place": "wreck",
+      "x": 0.07,
+      "y": 0.47
+    },
+    {
+      "place": "commons",
+      "x": 0.45,
+      "y": 0.37
+    },
+    {
+      "place": "passage",
+      "x": 0.26,
+      "y": 0.38
+    },
+    {
+      "place": "market",
+      "x": 0.67,
+      "y": 0.46
+    },
+    {
+      "place": "nautilus",
+      "x": 0.17,
+      "y": 0.65
+    },
+    {
+      "place": "museum",
+      "x": 0.45,
+      "y": 0.7
+    },
+    {
+      "place": "quay",
+      "x": 0.66,
+      "y": 0.79
+    },
+    {
+      "place": "boat",
+      "x": 0.7,
+      "y": 0.895
+    }
+  ],
+  "routes": [
+    {
+      "from": "museum",
+      "to": "quay",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "quay",
+      "to": "boat",
+      "miles": 1,
+      "terrain": "coastal",
+      "road": false
+    },
+    {
+      "from": "quay",
+      "to": "market",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "market",
+      "to": "reef",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "market",
+      "to": "theatre",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "reef",
+      "to": "theatre",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "theatre",
+      "to": "glass",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "glass",
+      "to": "archive",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "archive",
+      "to": "wreck",
+      "miles": 2,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "archive",
+      "to": "nautilus",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "wreck",
+      "to": "nautilus",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "nautilus",
+      "to": "passage",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "passage",
+      "to": "commons",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "commons",
+      "to": "museum",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "commons",
+      "to": "quay",
+      "miles": 1,
+      "terrain": "urban",
+      "road": true
+    },
+    {
+      "from": "quay",
+      "to": "nautilus",
+      "miles": 2,
+      "terrain": "coastal",
+      "road": false
+    }
+  ]
+}

@@ -14,21 +14,21 @@
    "players": 6,
    "label": "6 игроков",
    "file": "packages/6-players.json",
-   "digest": "c9891b402aeb99b3e7f81177773fa1a918c5cc1a499c31aab65970dfcba8f515"
+   "digest": "accf17aa3823bda0adcc28717c04d2e58da11bdb52785f0c2ef54ee1f2ac5c3d"
   },
   {
    "id": "7-players",
    "players": 7,
    "label": "7 игроков",
    "file": "packages/7-players.json",
-   "digest": "247eedcac5eeb756bda042404270141e9d0af75eefad916e0e100c3e156be931"
+   "digest": "4cfa5a3d87e2df99260c901e1f0991935b56dcf1385ebbb2f36f915cdf526540"
   },
   {
    "id": "8-players",
    "players": 8,
    "label": "8 игроков",
    "file": "packages/8-players.json",
-   "digest": "e2d9aa9d407b1a8bf145b6458004131fc7a75477332414742629694ad5a59b8b"
+   "digest": "c6b1209bea9d79fcc641195fa130a6d83def8db51cdf4713bce0b16674c69d8d"
   }
  ],
  "generator": "codex-cli imagegen",
@@ -1528,6 +1528,32 @@
     ],
     "8-players": [
      "last-ledge"
+    ]
+   }
+  },
+  {
+   "file": "world-map.webp",
+   "source": "campaigns/collection-2026/winter-caravan/assets/world-map/world-map.webp",
+   "sha256": "7e3d4bb92c3e59e89046400c04a93537d4566132a9f5da93475f6e146c7a88f4",
+   "originalSha256": "63993be30e8c88615e5771687f109cc6a517a10c29dbbf08e08a63035a01b3f7",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as winter-caravan--world-map.png in the current directory.\n\nA world map for a tabletop role-playing campaign, landscape 3:2, seen straight from above like a hand-painted illustrated map (orthographic top-down view, no perspective, no horizon, no sky). An illustrated winter mountain map seen from above: fir and cedar valleys climbing to bare rock ribs and snowfields. One thin trodden sledge track winds from the upper left to the lower right. In the far upper left, a tiny hamlet of snow-roofed sheds with sledge awnings and a smoking cauldron; lower and right, a clearing under huge dark cedars with a trapper's hut. A frozen river crosses the upper third; near the upper centre three cottages and a barn stand on its south bank by a stone ford. The track climbs right to a ledge cut along a grey cliff under a white cornice, right of centre in the upper half. Below it on the right, three round hollows in a row, the middle one holding a frozen lake. The track turns back left to a snow-buried log lodge with a woodpile just below the centre, then to a flat stone terrace on the left of the lower half. From there a white snow chute climbs to a narrow rocky saddle near the bottom centre, a cornice on the ridge east of it and a dark rock spur to its west. In the lower right corner, a few farmsteads among the first firs around a steaming spring and a small signal fire. No people, no text.\n\nDraw every place described above as a small, clearly recognisable landmark exactly at its stated position, with the roads, paths, corridors or waterways between them visible, so that markers can later be pinned on each landmark. Fill the whole picture edge to edge with the mapped land (no border, no frame, no cartouche, no legend, no compass rose, no scale bar, no grid). Absolutely no text, letters, numbers, labels or symbols that read as letters anywhere on the map. No people, no creatures, no figures.\n\nThe attached image is this campaign's cover: match its painting technique, palette, light and mood, but not its composition.\n\nMatch one consistent house style: original premium illustrated winter mountain survival for players aged 16 and over, painterly oil and gouache with confident ink lines and crisp readable silhouettes; the Frost Spine, a fictional northern range of cedar and fir valleys climbing to bare rock ribs and wind-scoured snowfields under a short winter day; a caravan of four heavy cargo sledges under pale cream felt tents, drawn by frost-rimed mules in rope harness; textures of crusted snow, hoarfrost on traces, beards and eyelashes, felted wool, tarred hemp rope, birch bark and woodsmoke; palette of snow white and blue-grey shadow, slate and granite grey, deep fir green, felt cream, mule brown and the small warm amber and ember orange of campfires and lanterns; hard cold, wind and silence set against the warmth of small fires and tired people sharing what little they have; every person shown is clearly an adult. Papers, tallies and notches carry only blank or illegible marks. No gore, no wounds, no blood, no anatomy, no injured or suffering animals, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "winter-caravan-cover.png"
+   ],
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null,
+   "subjects": {
+    "6-players": [
+     "world-map"
+    ],
+    "7-players": [
+     "world-map"
+    ],
+    "8-players": [
+     "world-map"
     ]
    }
   }

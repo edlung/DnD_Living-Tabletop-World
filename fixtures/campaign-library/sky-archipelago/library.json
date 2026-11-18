@@ -14,21 +14,21 @@
    "players": 6,
    "label": "6 игроков",
    "file": "packages/6-players.json",
-   "digest": "38b826c63e4389153662dcd8c8e120b5204e1551bd45881c9d580e89d976ff5d"
+   "digest": "bfcba53104ea3802f0e984ea1e822c88378f4e1ad5e383fc40a8ec656d652c93"
   },
   {
    "id": "7-players",
    "players": 7,
    "label": "7 игроков",
    "file": "packages/7-players.json",
-   "digest": "61747b6e0bae99548eb59c3cb0a60b8f616ff966eedcbff0bf604c05c01eb2bc"
+   "digest": "edddd665a6ee7d663ff29030ec259202fc66e48bf6428fc506cb863f291425a4"
   },
   {
    "id": "8-players",
    "players": 8,
    "label": "8 игроков",
    "file": "packages/8-players.json",
-   "digest": "f9af6b731d667b63f2762a3d9b078de5474eaeb7169167b51880e2b1c2def708"
+   "digest": "57f3e5ce1cb073b0b9e52249a9d476200168abe5005c48db9cf5558a9bf007c8"
   }
  ],
  "generator": "codex-cli imagegen",
@@ -1537,6 +1537,32 @@
     ],
     "8-players": [
      "judges-terrace"
+    ]
+   }
+  },
+  {
+   "file": "world-map.webp",
+   "source": "campaigns/collection-2026/sky-archipelago/assets/world-map/world-map.webp",
+   "sha256": "9c14d5f32acce44137f7aabc6e4a26c8ce01d1dc24c7ceaff4ea4a3c75c8f342",
+   "originalSha256": "f33665b0f854e5b645daed5cb4adcfa32caa711fd457730af0ba6f4a4fe19bf3",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as sky-archipelago--world-map.png in the current directory.\n\nA world map for a tabletop role-playing campaign, landscape 3:2, seen straight from above like a hand-painted illustrated map (orthographic top-down view, no perspective, no horizon, no sky). A top-down illustrated map of a sky archipelago seen straight from above: floating islands of pale stone drift over a bright, endless ocean of white clouds touched with gold sunlight, with thin dashed wind trails looping between them as the race course. In the lower left corner a harbour island with eight wooden berths on long piers and a beam with two bells. Above it on the left, two wooden decks hang face to face, one upside down beneath the other, strung with taut lines and striped posts. Near the top left of centre, three stone arches cross in mid-air above a small platform with a moored barge. Just left of centre, a field of translucent glassy slabs between sandy edges with tiny flags. At the bottom centre, a school on a flat island slope with a courtyard of workbenches. Right of centre, seven stone signposts stand on a broad rock where four wind corridors fan out. In the upper middle right, a hollow mountain island opened by three great breaches. At the upper right, an open terrace with a framed board and mooring bollards; below it on the right, a colossal stone ring shaped like a crown with three gaps in its rim. No people, no text.\n\nDraw every place described above as a small, clearly recognisable landmark exactly at its stated position, with the roads, paths, corridors or waterways between them visible, so that markers can later be pinned on each landmark. Fill the whole picture edge to edge with the mapped land (no border, no frame, no cartouche, no legend, no compass rose, no scale bar, no grid). Absolutely no text, letters, numbers, labels or symbols that read as letters anywhere on the map. No people, no creatures, no figures.\n\nThe attached image is this campaign's cover: match its painting technique, palette, light and mood, but not its composition.\n\nMatch one consistent house style: original premium illustrated adventure fantasy for teenagers and adults, painterly gouache and ink with confident visible brushwork, crisp readable silhouettes and subtle paper grain, airy cinematic composition with strong sense of height, wind and motion; palette of luminous sky azure and cerulean, cloud white and pale gold sunlight, sail cream, signal coral red, chalk white and warm brass, with deep slate-blue shadows. Wonder, competitive excitement and warm humanity; no horror, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "sky-archipelago-cover.png"
+   ],
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null,
+   "subjects": {
+    "6-players": [
+     "world-map"
+    ],
+    "7-players": [
+     "world-map"
+    ],
+    "8-players": [
+     "world-map"
     ]
    }
   }

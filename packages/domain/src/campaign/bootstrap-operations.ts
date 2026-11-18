@@ -10,6 +10,7 @@ import { decideStartScene } from '../kernel/decide/world.ts';
 import { reject, type Decision } from '../kernel/decision.ts';
 import type { WorldState } from '../kernel/state.ts';
 import { decideSetRelationship } from '../relationships/decide.ts';
+import { decideSetMapPins, decideSetRoute } from '../travel/map.ts';
 import { decideSetWeather } from '../weather/weather.ts';
 
 /** Initial-only allowlist. This never widens the ordinary in-play authoring policy. */
@@ -45,6 +46,11 @@ export function decideInitialOperation(state: WorldState, command: KernelCommand
       return decideChangeEntityStatus(state, command);
     case 'SetWeather':
       return decideSetWeather(state, command);
+    // The package's world map (ADR 0057 §10): its pins and routes, as the DM would set them.
+    case 'SetMapPins':
+      return decideSetMapPins(state, command);
+    case 'SetRoute':
+      return decideSetRoute(state, command);
     default:
       return invalid();
   }

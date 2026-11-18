@@ -14,28 +14,28 @@
    "players": 5,
    "label": "5 игроков",
    "file": "packages/5-players.json",
-   "digest": "5aec074c49adcaa6820067ec3b94e78303eaa7ba33d0fa296705fc6b661543ff"
+   "digest": "235224f6a6c7b63e3025540263cba31bac23aa8a2bc37ed6ab3f4271970b653e"
   },
   {
    "id": "6-players",
    "players": 6,
    "label": "6 игроков",
    "file": "packages/6-players.json",
-   "digest": "2ed3f5064b927293dcd39ab177f63820633adf1cc8c46ad1317cf74b69a28030"
+   "digest": "b7df5cc4083da2a7f8b81b24279484b0bf80c5575bbf2c439f1da54830f81a70"
   },
   {
    "id": "7-players",
    "players": 7,
    "label": "7 игроков",
    "file": "packages/7-players.json",
-   "digest": "721ba53640676a19409a0376230dc9b240d53f6a29c9456f2ef519e5e685d8fc"
+   "digest": "413eb65c1740c4c4f4f296506a2687fe344d43c11aadab8c452ca3ab3c5ac304"
   },
   {
    "id": "8-players",
    "players": 8,
    "label": "8 игроков",
    "file": "packages/8-players.json",
-   "digest": "9f052c3f7034766df72b11b6bc5dd63e2aff624f293484d43843f710b6b6f7b6"
+   "digest": "5134711263a0bfa7bc429c82537092c556795e0209a78b767bcb1f628ed6aebe"
   }
  ],
  "generator": "codex-cli imagegen",
@@ -1692,6 +1692,35 @@
     ],
     "8-players": [
      "outer-hull"
+    ]
+   }
+  },
+  {
+   "file": "world-map.webp",
+   "source": "campaigns/collection-2026/last-orbit/assets/world-map/world-map.webp",
+   "sha256": "11e6e217819b9b7514be1fa806b7fee8d016e6092218d6cf65109e9496608f0d",
+   "originalSha256": "338f24d1ae0de9585dbc0c436bf2576b3040f1d9162d9e3b436d9e85fec054e2",
+   "generated": "2026-11-17",
+   "prompt": "Generate one image and save it as last-orbit--world-map.png in the current directory.\n\nA world map for a tabletop role-playing campaign, landscape 3:2, seen straight from above like a hand-painted illustrated map (orthographic top-down view, no perspective, no horizon, no sky). A top-down illustrated plan of a ring-shaped orbital prison station seen straight from above, over a vast cloud-banded planet filling the background. A broad riveted ring of habitat modules circles the picture, linked by spoke corridors to a round hub hall with a riveted floor ring in the exact centre. At the top of the ring lies a long mess hall of pushed-together tables and metal trays; just right of it a small hall with a barred grille window and archive cabinets; in the upper left an open exercise deck with soft partitions and coloured floor stripes. On the far left a sealed docking collar juts outward with a torn clamp. In the lower left a small sickbay with screens and cots; at the bottom a straight corridor lined with cell doors and blue night lamps; in the lower right a covered cargo deck with an issue table and crates. On the right side of the ring a frosted airlock with suit racks and a round outer hatch; above it a passenger lounge with seat rows and a docked boxy ferry; between them along the outer rim a curved gallery of tall frosted windows. Outside the right rim, bare riveted hull plating with safety rings leads to a short mast holding a small cargo shuttle. No people, no text.\n\nDraw every place described above as a small, clearly recognisable landmark exactly at its stated position, with the roads, paths, corridors or waterways between them visible, so that markers can later be pinned on each landmark. Fill the whole picture edge to edge with the mapped land (no border, no frame, no cartouche, no legend, no compass rose, no scale bar, no grid). Absolutely no text, letters, numbers, labels or symbols that read as letters anywhere on the map. No people, no creatures, no figures.\n\nThe attached image is this campaign's cover: match its painting technique, palette, light and mood, but not its composition.\n\nMatch one consistent house style: original premium illustrated science fiction for older teens and adults, painterly gouache and oil with clean confident ink lines, crisp readable silhouettes, cold glass and brushed steel lit by the reflected glow of a huge cloud-banded planet; palette of deep space navy and graphite, frosted glass cyan, warm prison-robe orange, pale planet-light gold and a single signal red; rows of rivets, frost on viewports, quiet weightless tension and hope. Prison robes carry blank stencilled number patches with no legible digits. No gore, no wounds, no weapons pointed at the viewer, no franchise references, no anime look, no photorealism. No text, no lettering, no numbers, no logos, no watermark, no border.",
+   "references": [
+    "last-orbit-cover.png"
+   ],
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null,
+   "subjects": {
+    "5-players": [
+     "world-map"
+    ],
+    "6-players": [
+     "world-map"
+    ],
+    "7-players": [
+     "world-map"
+    ],
+    "8-players": [
+     "world-map"
     ]
    }
   }

@@ -5,7 +5,12 @@ import { describe, expect, it } from 'vitest';
 
 import { campaignPackageSchema, type CampaignPackage } from '../../packages/contracts/src/index.ts';
 import { createCombatEngine } from '../../packages/combat/src/index.ts';
-import { SequentialIds, SteppingClock, WorldEngine } from '../../packages/domain/src/index.ts';
+import {
+  SequentialIds,
+  SteppingClock,
+  WorldEngine,
+  worldMapView,
+} from '../../packages/domain/src/index.ts';
 import { PublishedEventStore } from '../../apps/server/src/campaigns/published-event-store.ts';
 import { loadCampaignLibrary } from '../../apps/server/src/campaigns/library.ts';
 import { createLogger } from '../../apps/server/src/platform/logging/logger.ts';
@@ -84,7 +89,7 @@ describe('campaign library', () => {
   });
 
   it.each(LIBRARY.map((s) => s.id))(
-    '%s: a started campaign gets its pictures, figures and battle maps once',
+    '%s: a started campaign gets its pictures, figures, battle maps and world map once',
     async (id) => {
       const entry = library.entries.find((e) => e.id === id);
       if (!entry) throw new Error(`${id}: not in the library`);
@@ -113,6 +118,33 @@ describe('campaign library', () => {
       );
       const figured = new Set(shown.filter((a) => a.purpose === 'figure').map((a) => a.entityId));
       for (const foe of foes) expect(figured.has(foe), `${id}: a foe without a figure`).toBe(true);
+      // The world map (ADR 0057 §10): the DM sees its picture with every place but the region
+      // pinned on it, and routes that join every pinned place, each end pinned.
+      const mapId = revision.identities.entities['world-map'] ?? '';
+      expect(
+        shown.some((a) => a.entityId === mapId && a.purpose === 'image'),
+        `${id}: the map's picture`,
+      ).toBe(true);
+      const view = worldMapView(state, { kind: 'DM', label: 'DM', holderId: null, scopes: 'ALL' });
+      expect(view.regions.map((r) => r.region.entityId)).toEqual([mapId]);
+      const pinned = new Set(view.regions[0]?.pins.map((pin) => pin.place.entityId));
+      const places = content.entities.filter(
+        (e) => e.kind === 'location' && e.location?.parent !== null && e.key !== 'world-map',
+      );
+      for (const place of places)
+        expect(pinned.has(revision.identities.entities[place.key] ?? ''), place.key).toBe(true);
+      // A house's rooms are a plan without miles: travel there is walking, not a journey.
+      if (id === 'hollow-choir') {
+        expect(view.routes).toEqual([]);
+        return;
+      }
+      expect(view.routes.length, `${id}: routes`).toBeGreaterThan(0);
+      const joined = new Set<string>();
+      for (const route of view.routes) {
+        expect(pinned.has(route.from.entityId) && pinned.has(route.to.entityId)).toBe(true);
+        joined.add(route.from.entityId).add(route.to.entityId);
+      }
+      expect(joined, `${id}: a pinned place no route reaches`).toEqual(pinned);
     },
     120_000,
   );

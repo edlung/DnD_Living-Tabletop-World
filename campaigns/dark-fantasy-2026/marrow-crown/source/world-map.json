@@ -1,0 +1,141 @@
+{
+  "region": "olom",
+  "name": "Ходы Олома",
+  "description": "Ущелье и ходы под ним сверху, без подписей: чем глубже, тем темнее.",
+  "pins": [
+    {
+      "place": "salt-mouth",
+      "x": 0.19,
+      "y": 0.75
+    },
+    {
+      "place": "hanging-teeth",
+      "x": 0.27,
+      "y": 0.44
+    },
+    {
+      "place": "breath-stairs",
+      "x": 0.525,
+      "y": 0.42
+    },
+    {
+      "place": "blind-lake",
+      "x": 0.43,
+      "y": 0.76
+    },
+    {
+      "place": "folds-camp",
+      "x": 0.63,
+      "y": 0.78
+    },
+    {
+      "place": "rib-forest",
+      "x": 0.75,
+      "y": 0.67
+    },
+    {
+      "place": "red-turn",
+      "x": 0.89,
+      "y": 0.5
+    },
+    {
+      "place": "cradle-crown",
+      "x": 0.86,
+      "y": 0.19
+    },
+    {
+      "place": "rough-throat",
+      "x": 0.72,
+      "y": 0.3
+    },
+    {
+      "place": "echo-pocket",
+      "x": 0.6,
+      "y": 0.21
+    },
+    {
+      "place": "sun-fissure",
+      "x": 0.495,
+      "y": 0.13
+    }
+  ],
+  "routes": [
+    {
+      "from": "salt-mouth",
+      "to": "hanging-teeth",
+      "miles": 1,
+      "terrain": "underdark",
+      "road": false
+    },
+    {
+      "from": "hanging-teeth",
+      "to": "breath-stairs",
+      "miles": 1,
+      "terrain": "underdark",
+      "road": false
+    },
+    {
+      "from": "breath-stairs",
+      "to": "blind-lake",
+      "miles": 2,
+      "terrain": "underdark",
+      "road": false
+    },
+    {
+      "from": "blind-lake",
+      "to": "folds-camp",
+      "miles": 1,
+      "terrain": "underdark",
+      "road": false
+    },
+    {
+      "from": "folds-camp",
+      "to": "rib-forest",
+      "miles": 2,
+      "terrain": "underdark",
+      "road": false
+    },
+    {
+      "from": "rib-forest",
+      "to": "red-turn",
+      "miles": 1,
+      "terrain": "underdark",
+      "road": false
+    },
+    {
+      "from": "red-turn",
+      "to": "cradle-crown",
+      "miles": 1,
+      "terrain": "underdark",
+      "road": false
+    },
+    {
+      "from": "cradle-crown",
+      "to": "rough-throat",
+      "miles": 1,
+      "terrain": "underdark",
+      "road": false
+    },
+    {
+      "from": "rough-throat",
+      "to": "echo-pocket",
+      "miles": 1,
+      "terrain": "underdark",
+      "road": false
+    },
+    {
+      "from": "echo-pocket",
+      "to": "sun-fissure",
+      "miles": 1,
+      "terrain": "underdark",
+      "road": false
+    },
+    {
+      "from": "sun-fissure",
+      "to": "breath-stairs",
+      "miles": 1,
+      "terrain": "underdark",
+      "road": false
+    }
+  ]
+}
