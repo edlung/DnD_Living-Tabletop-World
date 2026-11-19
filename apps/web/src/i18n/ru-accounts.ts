@@ -91,6 +91,14 @@ registerRussian({
   'In Russian': 'На русском',
   '{language}: {adventure}': '{language}: {adventure}',
   'Preparing the adventure…': 'Готовим приключение…',
+  'Campaigns from the library': 'Кампании из библиотеки',
+  'Written campaigns with their own pictures, figures and battle maps. Pick the number of players; the campaign starts as written, with you as its DM.':
+    'Готовые кампании со своими картинами, фигурками и картами боёв. Выберите число игроков: кампания начнётся как написана, а мастером будете вы.',
+  'Start «{title}»': 'Начать «{title}»',
+  'Loading the library…': 'Загружаем библиотеку…',
+  'Preparing the campaign…': 'Готовим кампанию…',
+  'This takes up to a minute or two: the world and its pictures are set up.':
+    'Это займёт минуту-другую: готовим мир и его картины.',
   'You already lead ten campaigns of your own.': 'Вы уже ведёте десять своих кампаний.',
   'That campaign cannot be opened now.': 'Эту кампанию сейчас нельзя открыть.',
   'You are the DM': 'Вы — мастер',

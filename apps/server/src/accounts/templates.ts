@@ -1,4 +1,4 @@
-import { randomBytes, randomUUID } from 'node:crypto';
+import { randomBytes } from 'node:crypto';
 
 import type { CampaignTemplate } from '@ltw/contracts';
 import { commandSubmissionSchema, type WorldEngine } from '@ltw/domain';
@@ -11,14 +11,13 @@ import {
 import { copyLibrary } from '../adventures/library-copy.ts';
 import type { AssetContentStore } from '../assets/content-store.ts';
 import type { CredentialStore } from '../auth/credential-store.ts';
-import { iso, type AuthClock } from '../auth/session-authenticator.ts';
-import { HOUR_MS, SESSION_MS } from '../auth/sign-in.ts';
-import { hashToken, newToken } from '../auth/tokens.ts';
+import type { AuthClock } from '../auth/session-authenticator.ts';
 import { importCuratedSet } from '../images/curated-import.ts';
 import { bindSeedEntities, seededEntityIds } from '../images/seed-entities.ts';
 import type { LibraryStore } from '../library/library-store.ts';
 import type { Logger } from '../platform/logging/logger.ts';
 import type { AccountStore, SeatRecord } from './account-store.ts';
+import { seatAccountAsDm } from './dm-seat.ts';
 
 /**
  * A campaign from a ready adventure (docs/adr/0041-accounts.md §5; docs/adr/0058-campaign-content.md
@@ -99,42 +98,6 @@ export async function createFromTemplate(
   }
 
   // The DM's invitation, used at once by the account that created the campaign.
-  const now = deps.clock.now();
-  const invitationId = randomUUID();
-  await deps.credentials.createInvitation({
-    invitationId,
-    tokenHash: hashToken(newToken()),
-    campaignId,
-    purpose: 'dm',
-    characterId: null,
-    createdBy: `account:${accountId}`,
-    createdAt: iso(now),
-    expiresAt: iso(now + HOUR_MS),
-    actorId: dmActorId,
-  });
-  const sessionToken = newToken();
-  const used = await deps.credentials.completeRedeem(
-    invitationId,
-    {
-      sessionId: randomUUID(),
-      tokenHash: hashToken(sessionToken),
-      campaignId,
-      actorId: dmActorId,
-      invitationId,
-      createdAt: iso(now),
-      expiresAt: iso(now + SESSION_MS),
-    },
-    iso(now),
-  );
-  if (!used) throw new Error('the DM invitation of a new campaign was not used');
-  const seat: SeatRecord = {
-    accountId,
-    campaignId,
-    actorId: dmActorId,
-    role: 'dm',
-    invitationId,
-    joinedAt: iso(now),
-  };
-  if (!(await deps.accounts.addSeat(seat))) throw new Error('the DM seat was not added');
+  const { seat, sessionToken } = await seatAccountAsDm(deps, accountId, campaignId, dmActorId);
   return { campaignId, seat, sessionToken };
 }

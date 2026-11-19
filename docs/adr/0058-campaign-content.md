@@ -179,6 +179,31 @@
   of it to each variant (`scripts/campaign-shared/world-map.ts`). The campaigns' own `variants/`
   and offline books are unchanged.
 
+## Notes from the implementation (the library in the hub, 2026-11-19)
+
+- Owner request 2026-11-19 («почему я как ДМ вижу всего несколько кампаний?» → «Да, сделай»): a DM
+  signed in with a login starts a library campaign from the hub, with no workshop invitation.
+  Work order `work-orders/HUB_LIBRARY_2026-11-19.md`.
+- `GET /account/library` lists the library, `GET /account/library/:id/cover` serves a cover, and
+  `POST /account/library-campaigns {requestId, libraryId, variantId}` starts one
+  (`apps/server/src/accounts/library-routes.ts`, `library-campaigns.ts`). The server does what the
+  workshop does for an invited owner: the variant's package saved into a fresh draft of an internal
+  workshop owner, reviewed text-only, its warnings acknowledged by the account's press (the hub says
+  the campaign starts as written), its activation begun; the activation worker publishes it with
+  its library pictures as before. Once published the account is seated as its DM through an
+  ordinary DM invitation (`dm-seat.ts`, shared with a ready adventure's copy).
+- The internal owner is one per creation; its ID, the draft's and every request ID derive from the
+  account and the client's request ID, so a repeated request continues the same creation and never
+  makes a second campaign. It is no campaign principal (ADR 0038): no cookie, a session signed out
+  as soon as the activation is begun, no generation, edit or picture grant. Its workshop rows hold
+  no personal data. No migration.
+- One request waits up to two minutes for the worker and then answers 202 `{ preparing: true }`;
+  the browser repeats the same request (also after a 429 while another request of the account
+  runs) for up to ten minutes. A creation counts once against the account's hourly campaign limit;
+  the ten-campaign limit counts DM seats.
+- A creation whose browser left before it was seated stays published with no seat; the same
+  request ID would seat it, but the hub keeps none. Accepted: it holds nothing personal.
+
 ## Invariants affected
 
 Preserves 1, 8 and 9: every change to the world is the World Engine's, every die its own; a player

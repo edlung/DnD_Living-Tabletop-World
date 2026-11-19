@@ -97,6 +97,19 @@ export const conflict = (
     | 'dm-seat',
 ) => reply.code(409).send({ ...errorBody('CONFLICT', request.id), reason });
 
+/** Sets the campaign session in this browser, revoking the one it held before. */
+export function campaignSessionSetter(
+  signIn: Pick<SignInDependencies, 'credentials' | 'clock' | 'publicOrigin'>,
+) {
+  const secure = secureCookies(signIn.publicOrigin);
+  return async (request: FastifyRequest, reply: FastifyReply, token: string): Promise<void> => {
+    const previous = sessionTokenFrom(request.headers.cookie);
+    if (previous !== null)
+      await signIn.credentials.revokeSession(hashToken(previous), iso(signIn.clock.now()));
+    reply.header('set-cookie', sessionCookie(token, SESSION_MS / 1000, secure));
+  };
+}
+
 export function registerAccountRoutes(app: FastifyInstance, deps: AccountRouteDependencies): void {
   const { accounts, accountLimits, credentials, clock } = deps.signIn;
   const secure = secureCookies(deps.signIn.publicOrigin);
@@ -104,16 +117,7 @@ export function registerAccountRoutes(app: FastifyInstance, deps: AccountRouteDe
     credentialCookie(ACCOUNT_COOKIE, token, ACCOUNT_SESSION_MS / 1000, secure);
   const signedIn = (request: FastifyRequest) => accountOf(deps.signIn, request.headers.cookie);
 
-  /** Sets the campaign session, revoking the one this browser held before. */
-  const withCampaignSession = async (
-    request: FastifyRequest,
-    reply: FastifyReply,
-    token: string,
-  ) => {
-    const previous = sessionTokenFrom(request.headers.cookie);
-    if (previous !== null) await credentials.revokeSession(hashToken(previous), iso(clock.now()));
-    reply.header('set-cookie', sessionCookie(token, SESSION_MS / 1000, secure));
-  };
+  const withCampaignSession = campaignSessionSetter(deps.signIn);
 
   app.post('/auth/sign-in', async (request, reply) => {
     const body = signInRequestSchema.safeParse(request.body);

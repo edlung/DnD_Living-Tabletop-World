@@ -6,6 +6,7 @@ import type { CampaignTemplate, EntityRef, NewAccount, TableKey } from '@ltw/con
 import type { Connection } from '../api/client.ts';
 import {
   createCampaign,
+  createLibraryCampaign,
   enterCampaign,
   readAccount,
   resetPassword,
@@ -342,6 +343,15 @@ export function useSignIn(
     /** From the hub: a new campaign from a ready adventure, then its world. */
     createCampaign: async (template: CampaignTemplate) => {
       const answer = await createCampaign(transport, template);
+      if (answer.kind === 'entered') enterSession(answer.campaignId);
+      return answer;
+    },
+    /** From the hub: a new campaign from the campaign library, then its world. */
+    createLibraryCampaign: async (pick: {
+      readonly libraryId: string;
+      readonly variantId: string;
+    }) => {
+      const answer = await createLibraryCampaign(transport, pick);
       if (answer.kind === 'entered') enterSession(answer.campaignId);
       return answer;
     },

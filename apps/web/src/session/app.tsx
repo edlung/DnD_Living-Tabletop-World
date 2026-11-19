@@ -167,6 +167,7 @@ export function App({ start }: { readonly start: PageStart }) {
         <HubPage
           onOpen={flow.openCampaign}
           onCreate={flow.createCampaign}
+          onCreateLibrary={flow.createLibraryCampaign}
           onSignOut={flow.signOutAccount}
         />
       </LanguageProvider>

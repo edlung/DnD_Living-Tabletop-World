@@ -10,7 +10,9 @@ import { registerWorkshopRoutes } from '../workshop/routes.ts';
 import type { WorkshopDependencies } from '../workshop/service.ts';
 import type { CampaignEncounterBooks } from '../campaigns/encounter-books.ts';
 import type { CampaignQuestBooks } from '../campaigns/quest-books.ts';
-import { registerAccountRoutes } from '../accounts/account-routes.ts';
+import { campaignSessionSetter, registerAccountRoutes } from '../accounts/account-routes.ts';
+import { registerAccountLibraryRoutes } from '../accounts/library-routes.ts';
+import type { LibraryCampaignDependencies } from '../accounts/library-campaigns.ts';
 import { registerPrivacyRoutes } from '../accounts/privacy-routes.ts';
 import { registerChatRoutes, type ChatDependencies } from '../chat/chat-routes.ts';
 import {
@@ -131,6 +133,8 @@ import { SECURITY_HEADERS, registerOriginCheck } from './security.ts';
 export interface AppDependencies {
   /** Independent workshop identity; its cookie never authenticates campaign requests. */
   readonly workshop?: WorkshopDependencies;
+  /** Tests only: how long a hub library request waits for the activation worker. */
+  readonly accountLibraryWait?: Pick<LibraryCampaignDependencies, 'waitMs' | 'pollMs' | 'sleep'>;
   readonly engine: WorldEngine;
   readonly authenticator: Authenticator;
   readonly logger: Logger;
@@ -442,6 +446,17 @@ export function buildApp(input: AppDependencies): FastifyInstance {
           shownNextGame((await lobby.state.read(campaignId)).nextGame, lobby.now()),
         ending: ending.store,
       });
+      // The campaign library in the hub (ADR 0058, notes of 2026-11-19): started through the
+      // workshop's activation, so only where the workshop's activation runs.
+      const { workshop } = deps;
+      if (workshop?.activation && workshop.library)
+        registerAccountLibraryRoutes(app, {
+          ...withAccounts,
+          workshop,
+          library: workshop.library,
+          withCampaignSession: campaignSessionSetter(withAccounts.signIn),
+          ...(deps.accountLibraryWait ? { wait: deps.accountLibraryWait } : {}),
+        });
       registerPrivacyRoutes(app, {
         ...withAccounts,
         chat: chat.store,
