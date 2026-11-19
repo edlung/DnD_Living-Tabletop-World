@@ -13,7 +13,7 @@ const answer = (status: number, body: unknown) =>
 function scripted(answers: Response[]) {
   const bodies: { requestId: string; libraryId: string; variantId: string }[] = [];
   const transport = ((_path: string, init?: RequestInit) => {
-    bodies.push(JSON.parse(String(init?.body)) as (typeof bodies)[number]);
+    bodies.push(JSON.parse(init?.body as string) as (typeof bodies)[number]);
     const next = answers.shift();
     return next ? Promise.resolve(next) : Promise.reject(new Error('no answer'));
   }) as typeof fetch;
