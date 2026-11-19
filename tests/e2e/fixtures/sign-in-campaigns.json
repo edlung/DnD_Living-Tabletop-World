@@ -52,5 +52,6 @@
   "placeSound": "ui-signin-place-sound",
   "placeSoundRu": "ui-signin-place-sound-ru",
   "storyCast": "ui-signin-story-cast",
-  "storyCastRu": "ui-signin-story-cast-ru"
+  "storyCastRu": "ui-signin-story-cast-ru",
+  "hubLibrary": "ui-signin-hub-library"
 }

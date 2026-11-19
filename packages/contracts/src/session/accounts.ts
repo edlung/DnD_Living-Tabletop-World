@@ -75,6 +75,22 @@ export const createCampaignRequestSchema = z
   .object({ template: z.enum(CAMPAIGN_TEMPLATES) })
   .strict();
 
+/**
+ * `POST /account/library-campaigns`: a new campaign from the campaign library, the account its DM
+ * (docs/adr/0058-campaign-content.md, notes of 2026-11-19). The client keeps its request ID and
+ * sends it again while the answer is 202 `{ preparing: true }`: the same creation continues.
+ */
+export const createLibraryCampaignRequestSchema = z
+  .object({
+    requestId: z.uuid(),
+    libraryId: z.string().regex(/^[a-z][a-z0-9-]{0,47}$/),
+    variantId: z.string().regex(/^[a-z0-9][a-z0-9-]{0,47}$/),
+  })
+  .strict();
+export type CreateLibraryCampaignRequest = z.infer<typeof createLibraryCampaignRequestSchema>;
+/** The 202 of `POST /account/library-campaigns` while the campaign is still being prepared. */
+export const libraryCampaignPreparingSchema = z.object({ preparing: z.literal(true) }).strict();
+
 export type SeatRole = 'dm' | 'player';
 
 /** One of the account's campaigns as its hub lists it. */

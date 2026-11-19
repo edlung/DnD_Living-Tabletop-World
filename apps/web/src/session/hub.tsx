@@ -10,6 +10,7 @@ import { ornamentUrl, textureUrl } from '../visual/ui-kit.ts';
 import { changePassword, readAccount, renameAccount, type EnterAnswer } from './account-flow.ts';
 import { AccountData } from './account-data.tsx';
 import { CampaignLists } from './hub-campaigns.tsx';
+import { HubLibrary } from './hub-library.tsx';
 import { Field, useFocusFirstInvalid } from './account-forms.tsx';
 
 /**
@@ -72,11 +73,17 @@ export function Hub({
   transport = fetch,
   onOpen,
   onCreate,
+  onCreateLibrary,
   onSignOut,
 }: {
   readonly transport?: typeof fetch;
   readonly onOpen: (campaignId: string) => Promise<EnterAnswer>;
   readonly onCreate: (template: CampaignTemplate) => Promise<EnterAnswer>;
+  /** A campaign from the campaign library (ADR 0058, notes of 2026-11-19); absent, none shown. */
+  readonly onCreateLibrary?: (pick: {
+    readonly libraryId: string;
+    readonly variantId: string;
+  }) => Promise<EnterAnswer>;
   readonly onSignOut: () => Promise<void>;
 }) {
   const t = useT();
@@ -195,6 +202,13 @@ export function Hub({
           ))}
         </ul>
       </section>
+      {onCreateLibrary && (
+        <HubLibrary
+          transport={transport}
+          busy={busy}
+          onStart={(pick) => void run(`library:${pick.libraryId}`, () => onCreateLibrary(pick))}
+        />
+      )}
       <AccountSettings transport={transport} account={account} onRenamed={reload} />
       <AccountData transport={transport} login={account.login} onDeleted={() => void onSignOut()} />
       <div className="action-row">

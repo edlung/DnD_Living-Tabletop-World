@@ -21,8 +21,9 @@ async function send(
   path: string,
   init: RequestInit,
   signal?: AbortSignal,
+  timeoutMs = TIMEOUT_MS,
 ): Promise<Response | null> {
-  const timeout = AbortSignal.timeout(TIMEOUT_MS);
+  const timeout = AbortSignal.timeout(timeoutMs);
   try {
     const call = transport;
     return await call(path, {
@@ -37,7 +38,13 @@ async function send(
   }
 }
 
-const post = (transport: Transport, path: string, body: unknown, signal?: AbortSignal) =>
+const post = (
+  transport: Transport,
+  path: string,
+  body: unknown,
+  signal?: AbortSignal,
+  timeoutMs?: number,
+) =>
   send(
     transport,
     path,
@@ -47,6 +54,7 @@ const post = (transport: Transport, path: string, body: unknown, signal?: AbortS
       body: JSON.stringify(body),
     },
     signal,
+    timeoutMs,
   );
 
 async function json<T>(response: Response): Promise<T | null> {
@@ -140,6 +148,41 @@ export const enterCampaign = async (transport: Transport, campaignId: string) =>
 /** A new campaign from a ready adventure, the account its DM; its session is set. */
 export const createCampaign = async (transport: Transport, template: CampaignTemplate) =>
   entered(await post(transport, '/api/account/campaigns', { template }));
+
+/** One request may wait this long for the server, which waits up to two minutes itself. */
+const LIBRARY_REQUEST_MS = 150_000;
+/** How long the hub keeps asking before it gives up on a library campaign. */
+const LIBRARY_GIVE_UP_MS = 10 * 60_000;
+
+/**
+ * A new campaign from the campaign library, the account its DM (ADR 0058, notes of 2026-11-19):
+ * the same request ID is sent again while the server answers that it is still preparing it, or
+ * that another request of this account is (429), so the creation continues and is never doubled.
+ */
+export async function createLibraryCampaign(
+  transport: Transport,
+  pick: { readonly libraryId: string; readonly variantId: string },
+  options: { readonly now?: () => number; readonly pause?: (ms: number) => Promise<void> } = {},
+): Promise<EnterAnswer> {
+  const now = options.now ?? Date.now;
+  const pause = options.pause ?? ((ms: number) => new Promise((done) => setTimeout(done, ms)));
+  const body = { requestId: crypto.randomUUID(), ...pick };
+  const giveUp = now() + LIBRARY_GIVE_UP_MS;
+  for (;;) {
+    const response = await post(
+      transport,
+      '/api/account/library-campaigns',
+      body,
+      undefined,
+      LIBRARY_REQUEST_MS,
+    );
+    const again = response !== null && (response.status === 202 || response.status === 429);
+    if (!again) return entered(response);
+    // Still preparing after ten minutes: the hub says the table could not be reached.
+    if (now() >= giveUp) return { kind: 'unreachable' };
+    if (response.status === 429) await pause(3000);
+  }
+}
 
 export type FormAnswer =
   | { readonly kind: 'done' }
