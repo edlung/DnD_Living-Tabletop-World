@@ -1,0 +1,635 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "last-ferryman-places-0",
+      "originalFile": "exec-20456ca2-43e6-4291-861b-671e2db2453c.png",
+      "originalSha256": "5ba362a0f7a9bd9910002f9bd4c667ede4eda7baa22b30553b78a8a119e70c44",
+      "columns": 3,
+      "rows": 4,
+      "prompt": "A registered game art atlas of location illustrations, one clearly distinct unpopulated environment per cell, distinct scene lighting and structures. Fill each cell edge to edge. Atmospheric painted landscape or architectural interiors at human eye level. No plot events, clues, icons or writing. EXACT regular grid, 3 equal columns by 4 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Низовье · Tarred blue-black timber, carved ferry oar blades and thin silver wake lines. Cell 1. Берег крушения. Чёрная галька, остатки пристани и мокрые вещи. Далеко наверху видна тёмная поверхность воды, под которой затонул паром.\nCell 2. Пробный уступ. Каменная чаша на уступе над отвесом. По стене проходит узкая полоса светлого воздуха; рядом высечены слова и широкие ступени.\nCell 3. Лагерь второго конца. Низкие домики из плавника стоят под наклонным пластом могильной земли. На открытом столе лежат путевые записи, у очага сохнут верёвки.\nCell 4. Сползающие могилы. Пласты земли медленно съезжают по гладкой породе. Между ними видны провалы, деревянные настилы и площадки для отдыха.\nCell 5. Подрусловой ход. Коридор под прозрачным дном реки. Сверху проплывают тени лодок, внизу сухая полоса камня раздваивается у водослива.\nCell 6. Эллинг без огня. Крытый спуск к воде, козлы для вёсел и обыкновенная широкая лодка. С внешней стороны строения виден обход к пешему карнизу.\nCell 7. Безмолвная полка. Широкий выступ между двумя провалами. В расщелинах растёт белый мох; звуки здесь уходят вверх, и путники часто общаются жестами.\nCell 8. Река без береговых корней. Вода течёт вниз почти отвесно. Рядом извивается непрерывный каменный карниз, местами широкий, местами требующий движения по одному.\nCell 9. Последняя высадка. Лодочный причал и пешая тропа сходятся на одной просторной площадке. Отсюда видна светлая линия глубоко под ногами.\nCell 10. Устье Вверх. Самая низкая точка Низовья. Вода падает в узкую полосу дневного света, а вдоль неё тянется широкая сухая кромка, на которой можно стоять и разговаривать.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "last-ferryman-heroes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-c943f9c3-70a1-4775-94a3-e8b3a737acb3.png",
+      "originalSha256": "cc1925bfe7fc2171ff004720f51836e4456291dfc9cff6df6f82132784a9ed6b",
+      "columns": 4,
+      "rows": 2,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 4 equal columns by 2 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Низовье · Tarred blue-black timber, carved ferry oar blades and thin silver wake lines. Cell 1. Арен Таль. Широкие ладони, короткая борода и просоленная куртка; на поясе обычный рабочий нож.\nCell 2. Мара Сель. Узкий дорожный плащ, остриженные волосы и чернильные следы на пальцах; карта в кармане размокла.\nCell 3. Савра Эйн. Седая коса, потёртые перчатки и дорожная сумка с чистыми тканями; говорит низко и спокойно.\nCell 4. Элден Рой. Круглые очки, шерстяной жилет и складная деревянная мерка без особых свойств.\nCell 5. Рада Век. Плотный фартук поверх дорожного платья, обожжённая рабочая рука и ровная осанка.\nCell 6. Ним Верес. Вязаная шапка, мягкие сапоги и треснувший ноготь; на ладонях сохранилась глина.\nCell 7. Лея Руш. Тёмный платок, широкая перевязь для сумки и маленькая записная дощечка.. Leave final unused cells empty.",
+      "references": [
+        "campaigns/dark-fantasy-2026/last-ferryman/illustrations/cards/aren-tal.webp",
+        "campaigns/dark-fantasy-2026/last-ferryman/illustrations/cards/mara-sel.webp",
+        "campaigns/dark-fantasy-2026/last-ferryman/illustrations/cards/savra-ein.webp",
+        "campaigns/dark-fantasy-2026/last-ferryman/illustrations/cards/elden-roi.webp",
+        "campaigns/dark-fantasy-2026/last-ferryman/illustrations/cards/rada-vek.webp",
+        "campaigns/dark-fantasy-2026/last-ferryman/illustrations/cards/nim-veres.webp",
+        "campaigns/dark-fantasy-2026/last-ferryman/illustrations/cards/leya-rush.webp"
+      ]
+    },
+    {
+      "id": "last-ferryman-foes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-f0ff27c6-fd1f-41db-a270-07d2664fbd08.png",
+      "originalSha256": "bbac8f5ef96808e1911c23d4aeba16e42cfeeb6bd4c16aab3b7756d58904cb4b",
+      "columns": 3,
+      "rows": 1,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 3 equal columns by 1 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Низовье · Tarred blue-black timber, carved ferry oar blades and thin silver wake lines. Cell 1. Дежурный Ильмы. Взрослый покойник в рабочей одежде с коротким деревянным багром. Пришёл удержать имущество и не обязан разделять все убеждения Ильмы.\nCell 2. Перехватчик на карнизе. Взрослый умерший с простым посохом и верёвкой для собственного движения по тропе; никаких сверхъестественных средств погони.\nCell 3. Удерживающий высадку. Взрослый покойник с коротким шестом, поставленный задерживать пассажиров перед последним спуском.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "last-ferryman-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-d1b55ac1-e7ce-48d6-962e-fc18edd3ed2d.png",
+      "originalSha256": "5740f87157ef72479bda635533bad1002226b0830815e3a5bf65cd0761e61065",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "Create a clean production sprite sheet of 8 distinct hand-painted tabletop miniature figurines for the world of Последний перевозчик. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 3 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Остен. Сухой старик с обычным веслом и верёвкой через плечо; сапоги заплатаны разной кожей.\nCell 2. Ильма. Высокая женщина в тёмной накидке; несёт фонарь и тяжёлые рабочие рукавицы.\nCell 3. Урс. Плотный мужчина с седыми висками, короткой рубахой и вытертой деревянной миской.\nCell 4. Нела. Коренастая каменщица с плоской киркой и широким ремнём; под ногтями серый песок.\nCell 5. Борр. Мужчина с перевязанным коленом и деревянным багром; на куртке белый шов.\nCell 6. Сетра. Женщина в коротком плаще с верёвочной петлёй на поясе; на лице пыль светлого камня.\nCell 7. Гевен. Лысый мужчина с полотняной сумкой; раскладывает плоские камни по краю чаши.\nCell 8. Эмма Шав. Пожилая женщина с ровной спиной и узелком ткани; сидит на уступе и держит фонарь над головой.",
+      "references": [
+        "campaigns/dark-fantasy-2026/last-ferryman/illustrations/cards/osten.webp",
+        "campaigns/dark-fantasy-2026/last-ferryman/illustrations/cards/ilma.webp",
+        "campaigns/dark-fantasy-2026/last-ferryman/illustrations/cards/urs.webp",
+        "campaigns/dark-fantasy-2026/last-ferryman/illustrations/cards/nela.webp",
+        "campaigns/dark-fantasy-2026/last-ferryman/illustrations/cards/borr.webp",
+        "campaigns/dark-fantasy-2026/last-ferryman/illustrations/cards/setra.webp",
+        "campaigns/dark-fantasy-2026/last-ferryman/illustrations/cards/geven.webp",
+        "campaigns/dark-fantasy-2026/last-ferryman/illustrations/cards/emma-shav.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "wreck-shore",
+      "title": "Берег крушения",
+      "kind": "place",
+      "subjects": [
+        "wreck-shore"
+      ],
+      "file": "places-wreck-shore.webp",
+      "sha256": "d545f815edf0ef32d01e23509381f87bdc86d5428385af12fdb2b834f2a4f842",
+      "originalSha256": "5ba362a0f7a9bd9910002f9bd4c667ede4eda7baa22b30553b78a8a119e70c44",
+      "generated": "2026-11-22",
+      "sheet": "last-ferryman-places-0",
+      "cell": 1,
+      "crop": {
+        "left": 1,
+        "top": 1,
+        "width": 481,
+        "height": 270
+      }
+    },
+    {
+      "key": "trial-ledge",
+      "title": "Пробный уступ",
+      "kind": "place",
+      "subjects": [
+        "trial-ledge"
+      ],
+      "file": "places-trial-ledge.webp",
+      "sha256": "b0a587ce7777800eb774064541b34cdba802e9245855882886ef865a10b60204",
+      "originalSha256": "5ba362a0f7a9bd9910002f9bd4c667ede4eda7baa22b30553b78a8a119e70c44",
+      "generated": "2026-11-22",
+      "sheet": "last-ferryman-places-0",
+      "cell": 2,
+      "crop": {
+        "left": 484,
+        "top": 1,
+        "width": 480,
+        "height": 270
+      }
+    },
+    {
+      "key": "second-end-camp",
+      "title": "Лагерь второго конца",
+      "kind": "place",
+      "subjects": [
+        "second-end-camp"
+      ],
+      "file": "places-second-end-camp.webp",
+      "sha256": "afb970f4e0840e5da30e53f97e962fd24a6508f04bbbeafe74b7a079d6547020",
+      "originalSha256": "5ba362a0f7a9bd9910002f9bd4c667ede4eda7baa22b30553b78a8a119e70c44",
+      "generated": "2026-11-22",
+      "sheet": "last-ferryman-places-0",
+      "cell": 3,
+      "crop": {
+        "left": 966,
+        "top": 1,
+        "width": 481,
+        "height": 270
+      }
+    },
+    {
+      "key": "grave-slope",
+      "title": "Сползающие могилы",
+      "kind": "place",
+      "subjects": [
+        "grave-slope"
+      ],
+      "file": "places-grave-slope.webp",
+      "sha256": "d0ff42d01484208de1a025f6442460aaf1395f55f354e2c627330fbd88bea2d6",
+      "originalSha256": "5ba362a0f7a9bd9910002f9bd4c667ede4eda7baa22b30553b78a8a119e70c44",
+      "generated": "2026-11-22",
+      "sheet": "last-ferryman-places-0",
+      "cell": 4,
+      "crop": {
+        "left": 1,
+        "top": 273,
+        "width": 481,
+        "height": 269
+      }
+    },
+    {
+      "key": "underbed-way",
+      "title": "Подрусловой ход",
+      "kind": "place",
+      "subjects": [
+        "underbed-way"
+      ],
+      "file": "places-underbed-way.webp",
+      "sha256": "1ad4cc103faf97273966882821da54eec740fb99fe2e5331d16488c6a9067c87",
+      "originalSha256": "5ba362a0f7a9bd9910002f9bd4c667ede4eda7baa22b30553b78a8a119e70c44",
+      "generated": "2026-11-22",
+      "sheet": "last-ferryman-places-0",
+      "cell": 5,
+      "crop": {
+        "left": 484,
+        "top": 273,
+        "width": 480,
+        "height": 269
+      }
+    },
+    {
+      "key": "seized-boathouse",
+      "title": "Эллинг без огня",
+      "kind": "place",
+      "subjects": [
+        "seized-boathouse"
+      ],
+      "file": "places-seized-boathouse.webp",
+      "sha256": "236aa53927f810734b5c1c33a3f62724d35089446e85285d65ff7f63db5c5426",
+      "originalSha256": "5ba362a0f7a9bd9910002f9bd4c667ede4eda7baa22b30553b78a8a119e70c44",
+      "generated": "2026-11-22",
+      "sheet": "last-ferryman-places-0",
+      "cell": 6,
+      "crop": {
+        "left": 966,
+        "top": 273,
+        "width": 481,
+        "height": 269
+      }
+    },
+    {
+      "key": "silent-shelf",
+      "title": "Безмолвная полка",
+      "kind": "place",
+      "subjects": [
+        "silent-shelf"
+      ],
+      "file": "places-silent-shelf.webp",
+      "sha256": "08cd62021cf2771d14aa67d0f1b01beacff377173f719d3bbf56b56cf9a7a2a0",
+      "originalSha256": "5ba362a0f7a9bd9910002f9bd4c667ede4eda7baa22b30553b78a8a119e70c44",
+      "generated": "2026-11-22",
+      "sheet": "last-ferryman-places-0",
+      "cell": 7,
+      "crop": {
+        "left": 1,
+        "top": 544,
+        "width": 481,
+        "height": 270
+      }
+    },
+    {
+      "key": "rootless-river",
+      "title": "Река без береговых корней",
+      "kind": "place",
+      "subjects": [
+        "rootless-river"
+      ],
+      "file": "places-rootless-river.webp",
+      "sha256": "489cc7310be7f0c5b2b403c2125a8bdd36c13e4fbf104d2892b91f1f9a1cf53f",
+      "originalSha256": "5ba362a0f7a9bd9910002f9bd4c667ede4eda7baa22b30553b78a8a119e70c44",
+      "generated": "2026-11-22",
+      "sheet": "last-ferryman-places-0",
+      "cell": 8,
+      "crop": {
+        "left": 484,
+        "top": 544,
+        "width": 480,
+        "height": 270
+      }
+    },
+    {
+      "key": "last-landing",
+      "title": "Последняя высадка",
+      "kind": "place",
+      "subjects": [
+        "last-landing"
+      ],
+      "file": "places-last-landing.webp",
+      "sha256": "2b6e888830f47eb282b52e019ba6e4b884bc600acf405e37d4b9b9a8d1821d47",
+      "originalSha256": "5ba362a0f7a9bd9910002f9bd4c667ede4eda7baa22b30553b78a8a119e70c44",
+      "generated": "2026-11-22",
+      "sheet": "last-ferryman-places-0",
+      "cell": 9,
+      "crop": {
+        "left": 966,
+        "top": 544,
+        "width": 481,
+        "height": 270
+      }
+    },
+    {
+      "key": "upward-mouth",
+      "title": "Устье Вверх",
+      "kind": "place",
+      "subjects": [
+        "upward-mouth"
+      ],
+      "file": "places-upward-mouth.webp",
+      "sha256": "3518a74beaebbfe33d8a695fb4c25f5818fc0beca2876bed7e056594456de579",
+      "originalSha256": "5ba362a0f7a9bd9910002f9bd4c667ede4eda7baa22b30553b78a8a119e70c44",
+      "generated": "2026-11-22",
+      "sheet": "last-ferryman-places-0",
+      "cell": 10,
+      "crop": {
+        "left": 1,
+        "top": 816,
+        "width": 481,
+        "height": 269
+      }
+    },
+    {
+      "key": "aren-tal",
+      "title": "Арен Таль",
+      "kind": "hero",
+      "subjects": [
+        "aren-tal"
+      ],
+      "file": "heroes-aren-tal.webp",
+      "sha256": "ffe1660d8510b37a612db5f7153dc8d81965bd55cc5da180137cf2fb6fa0b9e7",
+      "originalSha256": "cc1925bfe7fc2171ff004720f51836e4456291dfc9cff6df6f82132784a9ed6b",
+      "generated": "2026-11-22",
+      "sheet": "last-ferryman-heroes-0",
+      "cell": 1,
+      "crop": {
+        "left": 110,
+        "top": 11,
+        "width": 224,
+        "height": 423
+      }
+    },
+    {
+      "key": "mara-sel",
+      "title": "Мара Сель",
+      "kind": "hero",
+      "subjects": [
+        "mara-sel"
+      ],
+      "file": "heroes-mara-sel.webp",
+      "sha256": "c1c5c09b3e9e76fd0487b1025ec6b18ae33481be6217bf6816e0d499d99bb4b8",
+      "originalSha256": "cc1925bfe7fc2171ff004720f51836e4456291dfc9cff6df6f82132784a9ed6b",
+      "generated": "2026-11-22",
+      "sheet": "last-ferryman-heroes-0",
+      "cell": 2,
+      "crop": {
+        "left": 555,
+        "top": 14,
+        "width": 220,
+        "height": 419
+      }
+    },
+    {
+      "key": "savra-ein",
+      "title": "Савра Эйн",
+      "kind": "hero",
+      "subjects": [
+        "savra-ein"
+      ],
+      "file": "heroes-savra-ein.webp",
+      "sha256": "b2bce464af31c8bee5da0a2cf08cb676454e760add86d7c24d42c043b183957e",
+      "originalSha256": "cc1925bfe7fc2171ff004720f51836e4456291dfc9cff6df6f82132784a9ed6b",
+      "generated": "2026-11-22",
+      "sheet": "last-ferryman-heroes-0",
+      "cell": 3,
+      "crop": {
+        "left": 992,
+        "top": 14,
+        "width": 225,
+        "height": 419
+      }
+    },
+    {
+      "key": "elden-roi",
+      "title": "Элден Рой",
+      "kind": "hero",
+      "subjects": [
+        "elden-roi"
+      ],
+      "file": "heroes-elden-roi.webp",
+      "sha256": "118501eb80f380846f4c642e31cc1e2865bdfdb83cafe94353a20b02fa1dfaeb",
+      "originalSha256": "cc1925bfe7fc2171ff004720f51836e4456291dfc9cff6df6f82132784a9ed6b",
+      "generated": "2026-11-22",
+      "sheet": "last-ferryman-heroes-0",
+      "cell": 4,
+      "crop": {
+        "left": 1442,
+        "top": 12,
+        "width": 222,
+        "height": 422
+      }
+    },
+    {
+      "key": "rada-vek",
+      "title": "Рада Век",
+      "kind": "hero",
+      "subjects": [
+        "rada-vek"
+      ],
+      "file": "heroes-rada-vek.webp",
+      "sha256": "81fba1b93670b3c637ecb287196674a9caa083217d9534a86554c06105b9b9a3",
+      "originalSha256": "cc1925bfe7fc2171ff004720f51836e4456291dfc9cff6df6f82132784a9ed6b",
+      "generated": "2026-11-22",
+      "sheet": "last-ferryman-heroes-0",
+      "cell": 5,
+      "crop": {
+        "left": 111,
+        "top": 454,
+        "width": 221,
+        "height": 421
+      }
+    },
+    {
+      "key": "nim-veres",
+      "title": "Ним Верес",
+      "kind": "hero",
+      "subjects": [
+        "nim-veres"
+      ],
+      "file": "heroes-nim-veres.webp",
+      "sha256": "d7798b762f0644fbc63a3d1b6ed584706137e34d079d8493e304375bfe57ff4b",
+      "originalSha256": "cc1925bfe7fc2171ff004720f51836e4456291dfc9cff6df6f82132784a9ed6b",
+      "generated": "2026-11-22",
+      "sheet": "last-ferryman-heroes-0",
+      "cell": 6,
+      "crop": {
+        "left": 555,
+        "top": 456,
+        "width": 220,
+        "height": 420
+      }
+    },
+    {
+      "key": "leya-rush",
+      "title": "Лея Руш",
+      "kind": "hero",
+      "subjects": [
+        "leya-rush"
+      ],
+      "file": "heroes-leya-rush.webp",
+      "sha256": "9be4ab0df0f243f8e849166b72734a789bcec603fc78c9bbbce2d8d345478583",
+      "originalSha256": "cc1925bfe7fc2171ff004720f51836e4456291dfc9cff6df6f82132784a9ed6b",
+      "generated": "2026-11-22",
+      "sheet": "last-ferryman-heroes-0",
+      "cell": 7,
+      "crop": {
+        "left": 998,
+        "top": 455,
+        "width": 221,
+        "height": 420
+      }
+    },
+    {
+      "key": "foe-5ec068f890",
+      "title": "Дежурный Ильмы",
+      "kind": "foe",
+      "subjects": [
+        "held-slip-foe-1",
+        "held-slip-foe-2",
+        "held-slip-foe-3",
+        "held-slip-foe-4",
+        "held-slip-foe-5"
+      ],
+      "file": "foes-foe-5ec068f890.webp",
+      "sha256": "43beacfa7ab1679f39a0470e6c5c20f2f04402ebf5365645ea49cb3025b725ea",
+      "originalSha256": "bbac8f5ef96808e1911c23d4aeba16e42cfeeb6bd4c16aab3b7756d58904cb4b",
+      "generated": "2026-11-22",
+      "sheet": "last-ferryman-foes-0",
+      "cell": 1,
+      "crop": {
+        "left": 142,
+        "top": 21,
+        "width": 434,
+        "height": 679
+      }
+    },
+    {
+      "key": "foe-9542c29215",
+      "title": "Перехватчик на карнизе",
+      "kind": "foe",
+      "subjects": [
+        "river-interception-foe-1",
+        "river-interception-foe-2",
+        "river-interception-foe-3",
+        "river-interception-foe-4",
+        "river-interception-foe-5"
+      ],
+      "file": "foes-foe-9542c29215.webp",
+      "sha256": "c0c147eaf0bd459ac1968dbfd7ee8ab0dd56d45749a44dcd62fc59c8a644f27e",
+      "originalSha256": "bbac8f5ef96808e1911c23d4aeba16e42cfeeb6bd4c16aab3b7756d58904cb4b",
+      "generated": "2026-11-22",
+      "sheet": "last-ferryman-foes-0",
+      "cell": 2,
+      "crop": {
+        "left": 847,
+        "top": 23,
+        "width": 435,
+        "height": 676
+      }
+    },
+    {
+      "key": "foe-3b26f89c3c",
+      "title": "Удерживающий высадку",
+      "kind": "foe",
+      "subjects": [
+        "landing-cordon-foe-1",
+        "landing-cordon-foe-2",
+        "landing-cordon-foe-3",
+        "landing-cordon-foe-4",
+        "landing-cordon-foe-5"
+      ],
+      "file": "foes-foe-3b26f89c3c.webp",
+      "sha256": "4d5abaeee01216137b2893f96927cab696f17bb8a84bd9c34f6b1857a3096fbb",
+      "originalSha256": "bbac8f5ef96808e1911c23d4aeba16e42cfeeb6bd4c16aab3b7756d58904cb4b",
+      "generated": "2026-11-22",
+      "sheet": "last-ferryman-foes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1544,
+        "top": 23,
+        "width": 532,
+        "height": 677
+      }
+    },
+    {
+      "key": "osten",
+      "title": "Остен",
+      "kind": "npc",
+      "subjects": [
+        "osten"
+      ],
+      "file": "npcs-osten.webp",
+      "sha256": "7703809672d73625e8246e9a4aae2c6599d01d5c82c9c07597f417b725b926a7",
+      "originalSha256": "5740f87157ef72479bda635533bad1002226b0830815e3a5bf65cd0761e61065",
+      "generated": "2026-11-22",
+      "sheet": "last-ferryman-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 98,
+        "top": 17,
+        "width": 238,
+        "height": 405
+      }
+    },
+    {
+      "key": "ilma",
+      "title": "Ильма",
+      "kind": "npc",
+      "subjects": [
+        "ilma"
+      ],
+      "file": "npcs-ilma.webp",
+      "sha256": "970cdadcfcae717e70a5cbaa7a1311692bc787a6833933fcfb543b820fc60f5b",
+      "originalSha256": "5740f87157ef72479bda635533bad1002226b0830815e3a5bf65cd0761e61065",
+      "generated": "2026-11-22",
+      "sheet": "last-ferryman-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 477,
+        "top": 13,
+        "width": 238,
+        "height": 407
+      }
+    },
+    {
+      "key": "urs",
+      "title": "Урс",
+      "kind": "npc",
+      "subjects": [
+        "urs"
+      ],
+      "file": "npcs-urs.webp",
+      "sha256": "dcdc03f59bb7af3c53db86473c3e95a28aae286048f6cc03015b1b3419171cc8",
+      "originalSha256": "5740f87157ef72479bda635533bad1002226b0830815e3a5bf65cd0761e61065",
+      "generated": "2026-11-22",
+      "sheet": "last-ferryman-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 863,
+        "top": 13,
+        "width": 234,
+        "height": 406
+      }
+    },
+    {
+      "key": "nela",
+      "title": "Нела",
+      "kind": "npc",
+      "subjects": [
+        "nela"
+      ],
+      "file": "npcs-nela.webp",
+      "sha256": "b849055f1cf4ecea708912f781d402239e8aeda2e9c567968a707b70215f4f8c",
+      "originalSha256": "5740f87157ef72479bda635533bad1002226b0830815e3a5bf65cd0761e61065",
+      "generated": "2026-11-22",
+      "sheet": "last-ferryman-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 83,
+        "top": 442,
+        "width": 250,
+        "height": 417
+      }
+    },
+    {
+      "key": "borr",
+      "title": "Борр",
+      "kind": "npc",
+      "subjects": [
+        "borr"
+      ],
+      "file": "npcs-borr.webp",
+      "sha256": "a7a20185b01ef99b4433c68f00c239e985d75b86f68666b3c4b85fce47d00ce4",
+      "originalSha256": "5740f87157ef72479bda635533bad1002226b0830815e3a5bf65cd0761e61065",
+      "generated": "2026-11-22",
+      "sheet": "last-ferryman-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 451,
+        "top": 453,
+        "width": 295,
+        "height": 403
+      }
+    },
+    {
+      "key": "setra",
+      "title": "Сетра",
+      "kind": "npc",
+      "subjects": [
+        "setra"
+      ],
+      "file": "npcs-setra.webp",
+      "sha256": "08014c0da76da255dfd2dfc99f77570707585a55a3dcabb570e9c0ba1083a48e",
+      "originalSha256": "5740f87157ef72479bda635533bad1002226b0830815e3a5bf65cd0761e61065",
+      "generated": "2026-11-22",
+      "sheet": "last-ferryman-npcs-0",
+      "cell": 6,
+      "crop": {
+        "left": 865,
+        "top": 439,
+        "width": 242,
+        "height": 419
+      }
+    },
+    {
+      "key": "geven",
+      "title": "Гевен",
+      "kind": "npc",
+      "subjects": [
+        "geven"
+      ],
+      "file": "npcs-geven.webp",
+      "sha256": "3740f581505e832b6386d6e15095ca0ab3db97eccb52891b7b7c25b86cb49270",
+      "originalSha256": "5740f87157ef72479bda635533bad1002226b0830815e3a5bf65cd0761e61065",
+      "generated": "2026-11-22",
+      "sheet": "last-ferryman-npcs-0",
+      "cell": 7,
+      "crop": {
+        "left": 60,
+        "top": 899,
+        "width": 317,
+        "height": 379
+      }
+    },
+    {
+      "key": "emma-shav",
+      "title": "Эмма Шав",
+      "kind": "npc",
+      "subjects": [
+        "emma-shav"
+      ],
+      "file": "npcs-emma-shav.webp",
+      "sha256": "df7e7012312170052a7dfd874987fe09ced384f9aec93ddfab3c9df59813d9be",
+      "originalSha256": "5740f87157ef72479bda635533bad1002226b0830815e3a5bf65cd0761e61065",
+      "generated": "2026-11-22",
+      "sheet": "last-ferryman-npcs-0",
+      "cell": 8,
+      "crop": {
+        "left": 448,
+        "top": 883,
+        "width": 308,
+        "height": 399
+      }
+    }
+  ]
+}

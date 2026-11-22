@@ -1,0 +1,12 @@
+{
+  "file": "opening.webp",
+  "location": "contour-lobby",
+  "reveal": "opening",
+  "generator": "OpenAI imagegen (Codex)",
+  "generatedOn": "2026-11-22",
+  "original": "exec-dd6a5f8e-8aac-45fb-ae3d-4b1d7f000fe4.png",
+  "originalSha256": "bb547c2cfe488227cb72144da3c1dc18f64ed1ba9427e7b3a79332f1a8225512",
+  "sha256": "7db3096ff3d58e75dc9b1cefd6891a998da9b61e505f0638445fe47547a2fc6e",
+  "prompt": "Landscape 3:2 text-free book illustration for the opening of a tabletop roleplaying adventure. moody film-noir gouache, evocative reflected light, muted graphite and amber. Convey the specific premise through one striking, visually coherent scene in the opening location. Use only public observations, leave every mystery unresolved. Exclude text, captions, letters, logos, gore, grids, borders, diagrams and spoilers. Story title for context only: Шестьсот восьмая комната. Public premise: В отеле «Контур» находят убитого писателя. Парадную дверь его номера непрерывно видели из галереи; окна закрыты. Постояльцы уверены: никто не входил. Чтобы восстановить случившееся, придётся увидеть тот же этаж глазами людей, которые приносят чашки, чинят краны и остаются незаметными. Разгадать доступ легче, чем доказать убийство и не превратить работников в удобных виновных. Opening setting: Вестибюль «Контура». Латунная стойка, настенные часы, сиденья для ожидания. Здесь инспектор собирает приглашённых специалистов.",
+  "alt": "Вестибюль «Контура» — Шестьсот восьмая комната"
+}

@@ -1,0 +1,49 @@
+{
+  "region": "merrov",
+  "name": "Карта · Мерров",
+  "description": "План местности «Мерров». На карте отмечаются места, известные группе.",
+  "pins": [
+    {
+      "place": "awning-teahouse",
+      "x": 0.11,
+      "y": 0.15
+    },
+    {
+      "place": "cord-court",
+      "x": 0.367,
+      "y": 0.177
+    },
+    {
+      "place": "type-workshop",
+      "x": 0.623,
+      "y": 0.15
+    },
+    {
+      "place": "checking-room",
+      "x": 0.88,
+      "y": 0.177
+    },
+    {
+      "place": "covered-stairs",
+      "x": 0.905,
+      "y": 0.857
+    },
+    {
+      "place": "assembly-house",
+      "x": 0.648,
+      "y": 0.83
+    },
+    {
+      "place": "stone-crossing",
+      "x": 0.392,
+      "y": 0.857
+    },
+    {
+      "place": "laundry-poll",
+      "x": 0.135,
+      "y": 0.83
+    }
+  ],
+  "routes": [],
+  "scale": "schematic"
+}

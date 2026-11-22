@@ -1,4 +1,5 @@
-import type { Source, Session } from './source.ts';
+import { openingPicture, tableGuide } from '../campaign-shared/table-guide.ts';
+import { COLLECTION_ROOT, type Source, type Session } from './source.ts';
 import { box, esc, list, nav, p, page } from './render-common.ts';
 
 export function renderSession(s: Source, session: Session): string {
@@ -27,7 +28,10 @@ export function renderSession(s: Source, session: Session): string {
   return page(
     `${session.number}. ${session.title}`,
     `${s.world.title} · Только ведущему`,
-    `<div class="lead">${p(session.goal)}</div><div class="read-aloud">${p(session.readAloud)}</div>` +
+    `<div class="lead">${p(session.goal)}</div>` +
+      (session.number === 1 ? openingPicture(new URL(`${s.world.slug}/`, COLLECTION_ROOT)) : '') +
+      tableGuide(new URL(`${s.world.slug}/`, COLLECTION_ROOT), session.number) +
+      `<div class="read-aloud">${p(session.readAloud)}</div>` +
       box('Подготовка и роли', p(session.dmNote) + list(session.spotlight)) +
       `<section class="panel">${scenes}</section>` +
       (clues ? `<div class="grid">${clues}</div>` : '') +

@@ -1,0 +1,339 @@
+{
+  "about": "Портреты для карточек и изображение закрытого набора. Сначала сверяйте личность и доступность персонажа за столом.",
+  "generated": "2026-11-22",
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "heroes",
+      "originalFile": "exec-404f3fe1-822b-48d1-8452-ab4144ce6eaa.png",
+      "originalSha256": "96e3a49b8a6cfae2ad76b33c7fed0fbffb01af0fc9ec5cedfe8c6ee4e2c31056",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 3 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:3. Dark folklore portraits in tempera, rich earth pigments, expressive features, soft daylight. World: Низовье. Characters, in strict cell order:\n1. Арен Таль — Широкие ладони, короткая борода и просоленная куртка; на поясе обычный рабочий нож. Age 38.\n2. Мара Сель — Узкий дорожный плащ, остриженные волосы и чернильные следы на пальцах; карта в кармане размокла. Age 31.\n3. Савра Эйн — Седая коса, потёртые перчатки и дорожная сумка с чистыми тканями; говорит низко и спокойно. Age 56.\n4. Элден Рой — Круглые очки, шерстяной жилет и складная деревянная мерка без особых свойств. Age 44.\n5. Рада Век — Плотный фартук поверх дорожного платья, обожжённая рабочая рука и ровная осанка. Age 27.\n6. Ним Верес — Вязаная шапка, мягкие сапоги и треснувший ноготь; на ладонях сохранилась глина. Age 64.\n7. Лея Руш — Тёмный платок, широкая перевязь для сумки и маленькая записная дощечка. Age 40.\n8. Дорожный / рабочий набор — Still life of one opaque closed everyday satchel, appropriate to this world and era. No person and nothing spilling out.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 3,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "npcs",
+      "originalFile": "exec-22599c23-d98d-4dd7-91e1-9f641f0e3e81.png",
+      "originalSha256": "d7e727dbeacf5f63afadc1ee9944aab73c30c93486c9999e878c92e974309889",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 3 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:3. Dark folklore portraits in tempera, rich earth pigments, expressive features, soft daylight. World: Низовье. Characters, in strict cell order:\n1. Остен — Сухой старик с обычным веслом и верёвкой через плечо; сапоги заплатаны разной кожей. Age 73.\n2. Ильма — Высокая женщина в тёмной накидке; несёт фонарь и тяжёлые рабочие рукавицы. Age 69.\n3. Урс — Плотный мужчина с седыми висками, короткой рубахой и вытертой деревянной миской. Age 61.\n4. Нела — Коренастая каменщица с плоской киркой и широким ремнём; под ногтями серый песок. Age 42.\n5. Борр — Мужчина с перевязанным коленом и деревянным багром; на куртке белый шов. Age 47.\n6. Сетра — Женщина в коротком плаще с верёвочной петлёй на поясе; на лице пыль светлого камня. Age 35.\n7. Гевен — Лысый мужчина с полотняной сумкой; раскладывает плоские камни по краю чаши. Age 58.\n8. Эмма Шав — Пожилая женщина с ровной спиной и узелком ткани; сидит на уступе и держит фонарь над головой. Age 82.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 3,
+      "width": 1254,
+      "height": 1254
+    }
+  ],
+  "cards": [
+    {
+      "id": "aren-tal",
+      "file": "cards/aren-tal.webp",
+      "title": "Арен Таль",
+      "subjects": [
+        "aren-tal"
+      ],
+      "sheet": "heroes",
+      "cell": 1,
+      "crop": {
+        "left": 10,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "68fcf98db633c79caa149a657c6c7e1e84c7a238723f0e80eeac7f72cb64acf8"
+    },
+    {
+      "id": "mara-sel",
+      "file": "cards/mara-sel.webp",
+      "title": "Мара Сель",
+      "subjects": [
+        "mara-sel"
+      ],
+      "sheet": "heroes",
+      "cell": 2,
+      "crop": {
+        "left": 428,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "05e89d7299b36d37693cf49be7f5581c9f0ccab580e8f8f421529697bb686921"
+    },
+    {
+      "id": "savra-ein",
+      "file": "cards/savra-ein.webp",
+      "title": "Савра Эйн",
+      "subjects": [
+        "savra-ein"
+      ],
+      "sheet": "heroes",
+      "cell": 3,
+      "crop": {
+        "left": 846,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "f1022a5a5d3a6ff50a60b81b73760bd09c53656b10a75592946ad73741411f2e"
+    },
+    {
+      "id": "elden-roi",
+      "file": "cards/elden-roi.webp",
+      "title": "Элден Рой",
+      "subjects": [
+        "elden-roi"
+      ],
+      "sheet": "heroes",
+      "cell": 4,
+      "crop": {
+        "left": 10,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "0fdad949defb49268acf30c4838a71241d2c84c923101706afe2602b28579fe9"
+    },
+    {
+      "id": "rada-vek",
+      "file": "cards/rada-vek.webp",
+      "title": "Рада Век",
+      "subjects": [
+        "rada-vek"
+      ],
+      "sheet": "heroes",
+      "cell": 5,
+      "crop": {
+        "left": 428,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "2e45108b2eed934e0d195f83db765bfb8e411332aab4dc08e964a316f1b8207d"
+    },
+    {
+      "id": "nim-veres",
+      "file": "cards/nim-veres.webp",
+      "title": "Ним Верес",
+      "subjects": [
+        "nim-veres"
+      ],
+      "sheet": "heroes",
+      "cell": 6,
+      "crop": {
+        "left": 846,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "6ad1c6e9aa0b681d96cc0893f6f15997b30cd189e62d2ac1dec7972b593e6a7a"
+    },
+    {
+      "id": "leya-rush",
+      "file": "cards/leya-rush.webp",
+      "title": "Лея Руш",
+      "subjects": [
+        "leya-rush"
+      ],
+      "sheet": "heroes",
+      "cell": 7,
+      "crop": {
+        "left": 10,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "794ffa49fc540f232935fd52ec0d8cd27af6b45292d8038a5b65be1e2ef3f7f2"
+    },
+    {
+      "id": "travel-kit",
+      "file": "cards/travel-kit.webp",
+      "title": "Дорожный набор",
+      "subjects": [
+        "aren-tal-travel-kit",
+        "elden-roi-travel-kit",
+        "leya-rush-travel-kit",
+        "mara-sel-travel-kit",
+        "nim-veres-travel-kit",
+        "rada-vek-travel-kit",
+        "savra-ein-travel-kit"
+      ],
+      "sheet": "heroes",
+      "cell": 8,
+      "crop": {
+        "left": 428,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "78ec798bcfb8572fded89c448b22ac8d390b022f36a517218a20d848b7a4ba5f"
+    },
+    {
+      "id": "osten",
+      "file": "cards/osten.webp",
+      "title": "Остен",
+      "subjects": [
+        "osten"
+      ],
+      "sheet": "npcs",
+      "cell": 1,
+      "crop": {
+        "left": 10,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "74b4895c3c838f79cb910a219192ea731731b691c3d3508d797a4679d727c94b"
+    },
+    {
+      "id": "ilma",
+      "file": "cards/ilma.webp",
+      "title": "Ильма",
+      "subjects": [
+        "ilma"
+      ],
+      "sheet": "npcs",
+      "cell": 2,
+      "crop": {
+        "left": 428,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "49c177ddbf651bf4f0d074fa22f44d6f64cb4c40e6f3b13ae4829395a355b60b"
+    },
+    {
+      "id": "urs",
+      "file": "cards/urs.webp",
+      "title": "Урс",
+      "subjects": [
+        "urs"
+      ],
+      "sheet": "npcs",
+      "cell": 3,
+      "crop": {
+        "left": 846,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "6d783be943e7542ec7ce684b7807afcb27ca384541dbbdfe242af38cf7e1f914"
+    },
+    {
+      "id": "nela",
+      "file": "cards/nela.webp",
+      "title": "Нела",
+      "subjects": [
+        "nela"
+      ],
+      "sheet": "npcs",
+      "cell": 4,
+      "crop": {
+        "left": 10,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "05489d1d3e0e32632c6185318bcefbe93aace440df8b2776ad84c95a4b587db2"
+    },
+    {
+      "id": "borr",
+      "file": "cards/borr.webp",
+      "title": "Борр",
+      "subjects": [
+        "borr"
+      ],
+      "sheet": "npcs",
+      "cell": 5,
+      "crop": {
+        "left": 428,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "bd29072e5e3298dbe20b56c54e244d5dc6c74069763ab7a70aae46fb301c5b55"
+    },
+    {
+      "id": "setra",
+      "file": "cards/setra.webp",
+      "title": "Сетра",
+      "subjects": [
+        "setra"
+      ],
+      "sheet": "npcs",
+      "cell": 6,
+      "crop": {
+        "left": 846,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "e768977f8ed3ecf5c118d40863eac44078a3a13422e98ef2c96299d16a0f1baf"
+    },
+    {
+      "id": "geven",
+      "file": "cards/geven.webp",
+      "title": "Гевен",
+      "subjects": [
+        "geven"
+      ],
+      "sheet": "npcs",
+      "cell": 7,
+      "crop": {
+        "left": 10,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "bc270b4192b0c76c539f2b546981ba1e6622ce1209060a604d2dcbd3dd38b8ce"
+    },
+    {
+      "id": "emma-shav",
+      "file": "cards/emma-shav.webp",
+      "title": "Эмма Шав",
+      "subjects": [
+        "emma-shav"
+      ],
+      "sheet": "npcs",
+      "cell": 8,
+      "crop": {
+        "left": 428,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "670832d8fbcb47670e8410938c3043fdebeab4bb4a89dc0896072c7723fbb552"
+    }
+  ]
+}

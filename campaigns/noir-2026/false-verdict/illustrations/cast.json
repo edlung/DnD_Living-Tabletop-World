@@ -1,0 +1,397 @@
+{
+  "about": "Портреты для карточек и изображение закрытого набора. Сначала сверяйте личность и доступность персонажа за столом.",
+  "generated": "2026-11-22",
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "heroes",
+      "originalFile": "exec-26149645-a54b-4dc3-8228-e93ef01a0090.png",
+      "originalSha256": "a4d4d624871118b4adfab809e14fabb5ecd65f02c393ebae90dd622b1cf902b3",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 3 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:3. Period noir editorial illustration, restrained charcoal, diffuse lamp and amber light. World: Ровель. Characters, in strict cell order:\n1. Вера Илина — Короткое пальто, мягкий карандаш, привычка оставлять собеседнику свободное место за столом. Age 36.\n2. Глеб Тен — Потёртый футляр с линейкой, клетчатый шарф и залатанные локти. Age 41.\n3. Ася Бель — Тёмный жилет, аккуратные копии писем и небольшая трость. Age 33.\n4. Роман Век — Широкие плечи, рабочие перчатки в кармане и спокойный, тихий голос. Age 45.\n5. Нина Вельд — Чернила на манжете и очки в плоском кожаном чехле. Age 39.\n6. Оскар Лин — Пальто со старым бархатным воротником и бумажные закладки вместо украшений. Age 56.\n7. Майя Руд — Стоптанные туфли, яркий штопаный платок и терпеливый взгляд. Age 32.\n8. Денис Бром — Застёгнутый до горла плащ, бечёвка для бирок и неизменно чистые ладони. Age 48.\n9. Дорожный / рабочий набор — Still life of one opaque closed everyday satchel, appropriate to this world and era. No person and nothing spilling out.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 3,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "npcs",
+      "originalFile": "exec-9a6c2d34-5a6b-4f9b-ac32-e2b42593af87.png",
+      "originalSha256": "a16448eb2ce0080d8cb598aba28ca070a44d57411e3696ebb1d5957146a67184",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 4 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:4. Period noir editorial illustration, restrained charcoal, diffuse lamp and amber light. World: Ровель. Characters, in strict cell order:\n1. Софья Ветлина — Седая прядь, безупречно выглаженный воротник и истёртый портфель. Age 54.\n2. Марек Грон — Пальцы переплётчика, слишком большое казённое пальто и ровная речь. Age 44.\n3. Зоя Невер — Серый рабочий костюм, тяжёлая связка бирок и усталое внимание к чужим сумкам. Age 46.\n4. Дина Ливен — Штопальный напёрсток на цепочке и аккуратно сложенная шаль. Age 40.\n5. Савел Ортин — Трамвайная куртка без знаков службы и монета, которую он перекладывает между пальцами. Age 47.\n6. Антон Руско — Белые брови, старый жилет и привычка подписывать даже черновые размеры. Age 62.\n7. Мила Фарс — Защитный фартук, сухие ладони и небольшая бирка с часами выдачи. Age 35.\n8. Эмиль Крест — Дорогие, давно нечищенные ботинки и потёртый значок попечителя. Age 58.\n9. Тамара Лей — Матовый фартук, нитка на рукаве и внимательный взгляд поверх очков. Age 52.\n10. Лидия Ост — Тёмное платье, простые часы и карандаш, который она кладёт перед ответом. Age 60.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 4,
+      "width": 1086,
+      "height": 1448
+    }
+  ],
+  "cards": [
+    {
+      "id": "vera-ilina",
+      "file": "cards/vera-ilina.webp",
+      "title": "Вера Илина",
+      "subjects": [
+        "vera-ilina"
+      ],
+      "sheet": "heroes",
+      "cell": 1,
+      "crop": {
+        "left": 10,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "7e6e63e1bce2d6721f2cf6dd0bd804d370747270c0c913bc5c51e7c04d2b5d4e"
+    },
+    {
+      "id": "gleb-ten",
+      "file": "cards/gleb-ten.webp",
+      "title": "Глеб Тен",
+      "subjects": [
+        "gleb-ten"
+      ],
+      "sheet": "heroes",
+      "cell": 2,
+      "crop": {
+        "left": 428,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "5207f0414d029094f490040b2dc945b2dbcd4a63f49862890dec318360786cd9"
+    },
+    {
+      "id": "asya-bel",
+      "file": "cards/asya-bel.webp",
+      "title": "Ася Бель",
+      "subjects": [
+        "asya-bel"
+      ],
+      "sheet": "heroes",
+      "cell": 3,
+      "crop": {
+        "left": 846,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "372fa536795749bc5dd1c4c475290bd7a1451d6f1d00f9e056074d9956dc8a2a"
+    },
+    {
+      "id": "roman-vek",
+      "file": "cards/roman-vek.webp",
+      "title": "Роман Век",
+      "subjects": [
+        "roman-vek"
+      ],
+      "sheet": "heroes",
+      "cell": 4,
+      "crop": {
+        "left": 10,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "889a68b89c4ef468a62850a0477b74ff27755ea1f9e5f6de8d2ad3dd66b48ae2"
+    },
+    {
+      "id": "nina-veld",
+      "file": "cards/nina-veld.webp",
+      "title": "Нина Вельд",
+      "subjects": [
+        "nina-veld"
+      ],
+      "sheet": "heroes",
+      "cell": 5,
+      "crop": {
+        "left": 428,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "249f6e214f228d1defca65274ff82e8bcec86ce70fa8151d24782f6226754f55"
+    },
+    {
+      "id": "oskar-lin",
+      "file": "cards/oskar-lin.webp",
+      "title": "Оскар Лин",
+      "subjects": [
+        "oskar-lin"
+      ],
+      "sheet": "heroes",
+      "cell": 6,
+      "crop": {
+        "left": 846,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "9f7691243ff06678b02c98d3c5d2408f0dd30ed5377058eb8510097d4c06f1f8"
+    },
+    {
+      "id": "maya-rud",
+      "file": "cards/maya-rud.webp",
+      "title": "Майя Руд",
+      "subjects": [
+        "maya-rud"
+      ],
+      "sheet": "heroes",
+      "cell": 7,
+      "crop": {
+        "left": 10,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "504005e0df6af0b4ce2d4b5b1aaa51db87286df3a94e98238b3b7ec6dabb772b"
+    },
+    {
+      "id": "denis-brom",
+      "file": "cards/denis-brom.webp",
+      "title": "Денис Бром",
+      "subjects": [
+        "denis-brom"
+      ],
+      "sheet": "heroes",
+      "cell": 8,
+      "crop": {
+        "left": 428,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "356f782d2f18e1496af8fb4943f816410bd7c4f4dd957835abfbefc4a4c0d922"
+    },
+    {
+      "id": "travel-kit",
+      "file": "cards/travel-kit.webp",
+      "title": "Рабочий набор",
+      "subjects": [
+        "asya-bel-travel-kit",
+        "denis-brom-travel-kit",
+        "gleb-ten-travel-kit",
+        "maya-rud-travel-kit",
+        "nina-veld-travel-kit",
+        "oskar-lin-travel-kit",
+        "roman-vek-travel-kit",
+        "vera-ilina-travel-kit"
+      ],
+      "sheet": "heroes",
+      "cell": 9,
+      "crop": {
+        "left": 846,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "46449fbcbe970f39d30de9bdbda4ee6135e5524e334efc671a27f7127c99bf27"
+    },
+    {
+      "id": "sofia-vetlina",
+      "file": "cards/sofia-vetlina.webp",
+      "title": "Софья Ветлина",
+      "subjects": [
+        "sofia-vetlina"
+      ],
+      "sheet": "npcs",
+      "cell": 1,
+      "crop": {
+        "left": 9,
+        "top": 9,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "57043de89733d90240792f50135aa347a9b8806917e38f874e0c1831128b55a7"
+    },
+    {
+      "id": "marek-gron",
+      "file": "cards/marek-gron.webp",
+      "title": "Марек Грон",
+      "subjects": [
+        "marek-gron"
+      ],
+      "sheet": "npcs",
+      "cell": 2,
+      "crop": {
+        "left": 371,
+        "top": 9,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "ec902c22d44bfaaed5f5e5eb3851976ab767588bb6ed0b47d82b67e9d1de0be1"
+    },
+    {
+      "id": "zoya-never",
+      "file": "cards/zoya-never.webp",
+      "title": "Зоя Невер",
+      "subjects": [
+        "zoya-never"
+      ],
+      "sheet": "npcs",
+      "cell": 3,
+      "crop": {
+        "left": 733,
+        "top": 9,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "237c26e75a3b4df95e97afa75ec54ad6668f09f304add9e3eeb6367366495869"
+    },
+    {
+      "id": "dina-liven",
+      "file": "cards/dina-liven.webp",
+      "title": "Дина Ливен",
+      "subjects": [
+        "dina-liven"
+      ],
+      "sheet": "npcs",
+      "cell": 4,
+      "crop": {
+        "left": 9,
+        "top": 371,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "4baa7e1b0673f200e13ae5205a1a7837c60aa07396194f8b4c8a11f1d97ee588"
+    },
+    {
+      "id": "savel-ortin",
+      "file": "cards/savel-ortin.webp",
+      "title": "Савел Ортин",
+      "subjects": [
+        "savel-ortin"
+      ],
+      "sheet": "npcs",
+      "cell": 5,
+      "crop": {
+        "left": 371,
+        "top": 371,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "7ea428c434c50cf98d1d1e9083d8d837c67a90c0a550e291f3fccf3b517468ed"
+    },
+    {
+      "id": "anton-rusko",
+      "file": "cards/anton-rusko.webp",
+      "title": "Антон Руско",
+      "subjects": [
+        "anton-rusko"
+      ],
+      "sheet": "npcs",
+      "cell": 6,
+      "crop": {
+        "left": 733,
+        "top": 371,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "e7a4cb371f379a2a568d697d60a38e7d44a11af981dee1e0d1a98050341855ae"
+    },
+    {
+      "id": "mila-fars",
+      "file": "cards/mila-fars.webp",
+      "title": "Мила Фарс",
+      "subjects": [
+        "mila-fars"
+      ],
+      "sheet": "npcs",
+      "cell": 7,
+      "crop": {
+        "left": 9,
+        "top": 733,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "76a8a74bf0f62398ce006ca3d772ec0a505af937c6768cee8f67fd3d257b085e"
+    },
+    {
+      "id": "emil-krest",
+      "file": "cards/emil-krest.webp",
+      "title": "Эмиль Крест",
+      "subjects": [
+        "emil-krest"
+      ],
+      "sheet": "npcs",
+      "cell": 8,
+      "crop": {
+        "left": 371,
+        "top": 733,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "d3eed936802cea23ab5da239f14f0fa57b872217f6cc01faf1a73d34c6ee6573"
+    },
+    {
+      "id": "tamara-ley",
+      "file": "cards/tamara-ley.webp",
+      "title": "Тамара Лей",
+      "subjects": [
+        "tamara-ley"
+      ],
+      "sheet": "npcs",
+      "cell": 9,
+      "crop": {
+        "left": 733,
+        "top": 733,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "510dc8133aa98a92bc75d092f35be59ed30883c73891d0ca26ca0ebe73efccd2"
+    },
+    {
+      "id": "lidia-ost",
+      "file": "cards/lidia-ost.webp",
+      "title": "Лидия Ост",
+      "subjects": [
+        "lidia-ost"
+      ],
+      "sheet": "npcs",
+      "cell": 10,
+      "crop": {
+        "left": 9,
+        "top": 1095,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "d125dda989c6292ea34fbf200f26e458bb117569e3188ce66be4599b6a142af5"
+    }
+  ]
+}

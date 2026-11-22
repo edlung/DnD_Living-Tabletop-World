@@ -14,42 +14,42 @@
    "players": 3,
    "label": "3 игрока",
    "file": "packages/3-players.json",
-   "digest": "082800735a937b0e1f616d7aa2e301b8179ba542f1c696ec3243b59d0345051a"
+   "digest": "34af11285207879adc3eea5d0d8754cfff54452000f74f7acf626f4cb7857f1f"
   },
   {
    "id": "4-players",
    "players": 4,
    "label": "4 игрока",
    "file": "packages/4-players.json",
-   "digest": "95f251cf05459de97497abf4643f3d90d59c0ba7dd0c923595ac3f57c6953775"
+   "digest": "4d95b8746bc0ef513b2353582179fec62660aa8ba776705029c0488b9254fb67"
   },
   {
    "id": "5-players",
    "players": 5,
    "label": "5 игроков",
    "file": "packages/5-players.json",
-   "digest": "ee01951938cc5361e65d2be388673472665a8ab179a38db8b43efbc0c2eca1d4"
+   "digest": "efc1360d136c1d3354d7a0263647af6edb9c371b782c13753bc4b0619642acba"
   },
   {
    "id": "6-players",
    "players": 6,
    "label": "6 игроков",
    "file": "packages/6-players.json",
-   "digest": "bc8541698f3fc5160fe1a7edb51f4ff9e67f4da59b786de673b898a62772d257"
+   "digest": "7bda9b02049686570d457cddf74f2dc2f7ddc3eaf13acde5ab2e94c649a2c365"
   },
   {
    "id": "7-players",
    "players": 7,
    "label": "7 игроков",
    "file": "packages/7-players.json",
-   "digest": "959be3ff0ced5769a79e1d465c9f0da46d24d565716061b50531fa5955101fb0"
+   "digest": "5a110facd5e3edb925cb7c001c659014009bba3e815046ad97d6d0c4cc4e3fcd"
   },
   {
    "id": "8-players",
    "players": 8,
    "label": "8 игроков",
    "file": "packages/8-players.json",
-   "digest": "68fab70a794218519f5cef530fc05548cec2b4895e73a6ae3e90fba3b0be20d2"
+   "digest": "2e224841f247a9b663edde6b49fc34ee2b2694c2f213e1b31fed431d929b8a08"
   }
  ],
  "generator": "codex-cli imagegen",
@@ -1912,6 +1912,729 @@
    "label": "figure",
    "purpose": "figure",
    "derivedFrom": "token-klara.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/rain-check/illustrations/cards/travel-kit.webp",
+   "sha256": "7ad4dbf3de10a441abac546a0472eb4ac298108a78dffdf5e1d800cbea800150",
+   "originalSha256": "052bde4aac2ace7d9c69e6d07c100f4089c9d0965d84715aaed0a8f4b1ae8b1a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рабочий набор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "gleb-shor-travel-kit",
+     "lada-osher-travel-kit",
+     "roman-ivren-travel-kit"
+    ],
+    "4-players": [
+     "gleb-shor-travel-kit",
+     "lada-osher-travel-kit",
+     "marta-bess-travel-kit",
+     "roman-ivren-travel-kit"
+    ],
+    "5-players": [
+     "gleb-shor-travel-kit",
+     "lada-osher-travel-kit",
+     "marta-bess-travel-kit",
+     "roman-ivren-travel-kit",
+     "stasya-gran-travel-kit"
+    ],
+    "6-players": [
+     "gleb-shor-travel-kit",
+     "lada-osher-travel-kit",
+     "mark-sel-travel-kit",
+     "marta-bess-travel-kit",
+     "roman-ivren-travel-kit",
+     "stasya-gran-travel-kit"
+    ],
+    "7-players": [
+     "gleb-shor-travel-kit",
+     "lada-osher-travel-kit",
+     "mark-sel-travel-kit",
+     "marta-bess-travel-kit",
+     "roman-ivren-travel-kit",
+     "stasya-gran-travel-kit",
+     "yana-renk-travel-kit"
+    ],
+    "8-players": [
+     "gleb-shor-travel-kit",
+     "lada-osher-travel-kit",
+     "mark-sel-travel-kit",
+     "marta-bess-travel-kit",
+     "roman-ivren-travel-kit",
+     "stasya-gran-travel-kit",
+     "timon-kroy-travel-kit",
+     "yana-renk-travel-kit"
+    ]
+   },
+   "file": "travel-kit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/rain-check/assets/table/heroes-lada-osher.webp",
+   "sha256": "94795f8883c942fac901003fb4687aef914fd65372b78ec3f9e2882ba593b68f",
+   "originalSha256": "e30fcf190625c631434b4b8f50c7fe1cfef68f617ecb7386642ba976c346ebe7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ванда Гесс",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lada-osher"
+    ],
+    "4-players": [
+     "lada-osher"
+    ],
+    "5-players": [
+     "lada-osher"
+    ],
+    "6-players": [
+     "lada-osher"
+    ],
+    "7-players": [
+     "lada-osher"
+    ],
+    "8-players": [
+     "lada-osher"
+    ]
+   },
+   "file": "lada-osher--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "lada-osher.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/rain-check/assets/table/heroes-gleb-shor.webp",
+   "sha256": "505b3a432ea562d03025f3987edceaec19738621f17bbfd1e5777ecedd68c398",
+   "originalSha256": "e30fcf190625c631434b4b8f50c7fe1cfef68f617ecb7386642ba976c346ebe7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Конрад Вилк",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "gleb-shor"
+    ],
+    "4-players": [
+     "gleb-shor"
+    ],
+    "5-players": [
+     "gleb-shor"
+    ],
+    "6-players": [
+     "gleb-shor"
+    ],
+    "7-players": [
+     "gleb-shor"
+    ],
+    "8-players": [
+     "gleb-shor"
+    ]
+   },
+   "file": "gleb-shor--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "gleb-shor.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/rain-check/assets/table/heroes-roman-ivren.webp",
+   "sha256": "2e9f14c981dafaed3210aaf9b4f45ede36a4d4c592237f60d97212eb5a831262",
+   "originalSha256": "e30fcf190625c631434b4b8f50c7fe1cfef68f617ecb7386642ba976c346ebe7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Роман Иврен",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "roman-ivren"
+    ],
+    "4-players": [
+     "roman-ivren"
+    ],
+    "5-players": [
+     "roman-ivren"
+    ],
+    "6-players": [
+     "roman-ivren"
+    ],
+    "7-players": [
+     "roman-ivren"
+    ],
+    "8-players": [
+     "roman-ivren"
+    ]
+   },
+   "file": "roman-ivren--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "roman-ivren.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/rain-check/assets/table/heroes-marta-bess.webp",
+   "sha256": "fce9b7c50e67d143dce3b48e64c3295e8d1a6574d1dee20d7c7ee5269c38b668",
+   "originalSha256": "e30fcf190625c631434b4b8f50c7fe1cfef68f617ecb7386642ba976c346ebe7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Регина Хольт",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "marta-bess"
+    ],
+    "5-players": [
+     "marta-bess"
+    ],
+    "6-players": [
+     "marta-bess"
+    ],
+    "7-players": [
+     "marta-bess"
+    ],
+    "8-players": [
+     "marta-bess"
+    ]
+   },
+   "file": "marta-bess--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "marta-bess.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/rain-check/assets/table/heroes-stasya-gran.webp",
+   "sha256": "f6b42260fad6ebf6e2ce970c148f4ebb6cbc013fdc42351c4349373965fcca30",
+   "originalSha256": "e30fcf190625c631434b4b8f50c7fe1cfef68f617ecb7386642ba976c346ebe7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Зоя Тарх",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "stasya-gran"
+    ],
+    "6-players": [
+     "stasya-gran"
+    ],
+    "7-players": [
+     "stasya-gran"
+    ],
+    "8-players": [
+     "stasya-gran"
+    ]
+   },
+   "file": "stasya-gran--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "stasya-gran.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/rain-check/assets/table/heroes-mark-sel.webp",
+   "sha256": "a6b330ac501843e03a6489b7ea6d0b23b2c2d9f917afe4f905ff4509f33f5c6a",
+   "originalSha256": "e30fcf190625c631434b4b8f50c7fe1cfef68f617ecb7386642ba976c346ebe7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Казимир Лотт",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "mark-sel"
+    ],
+    "7-players": [
+     "mark-sel"
+    ],
+    "8-players": [
+     "mark-sel"
+    ]
+   },
+   "file": "mark-sel--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "mark-sel.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/rain-check/assets/table/heroes-yana-renk.webp",
+   "sha256": "853db923780647454a12daa865180f940aa0d59c8503f2a86158bcece1f3d033",
+   "originalSha256": "e30fcf190625c631434b4b8f50c7fe1cfef68f617ecb7386642ba976c346ebe7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Яна Ренк",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "yana-renk"
+    ],
+    "8-players": [
+     "yana-renk"
+    ]
+   },
+   "file": "yana-renk--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "yana-renk.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/rain-check/assets/table/heroes-timon-kroy.webp",
+   "sha256": "ca07d6ac02ab051e113887679f4e111d9c39d824adffa87826fd1803713611fd",
+   "originalSha256": "e30fcf190625c631434b4b8f50c7fe1cfef68f617ecb7386642ba976c346ebe7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тимон Крой",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [],
+    "8-players": [
+     "timon-kroy"
+    ]
+   },
+   "file": "timon-kroy--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "timon-kroy.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/rain-check/assets/table/npcs-nina-run.webp",
+   "sha256": "8dc917299075a3773ce8a6234e3939d2f3ece57bfea21d6daac0e5f15c0054d2",
+   "originalSha256": "66225e88833d9a2b40e1f033ac1d7afef6441d16706d58ede9d16a8ecad2e716",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Клара Рун",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nina-run"
+    ],
+    "4-players": [
+     "nina-run"
+    ],
+    "5-players": [
+     "nina-run"
+    ],
+    "6-players": [
+     "nina-run"
+    ],
+    "7-players": [
+     "nina-run"
+    ],
+    "8-players": [
+     "nina-run"
+    ]
+   },
+   "file": "nina-run--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "nina-run.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/rain-check/assets/table/npcs-saveliy-run.webp",
+   "sha256": "17cc5023b0aec214333a333884bc4f855a7a5e89a62966ab7afe80eb1e5f288b",
+   "originalSha256": "66225e88833d9a2b40e1f033ac1d7afef6441d16706d58ede9d16a8ecad2e716",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Савелий Рун",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "saveliy-run"
+    ],
+    "4-players": [
+     "saveliy-run"
+    ],
+    "5-players": [
+     "saveliy-run"
+    ],
+    "6-players": [
+     "saveliy-run"
+    ],
+    "7-players": [
+     "saveliy-run"
+    ],
+    "8-players": [
+     "saveliy-run"
+    ]
+   },
+   "file": "saveliy-run--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "saveliy-run.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/rain-check/assets/table/npcs-vera-meller.webp",
+   "sha256": "5b19b302b5971c4bd8be89fbddfa8d65ea7608d4b730767d317ef4e69a13ee54",
+   "originalSha256": "66225e88833d9a2b40e1f033ac1d7afef6441d16706d58ede9d16a8ecad2e716",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Хельга Меллер",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "vera-meller"
+    ],
+    "4-players": [
+     "vera-meller"
+    ],
+    "5-players": [
+     "vera-meller"
+    ],
+    "6-players": [
+     "vera-meller"
+    ],
+    "7-players": [
+     "vera-meller"
+    ],
+    "8-players": [
+     "vera-meller"
+    ]
+   },
+   "file": "vera-meller--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "vera-meller.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/rain-check/assets/table/npcs-matvey-kord.webp",
+   "sha256": "b5bf215abc4c7162dfe005d28094f78ca2457b96d1585562e8ee78d7884fb30c",
+   "originalSha256": "66225e88833d9a2b40e1f033ac1d7afef6441d16706d58ede9d16a8ecad2e716",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Матвей Корд",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "matvey-kord"
+    ],
+    "4-players": [
+     "matvey-kord"
+    ],
+    "5-players": [
+     "matvey-kord"
+    ],
+    "6-players": [
+     "matvey-kord"
+    ],
+    "7-players": [
+     "matvey-kord"
+    ],
+    "8-players": [
+     "matvey-kord"
+    ]
+   },
+   "file": "matvey-kord--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "matvey-kord.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/rain-check/assets/table/npcs-yulian-kord.webp",
+   "sha256": "5adbf2289dd389b00d6e206db180c07c5a765d8a52a94ab678c51054d4045a4f",
+   "originalSha256": "66225e88833d9a2b40e1f033ac1d7afef6441d16706d58ede9d16a8ecad2e716",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Юлиан Корд",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "yulian-kord"
+    ],
+    "4-players": [
+     "yulian-kord"
+    ],
+    "5-players": [
+     "yulian-kord"
+    ],
+    "6-players": [
+     "yulian-kord"
+    ],
+    "7-players": [
+     "yulian-kord"
+    ],
+    "8-players": [
+     "yulian-kord"
+    ]
+   },
+   "file": "yulian-kord--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "yulian-kord.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/rain-check/assets/table/npcs-grigory-stehl.webp",
+   "sha256": "2035713037c204d9a4727c641122446a81e944ddcd58a980f3213ec6944f722f",
+   "originalSha256": "66225e88833d9a2b40e1f033ac1d7afef6441d16706d58ede9d16a8ecad2e716",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Григорий Стель",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "grigory-stehl"
+    ],
+    "4-players": [
+     "grigory-stehl"
+    ],
+    "5-players": [
+     "grigory-stehl"
+    ],
+    "6-players": [
+     "grigory-stehl"
+    ],
+    "7-players": [
+     "grigory-stehl"
+    ],
+    "8-players": [
+     "grigory-stehl"
+    ]
+   },
+   "file": "grigory-stehl--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "grigory-stehl.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/rain-check/assets/table/npcs-tereza-kel.webp",
+   "sha256": "cbc929d8aa17f2d4cbee3661f823a48bf6d74743142067f9061e6a9c232954eb",
+   "originalSha256": "66225e88833d9a2b40e1f033ac1d7afef6441d16706d58ede9d16a8ecad2e716",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тереза Окс",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tereza-kel"
+    ],
+    "4-players": [
+     "tereza-kel"
+    ],
+    "5-players": [
+     "tereza-kel"
+    ],
+    "6-players": [
+     "tereza-kel"
+    ],
+    "7-players": [
+     "tereza-kel"
+    ],
+    "8-players": [
+     "tereza-kel"
+    ]
+   },
+   "file": "tereza-kel--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "tereza-kel.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/rain-check/assets/table/npcs-trofim-shpak.webp",
+   "sha256": "84d7e45aad682ef31c49e916f0d0c4e263d2d49d9026ca036009b7cb4a9ace92",
+   "originalSha256": "01d24cdc594fdb53e4258c46b66dd35a4c8000e55cbf9bff3647d060d6303908",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Трофим Шпак",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "trofim-shpak"
+    ],
+    "4-players": [
+     "trofim-shpak"
+    ],
+    "5-players": [
+     "trofim-shpak"
+    ],
+    "6-players": [
+     "trofim-shpak"
+    ],
+    "7-players": [
+     "trofim-shpak"
+    ],
+    "8-players": [
+     "trofim-shpak"
+    ]
+   },
+   "file": "trofim-shpak--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "trofim-shpak.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/rain-check/assets/table/npcs-milena-voss.webp",
+   "sha256": "adae1b47e36bee256d37c2c7266d6d3234861873118303241a9410fa908fffaa",
+   "originalSha256": "01d24cdc594fdb53e4258c46b66dd35a4c8000e55cbf9bff3647d060d6303908",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Милена Восс",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "milena-voss"
+    ],
+    "4-players": [
+     "milena-voss"
+    ],
+    "5-players": [
+     "milena-voss"
+    ],
+    "6-players": [
+     "milena-voss"
+    ],
+    "7-players": [
+     "milena-voss"
+    ],
+    "8-players": [
+     "milena-voss"
+    ]
+   },
+   "file": "milena-voss--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "milena-voss.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/rain-check/assets/table/npcs-fedor-nell.webp",
+   "sha256": "52e281f6b06645c6b35047fbf35349671b886c63c976c3f739cf283b2b5f17dc",
+   "originalSha256": "01d24cdc594fdb53e4258c46b66dd35a4c8000e55cbf9bff3647d060d6303908",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Густав Нелль",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "fedor-nell"
+    ],
+    "4-players": [
+     "fedor-nell"
+    ],
+    "5-players": [
+     "fedor-nell"
+    ],
+    "6-players": [
+     "fedor-nell"
+    ],
+    "7-players": [
+     "fedor-nell"
+    ],
+    "8-players": [
+     "fedor-nell"
+    ]
+   },
+   "file": "fedor-nell--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "fedor-nell.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/rain-check/assets/table/npcs-stepan-falk.webp",
+   "sha256": "2050359549d501b5006d3c8e6c6f3fe5dfea4b31fd65c1a09cc8d9b0567189a8",
+   "originalSha256": "01d24cdc594fdb53e4258c46b66dd35a4c8000e55cbf9bff3647d060d6303908",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Степан Фальк",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "stepan-falk"
+    ],
+    "4-players": [
+     "stepan-falk"
+    ],
+    "5-players": [
+     "stepan-falk"
+    ],
+    "6-players": [
+     "stepan-falk"
+    ],
+    "7-players": [
+     "stepan-falk"
+    ],
+    "8-players": [
+     "stepan-falk"
+    ]
+   },
+   "file": "stepan-falk--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "stepan-falk.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/rain-check/assets/table/npcs-aglaya-meyr.webp",
+   "sha256": "88415e0624f080da64d1ff5b810f1d7be77d67473506b168d50d6153ee036902",
+   "originalSha256": "01d24cdc594fdb53e4258c46b66dd35a4c8000e55cbf9bff3647d060d6303908",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Аглая Мейр",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "aglaya-meyr"
+    ],
+    "4-players": [
+     "aglaya-meyr"
+    ],
+    "5-players": [
+     "aglaya-meyr"
+    ],
+    "6-players": [
+     "aglaya-meyr"
+    ],
+    "7-players": [
+     "aglaya-meyr"
+    ],
+    "8-players": [
+     "aglaya-meyr"
+    ]
+   },
+   "file": "aglaya-meyr--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "aglaya-meyr.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/rain-check/assets/table/npcs-zakhar-vents.webp",
+   "sha256": "19ed22ffcf208c9240ae4ec9e90aa4c9184877a49d2150eda38f88052466b017",
+   "originalSha256": "01d24cdc594fdb53e4258c46b66dd35a4c8000e55cbf9bff3647d060d6303908",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Захар Венц",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "zakhar-vents"
+    ],
+    "4-players": [
+     "zakhar-vents"
+    ],
+    "5-players": [
+     "zakhar-vents"
+    ],
+    "6-players": [
+     "zakhar-vents"
+    ],
+    "7-players": [
+     "zakhar-vents"
+    ],
+    "8-players": [
+     "zakhar-vents"
+    ]
+   },
+   "file": "zakhar-vents--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "zakhar-vents.webp"
   },
   {
    "file": "dry-dock--map.webp",

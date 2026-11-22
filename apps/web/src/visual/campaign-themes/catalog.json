@@ -1,0 +1,332 @@
+[
+  {
+    "id": "acorn-express",
+    "names": ["Экспресс «Тысяча Желудей»"],
+    "accent": "#e6b67c",
+    "lettering": "story"
+  },
+  {
+    "id": "lighthouse",
+    "names": ["Маяк Между Ветрами"],
+    "accent": "#e8ca89",
+    "lettering": "story"
+  },
+  {
+    "id": "moon-pearl",
+    "names": ["Тайна Лунной Жемчужины"],
+    "accent": "#95ddd8",
+    "lettering": "story"
+  },
+  {
+    "id": "ash-testament",
+    "names": ["Завещание Пепла"],
+    "accent": "#dfbb96",
+    "lettering": "folio"
+  },
+  {
+    "id": "clockwork-carnival",
+    "names": ["Карнавал Заводных Масок"],
+    "accent": "#f0c578",
+    "lettering": "story"
+  },
+  {
+    "id": "ember-crown",
+    "names": ["Корона Последнего Угля"],
+    "accent": "#f2af7e",
+    "lettering": "monument"
+  },
+  {
+    "id": "glass-republic",
+    "names": ["Стеклянная Республика"],
+    "accent": "#a9d9bf",
+    "lettering": "monument"
+  },
+  {
+    "id": "hollow-choir",
+    "names": ["Хор Пустых Комнат"],
+    "accent": "#d9c3a6",
+    "lettering": "story"
+  },
+  {
+    "id": "last-orbit",
+    "names": ["Последняя Орбита"],
+    "accent": "#a9d7e8",
+    "lettering": "instrument"
+  },
+  {
+    "id": "salt-meridian",
+    "names": ["Соляной Меридиан"],
+    "accent": "#b2ddd8",
+    "lettering": "folio"
+  },
+  {
+    "id": "sky-archipelago",
+    "names": ["Атлас Небесных Островов"],
+    "accent": "#abd8f4",
+    "lettering": "instrument"
+  },
+  {
+    "id": "velvet-ledger",
+    "names": ["Бархатный Реестр"],
+    "accent": "#edbaab",
+    "lettering": "folio"
+  },
+  {
+    "id": "winter-caravan",
+    "names": ["Караван Белой Ночи"],
+    "accent": "#bbdaeb",
+    "lettering": "folio"
+  },
+  {
+    "id": "ash-tithe",
+    "names": ["Десятина пепельных рыцарей"],
+    "accent": "#efb487",
+    "lettering": "monument"
+  },
+  {
+    "id": "bellwether-hollow",
+    "names": ["Долина без последнего звона"],
+    "accent": "#9fdecc",
+    "lettering": "story"
+  },
+  {
+    "id": "black-sun-forge",
+    "names": ["Кузница чёрного солнца"],
+    "accent": "#eab278",
+    "lettering": "monument"
+  },
+  {
+    "id": "lantern-mere",
+    "names": ["Фонари утонувшего города"],
+    "accent": "#edca8f",
+    "lettering": "story"
+  },
+  {
+    "id": "last-ferryman",
+    "names": ["Последний перевозчик"],
+    "accent": "#b0d4d6",
+    "lettering": "folio"
+  },
+  {
+    "id": "marrow-crown",
+    "names": ["Корона из чужих костей"],
+    "accent": "#dfc5aa",
+    "lettering": "monument"
+  },
+  {
+    "id": "moth-court",
+    "names": ["Двор мотыльковых масок"],
+    "accent": "#e3badc",
+    "lettering": "story"
+  },
+  {
+    "id": "salt-widows",
+    "names": ["Вдовы соляного моря"],
+    "accent": "#afd9cd",
+    "lettering": "folio"
+  },
+  {
+    "id": "thorn-abbey",
+    "names": ["Аббатство спящих шипов"],
+    "accent": "#c1d39d",
+    "lettering": "monument"
+  },
+  {
+    "id": "winter-orchard",
+    "names": ["Сад украденной зимы"],
+    "accent": "#c3dcad",
+    "lettering": "story"
+  },
+  {
+    "id": "basalt-bloom",
+    "names": ["Цветение базальта"],
+    "accent": "#efc276",
+    "lettering": "instrument"
+  },
+  {
+    "id": "dragon-retirement",
+    "names": ["Дракон уходит на покой"],
+    "accent": "#f0b994",
+    "lettering": "story"
+  },
+  {
+    "id": "dungeon-sanctuary",
+    "names": ["Подземелье для тех, кто устал быть чудовищем"],
+    "accent": "#aadcc9",
+    "lettering": "story"
+  },
+  {
+    "id": "familiar-school",
+    "names": ["Школа перепутанных фамильяров"],
+    "accent": "#cfbef4",
+    "lettering": "story"
+  },
+  {
+    "id": "impossible-fair",
+    "names": ["Ярмарка невозможных ремёсел"],
+    "accent": "#edc789",
+    "lettering": "story"
+  },
+  {
+    "id": "mountain-wedding",
+    "names": ["Свадьба двух гор"],
+    "accent": "#f0c9a5",
+    "lettering": "monument"
+  },
+  {
+    "id": "small-banner",
+    "names": ["Знамя размером с ладонь"],
+    "accent": "#9fdedb",
+    "lettering": "story"
+  },
+  {
+    "id": "storm-kitchen",
+    "names": ["Кухня на краю грозы"],
+    "accent": "#d6bfef",
+    "lettering": "story"
+  },
+  {
+    "id": "three-magicless-days",
+    "names": ["Выходные у заклинаний"],
+    "accent": "#e6c88f",
+    "lettering": "folio"
+  },
+  {
+    "id": "unwritten-god",
+    "names": ["Бог с чистой страницы"],
+    "accent": "#abd6e6",
+    "lettering": "monument"
+  },
+  {
+    "id": "cedar-tournament",
+    "names": ["Турнир под Кедровой Луной"],
+    "accent": "#c6db9b",
+    "lettering": "instrument"
+  },
+  {
+    "id": "copper-canyon",
+    "names": ["Пансион Медного Каньона"],
+    "accent": "#efb496",
+    "lettering": "folio"
+  },
+  {
+    "id": "dream-orchestra",
+    "names": ["Оркестр невозможного сна"],
+    "accent": "#e8c5ed",
+    "lettering": "story"
+  },
+  {
+    "id": "lantern-court",
+    "names": ["Суд Фонарей"],
+    "accent": "#f0c6a1",
+    "lettering": "monument"
+  },
+  {
+    "id": "museum-midnight",
+    "names": ["Музей ненаступившего завтра"],
+    "accent": "#b9d2eb",
+    "lettering": "folio"
+  },
+  {
+    "id": "paper-sea",
+    "names": ["Море бумажных островов"],
+    "accent": "#b6dae6",
+    "lettering": "story"
+  },
+  {
+    "id": "rain-bureau",
+    "names": ["Бюро украденного дождя"],
+    "accent": "#a7d9cf",
+    "lettering": "instrument"
+  },
+  {
+    "id": "red-dune-post",
+    "names": ["Почта Красной Дюны"],
+    "accent": "#f1ba93",
+    "lettering": "instrument"
+  },
+  {
+    "id": "root-city",
+    "names": ["Город на спине Сада"],
+    "accent": "#b4d6a1",
+    "lettering": "story"
+  },
+  {
+    "id": "silent-frequency",
+    "names": ["Нулевая частота"],
+    "accent": "#f1ce86",
+    "lettering": "instrument"
+  },
+  {
+    "id": "absent-voters",
+    "names": ["Голоса отсутствующих"],
+    "accent": "#c3d6e9",
+    "lettering": "folio"
+  },
+  {
+    "id": "counterfeit-spring",
+    "names": ["Поддельная весна"],
+    "accent": "#ebd288",
+    "lettering": "folio"
+  },
+  {
+    "id": "false-verdict",
+    "names": ["Приговор под копирку"],
+    "accent": "#b6c9e8",
+    "lettering": "folio"
+  },
+  {
+    "id": "last-round",
+    "names": ["После последнего раунда"],
+    "accent": "#e5b1a1",
+    "lettering": "folio"
+  },
+  {
+    "id": "quiet-exchange",
+    "names": ["Тихая коммутаторная"],
+    "accent": "#d9c39b",
+    "lettering": "instrument"
+  },
+  {
+    "id": "rain-check",
+    "names": ["Дождь по страховому случаю"],
+    "accent": "#b3d6e8",
+    "lettering": "folio"
+  },
+  {
+    "id": "room-608",
+    "names": ["Шестьсот восьмая комната"],
+    "accent": "#dac4a4",
+    "lettering": "folio"
+  },
+  {
+    "id": "seventh-negative",
+    "names": ["Седьмой негатив"],
+    "accent": "#ced7e0",
+    "lettering": "instrument"
+  },
+  {
+    "id": "strike-fund",
+    "names": ["Касса забастовки"],
+    "accent": "#e5c3a1",
+    "lettering": "folio"
+  },
+  {
+    "id": "white-ash",
+    "names": ["Белый пепел на манжетах"],
+    "accent": "#e4bfb6",
+    "lettering": "folio"
+  },
+  {
+    "id": "ravenford",
+    "names": ["Пропавший караван", "The Missing Caravan"],
+    "accent": "#e6c784",
+    "lettering": "story"
+  },
+  {
+    "id": "hollowmere",
+    "names": ["Холлоумир: колокола в тумане", "The Bells of Hollowmere"],
+    "accent": "#b7cfad",
+    "lettering": "monument"
+  }
+]

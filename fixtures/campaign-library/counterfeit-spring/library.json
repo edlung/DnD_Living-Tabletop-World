@@ -1,0 +1,1975 @@
+{
+ "id": "counterfeit-spring",
+ "title": "Поддельная весна",
+ "genre": "Детективный нуар о живописи и добровольном самообмане",
+ "audience": "18+",
+ "pitch": "В дождливом Вязовске покупательница приносит картину, которую продали как единственную работу известной художницы. В соседнем окне висит почти такая же весна. Нужно сравнить полотна, посетить мастерские и разобраться, кому действительно продали чужую подпись, а кому только удобное оправдание.",
+ "tone": "Мокрая шерсть, запах мыла и льняного полотна, жёлтый свет примерочных; негромкий стыд людей, которым нравится красивая вещь, но нужен чужой престиж.",
+ "duration": "8 сессий; 180 минут: 15 минут открытия и повторения, три сцены по 45 минут, перерыв 15 минут и завершение 15 минут.",
+ "cover": "campaigns/noir-2026/counterfeit-spring/illustrations/opening.webp",
+ "defaultVariant": "4-players",
+ "variants": [
+  {
+   "id": "3-players",
+   "players": 3,
+   "label": "3 игрока",
+   "file": "packages/3-players.json",
+   "digest": "f73e70110752820fb307ae85b9c65ea0c8582f3cd59bacdf4ecddad09508a956"
+  },
+  {
+   "id": "4-players",
+   "players": 4,
+   "label": "4 игрока",
+   "file": "packages/4-players.json",
+   "digest": "c85edef250a96f1675daa35eba6ceb32d75e962faa1d823575774373dde81e2d"
+  },
+  {
+   "id": "5-players",
+   "players": 5,
+   "label": "5 игроков",
+   "file": "packages/5-players.json",
+   "digest": "7da6b76e78185eb145c71b5e2ded2ba559ba61bc5fa4f9f5530f28a9efe42148"
+  },
+  {
+   "id": "6-players",
+   "players": 6,
+   "label": "6 игроков",
+   "file": "packages/6-players.json",
+   "digest": "ab9f5421f4edbfe69a48a178f36185836556b63de246cedbfc956bcd94830c26"
+  },
+  {
+   "id": "7-players",
+   "players": 7,
+   "label": "7 игроков",
+   "file": "packages/7-players.json",
+   "digest": "0ca9df8e64ac25fb6f84b551e05c5c8b77f16e708e0782d78f635b828899ea3a"
+  },
+  {
+   "id": "8-players",
+   "players": 8,
+   "label": "8 игроков",
+   "file": "packages/8-players.json",
+   "digest": "f4dbaf60ce7f06ee5ee04e6c39f27ef95f188b23a776aa0069feae266074a296"
+  }
+ ],
+ "generator": "codex-cli imagegen",
+ "pictures": [
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/illustrations/cards/mira-kalinina.webp",
+   "sha256": "af1a6275d5f36e9a44362bfb3b26682e2574d5733651dcbb7078d290a6d7be01",
+   "originalSha256": "1c9885c58fc23b925c7dd3b28227eaecec5fef8c8be4e20abb8fd1d504c11ba1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мира Калинина",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mira-kalinina"
+    ],
+    "4-players": [
+     "mira-kalinina"
+    ],
+    "5-players": [
+     "mira-kalinina"
+    ],
+    "6-players": [
+     "mira-kalinina"
+    ],
+    "7-players": [
+     "mira-kalinina"
+    ],
+    "8-players": [
+     "mira-kalinina"
+    ]
+   },
+   "file": "mira-kalinina.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/illustrations/cards/pavel-ustinov.webp",
+   "sha256": "bffdfdb4bcd976cb991252a96449155068d90202b0abf0a350699bb885153ce7",
+   "originalSha256": "1c9885c58fc23b925c7dd3b28227eaecec5fef8c8be4e20abb8fd1d504c11ba1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Павел Устинов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "pavel-ustinov"
+    ],
+    "4-players": [
+     "pavel-ustinov"
+    ],
+    "5-players": [
+     "pavel-ustinov"
+    ],
+    "6-players": [
+     "pavel-ustinov"
+    ],
+    "7-players": [
+     "pavel-ustinov"
+    ],
+    "8-players": [
+     "pavel-ustinov"
+    ]
+   },
+   "file": "pavel-ustinov.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/illustrations/cards/sofia-nechaeva.webp",
+   "sha256": "2c6e25317f8ee7924f16c6717cae6acf0ee66655fdfe88f71fbc0bef27b24731",
+   "originalSha256": "1c9885c58fc23b925c7dd3b28227eaecec5fef8c8be4e20abb8fd1d504c11ba1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Софья Нечаева",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "sofia-nechaeva"
+    ],
+    "4-players": [
+     "sofia-nechaeva"
+    ],
+    "5-players": [
+     "sofia-nechaeva"
+    ],
+    "6-players": [
+     "sofia-nechaeva"
+    ],
+    "7-players": [
+     "sofia-nechaeva"
+    ],
+    "8-players": [
+     "sofia-nechaeva"
+    ]
+   },
+   "file": "sofia-nechaeva.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/illustrations/cards/anton-belozersky.webp",
+   "sha256": "0fce0d8520599c2d7f12355637a74deefe47f9e9886e0fc3174c7395fdd337bb",
+   "originalSha256": "1c9885c58fc23b925c7dd3b28227eaecec5fef8c8be4e20abb8fd1d504c11ba1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Антон Белозёрский",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "anton-belozersky"
+    ],
+    "5-players": [
+     "anton-belozersky"
+    ],
+    "6-players": [
+     "anton-belozersky"
+    ],
+    "7-players": [
+     "anton-belozersky"
+    ],
+    "8-players": [
+     "anton-belozersky"
+    ]
+   },
+   "file": "anton-belozersky.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/illustrations/cards/elena-gurina.webp",
+   "sha256": "9a378734bb19bdb1d095f1785f2371c904957362e27ede651519cd098f837d88",
+   "originalSha256": "1c9885c58fc23b925c7dd3b28227eaecec5fef8c8be4e20abb8fd1d504c11ba1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Елена Гурина",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "elena-gurina"
+    ],
+    "6-players": [
+     "elena-gurina"
+    ],
+    "7-players": [
+     "elena-gurina"
+    ],
+    "8-players": [
+     "elena-gurina"
+    ]
+   },
+   "file": "elena-gurina.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/illustrations/cards/grigory-shumov.webp",
+   "sha256": "84284f8e968b6f95464c0294ad526c2a12fcb2dcb3b35ef693fb2b7f855f8a97",
+   "originalSha256": "1c9885c58fc23b925c7dd3b28227eaecec5fef8c8be4e20abb8fd1d504c11ba1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Григорий Шумов",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "grigory-shumov"
+    ],
+    "7-players": [
+     "grigory-shumov"
+    ],
+    "8-players": [
+     "grigory-shumov"
+    ]
+   },
+   "file": "grigory-shumov.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/illustrations/cards/yana-belskaya.webp",
+   "sha256": "9c5edcc5312ae472a36ab71321799d28cba9b00948347883ecf32ba96e6c684f",
+   "originalSha256": "1c9885c58fc23b925c7dd3b28227eaecec5fef8c8be4e20abb8fd1d504c11ba1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Яна Бельская",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "yana-belskaya"
+    ],
+    "8-players": [
+     "yana-belskaya"
+    ]
+   },
+   "file": "yana-belskaya.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/illustrations/cards/rustam-karimov.webp",
+   "sha256": "87faae38a1a1028baa0ec7bd3c9caecad1421ae3158e7e5549f2280e39794ba3",
+   "originalSha256": "1c9885c58fc23b925c7dd3b28227eaecec5fef8c8be4e20abb8fd1d504c11ba1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рустам Каримов",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [],
+    "8-players": [
+     "rustam-karimov"
+    ]
+   },
+   "file": "rustam-karimov.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/illustrations/cards/travel-kit.webp",
+   "sha256": "1cfc69e3b40a0203dc4f581f50fb79aa3c9563c6ae5ffd4c3e7172998214c7de",
+   "originalSha256": "1c9885c58fc23b925c7dd3b28227eaecec5fef8c8be4e20abb8fd1d504c11ba1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рабочий набор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mira-kalinina-travel-kit",
+     "pavel-ustinov-travel-kit",
+     "sofia-nechaeva-travel-kit"
+    ],
+    "4-players": [
+     "anton-belozersky-travel-kit",
+     "mira-kalinina-travel-kit",
+     "pavel-ustinov-travel-kit",
+     "sofia-nechaeva-travel-kit"
+    ],
+    "5-players": [
+     "anton-belozersky-travel-kit",
+     "elena-gurina-travel-kit",
+     "mira-kalinina-travel-kit",
+     "pavel-ustinov-travel-kit",
+     "sofia-nechaeva-travel-kit"
+    ],
+    "6-players": [
+     "anton-belozersky-travel-kit",
+     "elena-gurina-travel-kit",
+     "grigory-shumov-travel-kit",
+     "mira-kalinina-travel-kit",
+     "pavel-ustinov-travel-kit",
+     "sofia-nechaeva-travel-kit"
+    ],
+    "7-players": [
+     "anton-belozersky-travel-kit",
+     "elena-gurina-travel-kit",
+     "grigory-shumov-travel-kit",
+     "mira-kalinina-travel-kit",
+     "pavel-ustinov-travel-kit",
+     "sofia-nechaeva-travel-kit",
+     "yana-belskaya-travel-kit"
+    ],
+    "8-players": [
+     "anton-belozersky-travel-kit",
+     "elena-gurina-travel-kit",
+     "grigory-shumov-travel-kit",
+     "mira-kalinina-travel-kit",
+     "pavel-ustinov-travel-kit",
+     "rustam-karimov-travel-kit",
+     "sofia-nechaeva-travel-kit",
+     "yana-belskaya-travel-kit"
+    ]
+   },
+   "file": "travel-kit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/illustrations/cards/raisa-antipova.webp",
+   "sha256": "1d3750383228da7731ec659df3c0c0e81ad142d47ba97dfdf04a01f695aed2e6",
+   "originalSha256": "142d76145f58c9bc18d7317d5ccbc05d3085fa1bb62b32d1804ab6772ac99798",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Раиса Антипова",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "raisa-antipova"
+    ],
+    "4-players": [
+     "raisa-antipova"
+    ],
+    "5-players": [
+     "raisa-antipova"
+    ],
+    "6-players": [
+     "raisa-antipova"
+    ],
+    "7-players": [
+     "raisa-antipova"
+    ],
+    "8-players": [
+     "raisa-antipova"
+    ]
+   },
+   "file": "raisa-antipova.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/illustrations/cards/arkady-sukhov.webp",
+   "sha256": "9e73e3cd940dbe7540546ff9caa4ea434482a478265a3fd7202302da1e0e9101",
+   "originalSha256": "142d76145f58c9bc18d7317d5ccbc05d3085fa1bb62b32d1804ab6772ac99798",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Аркадий Сухов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "arkady-sukhov"
+    ],
+    "4-players": [
+     "arkady-sukhov"
+    ],
+    "5-players": [
+     "arkady-sukhov"
+    ],
+    "6-players": [
+     "arkady-sukhov"
+    ],
+    "7-players": [
+     "arkady-sukhov"
+    ],
+    "8-players": [
+     "arkady-sukhov"
+    ]
+   },
+   "file": "arkady-sukhov.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/illustrations/cards/tamara-sitnik.webp",
+   "sha256": "2ba267d6eb0d81fae1515e00b2b676cbd51028029958f883649bb5795fd1a1c4",
+   "originalSha256": "142d76145f58c9bc18d7317d5ccbc05d3085fa1bb62b32d1804ab6772ac99798",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тамара Ситник",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tamara-sitnik"
+    ],
+    "4-players": [
+     "tamara-sitnik"
+    ],
+    "5-players": [
+     "tamara-sitnik"
+    ],
+    "6-players": [
+     "tamara-sitnik"
+    ],
+    "7-players": [
+     "tamara-sitnik"
+    ],
+    "8-players": [
+     "tamara-sitnik"
+    ]
+   },
+   "file": "tamara-sitnik.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/illustrations/cards/nina-ryabtseva.webp",
+   "sha256": "ab2084fb7b89b4bcb07bbd508b6dc06396a57d81c2dbc50aaa410c3018ceb735",
+   "originalSha256": "142d76145f58c9bc18d7317d5ccbc05d3085fa1bb62b32d1804ab6772ac99798",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нина Рябцева",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nina-ryabtseva"
+    ],
+    "4-players": [
+     "nina-ryabtseva"
+    ],
+    "5-players": [
+     "nina-ryabtseva"
+    ],
+    "6-players": [
+     "nina-ryabtseva"
+    ],
+    "7-players": [
+     "nina-ryabtseva"
+    ],
+    "8-players": [
+     "nina-ryabtseva"
+    ]
+   },
+   "file": "nina-ryabtseva.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/illustrations/cards/eduard-birk.webp",
+   "sha256": "64511a300fb01a5aad689063cd2c1de188fb5d712acca881f5fa191f3c6ba186",
+   "originalSha256": "142d76145f58c9bc18d7317d5ccbc05d3085fa1bb62b32d1804ab6772ac99798",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эдуард Бирк",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "eduard-birk"
+    ],
+    "4-players": [
+     "eduard-birk"
+    ],
+    "5-players": [
+     "eduard-birk"
+    ],
+    "6-players": [
+     "eduard-birk"
+    ],
+    "7-players": [
+     "eduard-birk"
+    ],
+    "8-players": [
+     "eduard-birk"
+    ]
+   },
+   "file": "eduard-birk.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/illustrations/cards/lidia-krupina.webp",
+   "sha256": "4c01486a8624cd955d0d80e879eaeb527ec93d6875fa66ab9312a8adcade6ad4",
+   "originalSha256": "142d76145f58c9bc18d7317d5ccbc05d3085fa1bb62b32d1804ab6772ac99798",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лидия Крупина",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lidia-krupina"
+    ],
+    "4-players": [
+     "lidia-krupina"
+    ],
+    "5-players": [
+     "lidia-krupina"
+    ],
+    "6-players": [
+     "lidia-krupina"
+    ],
+    "7-players": [
+     "lidia-krupina"
+    ],
+    "8-players": [
+     "lidia-krupina"
+    ]
+   },
+   "file": "lidia-krupina.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/illustrations/cards/boris-orlov.webp",
+   "sha256": "58fdfbdce48d67e6780ace06a4dfcc220e73e0984a4a7a0fee36a9bf049fdf33",
+   "originalSha256": "142d76145f58c9bc18d7317d5ccbc05d3085fa1bb62b32d1804ab6772ac99798",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Борис Орлов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "boris-orlov"
+    ],
+    "4-players": [
+     "boris-orlov"
+    ],
+    "5-players": [
+     "boris-orlov"
+    ],
+    "6-players": [
+     "boris-orlov"
+    ],
+    "7-players": [
+     "boris-orlov"
+    ],
+    "8-players": [
+     "boris-orlov"
+    ]
+   },
+   "file": "boris-orlov.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/illustrations/cards/klavdia-zueva.webp",
+   "sha256": "cf078407d4f71f679bd46cade5db5b3eeac67b00a898eba6e48e434fa1516a72",
+   "originalSha256": "142d76145f58c9bc18d7317d5ccbc05d3085fa1bb62b32d1804ab6772ac99798",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Клавдия Зуева",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "klavdia-zueva"
+    ],
+    "4-players": [
+     "klavdia-zueva"
+    ],
+    "5-players": [
+     "klavdia-zueva"
+    ],
+    "6-players": [
+     "klavdia-zueva"
+    ],
+    "7-players": [
+     "klavdia-zueva"
+    ],
+    "8-players": [
+     "klavdia-zueva"
+    ]
+   },
+   "file": "klavdia-zueva.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/illustrations/cards/semyon-zhdanov.webp",
+   "sha256": "462c6f881ae8df8a481e54c6c8b7559ac83753494d4b4a5600aa0ab027c98ed1",
+   "originalSha256": "142d76145f58c9bc18d7317d5ccbc05d3085fa1bb62b32d1804ab6772ac99798",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Семён Жданов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "semyon-zhdanov"
+    ],
+    "4-players": [
+     "semyon-zhdanov"
+    ],
+    "5-players": [
+     "semyon-zhdanov"
+    ],
+    "6-players": [
+     "semyon-zhdanov"
+    ],
+    "7-players": [
+     "semyon-zhdanov"
+    ],
+    "8-players": [
+     "semyon-zhdanov"
+    ]
+   },
+   "file": "semyon-zhdanov.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/illustrations/cards/olga-malkova.webp",
+   "sha256": "2f73c6fb0eea295329307a728df04ce824c25a5b1e9f687e2e950fa1a90f1dd6",
+   "originalSha256": "142d76145f58c9bc18d7317d5ccbc05d3085fa1bb62b32d1804ab6772ac99798",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ольга Малкова",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "olga-malkova"
+    ],
+    "4-players": [
+     "olga-malkova"
+    ],
+    "5-players": [
+     "olga-malkova"
+    ],
+    "6-players": [
+     "olga-malkova"
+    ],
+    "7-players": [
+     "olga-malkova"
+    ],
+    "8-players": [
+     "olga-malkova"
+    ]
+   },
+   "file": "olga-malkova.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/assets/table/heroes-mira-kalinina.webp",
+   "sha256": "0a9450fa817df5b81fd6ad7906893b26e2f7403594682ef535ec1ed517defb3e",
+   "originalSha256": "170d6f9900d313462b84f1d3d928e4dac9b0bbabafbeb4690d3bafb9f049fa85",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мира Калинина",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mira-kalinina"
+    ],
+    "4-players": [
+     "mira-kalinina"
+    ],
+    "5-players": [
+     "mira-kalinina"
+    ],
+    "6-players": [
+     "mira-kalinina"
+    ],
+    "7-players": [
+     "mira-kalinina"
+    ],
+    "8-players": [
+     "mira-kalinina"
+    ]
+   },
+   "file": "mira-kalinina--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "mira-kalinina.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/assets/table/heroes-pavel-ustinov.webp",
+   "sha256": "799ade89c13750882100ff04de0a1049b534c27e90b45a93d1217622f6a24cb8",
+   "originalSha256": "170d6f9900d313462b84f1d3d928e4dac9b0bbabafbeb4690d3bafb9f049fa85",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Павел Устинов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "pavel-ustinov"
+    ],
+    "4-players": [
+     "pavel-ustinov"
+    ],
+    "5-players": [
+     "pavel-ustinov"
+    ],
+    "6-players": [
+     "pavel-ustinov"
+    ],
+    "7-players": [
+     "pavel-ustinov"
+    ],
+    "8-players": [
+     "pavel-ustinov"
+    ]
+   },
+   "file": "pavel-ustinov--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "pavel-ustinov.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/assets/table/heroes-sofia-nechaeva.webp",
+   "sha256": "aca0245856d3f0c89d00d2df7cc7a2fa08e952628f352147e44b7d6612f790fe",
+   "originalSha256": "170d6f9900d313462b84f1d3d928e4dac9b0bbabafbeb4690d3bafb9f049fa85",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Софья Нечаева",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "sofia-nechaeva"
+    ],
+    "4-players": [
+     "sofia-nechaeva"
+    ],
+    "5-players": [
+     "sofia-nechaeva"
+    ],
+    "6-players": [
+     "sofia-nechaeva"
+    ],
+    "7-players": [
+     "sofia-nechaeva"
+    ],
+    "8-players": [
+     "sofia-nechaeva"
+    ]
+   },
+   "file": "sofia-nechaeva--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "sofia-nechaeva.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/assets/table/heroes-anton-belozersky.webp",
+   "sha256": "5f35e1ecb5a0c94d6833d6c8a06457605428e78385fcbacaa73b75a2c08ad8aa",
+   "originalSha256": "170d6f9900d313462b84f1d3d928e4dac9b0bbabafbeb4690d3bafb9f049fa85",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Антон Белозёрский",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "anton-belozersky"
+    ],
+    "5-players": [
+     "anton-belozersky"
+    ],
+    "6-players": [
+     "anton-belozersky"
+    ],
+    "7-players": [
+     "anton-belozersky"
+    ],
+    "8-players": [
+     "anton-belozersky"
+    ]
+   },
+   "file": "anton-belozersky--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "anton-belozersky.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/assets/table/heroes-elena-gurina.webp",
+   "sha256": "782137bcc281409b3902bd4a3ad2fb5162f6bcb7efe4dbc5a4e737626f0c400e",
+   "originalSha256": "170d6f9900d313462b84f1d3d928e4dac9b0bbabafbeb4690d3bafb9f049fa85",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Елена Гурина",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "elena-gurina"
+    ],
+    "6-players": [
+     "elena-gurina"
+    ],
+    "7-players": [
+     "elena-gurina"
+    ],
+    "8-players": [
+     "elena-gurina"
+    ]
+   },
+   "file": "elena-gurina--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "elena-gurina.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/assets/table/heroes-grigory-shumov.webp",
+   "sha256": "632f1bffe627ea60476c261d273e5e7eae86d9d2ae8d07213ef88f1fc3df3b08",
+   "originalSha256": "170d6f9900d313462b84f1d3d928e4dac9b0bbabafbeb4690d3bafb9f049fa85",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Григорий Шумов",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "grigory-shumov"
+    ],
+    "7-players": [
+     "grigory-shumov"
+    ],
+    "8-players": [
+     "grigory-shumov"
+    ]
+   },
+   "file": "grigory-shumov--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "grigory-shumov.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/assets/table/heroes-yana-belskaya.webp",
+   "sha256": "8338118b029b7aee88adf8da802d9adb273f578bfce315ce617f5db60f5ae430",
+   "originalSha256": "170d6f9900d313462b84f1d3d928e4dac9b0bbabafbeb4690d3bafb9f049fa85",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Яна Бельская",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "yana-belskaya"
+    ],
+    "8-players": [
+     "yana-belskaya"
+    ]
+   },
+   "file": "yana-belskaya--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "yana-belskaya.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/assets/table/heroes-rustam-karimov.webp",
+   "sha256": "c1297b89081be2e3f7d7aed1ff0138351a5256aeb5b98216ef6230790fa593e9",
+   "originalSha256": "170d6f9900d313462b84f1d3d928e4dac9b0bbabafbeb4690d3bafb9f049fa85",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рустам Каримов",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [],
+    "8-players": [
+     "rustam-karimov"
+    ]
+   },
+   "file": "rustam-karimov--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "rustam-karimov.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/assets/table/places-glass-waiting-room.webp",
+   "sha256": "ca593ee5e8ee571172c34f63bb20a65d5fdd859953b9b1d8ea4ad11afe9dd856",
+   "originalSha256": "c0613e59fce4bee049084172940893704e8abbb808b2d6d6290e3d37fdd0ad4a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Стеклянная приёмная",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "glass-waiting-room"
+    ],
+    "4-players": [
+     "glass-waiting-room"
+    ],
+    "5-players": [
+     "glass-waiting-room"
+    ],
+    "6-players": [
+     "glass-waiting-room"
+    ],
+    "7-players": [
+     "glass-waiting-room"
+    ],
+    "8-players": [
+     "glass-waiting-room"
+    ]
+   },
+   "file": "glass-waiting-room.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/assets/table/places-winter-salon.webp",
+   "sha256": "c799ab6eb24a2499562e96c1fc492e50801e20ec0002abaf11df454a38e7484f",
+   "originalSha256": "c0613e59fce4bee049084172940893704e8abbb808b2d6d6290e3d37fdd0ad4a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Зимний салон",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "winter-salon"
+    ],
+    "4-players": [
+     "winter-salon"
+    ],
+    "5-players": [
+     "winter-salon"
+    ],
+    "6-players": [
+     "winter-salon"
+    ],
+    "7-players": [
+     "winter-salon"
+    ],
+    "8-players": [
+     "winter-salon"
+    ]
+   },
+   "file": "winter-salon.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/assets/table/places-sitnik-studio.webp",
+   "sha256": "df8fcc211e63dd0d8cb9b8c0a6fa6d4ff072d3e97bc9f1dd3a5851118ca1ba32",
+   "originalSha256": "c0613e59fce4bee049084172940893704e8abbb808b2d6d6290e3d37fdd0ad4a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мастерская Тамары",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "sitnik-studio"
+    ],
+    "4-players": [
+     "sitnik-studio"
+    ],
+    "5-players": [
+     "sitnik-studio"
+    ],
+    "6-players": [
+     "sitnik-studio"
+    ],
+    "7-players": [
+     "sitnik-studio"
+    ],
+    "8-players": [
+     "sitnik-studio"
+    ]
+   },
+   "file": "sitnik-studio.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/assets/table/places-ryabtseva-studio.webp",
+   "sha256": "e44ff9d2056defab5ce2b120a8264f6bf8e7b9ba76576d63dc647a741820e28b",
+   "originalSha256": "c0613e59fce4bee049084172940893704e8abbb808b2d6d6290e3d37fdd0ad4a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мастерская Нины",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ryabtseva-studio"
+    ],
+    "4-players": [
+     "ryabtseva-studio"
+    ],
+    "5-players": [
+     "ryabtseva-studio"
+    ],
+    "6-players": [
+     "ryabtseva-studio"
+    ],
+    "7-players": [
+     "ryabtseva-studio"
+    ],
+    "8-players": [
+     "ryabtseva-studio"
+    ]
+   },
+   "file": "ryabtseva-studio.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/assets/table/places-frame-workshop.webp",
+   "sha256": "e46036b52bd84b6dfb2a8c488eeaba61a54bc2c746c371796ed57090d4c007a0",
+   "originalSha256": "c0613e59fce4bee049084172940893704e8abbb808b2d6d6290e3d37fdd0ad4a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Багетная Орлова",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "frame-workshop"
+    ],
+    "4-players": [
+     "frame-workshop"
+    ],
+    "5-players": [
+     "frame-workshop"
+    ],
+    "6-players": [
+     "frame-workshop"
+    ],
+    "7-players": [
+     "frame-workshop"
+    ],
+    "8-players": [
+     "frame-workshop"
+    ]
+   },
+   "file": "frame-workshop.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/assets/table/places-birk-drawing-room.webp",
+   "sha256": "ef94294b85a7ef88f209f3d8fb95cb14f6dac566445bd257bd63f197c29c76ff",
+   "originalSha256": "c0613e59fce4bee049084172940893704e8abbb808b2d6d6290e3d37fdd0ad4a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Гостиная Бирка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "birk-drawing-room"
+    ],
+    "4-players": [
+     "birk-drawing-room"
+    ],
+    "5-players": [
+     "birk-drawing-room"
+    ],
+    "6-players": [
+     "birk-drawing-room"
+    ],
+    "7-players": [
+     "birk-drawing-room"
+    ],
+    "8-players": [
+     "birk-drawing-room"
+    ]
+   },
+   "file": "birk-drawing-room.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/assets/table/places-krupina-fitting-room.webp",
+   "sha256": "b3fd884cbfc0defa5ef9543cb285549244cba3be18c2eb7da05cd9f311013096",
+   "originalSha256": "c0613e59fce4bee049084172940893704e8abbb808b2d6d6290e3d37fdd0ad4a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Примерочная Крупиной",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "krupina-fitting-room"
+    ],
+    "4-players": [
+     "krupina-fitting-room"
+    ],
+    "5-players": [
+     "krupina-fitting-room"
+    ],
+    "6-players": [
+     "krupina-fitting-room"
+    ],
+    "7-players": [
+     "krupina-fitting-room"
+    ],
+    "8-players": [
+     "krupina-fitting-room"
+    ]
+   },
+   "file": "krupina-fitting-room.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/assets/table/places-parcel-counter.webp",
+   "sha256": "24d7f0635275c2add7001ce2d7ea2ee94eca2ea11a7cd8fa939a937c91f1fdf8",
+   "originalSha256": "c0613e59fce4bee049084172940893704e8abbb808b2d6d6290e3d37fdd0ad4a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Стойка доставки",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "parcel-counter"
+    ],
+    "4-players": [
+     "parcel-counter"
+    ],
+    "5-players": [
+     "parcel-counter"
+    ],
+    "6-players": [
+     "parcel-counter"
+    ],
+    "7-players": [
+     "parcel-counter"
+    ],
+    "8-players": [
+     "parcel-counter"
+    ]
+   },
+   "file": "parcel-counter.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/assets/table/places-comparison-room.webp",
+   "sha256": "7696d564de28ec72619fcbcaf23256663d4713b7c829629b2b911ef3d34ac4ef",
+   "originalSha256": "c0613e59fce4bee049084172940893704e8abbb808b2d6d6290e3d37fdd0ad4a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Комната дневного света",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "comparison-room"
+    ],
+    "4-players": [
+     "comparison-room"
+    ],
+    "5-players": [
+     "comparison-room"
+    ],
+    "6-players": [
+     "comparison-room"
+    ],
+    "7-players": [
+     "comparison-room"
+    ],
+    "8-players": [
+     "comparison-room"
+    ]
+   },
+   "file": "comparison-room.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/assets/table/foes-foe-a6757835b7.webp",
+   "sha256": "9e3ef53b62cdf4d1473c568c6fc46ecae51edbc1e71fe33666bc878c421d5992",
+   "originalSha256": "fe17416e38b408561b62927c6a42b72c0ce60f0f553cd90a32bba1614ed5b3a1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Раздражённый посетитель",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "crowded-doorway-foe-1",
+     "crowded-doorway-foe-2"
+    ],
+    "4-players": [
+     "crowded-doorway-foe-1",
+     "crowded-doorway-foe-2",
+     "crowded-doorway-foe-3"
+    ],
+    "5-players": [
+     "crowded-doorway-foe-1",
+     "crowded-doorway-foe-2",
+     "crowded-doorway-foe-3"
+    ],
+    "6-players": [
+     "crowded-doorway-foe-1",
+     "crowded-doorway-foe-2",
+     "crowded-doorway-foe-3",
+     "crowded-doorway-foe-4"
+    ],
+    "7-players": [
+     "crowded-doorway-foe-1",
+     "crowded-doorway-foe-2",
+     "crowded-doorway-foe-3",
+     "crowded-doorway-foe-4",
+     "crowded-doorway-foe-5"
+    ],
+    "8-players": [
+     "crowded-doorway-foe-1",
+     "crowded-doorway-foe-2",
+     "crowded-doorway-foe-3",
+     "crowded-doorway-foe-4",
+     "crowded-doorway-foe-5",
+     "crowded-doorway-foe-6"
+    ]
+   },
+   "file": "foe-a6757835b7.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/assets/table/foes-foe-a6757835b7.webp",
+   "sha256": "9e3ef53b62cdf4d1473c568c6fc46ecae51edbc1e71fe33666bc878c421d5992",
+   "originalSha256": "fe17416e38b408561b62927c6a42b72c0ce60f0f553cd90a32bba1614ed5b3a1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Раздражённый посетитель",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "crowded-doorway-foe-1",
+     "crowded-doorway-foe-2"
+    ],
+    "4-players": [
+     "crowded-doorway-foe-1",
+     "crowded-doorway-foe-2",
+     "crowded-doorway-foe-3"
+    ],
+    "5-players": [
+     "crowded-doorway-foe-1",
+     "crowded-doorway-foe-2",
+     "crowded-doorway-foe-3"
+    ],
+    "6-players": [
+     "crowded-doorway-foe-1",
+     "crowded-doorway-foe-2",
+     "crowded-doorway-foe-3",
+     "crowded-doorway-foe-4"
+    ],
+    "7-players": [
+     "crowded-doorway-foe-1",
+     "crowded-doorway-foe-2",
+     "crowded-doorway-foe-3",
+     "crowded-doorway-foe-4",
+     "crowded-doorway-foe-5"
+    ],
+    "8-players": [
+     "crowded-doorway-foe-1",
+     "crowded-doorway-foe-2",
+     "crowded-doorway-foe-3",
+     "crowded-doorway-foe-4",
+     "crowded-doorway-foe-5",
+     "crowded-doorway-foe-6"
+    ]
+   },
+   "file": "foe-a6757835b7--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-a6757835b7.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/assets/table/foes-foe-95445d0ab7.webp",
+   "sha256": "4054617d1eb79b87d736ab0dc97ade56815458ddd534138bff573ea6fc99df09",
+   "originalSha256": "fe17416e38b408561b62927c6a42b72c0ce60f0f553cd90a32bba1614ed5b3a1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Работник багетной",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "frame-passage-foe-1",
+     "frame-passage-foe-2"
+    ],
+    "4-players": [
+     "frame-passage-foe-1",
+     "frame-passage-foe-2",
+     "frame-passage-foe-3"
+    ],
+    "5-players": [
+     "frame-passage-foe-1",
+     "frame-passage-foe-2",
+     "frame-passage-foe-3"
+    ],
+    "6-players": [
+     "frame-passage-foe-1",
+     "frame-passage-foe-2",
+     "frame-passage-foe-3",
+     "frame-passage-foe-4"
+    ],
+    "7-players": [
+     "frame-passage-foe-1",
+     "frame-passage-foe-2",
+     "frame-passage-foe-3",
+     "frame-passage-foe-4",
+     "frame-passage-foe-5"
+    ],
+    "8-players": [
+     "frame-passage-foe-1",
+     "frame-passage-foe-2",
+     "frame-passage-foe-3",
+     "frame-passage-foe-4",
+     "frame-passage-foe-5",
+     "frame-passage-foe-6"
+    ]
+   },
+   "file": "foe-95445d0ab7.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/assets/table/foes-foe-95445d0ab7.webp",
+   "sha256": "4054617d1eb79b87d736ab0dc97ade56815458ddd534138bff573ea6fc99df09",
+   "originalSha256": "fe17416e38b408561b62927c6a42b72c0ce60f0f553cd90a32bba1614ed5b3a1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Работник багетной",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "frame-passage-foe-1",
+     "frame-passage-foe-2"
+    ],
+    "4-players": [
+     "frame-passage-foe-1",
+     "frame-passage-foe-2",
+     "frame-passage-foe-3"
+    ],
+    "5-players": [
+     "frame-passage-foe-1",
+     "frame-passage-foe-2",
+     "frame-passage-foe-3"
+    ],
+    "6-players": [
+     "frame-passage-foe-1",
+     "frame-passage-foe-2",
+     "frame-passage-foe-3",
+     "frame-passage-foe-4"
+    ],
+    "7-players": [
+     "frame-passage-foe-1",
+     "frame-passage-foe-2",
+     "frame-passage-foe-3",
+     "frame-passage-foe-4",
+     "frame-passage-foe-5"
+    ],
+    "8-players": [
+     "frame-passage-foe-1",
+     "frame-passage-foe-2",
+     "frame-passage-foe-3",
+     "frame-passage-foe-4",
+     "frame-passage-foe-5",
+     "frame-passage-foe-6"
+    ]
+   },
+   "file": "foe-95445d0ab7--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-95445d0ab7.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/assets/table/foes-foe-9a4352ee02.webp",
+   "sha256": "50915e393d339a6999bef343285127f4ec0adabacce84873beceb3cd36e722d1",
+   "originalSha256": "fe17416e38b408561b62927c6a42b72c0ce60f0f553cd90a32bba1614ed5b3a1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сотрудник частного показа",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "closed-curtain-foe-1",
+     "closed-curtain-foe-2"
+    ],
+    "4-players": [
+     "closed-curtain-foe-1",
+     "closed-curtain-foe-2",
+     "closed-curtain-foe-3"
+    ],
+    "5-players": [
+     "closed-curtain-foe-1",
+     "closed-curtain-foe-2",
+     "closed-curtain-foe-3"
+    ],
+    "6-players": [
+     "closed-curtain-foe-1",
+     "closed-curtain-foe-2",
+     "closed-curtain-foe-3",
+     "closed-curtain-foe-4"
+    ],
+    "7-players": [
+     "closed-curtain-foe-1",
+     "closed-curtain-foe-2",
+     "closed-curtain-foe-3",
+     "closed-curtain-foe-4",
+     "closed-curtain-foe-5"
+    ],
+    "8-players": [
+     "closed-curtain-foe-1",
+     "closed-curtain-foe-2",
+     "closed-curtain-foe-3",
+     "closed-curtain-foe-4",
+     "closed-curtain-foe-5",
+     "closed-curtain-foe-6"
+    ]
+   },
+   "file": "foe-9a4352ee02.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/assets/table/foes-foe-9a4352ee02.webp",
+   "sha256": "50915e393d339a6999bef343285127f4ec0adabacce84873beceb3cd36e722d1",
+   "originalSha256": "fe17416e38b408561b62927c6a42b72c0ce60f0f553cd90a32bba1614ed5b3a1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сотрудник частного показа",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "closed-curtain-foe-1",
+     "closed-curtain-foe-2"
+    ],
+    "4-players": [
+     "closed-curtain-foe-1",
+     "closed-curtain-foe-2",
+     "closed-curtain-foe-3"
+    ],
+    "5-players": [
+     "closed-curtain-foe-1",
+     "closed-curtain-foe-2",
+     "closed-curtain-foe-3"
+    ],
+    "6-players": [
+     "closed-curtain-foe-1",
+     "closed-curtain-foe-2",
+     "closed-curtain-foe-3",
+     "closed-curtain-foe-4"
+    ],
+    "7-players": [
+     "closed-curtain-foe-1",
+     "closed-curtain-foe-2",
+     "closed-curtain-foe-3",
+     "closed-curtain-foe-4",
+     "closed-curtain-foe-5"
+    ],
+    "8-players": [
+     "closed-curtain-foe-1",
+     "closed-curtain-foe-2",
+     "closed-curtain-foe-3",
+     "closed-curtain-foe-4",
+     "closed-curtain-foe-5",
+     "closed-curtain-foe-6"
+    ]
+   },
+   "file": "foe-9a4352ee02--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-9a4352ee02.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/assets/table/npcs-raisa-antipova.webp",
+   "sha256": "967082d416f77750b8070582bf4ab753f778cc368ab10a1281afc32291f98c13",
+   "originalSha256": "abf2ce5187d570acb8538cb709d647b8346eade32bc1f0e799d8ee2a34866735",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Раиса Антипова",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "raisa-antipova"
+    ],
+    "4-players": [
+     "raisa-antipova"
+    ],
+    "5-players": [
+     "raisa-antipova"
+    ],
+    "6-players": [
+     "raisa-antipova"
+    ],
+    "7-players": [
+     "raisa-antipova"
+    ],
+    "8-players": [
+     "raisa-antipova"
+    ]
+   },
+   "file": "raisa-antipova--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "raisa-antipova.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/assets/table/npcs-arkady-sukhov.webp",
+   "sha256": "ba5eb4f521731bcbe5f39fd2279b82584fb43c941f04132a8c9ddd0c15d0fc94",
+   "originalSha256": "abf2ce5187d570acb8538cb709d647b8346eade32bc1f0e799d8ee2a34866735",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Аркадий Сухов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "arkady-sukhov"
+    ],
+    "4-players": [
+     "arkady-sukhov"
+    ],
+    "5-players": [
+     "arkady-sukhov"
+    ],
+    "6-players": [
+     "arkady-sukhov"
+    ],
+    "7-players": [
+     "arkady-sukhov"
+    ],
+    "8-players": [
+     "arkady-sukhov"
+    ]
+   },
+   "file": "arkady-sukhov--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "arkady-sukhov.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/assets/table/npcs-tamara-sitnik.webp",
+   "sha256": "16541ab08b0aa112a68ff2a5aaa35d35bf7b04201497245dc8d4fc2901e46fdd",
+   "originalSha256": "abf2ce5187d570acb8538cb709d647b8346eade32bc1f0e799d8ee2a34866735",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тамара Ситник",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tamara-sitnik"
+    ],
+    "4-players": [
+     "tamara-sitnik"
+    ],
+    "5-players": [
+     "tamara-sitnik"
+    ],
+    "6-players": [
+     "tamara-sitnik"
+    ],
+    "7-players": [
+     "tamara-sitnik"
+    ],
+    "8-players": [
+     "tamara-sitnik"
+    ]
+   },
+   "file": "tamara-sitnik--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "tamara-sitnik.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/assets/table/npcs-nina-ryabtseva.webp",
+   "sha256": "8630db1ed80c638c6eb6fcbe736cb592ccba58f661fdb1c15b16bb1fe2943034",
+   "originalSha256": "abf2ce5187d570acb8538cb709d647b8346eade32bc1f0e799d8ee2a34866735",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нина Рябцева",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nina-ryabtseva"
+    ],
+    "4-players": [
+     "nina-ryabtseva"
+    ],
+    "5-players": [
+     "nina-ryabtseva"
+    ],
+    "6-players": [
+     "nina-ryabtseva"
+    ],
+    "7-players": [
+     "nina-ryabtseva"
+    ],
+    "8-players": [
+     "nina-ryabtseva"
+    ]
+   },
+   "file": "nina-ryabtseva--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "nina-ryabtseva.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/assets/table/npcs-eduard-birk.webp",
+   "sha256": "36b102d2dc49da694acdf762f34656d244087316b6102417042f3b66b19b362b",
+   "originalSha256": "abf2ce5187d570acb8538cb709d647b8346eade32bc1f0e799d8ee2a34866735",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эдуард Бирк",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "eduard-birk"
+    ],
+    "4-players": [
+     "eduard-birk"
+    ],
+    "5-players": [
+     "eduard-birk"
+    ],
+    "6-players": [
+     "eduard-birk"
+    ],
+    "7-players": [
+     "eduard-birk"
+    ],
+    "8-players": [
+     "eduard-birk"
+    ]
+   },
+   "file": "eduard-birk--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "eduard-birk.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/assets/table/npcs-lidia-krupina.webp",
+   "sha256": "d0704aa363704f4b5f0c8593df5887305f9f0c9685d2d0ac6ac7f3ca74a04b10",
+   "originalSha256": "6d3bc7d5f0ca7b54c4c815eaaa4f883a1cd7cd4fc03d338af7af94d998382f9e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лидия Крупина",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lidia-krupina"
+    ],
+    "4-players": [
+     "lidia-krupina"
+    ],
+    "5-players": [
+     "lidia-krupina"
+    ],
+    "6-players": [
+     "lidia-krupina"
+    ],
+    "7-players": [
+     "lidia-krupina"
+    ],
+    "8-players": [
+     "lidia-krupina"
+    ]
+   },
+   "file": "lidia-krupina--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "lidia-krupina.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/assets/table/npcs-boris-orlov.webp",
+   "sha256": "0afa71cecc5630d6de67630bb3deb6df31361d712de8aa32b3ae5d2b334bd99a",
+   "originalSha256": "6d3bc7d5f0ca7b54c4c815eaaa4f883a1cd7cd4fc03d338af7af94d998382f9e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Борис Орлов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "boris-orlov"
+    ],
+    "4-players": [
+     "boris-orlov"
+    ],
+    "5-players": [
+     "boris-orlov"
+    ],
+    "6-players": [
+     "boris-orlov"
+    ],
+    "7-players": [
+     "boris-orlov"
+    ],
+    "8-players": [
+     "boris-orlov"
+    ]
+   },
+   "file": "boris-orlov--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "boris-orlov.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/assets/table/npcs-klavdia-zueva.webp",
+   "sha256": "42d1de6465d1f4fa2d64c66016a16fbaaeddf3a28a4aacac1cc460a7be37a7c0",
+   "originalSha256": "6d3bc7d5f0ca7b54c4c815eaaa4f883a1cd7cd4fc03d338af7af94d998382f9e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Клавдия Зуева",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "klavdia-zueva"
+    ],
+    "4-players": [
+     "klavdia-zueva"
+    ],
+    "5-players": [
+     "klavdia-zueva"
+    ],
+    "6-players": [
+     "klavdia-zueva"
+    ],
+    "7-players": [
+     "klavdia-zueva"
+    ],
+    "8-players": [
+     "klavdia-zueva"
+    ]
+   },
+   "file": "klavdia-zueva--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "klavdia-zueva.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/assets/table/npcs-semyon-zhdanov.webp",
+   "sha256": "728ea527453a085d4ef202c099fbe3af9900be68c1c78360a640e93b67f2f809",
+   "originalSha256": "6d3bc7d5f0ca7b54c4c815eaaa4f883a1cd7cd4fc03d338af7af94d998382f9e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Семён Жданов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "semyon-zhdanov"
+    ],
+    "4-players": [
+     "semyon-zhdanov"
+    ],
+    "5-players": [
+     "semyon-zhdanov"
+    ],
+    "6-players": [
+     "semyon-zhdanov"
+    ],
+    "7-players": [
+     "semyon-zhdanov"
+    ],
+    "8-players": [
+     "semyon-zhdanov"
+    ]
+   },
+   "file": "semyon-zhdanov--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "semyon-zhdanov.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/assets/table/npcs-olga-malkova.webp",
+   "sha256": "40b4cad8e6eda2c8c9adea1b05e5bb80c39c324998af608adcd27a4d87057fe0",
+   "originalSha256": "6d3bc7d5f0ca7b54c4c815eaaa4f883a1cd7cd4fc03d338af7af94d998382f9e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ольга Малкова",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "olga-malkova"
+    ],
+    "4-players": [
+     "olga-malkova"
+    ],
+    "5-players": [
+     "olga-malkova"
+    ],
+    "6-players": [
+     "olga-malkova"
+    ],
+    "7-players": [
+     "olga-malkova"
+    ],
+    "8-players": [
+     "olga-malkova"
+    ]
+   },
+   "file": "olga-malkova--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "olga-malkova.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/counterfeit-spring/illustrations/opening.webp",
+   "sha256": "9301791bfa31c1b4c0515d23b3825dd10885ff3c839562e5eee3acaf3224ba21",
+   "originalSha256": "4f26f9ddb6000f803ad42280c7c519a937192d94c0ff534ec93474c16bee59cd",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Стеклянная приёмная — Поддельная весна",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "vyazovsk"
+    ],
+    "4-players": [
+     "vyazovsk"
+    ],
+    "5-players": [
+     "vyazovsk"
+    ],
+    "6-players": [
+     "vyazovsk"
+    ],
+    "7-players": [
+     "vyazovsk"
+    ],
+    "8-players": [
+     "vyazovsk"
+    ]
+   },
+   "file": "cover.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "file": "winter-salon--map.webp",
+   "source": "campaigns/noir-2026/counterfeit-spring/assets/battle-maps/winter-salon.webp",
+   "sha256": "e84854e98ddb84265d51cd3c89f57337e92ae6a0fcf10a1a668a194560750758",
+   "originalSha256": "81a750c83d61d9bd5515e75f5eef831b12b95a2821a177f984708dc9a75140d1",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Зимний салон. Visible scenery: Тёплая галерея с плотными шторами, переносными стойками и отдельной комнатой для спокойного выбора картины.. World style: Вязовск · Discreet yellow-garden paint flecks and twin gilded frame corners on bottle-green canvas. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "winter-salon.webp",
+   "subjects": {
+    "3-players": [
+     "winter-salon"
+    ],
+    "4-players": [
+     "winter-salon"
+    ],
+    "5-players": [
+     "winter-salon"
+    ],
+    "6-players": [
+     "winter-salon"
+    ],
+    "7-players": [
+     "winter-salon"
+    ],
+    "8-players": [
+     "winter-salon"
+    ]
+   }
+  },
+  {
+   "file": "frame-workshop--map.webp",
+   "source": "campaigns/noir-2026/counterfeit-spring/assets/battle-maps/frame-workshop.webp",
+   "sha256": "8c59f11dcd04c42f5b67bc945df5dce27d813ec6e57d7a6fa79b08ced051af92",
+   "originalSha256": "45762117e9163b0eaf5da67cc6491545aaac3b7b793b1366e3a500a950408c0c",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Багетная Орлова. Visible scenery: Пахнущая деревом мастерская; вдоль стены стоят угловые образцы рам, мерные полосы и подписанные картонные макеты.. World style: Вязовск · Discreet yellow-garden paint flecks and twin gilded frame corners on bottle-green canvas. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "frame-workshop.webp",
+   "subjects": {
+    "3-players": [
+     "frame-workshop"
+    ],
+    "4-players": [
+     "frame-workshop"
+    ],
+    "5-players": [
+     "frame-workshop"
+    ],
+    "6-players": [
+     "frame-workshop"
+    ],
+    "7-players": [
+     "frame-workshop"
+    ],
+    "8-players": [
+     "frame-workshop"
+    ]
+   }
+  },
+  {
+   "file": "world-map.webp",
+   "source": "campaigns/noir-2026/counterfeit-spring/assets/world-map/world-map.webp",
+   "sha256": "b85e850afd2eeb019047d97a2a01eebc26e29fffdbbb7cb7329649298a6dd75f",
+   "originalSha256": "c3783d7dc5b608be56a792a0b232529ba43598b5419aeac53115fc89e30f3206",
+   "generated": "2026-11-22",
+   "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Вязовск. Style Вязовск · Discreet yellow-garden paint flecks and twin gilded frame corners on bottle-green canvas. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Стеклянная приёмная; 0.367,0.177 Зимний салон; 0.623,0.15 Мастерская Тамары; 0.88,0.177 Мастерская Нины; 0.905,0.517 Багетная Орлова; 0.648,0.49 Гостиная Бирка; 0.392,0.517 Примерочная Крупиной; 0.135,0.49 Стойка доставки; 0.11,0.83 Комната дневного света. Show public exteriors / unlabeled contours only.",
+   "references": [],
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null,
+   "subjects": {
+    "3-players": [
+     "world-map"
+    ],
+    "4-players": [
+     "world-map"
+    ],
+    "5-players": [
+     "world-map"
+    ],
+    "6-players": [
+     "world-map"
+    ],
+    "7-players": [
+     "world-map"
+    ],
+    "8-players": [
+     "world-map"
+    ]
+   }
+  }
+ ]
+}

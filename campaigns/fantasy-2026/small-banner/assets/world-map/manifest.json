@@ -1,0 +1,12 @@
+{
+  "about": "Original unlabelled world map. Pin positions in source/world-map.json.",
+  "map": {
+    "file": "world-map.webp",
+    "sha256": "f85452665c499851f1e87dc029177e2c6edcf6db88a50a908361493f9af9022a",
+    "originalSha256": "b466e3a4774faf3fb2f441840eb3a67fb2a6ab186528f03690f786dbd7345b04",
+    "originalFile": "exec-0f9c1b18-80c0-4f22-9b5b-13fbf87f6a72.png",
+    "generated": "2026-11-22",
+    "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Дом Медный Напёрсток. Style Дом Медный Напёрсток · Tiny stitch samplers, thimble dimples and braided edges in turquoise patchwork. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Кромка гостевой скатерти; 0.367,0.177 Катушечные террасы; 0.623,0.15 Буфетная площадь; 0.88,0.177 Мотыльковый карниз; 0.905,0.857 Берег умывального таза; 0.648,0.83 Упаковочный стол; 0.392,0.857 Садовый ящик; 0.135,0.83 Двор у порога. Show public exteriors / unlabeled contours only.",
+    "references": []
+  }
+}

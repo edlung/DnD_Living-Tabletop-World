@@ -1396,6 +1396,20 @@
       "generated": "2026-11-15",
       "references": ["fixtures/ravenford-ru/assets/old-trade-road.webp"],
       "prompt": "Create exactly one new image with your image generation tool, using the attached reference image as the input image. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nThe attached image is the approved canonical reference. Draw the same place in falling snow: snow on roofs and ground, cold blue light, warm lit windows. Keep the same place's architecture, landmarks and composition or the same person's face, hair, build and clothing exactly; change only what this variant requires.\nFRAMING: wide 3:2 landscape establishing view at eye level; keep the lower third calm and uncluttered (open ground or cobblestones) so interface elements can sit there; no identifiable people — at most a few tiny distant anonymous silhouettes far in the background.\n\nThen copy the generated PNG into the current working directory as old-trade-road--snow.png and reply only with that file name."
+    },
+    {
+      "file": "guild-caravan.webp",
+      "entityIds": ["guild-caravan"],
+      "variant": "reference",
+      "label": null,
+      "purpose": "image",
+      "derivedFrom": null,
+      "mediaType": "image/webp",
+      "sha256": "9b6beec38ed1c2e0988fb1e227232a787a769a3e9e48000f949e01438d4516a8",
+      "originalSha256": "a2b9921537c5658af949a77060de0709ce4706ef5151282277534a3726ff53c3",
+      "generated": "2026-11-22",
+      "references": [],
+      "prompt": "Single square painted tabletop reference illustration in the Ravenford style: a small unobtrusive medieval merchant caravan, canvas-covered carts, ordinary adult carters and trade goods on a plain country road, overcast daylight, painterly muted greens and warm leather. Publicly known appearance only, no clue, conflict, crest, inscription, text or pictured destination."
     }
   ]
 }

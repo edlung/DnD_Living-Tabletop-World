@@ -1,0 +1,54 @@
+{
+  "region": "cedar-valley",
+  "name": "Карта · Долина Лунного Кедра",
+  "description": "План местности «Долина Лунного Кедра». На карте отмечаются места, известные группе.",
+  "pins": [
+    {
+      "place": "bridge-yard",
+      "x": 0.11,
+      "y": 0.15
+    },
+    {
+      "place": "ribbon-gate",
+      "x": 0.367,
+      "y": 0.177
+    },
+    {
+      "place": "moon-ring",
+      "x": 0.623,
+      "y": 0.15
+    },
+    {
+      "place": "stone-yard",
+      "x": 0.88,
+      "y": 0.177
+    },
+    {
+      "place": "wind-gallery",
+      "x": 0.905,
+      "y": 0.517
+    },
+    {
+      "place": "bowl-court",
+      "x": 0.648,
+      "y": 0.49
+    },
+    {
+      "place": "cedar-tea",
+      "x": 0.392,
+      "y": 0.517
+    },
+    {
+      "place": "practice-steps",
+      "x": 0.135,
+      "y": 0.49
+    },
+    {
+      "place": "lantern-room",
+      "x": 0.11,
+      "y": 0.83
+    }
+  ],
+  "routes": [],
+  "scale": "schematic"
+}

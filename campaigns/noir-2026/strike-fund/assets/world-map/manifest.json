@@ -1,0 +1,12 @@
+{
+  "about": "Original unlabelled world map. Pin positions in source/world-map.json.",
+  "map": {
+    "file": "world-map.webp",
+    "sha256": "04186b653f827d7cd76cd064de39e689018e95f13aa882262a8ec31eef12b0b7",
+    "originalSha256": "c3879b1a19a04fa6675c456f7275312c1663211c74891fcbf2c4964fdc339800",
+    "originalFile": "exec-c6f6e472-50e4-40a1-8a3e-9a570033501a.png",
+    "generated": "2026-11-22",
+    "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Речной Клин. Style Речной Клин · Canvas pay envelopes with blind-stamped coin rims and warm copper thread. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Дом артели; 0.367,0.177 Столовая «Третий гудок»; 0.623,0.15 Комнаты над булочной; 0.88,0.177 Тележный двор; 0.905,0.857 Печатня «Шрифт»; 0.648,0.83 Сухой склад у мола; 0.392,0.857 Мастерская Ремеза; 0.135,0.83 Проходная канатной фабрики. Show public exteriors / unlabeled contours only.",
+    "references": []
+  }
+}

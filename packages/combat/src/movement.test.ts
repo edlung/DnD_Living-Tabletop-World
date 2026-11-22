@@ -1,7 +1,16 @@
 import type { CommandResult } from '@ltw/contracts';
 import { describe, expect, it } from 'vitest';
 
-import { ELOWEN, SHAMAN, codeOf, roadWorld, startAmbush } from './testing/road.ts';
+import {
+  ELOWEN,
+  RAIDER_1,
+  RAIDER_2,
+  SHAMAN,
+  codeOf,
+  openWindowId,
+  roadWorld,
+  startAmbush,
+} from './testing/road.ts';
 
 /** `MoveCombatant` (ADR 0015 §3): Elowen starts at (2,6); the ditch (y = 9) is difficult. */
 const reason = (result: CommandResult) =>
@@ -50,6 +59,30 @@ describe('movement', () => {
     expect(reason(await world.dm(move('11,7 10,7', SHAMAN)))).toBe('INVALID_PATH');
     expect(reason(await world.dm(move('13,6 14,6 15,6 16,6', SHAMAN)))).toBe('INVALID_PATH');
     expect(codeOf(await world.dm(move('13,6 14,6', SHAMAN)))).toBe('accepted');
+  });
+
+  it('pauses in a passable allied space for a reaction and charges transit once', async () => {
+    const world = await roadWorld();
+    await startAmbush(world, undefined, (command) => ({
+      ...command,
+      combatants: command.combatants.map((c) =>
+        c.entityId === RAIDER_1
+          ? { ...c, side: 'party', position: { x: 3, y: 6 } }
+          : c.entityId === RAIDER_2
+            ? { ...c, position: { x: 2, y: 5 } }
+            : c,
+      ),
+    }));
+    expect(codeOf(await world.submit(move('3,6 4,6')))).toBe('accepted');
+    expect((await world.encounter()).combatants[0]).toMatchObject({
+      position: { x: 3, y: 6 },
+      turn: { movementUsedFt: 10 },
+    });
+    await world.dm({ type: 'CloseReactionWindow', windowId: await openWindowId(world) });
+    expect((await world.encounter()).combatants[0]).toMatchObject({
+      position: { x: 4, y: 6 },
+      turn: { movementUsedFt: 15 },
+    });
   });
 
   it('only moves the combatant whose turn it is', async () => {

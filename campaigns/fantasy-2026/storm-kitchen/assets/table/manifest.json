@@ -1,0 +1,639 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "storm-kitchen-heroes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-d52f037c-2684-4d9e-b537-f6c26cfa8c09.png",
+      "originalSha256": "9c8f63dc85c9be963772637d05533212a585798d56be318043405e6710be8862",
+      "columns": 4,
+      "rows": 2,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 4 equal columns by 2 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Долина Оваль · Enamel spoon bowls, angular lightning and whorls of cloud on warm indigo pottery. Cell 1. Ася Красная Ложка. Медные застёжки на фартуке, короткие волосы и широкая деревянная ложка за поясом.\nCell 2. Тим Округлый Шов. Карманы с цветными карточками, мягкие ботинки и нарисованные на рукаве мерные кружки.\nCell 3. Мира Тёплый Порог. Накидка цвета печёного света, круглый значок открытой двери и блокнот с крупными полями.\nCell 4. Нэл Лиловый Пар. Фиолетовая косынка, прозрачные пустые чаши и мел на всех пуговицах.\nCell 5. Яр Широкий Поднос. Серебряная прядь, штаны с широкими коленями и поднос, расписанный весёлыми стрелками.\nCell 6. Рута Семь Лент. Разноцветные ленты на запястьях и жилет с плоскими карманами для карточек.\nCell 7. Сев Удобная Скамья. Зелёный шарф, мягкая сумка с подставками и значок маленькой скамьи.\nCell 8. Ольса Незаконченная Чашка. Белые завитки волос, яркая куртка и чашка с намеренно неровной ручкой.. Leave final unused cells empty.",
+      "references": [
+        "campaigns/fantasy-2026/storm-kitchen/illustrations/cards/asya-spoon.webp",
+        "campaigns/fantasy-2026/storm-kitchen/illustrations/cards/tim-seam.webp",
+        "campaigns/fantasy-2026/storm-kitchen/illustrations/cards/mira-threshold.webp",
+        "campaigns/fantasy-2026/storm-kitchen/illustrations/cards/nel-steam.webp",
+        "campaigns/fantasy-2026/storm-kitchen/illustrations/cards/yar-tray.webp",
+        "campaigns/fantasy-2026/storm-kitchen/illustrations/cards/ruta-ribbon.webp",
+        "campaigns/fantasy-2026/storm-kitchen/illustrations/cards/sev-bench.webp",
+        "campaigns/fantasy-2026/storm-kitchen/illustrations/cards/olsa-cup.webp"
+      ]
+    },
+    {
+      "id": "storm-kitchen-places-0",
+      "originalFile": "exec-a9b50a88-a6d0-4773-bcd3-cb85f46a182f.png",
+      "originalSha256": "f494b3d7e7fa0546253aa04de9ee5b9324987674934e9fa68c26ee1409955b51",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "A registered game art atlas of location illustrations, one clearly distinct unpopulated environment per cell, distinct scene lighting and structures. Fill each cell edge to edge. Atmospheric painted landscape or architectural interiors at human eye level. No plot events, clues, icons or writing. EXACT regular grid, 3 equal columns by 3 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Долина Оваль · Enamel spoon bowls, angular lightning and whorls of cloud on warm indigo pottery. Cell 1. Кухня «Четвёртая ложка». Небольшая кухня с большими рабочими столами, открытой доской заказов и четырьмя широкими дверями. Все герои начинают здесь.\nCell 2. Грозовая терраса. Неподвижная площадка с общим длинным столом и четырьмя широкими дверями кухни. Здесь блюда встречаются одновременно: ленты отмечают подачу, подставки удерживают чаши, над парапетом видны далёкие грозы.\nCell 3. Сад тёплых раковин. Пустые радужные раковины держатся на ветках. В них переливаются маленькие видимые эха солнечных бликов.\nCell 4. Чаша неподвижности. Сухая каменная чаша с гладким прохладным отражением вместо воды. Её край достаточно широк для посетителей и отдельных столиков.\nCell 5. Ткацкие навесы тени. Под низкими навесами висят полотна из облачной тени. Ткачиха складывает их в мягкие съедобные для духов узоры и лёгкие чехлы для отдельных чаш.\nCell 6. Рынок невозможных вкусов. Несколько лавок вокруг круглого камня. Здесь обменивают фантастические продукты, рассказывают об их происхождении и показывают образцы.\nCell 7. Ступени мягкого порыва. Низкие широкие ступени внутри каменного кольца. Цветные ленты показывают движение воздуха; боковой проход полностью защищён.\nCell 8. Сад упругих облаков. Крупные низкие облака лежат в каменных клумбах и медленно меняют форму. Рядом есть скамьи и дощечки для рисунков.\nCell 9. Комната проб. Светлая комната с широкими рабочими столами, пустыми чашами и подписанными образцами. Здесь можно наблюдать опыт, описывать его словами или рисовать; телесное участие не требуется.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "storm-kitchen-foes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-eeb361e2-6a5e-4ebe-bdb5-ad7a1699f0e9.png",
+      "originalSha256": "ada3bb0028bb7634c4fb45429f4396cacdf8a1660e4691c540636bb5e2330aa2",
+      "columns": 3,
+      "rows": 1,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 3 equal columns by 1 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Долина Оваль · Enamel spoon bowls, angular lightning and whorls of cloud on warm indigo pottery. Cell 1. Бумажный щёлкун. Складчатое сказочное существо размером с чашку, похожее на ожившую бумажную застёжку. Оно хватает только незакреплённые бирки; при исчерпании HP складывается в безвредный комочек и позже расправляется вдали от витрины.\nCell 2. Облачный складкоед. Пушистый завиток из несъедобной для людей облачной тени с двумя весёлыми углублениями вместо глаз. При исчерпании HP расправляется в мирную ленточку и уплывает под навес; натуралистических повреждений нет.\nCell 3. Узел порыва. Небольшой воздушный завиток с видимой лентой в центре. Он играет с предметами, а не охотится за существами. При исчерпании HP лента развязывается и воздух рассеивается; волшебство не связано с механизмом погоды.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "storm-kitchen-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-9d5778ae-287a-4f18-ba48-673374b04dc4.png",
+      "originalSha256": "fdf12b243bf1c0d03e2e3d2ed0d1c53dff97da51ecd55d6fd12f66a30f4b806c",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "Create a clean production sprite sheet of 8 distinct hand-painted tabletop miniature figurines for the world of Кухня на краю грозы. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 3 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Илла Световей. Высокий дух в движущихся полосах золотого света; вместо пальцев расходятся мягкие лучи.\nCell 2. Ун Тихая Кромка. Невысокий многогранный дух; внутри его прозрачного плаща неподвижно отражается небо.\nCell 3. Фрель Семишаг. Дух из полупрозрачных лент; его шаги остаются маленькими кругами в воздухе.\nCell 4. Ору Тихая Глубь. Плотный округлый дух со спокойными углублениями на поверхности; рядом с ним слегка пружинят облака.\nCell 5. Езга Пять Полок. Человек с короткой серебристой косой и пятью маленькими полочками на переносной стойке.\nCell 6. Ганна Тенешов. Человек с узорными напёрстками, широкими рукавами и лёгким облачным полотном на плече.\nCell 7. Тинн Неровный Образец. Маленький глиняный дух с широким планшетом и завитками вместо бровей.\nCell 8. Овелна Два Фартука. Человек с двумя фартуками разных цветов, удобной тростью и маленькой доской заказов.",
+      "references": [
+        "campaigns/fantasy-2026/storm-kitchen/illustrations/cards/illa-light.webp",
+        "campaigns/fantasy-2026/storm-kitchen/illustrations/cards/un-edge.webp",
+        "campaigns/fantasy-2026/storm-kitchen/illustrations/cards/frel-steps.webp",
+        "campaigns/fantasy-2026/storm-kitchen/illustrations/cards/oru-depth.webp",
+        "campaigns/fantasy-2026/storm-kitchen/illustrations/cards/ezga-shelves.webp",
+        "campaigns/fantasy-2026/storm-kitchen/illustrations/cards/ganna-shadow.webp",
+        "campaigns/fantasy-2026/storm-kitchen/illustrations/cards/tinn-sample.webp",
+        "campaigns/fantasy-2026/storm-kitchen/illustrations/cards/ovelna-apron.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "asya-spoon",
+      "title": "Ася Красная Ложка",
+      "kind": "hero",
+      "subjects": [
+        "asya-spoon"
+      ],
+      "file": "heroes-asya-spoon.webp",
+      "sha256": "f435545fdea9f0522b2878e504c0f9353b10a5a68c92522941ce2ef7f2efbe34",
+      "originalSha256": "9c8f63dc85c9be963772637d05533212a585798d56be318043405e6710be8862",
+      "generated": "2026-11-22",
+      "sheet": "storm-kitchen-heroes-0",
+      "cell": 1,
+      "crop": {
+        "left": 122,
+        "top": 9,
+        "width": 220,
+        "height": 427
+      }
+    },
+    {
+      "key": "tim-seam",
+      "title": "Тим Округлый Шов",
+      "kind": "hero",
+      "subjects": [
+        "tim-seam"
+      ],
+      "file": "heroes-tim-seam.webp",
+      "sha256": "9f6d7ffd1e064e92291222bdb01e309deee87b3b3d650ec6b77fcbb80ce0af7d",
+      "originalSha256": "9c8f63dc85c9be963772637d05533212a585798d56be318043405e6710be8862",
+      "generated": "2026-11-22",
+      "sheet": "storm-kitchen-heroes-0",
+      "cell": 2,
+      "crop": {
+        "left": 558,
+        "top": 13,
+        "width": 212,
+        "height": 422
+      }
+    },
+    {
+      "key": "mira-threshold",
+      "title": "Мира Тёплый Порог",
+      "kind": "hero",
+      "subjects": [
+        "mira-threshold"
+      ],
+      "file": "heroes-mira-threshold.webp",
+      "sha256": "73aed6240303166eeb478f61aed73a3a2f048a1094a96d971de560d33ab649a2",
+      "originalSha256": "9c8f63dc85c9be963772637d05533212a585798d56be318043405e6710be8862",
+      "generated": "2026-11-22",
+      "sheet": "storm-kitchen-heroes-0",
+      "cell": 3,
+      "crop": {
+        "left": 973,
+        "top": 12,
+        "width": 240,
+        "height": 424
+      }
+    },
+    {
+      "key": "nel-steam",
+      "title": "Нэл Лиловый Пар",
+      "kind": "hero",
+      "subjects": [
+        "nel-steam"
+      ],
+      "file": "heroes-nel-steam.webp",
+      "sha256": "bea57b07a99820c5865d7b592fadb034248badfa6e0ca1e10b0a5e96e73d4c64",
+      "originalSha256": "9c8f63dc85c9be963772637d05533212a585798d56be318043405e6710be8862",
+      "generated": "2026-11-22",
+      "sheet": "storm-kitchen-heroes-0",
+      "cell": 4,
+      "crop": {
+        "left": 1434,
+        "top": 9,
+        "width": 226,
+        "height": 427
+      }
+    },
+    {
+      "key": "yar-tray",
+      "title": "Яр Широкий Поднос",
+      "kind": "hero",
+      "subjects": [
+        "yar-tray"
+      ],
+      "file": "heroes-yar-tray.webp",
+      "sha256": "e7ab36e5388d6eb396e6bb55e31731101be36d14fb593744613dbedd76fda962",
+      "originalSha256": "9c8f63dc85c9be963772637d05533212a585798d56be318043405e6710be8862",
+      "generated": "2026-11-22",
+      "sheet": "storm-kitchen-heroes-0",
+      "cell": 5,
+      "crop": {
+        "left": 114,
+        "top": 447,
+        "width": 258,
+        "height": 431
+      }
+    },
+    {
+      "key": "ruta-ribbon",
+      "title": "Рута Семь Лент",
+      "kind": "hero",
+      "subjects": [
+        "ruta-ribbon"
+      ],
+      "file": "heroes-ruta-ribbon.webp",
+      "sha256": "06b2e5eb0e48ccf4379ed7437f1d89c97cf24c355dd461d1d57e00b11f66db84",
+      "originalSha256": "9c8f63dc85c9be963772637d05533212a585798d56be318043405e6710be8862",
+      "generated": "2026-11-22",
+      "sheet": "storm-kitchen-heroes-0",
+      "cell": 6,
+      "crop": {
+        "left": 531,
+        "top": 451,
+        "width": 254,
+        "height": 427
+      }
+    },
+    {
+      "key": "sev-bench",
+      "title": "Сев Удобная Скамья",
+      "kind": "hero",
+      "subjects": [
+        "sev-bench"
+      ],
+      "file": "heroes-sev-bench.webp",
+      "sha256": "4fc8703726d98272faf7975d9ea8558c3ddb985ba31a7761b26a58a908ac04c6",
+      "originalSha256": "9c8f63dc85c9be963772637d05533212a585798d56be318043405e6710be8862",
+      "generated": "2026-11-22",
+      "sheet": "storm-kitchen-heroes-0",
+      "cell": 7,
+      "crop": {
+        "left": 984,
+        "top": 446,
+        "width": 232,
+        "height": 432
+      }
+    },
+    {
+      "key": "olsa-cup",
+      "title": "Ольса Незаконченная Чашка",
+      "kind": "hero",
+      "subjects": [
+        "olsa-cup"
+      ],
+      "file": "heroes-olsa-cup.webp",
+      "sha256": "c55541e307023066eb559c6734b933ddad242201c0d7cbe579b17bb0bb564b53",
+      "originalSha256": "9c8f63dc85c9be963772637d05533212a585798d56be318043405e6710be8862",
+      "generated": "2026-11-22",
+      "sheet": "storm-kitchen-heroes-0",
+      "cell": 8,
+      "crop": {
+        "left": 1423,
+        "top": 446,
+        "width": 240,
+        "height": 433
+      }
+    },
+    {
+      "key": "fourth-spoon",
+      "title": "Кухня «Четвёртая ложка»",
+      "kind": "place",
+      "subjects": [
+        "fourth-spoon"
+      ],
+      "file": "places-fourth-spoon.webp",
+      "sha256": "33cde3da2e11ff8012d5fa944eec71346350ef1d89da259c31910052e965dc66",
+      "originalSha256": "f494b3d7e7fa0546253aa04de9ee5b9324987674934e9fa68c26ee1409955b51",
+      "generated": "2026-11-22",
+      "sheet": "storm-kitchen-places-0",
+      "cell": 1,
+      "crop": {
+        "left": 1,
+        "top": 1,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "storm-terrace",
+      "title": "Грозовая терраса",
+      "kind": "place",
+      "subjects": [
+        "storm-terrace"
+      ],
+      "file": "places-storm-terrace.webp",
+      "sha256": "94366c1d651053c0f10e97469c022d2ab9e6d060d797d0771858dbf30ba8c0d7",
+      "originalSha256": "f494b3d7e7fa0546253aa04de9ee5b9324987674934e9fa68c26ee1409955b51",
+      "generated": "2026-11-22",
+      "sheet": "storm-kitchen-places-0",
+      "cell": 2,
+      "crop": {
+        "left": 484,
+        "top": 1,
+        "width": 480,
+        "height": 360
+      }
+    },
+    {
+      "key": "warm-shells",
+      "title": "Сад тёплых раковин",
+      "kind": "place",
+      "subjects": [
+        "warm-shells"
+      ],
+      "file": "places-warm-shells.webp",
+      "sha256": "74e939d2fcd5f49bacc3e7ba3976b4f7b64128666eeafec12a6cf3e5d1f968e4",
+      "originalSha256": "f494b3d7e7fa0546253aa04de9ee5b9324987674934e9fa68c26ee1409955b51",
+      "generated": "2026-11-22",
+      "sheet": "storm-kitchen-places-0",
+      "cell": 3,
+      "crop": {
+        "left": 966,
+        "top": 1,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "still-pool",
+      "title": "Чаша неподвижности",
+      "kind": "place",
+      "subjects": [
+        "still-pool"
+      ],
+      "file": "places-still-pool.webp",
+      "sha256": "4fc95a7b22881bceeab5b2a474a8ee2fb395955cec4fbb32cb067faa9b3570a0",
+      "originalSha256": "f494b3d7e7fa0546253aa04de9ee5b9324987674934e9fa68c26ee1409955b51",
+      "generated": "2026-11-22",
+      "sheet": "storm-kitchen-places-0",
+      "cell": 4,
+      "crop": {
+        "left": 1,
+        "top": 363,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "shadow-looms",
+      "title": "Ткацкие навесы тени",
+      "kind": "place",
+      "subjects": [
+        "shadow-looms"
+      ],
+      "file": "places-shadow-looms.webp",
+      "sha256": "55d51e350686ac790d236ab7209825900e139ae444eb5b78ab825efaed401aad",
+      "originalSha256": "f494b3d7e7fa0546253aa04de9ee5b9324987674934e9fa68c26ee1409955b51",
+      "generated": "2026-11-22",
+      "sheet": "storm-kitchen-places-0",
+      "cell": 5,
+      "crop": {
+        "left": 484,
+        "top": 363,
+        "width": 480,
+        "height": 360
+      }
+    },
+    {
+      "key": "echo-market",
+      "title": "Рынок невозможных вкусов",
+      "kind": "place",
+      "subjects": [
+        "echo-market"
+      ],
+      "file": "places-echo-market.webp",
+      "sha256": "2186fe334d8cbc3229b71e6fddc85cff11e884fcbe0cadcb31449c7ac349865e",
+      "originalSha256": "f494b3d7e7fa0546253aa04de9ee5b9324987674934e9fa68c26ee1409955b51",
+      "generated": "2026-11-22",
+      "sheet": "storm-kitchen-places-0",
+      "cell": 6,
+      "crop": {
+        "left": 966,
+        "top": 363,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "wind-steps",
+      "title": "Ступени мягкого порыва",
+      "kind": "place",
+      "subjects": [
+        "wind-steps"
+      ],
+      "file": "places-wind-steps.webp",
+      "sha256": "3020f393a7052d59b75c32f8dbb271873a49b251814536638c6b28d015feb3cc",
+      "originalSha256": "f494b3d7e7fa0546253aa04de9ee5b9324987674934e9fa68c26ee1409955b51",
+      "generated": "2026-11-22",
+      "sheet": "storm-kitchen-places-0",
+      "cell": 7,
+      "crop": {
+        "left": 1,
+        "top": 725,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "pressure-garden",
+      "title": "Сад упругих облаков",
+      "kind": "place",
+      "subjects": [
+        "pressure-garden"
+      ],
+      "file": "places-pressure-garden.webp",
+      "sha256": "beb701dad68697098425fc92d1db5fb0c677499c47ba08792c27e66d1d603a4c",
+      "originalSha256": "f494b3d7e7fa0546253aa04de9ee5b9324987674934e9fa68c26ee1409955b51",
+      "generated": "2026-11-22",
+      "sheet": "storm-kitchen-places-0",
+      "cell": 8,
+      "crop": {
+        "left": 484,
+        "top": 725,
+        "width": 480,
+        "height": 360
+      }
+    },
+    {
+      "key": "sample-room",
+      "title": "Комната проб",
+      "kind": "place",
+      "subjects": [
+        "sample-room"
+      ],
+      "file": "places-sample-room.webp",
+      "sha256": "420fc3271524317c1db66d713acc3ef1d0bd34f1777172215d07b169c2fc5c58",
+      "originalSha256": "f494b3d7e7fa0546253aa04de9ee5b9324987674934e9fa68c26ee1409955b51",
+      "generated": "2026-11-22",
+      "sheet": "storm-kitchen-places-0",
+      "cell": 9,
+      "crop": {
+        "left": 966,
+        "top": 725,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "foe-37a2046be1",
+      "title": "Бумажный щёлкун",
+      "kind": "foe",
+      "subjects": [
+        "shelf-clickers-foe-1",
+        "shelf-clickers-foe-2",
+        "shelf-clickers-foe-3",
+        "shelf-clickers-foe-4",
+        "shelf-clickers-foe-5",
+        "shelf-clickers-foe-6"
+      ],
+      "file": "foes-foe-37a2046be1.webp",
+      "sha256": "85a8f9902fbcd52355ecb50b988c6cb13765c477cafc80f9534d11a574418cb6",
+      "originalSha256": "ada3bb0028bb7634c4fb45429f4396cacdf8a1660e4691c540636bb5e2330aa2",
+      "generated": "2026-11-22",
+      "sheet": "storm-kitchen-foes-0",
+      "cell": 1,
+      "crop": {
+        "left": 134,
+        "top": 164,
+        "width": 538,
+        "height": 502
+      }
+    },
+    {
+      "key": "foe-bef621021e",
+      "title": "Облачный складкоед",
+      "kind": "foe",
+      "subjects": [
+        "fold-nibblers-foe-1",
+        "fold-nibblers-foe-2",
+        "fold-nibblers-foe-3",
+        "fold-nibblers-foe-4",
+        "fold-nibblers-foe-5",
+        "fold-nibblers-foe-6"
+      ],
+      "file": "foes-foe-bef621021e.webp",
+      "sha256": "18e6fd3d3aaa76ff0887ad768b5841dcf4bdb766581b397c9c22a7dda61930d4",
+      "originalSha256": "ada3bb0028bb7634c4fb45429f4396cacdf8a1660e4691c540636bb5e2330aa2",
+      "generated": "2026-11-22",
+      "sheet": "storm-kitchen-foes-0",
+      "cell": 2,
+      "crop": {
+        "left": 818,
+        "top": 66,
+        "width": 516,
+        "height": 601
+      }
+    },
+    {
+      "key": "foe-b0f02425da",
+      "title": "Узел порыва",
+      "kind": "foe",
+      "subjects": [
+        "gust-knots-foe-1",
+        "gust-knots-foe-2",
+        "gust-knots-foe-3",
+        "gust-knots-foe-4",
+        "gust-knots-foe-5",
+        "gust-knots-foe-6"
+      ],
+      "file": "foes-foe-b0f02425da.webp",
+      "sha256": "6ff8e33b2a86adacda3ebd3c08ad4590581eb0f3b70264638464f3ff2c2ec5b6",
+      "originalSha256": "ada3bb0028bb7634c4fb45429f4396cacdf8a1660e4691c540636bb5e2330aa2",
+      "generated": "2026-11-22",
+      "sheet": "storm-kitchen-foes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1528,
+        "top": 76,
+        "width": 520,
+        "height": 590
+      }
+    },
+    {
+      "key": "illa-light",
+      "title": "Илла Световей",
+      "kind": "npc",
+      "subjects": [
+        "illa-light"
+      ],
+      "file": "npcs-illa-light.webp",
+      "sha256": "750f57f9db5f36247e4f797f07081447c35d639c057871c9b0deb3443ef6d5ef",
+      "originalSha256": "fdf12b243bf1c0d03e2e3d2ed0d1c53dff97da51ecd55d6fd12f66a30f4b806c",
+      "generated": "2026-11-22",
+      "sheet": "storm-kitchen-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 67,
+        "top": 11,
+        "width": 296,
+        "height": 380
+      }
+    },
+    {
+      "key": "un-edge",
+      "title": "Ун Тихая Кромка",
+      "kind": "npc",
+      "subjects": [
+        "un-edge"
+      ],
+      "file": "npcs-un-edge.webp",
+      "sha256": "f4dc3f8d50776f5d24fdf2e6ef0dd7c32bdb901f4685173d0365a01dfef90bf4",
+      "originalSha256": "fdf12b243bf1c0d03e2e3d2ed0d1c53dff97da51ecd55d6fd12f66a30f4b806c",
+      "generated": "2026-11-22",
+      "sheet": "storm-kitchen-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 483,
+        "top": 35,
+        "width": 297,
+        "height": 350
+      }
+    },
+    {
+      "key": "frel-steps",
+      "title": "Фрель Семишаг",
+      "kind": "npc",
+      "subjects": [
+        "frel-steps"
+      ],
+      "file": "npcs-frel-steps.webp",
+      "sha256": "6efa7d4fd179114a218d3c6a13e7c0404485ab7f991d369d179d94ab49a9ca19",
+      "originalSha256": "fdf12b243bf1c0d03e2e3d2ed0d1c53dff97da51ecd55d6fd12f66a30f4b806c",
+      "generated": "2026-11-22",
+      "sheet": "storm-kitchen-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 905,
+        "top": 13,
+        "width": 301,
+        "height": 376
+      }
+    },
+    {
+      "key": "oru-depth",
+      "title": "Ору Тихая Глубь",
+      "kind": "npc",
+      "subjects": [
+        "oru-depth"
+      ],
+      "file": "npcs-oru-depth.webp",
+      "sha256": "9daf75dd16f0ec2c3be88c827e1d0a87aa8d2f8066e6e8c5ead6e557b0302d9b",
+      "originalSha256": "fdf12b243bf1c0d03e2e3d2ed0d1c53dff97da51ecd55d6fd12f66a30f4b806c",
+      "generated": "2026-11-22",
+      "sheet": "storm-kitchen-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 45,
+        "top": 437,
+        "width": 331,
+        "height": 354
+      }
+    },
+    {
+      "key": "ezga-shelves",
+      "title": "Езга Пять Полок",
+      "kind": "npc",
+      "subjects": [
+        "ezga-shelves"
+      ],
+      "file": "npcs-ezga-shelves.webp",
+      "sha256": "731530c350bcdca0b50d46a599d0700cc57eb78ada7af18cd86e3e7549562b87",
+      "originalSha256": "fdf12b243bf1c0d03e2e3d2ed0d1c53dff97da51ecd55d6fd12f66a30f4b806c",
+      "generated": "2026-11-22",
+      "sheet": "storm-kitchen-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 491,
+        "top": 420,
+        "width": 290,
+        "height": 375
+      }
+    },
+    {
+      "key": "ganna-shadow",
+      "title": "Ганна Тенешов",
+      "kind": "npc",
+      "subjects": [
+        "ganna-shadow"
+      ],
+      "file": "npcs-ganna-shadow.webp",
+      "sha256": "654ec4077dae5b996482d6f88a4ab644e5f30bdfd1d7882fcecebe0c6acdb9c4",
+      "originalSha256": "fdf12b243bf1c0d03e2e3d2ed0d1c53dff97da51ecd55d6fd12f66a30f4b806c",
+      "generated": "2026-11-22",
+      "sheet": "storm-kitchen-npcs-0",
+      "cell": 6,
+      "crop": {
+        "left": 902,
+        "top": 421,
+        "width": 312,
+        "height": 373
+      }
+    },
+    {
+      "key": "tinn-sample",
+      "title": "Тинн Неровный Образец",
+      "kind": "npc",
+      "subjects": [
+        "tinn-sample"
+      ],
+      "file": "npcs-tinn-sample.webp",
+      "sha256": "ac30d3998fcff09ce3d2e686f847257533ff11a9e6d7c9f3e5cb71fcb06c7f73",
+      "originalSha256": "fdf12b243bf1c0d03e2e3d2ed0d1c53dff97da51ecd55d6fd12f66a30f4b806c",
+      "generated": "2026-11-22",
+      "sheet": "storm-kitchen-npcs-0",
+      "cell": 7,
+      "crop": {
+        "left": 57,
+        "top": 849,
+        "width": 309,
+        "height": 367
+      }
+    },
+    {
+      "key": "ovelna-apron",
+      "title": "Овелна Два Фартука",
+      "kind": "npc",
+      "subjects": [
+        "ovelna-apron"
+      ],
+      "file": "npcs-ovelna-apron.webp",
+      "sha256": "ca5601f29b66641cce5d353ce6955caf96f9be14f6259bf39f65fbf18d1f6f98",
+      "originalSha256": "fdf12b243bf1c0d03e2e3d2ed0d1c53dff97da51ecd55d6fd12f66a30f4b806c",
+      "generated": "2026-11-22",
+      "sheet": "storm-kitchen-npcs-0",
+      "cell": 8,
+      "crop": {
+        "left": 482,
+        "top": 820,
+        "width": 299,
+        "height": 402
+      }
+    }
+  ]
+}

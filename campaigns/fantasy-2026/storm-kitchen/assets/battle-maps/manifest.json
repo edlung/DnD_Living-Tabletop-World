@@ -1,0 +1,49 @@
+{
+  "maps": [
+    {
+      "file": "echo-market.webp",
+      "sha256": "ad0f0b9985330bd8de1e9df58097b8c1375c92ee2124183a989cb738a51f9f54",
+      "originalSha256": "d85e314cb1ebf7eeb4f4d57d3d4a707215928e96cf6b9bee52a9f94cb5150356",
+      "originalFile": "exec-f6e06dbe-8181-4ed1-9312-ddd31e11f4a4.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Рынок невозможных вкусов. Visible scenery: Несколько лавок вокруг круглого камня. Здесь обменивают фантастические продукты, рассказывают об их происхождении и показывают образцы.. World style: Долина Оваль · Enamel spoon bowls, angular lightning and whorls of cloud on warm indigo pottery. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "echo-market",
+      "encounter": "shelf-clickers",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "wind-steps.webp",
+      "sha256": "4c4bd05096b818f75076139635bf41d73a48bb889dd30ebf18d343014e3b9e86",
+      "originalSha256": "7a587e3b018fecd88f97acbcc0d2ec2ff8534f91760165602f517df857cb2518",
+      "originalFile": "exec-70ff47af-b459-4caf-861d-c050b346f189.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Ступени мягкого порыва. Visible scenery: Низкие широкие ступени внутри каменного кольца. Цветные ленты показывают движение воздуха; боковой проход полностью защищён.. World style: Долина Оваль · Enamel spoon bowls, angular lightning and whorls of cloud on warm indigo pottery. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "wind-steps",
+      "encounter": "gust-knots",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "shadow-looms.webp",
+      "sha256": "1e84dfb02ab16c0ec85aee51b337059b86e3ff07719fda83df6cb5fdbdaf197a",
+      "originalSha256": "6b0ad3b945d385744b582d6a41adc3eb3b4c8a7eddaaf6894aee3637c996c577",
+      "originalFile": "exec-6942a7c9-f01e-44c3-9235-bb5dc93bb339.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Ткацкие навесы тени. Visible scenery: Под низкими навесами висят полотна из облачной тени. Ткачиха складывает их в мягкие съедобные для духов узоры и лёгкие чехлы для отдельных чаш.. World style: Долина Оваль · Enamel spoon bowls, angular lightning and whorls of cloud on warm indigo pottery. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "shadow-looms",
+      "encounter": "fold-nibblers",
+      "grid": [
+        14,
+        12
+      ]
+    }
+  ]
+}

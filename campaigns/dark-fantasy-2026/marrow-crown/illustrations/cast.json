@@ -1,0 +1,34 @@
+{
+  "about": "Иллюстрация закрытого личного набора персонажа.",
+  "generated": "2026-11-22",
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "kit",
+      "originalFile": "exec-a02dd0c0-8a3c-42af-8421-98439a0d9b73.png",
+      "originalSha256": "1c5fed6e5d5d2cc69194748a9512235f948510eb43460efc08913440e296c4d1",
+      "prompt": "One original illustrated tabletop item card illustration of a closed opaque everyday carry case or satchel for the fictional world Корона из чужих костей. Art direction: match the following very specific material as a very subtle detail on the case: Fossil ivory cross sections set in grey slate, small interwoven crown tines. Show only one complete bag against a quiet neutral backdrop, atmospheric, painterly naturalism, carefully crafted, three quarters view, soft even light, square framing. Never show contents, evidence, people, text, maps, interfaces, lettering or a frame.",
+      "conversion": "cwebp -resize 256 256 -q 83"
+    }
+  ],
+  "cards": [
+    {
+      "id": "travel-kit",
+      "file": "cards/travel-kit.webp",
+      "title": "Дорожный набор",
+      "subjects": [
+        "fedor-nev-travel-kit",
+        "irma-skol-travel-kit",
+        "lada-vey-travel-kit",
+        "nika-torn-travel-kit",
+        "oles-kray-travel-kit",
+        "sana-mel-travel-kit",
+        "yar-osok-travel-kit"
+      ],
+      "sheet": "kit",
+      "width": 256,
+      "height": 256,
+      "sha256": "1cdec259f689c9f77784441b561e27a83c8bd056e58a34c250e17215446097ce"
+    }
+  ]
+}

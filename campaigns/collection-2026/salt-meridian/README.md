@@ -88,3 +88,5 @@
 `campaigns/distinctness/` (задание `salt-meridian-brief.md`, скелет
 `salt-meridian-skeleton.md`). Растровых иллюстраций пока нет: арт будет позже, отдельно.
 Живая игра с людьми не проводилась.
+
+[Карточки и оформление стола для ведущего](../../interface/salt-meridian.html).

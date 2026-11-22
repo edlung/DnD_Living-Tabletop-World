@@ -1,0 +1,49 @@
+{
+  "maps": [
+    {
+      "file": "binding-shop.webp",
+      "sha256": "fc197c0f170ccfbf4678ebecb15cd03eb50f81034c7171f0ea4c0dc5b8ffd25f",
+      "originalSha256": "ecb1916d4a1384231863beaeb58eec9db98a67da0311422e1b2af2fd401ba530",
+      "originalFile": "exec-cc9f413a-0909-4aab-a7ed-8a5fb24d828a.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Переплётная «Лист и корешок». Visible scenery: Небольшие тиски, пресс и книжные обрезки. Между рабочими местами проходит узкая дорожка к задней двери.. World style: Равель, Оловянный склон · Bakelite switchboard sockets arranged in tiny rows with copper cord loops. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "binding-shop",
+      "encounter": "narrow-aisle",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "parcel-counter.webp",
+      "sha256": "8878cf4bacffb3e26952f2d8c3df01fbf97073005ebc794fc911fa1099d944f0",
+      "originalSha256": "25deae72630df144b2bcdb3f30f791bcfacd1cdfa37fc0a2a3f682383a4ebdd1",
+      "originalFile": "exec-1a73603c-668d-412d-8ec4-1898b97ca76d.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Стол согласованных доставок. Visible scenery: Пакеты хранятся в пронумерованных ячейках. Получатель может отказаться от встречи и оставить конверт закрытым.. World style: Равель, Оловянный склон · Bakelite switchboard sockets arranged in tiny rows with copper cord loops. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "parcel-counter",
+      "encounter": "held-parcel",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "roof-garden.webp",
+      "sha256": "4d3e2dd203b0b2e19ce3fab0452ba468bfd93a7a186642f27883ecfa8fd1a5f4",
+      "originalSha256": "809ed68f3dadc6ddec4ffda2ed391fde78992ea0f58c10e6626e38a48c477c61",
+      "originalFile": "exec-cd0a4359-abdf-4ef4-8917-c125c6e22fe9.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Крытый сад над кафе. Visible scenery: Скамьи между ящиками с зеленью и небольшой павильон с обычным телефоном. Дверь во двор остаётся свободной для ухода.. World style: Равель, Оловянный склон · Bakelite switchboard sockets arranged in tiny rows with copper cord loops. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "roof-garden",
+      "encounter": "uninvited-listeners",
+      "grid": [
+        14,
+        12
+      ]
+    }
+  ]
+}

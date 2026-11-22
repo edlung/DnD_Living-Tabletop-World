@@ -1,0 +1,397 @@
+{
+  "about": "Портреты для карточек и изображение закрытого набора. Сначала сверяйте личность и доступность персонажа за столом.",
+  "generated": "2026-11-22",
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "heroes",
+      "originalFile": "exec-889c1405-a1a0-4fd2-8d0a-e0988ac66523.png",
+      "originalSha256": "d50319ce8f47e5711edc4d19f78ecba0f2f199a6111926b9db315bf73a521e29",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 3 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:3. Period noir editorial illustration, restrained charcoal, diffuse lamp and amber light. World: Мерров. Characters, in strict cell order:\n1. Ира Восс — Широкие манжеты, короткий карандаш за ухом и взгляд, привыкший искать второй вход. Age 36.\n2. Рем Дорн — Высокий воротник, аккуратная трость, заплаты на коленях рабочего пальто. Age 43.\n3. Она Телл — Простой тёмный костюм, термос и блокнот с отдельными вкладками для согласий. Age 39.\n4. Соль Иск — Квадратные очки, жилет с карманами под карточки и сухие чернила на большом пальце. Age 28.\n5. Аврен Нелл — Старое пальто без значков и матерчатая папка с широкими завязками. Age 51.\n6. Мирта Кельд — Неброский платок, сложенный табурет и привычка оставлять собеседнику паузу. Age 32.\n7. Теор Брин — Выправленное пальто и мягкая шляпа, которую он снимает даже в шумном помещении. Age 47.\n8. Лисса Орн — Светлые перчатки, разлинованные карточки и всегда закрытая крышка чернильницы. Age 25.\n9. Дорожный / рабочий набор — Still life of one opaque closed everyday satchel, appropriate to this world and era. No person and nothing spilling out.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 3,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "npcs",
+      "originalFile": "exec-f19a6935-d5f3-4ce8-a2cf-1a7e7cdaf03c.png",
+      "originalSha256": "c134db7eb48078377af178d0373d307ca4f28d8f7098399ab9a5cdf0f67e107e",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 4 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:4. Period noir editorial illustration, restrained charcoal, diffuse lamp and amber light. World: Мерров. Characters, in strict cell order:\n1. Лея Мольц — Рабочий фартук под плащом, влажные рукава, квитанция в сухой жестяной коробке. Age 34.\n2. Саверий Крам — Плотный серый костюм, потёртый портфель, вежливая привычка подставлять посетителю стул. Age 46.\n3. Тада Верн — Сухой плащ, корзинка с пустыми банками и рука на перилах вместо протянутой ладони. Age 55.\n4. Дина Арк — Медные пуговицы, ключ на шнурке и аккуратные мелкие буквы на дощечке дежурств. Age 62.\n5. Венц Ольден — Чернильные пальцы, стеклянный козырёк над рабочим столом и выцветший фартук. Age 41.\n6. Эрида Сель — Тёмный жилет, песочные часы для очередности выступлений и три отдельные папки на столе. Age 49.\n7. Бран Нев — Короткий непромокаемый плащ, ремень для свёртков и пустые ладони во время разговора. Age 32.\n8. Нель Рут — Простой жакет, прямой пробор и сухая тряпица рядом с подушкой для штампа. Age 27.\n9. Мати Селт — Ровно завязанный рабочий галстук, жестяной обеденный футляр и натёртые ладони. Age 38.\n10. Фарен Кест — Потёртый воротник, кружка воды и медленная речь человека, привыкшего к заседаниям. Age 58.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 4,
+      "width": 1086,
+      "height": 1448
+    }
+  ],
+  "cards": [
+    {
+      "id": "ira-voss",
+      "file": "cards/ira-voss.webp",
+      "title": "Ира Восс",
+      "subjects": [
+        "ira-voss"
+      ],
+      "sheet": "heroes",
+      "cell": 1,
+      "crop": {
+        "left": 10,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "8a9cdfeb27dcd1473671e4aff94fdfca583baeb4018c251ee1b19064a2f989e0"
+    },
+    {
+      "id": "rem-dorn",
+      "file": "cards/rem-dorn.webp",
+      "title": "Рем Дорн",
+      "subjects": [
+        "rem-dorn"
+      ],
+      "sheet": "heroes",
+      "cell": 2,
+      "crop": {
+        "left": 428,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "99b5e58f129113d1f5ccc4394e22054021dfc94b3777ac762b84d5c55bbe6773"
+    },
+    {
+      "id": "ona-tell",
+      "file": "cards/ona-tell.webp",
+      "title": "Она Телл",
+      "subjects": [
+        "ona-tell"
+      ],
+      "sheet": "heroes",
+      "cell": 3,
+      "crop": {
+        "left": 846,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "44b043487ac48d3172815e77671fae7ec24d32e5a83e1c06048018928a0d08be"
+    },
+    {
+      "id": "sol-isk",
+      "file": "cards/sol-isk.webp",
+      "title": "Соль Иск",
+      "subjects": [
+        "sol-isk"
+      ],
+      "sheet": "heroes",
+      "cell": 4,
+      "crop": {
+        "left": 10,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "56af9bcb52ea3e13fade7de67e1d18a7cc9fd876046622e3f603301506849ae4"
+    },
+    {
+      "id": "avren-nell",
+      "file": "cards/avren-nell.webp",
+      "title": "Аврен Нелл",
+      "subjects": [
+        "avren-nell"
+      ],
+      "sheet": "heroes",
+      "cell": 5,
+      "crop": {
+        "left": 428,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "2a500b04dbef616773b3e3c96fa4d532661c1218fd1ec39239823130c683a378"
+    },
+    {
+      "id": "mirta-keld",
+      "file": "cards/mirta-keld.webp",
+      "title": "Мирта Кельд",
+      "subjects": [
+        "mirta-keld"
+      ],
+      "sheet": "heroes",
+      "cell": 6,
+      "crop": {
+        "left": 846,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "3225965ed378f099f1bef526d1bfeb3c78ca82a3037eb0cf572ef2b4cab1e56b"
+    },
+    {
+      "id": "teor-brin",
+      "file": "cards/teor-brin.webp",
+      "title": "Теор Брин",
+      "subjects": [
+        "teor-brin"
+      ],
+      "sheet": "heroes",
+      "cell": 7,
+      "crop": {
+        "left": 10,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "b78108949afe74ca316a7aca51df0afa4c8cc0af296e4ca86e80b36815cd020c"
+    },
+    {
+      "id": "lissa-orn",
+      "file": "cards/lissa-orn.webp",
+      "title": "Лисса Орн",
+      "subjects": [
+        "lissa-orn"
+      ],
+      "sheet": "heroes",
+      "cell": 8,
+      "crop": {
+        "left": 428,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "0c2b880c6276263dceab1d6aef9b0315c2a00e9341cba669e8e0921c589cf50c"
+    },
+    {
+      "id": "travel-kit",
+      "file": "cards/travel-kit.webp",
+      "title": "Рабочий набор",
+      "subjects": [
+        "avren-nell-travel-kit",
+        "ira-voss-travel-kit",
+        "lissa-orn-travel-kit",
+        "mirta-keld-travel-kit",
+        "ona-tell-travel-kit",
+        "rem-dorn-travel-kit",
+        "sol-isk-travel-kit",
+        "teor-brin-travel-kit"
+      ],
+      "sheet": "heroes",
+      "cell": 9,
+      "crop": {
+        "left": 846,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "f2ad9aae0499fdb9b8c93e1bb5ce24336f871fc776e824030e84b44017c9b57b"
+    },
+    {
+      "id": "lea-moltz",
+      "file": "cards/lea-moltz.webp",
+      "title": "Лея Мольц",
+      "subjects": [
+        "lea-moltz"
+      ],
+      "sheet": "npcs",
+      "cell": 1,
+      "crop": {
+        "left": 9,
+        "top": 9,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "90bd80b14fd56ef1e93880537386b3cd237c8860cd6b978f1a6c659c2e6ee81c"
+    },
+    {
+      "id": "saveriy-kram",
+      "file": "cards/saveriy-kram.webp",
+      "title": "Саверий Крам",
+      "subjects": [
+        "saveriy-kram"
+      ],
+      "sheet": "npcs",
+      "cell": 2,
+      "crop": {
+        "left": 371,
+        "top": 9,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "33926571c693fc77be41b132ee76033a33dfdcfcef2627e0656c89667ac9b9ea"
+    },
+    {
+      "id": "tada-vern",
+      "file": "cards/tada-vern.webp",
+      "title": "Тада Верн",
+      "subjects": [
+        "tada-vern"
+      ],
+      "sheet": "npcs",
+      "cell": 3,
+      "crop": {
+        "left": 733,
+        "top": 9,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "1a8ffee2e66354ff31ad8a673d6eac02d4b753dbb5c8543f7b62c7cc85d80d01"
+    },
+    {
+      "id": "dina-ark",
+      "file": "cards/dina-ark.webp",
+      "title": "Дина Арк",
+      "subjects": [
+        "dina-ark"
+      ],
+      "sheet": "npcs",
+      "cell": 4,
+      "crop": {
+        "left": 9,
+        "top": 371,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "3c39e91c5290bf5956b1d9da417602f7c2d5b9f782aa247f12ef45ce3a7ccd4b"
+    },
+    {
+      "id": "vents-olden",
+      "file": "cards/vents-olden.webp",
+      "title": "Венц Ольден",
+      "subjects": [
+        "vents-olden"
+      ],
+      "sheet": "npcs",
+      "cell": 5,
+      "crop": {
+        "left": 371,
+        "top": 371,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "ca3406e223ab030b684eb7bc1b2242188fc263aba112bdbd56af9135b9f5c519"
+    },
+    {
+      "id": "erida-sel",
+      "file": "cards/erida-sel.webp",
+      "title": "Эрида Сель",
+      "subjects": [
+        "erida-sel"
+      ],
+      "sheet": "npcs",
+      "cell": 6,
+      "crop": {
+        "left": 733,
+        "top": 371,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "50dfaa74d9482d5a9f71848e4688e9464dfa216d9be9a9f7bdbb31e6ff739359"
+    },
+    {
+      "id": "bran-nev",
+      "file": "cards/bran-nev.webp",
+      "title": "Бран Нев",
+      "subjects": [
+        "bran-nev"
+      ],
+      "sheet": "npcs",
+      "cell": 7,
+      "crop": {
+        "left": 9,
+        "top": 733,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "d421be6d9dda6a5d0afe89868ac54021a553731e62189a20c7be8f27195b2665"
+    },
+    {
+      "id": "nell-rut",
+      "file": "cards/nell-rut.webp",
+      "title": "Нель Рут",
+      "subjects": [
+        "nell-rut"
+      ],
+      "sheet": "npcs",
+      "cell": 8,
+      "crop": {
+        "left": 371,
+        "top": 733,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "67a20da5e850d8d8a46934ae1889f29cf7161c3c409644e232e811c010b44af6"
+    },
+    {
+      "id": "mati-selt",
+      "file": "cards/mati-selt.webp",
+      "title": "Мати Селт",
+      "subjects": [
+        "mati-selt"
+      ],
+      "sheet": "npcs",
+      "cell": 9,
+      "crop": {
+        "left": 733,
+        "top": 733,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "9fcbdeb51778cc28af392f47b249462e910952127b80b1a4ef41106d45ac6f97"
+    },
+    {
+      "id": "faren-kest",
+      "file": "cards/faren-kest.webp",
+      "title": "Фарен Кест",
+      "subjects": [
+        "faren-kest"
+      ],
+      "sheet": "npcs",
+      "cell": 10,
+      "crop": {
+        "left": 9,
+        "top": 1095,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "dc5f28536d23f2ca22ffa85226be474f6f215c2d2739b01dd678b5884096dc99"
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "region": "oval-valley",
+  "name": "Карта · Долина Оваль",
+  "description": "План местности «Долина Оваль». На карте отмечаются места, известные группе.",
+  "pins": [
+    {
+      "place": "fourth-spoon",
+      "x": 0.11,
+      "y": 0.15
+    },
+    {
+      "place": "storm-terrace",
+      "x": 0.367,
+      "y": 0.177
+    },
+    {
+      "place": "warm-shells",
+      "x": 0.623,
+      "y": 0.15
+    },
+    {
+      "place": "still-pool",
+      "x": 0.88,
+      "y": 0.177
+    },
+    {
+      "place": "shadow-looms",
+      "x": 0.905,
+      "y": 0.517
+    },
+    {
+      "place": "echo-market",
+      "x": 0.648,
+      "y": 0.49
+    },
+    {
+      "place": "wind-steps",
+      "x": 0.392,
+      "y": 0.517
+    },
+    {
+      "place": "pressure-garden",
+      "x": 0.135,
+      "y": 0.49
+    },
+    {
+      "place": "sample-room",
+      "x": 0.11,
+      "y": 0.83
+    }
+  ],
+  "routes": [
+    {
+      "from": "fourth-spoon",
+      "to": "storm-terrace",
+      "miles": 2,
+      "terrain": "mountain",
+      "road": false
+    },
+    {
+      "from": "storm-terrace",
+      "to": "warm-shells",
+      "miles": 2,
+      "terrain": "mountain",
+      "road": false
+    },
+    {
+      "from": "warm-shells",
+      "to": "still-pool",
+      "miles": 3,
+      "terrain": "mountain",
+      "road": false
+    },
+    {
+      "from": "still-pool",
+      "to": "shadow-looms",
+      "miles": 2,
+      "terrain": "mountain",
+      "road": false
+    },
+    {
+      "from": "fourth-spoon",
+      "to": "echo-market",
+      "miles": 2,
+      "terrain": "mountain",
+      "road": false
+    },
+    {
+      "from": "echo-market",
+      "to": "wind-steps",
+      "miles": 3,
+      "terrain": "mountain",
+      "road": false
+    },
+    {
+      "from": "wind-steps",
+      "to": "pressure-garden",
+      "miles": 2,
+      "terrain": "mountain",
+      "road": false
+    },
+    {
+      "from": "pressure-garden",
+      "to": "sample-room",
+      "miles": 1,
+      "terrain": "mountain",
+      "road": false
+    },
+    {
+      "from": "shadow-looms",
+      "to": "echo-market",
+      "miles": 2,
+      "terrain": "mountain",
+      "road": false
+    },
+    {
+      "from": "still-pool",
+      "to": "pressure-garden",
+      "miles": 3,
+      "terrain": "mountain",
+      "road": false
+    }
+  ]
+}

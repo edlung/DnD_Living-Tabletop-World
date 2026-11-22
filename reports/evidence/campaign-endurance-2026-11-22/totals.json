@@ -1,0 +1,41 @@
+{
+  "runs": 21184,
+  "reached": 21172,
+  "closed": 21145,
+  "regular": 65246,
+  "special": 4798,
+  "dice": 2474199,
+  "joins": 74258,
+  "spellSpend": 35656,
+  "restHitDice": 14645,
+  "deadAtFinal": 434,
+  "campaigns": 55,
+  "editions": 280,
+  "configurations": 331,
+  "encounters": 183,
+  "rests": {
+    "short": 5934,
+    "long": 19132
+  },
+  "items": {
+    "use woodland-balm": 425,
+    "trade srd-potion-of-healing": 254,
+    "use srd-potion-of-healing": 131,
+    "take srd-potion-of-healing-greater": 291
+  },
+  "ends": {
+    "table-decision": 16050,
+    "special": 4798,
+    "party-down-at-last-fight": 27,
+    "no-party-before-final": 12,
+    "pursuit-six-minutes": 6,
+    "bell-silenced": 291
+  },
+  "stops": {
+    "hollow-choir": 2,
+    "marrow-crown": 1,
+    "salt-widows": 1,
+    "hollowmere": 8
+  },
+  "sha256": "eaa3579a8f5bbcadb048c23b641eca9c801e105931c29e626fed2125277e6295"
+}

@@ -1,8 +1,12 @@
+import type { WorldApi } from '../../api/client.ts';
+import { usePortrait } from '../../world/use-portrait.ts';
+import { useApprovedImage } from '../../visual/approved-images.ts';
+import { ItemPicture } from './item-picture.tsx';
 import type { EquipSlot, InventoryItem } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
 import { useState, type DragEvent } from 'react';
 
-import { boardUrl, itemPictureUrl } from '../../visual/ui-kit.ts';
+import { boardUrl } from '../../visual/ui-kit.ts';
 import { slotName } from '../item-text.ts';
 import { DRAG_TYPE, draggedItem } from './drag.ts';
 
@@ -16,6 +20,8 @@ const RIGHT: readonly EquipSlot[] = ['mainhand', 'offhand', 'hands', 'ring', 'fe
  * from the bag onto a slot that fits it is put on there (buttons in the item's card do the same).
  */
 export function PaperDoll({
+  api,
+  characterId,
   worn,
   carried,
   selectedId,
@@ -23,6 +29,8 @@ export function PaperDoll({
   onSelect,
   onEquip,
 }: {
+  readonly api: WorldApi;
+  readonly characterId: string;
   readonly worn: readonly InventoryItem[];
   readonly carried: readonly InventoryItem[];
   readonly selectedId: string | null;
@@ -31,6 +39,8 @@ export function PaperDoll({
   readonly onEquip: (itemId: string, slot: EquipSlot) => void;
 }) {
   const t = useT();
+  const painting = usePortrait(api, characterId, 'figure');
+  const figure = useApprovedImage(painting);
   const [over, setOver] = useState<EquipSlot | null>(null);
   // A slot takes a dragged item that fits it while the slot is free.
   const fits = (event: DragEvent, slot: EquipSlot) => {
@@ -40,7 +50,6 @@ export function PaperDoll({
   };
   const slotView = (slot: EquipSlot) => {
     const item = worn.find((entry) => entry.slot === slot);
-    const art = item?.catalog ? itemPictureUrl(item.catalog) : null;
     const name = slotName(t, slot);
     return (
       <li
@@ -83,8 +92,8 @@ export function PaperDoll({
             if (item) onSelect(item.itemId);
           }}
         >
-          {art ? (
-            <img src={art} alt="" draggable={false} />
+          {item ? (
+            <ItemPicture api={api} item={item} />
           ) : (
             <span className="doll-empty" aria-hidden="true" />
           )}
@@ -99,7 +108,12 @@ export function PaperDoll({
     <section className="paper-doll" aria-label={t('Worn and wielded')}>
       <ul className="doll-side doll-side--left">{LEFT.map(slotView)}</ul>
       <div className="doll-figure" aria-hidden="true">
-        <img src={boardUrl('figure-silhouette')} alt="" draggable={false} />
+        <img
+          className={figure ? 'doll-painted' : undefined}
+          src={figure ?? boardUrl('figure-silhouette')}
+          alt=""
+          draggable={false}
+        />
       </div>
       <ul className="doll-side doll-side--right">{RIGHT.map(slotView)}</ul>
     </section>

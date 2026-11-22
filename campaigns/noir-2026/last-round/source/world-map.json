@@ -1,0 +1,49 @@
+{
+  "region": "merzha",
+  "name": "Карта · Мержа, Канатный квартал",
+  "description": "План местности «Мержа, Канатный квартал». На карте отмечаются места, известные группе.",
+  "pins": [
+    {
+      "place": "corner-kitchen",
+      "x": 0.11,
+      "y": 0.15
+    },
+    {
+      "place": "gym-yard",
+      "x": 0.367,
+      "y": 0.177
+    },
+    {
+      "place": "rehab-office",
+      "x": 0.623,
+      "y": 0.15
+    },
+    {
+      "place": "steam-laundry",
+      "x": 0.88,
+      "y": 0.177
+    },
+    {
+      "place": "repair-bench",
+      "x": 0.905,
+      "y": 0.857
+    },
+    {
+      "place": "tram-depot",
+      "x": 0.648,
+      "y": 0.83
+    },
+    {
+      "place": "quiet-rooms",
+      "x": 0.392,
+      "y": 0.857
+    },
+    {
+      "place": "river-pavilion",
+      "x": 0.135,
+      "y": 0.83
+    }
+  ],
+  "routes": [],
+  "scale": "schematic"
+}

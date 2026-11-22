@@ -1,0 +1,1843 @@
+{
+ "id": "last-round",
+ "title": "После последнего раунда",
+ "genre": "Детективный нуар о пропавшем человеке и праве уйти",
+ "audience": "18+",
+ "pitch": "В промокшем спортивном квартале Мержи исчез катмен Матвей Клин. Его сестра просит найти живого человека, а владельцы залов уже ищут виновного в чужой смерти. След ведёт через столовые, ремонтные мастерские и комнаты, где взрослые люди пытаются придумать жизнь после ринга.",
+ "tone": "Тихая настойчивость, неловкая забота, мокрые пальто, цена привычной зависимости; человеческое достоинство важнее красивого разоблачения.",
+ "duration": "8 сессий; 180 минут: вступление и повтор 15, три сцены по 45, перерыв 10, завершение 20.",
+ "cover": "campaigns/noir-2026/last-round/illustrations/opening.webp",
+ "defaultVariant": "4-players",
+ "variants": [
+  {
+   "id": "3-players",
+   "players": 3,
+   "label": "3 игрока",
+   "file": "packages/3-players.json",
+   "digest": "c9c61976d06ed298f64cbd0872ff3d5e773b3f618a3b92ae277436f61da24b3a"
+  },
+  {
+   "id": "4-players",
+   "players": 4,
+   "label": "4 игрока",
+   "file": "packages/4-players.json",
+   "digest": "cf2bb9782c1a511b4149bc04278746b46357ccdbf8825efd7249e583686975c7"
+  },
+  {
+   "id": "5-players",
+   "players": 5,
+   "label": "5 игроков",
+   "file": "packages/5-players.json",
+   "digest": "5d58906f61c54a873a28c219f9b435afe4b6857fe391407a78b2547efac7902c"
+  },
+  {
+   "id": "6-players",
+   "players": 6,
+   "label": "6 игроков",
+   "file": "packages/6-players.json",
+   "digest": "6fc20ebd20d85cca1c21c75b630624bc9630cf77745be211d3b3569c395c602c"
+  },
+  {
+   "id": "7-players",
+   "players": 7,
+   "label": "7 игроков",
+   "file": "packages/7-players.json",
+   "digest": "afa90a891e585fe6f0329edd78c11d3ede8ed09eaa21d5f332b0be8fa011d484"
+  },
+  {
+   "id": "8-players",
+   "players": 8,
+   "label": "8 игроков",
+   "file": "packages/8-players.json",
+   "digest": "91cfb59d75c248282a7a92bfc76084e64692fbbceb38bae061d82782f7a572da"
+  }
+ ],
+ "generator": "codex-cli imagegen",
+ "pictures": [
+  {
+   "source": "campaigns/noir-2026/last-round/illustrations/cards/tamara-lesk.webp",
+   "sha256": "a440acaf1cf1cbeaaf441e12c7e89ac30b07edb0b547d436742d35d370a991b3",
+   "originalSha256": "2c4bcec135d96817f67ef6f8e9e86403d8587d6636a0e6011312ff1b817f4963",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тамара Леск",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tamara-lesk"
+    ],
+    "4-players": [
+     "tamara-lesk"
+    ],
+    "5-players": [
+     "tamara-lesk"
+    ],
+    "6-players": [
+     "tamara-lesk"
+    ],
+    "7-players": [
+     "tamara-lesk"
+    ],
+    "8-players": [
+     "tamara-lesk"
+    ]
+   },
+   "file": "tamara-lesk.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/illustrations/cards/yakov-rutov.webp",
+   "sha256": "54186c5c9b5bdbf0221488d5743e7b936e2f5e57ed1d67663c6ee17668dbd49c",
+   "originalSha256": "2c4bcec135d96817f67ef6f8e9e86403d8587d6636a0e6011312ff1b817f4963",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Яков Рутов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "yakov-rutov"
+    ],
+    "4-players": [
+     "yakov-rutov"
+    ],
+    "5-players": [
+     "yakov-rutov"
+    ],
+    "6-players": [
+     "yakov-rutov"
+    ],
+    "7-players": [
+     "yakov-rutov"
+    ],
+    "8-players": [
+     "yakov-rutov"
+    ]
+   },
+   "file": "yakov-rutov.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/illustrations/cards/nina-chek.webp",
+   "sha256": "55da192e184ccae7e1048fbf7365ca85d0a15bd55bb82516ec7e3dd5990eb21e",
+   "originalSha256": "2c4bcec135d96817f67ef6f8e9e86403d8587d6636a0e6011312ff1b817f4963",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нина Чек",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nina-chek"
+    ],
+    "4-players": [
+     "nina-chek"
+    ],
+    "5-players": [
+     "nina-chek"
+    ],
+    "6-players": [
+     "nina-chek"
+    ],
+    "7-players": [
+     "nina-chek"
+    ],
+    "8-players": [
+     "nina-chek"
+    ]
+   },
+   "file": "nina-chek.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/illustrations/cards/sava-melin.webp",
+   "sha256": "6d13f77895b428175cce59420bb9b4fbf2d5419cdd2745ca2a0610316da0aee2",
+   "originalSha256": "2c4bcec135d96817f67ef6f8e9e86403d8587d6636a0e6011312ff1b817f4963",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сава Мелин",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "sava-melin"
+    ],
+    "5-players": [
+     "sava-melin"
+    ],
+    "6-players": [
+     "sava-melin"
+    ],
+    "7-players": [
+     "sava-melin"
+    ],
+    "8-players": [
+     "sava-melin"
+    ]
+   },
+   "file": "sava-melin.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/illustrations/cards/elina-gran.webp",
+   "sha256": "76c5406925c9892e35d106a7375758007f3f8ddef0e3fe1bcb477bd397551d47",
+   "originalSha256": "2c4bcec135d96817f67ef6f8e9e86403d8587d6636a0e6011312ff1b817f4963",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Элина Грань",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "elina-gran"
+    ],
+    "6-players": [
+     "elina-gran"
+    ],
+    "7-players": [
+     "elina-gran"
+    ],
+    "8-players": [
+     "elina-gran"
+    ]
+   },
+   "file": "elina-gran.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/illustrations/cards/gleb-ostrin.webp",
+   "sha256": "6ed8f9acd5a1c258e97d918be6e0882125da83f47490450022a7c482305ba1b0",
+   "originalSha256": "2c4bcec135d96817f67ef6f8e9e86403d8587d6636a0e6011312ff1b817f4963",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Глеб Острин",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "gleb-ostrin"
+    ],
+    "7-players": [
+     "gleb-ostrin"
+    ],
+    "8-players": [
+     "gleb-ostrin"
+    ]
+   },
+   "file": "gleb-ostrin.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/illustrations/cards/dina-rat.webp",
+   "sha256": "0d1088b5aebeed9d63316174ccebf44ba91f03b4ead51b2790324007929b3b5f",
+   "originalSha256": "2c4bcec135d96817f67ef6f8e9e86403d8587d6636a0e6011312ff1b817f4963",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дина Рат",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "dina-rat"
+    ],
+    "8-players": [
+     "dina-rat"
+    ]
+   },
+   "file": "dina-rat.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/illustrations/cards/osip-verst.webp",
+   "sha256": "80b53425d71f6e6dbaad7939a54e1969b6cbda9f8c6f91d32db60b6ad08f60d6",
+   "originalSha256": "2c4bcec135d96817f67ef6f8e9e86403d8587d6636a0e6011312ff1b817f4963",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Осип Верст",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [],
+    "8-players": [
+     "osip-verst"
+    ]
+   },
+   "file": "osip-verst.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/illustrations/cards/travel-kit.webp",
+   "sha256": "27f519dbf9f288ad08e8f5be7daaafe3dc4a6ebc155810f10e67a06ceb07ae0d",
+   "originalSha256": "2c4bcec135d96817f67ef6f8e9e86403d8587d6636a0e6011312ff1b817f4963",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рабочий набор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nina-chek-travel-kit",
+     "tamara-lesk-travel-kit",
+     "yakov-rutov-travel-kit"
+    ],
+    "4-players": [
+     "nina-chek-travel-kit",
+     "sava-melin-travel-kit",
+     "tamara-lesk-travel-kit",
+     "yakov-rutov-travel-kit"
+    ],
+    "5-players": [
+     "elina-gran-travel-kit",
+     "nina-chek-travel-kit",
+     "sava-melin-travel-kit",
+     "tamara-lesk-travel-kit",
+     "yakov-rutov-travel-kit"
+    ],
+    "6-players": [
+     "elina-gran-travel-kit",
+     "gleb-ostrin-travel-kit",
+     "nina-chek-travel-kit",
+     "sava-melin-travel-kit",
+     "tamara-lesk-travel-kit",
+     "yakov-rutov-travel-kit"
+    ],
+    "7-players": [
+     "dina-rat-travel-kit",
+     "elina-gran-travel-kit",
+     "gleb-ostrin-travel-kit",
+     "nina-chek-travel-kit",
+     "sava-melin-travel-kit",
+     "tamara-lesk-travel-kit",
+     "yakov-rutov-travel-kit"
+    ],
+    "8-players": [
+     "dina-rat-travel-kit",
+     "elina-gran-travel-kit",
+     "gleb-ostrin-travel-kit",
+     "nina-chek-travel-kit",
+     "osip-verst-travel-kit",
+     "sava-melin-travel-kit",
+     "tamara-lesk-travel-kit",
+     "yakov-rutov-travel-kit"
+    ]
+   },
+   "file": "travel-kit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/illustrations/cards/matvey-klin.webp",
+   "sha256": "108f83101665d01dd8f20ac1293993c5d181fdcd36c7c7f081d180b23074b720",
+   "originalSha256": "341125dea44e9958a3100576af114c1d60a44db1f356c4444baa1f2df771f381",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Матвей Клин",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "matvey-klin"
+    ],
+    "4-players": [
+     "matvey-klin"
+    ],
+    "5-players": [
+     "matvey-klin"
+    ],
+    "6-players": [
+     "matvey-klin"
+    ],
+    "7-players": [
+     "matvey-klin"
+    ],
+    "8-players": [
+     "matvey-klin"
+    ]
+   },
+   "file": "matvey-klin.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/illustrations/cards/vera-klin.webp",
+   "sha256": "eb87e71eefabbc0df1e50747ea3d26ce8d06f6b7df6d123d329e287cc71308ba",
+   "originalSha256": "341125dea44e9958a3100576af114c1d60a44db1f356c4444baa1f2df771f381",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Вера Клин",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "vera-klin"
+    ],
+    "4-players": [
+     "vera-klin"
+    ],
+    "5-players": [
+     "vera-klin"
+    ],
+    "6-players": [
+     "vera-klin"
+    ],
+    "7-players": [
+     "vera-klin"
+    ],
+    "8-players": [
+     "vera-klin"
+    ]
+   },
+   "file": "vera-klin.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/illustrations/cards/lada-vetrova.webp",
+   "sha256": "05c9bf38ced7a73f81faaf4717100e7e2c271b2d0dfa747a41cf7f5f20d092f2",
+   "originalSha256": "341125dea44e9958a3100576af114c1d60a44db1f356c4444baa1f2df771f381",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лада Ветрова",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lada-vetrova"
+    ],
+    "4-players": [
+     "lada-vetrova"
+    ],
+    "5-players": [
+     "lada-vetrova"
+    ],
+    "6-players": [
+     "lada-vetrova"
+    ],
+    "7-players": [
+     "lada-vetrova"
+    ],
+    "8-players": [
+     "lada-vetrova"
+    ]
+   },
+   "file": "lada-vetrova.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/illustrations/cards/raisa-shtein.webp",
+   "sha256": "cb897eb1da0a5cd4e1a1d6bbbeaeebc43476ce26e2db44cd54ea5b7a2e19e82d",
+   "originalSha256": "341125dea44e9958a3100576af114c1d60a44db1f356c4444baa1f2df771f381",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Раиса Штейн",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "raisa-shtein"
+    ],
+    "4-players": [
+     "raisa-shtein"
+    ],
+    "5-players": [
+     "raisa-shtein"
+    ],
+    "6-players": [
+     "raisa-shtein"
+    ],
+    "7-players": [
+     "raisa-shtein"
+    ],
+    "8-players": [
+     "raisa-shtein"
+    ]
+   },
+   "file": "raisa-shtein.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/illustrations/cards/pavel-grin.webp",
+   "sha256": "921a77dcdcdd8de9f56775873898d66092574d0824cc7fb4a538807681c80e15",
+   "originalSha256": "341125dea44e9958a3100576af114c1d60a44db1f356c4444baa1f2df771f381",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Павел Грин",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "pavel-grin"
+    ],
+    "4-players": [
+     "pavel-grin"
+    ],
+    "5-players": [
+     "pavel-grin"
+    ],
+    "6-players": [
+     "pavel-grin"
+    ],
+    "7-players": [
+     "pavel-grin"
+    ],
+    "8-players": [
+     "pavel-grin"
+    ]
+   },
+   "file": "pavel-grin.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/illustrations/cards/lev-kvartsev.webp",
+   "sha256": "25734c6fb4f46da1e838537c0a3f8188b2d112ff173b690fcf4370f1a9dcddf8",
+   "originalSha256": "341125dea44e9958a3100576af114c1d60a44db1f356c4444baa1f2df771f381",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лев Кварцев",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lev-kvartsev"
+    ],
+    "4-players": [
+     "lev-kvartsev"
+    ],
+    "5-players": [
+     "lev-kvartsev"
+    ],
+    "6-players": [
+     "lev-kvartsev"
+    ],
+    "7-players": [
+     "lev-kvartsev"
+    ],
+    "8-players": [
+     "lev-kvartsev"
+    ]
+   },
+   "file": "lev-kvartsev.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/illustrations/cards/arseny-bek.webp",
+   "sha256": "3114fdc537d7846c8adfde7724ddfb933deb28275bf47dee875a119155ce1d70",
+   "originalSha256": "341125dea44e9958a3100576af114c1d60a44db1f356c4444baa1f2df771f381",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Арсений Бек",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "arseny-bek"
+    ],
+    "4-players": [
+     "arseny-bek"
+    ],
+    "5-players": [
+     "arseny-bek"
+    ],
+    "6-players": [
+     "arseny-bek"
+    ],
+    "7-players": [
+     "arseny-bek"
+    ],
+    "8-players": [
+     "arseny-bek"
+    ]
+   },
+   "file": "arseny-bek.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/illustrations/cards/irina-sadovaya.webp",
+   "sha256": "62994932549667607606980c53c3d7c4a52db669ea48efa20b2cf9f693153eca",
+   "originalSha256": "341125dea44e9958a3100576af114c1d60a44db1f356c4444baa1f2df771f381",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ирина Садовая",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "irina-sadovaya"
+    ],
+    "4-players": [
+     "irina-sadovaya"
+    ],
+    "5-players": [
+     "irina-sadovaya"
+    ],
+    "6-players": [
+     "irina-sadovaya"
+    ],
+    "7-players": [
+     "irina-sadovaya"
+    ],
+    "8-players": [
+     "irina-sadovaya"
+    ]
+   },
+   "file": "irina-sadovaya.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/assets/table/heroes-tamara-lesk.webp",
+   "sha256": "e85ffe395e6bbdbda5eb2bce5b440252e32eff28c6fe09e60a807b83cac30665",
+   "originalSha256": "da73e7880036218e038844cb7db4200e668d0916792ffc14b697959bd0db30c9",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тамара Леск",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tamara-lesk"
+    ],
+    "4-players": [
+     "tamara-lesk"
+    ],
+    "5-players": [
+     "tamara-lesk"
+    ],
+    "6-players": [
+     "tamara-lesk"
+    ],
+    "7-players": [
+     "tamara-lesk"
+    ],
+    "8-players": [
+     "tamara-lesk"
+    ]
+   },
+   "file": "tamara-lesk--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "tamara-lesk.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/assets/table/heroes-yakov-rutov.webp",
+   "sha256": "b6eb1dbfc9f2e0026cfb0af5c0614c57465fe18a4c700142925529ecae86741e",
+   "originalSha256": "da73e7880036218e038844cb7db4200e668d0916792ffc14b697959bd0db30c9",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Яков Рутов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "yakov-rutov"
+    ],
+    "4-players": [
+     "yakov-rutov"
+    ],
+    "5-players": [
+     "yakov-rutov"
+    ],
+    "6-players": [
+     "yakov-rutov"
+    ],
+    "7-players": [
+     "yakov-rutov"
+    ],
+    "8-players": [
+     "yakov-rutov"
+    ]
+   },
+   "file": "yakov-rutov--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "yakov-rutov.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/assets/table/heroes-nina-chek.webp",
+   "sha256": "79fcb891f1f652811042c6d3d5b53ff5a4080475372c53ce1d9cb586a9d48a21",
+   "originalSha256": "da73e7880036218e038844cb7db4200e668d0916792ffc14b697959bd0db30c9",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нина Чек",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nina-chek"
+    ],
+    "4-players": [
+     "nina-chek"
+    ],
+    "5-players": [
+     "nina-chek"
+    ],
+    "6-players": [
+     "nina-chek"
+    ],
+    "7-players": [
+     "nina-chek"
+    ],
+    "8-players": [
+     "nina-chek"
+    ]
+   },
+   "file": "nina-chek--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "nina-chek.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/assets/table/heroes-sava-melin.webp",
+   "sha256": "2efbbf40dde5263f666465aa939ce298ae677afadbfce83fafba1538ef76e52c",
+   "originalSha256": "da73e7880036218e038844cb7db4200e668d0916792ffc14b697959bd0db30c9",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сава Мелин",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "sava-melin"
+    ],
+    "5-players": [
+     "sava-melin"
+    ],
+    "6-players": [
+     "sava-melin"
+    ],
+    "7-players": [
+     "sava-melin"
+    ],
+    "8-players": [
+     "sava-melin"
+    ]
+   },
+   "file": "sava-melin--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "sava-melin.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/assets/table/heroes-elina-gran.webp",
+   "sha256": "cff3a26a6f1a7cac0fc6c58d76226e8e14f48ebcbc6773149f41e7a9d94f9ec9",
+   "originalSha256": "da73e7880036218e038844cb7db4200e668d0916792ffc14b697959bd0db30c9",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Элина Грань",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "elina-gran"
+    ],
+    "6-players": [
+     "elina-gran"
+    ],
+    "7-players": [
+     "elina-gran"
+    ],
+    "8-players": [
+     "elina-gran"
+    ]
+   },
+   "file": "elina-gran--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "elina-gran.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/assets/table/heroes-gleb-ostrin.webp",
+   "sha256": "e03cd17f566dcdc5c6592f07b4dd267c1a19380fc4ff83f79392381b30f326ad",
+   "originalSha256": "da73e7880036218e038844cb7db4200e668d0916792ffc14b697959bd0db30c9",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Глеб Острин",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "gleb-ostrin"
+    ],
+    "7-players": [
+     "gleb-ostrin"
+    ],
+    "8-players": [
+     "gleb-ostrin"
+    ]
+   },
+   "file": "gleb-ostrin--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "gleb-ostrin.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/assets/table/heroes-dina-rat.webp",
+   "sha256": "4b94566bfdb54bc882e324dc18201b336f897fa06e9c536ae741f93e0acd4c83",
+   "originalSha256": "da73e7880036218e038844cb7db4200e668d0916792ffc14b697959bd0db30c9",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дина Рат",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "dina-rat"
+    ],
+    "8-players": [
+     "dina-rat"
+    ]
+   },
+   "file": "dina-rat--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "dina-rat.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/assets/table/heroes-osip-verst.webp",
+   "sha256": "1b3be96cc56d1d92e36debb28b0e8e96af87c3488f6734547750a3525053e133",
+   "originalSha256": "da73e7880036218e038844cb7db4200e668d0916792ffc14b697959bd0db30c9",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Осип Верст",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [],
+    "8-players": [
+     "osip-verst"
+    ]
+   },
+   "file": "osip-verst--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "osip-verst.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/assets/table/places-corner-kitchen.webp",
+   "sha256": "ab72f2e6d98de5599a90e2ebd78a22a01e5ac891417b2bdb62e73d611287e7a8",
+   "originalSha256": "926d0a1d790b74639ec2e198abe1d5732fde002170b8200b60d404b35f4511b9",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Столовая «После звонка»",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "corner-kitchen"
+    ],
+    "4-players": [
+     "corner-kitchen"
+    ],
+    "5-players": [
+     "corner-kitchen"
+    ],
+    "6-players": [
+     "corner-kitchen"
+    ],
+    "7-players": [
+     "corner-kitchen"
+    ],
+    "8-players": [
+     "corner-kitchen"
+    ]
+   },
+   "file": "corner-kitchen.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/assets/table/places-gym-yard.webp",
+   "sha256": "346b5c1e1f8ecd3aa5f0250e49054d379ef3b29b61ff4f878dd0b26c8ceb92e5",
+   "originalSha256": "926d0a1d790b74639ec2e198abe1d5732fde002170b8200b60d404b35f4511b9",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Канатный двор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "gym-yard"
+    ],
+    "4-players": [
+     "gym-yard"
+    ],
+    "5-players": [
+     "gym-yard"
+    ],
+    "6-players": [
+     "gym-yard"
+    ],
+    "7-players": [
+     "gym-yard"
+    ],
+    "8-players": [
+     "gym-yard"
+    ]
+   },
+   "file": "gym-yard.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/assets/table/places-rehab-office.webp",
+   "sha256": "1e3973c176595cfdae5ef97f2f7e9810720c06144255eb6ca88da301410ecffd",
+   "originalSha256": "926d0a1d790b74639ec2e198abe1d5732fde002170b8200b60d404b35f4511b9",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Кабинет восстановления",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "rehab-office"
+    ],
+    "4-players": [
+     "rehab-office"
+    ],
+    "5-players": [
+     "rehab-office"
+    ],
+    "6-players": [
+     "rehab-office"
+    ],
+    "7-players": [
+     "rehab-office"
+    ],
+    "8-players": [
+     "rehab-office"
+    ]
+   },
+   "file": "rehab-office.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/assets/table/places-steam-laundry.webp",
+   "sha256": "ae008597e8acc1ae6d8d2c9b6d24a7dfd326b99ffddc1ab93ce256efefc13b91",
+   "originalSha256": "926d0a1d790b74639ec2e198abe1d5732fde002170b8200b60d404b35f4511b9",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Прачечная при бане",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "steam-laundry"
+    ],
+    "4-players": [
+     "steam-laundry"
+    ],
+    "5-players": [
+     "steam-laundry"
+    ],
+    "6-players": [
+     "steam-laundry"
+    ],
+    "7-players": [
+     "steam-laundry"
+    ],
+    "8-players": [
+     "steam-laundry"
+    ]
+   },
+   "file": "steam-laundry.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/assets/table/places-repair-bench.webp",
+   "sha256": "0f179203b8bcac704c8cc0af73620902cbabeafdf3fb4160a4b92804a97e5495",
+   "originalSha256": "926d0a1d790b74639ec2e198abe1d5732fde002170b8200b60d404b35f4511b9",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мастерская Бека",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "repair-bench"
+    ],
+    "4-players": [
+     "repair-bench"
+    ],
+    "5-players": [
+     "repair-bench"
+    ],
+    "6-players": [
+     "repair-bench"
+    ],
+    "7-players": [
+     "repair-bench"
+    ],
+    "8-players": [
+     "repair-bench"
+    ]
+   },
+   "file": "repair-bench.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/assets/table/places-tram-depot.webp",
+   "sha256": "512478a25142e5792399021d53bf0e87cc52645235789c3dceec13c9892b624c",
+   "originalSha256": "926d0a1d790b74639ec2e198abe1d5732fde002170b8200b60d404b35f4511b9",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Трамвайное депо «Речной тупик»",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tram-depot"
+    ],
+    "4-players": [
+     "tram-depot"
+    ],
+    "5-players": [
+     "tram-depot"
+    ],
+    "6-players": [
+     "tram-depot"
+    ],
+    "7-players": [
+     "tram-depot"
+    ],
+    "8-players": [
+     "tram-depot"
+    ]
+   },
+   "file": "tram-depot.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/assets/table/places-quiet-rooms.webp",
+   "sha256": "450f741c20fa0b9ee4cf4b9315f7ef6407cdea83dc1f7fa60222f3edba7cf623",
+   "originalSha256": "926d0a1d790b74639ec2e198abe1d5732fde002170b8200b60d404b35f4511b9",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дом самостоятельных комнат",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "quiet-rooms"
+    ],
+    "4-players": [
+     "quiet-rooms"
+    ],
+    "5-players": [
+     "quiet-rooms"
+    ],
+    "6-players": [
+     "quiet-rooms"
+    ],
+    "7-players": [
+     "quiet-rooms"
+    ],
+    "8-players": [
+     "quiet-rooms"
+    ]
+   },
+   "file": "quiet-rooms.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/assets/table/places-river-pavilion.webp",
+   "sha256": "9fce71f9f0477aafeb8d0722dc1f4d8438d04b6bd02ea1bf27c8b011ce7691f0",
+   "originalSha256": "926d0a1d790b74639ec2e198abe1d5732fde002170b8200b60d404b35f4511b9",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Крытый речной павильон",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "river-pavilion"
+    ],
+    "4-players": [
+     "river-pavilion"
+    ],
+    "5-players": [
+     "river-pavilion"
+    ],
+    "6-players": [
+     "river-pavilion"
+    ],
+    "7-players": [
+     "river-pavilion"
+    ],
+    "8-players": [
+     "river-pavilion"
+    ]
+   },
+   "file": "river-pavilion.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/assets/table/foes-foe-b9410fdf17.webp",
+   "sha256": "e9847438d1a864a8b2487ea656a588327db760575e060293e70a122414b38089",
+   "originalSha256": "0f9986ae053f7fc0716689ddedffb2c10c44ad16aa0c5d8566c1475a27f6f170",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Взрослый сторож залов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "yard-pressure-foe-1",
+     "yard-pressure-foe-2"
+    ],
+    "4-players": [
+     "yard-pressure-foe-1",
+     "yard-pressure-foe-2",
+     "yard-pressure-foe-3"
+    ],
+    "5-players": [
+     "yard-pressure-foe-1",
+     "yard-pressure-foe-2",
+     "yard-pressure-foe-3"
+    ],
+    "6-players": [
+     "yard-pressure-foe-1",
+     "yard-pressure-foe-2",
+     "yard-pressure-foe-3",
+     "yard-pressure-foe-4"
+    ],
+    "7-players": [
+     "yard-pressure-foe-1",
+     "yard-pressure-foe-2",
+     "yard-pressure-foe-3",
+     "yard-pressure-foe-4",
+     "yard-pressure-foe-5"
+    ],
+    "8-players": [
+     "yard-pressure-foe-1",
+     "yard-pressure-foe-2",
+     "yard-pressure-foe-3",
+     "yard-pressure-foe-4",
+     "yard-pressure-foe-5",
+     "yard-pressure-foe-6"
+    ]
+   },
+   "file": "foe-b9410fdf17.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/assets/table/foes-foe-b9410fdf17.webp",
+   "sha256": "e9847438d1a864a8b2487ea656a588327db760575e060293e70a122414b38089",
+   "originalSha256": "0f9986ae053f7fc0716689ddedffb2c10c44ad16aa0c5d8566c1475a27f6f170",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Взрослый сторож залов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "yard-pressure-foe-1",
+     "yard-pressure-foe-2"
+    ],
+    "4-players": [
+     "yard-pressure-foe-1",
+     "yard-pressure-foe-2",
+     "yard-pressure-foe-3"
+    ],
+    "5-players": [
+     "yard-pressure-foe-1",
+     "yard-pressure-foe-2",
+     "yard-pressure-foe-3"
+    ],
+    "6-players": [
+     "yard-pressure-foe-1",
+     "yard-pressure-foe-2",
+     "yard-pressure-foe-3",
+     "yard-pressure-foe-4"
+    ],
+    "7-players": [
+     "yard-pressure-foe-1",
+     "yard-pressure-foe-2",
+     "yard-pressure-foe-3",
+     "yard-pressure-foe-4",
+     "yard-pressure-foe-5"
+    ],
+    "8-players": [
+     "yard-pressure-foe-1",
+     "yard-pressure-foe-2",
+     "yard-pressure-foe-3",
+     "yard-pressure-foe-4",
+     "yard-pressure-foe-5",
+     "yard-pressure-foe-6"
+    ]
+   },
+   "file": "foe-b9410fdf17--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-b9410fdf17.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/assets/table/foes-foe-2b5e1d94e3.webp",
+   "sha256": "775279cecc8fb55f6d2ccbba61f78a2bb4879ddc68aa93d1fe4f92646b67b25e",
+   "originalSha256": "0f9986ae053f7fc0716689ddedffb2c10c44ad16aa0c5d8566c1475a27f6f170",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Взрослый переносчик заказов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "repair-dispute-foe-1",
+     "repair-dispute-foe-2"
+    ],
+    "4-players": [
+     "repair-dispute-foe-1",
+     "repair-dispute-foe-2",
+     "repair-dispute-foe-3"
+    ],
+    "5-players": [
+     "repair-dispute-foe-1",
+     "repair-dispute-foe-2",
+     "repair-dispute-foe-3"
+    ],
+    "6-players": [
+     "repair-dispute-foe-1",
+     "repair-dispute-foe-2",
+     "repair-dispute-foe-3",
+     "repair-dispute-foe-4"
+    ],
+    "7-players": [
+     "repair-dispute-foe-1",
+     "repair-dispute-foe-2",
+     "repair-dispute-foe-3",
+     "repair-dispute-foe-4",
+     "repair-dispute-foe-5"
+    ],
+    "8-players": [
+     "repair-dispute-foe-1",
+     "repair-dispute-foe-2",
+     "repair-dispute-foe-3",
+     "repair-dispute-foe-4",
+     "repair-dispute-foe-5",
+     "repair-dispute-foe-6"
+    ]
+   },
+   "file": "foe-2b5e1d94e3.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/assets/table/foes-foe-2b5e1d94e3.webp",
+   "sha256": "775279cecc8fb55f6d2ccbba61f78a2bb4879ddc68aa93d1fe4f92646b67b25e",
+   "originalSha256": "0f9986ae053f7fc0716689ddedffb2c10c44ad16aa0c5d8566c1475a27f6f170",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Взрослый переносчик заказов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "repair-dispute-foe-1",
+     "repair-dispute-foe-2"
+    ],
+    "4-players": [
+     "repair-dispute-foe-1",
+     "repair-dispute-foe-2",
+     "repair-dispute-foe-3"
+    ],
+    "5-players": [
+     "repair-dispute-foe-1",
+     "repair-dispute-foe-2",
+     "repair-dispute-foe-3"
+    ],
+    "6-players": [
+     "repair-dispute-foe-1",
+     "repair-dispute-foe-2",
+     "repair-dispute-foe-3",
+     "repair-dispute-foe-4"
+    ],
+    "7-players": [
+     "repair-dispute-foe-1",
+     "repair-dispute-foe-2",
+     "repair-dispute-foe-3",
+     "repair-dispute-foe-4",
+     "repair-dispute-foe-5"
+    ],
+    "8-players": [
+     "repair-dispute-foe-1",
+     "repair-dispute-foe-2",
+     "repair-dispute-foe-3",
+     "repair-dispute-foe-4",
+     "repair-dispute-foe-5",
+     "repair-dispute-foe-6"
+    ]
+   },
+   "file": "foe-2b5e1d94e3--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-2b5e1d94e3.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/assets/table/foes-foe-c9473052f4.webp",
+   "sha256": "e1e3c22d3a91e7b82d01b6a1902aec170449d48947601f1c69f9c8e3e2d5620a",
+   "originalSha256": "0f9986ae053f7fc0716689ddedffb2c10c44ad16aa0c5d8566c1475a27f6f170",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Взрослый сопровождающий кабинета",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "pavilion-push-foe-1",
+     "pavilion-push-foe-2"
+    ],
+    "4-players": [
+     "pavilion-push-foe-1",
+     "pavilion-push-foe-2",
+     "pavilion-push-foe-3"
+    ],
+    "5-players": [
+     "pavilion-push-foe-1",
+     "pavilion-push-foe-2",
+     "pavilion-push-foe-3"
+    ],
+    "6-players": [
+     "pavilion-push-foe-1",
+     "pavilion-push-foe-2",
+     "pavilion-push-foe-3",
+     "pavilion-push-foe-4"
+    ],
+    "7-players": [
+     "pavilion-push-foe-1",
+     "pavilion-push-foe-2",
+     "pavilion-push-foe-3",
+     "pavilion-push-foe-4",
+     "pavilion-push-foe-5"
+    ],
+    "8-players": [
+     "pavilion-push-foe-1",
+     "pavilion-push-foe-2",
+     "pavilion-push-foe-3",
+     "pavilion-push-foe-4",
+     "pavilion-push-foe-5",
+     "pavilion-push-foe-6"
+    ]
+   },
+   "file": "foe-c9473052f4.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/assets/table/foes-foe-c9473052f4.webp",
+   "sha256": "e1e3c22d3a91e7b82d01b6a1902aec170449d48947601f1c69f9c8e3e2d5620a",
+   "originalSha256": "0f9986ae053f7fc0716689ddedffb2c10c44ad16aa0c5d8566c1475a27f6f170",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Взрослый сопровождающий кабинета",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "pavilion-push-foe-1",
+     "pavilion-push-foe-2"
+    ],
+    "4-players": [
+     "pavilion-push-foe-1",
+     "pavilion-push-foe-2",
+     "pavilion-push-foe-3"
+    ],
+    "5-players": [
+     "pavilion-push-foe-1",
+     "pavilion-push-foe-2",
+     "pavilion-push-foe-3"
+    ],
+    "6-players": [
+     "pavilion-push-foe-1",
+     "pavilion-push-foe-2",
+     "pavilion-push-foe-3",
+     "pavilion-push-foe-4"
+    ],
+    "7-players": [
+     "pavilion-push-foe-1",
+     "pavilion-push-foe-2",
+     "pavilion-push-foe-3",
+     "pavilion-push-foe-4",
+     "pavilion-push-foe-5"
+    ],
+    "8-players": [
+     "pavilion-push-foe-1",
+     "pavilion-push-foe-2",
+     "pavilion-push-foe-3",
+     "pavilion-push-foe-4",
+     "pavilion-push-foe-5",
+     "pavilion-push-foe-6"
+    ]
+   },
+   "file": "foe-c9473052f4--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-c9473052f4.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/assets/table/npcs-matvey-klin.webp",
+   "sha256": "6d8f149f052607d588f9bb770470571facd0e770e0e51c0dba0c3d748b622a21",
+   "originalSha256": "882939f8ddb4077fa8159090759a3549c8f47827665cfd51b78156e4e567f9c3",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Матвей Клин",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "matvey-klin"
+    ],
+    "4-players": [
+     "matvey-klin"
+    ],
+    "5-players": [
+     "matvey-klin"
+    ],
+    "6-players": [
+     "matvey-klin"
+    ],
+    "7-players": [
+     "matvey-klin"
+    ],
+    "8-players": [
+     "matvey-klin"
+    ]
+   },
+   "file": "matvey-klin--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "matvey-klin.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/assets/table/npcs-vera-klin.webp",
+   "sha256": "3cfa2103d5af55c4a4ccdabbc03f0734d2adbb4f9ea86ce19586b4093cb32914",
+   "originalSha256": "882939f8ddb4077fa8159090759a3549c8f47827665cfd51b78156e4e567f9c3",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Вера Клин",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "vera-klin"
+    ],
+    "4-players": [
+     "vera-klin"
+    ],
+    "5-players": [
+     "vera-klin"
+    ],
+    "6-players": [
+     "vera-klin"
+    ],
+    "7-players": [
+     "vera-klin"
+    ],
+    "8-players": [
+     "vera-klin"
+    ]
+   },
+   "file": "vera-klin--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "vera-klin.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/assets/table/npcs-lada-vetrova.webp",
+   "sha256": "ffcd9020678318bd2d6e205b9db1c6667e1b29f61424382ac254e4ff65cf84d6",
+   "originalSha256": "882939f8ddb4077fa8159090759a3549c8f47827665cfd51b78156e4e567f9c3",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лада Ветрова",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lada-vetrova"
+    ],
+    "4-players": [
+     "lada-vetrova"
+    ],
+    "5-players": [
+     "lada-vetrova"
+    ],
+    "6-players": [
+     "lada-vetrova"
+    ],
+    "7-players": [
+     "lada-vetrova"
+    ],
+    "8-players": [
+     "lada-vetrova"
+    ]
+   },
+   "file": "lada-vetrova--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "lada-vetrova.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/assets/table/npcs-raisa-shtein.webp",
+   "sha256": "53a7419538b5063f2d9c374514ee3122c4eddab60828036d12c5604332bb2bd5",
+   "originalSha256": "882939f8ddb4077fa8159090759a3549c8f47827665cfd51b78156e4e567f9c3",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Раиса Штейн",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "raisa-shtein"
+    ],
+    "4-players": [
+     "raisa-shtein"
+    ],
+    "5-players": [
+     "raisa-shtein"
+    ],
+    "6-players": [
+     "raisa-shtein"
+    ],
+    "7-players": [
+     "raisa-shtein"
+    ],
+    "8-players": [
+     "raisa-shtein"
+    ]
+   },
+   "file": "raisa-shtein--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "raisa-shtein.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/assets/table/npcs-pavel-grin.webp",
+   "sha256": "66f8a7500263f1644b2fb9e840fee1697a7cd67469492ba8c3a2165b40eb9c88",
+   "originalSha256": "882939f8ddb4077fa8159090759a3549c8f47827665cfd51b78156e4e567f9c3",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Павел Грин",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "pavel-grin"
+    ],
+    "4-players": [
+     "pavel-grin"
+    ],
+    "5-players": [
+     "pavel-grin"
+    ],
+    "6-players": [
+     "pavel-grin"
+    ],
+    "7-players": [
+     "pavel-grin"
+    ],
+    "8-players": [
+     "pavel-grin"
+    ]
+   },
+   "file": "pavel-grin--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "pavel-grin.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/assets/table/npcs-lev-kvartsev.webp",
+   "sha256": "20a1e2ca58d22ced01cdbd931bfa095e41c208b52aee88e5879790d3102fd8aa",
+   "originalSha256": "882939f8ddb4077fa8159090759a3549c8f47827665cfd51b78156e4e567f9c3",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лев Кварцев",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lev-kvartsev"
+    ],
+    "4-players": [
+     "lev-kvartsev"
+    ],
+    "5-players": [
+     "lev-kvartsev"
+    ],
+    "6-players": [
+     "lev-kvartsev"
+    ],
+    "7-players": [
+     "lev-kvartsev"
+    ],
+    "8-players": [
+     "lev-kvartsev"
+    ]
+   },
+   "file": "lev-kvartsev--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "lev-kvartsev.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/assets/table/npcs-arseny-bek.webp",
+   "sha256": "5e13b0894e38c80ab7d8fc86356025857355c3c7920cee6b65960cd3fc09ac65",
+   "originalSha256": "882939f8ddb4077fa8159090759a3549c8f47827665cfd51b78156e4e567f9c3",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Арсений Бек",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "arseny-bek"
+    ],
+    "4-players": [
+     "arseny-bek"
+    ],
+    "5-players": [
+     "arseny-bek"
+    ],
+    "6-players": [
+     "arseny-bek"
+    ],
+    "7-players": [
+     "arseny-bek"
+    ],
+    "8-players": [
+     "arseny-bek"
+    ]
+   },
+   "file": "arseny-bek--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "arseny-bek.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/assets/table/npcs-irina-sadovaya.webp",
+   "sha256": "36ffcb76e938c5b24e88e98389122d554678d9890b693ff18fb3b8173164addc",
+   "originalSha256": "882939f8ddb4077fa8159090759a3549c8f47827665cfd51b78156e4e567f9c3",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ирина Садовая",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "irina-sadovaya"
+    ],
+    "4-players": [
+     "irina-sadovaya"
+    ],
+    "5-players": [
+     "irina-sadovaya"
+    ],
+    "6-players": [
+     "irina-sadovaya"
+    ],
+    "7-players": [
+     "irina-sadovaya"
+    ],
+    "8-players": [
+     "irina-sadovaya"
+    ]
+   },
+   "file": "irina-sadovaya--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "irina-sadovaya.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/last-round/illustrations/opening.webp",
+   "sha256": "7c715d6096986b451f8124744cb5fddd1242709e450c90e2416d06bc99637180",
+   "originalSha256": "5566e9d052467892712c7b33cb62c2535f7b6f289e53731066b00f49a47aadd7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Столовая «После звонка» — После последнего раунда",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "merzha"
+    ],
+    "4-players": [
+     "merzha"
+    ],
+    "5-players": [
+     "merzha"
+    ],
+    "6-players": [
+     "merzha"
+    ],
+    "7-players": [
+     "merzha"
+    ],
+    "8-players": [
+     "merzha"
+    ]
+   },
+   "file": "cover.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "file": "repair-bench--map.webp",
+   "source": "campaigns/noir-2026/last-round/assets/battle-maps/repair-bench.webp",
+   "sha256": "cfdad96042654387cef17cfa6cc91f80eac5a89d256de101edd6c19a71c0d012",
+   "originalSha256": "b4540cc6391fa0eb0ebfbc580806f76ad3052c6f39741efd91f2fabae3d854ac",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Мастерская Бека. Visible scenery: Ремни, кофры, вешалки с чинеными пальто. Рабочий стол стоит у окна, выходящего в тесный общий двор.. World style: Мержа, Канатный квартал · Worn oxblood boxing-glove leather, soft cream saddle stitching and circular bell engravings. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "repair-bench.webp",
+   "subjects": {
+    "3-players": [
+     "repair-bench"
+    ],
+    "4-players": [
+     "repair-bench"
+    ],
+    "5-players": [
+     "repair-bench"
+    ],
+    "6-players": [
+     "repair-bench"
+    ],
+    "7-players": [
+     "repair-bench"
+    ],
+    "8-players": [
+     "repair-bench"
+    ]
+   }
+  },
+  {
+   "file": "gym-yard--map.webp",
+   "source": "campaigns/noir-2026/last-round/assets/battle-maps/gym-yard.webp",
+   "sha256": "8bb3cf9cb1fb204e12eec0978487c1fe890d129995f6f659501c36b75b27eb51",
+   "originalSha256": "3b53df824696df8d8584235d4abe1d4768709a800289546e43aebe11dc1ebbba",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Канатный двор. Visible scenery: Несколько небольших залов выходят в общий двор. На стене висят объявления о подработке, а у ворот сушатся полотенца.. World style: Мержа, Канатный квартал · Worn oxblood boxing-glove leather, soft cream saddle stitching and circular bell engravings. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "gym-yard.webp",
+   "subjects": {
+    "3-players": [
+     "gym-yard"
+    ],
+    "4-players": [
+     "gym-yard"
+    ],
+    "5-players": [
+     "gym-yard"
+    ],
+    "6-players": [
+     "gym-yard"
+    ],
+    "7-players": [
+     "gym-yard"
+    ],
+    "8-players": [
+     "gym-yard"
+    ]
+   }
+  },
+  {
+   "file": "river-pavilion--map.webp",
+   "source": "campaigns/noir-2026/last-round/assets/battle-maps/river-pavilion.webp",
+   "sha256": "3f349519a2b94849f3d434f920f154a9513f0668b0e901a24c9a972afd7b7ebf",
+   "originalSha256": "3bb44af357d525e524a2459f63c121e2c220eb17e5b85e73c8a0c4b2ac1a54d5",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Крытый речной павильон. Visible scenery: Навес с двумя открытыми выходами, скамьями и видом на трамвайную остановку. Днём здесь ждут лодку, вечером укрываются от дождя.. World style: Мержа, Канатный квартал · Worn oxblood boxing-glove leather, soft cream saddle stitching and circular bell engravings. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "river-pavilion.webp",
+   "subjects": {
+    "3-players": [
+     "river-pavilion"
+    ],
+    "4-players": [
+     "river-pavilion"
+    ],
+    "5-players": [
+     "river-pavilion"
+    ],
+    "6-players": [
+     "river-pavilion"
+    ],
+    "7-players": [
+     "river-pavilion"
+    ],
+    "8-players": [
+     "river-pavilion"
+    ]
+   }
+  },
+  {
+   "file": "world-map.webp",
+   "source": "campaigns/noir-2026/last-round/assets/world-map/world-map.webp",
+   "sha256": "c4a26628ff6f2eda5f594d4b86e3ef5b6b45e2f5faec148e61deb995de618a0c",
+   "originalSha256": "2732cb0c937428f78eeb5d106d5181a2a7fb6f49b7f9c7f70e14c66e50d691a2",
+   "generated": "2026-11-22",
+   "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Мержа, Канатный квартал. Style Мержа, Канатный квартал · Worn oxblood boxing-glove leather, soft cream saddle stitching and circular bell engravings. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Столовая «После звонка»; 0.367,0.177 Канатный двор; 0.623,0.15 Кабинет восстановления; 0.88,0.177 Прачечная при бане; 0.905,0.857 Мастерская Бека; 0.648,0.83 Трамвайное депо «Речной тупик»; 0.392,0.857 Дом самостоятельных комнат; 0.135,0.83 Крытый речной павильон. Show public exteriors / unlabeled contours only.",
+   "references": [],
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null,
+   "subjects": {
+    "3-players": [
+     "world-map"
+    ],
+    "4-players": [
+     "world-map"
+    ],
+    "5-players": [
+     "world-map"
+    ],
+    "6-players": [
+     "world-map"
+    ],
+    "7-players": [
+     "world-map"
+    ],
+    "8-players": [
+     "world-map"
+    ]
+   }
+  }
+ ]
+}

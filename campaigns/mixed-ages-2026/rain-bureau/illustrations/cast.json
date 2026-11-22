@@ -1,0 +1,377 @@
+{
+  "about": "Портреты для карточек и изображение закрытого набора. Сначала сверяйте личность и доступность персонажа за столом.",
+  "generated": "2026-11-22",
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "heroes",
+      "originalFile": "exec-9c12c0d7-7b82-4237-95aa-0b9489d5cfd3.png",
+      "originalSha256": "71e42294546dee8ca2c8b9a5af78f6dee3195fab77e24da7020bdb7b8e1981ef",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 3 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:3. Warm illustrated adventure book, colourful gouache. World: Стеклён. Characters, in strict cell order:\n1. Тая Рябинская — Жёлтый плащ, мел за ухом, сумка с аккуратно заштопанной лямкой. Age 16.\n2. Григорий Лужин — Фартук с деревянной застёжкой, крепкая трость-мерка и удивительно чистые руки. Age 44.\n3. Лина Мелова — Синий свитер, бумажные манжеты и увеличительное стекло на шнурке. Age 17.\n4. Даня Ручьёв — Зелёный шарф, плоская аптечная сумка и кружка с неровной ручкой. Age 28.\n5. Рада Полозова — Фиолетовые кеды, блокнот на пружине, карман с бумажными ярлыками. Age 15.\n6. Сева Окладов — Клетчатая кепка, пенал с цветными карандашами и мягкие ботинки. Age 65.\n7. Мила Авдеева — Комбинезон цвета кирпича, складной табурет и широкая полотняная лента. Age 22.\n8. Дорожный / рабочий набор — Still life of one opaque closed everyday satchel, appropriate to this world and era. No person and nothing spilling out.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 3,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "npcs",
+      "originalFile": "exec-e5a4b7b1-1e56-499e-9aac-cd0d4c410173.png",
+      "originalSha256": "2c3b4c23a6a4d88a8bd5f9175c5ca57b6cb0878f94ec5f80731bd27caff60175",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 4 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:4. Warm illustrated adventure book, colourful gouache. World: Стеклён. Characters, in strict cell order:\n1. Вера Осокина — Серебристая коса, тёмно-красный жилет и карандаш с короткой резинкой. Age 63.\n2. Лев Кордон — Бархатный шарф цвета хвои, круглые запонки и плоский тубус для афиш. Age 49.\n3. Эмиль Носов — Серые нарукавники, круглые очки и тканевые закладки в кармане. Age 31.\n4. Алёна Цаплина — Синий рабочий берет, мерная лента и перчатки с разными заплатами. Age 46.\n5. Юра Медовый — Белая рубашка с вышитой грушей и фартук, завязанный сбоку. Age 15.\n6. Ида Кленц — Лиловый плащ, короткая стрижка и ключи на ленте от киноплёнки. Age 70.\n7. Олег Вяз — Соломенная шляпа, кожаный блокнот и зелёные заплаты на коленях. Age 37.\n8. Надя Локоть — Полосатый шарф, книжная тележка и деревянные закладки в волосах. Age 27.\n9. Тоня Белич — Оранжевая куртка, прозрачный пенал и сапоги с нарисованными звёздами. Age 14.\n10. Полина Резцова — Песочный жилет, папка и деревянный таймер для очереди реплик. Age 39.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 4,
+      "width": 1086,
+      "height": 1448
+    }
+  ],
+  "cards": [
+    {
+      "id": "taya",
+      "file": "cards/taya.webp",
+      "title": "Тая Рябинская",
+      "subjects": [
+        "taya"
+      ],
+      "sheet": "heroes",
+      "cell": 1,
+      "crop": {
+        "left": 10,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "6657b4a679f0d11c26f7039e5524c03c818146b3df7f0cfc6ff581db18a1b7ba"
+    },
+    {
+      "id": "grigory",
+      "file": "cards/grigory.webp",
+      "title": "Григорий Лужин",
+      "subjects": [
+        "grigory"
+      ],
+      "sheet": "heroes",
+      "cell": 2,
+      "crop": {
+        "left": 428,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "4402d4429e5fc9363e9384a10614684b69468d6d2ee0e608ab755d73d5eb7419"
+    },
+    {
+      "id": "lina",
+      "file": "cards/lina.webp",
+      "title": "Лина Мелова",
+      "subjects": [
+        "lina"
+      ],
+      "sheet": "heroes",
+      "cell": 3,
+      "crop": {
+        "left": 846,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "535d023b28da92c43aef781a27555b4e63a00b1b26d1378b9573d01a4b9afd7e"
+    },
+    {
+      "id": "danya",
+      "file": "cards/danya.webp",
+      "title": "Даня Ручьёв",
+      "subjects": [
+        "danya"
+      ],
+      "sheet": "heroes",
+      "cell": 4,
+      "crop": {
+        "left": 10,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "404a72a4424f59faca3878a40ecf33b03ae58fabaed97dcab41eef9bfdb2f746"
+    },
+    {
+      "id": "rada",
+      "file": "cards/rada.webp",
+      "title": "Рада Полозова",
+      "subjects": [
+        "rada"
+      ],
+      "sheet": "heroes",
+      "cell": 5,
+      "crop": {
+        "left": 428,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "3fbc1d81fcd77bdbaed800cb3ec948fdd970d8876f553a2e5ac98656b70122c8"
+    },
+    {
+      "id": "seva",
+      "file": "cards/seva.webp",
+      "title": "Сева Окладов",
+      "subjects": [
+        "seva"
+      ],
+      "sheet": "heroes",
+      "cell": 6,
+      "crop": {
+        "left": 846,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "4da408934fc711c112fe8d601fd4c48e10c85a95636227dd38c22c4b27ce1700"
+    },
+    {
+      "id": "mila",
+      "file": "cards/mila.webp",
+      "title": "Мила Авдеева",
+      "subjects": [
+        "mila"
+      ],
+      "sheet": "heroes",
+      "cell": 7,
+      "crop": {
+        "left": 10,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "fdaf3ec8032eb95a5c7a9e968ac8c2743415ef603e29c071fc4fbc9f63886de1"
+    },
+    {
+      "id": "travel-kit",
+      "file": "cards/travel-kit.webp",
+      "title": "Дорожный набор",
+      "subjects": [
+        "danya-travel-kit",
+        "grigory-travel-kit",
+        "lina-travel-kit",
+        "mila-travel-kit",
+        "rada-travel-kit",
+        "seva-travel-kit",
+        "taya-travel-kit"
+      ],
+      "sheet": "heroes",
+      "cell": 8,
+      "crop": {
+        "left": 428,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "7ed85c4f03bb17e853af586bd8c9e81fa9ecbabd933dcf77b5fd75927930458a"
+    },
+    {
+      "id": "vera",
+      "file": "cards/vera.webp",
+      "title": "Вера Осокина",
+      "subjects": [
+        "vera"
+      ],
+      "sheet": "npcs",
+      "cell": 1,
+      "crop": {
+        "left": 9,
+        "top": 9,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "11f8072ce725aaf0e704675a322ca111b8c389576a18cc592aee4d34ba251f6f"
+    },
+    {
+      "id": "lev",
+      "file": "cards/lev.webp",
+      "title": "Лев Кордон",
+      "subjects": [
+        "lev"
+      ],
+      "sheet": "npcs",
+      "cell": 2,
+      "crop": {
+        "left": 371,
+        "top": 9,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "ddc61a6c056d4b464d31e574d0d5754f49040f39f8407dcab738005c6f6da8e9"
+    },
+    {
+      "id": "emil",
+      "file": "cards/emil.webp",
+      "title": "Эмиль Носов",
+      "subjects": [
+        "emil"
+      ],
+      "sheet": "npcs",
+      "cell": 3,
+      "crop": {
+        "left": 733,
+        "top": 9,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "163f242b3f95d8bb7d9b57d75da53dd72a6addd8e5149e77ecbbe42fadb63f29"
+    },
+    {
+      "id": "alena",
+      "file": "cards/alena.webp",
+      "title": "Алёна Цаплина",
+      "subjects": [
+        "alena"
+      ],
+      "sheet": "npcs",
+      "cell": 4,
+      "crop": {
+        "left": 9,
+        "top": 371,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "0b4779bf8899505c572702c29014c7f0de033e58cce200f90f1d215c13a23a0d"
+    },
+    {
+      "id": "yura",
+      "file": "cards/yura.webp",
+      "title": "Юра Медовый",
+      "subjects": [
+        "yura"
+      ],
+      "sheet": "npcs",
+      "cell": 5,
+      "crop": {
+        "left": 371,
+        "top": 371,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "77d800f1c999c1624e3ed2fb3c3ee5a7aaa67133fe2c39ed07b7cdbd41394fa9"
+    },
+    {
+      "id": "ida",
+      "file": "cards/ida.webp",
+      "title": "Ида Кленц",
+      "subjects": [
+        "ida"
+      ],
+      "sheet": "npcs",
+      "cell": 6,
+      "crop": {
+        "left": 733,
+        "top": 371,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "b6c1aa7bd66710e27b9a7e3bf17a8dd3cb88efb904efe3f7cb6f427e84ae17fd"
+    },
+    {
+      "id": "oleg",
+      "file": "cards/oleg.webp",
+      "title": "Олег Вяз",
+      "subjects": [
+        "oleg"
+      ],
+      "sheet": "npcs",
+      "cell": 7,
+      "crop": {
+        "left": 9,
+        "top": 733,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "fb544082df4e82104628355307566380899cb2547df72dc962c232f7bad615dc"
+    },
+    {
+      "id": "nadya",
+      "file": "cards/nadya.webp",
+      "title": "Надя Локоть",
+      "subjects": [
+        "nadya"
+      ],
+      "sheet": "npcs",
+      "cell": 8,
+      "crop": {
+        "left": 371,
+        "top": 733,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "4afd122dbb655b9dc8568fc1937cd641dcd126403677569c1ad0d0bade83c5a4"
+    },
+    {
+      "id": "tonya",
+      "file": "cards/tonya.webp",
+      "title": "Тоня Белич",
+      "subjects": [
+        "tonya"
+      ],
+      "sheet": "npcs",
+      "cell": 9,
+      "crop": {
+        "left": 733,
+        "top": 733,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "435d058e985147ee4477b4b685d6ee6cbec5f70413cf84b9dfbd64a1bbd8b53c"
+    },
+    {
+      "id": "polina",
+      "file": "cards/polina.webp",
+      "title": "Полина Резцова",
+      "subjects": [
+        "polina"
+      ],
+      "sheet": "npcs",
+      "cell": 10,
+      "crop": {
+        "left": 9,
+        "top": 1095,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "e3ea421f5658cd54cd96634a701a72461880e40e9893fbc442927a3d648d9824"
+    }
+  ]
+}

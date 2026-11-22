@@ -4,6 +4,15 @@
   "commands": [
     {
       "type": "AddKnowledge",
+      "knowledgeId": "public-road-map",
+      "scope": { "kind": "PUBLIC" },
+      "knowledgeType": "FACT",
+      "statement": "At the North Gate of Ravenford, a noticeboard shows the Northern Fens and the Mill Road to Hollowmere. A traveller can copy the map before setting out.",
+      "subjects": ["fenlands", "ravenford", "north-gate", "hollowmere"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
       "knowledgeId": "pub-hollowmere",
       "scope": { "kind": "PUBLIC" },
       "knowledgeType": "FACT",
@@ -43,7 +52,7 @@
       "knowledgeId": "party-brisk-hire",
       "scope": { "kind": "PARTY" },
       "knowledgeType": "FACT",
-      "statement": "Agna Brisk hired us to take her wagon of lamp-oil and salt to Hollowmere, and to learn why its reeve has stopped writing.",
+      "statement": "Agna Brisk asked whether we would take her wagon of lamp-oil and salt to Hollowmere and find out why its reeve has stopped writing.",
       "subjects": ["brisk-cargo", "agna-brisk", "hollowmere", "hobb-fenwick"],
       "knownSince": 28800
     },
@@ -191,8 +200,71 @@
       "knowledgeId": "dm-milestones",
       "scope": { "kind": "DM" },
       "knowledgeType": "SECRET",
-      "statement": "Milestones: level 2 when the wagon reaches Hollowmere and the cellar is cleared; level 3 after the Drowned Chapel; level 4 after the Sunken Mill; level 5 when the sunken bell is silenced.",
+      "statement": "Milestones: level 2 when the wagon reaches Hollowmere and the cellar breach is cleared or sealed; level 3 after the Drowned Chapel; level 4 after the Sunken Mill; level 5 when the sunken bell is silenced.",
       "subjects": ["hollowmere"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "dm-route-willow-ford-ambush",
+      "scope": { "kind": "DM" },
+      "knowledgeType": "SECRET",
+      "statement": "The raiders want oil. They flee when half of them fall. At the end of round three they leave with a crate unless already driven off. The party can yield the crate earlier and cover its wounded. The wagon covers the remaining sixteen miles. Hobb bars the cellar for the night and offers beds before it is opened in the morning.",
+      "subjects": ["willow-ford"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "dm-route-cellar-rats",
+      "scope": { "kind": "DM" },
+      "knowledgeType": "SECRET",
+      "statement": "The loose salt cask at G4 can plug the breach. It takes two actions by adjacent heroes, together or on successive turns. If the party pulls back, Hobb lowers the cellar door. They can help him seal it from upstairs, losing the remaining salt. Either way resolves the cellar milestone. Once the cask plugs the breach the swarm scatters. If the last hero falls, Hobb works the hoist from the hatch. Resolve death saves for the dying. When a survivor wakes, offer the loss of the salt and the road to the chapel. If nobody survives, Hobb boards up the cellar and asks the village to ration salt.",
+      "subjects": ["reeves-cellar"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "dm-route-drowned-chapel",
+      "scope": { "kind": "DM" },
+      "knowledgeType": "SECRET",
+      "statement": "The inscription on the porch marks the way below. Heroes who pull their wounded back to the boat can copy it from the landing and earn the chapel milestone. The dead stay in the nave. The dry porch or the boat in the reeds gives the party an hour before it enters the marsh. If everyone falls, resolve death saves. At low water Ilse takes a boat to the west landing. A survivor can give her the inscription and decide whether to enter the marsh or go home with the warning. If nobody lives, she ties the empty boat across the causeway and closes the crossing.",
+      "subjects": ["drowned-chapel"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "dm-route-marsh-lights",
+      "scope": { "kind": "DM" },
+      "knowledgeType": "SECRET",
+      "statement": "The frogs stay in the reeds. The party can retreat along its pole marks as soon as it has enough hands to pull the wounded aboard. It loses daylight and returns by the long channel. If all fall in the reeds, resolve death saves. At dawn Ilse follows the pole marks. She brings back survivors by the long channel; let them choose a later approach or close the crossing. If nobody lives, she marks the last pole with a black strip. That night the village still hears the bell.",
+      "subjects": ["fogmarsh"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "dm-route-sunken-mill",
+      "scope": { "kind": "DM" },
+      "knowledgeType": "SECRET",
+      "statement": "Below half her hit points Kerra offers the way down and one of her two healing potions for safe passage for her crew. If the party withdraws first, the ledger can still be read from the loading hatch when the boats leave. Following this route earns the mill milestone. The loading hatch opens to the west quay. If everyone falls, resolve death saves. Kerra leaves the living tied at the hatch and takes her boats away. A survivor can rub a binding on an iron hinge, read the ledger and choose the stair or take the names to Ilse. If nobody survives, the boats take the cargo and the village gets no ledger.",
+      "subjects": ["sunken-mill"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "dm-route-flooded-stair",
+      "scope": { "kind": "DM" },
+      "knowledgeType": "SECRET",
+      "statement": "Two adjacent actions at the E5 sluice release the old grate between the party and the ghouls. The party can also withdraw through the side sacristy. Its bar holds for an hour; staying costs the last smuggling boat, which the lantern-bearer cuts loose. Afterward a service door opens into the bell chamber. The sacristy is on the west side. If everyone falls before the grate drops, resolve death saves. The ghouls slip under the water at dawn. Anyone who wakes can leave through the sacristy or take the service door without the boat. If nobody comes back, Ilse locks the chapel after the next midnight bell.",
+      "subjects": ["location-5b2e9c47"],
+      "knownSince": null
+    },
+    {
+      "type": "AddKnowledge",
+      "knowledgeId": "dm-route-sunken-bell",
+      "scope": { "kind": "DM" },
+      "knowledgeType": "SECRET",
+      "statement": "To silence the bell under guard, spend one adjacent action at the rope cleat G5 and another at the clapper I6. A lone survivor can do both. With the rope slack and the clapper bound, the knight sinks and the jailers run. The party can instead take the prisoners out or fight the guard. Record separately who escaped and whether the bell still rings. An action beside D3 opens the prisoners’ bolt from this side of the crypt. Escort them to A3 and out through the sacristy. Include Matthis only if he is still held. If the last hero falls, resolve death saves. The jailers keep the living. At midnight Ilse hears the bell and marks the missing names on the chapel door. End there, or let any captives offer the jailers a bargain next session.",
+      "subjects": ["location-c81f04da"],
       "knownSince": null
     },
     {

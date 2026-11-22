@@ -1,0 +1,1783 @@
+{
+ "id": "rain-bureau",
+ "title": "Бюро украденного дождя",
+ "genre": "Уютный городской детектив / магический реализм",
+ "audience": "12+",
+ "pitch": "В Стеклёне идёт сухая неделя, но в забытых комнатах внезапно шумят дожди. Бюро погоды получает письма от луж, которых ещё нет, а известный мастер представлений заявляет: у него украли дождь. Семеро соседей берутся проверить невозможное — и выяснить, кто вправе решать, когда удивление становится обманом.",
+ "tone": "Уютный детектив с честной игрой улик, сухим юмором и мокрыми декорациями. Подозрения касаются поступков; необычная магия имеет проверяемые границы. Никакой мировой катастрофы, спасения коммунальной системы или обязательного боя.",
+ "duration": "8 сессий; 175 минут: 15 минут открытия и краткого пересказа, три сцены по 45 минут, перерыв 10 минут после второй сцены и 15 минут завершения. Если нужен более короткий вечер, разделите его после второй сцены; улики сохраняются.",
+ "cover": "campaigns/mixed-ages-2026/rain-bureau/illustrations/opening.webp",
+ "defaultVariant": "4-players",
+ "variants": [
+  {
+   "id": "3-players",
+   "players": 3,
+   "label": "3 игрока",
+   "file": "packages/3-players.json",
+   "digest": "e10e382cf44f572cf4a3da96e0073030430647733fdcbad858b591133fb6353a"
+  },
+  {
+   "id": "4-players",
+   "players": 4,
+   "label": "4 игрока",
+   "file": "packages/4-players.json",
+   "digest": "94283ba4a67260a904f1649aa8649bb1ad8e5bed32f1fff648376c68af062c95"
+  },
+  {
+   "id": "5-players",
+   "players": 5,
+   "label": "5 игроков",
+   "file": "packages/5-players.json",
+   "digest": "efa522561d04969e85eeb2d9ff35ff9c202024678803ab4f7bd652dd406e3ec4"
+  },
+  {
+   "id": "6-players",
+   "players": 6,
+   "label": "6 игроков",
+   "file": "packages/6-players.json",
+   "digest": "97c4443cfafce71724ecee7bcb05cb174e697c8b102d9a008c7b2b8d8b8008be"
+  },
+  {
+   "id": "7-players",
+   "players": 7,
+   "label": "7 игроков",
+   "file": "packages/7-players.json",
+   "digest": "31e5088f8ee0c324e5b5f8c3f8cf66b02d7e9ccaed0b84c53dbdfee492fd836f"
+  }
+ ],
+ "generator": "codex-cli imagegen",
+ "pictures": [
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/illustrations/cards/taya.webp",
+   "sha256": "6657b4a679f0d11c26f7039e5524c03c818146b3df7f0cfc6ff581db18a1b7ba",
+   "originalSha256": "71e42294546dee8ca2c8b9a5af78f6dee3195fab77e24da7020bdb7b8e1981ef",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тая Рябинская",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "taya"
+    ],
+    "4-players": [
+     "taya"
+    ],
+    "5-players": [
+     "taya"
+    ],
+    "6-players": [
+     "taya"
+    ],
+    "7-players": [
+     "taya"
+    ]
+   },
+   "file": "taya.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/illustrations/cards/grigory.webp",
+   "sha256": "4402d4429e5fc9363e9384a10614684b69468d6d2ee0e608ab755d73d5eb7419",
+   "originalSha256": "71e42294546dee8ca2c8b9a5af78f6dee3195fab77e24da7020bdb7b8e1981ef",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Григорий Лужин",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "grigory"
+    ],
+    "4-players": [
+     "grigory"
+    ],
+    "5-players": [
+     "grigory"
+    ],
+    "6-players": [
+     "grigory"
+    ],
+    "7-players": [
+     "grigory"
+    ]
+   },
+   "file": "grigory.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/illustrations/cards/lina.webp",
+   "sha256": "535d023b28da92c43aef781a27555b4e63a00b1b26d1378b9573d01a4b9afd7e",
+   "originalSha256": "71e42294546dee8ca2c8b9a5af78f6dee3195fab77e24da7020bdb7b8e1981ef",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лина Мелова",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lina"
+    ],
+    "4-players": [
+     "lina"
+    ],
+    "5-players": [
+     "lina"
+    ],
+    "6-players": [
+     "lina"
+    ],
+    "7-players": [
+     "lina"
+    ]
+   },
+   "file": "lina.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/illustrations/cards/danya.webp",
+   "sha256": "404a72a4424f59faca3878a40ecf33b03ae58fabaed97dcab41eef9bfdb2f746",
+   "originalSha256": "71e42294546dee8ca2c8b9a5af78f6dee3195fab77e24da7020bdb7b8e1981ef",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Даня Ручьёв",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "danya"
+    ],
+    "5-players": [
+     "danya"
+    ],
+    "6-players": [
+     "danya"
+    ],
+    "7-players": [
+     "danya"
+    ]
+   },
+   "file": "danya.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/illustrations/cards/rada.webp",
+   "sha256": "3fbc1d81fcd77bdbaed800cb3ec948fdd970d8876f553a2e5ac98656b70122c8",
+   "originalSha256": "71e42294546dee8ca2c8b9a5af78f6dee3195fab77e24da7020bdb7b8e1981ef",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рада Полозова",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "rada"
+    ],
+    "6-players": [
+     "rada"
+    ],
+    "7-players": [
+     "rada"
+    ]
+   },
+   "file": "rada.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/illustrations/cards/seva.webp",
+   "sha256": "4da408934fc711c112fe8d601fd4c48e10c85a95636227dd38c22c4b27ce1700",
+   "originalSha256": "71e42294546dee8ca2c8b9a5af78f6dee3195fab77e24da7020bdb7b8e1981ef",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сева Окладов",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "seva"
+    ],
+    "7-players": [
+     "seva"
+    ]
+   },
+   "file": "seva.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/illustrations/cards/mila.webp",
+   "sha256": "fdaf3ec8032eb95a5c7a9e968ac8c2743415ef603e29c071fc4fbc9f63886de1",
+   "originalSha256": "71e42294546dee8ca2c8b9a5af78f6dee3195fab77e24da7020bdb7b8e1981ef",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мила Авдеева",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "mila"
+    ]
+   },
+   "file": "mila.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/illustrations/cards/travel-kit.webp",
+   "sha256": "7ed85c4f03bb17e853af586bd8c9e81fa9ecbabd933dcf77b5fd75927930458a",
+   "originalSha256": "71e42294546dee8ca2c8b9a5af78f6dee3195fab77e24da7020bdb7b8e1981ef",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дорожный набор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "grigory-travel-kit",
+     "lina-travel-kit",
+     "taya-travel-kit"
+    ],
+    "4-players": [
+     "danya-travel-kit",
+     "grigory-travel-kit",
+     "lina-travel-kit",
+     "taya-travel-kit"
+    ],
+    "5-players": [
+     "danya-travel-kit",
+     "grigory-travel-kit",
+     "lina-travel-kit",
+     "rada-travel-kit",
+     "taya-travel-kit"
+    ],
+    "6-players": [
+     "danya-travel-kit",
+     "grigory-travel-kit",
+     "lina-travel-kit",
+     "rada-travel-kit",
+     "seva-travel-kit",
+     "taya-travel-kit"
+    ],
+    "7-players": [
+     "danya-travel-kit",
+     "grigory-travel-kit",
+     "lina-travel-kit",
+     "mila-travel-kit",
+     "rada-travel-kit",
+     "seva-travel-kit",
+     "taya-travel-kit"
+    ]
+   },
+   "file": "travel-kit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/illustrations/cards/vera.webp",
+   "sha256": "11f8072ce725aaf0e704675a322ca111b8c389576a18cc592aee4d34ba251f6f",
+   "originalSha256": "2c3b4c23a6a4d88a8bd5f9175c5ca57b6cb0878f94ec5f80731bd27caff60175",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Вера Осокина",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "vera"
+    ],
+    "4-players": [
+     "vera"
+    ],
+    "5-players": [
+     "vera"
+    ],
+    "6-players": [
+     "vera"
+    ],
+    "7-players": [
+     "vera"
+    ]
+   },
+   "file": "vera.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/illustrations/cards/lev.webp",
+   "sha256": "ddc61a6c056d4b464d31e574d0d5754f49040f39f8407dcab738005c6f6da8e9",
+   "originalSha256": "2c3b4c23a6a4d88a8bd5f9175c5ca57b6cb0878f94ec5f80731bd27caff60175",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лев Кордон",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lev"
+    ],
+    "4-players": [
+     "lev"
+    ],
+    "5-players": [
+     "lev"
+    ],
+    "6-players": [
+     "lev"
+    ],
+    "7-players": [
+     "lev"
+    ]
+   },
+   "file": "lev.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/illustrations/cards/emil.webp",
+   "sha256": "163f242b3f95d8bb7d9b57d75da53dd72a6addd8e5149e77ecbbe42fadb63f29",
+   "originalSha256": "2c3b4c23a6a4d88a8bd5f9175c5ca57b6cb0878f94ec5f80731bd27caff60175",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эмиль Носов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "emil"
+    ],
+    "4-players": [
+     "emil"
+    ],
+    "5-players": [
+     "emil"
+    ],
+    "6-players": [
+     "emil"
+    ],
+    "7-players": [
+     "emil"
+    ]
+   },
+   "file": "emil.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/illustrations/cards/alena.webp",
+   "sha256": "0b4779bf8899505c572702c29014c7f0de033e58cce200f90f1d215c13a23a0d",
+   "originalSha256": "2c3b4c23a6a4d88a8bd5f9175c5ca57b6cb0878f94ec5f80731bd27caff60175",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Алёна Цаплина",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "alena"
+    ],
+    "4-players": [
+     "alena"
+    ],
+    "5-players": [
+     "alena"
+    ],
+    "6-players": [
+     "alena"
+    ],
+    "7-players": [
+     "alena"
+    ]
+   },
+   "file": "alena.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/illustrations/cards/yura.webp",
+   "sha256": "77d800f1c999c1624e3ed2fb3c3ee5a7aaa67133fe2c39ed07b7cdbd41394fa9",
+   "originalSha256": "2c3b4c23a6a4d88a8bd5f9175c5ca57b6cb0878f94ec5f80731bd27caff60175",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Юра Медовый",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "yura"
+    ],
+    "4-players": [
+     "yura"
+    ],
+    "5-players": [
+     "yura"
+    ],
+    "6-players": [
+     "yura"
+    ],
+    "7-players": [
+     "yura"
+    ]
+   },
+   "file": "yura.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/illustrations/cards/ida.webp",
+   "sha256": "b6c1aa7bd66710e27b9a7e3bf17a8dd3cb88efb904efe3f7cb6f427e84ae17fd",
+   "originalSha256": "2c3b4c23a6a4d88a8bd5f9175c5ca57b6cb0878f94ec5f80731bd27caff60175",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ида Кленц",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ida"
+    ],
+    "4-players": [
+     "ida"
+    ],
+    "5-players": [
+     "ida"
+    ],
+    "6-players": [
+     "ida"
+    ],
+    "7-players": [
+     "ida"
+    ]
+   },
+   "file": "ida.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/illustrations/cards/oleg.webp",
+   "sha256": "fb544082df4e82104628355307566380899cb2547df72dc962c232f7bad615dc",
+   "originalSha256": "2c3b4c23a6a4d88a8bd5f9175c5ca57b6cb0878f94ec5f80731bd27caff60175",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Олег Вяз",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "oleg"
+    ],
+    "4-players": [
+     "oleg"
+    ],
+    "5-players": [
+     "oleg"
+    ],
+    "6-players": [
+     "oleg"
+    ],
+    "7-players": [
+     "oleg"
+    ]
+   },
+   "file": "oleg.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/illustrations/cards/nadya.webp",
+   "sha256": "4afd122dbb655b9dc8568fc1937cd641dcd126403677569c1ad0d0bade83c5a4",
+   "originalSha256": "2c3b4c23a6a4d88a8bd5f9175c5ca57b6cb0878f94ec5f80731bd27caff60175",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Надя Локоть",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nadya"
+    ],
+    "4-players": [
+     "nadya"
+    ],
+    "5-players": [
+     "nadya"
+    ],
+    "6-players": [
+     "nadya"
+    ],
+    "7-players": [
+     "nadya"
+    ]
+   },
+   "file": "nadya.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/illustrations/cards/tonya.webp",
+   "sha256": "435d058e985147ee4477b4b685d6ee6cbec5f70413cf84b9dfbd64a1bbd8b53c",
+   "originalSha256": "2c3b4c23a6a4d88a8bd5f9175c5ca57b6cb0878f94ec5f80731bd27caff60175",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тоня Белич",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tonya"
+    ],
+    "4-players": [
+     "tonya"
+    ],
+    "5-players": [
+     "tonya"
+    ],
+    "6-players": [
+     "tonya"
+    ],
+    "7-players": [
+     "tonya"
+    ]
+   },
+   "file": "tonya.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/illustrations/cards/polina.webp",
+   "sha256": "e3ea421f5658cd54cd96634a701a72461880e40e9893fbc442927a3d648d9824",
+   "originalSha256": "2c3b4c23a6a4d88a8bd5f9175c5ca57b6cb0878f94ec5f80731bd27caff60175",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Полина Резцова",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "polina"
+    ],
+    "4-players": [
+     "polina"
+    ],
+    "5-players": [
+     "polina"
+    ],
+    "6-players": [
+     "polina"
+    ],
+    "7-players": [
+     "polina"
+    ]
+   },
+   "file": "polina.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/assets/table/heroes-taya.webp",
+   "sha256": "23ed0b26de4532ae94c62857d7a8b8364795bb403fecd9e35a3ce4e73b9c55df",
+   "originalSha256": "261b86a8dd98ed29e8805711b19c36471c70871a0ed5c2ebba4dac58b4c14775",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тая Рябинская",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "taya"
+    ],
+    "4-players": [
+     "taya"
+    ],
+    "5-players": [
+     "taya"
+    ],
+    "6-players": [
+     "taya"
+    ],
+    "7-players": [
+     "taya"
+    ]
+   },
+   "file": "taya--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "taya.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/assets/table/heroes-grigory.webp",
+   "sha256": "db3b2abb40e20d86ae78de0b552d4619f3c55dd278f1342dd13cf53495f5c935",
+   "originalSha256": "261b86a8dd98ed29e8805711b19c36471c70871a0ed5c2ebba4dac58b4c14775",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Григорий Лужин",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "grigory"
+    ],
+    "4-players": [
+     "grigory"
+    ],
+    "5-players": [
+     "grigory"
+    ],
+    "6-players": [
+     "grigory"
+    ],
+    "7-players": [
+     "grigory"
+    ]
+   },
+   "file": "grigory--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "grigory.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/assets/table/heroes-lina.webp",
+   "sha256": "819004492589c3eefa73ef2072c1fa8d924754a83a8e71a58ae1076ccd47329b",
+   "originalSha256": "261b86a8dd98ed29e8805711b19c36471c70871a0ed5c2ebba4dac58b4c14775",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лина Мелова",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lina"
+    ],
+    "4-players": [
+     "lina"
+    ],
+    "5-players": [
+     "lina"
+    ],
+    "6-players": [
+     "lina"
+    ],
+    "7-players": [
+     "lina"
+    ]
+   },
+   "file": "lina--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "lina.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/assets/table/heroes-danya.webp",
+   "sha256": "f4d8b46fe9a06de30eeb2c40f77692f467606a355d8ab1cdf1fb05fe1e1ac87e",
+   "originalSha256": "261b86a8dd98ed29e8805711b19c36471c70871a0ed5c2ebba4dac58b4c14775",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Даня Ручьёв",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "danya"
+    ],
+    "5-players": [
+     "danya"
+    ],
+    "6-players": [
+     "danya"
+    ],
+    "7-players": [
+     "danya"
+    ]
+   },
+   "file": "danya--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "danya.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/assets/table/heroes-rada.webp",
+   "sha256": "fac8aa807727be01946f7aad71b672a454508516dd4946050843059ac80a12df",
+   "originalSha256": "261b86a8dd98ed29e8805711b19c36471c70871a0ed5c2ebba4dac58b4c14775",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рада Полозова",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "rada"
+    ],
+    "6-players": [
+     "rada"
+    ],
+    "7-players": [
+     "rada"
+    ]
+   },
+   "file": "rada--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "rada.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/assets/table/heroes-seva.webp",
+   "sha256": "b51f9ea62fd3c3f91c9ad3f6a902f547888cc3ee3b5e688664b4e3193e91aef0",
+   "originalSha256": "261b86a8dd98ed29e8805711b19c36471c70871a0ed5c2ebba4dac58b4c14775",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сева Окладов",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "seva"
+    ],
+    "7-players": [
+     "seva"
+    ]
+   },
+   "file": "seva--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "seva.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/assets/table/heroes-mila.webp",
+   "sha256": "59cdb0cd79abd7cbdadf39caea4da245c1011ce8176338e790c04648a710c8de",
+   "originalSha256": "261b86a8dd98ed29e8805711b19c36471c70871a0ed5c2ebba4dac58b4c14775",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мила Авдеева",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "mila"
+    ]
+   },
+   "file": "mila--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "mila.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/assets/table/places-weather-bureau.webp",
+   "sha256": "fb5b538c5d207d8d0f2b1157733c1ca14c64ddfa2d239b6192c976495fada02e",
+   "originalSha256": "fc36adb252e4712064e1e063ce28017c5d689fad1a722d87734accc3132c2de5",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Бюро погоды",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "weather-bureau"
+    ],
+    "4-players": [
+     "weather-bureau"
+    ],
+    "5-players": [
+     "weather-bureau"
+    ],
+    "6-players": [
+     "weather-bureau"
+    ],
+    "7-players": [
+     "weather-bureau"
+    ]
+   },
+   "file": "weather-bureau.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/assets/table/places-folded-post.webp",
+   "sha256": "218a92d854d7ccb052a8a57ba3fe867cd3fab1d954cdc96f3597c5cd062b357a",
+   "originalSha256": "fc36adb252e4712064e1e063ce28017c5d689fad1a722d87734accc3132c2de5",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Забытая почтовая комната",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "folded-post"
+    ],
+    "4-players": [
+     "folded-post"
+    ],
+    "5-players": [
+     "folded-post"
+    ],
+    "6-players": [
+     "folded-post"
+    ],
+    "7-players": [
+     "folded-post"
+    ]
+   },
+   "file": "folded-post.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/assets/table/places-button-cafe.webp",
+   "sha256": "df4ebc044a4c52c7311fc643a54b465b895210cbfd5466d546b7744fc233dfd2",
+   "originalSha256": "fc36adb252e4712064e1e063ce28017c5d689fad1a722d87734accc3132c2de5",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Кафе «Пуговица»",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "button-cafe"
+    ],
+    "4-players": [
+     "button-cafe"
+    ],
+    "5-players": [
+     "button-cafe"
+    ],
+    "6-players": [
+     "button-cafe"
+    ],
+    "7-players": [
+     "button-cafe"
+    ]
+   },
+   "file": "button-cafe.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/assets/table/places-dry-archive.webp",
+   "sha256": "6c964925210866b96065f2723bb133efe554fe5d866488581dc3be509cb38705",
+   "originalSha256": "fc36adb252e4712064e1e063ce28017c5d689fad1a722d87734accc3132c2de5",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Архив учебных образцов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "dry-archive"
+    ],
+    "4-players": [
+     "dry-archive"
+    ],
+    "5-players": [
+     "dry-archive"
+    ],
+    "6-players": [
+     "dry-archive"
+    ],
+    "7-players": [
+     "dry-archive"
+    ]
+   },
+   "file": "dry-archive.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/assets/table/places-closed-cinema.webp",
+   "sha256": "a7180a6b84f4799ee8d6df641c4ab102b57039a81d15b9171ed35532eafcab3c",
+   "originalSha256": "fc36adb252e4712064e1e063ce28017c5d689fad1a722d87734accc3132c2de5",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Кинотеатр «Пятый стул»",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "closed-cinema"
+    ],
+    "4-players": [
+     "closed-cinema"
+    ],
+    "5-players": [
+     "closed-cinema"
+    ],
+    "6-players": [
+     "closed-cinema"
+    ],
+    "7-players": [
+     "closed-cinema"
+    ]
+   },
+   "file": "closed-cinema.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/assets/table/places-trolley-wash.webp",
+   "sha256": "d97930112e0214015e063cb7833d21ebd2be0066236b10348fe6961d08a4732b",
+   "originalSha256": "fc36adb252e4712064e1e063ce28017c5d689fad1a722d87734accc3132c2de5",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Старая трамвайная мойка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "trolley-wash"
+    ],
+    "4-players": [
+     "trolley-wash"
+    ],
+    "5-players": [
+     "trolley-wash"
+    ],
+    "6-players": [
+     "trolley-wash"
+    ],
+    "7-players": [
+     "trolley-wash"
+    ]
+   },
+   "file": "trolley-wash.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/assets/table/places-seed-glasshouse.webp",
+   "sha256": "4a19fbad9c8a00d3a59b088d278ade48a9738382b1dbaf4255c5a84f79058b7b",
+   "originalSha256": "fc36adb252e4712064e1e063ce28017c5d689fad1a722d87734accc3132c2de5",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Оранжерея реквизита",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "seed-glasshouse"
+    ],
+    "4-players": [
+     "seed-glasshouse"
+    ],
+    "5-players": [
+     "seed-glasshouse"
+    ],
+    "6-players": [
+     "seed-glasshouse"
+    ],
+    "7-players": [
+     "seed-glasshouse"
+    ]
+   },
+   "file": "seed-glasshouse.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/assets/table/places-moving-hall.webp",
+   "sha256": "2e6b5d5d09642b45aa35a7db4394e2db107170d1168c6e5dc62d48f00b8d9dd0",
+   "originalSha256": "fc36adb252e4712064e1e063ce28017c5d689fad1a722d87734accc3132c2de5",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мастерская подвижных декораций",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "moving-hall"
+    ],
+    "4-players": [
+     "moving-hall"
+    ],
+    "5-players": [
+     "moving-hall"
+    ],
+    "6-players": [
+     "moving-hall"
+    ],
+    "7-players": [
+     "moving-hall"
+    ]
+   },
+   "file": "moving-hall.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/assets/table/places-measure-yard.webp",
+   "sha256": "eb27978f41ef0fcfa8164b7470aad5b025420772619b5aaa50ba0db006dbc726",
+   "originalSha256": "fc36adb252e4712064e1e063ce28017c5d689fad1a722d87734accc3132c2de5",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мерный двор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "measure-yard"
+    ],
+    "4-players": [
+     "measure-yard"
+    ],
+    "5-players": [
+     "measure-yard"
+    ],
+    "6-players": [
+     "measure-yard"
+    ],
+    "7-players": [
+     "measure-yard"
+    ]
+   },
+   "file": "measure-yard.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/assets/table/places-civic-table.webp",
+   "sha256": "5ec942eb9c573fd0d6fcaf24c70ffcac7cbfbc09b3e7f6658405127b7f280ada",
+   "originalSha256": "fc36adb252e4712064e1e063ce28017c5d689fad1a722d87734accc3132c2de5",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Двор маленьких премьер",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "civic-table"
+    ],
+    "4-players": [
+     "civic-table"
+    ],
+    "5-players": [
+     "civic-table"
+    ],
+    "6-players": [
+     "civic-table"
+    ],
+    "7-players": [
+     "civic-table"
+    ]
+   },
+   "file": "civic-table.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/assets/table/foes-foe-0110213c0b.webp",
+   "sha256": "b237c672aa35a1949808e406b87bba1b55f22ea0dc8ade14a38359f2c689b767",
+   "originalSha256": "39dec74f9819b9ebd0cf0f5893dcda688f04e4a52d7e407ef6b444f2958d373c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Плащ на лёгком каркасе",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "cloak-guards-foe-1",
+     "cloak-guards-foe-2"
+    ],
+    "4-players": [
+     "cloak-guards-foe-1",
+     "cloak-guards-foe-2",
+     "cloak-guards-foe-3"
+    ],
+    "5-players": [
+     "cloak-guards-foe-1",
+     "cloak-guards-foe-2",
+     "cloak-guards-foe-3"
+    ],
+    "6-players": [
+     "cloak-guards-foe-1",
+     "cloak-guards-foe-2",
+     "cloak-guards-foe-3",
+     "cloak-guards-foe-4"
+    ],
+    "7-players": [
+     "cloak-guards-foe-1",
+     "cloak-guards-foe-2",
+     "cloak-guards-foe-3",
+     "cloak-guards-foe-4",
+     "cloak-guards-foe-5"
+    ]
+   },
+   "file": "foe-0110213c0b.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/assets/table/foes-foe-0110213c0b.webp",
+   "sha256": "b237c672aa35a1949808e406b87bba1b55f22ea0dc8ade14a38359f2c689b767",
+   "originalSha256": "39dec74f9819b9ebd0cf0f5893dcda688f04e4a52d7e407ef6b444f2958d373c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Плащ на лёгком каркасе",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "cloak-guards-foe-1",
+     "cloak-guards-foe-2"
+    ],
+    "4-players": [
+     "cloak-guards-foe-1",
+     "cloak-guards-foe-2",
+     "cloak-guards-foe-3"
+    ],
+    "5-players": [
+     "cloak-guards-foe-1",
+     "cloak-guards-foe-2",
+     "cloak-guards-foe-3"
+    ],
+    "6-players": [
+     "cloak-guards-foe-1",
+     "cloak-guards-foe-2",
+     "cloak-guards-foe-3",
+     "cloak-guards-foe-4"
+    ],
+    "7-players": [
+     "cloak-guards-foe-1",
+     "cloak-guards-foe-2",
+     "cloak-guards-foe-3",
+     "cloak-guards-foe-4",
+     "cloak-guards-foe-5"
+    ]
+   },
+   "file": "foe-0110213c0b--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-0110213c0b.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/assets/table/foes-foe-81d38d2cad.webp",
+   "sha256": "7c1819c192f09462928773297d3786da4856614f80d4ece8827db8d53f328432",
+   "originalSha256": "39dec74f9819b9ebd0cf0f5893dcda688f04e4a52d7e407ef6b444f2958d373c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Каркасный дублёр",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "frame-doubles-foe-1",
+     "frame-doubles-foe-2"
+    ],
+    "4-players": [
+     "frame-doubles-foe-1",
+     "frame-doubles-foe-2",
+     "frame-doubles-foe-3"
+    ],
+    "5-players": [
+     "frame-doubles-foe-1",
+     "frame-doubles-foe-2",
+     "frame-doubles-foe-3"
+    ],
+    "6-players": [
+     "frame-doubles-foe-1",
+     "frame-doubles-foe-2",
+     "frame-doubles-foe-3",
+     "frame-doubles-foe-4"
+    ],
+    "7-players": [
+     "frame-doubles-foe-1",
+     "frame-doubles-foe-2",
+     "frame-doubles-foe-3",
+     "frame-doubles-foe-4",
+     "frame-doubles-foe-5"
+    ]
+   },
+   "file": "foe-81d38d2cad.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/assets/table/foes-foe-81d38d2cad.webp",
+   "sha256": "7c1819c192f09462928773297d3786da4856614f80d4ece8827db8d53f328432",
+   "originalSha256": "39dec74f9819b9ebd0cf0f5893dcda688f04e4a52d7e407ef6b444f2958d373c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Каркасный дублёр",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "frame-doubles-foe-1",
+     "frame-doubles-foe-2"
+    ],
+    "4-players": [
+     "frame-doubles-foe-1",
+     "frame-doubles-foe-2",
+     "frame-doubles-foe-3"
+    ],
+    "5-players": [
+     "frame-doubles-foe-1",
+     "frame-doubles-foe-2",
+     "frame-doubles-foe-3"
+    ],
+    "6-players": [
+     "frame-doubles-foe-1",
+     "frame-doubles-foe-2",
+     "frame-doubles-foe-3",
+     "frame-doubles-foe-4"
+    ],
+    "7-players": [
+     "frame-doubles-foe-1",
+     "frame-doubles-foe-2",
+     "frame-doubles-foe-3",
+     "frame-doubles-foe-4",
+     "frame-doubles-foe-5"
+    ]
+   },
+   "file": "foe-81d38d2cad--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-81d38d2cad.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/assets/table/foes-foe-335d98bcc8.webp",
+   "sha256": "4ee0ea5b6b992500fcce5aa5414c820a42e8aeccc85262ebafe9745d04c991bc",
+   "originalSha256": "39dec74f9819b9ebd0cf0f5893dcda688f04e4a52d7e407ef6b444f2958d373c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Зонтичный статист",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "umbrella-extras-foe-1",
+     "umbrella-extras-foe-2"
+    ],
+    "4-players": [
+     "umbrella-extras-foe-1",
+     "umbrella-extras-foe-2",
+     "umbrella-extras-foe-3"
+    ],
+    "5-players": [
+     "umbrella-extras-foe-1",
+     "umbrella-extras-foe-2",
+     "umbrella-extras-foe-3"
+    ],
+    "6-players": [
+     "umbrella-extras-foe-1",
+     "umbrella-extras-foe-2",
+     "umbrella-extras-foe-3",
+     "umbrella-extras-foe-4"
+    ],
+    "7-players": [
+     "umbrella-extras-foe-1",
+     "umbrella-extras-foe-2",
+     "umbrella-extras-foe-3",
+     "umbrella-extras-foe-4",
+     "umbrella-extras-foe-5"
+    ]
+   },
+   "file": "foe-335d98bcc8.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/assets/table/foes-foe-335d98bcc8.webp",
+   "sha256": "4ee0ea5b6b992500fcce5aa5414c820a42e8aeccc85262ebafe9745d04c991bc",
+   "originalSha256": "39dec74f9819b9ebd0cf0f5893dcda688f04e4a52d7e407ef6b444f2958d373c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Зонтичный статист",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "umbrella-extras-foe-1",
+     "umbrella-extras-foe-2"
+    ],
+    "4-players": [
+     "umbrella-extras-foe-1",
+     "umbrella-extras-foe-2",
+     "umbrella-extras-foe-3"
+    ],
+    "5-players": [
+     "umbrella-extras-foe-1",
+     "umbrella-extras-foe-2",
+     "umbrella-extras-foe-3"
+    ],
+    "6-players": [
+     "umbrella-extras-foe-1",
+     "umbrella-extras-foe-2",
+     "umbrella-extras-foe-3",
+     "umbrella-extras-foe-4"
+    ],
+    "7-players": [
+     "umbrella-extras-foe-1",
+     "umbrella-extras-foe-2",
+     "umbrella-extras-foe-3",
+     "umbrella-extras-foe-4",
+     "umbrella-extras-foe-5"
+    ]
+   },
+   "file": "foe-335d98bcc8--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-335d98bcc8.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/assets/table/npcs-vera.webp",
+   "sha256": "455b075cf92c93511a2ad27bbaa24686bb0dd7ed4878e6b5580b431e8613971f",
+   "originalSha256": "75f7adb1f17c2280f2ace8b0ee528bc80b63d490d812443b55c6ce4195381f52",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Вера Осокина",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "vera"
+    ],
+    "4-players": [
+     "vera"
+    ],
+    "5-players": [
+     "vera"
+    ],
+    "6-players": [
+     "vera"
+    ],
+    "7-players": [
+     "vera"
+    ]
+   },
+   "file": "vera--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "vera.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/assets/table/npcs-lev.webp",
+   "sha256": "c10030794ac80b1121f2a427dedb88200519c7c9dae43360cd1c303c2b536ee4",
+   "originalSha256": "75f7adb1f17c2280f2ace8b0ee528bc80b63d490d812443b55c6ce4195381f52",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лев Кордон",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lev"
+    ],
+    "4-players": [
+     "lev"
+    ],
+    "5-players": [
+     "lev"
+    ],
+    "6-players": [
+     "lev"
+    ],
+    "7-players": [
+     "lev"
+    ]
+   },
+   "file": "lev--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "lev.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/assets/table/npcs-emil.webp",
+   "sha256": "40b5aa4a3606fd2622f9b5aa9960684c907fd0bf177436ed8d6ac9201abbb235",
+   "originalSha256": "75f7adb1f17c2280f2ace8b0ee528bc80b63d490d812443b55c6ce4195381f52",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эмиль Носов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "emil"
+    ],
+    "4-players": [
+     "emil"
+    ],
+    "5-players": [
+     "emil"
+    ],
+    "6-players": [
+     "emil"
+    ],
+    "7-players": [
+     "emil"
+    ]
+   },
+   "file": "emil--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "emil.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/assets/table/npcs-alena.webp",
+   "sha256": "0c6fd885dedb5fbe12b8d311f989ec0953e4362643a23b278627223429d5ae38",
+   "originalSha256": "75f7adb1f17c2280f2ace8b0ee528bc80b63d490d812443b55c6ce4195381f52",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Алёна Цаплина",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "alena"
+    ],
+    "4-players": [
+     "alena"
+    ],
+    "5-players": [
+     "alena"
+    ],
+    "6-players": [
+     "alena"
+    ],
+    "7-players": [
+     "alena"
+    ]
+   },
+   "file": "alena--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "alena.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/assets/table/npcs-yura.webp",
+   "sha256": "9b5a5a22370a18b310af090665acaeda8a79065a59f287a56e3a84df57e83d7a",
+   "originalSha256": "75f7adb1f17c2280f2ace8b0ee528bc80b63d490d812443b55c6ce4195381f52",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Юра Медовый",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "yura"
+    ],
+    "4-players": [
+     "yura"
+    ],
+    "5-players": [
+     "yura"
+    ],
+    "6-players": [
+     "yura"
+    ],
+    "7-players": [
+     "yura"
+    ]
+   },
+   "file": "yura--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "yura.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/assets/table/npcs-ida.webp",
+   "sha256": "4c9924d47ac91ea0142699461f5653324afc95d657576bd8550a7b1e52bcfa55",
+   "originalSha256": "718e996d568776438de607af91933a4621248a929ae6b9853604a9e203a6ab4e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ида Кленц",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ida"
+    ],
+    "4-players": [
+     "ida"
+    ],
+    "5-players": [
+     "ida"
+    ],
+    "6-players": [
+     "ida"
+    ],
+    "7-players": [
+     "ida"
+    ]
+   },
+   "file": "ida--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ida.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/assets/table/npcs-oleg.webp",
+   "sha256": "ea873f5437135b7865cd013ed6d19d57c69ed80f5d71c714c95a48e6fa890599",
+   "originalSha256": "718e996d568776438de607af91933a4621248a929ae6b9853604a9e203a6ab4e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Олег Вяз",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "oleg"
+    ],
+    "4-players": [
+     "oleg"
+    ],
+    "5-players": [
+     "oleg"
+    ],
+    "6-players": [
+     "oleg"
+    ],
+    "7-players": [
+     "oleg"
+    ]
+   },
+   "file": "oleg--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "oleg.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/assets/table/npcs-nadya.webp",
+   "sha256": "b03a085055e9d384428fa4bd8d27badc472e4156df3713f3e006117148117d30",
+   "originalSha256": "718e996d568776438de607af91933a4621248a929ae6b9853604a9e203a6ab4e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Надя Локоть",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nadya"
+    ],
+    "4-players": [
+     "nadya"
+    ],
+    "5-players": [
+     "nadya"
+    ],
+    "6-players": [
+     "nadya"
+    ],
+    "7-players": [
+     "nadya"
+    ]
+   },
+   "file": "nadya--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "nadya.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/assets/table/npcs-tonya.webp",
+   "sha256": "e5284dd0b5a40951914261ac9b2e4f61d77f8eaca5b207d031e3034496fb5050",
+   "originalSha256": "718e996d568776438de607af91933a4621248a929ae6b9853604a9e203a6ab4e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тоня Белич",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tonya"
+    ],
+    "4-players": [
+     "tonya"
+    ],
+    "5-players": [
+     "tonya"
+    ],
+    "6-players": [
+     "tonya"
+    ],
+    "7-players": [
+     "tonya"
+    ]
+   },
+   "file": "tonya--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "tonya.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/assets/table/npcs-polina.webp",
+   "sha256": "32635400c2b09bbeb190793eec768226ce77bf7d5dab04eabc04b301772dba75",
+   "originalSha256": "718e996d568776438de607af91933a4621248a929ae6b9853604a9e203a6ab4e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Полина Резцова",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "polina"
+    ],
+    "4-players": [
+     "polina"
+    ],
+    "5-players": [
+     "polina"
+    ],
+    "6-players": [
+     "polina"
+    ],
+    "7-players": [
+     "polina"
+    ]
+   },
+   "file": "polina--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "polina.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/rain-bureau/illustrations/opening.webp",
+   "sha256": "b8b5ae25ed9e359c3ad94714662e553ab629ad3831932fa7ffc457a2ba1d6110",
+   "originalSha256": "0eb0623e5ad0034aea7400dd973c0fb90250c2c5061cf5e5a9d1859791a0d989",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Бюро погоды — Бюро украденного дождя",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "steklen"
+    ],
+    "4-players": [
+     "steklen"
+    ],
+    "5-players": [
+     "steklen"
+    ],
+    "6-players": [
+     "steklen"
+    ],
+    "7-players": [
+     "steklen"
+    ]
+   },
+   "file": "cover.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "file": "folded-post--map.webp",
+   "source": "campaigns/mixed-ages-2026/rain-bureau/assets/battle-maps/folded-post.webp",
+   "sha256": "58a44c55a5d50409199b06cac9191ea2b6cb839712bd78e2c2422eaf72bb06c9",
+   "originalSha256": "d185b9370c26a8d1465ac675beb0660312bc6d22c7315285d47ae472d80b79a5",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Забытая почтовая комната. Visible scenery: Комната над закрытым отделением. Пустые ячейки, стол с синим сукном и лестница, на которой помещается только один раскрытый зонт.. World style: Стеклён · Rain rings on verdigris copper, alternating barometer arcs and droplet marks. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "folded-post.webp",
+   "subjects": {
+    "3-players": [
+     "folded-post"
+    ],
+    "4-players": [
+     "folded-post"
+    ],
+    "5-players": [
+     "folded-post"
+    ],
+    "6-players": [
+     "folded-post"
+    ],
+    "7-players": [
+     "folded-post"
+    ]
+   }
+  },
+  {
+   "file": "trolley-wash--map.webp",
+   "source": "campaigns/mixed-ages-2026/rain-bureau/assets/battle-maps/trolley-wash.webp",
+   "sha256": "ebd2ab6ac92912155220f0f2b5fbd1861bffa58563c199116f0b0ebc4fac315e",
+   "originalSha256": "7f0ef6f97b2805e937db8c9ea5d79791d87c88ce9ff478835f117ad8553ba69e",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Старая трамвайная мойка. Visible scenery: Бывший павильон мойки, который иногда сдают для репетиций. Неглубокие канавки, кронштейны для декораций и высокое окно с матовым стеклом.. World style: Стеклён · Rain rings on verdigris copper, alternating barometer arcs and droplet marks. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "trolley-wash.webp",
+   "subjects": {
+    "3-players": [
+     "trolley-wash"
+    ],
+    "4-players": [
+     "trolley-wash"
+    ],
+    "5-players": [
+     "trolley-wash"
+    ],
+    "6-players": [
+     "trolley-wash"
+    ],
+    "7-players": [
+     "trolley-wash"
+    ]
+   }
+  },
+  {
+   "file": "civic-table--map.webp",
+   "source": "campaigns/mixed-ages-2026/rain-bureau/assets/battle-maps/civic-table.webp",
+   "sha256": "83d53c427717239d525f2f897530bda0a55fda4bfda62243f961caa7b5ecf05d",
+   "originalSha256": "e3208441c14c7664cc7bc3f47c0088b0cc5ffff56e653e53de12abeae14532af",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Двор маленьких премьер. Visible scenery: Камерный двор для показов: низкая сцена, передвижной навес и стулья в полукруге. На входе есть доска с условиями участия и корзинка для письменных вопросов.. World style: Стеклён · Rain rings on verdigris copper, alternating barometer arcs and droplet marks. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "civic-table.webp",
+   "subjects": {
+    "3-players": [
+     "civic-table"
+    ],
+    "4-players": [
+     "civic-table"
+    ],
+    "5-players": [
+     "civic-table"
+    ],
+    "6-players": [
+     "civic-table"
+    ],
+    "7-players": [
+     "civic-table"
+    ]
+   }
+  },
+  {
+   "file": "world-map.webp",
+   "source": "campaigns/mixed-ages-2026/rain-bureau/assets/world-map/world-map.webp",
+   "sha256": "36a5c7c5dcb9f4c307fe6fa45355fa300ccb97868499257fdb8716083d09a190",
+   "originalSha256": "65ea167a758b69fe3de2bc6465a7e4728b0c5e1b28136ac5d73959f142accd96",
+   "generated": "2026-11-22",
+   "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Стеклён. Style Стеклён · Rain rings on verdigris copper, alternating barometer arcs and droplet marks. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Бюро погоды; 0.367,0.177 Забытая почтовая комната; 0.623,0.15 Кафе «Пуговица»; 0.88,0.177 Архив учебных образцов; 0.905,0.517 Кинотеатр «Пятый стул»; 0.648,0.49 Старая трамвайная мойка; 0.392,0.517 Оранжерея реквизита; 0.135,0.49 Мастерская подвижных декораций; 0.11,0.83 Мерный двор; 0.367,0.857 Двор маленьких премьер. Show public exteriors / unlabeled contours only.",
+   "references": [],
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null,
+   "subjects": {
+    "3-players": [
+     "world-map"
+    ],
+    "4-players": [
+     "world-map"
+    ],
+    "5-players": [
+     "world-map"
+    ],
+    "6-players": [
+     "world-map"
+    ],
+    "7-players": [
+     "world-map"
+    ]
+   }
+  }
+ ]
+}

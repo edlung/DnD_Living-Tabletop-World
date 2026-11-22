@@ -1,0 +1,302 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "lighthouse-heroes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-b8e68606-955f-4f34-b8c5-edc0851963a9.png",
+      "originalSha256": "33fadbfa01a6e9fc874a9accc83b40e7247b45fa2a10a1d15bd6cb8fe9ab0012",
+      "columns": 4,
+      "rows": 1,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 4 equal columns by 1 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Острова Между Ветрами · Lighthouse lens spokes and small compass stars stamped in sea-green bookcloth. Cell 1. Финн Меднолист. Молодой взрослый широкоплечий дворф с медной кудрявой бородой, индиговой курткой, круглым щитом с листом и тёплой улыбкой.\nCell 2. Тэс Быстрый Стежок. Молодая взрослая женщина с короткими тёмными кудрями, коралловым шарфом, бирюзовым дорожным жилетом и поясом катушек, уверенный озорной взгляд.\nCell 3. Ася Вереск. Взрослая женщина с тёмной кожей, длинной серебристой косой, зелёно-бирюзовым плащом, кожаной сумкой семян и простым деревянным посохом.\nCell 4. Мика Переплёт. Взрослый гном с круглыми очками, вишнёвым беретом, светлым пальто с индиговыми манжетами и книгой со множеством бумажных закладок.. Leave final unused cells empty.",
+      "references": [
+        "campaigns/lighthouse/assets/runtime/finn.webp",
+        "campaigns/lighthouse/assets/runtime/tess.webp",
+        "campaigns/lighthouse/assets/runtime/asya.webp",
+        "campaigns/lighthouse/assets/runtime/mika.webp"
+      ]
+    },
+    {
+      "id": "lighthouse-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-d7546188-bcac-421f-8a44-f3832d6a8855.png",
+      "originalSha256": "772174b91207a62b73c06188520cb86d2124522c1adb74c91651c56fac3d4b36",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "Create a clean production sprite sheet of 9 distinct hand-painted tabletop miniature figurines for the world of Маяк Между Ветрами. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 3 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Капитан Руна Чайная. Пожилая капитан с серебряными волосами, янтарными очками на цепочке и большим индиговым пальто; пахнет чаем и апельсинами.\nCell 2. Шпуль. Маленький латунный механический лис с бирюзовыми стеклянными глазами, одним медным ухом и хвостом-кисточкой.\nCell 3. Пом, садовник черепахи. Коренастый гном в шляпе из листьев, с лейкой и карманами, полными яблочных косточек.\nCell 4. Сафра Лист. Высокая взрослая библиотекарша с тёмной косой, накидкой цвета морской волны и бумажными корабликами в карманах.\nCell 5. Вей Три Кармана. Лисоподобный взрослый торговец в сиреневом жилете, монокль и ровно три огромных кармана.\nCell 6. Мастер Ильер. Высокий мастер с протезом кисти из дерева и латуни, медным фартуком и мягкими защитными очками.\nCell 7. Омб, почтовый кит. Огромный спокойный небесный кит; на спине обсерватория, сад и надёжный причал.\nCell 8. Канто, настройщик колоколов. Крупная говорящая птица-секретарь в аккуратном синем жилете, несёт камертон и смешно строгую папку.\nCell 9. Северин, хранитель Атласа. Взрослый мужчина с волнистыми серебристо-чёрными волосами, круглыми очками, индиговым пальто с медными застёжками и перчатками.",
+      "references": [
+        "campaigns/lighthouse/assets/runtime/runa.webp",
+        "campaigns/lighthouse/assets/runtime/spool.webp",
+        "campaigns/lighthouse/assets/runtime/pom.webp",
+        "campaigns/lighthouse/assets/runtime/saffra.webp",
+        "campaigns/lighthouse/assets/runtime/vey.webp",
+        "campaigns/lighthouse/assets/runtime/ilyr.webp",
+        "campaigns/lighthouse/assets/runtime/observatory.webp",
+        "campaigns/lighthouse/assets/runtime/kanto.webp",
+        "campaigns/lighthouse/assets/runtime/severin.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "finn",
+      "title": "Финн Меднолист",
+      "kind": "hero",
+      "subjects": [
+        "finn"
+      ],
+      "file": "heroes-finn.webp",
+      "sha256": "c3cb592cde8adf61baf77e3d864bd63d75190bd8f885835ff701ecfbfb6393ae",
+      "originalSha256": "33fadbfa01a6e9fc874a9accc83b40e7247b45fa2a10a1d15bd6cb8fe9ab0012",
+      "generated": "2026-11-22",
+      "sheet": "lighthouse-heroes-0",
+      "cell": 1,
+      "crop": {
+        "left": 104,
+        "top": 54,
+        "width": 380,
+        "height": 628
+      }
+    },
+    {
+      "key": "tess",
+      "title": "Тэс Быстрый Стежок",
+      "kind": "hero",
+      "subjects": [
+        "tess"
+      ],
+      "file": "heroes-tess.webp",
+      "sha256": "0b814c90b9e8c8d61b6e395f6d9ad3656100f2af57ab324ba59849cbd5167fd7",
+      "originalSha256": "33fadbfa01a6e9fc874a9accc83b40e7247b45fa2a10a1d15bd6cb8fe9ab0012",
+      "generated": "2026-11-22",
+      "sheet": "lighthouse-heroes-0",
+      "cell": 2,
+      "crop": {
+        "left": 634,
+        "top": 37,
+        "width": 339,
+        "height": 644
+      }
+    },
+    {
+      "key": "asya",
+      "title": "Ася Вереск",
+      "kind": "hero",
+      "subjects": [
+        "asya"
+      ],
+      "file": "heroes-asya.webp",
+      "sha256": "b6cf57ddcaa63747537815644d542963c16dddff17caa4d097fd80787065285b",
+      "originalSha256": "33fadbfa01a6e9fc874a9accc83b40e7247b45fa2a10a1d15bd6cb8fe9ab0012",
+      "generated": "2026-11-22",
+      "sheet": "lighthouse-heroes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1175,
+        "top": 35,
+        "width": 348,
+        "height": 646
+      }
+    },
+    {
+      "key": "mika",
+      "title": "Мика Переплёт",
+      "kind": "hero",
+      "subjects": [
+        "mika"
+      ],
+      "file": "heroes-mika.webp",
+      "sha256": "7516622cfaf44aed939a7957252e3dda12e9183b9f7c186baa571d9ca7d1dac9",
+      "originalSha256": "33fadbfa01a6e9fc874a9accc83b40e7247b45fa2a10a1d15bd6cb8fe9ab0012",
+      "generated": "2026-11-22",
+      "sheet": "lighthouse-heroes-0",
+      "cell": 4,
+      "crop": {
+        "left": 1731,
+        "top": 54,
+        "width": 336,
+        "height": 627
+      }
+    },
+    {
+      "key": "runa",
+      "title": "Капитан Руна Чайная",
+      "kind": "npc",
+      "subjects": [
+        "runa"
+      ],
+      "file": "npcs-runa.webp",
+      "sha256": "b01e319b4606aca6b7b04f156c209e1acedce3344b2c570392d277c6c5342963",
+      "originalSha256": "772174b91207a62b73c06188520cb86d2124522c1adb74c91651c56fac3d4b36",
+      "generated": "2026-11-22",
+      "sheet": "lighthouse-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 72,
+        "top": 10,
+        "width": 302,
+        "height": 356
+      }
+    },
+    {
+      "key": "spool",
+      "title": "Шпуль",
+      "kind": "npc",
+      "subjects": [
+        "spool"
+      ],
+      "file": "npcs-spool.webp",
+      "sha256": "9833ffd0da0ae1977f4130fd1b7d9d457c06840b008fab59dbe78f9afe476a4a",
+      "originalSha256": "772174b91207a62b73c06188520cb86d2124522c1adb74c91651c56fac3d4b36",
+      "generated": "2026-11-22",
+      "sheet": "lighthouse-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 499,
+        "top": 42,
+        "width": 271,
+        "height": 322
+      }
+    },
+    {
+      "key": "pom",
+      "title": "Пом, садовник черепахи",
+      "kind": "npc",
+      "subjects": [
+        "pom"
+      ],
+      "file": "npcs-pom.webp",
+      "sha256": "d4441fba57a5785a824d1dc532bb8dbabacf49bdc6350db7a1ea6516cb9a4cc8",
+      "originalSha256": "772174b91207a62b73c06188520cb86d2124522c1adb74c91651c56fac3d4b36",
+      "generated": "2026-11-22",
+      "sheet": "lighthouse-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 889,
+        "top": 4,
+        "width": 307,
+        "height": 360
+      }
+    },
+    {
+      "key": "saffra",
+      "title": "Сафра Лист",
+      "kind": "npc",
+      "subjects": [
+        "saffra"
+      ],
+      "file": "npcs-saffra.webp",
+      "sha256": "42e4bb0b1ade375e4ed8efcc6a984ba314d288a4f93ffb03d844557c7a587799",
+      "originalSha256": "772174b91207a62b73c06188520cb86d2124522c1adb74c91651c56fac3d4b36",
+      "generated": "2026-11-22",
+      "sheet": "lighthouse-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 94,
+        "top": 380,
+        "width": 258,
+        "height": 403
+      }
+    },
+    {
+      "key": "vey",
+      "title": "Вей Три Кармана",
+      "kind": "npc",
+      "subjects": [
+        "vey"
+      ],
+      "file": "npcs-vey.webp",
+      "sha256": "0133123d3d5085d9a1f2f807792b0aecb8d1e219dc60be63c35234fd6733fb8b",
+      "originalSha256": "772174b91207a62b73c06188520cb86d2124522c1adb74c91651c56fac3d4b36",
+      "generated": "2026-11-22",
+      "sheet": "lighthouse-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 507,
+        "top": 381,
+        "width": 253,
+        "height": 400
+      }
+    },
+    {
+      "key": "ilyr",
+      "title": "Мастер Ильер",
+      "kind": "npc",
+      "subjects": [
+        "ilyr"
+      ],
+      "file": "npcs-ilyr.webp",
+      "sha256": "1558d5fb3d47233b9b8bdadf059eb18bdf4e1466ac8813606f121c026e966fb0",
+      "originalSha256": "772174b91207a62b73c06188520cb86d2124522c1adb74c91651c56fac3d4b36",
+      "generated": "2026-11-22",
+      "sheet": "lighthouse-npcs-0",
+      "cell": 6,
+      "crop": {
+        "left": 906,
+        "top": 380,
+        "width": 270,
+        "height": 401
+      }
+    },
+    {
+      "key": "omb",
+      "title": "Омб, почтовый кит",
+      "kind": "npc",
+      "subjects": [
+        "omb"
+      ],
+      "file": "npcs-omb.webp",
+      "sha256": "456e4cdd77dd2e11d8be969d138a999dd961edda8da8609e7121ce7a64a48392",
+      "originalSha256": "772174b91207a62b73c06188520cb86d2124522c1adb74c91651c56fac3d4b36",
+      "generated": "2026-11-22",
+      "sheet": "lighthouse-npcs-0",
+      "cell": 7,
+      "crop": {
+        "left": 32,
+        "top": 829,
+        "width": 404,
+        "height": 388
+      }
+    },
+    {
+      "key": "kanto",
+      "title": "Канто, настройщик колоколов",
+      "kind": "npc",
+      "subjects": [
+        "kanto"
+      ],
+      "file": "npcs-kanto.webp",
+      "sha256": "1489e884844850f8321753d51121681498b8f8676cf9f527a72a20b819995602",
+      "originalSha256": "772174b91207a62b73c06188520cb86d2124522c1adb74c91651c56fac3d4b36",
+      "generated": "2026-11-22",
+      "sheet": "lighthouse-npcs-0",
+      "cell": 8,
+      "crop": {
+        "left": 485,
+        "top": 795,
+        "width": 289,
+        "height": 421
+      }
+    },
+    {
+      "key": "severin",
+      "title": "Северин, хранитель Атласа",
+      "kind": "npc",
+      "subjects": [
+        "severin"
+      ],
+      "file": "npcs-severin.webp",
+      "sha256": "a79a954f56f373bbe659e4b40d1c89ee1fdd57357384710b73b8f2629c74bfcf",
+      "originalSha256": "772174b91207a62b73c06188520cb86d2124522c1adb74c91651c56fac3d4b36",
+      "generated": "2026-11-22",
+      "sheet": "lighthouse-npcs-0",
+      "cell": 9,
+      "crop": {
+        "left": 894,
+        "top": 795,
+        "width": 311,
+        "height": 424
+      }
+    }
+  ]
+}

@@ -1,0 +1,207 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "salt-meridian-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-208b4cea-824e-420c-83a7-9610f8d42b2a.png",
+      "originalSha256": "a01a79c1694301041205eba8b044f96a083c449d95a99f173bd6f331920ec1b1",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "Create a clean production sprite sheet of 9 distinct hand-painted tabletop miniature figurines for the world of Соляной Меридиан. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 3 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Евдокия Веш. Синяя куртка с узловыми застёжками, седые пряди под платком, соль в морщинах у глаз; руки всё время на чём-то — на леере, на швартове, на плече соседа.\nCell 2. Ольгер Тален. Худой, чернильные пальцы, линза на шнурке, чистый воротник даже в дождь.\nCell 3. Нэра Лоск. Загорелая, пояс с камнями в сетке, белая ткань на волосах, грифельная доска на шнуре.\nCell 4. Фаина Клёст. Громкий голос, янтарная пуговица на вороте, конторский столик на ремнях через плечо; на пальцах чернила пополам с солью.\nCell 5. Филат Обруч. Зелёные нити в бороде, широкие ладони, мерные рейки за поясом, обручная метка выжжена на ремне.\nCell 6. Варвара Зыбь. Фартук поверх куртки, мерная рейка за спиной, белый ил на рукавах.\nCell 7. Инна Сольве. Светлое непромокаемое пальто, простые часы, папка расписок; на её шлюпке флаг белый над синим.\nCell 8. Тар Килль. Хриплый голос, серый шарф, боцманская дудка, топор за поясом, руки в смоле.\nCell 9. Арвид Кречет. Высокий, коротко стрижен, траурная лента на рукаве, тяжёлая абордажная секира, у пояса связка свинцовых пломб с вымпелами.",
+      "references": [
+        "campaigns/collection-2026/salt-meridian/assets/runtime/rada-vesh.webp",
+        "campaigns/collection-2026/salt-meridian/assets/runtime/olger-talen.webp",
+        "campaigns/collection-2026/salt-meridian/assets/runtime/nera-losk.webp",
+        "campaigns/collection-2026/salt-meridian/assets/runtime/zoya-ryab.webp",
+        "campaigns/collection-2026/salt-meridian/assets/runtime/damir-skat.webp",
+        "campaigns/collection-2026/salt-meridian/assets/runtime/teya-run.webp",
+        "campaigns/collection-2026/salt-meridian/assets/runtime/inna-solve.webp",
+        "campaigns/collection-2026/salt-meridian/assets/runtime/tar-kill.webp",
+        "campaigns/collection-2026/salt-meridian/assets/runtime/arvid-krechet.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "rada-vesh",
+      "title": "Евдокия Веш",
+      "kind": "npc",
+      "subjects": [
+        "rada-vesh"
+      ],
+      "file": "npcs-rada-vesh.webp",
+      "sha256": "cf692928c69c8b18b2bbc4c5f844e89ad649d865888fbc0df3b373d081c9d5d5",
+      "originalSha256": "a01a79c1694301041205eba8b044f96a083c449d95a99f173bd6f331920ec1b1",
+      "generated": "2026-11-22",
+      "sheet": "salt-meridian-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 102,
+        "top": 32,
+        "width": 235,
+        "height": 382
+      }
+    },
+    {
+      "key": "olger-talen",
+      "title": "Ольгер Тален",
+      "kind": "npc",
+      "subjects": [
+        "olger-talen"
+      ],
+      "file": "npcs-olger-talen.webp",
+      "sha256": "8377e23f88006e6b302af22692064c1df0927f999d1e1ef0f25324db3f60a3e2",
+      "originalSha256": "a01a79c1694301041205eba8b044f96a083c449d95a99f173bd6f331920ec1b1",
+      "generated": "2026-11-22",
+      "sheet": "salt-meridian-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 479,
+        "top": 25,
+        "width": 237,
+        "height": 389
+      }
+    },
+    {
+      "key": "nera-losk",
+      "title": "Нэра Лоск",
+      "kind": "npc",
+      "subjects": [
+        "nera-losk"
+      ],
+      "file": "npcs-nera-losk.webp",
+      "sha256": "f1e60260d7f5b0ba3183b8543770852bbda6759e3c8a727e89022b71844a0383",
+      "originalSha256": "a01a79c1694301041205eba8b044f96a083c449d95a99f173bd6f331920ec1b1",
+      "generated": "2026-11-22",
+      "sheet": "salt-meridian-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 866,
+        "top": 26,
+        "width": 235,
+        "height": 388
+      }
+    },
+    {
+      "key": "zoya-ryab",
+      "title": "Фаина Клёст",
+      "kind": "npc",
+      "subjects": [
+        "zoya-ryab"
+      ],
+      "file": "npcs-zoya-ryab.webp",
+      "sha256": "4fa64636eb276eb2c6f9ba1865295b3a28783bc59a9158386d50232a1ba12a35",
+      "originalSha256": "a01a79c1694301041205eba8b044f96a083c449d95a99f173bd6f331920ec1b1",
+      "generated": "2026-11-22",
+      "sheet": "salt-meridian-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 100,
+        "top": 450,
+        "width": 227,
+        "height": 397
+      }
+    },
+    {
+      "key": "damir-skat",
+      "title": "Филат Обруч",
+      "kind": "npc",
+      "subjects": [
+        "damir-skat"
+      ],
+      "file": "npcs-damir-skat.webp",
+      "sha256": "1f47f525d66fa07f98b9e8c392f92fc8871accfe6aedac786f1e45fd2f30b232",
+      "originalSha256": "a01a79c1694301041205eba8b044f96a083c449d95a99f173bd6f331920ec1b1",
+      "generated": "2026-11-22",
+      "sheet": "salt-meridian-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 477,
+        "top": 447,
+        "width": 240,
+        "height": 398
+      }
+    },
+    {
+      "key": "teya-run",
+      "title": "Варвара Зыбь",
+      "kind": "npc",
+      "subjects": [
+        "teya-run"
+      ],
+      "file": "npcs-teya-run.webp",
+      "sha256": "2ba0062b7af8d898171ec28952ef5862277467f57fa5483c153f2d9eb57e57e3",
+      "originalSha256": "a01a79c1694301041205eba8b044f96a083c449d95a99f173bd6f331920ec1b1",
+      "generated": "2026-11-22",
+      "sheet": "salt-meridian-npcs-0",
+      "cell": 6,
+      "crop": {
+        "left": 870,
+        "top": 451,
+        "width": 239,
+        "height": 395
+      }
+    },
+    {
+      "key": "inna-solve",
+      "title": "Инна Сольве",
+      "kind": "npc",
+      "subjects": [
+        "inna-solve"
+      ],
+      "file": "npcs-inna-solve.webp",
+      "sha256": "b8928223b260564e9e1d0cf05dc3a246e234a601c0b6f2a807c6ce434a746145",
+      "originalSha256": "a01a79c1694301041205eba8b044f96a083c449d95a99f173bd6f331920ec1b1",
+      "generated": "2026-11-22",
+      "sheet": "salt-meridian-npcs-0",
+      "cell": 7,
+      "crop": {
+        "left": 80,
+        "top": 878,
+        "width": 259,
+        "height": 406
+      }
+    },
+    {
+      "key": "tar-kill",
+      "title": "Тар Килль",
+      "kind": "npc",
+      "subjects": [
+        "tar-kill"
+      ],
+      "file": "npcs-tar-kill.webp",
+      "sha256": "236a99a915699abf36fc7c8fe49a70bde7efcd063f264dfd3951771d1cd111a8",
+      "originalSha256": "a01a79c1694301041205eba8b044f96a083c449d95a99f173bd6f331920ec1b1",
+      "generated": "2026-11-22",
+      "sheet": "salt-meridian-npcs-0",
+      "cell": 8,
+      "crop": {
+        "left": 468,
+        "top": 874,
+        "width": 247,
+        "height": 409
+      }
+    },
+    {
+      "key": "arvid-krechet",
+      "title": "Арвид Кречет",
+      "kind": "npc",
+      "subjects": [
+        "arvid-krechet"
+      ],
+      "file": "npcs-arvid-krechet.webp",
+      "sha256": "645d2decb4493a0d5230bbf0b66a8c52c3e9f7d24076daea7420fc7f4673f1a7",
+      "originalSha256": "a01a79c1694301041205eba8b044f96a083c449d95a99f173bd6f331920ec1b1",
+      "generated": "2026-11-22",
+      "sheet": "salt-meridian-npcs-0",
+      "cell": 9,
+      "crop": {
+        "left": 867,
+        "top": 875,
+        "width": 249,
+        "height": 408
+      }
+    }
+  ]
+}

@@ -1,0 +1,1975 @@
+{
+ "id": "absent-voters",
+ "title": "Голоса отсутствующих",
+ "genre": "Детективный муниципальный нуар",
+ "audience": "21+",
+ "pitch": "За два дня до муниципального голосования жительнице Меррова сообщают, что она уехала. Её комната по-прежнему тёплая, работа ждёт утром, а возможность получить бюллетень уже поставлена под сомнение. Ещё восемь соседей оказались в таком же положении. Расследователям предстоит выяснить, кто превратил переход через двор в отъезд из города, и сохранить людям право самим решить, идти ли на участок.",
+ "tone": "Мокрый камень, стыд за удобное молчание, достоинство без обязательной публичности. Оппоненты остаются людьми; политическая победа не заменяет личного выбора.",
+ "duration": "8 сессий; 140 минут: 10 минут вступления, три сцены по 35 минут, 10 минут перерыва и 15 минут завершения.",
+ "cover": "campaigns/noir-2026/absent-voters/illustrations/opening.webp",
+ "defaultVariant": "4-players",
+ "variants": [
+  {
+   "id": "3-players",
+   "players": 3,
+   "label": "3 игрока",
+   "file": "packages/3-players.json",
+   "digest": "1986916984413dd5ccb04f2cf7e732285f086bf431dba8c8a89076a4f30e7545"
+  },
+  {
+   "id": "4-players",
+   "players": 4,
+   "label": "4 игрока",
+   "file": "packages/4-players.json",
+   "digest": "32f09fe201d3cab78becb308945eeb29979fcebdecb104bc503c21e5d2689af3"
+  },
+  {
+   "id": "5-players",
+   "players": 5,
+   "label": "5 игроков",
+   "file": "packages/5-players.json",
+   "digest": "37ee131479ef3517a08def77a91d95a884b2fcb0b8a8be5e79a9f2baf3f01955"
+  },
+  {
+   "id": "6-players",
+   "players": 6,
+   "label": "6 игроков",
+   "file": "packages/6-players.json",
+   "digest": "d6b5aa0e874bda0120528cb83b14667beb1f66af1975a6cb5b15077eb9d0a079"
+  },
+  {
+   "id": "7-players",
+   "players": 7,
+   "label": "7 игроков",
+   "file": "packages/7-players.json",
+   "digest": "1ebd7a199e10e8050a65b3d4bebad2a055c5bd0c49d40db32cf7de4e488b1d46"
+  },
+  {
+   "id": "8-players",
+   "players": 8,
+   "label": "8 игроков",
+   "file": "packages/8-players.json",
+   "digest": "a289b8064d459a2f7a63698f2d139ceba7ae7404bf1794ed7a50ad1085d2b1ba"
+  }
+ ],
+ "generator": "codex-cli imagegen",
+ "pictures": [
+  {
+   "source": "campaigns/noir-2026/absent-voters/illustrations/cards/ira-voss.webp",
+   "sha256": "8a9cdfeb27dcd1473671e4aff94fdfca583baeb4018c251ee1b19064a2f989e0",
+   "originalSha256": "d50319ce8f47e5711edc4d19f78ecba0f2f199a6111926b9db315bf73a521e29",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ира Восс",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ira-voss"
+    ],
+    "4-players": [
+     "ira-voss"
+    ],
+    "5-players": [
+     "ira-voss"
+    ],
+    "6-players": [
+     "ira-voss"
+    ],
+    "7-players": [
+     "ira-voss"
+    ],
+    "8-players": [
+     "ira-voss"
+    ]
+   },
+   "file": "ira-voss.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/illustrations/cards/rem-dorn.webp",
+   "sha256": "99b5e58f129113d1f5ccc4394e22054021dfc94b3777ac762b84d5c55bbe6773",
+   "originalSha256": "d50319ce8f47e5711edc4d19f78ecba0f2f199a6111926b9db315bf73a521e29",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рем Дорн",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "rem-dorn"
+    ],
+    "4-players": [
+     "rem-dorn"
+    ],
+    "5-players": [
+     "rem-dorn"
+    ],
+    "6-players": [
+     "rem-dorn"
+    ],
+    "7-players": [
+     "rem-dorn"
+    ],
+    "8-players": [
+     "rem-dorn"
+    ]
+   },
+   "file": "rem-dorn.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/illustrations/cards/ona-tell.webp",
+   "sha256": "44b043487ac48d3172815e77671fae7ec24d32e5a83e1c06048018928a0d08be",
+   "originalSha256": "d50319ce8f47e5711edc4d19f78ecba0f2f199a6111926b9db315bf73a521e29",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Она Телл",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ona-tell"
+    ],
+    "4-players": [
+     "ona-tell"
+    ],
+    "5-players": [
+     "ona-tell"
+    ],
+    "6-players": [
+     "ona-tell"
+    ],
+    "7-players": [
+     "ona-tell"
+    ],
+    "8-players": [
+     "ona-tell"
+    ]
+   },
+   "file": "ona-tell.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/illustrations/cards/sol-isk.webp",
+   "sha256": "56af9bcb52ea3e13fade7de67e1d18a7cc9fd876046622e3f603301506849ae4",
+   "originalSha256": "d50319ce8f47e5711edc4d19f78ecba0f2f199a6111926b9db315bf73a521e29",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Соль Иск",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "sol-isk"
+    ],
+    "5-players": [
+     "sol-isk"
+    ],
+    "6-players": [
+     "sol-isk"
+    ],
+    "7-players": [
+     "sol-isk"
+    ],
+    "8-players": [
+     "sol-isk"
+    ]
+   },
+   "file": "sol-isk.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/illustrations/cards/avren-nell.webp",
+   "sha256": "2a500b04dbef616773b3e3c96fa4d532661c1218fd1ec39239823130c683a378",
+   "originalSha256": "d50319ce8f47e5711edc4d19f78ecba0f2f199a6111926b9db315bf73a521e29",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Аврен Нелл",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "avren-nell"
+    ],
+    "6-players": [
+     "avren-nell"
+    ],
+    "7-players": [
+     "avren-nell"
+    ],
+    "8-players": [
+     "avren-nell"
+    ]
+   },
+   "file": "avren-nell.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/illustrations/cards/mirta-keld.webp",
+   "sha256": "3225965ed378f099f1bef526d1bfeb3c78ca82a3037eb0cf572ef2b4cab1e56b",
+   "originalSha256": "d50319ce8f47e5711edc4d19f78ecba0f2f199a6111926b9db315bf73a521e29",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мирта Кельд",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "mirta-keld"
+    ],
+    "7-players": [
+     "mirta-keld"
+    ],
+    "8-players": [
+     "mirta-keld"
+    ]
+   },
+   "file": "mirta-keld.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/illustrations/cards/teor-brin.webp",
+   "sha256": "b78108949afe74ca316a7aca51df0afa4c8cc0af296e4ca86e80b36815cd020c",
+   "originalSha256": "d50319ce8f47e5711edc4d19f78ecba0f2f199a6111926b9db315bf73a521e29",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Теор Брин",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "teor-brin"
+    ],
+    "8-players": [
+     "teor-brin"
+    ]
+   },
+   "file": "teor-brin.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/illustrations/cards/lissa-orn.webp",
+   "sha256": "0c2b880c6276263dceab1d6aef9b0315c2a00e9341cba669e8e0921c589cf50c",
+   "originalSha256": "d50319ce8f47e5711edc4d19f78ecba0f2f199a6111926b9db315bf73a521e29",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лисса Орн",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [],
+    "8-players": [
+     "lissa-orn"
+    ]
+   },
+   "file": "lissa-orn.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/illustrations/cards/travel-kit.webp",
+   "sha256": "f2ad9aae0499fdb9b8c93e1bb5ce24336f871fc776e824030e84b44017c9b57b",
+   "originalSha256": "d50319ce8f47e5711edc4d19f78ecba0f2f199a6111926b9db315bf73a521e29",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рабочий набор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ira-voss-travel-kit",
+     "ona-tell-travel-kit",
+     "rem-dorn-travel-kit"
+    ],
+    "4-players": [
+     "ira-voss-travel-kit",
+     "ona-tell-travel-kit",
+     "rem-dorn-travel-kit",
+     "sol-isk-travel-kit"
+    ],
+    "5-players": [
+     "avren-nell-travel-kit",
+     "ira-voss-travel-kit",
+     "ona-tell-travel-kit",
+     "rem-dorn-travel-kit",
+     "sol-isk-travel-kit"
+    ],
+    "6-players": [
+     "avren-nell-travel-kit",
+     "ira-voss-travel-kit",
+     "mirta-keld-travel-kit",
+     "ona-tell-travel-kit",
+     "rem-dorn-travel-kit",
+     "sol-isk-travel-kit"
+    ],
+    "7-players": [
+     "avren-nell-travel-kit",
+     "ira-voss-travel-kit",
+     "mirta-keld-travel-kit",
+     "ona-tell-travel-kit",
+     "rem-dorn-travel-kit",
+     "sol-isk-travel-kit",
+     "teor-brin-travel-kit"
+    ],
+    "8-players": [
+     "avren-nell-travel-kit",
+     "ira-voss-travel-kit",
+     "lissa-orn-travel-kit",
+     "mirta-keld-travel-kit",
+     "ona-tell-travel-kit",
+     "rem-dorn-travel-kit",
+     "sol-isk-travel-kit",
+     "teor-brin-travel-kit"
+    ]
+   },
+   "file": "travel-kit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/illustrations/cards/lea-moltz.webp",
+   "sha256": "90bd80b14fd56ef1e93880537386b3cd237c8860cd6b978f1a6c659c2e6ee81c",
+   "originalSha256": "c134db7eb48078377af178d0373d307ca4f28d8f7098399ab9a5cdf0f67e107e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лея Мольц",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lea-moltz"
+    ],
+    "4-players": [
+     "lea-moltz"
+    ],
+    "5-players": [
+     "lea-moltz"
+    ],
+    "6-players": [
+     "lea-moltz"
+    ],
+    "7-players": [
+     "lea-moltz"
+    ],
+    "8-players": [
+     "lea-moltz"
+    ]
+   },
+   "file": "lea-moltz.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/illustrations/cards/saveriy-kram.webp",
+   "sha256": "33926571c693fc77be41b132ee76033a33dfdcfcef2627e0656c89667ac9b9ea",
+   "originalSha256": "c134db7eb48078377af178d0373d307ca4f28d8f7098399ab9a5cdf0f67e107e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Саверий Крам",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "saveriy-kram"
+    ],
+    "4-players": [
+     "saveriy-kram"
+    ],
+    "5-players": [
+     "saveriy-kram"
+    ],
+    "6-players": [
+     "saveriy-kram"
+    ],
+    "7-players": [
+     "saveriy-kram"
+    ],
+    "8-players": [
+     "saveriy-kram"
+    ]
+   },
+   "file": "saveriy-kram.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/illustrations/cards/tada-vern.webp",
+   "sha256": "1a8ffee2e66354ff31ad8a673d6eac02d4b753dbb5c8543f7b62c7cc85d80d01",
+   "originalSha256": "c134db7eb48078377af178d0373d307ca4f28d8f7098399ab9a5cdf0f67e107e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тада Верн",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tada-vern"
+    ],
+    "4-players": [
+     "tada-vern"
+    ],
+    "5-players": [
+     "tada-vern"
+    ],
+    "6-players": [
+     "tada-vern"
+    ],
+    "7-players": [
+     "tada-vern"
+    ],
+    "8-players": [
+     "tada-vern"
+    ]
+   },
+   "file": "tada-vern.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/illustrations/cards/dina-ark.webp",
+   "sha256": "3c39e91c5290bf5956b1d9da417602f7c2d5b9f782aa247f12ef45ce3a7ccd4b",
+   "originalSha256": "c134db7eb48078377af178d0373d307ca4f28d8f7098399ab9a5cdf0f67e107e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дина Арк",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "dina-ark"
+    ],
+    "4-players": [
+     "dina-ark"
+    ],
+    "5-players": [
+     "dina-ark"
+    ],
+    "6-players": [
+     "dina-ark"
+    ],
+    "7-players": [
+     "dina-ark"
+    ],
+    "8-players": [
+     "dina-ark"
+    ]
+   },
+   "file": "dina-ark.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/illustrations/cards/vents-olden.webp",
+   "sha256": "ca3406e223ab030b684eb7bc1b2242188fc263aba112bdbd56af9135b9f5c519",
+   "originalSha256": "c134db7eb48078377af178d0373d307ca4f28d8f7098399ab9a5cdf0f67e107e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Венц Ольден",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "vents-olden"
+    ],
+    "4-players": [
+     "vents-olden"
+    ],
+    "5-players": [
+     "vents-olden"
+    ],
+    "6-players": [
+     "vents-olden"
+    ],
+    "7-players": [
+     "vents-olden"
+    ],
+    "8-players": [
+     "vents-olden"
+    ]
+   },
+   "file": "vents-olden.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/illustrations/cards/erida-sel.webp",
+   "sha256": "50dfaa74d9482d5a9f71848e4688e9464dfa216d9be9a9f7bdbb31e6ff739359",
+   "originalSha256": "c134db7eb48078377af178d0373d307ca4f28d8f7098399ab9a5cdf0f67e107e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эрида Сель",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "erida-sel"
+    ],
+    "4-players": [
+     "erida-sel"
+    ],
+    "5-players": [
+     "erida-sel"
+    ],
+    "6-players": [
+     "erida-sel"
+    ],
+    "7-players": [
+     "erida-sel"
+    ],
+    "8-players": [
+     "erida-sel"
+    ]
+   },
+   "file": "erida-sel.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/illustrations/cards/bran-nev.webp",
+   "sha256": "d421be6d9dda6a5d0afe89868ac54021a553731e62189a20c7be8f27195b2665",
+   "originalSha256": "c134db7eb48078377af178d0373d307ca4f28d8f7098399ab9a5cdf0f67e107e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Бран Нев",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "bran-nev"
+    ],
+    "4-players": [
+     "bran-nev"
+    ],
+    "5-players": [
+     "bran-nev"
+    ],
+    "6-players": [
+     "bran-nev"
+    ],
+    "7-players": [
+     "bran-nev"
+    ],
+    "8-players": [
+     "bran-nev"
+    ]
+   },
+   "file": "bran-nev.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/illustrations/cards/nell-rut.webp",
+   "sha256": "67a20da5e850d8d8a46934ae1889f29cf7161c3c409644e232e811c010b44af6",
+   "originalSha256": "c134db7eb48078377af178d0373d307ca4f28d8f7098399ab9a5cdf0f67e107e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нель Рут",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nell-rut"
+    ],
+    "4-players": [
+     "nell-rut"
+    ],
+    "5-players": [
+     "nell-rut"
+    ],
+    "6-players": [
+     "nell-rut"
+    ],
+    "7-players": [
+     "nell-rut"
+    ],
+    "8-players": [
+     "nell-rut"
+    ]
+   },
+   "file": "nell-rut.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/illustrations/cards/mati-selt.webp",
+   "sha256": "9fcbdeb51778cc28af392f47b249462e910952127b80b1a4ef41106d45ac6f97",
+   "originalSha256": "c134db7eb48078377af178d0373d307ca4f28d8f7098399ab9a5cdf0f67e107e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мати Селт",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mati-selt"
+    ],
+    "4-players": [
+     "mati-selt"
+    ],
+    "5-players": [
+     "mati-selt"
+    ],
+    "6-players": [
+     "mati-selt"
+    ],
+    "7-players": [
+     "mati-selt"
+    ],
+    "8-players": [
+     "mati-selt"
+    ]
+   },
+   "file": "mati-selt.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/illustrations/cards/faren-kest.webp",
+   "sha256": "dc5f28536d23f2ca22ffa85226be474f6f215c2d2739b01dd678b5884096dc99",
+   "originalSha256": "c134db7eb48078377af178d0373d307ca4f28d8f7098399ab9a5cdf0f67e107e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Фарен Кест",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "faren-kest"
+    ],
+    "4-players": [
+     "faren-kest"
+    ],
+    "5-players": [
+     "faren-kest"
+    ],
+    "6-players": [
+     "faren-kest"
+    ],
+    "7-players": [
+     "faren-kest"
+    ],
+    "8-players": [
+     "faren-kest"
+    ]
+   },
+   "file": "faren-kest.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/assets/table/heroes-ira-voss.webp",
+   "sha256": "81151c7c84683987cda47ea864ec03698181dadef4a3bd5e1bb4fb459de37ecb",
+   "originalSha256": "b570a8ef3076598c5fc4feb7f95bd71a36efd0142ed69126e60cfd6f33ecbfdc",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ира Восс",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ira-voss"
+    ],
+    "4-players": [
+     "ira-voss"
+    ],
+    "5-players": [
+     "ira-voss"
+    ],
+    "6-players": [
+     "ira-voss"
+    ],
+    "7-players": [
+     "ira-voss"
+    ],
+    "8-players": [
+     "ira-voss"
+    ]
+   },
+   "file": "ira-voss--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ira-voss.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/assets/table/heroes-rem-dorn.webp",
+   "sha256": "19a4321ecfa31a68c6ff45df6ab71b32a20c2acababb3442965429b15e4ddd58",
+   "originalSha256": "b570a8ef3076598c5fc4feb7f95bd71a36efd0142ed69126e60cfd6f33ecbfdc",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рем Дорн",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "rem-dorn"
+    ],
+    "4-players": [
+     "rem-dorn"
+    ],
+    "5-players": [
+     "rem-dorn"
+    ],
+    "6-players": [
+     "rem-dorn"
+    ],
+    "7-players": [
+     "rem-dorn"
+    ],
+    "8-players": [
+     "rem-dorn"
+    ]
+   },
+   "file": "rem-dorn--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "rem-dorn.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/assets/table/heroes-ona-tell.webp",
+   "sha256": "6c68afd2ada985633b97d8d40933ae9f2efff3772f78f70722e2a07a6ae1f91e",
+   "originalSha256": "b570a8ef3076598c5fc4feb7f95bd71a36efd0142ed69126e60cfd6f33ecbfdc",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Она Телл",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ona-tell"
+    ],
+    "4-players": [
+     "ona-tell"
+    ],
+    "5-players": [
+     "ona-tell"
+    ],
+    "6-players": [
+     "ona-tell"
+    ],
+    "7-players": [
+     "ona-tell"
+    ],
+    "8-players": [
+     "ona-tell"
+    ]
+   },
+   "file": "ona-tell--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ona-tell.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/assets/table/heroes-sol-isk.webp",
+   "sha256": "312f64327399a8dd65cfb1e835f893a37744481fa0f9ecfd404427e61a953ae3",
+   "originalSha256": "b570a8ef3076598c5fc4feb7f95bd71a36efd0142ed69126e60cfd6f33ecbfdc",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Соль Иск",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "sol-isk"
+    ],
+    "5-players": [
+     "sol-isk"
+    ],
+    "6-players": [
+     "sol-isk"
+    ],
+    "7-players": [
+     "sol-isk"
+    ],
+    "8-players": [
+     "sol-isk"
+    ]
+   },
+   "file": "sol-isk--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "sol-isk.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/assets/table/heroes-avren-nell.webp",
+   "sha256": "fae398226d92cad631c0b57cc5cf9cfc51b053d84aafd7d52b616f1cce22143e",
+   "originalSha256": "b570a8ef3076598c5fc4feb7f95bd71a36efd0142ed69126e60cfd6f33ecbfdc",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Аврен Нелл",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "avren-nell"
+    ],
+    "6-players": [
+     "avren-nell"
+    ],
+    "7-players": [
+     "avren-nell"
+    ],
+    "8-players": [
+     "avren-nell"
+    ]
+   },
+   "file": "avren-nell--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "avren-nell.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/assets/table/heroes-mirta-keld.webp",
+   "sha256": "1f2137e33662a21a08d65e2b82830e9bb0cebc53b63e4698b9281c16213ed243",
+   "originalSha256": "b570a8ef3076598c5fc4feb7f95bd71a36efd0142ed69126e60cfd6f33ecbfdc",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мирта Кельд",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "mirta-keld"
+    ],
+    "7-players": [
+     "mirta-keld"
+    ],
+    "8-players": [
+     "mirta-keld"
+    ]
+   },
+   "file": "mirta-keld--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "mirta-keld.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/assets/table/heroes-teor-brin.webp",
+   "sha256": "650e4a0145c37106163261f8bc6c157e895296407ec0a7d85b4f6f5aa8d47fd9",
+   "originalSha256": "b570a8ef3076598c5fc4feb7f95bd71a36efd0142ed69126e60cfd6f33ecbfdc",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Теор Брин",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "teor-brin"
+    ],
+    "8-players": [
+     "teor-brin"
+    ]
+   },
+   "file": "teor-brin--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "teor-brin.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/assets/table/heroes-lissa-orn.webp",
+   "sha256": "740fd2e6ff83773f80172eba72ed9dfead2c2024e85a7eaa64bf903d336e2b5a",
+   "originalSha256": "b570a8ef3076598c5fc4feb7f95bd71a36efd0142ed69126e60cfd6f33ecbfdc",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лисса Орн",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [],
+    "8-players": [
+     "lissa-orn"
+    ]
+   },
+   "file": "lissa-orn--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "lissa-orn.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/assets/table/places-awning-teahouse.webp",
+   "sha256": "e3850bc3a72b64545f82c1c1e4147a2e3101b06c3b11d480cad60837d5d2e9fb",
+   "originalSha256": "e496f87e381b57561f34c932976411a634e22c6699fe97431ed950a65a67531f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Чайная под навесом",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "awning-teahouse"
+    ],
+    "4-players": [
+     "awning-teahouse"
+    ],
+    "5-players": [
+     "awning-teahouse"
+    ],
+    "6-players": [
+     "awning-teahouse"
+    ],
+    "7-players": [
+     "awning-teahouse"
+    ],
+    "8-players": [
+     "awning-teahouse"
+    ]
+   },
+   "file": "awning-teahouse.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/assets/table/places-cord-court.webp",
+   "sha256": "0cad78dd8897079fcf393a98a0f3f0f72b6c1e5bc788dd2d5bb7048233918773",
+   "originalSha256": "e496f87e381b57561f34c932976411a634e22c6699fe97431ed950a65a67531f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Шнуровый двор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "cord-court"
+    ],
+    "4-players": [
+     "cord-court"
+    ],
+    "5-players": [
+     "cord-court"
+    ],
+    "6-players": [
+     "cord-court"
+    ],
+    "7-players": [
+     "cord-court"
+    ],
+    "8-players": [
+     "cord-court"
+    ]
+   },
+   "file": "cord-court.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/assets/table/places-type-workshop.webp",
+   "sha256": "49366615465173f721384abb829d9d1b1015d09c919cb67fccb2585d52d36a07",
+   "originalSha256": "e496f87e381b57561f34c932976411a634e22c6699fe97431ed950a65a67531f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мастерская литер",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "type-workshop"
+    ],
+    "4-players": [
+     "type-workshop"
+    ],
+    "5-players": [
+     "type-workshop"
+    ],
+    "6-players": [
+     "type-workshop"
+    ],
+    "7-players": [
+     "type-workshop"
+    ],
+    "8-players": [
+     "type-workshop"
+    ]
+   },
+   "file": "type-workshop.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/assets/table/places-checking-room.webp",
+   "sha256": "128b156536023dd21c0571589b505ffe343bb6f46ed31c650ceffbef4b5776f2",
+   "originalSha256": "e496f87e381b57561f34c932976411a634e22c6699fe97431ed950a65a67531f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Комната сверки",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "checking-room"
+    ],
+    "4-players": [
+     "checking-room"
+    ],
+    "5-players": [
+     "checking-room"
+    ],
+    "6-players": [
+     "checking-room"
+    ],
+    "7-players": [
+     "checking-room"
+    ],
+    "8-players": [
+     "checking-room"
+    ]
+   },
+   "file": "checking-room.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/assets/table/places-covered-stairs.webp",
+   "sha256": "a48ada10cd4088b374d256f3d9b4a41f8cb2a3d0c564127544c819be4f0b94b1",
+   "originalSha256": "e496f87e381b57561f34c932976411a634e22c6699fe97431ed950a65a67531f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Крытая лестница",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "covered-stairs"
+    ],
+    "4-players": [
+     "covered-stairs"
+    ],
+    "5-players": [
+     "covered-stairs"
+    ],
+    "6-players": [
+     "covered-stairs"
+    ],
+    "7-players": [
+     "covered-stairs"
+    ],
+    "8-players": [
+     "covered-stairs"
+    ]
+   },
+   "file": "covered-stairs.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/assets/table/places-assembly-house.webp",
+   "sha256": "11c80b7e14b0570712899ca0b4445b32397237573fc09556ef787ef19d71c09f",
+   "originalSha256": "e496f87e381b57561f34c932976411a634e22c6699fe97431ed950a65a67531f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дом собраний",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "assembly-house"
+    ],
+    "4-players": [
+     "assembly-house"
+    ],
+    "5-players": [
+     "assembly-house"
+    ],
+    "6-players": [
+     "assembly-house"
+    ],
+    "7-players": [
+     "assembly-house"
+    ],
+    "8-players": [
+     "assembly-house"
+    ]
+   },
+   "file": "assembly-house.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/assets/table/places-stone-crossing.webp",
+   "sha256": "c3ee5d968a9693a8c2be01e2460975b7503d9af8269cec2dbdcf3873d48837a8",
+   "originalSha256": "e496f87e381b57561f34c932976411a634e22c6699fe97431ed950a65a67531f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Каменный переход",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "stone-crossing"
+    ],
+    "4-players": [
+     "stone-crossing"
+    ],
+    "5-players": [
+     "stone-crossing"
+    ],
+    "6-players": [
+     "stone-crossing"
+    ],
+    "7-players": [
+     "stone-crossing"
+    ],
+    "8-players": [
+     "stone-crossing"
+    ]
+   },
+   "file": "stone-crossing.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/assets/table/places-laundry-poll.webp",
+   "sha256": "3bccefc765cdd8db7d7404f035a570e3b3d5ee518c9eea0a277fe493bbe42891",
+   "originalSha256": "e496f87e381b57561f34c932976411a634e22c6699fe97431ed950a65a67531f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Участок при прачечной",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "laundry-poll"
+    ],
+    "4-players": [
+     "laundry-poll"
+    ],
+    "5-players": [
+     "laundry-poll"
+    ],
+    "6-players": [
+     "laundry-poll"
+    ],
+    "7-players": [
+     "laundry-poll"
+    ],
+    "8-players": [
+     "laundry-poll"
+    ]
+   },
+   "file": "laundry-poll.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/assets/table/foes-foe-7cc7fdca2c.webp",
+   "sha256": "faa76e04f6eca18b6bae5d8e451b53f89854bb7402ac59078e89b14e60326521",
+   "originalSha256": "7220db2eeaa6eda3046a3110ed2b4cd283b84afde2ed31ff74cf5d31d039b411",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Упрямый распорядитель",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "courtyard-obstruction-foe-1",
+     "courtyard-obstruction-foe-2"
+    ],
+    "4-players": [
+     "courtyard-obstruction-foe-1",
+     "courtyard-obstruction-foe-2",
+     "courtyard-obstruction-foe-3"
+    ],
+    "5-players": [
+     "courtyard-obstruction-foe-1",
+     "courtyard-obstruction-foe-2",
+     "courtyard-obstruction-foe-3"
+    ],
+    "6-players": [
+     "courtyard-obstruction-foe-1",
+     "courtyard-obstruction-foe-2",
+     "courtyard-obstruction-foe-3",
+     "courtyard-obstruction-foe-4"
+    ],
+    "7-players": [
+     "courtyard-obstruction-foe-1",
+     "courtyard-obstruction-foe-2",
+     "courtyard-obstruction-foe-3",
+     "courtyard-obstruction-foe-4",
+     "courtyard-obstruction-foe-5"
+    ],
+    "8-players": [
+     "courtyard-obstruction-foe-1",
+     "courtyard-obstruction-foe-2",
+     "courtyard-obstruction-foe-3",
+     "courtyard-obstruction-foe-4",
+     "courtyard-obstruction-foe-5",
+     "courtyard-obstruction-foe-6"
+    ]
+   },
+   "file": "foe-7cc7fdca2c.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/assets/table/foes-foe-7cc7fdca2c.webp",
+   "sha256": "faa76e04f6eca18b6bae5d8e451b53f89854bb7402ac59078e89b14e60326521",
+   "originalSha256": "7220db2eeaa6eda3046a3110ed2b4cd283b84afde2ed31ff74cf5d31d039b411",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Упрямый распорядитель",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "courtyard-obstruction-foe-1",
+     "courtyard-obstruction-foe-2"
+    ],
+    "4-players": [
+     "courtyard-obstruction-foe-1",
+     "courtyard-obstruction-foe-2",
+     "courtyard-obstruction-foe-3"
+    ],
+    "5-players": [
+     "courtyard-obstruction-foe-1",
+     "courtyard-obstruction-foe-2",
+     "courtyard-obstruction-foe-3"
+    ],
+    "6-players": [
+     "courtyard-obstruction-foe-1",
+     "courtyard-obstruction-foe-2",
+     "courtyard-obstruction-foe-3",
+     "courtyard-obstruction-foe-4"
+    ],
+    "7-players": [
+     "courtyard-obstruction-foe-1",
+     "courtyard-obstruction-foe-2",
+     "courtyard-obstruction-foe-3",
+     "courtyard-obstruction-foe-4",
+     "courtyard-obstruction-foe-5"
+    ],
+    "8-players": [
+     "courtyard-obstruction-foe-1",
+     "courtyard-obstruction-foe-2",
+     "courtyard-obstruction-foe-3",
+     "courtyard-obstruction-foe-4",
+     "courtyard-obstruction-foe-5",
+     "courtyard-obstruction-foe-6"
+    ]
+   },
+   "file": "foe-7cc7fdca2c--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-7cc7fdca2c.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/assets/table/foes-foe-b33b6f39f2.webp",
+   "sha256": "b24a161aa0365a189c3c190f179da4c384fbff701838d3f8cdfafefaf995a4ca",
+   "originalSha256": "7220db2eeaa6eda3046a3110ed2b4cd283b84afde2ed31ff74cf5d31d039b411",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сердитый устроитель",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "hall-dispute-foe-1",
+     "hall-dispute-foe-2"
+    ],
+    "4-players": [
+     "hall-dispute-foe-1",
+     "hall-dispute-foe-2",
+     "hall-dispute-foe-3"
+    ],
+    "5-players": [
+     "hall-dispute-foe-1",
+     "hall-dispute-foe-2",
+     "hall-dispute-foe-3"
+    ],
+    "6-players": [
+     "hall-dispute-foe-1",
+     "hall-dispute-foe-2",
+     "hall-dispute-foe-3",
+     "hall-dispute-foe-4"
+    ],
+    "7-players": [
+     "hall-dispute-foe-1",
+     "hall-dispute-foe-2",
+     "hall-dispute-foe-3",
+     "hall-dispute-foe-4",
+     "hall-dispute-foe-5"
+    ],
+    "8-players": [
+     "hall-dispute-foe-1",
+     "hall-dispute-foe-2",
+     "hall-dispute-foe-3",
+     "hall-dispute-foe-4",
+     "hall-dispute-foe-5",
+     "hall-dispute-foe-6"
+    ]
+   },
+   "file": "foe-b33b6f39f2.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/assets/table/foes-foe-b33b6f39f2.webp",
+   "sha256": "b24a161aa0365a189c3c190f179da4c384fbff701838d3f8cdfafefaf995a4ca",
+   "originalSha256": "7220db2eeaa6eda3046a3110ed2b4cd283b84afde2ed31ff74cf5d31d039b411",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сердитый устроитель",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "hall-dispute-foe-1",
+     "hall-dispute-foe-2"
+    ],
+    "4-players": [
+     "hall-dispute-foe-1",
+     "hall-dispute-foe-2",
+     "hall-dispute-foe-3"
+    ],
+    "5-players": [
+     "hall-dispute-foe-1",
+     "hall-dispute-foe-2",
+     "hall-dispute-foe-3"
+    ],
+    "6-players": [
+     "hall-dispute-foe-1",
+     "hall-dispute-foe-2",
+     "hall-dispute-foe-3",
+     "hall-dispute-foe-4"
+    ],
+    "7-players": [
+     "hall-dispute-foe-1",
+     "hall-dispute-foe-2",
+     "hall-dispute-foe-3",
+     "hall-dispute-foe-4",
+     "hall-dispute-foe-5"
+    ],
+    "8-players": [
+     "hall-dispute-foe-1",
+     "hall-dispute-foe-2",
+     "hall-dispute-foe-3",
+     "hall-dispute-foe-4",
+     "hall-dispute-foe-5",
+     "hall-dispute-foe-6"
+    ]
+   },
+   "file": "foe-b33b6f39f2--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-b33b6f39f2.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/assets/table/foes-foe-55cb9d192c.webp",
+   "sha256": "7d4899e40b74036c7ebc71f400622325b4e6275fe739c97f1f1d2b50700a9e9e",
+   "originalSha256": "7220db2eeaa6eda3046a3110ed2b4cd283b84afde2ed31ff74cf5d31d039b411",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Настойчивый спорщик",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "crossing-crowd-foe-1",
+     "crossing-crowd-foe-2"
+    ],
+    "4-players": [
+     "crossing-crowd-foe-1",
+     "crossing-crowd-foe-2",
+     "crossing-crowd-foe-3"
+    ],
+    "5-players": [
+     "crossing-crowd-foe-1",
+     "crossing-crowd-foe-2",
+     "crossing-crowd-foe-3"
+    ],
+    "6-players": [
+     "crossing-crowd-foe-1",
+     "crossing-crowd-foe-2",
+     "crossing-crowd-foe-3",
+     "crossing-crowd-foe-4"
+    ],
+    "7-players": [
+     "crossing-crowd-foe-1",
+     "crossing-crowd-foe-2",
+     "crossing-crowd-foe-3",
+     "crossing-crowd-foe-4",
+     "crossing-crowd-foe-5"
+    ],
+    "8-players": [
+     "crossing-crowd-foe-1",
+     "crossing-crowd-foe-2",
+     "crossing-crowd-foe-3",
+     "crossing-crowd-foe-4",
+     "crossing-crowd-foe-5",
+     "crossing-crowd-foe-6"
+    ]
+   },
+   "file": "foe-55cb9d192c.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/assets/table/foes-foe-55cb9d192c.webp",
+   "sha256": "7d4899e40b74036c7ebc71f400622325b4e6275fe739c97f1f1d2b50700a9e9e",
+   "originalSha256": "7220db2eeaa6eda3046a3110ed2b4cd283b84afde2ed31ff74cf5d31d039b411",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Настойчивый спорщик",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "crossing-crowd-foe-1",
+     "crossing-crowd-foe-2"
+    ],
+    "4-players": [
+     "crossing-crowd-foe-1",
+     "crossing-crowd-foe-2",
+     "crossing-crowd-foe-3"
+    ],
+    "5-players": [
+     "crossing-crowd-foe-1",
+     "crossing-crowd-foe-2",
+     "crossing-crowd-foe-3"
+    ],
+    "6-players": [
+     "crossing-crowd-foe-1",
+     "crossing-crowd-foe-2",
+     "crossing-crowd-foe-3",
+     "crossing-crowd-foe-4"
+    ],
+    "7-players": [
+     "crossing-crowd-foe-1",
+     "crossing-crowd-foe-2",
+     "crossing-crowd-foe-3",
+     "crossing-crowd-foe-4",
+     "crossing-crowd-foe-5"
+    ],
+    "8-players": [
+     "crossing-crowd-foe-1",
+     "crossing-crowd-foe-2",
+     "crossing-crowd-foe-3",
+     "crossing-crowd-foe-4",
+     "crossing-crowd-foe-5",
+     "crossing-crowd-foe-6"
+    ]
+   },
+   "file": "foe-55cb9d192c--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-55cb9d192c.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/assets/table/npcs-lea-moltz.webp",
+   "sha256": "07734e2c528f7eff8a13dec20610c572bddf79f6c0907e481d36f3a98060831b",
+   "originalSha256": "233b21da45c09499a7fe68dcd129a13b6d94d4598d303a8f1583fb18f334a7ad",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лея Мольц",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lea-moltz"
+    ],
+    "4-players": [
+     "lea-moltz"
+    ],
+    "5-players": [
+     "lea-moltz"
+    ],
+    "6-players": [
+     "lea-moltz"
+    ],
+    "7-players": [
+     "lea-moltz"
+    ],
+    "8-players": [
+     "lea-moltz"
+    ]
+   },
+   "file": "lea-moltz--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "lea-moltz.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/assets/table/npcs-saveriy-kram.webp",
+   "sha256": "e5da18b64828ed362bf1d50c06c866d122e53543bfc558877a1b3fb906b292a2",
+   "originalSha256": "233b21da45c09499a7fe68dcd129a13b6d94d4598d303a8f1583fb18f334a7ad",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Саверий Крам",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "saveriy-kram"
+    ],
+    "4-players": [
+     "saveriy-kram"
+    ],
+    "5-players": [
+     "saveriy-kram"
+    ],
+    "6-players": [
+     "saveriy-kram"
+    ],
+    "7-players": [
+     "saveriy-kram"
+    ],
+    "8-players": [
+     "saveriy-kram"
+    ]
+   },
+   "file": "saveriy-kram--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "saveriy-kram.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/assets/table/npcs-tada-vern.webp",
+   "sha256": "db90eb906f2c33de1e5a9ba6c9407eed3a9ddcd7feced45b8d5b49880cabe69c",
+   "originalSha256": "233b21da45c09499a7fe68dcd129a13b6d94d4598d303a8f1583fb18f334a7ad",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тада Верн",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tada-vern"
+    ],
+    "4-players": [
+     "tada-vern"
+    ],
+    "5-players": [
+     "tada-vern"
+    ],
+    "6-players": [
+     "tada-vern"
+    ],
+    "7-players": [
+     "tada-vern"
+    ],
+    "8-players": [
+     "tada-vern"
+    ]
+   },
+   "file": "tada-vern--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "tada-vern.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/assets/table/npcs-dina-ark.webp",
+   "sha256": "5200d11516048d3e6b9320901037475669a6001bac5d86292c0f7dad726a8f6a",
+   "originalSha256": "233b21da45c09499a7fe68dcd129a13b6d94d4598d303a8f1583fb18f334a7ad",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дина Арк",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "dina-ark"
+    ],
+    "4-players": [
+     "dina-ark"
+    ],
+    "5-players": [
+     "dina-ark"
+    ],
+    "6-players": [
+     "dina-ark"
+    ],
+    "7-players": [
+     "dina-ark"
+    ],
+    "8-players": [
+     "dina-ark"
+    ]
+   },
+   "file": "dina-ark--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "dina-ark.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/assets/table/npcs-vents-olden.webp",
+   "sha256": "7c46df0be0226906c92418b0a6fe32886197d705698a283c2653b544d1d4518b",
+   "originalSha256": "233b21da45c09499a7fe68dcd129a13b6d94d4598d303a8f1583fb18f334a7ad",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Венц Ольден",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "vents-olden"
+    ],
+    "4-players": [
+     "vents-olden"
+    ],
+    "5-players": [
+     "vents-olden"
+    ],
+    "6-players": [
+     "vents-olden"
+    ],
+    "7-players": [
+     "vents-olden"
+    ],
+    "8-players": [
+     "vents-olden"
+    ]
+   },
+   "file": "vents-olden--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "vents-olden.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/assets/table/npcs-erida-sel.webp",
+   "sha256": "2fb85be93cd02701a51c1ba9004296cfa407b62e06877e6831a37397ff602334",
+   "originalSha256": "c92a2fe58314c2c8149936228f8db1cba03091fe812121426459a62bb884b7dc",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эрида Сель",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "erida-sel"
+    ],
+    "4-players": [
+     "erida-sel"
+    ],
+    "5-players": [
+     "erida-sel"
+    ],
+    "6-players": [
+     "erida-sel"
+    ],
+    "7-players": [
+     "erida-sel"
+    ],
+    "8-players": [
+     "erida-sel"
+    ]
+   },
+   "file": "erida-sel--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "erida-sel.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/assets/table/npcs-bran-nev.webp",
+   "sha256": "2b01e36244aae04633a8a168a7ded9d27f79936777d80b0a58e0122a16095d98",
+   "originalSha256": "c92a2fe58314c2c8149936228f8db1cba03091fe812121426459a62bb884b7dc",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Бран Нев",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "bran-nev"
+    ],
+    "4-players": [
+     "bran-nev"
+    ],
+    "5-players": [
+     "bran-nev"
+    ],
+    "6-players": [
+     "bran-nev"
+    ],
+    "7-players": [
+     "bran-nev"
+    ],
+    "8-players": [
+     "bran-nev"
+    ]
+   },
+   "file": "bran-nev--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "bran-nev.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/assets/table/npcs-nell-rut.webp",
+   "sha256": "d54cb55865030789b3935d235421ac37b4445c41076178b658e3f804e5df2274",
+   "originalSha256": "c92a2fe58314c2c8149936228f8db1cba03091fe812121426459a62bb884b7dc",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нель Рут",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nell-rut"
+    ],
+    "4-players": [
+     "nell-rut"
+    ],
+    "5-players": [
+     "nell-rut"
+    ],
+    "6-players": [
+     "nell-rut"
+    ],
+    "7-players": [
+     "nell-rut"
+    ],
+    "8-players": [
+     "nell-rut"
+    ]
+   },
+   "file": "nell-rut--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "nell-rut.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/assets/table/npcs-mati-selt.webp",
+   "sha256": "96d75e2ddbec58ea675a2f4d9d955723c207ef136d8482e267fdd3c7f0398672",
+   "originalSha256": "c92a2fe58314c2c8149936228f8db1cba03091fe812121426459a62bb884b7dc",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мати Селт",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mati-selt"
+    ],
+    "4-players": [
+     "mati-selt"
+    ],
+    "5-players": [
+     "mati-selt"
+    ],
+    "6-players": [
+     "mati-selt"
+    ],
+    "7-players": [
+     "mati-selt"
+    ],
+    "8-players": [
+     "mati-selt"
+    ]
+   },
+   "file": "mati-selt--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "mati-selt.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/assets/table/npcs-faren-kest.webp",
+   "sha256": "dd9c8356498c689ae9facabeb282ece2484a87328aba3ef2ab05f17627216294",
+   "originalSha256": "c92a2fe58314c2c8149936228f8db1cba03091fe812121426459a62bb884b7dc",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Фарен Кест",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "faren-kest"
+    ],
+    "4-players": [
+     "faren-kest"
+    ],
+    "5-players": [
+     "faren-kest"
+    ],
+    "6-players": [
+     "faren-kest"
+    ],
+    "7-players": [
+     "faren-kest"
+    ],
+    "8-players": [
+     "faren-kest"
+    ]
+   },
+   "file": "faren-kest--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "faren-kest.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/absent-voters/illustrations/opening.webp",
+   "sha256": "9d84c52d4f303fc45ee4654e20a2b232c32908ac42e66f5b44c13c79016737a3",
+   "originalSha256": "db3e83cdfd4546260547bd4bd423593252650425f032cd4944f54e43b1feb84c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Чайная под навесом — Голоса отсутствующих",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "merrov"
+    ],
+    "4-players": [
+     "merrov"
+    ],
+    "5-players": [
+     "merrov"
+    ],
+    "6-players": [
+     "merrov"
+    ],
+    "7-players": [
+     "merrov"
+    ],
+    "8-players": [
+     "merrov"
+    ]
+   },
+   "file": "cover.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "file": "covered-stairs--map.webp",
+   "source": "campaigns/noir-2026/absent-voters/assets/battle-maps/covered-stairs.webp",
+   "sha256": "1e02c2e67a5c1c87fb7b317a9fa955672324baf8c5399abedf533ad63862fb4c",
+   "originalSha256": "1f8a771fdc6a428cdd752e82b6a901b34a30df643b6212ca591548aedc7de864",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Крытая лестница. Visible scenery: Широкая лестница между двором и верхней улицей; на площадке удобно встретиться, не заходя в жильё.. World style: Мерров · Mottled civil-registry paper, embossed blank ballot squares and indigo ledger rules. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "covered-stairs.webp",
+   "subjects": {
+    "3-players": [
+     "covered-stairs"
+    ],
+    "4-players": [
+     "covered-stairs"
+    ],
+    "5-players": [
+     "covered-stairs"
+    ],
+    "6-players": [
+     "covered-stairs"
+    ],
+    "7-players": [
+     "covered-stairs"
+    ],
+    "8-players": [
+     "covered-stairs"
+    ]
+   }
+  },
+  {
+   "file": "assembly-house--map.webp",
+   "source": "campaigns/noir-2026/absent-voters/assets/battle-maps/assembly-house.webp",
+   "sha256": "9885943539b65f6d057fd3916898d6b8b65b0b3f55a6a78ea5854259f01b10c1",
+   "originalSha256": "cccef2d87caba0e959a24faddd05af98b410c4ab5a4cc26040b13b3e7f1e1214",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Дом собраний. Visible scenery: Стулья расставляют для открытых бесед, а малую комнату можно попросить для закрытого разговора.. World style: Мерров · Mottled civil-registry paper, embossed blank ballot squares and indigo ledger rules. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "assembly-house.webp",
+   "subjects": {
+    "3-players": [
+     "assembly-house"
+    ],
+    "4-players": [
+     "assembly-house"
+    ],
+    "5-players": [
+     "assembly-house"
+    ],
+    "6-players": [
+     "assembly-house"
+    ],
+    "7-players": [
+     "assembly-house"
+    ],
+    "8-players": [
+     "assembly-house"
+    ]
+   }
+  },
+  {
+   "file": "stone-crossing--map.webp",
+   "source": "campaigns/noir-2026/absent-voters/assets/battle-maps/stone-crossing.webp",
+   "sha256": "142bd72b891d2cb470d6a480ff279af6af950e28c95560a75951aea5f63b8911",
+   "originalSha256": "41c7e1a5aebc743c3318ecdf6e5bc16a4419164e0b1048e399cecae8fe6942a4",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Каменный переход. Visible scenery: Крытый переход через мелкий городской канал; скамьи и опоры оставляют несколько спокойных путей обхода.. World style: Мерров · Mottled civil-registry paper, embossed blank ballot squares and indigo ledger rules. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "stone-crossing.webp",
+   "subjects": {
+    "3-players": [
+     "stone-crossing"
+    ],
+    "4-players": [
+     "stone-crossing"
+    ],
+    "5-players": [
+     "stone-crossing"
+    ],
+    "6-players": [
+     "stone-crossing"
+    ],
+    "7-players": [
+     "stone-crossing"
+    ],
+    "8-players": [
+     "stone-crossing"
+    ]
+   }
+  },
+  {
+   "file": "world-map.webp",
+   "source": "campaigns/noir-2026/absent-voters/assets/world-map/world-map.webp",
+   "sha256": "fa52c66d04a09f70fda2d4c0e4e541b1dfbffaf3bcf38d25731a15f733bc971a",
+   "originalSha256": "ccdd50ecc10cade25f20e17b5ef9d9ea0172335b2516289a4426cac1da3a6a31",
+   "generated": "2026-11-22",
+   "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Мерров. Style Мерров · Mottled civil-registry paper, embossed blank ballot squares and indigo ledger rules. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Чайная под навесом; 0.367,0.177 Шнуровый двор; 0.623,0.15 Мастерская литер; 0.88,0.177 Комната сверки; 0.905,0.857 Крытая лестница; 0.648,0.83 Дом собраний; 0.392,0.857 Каменный переход; 0.135,0.83 Участок при прачечной. Show public exteriors / unlabeled contours only.",
+   "references": [],
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null,
+   "subjects": {
+    "3-players": [
+     "world-map"
+    ],
+    "4-players": [
+     "world-map"
+    ],
+    "5-players": [
+     "world-map"
+    ],
+    "6-players": [
+     "world-map"
+    ],
+    "7-players": [
+     "world-map"
+    ],
+    "8-players": [
+     "world-map"
+    ]
+   }
+  }
+ ]
+}

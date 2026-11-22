@@ -1,0 +1,64 @@
+{
+  "region": "lestavel",
+  "name": "Карта · Леставель во время Оловянного шторма",
+  "description": "План местности «Леставель во время Оловянного шторма». На карте отмечаются места, известные группе.",
+  "pins": [
+    {
+      "place": "zero-studio",
+      "x": 0.11,
+      "y": 0.15
+    },
+    {
+      "place": "blue-dock",
+      "x": 0.367,
+      "y": 0.177
+    },
+    {
+      "place": "weigh-gallery",
+      "x": 0.623,
+      "y": 0.15
+    },
+    {
+      "place": "sail-store",
+      "x": 0.88,
+      "y": 0.177
+    },
+    {
+      "place": "second-studio",
+      "x": 0.905,
+      "y": 0.517
+    },
+    {
+      "place": "terracotta-cinema",
+      "x": 0.648,
+      "y": 0.49
+    },
+    {
+      "place": "tram-hall",
+      "x": 0.392,
+      "y": 0.517
+    },
+    {
+      "place": "glass-arcade",
+      "x": 0.135,
+      "y": 0.49
+    },
+    {
+      "place": "copper-terrace",
+      "x": 0.11,
+      "y": 0.83
+    },
+    {
+      "place": "outer-post",
+      "x": 0.367,
+      "y": 0.857
+    },
+    {
+      "place": "salt-court",
+      "x": 0.623,
+      "y": 0.83
+    }
+  ],
+  "routes": [],
+  "scale": "schematic"
+}

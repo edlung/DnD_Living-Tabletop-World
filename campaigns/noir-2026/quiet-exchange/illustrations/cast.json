@@ -1,0 +1,359 @@
+{
+  "about": "Портреты для карточек и изображение закрытого набора. Сначала сверяйте личность и доступность персонажа за столом.",
+  "generated": "2026-11-22",
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "heroes",
+      "originalFile": "exec-35ad55fb-b75d-4afd-99b6-929a4f29c60e.png",
+      "originalSha256": "f39ed476547fdbaad2e00e066d5f562193cd449c364e6fb3eb8cab82b86db6cc",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 3 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:3. Period noir editorial illustration, restrained charcoal, diffuse lamp and amber light. World: Равель, Оловянный склон. Characters, in strict cell order:\n1. Анна Руднева — Тёмный плащ, мягкий карандаш, маленький блокнот без фамилий на обложке. Age 39.\n2. Илья Мелов — Короткий жилет, чернильное пятно на манжете, складная доска для заметок. Age 33.\n3. Кира Осокина — Рабочее пальто, аккуратно зашитая перчатка, крепкая трость. Age 42.\n4. Лев Нарец — Потёртый счётный футляр, чистые рукава, смешная слишком большая шляпа. Age 28.\n5. Тамара Зорн — Серебряная заколка, шерстяной жакет, спокойные руки. Age 54.\n6. Семён Ворот — Карандаши разной длины, широкие брюки, пятно охры на ботинке. Age 31.\n7. Нина Кольт — Плотное пальто, бумажный список заказов, ключи на короткой ленте. Age 47.\n8. Виктор Леск — Два блокнота с разными застёжками, круглые очки, шарф цвета мокрой меди. Age 36.\n9. Дорожный / рабочий набор — Still life of one opaque closed everyday satchel, appropriate to this world and era. No person and nothing spilling out.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 3,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "npcs",
+      "originalFile": "exec-feced9d2-20ec-48b1-a36f-0bc89747a59b.png",
+      "originalSha256": "472be7bc54e01e7388f23b4e4916a789271bee41fefbedfd64c2491972fcfdd7",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 3 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:3. Period noir editorial illustration, restrained charcoal, diffuse lamp and amber light. World: Равель, Оловянный склон. Characters, in strict cell order:\n1. Таисия Коршун — Светлая блуза, небольшие часы, папка с закруглёнными уголками. Age 46.\n2. Вера Ланская — Чернильные пальцы, вытертая на локтях куртка, бережно сложенная бумага. Age 38.\n3. Лидия Радова — Фартук поверх городского платья, сумка с образцами ткани, коротко подстриженные волосы. Age 34.\n4. Роман Бережный — Старый форменный плащ, аккуратные числовые заметки, термос без крышки. Age 51.\n5. Марта Осеева — Тёмное платье, связка служебных ярлыков, усталые внимательные глаза. Age 57.\n6. Павел Ремиз — Прорезиненный плащ, сумка с плоским дном, красная лента для запечатанных ячеек. Age 42.\n7. Даниил Устин — Нарукавники, маленькая линейка, постоянно сдвигающийся воротник. Age 29.\n8. Ева Нестер — Чистый передник, тёплая кофта, ключ от ширмы на шнурке. Age 44.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 3,
+      "width": 1254,
+      "height": 1254
+    }
+  ],
+  "cards": [
+    {
+      "id": "anna-rudneva",
+      "file": "cards/anna-rudneva.webp",
+      "title": "Анна Руднева",
+      "subjects": [
+        "anna-rudneva"
+      ],
+      "sheet": "heroes",
+      "cell": 1,
+      "crop": {
+        "left": 10,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "e6d35b2cdbf3996a62ee8747145e79c8b971e50c12b387a07e44cb22e8369ab3"
+    },
+    {
+      "id": "ilya-melov",
+      "file": "cards/ilya-melov.webp",
+      "title": "Илья Мелов",
+      "subjects": [
+        "ilya-melov"
+      ],
+      "sheet": "heroes",
+      "cell": 2,
+      "crop": {
+        "left": 428,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "b3a4fd6285ee95154790e674a7f62158cabb68455ecf63366bffb975bb1c624d"
+    },
+    {
+      "id": "kira-osokina",
+      "file": "cards/kira-osokina.webp",
+      "title": "Кира Осокина",
+      "subjects": [
+        "kira-osokina"
+      ],
+      "sheet": "heroes",
+      "cell": 3,
+      "crop": {
+        "left": 846,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "07eb550983b5904cf8be1ee8aa024a863f9a209f68723daec7001b9265134a2e"
+    },
+    {
+      "id": "lev-narets",
+      "file": "cards/lev-narets.webp",
+      "title": "Лев Нарец",
+      "subjects": [
+        "lev-narets"
+      ],
+      "sheet": "heroes",
+      "cell": 4,
+      "crop": {
+        "left": 10,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "543bc39d1b7f8c67ff189a26a0c66189f2605a48bd321e621121184012788814"
+    },
+    {
+      "id": "tamara-zorn",
+      "file": "cards/tamara-zorn.webp",
+      "title": "Тамара Зорн",
+      "subjects": [
+        "tamara-zorn"
+      ],
+      "sheet": "heroes",
+      "cell": 5,
+      "crop": {
+        "left": 428,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "1c2d7c0c53f430b2e2ccc0569a67c98937fd79ce7eb94fb28de0368a241a500f"
+    },
+    {
+      "id": "semen-vorot",
+      "file": "cards/semen-vorot.webp",
+      "title": "Семён Ворот",
+      "subjects": [
+        "semen-vorot"
+      ],
+      "sheet": "heroes",
+      "cell": 6,
+      "crop": {
+        "left": 846,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "2b1dd2d49a07e4459c61bfcc564393496213433978772b271d86480042a13c03"
+    },
+    {
+      "id": "nina-kolt",
+      "file": "cards/nina-kolt.webp",
+      "title": "Нина Кольт",
+      "subjects": [
+        "nina-kolt"
+      ],
+      "sheet": "heroes",
+      "cell": 7,
+      "crop": {
+        "left": 10,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "7abe99def3660b3fa5cd831f3c20132406ce5b6ee8b841f87ec1b27e9c518a8f"
+    },
+    {
+      "id": "viktor-lesk",
+      "file": "cards/viktor-lesk.webp",
+      "title": "Виктор Леск",
+      "subjects": [
+        "viktor-lesk"
+      ],
+      "sheet": "heroes",
+      "cell": 8,
+      "crop": {
+        "left": 428,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "85d061babf8459aa03e4ef7b8a79284689491dc8cbb295ab553c7b260058e76d"
+    },
+    {
+      "id": "travel-kit",
+      "file": "cards/travel-kit.webp",
+      "title": "Рабочий набор",
+      "subjects": [
+        "anna-rudneva-travel-kit",
+        "ilya-melov-travel-kit",
+        "kira-osokina-travel-kit",
+        "lev-narets-travel-kit",
+        "nina-kolt-travel-kit",
+        "semen-vorot-travel-kit",
+        "tamara-zorn-travel-kit",
+        "viktor-lesk-travel-kit"
+      ],
+      "sheet": "heroes",
+      "cell": 9,
+      "crop": {
+        "left": 846,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "a568c08c67eefb7c347956202f8c004c2958fb800784fd9f7ba8ab72738548f8"
+    },
+    {
+      "id": "taisiya-korshun",
+      "file": "cards/taisiya-korshun.webp",
+      "title": "Таисия Коршун",
+      "subjects": [
+        "taisiya-korshun"
+      ],
+      "sheet": "npcs",
+      "cell": 1,
+      "crop": {
+        "left": 10,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "17d13317bdff9b72e139fe11deeb0fd16baa23e470b0d1440ad0803991acc640"
+    },
+    {
+      "id": "vera-lanskaya",
+      "file": "cards/vera-lanskaya.webp",
+      "title": "Вера Ланская",
+      "subjects": [
+        "vera-lanskaya"
+      ],
+      "sheet": "npcs",
+      "cell": 2,
+      "crop": {
+        "left": 428,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "94c7a113421531d53e603a2dcf47df61fdbcc29af3b8f33500171d98c3e3c233"
+    },
+    {
+      "id": "lidia-radova",
+      "file": "cards/lidia-radova.webp",
+      "title": "Лидия Радова",
+      "subjects": [
+        "lidia-radova"
+      ],
+      "sheet": "npcs",
+      "cell": 3,
+      "crop": {
+        "left": 846,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "189654da31f9243dc4432d64f4852754a1167122e73fe37da309154da9eee987"
+    },
+    {
+      "id": "roman-berezhny",
+      "file": "cards/roman-berezhny.webp",
+      "title": "Роман Бережный",
+      "subjects": [
+        "roman-berezhny"
+      ],
+      "sheet": "npcs",
+      "cell": 4,
+      "crop": {
+        "left": 10,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "d44987557349e91cd944c9e4a9be0136688f4ed7bea56857d77d912cafb00b51"
+    },
+    {
+      "id": "marta-oseeva",
+      "file": "cards/marta-oseeva.webp",
+      "title": "Марта Осеева",
+      "subjects": [
+        "marta-oseeva"
+      ],
+      "sheet": "npcs",
+      "cell": 5,
+      "crop": {
+        "left": 428,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "7758d68a27a93b57c7eaafb7f6f99b425d9f4790d1535aa218ab4f526f77a68d"
+    },
+    {
+      "id": "pavel-remiz",
+      "file": "cards/pavel-remiz.webp",
+      "title": "Павел Ремиз",
+      "subjects": [
+        "pavel-remiz"
+      ],
+      "sheet": "npcs",
+      "cell": 6,
+      "crop": {
+        "left": 846,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "83a7737494e8b05a43bca5ea3c45dac8a6aeed8109f8acdeedc822ff844dde67"
+    },
+    {
+      "id": "daniil-ustin",
+      "file": "cards/daniil-ustin.webp",
+      "title": "Даниил Устин",
+      "subjects": [
+        "daniil-ustin"
+      ],
+      "sheet": "npcs",
+      "cell": 7,
+      "crop": {
+        "left": 10,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "5e74c089236cd8f4b016c6c37d9d9233501e0b7ff9f4461b0e057b041bfc4057"
+    },
+    {
+      "id": "eva-nester",
+      "file": "cards/eva-nester.webp",
+      "title": "Ева Нестер",
+      "subjects": [
+        "eva-nester"
+      ],
+      "sheet": "npcs",
+      "cell": 8,
+      "crop": {
+        "left": 428,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "a85220b3e04fec7cdd3c78b4ef8e07738bd6cd519bd195a06ed7eb758487e247"
+    }
+  ]
+}

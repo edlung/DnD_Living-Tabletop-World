@@ -1,0 +1,49 @@
+{
+  "maps": [
+    {
+      "file": "cart-yard.webp",
+      "sha256": "aee2540f1d01bd014a22628890705b46c304d4e2a001da1077ec4676be041692",
+      "originalSha256": "3607a3584dd06c3cae1d625f6fde5045742d0a7595dd2229ae75fef2af2e321f",
+      "originalFile": "exec-b6c8d516-2006-4b7e-9dac-1d8a375c5ccc.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Тележный двор. Visible scenery: Ручные тележки стоят под брезентом; сухая будка обращена окном к широкой площадке для разворота.. World style: Речной Клин · Canvas pay envelopes with blind-stamped coin rims and warm copper thread. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "cart-yard",
+      "encounter": "yard-pressure",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "type-printshop.webp",
+      "sha256": "a1c0f2a554592b0bfa81618c1b34801d565c05c3c0ebb30176b1ae9c7d3ba9db",
+      "originalSha256": "548fbfcaf3778ecdfacdb5102d320b5e13460315b4d8d09512b465923e665f85",
+      "originalFile": "exec-1dfc66bb-62b2-4623-b351-4a1e2f9a2728.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Печатня «Шрифт». Visible scenery: Небольшая печатня с наборными кассами, сушильными верёвками и столом для чтения пробных оттисков.. World style: Речной Клин · Canvas pay envelopes with blind-stamped coin rims and warm copper thread. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "type-printshop",
+      "encounter": "press-doorway",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "dry-store.webp",
+      "sha256": "96516d0ae47c487b260ad75ffb95fafdf14d3e0b2415bb5f092ff8619e465fe6",
+      "originalSha256": "20338e6ff4c7596264cb972039d97f36a2b2d0f8686ff53b235548bc4ce8fc2f",
+      "originalFile": "exec-f97757b3-4a7b-4837-a0fb-aa22a224f54e.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Сухой склад у мола. Visible scenery: Склад сдаёт отдельные ограждённые секции. Проход между ними ведёт прямо к широким воротам и открытому молу.. World style: Речной Клин · Canvas pay envelopes with blind-stamped coin rims and warm copper thread. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "dry-store",
+      "encounter": "store-exit",
+      "grid": [
+        14,
+        12
+      ]
+    }
+  ]
+}

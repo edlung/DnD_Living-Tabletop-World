@@ -1,5 +1,6 @@
+import { tableGuide } from '../campaign-shared/table-guide.ts';
 import { cast, chapters, world } from './data.ts';
-import { esc, img, link, list, p, page, save } from './render-common.ts';
+import { packRoot, esc, img, link, list, p, page, save } from './render-common.ts';
 
 const section = (title: string, body: string) =>
   `<section class="section"><h2>${esc(title)}</h2>${body}</section>`;
@@ -57,6 +58,7 @@ export async function renderGuide() {
         'Какую настоящую строку услышит зал из открытого рожка и чей голос прозвучит в последний вечер?',
       ])}${p('Квесты приложения отмечают осмотры, посещения и предъявление сведений. Они не объявляют возврат совершённым, спор решённым или человека прощённым. Такие изменения оформляйте после действительного решения за столом.')}</div>`,
     )}
+    ${tableGuide(packRoot)}
     ${section('Двенадцать вечеров', `<div class="grid">${chapterCards}</div>`)}
     ${section('Знакомые Перламутра', `<div class="stack">${npcCards}</div>`)}
     ${section('Жизнь между главами', `<div class="reading stack">${list(world.recurring)}</div>`)}

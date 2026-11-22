@@ -1,0 +1,397 @@
+{
+  "about": "Портреты для карточек и изображение закрытого набора. Сначала сверяйте личность и доступность персонажа за столом.",
+  "generated": "2026-11-22",
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "heroes",
+      "originalFile": "exec-1e9c8c70-c787-4f17-b170-a76ce9223833.png",
+      "originalSha256": "1c9885c58fc23b925c7dd3b28227eaecec5fef8c8be4e20abb8fd1d504c11ba1",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 3 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:3. Period noir editorial illustration, restrained charcoal, diffuse lamp and amber light. World: Вязовск. Characters, in strict cell order:\n1. Мира Калинина — Короткое пальто, аккуратная тетрадь и привычка сначала освобождать собеседнику стул. Age 36.\n2. Павел Устинов — Широкие ладони, тёмная жилетка и тщательно сложенная чистая ткань для хрупких вещей. Age 42.\n3. Софья Нечаева — Серый шарф, цветные бумажные полоски в блокноте, внимательный взгляд на края вещей. Age 31.\n4. Антон Белозёрский — Строгое пальто, потёртый термос и спокойная манера спрашивать разрешение. Age 49.\n5. Елена Гурина — Запачканная типографской краской манжета и ровный, почти печатный почерк. Age 28.\n6. Григорий Шумов — Сухой плащ, мягкая шапка и карман, полный чистых бечёвок для обычных свёртков. Age 56.\n7. Яна Бельская — Тёмная коса, складная папка и деревянная линейка с выцветшими цифрами. Age 24.\n8. Рустам Каримов — Песочная куртка и часы, которые вы переворачиваете циферблатом вниз во время тяжёлого разговора. Age 45.\n9. Дорожный / рабочий набор — Still life of one opaque closed everyday satchel, appropriate to this world and era. No person and nothing spilling out.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 3,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "npcs",
+      "originalFile": "exec-6f2a41e8-2c66-4d66-a374-6c8f317bf045.png",
+      "originalSha256": "142d76145f58c9bc18d7317d5ccbc05d3085fa1bb62b32d1804ab6772ac99798",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 4 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:4. Period noir editorial illustration, restrained charcoal, diffuse lamp and amber light. World: Вязовск. Characters, in strict cell order:\n1. Раиса Антипова — Женщина в светлой рабочей блузе, с тихим голосом и привычкой убирать мокрые вещи с чужого стула. Age 58.\n2. Аркадий Сухов — Безупречный серый костюм, мягкие руки и голос, которым удобно объяснять, почему выбранный цвет вам подходит. Age 52.\n3. Тамара Ситник — Короткие волосы, длинный рабочий фартук и осторожная привычка ставить чашки подальше от бумаги. Age 31.\n4. Нина Рябцева — Высокая женщина в простом синем свитере, которая разворачивает стул к свету, прежде чем предложить сесть. Age 44.\n5. Эдуард Бирк — Тёмный домашний пиджак, гладкие манжеты и почти комическая забота о правильном положении торшера. Age 46.\n6. Лидия Крупина — Тёмное платье, янтарная брошь и измерительная лента, аккуратно убранная перед посетителями. Age 47.\n7. Борис Орлов — Маленькие круглые очки, серый халат и неожиданно бережный голос для обычного картона. Age 62.\n8. Клавдия Зуева — Плащ поверх форменной жилетки, карандаш на нитке и ровные стопки карточек на стойке. Age 38.\n9. Семён Жданов — Добротное пальто, усталые глаза и маленькая записная книжка с размерами свободной стены. Age 55.\n10. Ольга Малкова — Чистая белая блуза, мягкие туфли и папка с разделителями разных цветов. Age 29.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 4,
+      "width": 1086,
+      "height": 1448
+    }
+  ],
+  "cards": [
+    {
+      "id": "mira-kalinina",
+      "file": "cards/mira-kalinina.webp",
+      "title": "Мира Калинина",
+      "subjects": [
+        "mira-kalinina"
+      ],
+      "sheet": "heroes",
+      "cell": 1,
+      "crop": {
+        "left": 10,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "af1a6275d5f36e9a44362bfb3b26682e2574d5733651dcbb7078d290a6d7be01"
+    },
+    {
+      "id": "pavel-ustinov",
+      "file": "cards/pavel-ustinov.webp",
+      "title": "Павел Устинов",
+      "subjects": [
+        "pavel-ustinov"
+      ],
+      "sheet": "heroes",
+      "cell": 2,
+      "crop": {
+        "left": 428,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "bffdfdb4bcd976cb991252a96449155068d90202b0abf0a350699bb885153ce7"
+    },
+    {
+      "id": "sofia-nechaeva",
+      "file": "cards/sofia-nechaeva.webp",
+      "title": "Софья Нечаева",
+      "subjects": [
+        "sofia-nechaeva"
+      ],
+      "sheet": "heroes",
+      "cell": 3,
+      "crop": {
+        "left": 846,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "2c6e25317f8ee7924f16c6717cae6acf0ee66655fdfe88f71fbc0bef27b24731"
+    },
+    {
+      "id": "anton-belozersky",
+      "file": "cards/anton-belozersky.webp",
+      "title": "Антон Белозёрский",
+      "subjects": [
+        "anton-belozersky"
+      ],
+      "sheet": "heroes",
+      "cell": 4,
+      "crop": {
+        "left": 10,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "0fce0d8520599c2d7f12355637a74deefe47f9e9886e0fc3174c7395fdd337bb"
+    },
+    {
+      "id": "elena-gurina",
+      "file": "cards/elena-gurina.webp",
+      "title": "Елена Гурина",
+      "subjects": [
+        "elena-gurina"
+      ],
+      "sheet": "heroes",
+      "cell": 5,
+      "crop": {
+        "left": 428,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "9a378734bb19bdb1d095f1785f2371c904957362e27ede651519cd098f837d88"
+    },
+    {
+      "id": "grigory-shumov",
+      "file": "cards/grigory-shumov.webp",
+      "title": "Григорий Шумов",
+      "subjects": [
+        "grigory-shumov"
+      ],
+      "sheet": "heroes",
+      "cell": 6,
+      "crop": {
+        "left": 846,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "84284f8e968b6f95464c0294ad526c2a12fcb2dcb3b35ef693fb2b7f855f8a97"
+    },
+    {
+      "id": "yana-belskaya",
+      "file": "cards/yana-belskaya.webp",
+      "title": "Яна Бельская",
+      "subjects": [
+        "yana-belskaya"
+      ],
+      "sheet": "heroes",
+      "cell": 7,
+      "crop": {
+        "left": 10,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "9c5edcc5312ae472a36ab71321799d28cba9b00948347883ecf32ba96e6c684f"
+    },
+    {
+      "id": "rustam-karimov",
+      "file": "cards/rustam-karimov.webp",
+      "title": "Рустам Каримов",
+      "subjects": [
+        "rustam-karimov"
+      ],
+      "sheet": "heroes",
+      "cell": 8,
+      "crop": {
+        "left": 428,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "87faae38a1a1028baa0ec7bd3c9caecad1421ae3158e7e5549f2280e39794ba3"
+    },
+    {
+      "id": "travel-kit",
+      "file": "cards/travel-kit.webp",
+      "title": "Рабочий набор",
+      "subjects": [
+        "anton-belozersky-travel-kit",
+        "elena-gurina-travel-kit",
+        "grigory-shumov-travel-kit",
+        "mira-kalinina-travel-kit",
+        "pavel-ustinov-travel-kit",
+        "rustam-karimov-travel-kit",
+        "sofia-nechaeva-travel-kit",
+        "yana-belskaya-travel-kit"
+      ],
+      "sheet": "heroes",
+      "cell": 9,
+      "crop": {
+        "left": 846,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "1cfc69e3b40a0203dc4f581f50fb79aa3c9563c6ae5ffd4c3e7172998214c7de"
+    },
+    {
+      "id": "raisa-antipova",
+      "file": "cards/raisa-antipova.webp",
+      "title": "Раиса Антипова",
+      "subjects": [
+        "raisa-antipova"
+      ],
+      "sheet": "npcs",
+      "cell": 1,
+      "crop": {
+        "left": 9,
+        "top": 9,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "1d3750383228da7731ec659df3c0c0e81ad142d47ba97dfdf04a01f695aed2e6"
+    },
+    {
+      "id": "arkady-sukhov",
+      "file": "cards/arkady-sukhov.webp",
+      "title": "Аркадий Сухов",
+      "subjects": [
+        "arkady-sukhov"
+      ],
+      "sheet": "npcs",
+      "cell": 2,
+      "crop": {
+        "left": 371,
+        "top": 9,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "9e73e3cd940dbe7540546ff9caa4ea434482a478265a3fd7202302da1e0e9101"
+    },
+    {
+      "id": "tamara-sitnik",
+      "file": "cards/tamara-sitnik.webp",
+      "title": "Тамара Ситник",
+      "subjects": [
+        "tamara-sitnik"
+      ],
+      "sheet": "npcs",
+      "cell": 3,
+      "crop": {
+        "left": 733,
+        "top": 9,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "2ba267d6eb0d81fae1515e00b2b676cbd51028029958f883649bb5795fd1a1c4"
+    },
+    {
+      "id": "nina-ryabtseva",
+      "file": "cards/nina-ryabtseva.webp",
+      "title": "Нина Рябцева",
+      "subjects": [
+        "nina-ryabtseva"
+      ],
+      "sheet": "npcs",
+      "cell": 4,
+      "crop": {
+        "left": 9,
+        "top": 371,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "ab2084fb7b89b4bcb07bbd508b6dc06396a57d81c2dbc50aaa410c3018ceb735"
+    },
+    {
+      "id": "eduard-birk",
+      "file": "cards/eduard-birk.webp",
+      "title": "Эдуард Бирк",
+      "subjects": [
+        "eduard-birk"
+      ],
+      "sheet": "npcs",
+      "cell": 5,
+      "crop": {
+        "left": 371,
+        "top": 371,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "64511a300fb01a5aad689063cd2c1de188fb5d712acca881f5fa191f3c6ba186"
+    },
+    {
+      "id": "lidia-krupina",
+      "file": "cards/lidia-krupina.webp",
+      "title": "Лидия Крупина",
+      "subjects": [
+        "lidia-krupina"
+      ],
+      "sheet": "npcs",
+      "cell": 6,
+      "crop": {
+        "left": 733,
+        "top": 371,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "4c01486a8624cd955d0d80e879eaeb527ec93d6875fa66ab9312a8adcade6ad4"
+    },
+    {
+      "id": "boris-orlov",
+      "file": "cards/boris-orlov.webp",
+      "title": "Борис Орлов",
+      "subjects": [
+        "boris-orlov"
+      ],
+      "sheet": "npcs",
+      "cell": 7,
+      "crop": {
+        "left": 9,
+        "top": 733,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "58fdfbdce48d67e6780ace06a4dfcc220e73e0984a4a7a0fee36a9bf049fdf33"
+    },
+    {
+      "id": "klavdia-zueva",
+      "file": "cards/klavdia-zueva.webp",
+      "title": "Клавдия Зуева",
+      "subjects": [
+        "klavdia-zueva"
+      ],
+      "sheet": "npcs",
+      "cell": 8,
+      "crop": {
+        "left": 371,
+        "top": 733,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "cf078407d4f71f679bd46cade5db5b3eeac67b00a898eba6e48e434fa1516a72"
+    },
+    {
+      "id": "semyon-zhdanov",
+      "file": "cards/semyon-zhdanov.webp",
+      "title": "Семён Жданов",
+      "subjects": [
+        "semyon-zhdanov"
+      ],
+      "sheet": "npcs",
+      "cell": 9,
+      "crop": {
+        "left": 733,
+        "top": 733,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "462c6f881ae8df8a481e54c6c8b7559ac83753494d4b4a5600aa0ab027c98ed1"
+    },
+    {
+      "id": "olga-malkova",
+      "file": "cards/olga-malkova.webp",
+      "title": "Ольга Малкова",
+      "subjects": [
+        "olga-malkova"
+      ],
+      "sheet": "npcs",
+      "cell": 10,
+      "crop": {
+        "left": 9,
+        "top": 1095,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "2f73c6fb0eea295329307a728df04ce824c25a5b1e9f687e2e950fa1a90f1dd6"
+    }
+  ]
+}

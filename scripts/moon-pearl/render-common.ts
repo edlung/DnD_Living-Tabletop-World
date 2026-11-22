@@ -1,3 +1,4 @@
+import { withBookTableLinks } from '../campaign-shared/book-table-links.ts';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { dirname } from 'node:path';
 import prompts from '../../campaigns/moon-pearl/assets/prompts.json' with { type: 'json' };
@@ -39,5 +40,5 @@ export function page(
 export async function save(relative: string, content: string) {
   const target = new URL(relative, packRoot);
   await mkdir(dirname(target.pathname), { recursive: true });
-  await writeFile(target, content);
+  await writeFile(target, withBookTableLinks(packRoot, relative, content));
 }

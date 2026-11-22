@@ -1,0 +1,386 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "mountain-wedding-heroes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-74b609cc-c876-45d9-90d1-3e74cb2c2261.png",
+      "originalSha256": "0dbc7dc99cb42c2cf99493316e72aba266db3b49f7f8c780e72e9c7989132c41",
+      "columns": 4,
+      "rows": 2,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 4 equal columns by 2 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Медный Венец · Twin mountain chevrons joined by woven saffron and madder ceremonial ribbons. Cell 1. Огняна Широкий Шаг. Короткий красный плащ, простой щит и сапоги с разными шнурками.\nCell 2. Яр Листомер. Зелёная куртка с большими карманами, угольный карандаш и складная дощечка на ремешке.\nCell 3. Сева Ясная Ладонь. Серый дорожный жилет, небольшой медный знак открытой ладони и множество цветных ниток на запястьях.\nCell 4. Лина Кварцевый Мел. Синяя шапка, мел в тканевом мешочке и очки с круглой оправой.\nCell 5. Борин Тихий Утёс. Нешумная кожаная одежда и потёртая рукавица с вышитой чайкой.\nCell 6. Тесса Ласточкин Поворот. Жёлтый шарф, мягкие сапоги и две деревянные прищепки на рукаве.\nCell 7. Одар Тёплый Камень. Длинная белая коса, красная дорожная сумка и аккуратная деревянная кружка.\nCell 8. Нива Седьмая Линия. Пятнистый плащ и связка гладких камешков для обозначения фигур на схеме.. Leave final unused cells empty.",
+      "references": [
+        "campaigns/fantasy-2026/mountain-wedding/assets/runtime/mira.webp",
+        "campaigns/fantasy-2026/mountain-wedding/assets/runtime/yar.webp",
+        "campaigns/fantasy-2026/mountain-wedding/assets/runtime/seva.webp",
+        "campaigns/fantasy-2026/mountain-wedding/assets/runtime/lina.webp",
+        "campaigns/fantasy-2026/mountain-wedding/assets/runtime/borin.webp",
+        "campaigns/fantasy-2026/mountain-wedding/assets/runtime/tessa.webp",
+        "campaigns/fantasy-2026/mountain-wedding/assets/runtime/odar.webp",
+        "campaigns/fantasy-2026/mountain-wedding/assets/runtime/niva.webp"
+      ]
+    },
+    {
+      "id": "mountain-wedding-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-431a3b15-8bf3-4aa3-8dc2-315f7b496567.png",
+      "originalSha256": "cf2cb7e7e2d20e615b7b29bdf5a0068f4968b8524990c195ce1e207084b79c36",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "Create a clean production sprite sheet of 9 distinct hand-painted tabletop miniature figurines for the world of Свадьба двух гор. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 3 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Арема. Красный склон с широкими каменными бровями; лицо появляется на той поверхности, к которой она сейчас обращается.\nCell 2. Торвен. Серебристый пик с поперечной кварцевой полосой и спокойным лицом под нависающей гранью.\nCell 3. Ломан. Исполин из косо сложенных плит; спина, руки и левая нога красные, правая нога и высокая тонкая верхушка пёстрые — красная крошка вперемешку с серебряным кварцем; длинные руки, плоские ладони.\nCell 4. Эша Рваный Ритм. Белая повязка, потёртые наколенники и три длинные ленты на поясе.\nCell 5. Ирдо Две Петли. Короткая борода, широкая шляпа и верёвка, которую он всегда складывает открытой петлёй.\nCell 6. Неми Длинная Черта. Широкие рукава, дощечка на ремне и мел за ухом.\nCell 7. Сафф Полосатый Рукав. Полосатые рукава, короткая коса и маленькая зеркальная пуговица.\nCell 8. Век Плоский. Невысокий каменный человек с широкой плоской спиной и глазами в верхнем крае лица.\nCell 9. Руна Сторона Света. Зелёный плащ с крупными белыми нашивками и длинный дорожный посох.",
+      "references": [
+        "campaigns/fantasy-2026/mountain-wedding/assets/runtime/arema.webp",
+        "campaigns/fantasy-2026/mountain-wedding/assets/runtime/torven.webp",
+        "campaigns/fantasy-2026/mountain-wedding/assets/runtime/loman.webp",
+        "campaigns/fantasy-2026/mountain-wedding/assets/runtime/esha.webp",
+        "campaigns/fantasy-2026/mountain-wedding/assets/runtime/irdo.webp",
+        "campaigns/fantasy-2026/mountain-wedding/assets/runtime/nemi.webp",
+        "campaigns/fantasy-2026/mountain-wedding/assets/runtime/saff.webp",
+        "campaigns/fantasy-2026/mountain-wedding/assets/runtime/vek.webp",
+        "campaigns/fantasy-2026/mountain-wedding/assets/runtime/runa.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "mira",
+      "title": "Огняна Широкий Шаг",
+      "kind": "hero",
+      "subjects": [
+        "mira"
+      ],
+      "file": "heroes-mira.webp",
+      "sha256": "7c48a5e6c95b3ba3296bd2213d1f7714dd514754cf80a9aa56e5d34ffb2ee3df",
+      "originalSha256": "0dbc7dc99cb42c2cf99493316e72aba266db3b49f7f8c780e72e9c7989132c41",
+      "generated": "2026-11-22",
+      "sheet": "mountain-wedding-heroes-0",
+      "cell": 1,
+      "crop": {
+        "left": 107,
+        "top": 17,
+        "width": 213,
+        "height": 407
+      }
+    },
+    {
+      "key": "yar",
+      "title": "Яр Листомер",
+      "kind": "hero",
+      "subjects": [
+        "yar"
+      ],
+      "file": "heroes-yar.webp",
+      "sha256": "e28890372ba8d44d48052068ecce25612f13a99c6fd49e0e920f7621354a2aa6",
+      "originalSha256": "0dbc7dc99cb42c2cf99493316e72aba266db3b49f7f8c780e72e9c7989132c41",
+      "generated": "2026-11-22",
+      "sheet": "mountain-wedding-heroes-0",
+      "cell": 2,
+      "crop": {
+        "left": 554,
+        "top": 11,
+        "width": 214,
+        "height": 414
+      }
+    },
+    {
+      "key": "seva",
+      "title": "Сева Ясная Ладонь",
+      "kind": "hero",
+      "subjects": [
+        "seva"
+      ],
+      "file": "heroes-seva.webp",
+      "sha256": "5035ac36ae332a377ff2456e918342a8aa95cb412220570e5b75c57d7a6eef19",
+      "originalSha256": "0dbc7dc99cb42c2cf99493316e72aba266db3b49f7f8c780e72e9c7989132c41",
+      "generated": "2026-11-22",
+      "sheet": "mountain-wedding-heroes-0",
+      "cell": 3,
+      "crop": {
+        "left": 999,
+        "top": 15,
+        "width": 212,
+        "height": 409
+      }
+    },
+    {
+      "key": "lina",
+      "title": "Лина Кварцевый Мел",
+      "kind": "hero",
+      "subjects": [
+        "lina"
+      ],
+      "file": "heroes-lina.webp",
+      "sha256": "f20f1d5dcf67db36e67139bdb1995f156195dbd82f634d6eb00fb5a33ba57d13",
+      "originalSha256": "0dbc7dc99cb42c2cf99493316e72aba266db3b49f7f8c780e72e9c7989132c41",
+      "generated": "2026-11-22",
+      "sheet": "mountain-wedding-heroes-0",
+      "cell": 4,
+      "crop": {
+        "left": 1444,
+        "top": 13,
+        "width": 216,
+        "height": 411
+      }
+    },
+    {
+      "key": "borin",
+      "title": "Борин Тихий Утёс",
+      "kind": "hero",
+      "subjects": [
+        "borin"
+      ],
+      "file": "heroes-borin.webp",
+      "sha256": "8e8db9085f0fa595052c0492a44fab9c1f5cb5aff14f11f9e04422ce044fe321",
+      "originalSha256": "0dbc7dc99cb42c2cf99493316e72aba266db3b49f7f8c780e72e9c7989132c41",
+      "generated": "2026-11-22",
+      "sheet": "mountain-wedding-heroes-0",
+      "cell": 5,
+      "crop": {
+        "left": 96,
+        "top": 451,
+        "width": 238,
+        "height": 417
+      }
+    },
+    {
+      "key": "tessa",
+      "title": "Тесса Ласточкин Поворот",
+      "kind": "hero",
+      "subjects": [
+        "tessa"
+      ],
+      "file": "heroes-tessa.webp",
+      "sha256": "e8cff48fb32aa23af8d0727fe869437821ef1b1d17c54f8ca4c950df4d53ef94",
+      "originalSha256": "0dbc7dc99cb42c2cf99493316e72aba266db3b49f7f8c780e72e9c7989132c41",
+      "generated": "2026-11-22",
+      "sheet": "mountain-wedding-heroes-0",
+      "cell": 6,
+      "crop": {
+        "left": 544,
+        "top": 458,
+        "width": 224,
+        "height": 410
+      }
+    },
+    {
+      "key": "odar",
+      "title": "Одар Тёплый Камень",
+      "kind": "hero",
+      "subjects": [
+        "odar"
+      ],
+      "file": "heroes-odar.webp",
+      "sha256": "306d6e8d6bdb7a8b0e47766df305aa81a7d5dba8f629e11d0471a6aec73a9bb5",
+      "originalSha256": "0dbc7dc99cb42c2cf99493316e72aba266db3b49f7f8c780e72e9c7989132c41",
+      "generated": "2026-11-22",
+      "sheet": "mountain-wedding-heroes-0",
+      "cell": 7,
+      "crop": {
+        "left": 989,
+        "top": 454,
+        "width": 225,
+        "height": 414
+      }
+    },
+    {
+      "key": "niva",
+      "title": "Нива Седьмая Линия",
+      "kind": "hero",
+      "subjects": [
+        "niva"
+      ],
+      "file": "heroes-niva.webp",
+      "sha256": "445ab8d958b8dae01c5753ad15c39863aa4bd033f9510c18c288098649bb1255",
+      "originalSha256": "0dbc7dc99cb42c2cf99493316e72aba266db3b49f7f8c780e72e9c7989132c41",
+      "generated": "2026-11-22",
+      "sheet": "mountain-wedding-heroes-0",
+      "cell": 8,
+      "crop": {
+        "left": 1430,
+        "top": 459,
+        "width": 232,
+        "height": 409
+      }
+    },
+    {
+      "key": "arema",
+      "title": "Арема",
+      "kind": "npc",
+      "subjects": [
+        "arema"
+      ],
+      "file": "npcs-arema.webp",
+      "sha256": "440aceef956d1e510699adc94c8785a262a3d140a6be8f39bb8462eeb7e32cc5",
+      "originalSha256": "cf2cb7e7e2d20e615b7b29bdf5a0068f4968b8524990c195ce1e207084b79c36",
+      "generated": "2026-11-22",
+      "sheet": "mountain-wedding-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 63,
+        "top": 17,
+        "width": 276,
+        "height": 396
+      }
+    },
+    {
+      "key": "torven",
+      "title": "Торвен",
+      "kind": "npc",
+      "subjects": [
+        "torven"
+      ],
+      "file": "npcs-torven.webp",
+      "sha256": "7c66571e4b46cdcf2a86e539aa77548225eef7b4f456cdc849732e1da166b9d8",
+      "originalSha256": "cf2cb7e7e2d20e615b7b29bdf5a0068f4968b8524990c195ce1e207084b79c36",
+      "generated": "2026-11-22",
+      "sheet": "mountain-wedding-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 453,
+        "top": 13,
+        "width": 287,
+        "height": 400
+      }
+    },
+    {
+      "key": "loman",
+      "title": "Ломан",
+      "kind": "npc",
+      "subjects": [
+        "loman"
+      ],
+      "file": "npcs-loman.webp",
+      "sha256": "39c08db56f7b037f1417ee5548ed0d146b2256016e6a5b473d224fc540338116",
+      "originalSha256": "cf2cb7e7e2d20e615b7b29bdf5a0068f4968b8524990c195ce1e207084b79c36",
+      "generated": "2026-11-22",
+      "sheet": "mountain-wedding-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 854,
+        "top": 12,
+        "width": 291,
+        "height": 401
+      }
+    },
+    {
+      "key": "esha",
+      "title": "Эша Рваный Ритм",
+      "kind": "npc",
+      "subjects": [
+        "esha"
+      ],
+      "file": "npcs-esha.webp",
+      "sha256": "d5988d634dde735304ac74122a34139d6f8c91eb94035ef804eafbfef2bef160",
+      "originalSha256": "cf2cb7e7e2d20e615b7b29bdf5a0068f4968b8524990c195ce1e207084b79c36",
+      "generated": "2026-11-22",
+      "sheet": "mountain-wedding-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 61,
+        "top": 445,
+        "width": 298,
+        "height": 403
+      }
+    },
+    {
+      "key": "irdo",
+      "title": "Ирдо Две Петли",
+      "kind": "npc",
+      "subjects": [
+        "irdo"
+      ],
+      "file": "npcs-irdo.webp",
+      "sha256": "e70488c7aac9d861e6634be045594aa5b56f7e3c44bd6c6d1ca1695a1501f101",
+      "originalSha256": "cf2cb7e7e2d20e615b7b29bdf5a0068f4968b8524990c195ce1e207084b79c36",
+      "generated": "2026-11-22",
+      "sheet": "mountain-wedding-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 456,
+        "top": 448,
+        "width": 280,
+        "height": 400
+      }
+    },
+    {
+      "key": "nemi",
+      "title": "Неми Длинная Черта",
+      "kind": "npc",
+      "subjects": [
+        "nemi"
+      ],
+      "file": "npcs-nemi.webp",
+      "sha256": "e5f97a8bef082fb89a45ab6400e4545968f936c714cdc7f697926a9423298ce7",
+      "originalSha256": "cf2cb7e7e2d20e615b7b29bdf5a0068f4968b8524990c195ce1e207084b79c36",
+      "generated": "2026-11-22",
+      "sheet": "mountain-wedding-npcs-0",
+      "cell": 6,
+      "crop": {
+        "left": 864,
+        "top": 451,
+        "width": 271,
+        "height": 397
+      }
+    },
+    {
+      "key": "saff",
+      "title": "Сафф Полосатый Рукав",
+      "kind": "npc",
+      "subjects": [
+        "saff"
+      ],
+      "file": "npcs-saff.webp",
+      "sha256": "c5512a3b8eb4d30e75224753989b73ba0d9de06224acfa8c852776368621df52",
+      "originalSha256": "cf2cb7e7e2d20e615b7b29bdf5a0068f4968b8524990c195ce1e207084b79c36",
+      "generated": "2026-11-22",
+      "sheet": "mountain-wedding-npcs-0",
+      "cell": 7,
+      "crop": {
+        "left": 62,
+        "top": 880,
+        "width": 263,
+        "height": 412
+      }
+    },
+    {
+      "key": "vek",
+      "title": "Век Плоский",
+      "kind": "npc",
+      "subjects": [
+        "vek"
+      ],
+      "file": "npcs-vek.webp",
+      "sha256": "8a5113bc3dc2ba762b1a3f92eadd2982ccec295e95bb9463d3d742291390083c",
+      "originalSha256": "cf2cb7e7e2d20e615b7b29bdf5a0068f4968b8524990c195ce1e207084b79c36",
+      "generated": "2026-11-22",
+      "sheet": "mountain-wedding-npcs-0",
+      "cell": 8,
+      "crop": {
+        "left": 436,
+        "top": 921,
+        "width": 316,
+        "height": 364
+      }
+    },
+    {
+      "key": "runa",
+      "title": "Руна Сторона Света",
+      "kind": "npc",
+      "subjects": [
+        "runa"
+      ],
+      "file": "npcs-runa.webp",
+      "sha256": "505ff2961365bd56efc51c97b8e465e925f95d65f7987bfad332d4da1bf7cc22",
+      "originalSha256": "cf2cb7e7e2d20e615b7b29bdf5a0068f4968b8524990c195ce1e207084b79c36",
+      "generated": "2026-11-22",
+      "sheet": "mountain-wedding-npcs-0",
+      "cell": 9,
+      "crop": {
+        "left": 857,
+        "top": 868,
+        "width": 282,
+        "height": 424
+      }
+    }
+  ]
+}

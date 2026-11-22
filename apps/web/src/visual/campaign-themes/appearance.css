@@ -1,0 +1,55 @@
+@import './materials.css';
+
+/* A campaign decorates the furniture. Status colours, the map, the scene and entity pictures keep
+ * their own meanings. Scope it to the mounted campaign so it also works in library cards. */
+@media screen {
+  [data-campaign-theme] {
+    --gold: var(--table-accent);
+    --gold-bright: color-mix(in srgb, var(--table-accent) 80%, white);
+    --table-wash: color-mix(in srgb, var(--ink-950) 89%, transparent);
+    --table-edge: color-mix(in srgb, var(--table-accent) 49%, var(--ink-850));
+    font-family: var(--font-body);
+  }
+
+  [data-lettering='folio'] {
+    --font-display: 'Alegreya', Georgia, serif;
+    --font-body: system-ui, sans-serif;
+  }
+  [data-lettering='instrument'] {
+    --font-display: ui-monospace, 'Courier New', monospace;
+    --font-body: system-ui, sans-serif;
+  }
+  [data-lettering='monument'] {
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --font-body: system-ui, sans-serif;
+  }
+
+  [data-campaign-theme] :is(.hero-card, .item-card-art, .dice-plate, .display-title-text),
+  [data-campaign-theme].hub-campaign,
+  [data-campaign-theme] :is(.sheet-header, .book-header, .workshop-preview-heading) {
+    background-color: var(--ink-900);
+    background-image:
+      linear-gradient(105deg, var(--table-wash), rgb(5 9 14 / 79%)), var(--table-material);
+    background-size: auto, 192px;
+    background-repeat: repeat;
+    border-color: var(--table-edge);
+  }
+
+  [data-campaign-theme]
+    :is(
+      .hub-library-body,
+      .campaign-library-body,
+      .item-card,
+      .handout,
+      .kept-handout,
+      .map-canvas
+    ) {
+    border-block-start: 2px solid var(--table-edge);
+  }
+  [data-campaign-theme] :is(.hero-name, .item-card h3, .topbar-title h1, .book-header h2) {
+    color: var(--gold-bright);
+  }
+  [data-campaign-theme] .topbar {
+    border-block-end-color: var(--table-edge);
+  }
+}

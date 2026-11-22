@@ -1,0 +1,1942 @@
+{
+ "id": "dragon-retirement",
+ "title": "Дракон уходит на покой",
+ "genre": "Фэнтези о дружбе и рискованных горных тропах",
+ "audience": "12+",
+ "pitch": "Медный дракон Рухомир объявил, что больше не будет единственным ответом на любую неприятность. Он хочет ходить пешком, читать приключенческие романы и иногда проигрывать в шашки. Но в Кряжах до сих пор продают прогулки с обещанием: «Если что, дракон подхватит». Вашим героям предстоят настоящие спасения, неудобные переговоры и выход на Рваный Венец, где чужая привычка к громкой помощи становится опасной. Сохранится ли дружба, когда спаситель перестанет быть услугой?",
+ "tone": "Тёплый юмор, яркие полевые приключения и честные последствия. Опасность реальна; унижение, жестокость и наказание за просьбу о помощи не являются развлечением.",
+ "duration": "8 сессий; 150 минут: 15 минут начала и повторения, три сцены по 35 минут, перерыв 10 минут и завершение 20 минут. Для 7–8 игроков обсуждения идут одновременно малыми группами, затем возвращаются к общему столу.",
+ "cover": "campaigns/fantasy-2026/dragon-retirement/illustrations/opening.webp",
+ "defaultVariant": "4-players",
+ "variants": [
+  {
+   "id": "3-players",
+   "players": 3,
+   "label": "3 игрока",
+   "file": "packages/3-players.json",
+   "digest": "7ceb4dc99b1122d4bb586be6a8ba72ddfed433ed560fc55539c88b21d444a8f9"
+  },
+  {
+   "id": "4-players",
+   "players": 4,
+   "label": "4 игрока",
+   "file": "packages/4-players.json",
+   "digest": "c79d584a93a782db10169bc61a51f72090638ea277dacfb89be459c425cac4d1"
+  },
+  {
+   "id": "5-players",
+   "players": 5,
+   "label": "5 игроков",
+   "file": "packages/5-players.json",
+   "digest": "d6dca1217961abab2f1b25fb30ea4fb93d600bcf0522b5e5702d1d4ecdd4a063"
+  },
+  {
+   "id": "6-players",
+   "players": 6,
+   "label": "6 игроков",
+   "file": "packages/6-players.json",
+   "digest": "24ac72f68a674874ede21075dbac216d29f6908c88b3732504322eb69e45131f"
+  },
+  {
+   "id": "7-players",
+   "players": 7,
+   "label": "7 игроков",
+   "file": "packages/7-players.json",
+   "digest": "e8728263919a856a2fdf065c7e610189036633621ee2461d17b31b3c38e726e6"
+  },
+  {
+   "id": "8-players",
+   "players": 8,
+   "label": "8 игроков",
+   "file": "packages/8-players.json",
+   "digest": "1f1bc3225e1a52242fb11af0a550fba429d2c53b1da5e2a5f7507578079dd4e0"
+  }
+ ],
+ "generator": "codex-cli imagegen",
+ "pictures": [
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/illustrations/cards/yara-knots.webp",
+   "sha256": "cc52fe32d4dfdd015b3a9e88103cd8de6a20649914c0bcb2d51a51713b8ad6f9",
+   "originalSha256": "c9f054e261bebf4494a918b3a4c0a7d1ad4abeb58e42cc4ad2a9dc9330ec903d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Яра Узелкова",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "yara-knots"
+    ],
+    "4-players": [
+     "yara-knots"
+    ],
+    "5-players": [
+     "yara-knots"
+    ],
+    "6-players": [
+     "yara-knots"
+    ],
+    "7-players": [
+     "yara-knots"
+    ],
+    "8-players": [
+     "yara-knots"
+    ]
+   },
+   "file": "yara-knots.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/illustrations/cards/nik-sidepath.webp",
+   "sha256": "8e486aa4525c90d6e1fd51dec9965b56a038b4ad1aa91145d329051acc3c07c8",
+   "originalSha256": "c9f054e261bebf4494a918b3a4c0a7d1ad4abeb58e42cc4ad2a9dc9330ec903d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ник Боковой Шаг",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nik-sidepath"
+    ],
+    "4-players": [
+     "nik-sidepath"
+    ],
+    "5-players": [
+     "nik-sidepath"
+    ],
+    "6-players": [
+     "nik-sidepath"
+    ],
+    "7-players": [
+     "nik-sidepath"
+    ],
+    "8-players": [
+     "nik-sidepath"
+    ]
+   },
+   "file": "nik-sidepath.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/illustrations/cards/eda-openhand.webp",
+   "sha256": "3b920ae962727170998cef16a242d90b035e6d3d660f75748541ad270a24ba77",
+   "originalSha256": "c9f054e261bebf4494a918b3a4c0a7d1ad4abeb58e42cc4ad2a9dc9330ec903d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эда Открытая Ладонь",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "eda-openhand"
+    ],
+    "4-players": [
+     "eda-openhand"
+    ],
+    "5-players": [
+     "eda-openhand"
+    ],
+    "6-players": [
+     "eda-openhand"
+    ],
+    "7-players": [
+     "eda-openhand"
+    ],
+    "8-players": [
+     "eda-openhand"
+    ]
+   },
+   "file": "eda-openhand.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/illustrations/cards/polin-margins.webp",
+   "sha256": "df9bfbe0cd4c5910396e56b89e2f019648f4cb95f6259a9c457b04ec1c9d550a",
+   "originalSha256": "c9f054e261bebf4494a918b3a4c0a7d1ad4abeb58e42cc4ad2a9dc9330ec903d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Полин На Полях",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "polin-margins"
+    ],
+    "5-players": [
+     "polin-margins"
+    ],
+    "6-players": [
+     "polin-margins"
+    ],
+    "7-players": [
+     "polin-margins"
+    ],
+    "8-players": [
+     "polin-margins"
+    ]
+   },
+   "file": "polin-margins.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/illustrations/cards/tam-secondstep.webp",
+   "sha256": "120c943c016eb43829d10451ad104bec7ebc1d17ea724ea41a9f4226f9affc38",
+   "originalSha256": "c9f054e261bebf4494a918b3a4c0a7d1ad4abeb58e42cc4ad2a9dc9330ec903d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Там Второй Шаг",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "tam-secondstep"
+    ],
+    "6-players": [
+     "tam-secondstep"
+    ],
+    "7-players": [
+     "tam-secondstep"
+    ],
+    "8-players": [
+     "tam-secondstep"
+    ]
+   },
+   "file": "tam-secondstep.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/illustrations/cards/mira-ownvoice.webp",
+   "sha256": "ae401c3698b1f0b31a593dcb109616adf8afadfd0cf1582309cf22f874e664dd",
+   "originalSha256": "c9f054e261bebf4494a918b3a4c0a7d1ad4abeb58e42cc4ad2a9dc9330ec903d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мира Свой Голос",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "mira-ownvoice"
+    ],
+    "7-players": [
+     "mira-ownvoice"
+    ],
+    "8-players": [
+     "mira-ownvoice"
+    ]
+   },
+   "file": "mira-ownvoice.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/illustrations/cards/sava-evening.webp",
+   "sha256": "38925e003c8cc4dc42f72e12aba71614eecaa3b5fd82766d6868991efe758127",
+   "originalSha256": "c9f054e261bebf4494a918b3a4c0a7d1ad4abeb58e42cc4ad2a9dc9330ec903d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сава После Заката",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "sava-evening"
+    ],
+    "8-players": [
+     "sava-evening"
+    ]
+   },
+   "file": "sava-evening.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/illustrations/cards/es-clearline.webp",
+   "sha256": "4f207777dd28eff2c5068f30a8c69c9ee7ef8a7b4e785a94ef9740a1fdd09e7b",
+   "originalSha256": "c9f054e261bebf4494a918b3a4c0a7d1ad4abeb58e42cc4ad2a9dc9330ec903d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эс Чёткая Черта",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [],
+    "8-players": [
+     "es-clearline"
+    ]
+   },
+   "file": "es-clearline.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/illustrations/cards/travel-kit.webp",
+   "sha256": "9dba789a295507f881354ce893649b3a7eeab72dd7b12f505128f03738dcfb3d",
+   "originalSha256": "c9f054e261bebf4494a918b3a4c0a7d1ad4abeb58e42cc4ad2a9dc9330ec903d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дорожный набор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "eda-openhand-travel-kit",
+     "nik-sidepath-travel-kit",
+     "yara-knots-travel-kit"
+    ],
+    "4-players": [
+     "eda-openhand-travel-kit",
+     "nik-sidepath-travel-kit",
+     "polin-margins-travel-kit",
+     "yara-knots-travel-kit"
+    ],
+    "5-players": [
+     "eda-openhand-travel-kit",
+     "nik-sidepath-travel-kit",
+     "polin-margins-travel-kit",
+     "tam-secondstep-travel-kit",
+     "yara-knots-travel-kit"
+    ],
+    "6-players": [
+     "eda-openhand-travel-kit",
+     "mira-ownvoice-travel-kit",
+     "nik-sidepath-travel-kit",
+     "polin-margins-travel-kit",
+     "tam-secondstep-travel-kit",
+     "yara-knots-travel-kit"
+    ],
+    "7-players": [
+     "eda-openhand-travel-kit",
+     "mira-ownvoice-travel-kit",
+     "nik-sidepath-travel-kit",
+     "polin-margins-travel-kit",
+     "sava-evening-travel-kit",
+     "tam-secondstep-travel-kit",
+     "yara-knots-travel-kit"
+    ],
+    "8-players": [
+     "eda-openhand-travel-kit",
+     "es-clearline-travel-kit",
+     "mira-ownvoice-travel-kit",
+     "nik-sidepath-travel-kit",
+     "polin-margins-travel-kit",
+     "sava-evening-travel-kit",
+     "tam-secondstep-travel-kit",
+     "yara-knots-travel-kit"
+    ]
+   },
+   "file": "travel-kit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/illustrations/cards/rukhmir.webp",
+   "sha256": "95d4ceb4bdd15af679f82237aa5ef28dc276b2c8bf98404b0154f329ede01263",
+   "originalSha256": "a2b57962623ff06872b7792da98c5df2d02d59cd4404bf219fee0708018b12b1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рухомир Медный",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "rukhmir"
+    ],
+    "4-players": [
+     "rukhmir"
+    ],
+    "5-players": [
+     "rukhmir"
+    ],
+    "6-players": [
+     "rukhmir"
+    ],
+    "7-players": [
+     "rukhmir"
+    ],
+    "8-players": [
+     "rukhmir"
+    ]
+   },
+   "file": "rukhmir.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/illustrations/cards/denvar.webp",
+   "sha256": "f210ab993c4f0a4193b1022093b8b5f326988ef5e00d882b876c9a4ff69a23c4",
+   "originalSha256": "a2b57962623ff06872b7792da98c5df2d02d59cd4404bf219fee0708018b12b1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Денвар Громкая Пауза",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "denvar"
+    ],
+    "4-players": [
+     "denvar"
+    ],
+    "5-players": [
+     "denvar"
+    ],
+    "6-players": [
+     "denvar"
+    ],
+    "7-players": [
+     "denvar"
+    ],
+    "8-players": [
+     "denvar"
+    ]
+   },
+   "file": "denvar.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/illustrations/cards/lissa.webp",
+   "sha256": "3e4d8f09ea5137259391ac80453a768b6cd901058af3ffe4621fb70c96800e77",
+   "originalSha256": "a2b57962623ff06872b7792da98c5df2d02d59cd4404bf219fee0708018b12b1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лисса Верный Возврат",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lissa"
+    ],
+    "4-players": [
+     "lissa"
+    ],
+    "5-players": [
+     "lissa"
+    ],
+    "6-players": [
+     "lissa"
+    ],
+    "7-players": [
+     "lissa"
+    ],
+    "8-players": [
+     "lissa"
+    ]
+   },
+   "file": "lissa.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/illustrations/cards/orel.webp",
+   "sha256": "d0544d749adef26cc2f49009a6a8063e72998e686a26c33f3767fb234173e6f3",
+   "originalSha256": "a2b57962623ff06872b7792da98c5df2d02d59cd4404bf219fee0708018b12b1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Орель Медленный Карандаш",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "orel"
+    ],
+    "4-players": [
+     "orel"
+    ],
+    "5-players": [
+     "orel"
+    ],
+    "6-players": [
+     "orel"
+    ],
+    "7-players": [
+     "orel"
+    ],
+    "8-players": [
+     "orel"
+    ]
+   },
+   "file": "orel.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/illustrations/cards/burdash.webp",
+   "sha256": "d1ac3ab6c0eef88ebfc849db87755d8cab20181f2d54b29a6eac95565947d2c1",
+   "originalSha256": "a2b57962623ff06872b7792da98c5df2d02d59cd4404bf219fee0708018b12b1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Бурдаш Большой Пень",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "burdash"
+    ],
+    "4-players": [
+     "burdash"
+    ],
+    "5-players": [
+     "burdash"
+    ],
+    "6-players": [
+     "burdash"
+    ],
+    "7-players": [
+     "burdash"
+    ],
+    "8-players": [
+     "burdash"
+    ]
+   },
+   "file": "burdash.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/illustrations/cards/veta.webp",
+   "sha256": "931216338bbebb4e2955cfc2f23f2db6f72109fa181c399fcaa32d3cc0ddfa96",
+   "originalSha256": "a2b57962623ff06872b7792da98c5df2d02d59cd4404bf219fee0708018b12b1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Вета Точный Счёт",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "veta"
+    ],
+    "4-players": [
+     "veta"
+    ],
+    "5-players": [
+     "veta"
+    ],
+    "6-players": [
+     "veta"
+    ],
+    "7-players": [
+     "veta"
+    ],
+    "8-players": [
+     "veta"
+    ]
+   },
+   "file": "veta.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/illustrations/cards/zoya.webp",
+   "sha256": "03bed6fca27280cd77d814ee173fd6c18835c0aa4f845d0ca3a3eb41e0811c7c",
+   "originalSha256": "a2b57962623ff06872b7792da98c5df2d02d59cd4404bf219fee0708018b12b1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Зоя Растрёпа",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "zoya"
+    ],
+    "4-players": [
+     "zoya"
+    ],
+    "5-players": [
+     "zoya"
+    ],
+    "6-players": [
+     "zoya"
+    ],
+    "7-players": [
+     "zoya"
+    ],
+    "8-players": [
+     "zoya"
+    ]
+   },
+   "file": "zoya.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/illustrations/cards/ren.webp",
+   "sha256": "651bd4c69d164d98e6f29de20c9deb3e25b1fcea26bca85883fd2167d5a94424",
+   "originalSha256": "a2b57962623ff06872b7792da98c5df2d02d59cd4404bf219fee0708018b12b1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рен Ровный Шаг",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ren"
+    ],
+    "4-players": [
+     "ren"
+    ],
+    "5-players": [
+     "ren"
+    ],
+    "6-players": [
+     "ren"
+    ],
+    "7-players": [
+     "ren"
+    ],
+    "8-players": [
+     "ren"
+    ]
+   },
+   "file": "ren.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/illustrations/cards/ulta.webp",
+   "sha256": "2c9c3d6823100897c437795421376434f6d23128813fe829416f3ea4f7a9f591",
+   "originalSha256": "a2b57962623ff06872b7792da98c5df2d02d59cd4404bf219fee0708018b12b1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Улта Долгий Спуск",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ulta"
+    ],
+    "4-players": [
+     "ulta"
+    ],
+    "5-players": [
+     "ulta"
+    ],
+    "6-players": [
+     "ulta"
+    ],
+    "7-players": [
+     "ulta"
+    ],
+    "8-players": [
+     "ulta"
+    ]
+   },
+   "file": "ulta.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/assets/table/heroes-yara-knots.webp",
+   "sha256": "e58a6532ec5f3a25bd37f43685b719de351cf634e8aba27981271cd17a0c1ceb",
+   "originalSha256": "0b20328679b6883f66d7ede219bab1154ee9e0518b270f62a671c3c92fab9b5c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Яра Узелкова",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "yara-knots"
+    ],
+    "4-players": [
+     "yara-knots"
+    ],
+    "5-players": [
+     "yara-knots"
+    ],
+    "6-players": [
+     "yara-knots"
+    ],
+    "7-players": [
+     "yara-knots"
+    ],
+    "8-players": [
+     "yara-knots"
+    ]
+   },
+   "file": "yara-knots--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "yara-knots.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/assets/table/heroes-nik-sidepath.webp",
+   "sha256": "44b73fe8c28d02cf194753191f7e4c51ba217356045b8cc628c0007da9688359",
+   "originalSha256": "0b20328679b6883f66d7ede219bab1154ee9e0518b270f62a671c3c92fab9b5c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ник Боковой Шаг",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nik-sidepath"
+    ],
+    "4-players": [
+     "nik-sidepath"
+    ],
+    "5-players": [
+     "nik-sidepath"
+    ],
+    "6-players": [
+     "nik-sidepath"
+    ],
+    "7-players": [
+     "nik-sidepath"
+    ],
+    "8-players": [
+     "nik-sidepath"
+    ]
+   },
+   "file": "nik-sidepath--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "nik-sidepath.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/assets/table/heroes-eda-openhand.webp",
+   "sha256": "1befa23a5820256e99ec558224efe548f91b7b43f37bfeca68c39076cee1298c",
+   "originalSha256": "0b20328679b6883f66d7ede219bab1154ee9e0518b270f62a671c3c92fab9b5c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эда Открытая Ладонь",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "eda-openhand"
+    ],
+    "4-players": [
+     "eda-openhand"
+    ],
+    "5-players": [
+     "eda-openhand"
+    ],
+    "6-players": [
+     "eda-openhand"
+    ],
+    "7-players": [
+     "eda-openhand"
+    ],
+    "8-players": [
+     "eda-openhand"
+    ]
+   },
+   "file": "eda-openhand--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "eda-openhand.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/assets/table/heroes-polin-margins.webp",
+   "sha256": "5180e898b027860d78fe3e0f9d21d9f5d59bb34d9181c94f93097397cdc88bc8",
+   "originalSha256": "0b20328679b6883f66d7ede219bab1154ee9e0518b270f62a671c3c92fab9b5c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Полин На Полях",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "polin-margins"
+    ],
+    "5-players": [
+     "polin-margins"
+    ],
+    "6-players": [
+     "polin-margins"
+    ],
+    "7-players": [
+     "polin-margins"
+    ],
+    "8-players": [
+     "polin-margins"
+    ]
+   },
+   "file": "polin-margins--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "polin-margins.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/assets/table/heroes-tam-secondstep.webp",
+   "sha256": "5b0d44ae84300db5eb03d21e62d62d68a724570909c1011f5484d52617f890a3",
+   "originalSha256": "0b20328679b6883f66d7ede219bab1154ee9e0518b270f62a671c3c92fab9b5c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Там Второй Шаг",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "tam-secondstep"
+    ],
+    "6-players": [
+     "tam-secondstep"
+    ],
+    "7-players": [
+     "tam-secondstep"
+    ],
+    "8-players": [
+     "tam-secondstep"
+    ]
+   },
+   "file": "tam-secondstep--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "tam-secondstep.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/assets/table/heroes-mira-ownvoice.webp",
+   "sha256": "b39d5c4413c0a503f7ca99fd89fceea449202f7d98c417b0441795298abae472",
+   "originalSha256": "0b20328679b6883f66d7ede219bab1154ee9e0518b270f62a671c3c92fab9b5c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мира Свой Голос",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "mira-ownvoice"
+    ],
+    "7-players": [
+     "mira-ownvoice"
+    ],
+    "8-players": [
+     "mira-ownvoice"
+    ]
+   },
+   "file": "mira-ownvoice--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "mira-ownvoice.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/assets/table/heroes-sava-evening.webp",
+   "sha256": "1aa3deb644216bd24e9d3e377f543121640574ba618f3af2442dbc7282669479",
+   "originalSha256": "0b20328679b6883f66d7ede219bab1154ee9e0518b270f62a671c3c92fab9b5c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сава После Заката",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "sava-evening"
+    ],
+    "8-players": [
+     "sava-evening"
+    ]
+   },
+   "file": "sava-evening--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "sava-evening.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/assets/table/heroes-es-clearline.webp",
+   "sha256": "8ad1086296d7656d09ecfea4d8b81cca7e4c18bf635081a6c03c22a24916a499",
+   "originalSha256": "0b20328679b6883f66d7ede219bab1154ee9e0518b270f62a671c3c92fab9b5c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эс Чёткая Черта",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [],
+    "8-players": [
+     "es-clearline"
+    ]
+   },
+   "file": "es-clearline--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "es-clearline.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/assets/table/places-noonday-yard.webp",
+   "sha256": "5778da2abfe011e7f24ff9345a9997f71046ba070f9d4965302892e1e93e7208",
+   "originalSha256": "fc3cff4e5df33caf726165c4c66556f23318d4b50196fd38f5e408e7794afbad",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Полуденный двор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "noonday-yard"
+    ],
+    "4-players": [
+     "noonday-yard"
+    ],
+    "5-players": [
+     "noonday-yard"
+    ],
+    "6-players": [
+     "noonday-yard"
+    ],
+    "7-players": [
+     "noonday-yard"
+    ],
+    "8-players": [
+     "noonday-yard"
+    ]
+   },
+   "file": "noonday-yard.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/assets/table/places-lower-tooth.webp",
+   "sha256": "29133feabef7138ffd3a0dcfcd2f22b52892fdb0c3ac2ec6b5abf913119e51a9",
+   "originalSha256": "fc3cff4e5df33caf726165c4c66556f23318d4b50196fd38f5e408e7794afbad",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нижний зубец",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lower-tooth"
+    ],
+    "4-players": [
+     "lower-tooth"
+    ],
+    "5-players": [
+     "lower-tooth"
+    ],
+    "6-players": [
+     "lower-tooth"
+    ],
+    "7-players": [
+     "lower-tooth"
+    ],
+    "8-players": [
+     "lower-tooth"
+    ]
+   },
+   "file": "lower-tooth.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/assets/table/places-white-scree.webp",
+   "sha256": "9243ed66d9ffed9c1e176b5627b547adb86bedf2d841a86c12d1b1a53d121a16",
+   "originalSha256": "fc3cff4e5df33caf726165c4c66556f23318d4b50196fd38f5e408e7794afbad",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Белая осыпь",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "white-scree"
+    ],
+    "4-players": [
+     "white-scree"
+    ],
+    "5-players": [
+     "white-scree"
+    ],
+    "6-players": [
+     "white-scree"
+    ],
+    "7-players": [
+     "white-scree"
+    ],
+    "8-players": [
+     "white-scree"
+    ]
+   },
+   "file": "white-scree.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/assets/table/places-heather-descent.webp",
+   "sha256": "8a7d5cb98e4866c16e2f9de7853cc313eec46c618c23b71c29078303691da4c0",
+   "originalSha256": "fc3cff4e5df33caf726165c4c66556f23318d4b50196fd38f5e408e7794afbad",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Вересковый спуск",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "heather-descent"
+    ],
+    "4-players": [
+     "heather-descent"
+    ],
+    "5-players": [
+     "heather-descent"
+    ],
+    "6-players": [
+     "heather-descent"
+    ],
+    "7-players": [
+     "heather-descent"
+    ],
+    "8-players": [
+     "heather-descent"
+    ]
+   },
+   "file": "heather-descent.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/assets/table/places-bare-needle.webp",
+   "sha256": "646a7e622244400ba215f5ef1887918115f10e2d56d309b8aff2917b482eeb41",
+   "originalSha256": "fc3cff4e5df33caf726165c4c66556f23318d4b50196fd38f5e408e7794afbad",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Голая Игла",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "bare-needle"
+    ],
+    "4-players": [
+     "bare-needle"
+    ],
+    "5-players": [
+     "bare-needle"
+    ],
+    "6-players": [
+     "bare-needle"
+    ],
+    "7-players": [
+     "bare-needle"
+    ],
+    "8-players": [
+     "bare-needle"
+    ]
+   },
+   "file": "bare-needle.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/assets/table/places-applause-house.webp",
+   "sha256": "5fd9f6cfa473ba70f9e926ed08c35578f84ac3ca7c7be50a2ad0203db9d7526e",
+   "originalSha256": "fc3cff4e5df33caf726165c4c66556f23318d4b50196fd38f5e408e7794afbad",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дом аплодисментов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "applause-house"
+    ],
+    "4-players": [
+     "applause-house"
+    ],
+    "5-players": [
+     "applause-house"
+    ],
+    "6-players": [
+     "applause-house"
+    ],
+    "7-players": [
+     "applause-house"
+    ],
+    "8-players": [
+     "applause-house"
+    ]
+   },
+   "file": "applause-house.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/assets/table/places-blind-ledge.webp",
+   "sha256": "e15966eb73daf17f3612353b4b74981de45ef92c856d7d00eb6539d4d18d1160",
+   "originalSha256": "fc3cff4e5df33caf726165c4c66556f23318d4b50196fd38f5e408e7794afbad",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Слепой уступ",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "blind-ledge"
+    ],
+    "4-players": [
+     "blind-ledge"
+    ],
+    "5-players": [
+     "blind-ledge"
+    ],
+    "6-players": [
+     "blind-ledge"
+    ],
+    "7-players": [
+     "blind-ledge"
+    ],
+    "8-players": [
+     "blind-ledge"
+    ]
+   },
+   "file": "blind-ledge.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/assets/table/places-split-saddle.webp",
+   "sha256": "e6f1292bccf8371f6d60689201abc308700f33ab07ba73d450f9c74fa96f64a2",
+   "originalSha256": "fc3cff4e5df33caf726165c4c66556f23318d4b50196fd38f5e408e7794afbad",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Раздвоенная седловина",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "split-saddle"
+    ],
+    "4-players": [
+     "split-saddle"
+    ],
+    "5-players": [
+     "split-saddle"
+    ],
+    "6-players": [
+     "split-saddle"
+    ],
+    "7-players": [
+     "split-saddle"
+    ],
+    "8-players": [
+     "split-saddle"
+    ]
+   },
+   "file": "split-saddle.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/assets/table/places-ragged-crown.webp",
+   "sha256": "ccb95199150b8a776f606be2b0e16b27193e3c5632ba0b64e9486b7954531275",
+   "originalSha256": "fc3cff4e5df33caf726165c4c66556f23318d4b50196fd38f5e408e7794afbad",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рваный Венец",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ragged-crown"
+    ],
+    "4-players": [
+     "ragged-crown"
+    ],
+    "5-players": [
+     "ragged-crown"
+    ],
+    "6-players": [
+     "ragged-crown"
+    ],
+    "7-players": [
+     "ragged-crown"
+    ],
+    "8-players": [
+     "ragged-crown"
+    ]
+   },
+   "file": "ragged-crown.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/assets/table/foes-foe-a86cf7229b.webp",
+   "sha256": "70b0e5ee2617079ff0a55ed8ee888c5ec2af2ab405d4483ca92346e521c8c5a4",
+   "originalSha256": "04c1779960935df5a48707ca71a31ea0f561c2554ab25669afb086890b823084",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Репейный воришка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "scree-grabbers-foe-1",
+     "scree-grabbers-foe-2"
+    ],
+    "4-players": [
+     "scree-grabbers-foe-1",
+     "scree-grabbers-foe-2",
+     "scree-grabbers-foe-3"
+    ],
+    "5-players": [
+     "scree-grabbers-foe-1",
+     "scree-grabbers-foe-2",
+     "scree-grabbers-foe-3"
+    ],
+    "6-players": [
+     "scree-grabbers-foe-1",
+     "scree-grabbers-foe-2",
+     "scree-grabbers-foe-3",
+     "scree-grabbers-foe-4"
+    ],
+    "7-players": [
+     "scree-grabbers-foe-1",
+     "scree-grabbers-foe-2",
+     "scree-grabbers-foe-3",
+     "scree-grabbers-foe-4",
+     "scree-grabbers-foe-5"
+    ],
+    "8-players": [
+     "scree-grabbers-foe-1",
+     "scree-grabbers-foe-2",
+     "scree-grabbers-foe-3",
+     "scree-grabbers-foe-4",
+     "scree-grabbers-foe-5",
+     "scree-grabbers-foe-6"
+    ]
+   },
+   "file": "foe-a86cf7229b.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/assets/table/foes-foe-a86cf7229b.webp",
+   "sha256": "70b0e5ee2617079ff0a55ed8ee888c5ec2af2ab405d4483ca92346e521c8c5a4",
+   "originalSha256": "04c1779960935df5a48707ca71a31ea0f561c2554ab25669afb086890b823084",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Репейный воришка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "scree-grabbers-foe-1",
+     "scree-grabbers-foe-2"
+    ],
+    "4-players": [
+     "scree-grabbers-foe-1",
+     "scree-grabbers-foe-2",
+     "scree-grabbers-foe-3"
+    ],
+    "5-players": [
+     "scree-grabbers-foe-1",
+     "scree-grabbers-foe-2",
+     "scree-grabbers-foe-3"
+    ],
+    "6-players": [
+     "scree-grabbers-foe-1",
+     "scree-grabbers-foe-2",
+     "scree-grabbers-foe-3",
+     "scree-grabbers-foe-4"
+    ],
+    "7-players": [
+     "scree-grabbers-foe-1",
+     "scree-grabbers-foe-2",
+     "scree-grabbers-foe-3",
+     "scree-grabbers-foe-4",
+     "scree-grabbers-foe-5"
+    ],
+    "8-players": [
+     "scree-grabbers-foe-1",
+     "scree-grabbers-foe-2",
+     "scree-grabbers-foe-3",
+     "scree-grabbers-foe-4",
+     "scree-grabbers-foe-5",
+     "scree-grabbers-foe-6"
+    ]
+   },
+   "file": "foe-a86cf7229b--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-a86cf7229b.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/assets/table/foes-foe-82117f7918.webp",
+   "sha256": "177d9f3a7de33582265832351bb75826da91cc3d8ed924240e2fbf55f82a22eb",
+   "originalSha256": "04c1779960935df5a48707ca71a31ea0f561c2554ab25669afb086890b823084",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Самозваный охранник в жёлтом плаще",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "yellow-cloak-toll-foe-1",
+     "yellow-cloak-toll-foe-2"
+    ],
+    "4-players": [
+     "yellow-cloak-toll-foe-1",
+     "yellow-cloak-toll-foe-2",
+     "yellow-cloak-toll-foe-3"
+    ],
+    "5-players": [
+     "yellow-cloak-toll-foe-1",
+     "yellow-cloak-toll-foe-2",
+     "yellow-cloak-toll-foe-3"
+    ],
+    "6-players": [
+     "yellow-cloak-toll-foe-1",
+     "yellow-cloak-toll-foe-2",
+     "yellow-cloak-toll-foe-3",
+     "yellow-cloak-toll-foe-4"
+    ],
+    "7-players": [
+     "yellow-cloak-toll-foe-1",
+     "yellow-cloak-toll-foe-2",
+     "yellow-cloak-toll-foe-3",
+     "yellow-cloak-toll-foe-4",
+     "yellow-cloak-toll-foe-5"
+    ],
+    "8-players": [
+     "yellow-cloak-toll-foe-1",
+     "yellow-cloak-toll-foe-2",
+     "yellow-cloak-toll-foe-3",
+     "yellow-cloak-toll-foe-4",
+     "yellow-cloak-toll-foe-5",
+     "yellow-cloak-toll-foe-6"
+    ]
+   },
+   "file": "foe-82117f7918.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/assets/table/foes-foe-82117f7918.webp",
+   "sha256": "177d9f3a7de33582265832351bb75826da91cc3d8ed924240e2fbf55f82a22eb",
+   "originalSha256": "04c1779960935df5a48707ca71a31ea0f561c2554ab25669afb086890b823084",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Самозваный охранник в жёлтом плаще",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "yellow-cloak-toll-foe-1",
+     "yellow-cloak-toll-foe-2"
+    ],
+    "4-players": [
+     "yellow-cloak-toll-foe-1",
+     "yellow-cloak-toll-foe-2",
+     "yellow-cloak-toll-foe-3"
+    ],
+    "5-players": [
+     "yellow-cloak-toll-foe-1",
+     "yellow-cloak-toll-foe-2",
+     "yellow-cloak-toll-foe-3"
+    ],
+    "6-players": [
+     "yellow-cloak-toll-foe-1",
+     "yellow-cloak-toll-foe-2",
+     "yellow-cloak-toll-foe-3",
+     "yellow-cloak-toll-foe-4"
+    ],
+    "7-players": [
+     "yellow-cloak-toll-foe-1",
+     "yellow-cloak-toll-foe-2",
+     "yellow-cloak-toll-foe-3",
+     "yellow-cloak-toll-foe-4",
+     "yellow-cloak-toll-foe-5"
+    ],
+    "8-players": [
+     "yellow-cloak-toll-foe-1",
+     "yellow-cloak-toll-foe-2",
+     "yellow-cloak-toll-foe-3",
+     "yellow-cloak-toll-foe-4",
+     "yellow-cloak-toll-foe-5",
+     "yellow-cloak-toll-foe-6"
+    ]
+   },
+   "file": "foe-82117f7918--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-82117f7918.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/assets/table/foes-foe-f22d488dd8.webp",
+   "sha256": "fb789bbbbe9f874699da55d328cd672ad6c9f29b3b74661fa8bdcc0d4ea42bef",
+   "originalSha256": "04c1779960935df5a48707ca71a31ea0f561c2554ab25669afb086890b823084",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Распорядитель с расписным жезлом",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "applause-stewards-foe-1",
+     "applause-stewards-foe-2"
+    ],
+    "4-players": [
+     "applause-stewards-foe-1",
+     "applause-stewards-foe-2",
+     "applause-stewards-foe-3"
+    ],
+    "5-players": [
+     "applause-stewards-foe-1",
+     "applause-stewards-foe-2",
+     "applause-stewards-foe-3"
+    ],
+    "6-players": [
+     "applause-stewards-foe-1",
+     "applause-stewards-foe-2",
+     "applause-stewards-foe-3",
+     "applause-stewards-foe-4"
+    ],
+    "7-players": [
+     "applause-stewards-foe-1",
+     "applause-stewards-foe-2",
+     "applause-stewards-foe-3",
+     "applause-stewards-foe-4",
+     "applause-stewards-foe-5"
+    ],
+    "8-players": [
+     "applause-stewards-foe-1",
+     "applause-stewards-foe-2",
+     "applause-stewards-foe-3",
+     "applause-stewards-foe-4",
+     "applause-stewards-foe-5",
+     "applause-stewards-foe-6"
+    ]
+   },
+   "file": "foe-f22d488dd8.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/assets/table/foes-foe-f22d488dd8.webp",
+   "sha256": "fb789bbbbe9f874699da55d328cd672ad6c9f29b3b74661fa8bdcc0d4ea42bef",
+   "originalSha256": "04c1779960935df5a48707ca71a31ea0f561c2554ab25669afb086890b823084",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Распорядитель с расписным жезлом",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "applause-stewards-foe-1",
+     "applause-stewards-foe-2"
+    ],
+    "4-players": [
+     "applause-stewards-foe-1",
+     "applause-stewards-foe-2",
+     "applause-stewards-foe-3"
+    ],
+    "5-players": [
+     "applause-stewards-foe-1",
+     "applause-stewards-foe-2",
+     "applause-stewards-foe-3"
+    ],
+    "6-players": [
+     "applause-stewards-foe-1",
+     "applause-stewards-foe-2",
+     "applause-stewards-foe-3",
+     "applause-stewards-foe-4"
+    ],
+    "7-players": [
+     "applause-stewards-foe-1",
+     "applause-stewards-foe-2",
+     "applause-stewards-foe-3",
+     "applause-stewards-foe-4",
+     "applause-stewards-foe-5"
+    ],
+    "8-players": [
+     "applause-stewards-foe-1",
+     "applause-stewards-foe-2",
+     "applause-stewards-foe-3",
+     "applause-stewards-foe-4",
+     "applause-stewards-foe-5",
+     "applause-stewards-foe-6"
+    ]
+   },
+   "file": "foe-f22d488dd8--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-f22d488dd8.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/assets/table/npcs-rukhmir.webp",
+   "sha256": "b41722ec08a43c14a7a1d32225febbf17a9e82045c272f7e047c69190eee3283",
+   "originalSha256": "beac7d5fe24a1b65cd01dac2d8c9c8b9dec8e4053c27eed6b54a17852e07b70d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рухомир Медный",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "rukhmir"
+    ],
+    "4-players": [
+     "rukhmir"
+    ],
+    "5-players": [
+     "rukhmir"
+    ],
+    "6-players": [
+     "rukhmir"
+    ],
+    "7-players": [
+     "rukhmir"
+    ],
+    "8-players": [
+     "rukhmir"
+    ]
+   },
+   "file": "rukhmir--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "rukhmir.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/assets/table/npcs-denvar.webp",
+   "sha256": "68ff696d68f2655204d59393500a240f848ecd589e0e1c2d1365228bb815e267",
+   "originalSha256": "beac7d5fe24a1b65cd01dac2d8c9c8b9dec8e4053c27eed6b54a17852e07b70d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Денвар Громкая Пауза",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "denvar"
+    ],
+    "4-players": [
+     "denvar"
+    ],
+    "5-players": [
+     "denvar"
+    ],
+    "6-players": [
+     "denvar"
+    ],
+    "7-players": [
+     "denvar"
+    ],
+    "8-players": [
+     "denvar"
+    ]
+   },
+   "file": "denvar--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "denvar.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/assets/table/npcs-lissa.webp",
+   "sha256": "d1cac8867f1de18c087688f6e2a7fdaeee6033f1ee1da37c1e2ea6cb3c55163a",
+   "originalSha256": "beac7d5fe24a1b65cd01dac2d8c9c8b9dec8e4053c27eed6b54a17852e07b70d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лисса Верный Возврат",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lissa"
+    ],
+    "4-players": [
+     "lissa"
+    ],
+    "5-players": [
+     "lissa"
+    ],
+    "6-players": [
+     "lissa"
+    ],
+    "7-players": [
+     "lissa"
+    ],
+    "8-players": [
+     "lissa"
+    ]
+   },
+   "file": "lissa--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "lissa.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/assets/table/npcs-orel.webp",
+   "sha256": "df4555e7556d3210de3683374b689065bfef41e81ba69f027c6a3d274f0fd869",
+   "originalSha256": "beac7d5fe24a1b65cd01dac2d8c9c8b9dec8e4053c27eed6b54a17852e07b70d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Орель Медленный Карандаш",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "orel"
+    ],
+    "4-players": [
+     "orel"
+    ],
+    "5-players": [
+     "orel"
+    ],
+    "6-players": [
+     "orel"
+    ],
+    "7-players": [
+     "orel"
+    ],
+    "8-players": [
+     "orel"
+    ]
+   },
+   "file": "orel--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "orel.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/assets/table/npcs-burdash.webp",
+   "sha256": "292044f084727329a7a82868f994a861bff0ec5be5ed94063682716ff962c7c1",
+   "originalSha256": "beac7d5fe24a1b65cd01dac2d8c9c8b9dec8e4053c27eed6b54a17852e07b70d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Бурдаш Большой Пень",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "burdash"
+    ],
+    "4-players": [
+     "burdash"
+    ],
+    "5-players": [
+     "burdash"
+    ],
+    "6-players": [
+     "burdash"
+    ],
+    "7-players": [
+     "burdash"
+    ],
+    "8-players": [
+     "burdash"
+    ]
+   },
+   "file": "burdash--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "burdash.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/assets/table/npcs-veta.webp",
+   "sha256": "61045d345e1b527d3d400497ab1ca20b3929d61e46f6d43b4e263b4abe009209",
+   "originalSha256": "beac7d5fe24a1b65cd01dac2d8c9c8b9dec8e4053c27eed6b54a17852e07b70d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Вета Точный Счёт",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "veta"
+    ],
+    "4-players": [
+     "veta"
+    ],
+    "5-players": [
+     "veta"
+    ],
+    "6-players": [
+     "veta"
+    ],
+    "7-players": [
+     "veta"
+    ],
+    "8-players": [
+     "veta"
+    ]
+   },
+   "file": "veta--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "veta.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/assets/table/npcs-zoya.webp",
+   "sha256": "ded461925c40d32d68c2385f667096030c51ab2b53fb3c5746a9fc3b05014713",
+   "originalSha256": "beac7d5fe24a1b65cd01dac2d8c9c8b9dec8e4053c27eed6b54a17852e07b70d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Зоя Растрёпа",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "zoya"
+    ],
+    "4-players": [
+     "zoya"
+    ],
+    "5-players": [
+     "zoya"
+    ],
+    "6-players": [
+     "zoya"
+    ],
+    "7-players": [
+     "zoya"
+    ],
+    "8-players": [
+     "zoya"
+    ]
+   },
+   "file": "zoya--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "zoya.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/assets/table/npcs-ren.webp",
+   "sha256": "72f63155e2768638c67e973c9ed8047cf647e19c75258a59d1e59cbfd3267b73",
+   "originalSha256": "beac7d5fe24a1b65cd01dac2d8c9c8b9dec8e4053c27eed6b54a17852e07b70d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рен Ровный Шаг",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ren"
+    ],
+    "4-players": [
+     "ren"
+    ],
+    "5-players": [
+     "ren"
+    ],
+    "6-players": [
+     "ren"
+    ],
+    "7-players": [
+     "ren"
+    ],
+    "8-players": [
+     "ren"
+    ]
+   },
+   "file": "ren--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ren.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/assets/table/npcs-ulta.webp",
+   "sha256": "fa424e5378640f52070fc4219c00425281fe220ea34314d5aba1ef7a8ed27329",
+   "originalSha256": "beac7d5fe24a1b65cd01dac2d8c9c8b9dec8e4053c27eed6b54a17852e07b70d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Улта Долгий Спуск",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ulta"
+    ],
+    "4-players": [
+     "ulta"
+    ],
+    "5-players": [
+     "ulta"
+    ],
+    "6-players": [
+     "ulta"
+    ],
+    "7-players": [
+     "ulta"
+    ],
+    "8-players": [
+     "ulta"
+    ]
+   },
+   "file": "ulta--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ulta.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/dragon-retirement/illustrations/opening.webp",
+   "sha256": "0fc62fd27675cc371594d9087d0d02cccf167e5199927f6aeae15e31e84323d0",
+   "originalSha256": "3d10ff259e79c5bd961e9a1326dca538dff8aded297b77c4e272cba5472c3673",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Полуденный двор — Дракон уходит на покой",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "patchwork-ridges"
+    ],
+    "4-players": [
+     "patchwork-ridges"
+    ],
+    "5-players": [
+     "patchwork-ridges"
+    ],
+    "6-players": [
+     "patchwork-ridges"
+    ],
+    "7-players": [
+     "patchwork-ridges"
+    ],
+    "8-players": [
+     "patchwork-ridges"
+    ]
+   },
+   "file": "cover.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "file": "white-scree--map.webp",
+   "source": "campaigns/fantasy-2026/dragon-retirement/assets/battle-maps/white-scree.webp",
+   "sha256": "9815f51dd535c7bca79041080570472ae0e6fc71883ea40e078eaeb0badb9201",
+   "originalSha256": "a32e3150cdebd2938e194878c7d3c9bb42f30da5d48d5fc5de17208b369e4cfd",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Белая осыпь. Visible scenery: Полоса светлого щебня между округлыми валунами. Узкие проходы режут склон, а широкая тропа огибает его снизу.. World style: Лоскутные кряжи · Warm copper dragon scales alternating with quietly etched checkerboard tiles. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "white-scree.webp",
+   "subjects": {
+    "3-players": [
+     "white-scree"
+    ],
+    "4-players": [
+     "white-scree"
+    ],
+    "5-players": [
+     "white-scree"
+    ],
+    "6-players": [
+     "white-scree"
+    ],
+    "7-players": [
+     "white-scree"
+    ],
+    "8-players": [
+     "white-scree"
+    ]
+   }
+  },
+  {
+   "file": "heather-descent--map.webp",
+   "source": "campaigns/fantasy-2026/dragon-retirement/assets/battle-maps/heather-descent.webp",
+   "sha256": "76b0e3766e578d97dd57fe1196341ecac9628c71bc8ce6637c593eb82c49c226",
+   "originalSha256": "f1b65debf9478d75e91c4dd5cd4b26b9edfc293dcbbb6a125da2eadebe458c72",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Вересковый спуск. Visible scenery: Пологая дорога с огромным пнём у поворота. Здесь одинаково заметны следы сапог и великанов.. World style: Лоскутные кряжи · Warm copper dragon scales alternating with quietly etched checkerboard tiles. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "heather-descent.webp",
+   "subjects": {
+    "3-players": [
+     "heather-descent"
+    ],
+    "4-players": [
+     "heather-descent"
+    ],
+    "5-players": [
+     "heather-descent"
+    ],
+    "6-players": [
+     "heather-descent"
+    ],
+    "7-players": [
+     "heather-descent"
+    ],
+    "8-players": [
+     "heather-descent"
+    ]
+   }
+  },
+  {
+   "file": "split-saddle--map.webp",
+   "source": "campaigns/fantasy-2026/dragon-retirement/assets/battle-maps/split-saddle.webp",
+   "sha256": "e38ca18201ea4f8015fb7a29f93cce43cce1a47835e3e1342b3d63dbce653aec",
+   "originalSha256": "2f73572ebef9c703c2a8490252d9c4b0722e9047b7d5851c676fe67c0953f38e",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Раздвоенная седловина. Visible scenery: Широкий каменный седловой проход; одна дорожка ведёт под навес, другая огибает вершину по длинной полке.. World style: Лоскутные кряжи · Warm copper dragon scales alternating with quietly etched checkerboard tiles. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "split-saddle.webp",
+   "subjects": {
+    "3-players": [
+     "split-saddle"
+    ],
+    "4-players": [
+     "split-saddle"
+    ],
+    "5-players": [
+     "split-saddle"
+    ],
+    "6-players": [
+     "split-saddle"
+    ],
+    "7-players": [
+     "split-saddle"
+    ],
+    "8-players": [
+     "split-saddle"
+    ]
+   }
+  },
+  {
+   "file": "world-map.webp",
+   "source": "campaigns/fantasy-2026/dragon-retirement/assets/world-map/world-map.webp",
+   "sha256": "30c5f6e5ffa35e2128ca044db1d843adb767828fb2d5bb1989aefdcf0099e89c",
+   "originalSha256": "6b0b0474ac3c57afef433dcaaa946ba84aba184048db0385c9c69ef4bb9bf496",
+   "generated": "2026-11-22",
+   "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Лоскутные кряжи. Style Лоскутные кряжи · Warm copper dragon scales alternating with quietly etched checkerboard tiles. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Полуденный двор; 0.367,0.177 Нижний зубец; 0.623,0.15 Белая осыпь; 0.88,0.177 Вересковый спуск; 0.905,0.517 Голая Игла; 0.648,0.49 Дом аплодисментов; 0.392,0.517 Слепой уступ; 0.135,0.49 Раздвоенная седловина; 0.11,0.83 Рваный Венец. Show public exteriors / unlabeled contours only.",
+   "references": [],
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null,
+   "subjects": {
+    "3-players": [
+     "world-map"
+    ],
+    "4-players": [
+     "world-map"
+    ],
+    "5-players": [
+     "world-map"
+    ],
+    "6-players": [
+     "world-map"
+    ],
+    "7-players": [
+     "world-map"
+    ],
+    "8-players": [
+     "world-map"
+    ]
+   }
+  }
+ ]
+}

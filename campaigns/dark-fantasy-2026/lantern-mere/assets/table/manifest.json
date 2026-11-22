@@ -1,0 +1,688 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "lantern-mere-places-0",
+      "originalFile": "exec-9b26f827-44ff-4dd8-91f2-3588f13a2386.png",
+      "originalSha256": "fb290a18d2bad8dd7dfca8d8e49e66e5395c8d7649f9baee129ba6417569136d",
+      "columns": 3,
+      "rows": 4,
+      "prompt": "A registered game art atlas of location illustrations, one clearly distinct unpopulated environment per cell, distinct scene lighting and structures. Fill each cell edge to edge. Atmospheric painted landscape or architectural interiors at human eye level. No plot events, clues, icons or writing. EXACT regular grid, 3 equal columns by 4 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Велинь и Сумеречная заводь · Indigo water-silk with reflected lantern-glass lozenges and dim amber ripples. Cell 1. Колокольный причал. Каменная пристань с невысоким колоколом, столом под навесом и нишами для памятных фонарей.\nCell 2. Новый Плёс. Плавучие мастерские и дома с узкими садами. Вечером здесь сравнивают странные звуки, услышанные со старого берега.\nCell 3. Косая палата. Каменный двор с наклонными окнами. Одна лестница идёт вдоль стены, а на широком подоконнике оставлены чашки и мел.\nCell 4. Висячий сад. Террасы над затопленной улицей; живые горшечные растения соседствуют с бледными отражениями старых клумб.\nCell 5. Паромный хор. Тихие причалы под арками бывшей часовни. На воде стоят призрачные паромы, а их тени пересекаются под неслышный ритм вёсел.\nCell 6. Дом незакрытых дверей. Галерея комнат вокруг светового колодца. Из одного окна слышен стук ложки; над другим висит закрытый синий зонт.\nCell 7. Площадь ненаписанных теней. Мокрая площадь со скамьями и каменной статуей. Тени прохожих ложатся на стены, рядом висят незаполненные дощечки для подписей.\nCell 8. Галерея косого дождя. Широкая крытая галерея между высокими фронтонами. Дождь стекает по стене, а под навесом остаётся сухая полоса камня.\nCell 9. Тихая гавань. Небольшая площадка среди спокойной воды, со столом, свободной скамьёй и белым навесом для неспешных разговоров.\nCell 10. Берег раннего света. Сухой откос с низкими деревьями, пустой почтовой доской и видом на окна утонувшего города.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "lantern-mere-foes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-9d12b3d3-6468-4c7b-8ef9-9245daa0edf8.png",
+      "originalSha256": "f46b851ff140b498aa29c544222cec16dfec23db7d93e0715029dd880a59aa0d",
+      "columns": 3,
+      "rows": 1,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 3 equal columns by 1 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Велинь и Сумеречная заводь · Indigo water-silk with reflected lantern-glass lozenges and dim amber ripples. Cell 1. Фарфоровая помеха. Безликий контур из светлых осколков отражения; внутри нет человека, души или запертой памяти.\nCell 2. Дождевой отблеск. Пустой силуэт из капель и света, повторяющий линию старой походки. Это пространственная помеха, не замена человека.\nCell 3. Чернильный контур. Безличная складка тёмного отражения, похожая на незаконченный знак; в ней нет чужого сознания.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "lantern-mere-heroes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-5a761ecd-bf43-4ac4-8bf6-45ad77420b82.png",
+      "originalSha256": "460eecef49253ca5a4a9e9a9a743e31eb0cbaf02657d4b111bb684b63c5c7ca8",
+      "columns": 4,
+      "rows": 2,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 4 equal columns by 2 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Велинь и Сумеречная заводь · Indigo water-silk with reflected lantern-glass lozenges and dim amber ripples. Cell 1. Лада Ровень. Синий плащ, широкие рукавицы и дорожный щит с рисунком волны.\nCell 2. Ярин Таль. Песочный шарф, сумка с карандашами и записная книжка в непромокаемой обложке.\nCell 3. Мерет Иль. Серое платье под дорожной кольчугой и матовый фонарь на медной цепочке.\nCell 4. Оден Соль. Потёртое пальто, круглые очки и короткий отвес в кожаном футляре.\nCell 5. Эста Нив. Тёмный жилет, пояс с мелом и каменной пылью, простой щит без герба.\nCell 6. Рина Тесс. Зелёный шарф, металлический рожок и тетрадь с условными значками звуков.\nCell 7. Корвин Лугов. Непромокаемый плащ, несколько кружек и ложка в мягком чехле.. Leave final unused cells empty.",
+      "references": [
+        "campaigns/dark-fantasy-2026/lantern-mere/illustrations/cards/lada-roven.webp",
+        "campaigns/dark-fantasy-2026/lantern-mere/illustrations/cards/yarin-tale.webp",
+        "campaigns/dark-fantasy-2026/lantern-mere/illustrations/cards/meret-il.webp",
+        "campaigns/dark-fantasy-2026/lantern-mere/illustrations/cards/oden-sol.webp",
+        "campaigns/dark-fantasy-2026/lantern-mere/illustrations/cards/esta-niv.webp",
+        "campaigns/dark-fantasy-2026/lantern-mere/illustrations/cards/rina-tess.webp",
+        "campaigns/dark-fantasy-2026/lantern-mere/illustrations/cards/korvin-lugov.webp"
+      ]
+    },
+    {
+      "id": "lantern-mere-npcs-1",
+      "cutoutRevision": 4,
+      "originalFile": "exec-659e4859-29d9-4d90-b04b-6765437239a3.png",
+      "originalSha256": "8ed2822e487a2dff6aeb67da277fa2c5fe1799d5dfbfaf515c1d3677f6ff29b2",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 5 distinct hand-painted tabletop miniature figurines for the world of Фонари утонувшего города. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Нела Руд. Зелёная куртка, тетрадь наблюдений и короб с обычными листьями.\nCell 2. Брен Толль. Прозрачный пожилой перевозчик в сером пальто; фонарь сливового цвета отражается у весла.\nCell 3. Сена Лир. Прозрачная женщина с тёмной косой; возле неё стоят две чашки и висит синий зонт.\nCell 4. Смотритель Рувель. Призрачный мужчина с белой лентой на рукаве и пачкой пустых дощечек.\nCell 5. Демир Таль. Светлый плащ, обычная записная книжка и чашка с косой ручкой.",
+      "references": [
+        "campaigns/dark-fantasy-2026/lantern-mere/illustrations/cards/nela-rud.webp",
+        "campaigns/dark-fantasy-2026/lantern-mere/illustrations/cards/bren-toll.webp",
+        "campaigns/dark-fantasy-2026/lantern-mere/illustrations/cards/sena-lir.webp",
+        "campaigns/dark-fantasy-2026/lantern-mere/illustrations/cards/ruvel-ash.webp",
+        "campaigns/dark-fantasy-2026/lantern-mere/illustrations/cards/demir-tal.webp"
+      ]
+    },
+    {
+      "id": "lantern-mere-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-8fa93ef5-b5b0-4ca6-9205-27e40beea7b9.png",
+      "originalSha256": "df0273082387aadcf903b8054c7364dc97c542829337180485efb5dbb2c9cd51",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 5 distinct hand-painted tabletop miniature figurines for the world of Фонари утонувшего города. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Мара Веснь. Высокая женщина в плаще с белой каймой; в руках короткое весло.\nCell 2. Элина Орст. Тёмное пальто, красная лента на рукаве и две небольшие чашки.\nCell 3. Тимур Шев. Короткая куртка со стружкой на рукавах и карандаш за ухом.\nCell 4. Алден Вей. Серый сюртук, короткий отвес и мел в кармане.\nCell 5. Ильда Север. Фартук с семенами, деревянные бусы и горшок с неровным листом.",
+      "references": [
+        "campaigns/dark-fantasy-2026/lantern-mere/illustrations/cards/mara-vesn.webp",
+        "campaigns/dark-fantasy-2026/lantern-mere/illustrations/cards/elina-orst.webp",
+        "campaigns/dark-fantasy-2026/lantern-mere/illustrations/cards/timur-shev.webp",
+        "campaigns/dark-fantasy-2026/lantern-mere/illustrations/cards/alden-vey.webp",
+        "campaigns/dark-fantasy-2026/lantern-mere/illustrations/cards/ilda-sever.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "bell-quay",
+      "title": "Колокольный причал",
+      "kind": "place",
+      "subjects": [
+        "bell-quay"
+      ],
+      "file": "places-bell-quay.webp",
+      "sha256": "7d542f6d9d000a3547016aa240022500739526d4968a088f3b5892bf0a2a1732",
+      "originalSha256": "fb290a18d2bad8dd7dfca8d8e49e66e5395c8d7649f9baee129ba6417569136d",
+      "generated": "2026-11-22",
+      "sheet": "lantern-mere-places-0",
+      "cell": 1,
+      "crop": {
+        "left": 1,
+        "top": 1,
+        "width": 481,
+        "height": 270
+      }
+    },
+    {
+      "key": "raftward",
+      "title": "Новый Плёс",
+      "kind": "place",
+      "subjects": [
+        "raftward"
+      ],
+      "file": "places-raftward.webp",
+      "sha256": "fdc19b21e4fe2c8e0de240c4990747ed601a34a9cdd87dafdb0da1caef0d5b7f",
+      "originalSha256": "fb290a18d2bad8dd7dfca8d8e49e66e5395c8d7649f9baee129ba6417569136d",
+      "generated": "2026-11-22",
+      "sheet": "lantern-mere-places-0",
+      "cell": 2,
+      "crop": {
+        "left": 484,
+        "top": 1,
+        "width": 480,
+        "height": 270
+      }
+    },
+    {
+      "key": "inverted-court",
+      "title": "Косая палата",
+      "kind": "place",
+      "subjects": [
+        "inverted-court"
+      ],
+      "file": "places-inverted-court.webp",
+      "sha256": "72e89840260bbb7b0c23117bb08acb1faf689a682df582ea02d9797c9bf6842e",
+      "originalSha256": "fb290a18d2bad8dd7dfca8d8e49e66e5395c8d7649f9baee129ba6417569136d",
+      "generated": "2026-11-22",
+      "sheet": "lantern-mere-places-0",
+      "cell": 3,
+      "crop": {
+        "left": 966,
+        "top": 1,
+        "width": 481,
+        "height": 270
+      }
+    },
+    {
+      "key": "hanging-garden",
+      "title": "Висячий сад",
+      "kind": "place",
+      "subjects": [
+        "hanging-garden"
+      ],
+      "file": "places-hanging-garden.webp",
+      "sha256": "675a632bc545b46f286187c9480cd078c6ac57ae8103d519697614ec54a7e818",
+      "originalSha256": "fb290a18d2bad8dd7dfca8d8e49e66e5395c8d7649f9baee129ba6417569136d",
+      "generated": "2026-11-22",
+      "sheet": "lantern-mere-places-0",
+      "cell": 4,
+      "crop": {
+        "left": 1,
+        "top": 273,
+        "width": 481,
+        "height": 269
+      }
+    },
+    {
+      "key": "ferry-choir",
+      "title": "Паромный хор",
+      "kind": "place",
+      "subjects": [
+        "ferry-choir"
+      ],
+      "file": "places-ferry-choir.webp",
+      "sha256": "d15871646e9c9d0ac9921a20d3e4a2e12e9b84b15e3e253a1f75ec2e4ed41290",
+      "originalSha256": "fb290a18d2bad8dd7dfca8d8e49e66e5395c8d7649f9baee129ba6417569136d",
+      "generated": "2026-11-22",
+      "sheet": "lantern-mere-places-0",
+      "cell": 5,
+      "crop": {
+        "left": 484,
+        "top": 273,
+        "width": 480,
+        "height": 269
+      }
+    },
+    {
+      "key": "return-house",
+      "title": "Дом незакрытых дверей",
+      "kind": "place",
+      "subjects": [
+        "return-house"
+      ],
+      "file": "places-return-house.webp",
+      "sha256": "ab86461003001423f4f9f6510f2575c5bc634109169536d19d76d7f66bef9fe2",
+      "originalSha256": "fb290a18d2bad8dd7dfca8d8e49e66e5395c8d7649f9baee129ba6417569136d",
+      "generated": "2026-11-22",
+      "sheet": "lantern-mere-places-0",
+      "cell": 6,
+      "crop": {
+        "left": 966,
+        "top": 273,
+        "width": 481,
+        "height": 269
+      }
+    },
+    {
+      "key": "mirror-square",
+      "title": "Площадь ненаписанных теней",
+      "kind": "place",
+      "subjects": [
+        "mirror-square"
+      ],
+      "file": "places-mirror-square.webp",
+      "sha256": "1c88db04759b7b72009f1735c4ec5c374e6a354329f04599faef7dad2e17a4fa",
+      "originalSha256": "fb290a18d2bad8dd7dfca8d8e49e66e5395c8d7649f9baee129ba6417569136d",
+      "generated": "2026-11-22",
+      "sheet": "lantern-mere-places-0",
+      "cell": 7,
+      "crop": {
+        "left": 1,
+        "top": 544,
+        "width": 481,
+        "height": 270
+      }
+    },
+    {
+      "key": "roof-bridge",
+      "title": "Галерея косого дождя",
+      "kind": "place",
+      "subjects": [
+        "roof-bridge"
+      ],
+      "file": "places-roof-bridge.webp",
+      "sha256": "6078070bb52fd80bc4decf69ddbb0346af740cd88878c649db00d1715410d575",
+      "originalSha256": "fb290a18d2bad8dd7dfca8d8e49e66e5395c8d7649f9baee129ba6417569136d",
+      "generated": "2026-11-22",
+      "sheet": "lantern-mere-places-0",
+      "cell": 8,
+      "crop": {
+        "left": 484,
+        "top": 544,
+        "width": 480,
+        "height": 270
+      }
+    },
+    {
+      "key": "quiet-harbor",
+      "title": "Тихая гавань",
+      "kind": "place",
+      "subjects": [
+        "quiet-harbor"
+      ],
+      "file": "places-quiet-harbor.webp",
+      "sha256": "11a1e2d143676b2432151a684d45793493f0cf64194c1f02688cc9b7c4abceba",
+      "originalSha256": "fb290a18d2bad8dd7dfca8d8e49e66e5395c8d7649f9baee129ba6417569136d",
+      "generated": "2026-11-22",
+      "sheet": "lantern-mere-places-0",
+      "cell": 9,
+      "crop": {
+        "left": 966,
+        "top": 544,
+        "width": 481,
+        "height": 270
+      }
+    },
+    {
+      "key": "dawn-bank",
+      "title": "Берег раннего света",
+      "kind": "place",
+      "subjects": [
+        "dawn-bank"
+      ],
+      "file": "places-dawn-bank.webp",
+      "sha256": "c7ec370dc6e5fd765b9d3dd6c07affa9d557ccbc044ba8d557548568f51b8925",
+      "originalSha256": "fb290a18d2bad8dd7dfca8d8e49e66e5395c8d7649f9baee129ba6417569136d",
+      "generated": "2026-11-22",
+      "sheet": "lantern-mere-places-0",
+      "cell": 10,
+      "crop": {
+        "left": 1,
+        "top": 816,
+        "width": 481,
+        "height": 269
+      }
+    },
+    {
+      "key": "foe-70e2a67737",
+      "title": "Фарфоровая помеха",
+      "kind": "foe",
+      "subjects": [
+        "porcelain-repeats-foe-1",
+        "porcelain-repeats-foe-2",
+        "porcelain-repeats-foe-3",
+        "porcelain-repeats-foe-4",
+        "porcelain-repeats-foe-5"
+      ],
+      "file": "foes-foe-70e2a67737.webp",
+      "sha256": "74e8972b1ae3fd0db8fea1b443613535b38bd94fbeac8beff658153022093766",
+      "originalSha256": "f46b851ff140b498aa29c544222cec16dfec23db7d93e0715029dd880a59aa0d",
+      "generated": "2026-11-22",
+      "sheet": "lantern-mere-foes-0",
+      "cell": 1,
+      "crop": {
+        "left": 101,
+        "top": 18,
+        "width": 483,
+        "height": 677
+      }
+    },
+    {
+      "key": "foe-f81e1979b0",
+      "title": "Дождевой отблеск",
+      "kind": "foe",
+      "subjects": [
+        "rain-steps-foe-1",
+        "rain-steps-foe-2",
+        "rain-steps-foe-3",
+        "rain-steps-foe-4",
+        "rain-steps-foe-5"
+      ],
+      "file": "foes-foe-f81e1979b0.webp",
+      "sha256": "a4ffc1455f5fc2bf74404078f675e5f31f6c88dc096b3a9487d5f7708916c6ce",
+      "originalSha256": "f46b851ff140b498aa29c544222cec16dfec23db7d93e0715029dd880a59aa0d",
+      "generated": "2026-11-22",
+      "sheet": "lantern-mere-foes-0",
+      "cell": 2,
+      "crop": {
+        "left": 851,
+        "top": 15,
+        "width": 469,
+        "height": 680
+      }
+    },
+    {
+      "key": "foe-0d27ec23ff",
+      "title": "Чернильный контур",
+      "kind": "foe",
+      "subjects": [
+        "ink-shapes-foe-1",
+        "ink-shapes-foe-2",
+        "ink-shapes-foe-3",
+        "ink-shapes-foe-4",
+        "ink-shapes-foe-5"
+      ],
+      "file": "foes-foe-0d27ec23ff.webp",
+      "sha256": "c1c3613e6b070406d79db0608b651b2331abd5c25d587eb17a89679efa27ca04",
+      "originalSha256": "f46b851ff140b498aa29c544222cec16dfec23db7d93e0715029dd880a59aa0d",
+      "generated": "2026-11-22",
+      "sheet": "lantern-mere-foes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1588,
+        "top": 17,
+        "width": 469,
+        "height": 678
+      }
+    },
+    {
+      "key": "lada-roven",
+      "title": "Лада Ровень",
+      "kind": "hero",
+      "subjects": [
+        "lada-roven"
+      ],
+      "file": "heroes-lada-roven.webp",
+      "sha256": "c9d0cf24736b6374bb1cdc2984d0b6efb9966596c83da45bde7c35006d08f44a",
+      "originalSha256": "460eecef49253ca5a4a9e9a9a743e31eb0cbaf02657d4b111bb684b63c5c7ca8",
+      "generated": "2026-11-22",
+      "sheet": "lantern-mere-heroes-0",
+      "cell": 1,
+      "crop": {
+        "left": 103,
+        "top": 15,
+        "width": 239,
+        "height": 418
+      }
+    },
+    {
+      "key": "yarin-tale",
+      "title": "Ярин Таль",
+      "kind": "hero",
+      "subjects": [
+        "yarin-tale"
+      ],
+      "file": "heroes-yarin-tale.webp",
+      "sha256": "4f668881613826c3c9f1e5ab8f2e4ec2c6cbdcc3efe874da7c6f39d75955260f",
+      "originalSha256": "460eecef49253ca5a4a9e9a9a743e31eb0cbaf02657d4b111bb684b63c5c7ca8",
+      "generated": "2026-11-22",
+      "sheet": "lantern-mere-heroes-0",
+      "cell": 2,
+      "crop": {
+        "left": 554,
+        "top": 13,
+        "width": 223,
+        "height": 419
+      }
+    },
+    {
+      "key": "meret-il",
+      "title": "Мерет Иль",
+      "kind": "hero",
+      "subjects": [
+        "meret-il"
+      ],
+      "file": "heroes-meret-il.webp",
+      "sha256": "a0bb6af8ee304cbce34a71be7d1e861593d137445abae051f103aa7e59ec6eb7",
+      "originalSha256": "460eecef49253ca5a4a9e9a9a743e31eb0cbaf02657d4b111bb684b63c5c7ca8",
+      "generated": "2026-11-22",
+      "sheet": "lantern-mere-heroes-0",
+      "cell": 3,
+      "crop": {
+        "left": 988,
+        "top": 14,
+        "width": 236,
+        "height": 419
+      }
+    },
+    {
+      "key": "oden-sol",
+      "title": "Оден Соль",
+      "kind": "hero",
+      "subjects": [
+        "oden-sol"
+      ],
+      "file": "heroes-oden-sol.webp",
+      "sha256": "9d09093484b7f5bafa3b9c44c4c877b30c340ca9b54a7324f20884d9414160aa",
+      "originalSha256": "460eecef49253ca5a4a9e9a9a743e31eb0cbaf02657d4b111bb684b63c5c7ca8",
+      "generated": "2026-11-22",
+      "sheet": "lantern-mere-heroes-0",
+      "cell": 4,
+      "crop": {
+        "left": 1442,
+        "top": 12,
+        "width": 224,
+        "height": 422
+      }
+    },
+    {
+      "key": "esta-niv",
+      "title": "Эста Нив",
+      "kind": "hero",
+      "subjects": [
+        "esta-niv"
+      ],
+      "file": "heroes-esta-niv.webp",
+      "sha256": "95e78a264bcc80f0a20cf6f66a7e09eeec8070405f11c0b826d11181c52fbefa",
+      "originalSha256": "460eecef49253ca5a4a9e9a9a743e31eb0cbaf02657d4b111bb684b63c5c7ca8",
+      "generated": "2026-11-22",
+      "sheet": "lantern-mere-heroes-0",
+      "cell": 5,
+      "crop": {
+        "left": 108,
+        "top": 456,
+        "width": 235,
+        "height": 417
+      }
+    },
+    {
+      "key": "rina-tess",
+      "title": "Рина Тесс",
+      "kind": "hero",
+      "subjects": [
+        "rina-tess"
+      ],
+      "file": "heroes-rina-tess.webp",
+      "sha256": "65e7a09d98dc2d697321fbd7d6d24429f62035a8fd8b31f8e23238ba82f8fc7a",
+      "originalSha256": "460eecef49253ca5a4a9e9a9a743e31eb0cbaf02657d4b111bb684b63c5c7ca8",
+      "generated": "2026-11-22",
+      "sheet": "lantern-mere-heroes-0",
+      "cell": 6,
+      "crop": {
+        "left": 553,
+        "top": 456,
+        "width": 227,
+        "height": 417
+      }
+    },
+    {
+      "key": "korvin-lugov",
+      "title": "Корвин Лугов",
+      "kind": "hero",
+      "subjects": [
+        "korvin-lugov"
+      ],
+      "file": "heroes-korvin-lugov.webp",
+      "sha256": "cd179cf591315018310c43b75efcef6682c155a8ee3b4e46bec0053a2b914465",
+      "originalSha256": "460eecef49253ca5a4a9e9a9a743e31eb0cbaf02657d4b111bb684b63c5c7ca8",
+      "generated": "2026-11-22",
+      "sheet": "lantern-mere-heroes-0",
+      "cell": 7,
+      "crop": {
+        "left": 975,
+        "top": 453,
+        "width": 248,
+        "height": 420
+      }
+    },
+    {
+      "key": "nela-rud",
+      "title": "Нела Руд",
+      "kind": "npc",
+      "subjects": [
+        "nela-rud"
+      ],
+      "file": "npcs-nela-rud.webp",
+      "sha256": "623b304585599d5e0686a3934e10f7c0b938b9f40693983f09bab755100096d1",
+      "originalSha256": "8ed2822e487a2dff6aeb67da277fa2c5fe1799d5dfbfaf515c1d3677f6ff29b2",
+      "generated": "2026-11-22",
+      "sheet": "lantern-mere-npcs-1",
+      "cell": 1,
+      "crop": {
+        "left": 125,
+        "top": 19,
+        "width": 264,
+        "height": 477
+      }
+    },
+    {
+      "key": "bren-toll",
+      "title": "Брен Толль",
+      "kind": "npc",
+      "subjects": [
+        "bren-toll"
+      ],
+      "file": "npcs-bren-toll.webp",
+      "sha256": "4ce46e0fe7576cc21aa57a99995bd8e6158ed32bca9c87ebf8c2be1bae57e58f",
+      "originalSha256": "8ed2822e487a2dff6aeb67da277fa2c5fe1799d5dfbfaf515c1d3677f6ff29b2",
+      "generated": "2026-11-22",
+      "sheet": "lantern-mere-npcs-1",
+      "cell": 2,
+      "crop": {
+        "left": 625,
+        "top": 17,
+        "width": 284,
+        "height": 480
+      }
+    },
+    {
+      "key": "sena-lir",
+      "title": "Сена Лир",
+      "kind": "npc",
+      "subjects": [
+        "sena-lir"
+      ],
+      "file": "npcs-sena-lir.webp",
+      "sha256": "cf2e61100375c495b77685833f4755987288623765ae94a5f946ac986a0735e3",
+      "originalSha256": "8ed2822e487a2dff6aeb67da277fa2c5fe1799d5dfbfaf515c1d3677f6ff29b2",
+      "generated": "2026-11-22",
+      "sheet": "lantern-mere-npcs-1",
+      "cell": 3,
+      "crop": {
+        "left": 1110,
+        "top": 16,
+        "width": 351,
+        "height": 480
+      }
+    },
+    {
+      "key": "ruvel-ash",
+      "title": "Смотритель Рувель",
+      "kind": "npc",
+      "subjects": [
+        "ruvel-ash"
+      ],
+      "file": "npcs-ruvel-ash.webp",
+      "sha256": "a6ec5dc802ab943c3910ddedfc5b3d84d2febc6a2f07d7321e3b69d783fefb07",
+      "originalSha256": "8ed2822e487a2dff6aeb67da277fa2c5fe1799d5dfbfaf515c1d3677f6ff29b2",
+      "generated": "2026-11-22",
+      "sheet": "lantern-mere-npcs-1",
+      "cell": 4,
+      "crop": {
+        "left": 110,
+        "top": 524,
+        "width": 288,
+        "height": 485
+      }
+    },
+    {
+      "key": "demir-tal",
+      "title": "Демир Таль",
+      "kind": "npc",
+      "subjects": [
+        "demir-tal"
+      ],
+      "file": "npcs-demir-tal.webp",
+      "sha256": "5cccb0f64ded8c19ead0dc2cc6607d4dd5e177aef88f4b520f43baefa82749e6",
+      "originalSha256": "8ed2822e487a2dff6aeb67da277fa2c5fe1799d5dfbfaf515c1d3677f6ff29b2",
+      "generated": "2026-11-22",
+      "sheet": "lantern-mere-npcs-1",
+      "cell": 5,
+      "crop": {
+        "left": 615,
+        "top": 522,
+        "width": 297,
+        "height": 488
+      }
+    },
+    {
+      "key": "mara-vesn",
+      "title": "Мара Веснь",
+      "kind": "npc",
+      "subjects": [
+        "mara-vesn"
+      ],
+      "file": "npcs-mara-vesn.webp",
+      "sha256": "6f7f919a3f14510532db847900cb89af8bb74328604aa3fcfda5af4337c9a5fd",
+      "originalSha256": "df0273082387aadcf903b8054c7364dc97c542829337180485efb5dbb2c9cd51",
+      "generated": "2026-11-22",
+      "sheet": "lantern-mere-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 103,
+        "top": 14,
+        "width": 290,
+        "height": 490
+      }
+    },
+    {
+      "key": "elina-orst",
+      "title": "Элина Орст",
+      "kind": "npc",
+      "subjects": [
+        "elina-orst"
+      ],
+      "file": "npcs-elina-orst.webp",
+      "sha256": "5841d6c44692e23201fb088ac4636c7d2fe664039457129d7403e45f4cdf28cd",
+      "originalSha256": "df0273082387aadcf903b8054c7364dc97c542829337180485efb5dbb2c9cd51",
+      "generated": "2026-11-22",
+      "sheet": "lantern-mere-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 605,
+        "top": 15,
+        "width": 291,
+        "height": 486
+      }
+    },
+    {
+      "key": "timur-shev",
+      "title": "Тимур Шев",
+      "kind": "npc",
+      "subjects": [
+        "timur-shev"
+      ],
+      "file": "npcs-timur-shev.webp",
+      "sha256": "efd089d0347ce9b94c2a5b2ff20ffd977d92d5490e9cdd275a3c28784b16f65b",
+      "originalSha256": "df0273082387aadcf903b8054c7364dc97c542829337180485efb5dbb2c9cd51",
+      "generated": "2026-11-22",
+      "sheet": "lantern-mere-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 1132,
+        "top": 11,
+        "width": 284,
+        "height": 492
+      }
+    },
+    {
+      "key": "alden-vey",
+      "title": "Алден Вей",
+      "kind": "npc",
+      "subjects": [
+        "alden-vey"
+      ],
+      "file": "npcs-alden-vey.webp",
+      "sha256": "8bddcfef388580c5698f926d3d76b8d310b513f94588df2100b0185991c15cdc",
+      "originalSha256": "df0273082387aadcf903b8054c7364dc97c542829337180485efb5dbb2c9cd51",
+      "generated": "2026-11-22",
+      "sheet": "lantern-mere-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 96,
+        "top": 518,
+        "width": 299,
+        "height": 495
+      }
+    },
+    {
+      "key": "ilda-sever",
+      "title": "Ильда Север",
+      "kind": "npc",
+      "subjects": [
+        "ilda-sever"
+      ],
+      "file": "npcs-ilda-sever.webp",
+      "sha256": "16b56a7c2fc6a0ab6c8dccdf8a0c0c68554224d5229d7dde70078ac3ab2e48d0",
+      "originalSha256": "df0273082387aadcf903b8054c7364dc97c542829337180485efb5dbb2c9cd51",
+      "generated": "2026-11-22",
+      "sheet": "lantern-mere-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 604,
+        "top": 521,
+        "width": 313,
+        "height": 493
+      }
+    }
+  ]
+}

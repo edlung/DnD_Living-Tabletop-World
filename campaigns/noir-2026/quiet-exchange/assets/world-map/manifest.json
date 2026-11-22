@@ -1,0 +1,12 @@
+{
+  "about": "Original unlabelled world map. Pin positions in source/world-map.json.",
+  "map": {
+    "file": "world-map.webp",
+    "sha256": "041f41ffac2423eeb51d91e43054ba2b1aceacd3f83ca51029c3e6bcb99e37f8",
+    "originalSha256": "4f966c947e1d406e38f7490e26c250f1555d19a1916c5e479856fef8037e6e21",
+    "originalFile": "exec-eb636652-82aa-406e-b5ee-44d9135c15a2.png",
+    "generated": "2026-11-22",
+    "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Равель, Оловянный склон. Style Равель, Оловянный склон · Bakelite switchboard sockets arranged in tiny rows with copper cord loops. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Кафе «Поздняя чашка»; 0.367,0.177 Коммутаторная соседского круга; 0.623,0.15 Переплётная «Лист и корешок»; 0.88,0.177 Прачечная с тёплой галереей; 0.905,0.857 Конечная под железным навесом; 0.648,0.83 Стол согласованных доставок; 0.392,0.857 Касса взаимных расчётов; 0.135,0.83 Крытый сад над кафе. Show public exteriors / unlabeled contours only.",
+    "references": []
+  }
+}

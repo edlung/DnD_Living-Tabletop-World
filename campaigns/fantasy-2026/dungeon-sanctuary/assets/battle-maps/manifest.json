@@ -1,0 +1,49 @@
+{
+  "maps": [
+    {
+      "file": "sun-shelf.webp",
+      "sha256": "8d297954da78ca1f861af3d6cb5b18be64da962a8a8017af83b47fe4a129b67d",
+      "originalSha256": "5b13baea64daa767fda117993b7e5edbdba937ecc2c9134a588e8290c918b724",
+      "originalFile": "exec-24523ba1-28e0-45df-8424-d1013721ddac.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Солнечная полка. Visible scenery: Широкий уступ над входом. Полдня солнце лежит на плоских плитах; рядом можно поставить навес, не закрывая обзор долины.. World style: Меловая гряда · Ivory chalk archways and mismatched welcome-door shapes in soft teal jacquard. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "sun-shelf",
+      "encounter": "chalk-goats",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "common-basin.webp",
+      "sha256": "583675bb8add11c655a2caac4e5648005c950ced6cf13174497d779734aedf11",
+      "originalSha256": "bb73d2bc0ff091555e8092cd17f9376fa70e691c8430f0124628ec41e85da794",
+      "originalFile": "exec-f0db9c73-fff6-4c5f-8362-b85ea10ef9c1.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Двор чаш. Visible scenery: Открытый дворик с низким водосборником и переносными чашами. Вода поступает обычным самотёком из ключа; краны и пробки видны с дорожки.. World style: Меловая гряда · Ivory chalk archways and mismatched welcome-door shapes in soft teal jacquard. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "common-basin",
+      "encounter": "reed-geese",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "ramp-yard.webp",
+      "sha256": "904618dcbc752eba4afad69cb069da89b8e311a1181c840a93f85b88c9882e65",
+      "originalSha256": "1df413aba5bb629bf132cd5acae6e695a0c625a91ce166faf950ed6dc0570fbf",
+      "originalFile": "exec-56de52c2-d5a2-44a4-b99d-2ed6a35c341b.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Двор пологого склона. Visible scenery: Пологий путь от луга к входу. У стены сложены деревянные щиты; повозка и пешеход пока с трудом расходятся на одном повороте.. World style: Меловая гряда · Ivory chalk archways and mismatched welcome-door shapes in soft teal jacquard. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "ramp-yard",
+      "encounter": "courtesy-drill",
+      "grid": [
+        14,
+        12
+      ]
+    }
+  ]
+}

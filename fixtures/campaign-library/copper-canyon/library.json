@@ -1,0 +1,1693 @@
+{
+ "id": "copper-canyon",
+ "title": "Пансион Медного Каньона",
+ "genre": "Романтическая комедия псевдонимов и взрослой дружбы",
+ "audience": "16+",
+ "pitch": "На встрече бывших друзей в пансионе всякий узнаёт знакомое прозвище и совсем другого человека. Помогите разобраться с двумя Капитанами, четырьмя посетителями свидания и кольцом размером с браслет; к последнему фуникулёру каждый должен забрать свой багаж и выбрать собственное продолжение.",
+ "tone": "Тёплый фарс с настоящей неловкостью: смеются над огромным плащом и буквальным исполнением метафоры, а не над возрастом, телом, отказом или неопытностью человека.",
+ "duration": "8 сессий; 2 часа 40 минут: 10 минут открытия и повтора, три сцены по 40 минут, перерыв 15 минут, завершение 15 минут.",
+ "cover": "campaigns/mixed-ages-2026/copper-canyon/illustrations/opening.webp",
+ "defaultVariant": "4-players",
+ "variants": [
+  {
+   "id": "3-players",
+   "players": 3,
+   "label": "3 игрока",
+   "file": "packages/3-players.json",
+   "digest": "80f9740b213c78876bbd124275023087086f62bde30499544bcec05cc579b63f"
+  },
+  {
+   "id": "4-players",
+   "players": 4,
+   "label": "4 игрока",
+   "file": "packages/4-players.json",
+   "digest": "0ea9b38d2fadff40e5ca7c5937ee4cd6197d4ac2ae98e5d857aaecfd8c257026"
+  },
+  {
+   "id": "5-players",
+   "players": 5,
+   "label": "5 игроков",
+   "file": "packages/5-players.json",
+   "digest": "c523baccdfbb892f2f154673c0df8c491fa427f43d86f4a421be5f7bd8d0e833"
+  },
+  {
+   "id": "6-players",
+   "players": 6,
+   "label": "6 игроков",
+   "file": "packages/6-players.json",
+   "digest": "534d4e6f91c26c272d44603aa7d59a9dadde641a3cfe54f585510e34c09e3ca1"
+  },
+  {
+   "id": "7-players",
+   "players": 7,
+   "label": "7 игроков",
+   "file": "packages/7-players.json",
+   "digest": "8de110b6744787bf66faa6ffc0fdc24ae9a963165b1ed0e7cbef2906c61be497"
+  }
+ ],
+ "generator": "codex-cli imagegen",
+ "pictures": [
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/illustrations/cards/iva-leden.webp",
+   "sha256": "f92f808f59a3ae91e4e192fd5dbe6892a1172e38021723962b05e1d7523aad5c",
+   "originalSha256": "58eb16a50a413e01666d0c3814e4b89f601635a2f945bd868cf7d8cc54c17f13",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ива Леден",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "iva-leden"
+    ],
+    "4-players": [
+     "iva-leden"
+    ],
+    "5-players": [
+     "iva-leden"
+    ],
+    "6-players": [
+     "iva-leden"
+    ],
+    "7-players": [
+     "iva-leden"
+    ]
+   },
+   "file": "iva-leden.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/illustrations/cards/arsen-lutek.webp",
+   "sha256": "19c4963bc48b6350dd5218459e87c0e5eb2d06da78d6dba6b885ac4cbc0f716f",
+   "originalSha256": "58eb16a50a413e01666d0c3814e4b89f601635a2f945bd868cf7d8cc54c17f13",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Арсен Лютек",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "arsen-lutek"
+    ],
+    "4-players": [
+     "arsen-lutek"
+    ],
+    "5-players": [
+     "arsen-lutek"
+    ],
+    "6-players": [
+     "arsen-lutek"
+    ],
+    "7-players": [
+     "arsen-lutek"
+    ]
+   },
+   "file": "arsen-lutek.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/illustrations/cards/tamara-ven.webp",
+   "sha256": "92619c2aa1f688bee6a03a2ff2cd1491713946b3fa78258dc658810f2d019008",
+   "originalSha256": "58eb16a50a413e01666d0c3814e4b89f601635a2f945bd868cf7d8cc54c17f13",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тамара Вен",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tamara-ven"
+    ],
+    "4-players": [
+     "tamara-ven"
+    ],
+    "5-players": [
+     "tamara-ven"
+    ],
+    "6-players": [
+     "tamara-ven"
+    ],
+    "7-players": [
+     "tamara-ven"
+    ]
+   },
+   "file": "tamara-ven.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/illustrations/cards/nina-otley.webp",
+   "sha256": "d4536160ec7193bd843dd963b574ea3d9462914d8b4e37a097d2758d04ad8032",
+   "originalSha256": "58eb16a50a413e01666d0c3814e4b89f601635a2f945bd868cf7d8cc54c17f13",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нина Отлей",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "nina-otley"
+    ],
+    "5-players": [
+     "nina-otley"
+    ],
+    "6-players": [
+     "nina-otley"
+    ],
+    "7-players": [
+     "nina-otley"
+    ]
+   },
+   "file": "nina-otley.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/illustrations/cards/oleg-iskren.webp",
+   "sha256": "c084daef6ee6b585238eb9bedecbfd15f170ce6136468ecfb42d789590857bd3",
+   "originalSha256": "58eb16a50a413e01666d0c3814e4b89f601635a2f945bd868cf7d8cc54c17f13",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Олег Искрен",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "oleg-iskren"
+    ],
+    "6-players": [
+     "oleg-iskren"
+    ],
+    "7-players": [
+     "oleg-iskren"
+    ]
+   },
+   "file": "oleg-iskren.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/illustrations/cards/zoya-trell.webp",
+   "sha256": "4f6a4ac7048c9ac546e8077d5faed0ef7ab3d387a19dc829ba03b8039806cbf9",
+   "originalSha256": "58eb16a50a413e01666d0c3814e4b89f601635a2f945bd868cf7d8cc54c17f13",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Зоя Трелль",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "zoya-trell"
+    ],
+    "7-players": [
+     "zoya-trell"
+    ]
+   },
+   "file": "zoya-trell.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/illustrations/cards/lev-norin.webp",
+   "sha256": "5411761bcd8ac4b137f96f97f415a9c0adc5131055ddbab2810bec2c952aa72e",
+   "originalSha256": "58eb16a50a413e01666d0c3814e4b89f601635a2f945bd868cf7d8cc54c17f13",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лев Норин",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "lev-norin"
+    ]
+   },
+   "file": "lev-norin.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/illustrations/cards/travel-kit.webp",
+   "sha256": "ec0b3ccb51ccef2527499ad761cfef6d066e14f50b0e0926c5af3990bc8959be",
+   "originalSha256": "58eb16a50a413e01666d0c3814e4b89f601635a2f945bd868cf7d8cc54c17f13",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дорожный набор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "arsen-lutek-travel-kit",
+     "iva-leden-travel-kit",
+     "tamara-ven-travel-kit"
+    ],
+    "4-players": [
+     "arsen-lutek-travel-kit",
+     "iva-leden-travel-kit",
+     "nina-otley-travel-kit",
+     "tamara-ven-travel-kit"
+    ],
+    "5-players": [
+     "arsen-lutek-travel-kit",
+     "iva-leden-travel-kit",
+     "nina-otley-travel-kit",
+     "oleg-iskren-travel-kit",
+     "tamara-ven-travel-kit"
+    ],
+    "6-players": [
+     "arsen-lutek-travel-kit",
+     "iva-leden-travel-kit",
+     "nina-otley-travel-kit",
+     "oleg-iskren-travel-kit",
+     "tamara-ven-travel-kit",
+     "zoya-trell-travel-kit"
+    ],
+    "7-players": [
+     "arsen-lutek-travel-kit",
+     "iva-leden-travel-kit",
+     "lev-norin-travel-kit",
+     "nina-otley-travel-kit",
+     "oleg-iskren-travel-kit",
+     "tamara-ven-travel-kit",
+     "zoya-trell-travel-kit"
+    ]
+   },
+   "file": "travel-kit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/illustrations/cards/vera-solm.webp",
+   "sha256": "894b7d32eefa966b222381fc4e192e16738c6bea3dd755ae2c01e75b70d88a68",
+   "originalSha256": "6774cc0b4ea3bf5f21f0e25628e1588147a84c475d46c0fb238ff715d1a4c89e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Вера Сольм",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "vera-solm"
+    ],
+    "4-players": [
+     "vera-solm"
+    ],
+    "5-players": [
+     "vera-solm"
+    ],
+    "6-players": [
+     "vera-solm"
+    ],
+    "7-players": [
+     "vera-solm"
+    ]
+   },
+   "file": "vera-solm.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/illustrations/cards/mark-voln.webp",
+   "sha256": "09c726e53ed78b784192ac39f952fd2b3b1e9d9ee6342f1795f9b8404d0db8eb",
+   "originalSha256": "6774cc0b4ea3bf5f21f0e25628e1588147a84c475d46c0fb238ff715d1a4c89e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Марк Волн",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mark-voln"
+    ],
+    "4-players": [
+     "mark-voln"
+    ],
+    "5-players": [
+     "mark-voln"
+    ],
+    "6-players": [
+     "mark-voln"
+    ],
+    "7-players": [
+     "mark-voln"
+    ]
+   },
+   "file": "mark-voln.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/illustrations/cards/alina-klen.webp",
+   "sha256": "dd33d76dd149d9f2ecd89fb263e99bfc0fa0997223ba1d63ea36603bce8392a6",
+   "originalSha256": "6774cc0b4ea3bf5f21f0e25628e1588147a84c475d46c0fb238ff715d1a4c89e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Алина Клен",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "alina-klen"
+    ],
+    "4-players": [
+     "alina-klen"
+    ],
+    "5-players": [
+     "alina-klen"
+    ],
+    "6-players": [
+     "alina-klen"
+    ],
+    "7-players": [
+     "alina-klen"
+    ]
+   },
+   "file": "alina-klen.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/illustrations/cards/denis-skat.webp",
+   "sha256": "cb90cd9bc930644ed43b8415056c20ca24d6b784428eb4fd5049cdf3aac92648",
+   "originalSha256": "6774cc0b4ea3bf5f21f0e25628e1588147a84c475d46c0fb238ff715d1a4c89e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Денис Скат",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "denis-skat"
+    ],
+    "4-players": [
+     "denis-skat"
+    ],
+    "5-players": [
+     "denis-skat"
+    ],
+    "6-players": [
+     "denis-skat"
+    ],
+    "7-players": [
+     "denis-skat"
+    ]
+   },
+   "file": "denis-skat.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/illustrations/cards/polina-vet.webp",
+   "sha256": "31cf6e469a10b9eca8d842cab78b2a3f9255c82fe28a67e13807917f42c6f4a4",
+   "originalSha256": "6774cc0b4ea3bf5f21f0e25628e1588147a84c475d46c0fb238ff715d1a4c89e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Полина Вет",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "polina-vet"
+    ],
+    "4-players": [
+     "polina-vet"
+    ],
+    "5-players": [
+     "polina-vet"
+    ],
+    "6-players": [
+     "polina-vet"
+    ],
+    "7-players": [
+     "polina-vet"
+    ]
+   },
+   "file": "polina-vet.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/illustrations/cards/ramil-gorn.webp",
+   "sha256": "a041f1f4cd62b335e32a6ac308b423f95d30958cea5d49a8c538b0a0a0c703b6",
+   "originalSha256": "6774cc0b4ea3bf5f21f0e25628e1588147a84c475d46c0fb238ff715d1a4c89e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рамиль Горн",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ramil-gorn"
+    ],
+    "4-players": [
+     "ramil-gorn"
+    ],
+    "5-players": [
+     "ramil-gorn"
+    ],
+    "6-players": [
+     "ramil-gorn"
+    ],
+    "7-players": [
+     "ramil-gorn"
+    ]
+   },
+   "file": "ramil-gorn.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/illustrations/cards/sofia-lans.webp",
+   "sha256": "2373e2d62e29fd419186a32c41ba4b632929b23c3aa4a22624457443338fc7d3",
+   "originalSha256": "6774cc0b4ea3bf5f21f0e25628e1588147a84c475d46c0fb238ff715d1a4c89e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: София Ланс",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "sofia-lans"
+    ],
+    "4-players": [
+     "sofia-lans"
+    ],
+    "5-players": [
+     "sofia-lans"
+    ],
+    "6-players": [
+     "sofia-lans"
+    ],
+    "7-players": [
+     "sofia-lans"
+    ]
+   },
+   "file": "sofia-lans.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/illustrations/cards/boris-otkos.webp",
+   "sha256": "3d35fd7a96f4941c55a553374423c493374187ac9ca47efaed2510a8dd0c721b",
+   "originalSha256": "6774cc0b4ea3bf5f21f0e25628e1588147a84c475d46c0fb238ff715d1a4c89e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Борис Откос",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "boris-otkos"
+    ],
+    "4-players": [
+     "boris-otkos"
+    ],
+    "5-players": [
+     "boris-otkos"
+    ],
+    "6-players": [
+     "boris-otkos"
+    ],
+    "7-players": [
+     "boris-otkos"
+    ]
+   },
+   "file": "boris-otkos.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/illustrations/cards/lida-finn.webp",
+   "sha256": "6814ee4df262bd060b9c6cbc8793df4ee54701d9d5f77dadaefa9697033c8fa0",
+   "originalSha256": "6774cc0b4ea3bf5f21f0e25628e1588147a84c475d46c0fb238ff715d1a4c89e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лида Финн",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lida-finn"
+    ],
+    "4-players": [
+     "lida-finn"
+    ],
+    "5-players": [
+     "lida-finn"
+    ],
+    "6-players": [
+     "lida-finn"
+    ],
+    "7-players": [
+     "lida-finn"
+    ]
+   },
+   "file": "lida-finn.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/assets/table/heroes-iva-leden.webp",
+   "sha256": "687e6bb79b4be4eeb7fbcc201f38e0b46bcc5a633de9dd854d7243bd75b646c0",
+   "originalSha256": "582763bcf61004cb349943372cba1c77ce78ef53be333cdfe04825d161794c39",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ива Леден",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "iva-leden"
+    ],
+    "4-players": [
+     "iva-leden"
+    ],
+    "5-players": [
+     "iva-leden"
+    ],
+    "6-players": [
+     "iva-leden"
+    ],
+    "7-players": [
+     "iva-leden"
+    ]
+   },
+   "file": "iva-leden--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "iva-leden.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/assets/table/heroes-arsen-lutek.webp",
+   "sha256": "6d0cc260a54ed4def6c3e4584279f0866935b090c14d17ba84603ea601c65bb0",
+   "originalSha256": "582763bcf61004cb349943372cba1c77ce78ef53be333cdfe04825d161794c39",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Арсен Лютек",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "arsen-lutek"
+    ],
+    "4-players": [
+     "arsen-lutek"
+    ],
+    "5-players": [
+     "arsen-lutek"
+    ],
+    "6-players": [
+     "arsen-lutek"
+    ],
+    "7-players": [
+     "arsen-lutek"
+    ]
+   },
+   "file": "arsen-lutek--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "arsen-lutek.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/assets/table/heroes-tamara-ven.webp",
+   "sha256": "02a14e507d01204c7360e691f407b19e14ca2d2c49d4d969a665567d8cd4a024",
+   "originalSha256": "582763bcf61004cb349943372cba1c77ce78ef53be333cdfe04825d161794c39",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тамара Вен",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tamara-ven"
+    ],
+    "4-players": [
+     "tamara-ven"
+    ],
+    "5-players": [
+     "tamara-ven"
+    ],
+    "6-players": [
+     "tamara-ven"
+    ],
+    "7-players": [
+     "tamara-ven"
+    ]
+   },
+   "file": "tamara-ven--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "tamara-ven.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/assets/table/heroes-nina-otley.webp",
+   "sha256": "9c4687ceef20d16d2cdf773a0845594abe0400534dac65c979057b70a0ea9733",
+   "originalSha256": "582763bcf61004cb349943372cba1c77ce78ef53be333cdfe04825d161794c39",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нина Отлей",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "nina-otley"
+    ],
+    "5-players": [
+     "nina-otley"
+    ],
+    "6-players": [
+     "nina-otley"
+    ],
+    "7-players": [
+     "nina-otley"
+    ]
+   },
+   "file": "nina-otley--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "nina-otley.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/assets/table/heroes-oleg-iskren.webp",
+   "sha256": "4d253d23da526c5cbfe103d8b6eef608fdf962d0298d4eea6e2c95d1ff6b3d30",
+   "originalSha256": "582763bcf61004cb349943372cba1c77ce78ef53be333cdfe04825d161794c39",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Олег Искрен",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "oleg-iskren"
+    ],
+    "6-players": [
+     "oleg-iskren"
+    ],
+    "7-players": [
+     "oleg-iskren"
+    ]
+   },
+   "file": "oleg-iskren--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "oleg-iskren.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/assets/table/heroes-zoya-trell.webp",
+   "sha256": "7e1b83479e8282ff57a178e04a9f779e439d177fa95d8684603f871719e83c20",
+   "originalSha256": "582763bcf61004cb349943372cba1c77ce78ef53be333cdfe04825d161794c39",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Зоя Трелль",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "zoya-trell"
+    ],
+    "7-players": [
+     "zoya-trell"
+    ]
+   },
+   "file": "zoya-trell--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "zoya-trell.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/assets/table/heroes-lev-norin.webp",
+   "sha256": "f3c95a63ae56272d11d024cbed0f38ac4e52edf954187810a0344135b04f2411",
+   "originalSha256": "582763bcf61004cb349943372cba1c77ce78ef53be333cdfe04825d161794c39",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лев Норин",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "lev-norin"
+    ]
+   },
+   "file": "lev-norin--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "lev-norin.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/assets/table/places-copper-vestibule.webp",
+   "sha256": "2ccd3727d09e3d709042605050da3280c4826ca3e8535052727a85f646fbc510",
+   "originalSha256": "b23df8e8ea3553a3fde39a02c3533dcfe17de77253fee392d4ec4506f2df4c16",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Вестибюль с каруселью",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "copper-vestibule"
+    ],
+    "4-players": [
+     "copper-vestibule"
+    ],
+    "5-players": [
+     "copper-vestibule"
+    ],
+    "6-players": [
+     "copper-vestibule"
+    ],
+    "7-players": [
+     "copper-vestibule"
+    ]
+   },
+   "file": "copper-vestibule.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/assets/table/places-sun-gallery.webp",
+   "sha256": "6c64f24f987636f949167c3bc19e26ac6dec061663396d0dcca6cf1b753d861b",
+   "originalSha256": "b23df8e8ea3553a3fde39a02c3533dcfe17de77253fee392d4ec4506f2df4c16",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Солнечная галерея",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "sun-gallery"
+    ],
+    "4-players": [
+     "sun-gallery"
+    ],
+    "5-players": [
+     "sun-gallery"
+    ],
+    "6-players": [
+     "sun-gallery"
+    ],
+    "7-players": [
+     "sun-gallery"
+    ]
+   },
+   "file": "sun-gallery.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/assets/table/places-broad-stair.webp",
+   "sha256": "43abca67c53b9ec0e7c352fc01a2b816ecbd363eed7aac201dfd6f85693250dd",
+   "originalSha256": "b23df8e8ea3553a3fde39a02c3533dcfe17de77253fee392d4ec4506f2df4c16",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Широкая прогулочная лестница",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "broad-stair"
+    ],
+    "4-players": [
+     "broad-stair"
+    ],
+    "5-players": [
+     "broad-stair"
+    ],
+    "6-players": [
+     "broad-stair"
+    ],
+    "7-players": [
+     "broad-stair"
+    ]
+   },
+   "file": "broad-stair.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/assets/table/places-double-balcony.webp",
+   "sha256": "1c8d5b51bba22fe49098f1c52901800b9af1ded10a11be4ed5ee2c8f631edff0",
+   "originalSha256": "b23df8e8ea3553a3fde39a02c3533dcfe17de77253fee392d4ec4506f2df4c16",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Балкон второго окна",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "double-balcony"
+    ],
+    "4-players": [
+     "double-balcony"
+    ],
+    "5-players": [
+     "double-balcony"
+    ],
+    "6-players": [
+     "double-balcony"
+    ],
+    "7-players": [
+     "double-balcony"
+    ]
+   },
+   "file": "double-balcony.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/assets/table/places-velvet-parlor.webp",
+   "sha256": "43bbc84b69d87c8b80d03a67b070a4ef4cd7de4ee623c9f4759d2df23d2426f6",
+   "originalSha256": "b23df8e8ea3553a3fde39a02c3533dcfe17de77253fee392d4ec4506f2df4c16",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Бархатная гостиная",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "velvet-parlor"
+    ],
+    "4-players": [
+     "velvet-parlor"
+    ],
+    "5-players": [
+     "velvet-parlor"
+    ],
+    "6-players": [
+     "velvet-parlor"
+    ],
+    "7-players": [
+     "velvet-parlor"
+    ]
+   },
+   "file": "velvet-parlor.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/assets/table/places-costume-attic.webp",
+   "sha256": "3024ee1481a62c6c5e30f602c34c32b2b3f33f289b99f8985957d8453e51eeca",
+   "originalSha256": "b23df8e8ea3553a3fde39a02c3533dcfe17de77253fee392d4ec4506f2df4c16",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Чердак дорожных ролей",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "costume-attic"
+    ],
+    "4-players": [
+     "costume-attic"
+    ],
+    "5-players": [
+     "costume-attic"
+    ],
+    "6-players": [
+     "costume-attic"
+    ],
+    "7-players": [
+     "costume-attic"
+    ]
+   },
+   "file": "costume-attic.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/assets/table/places-model-room.webp",
+   "sha256": "4047a6a5db93813a3dba149deb699dc8437264b5d28906d3dee38dee4cfa72a4",
+   "originalSha256": "b23df8e8ea3553a3fde39a02c3533dcfe17de77253fee392d4ec4506f2df4c16",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Комната дорожных макетов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "model-room"
+    ],
+    "4-players": [
+     "model-room"
+    ],
+    "5-players": [
+     "model-room"
+    ],
+    "6-players": [
+     "model-room"
+    ],
+    "7-players": [
+     "model-room"
+    ]
+   },
+   "file": "model-room.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/assets/table/places-goose-court.webp",
+   "sha256": "6801cac0e83179fd244d6ee3f38a0ea069ce5f565dcadbf6514bdc48ef8c37d5",
+   "originalSha256": "b23df8e8ea3553a3fde39a02c3533dcfe17de77253fee392d4ec4506f2df4c16",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Двор плюшевых гусей",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "goose-court"
+    ],
+    "4-players": [
+     "goose-court"
+    ],
+    "5-players": [
+     "goose-court"
+    ],
+    "6-players": [
+     "goose-court"
+    ],
+    "7-players": [
+     "goose-court"
+    ]
+   },
+   "file": "goose-court.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/assets/table/places-funicular-porch.webp",
+   "sha256": "f3f1e6f787ba94afc47ebd23be6d62da562e533e7b83157089e3fcceef77dec3",
+   "originalSha256": "b23df8e8ea3553a3fde39a02c3533dcfe17de77253fee392d4ec4506f2df4c16",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Крыльцо фуникулёра",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "funicular-porch"
+    ],
+    "4-players": [
+     "funicular-porch"
+    ],
+    "5-players": [
+     "funicular-porch"
+    ],
+    "6-players": [
+     "funicular-porch"
+    ],
+    "7-players": [
+     "funicular-porch"
+    ]
+   },
+   "file": "funicular-porch.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/assets/table/foes-foe-b813bb99a0.webp",
+   "sha256": "2460822e665f3bdc8b2620fee0ba26e2cb99f8997994275fea222726afcc6e43",
+   "originalSha256": "5e1838d6ab576c496ce806599a31c5033f9d776528b8cc091c2df9a7effd9c3a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Плюшевый покоритель",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "plush-summit-foe-1",
+     "plush-summit-foe-2"
+    ],
+    "4-players": [
+     "plush-summit-foe-1",
+     "plush-summit-foe-2",
+     "plush-summit-foe-3"
+    ],
+    "5-players": [
+     "plush-summit-foe-1",
+     "plush-summit-foe-2",
+     "plush-summit-foe-3"
+    ],
+    "6-players": [
+     "plush-summit-foe-1",
+     "plush-summit-foe-2",
+     "plush-summit-foe-3",
+     "plush-summit-foe-4"
+    ],
+    "7-players": [
+     "plush-summit-foe-1",
+     "plush-summit-foe-2",
+     "plush-summit-foe-3",
+     "plush-summit-foe-4",
+     "plush-summit-foe-5"
+    ]
+   },
+   "file": "foe-b813bb99a0.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/assets/table/foes-foe-b813bb99a0.webp",
+   "sha256": "2460822e665f3bdc8b2620fee0ba26e2cb99f8997994275fea222726afcc6e43",
+   "originalSha256": "5e1838d6ab576c496ce806599a31c5033f9d776528b8cc091c2df9a7effd9c3a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Плюшевый покоритель",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "plush-summit-foe-1",
+     "plush-summit-foe-2"
+    ],
+    "4-players": [
+     "plush-summit-foe-1",
+     "plush-summit-foe-2",
+     "plush-summit-foe-3"
+    ],
+    "5-players": [
+     "plush-summit-foe-1",
+     "plush-summit-foe-2",
+     "plush-summit-foe-3"
+    ],
+    "6-players": [
+     "plush-summit-foe-1",
+     "plush-summit-foe-2",
+     "plush-summit-foe-3",
+     "plush-summit-foe-4"
+    ],
+    "7-players": [
+     "plush-summit-foe-1",
+     "plush-summit-foe-2",
+     "plush-summit-foe-3",
+     "plush-summit-foe-4",
+     "plush-summit-foe-5"
+    ]
+   },
+   "file": "foe-b813bb99a0--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-b813bb99a0.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/assets/table/foes-foe-fb5b2cc416.webp",
+   "sha256": "1b06e346b0f7ba518b5588ee89820bb75693fae772bf1323edfdc8bedf056695",
+   "originalSha256": "5e1838d6ab576c496ce806599a31c5033f9d776528b8cc091c2df9a7effd9c3a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мягкий кольценосец",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ring-bearer-dance-foe-1",
+     "ring-bearer-dance-foe-2"
+    ],
+    "4-players": [
+     "ring-bearer-dance-foe-1",
+     "ring-bearer-dance-foe-2",
+     "ring-bearer-dance-foe-3"
+    ],
+    "5-players": [
+     "ring-bearer-dance-foe-1",
+     "ring-bearer-dance-foe-2",
+     "ring-bearer-dance-foe-3"
+    ],
+    "6-players": [
+     "ring-bearer-dance-foe-1",
+     "ring-bearer-dance-foe-2",
+     "ring-bearer-dance-foe-3",
+     "ring-bearer-dance-foe-4"
+    ],
+    "7-players": [
+     "ring-bearer-dance-foe-1",
+     "ring-bearer-dance-foe-2",
+     "ring-bearer-dance-foe-3",
+     "ring-bearer-dance-foe-4",
+     "ring-bearer-dance-foe-5"
+    ]
+   },
+   "file": "foe-fb5b2cc416.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/assets/table/foes-foe-fb5b2cc416.webp",
+   "sha256": "1b06e346b0f7ba518b5588ee89820bb75693fae772bf1323edfdc8bedf056695",
+   "originalSha256": "5e1838d6ab576c496ce806599a31c5033f9d776528b8cc091c2df9a7effd9c3a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мягкий кольценосец",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ring-bearer-dance-foe-1",
+     "ring-bearer-dance-foe-2"
+    ],
+    "4-players": [
+     "ring-bearer-dance-foe-1",
+     "ring-bearer-dance-foe-2",
+     "ring-bearer-dance-foe-3"
+    ],
+    "5-players": [
+     "ring-bearer-dance-foe-1",
+     "ring-bearer-dance-foe-2",
+     "ring-bearer-dance-foe-3"
+    ],
+    "6-players": [
+     "ring-bearer-dance-foe-1",
+     "ring-bearer-dance-foe-2",
+     "ring-bearer-dance-foe-3",
+     "ring-bearer-dance-foe-4"
+    ],
+    "7-players": [
+     "ring-bearer-dance-foe-1",
+     "ring-bearer-dance-foe-2",
+     "ring-bearer-dance-foe-3",
+     "ring-bearer-dance-foe-4",
+     "ring-bearer-dance-foe-5"
+    ]
+   },
+   "file": "foe-fb5b2cc416--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-fb5b2cc416.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/assets/table/foes-foe-11b2c3f893.webp",
+   "sha256": "ca69ede2c1293423dc6b8dd3d033ac986dc2c62f297f59bad113787fa2c507e8",
+   "originalSha256": "5e1838d6ab576c496ce806599a31c5033f9d776528b8cc091c2df9a7effd9c3a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Плюшевый гусь",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "goose-guard-foe-1",
+     "goose-guard-foe-2"
+    ],
+    "4-players": [
+     "goose-guard-foe-1",
+     "goose-guard-foe-2",
+     "goose-guard-foe-3"
+    ],
+    "5-players": [
+     "goose-guard-foe-1",
+     "goose-guard-foe-2",
+     "goose-guard-foe-3"
+    ],
+    "6-players": [
+     "goose-guard-foe-1",
+     "goose-guard-foe-2",
+     "goose-guard-foe-3",
+     "goose-guard-foe-4"
+    ],
+    "7-players": [
+     "goose-guard-foe-1",
+     "goose-guard-foe-2",
+     "goose-guard-foe-3",
+     "goose-guard-foe-4",
+     "goose-guard-foe-5"
+    ]
+   },
+   "file": "foe-11b2c3f893.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/assets/table/foes-foe-11b2c3f893.webp",
+   "sha256": "ca69ede2c1293423dc6b8dd3d033ac986dc2c62f297f59bad113787fa2c507e8",
+   "originalSha256": "5e1838d6ab576c496ce806599a31c5033f9d776528b8cc091c2df9a7effd9c3a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Плюшевый гусь",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "goose-guard-foe-1",
+     "goose-guard-foe-2"
+    ],
+    "4-players": [
+     "goose-guard-foe-1",
+     "goose-guard-foe-2",
+     "goose-guard-foe-3"
+    ],
+    "5-players": [
+     "goose-guard-foe-1",
+     "goose-guard-foe-2",
+     "goose-guard-foe-3"
+    ],
+    "6-players": [
+     "goose-guard-foe-1",
+     "goose-guard-foe-2",
+     "goose-guard-foe-3",
+     "goose-guard-foe-4"
+    ],
+    "7-players": [
+     "goose-guard-foe-1",
+     "goose-guard-foe-2",
+     "goose-guard-foe-3",
+     "goose-guard-foe-4",
+     "goose-guard-foe-5"
+    ]
+   },
+   "file": "foe-11b2c3f893--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-11b2c3f893.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/assets/table/npcs-vera-solm.webp",
+   "sha256": "d3d15b5bd5fecdf3744fb8438a782ea90deecc08035bbc00bc833b50fddbd083",
+   "originalSha256": "827a64fa466594afe6e065543b07e65b63dde9b75bc060162ba545a0290e6c1f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Вера Сольм",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "vera-solm"
+    ],
+    "4-players": [
+     "vera-solm"
+    ],
+    "5-players": [
+     "vera-solm"
+    ],
+    "6-players": [
+     "vera-solm"
+    ],
+    "7-players": [
+     "vera-solm"
+    ]
+   },
+   "file": "vera-solm--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "vera-solm.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/assets/table/npcs-mark-voln.webp",
+   "sha256": "7bb8b09a8efa9d61da5e3e09d99d57f7fe471206e8aa385b50808bade8bb8976",
+   "originalSha256": "827a64fa466594afe6e065543b07e65b63dde9b75bc060162ba545a0290e6c1f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Марк Волн",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mark-voln"
+    ],
+    "4-players": [
+     "mark-voln"
+    ],
+    "5-players": [
+     "mark-voln"
+    ],
+    "6-players": [
+     "mark-voln"
+    ],
+    "7-players": [
+     "mark-voln"
+    ]
+   },
+   "file": "mark-voln--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "mark-voln.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/assets/table/npcs-alina-klen.webp",
+   "sha256": "1fee4b18c824af59a42afb49d1a48d56c6fee20354db9a2506a5e75ff689a26e",
+   "originalSha256": "827a64fa466594afe6e065543b07e65b63dde9b75bc060162ba545a0290e6c1f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Алина Клен",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "alina-klen"
+    ],
+    "4-players": [
+     "alina-klen"
+    ],
+    "5-players": [
+     "alina-klen"
+    ],
+    "6-players": [
+     "alina-klen"
+    ],
+    "7-players": [
+     "alina-klen"
+    ]
+   },
+   "file": "alina-klen--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "alina-klen.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/assets/table/npcs-denis-skat.webp",
+   "sha256": "49d2666ab2b13cdc61f157e8cb894d62f1d165cd6784471fd9568e4d85ebe5d3",
+   "originalSha256": "827a64fa466594afe6e065543b07e65b63dde9b75bc060162ba545a0290e6c1f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Денис Скат",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "denis-skat"
+    ],
+    "4-players": [
+     "denis-skat"
+    ],
+    "5-players": [
+     "denis-skat"
+    ],
+    "6-players": [
+     "denis-skat"
+    ],
+    "7-players": [
+     "denis-skat"
+    ]
+   },
+   "file": "denis-skat--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "denis-skat.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/assets/table/npcs-polina-vet.webp",
+   "sha256": "accc149ea8fef5840da09fe677909405fae5cade3d7c3ecb66594f4bfd9f4472",
+   "originalSha256": "827a64fa466594afe6e065543b07e65b63dde9b75bc060162ba545a0290e6c1f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Полина Вет",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "polina-vet"
+    ],
+    "4-players": [
+     "polina-vet"
+    ],
+    "5-players": [
+     "polina-vet"
+    ],
+    "6-players": [
+     "polina-vet"
+    ],
+    "7-players": [
+     "polina-vet"
+    ]
+   },
+   "file": "polina-vet--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "polina-vet.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/assets/table/npcs-ramil-gorn.webp",
+   "sha256": "e8bb98a2ac44f7cea9a0327518ab1a12d70445ca202100fb6e3d07031d19b377",
+   "originalSha256": "827a64fa466594afe6e065543b07e65b63dde9b75bc060162ba545a0290e6c1f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рамиль Горн",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ramil-gorn"
+    ],
+    "4-players": [
+     "ramil-gorn"
+    ],
+    "5-players": [
+     "ramil-gorn"
+    ],
+    "6-players": [
+     "ramil-gorn"
+    ],
+    "7-players": [
+     "ramil-gorn"
+    ]
+   },
+   "file": "ramil-gorn--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ramil-gorn.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/assets/table/npcs-sofia-lans.webp",
+   "sha256": "ca66702e4fe0e9f6aff2306ea7fb69782df1a28bc2b03df90e00adfbc09797ff",
+   "originalSha256": "827a64fa466594afe6e065543b07e65b63dde9b75bc060162ba545a0290e6c1f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: София Ланс",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "sofia-lans"
+    ],
+    "4-players": [
+     "sofia-lans"
+    ],
+    "5-players": [
+     "sofia-lans"
+    ],
+    "6-players": [
+     "sofia-lans"
+    ],
+    "7-players": [
+     "sofia-lans"
+    ]
+   },
+   "file": "sofia-lans--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "sofia-lans.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/assets/table/npcs-boris-otkos.webp",
+   "sha256": "4e2fdf71e8d3d017a7132f002faf0a36dddce1fc8780757f4636ba01d175dbee",
+   "originalSha256": "827a64fa466594afe6e065543b07e65b63dde9b75bc060162ba545a0290e6c1f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Борис Откос",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "boris-otkos"
+    ],
+    "4-players": [
+     "boris-otkos"
+    ],
+    "5-players": [
+     "boris-otkos"
+    ],
+    "6-players": [
+     "boris-otkos"
+    ],
+    "7-players": [
+     "boris-otkos"
+    ]
+   },
+   "file": "boris-otkos--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "boris-otkos.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/assets/table/npcs-lida-finn.webp",
+   "sha256": "fb59d98469a9eb7699b8ead6a3a8c4d36f5a3b59b323ad60ff27ec9751cc649c",
+   "originalSha256": "827a64fa466594afe6e065543b07e65b63dde9b75bc060162ba545a0290e6c1f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лида Финн",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lida-finn"
+    ],
+    "4-players": [
+     "lida-finn"
+    ],
+    "5-players": [
+     "lida-finn"
+    ],
+    "6-players": [
+     "lida-finn"
+    ],
+    "7-players": [
+     "lida-finn"
+    ]
+   },
+   "file": "lida-finn--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "lida-finn.webp"
+  },
+  {
+   "source": "campaigns/mixed-ages-2026/copper-canyon/illustrations/opening.webp",
+   "sha256": "982e15c83d45df423cbc76bac062d7c93cafabc93c54159ce2e5d4843b3a31e1",
+   "originalSha256": "9e5b56a7dcc073fee631e710915b353f57348ebda3eac1d1126f33e4c7a6fadc",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Вестибюль с каруселью — Пансион Медного Каньона",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "copper-region"
+    ],
+    "4-players": [
+     "copper-region"
+    ],
+    "5-players": [
+     "copper-region"
+    ],
+    "6-players": [
+     "copper-region"
+    ],
+    "7-players": [
+     "copper-region"
+    ]
+   },
+   "file": "cover.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "file": "broad-stair--map.webp",
+   "source": "campaigns/mixed-ages-2026/copper-canyon/assets/battle-maps/broad-stair.webp",
+   "sha256": "e7060e5d0b619b8f7275d85f8bb2bb1b0152b1c10b871491d0debc8be9f5f84d",
+   "originalSha256": "7878d03cfe7bb89959811b3ccbc1c6957411e4a2051f3a1dc4576e698bc44172",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Широкая прогулочная лестница. Visible scenery: Низкие ступени и длинный пологий обход ведут к близкой смотровой площадке. По краям стоят смешные указатели туристических рекордов.. World style: Медный Каньон · Copper luggage corners and concentric baggage-carousel rings in teal leather. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "broad-stair.webp",
+   "subjects": {
+    "3-players": [
+     "broad-stair"
+    ],
+    "4-players": [
+     "broad-stair"
+    ],
+    "5-players": [
+     "broad-stair"
+    ],
+    "6-players": [
+     "broad-stair"
+    ],
+    "7-players": [
+     "broad-stair"
+    ]
+   }
+  },
+  {
+   "file": "velvet-parlor--map.webp",
+   "source": "campaigns/mixed-ages-2026/copper-canyon/assets/battle-maps/velvet-parlor.webp",
+   "sha256": "29a3f1a74c640e075e063f6b8f8d12e53a9c8dd8740521e7c12022095df2c751",
+   "originalSha256": "97996ef30dd3fbc1dde6377e26a53d3a531d61183df3957d2fbdae0bf93d791a",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Бархатная гостиная. Visible scenery: Комната с низкой сценической площадкой, мягкими ширмами и коробкой крупного реквизита; над диваном висит ложная корона размером с обруч.. World style: Медный Каньон · Copper luggage corners and concentric baggage-carousel rings in teal leather. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "velvet-parlor.webp",
+   "subjects": {
+    "3-players": [
+     "velvet-parlor"
+    ],
+    "4-players": [
+     "velvet-parlor"
+    ],
+    "5-players": [
+     "velvet-parlor"
+    ],
+    "6-players": [
+     "velvet-parlor"
+    ],
+    "7-players": [
+     "velvet-parlor"
+    ]
+   }
+  },
+  {
+   "file": "goose-court--map.webp",
+   "source": "campaigns/mixed-ages-2026/copper-canyon/assets/battle-maps/goose-court.webp",
+   "sha256": "cd0746d946d55bef2492edb43c452e6af839a95755edfb709472f6efcdf279f6",
+   "originalSha256": "6296bca4a5edce1cf2e5d1689f06acd2aaea913584777483c371ea56b676b0e4",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Двор плюшевых гусей. Visible scenery: Ровная площадка для шуточных эстафет; мягкие гуси в жилетах дремлют на подставках, рядом есть стол и свободный обход.. World style: Медный Каньон · Copper luggage corners and concentric baggage-carousel rings in teal leather. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "goose-court.webp",
+   "subjects": {
+    "3-players": [
+     "goose-court"
+    ],
+    "4-players": [
+     "goose-court"
+    ],
+    "5-players": [
+     "goose-court"
+    ],
+    "6-players": [
+     "goose-court"
+    ],
+    "7-players": [
+     "goose-court"
+    ]
+   }
+  },
+  {
+   "file": "world-map.webp",
+   "source": "campaigns/mixed-ages-2026/copper-canyon/assets/world-map/world-map.webp",
+   "sha256": "4d7eb1cfb26a8e112bbedeb081cd17de0cf5843c30713e93633eeb3f875d7002",
+   "originalSha256": "af94b1aefab34b93a4b32b21f389814d201c0fee450ce280d2e5c41938d524b8",
+   "generated": "2026-11-22",
+   "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Медный Каньон. Style Медный Каньон · Copper luggage corners and concentric baggage-carousel rings in teal leather. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Вестибюль с каруселью; 0.367,0.177 Солнечная галерея; 0.623,0.15 Широкая прогулочная лестница; 0.88,0.177 Балкон второго окна; 0.905,0.517 Бархатная гостиная; 0.648,0.49 Чердак дорожных ролей; 0.392,0.517 Комната дорожных макетов; 0.135,0.49 Двор плюшевых гусей; 0.11,0.83 Крыльцо фуникулёра. Show public exteriors / unlabeled contours only.",
+   "references": [],
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null,
+   "subjects": {
+    "3-players": [
+     "world-map"
+    ],
+    "4-players": [
+     "world-map"
+    ],
+    "5-players": [
+     "world-map"
+    ],
+    "6-players": [
+     "world-map"
+    ],
+    "7-players": [
+     "world-map"
+    ]
+   }
+  }
+ ]
+}

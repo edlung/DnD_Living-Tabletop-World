@@ -1,0 +1,1876 @@
+{
+ "id": "storm-kitchen",
+ "title": "Кухня на краю грозы",
+ "genre": "Гостеприимное фэнтези о вкусах, изобретательности и разных потребностях",
+ "audience": "12+",
+ "pitch": "Раз в семнадцать лет духи четырёх погод сходятся у общей скалы. Ваша кухня впервые готовит для них пир из солнечного эха, облачной тени и лепестков обратного света. Один гость хочет вкус первого шага, другой — ясность неподвижного мгновения. Вы отправитесь за невозможными продуктами, изобретёте разные превращения одного ингредиента и проведёте настоящий вечер подач, где новый вкус может оказаться дороже любимого знакомого блюда.",
+ "tone": "Тёплое приключение с трудными, но обсуждаемыми решениями; смешная кухонная суета без унижения гостей.",
+ "duration": "8 сессий; 150 минут: 10 минут входа или пересказа, три сцены по 40 минут, 10 минут перерыва после второй сцены и 10 минут завершения.",
+ "cover": "campaigns/fantasy-2026/storm-kitchen/illustrations/opening.webp",
+ "defaultVariant": "4-players",
+ "variants": [
+  {
+   "id": "3-players",
+   "players": 3,
+   "label": "3 игрока",
+   "file": "packages/3-players.json",
+   "digest": "51606d5a51865be51c32bfb1044fea03afdd6a077caa91b0ffe46b4b0c9d4b3a"
+  },
+  {
+   "id": "4-players",
+   "players": 4,
+   "label": "4 игрока",
+   "file": "packages/4-players.json",
+   "digest": "2eb326cf23233f2ca17ba87e654f11300c22821fc8c658b2fd07bae0b4d50886"
+  },
+  {
+   "id": "5-players",
+   "players": 5,
+   "label": "5 игроков",
+   "file": "packages/5-players.json",
+   "digest": "2e1df7286a6dc427aac14bebe399fd27221ff9f4140ef272ee647d36586ebb60"
+  },
+  {
+   "id": "6-players",
+   "players": 6,
+   "label": "6 игроков",
+   "file": "packages/6-players.json",
+   "digest": "1e535076cae1f308f10186b35e5f2813e85e8f1b529fe3c54d1547c1fa59f21d"
+  },
+  {
+   "id": "7-players",
+   "players": 7,
+   "label": "7 игроков",
+   "file": "packages/7-players.json",
+   "digest": "ae8bc4268676ce7f5c701a90fe8e5f9b31548f4fd132c845f7fe91cb04389cf2"
+  },
+  {
+   "id": "8-players",
+   "players": 8,
+   "label": "8 игроков",
+   "file": "packages/8-players.json",
+   "digest": "4c3513074e7c7801e43020bb8ae4fcb7da0f770c5465d734616e8a0926801e99"
+  }
+ ],
+ "generator": "codex-cli imagegen",
+ "pictures": [
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/illustrations/cards/asya-spoon.webp",
+   "sha256": "94b1499a735523877282d33caf731d46862b600f046cce97e1f31de3c5c8b902",
+   "originalSha256": "01bdf44c99fa9e439d060bcf15355bbe40206e195ac30686bc4f3dc32684ad44",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ася Красная Ложка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "asya-spoon"
+    ],
+    "4-players": [
+     "asya-spoon"
+    ],
+    "5-players": [
+     "asya-spoon"
+    ],
+    "6-players": [
+     "asya-spoon"
+    ],
+    "7-players": [
+     "asya-spoon"
+    ],
+    "8-players": [
+     "asya-spoon"
+    ]
+   },
+   "file": "asya-spoon.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/illustrations/cards/tim-seam.webp",
+   "sha256": "d4546cd4f58bfa66cc99de597274dae1df01ac2efd3e61e3badc6b4f3124ff00",
+   "originalSha256": "01bdf44c99fa9e439d060bcf15355bbe40206e195ac30686bc4f3dc32684ad44",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тим Округлый Шов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tim-seam"
+    ],
+    "4-players": [
+     "tim-seam"
+    ],
+    "5-players": [
+     "tim-seam"
+    ],
+    "6-players": [
+     "tim-seam"
+    ],
+    "7-players": [
+     "tim-seam"
+    ],
+    "8-players": [
+     "tim-seam"
+    ]
+   },
+   "file": "tim-seam.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/illustrations/cards/mira-threshold.webp",
+   "sha256": "3f7f3b2d591de947597dd0b7eefb07745e77b7b5f986a225ead137b1734c1db5",
+   "originalSha256": "01bdf44c99fa9e439d060bcf15355bbe40206e195ac30686bc4f3dc32684ad44",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мира Тёплый Порог",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mira-threshold"
+    ],
+    "4-players": [
+     "mira-threshold"
+    ],
+    "5-players": [
+     "mira-threshold"
+    ],
+    "6-players": [
+     "mira-threshold"
+    ],
+    "7-players": [
+     "mira-threshold"
+    ],
+    "8-players": [
+     "mira-threshold"
+    ]
+   },
+   "file": "mira-threshold.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/illustrations/cards/nel-steam.webp",
+   "sha256": "df1a09ed493c0a98f88ce36dc33352b3d590d776bc4eb6f1ef21ec365b8e2737",
+   "originalSha256": "01bdf44c99fa9e439d060bcf15355bbe40206e195ac30686bc4f3dc32684ad44",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нэл Лиловый Пар",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "nel-steam"
+    ],
+    "5-players": [
+     "nel-steam"
+    ],
+    "6-players": [
+     "nel-steam"
+    ],
+    "7-players": [
+     "nel-steam"
+    ],
+    "8-players": [
+     "nel-steam"
+    ]
+   },
+   "file": "nel-steam.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/illustrations/cards/yar-tray.webp",
+   "sha256": "db01f5f08f7204c66c926de6932b0558ad31394cb9de882fd947c022f2c5a95d",
+   "originalSha256": "01bdf44c99fa9e439d060bcf15355bbe40206e195ac30686bc4f3dc32684ad44",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Яр Широкий Поднос",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "yar-tray"
+    ],
+    "6-players": [
+     "yar-tray"
+    ],
+    "7-players": [
+     "yar-tray"
+    ],
+    "8-players": [
+     "yar-tray"
+    ]
+   },
+   "file": "yar-tray.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/illustrations/cards/ruta-ribbon.webp",
+   "sha256": "da51e686856f572e38fcdf12cc666116cbb55fe875a03c265bd374d9c5350807",
+   "originalSha256": "01bdf44c99fa9e439d060bcf15355bbe40206e195ac30686bc4f3dc32684ad44",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рута Семь Лент",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "ruta-ribbon"
+    ],
+    "7-players": [
+     "ruta-ribbon"
+    ],
+    "8-players": [
+     "ruta-ribbon"
+    ]
+   },
+   "file": "ruta-ribbon.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/illustrations/cards/sev-bench.webp",
+   "sha256": "5b0dbb74e6eba8793fa263211345014c792ef487668cf47fe78a58144218ee26",
+   "originalSha256": "01bdf44c99fa9e439d060bcf15355bbe40206e195ac30686bc4f3dc32684ad44",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сев Удобная Скамья",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "sev-bench"
+    ],
+    "8-players": [
+     "sev-bench"
+    ]
+   },
+   "file": "sev-bench.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/illustrations/cards/olsa-cup.webp",
+   "sha256": "c3d310926ab470aa6f65d8da58235fcb7eb64db9f807f58d5b18bdd69d0e8083",
+   "originalSha256": "01bdf44c99fa9e439d060bcf15355bbe40206e195ac30686bc4f3dc32684ad44",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ольса Незаконченная Чашка",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [],
+    "8-players": [
+     "olsa-cup"
+    ]
+   },
+   "file": "olsa-cup.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/illustrations/cards/travel-kit.webp",
+   "sha256": "74011dea82c9dc44f0b5acf5c4dd6048219704990280ef837969de8095bf087e",
+   "originalSha256": "01bdf44c99fa9e439d060bcf15355bbe40206e195ac30686bc4f3dc32684ad44",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дорожный набор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "asya-spoon-travel-kit",
+     "mira-threshold-travel-kit",
+     "tim-seam-travel-kit"
+    ],
+    "4-players": [
+     "asya-spoon-travel-kit",
+     "mira-threshold-travel-kit",
+     "nel-steam-travel-kit",
+     "tim-seam-travel-kit"
+    ],
+    "5-players": [
+     "asya-spoon-travel-kit",
+     "mira-threshold-travel-kit",
+     "nel-steam-travel-kit",
+     "tim-seam-travel-kit",
+     "yar-tray-travel-kit"
+    ],
+    "6-players": [
+     "asya-spoon-travel-kit",
+     "mira-threshold-travel-kit",
+     "nel-steam-travel-kit",
+     "ruta-ribbon-travel-kit",
+     "tim-seam-travel-kit",
+     "yar-tray-travel-kit"
+    ],
+    "7-players": [
+     "asya-spoon-travel-kit",
+     "mira-threshold-travel-kit",
+     "nel-steam-travel-kit",
+     "ruta-ribbon-travel-kit",
+     "sev-bench-travel-kit",
+     "tim-seam-travel-kit",
+     "yar-tray-travel-kit"
+    ],
+    "8-players": [
+     "asya-spoon-travel-kit",
+     "mira-threshold-travel-kit",
+     "nel-steam-travel-kit",
+     "olsa-cup-travel-kit",
+     "ruta-ribbon-travel-kit",
+     "sev-bench-travel-kit",
+     "tim-seam-travel-kit",
+     "yar-tray-travel-kit"
+    ]
+   },
+   "file": "travel-kit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/illustrations/cards/illa-light.webp",
+   "sha256": "4caa9c363df7b47eb46832b180914aa4331c0b38eceefaba60a5717ad5260366",
+   "originalSha256": "dc1c45c528c37a4453f2ccfee15acf3b8a2c84ceb10d8b04a07a21fbe390d78a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Илла Световей",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "illa-light"
+    ],
+    "4-players": [
+     "illa-light"
+    ],
+    "5-players": [
+     "illa-light"
+    ],
+    "6-players": [
+     "illa-light"
+    ],
+    "7-players": [
+     "illa-light"
+    ],
+    "8-players": [
+     "illa-light"
+    ]
+   },
+   "file": "illa-light.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/illustrations/cards/un-edge.webp",
+   "sha256": "a044dc746a5b93a082dce13c243b6ce85db212c045b57597bd5a42e453ad6d44",
+   "originalSha256": "dc1c45c528c37a4453f2ccfee15acf3b8a2c84ceb10d8b04a07a21fbe390d78a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ун Тихая Кромка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "un-edge"
+    ],
+    "4-players": [
+     "un-edge"
+    ],
+    "5-players": [
+     "un-edge"
+    ],
+    "6-players": [
+     "un-edge"
+    ],
+    "7-players": [
+     "un-edge"
+    ],
+    "8-players": [
+     "un-edge"
+    ]
+   },
+   "file": "un-edge.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/illustrations/cards/frel-steps.webp",
+   "sha256": "5ec2442403e5ed195c73044020ff59294fdc939e382719db0176a4f3984afa08",
+   "originalSha256": "dc1c45c528c37a4453f2ccfee15acf3b8a2c84ceb10d8b04a07a21fbe390d78a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Фрель Семишаг",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "frel-steps"
+    ],
+    "4-players": [
+     "frel-steps"
+    ],
+    "5-players": [
+     "frel-steps"
+    ],
+    "6-players": [
+     "frel-steps"
+    ],
+    "7-players": [
+     "frel-steps"
+    ],
+    "8-players": [
+     "frel-steps"
+    ]
+   },
+   "file": "frel-steps.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/illustrations/cards/oru-depth.webp",
+   "sha256": "c849c9203ca17ffeac89b0a652c24dd553301402d8d7129e74bc8127ee9fb1bb",
+   "originalSha256": "dc1c45c528c37a4453f2ccfee15acf3b8a2c84ceb10d8b04a07a21fbe390d78a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ору Тихая Глубь",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "oru-depth"
+    ],
+    "4-players": [
+     "oru-depth"
+    ],
+    "5-players": [
+     "oru-depth"
+    ],
+    "6-players": [
+     "oru-depth"
+    ],
+    "7-players": [
+     "oru-depth"
+    ],
+    "8-players": [
+     "oru-depth"
+    ]
+   },
+   "file": "oru-depth.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/illustrations/cards/ezga-shelves.webp",
+   "sha256": "df92391e50be0aa9eaa2084ccd0fd8b4d98e18e3f71937e1b32b2ea23220c282",
+   "originalSha256": "dc1c45c528c37a4453f2ccfee15acf3b8a2c84ceb10d8b04a07a21fbe390d78a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Езга Пять Полок",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ezga-shelves"
+    ],
+    "4-players": [
+     "ezga-shelves"
+    ],
+    "5-players": [
+     "ezga-shelves"
+    ],
+    "6-players": [
+     "ezga-shelves"
+    ],
+    "7-players": [
+     "ezga-shelves"
+    ],
+    "8-players": [
+     "ezga-shelves"
+    ]
+   },
+   "file": "ezga-shelves.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/illustrations/cards/ganna-shadow.webp",
+   "sha256": "be1f0278a12d47673dca55027fd4101c863a2100448b7bac2f0831d53f7a533b",
+   "originalSha256": "dc1c45c528c37a4453f2ccfee15acf3b8a2c84ceb10d8b04a07a21fbe390d78a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ганна Тенешов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ganna-shadow"
+    ],
+    "4-players": [
+     "ganna-shadow"
+    ],
+    "5-players": [
+     "ganna-shadow"
+    ],
+    "6-players": [
+     "ganna-shadow"
+    ],
+    "7-players": [
+     "ganna-shadow"
+    ],
+    "8-players": [
+     "ganna-shadow"
+    ]
+   },
+   "file": "ganna-shadow.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/illustrations/cards/tinn-sample.webp",
+   "sha256": "5f5915e03393fc56bf24773ae478424ed7e362b6235a9a9ff905573d55bd7c73",
+   "originalSha256": "dc1c45c528c37a4453f2ccfee15acf3b8a2c84ceb10d8b04a07a21fbe390d78a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тинн Неровный Образец",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tinn-sample"
+    ],
+    "4-players": [
+     "tinn-sample"
+    ],
+    "5-players": [
+     "tinn-sample"
+    ],
+    "6-players": [
+     "tinn-sample"
+    ],
+    "7-players": [
+     "tinn-sample"
+    ],
+    "8-players": [
+     "tinn-sample"
+    ]
+   },
+   "file": "tinn-sample.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/illustrations/cards/ovelna-apron.webp",
+   "sha256": "f9be26916ca37d740cef7817290b20aca0d9322c6dff7dff2fd8d6854661535e",
+   "originalSha256": "dc1c45c528c37a4453f2ccfee15acf3b8a2c84ceb10d8b04a07a21fbe390d78a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Овелна Два Фартука",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ovelna-apron"
+    ],
+    "4-players": [
+     "ovelna-apron"
+    ],
+    "5-players": [
+     "ovelna-apron"
+    ],
+    "6-players": [
+     "ovelna-apron"
+    ],
+    "7-players": [
+     "ovelna-apron"
+    ],
+    "8-players": [
+     "ovelna-apron"
+    ]
+   },
+   "file": "ovelna-apron.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/assets/table/heroes-asya-spoon.webp",
+   "sha256": "f435545fdea9f0522b2878e504c0f9353b10a5a68c92522941ce2ef7f2efbe34",
+   "originalSha256": "9c8f63dc85c9be963772637d05533212a585798d56be318043405e6710be8862",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ася Красная Ложка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "asya-spoon"
+    ],
+    "4-players": [
+     "asya-spoon"
+    ],
+    "5-players": [
+     "asya-spoon"
+    ],
+    "6-players": [
+     "asya-spoon"
+    ],
+    "7-players": [
+     "asya-spoon"
+    ],
+    "8-players": [
+     "asya-spoon"
+    ]
+   },
+   "file": "asya-spoon--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "asya-spoon.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/assets/table/heroes-tim-seam.webp",
+   "sha256": "9f6d7ffd1e064e92291222bdb01e309deee87b3b3d650ec6b77fcbb80ce0af7d",
+   "originalSha256": "9c8f63dc85c9be963772637d05533212a585798d56be318043405e6710be8862",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тим Округлый Шов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tim-seam"
+    ],
+    "4-players": [
+     "tim-seam"
+    ],
+    "5-players": [
+     "tim-seam"
+    ],
+    "6-players": [
+     "tim-seam"
+    ],
+    "7-players": [
+     "tim-seam"
+    ],
+    "8-players": [
+     "tim-seam"
+    ]
+   },
+   "file": "tim-seam--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "tim-seam.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/assets/table/heroes-mira-threshold.webp",
+   "sha256": "73aed6240303166eeb478f61aed73a3a2f048a1094a96d971de560d33ab649a2",
+   "originalSha256": "9c8f63dc85c9be963772637d05533212a585798d56be318043405e6710be8862",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мира Тёплый Порог",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mira-threshold"
+    ],
+    "4-players": [
+     "mira-threshold"
+    ],
+    "5-players": [
+     "mira-threshold"
+    ],
+    "6-players": [
+     "mira-threshold"
+    ],
+    "7-players": [
+     "mira-threshold"
+    ],
+    "8-players": [
+     "mira-threshold"
+    ]
+   },
+   "file": "mira-threshold--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "mira-threshold.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/assets/table/heroes-nel-steam.webp",
+   "sha256": "bea57b07a99820c5865d7b592fadb034248badfa6e0ca1e10b0a5e96e73d4c64",
+   "originalSha256": "9c8f63dc85c9be963772637d05533212a585798d56be318043405e6710be8862",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нэл Лиловый Пар",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "nel-steam"
+    ],
+    "5-players": [
+     "nel-steam"
+    ],
+    "6-players": [
+     "nel-steam"
+    ],
+    "7-players": [
+     "nel-steam"
+    ],
+    "8-players": [
+     "nel-steam"
+    ]
+   },
+   "file": "nel-steam--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "nel-steam.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/assets/table/heroes-yar-tray.webp",
+   "sha256": "e7ab36e5388d6eb396e6bb55e31731101be36d14fb593744613dbedd76fda962",
+   "originalSha256": "9c8f63dc85c9be963772637d05533212a585798d56be318043405e6710be8862",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Яр Широкий Поднос",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "yar-tray"
+    ],
+    "6-players": [
+     "yar-tray"
+    ],
+    "7-players": [
+     "yar-tray"
+    ],
+    "8-players": [
+     "yar-tray"
+    ]
+   },
+   "file": "yar-tray--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "yar-tray.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/assets/table/heroes-ruta-ribbon.webp",
+   "sha256": "06b2e5eb0e48ccf4379ed7437f1d89c97cf24c355dd461d1d57e00b11f66db84",
+   "originalSha256": "9c8f63dc85c9be963772637d05533212a585798d56be318043405e6710be8862",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рута Семь Лент",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "ruta-ribbon"
+    ],
+    "7-players": [
+     "ruta-ribbon"
+    ],
+    "8-players": [
+     "ruta-ribbon"
+    ]
+   },
+   "file": "ruta-ribbon--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ruta-ribbon.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/assets/table/heroes-sev-bench.webp",
+   "sha256": "4fc8703726d98272faf7975d9ea8558c3ddb985ba31a7761b26a58a908ac04c6",
+   "originalSha256": "9c8f63dc85c9be963772637d05533212a585798d56be318043405e6710be8862",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сев Удобная Скамья",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "sev-bench"
+    ],
+    "8-players": [
+     "sev-bench"
+    ]
+   },
+   "file": "sev-bench--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "sev-bench.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/assets/table/heroes-olsa-cup.webp",
+   "sha256": "c55541e307023066eb559c6734b933ddad242201c0d7cbe579b17bb0bb564b53",
+   "originalSha256": "9c8f63dc85c9be963772637d05533212a585798d56be318043405e6710be8862",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ольса Незаконченная Чашка",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [],
+    "8-players": [
+     "olsa-cup"
+    ]
+   },
+   "file": "olsa-cup--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "olsa-cup.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/assets/table/places-fourth-spoon.webp",
+   "sha256": "33cde3da2e11ff8012d5fa944eec71346350ef1d89da259c31910052e965dc66",
+   "originalSha256": "f494b3d7e7fa0546253aa04de9ee5b9324987674934e9fa68c26ee1409955b51",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Кухня «Четвёртая ложка»",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "fourth-spoon"
+    ],
+    "4-players": [
+     "fourth-spoon"
+    ],
+    "5-players": [
+     "fourth-spoon"
+    ],
+    "6-players": [
+     "fourth-spoon"
+    ],
+    "7-players": [
+     "fourth-spoon"
+    ],
+    "8-players": [
+     "fourth-spoon"
+    ]
+   },
+   "file": "fourth-spoon.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/assets/table/places-storm-terrace.webp",
+   "sha256": "94366c1d651053c0f10e97469c022d2ab9e6d060d797d0771858dbf30ba8c0d7",
+   "originalSha256": "f494b3d7e7fa0546253aa04de9ee5b9324987674934e9fa68c26ee1409955b51",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Грозовая терраса",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "storm-terrace"
+    ],
+    "4-players": [
+     "storm-terrace"
+    ],
+    "5-players": [
+     "storm-terrace"
+    ],
+    "6-players": [
+     "storm-terrace"
+    ],
+    "7-players": [
+     "storm-terrace"
+    ],
+    "8-players": [
+     "storm-terrace"
+    ]
+   },
+   "file": "storm-terrace.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/assets/table/places-warm-shells.webp",
+   "sha256": "74e939d2fcd5f49bacc3e7ba3976b4f7b64128666eeafec12a6cf3e5d1f968e4",
+   "originalSha256": "f494b3d7e7fa0546253aa04de9ee5b9324987674934e9fa68c26ee1409955b51",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сад тёплых раковин",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "warm-shells"
+    ],
+    "4-players": [
+     "warm-shells"
+    ],
+    "5-players": [
+     "warm-shells"
+    ],
+    "6-players": [
+     "warm-shells"
+    ],
+    "7-players": [
+     "warm-shells"
+    ],
+    "8-players": [
+     "warm-shells"
+    ]
+   },
+   "file": "warm-shells.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/assets/table/places-still-pool.webp",
+   "sha256": "4fc95a7b22881bceeab5b2a474a8ee2fb395955cec4fbb32cb067faa9b3570a0",
+   "originalSha256": "f494b3d7e7fa0546253aa04de9ee5b9324987674934e9fa68c26ee1409955b51",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Чаша неподвижности",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "still-pool"
+    ],
+    "4-players": [
+     "still-pool"
+    ],
+    "5-players": [
+     "still-pool"
+    ],
+    "6-players": [
+     "still-pool"
+    ],
+    "7-players": [
+     "still-pool"
+    ],
+    "8-players": [
+     "still-pool"
+    ]
+   },
+   "file": "still-pool.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/assets/table/places-shadow-looms.webp",
+   "sha256": "55d51e350686ac790d236ab7209825900e139ae444eb5b78ab825efaed401aad",
+   "originalSha256": "f494b3d7e7fa0546253aa04de9ee5b9324987674934e9fa68c26ee1409955b51",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ткацкие навесы тени",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "shadow-looms"
+    ],
+    "4-players": [
+     "shadow-looms"
+    ],
+    "5-players": [
+     "shadow-looms"
+    ],
+    "6-players": [
+     "shadow-looms"
+    ],
+    "7-players": [
+     "shadow-looms"
+    ],
+    "8-players": [
+     "shadow-looms"
+    ]
+   },
+   "file": "shadow-looms.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/assets/table/places-echo-market.webp",
+   "sha256": "2186fe334d8cbc3229b71e6fddc85cff11e884fcbe0cadcb31449c7ac349865e",
+   "originalSha256": "f494b3d7e7fa0546253aa04de9ee5b9324987674934e9fa68c26ee1409955b51",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рынок невозможных вкусов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "echo-market"
+    ],
+    "4-players": [
+     "echo-market"
+    ],
+    "5-players": [
+     "echo-market"
+    ],
+    "6-players": [
+     "echo-market"
+    ],
+    "7-players": [
+     "echo-market"
+    ],
+    "8-players": [
+     "echo-market"
+    ]
+   },
+   "file": "echo-market.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/assets/table/places-wind-steps.webp",
+   "sha256": "3020f393a7052d59b75c32f8dbb271873a49b251814536638c6b28d015feb3cc",
+   "originalSha256": "f494b3d7e7fa0546253aa04de9ee5b9324987674934e9fa68c26ee1409955b51",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ступени мягкого порыва",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "wind-steps"
+    ],
+    "4-players": [
+     "wind-steps"
+    ],
+    "5-players": [
+     "wind-steps"
+    ],
+    "6-players": [
+     "wind-steps"
+    ],
+    "7-players": [
+     "wind-steps"
+    ],
+    "8-players": [
+     "wind-steps"
+    ]
+   },
+   "file": "wind-steps.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/assets/table/places-pressure-garden.webp",
+   "sha256": "beb701dad68697098425fc92d1db5fb0c677499c47ba08792c27e66d1d603a4c",
+   "originalSha256": "f494b3d7e7fa0546253aa04de9ee5b9324987674934e9fa68c26ee1409955b51",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сад упругих облаков",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "pressure-garden"
+    ],
+    "4-players": [
+     "pressure-garden"
+    ],
+    "5-players": [
+     "pressure-garden"
+    ],
+    "6-players": [
+     "pressure-garden"
+    ],
+    "7-players": [
+     "pressure-garden"
+    ],
+    "8-players": [
+     "pressure-garden"
+    ]
+   },
+   "file": "pressure-garden.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/assets/table/places-sample-room.webp",
+   "sha256": "420fc3271524317c1db66d713acc3ef1d0bd34f1777172215d07b169c2fc5c58",
+   "originalSha256": "f494b3d7e7fa0546253aa04de9ee5b9324987674934e9fa68c26ee1409955b51",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Комната проб",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "sample-room"
+    ],
+    "4-players": [
+     "sample-room"
+    ],
+    "5-players": [
+     "sample-room"
+    ],
+    "6-players": [
+     "sample-room"
+    ],
+    "7-players": [
+     "sample-room"
+    ],
+    "8-players": [
+     "sample-room"
+    ]
+   },
+   "file": "sample-room.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/assets/table/foes-foe-37a2046be1.webp",
+   "sha256": "85a8f9902fbcd52355ecb50b988c6cb13765c477cafc80f9534d11a574418cb6",
+   "originalSha256": "ada3bb0028bb7634c4fb45429f4396cacdf8a1660e4691c540636bb5e2330aa2",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Бумажный щёлкун",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "shelf-clickers-foe-1",
+     "shelf-clickers-foe-2"
+    ],
+    "4-players": [
+     "shelf-clickers-foe-1",
+     "shelf-clickers-foe-2",
+     "shelf-clickers-foe-3"
+    ],
+    "5-players": [
+     "shelf-clickers-foe-1",
+     "shelf-clickers-foe-2",
+     "shelf-clickers-foe-3"
+    ],
+    "6-players": [
+     "shelf-clickers-foe-1",
+     "shelf-clickers-foe-2",
+     "shelf-clickers-foe-3",
+     "shelf-clickers-foe-4"
+    ],
+    "7-players": [
+     "shelf-clickers-foe-1",
+     "shelf-clickers-foe-2",
+     "shelf-clickers-foe-3",
+     "shelf-clickers-foe-4",
+     "shelf-clickers-foe-5"
+    ],
+    "8-players": [
+     "shelf-clickers-foe-1",
+     "shelf-clickers-foe-2",
+     "shelf-clickers-foe-3",
+     "shelf-clickers-foe-4",
+     "shelf-clickers-foe-5",
+     "shelf-clickers-foe-6"
+    ]
+   },
+   "file": "foe-37a2046be1.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/assets/table/foes-foe-37a2046be1.webp",
+   "sha256": "85a8f9902fbcd52355ecb50b988c6cb13765c477cafc80f9534d11a574418cb6",
+   "originalSha256": "ada3bb0028bb7634c4fb45429f4396cacdf8a1660e4691c540636bb5e2330aa2",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Бумажный щёлкун",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "shelf-clickers-foe-1",
+     "shelf-clickers-foe-2"
+    ],
+    "4-players": [
+     "shelf-clickers-foe-1",
+     "shelf-clickers-foe-2",
+     "shelf-clickers-foe-3"
+    ],
+    "5-players": [
+     "shelf-clickers-foe-1",
+     "shelf-clickers-foe-2",
+     "shelf-clickers-foe-3"
+    ],
+    "6-players": [
+     "shelf-clickers-foe-1",
+     "shelf-clickers-foe-2",
+     "shelf-clickers-foe-3",
+     "shelf-clickers-foe-4"
+    ],
+    "7-players": [
+     "shelf-clickers-foe-1",
+     "shelf-clickers-foe-2",
+     "shelf-clickers-foe-3",
+     "shelf-clickers-foe-4",
+     "shelf-clickers-foe-5"
+    ],
+    "8-players": [
+     "shelf-clickers-foe-1",
+     "shelf-clickers-foe-2",
+     "shelf-clickers-foe-3",
+     "shelf-clickers-foe-4",
+     "shelf-clickers-foe-5",
+     "shelf-clickers-foe-6"
+    ]
+   },
+   "file": "foe-37a2046be1--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-37a2046be1.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/assets/table/foes-foe-bef621021e.webp",
+   "sha256": "18e6fd3d3aaa76ff0887ad768b5841dcf4bdb766581b397c9c22a7dda61930d4",
+   "originalSha256": "ada3bb0028bb7634c4fb45429f4396cacdf8a1660e4691c540636bb5e2330aa2",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Облачный складкоед",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "fold-nibblers-foe-1",
+     "fold-nibblers-foe-2"
+    ],
+    "4-players": [
+     "fold-nibblers-foe-1",
+     "fold-nibblers-foe-2",
+     "fold-nibblers-foe-3"
+    ],
+    "5-players": [
+     "fold-nibblers-foe-1",
+     "fold-nibblers-foe-2",
+     "fold-nibblers-foe-3"
+    ],
+    "6-players": [
+     "fold-nibblers-foe-1",
+     "fold-nibblers-foe-2",
+     "fold-nibblers-foe-3",
+     "fold-nibblers-foe-4"
+    ],
+    "7-players": [
+     "fold-nibblers-foe-1",
+     "fold-nibblers-foe-2",
+     "fold-nibblers-foe-3",
+     "fold-nibblers-foe-4",
+     "fold-nibblers-foe-5"
+    ],
+    "8-players": [
+     "fold-nibblers-foe-1",
+     "fold-nibblers-foe-2",
+     "fold-nibblers-foe-3",
+     "fold-nibblers-foe-4",
+     "fold-nibblers-foe-5",
+     "fold-nibblers-foe-6"
+    ]
+   },
+   "file": "foe-bef621021e.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/assets/table/foes-foe-bef621021e.webp",
+   "sha256": "18e6fd3d3aaa76ff0887ad768b5841dcf4bdb766581b397c9c22a7dda61930d4",
+   "originalSha256": "ada3bb0028bb7634c4fb45429f4396cacdf8a1660e4691c540636bb5e2330aa2",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Облачный складкоед",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "fold-nibblers-foe-1",
+     "fold-nibblers-foe-2"
+    ],
+    "4-players": [
+     "fold-nibblers-foe-1",
+     "fold-nibblers-foe-2",
+     "fold-nibblers-foe-3"
+    ],
+    "5-players": [
+     "fold-nibblers-foe-1",
+     "fold-nibblers-foe-2",
+     "fold-nibblers-foe-3"
+    ],
+    "6-players": [
+     "fold-nibblers-foe-1",
+     "fold-nibblers-foe-2",
+     "fold-nibblers-foe-3",
+     "fold-nibblers-foe-4"
+    ],
+    "7-players": [
+     "fold-nibblers-foe-1",
+     "fold-nibblers-foe-2",
+     "fold-nibblers-foe-3",
+     "fold-nibblers-foe-4",
+     "fold-nibblers-foe-5"
+    ],
+    "8-players": [
+     "fold-nibblers-foe-1",
+     "fold-nibblers-foe-2",
+     "fold-nibblers-foe-3",
+     "fold-nibblers-foe-4",
+     "fold-nibblers-foe-5",
+     "fold-nibblers-foe-6"
+    ]
+   },
+   "file": "foe-bef621021e--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-bef621021e.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/assets/table/foes-foe-b0f02425da.webp",
+   "sha256": "6ff8e33b2a86adacda3ebd3c08ad4590581eb0f3b70264638464f3ff2c2ec5b6",
+   "originalSha256": "ada3bb0028bb7634c4fb45429f4396cacdf8a1660e4691c540636bb5e2330aa2",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Узел порыва",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "gust-knots-foe-1",
+     "gust-knots-foe-2"
+    ],
+    "4-players": [
+     "gust-knots-foe-1",
+     "gust-knots-foe-2",
+     "gust-knots-foe-3"
+    ],
+    "5-players": [
+     "gust-knots-foe-1",
+     "gust-knots-foe-2",
+     "gust-knots-foe-3"
+    ],
+    "6-players": [
+     "gust-knots-foe-1",
+     "gust-knots-foe-2",
+     "gust-knots-foe-3",
+     "gust-knots-foe-4"
+    ],
+    "7-players": [
+     "gust-knots-foe-1",
+     "gust-knots-foe-2",
+     "gust-knots-foe-3",
+     "gust-knots-foe-4",
+     "gust-knots-foe-5"
+    ],
+    "8-players": [
+     "gust-knots-foe-1",
+     "gust-knots-foe-2",
+     "gust-knots-foe-3",
+     "gust-knots-foe-4",
+     "gust-knots-foe-5",
+     "gust-knots-foe-6"
+    ]
+   },
+   "file": "foe-b0f02425da.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/assets/table/foes-foe-b0f02425da.webp",
+   "sha256": "6ff8e33b2a86adacda3ebd3c08ad4590581eb0f3b70264638464f3ff2c2ec5b6",
+   "originalSha256": "ada3bb0028bb7634c4fb45429f4396cacdf8a1660e4691c540636bb5e2330aa2",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Узел порыва",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "gust-knots-foe-1",
+     "gust-knots-foe-2"
+    ],
+    "4-players": [
+     "gust-knots-foe-1",
+     "gust-knots-foe-2",
+     "gust-knots-foe-3"
+    ],
+    "5-players": [
+     "gust-knots-foe-1",
+     "gust-knots-foe-2",
+     "gust-knots-foe-3"
+    ],
+    "6-players": [
+     "gust-knots-foe-1",
+     "gust-knots-foe-2",
+     "gust-knots-foe-3",
+     "gust-knots-foe-4"
+    ],
+    "7-players": [
+     "gust-knots-foe-1",
+     "gust-knots-foe-2",
+     "gust-knots-foe-3",
+     "gust-knots-foe-4",
+     "gust-knots-foe-5"
+    ],
+    "8-players": [
+     "gust-knots-foe-1",
+     "gust-knots-foe-2",
+     "gust-knots-foe-3",
+     "gust-knots-foe-4",
+     "gust-knots-foe-5",
+     "gust-knots-foe-6"
+    ]
+   },
+   "file": "foe-b0f02425da--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-b0f02425da.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/assets/table/npcs-illa-light.webp",
+   "sha256": "750f57f9db5f36247e4f797f07081447c35d639c057871c9b0deb3443ef6d5ef",
+   "originalSha256": "fdf12b243bf1c0d03e2e3d2ed0d1c53dff97da51ecd55d6fd12f66a30f4b806c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Илла Световей",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "illa-light"
+    ],
+    "4-players": [
+     "illa-light"
+    ],
+    "5-players": [
+     "illa-light"
+    ],
+    "6-players": [
+     "illa-light"
+    ],
+    "7-players": [
+     "illa-light"
+    ],
+    "8-players": [
+     "illa-light"
+    ]
+   },
+   "file": "illa-light--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "illa-light.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/assets/table/npcs-un-edge.webp",
+   "sha256": "f4dc3f8d50776f5d24fdf2e6ef0dd7c32bdb901f4685173d0365a01dfef90bf4",
+   "originalSha256": "fdf12b243bf1c0d03e2e3d2ed0d1c53dff97da51ecd55d6fd12f66a30f4b806c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ун Тихая Кромка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "un-edge"
+    ],
+    "4-players": [
+     "un-edge"
+    ],
+    "5-players": [
+     "un-edge"
+    ],
+    "6-players": [
+     "un-edge"
+    ],
+    "7-players": [
+     "un-edge"
+    ],
+    "8-players": [
+     "un-edge"
+    ]
+   },
+   "file": "un-edge--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "un-edge.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/assets/table/npcs-frel-steps.webp",
+   "sha256": "6efa7d4fd179114a218d3c6a13e7c0404485ab7f991d369d179d94ab49a9ca19",
+   "originalSha256": "fdf12b243bf1c0d03e2e3d2ed0d1c53dff97da51ecd55d6fd12f66a30f4b806c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Фрель Семишаг",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "frel-steps"
+    ],
+    "4-players": [
+     "frel-steps"
+    ],
+    "5-players": [
+     "frel-steps"
+    ],
+    "6-players": [
+     "frel-steps"
+    ],
+    "7-players": [
+     "frel-steps"
+    ],
+    "8-players": [
+     "frel-steps"
+    ]
+   },
+   "file": "frel-steps--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "frel-steps.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/assets/table/npcs-oru-depth.webp",
+   "sha256": "9daf75dd16f0ec2c3be88c827e1d0a87aa8d2f8066e6e8c5ead6e557b0302d9b",
+   "originalSha256": "fdf12b243bf1c0d03e2e3d2ed0d1c53dff97da51ecd55d6fd12f66a30f4b806c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ору Тихая Глубь",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "oru-depth"
+    ],
+    "4-players": [
+     "oru-depth"
+    ],
+    "5-players": [
+     "oru-depth"
+    ],
+    "6-players": [
+     "oru-depth"
+    ],
+    "7-players": [
+     "oru-depth"
+    ],
+    "8-players": [
+     "oru-depth"
+    ]
+   },
+   "file": "oru-depth--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "oru-depth.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/assets/table/npcs-ezga-shelves.webp",
+   "sha256": "731530c350bcdca0b50d46a599d0700cc57eb78ada7af18cd86e3e7549562b87",
+   "originalSha256": "fdf12b243bf1c0d03e2e3d2ed0d1c53dff97da51ecd55d6fd12f66a30f4b806c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Езга Пять Полок",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ezga-shelves"
+    ],
+    "4-players": [
+     "ezga-shelves"
+    ],
+    "5-players": [
+     "ezga-shelves"
+    ],
+    "6-players": [
+     "ezga-shelves"
+    ],
+    "7-players": [
+     "ezga-shelves"
+    ],
+    "8-players": [
+     "ezga-shelves"
+    ]
+   },
+   "file": "ezga-shelves--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ezga-shelves.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/assets/table/npcs-ganna-shadow.webp",
+   "sha256": "654ec4077dae5b996482d6f88a4ab644e5f30bdfd1d7882fcecebe0c6acdb9c4",
+   "originalSha256": "fdf12b243bf1c0d03e2e3d2ed0d1c53dff97da51ecd55d6fd12f66a30f4b806c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ганна Тенешов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ganna-shadow"
+    ],
+    "4-players": [
+     "ganna-shadow"
+    ],
+    "5-players": [
+     "ganna-shadow"
+    ],
+    "6-players": [
+     "ganna-shadow"
+    ],
+    "7-players": [
+     "ganna-shadow"
+    ],
+    "8-players": [
+     "ganna-shadow"
+    ]
+   },
+   "file": "ganna-shadow--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ganna-shadow.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/assets/table/npcs-tinn-sample.webp",
+   "sha256": "ac30d3998fcff09ce3d2e686f847257533ff11a9e6d7c9f3e5cb71fcb06c7f73",
+   "originalSha256": "fdf12b243bf1c0d03e2e3d2ed0d1c53dff97da51ecd55d6fd12f66a30f4b806c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тинн Неровный Образец",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tinn-sample"
+    ],
+    "4-players": [
+     "tinn-sample"
+    ],
+    "5-players": [
+     "tinn-sample"
+    ],
+    "6-players": [
+     "tinn-sample"
+    ],
+    "7-players": [
+     "tinn-sample"
+    ],
+    "8-players": [
+     "tinn-sample"
+    ]
+   },
+   "file": "tinn-sample--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "tinn-sample.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/assets/table/npcs-ovelna-apron.webp",
+   "sha256": "ca5601f29b66641cce5d353ce6955caf96f9be14f6259bf39f65fbf18d1f6f98",
+   "originalSha256": "fdf12b243bf1c0d03e2e3d2ed0d1c53dff97da51ecd55d6fd12f66a30f4b806c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Овелна Два Фартука",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ovelna-apron"
+    ],
+    "4-players": [
+     "ovelna-apron"
+    ],
+    "5-players": [
+     "ovelna-apron"
+    ],
+    "6-players": [
+     "ovelna-apron"
+    ],
+    "7-players": [
+     "ovelna-apron"
+    ],
+    "8-players": [
+     "ovelna-apron"
+    ]
+   },
+   "file": "ovelna-apron--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ovelna-apron.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/storm-kitchen/illustrations/opening.webp",
+   "sha256": "37f26fdffd963fb3f8a7ca335cc4129e48c5a6e16cd86b8a59e8e2756bb7f38b",
+   "originalSha256": "2254092f521410e0d3a6f5c1d2dc394e370f8111f62e26ed2c43d20fc94903e1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Кухня «Четвёртая ложка» — Кухня на краю грозы",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "oval-valley"
+    ],
+    "4-players": [
+     "oval-valley"
+    ],
+    "5-players": [
+     "oval-valley"
+    ],
+    "6-players": [
+     "oval-valley"
+    ],
+    "7-players": [
+     "oval-valley"
+    ],
+    "8-players": [
+     "oval-valley"
+    ]
+   },
+   "file": "cover.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "file": "echo-market--map.webp",
+   "source": "campaigns/fantasy-2026/storm-kitchen/assets/battle-maps/echo-market.webp",
+   "sha256": "ad0f0b9985330bd8de1e9df58097b8c1375c92ee2124183a989cb738a51f9f54",
+   "originalSha256": "d85e314cb1ebf7eeb4f4d57d3d4a707215928e96cf6b9bee52a9f94cb5150356",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Рынок невозможных вкусов. Visible scenery: Несколько лавок вокруг круглого камня. Здесь обменивают фантастические продукты, рассказывают об их происхождении и показывают образцы.. World style: Долина Оваль · Enamel spoon bowls, angular lightning and whorls of cloud on warm indigo pottery. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "echo-market.webp",
+   "subjects": {
+    "3-players": [
+     "echo-market"
+    ],
+    "4-players": [
+     "echo-market"
+    ],
+    "5-players": [
+     "echo-market"
+    ],
+    "6-players": [
+     "echo-market"
+    ],
+    "7-players": [
+     "echo-market"
+    ],
+    "8-players": [
+     "echo-market"
+    ]
+   }
+  },
+  {
+   "file": "wind-steps--map.webp",
+   "source": "campaigns/fantasy-2026/storm-kitchen/assets/battle-maps/wind-steps.webp",
+   "sha256": "4c4bd05096b818f75076139635bf41d73a48bb889dd30ebf18d343014e3b9e86",
+   "originalSha256": "7a587e3b018fecd88f97acbcc0d2ec2ff8534f91760165602f517df857cb2518",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Ступени мягкого порыва. Visible scenery: Низкие широкие ступени внутри каменного кольца. Цветные ленты показывают движение воздуха; боковой проход полностью защищён.. World style: Долина Оваль · Enamel spoon bowls, angular lightning and whorls of cloud on warm indigo pottery. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "wind-steps.webp",
+   "subjects": {
+    "3-players": [
+     "wind-steps"
+    ],
+    "4-players": [
+     "wind-steps"
+    ],
+    "5-players": [
+     "wind-steps"
+    ],
+    "6-players": [
+     "wind-steps"
+    ],
+    "7-players": [
+     "wind-steps"
+    ],
+    "8-players": [
+     "wind-steps"
+    ]
+   }
+  },
+  {
+   "file": "shadow-looms--map.webp",
+   "source": "campaigns/fantasy-2026/storm-kitchen/assets/battle-maps/shadow-looms.webp",
+   "sha256": "1e84dfb02ab16c0ec85aee51b337059b86e3ff07719fda83df6cb5fdbdaf197a",
+   "originalSha256": "6b0ad3b945d385744b582d6a41adc3eb3b4c8a7eddaaf6894aee3637c996c577",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Ткацкие навесы тени. Visible scenery: Под низкими навесами висят полотна из облачной тени. Ткачиха складывает их в мягкие съедобные для духов узоры и лёгкие чехлы для отдельных чаш.. World style: Долина Оваль · Enamel spoon bowls, angular lightning and whorls of cloud on warm indigo pottery. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "shadow-looms.webp",
+   "subjects": {
+    "3-players": [
+     "shadow-looms"
+    ],
+    "4-players": [
+     "shadow-looms"
+    ],
+    "5-players": [
+     "shadow-looms"
+    ],
+    "6-players": [
+     "shadow-looms"
+    ],
+    "7-players": [
+     "shadow-looms"
+    ],
+    "8-players": [
+     "shadow-looms"
+    ]
+   }
+  },
+  {
+   "file": "world-map.webp",
+   "source": "campaigns/fantasy-2026/storm-kitchen/assets/world-map/world-map.webp",
+   "sha256": "a6c74a167c4d10e0e43546e18e6141d7d38312067bb8d032a89d582f1b45e956",
+   "originalSha256": "0d92641b2ed428b354ec4be8e473571b180752dae32cd30d9c0cfe2e6d8242e3",
+   "generated": "2026-11-22",
+   "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Долина Оваль. Style Долина Оваль · Enamel spoon bowls, angular lightning and whorls of cloud on warm indigo pottery. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Кухня «Четвёртая ложка»; 0.367,0.177 Грозовая терраса; 0.623,0.15 Сад тёплых раковин; 0.88,0.177 Чаша неподвижности; 0.905,0.517 Ткацкие навесы тени; 0.648,0.49 Рынок невозможных вкусов; 0.392,0.517 Ступени мягкого порыва; 0.135,0.49 Сад упругих облаков; 0.11,0.83 Комната проб. Show public exteriors / unlabeled contours only.",
+   "references": [],
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null,
+   "subjects": {
+    "3-players": [
+     "world-map"
+    ],
+    "4-players": [
+     "world-map"
+    ],
+    "5-players": [
+     "world-map"
+    ],
+    "6-players": [
+     "world-map"
+    ],
+    "7-players": [
+     "world-map"
+    ],
+    "8-players": [
+     "world-map"
+    ]
+   }
+  }
+ ]
+}

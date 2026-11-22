@@ -1,0 +1,692 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "counterfeit-spring-heroes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-5d631d87-5cf3-45ca-ae5b-a4f96440b1de.png",
+      "originalSha256": "170d6f9900d313462b84f1d3d928e4dac9b0bbabafbeb4690d3bafb9f049fa85",
+      "columns": 4,
+      "rows": 2,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 4 equal columns by 2 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Вязовск · Discreet yellow-garden paint flecks and twin gilded frame corners on bottle-green canvas. Cell 1. Мира Калинина. Короткое пальто, аккуратная тетрадь и привычка сначала освобождать собеседнику стул.\nCell 2. Павел Устинов. Широкие ладони, тёмная жилетка и тщательно сложенная чистая ткань для хрупких вещей.\nCell 3. Софья Нечаева. Серый шарф, цветные бумажные полоски в блокноте, внимательный взгляд на края вещей.\nCell 4. Антон Белозёрский. Строгое пальто, потёртый термос и спокойная манера спрашивать разрешение.\nCell 5. Елена Гурина. Запачканная типографской краской манжета и ровный, почти печатный почерк.\nCell 6. Григорий Шумов. Сухой плащ, мягкая шапка и карман, полный чистых бечёвок для обычных свёртков.\nCell 7. Яна Бельская. Тёмная коса, складная папка и деревянная линейка с выцветшими цифрами.\nCell 8. Рустам Каримов. Песочная куртка и часы, которые вы переворачиваете циферблатом вниз во время тяжёлого разговора.. Leave final unused cells empty.",
+      "references": [
+        "campaigns/noir-2026/counterfeit-spring/illustrations/cards/mira-kalinina.webp",
+        "campaigns/noir-2026/counterfeit-spring/illustrations/cards/pavel-ustinov.webp",
+        "campaigns/noir-2026/counterfeit-spring/illustrations/cards/sofia-nechaeva.webp",
+        "campaigns/noir-2026/counterfeit-spring/illustrations/cards/anton-belozersky.webp",
+        "campaigns/noir-2026/counterfeit-spring/illustrations/cards/elena-gurina.webp",
+        "campaigns/noir-2026/counterfeit-spring/illustrations/cards/grigory-shumov.webp",
+        "campaigns/noir-2026/counterfeit-spring/illustrations/cards/yana-belskaya.webp",
+        "campaigns/noir-2026/counterfeit-spring/illustrations/cards/rustam-karimov.webp"
+      ]
+    },
+    {
+      "id": "counterfeit-spring-places-0",
+      "originalFile": "exec-685da633-afa0-4814-84e0-1867afcf4152.png",
+      "originalSha256": "c0613e59fce4bee049084172940893704e8abbb808b2d6d6290e3d37fdd0ad4a",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "A registered game art atlas of location illustrations, one clearly distinct unpopulated environment per cell, distinct scene lighting and structures. Fill each cell edge to edge. Atmospheric painted landscape or architectural interiors at human eye level. No plot events, clues, icons or writing. EXACT regular grid, 3 equal columns by 3 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Вязовск · Discreet yellow-garden paint flecks and twin gilded frame corners on bottle-green canvas. Cell 1. Стеклянная приёмная. Пристройка прачечной Раисы: длинный стол, сухие полотенца, чайник и окно напротив художественного салона.\nCell 2. Зимний салон. Тёплая галерея с плотными шторами, переносными стойками и отдельной комнатой для спокойного выбора картины.\nCell 3. Мастерская Тамары. Светлый верхний этаж над швейной мастерской; бумажные макеты соседствуют с подписанными декоративными этюдами.\nCell 4. Мастерская Нины. Низкое помещение с широким столом, удобными стульями и незакрытым полотном с жёлтым садом у стены.\nCell 5. Багетная Орлова. Пахнущая деревом мастерская; вдоль стены стоят угловые образцы рам, мерные полосы и подписанные картонные макеты.\nCell 6. Гостиная Бирка. Квартира с узким простенком, низкой софой и картиной, подогнанной под свет от зелёного торшера.\nCell 7. Примерочная Крупиной. Закрытая примерочная взрослого модного ателье; в зеркале отражаются охристый сад и тяжёлая янтарная портьера.\nCell 8. Стойка доставки. Крытая стойка посыльных у трамвайного кольца, где отправители сверяют номера пакетов на бумажных карточках.\nCell 9. Комната дневного света. Сдаваемая на часы пустая комната: большое северное окно, три мольберта и стол без украшений.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "counterfeit-spring-foes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-37ec59d2-6ce2-4ed7-b16a-5988df0f42c5.png",
+      "originalSha256": "fe17416e38b408561b62927c6a42b72c0ce60f0f553cd90a32bba1614ed5b3a1",
+      "columns": 3,
+      "rows": 1,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 3 equal columns by 1 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Вязовск · Discreet yellow-garden paint flecks and twin gilded frame corners on bottle-green canvas. Cell 1. Раздражённый посетитель. Обычные покупатели от 30 до 60 лет, встревоженные публичным спором. Не убийцы и не тайная организация. Одна абстрактная ближняя атака +3, урон 1d4+1; художественное описание — нелетальная возня, без практических приёмов насилия.\nCell 2. Работник багетной. Работники от 25 до 55 лет, отвечающие за доверенные рамы. Их условная атака представляет короткую нелетальную возню: +3 в ближнем бою, урон 1d4+1. Инструменты не превращаются в инструкции по реальному насилию.\nCell 3. Сотрудник частного показа. Временные сотрудники от 28 до 50 лет, которым велели закончить встречу. Они знают только условия допуска, не тайну схемы. Одна абстрактная ближняя атака +3, урон 1d4+1, с нелетальным намерением и без огнестрельного оружия.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "counterfeit-spring-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-fe79814d-9f07-4dc0-9cf5-dd61a4000af1.png",
+      "originalSha256": "abf2ce5187d570acb8538cb709d647b8346eade32bc1f0e799d8ee2a34866735",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 5 distinct hand-painted tabletop miniature figurines for the world of Поддельная весна. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Раиса Антипова. Женщина в светлой рабочей блузе, с тихим голосом и привычкой убирать мокрые вещи с чужого стула.\nCell 2. Аркадий Сухов. Безупречный серый костюм, мягкие руки и голос, которым удобно объяснять, почему выбранный цвет вам подходит.\nCell 3. Тамара Ситник. Короткие волосы, длинный рабочий фартук и осторожная привычка ставить чашки подальше от бумаги.\nCell 4. Нина Рябцева. Высокая женщина в простом синем свитере, которая разворачивает стул к свету, прежде чем предложить сесть.\nCell 5. Эдуард Бирк. Тёмный домашний пиджак, гладкие манжеты и почти комическая забота о правильном положении торшера.",
+      "references": [
+        "campaigns/noir-2026/counterfeit-spring/illustrations/cards/raisa-antipova.webp",
+        "campaigns/noir-2026/counterfeit-spring/illustrations/cards/arkady-sukhov.webp",
+        "campaigns/noir-2026/counterfeit-spring/illustrations/cards/tamara-sitnik.webp",
+        "campaigns/noir-2026/counterfeit-spring/illustrations/cards/nina-ryabtseva.webp",
+        "campaigns/noir-2026/counterfeit-spring/illustrations/cards/eduard-birk.webp"
+      ]
+    },
+    {
+      "id": "counterfeit-spring-npcs-1",
+      "cutoutRevision": 4,
+      "originalFile": "exec-cc38aee1-f8d3-4788-b33a-d4a6daff9053.png",
+      "originalSha256": "6d3bc7d5f0ca7b54c4c815eaaa4f883a1cd7cd4fc03d338af7af94d998382f9e",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 5 distinct hand-painted tabletop miniature figurines for the world of Поддельная весна. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Лидия Крупина. Тёмное платье, янтарная брошь и измерительная лента, аккуратно убранная перед посетителями.\nCell 2. Борис Орлов. Маленькие круглые очки, серый халат и неожиданно бережный голос для обычного картона.\nCell 3. Клавдия Зуева. Плащ поверх форменной жилетки, карандаш на нитке и ровные стопки карточек на стойке.\nCell 4. Семён Жданов. Добротное пальто, усталые глаза и маленькая записная книжка с размерами свободной стены.\nCell 5. Ольга Малкова. Чистая белая блуза, мягкие туфли и папка с разделителями разных цветов.",
+      "references": [
+        "campaigns/noir-2026/counterfeit-spring/illustrations/cards/lidia-krupina.webp",
+        "campaigns/noir-2026/counterfeit-spring/illustrations/cards/boris-orlov.webp",
+        "campaigns/noir-2026/counterfeit-spring/illustrations/cards/klavdia-zueva.webp",
+        "campaigns/noir-2026/counterfeit-spring/illustrations/cards/semyon-zhdanov.webp",
+        "campaigns/noir-2026/counterfeit-spring/illustrations/cards/olga-malkova.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "mira-kalinina",
+      "title": "Мира Калинина",
+      "kind": "hero",
+      "subjects": [
+        "mira-kalinina"
+      ],
+      "file": "heroes-mira-kalinina.webp",
+      "sha256": "0a9450fa817df5b81fd6ad7906893b26e2f7403594682ef535ec1ed517defb3e",
+      "originalSha256": "170d6f9900d313462b84f1d3d928e4dac9b0bbabafbeb4690d3bafb9f049fa85",
+      "generated": "2026-11-22",
+      "sheet": "counterfeit-spring-heroes-0",
+      "cell": 1,
+      "crop": {
+        "left": 122,
+        "top": 14,
+        "width": 201,
+        "height": 414
+      }
+    },
+    {
+      "key": "pavel-ustinov",
+      "title": "Павел Устинов",
+      "kind": "hero",
+      "subjects": [
+        "pavel-ustinov"
+      ],
+      "file": "heroes-pavel-ustinov.webp",
+      "sha256": "799ade89c13750882100ff04de0a1049b534c27e90b45a93d1217622f6a24cb8",
+      "originalSha256": "170d6f9900d313462b84f1d3d928e4dac9b0bbabafbeb4690d3bafb9f049fa85",
+      "generated": "2026-11-22",
+      "sheet": "counterfeit-spring-heroes-0",
+      "cell": 2,
+      "crop": {
+        "left": 557,
+        "top": 11,
+        "width": 204,
+        "height": 417
+      }
+    },
+    {
+      "key": "sofia-nechaeva",
+      "title": "Софья Нечаева",
+      "kind": "hero",
+      "subjects": [
+        "sofia-nechaeva"
+      ],
+      "file": "heroes-sofia-nechaeva.webp",
+      "sha256": "aca0245856d3f0c89d00d2df7cc7a2fa08e952628f352147e44b7d6612f790fe",
+      "originalSha256": "170d6f9900d313462b84f1d3d928e4dac9b0bbabafbeb4690d3bafb9f049fa85",
+      "generated": "2026-11-22",
+      "sheet": "counterfeit-spring-heroes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1008,
+        "top": 12,
+        "width": 201,
+        "height": 416
+      }
+    },
+    {
+      "key": "anton-belozersky",
+      "title": "Антон Белозёрский",
+      "kind": "hero",
+      "subjects": [
+        "anton-belozersky"
+      ],
+      "file": "heroes-anton-belozersky.webp",
+      "sha256": "5f35e1ecb5a0c94d6833d6c8a06457605428e78385fcbacaa73b75a2c08ad8aa",
+      "originalSha256": "170d6f9900d313462b84f1d3d928e4dac9b0bbabafbeb4690d3bafb9f049fa85",
+      "generated": "2026-11-22",
+      "sheet": "counterfeit-spring-heroes-0",
+      "cell": 4,
+      "crop": {
+        "left": 1452,
+        "top": 11,
+        "width": 201,
+        "height": 417
+      }
+    },
+    {
+      "key": "elena-gurina",
+      "title": "Елена Гурина",
+      "kind": "hero",
+      "subjects": [
+        "elena-gurina"
+      ],
+      "file": "heroes-elena-gurina.webp",
+      "sha256": "782137bcc281409b3902bd4a3ad2fb5162f6bcb7efe4dbc5a4e737626f0c400e",
+      "originalSha256": "170d6f9900d313462b84f1d3d928e4dac9b0bbabafbeb4690d3bafb9f049fa85",
+      "generated": "2026-11-22",
+      "sheet": "counterfeit-spring-heroes-0",
+      "cell": 5,
+      "crop": {
+        "left": 122,
+        "top": 457,
+        "width": 200,
+        "height": 414
+      }
+    },
+    {
+      "key": "grigory-shumov",
+      "title": "Григорий Шумов",
+      "kind": "hero",
+      "subjects": [
+        "grigory-shumov"
+      ],
+      "file": "heroes-grigory-shumov.webp",
+      "sha256": "632f1bffe627ea60476c261d273e5e7eae86d9d2ae8d07213ef88f1fc3df3b08",
+      "originalSha256": "170d6f9900d313462b84f1d3d928e4dac9b0bbabafbeb4690d3bafb9f049fa85",
+      "generated": "2026-11-22",
+      "sheet": "counterfeit-spring-heroes-0",
+      "cell": 6,
+      "crop": {
+        "left": 566,
+        "top": 454,
+        "width": 200,
+        "height": 417
+      }
+    },
+    {
+      "key": "yana-belskaya",
+      "title": "Яна Бельская",
+      "kind": "hero",
+      "subjects": [
+        "yana-belskaya"
+      ],
+      "file": "heroes-yana-belskaya.webp",
+      "sha256": "8338118b029b7aee88adf8da802d9adb273f578bfce315ce617f5db60f5ae430",
+      "originalSha256": "170d6f9900d313462b84f1d3d928e4dac9b0bbabafbeb4690d3bafb9f049fa85",
+      "generated": "2026-11-22",
+      "sheet": "counterfeit-spring-heroes-0",
+      "cell": 7,
+      "crop": {
+        "left": 1008,
+        "top": 457,
+        "width": 201,
+        "height": 414
+      }
+    },
+    {
+      "key": "rustam-karimov",
+      "title": "Рустам Каримов",
+      "kind": "hero",
+      "subjects": [
+        "rustam-karimov"
+      ],
+      "file": "heroes-rustam-karimov.webp",
+      "sha256": "c1297b89081be2e3f7d7aed1ff0138351a5256aeb5b98216ef6230790fa593e9",
+      "originalSha256": "170d6f9900d313462b84f1d3d928e4dac9b0bbabafbeb4690d3bafb9f049fa85",
+      "generated": "2026-11-22",
+      "sheet": "counterfeit-spring-heroes-0",
+      "cell": 8,
+      "crop": {
+        "left": 1452,
+        "top": 456,
+        "width": 201,
+        "height": 415
+      }
+    },
+    {
+      "key": "glass-waiting-room",
+      "title": "Стеклянная приёмная",
+      "kind": "place",
+      "subjects": [
+        "glass-waiting-room"
+      ],
+      "file": "places-glass-waiting-room.webp",
+      "sha256": "ca593ee5e8ee571172c34f63bb20a65d5fdd859953b9b1d8ea4ad11afe9dd856",
+      "originalSha256": "c0613e59fce4bee049084172940893704e8abbb808b2d6d6290e3d37fdd0ad4a",
+      "generated": "2026-11-22",
+      "sheet": "counterfeit-spring-places-0",
+      "cell": 1,
+      "crop": {
+        "left": 1,
+        "top": 1,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "winter-salon",
+      "title": "Зимний салон",
+      "kind": "place",
+      "subjects": [
+        "winter-salon"
+      ],
+      "file": "places-winter-salon.webp",
+      "sha256": "c799ab6eb24a2499562e96c1fc492e50801e20ec0002abaf11df454a38e7484f",
+      "originalSha256": "c0613e59fce4bee049084172940893704e8abbb808b2d6d6290e3d37fdd0ad4a",
+      "generated": "2026-11-22",
+      "sheet": "counterfeit-spring-places-0",
+      "cell": 2,
+      "crop": {
+        "left": 484,
+        "top": 1,
+        "width": 480,
+        "height": 360
+      }
+    },
+    {
+      "key": "sitnik-studio",
+      "title": "Мастерская Тамары",
+      "kind": "place",
+      "subjects": [
+        "sitnik-studio"
+      ],
+      "file": "places-sitnik-studio.webp",
+      "sha256": "df8fcc211e63dd0d8cb9b8c0a6fa6d4ff072d3e97bc9f1dd3a5851118ca1ba32",
+      "originalSha256": "c0613e59fce4bee049084172940893704e8abbb808b2d6d6290e3d37fdd0ad4a",
+      "generated": "2026-11-22",
+      "sheet": "counterfeit-spring-places-0",
+      "cell": 3,
+      "crop": {
+        "left": 966,
+        "top": 1,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "ryabtseva-studio",
+      "title": "Мастерская Нины",
+      "kind": "place",
+      "subjects": [
+        "ryabtseva-studio"
+      ],
+      "file": "places-ryabtseva-studio.webp",
+      "sha256": "e44ff9d2056defab5ce2b120a8264f6bf8e7b9ba76576d63dc647a741820e28b",
+      "originalSha256": "c0613e59fce4bee049084172940893704e8abbb808b2d6d6290e3d37fdd0ad4a",
+      "generated": "2026-11-22",
+      "sheet": "counterfeit-spring-places-0",
+      "cell": 4,
+      "crop": {
+        "left": 1,
+        "top": 363,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "frame-workshop",
+      "title": "Багетная Орлова",
+      "kind": "place",
+      "subjects": [
+        "frame-workshop"
+      ],
+      "file": "places-frame-workshop.webp",
+      "sha256": "e46036b52bd84b6dfb2a8c488eeaba61a54bc2c746c371796ed57090d4c007a0",
+      "originalSha256": "c0613e59fce4bee049084172940893704e8abbb808b2d6d6290e3d37fdd0ad4a",
+      "generated": "2026-11-22",
+      "sheet": "counterfeit-spring-places-0",
+      "cell": 5,
+      "crop": {
+        "left": 484,
+        "top": 363,
+        "width": 480,
+        "height": 360
+      }
+    },
+    {
+      "key": "birk-drawing-room",
+      "title": "Гостиная Бирка",
+      "kind": "place",
+      "subjects": [
+        "birk-drawing-room"
+      ],
+      "file": "places-birk-drawing-room.webp",
+      "sha256": "ef94294b85a7ef88f209f3d8fb95cb14f6dac566445bd257bd63f197c29c76ff",
+      "originalSha256": "c0613e59fce4bee049084172940893704e8abbb808b2d6d6290e3d37fdd0ad4a",
+      "generated": "2026-11-22",
+      "sheet": "counterfeit-spring-places-0",
+      "cell": 6,
+      "crop": {
+        "left": 966,
+        "top": 363,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "krupina-fitting-room",
+      "title": "Примерочная Крупиной",
+      "kind": "place",
+      "subjects": [
+        "krupina-fitting-room"
+      ],
+      "file": "places-krupina-fitting-room.webp",
+      "sha256": "b3fd884cbfc0defa5ef9543cb285549244cba3be18c2eb7da05cd9f311013096",
+      "originalSha256": "c0613e59fce4bee049084172940893704e8abbb808b2d6d6290e3d37fdd0ad4a",
+      "generated": "2026-11-22",
+      "sheet": "counterfeit-spring-places-0",
+      "cell": 7,
+      "crop": {
+        "left": 1,
+        "top": 725,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "parcel-counter",
+      "title": "Стойка доставки",
+      "kind": "place",
+      "subjects": [
+        "parcel-counter"
+      ],
+      "file": "places-parcel-counter.webp",
+      "sha256": "24d7f0635275c2add7001ce2d7ea2ee94eca2ea11a7cd8fa939a937c91f1fdf8",
+      "originalSha256": "c0613e59fce4bee049084172940893704e8abbb808b2d6d6290e3d37fdd0ad4a",
+      "generated": "2026-11-22",
+      "sheet": "counterfeit-spring-places-0",
+      "cell": 8,
+      "crop": {
+        "left": 484,
+        "top": 725,
+        "width": 480,
+        "height": 360
+      }
+    },
+    {
+      "key": "comparison-room",
+      "title": "Комната дневного света",
+      "kind": "place",
+      "subjects": [
+        "comparison-room"
+      ],
+      "file": "places-comparison-room.webp",
+      "sha256": "7696d564de28ec72619fcbcaf23256663d4713b7c829629b2b911ef3d34ac4ef",
+      "originalSha256": "c0613e59fce4bee049084172940893704e8abbb808b2d6d6290e3d37fdd0ad4a",
+      "generated": "2026-11-22",
+      "sheet": "counterfeit-spring-places-0",
+      "cell": 9,
+      "crop": {
+        "left": 966,
+        "top": 725,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "foe-a6757835b7",
+      "title": "Раздражённый посетитель",
+      "kind": "foe",
+      "subjects": [
+        "crowded-doorway-foe-1",
+        "crowded-doorway-foe-2",
+        "crowded-doorway-foe-3",
+        "crowded-doorway-foe-4",
+        "crowded-doorway-foe-5",
+        "crowded-doorway-foe-6"
+      ],
+      "file": "foes-foe-a6757835b7.webp",
+      "sha256": "9e3ef53b62cdf4d1473c568c6fc46ecae51edbc1e71fe33666bc878c421d5992",
+      "originalSha256": "fe17416e38b408561b62927c6a42b72c0ce60f0f553cd90a32bba1614ed5b3a1",
+      "generated": "2026-11-22",
+      "sheet": "counterfeit-spring-foes-0",
+      "cell": 1,
+      "crop": {
+        "left": 140,
+        "top": 16,
+        "width": 517,
+        "height": 691
+      }
+    },
+    {
+      "key": "foe-95445d0ab7",
+      "title": "Работник багетной",
+      "kind": "foe",
+      "subjects": [
+        "frame-passage-foe-1",
+        "frame-passage-foe-2",
+        "frame-passage-foe-3",
+        "frame-passage-foe-4",
+        "frame-passage-foe-5",
+        "frame-passage-foe-6"
+      ],
+      "file": "foes-foe-95445d0ab7.webp",
+      "sha256": "4054617d1eb79b87d736ab0dc97ade56815458ddd534138bff573ea6fc99df09",
+      "originalSha256": "fe17416e38b408561b62927c6a42b72c0ce60f0f553cd90a32bba1614ed5b3a1",
+      "generated": "2026-11-22",
+      "sheet": "counterfeit-spring-foes-0",
+      "cell": 2,
+      "crop": {
+        "left": 860,
+        "top": 18,
+        "width": 428,
+        "height": 688
+      }
+    },
+    {
+      "key": "foe-9a4352ee02",
+      "title": "Сотрудник частного показа",
+      "kind": "foe",
+      "subjects": [
+        "closed-curtain-foe-1",
+        "closed-curtain-foe-2",
+        "closed-curtain-foe-3",
+        "closed-curtain-foe-4",
+        "closed-curtain-foe-5",
+        "closed-curtain-foe-6"
+      ],
+      "file": "foes-foe-9a4352ee02.webp",
+      "sha256": "50915e393d339a6999bef343285127f4ec0adabacce84873beceb3cd36e722d1",
+      "originalSha256": "fe17416e38b408561b62927c6a42b72c0ce60f0f553cd90a32bba1614ed5b3a1",
+      "generated": "2026-11-22",
+      "sheet": "counterfeit-spring-foes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1595,
+        "top": 7,
+        "width": 415,
+        "height": 698
+      }
+    },
+    {
+      "key": "raisa-antipova",
+      "title": "Раиса Антипова",
+      "kind": "npc",
+      "subjects": [
+        "raisa-antipova"
+      ],
+      "file": "npcs-raisa-antipova.webp",
+      "sha256": "967082d416f77750b8070582bf4ab753f778cc368ab10a1281afc32291f98c13",
+      "originalSha256": "abf2ce5187d570acb8538cb709d647b8346eade32bc1f0e799d8ee2a34866735",
+      "generated": "2026-11-22",
+      "sheet": "counterfeit-spring-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 111,
+        "top": 13,
+        "width": 334,
+        "height": 483
+      }
+    },
+    {
+      "key": "arkady-sukhov",
+      "title": "Аркадий Сухов",
+      "kind": "npc",
+      "subjects": [
+        "arkady-sukhov"
+      ],
+      "file": "npcs-arkady-sukhov.webp",
+      "sha256": "ba5eb4f521731bcbe5f39fd2279b82584fb43c941f04132a8c9ddd0c15d0fc94",
+      "originalSha256": "abf2ce5187d570acb8538cb709d647b8346eade32bc1f0e799d8ee2a34866735",
+      "generated": "2026-11-22",
+      "sheet": "counterfeit-spring-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 647,
+        "top": 14,
+        "width": 246,
+        "height": 480
+      }
+    },
+    {
+      "key": "tamara-sitnik",
+      "title": "Тамара Ситник",
+      "kind": "npc",
+      "subjects": [
+        "tamara-sitnik"
+      ],
+      "file": "npcs-tamara-sitnik.webp",
+      "sha256": "16541ab08b0aa112a68ff2a5aaa35d35bf7b04201497245dc8d4fc2901e46fdd",
+      "originalSha256": "abf2ce5187d570acb8538cb709d647b8346eade32bc1f0e799d8ee2a34866735",
+      "generated": "2026-11-22",
+      "sheet": "counterfeit-spring-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 1141,
+        "top": 15,
+        "width": 257,
+        "height": 490
+      }
+    },
+    {
+      "key": "nina-ryabtseva",
+      "title": "Нина Рябцева",
+      "kind": "npc",
+      "subjects": [
+        "nina-ryabtseva"
+      ],
+      "file": "npcs-nina-ryabtseva.webp",
+      "sha256": "8630db1ed80c638c6eb6fcbe736cb592ccba58f661fdb1c15b16bb1fe2943034",
+      "originalSha256": "abf2ce5187d570acb8538cb709d647b8346eade32bc1f0e799d8ee2a34866735",
+      "generated": "2026-11-22",
+      "sheet": "counterfeit-spring-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 108,
+        "top": 523,
+        "width": 294,
+        "height": 486
+      }
+    },
+    {
+      "key": "eduard-birk",
+      "title": "Эдуард Бирк",
+      "kind": "npc",
+      "subjects": [
+        "eduard-birk"
+      ],
+      "file": "npcs-eduard-birk.webp",
+      "sha256": "36b102d2dc49da694acdf762f34656d244087316b6102417042f3b66b19b362b",
+      "originalSha256": "abf2ce5187d570acb8538cb709d647b8346eade32bc1f0e799d8ee2a34866735",
+      "generated": "2026-11-22",
+      "sheet": "counterfeit-spring-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 633,
+        "top": 527,
+        "width": 279,
+        "height": 480
+      }
+    },
+    {
+      "key": "lidia-krupina",
+      "title": "Лидия Крупина",
+      "kind": "npc",
+      "subjects": [
+        "lidia-krupina"
+      ],
+      "file": "npcs-lidia-krupina.webp",
+      "sha256": "d0704aa363704f4b5f0c8593df5887305f9f0c9685d2d0ac6ac7f3ca74a04b10",
+      "originalSha256": "6d3bc7d5f0ca7b54c4c815eaaa4f883a1cd7cd4fc03d338af7af94d998382f9e",
+      "generated": "2026-11-22",
+      "sheet": "counterfeit-spring-npcs-1",
+      "cell": 1,
+      "crop": {
+        "left": 145,
+        "top": 18,
+        "width": 226,
+        "height": 478
+      }
+    },
+    {
+      "key": "boris-orlov",
+      "title": "Борис Орлов",
+      "kind": "npc",
+      "subjects": [
+        "boris-orlov"
+      ],
+      "file": "npcs-boris-orlov.webp",
+      "sha256": "0afa71cecc5630d6de67630bb3deb6df31361d712de8aa32b3ae5d2b334bd99a",
+      "originalSha256": "6d3bc7d5f0ca7b54c4c815eaaa4f883a1cd7cd4fc03d338af7af94d998382f9e",
+      "generated": "2026-11-22",
+      "sheet": "counterfeit-spring-npcs-1",
+      "cell": 2,
+      "crop": {
+        "left": 621,
+        "top": 17,
+        "width": 265,
+        "height": 480
+      }
+    },
+    {
+      "key": "klavdia-zueva",
+      "title": "Клавдия Зуева",
+      "kind": "npc",
+      "subjects": [
+        "klavdia-zueva"
+      ],
+      "file": "npcs-klavdia-zueva.webp",
+      "sha256": "42d1de6465d1f4fa2d64c66016a16fbaaeddf3a28a4aacac1cc460a7be37a7c0",
+      "originalSha256": "6d3bc7d5f0ca7b54c4c815eaaa4f883a1cd7cd4fc03d338af7af94d998382f9e",
+      "generated": "2026-11-22",
+      "sheet": "counterfeit-spring-npcs-1",
+      "cell": 3,
+      "crop": {
+        "left": 1115,
+        "top": 18,
+        "width": 331,
+        "height": 479
+      }
+    },
+    {
+      "key": "semyon-zhdanov",
+      "title": "Семён Жданов",
+      "kind": "npc",
+      "subjects": [
+        "semyon-zhdanov"
+      ],
+      "file": "npcs-semyon-zhdanov.webp",
+      "sha256": "728ea527453a085d4ef202c099fbe3af9900be68c1c78360a640e93b67f2f809",
+      "originalSha256": "6d3bc7d5f0ca7b54c4c815eaaa4f883a1cd7cd4fc03d338af7af94d998382f9e",
+      "generated": "2026-11-22",
+      "sheet": "counterfeit-spring-npcs-1",
+      "cell": 4,
+      "crop": {
+        "left": 138,
+        "top": 526,
+        "width": 270,
+        "height": 484
+      }
+    },
+    {
+      "key": "olga-malkova",
+      "title": "Ольга Малкова",
+      "kind": "npc",
+      "subjects": [
+        "olga-malkova"
+      ],
+      "file": "npcs-olga-malkova.webp",
+      "sha256": "40b4cad8e6eda2c8c9adea1b05e5bb80c39c324998af608adcd27a4d87057fe0",
+      "originalSha256": "6d3bc7d5f0ca7b54c4c815eaaa4f883a1cd7cd4fc03d338af7af94d998382f9e",
+      "generated": "2026-11-22",
+      "sheet": "counterfeit-spring-npcs-1",
+      "cell": 5,
+      "crop": {
+        "left": 636,
+        "top": 527,
+        "width": 233,
+        "height": 483
+      }
+    }
+  ]
+}

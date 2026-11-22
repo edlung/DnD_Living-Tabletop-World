@@ -1,0 +1,49 @@
+{
+  "maps": [
+    {
+      "file": "harbor.webp",
+      "sha256": "1962d4abe6b04c83f8aef1fd34dd6bf61161b8a5a95af6e3dad59422897d2f10",
+      "originalSha256": "55bcf1abf8890b628bfb1436f8db7996ccd79c2e93ad3e8dec208cfcdaead8ee",
+      "originalFile": "exec-cd026f57-eb46-449d-93b4-63ee8ed7445c.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Фонарная Гавань. Visible scenery: Медные крыши, пироги с грушей, тёплые фонари и пристань над розовыми облаками.. World style: Острова Между Ветрами · Lighthouse lens spokes and small compass stars stamped in sea-green bookcloth. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 10:8; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "harbor",
+      "encounter": "dock-keepers",
+      "grid": [
+        10,
+        8
+      ]
+    },
+    {
+      "file": "forge.webp",
+      "sha256": "af6d9da673296439f6aaac9ba82643565e90ab5e7538a04628aa344872ce083a",
+      "originalSha256": "24d51f4d4373fc2a8e79e9caf3f31db45c61fbd6b016a0cce9835c4f3be5f59d",
+      "originalFile": "exec-faf70b81-56ca-4650-9847-8c6c58292877.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Облачная Кузница. Visible scenery: В скальной арке вращаются медные ветроколы. Шёлковые паруса несут инструменты от верстака к верстаку.. World style: Острова Между Ветрами · Lighthouse lens spokes and small compass stars stamped in sea-green bookcloth. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 10:8; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "forge",
+      "encounter": "workshop-repairer",
+      "grid": [
+        10,
+        8
+      ]
+    },
+    {
+      "file": "lighthouse.webp",
+      "sha256": "0b26f39d7f920200c37219f69a4189f34f131e1d1fcc860088fd8a3a6eb0ff29",
+      "originalSha256": "fe3955be36874943133c0890a0f7feb8116d2e9420036a1a280d0a603bc8d2d8",
+      "originalFile": "exec-4557df16-5300-438f-8a9b-d7012f5f3441.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Маяк Между Ветрами. Visible scenery: Каменная башня с прозрачным куполом и четырьмя латунными кольцами. К широкому двору ведёт мост с фонарями.. World style: Острова Между Ветрами · Lighthouse lens spokes and small compass stars stamped in sea-green bookcloth. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 10:8; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "lighthouse",
+      "encounter": "last-guardian",
+      "grid": [
+        10,
+        8
+      ]
+    }
+  ]
+}

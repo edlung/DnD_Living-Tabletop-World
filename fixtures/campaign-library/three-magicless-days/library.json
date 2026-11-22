@@ -1,0 +1,1975 @@
+{
+ "id": "three-magicless-days",
+ "title": "Выходные у заклинаний",
+ "genre": "Комедийное городское фэнтези о происшествиях, очередях и деятельной заботе",
+ "audience": "12+",
+ "pitch": "Разумные бытовые чары Дзеньгорода отправились на давно согласованные трёхдневные выходные. Именно сейчас город готовит День открытых дворов. Кто придержит дверь, когда дверь загорает? Герои принимают дежурство, разбирают неожиданные происшествия и решают, какие обещания действительно можно выполнить. Заклинания самих героев работают как обычно.",
+ "tone": "Подвижная комедия положений с серьёзным уважением к чужому удобству. Мокрые шляпы, неверные очереди и упрямые козы смешны; возраст, инвалидность и просьба отдохнуть — нет.",
+ "duration": "8 сессий; 150 минут: вступление и повторение 10, три сцены по 40, перерыв 10, завершение 10. Восемь встреч охватывают три дня внутри истории.",
+ "cover": "campaigns/fantasy-2026/three-magicless-days/illustrations/opening.webp",
+ "defaultVariant": "4-players",
+ "variants": [
+  {
+   "id": "3-players",
+   "players": 3,
+   "label": "3 игрока",
+   "file": "packages/3-players.json",
+   "digest": "dc7d47053aa55affedc5fe8c4091f5683e58272d4908c92872f18d9308ce9dcc"
+  },
+  {
+   "id": "4-players",
+   "players": 4,
+   "label": "4 игрока",
+   "file": "packages/4-players.json",
+   "digest": "9b9e182bca50dcadfbc586726338ea52e34c6cbdc947150c67140237b4fdcd13"
+  },
+  {
+   "id": "5-players",
+   "players": 5,
+   "label": "5 игроков",
+   "file": "packages/5-players.json",
+   "digest": "c3e7520972fcda6b864caf92cb66655a751c026a971450b7d8322352566dc323"
+  },
+  {
+   "id": "6-players",
+   "players": 6,
+   "label": "6 игроков",
+   "file": "packages/6-players.json",
+   "digest": "77d2a76aa5c67db6b161269407e9fb90ce701ed3468625c0e5cce4cb2b21556d"
+  },
+  {
+   "id": "7-players",
+   "players": 7,
+   "label": "7 игроков",
+   "file": "packages/7-players.json",
+   "digest": "74e50c8490214e138d6e095ceeae21bd38d55eb894af784b45821fb0eff77aca"
+  },
+  {
+   "id": "8-players",
+   "players": 8,
+   "label": "8 игроков",
+   "file": "packages/8-players.json",
+   "digest": "faaad417e9e729e0b0c1c9145bbf99c7864fac6ad7b3a0368be45f3469517d30"
+  }
+ ],
+ "generator": "codex-cli imagegen",
+ "pictures": [
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/illustrations/cards/hero-marta.webp",
+   "sha256": "1dc4713142db260bd3884392beddb8002140454f7a66d7a48609acd69fe8742e",
+   "originalSha256": "6a66e8c866564e9411ea74cb21ab9d512076ecd54f7438be6e8726bb96d8c797",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Марта Широкий Шаг",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "hero-marta"
+    ],
+    "4-players": [
+     "hero-marta"
+    ],
+    "5-players": [
+     "hero-marta"
+    ],
+    "6-players": [
+     "hero-marta"
+    ],
+    "7-players": [
+     "hero-marta"
+    ],
+    "8-players": [
+     "hero-marta"
+    ]
+   },
+   "file": "hero-marta.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/illustrations/cards/hero-sava.webp",
+   "sha256": "44358b3ca6232c10f9e69ddf1d45fcd4cbeb7e742931d22d438fc61f5c578d1c",
+   "originalSha256": "6a66e8c866564e9411ea74cb21ab9d512076ecd54f7438be6e8726bb96d8c797",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сава Петелькин",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "hero-sava"
+    ],
+    "4-players": [
+     "hero-sava"
+    ],
+    "5-players": [
+     "hero-sava"
+    ],
+    "6-players": [
+     "hero-sava"
+    ],
+    "7-players": [
+     "hero-sava"
+    ],
+    "8-players": [
+     "hero-sava"
+    ]
+   },
+   "file": "hero-sava.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/illustrations/cards/hero-olna.webp",
+   "sha256": "64fffbb7801e771d58d133b413c0e4039e12e5c4672bb836e8cb2a09321e2a58",
+   "originalSha256": "6a66e8c866564e9411ea74cb21ab9d512076ecd54f7438be6e8726bb96d8c797",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ольна Светлая Ладонь",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "hero-olna"
+    ],
+    "4-players": [
+     "hero-olna"
+    ],
+    "5-players": [
+     "hero-olna"
+    ],
+    "6-players": [
+     "hero-olna"
+    ],
+    "7-players": [
+     "hero-olna"
+    ],
+    "8-players": [
+     "hero-olna"
+    ]
+   },
+   "file": "hero-olna.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/illustrations/cards/hero-vet.webp",
+   "sha256": "1d4da7429ee0a13a53f0bf036e48974668509cd7dc96562daea80e82ee5fa27b",
+   "originalSha256": "6a66e8c866564e9411ea74cb21ab9d512076ecd54f7438be6e8726bb96d8c797",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Вет Фонарный",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "hero-vet"
+    ],
+    "5-players": [
+     "hero-vet"
+    ],
+    "6-players": [
+     "hero-vet"
+    ],
+    "7-players": [
+     "hero-vet"
+    ],
+    "8-players": [
+     "hero-vet"
+    ]
+   },
+   "file": "hero-vet.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/illustrations/cards/hero-rema.webp",
+   "sha256": "c20b23c1e50fbac9173a5bd6ecbeb6912f472a428f9ab9cad2d208cc72c22b6a",
+   "originalSha256": "6a66e8c866564e9411ea74cb21ab9d512076ecd54f7438be6e8726bb96d8c797",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рема Три Хлопка",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "hero-rema"
+    ],
+    "6-players": [
+     "hero-rema"
+    ],
+    "7-players": [
+     "hero-rema"
+    ],
+    "8-players": [
+     "hero-rema"
+    ]
+   },
+   "file": "hero-rema.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/illustrations/cards/hero-din.webp",
+   "sha256": "73da3f3ae41b69dc093eff92cc2d15d67032a2c22ea6bae01495f7b759adcf07",
+   "originalSha256": "6a66e8c866564e9411ea74cb21ab9d512076ecd54f7438be6e8726bb96d8c797",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дин Красный Бант",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "hero-din"
+    ],
+    "7-players": [
+     "hero-din"
+    ],
+    "8-players": [
+     "hero-din"
+    ]
+   },
+   "file": "hero-din.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/illustrations/cards/hero-ilva.webp",
+   "sha256": "3478eb0d04f0c8ef2013f731220f6b23f8f4a073f8ed61c40029b76841935efe",
+   "originalSha256": "6a66e8c866564e9411ea74cb21ab9d512076ecd54f7438be6e8726bb96d8c797",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Илва Медная Пуговица",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "hero-ilva"
+    ],
+    "8-players": [
+     "hero-ilva"
+    ]
+   },
+   "file": "hero-ilva.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/illustrations/cards/hero-teo.webp",
+   "sha256": "c3a046d2d08119776f20cb7548bf43b24179d34010b8b0d7b7a4f419f615f15b",
+   "originalSha256": "6a66e8c866564e9411ea74cb21ab9d512076ecd54f7438be6e8726bb96d8c797",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тео Косой Полдень",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [],
+    "8-players": [
+     "hero-teo"
+    ]
+   },
+   "file": "hero-teo.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/illustrations/cards/travel-kit.webp",
+   "sha256": "1caf5a73a75b4680740729dfb8a33f8c2770311b5c74236177a525995ff9c307",
+   "originalSha256": "6a66e8c866564e9411ea74cb21ab9d512076ecd54f7438be6e8726bb96d8c797",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дорожный набор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "hero-marta-travel-kit",
+     "hero-olna-travel-kit",
+     "hero-sava-travel-kit"
+    ],
+    "4-players": [
+     "hero-marta-travel-kit",
+     "hero-olna-travel-kit",
+     "hero-sava-travel-kit",
+     "hero-vet-travel-kit"
+    ],
+    "5-players": [
+     "hero-marta-travel-kit",
+     "hero-olna-travel-kit",
+     "hero-rema-travel-kit",
+     "hero-sava-travel-kit",
+     "hero-vet-travel-kit"
+    ],
+    "6-players": [
+     "hero-din-travel-kit",
+     "hero-marta-travel-kit",
+     "hero-olna-travel-kit",
+     "hero-rema-travel-kit",
+     "hero-sava-travel-kit",
+     "hero-vet-travel-kit"
+    ],
+    "7-players": [
+     "hero-din-travel-kit",
+     "hero-ilva-travel-kit",
+     "hero-marta-travel-kit",
+     "hero-olna-travel-kit",
+     "hero-rema-travel-kit",
+     "hero-sava-travel-kit",
+     "hero-vet-travel-kit"
+    ],
+    "8-players": [
+     "hero-din-travel-kit",
+     "hero-ilva-travel-kit",
+     "hero-marta-travel-kit",
+     "hero-olna-travel-kit",
+     "hero-rema-travel-kit",
+     "hero-sava-travel-kit",
+     "hero-teo-travel-kit",
+     "hero-vet-travel-kit"
+    ]
+   },
+   "file": "travel-kit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/illustrations/cards/rada.webp",
+   "sha256": "6dfc1ec52afcd3f0b195fdb4196d761d3c218c533fe8b011ef2e1058b8ea941a",
+   "originalSha256": "3a1e308f41bdb93d2c3b1239711706ddec49f151cacc2ac34bc5c50554e456cd",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рада Два Мелка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "rada"
+    ],
+    "4-players": [
+     "rada"
+    ],
+    "5-players": [
+     "rada"
+    ],
+    "6-players": [
+     "rada"
+    ],
+    "7-players": [
+     "rada"
+    ],
+    "8-players": [
+     "rada"
+    ]
+   },
+   "file": "rada.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/illustrations/cards/tillo.webp",
+   "sha256": "d54706cad5ea7b4872d8866a8c49946ddb8958f2a5411e770292b8a38a437bf5",
+   "originalSha256": "3a1e308f41bdb93d2c3b1239711706ddec49f151cacc2ac34bc5c50554e456cd",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тилло Круглый Номерок",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tillo"
+    ],
+    "4-players": [
+     "tillo"
+    ],
+    "5-players": [
+     "tillo"
+    ],
+    "6-players": [
+     "tillo"
+    ],
+    "7-players": [
+     "tillo"
+    ],
+    "8-players": [
+     "tillo"
+    ]
+   },
+   "file": "tillo.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/illustrations/cards/nerpa.webp",
+   "sha256": "c19da5fe4c584cef0021d3c31258ad26619acc8f5afce2fdd236d98caad05a79",
+   "originalSha256": "3a1e308f41bdb93d2c3b1239711706ddec49f151cacc2ac34bc5c50554e456cd",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нерпа Сухой Рукав",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nerpa"
+    ],
+    "4-players": [
+     "nerpa"
+    ],
+    "5-players": [
+     "nerpa"
+    ],
+    "6-players": [
+     "nerpa"
+    ],
+    "7-players": [
+     "nerpa"
+    ],
+    "8-players": [
+     "nerpa"
+    ]
+   },
+   "file": "nerpa.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/illustrations/cards/veya.webp",
+   "sha256": "23d465d27fbc57699730a652f79a8798fc9198ba5ace7629035a536eb597e036",
+   "originalSha256": "3a1e308f41bdb93d2c3b1239711706ddec49f151cacc2ac34bc5c50554e456cd",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Вея Книжный Угол",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "veya"
+    ],
+    "4-players": [
+     "veya"
+    ],
+    "5-players": [
+     "veya"
+    ],
+    "6-players": [
+     "veya"
+    ],
+    "7-players": [
+     "veya"
+    ],
+    "8-players": [
+     "veya"
+    ]
+   },
+   "file": "veya.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/illustrations/cards/fenk.webp",
+   "sha256": "8edd8d8ee20c0f5a101ab7bb5b1cae556a3b2147b52e5a76a1dfc4c7253fb6cd",
+   "originalSha256": "3a1e308f41bdb93d2c3b1239711706ddec49f151cacc2ac34bc5c50554e456cd",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Фенк Семь Приветствий",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "fenk"
+    ],
+    "4-players": [
+     "fenk"
+    ],
+    "5-players": [
+     "fenk"
+    ],
+    "6-players": [
+     "fenk"
+    ],
+    "7-players": [
+     "fenk"
+    ],
+    "8-players": [
+     "fenk"
+    ]
+   },
+   "file": "fenk.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/illustrations/cards/buma.webp",
+   "sha256": "818fdecdaa3f2cf2087902dc86bdaf6ddca17ddeff74256aba00f4855e0de858",
+   "originalSha256": "3a1e308f41bdb93d2c3b1239711706ddec49f151cacc2ac34bc5c50554e456cd",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Бума Поставьте Локти",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "buma"
+    ],
+    "4-players": [
+     "buma"
+    ],
+    "5-players": [
+     "buma"
+    ],
+    "6-players": [
+     "buma"
+    ],
+    "7-players": [
+     "buma"
+    ],
+    "8-players": [
+     "buma"
+    ]
+   },
+   "file": "buma.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/illustrations/cards/porog.webp",
+   "sha256": "e391e16d9580b1f9e97bf59e2bb172ed5baf9d45c0ee3914586591aba10ff2dc",
+   "originalSha256": "3a1e308f41bdb93d2c3b1239711706ddec49f151cacc2ac34bc5c50554e456cd",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Порог Первый После Вас",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "porog"
+    ],
+    "4-players": [
+     "porog"
+    ],
+    "5-players": [
+     "porog"
+    ],
+    "6-players": [
+     "porog"
+    ],
+    "7-players": [
+     "porog"
+    ],
+    "8-players": [
+     "porog"
+    ]
+   },
+   "file": "porog.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/illustrations/cards/otzhim.webp",
+   "sha256": "82de332ccd0011885932c22a6d4e9a3f0e31c58f5c18cea1587766fb2de68913",
+   "originalSha256": "3a1e308f41bdb93d2c3b1239711706ddec49f151cacc2ac34bc5c50554e456cd",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Отжим Брызга",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "otzhim"
+    ],
+    "4-players": [
+     "otzhim"
+    ],
+    "5-players": [
+     "otzhim"
+    ],
+    "6-players": [
+     "otzhim"
+    ],
+    "7-players": [
+     "otzhim"
+    ],
+    "8-players": [
+     "otzhim"
+    ]
+   },
+   "file": "otzhim.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/illustrations/cards/sima.webp",
+   "sha256": "8ca956e86bb4156265fd2d0c1634f2151990a21f08ee82232bf2430e39d9c8be",
+   "originalSha256": "3a1e308f41bdb93d2c3b1239711706ddec49f151cacc2ac34bc5c50554e456cd",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сима Три Остановки",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "sima"
+    ],
+    "4-players": [
+     "sima"
+    ],
+    "5-players": [
+     "sima"
+    ],
+    "6-players": [
+     "sima"
+    ],
+    "7-players": [
+     "sima"
+    ],
+    "8-players": [
+     "sima"
+    ]
+   },
+   "file": "sima.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/illustrations/cards/kolet.webp",
+   "sha256": "b670d8c64cafd3e56e8cb4631fea33480ef3d76afa543aba50991ef82abcd27a",
+   "originalSha256": "3a1e308f41bdb93d2c3b1239711706ddec49f151cacc2ac34bc5c50554e456cd",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Колет Капитан Шум",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "kolet"
+    ],
+    "4-players": [
+     "kolet"
+    ],
+    "5-players": [
+     "kolet"
+    ],
+    "6-players": [
+     "kolet"
+    ],
+    "7-players": [
+     "kolet"
+    ],
+    "8-players": [
+     "kolet"
+    ]
+   },
+   "file": "kolet.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/assets/table/heroes-hero-marta.webp",
+   "sha256": "46adafa953c16d4ad83e2c17a9254b4af00f48c8bf9bcaad2f90a990d9af4298",
+   "originalSha256": "352893c9cb09049319cd55b059181844d58bac85f1ec648b31bbe33962cc05ec",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Марта Широкий Шаг",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "hero-marta"
+    ],
+    "4-players": [
+     "hero-marta"
+    ],
+    "5-players": [
+     "hero-marta"
+    ],
+    "6-players": [
+     "hero-marta"
+    ],
+    "7-players": [
+     "hero-marta"
+    ],
+    "8-players": [
+     "hero-marta"
+    ]
+   },
+   "file": "hero-marta--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "hero-marta.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/assets/table/heroes-hero-sava.webp",
+   "sha256": "256fc7dbb45ef590f43dab886e8fc758859e35cd72577567d307f0eec1e68ef2",
+   "originalSha256": "352893c9cb09049319cd55b059181844d58bac85f1ec648b31bbe33962cc05ec",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сава Петелькин",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "hero-sava"
+    ],
+    "4-players": [
+     "hero-sava"
+    ],
+    "5-players": [
+     "hero-sava"
+    ],
+    "6-players": [
+     "hero-sava"
+    ],
+    "7-players": [
+     "hero-sava"
+    ],
+    "8-players": [
+     "hero-sava"
+    ]
+   },
+   "file": "hero-sava--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "hero-sava.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/assets/table/heroes-hero-olna.webp",
+   "sha256": "c1fe3789b5f3db2367b91a253b3160b274980bc23bcf58dce5b1513e7dfd8312",
+   "originalSha256": "352893c9cb09049319cd55b059181844d58bac85f1ec648b31bbe33962cc05ec",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ольна Светлая Ладонь",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "hero-olna"
+    ],
+    "4-players": [
+     "hero-olna"
+    ],
+    "5-players": [
+     "hero-olna"
+    ],
+    "6-players": [
+     "hero-olna"
+    ],
+    "7-players": [
+     "hero-olna"
+    ],
+    "8-players": [
+     "hero-olna"
+    ]
+   },
+   "file": "hero-olna--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "hero-olna.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/assets/table/heroes-hero-vet.webp",
+   "sha256": "1b4d5e61bec8dd0482ffd7ee1abc756eda8e60388dfad411adbe7d4310e0dd30",
+   "originalSha256": "352893c9cb09049319cd55b059181844d58bac85f1ec648b31bbe33962cc05ec",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Вет Фонарный",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "hero-vet"
+    ],
+    "5-players": [
+     "hero-vet"
+    ],
+    "6-players": [
+     "hero-vet"
+    ],
+    "7-players": [
+     "hero-vet"
+    ],
+    "8-players": [
+     "hero-vet"
+    ]
+   },
+   "file": "hero-vet--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "hero-vet.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/assets/table/heroes-hero-rema.webp",
+   "sha256": "5798608ffbf23dd082320100be8be05049287af6e80ba48498e3f79ba95f6b1d",
+   "originalSha256": "352893c9cb09049319cd55b059181844d58bac85f1ec648b31bbe33962cc05ec",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рема Три Хлопка",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "hero-rema"
+    ],
+    "6-players": [
+     "hero-rema"
+    ],
+    "7-players": [
+     "hero-rema"
+    ],
+    "8-players": [
+     "hero-rema"
+    ]
+   },
+   "file": "hero-rema--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "hero-rema.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/assets/table/heroes-hero-din.webp",
+   "sha256": "fb7b89954d369592bf8152073a3533a79ded63e99c91bbff942e0ecf428c6b9d",
+   "originalSha256": "352893c9cb09049319cd55b059181844d58bac85f1ec648b31bbe33962cc05ec",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дин Красный Бант",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "hero-din"
+    ],
+    "7-players": [
+     "hero-din"
+    ],
+    "8-players": [
+     "hero-din"
+    ]
+   },
+   "file": "hero-din--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "hero-din.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/assets/table/heroes-hero-ilva.webp",
+   "sha256": "6d0ecacc648caf6a116327575591f115c283d1283763e84abe82edd3b1855893",
+   "originalSha256": "352893c9cb09049319cd55b059181844d58bac85f1ec648b31bbe33962cc05ec",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Илва Медная Пуговица",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "hero-ilva"
+    ],
+    "8-players": [
+     "hero-ilva"
+    ]
+   },
+   "file": "hero-ilva--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "hero-ilva.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/assets/table/heroes-hero-teo.webp",
+   "sha256": "0a552fa3dd758d19fbe503f6479c42348dae210fd089ae1becb89894902ea189",
+   "originalSha256": "352893c9cb09049319cd55b059181844d58bac85f1ec648b31bbe33962cc05ec",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тео Косой Полдень",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [],
+    "8-players": [
+     "hero-teo"
+    ]
+   },
+   "file": "hero-teo--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "hero-teo.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/assets/table/places-duty-porch.webp",
+   "sha256": "a1d3b1cc0553d279c2f159f21d114a3f1cf405aeaac61f20549233f14481358a",
+   "originalSha256": "1c94b5da3227dec7320f559e798cf5ced1414d1eade4cf8133fd35b280c85d73",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Крыльцо дежурных",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "duty-porch"
+    ],
+    "4-players": [
+     "duty-porch"
+    ],
+    "5-players": [
+     "duty-porch"
+    ],
+    "6-players": [
+     "duty-porch"
+    ],
+    "7-players": [
+     "duty-porch"
+    ],
+    "8-players": [
+     "duty-porch"
+    ]
+   },
+   "file": "duty-porch.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/assets/table/places-pump-square.webp",
+   "sha256": "09cf3cb21e26a99b45ca55808ee3c76d3ecb9d37283b80a37318aa4635e39eac",
+   "originalSha256": "1c94b5da3227dec7320f559e798cf5ced1414d1eade4cf8133fd35b280c85d73",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Площадь Медного носа",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "pump-square"
+    ],
+    "4-players": [
+     "pump-square"
+    ],
+    "5-players": [
+     "pump-square"
+    ],
+    "6-players": [
+     "pump-square"
+    ],
+    "7-players": [
+     "pump-square"
+    ],
+    "8-players": [
+     "pump-square"
+    ]
+   },
+   "file": "pump-square.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/assets/table/places-linen-yard.webp",
+   "sha256": "280bd69c7288e9cba246c27ba4ce07c8b0794b623579c434dc2dce13075a972a",
+   "originalSha256": "1c94b5da3227dec7320f559e798cf5ced1414d1eade4cf8133fd35b280c85d73",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Двор длинных простыней",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "linen-yard"
+    ],
+    "4-players": [
+     "linen-yard"
+    ],
+    "5-players": [
+     "linen-yard"
+    ],
+    "6-players": [
+     "linen-yard"
+    ],
+    "7-players": [
+     "linen-yard"
+    ],
+    "8-players": [
+     "linen-yard"
+    ]
+   },
+   "file": "linen-yard.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/assets/table/places-cloak-hall.webp",
+   "sha256": "de5edc4d46777bb9d1cd809ea212c5c0db52d6f05958abad50025fa422293ad5",
+   "originalSha256": "1c94b5da3227dec7320f559e798cf5ced1414d1eade4cf8133fd35b280c85d73",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Зал забытых плащей",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "cloak-hall"
+    ],
+    "4-players": [
+     "cloak-hall"
+    ],
+    "5-players": [
+     "cloak-hall"
+    ],
+    "6-players": [
+     "cloak-hall"
+    ],
+    "7-players": [
+     "cloak-hall"
+    ],
+    "8-players": [
+     "cloak-hall"
+    ]
+   },
+   "file": "cloak-hall.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/assets/table/places-visitor-gate.webp",
+   "sha256": "237432046d9aac0d230f58e8a252cb67dafe903b8dd2031a91d835d97fd30be4",
+   "originalSha256": "1c94b5da3227dec7320f559e798cf5ced1414d1eade4cf8133fd35b280c85d73",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Калитка приезжих",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "visitor-gate"
+    ],
+    "4-players": [
+     "visitor-gate"
+    ],
+    "5-players": [
+     "visitor-gate"
+    ],
+    "6-players": [
+     "visitor-gate"
+    ],
+    "7-players": [
+     "visitor-gate"
+    ],
+    "8-players": [
+     "visitor-gate"
+    ]
+   },
+   "file": "visitor-gate.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/assets/table/places-bookbinder-yard.webp",
+   "sha256": "8c6548d15c1da44bef5e993dded21d5c64ec4956c98fe5c62fcaa31714dc1757",
+   "originalSha256": "1c94b5da3227dec7320f559e798cf5ced1414d1eade4cf8133fd35b280c85d73",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Переплётный двор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "bookbinder-yard"
+    ],
+    "4-players": [
+     "bookbinder-yard"
+    ],
+    "5-players": [
+     "bookbinder-yard"
+    ],
+    "6-players": [
+     "bookbinder-yard"
+    ],
+    "7-players": [
+     "bookbinder-yard"
+    ],
+    "8-players": [
+     "bookbinder-yard"
+    ]
+   },
+   "file": "bookbinder-yard.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/assets/table/places-quiet-garden.webp",
+   "sha256": "9e35d5cebd84c535874980cd9216c110bde681b8516a10e46927ef11e00d04cd",
+   "originalSha256": "1c94b5da3227dec7320f559e798cf5ced1414d1eade4cf8133fd35b280c85d73",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сад тихих качелей",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "quiet-garden"
+    ],
+    "4-players": [
+     "quiet-garden"
+    ],
+    "5-players": [
+     "quiet-garden"
+    ],
+    "6-players": [
+     "quiet-garden"
+    ],
+    "7-players": [
+     "quiet-garden"
+    ],
+    "8-players": [
+     "quiet-garden"
+    ]
+   },
+   "file": "quiet-garden.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/assets/table/places-holiday-lawn.webp",
+   "sha256": "2bb051a6a5ba44150626c9bfe116ebfcd321c9a2705d278f5c89508186bbe31d",
+   "originalSha256": "1c94b5da3227dec7320f559e798cf5ced1414d1eade4cf8133fd35b280c85d73",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лужайка выходного дня",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "holiday-lawn"
+    ],
+    "4-players": [
+     "holiday-lawn"
+    ],
+    "5-players": [
+     "holiday-lawn"
+    ],
+    "6-players": [
+     "holiday-lawn"
+    ],
+    "7-players": [
+     "holiday-lawn"
+    ],
+    "8-players": [
+     "holiday-lawn"
+    ]
+   },
+   "file": "holiday-lawn.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/assets/table/places-open-court.webp",
+   "sha256": "52204e8300cbd0726c4ff8d2bbedb7bb14f3872edc7300d34ab0799d03f779b6",
+   "originalSha256": "1c94b5da3227dec7320f559e798cf5ced1414d1eade4cf8133fd35b280c85d73",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Двор первого поклона",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "open-court"
+    ],
+    "4-players": [
+     "open-court"
+    ],
+    "5-players": [
+     "open-court"
+    ],
+    "6-players": [
+     "open-court"
+    ],
+    "7-players": [
+     "open-court"
+    ],
+    "8-players": [
+     "open-court"
+    ]
+   },
+   "file": "open-court.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/assets/table/foes-foe-38890e33cc.webp",
+   "sha256": "1c775896842f6f6d63671daadfb123c2dafb779b8b1c5a1a8dfb515e1ec85b03",
+   "originalSha256": "06c28808dab0ece6c7da56fef360707c78b53fcb01a7893661abed390454cfad",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Любопытная дворовая коза",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ribbon-goats-foe-1",
+     "ribbon-goats-foe-2"
+    ],
+    "4-players": [
+     "ribbon-goats-foe-1",
+     "ribbon-goats-foe-2",
+     "ribbon-goats-foe-3"
+    ],
+    "5-players": [
+     "ribbon-goats-foe-1",
+     "ribbon-goats-foe-2",
+     "ribbon-goats-foe-3"
+    ],
+    "6-players": [
+     "ribbon-goats-foe-1",
+     "ribbon-goats-foe-2",
+     "ribbon-goats-foe-3",
+     "ribbon-goats-foe-4"
+    ],
+    "7-players": [
+     "ribbon-goats-foe-1",
+     "ribbon-goats-foe-2",
+     "ribbon-goats-foe-3",
+     "ribbon-goats-foe-4",
+     "ribbon-goats-foe-5"
+    ],
+    "8-players": [
+     "ribbon-goats-foe-1",
+     "ribbon-goats-foe-2",
+     "ribbon-goats-foe-3",
+     "ribbon-goats-foe-4",
+     "ribbon-goats-foe-5",
+     "ribbon-goats-foe-6"
+    ]
+   },
+   "file": "foe-38890e33cc.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/assets/table/foes-foe-38890e33cc.webp",
+   "sha256": "1c775896842f6f6d63671daadfb123c2dafb779b8b1c5a1a8dfb515e1ec85b03",
+   "originalSha256": "06c28808dab0ece6c7da56fef360707c78b53fcb01a7893661abed390454cfad",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Любопытная дворовая коза",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ribbon-goats-foe-1",
+     "ribbon-goats-foe-2"
+    ],
+    "4-players": [
+     "ribbon-goats-foe-1",
+     "ribbon-goats-foe-2",
+     "ribbon-goats-foe-3"
+    ],
+    "5-players": [
+     "ribbon-goats-foe-1",
+     "ribbon-goats-foe-2",
+     "ribbon-goats-foe-3"
+    ],
+    "6-players": [
+     "ribbon-goats-foe-1",
+     "ribbon-goats-foe-2",
+     "ribbon-goats-foe-3",
+     "ribbon-goats-foe-4"
+    ],
+    "7-players": [
+     "ribbon-goats-foe-1",
+     "ribbon-goats-foe-2",
+     "ribbon-goats-foe-3",
+     "ribbon-goats-foe-4",
+     "ribbon-goats-foe-5"
+    ],
+    "8-players": [
+     "ribbon-goats-foe-1",
+     "ribbon-goats-foe-2",
+     "ribbon-goats-foe-3",
+     "ribbon-goats-foe-4",
+     "ribbon-goats-foe-5",
+     "ribbon-goats-foe-6"
+    ]
+   },
+   "file": "foe-38890e33cc--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-38890e33cc.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/assets/table/foes-foe-872e1eb50d.webp",
+   "sha256": "9922267501169173a660c9fae3c6e0cd83791c8c6b99ea91b879d567be6affc6",
+   "originalSha256": "06c28808dab0ece6c7da56fef360707c78b53fcb01a7893661abed390454cfad",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ленточный ветрошмыг",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ribbon-whirlers-foe-1",
+     "ribbon-whirlers-foe-2"
+    ],
+    "4-players": [
+     "ribbon-whirlers-foe-1",
+     "ribbon-whirlers-foe-2",
+     "ribbon-whirlers-foe-3"
+    ],
+    "5-players": [
+     "ribbon-whirlers-foe-1",
+     "ribbon-whirlers-foe-2",
+     "ribbon-whirlers-foe-3"
+    ],
+    "6-players": [
+     "ribbon-whirlers-foe-1",
+     "ribbon-whirlers-foe-2",
+     "ribbon-whirlers-foe-3",
+     "ribbon-whirlers-foe-4"
+    ],
+    "7-players": [
+     "ribbon-whirlers-foe-1",
+     "ribbon-whirlers-foe-2",
+     "ribbon-whirlers-foe-3",
+     "ribbon-whirlers-foe-4",
+     "ribbon-whirlers-foe-5"
+    ],
+    "8-players": [
+     "ribbon-whirlers-foe-1",
+     "ribbon-whirlers-foe-2",
+     "ribbon-whirlers-foe-3",
+     "ribbon-whirlers-foe-4",
+     "ribbon-whirlers-foe-5",
+     "ribbon-whirlers-foe-6"
+    ]
+   },
+   "file": "foe-872e1eb50d.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/assets/table/foes-foe-872e1eb50d.webp",
+   "sha256": "9922267501169173a660c9fae3c6e0cd83791c8c6b99ea91b879d567be6affc6",
+   "originalSha256": "06c28808dab0ece6c7da56fef360707c78b53fcb01a7893661abed390454cfad",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ленточный ветрошмыг",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ribbon-whirlers-foe-1",
+     "ribbon-whirlers-foe-2"
+    ],
+    "4-players": [
+     "ribbon-whirlers-foe-1",
+     "ribbon-whirlers-foe-2",
+     "ribbon-whirlers-foe-3"
+    ],
+    "5-players": [
+     "ribbon-whirlers-foe-1",
+     "ribbon-whirlers-foe-2",
+     "ribbon-whirlers-foe-3"
+    ],
+    "6-players": [
+     "ribbon-whirlers-foe-1",
+     "ribbon-whirlers-foe-2",
+     "ribbon-whirlers-foe-3",
+     "ribbon-whirlers-foe-4"
+    ],
+    "7-players": [
+     "ribbon-whirlers-foe-1",
+     "ribbon-whirlers-foe-2",
+     "ribbon-whirlers-foe-3",
+     "ribbon-whirlers-foe-4",
+     "ribbon-whirlers-foe-5"
+    ],
+    "8-players": [
+     "ribbon-whirlers-foe-1",
+     "ribbon-whirlers-foe-2",
+     "ribbon-whirlers-foe-3",
+     "ribbon-whirlers-foe-4",
+     "ribbon-whirlers-foe-5",
+     "ribbon-whirlers-foe-6"
+    ]
+   },
+   "file": "foe-872e1eb50d--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-872e1eb50d.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/assets/table/foes-foe-c419e75bca.webp",
+   "sha256": "a372a0bbe60af13642010ec7feeceef218cb338950801fb867db482465106060",
+   "originalSha256": "06c28808dab0ece6c7da56fef360707c78b53fcb01a7893661abed390454cfad",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Картонный рыцарь любительской сцены",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "cardboard-knights-foe-1",
+     "cardboard-knights-foe-2"
+    ],
+    "4-players": [
+     "cardboard-knights-foe-1",
+     "cardboard-knights-foe-2",
+     "cardboard-knights-foe-3"
+    ],
+    "5-players": [
+     "cardboard-knights-foe-1",
+     "cardboard-knights-foe-2",
+     "cardboard-knights-foe-3"
+    ],
+    "6-players": [
+     "cardboard-knights-foe-1",
+     "cardboard-knights-foe-2",
+     "cardboard-knights-foe-3",
+     "cardboard-knights-foe-4"
+    ],
+    "7-players": [
+     "cardboard-knights-foe-1",
+     "cardboard-knights-foe-2",
+     "cardboard-knights-foe-3",
+     "cardboard-knights-foe-4",
+     "cardboard-knights-foe-5"
+    ],
+    "8-players": [
+     "cardboard-knights-foe-1",
+     "cardboard-knights-foe-2",
+     "cardboard-knights-foe-3",
+     "cardboard-knights-foe-4",
+     "cardboard-knights-foe-5",
+     "cardboard-knights-foe-6"
+    ]
+   },
+   "file": "foe-c419e75bca.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/assets/table/foes-foe-c419e75bca.webp",
+   "sha256": "a372a0bbe60af13642010ec7feeceef218cb338950801fb867db482465106060",
+   "originalSha256": "06c28808dab0ece6c7da56fef360707c78b53fcb01a7893661abed390454cfad",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Картонный рыцарь любительской сцены",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "cardboard-knights-foe-1",
+     "cardboard-knights-foe-2"
+    ],
+    "4-players": [
+     "cardboard-knights-foe-1",
+     "cardboard-knights-foe-2",
+     "cardboard-knights-foe-3"
+    ],
+    "5-players": [
+     "cardboard-knights-foe-1",
+     "cardboard-knights-foe-2",
+     "cardboard-knights-foe-3"
+    ],
+    "6-players": [
+     "cardboard-knights-foe-1",
+     "cardboard-knights-foe-2",
+     "cardboard-knights-foe-3",
+     "cardboard-knights-foe-4"
+    ],
+    "7-players": [
+     "cardboard-knights-foe-1",
+     "cardboard-knights-foe-2",
+     "cardboard-knights-foe-3",
+     "cardboard-knights-foe-4",
+     "cardboard-knights-foe-5"
+    ],
+    "8-players": [
+     "cardboard-knights-foe-1",
+     "cardboard-knights-foe-2",
+     "cardboard-knights-foe-3",
+     "cardboard-knights-foe-4",
+     "cardboard-knights-foe-5",
+     "cardboard-knights-foe-6"
+    ]
+   },
+   "file": "foe-c419e75bca--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-c419e75bca.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/assets/table/npcs-rada.webp",
+   "sha256": "0edad30e45db6a39056b11a8c044630015349e73871cac0558737575196e4c3e",
+   "originalSha256": "17e61b1beb640fc233c6b766cb051b0431dc775bdcf9da115897d8372c26ab8f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рада Два Мелка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "rada"
+    ],
+    "4-players": [
+     "rada"
+    ],
+    "5-players": [
+     "rada"
+    ],
+    "6-players": [
+     "rada"
+    ],
+    "7-players": [
+     "rada"
+    ],
+    "8-players": [
+     "rada"
+    ]
+   },
+   "file": "rada--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "rada.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/assets/table/npcs-tillo.webp",
+   "sha256": "5c280fc0956f03a722dd94a4b24f7d79c204f3337d26920478da79c9bee61175",
+   "originalSha256": "17e61b1beb640fc233c6b766cb051b0431dc775bdcf9da115897d8372c26ab8f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тилло Круглый Номерок",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tillo"
+    ],
+    "4-players": [
+     "tillo"
+    ],
+    "5-players": [
+     "tillo"
+    ],
+    "6-players": [
+     "tillo"
+    ],
+    "7-players": [
+     "tillo"
+    ],
+    "8-players": [
+     "tillo"
+    ]
+   },
+   "file": "tillo--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "tillo.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/assets/table/npcs-nerpa.webp",
+   "sha256": "e7b763bdccec6e1f4029648d0f213cd23598f0b754e56368048e6c7ff1d3e44d",
+   "originalSha256": "17e61b1beb640fc233c6b766cb051b0431dc775bdcf9da115897d8372c26ab8f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нерпа Сухой Рукав",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nerpa"
+    ],
+    "4-players": [
+     "nerpa"
+    ],
+    "5-players": [
+     "nerpa"
+    ],
+    "6-players": [
+     "nerpa"
+    ],
+    "7-players": [
+     "nerpa"
+    ],
+    "8-players": [
+     "nerpa"
+    ]
+   },
+   "file": "nerpa--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "nerpa.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/assets/table/npcs-veya.webp",
+   "sha256": "ec5225c76b8422edef9fa14c02bd71791253035fd73134742435b8a6a23ea9b7",
+   "originalSha256": "17e61b1beb640fc233c6b766cb051b0431dc775bdcf9da115897d8372c26ab8f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Вея Книжный Угол",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "veya"
+    ],
+    "4-players": [
+     "veya"
+    ],
+    "5-players": [
+     "veya"
+    ],
+    "6-players": [
+     "veya"
+    ],
+    "7-players": [
+     "veya"
+    ],
+    "8-players": [
+     "veya"
+    ]
+   },
+   "file": "veya--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "veya.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/assets/table/npcs-fenk.webp",
+   "sha256": "0cf5aa656ed42f221ce13d77ca73428db52ab825378c6cf64e6672f6a0cef153",
+   "originalSha256": "17e61b1beb640fc233c6b766cb051b0431dc775bdcf9da115897d8372c26ab8f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Фенк Семь Приветствий",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "fenk"
+    ],
+    "4-players": [
+     "fenk"
+    ],
+    "5-players": [
+     "fenk"
+    ],
+    "6-players": [
+     "fenk"
+    ],
+    "7-players": [
+     "fenk"
+    ],
+    "8-players": [
+     "fenk"
+    ]
+   },
+   "file": "fenk--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "fenk.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/assets/table/npcs-buma.webp",
+   "sha256": "0a5687ddf5b5eb1684636f58abdd3c6477da45dd5f4ce6ea9d513b7cc317491b",
+   "originalSha256": "47f242654325ada9964a4c49d7ce8b383de1b9555c6bf5460d95275a4d7204ea",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Бума Поставьте Локти",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "buma"
+    ],
+    "4-players": [
+     "buma"
+    ],
+    "5-players": [
+     "buma"
+    ],
+    "6-players": [
+     "buma"
+    ],
+    "7-players": [
+     "buma"
+    ],
+    "8-players": [
+     "buma"
+    ]
+   },
+   "file": "buma--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "buma.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/assets/table/npcs-porog.webp",
+   "sha256": "afbe4a50131784028b557f6ad3bb7ef2bf76be83b9a438cfae4e5ac0ce1ae02e",
+   "originalSha256": "47f242654325ada9964a4c49d7ce8b383de1b9555c6bf5460d95275a4d7204ea",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Порог Первый После Вас",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "porog"
+    ],
+    "4-players": [
+     "porog"
+    ],
+    "5-players": [
+     "porog"
+    ],
+    "6-players": [
+     "porog"
+    ],
+    "7-players": [
+     "porog"
+    ],
+    "8-players": [
+     "porog"
+    ]
+   },
+   "file": "porog--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "porog.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/assets/table/npcs-otzhim.webp",
+   "sha256": "a14d1176c54d222713acb691ec859ad9086d89569ed55a29413987bff2cb057f",
+   "originalSha256": "47f242654325ada9964a4c49d7ce8b383de1b9555c6bf5460d95275a4d7204ea",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Отжим Брызга",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "otzhim"
+    ],
+    "4-players": [
+     "otzhim"
+    ],
+    "5-players": [
+     "otzhim"
+    ],
+    "6-players": [
+     "otzhim"
+    ],
+    "7-players": [
+     "otzhim"
+    ],
+    "8-players": [
+     "otzhim"
+    ]
+   },
+   "file": "otzhim--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "otzhim.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/assets/table/npcs-sima.webp",
+   "sha256": "730b9863c2bc5f25e1bd1827102e865235aae461029efd3ad919fba739cfde35",
+   "originalSha256": "47f242654325ada9964a4c49d7ce8b383de1b9555c6bf5460d95275a4d7204ea",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сима Три Остановки",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "sima"
+    ],
+    "4-players": [
+     "sima"
+    ],
+    "5-players": [
+     "sima"
+    ],
+    "6-players": [
+     "sima"
+    ],
+    "7-players": [
+     "sima"
+    ],
+    "8-players": [
+     "sima"
+    ]
+   },
+   "file": "sima--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "sima.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/assets/table/npcs-kolet.webp",
+   "sha256": "e8b220aecdd0a3802e1240d080c7c5f841773ffc5e61cf8779dd9eef413b12b1",
+   "originalSha256": "47f242654325ada9964a4c49d7ce8b383de1b9555c6bf5460d95275a4d7204ea",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Колет Капитан Шум",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "kolet"
+    ],
+    "4-players": [
+     "kolet"
+    ],
+    "5-players": [
+     "kolet"
+    ],
+    "6-players": [
+     "kolet"
+    ],
+    "7-players": [
+     "kolet"
+    ],
+    "8-players": [
+     "kolet"
+    ]
+   },
+   "file": "kolet--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "kolet.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/three-magicless-days/illustrations/opening.webp",
+   "sha256": "ce5a2175562157c4269d3ebdd1e97c2bec023983a2906cf444919c5118115aa8",
+   "originalSha256": "adc6fd8be0f114a38f6a265abbc5a4dbbac14fe73a4074dc6a9a904d2d0b815c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Крыльцо дежурных — Выходные у заклинаний",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "dzen-city"
+    ],
+    "4-players": [
+     "dzen-city"
+    ],
+    "5-players": [
+     "dzen-city"
+    ],
+    "6-players": [
+     "dzen-city"
+    ],
+    "7-players": [
+     "dzen-city"
+    ],
+    "8-players": [
+     "dzen-city"
+    ]
+   },
+   "file": "cover.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "file": "linen-yard--map.webp",
+   "source": "campaigns/fantasy-2026/three-magicless-days/assets/battle-maps/linen-yard.webp",
+   "sha256": "40c78f98a993c957f897eb3f89f46962a807e311bc86452c62c060629b396d3f",
+   "originalSha256": "258b7bd9a6953c2d1b1c40afe9a4cca0dac0f853a940595111299aa82970445e",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Двор длинных простыней. Visible scenery: Между низкими домами висят верёвки для белья. Под ними сохнут разноцветные дорожки и блестят лужицы.. World style: Дзеньгород · Coloured felt chair silhouettes and hand-sewn pennant loops on plain linen. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "linen-yard.webp",
+   "subjects": {
+    "3-players": [
+     "linen-yard"
+    ],
+    "4-players": [
+     "linen-yard"
+    ],
+    "5-players": [
+     "linen-yard"
+    ],
+    "6-players": [
+     "linen-yard"
+    ],
+    "7-players": [
+     "linen-yard"
+    ],
+    "8-players": [
+     "linen-yard"
+    ]
+   }
+  },
+  {
+   "file": "open-court--map.webp",
+   "source": "campaigns/fantasy-2026/three-magicless-days/assets/battle-maps/open-court.webp",
+   "sha256": "eb8ba1d32ed95092a89df57f7e5ef44eb02a23c35439d62701cf192bc16b5d89",
+   "originalSha256": "8efa965052b746e609c726affdd7ee18418ed4bf909e26c319452002a8816e4b",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Двор первого поклона. Visible scenery: Просторный двор с низкими ступенями, широкими воротами и небольшим помостом для приветствий и любительских представлений.. World style: Дзеньгород · Coloured felt chair silhouettes and hand-sewn pennant loops on plain linen. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "open-court.webp",
+   "subjects": {
+    "3-players": [
+     "open-court"
+    ],
+    "4-players": [
+     "open-court"
+    ],
+    "5-players": [
+     "open-court"
+    ],
+    "6-players": [
+     "open-court"
+    ],
+    "7-players": [
+     "open-court"
+    ],
+    "8-players": [
+     "open-court"
+    ]
+   }
+  },
+  {
+   "file": "world-map.webp",
+   "source": "campaigns/fantasy-2026/three-magicless-days/assets/world-map/world-map.webp",
+   "sha256": "762be7d39ccf1036ff3be4506636378b95fc8fc94d6e78c4a0ad3bb9de0ff1a8",
+   "originalSha256": "e86588eff02e57fc5d83cdd8aa7cc917c2647d2be8e392488f5815744bdb4171",
+   "generated": "2026-11-22",
+   "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Дзеньгород. Style Дзеньгород · Coloured felt chair silhouettes and hand-sewn pennant loops on plain linen. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Крыльцо дежурных; 0.367,0.177 Площадь Медного носа; 0.623,0.15 Двор длинных простыней; 0.88,0.177 Зал забытых плащей; 0.905,0.517 Калитка приезжих; 0.648,0.49 Переплётный двор; 0.392,0.517 Сад тихих качелей; 0.135,0.49 Лужайка выходного дня; 0.11,0.83 Двор первого поклона. Show public exteriors / unlabeled contours only.",
+   "references": [],
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null,
+   "subjects": {
+    "3-players": [
+     "world-map"
+    ],
+    "4-players": [
+     "world-map"
+    ],
+    "5-players": [
+     "world-map"
+    ],
+    "6-players": [
+     "world-map"
+    ],
+    "7-players": [
+     "world-map"
+    ],
+    "8-players": [
+     "world-map"
+    ]
+   }
+  }
+ ]
+}

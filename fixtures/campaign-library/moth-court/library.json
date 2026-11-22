@@ -1,0 +1,1783 @@
+{
+ "id": "moth-court",
+ "title": "Двор мотыльковых масок",
+ "genre": "Тёмное фэнтези: придворное ограбление",
+ "audience": "18+",
+ "pitch": "В Сиверне лицо стало дорогим украшением. Во дворце госпожи Сейр гости меняют внешность вместе с перчатками, а за праздничными окнами ждут люди в плотных вуалях. Приближается последний маскарад сезона; семь знакомых с разными ремёслами получают возможность увидеть двор изнутри.",
+ "tone": "Тактильная тревога, опасная роскошь, практическая находчивость и короткие островки заботы. Кампания движется через подготовку, проникновение, подмену и вынос добычи.",
+ "duration": "8 сессий; 180 минут: 10 минут начала и повторения, три сцены по 45 минут, перерыв 15 минут и завершение 20 минут.",
+ "cover": "campaigns/dark-fantasy-2026/moth-court/illustrations/opening.webp",
+ "defaultVariant": "4-players",
+ "variants": [
+  {
+   "id": "3-players",
+   "players": 3,
+   "label": "3 игрока",
+   "file": "packages/3-players.json",
+   "digest": "01805544d3c4196c7b9d803db239bf3b18cfa4c090197488cc3f22b36aa78f96"
+  },
+  {
+   "id": "4-players",
+   "players": 4,
+   "label": "4 игрока",
+   "file": "packages/4-players.json",
+   "digest": "70edf00300dc02fe1213290852a799440872e25bd928c6d8ac697da0ce18abd4"
+  },
+  {
+   "id": "5-players",
+   "players": 5,
+   "label": "5 игроков",
+   "file": "packages/5-players.json",
+   "digest": "72c191088e0b8bfcf03bc85c0c4ac8956ca5aac1b257d068d6be701080ab7d3b"
+  },
+  {
+   "id": "6-players",
+   "players": 6,
+   "label": "6 игроков",
+   "file": "packages/6-players.json",
+   "digest": "d31f80dc87de899275a56b14448fa048fa05a782791a51459e161caf00e804d0"
+  },
+  {
+   "id": "7-players",
+   "players": 7,
+   "label": "7 игроков",
+   "file": "packages/7-players.json",
+   "digest": "06c927b1224a767cf824e86daeeedd12a910cc5089682da63ca9dc7d8b093b70"
+  }
+ ],
+ "generator": "codex-cli imagegen",
+ "pictures": [
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/illustrations/cards/agnia-vet.webp",
+   "sha256": "af2edc2f227e08d617ebbc600c859275ca3d9e96c8b47b28657fbf5afc34ec66",
+   "originalSha256": "c2f70689aa534e7ceba47453769ca0df219b1bea3dcee4b537e7d0e13ef56ac7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Агния Вет",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "agnia-vet"
+    ],
+    "4-players": [
+     "agnia-vet"
+    ],
+    "5-players": [
+     "agnia-vet"
+    ],
+    "6-players": [
+     "agnia-vet"
+    ],
+    "7-players": [
+     "agnia-vet"
+    ]
+   },
+   "file": "agnia-vet.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/illustrations/cards/borey-nit.webp",
+   "sha256": "024a53dac64fc38a0c9db988618b946ce36e75524155569ce30e3c843f8cb0da",
+   "originalSha256": "c2f70689aa534e7ceba47453769ca0df219b1bea3dcee4b537e7d0e13ef56ac7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Борей Нить",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "borey-nit"
+    ],
+    "4-players": [
+     "borey-nit"
+    ],
+    "5-players": [
+     "borey-nit"
+    ],
+    "6-players": [
+     "borey-nit"
+    ],
+    "7-players": [
+     "borey-nit"
+    ]
+   },
+   "file": "borey-nit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/illustrations/cards/sava-rem.webp",
+   "sha256": "3a79f7ca4f0c1124040b90b4e8021c094a6ec37cc1b2795156a8e17916c1926b",
+   "originalSha256": "c2f70689aa534e7ceba47453769ca0df219b1bea3dcee4b537e7d0e13ef56ac7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сава Рем",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "sava-rem"
+    ],
+    "4-players": [
+     "sava-rem"
+    ],
+    "5-players": [
+     "sava-rem"
+    ],
+    "6-players": [
+     "sava-rem"
+    ],
+    "7-players": [
+     "sava-rem"
+    ]
+   },
+   "file": "sava-rem.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/illustrations/cards/leta-ols.webp",
+   "sha256": "470f29a40febfcb8ff82c37ef6854b8ba30075a709a2d1ffe37336f485a6c153",
+   "originalSha256": "c2f70689aa534e7ceba47453769ca0df219b1bea3dcee4b537e7d0e13ef56ac7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лета Ольс",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "leta-ols"
+    ],
+    "5-players": [
+     "leta-ols"
+    ],
+    "6-players": [
+     "leta-ols"
+    ],
+    "7-players": [
+     "leta-ols"
+    ]
+   },
+   "file": "leta-ols.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/illustrations/cards/fadey-kel.webp",
+   "sha256": "50880704dd0cfb63caad4e7ef1ed9d40f7c2f84cda5907f72fc604168227b522",
+   "originalSha256": "c2f70689aa534e7ceba47453769ca0df219b1bea3dcee4b537e7d0e13ef56ac7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Фадей Кел",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "fadey-kel"
+    ],
+    "6-players": [
+     "fadey-kel"
+    ],
+    "7-players": [
+     "fadey-kel"
+    ]
+   },
+   "file": "fadey-kel.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/illustrations/cards/mirra-stok.webp",
+   "sha256": "3c3619965c36c0d7ccc721c94241a8bcc347a15bcfe2d6b385c44cbed59af1d2",
+   "originalSha256": "c2f70689aa534e7ceba47453769ca0df219b1bea3dcee4b537e7d0e13ef56ac7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мирра Сток",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "mirra-stok"
+    ],
+    "7-players": [
+     "mirra-stok"
+    ]
+   },
+   "file": "mirra-stok.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/illustrations/cards/yust-vern.webp",
+   "sha256": "8eb29f42ecfb17e0a7257e090801eca1725ce534eb3d585ec820c771b80bfc15",
+   "originalSha256": "c2f70689aa534e7ceba47453769ca0df219b1bea3dcee4b537e7d0e13ef56ac7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Юст Верн",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "yust-vern"
+    ]
+   },
+   "file": "yust-vern.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/illustrations/cards/travel-kit.webp",
+   "sha256": "0bcc47af8b386770640ac67e4bf33f77299d6a4368e27360a3bdf20b1d327e03",
+   "originalSha256": "c2f70689aa534e7ceba47453769ca0df219b1bea3dcee4b537e7d0e13ef56ac7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дорожный набор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "agnia-vet-travel-kit",
+     "borey-nit-travel-kit",
+     "sava-rem-travel-kit"
+    ],
+    "4-players": [
+     "agnia-vet-travel-kit",
+     "borey-nit-travel-kit",
+     "leta-ols-travel-kit",
+     "sava-rem-travel-kit"
+    ],
+    "5-players": [
+     "agnia-vet-travel-kit",
+     "borey-nit-travel-kit",
+     "fadey-kel-travel-kit",
+     "leta-ols-travel-kit",
+     "sava-rem-travel-kit"
+    ],
+    "6-players": [
+     "agnia-vet-travel-kit",
+     "borey-nit-travel-kit",
+     "fadey-kel-travel-kit",
+     "leta-ols-travel-kit",
+     "mirra-stok-travel-kit",
+     "sava-rem-travel-kit"
+    ],
+    "7-players": [
+     "agnia-vet-travel-kit",
+     "borey-nit-travel-kit",
+     "fadey-kel-travel-kit",
+     "leta-ols-travel-kit",
+     "mirra-stok-travel-kit",
+     "sava-rem-travel-kit",
+     "yust-vern-travel-kit"
+    ]
+   },
+   "file": "travel-kit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/illustrations/cards/eda-ruk.webp",
+   "sha256": "15bd463e4e8ebc0e42337e812a1329b1c8dcf7911db6522c3e2ed725dab9b334",
+   "originalSha256": "cc57152d4aac302e984a1f468b2766d202a4faffaae4eed1ac0f139905dfaa2e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эда Рук",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "eda-ruk"
+    ],
+    "4-players": [
+     "eda-ruk"
+    ],
+    "5-players": [
+     "eda-ruk"
+    ],
+    "6-players": [
+     "eda-ruk"
+    ],
+    "7-players": [
+     "eda-ruk"
+    ]
+   },
+   "file": "eda-ruk.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/illustrations/cards/velena-seyr.webp",
+   "sha256": "51bcd85c3e9586278f518b959d19c040de002010eb29ee7b56ec956c749f52b7",
+   "originalSha256": "cc57152d4aac302e984a1f468b2766d202a4faffaae4eed1ac0f139905dfaa2e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Велена Сейр",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "velena-seyr"
+    ],
+    "4-players": [
+     "velena-seyr"
+    ],
+    "5-players": [
+     "velena-seyr"
+    ],
+    "6-players": [
+     "velena-seyr"
+    ],
+    "7-players": [
+     "velena-seyr"
+    ]
+   },
+   "file": "velena-seyr.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/illustrations/cards/ort-dagren.webp",
+   "sha256": "94d67eafba3c13a3d716a37f88bfe97c8e162f295d0f9ac64519b1b728a2258a",
+   "originalSha256": "cc57152d4aac302e984a1f468b2766d202a4faffaae4eed1ac0f139905dfaa2e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Орт Дагрен",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ort-dagren"
+    ],
+    "4-players": [
+     "ort-dagren"
+    ],
+    "5-players": [
+     "ort-dagren"
+    ],
+    "6-players": [
+     "ort-dagren"
+    ],
+    "7-players": [
+     "ort-dagren"
+    ]
+   },
+   "file": "ort-dagren.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/illustrations/cards/demra-shov.webp",
+   "sha256": "bec6d270c90640968753fecd77630f38438efc9d0db9b778221f005559f967d0",
+   "originalSha256": "cc57152d4aac302e984a1f468b2766d202a4faffaae4eed1ac0f139905dfaa2e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Демра Шов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "demra-shov"
+    ],
+    "4-players": [
+     "demra-shov"
+    ],
+    "5-players": [
+     "demra-shov"
+    ],
+    "6-players": [
+     "demra-shov"
+    ],
+    "7-players": [
+     "demra-shov"
+    ]
+   },
+   "file": "demra-shov.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/illustrations/cards/nera-tal.webp",
+   "sha256": "e0d3922d859a6a90e87f20ab0671357945d8cf21dc6b3a537eb1f5241532f268",
+   "originalSha256": "cc57152d4aac302e984a1f468b2766d202a4faffaae4eed1ac0f139905dfaa2e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нера Таль",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nera-tal"
+    ],
+    "4-players": [
+     "nera-tal"
+    ],
+    "5-players": [
+     "nera-tal"
+    ],
+    "6-players": [
+     "nera-tal"
+    ],
+    "7-players": [
+     "nera-tal"
+    ]
+   },
+   "file": "nera-tal.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/illustrations/cards/radiy-olov.webp",
+   "sha256": "0393b6498813b3c170bfeffffc877542a17976f8314d14fd5deabda869c63ae2",
+   "originalSha256": "cc57152d4aac302e984a1f468b2766d202a4faffaae4eed1ac0f139905dfaa2e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Радий Олов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "radiy-olov"
+    ],
+    "4-players": [
+     "radiy-olov"
+    ],
+    "5-players": [
+     "radiy-olov"
+    ],
+    "6-players": [
+     "radiy-olov"
+    ],
+    "7-players": [
+     "radiy-olov"
+    ]
+   },
+   "file": "radiy-olov.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/illustrations/cards/teya-morg.webp",
+   "sha256": "8f2a1eabfbad96c88536bff8b05a96a4b729596740b2d18b156297c67f2fae60",
+   "originalSha256": "cc57152d4aac302e984a1f468b2766d202a4faffaae4eed1ac0f139905dfaa2e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тея Морг",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "teya-morg"
+    ],
+    "4-players": [
+     "teya-morg"
+    ],
+    "5-players": [
+     "teya-morg"
+    ],
+    "6-players": [
+     "teya-morg"
+    ],
+    "7-players": [
+     "teya-morg"
+    ]
+   },
+   "file": "teya-morg.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/illustrations/cards/ivar-sol.webp",
+   "sha256": "bb8eba431e522b7fa0c4374ca7ddde1666c636d177c007ce4345dd3fb5b0824d",
+   "originalSha256": "cc57152d4aac302e984a1f468b2766d202a4faffaae4eed1ac0f139905dfaa2e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ивар Соль",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ivar-sol"
+    ],
+    "4-players": [
+     "ivar-sol"
+    ],
+    "5-players": [
+     "ivar-sol"
+    ],
+    "6-players": [
+     "ivar-sol"
+    ],
+    "7-players": [
+     "ivar-sol"
+    ]
+   },
+   "file": "ivar-sol.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/illustrations/cards/ulla-zhem.webp",
+   "sha256": "6ed58eb88cdc593362e2a67da8ff891a51ee50ad7d0d2c3d93e5f7e20de7e183",
+   "originalSha256": "cc57152d4aac302e984a1f468b2766d202a4faffaae4eed1ac0f139905dfaa2e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Улла Жем",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ulla-zhem"
+    ],
+    "4-players": [
+     "ulla-zhem"
+    ],
+    "5-players": [
+     "ulla-zhem"
+    ],
+    "6-players": [
+     "ulla-zhem"
+    ],
+    "7-players": [
+     "ulla-zhem"
+    ]
+   },
+   "file": "ulla-zhem.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/illustrations/cards/kord-liss.webp",
+   "sha256": "f2f349abbfa34c991a4c72d07f7ff79f60fb0b6912fd1c2cf635687d93859a77",
+   "originalSha256": "cc57152d4aac302e984a1f468b2766d202a4faffaae4eed1ac0f139905dfaa2e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Корд Лисс",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "kord-liss"
+    ],
+    "4-players": [
+     "kord-liss"
+    ],
+    "5-players": [
+     "kord-liss"
+    ],
+    "6-players": [
+     "kord-liss"
+    ],
+    "7-players": [
+     "kord-liss"
+    ]
+   },
+   "file": "kord-liss.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/assets/table/places-seam-house.webp",
+   "sha256": "adfb6ee14bb22009e45f3abe4a6bc49de801895a549799c05d11fea79a0c0c9e",
+   "originalSha256": "7a3cef00ff154dc59d7235a021376f2bbe4e11de98b1e2851ca887030269a5e7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дом поротых швов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "seam-house"
+    ],
+    "4-players": [
+     "seam-house"
+    ],
+    "5-players": [
+     "seam-house"
+    ],
+    "6-players": [
+     "seam-house"
+    ],
+    "7-players": [
+     "seam-house"
+    ]
+   },
+   "file": "seam-house.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/assets/table/places-palace-gate.webp",
+   "sha256": "55904f46fa4f232f06f4cb1c20d3f87e00374e6b47b281a0239541fff31376b0",
+   "originalSha256": "7a3cef00ff154dc59d7235a021376f2bbe4e11de98b1e2851ca887030269a5e7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Кружевные ворота",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "palace-gate"
+    ],
+    "4-players": [
+     "palace-gate"
+    ],
+    "5-players": [
+     "palace-gate"
+    ],
+    "6-players": [
+     "palace-gate"
+    ],
+    "7-players": [
+     "palace-gate"
+    ]
+   },
+   "file": "palace-gate.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/assets/table/places-wash-house.webp",
+   "sha256": "69565c6e3e03c96be3531dc137e14ad6476b83a167027254dbe9501fccb5ec3f",
+   "originalSha256": "7a3cef00ff154dc59d7235a021376f2bbe4e11de98b1e2851ca887030269a5e7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мойка белого шёлка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "wash-house"
+    ],
+    "4-players": [
+     "wash-house"
+    ],
+    "5-players": [
+     "wash-house"
+    ],
+    "6-players": [
+     "wash-house"
+    ],
+    "7-players": [
+     "wash-house"
+    ]
+   },
+   "file": "wash-house.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/assets/table/places-mirror-gallery.webp",
+   "sha256": "5234056d0a6dd955d97991a2955315f03e2bcae80761049f605f966fc80c6eaf",
+   "originalSha256": "7a3cef00ff154dc59d7235a021376f2bbe4e11de98b1e2851ca887030269a5e7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Зеркальная галерея",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mirror-gallery"
+    ],
+    "4-players": [
+     "mirror-gallery"
+    ],
+    "5-players": [
+     "mirror-gallery"
+    ],
+    "6-players": [
+     "mirror-gallery"
+    ],
+    "7-players": [
+     "mirror-gallery"
+    ]
+   },
+   "file": "mirror-gallery.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/assets/table/places-moth-ballroom.webp",
+   "sha256": "a63a6c98d2f1aad642629b69da69596a352d59d2fef26113cc91a32f0453f0b6",
+   "originalSha256": "7a3cef00ff154dc59d7235a021376f2bbe4e11de98b1e2851ca887030269a5e7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Зал последнего вылета",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "moth-ballroom"
+    ],
+    "4-players": [
+     "moth-ballroom"
+    ],
+    "5-players": [
+     "moth-ballroom"
+    ],
+    "6-players": [
+     "moth-ballroom"
+    ],
+    "7-players": [
+     "moth-ballroom"
+    ]
+   },
+   "file": "moth-ballroom.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/assets/table/places-counterweight-well.webp",
+   "sha256": "1bb53542832f648653328b82b53c8b48e1db87cb09b22c4845fb2a743039779f",
+   "originalSha256": "7a3cef00ff154dc59d7235a021376f2bbe4e11de98b1e2851ca887030269a5e7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Колодец гирь",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "counterweight-well"
+    ],
+    "4-players": [
+     "counterweight-well"
+    ],
+    "5-players": [
+     "counterweight-well"
+    ],
+    "6-players": [
+     "counterweight-well"
+    ],
+    "7-players": [
+     "counterweight-well"
+    ]
+   },
+   "file": "counterweight-well.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/assets/table/places-reverse-room.webp",
+   "sha256": "a834167e8ba6bc402b64b56ca85a8f689e1219bf569aea689b1e16611479b227",
+   "originalSha256": "7a3cef00ff154dc59d7235a021376f2bbe4e11de98b1e2851ca887030269a5e7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Изнаночная",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "reverse-room"
+    ],
+    "4-players": [
+     "reverse-room"
+    ],
+    "5-players": [
+     "reverse-room"
+    ],
+    "6-players": [
+     "reverse-room"
+    ],
+    "7-players": [
+     "reverse-room"
+    ]
+   },
+   "file": "reverse-room.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/assets/table/places-night-orangery.webp",
+   "sha256": "5096d585a56aa3471eccc52fe915a0549aa5502ec7999926366e594bab1914fe",
+   "originalSha256": "7a3cef00ff154dc59d7235a021376f2bbe4e11de98b1e2851ca887030269a5e7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ночная оранжерея",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "night-orangery"
+    ],
+    "4-players": [
+     "night-orangery"
+    ],
+    "5-players": [
+     "night-orangery"
+    ],
+    "6-players": [
+     "night-orangery"
+    ],
+    "7-players": [
+     "night-orangery"
+    ]
+   },
+   "file": "night-orangery.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/assets/table/places-coach-yard.webp",
+   "sha256": "a706a470e0fa87f1dc671c04be41481786c044eab8e4580b80333b546d8d5827",
+   "originalSha256": "7a3cef00ff154dc59d7235a021376f2bbe4e11de98b1e2851ca887030269a5e7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Каретный двор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "coach-yard"
+    ],
+    "4-players": [
+     "coach-yard"
+    ],
+    "5-players": [
+     "coach-yard"
+    ],
+    "6-players": [
+     "coach-yard"
+    ],
+    "7-players": [
+     "coach-yard"
+    ]
+   },
+   "file": "coach-yard.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/assets/table/places-quiet-baths.webp",
+   "sha256": "ec8ea3ac888e78390d5e1c6e9c6cde6288daffc5a41725db47c44df9c0c083fe",
+   "originalSha256": "7a3cef00ff154dc59d7235a021376f2bbe4e11de98b1e2851ca887030269a5e7",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тихие бани",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "quiet-baths"
+    ],
+    "4-players": [
+     "quiet-baths"
+    ],
+    "5-players": [
+     "quiet-baths"
+    ],
+    "6-players": [
+     "quiet-baths"
+    ],
+    "7-players": [
+     "quiet-baths"
+    ]
+   },
+   "file": "quiet-baths.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/assets/table/heroes-agnia-vet.webp",
+   "sha256": "df0a395ec0f32fcea5df858edb5af9a1fd8fa15ca0764de69ca754c44b6789ad",
+   "originalSha256": "997b66b7cd122ff91ff3b37176694adb3077f0d14c5cd6b04b2d7cfed07df8fe",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Агния Вет",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "agnia-vet"
+    ],
+    "4-players": [
+     "agnia-vet"
+    ],
+    "5-players": [
+     "agnia-vet"
+    ],
+    "6-players": [
+     "agnia-vet"
+    ],
+    "7-players": [
+     "agnia-vet"
+    ]
+   },
+   "file": "agnia-vet--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "agnia-vet.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/assets/table/heroes-borey-nit.webp",
+   "sha256": "3a4cdac826794a17fe47a9ec7613aab6e8fcf00ca6c3f453e06b7da31b0292ed",
+   "originalSha256": "997b66b7cd122ff91ff3b37176694adb3077f0d14c5cd6b04b2d7cfed07df8fe",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Борей Нить",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "borey-nit"
+    ],
+    "4-players": [
+     "borey-nit"
+    ],
+    "5-players": [
+     "borey-nit"
+    ],
+    "6-players": [
+     "borey-nit"
+    ],
+    "7-players": [
+     "borey-nit"
+    ]
+   },
+   "file": "borey-nit--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "borey-nit.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/assets/table/heroes-sava-rem.webp",
+   "sha256": "5f38e58d88d717d61ec306558836ec895dbfbe0efe3e34521ea118a50749a802",
+   "originalSha256": "997b66b7cd122ff91ff3b37176694adb3077f0d14c5cd6b04b2d7cfed07df8fe",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сава Рем",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "sava-rem"
+    ],
+    "4-players": [
+     "sava-rem"
+    ],
+    "5-players": [
+     "sava-rem"
+    ],
+    "6-players": [
+     "sava-rem"
+    ],
+    "7-players": [
+     "sava-rem"
+    ]
+   },
+   "file": "sava-rem--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "sava-rem.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/assets/table/heroes-leta-ols.webp",
+   "sha256": "85dd386244d941bbee484affd6f035d0dee69b00bc9e45cca677f31c87b24e3f",
+   "originalSha256": "997b66b7cd122ff91ff3b37176694adb3077f0d14c5cd6b04b2d7cfed07df8fe",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лета Ольс",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "leta-ols"
+    ],
+    "5-players": [
+     "leta-ols"
+    ],
+    "6-players": [
+     "leta-ols"
+    ],
+    "7-players": [
+     "leta-ols"
+    ]
+   },
+   "file": "leta-ols--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "leta-ols.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/assets/table/heroes-fadey-kel.webp",
+   "sha256": "cdf9933309fdd397d779e6980049af0a1c2e5e036635693951c96b2759393f75",
+   "originalSha256": "997b66b7cd122ff91ff3b37176694adb3077f0d14c5cd6b04b2d7cfed07df8fe",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Фадей Кел",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "fadey-kel"
+    ],
+    "6-players": [
+     "fadey-kel"
+    ],
+    "7-players": [
+     "fadey-kel"
+    ]
+   },
+   "file": "fadey-kel--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "fadey-kel.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/assets/table/heroes-mirra-stok.webp",
+   "sha256": "ad966f3fcc476bc10df90c5fad6fd21af440f1afa02ac951385e9e82ba1df846",
+   "originalSha256": "997b66b7cd122ff91ff3b37176694adb3077f0d14c5cd6b04b2d7cfed07df8fe",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мирра Сток",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "mirra-stok"
+    ],
+    "7-players": [
+     "mirra-stok"
+    ]
+   },
+   "file": "mirra-stok--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "mirra-stok.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/assets/table/heroes-yust-vern.webp",
+   "sha256": "c7edf4525584f8775f4f939823525b60cd45a32516d5c7b5efbdd51e5f08a551",
+   "originalSha256": "997b66b7cd122ff91ff3b37176694adb3077f0d14c5cd6b04b2d7cfed07df8fe",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Юст Верн",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "yust-vern"
+    ]
+   },
+   "file": "yust-vern--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "yust-vern.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/assets/table/foes-foe-a27249a2a2.webp",
+   "sha256": "02c47a8f3ee22536f67d692d4beff68956ddf77e61162ab11bac9b8788083585",
+   "originalSha256": "9e94420143fbf7b9c45f46db24ea38032ae2a8a85b68258639bd43c72077a09b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Взрослый дворцовый сторож",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "wash-wardens-foe-1",
+     "wash-wardens-foe-2"
+    ],
+    "4-players": [
+     "wash-wardens-foe-1",
+     "wash-wardens-foe-2",
+     "wash-wardens-foe-3"
+    ],
+    "5-players": [
+     "wash-wardens-foe-1",
+     "wash-wardens-foe-2",
+     "wash-wardens-foe-3"
+    ],
+    "6-players": [
+     "wash-wardens-foe-1",
+     "wash-wardens-foe-2",
+     "wash-wardens-foe-3",
+     "wash-wardens-foe-4"
+    ],
+    "7-players": [
+     "wash-wardens-foe-1",
+     "wash-wardens-foe-2",
+     "wash-wardens-foe-3",
+     "wash-wardens-foe-4",
+     "wash-wardens-foe-5"
+    ]
+   },
+   "file": "foe-a27249a2a2.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/assets/table/foes-foe-a27249a2a2.webp",
+   "sha256": "02c47a8f3ee22536f67d692d4beff68956ddf77e61162ab11bac9b8788083585",
+   "originalSha256": "9e94420143fbf7b9c45f46db24ea38032ae2a8a85b68258639bd43c72077a09b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Взрослый дворцовый сторож",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "wash-wardens-foe-1",
+     "wash-wardens-foe-2"
+    ],
+    "4-players": [
+     "wash-wardens-foe-1",
+     "wash-wardens-foe-2",
+     "wash-wardens-foe-3"
+    ],
+    "5-players": [
+     "wash-wardens-foe-1",
+     "wash-wardens-foe-2",
+     "wash-wardens-foe-3"
+    ],
+    "6-players": [
+     "wash-wardens-foe-1",
+     "wash-wardens-foe-2",
+     "wash-wardens-foe-3",
+     "wash-wardens-foe-4"
+    ],
+    "7-players": [
+     "wash-wardens-foe-1",
+     "wash-wardens-foe-2",
+     "wash-wardens-foe-3",
+     "wash-wardens-foe-4",
+     "wash-wardens-foe-5"
+    ]
+   },
+   "file": "foe-a27249a2a2--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-a27249a2a2.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/assets/table/foes-foe-b6fd8deda8.webp",
+   "sha256": "beb2c37e5b21985377925aa2e6a17648c98cc82c2995ad635946d3b6fe9d7029",
+   "originalSha256": "9e94420143fbf7b9c45f46db24ea38032ae2a8a85b68258639bd43c72077a09b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Взрослый хранитель прохода",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "cabinet-guard-foe-1",
+     "cabinet-guard-foe-2"
+    ],
+    "4-players": [
+     "cabinet-guard-foe-1",
+     "cabinet-guard-foe-2",
+     "cabinet-guard-foe-3"
+    ],
+    "5-players": [
+     "cabinet-guard-foe-1",
+     "cabinet-guard-foe-2",
+     "cabinet-guard-foe-3"
+    ],
+    "6-players": [
+     "cabinet-guard-foe-1",
+     "cabinet-guard-foe-2",
+     "cabinet-guard-foe-3",
+     "cabinet-guard-foe-4"
+    ],
+    "7-players": [
+     "cabinet-guard-foe-1",
+     "cabinet-guard-foe-2",
+     "cabinet-guard-foe-3",
+     "cabinet-guard-foe-4",
+     "cabinet-guard-foe-5"
+    ]
+   },
+   "file": "foe-b6fd8deda8.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/assets/table/foes-foe-b6fd8deda8.webp",
+   "sha256": "beb2c37e5b21985377925aa2e6a17648c98cc82c2995ad635946d3b6fe9d7029",
+   "originalSha256": "9e94420143fbf7b9c45f46db24ea38032ae2a8a85b68258639bd43c72077a09b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Взрослый хранитель прохода",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "cabinet-guard-foe-1",
+     "cabinet-guard-foe-2"
+    ],
+    "4-players": [
+     "cabinet-guard-foe-1",
+     "cabinet-guard-foe-2",
+     "cabinet-guard-foe-3"
+    ],
+    "5-players": [
+     "cabinet-guard-foe-1",
+     "cabinet-guard-foe-2",
+     "cabinet-guard-foe-3"
+    ],
+    "6-players": [
+     "cabinet-guard-foe-1",
+     "cabinet-guard-foe-2",
+     "cabinet-guard-foe-3",
+     "cabinet-guard-foe-4"
+    ],
+    "7-players": [
+     "cabinet-guard-foe-1",
+     "cabinet-guard-foe-2",
+     "cabinet-guard-foe-3",
+     "cabinet-guard-foe-4",
+     "cabinet-guard-foe-5"
+    ]
+   },
+   "file": "foe-b6fd8deda8--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-b6fd8deda8.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/assets/table/foes-foe-4d5a4cb442.webp",
+   "sha256": "a95051224748310a0785ac6563c1c964f2afbd4bb4da8ea3d12e181fb695c313",
+   "originalSha256": "9e94420143fbf7b9c45f46db24ea38032ae2a8a85b68258639bd43c72077a09b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Взрослый сторож каретного двора",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "yard-interception-foe-1",
+     "yard-interception-foe-2"
+    ],
+    "4-players": [
+     "yard-interception-foe-1",
+     "yard-interception-foe-2",
+     "yard-interception-foe-3"
+    ],
+    "5-players": [
+     "yard-interception-foe-1",
+     "yard-interception-foe-2",
+     "yard-interception-foe-3"
+    ],
+    "6-players": [
+     "yard-interception-foe-1",
+     "yard-interception-foe-2",
+     "yard-interception-foe-3",
+     "yard-interception-foe-4"
+    ],
+    "7-players": [
+     "yard-interception-foe-1",
+     "yard-interception-foe-2",
+     "yard-interception-foe-3",
+     "yard-interception-foe-4",
+     "yard-interception-foe-5"
+    ]
+   },
+   "file": "foe-4d5a4cb442.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/assets/table/foes-foe-4d5a4cb442.webp",
+   "sha256": "a95051224748310a0785ac6563c1c964f2afbd4bb4da8ea3d12e181fb695c313",
+   "originalSha256": "9e94420143fbf7b9c45f46db24ea38032ae2a8a85b68258639bd43c72077a09b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Взрослый сторож каретного двора",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "yard-interception-foe-1",
+     "yard-interception-foe-2"
+    ],
+    "4-players": [
+     "yard-interception-foe-1",
+     "yard-interception-foe-2",
+     "yard-interception-foe-3"
+    ],
+    "5-players": [
+     "yard-interception-foe-1",
+     "yard-interception-foe-2",
+     "yard-interception-foe-3"
+    ],
+    "6-players": [
+     "yard-interception-foe-1",
+     "yard-interception-foe-2",
+     "yard-interception-foe-3",
+     "yard-interception-foe-4"
+    ],
+    "7-players": [
+     "yard-interception-foe-1",
+     "yard-interception-foe-2",
+     "yard-interception-foe-3",
+     "yard-interception-foe-4",
+     "yard-interception-foe-5"
+    ]
+   },
+   "file": "foe-4d5a4cb442--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-4d5a4cb442.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/assets/table/npcs-eda-ruk.webp",
+   "sha256": "648f4143fca0b971159260a00e7bf6f7732ef4821f46d584208ca2bfeff1624b",
+   "originalSha256": "a6b5ef5fd254fd4c5ad43eae67938ff420d40ec00beb11b5e626a94020f4d9cc",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эда Рук",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "eda-ruk"
+    ],
+    "4-players": [
+     "eda-ruk"
+    ],
+    "5-players": [
+     "eda-ruk"
+    ],
+    "6-players": [
+     "eda-ruk"
+    ],
+    "7-players": [
+     "eda-ruk"
+    ]
+   },
+   "file": "eda-ruk--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "eda-ruk.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/assets/table/npcs-velena-seyr.webp",
+   "sha256": "41da3b1b2121e4b1f183223cf1108569018477cc09d319d9a44f0df0751436e5",
+   "originalSha256": "a6b5ef5fd254fd4c5ad43eae67938ff420d40ec00beb11b5e626a94020f4d9cc",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Велена Сейр",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "velena-seyr"
+    ],
+    "4-players": [
+     "velena-seyr"
+    ],
+    "5-players": [
+     "velena-seyr"
+    ],
+    "6-players": [
+     "velena-seyr"
+    ],
+    "7-players": [
+     "velena-seyr"
+    ]
+   },
+   "file": "velena-seyr--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "velena-seyr.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/assets/table/npcs-ort-dagren.webp",
+   "sha256": "6986807e42314d70df2127857c24861718d2075f0609daab294b8f4ddaf588d3",
+   "originalSha256": "a6b5ef5fd254fd4c5ad43eae67938ff420d40ec00beb11b5e626a94020f4d9cc",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Орт Дагрен",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ort-dagren"
+    ],
+    "4-players": [
+     "ort-dagren"
+    ],
+    "5-players": [
+     "ort-dagren"
+    ],
+    "6-players": [
+     "ort-dagren"
+    ],
+    "7-players": [
+     "ort-dagren"
+    ]
+   },
+   "file": "ort-dagren--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ort-dagren.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/assets/table/npcs-demra-shov.webp",
+   "sha256": "77a012b4b337e297b24a02e77b7f4acb26571a6d44c6e0c7590edc9b8b772ca1",
+   "originalSha256": "a6b5ef5fd254fd4c5ad43eae67938ff420d40ec00beb11b5e626a94020f4d9cc",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Демра Шов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "demra-shov"
+    ],
+    "4-players": [
+     "demra-shov"
+    ],
+    "5-players": [
+     "demra-shov"
+    ],
+    "6-players": [
+     "demra-shov"
+    ],
+    "7-players": [
+     "demra-shov"
+    ]
+   },
+   "file": "demra-shov--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "demra-shov.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/assets/table/npcs-nera-tal.webp",
+   "sha256": "8a48cb2c79ab93b123e08f9d308043640b1e36f892c6d5b2725f6c8b47d1ce41",
+   "originalSha256": "a6b5ef5fd254fd4c5ad43eae67938ff420d40ec00beb11b5e626a94020f4d9cc",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нера Таль",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nera-tal"
+    ],
+    "4-players": [
+     "nera-tal"
+    ],
+    "5-players": [
+     "nera-tal"
+    ],
+    "6-players": [
+     "nera-tal"
+    ],
+    "7-players": [
+     "nera-tal"
+    ]
+   },
+   "file": "nera-tal--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "nera-tal.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/assets/table/npcs-radiy-olov.webp",
+   "sha256": "43a98df1e8b09c597ae3f521c831880e1b9d923890c09c6e419f83df6096d5c7",
+   "originalSha256": "ed534f76257b12ac9fcef2066e7e1a56fc92ec9d3a5e58e5c043770c1f0ae0dc",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Радий Олов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "radiy-olov"
+    ],
+    "4-players": [
+     "radiy-olov"
+    ],
+    "5-players": [
+     "radiy-olov"
+    ],
+    "6-players": [
+     "radiy-olov"
+    ],
+    "7-players": [
+     "radiy-olov"
+    ]
+   },
+   "file": "radiy-olov--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "radiy-olov.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/assets/table/npcs-teya-morg.webp",
+   "sha256": "ac80930e7456b94f09d0c7420348db9c58af6e760e379d8820a58bc734867126",
+   "originalSha256": "ed534f76257b12ac9fcef2066e7e1a56fc92ec9d3a5e58e5c043770c1f0ae0dc",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тея Морг",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "teya-morg"
+    ],
+    "4-players": [
+     "teya-morg"
+    ],
+    "5-players": [
+     "teya-morg"
+    ],
+    "6-players": [
+     "teya-morg"
+    ],
+    "7-players": [
+     "teya-morg"
+    ]
+   },
+   "file": "teya-morg--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "teya-morg.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/assets/table/npcs-ivar-sol.webp",
+   "sha256": "47c01bc42440626670d2ab008fc5906e6a73369ded1cffa71dd7cf1530038d57",
+   "originalSha256": "ed534f76257b12ac9fcef2066e7e1a56fc92ec9d3a5e58e5c043770c1f0ae0dc",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ивар Соль",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ivar-sol"
+    ],
+    "4-players": [
+     "ivar-sol"
+    ],
+    "5-players": [
+     "ivar-sol"
+    ],
+    "6-players": [
+     "ivar-sol"
+    ],
+    "7-players": [
+     "ivar-sol"
+    ]
+   },
+   "file": "ivar-sol--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ivar-sol.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/assets/table/npcs-ulla-zhem.webp",
+   "sha256": "af86f0a794a142097a50767a6804187e0662e45009ad2437149c988a89878423",
+   "originalSha256": "ed534f76257b12ac9fcef2066e7e1a56fc92ec9d3a5e58e5c043770c1f0ae0dc",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Улла Жем",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ulla-zhem"
+    ],
+    "4-players": [
+     "ulla-zhem"
+    ],
+    "5-players": [
+     "ulla-zhem"
+    ],
+    "6-players": [
+     "ulla-zhem"
+    ],
+    "7-players": [
+     "ulla-zhem"
+    ]
+   },
+   "file": "ulla-zhem--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ulla-zhem.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/assets/table/npcs-kord-liss.webp",
+   "sha256": "b6771917085a0f081bf7e6cd5acff87d1e22c923c0c0db9a41e7d132d317547d",
+   "originalSha256": "ed534f76257b12ac9fcef2066e7e1a56fc92ec9d3a5e58e5c043770c1f0ae0dc",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Корд Лисс",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "kord-liss"
+    ],
+    "4-players": [
+     "kord-liss"
+    ],
+    "5-players": [
+     "kord-liss"
+    ],
+    "6-players": [
+     "kord-liss"
+    ],
+    "7-players": [
+     "kord-liss"
+    ]
+   },
+   "file": "kord-liss--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "kord-liss.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/moth-court/illustrations/opening.webp",
+   "sha256": "f367642d832caeb036e6484be4332df3a09be39a31c2580137cb997cc3f39252",
+   "originalSha256": "a615458e92aa5b9648bfbc8b0d299b3cbfa2f5dd66812a20755348a42ea1cf92",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дом поротых швов — Двор мотыльковых масок",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "sivern"
+    ],
+    "4-players": [
+     "sivern"
+    ],
+    "5-players": [
+     "sivern"
+    ],
+    "6-players": [
+     "sivern"
+    ],
+    "7-players": [
+     "sivern"
+    ]
+   },
+   "file": "cover.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "file": "reverse-room--map.webp",
+   "source": "campaigns/dark-fantasy-2026/moth-court/assets/battle-maps/reverse-room.webp",
+   "sha256": "fa7710563697b1df63836c95cc66c41ad83ad2a5b769ffbd08f899175f81dfde",
+   "originalSha256": "2a9816c35b7216e3a4f19d48ce023c48cb2b41174cce2b58781a2806b218c5ec",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Изнаночная. Visible scenery: Комната ухода за дорогими праздничными вещами, с мягкими рабочими столами, латунными стойками и дверьми для грузовых тележек.. World style: Сиверн под белым дождём · Iridescent charcoal silk brocade with symmetrical moth-wing scales in muted mauve. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "reverse-room.webp",
+   "subjects": {
+    "3-players": [
+     "reverse-room"
+    ],
+    "4-players": [
+     "reverse-room"
+    ],
+    "5-players": [
+     "reverse-room"
+    ],
+    "6-players": [
+     "reverse-room"
+    ],
+    "7-players": [
+     "reverse-room"
+    ]
+   }
+  },
+  {
+   "file": "wash-house--map.webp",
+   "source": "campaigns/dark-fantasy-2026/moth-court/assets/battle-maps/wash-house.webp",
+   "sha256": "bcdb80fdaaf2962ebba518aed437480e9753b543fbe49932e93b1cfae144f5cc",
+   "originalSha256": "63eeb8087d4fb501b4707b49c2fbcc950de043cd8814f88c0b7859b9a7a5107d",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Мойка белого шёлка. Visible scenery: Тёплое помещение с выжимными валами, корзинами и широкой платформой подъемника. На стене сохнут рабочие фартуки.. World style: Сиверн под белым дождём · Iridescent charcoal silk brocade with symmetrical moth-wing scales in muted mauve. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "wash-house.webp",
+   "subjects": {
+    "3-players": [
+     "wash-house"
+    ],
+    "4-players": [
+     "wash-house"
+    ],
+    "5-players": [
+     "wash-house"
+    ],
+    "6-players": [
+     "wash-house"
+    ],
+    "7-players": [
+     "wash-house"
+    ]
+   }
+  },
+  {
+   "file": "coach-yard--map.webp",
+   "source": "campaigns/dark-fantasy-2026/moth-court/assets/battle-maps/coach-yard.webp",
+   "sha256": "bf44fe92245a664a6a1b8cfd04afd3999c31b1a0be19960c97b35d28a8c8fadf",
+   "originalSha256": "4dcf6633604f875b165b7e59e853a075be3d4b32c87e5621e15d498e9581fd97",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Каретный двор. Visible scenery: Площадка между конюшней и воротами на боковую улицу. У стены ждут ручные повозки, крытая карета и пустые транспортные ящики.. World style: Сиверн под белым дождём · Iridescent charcoal silk brocade with symmetrical moth-wing scales in muted mauve. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "coach-yard.webp",
+   "subjects": {
+    "3-players": [
+     "coach-yard"
+    ],
+    "4-players": [
+     "coach-yard"
+    ],
+    "5-players": [
+     "coach-yard"
+    ],
+    "6-players": [
+     "coach-yard"
+    ],
+    "7-players": [
+     "coach-yard"
+    ]
+   }
+  },
+  {
+   "file": "world-map.webp",
+   "source": "campaigns/dark-fantasy-2026/moth-court/assets/world-map/world-map.webp",
+   "sha256": "2c41c51e6c234a4199fd56be58f1e4bd443f4510761bbf05f6218ddab1b6d624",
+   "originalSha256": "3c1288ea3bef771b9b2db7212eec373683accd866b965767f499712ea4896b71",
+   "generated": "2026-11-22",
+   "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Сиверн под белым дождём. Style Сиверн под белым дождём · Iridescent charcoal silk brocade with symmetrical moth-wing scales in muted mauve. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Дом поротых швов; 0.367,0.177 Кружевные ворота; 0.623,0.15 Мойка белого шёлка; 0.88,0.177 Зеркальная галерея; 0.905,0.517 Зал последнего вылета; 0.648,0.49 Колодец гирь; 0.392,0.517 Изнаночная; 0.135,0.49 Ночная оранжерея; 0.11,0.83 Каретный двор; 0.367,0.857 Тихие бани. Show public exteriors / unlabeled contours only.",
+   "references": [],
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null,
+   "subjects": {
+    "3-players": [
+     "world-map"
+    ],
+    "4-players": [
+     "world-map"
+    ],
+    "5-players": [
+     "world-map"
+    ],
+    "6-players": [
+     "world-map"
+    ],
+    "7-players": [
+     "world-map"
+    ]
+   }
+  }
+ ]
+}

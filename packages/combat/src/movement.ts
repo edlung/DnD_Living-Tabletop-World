@@ -56,6 +56,8 @@ export interface MovePlan {
   readonly vitals: Vitals;
   /** Half Speed to stand up from Prone first, or 0. */
   readonly standUpFt: number;
+  /** State at each legal intermediate step, where a reaction or a trap may interrupt. */
+  readonly progress: readonly { usedFt: number; squeezed: boolean; altitudeFt: number }[];
   /** Movement used this turn once the move is made. */
   readonly usedFt: number;
   /** Squeezed into a space a size smaller where the move ends (ADR 0049 §4). */
@@ -109,8 +111,10 @@ export function movePlan(
   // Every foot this turn counts against the speed of the way it moves now (ADR 0049 §5); Dash
   // adds the Speed once more (docs/adr/0045-conditions-and-actions.md §5).
   let usedFt = mover.turn.movementUsedFt + standUpFt;
+  const progress = [];
   for (const step of plan.steps) {
     usedFt += step.feet * drag;
+    progress.push({ usedFt, squeezed: step.squeezed, altitudeFt: step.altitudeFt });
     if (usedFt > wayOfSpeed(vitals, step.way) + (mover.turn.dashFt ?? 0))
       return { legal: false, reason: 'NOT_ENOUGH_MOVEMENT' };
   }
@@ -120,6 +124,7 @@ export function movePlan(
     legal: true,
     vitals,
     standUpFt,
+    progress,
     usedFt,
     squeezed: plan.squeezed,
     altitudeFt: plan.altitudeFt,
@@ -195,15 +200,13 @@ function walk(
     : stop === null
       ? path
       : path.slice(0, stop.walked);
-  let usedFt = mover.turn.movementUsedFt + whole.standUpFt;
-  let squeezed = mover.squeezed === true;
-  let altitudeFt = mover.altitudeFt ?? 0;
-  let landings: readonly number[] = [];
-  if (walked.length > 0) {
-    const part = movePlan(state, encounter, mover, walked, crawl);
-    if (!part.legal) throw new Error(`a walked part became illegal (${part.reason})`);
-    ({ usedFt, squeezed, altitudeFt, landings } = part);
-  }
+  // A reaction can pause inside an ally's square. This is a step through it on the original
+  // legal path, with its transit cost, even though it cannot be chosen as a destination.
+  const progress = whole.progress[walked.length - 1];
+  const usedFt = progress?.usedFt ?? mover.turn.movementUsedFt + whole.standUpFt;
+  const squeezed = progress?.squeezed ?? mover.squeezed === true;
+  const altitudeFt = progress?.altitudeFt ?? mover.altitudeFt ?? 0;
+  const landings = whole.landings.filter((index) => index < walked.length);
   const at = walked[walked.length - 1] ?? mover.position;
   // Squeezed where it stands, or whole again; its height there (docs/adr/0049-space-and-movement.md
   // §4, §6).

@@ -14,21 +14,21 @@
    "players": 6,
    "label": "6 игроков",
    "file": "packages/6-players.json",
-   "digest": "accf17aa3823bda0adcc28717c04d2e58da11bdb52785f0c2ef54ee1f2ac5c3d"
+   "digest": "7e9401cec5e73dde9e8abc01ce7f433c1cc8e8ae0db14ed38665449ac35774bd"
   },
   {
    "id": "7-players",
    "players": 7,
    "label": "7 игроков",
    "file": "packages/7-players.json",
-   "digest": "4cfa5a3d87e2df99260c901e1f0991935b56dcf1385ebbb2f36f915cdf526540"
+   "digest": "8e9148237e366d3df58533b9043f4011f06d4f814031dfa35b40349866f1c4b5"
   },
   {
    "id": "8-players",
    "players": 8,
    "label": "8 игроков",
    "file": "packages/8-players.json",
-   "digest": "c6b1209bea9d79fcc641195fa130a6d83def8db51cdf4713bce0b16674c69d8d"
+   "digest": "a2d24bcfd5b380de6b21152b887b5635723e84a3fb6a03df9e54cef475aa023e"
   }
  ],
  "generator": "codex-cli imagegen",
@@ -1422,6 +1422,288 @@
    "label": "figure",
    "purpose": "figure",
    "derivedFrom": "yust-edge.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/illustrations/cards/travel-kit.webp",
+   "sha256": "9816371dde1812d29fa4a561e7144adcb86f9db57d099ca9d3edf8b5ee11c2b9",
+   "originalSha256": "49f5266df0b1b3afc773777b053c31850e775ea9a4f5f65c9d6f3a725a4d40ef",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дорожный набор",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "keya-larch-travel-kit",
+     "levrin-slope-travel-kit",
+     "olma-pack-travel-kit",
+     "radan-seam-travel-kit",
+     "sevar-pole-travel-kit",
+     "tirna-hearth-travel-kit"
+    ],
+    "7-players": [
+     "eyra-beam-travel-kit",
+     "keya-larch-travel-kit",
+     "levrin-slope-travel-kit",
+     "olma-pack-travel-kit",
+     "radan-seam-travel-kit",
+     "sevar-pole-travel-kit",
+     "tirna-hearth-travel-kit"
+    ],
+    "8-players": [
+     "eyra-beam-travel-kit",
+     "keya-larch-travel-kit",
+     "levrin-slope-travel-kit",
+     "olma-pack-travel-kit",
+     "radan-seam-travel-kit",
+     "sevar-pole-travel-kit",
+     "tirna-hearth-travel-kit",
+     "yust-edge-travel-kit"
+    ]
+   },
+   "file": "travel-kit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/table/npcs-bresha-kalt.webp",
+   "sha256": "d140e9a108711a48d37b8d90436b9c1b2556f28dbba22606ec395b23f01d8831",
+   "originalSha256": "c58cb07ab70f1ced153e2bac1ff7212b762cc686bd5af64a65b65a90cb46a3d6",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Бреша Кальт",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "bresha-kalt"
+    ],
+    "7-players": [
+     "bresha-kalt"
+    ],
+    "8-players": [
+     "bresha-kalt"
+    ]
+   },
+   "file": "bresha-kalt--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "bresha-kalt.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/table/npcs-tarma-bor.webp",
+   "sha256": "196837aaca4a041f26368cac889992f4c5cb4170a404b764c743e30e8248567a",
+   "originalSha256": "c58cb07ab70f1ced153e2bac1ff7212b762cc686bd5af64a65b65a90cb46a3d6",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тарма Вязь",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "tarma-bor"
+    ],
+    "7-players": [
+     "tarma-bor"
+    ],
+    "8-players": [
+     "tarma-bor"
+    ]
+   },
+   "file": "tarma-bor--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "tarma-bor.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/table/npcs-selda-nest.webp",
+   "sha256": "bd1d50db32820e151c7fe1a0ebc6d5d0c7427894b5a5adbf840e379fb7794ea8",
+   "originalSha256": "c58cb07ab70f1ced153e2bac1ff7212b762cc686bd5af64a65b65a90cb46a3d6",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сельда Нест",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "selda-nest"
+    ],
+    "7-players": [
+     "selda-nest"
+    ],
+    "8-players": [
+     "selda-nest"
+    ]
+   },
+   "file": "selda-nest--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "selda-nest.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/table/npcs-kheret-vall.webp",
+   "sha256": "40e85d03b2324b7cb7883dfa669e181736d0608ddda1bb4c9289d83d696fd692",
+   "originalSha256": "c58cb07ab70f1ced153e2bac1ff7212b762cc686bd5af64a65b65a90cb46a3d6",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Херет Валл",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "kheret-vall"
+    ],
+    "7-players": [
+     "kheret-vall"
+    ],
+    "8-players": [
+     "kheret-vall"
+    ]
+   },
+   "file": "kheret-vall--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "kheret-vall.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/table/npcs-oshven-il.webp",
+   "sha256": "279839c0d876ce7e2d98fb7d67ea413d2906b4af7d81eb019835239bc41e90f7",
+   "originalSha256": "c58cb07ab70f1ced153e2bac1ff7212b762cc686bd5af64a65b65a90cb46a3d6",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ошвен Иль",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "oshven-il"
+    ],
+    "7-players": [
+     "oshven-il"
+    ],
+    "8-players": [
+     "oshven-il"
+    ]
+   },
+   "file": "oshven-il--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "oshven-il.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/table/npcs-malken-rusk.webp",
+   "sha256": "4b5cc859efdb37581feab59a7e1643c33d623ef064ebc8fda636b0b4237df2fa",
+   "originalSha256": "2d88ff7d361ea0f4dbb31f0f8d1deafad90a4a63a023516fe9220e3b2d689f6c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Малкен Руск",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "malken-rusk"
+    ],
+    "7-players": [
+     "malken-rusk"
+    ],
+    "8-players": [
+     "malken-rusk"
+    ]
+   },
+   "file": "malken-rusk--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "malken-rusk.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/table/npcs-yavra-kest.webp",
+   "sha256": "36a2aa1dce520ff2ead57e5d2a1b1833aa1900a2f7c85a5dfac294c0b25ddb9b",
+   "originalSha256": "2d88ff7d361ea0f4dbb31f0f8d1deafad90a4a63a023516fe9220e3b2d689f6c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Явра Кест",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "yavra-kest"
+    ],
+    "7-players": [
+     "yavra-kest"
+    ],
+    "8-players": [
+     "yavra-kest"
+    ]
+   },
+   "file": "yavra-kest--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "yavra-kest.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/table/npcs-alda-shorn.webp",
+   "sha256": "5686b2a586bb8e5442e7429308678e63a485d41eed27f8a7e6da86f5a024f08b",
+   "originalSha256": "2d88ff7d361ea0f4dbb31f0f8d1deafad90a4a63a023516fe9220e3b2d689f6c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Алда Шорн",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "alda-shorn"
+    ],
+    "7-players": [
+     "alda-shorn"
+    ],
+    "8-players": [
+     "alda-shorn"
+    ]
+   },
+   "file": "alda-shorn--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "alda-shorn.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/table/npcs-vavila-ukhab.webp",
+   "sha256": "25b6e7a4a70fa26486794b792800da197cda7ff943df42b97d54c6afc4637650",
+   "originalSha256": "2d88ff7d361ea0f4dbb31f0f8d1deafad90a4a63a023516fe9220e3b2d689f6c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Вавила Ухаб",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "vavila-ukhab"
+    ],
+    "7-players": [
+     "vavila-ukhab"
+    ],
+    "8-players": [
+     "vavila-ukhab"
+    ]
+   },
+   "file": "vavila-ukhab--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "vavila-ukhab.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/winter-caravan/assets/table/npcs-glafira-lyamka.webp",
+   "sha256": "525d2a822dc0a27d4af72cf057eb2ab751df11fd4290fc70601fb1f93e4684b1",
+   "originalSha256": "2d88ff7d361ea0f4dbb31f0f8d1deafad90a4a63a023516fe9220e3b2d689f6c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Глафира Лямка",
+   "references": [],
+   "subjects": {
+    "6-players": [
+     "glafira-lyamka"
+    ],
+    "7-players": [
+     "glafira-lyamka"
+    ],
+    "8-players": [
+     "glafira-lyamka"
+    ]
+   },
+   "file": "glafira-lyamka--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "glafira-lyamka.webp"
   },
   {
    "file": "smoke-junction--map.webp",

@@ -1,0 +1,12 @@
+{
+  "about": "Original unlabelled world map. Pin positions in source/world-map.json.",
+  "map": {
+    "file": "world-map.webp",
+    "sha256": "32c29b1076da6a89b960dfd53fc990768f3815eccb079f12e18200931984c451",
+    "originalSha256": "9c5e181abc37b73204b1abec7c330ad2c993c9fa72857b0a0e5652f24bde5bac",
+    "originalFile": "exec-42747815-f8c0-4a3e-ad58-e58807d5819a.png",
+    "generated": "2026-11-22",
+    "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Долина Лунного Кедра. Style Долина Лунного Кедра · Cedar wood end grain with team ribbon loops and four open circles in green lacquer. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Мостовой Двор; 0.367,0.177 Ворота Четырёх Лент; 0.623,0.15 Лунный Круг; 0.88,0.177 Двор Тихого Камня; 0.905,0.517 Галерея Летящей Ленты; 0.648,0.49 Двор Пустой Чаши; 0.392,0.517 Чайная Под Корнями; 0.135,0.49 Ступени Тренировки; 0.11,0.83 Комната Фонарей. Show public exteriors / unlabeled contours only.",
+    "references": []
+  }
+}

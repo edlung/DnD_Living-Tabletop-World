@@ -1,0 +1,59 @@
+{
+  "region": "steklen",
+  "name": "Карта · Стеклён",
+  "description": "План местности «Стеклён». На карте отмечаются места, известные группе.",
+  "pins": [
+    {
+      "place": "weather-bureau",
+      "x": 0.11,
+      "y": 0.15
+    },
+    {
+      "place": "folded-post",
+      "x": 0.367,
+      "y": 0.177
+    },
+    {
+      "place": "button-cafe",
+      "x": 0.623,
+      "y": 0.15
+    },
+    {
+      "place": "dry-archive",
+      "x": 0.88,
+      "y": 0.177
+    },
+    {
+      "place": "closed-cinema",
+      "x": 0.905,
+      "y": 0.517
+    },
+    {
+      "place": "trolley-wash",
+      "x": 0.648,
+      "y": 0.49
+    },
+    {
+      "place": "seed-glasshouse",
+      "x": 0.392,
+      "y": 0.517
+    },
+    {
+      "place": "moving-hall",
+      "x": 0.135,
+      "y": 0.49
+    },
+    {
+      "place": "measure-yard",
+      "x": 0.11,
+      "y": 0.83
+    },
+    {
+      "place": "civic-table",
+      "x": 0.367,
+      "y": 0.857
+    }
+  ],
+  "routes": [],
+  "scale": "schematic"
+}

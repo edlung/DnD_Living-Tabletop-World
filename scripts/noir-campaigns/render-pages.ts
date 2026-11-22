@@ -1,3 +1,5 @@
+import { castCards } from '../campaign-shared/cast-cards.ts';
+import { openingPicture, tableGuide } from '../campaign-shared/table-guide.ts';
 import { heroSheet } from './sheets.ts';
 import { artOf, figure } from '../campaign-shared/campaign-art.ts';
 import { COLLECTION_ROOT, type Source } from './source.ts';
@@ -17,6 +19,7 @@ const artFor = (s: Source) => artOf(new URL(`${s.world.slug}/`, COLLECTION_ROOT)
 export function renderDm(s: Source): string {
   const { world: w, cast } = s;
   const art = artFor(s);
+  const portrait = castCards(new URL(`${w.slug}/`, COLLECTION_ROOT));
   const sessions = s.sessions
     .map(
       (session) =>
@@ -27,7 +30,7 @@ export function renderDm(s: Source): string {
     .map((n) =>
       box(
         n.name,
-        figure(art, n.key) +
+        (figure(art, n.key) || portrait(n.key)) +
           p(`${n.age} лет. ${n.look} ${n.public}`) +
           p(`Место: ${w.locations.find((l) => l.key === n.location)?.name ?? n.location}`) +
           '<h3>Намерение</h3>' +
@@ -46,6 +49,8 @@ export function renderDm(s: Source): string {
     w.title,
     `Книга ведущего · ${w.genre} · ${w.audience} · 3–8 игроков + ведущий`,
     `${figure(art, 'cover', '', 'art cover')}<div class="lead">${p(w.pitch)}</div>` +
+      openingPicture(new URL(`${s.world.slug}/`, COLLECTION_ROOT)) +
+      tableGuide(new URL(`${s.world.slug}/`, COLLECTION_ROOT)) +
       box(
         'За десять минут до первой игры',
         list([
@@ -55,7 +60,7 @@ export function renderDm(s: Source): string {
           'Откройте Мастерскую проекта, создайте личный черновик и импортируйте выбранный JSON через загрузку пакета. Проверьте состав и начало в предпросмотре. Запуск кампании подтверждает ведущий штатным действием.',
           art.size
             ? `Иллюстрации кампании (${art.size}) лежат в assets/ и показываются в книге; в уже запущенную кампанию их переносит scripts/campaign-shared/import-art.ts.`
-            : 'При текстовом запуске используйте штатный режим без изображений. Здесь есть тактические схемы, но нет сгенерированных иллюстраций.',
+            : 'Откройте иллюстрацию завязки отдельно. Портреты героев входят в файл для игроков, портреты встречных — в книгу ведущего. Тактические схемы доступны в разделе карт.',
         ]) + `<div class="actions">${sizes(s)}</div>`,
       ) +
       box(
@@ -135,6 +140,7 @@ export function renderDm(s: Source): string {
 export function renderPlayers(s: Source, css: string): string {
   const { world: w } = s;
   const art = artFor(s);
+  const portrait = castCards(new URL(`${w.slug}/`, COLLECTION_ROOT));
   const sheets = s.cast.heroes
     .map((h, i) => {
       const sheet = heroSheet(h.archetype);
@@ -142,7 +148,7 @@ export function renderPlayers(s: Source, css: string): string {
       const numbers = `Сила ${abilities.str} · Ловкость ${abilities.dex} · Телосложение ${abilities.con} · Интеллект ${abilities.int} · Мудрость ${abilities.wis} · Харизма ${abilities.cha}`;
       const spells = 'Нет; сверхъестественные способности отключены';
       const weapons = 'Посох — условный профиль ближнего боя';
-      return `<div class="hero-entry">${heroCard(h, figure(art, h.key))}<section class="panel sheet"><h3>${i < 3 ? 'Основное трио' : `Место ${i + 1}`}</h3>${p(`Здоровье ${sheet.hitPoints.max}; защита ${sheet.armorClass}; скорость 30 футов; одна атака за действие.`)}${p(numbers)}${p(`Оружие: ${weapons}. Заклинания: ${spells}.`)}${p(sheet.spellcasting.length ? 'Ячейки: четыре первого круга и две второго. Расход и восстановление — по правилам приложения.' : 'Приёмы и проверки — по правилам приложения.')}${p('Образ героя свободно меняется вместе с ведущим. Числа соответствуют готовому листу уровня 3. Художественное устройство или талант не даёт дополнительных автоматических способностей.')}</section></div>`;
+      return `<div class="hero-entry">${heroCard(h, figure(art, h.key) || portrait(h.key, true))}<section class="panel sheet"><h3>${i < 3 ? 'Основное трио' : `Место ${i + 1}`}</h3>${p(`Здоровье ${sheet.hitPoints.max}; защита ${sheet.armorClass}; скорость 30 футов; одна атака за действие.`)}${p(numbers)}${p(`Оружие: ${weapons}. Заклинания: ${spells}.`)}${p(sheet.spellcasting.length ? 'Ячейки: четыре первого круга и две второго. Расход и восстановление — по правилам приложения.' : 'Приёмы и проверки — по правилам приложения.')}${p('Образ героя свободно меняется вместе с ведущим. Числа соответствуют готовому листу уровня 3. Художественное устройство или талант не даёт дополнительных автоматических способностей.')}</section></div>`;
     })
     .join('');
   return standalone(
@@ -192,7 +198,7 @@ export function renderCatalog(sources: Source[]): string {
       box(
         'Материалы готовы к подготовке игры',
         p(
-          'У каждой кампании: восемь вечеров, восемь героев, отдельный файл для игроков, раздатки, необязательные встречи с картами и шесть пакетов для импорта. Игрокам передавайте players.html и только уже открытые раздатки. Книги ведущего, пакеты и исходники содержат секреты.',
+          'У каждой кампании: восемь вечеров, восемь героев, отдельный файл для игроков, раздатки, встречи с картами и условиями начала и шесть пакетов для импорта. Игрокам передавайте players.html и только уже открытые раздатки. Книги ведущего, пакеты и исходники содержат секреты.',
         ),
       ),
     '',

@@ -1,0 +1,49 @@
+{
+  "maps": [
+    {
+      "file": "clinker-span.webp",
+      "sha256": "83cd5763ceb7b16a4f69886dce6cfc90b7e0dc432dda0731ff9c01b8eb199717",
+      "originalSha256": "570f7473cdf4823f435976a73d125ce359fab373db01c6c76b3e25c55d8defb2",
+      "originalFile": "exec-ba5890ac-d897-43be-81e7-afafa4b54971.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Шлаковый пролёт. Visible scenery: Мост из матовых плит идёт между пустыми формами огромных ладоней. В его решётке блестят тонкие металлические полосы.. World style: Аш-Кер над пределом Ирд · Obsidian-black forge scale with repeated eclipse arcs and little copper hammer marks. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "clinker-span",
+      "encounter": "thread-watch",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "blind-jaw.webp",
+      "sha256": "1b7dd4cfa0466e5057dfece3163b776b9fab0937793130ff4c12c59a1ad1451f",
+      "originalSha256": "3a11b8bdbd60060be9f82d364394398b591cafe239f0fe567a6dcabf349b539f",
+      "originalFile": "exec-bc624466-296e-42f5-a84c-ee8712b33b7e.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Слепая пасть. Visible scenery: Две низкие чаши стоят под закрытым каменным веком. Рядом лежат щипцы, бруски глины и шесть пустых песочных горлышек.. World style: Аш-Кер над пределом Ирд · Obsidian-black forge scale with repeated eclipse arcs and little copper hammer marks. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "blind-jaw",
+      "encounter": "clinker-collectors",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "threshold-hall.webp",
+      "sha256": "fe0c8023eafc12797089615c5bb39c54aca81212965b0b7090610612e38d8631",
+      "originalSha256": "a25ac87978321066a31bb719078a97f109f6ee80751993be02af434a1ca4fd95",
+      "originalFile": "exec-efffc025-daab-4ae3-87a1-a6defdb8b6c8.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Зал незамкнутого порога. Visible scenery: Две створки ворот не касаются друг друга. Между ними стоят пустые носилки, ручной ворот и каменная чаша размером с походный стол.. World style: Аш-Кер над пределом Ирд · Obsidian-black forge scale with repeated eclipse arcs and little copper hammer marks. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "threshold-hall",
+      "encounter": "seal-carriers",
+      "grid": [
+        14,
+        12
+      ]
+    }
+  ]
+}

@@ -1,0 +1,339 @@
+{
+  "about": "Портреты для карточек и изображение закрытого набора. Сначала сверяйте личность и доступность персонажа за столом.",
+  "generated": "2026-11-22",
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "heroes",
+      "originalFile": "exec-77702541-95ae-4e66-bf8e-76ed8508a59a.png",
+      "originalSha256": "de443504ab7384e6165cff53e288e832917d3a18eb5e656714a2ad516830f29e",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 3 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:3. Dark folklore portraits in tempera, rich earth pigments, expressive features, soft daylight. World: Вересковый Порог. Characters, in strict cell order:\n1. Арина Клен — Короткий синий плащ, мел на перчатке и щит с нарисованной лестницей. Age 17.\n2. Яр Глен — Кожаный тубус, разноцветные шнурки на рукаве и привычка рисовать пальцем в воздухе. Age 35.\n3. Мира Сив — Медный значок открытой ладони, тёплый шарф и маленькая жестяная чашка на поясе. Age 26.\n4. Ольта Ренн — Серое дорожное платье, квадратные очки и блокнот с рисунками листьев вместо заклинательных печатей. Age 19.\n5. Сава Тес — Стёганая куртка, перевязанный ремешком посох и две разные варежки. Age 46.\n6. Ника Орс — Короткие косы, пояс с деревянными фишками и плащ цвета мокрой хвои. Age 16.\n7. Терен Ясен — Плащ с широкими карманами, седая борода и нитка на запястье, которой он отмечает нужную страницу. Age 58.\n8. Дорожный / рабочий набор — Still life of one opaque closed everyday satchel, appropriate to this world and era. No person and nothing spilling out.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 3,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "npcs",
+      "originalFile": "exec-d88c97fe-7c87-4654-b89c-ac7b10a9f8df.png",
+      "originalSha256": "296f2ce412700ee18264ee946d4d15d54399bc389be24f97a5c1fb0c798b8b82",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 3 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:3. Dark folklore portraits in tempera, rich earth pigments, expressive features, soft daylight. World: Вересковый Порог. Characters, in strict cell order:\n1. Рада Лис — Женщина в плаще с аккуратно заштопанными локтями; на ремне висит деревянный половник. Age 45.\n2. Нерин Сор — Худощавый человек с белой глиной на сапогах и складной чашей за поясом. Age 38.\n3. Сив Орвен — Садовник с поседевшими висками и перчатками, на которых вышиты разные листья. Age 49.\n4. Илла Дальм — Швея с серебряным напёрстком на цепочке и дорожной сумкой из разноцветных лоскутов. Age 53.\n5. Торв Эсна — Каменщик с низким голосом, в коротком фартуке и с деревянной мерной рейкой. Age 56.\n6. Дея Верес — Переписчица в тёмно-жёлтом капюшоне, с дощечкой и мелом вместо дорогих чернил. Age 28.\n7. Эльсена Вей — Рыцарь в потемневшем доспехе, с веточками на наплечниках и длинным серым полотнищем вместо герба. Age 46.\n8. Тихий Садовник — Высокая деревянная фигура с гладкой садовой маской; на ладонях лежат сухие семена. Age 113.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 3,
+      "width": 1254,
+      "height": 1254
+    }
+  ],
+  "cards": [
+    {
+      "id": "arina-klen",
+      "file": "cards/arina-klen.webp",
+      "title": "Арина Клен",
+      "subjects": [
+        "arina-klen"
+      ],
+      "sheet": "heroes",
+      "cell": 1,
+      "crop": {
+        "left": 10,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "3fb3074156c5a7140854093d8963fb28717579feb524fbae85b572a959fca2bb"
+    },
+    {
+      "id": "yar-glen",
+      "file": "cards/yar-glen.webp",
+      "title": "Яр Глен",
+      "subjects": [
+        "yar-glen"
+      ],
+      "sheet": "heroes",
+      "cell": 2,
+      "crop": {
+        "left": 428,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "81de4c27a743d7ea56289f6936165036a1e4249ea3ff61aa28af4b5fe6e398ab"
+    },
+    {
+      "id": "mira-siv",
+      "file": "cards/mira-siv.webp",
+      "title": "Мира Сив",
+      "subjects": [
+        "mira-siv"
+      ],
+      "sheet": "heroes",
+      "cell": 3,
+      "crop": {
+        "left": 846,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "7d77d1c748669383849fb0d4935495ca693eb8629468762be13f6f20f31b1bdc"
+    },
+    {
+      "id": "olta-renn",
+      "file": "cards/olta-renn.webp",
+      "title": "Ольта Ренн",
+      "subjects": [
+        "olta-renn"
+      ],
+      "sheet": "heroes",
+      "cell": 4,
+      "crop": {
+        "left": 10,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "7ed1fd560a085660d0d4c812b627f4250973554aadb0677c171b7d1edf98ad2e"
+    },
+    {
+      "id": "sava-tes",
+      "file": "cards/sava-tes.webp",
+      "title": "Сава Тес",
+      "subjects": [
+        "sava-tes"
+      ],
+      "sheet": "heroes",
+      "cell": 5,
+      "crop": {
+        "left": 428,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "459b16b8627f11b54ea1ac15e7bd3431832b023ec0e02cb75fd93d4325942607"
+    },
+    {
+      "id": "nika-ors",
+      "file": "cards/nika-ors.webp",
+      "title": "Ника Орс",
+      "subjects": [
+        "nika-ors"
+      ],
+      "sheet": "heroes",
+      "cell": 6,
+      "crop": {
+        "left": 846,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "b0cc5e57a8d4c3158140242cde39e96207d96c04533e2d7ab31263aaee8da757"
+    },
+    {
+      "id": "teren-yasen",
+      "file": "cards/teren-yasen.webp",
+      "title": "Терен Ясен",
+      "subjects": [
+        "teren-yasen"
+      ],
+      "sheet": "heroes",
+      "cell": 7,
+      "crop": {
+        "left": 10,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "94c01b623e53f15185fbe4b614fdf3cbebd823c49e9582a7e683f40828ca097c"
+    },
+    {
+      "id": "travel-kit",
+      "file": "cards/travel-kit.webp",
+      "title": "Дорожный набор",
+      "subjects": [
+        "arina-klen-travel-kit",
+        "mira-siv-travel-kit",
+        "nika-ors-travel-kit",
+        "olta-renn-travel-kit",
+        "sava-tes-travel-kit",
+        "teren-yasen-travel-kit",
+        "yar-glen-travel-kit"
+      ],
+      "sheet": "heroes",
+      "cell": 8,
+      "crop": {
+        "left": 428,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "6cce237d0d5bc7b0e0f88dcc0f94c09945b6031cedcba92f8e9e3fba0a31a5a5"
+    },
+    {
+      "id": "rada-lis",
+      "file": "cards/rada-lis.webp",
+      "title": "Рада Лис",
+      "subjects": [
+        "rada-lis"
+      ],
+      "sheet": "npcs",
+      "cell": 1,
+      "crop": {
+        "left": 10,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "b9a2d803c8d013f29afa1fd3f2643e24eeacf2833df623d2aa154283362df908"
+    },
+    {
+      "id": "nerin-sor",
+      "file": "cards/nerin-sor.webp",
+      "title": "Нерин Сор",
+      "subjects": [
+        "nerin-sor"
+      ],
+      "sheet": "npcs",
+      "cell": 2,
+      "crop": {
+        "left": 428,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "0244bba79612b505dec8416da6d50c2873110f8e6579ce22dbaf2e5987cde725"
+    },
+    {
+      "id": "siv-orven",
+      "file": "cards/siv-orven.webp",
+      "title": "Сив Орвен",
+      "subjects": [
+        "siv-orven"
+      ],
+      "sheet": "npcs",
+      "cell": 3,
+      "crop": {
+        "left": 846,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "bd114340ca61b1e0af7438925022626cdb6603b5a355ccfe5d51b8eb6ac2c0ad"
+    },
+    {
+      "id": "illa-dalm",
+      "file": "cards/illa-dalm.webp",
+      "title": "Илла Дальм",
+      "subjects": [
+        "illa-dalm"
+      ],
+      "sheet": "npcs",
+      "cell": 4,
+      "crop": {
+        "left": 10,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "2a790cfcd182fa32941c2e2ef4d6e40f13a8230712055e45bd289bd0103ede31"
+    },
+    {
+      "id": "torv-esna",
+      "file": "cards/torv-esna.webp",
+      "title": "Торв Эсна",
+      "subjects": [
+        "torv-esna"
+      ],
+      "sheet": "npcs",
+      "cell": 5,
+      "crop": {
+        "left": 428,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "76a9c85313bae7c3deec7b0f476d721649793042ccc771a851cbf0dc1119c2fe"
+    },
+    {
+      "id": "deya-veres",
+      "file": "cards/deya-veres.webp",
+      "title": "Дея Верес",
+      "subjects": [
+        "deya-veres"
+      ],
+      "sheet": "npcs",
+      "cell": 6,
+      "crop": {
+        "left": 846,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "ba038445f97f7de6a7d88758ee0af52997a3692d7df39b7e3c453f7a99b13d25"
+    },
+    {
+      "id": "elsen-vey",
+      "file": "cards/elsen-vey.webp",
+      "title": "Эльсена Вей",
+      "subjects": [
+        "elsen-vey"
+      ],
+      "sheet": "npcs",
+      "cell": 7,
+      "crop": {
+        "left": 10,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "8150eb0c8d9d1cf71f5c536ba43365f31362a991c0112033a8151a65986a9cd0"
+    },
+    {
+      "id": "quiet-gardener",
+      "file": "cards/quiet-gardener.webp",
+      "title": "Тихий Садовник",
+      "subjects": [
+        "quiet-gardener"
+      ],
+      "sheet": "npcs",
+      "cell": 8,
+      "crop": {
+        "left": 428,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "29e6c55e57db2c7e33f5545b368fc5fd053abeab1ab4cd86287a397873d7a26b"
+    }
+  ]
+}

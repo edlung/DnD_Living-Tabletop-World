@@ -1,0 +1,34 @@
+{
+  "maps": [
+    {
+      "file": "winter-salon.webp",
+      "sha256": "e84854e98ddb84265d51cd3c89f57337e92ae6a0fcf10a1a668a194560750758",
+      "originalSha256": "81a750c83d61d9bd5515e75f5eef831b12b95a2821a177f984708dc9a75140d1",
+      "originalFile": "exec-bd49499a-784d-45fe-b720-42b11aba7928.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Зимний салон. Visible scenery: Тёплая галерея с плотными шторами, переносными стойками и отдельной комнатой для спокойного выбора картины.. World style: Вязовск · Discreet yellow-garden paint flecks and twin gilded frame corners on bottle-green canvas. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "winter-salon",
+      "encounter": "crowded-doorway",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "frame-workshop.webp",
+      "sha256": "8c59f11dcd04c42f5b67bc945df5dce27d813ec6e57d7a6fa79b08ced051af92",
+      "originalSha256": "45762117e9163b0eaf5da67cc6491545aaac3b7b793b1366e3a500a950408c0c",
+      "originalFile": "exec-3d287bd0-7983-4004-a43a-a6b6b7af1588.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Багетная Орлова. Visible scenery: Пахнущая деревом мастерская; вдоль стены стоят угловые образцы рам, мерные полосы и подписанные картонные макеты.. World style: Вязовск · Discreet yellow-garden paint flecks and twin gilded frame corners on bottle-green canvas. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "frame-workshop",
+      "encounter": "frame-passage",
+      "grid": [
+        14,
+        12
+      ]
+    }
+  ]
+}

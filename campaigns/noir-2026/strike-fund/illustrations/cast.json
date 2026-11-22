@@ -1,0 +1,359 @@
+{
+  "about": "Портреты для карточек и изображение закрытого набора. Сначала сверяйте личность и доступность персонажа за столом.",
+  "generated": "2026-11-22",
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "heroes",
+      "originalFile": "exec-aaaf0928-540d-44c3-87aa-05fe8db60e0c.png",
+      "originalSha256": "68977aaba0431767f73b970f2039ad83dd12655f65d0a5286af266fde99dc206",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 3 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:3. Period noir editorial illustration, restrained charcoal, diffuse lamp and amber light. World: Речной Клин. Characters, in strict cell order:\n1. Нина Баженова — Короткое пальто, крепкая нить на запястье, привычка складывать мокрые вещи отдельно. Age 34.\n2. Семён Орлов — Старый форменный жилет, аккуратно заштопанные рукава и усталая открытая улыбка. Age 46.\n3. Ольга Яровая — Тёмный шарф, блокнот с чистыми страницами для чужих записок, спокойная речь. Age 39.\n4. Алексей Метлин — Чернильный след на большом пальце, очки в починенной оправе, ровно подрезанные карточки. Age 28.\n5. Злата Тихова — Плащ до колен, сухой мешок на ремне, маленький колокольчик вместо громкого окрика. Age 32.\n6. Руслан Елов — Широкие ладони, чистый воротник и бумажный футляр для карандашей, которые он одалживает всем. Age 56.\n7. Борис Дрозд — Светлые стружки на манжете, медленные движения, маленькая записная книжка с рисунками. Age 47.\n8. Елена Красина — Простой костюм, короткий карандаш на шнурке, привычка оставлять место для исправлений. Age 43.\n9. Дорожный / рабочий набор — Still life of one opaque closed everyday satchel, appropriate to this world and era. No person and nothing spilling out.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 3,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "npcs",
+      "originalFile": "exec-1df67ef6-2bdf-4d7f-8966-893ef2274b83.png",
+      "originalSha256": "d6e6ef0fbc1a366003796fc7ddf6d271f88cbdeedd691dc438abb8a70b8c42c8",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 3 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:3. Period noir editorial illustration, restrained charcoal, diffuse lamp and amber light. World: Речной Клин. Characters, in strict cell order:\n1. Лидия Рябцева — Серая кофта, красный след от ручки денежного ящика на ладони, тщательно выровненные конверты. Age 48.\n2. Глеб Сумарин — Хорошо подогнанный плащ, потёртый портфель и вежливое обращение к каждому по имени. Age 44.\n3. Рада Мельник — Закатанные рукава, связка обычных комнатных ключей, чашка, которую она постоянно забывает допить. Age 36.\n4. Тамара Вязова — Брезентовый фартук, коротко остриженные волосы, счётные камешки на подоконнике будки. Age 53.\n5. Иосиф Карцев — Тёмные нарукавники, невысохшее пятно на щеке и стопка бумаги, прижатая гладким камнем. Age 31.\n6. Марфа Теслина — Белая косынка, медные пуговицы и привычка сначала придвинуть человеку стул. Age 62.\n7. Захар Ремез — Чистые перчатки поверх испачканных манжет, тяжёлая лампа и тихая привычка пересчитывать заказы. Age 41.\n8. Вера Зорина — Потёртая сумка для камеры, длинные шарфы вместо ремней и картонная папка под плащом. Age 27.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 3,
+      "width": 1254,
+      "height": 1254
+    }
+  ],
+  "cards": [
+    {
+      "id": "nina-bazhenova",
+      "file": "cards/nina-bazhenova.webp",
+      "title": "Нина Баженова",
+      "subjects": [
+        "nina-bazhenova"
+      ],
+      "sheet": "heroes",
+      "cell": 1,
+      "crop": {
+        "left": 10,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "f18d02e43e21946afe57d86b2df58839a00dfc6d208e41bfc35d4e4ca0f0bc74"
+    },
+    {
+      "id": "semen-orlov",
+      "file": "cards/semen-orlov.webp",
+      "title": "Семён Орлов",
+      "subjects": [
+        "semen-orlov"
+      ],
+      "sheet": "heroes",
+      "cell": 2,
+      "crop": {
+        "left": 428,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "0c37f85110ff6556fa3f5d166ba9466c5dd77dc8f7257870e73ed7746763198d"
+    },
+    {
+      "id": "olga-yarovaya",
+      "file": "cards/olga-yarovaya.webp",
+      "title": "Ольга Яровая",
+      "subjects": [
+        "olga-yarovaya"
+      ],
+      "sheet": "heroes",
+      "cell": 3,
+      "crop": {
+        "left": 846,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "6cabae282900a4cd8cd18da6569df7875250a317f3823fa71a45e4aa9c5623ac"
+    },
+    {
+      "id": "alexey-metlin",
+      "file": "cards/alexey-metlin.webp",
+      "title": "Алексей Метлин",
+      "subjects": [
+        "alexey-metlin"
+      ],
+      "sheet": "heroes",
+      "cell": 4,
+      "crop": {
+        "left": 10,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "437ec5fdeb6bdb4cac6ee2a9d02c56770741919060c35f7e37915ecc2c7f0815"
+    },
+    {
+      "id": "zlata-tikhova",
+      "file": "cards/zlata-tikhova.webp",
+      "title": "Злата Тихова",
+      "subjects": [
+        "zlata-tikhova"
+      ],
+      "sheet": "heroes",
+      "cell": 5,
+      "crop": {
+        "left": 428,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "7ccec6ece6607f12c7730bef7115ed0669df23faaa5773bec70f58797e91b958"
+    },
+    {
+      "id": "ruslan-elov",
+      "file": "cards/ruslan-elov.webp",
+      "title": "Руслан Елов",
+      "subjects": [
+        "ruslan-elov"
+      ],
+      "sheet": "heroes",
+      "cell": 6,
+      "crop": {
+        "left": 846,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "aad13309987a8c9799f8b6d5c2d42af53ca7ce69cd031ebef08e16a639bf0e73"
+    },
+    {
+      "id": "boris-drozd",
+      "file": "cards/boris-drozd.webp",
+      "title": "Борис Дрозд",
+      "subjects": [
+        "boris-drozd"
+      ],
+      "sheet": "heroes",
+      "cell": 7,
+      "crop": {
+        "left": 10,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "8572974e4094a702508bc4e10130ca42f6460b3d65c80513dcf099e45aa2e225"
+    },
+    {
+      "id": "elena-krasina",
+      "file": "cards/elena-krasina.webp",
+      "title": "Елена Красина",
+      "subjects": [
+        "elena-krasina"
+      ],
+      "sheet": "heroes",
+      "cell": 8,
+      "crop": {
+        "left": 428,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "6573654f6af0f22f2c310a676eba25c536f521d28216c1169b163eac35f7edac"
+    },
+    {
+      "id": "travel-kit",
+      "file": "cards/travel-kit.webp",
+      "title": "Рабочий набор",
+      "subjects": [
+        "alexey-metlin-travel-kit",
+        "boris-drozd-travel-kit",
+        "elena-krasina-travel-kit",
+        "nina-bazhenova-travel-kit",
+        "olga-yarovaya-travel-kit",
+        "ruslan-elov-travel-kit",
+        "semen-orlov-travel-kit",
+        "zlata-tikhova-travel-kit"
+      ],
+      "sheet": "heroes",
+      "cell": 9,
+      "crop": {
+        "left": 846,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "24aecb9639ccdd604c759d8baaccbdeb4af60db1e823bf6ebdac3ec5eb35f5ae"
+    },
+    {
+      "id": "lidia-ryabtseva",
+      "file": "cards/lidia-ryabtseva.webp",
+      "title": "Лидия Рябцева",
+      "subjects": [
+        "lidia-ryabtseva"
+      ],
+      "sheet": "npcs",
+      "cell": 1,
+      "crop": {
+        "left": 10,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "5e24220165c100295d79c007ee6527371b372e93db7e0c9d88501ab5c0ea0da3"
+    },
+    {
+      "id": "gleb-sumarin",
+      "file": "cards/gleb-sumarin.webp",
+      "title": "Глеб Сумарин",
+      "subjects": [
+        "gleb-sumarin"
+      ],
+      "sheet": "npcs",
+      "cell": 2,
+      "crop": {
+        "left": 428,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "b2c4fdf276bc5ae26d8f6d9d299cfe97be5a886535ed02e9116c58819d4ab81c"
+    },
+    {
+      "id": "rada-melnik",
+      "file": "cards/rada-melnik.webp",
+      "title": "Рада Мельник",
+      "subjects": [
+        "rada-melnik"
+      ],
+      "sheet": "npcs",
+      "cell": 3,
+      "crop": {
+        "left": 846,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "b9e3c0829b50bd60fdb580e8fb8b75eb8c505b26d7fbda31e1908bc03d3e2b24"
+    },
+    {
+      "id": "tamara-vyazova",
+      "file": "cards/tamara-vyazova.webp",
+      "title": "Тамара Вязова",
+      "subjects": [
+        "tamara-vyazova"
+      ],
+      "sheet": "npcs",
+      "cell": 4,
+      "crop": {
+        "left": 10,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "d11ae11a151a1527ed96c6a1cab7fe76b4b54b978ad312d39a7aa13221fb466c"
+    },
+    {
+      "id": "iosif-kartsev",
+      "file": "cards/iosif-kartsev.webp",
+      "title": "Иосиф Карцев",
+      "subjects": [
+        "iosif-kartsev"
+      ],
+      "sheet": "npcs",
+      "cell": 5,
+      "crop": {
+        "left": 428,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "88b68524f20eec9bf9f6c8e732d1214fb07a780e4d8d7f3970e3940f7a533a19"
+    },
+    {
+      "id": "marfa-teslina",
+      "file": "cards/marfa-teslina.webp",
+      "title": "Марфа Теслина",
+      "subjects": [
+        "marfa-teslina"
+      ],
+      "sheet": "npcs",
+      "cell": 6,
+      "crop": {
+        "left": 846,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "aeb909a6a8fc2c16ce58304f93f9457da47a3ad182976eec9bbb4f4223c67afb"
+    },
+    {
+      "id": "zakhar-remez",
+      "file": "cards/zakhar-remez.webp",
+      "title": "Захар Ремез",
+      "subjects": [
+        "zakhar-remez"
+      ],
+      "sheet": "npcs",
+      "cell": 7,
+      "crop": {
+        "left": 10,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "32e3ad16fd5b26753aeb3ede31eb3d401c172d0045af9a9411f5b2ba148af176"
+    },
+    {
+      "id": "vera-zorina",
+      "file": "cards/vera-zorina.webp",
+      "title": "Вера Зорина",
+      "subjects": [
+        "vera-zorina"
+      ],
+      "sheet": "npcs",
+      "cell": 8,
+      "crop": {
+        "left": 428,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "6f4aa043cf617cdbd20cc3467c441b6886ce21a169b39e8351729dd58e32b900"
+    }
+  ]
+}

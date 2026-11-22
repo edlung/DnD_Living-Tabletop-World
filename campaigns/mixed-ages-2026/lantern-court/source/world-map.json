@@ -1,0 +1,59 @@
+{
+  "region": "lantern-reach",
+  "name": "Карта · Фонарный Предел",
+  "description": "План местности «Фонарный Предел». На карте отмечаются места, известные группе.",
+  "pins": [
+    {
+      "place": "petition-porch",
+      "x": 0.11,
+      "y": 0.15
+    },
+    {
+      "place": "lantern-hall",
+      "x": 0.367,
+      "y": 0.177
+    },
+    {
+      "place": "silent-ring",
+      "x": 0.623,
+      "y": 0.15
+    },
+    {
+      "place": "stone-roost",
+      "x": 0.88,
+      "y": 0.177
+    },
+    {
+      "place": "ember-lodge",
+      "x": 0.905,
+      "y": 0.517
+    },
+    {
+      "place": "thread-room",
+      "x": 0.648,
+      "y": 0.49
+    },
+    {
+      "place": "reed-balcony",
+      "x": 0.392,
+      "y": 0.517
+    },
+    {
+      "place": "sealed-gallery",
+      "x": 0.135,
+      "y": 0.49
+    },
+    {
+      "place": "wax-yard",
+      "x": 0.11,
+      "y": 0.83
+    },
+    {
+      "place": "verdict-steps",
+      "x": 0.367,
+      "y": 0.857
+    }
+  ],
+  "routes": [],
+  "scale": "schematic"
+}

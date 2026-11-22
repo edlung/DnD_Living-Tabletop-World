@@ -1,0 +1,49 @@
+{
+  "maps": [
+    {
+      "file": "white-line.webp",
+      "sha256": "969626580a6f6be0050422a3b9bb58a6d7a12e936cc9e98450ecf09049207525",
+      "originalSha256": "89630df4161a770c3a7f50714459bf3cf18a2a9a3997e715a9662b248fecdbd5",
+      "originalFile": "exec-1ee9d797-66c2-47cf-b32e-ddf201e6abd8.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Участок П-17 завода «Белая линия». Visible scenery: Закрытый производственный зал с высоким остеклением, проходной и отдельной комнатой сменных записей. Посетителей сопровождают по разрешённой галерее.. World style: Гальмер · Pearl-grey factory ledger linen with ash flecks and small vermilion seal rings. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "white-line",
+      "encounter": "threshold-keepers",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "independent-room.webp",
+      "sha256": "55bb33740b2ac589f46941334cf8ebccd89aa0072fa15724cd60fec13c45c350",
+      "originalSha256": "2e16b20bf1e8a8dacc2e5946ce7e56bcfce76f86e967ad746e76af3dda0f3b24",
+      "originalFile": "exec-7cc45741-1034-4e5a-ab9a-ffd18423ed1a.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Независимая пробная палата. Visible scenery: Маленькая договорная лаборатория с приёмным окном и комнатой свидетелей. Посетителям выдают письменные заключения без доступа к рабочим процедурам.. World style: Гальмер · Pearl-grey factory ledger linen with ash flecks and small vermilion seal rings. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "independent-room",
+      "encounter": "custody-pressure",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "commission-hall.webp",
+      "sha256": "befe6106de573702131679c8634fb545779d8e7f62150d5f381f8d7f7c528e70",
+      "originalSha256": "05926e30964740d517f869d634618de5e24d3f616cdf6a6932ad6dce1702ab2c",
+      "originalFile": "exec-17fc0350-0206-4ef6-8bcd-c3df9f0fd1c9.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Зал городской трудовой комиссии. Visible scenery: Зал с длинными скамьями, столом регистратора и боковой комнатой для закрытых свидетельств. Порядок выступлений вывешивают у двери.. World style: Гальмер · Pearl-grey factory ledger linen with ash flecks and small vermilion seal rings. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "commission-hall",
+      "encounter": "gallery-pressure",
+      "grid": [
+        14,
+        12
+      ]
+    }
+  ]
+}

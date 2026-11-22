@@ -166,6 +166,10 @@
   opacity: 0.6;
 }
 
+.doll-figure .doll-painted {
+  opacity: 1;
+}
+
 /* The bag */
 .bag {
   min-width: 0;

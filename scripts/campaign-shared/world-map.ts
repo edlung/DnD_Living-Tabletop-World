@@ -20,6 +20,8 @@ import type {
 export const WORLD_MAP_KEY = 'world-map';
 
 export interface WorldMapSource {
+  /** A plan of rooms, streets or transit stops with no measured overland distances. */
+  readonly scale?: 'schematic';
   /** The region the map shows: the map place stands inside it. */
   readonly region: string;
   /** The map place's name as the DM's places and the map's title show it ("Карта: …"). */

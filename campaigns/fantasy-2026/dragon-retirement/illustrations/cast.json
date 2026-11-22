@@ -1,0 +1,378 @@
+{
+  "about": "Портреты для карточек и изображение закрытого набора. Сначала сверяйте личность и доступность персонажа за столом.",
+  "generated": "2026-11-22",
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "heroes",
+      "originalFile": "exec-2d822751-2b4f-4417-9e7e-0235b89dfd1c.png",
+      "originalSha256": "c9f054e261bebf4494a918b3a4c0a7d1ad4abeb58e42cc4ad2a9dc9330ec903d",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 3 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:3. Luminous fantasy gouache, varied colors, naturalistic stylized faces. World: Лоскутные кряжи. Characters, in strict cell order:\n1. Яра Узелкова — Короткие тёмные волосы, куртка с разными заплатами, обычный дорожный канат через плечо. Age 19.\n2. Ник Боковой Шаг — Веснушки, широкие рукава, карандаш за ухом и сапоги с неожиданно чистыми подошвами. Age 16.\n3. Эда Открытая Ладонь — Светлый плащ, связка деревянных дорожных жетонов и тяжёлые перчатки с вышитыми ладонями. Age 34.\n4. Полин На Полях — Седая коса, закопчённые очки и тетрадь, в которой замечания занимают больше места, чем основной текст. Age 42.\n5. Там Второй Шаг — Высокий воротник, широкая улыбка и круглый щит с ещё не выбранной эмблемой. Age 17.\n6. Мира Свой Голос — Серебряные серьги, потёртый жилет и складная табличка, на которой удобно писать крупными буквами. Age 61.\n7. Сава После Заката — Каштановые кудри, мягкие сапоги и мешочек с разномастными шашечными камнями. Age 25.\n8. Эс Чёткая Черта — Вьющиеся волосы, лиловый шарф и дощечка, на которой всегда остаётся место для поправок. Age 15.\n9. Дорожный / рабочий набор — Still life of one opaque closed everyday satchel, appropriate to this world and era. No person and nothing spilling out.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 3,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "npcs",
+      "originalFile": "exec-b968f6ad-2c4f-4bcf-b410-4cb2b7e53e4b.png",
+      "originalSha256": "a2b57962623ff06872b7792da98c5df2d02d59cd4404bf219fee0708018b12b1",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 3 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:3. Luminous fantasy gouache, varied colors, naturalistic stylized faces. World: Лоскутные кряжи. Characters, in strict cell order:\n1. Рухомир Медный — Огромный медный дракон с потёртым дорожным мешком и крошечными очками для чтения; очки постоянно сползают. Age 427.\n2. Денвар Громкая Пауза — Щегольской короткий плащ, начищенные сапоги и ладони, которыми он словно постоянно просит публику подождать. Age 46.\n3. Лисса Верный Возврат — Куртка цвета песка, короткая стрижка и обувь, тщательно обвязанная выше щиколоток. Age 18.\n4. Орель Медленный Карандаш — Лицо в солнечных морщинках, широкий берет и складная доска для зарисовок, слишком большая для его рюкзака. Age 63.\n5. Бурдаш Большой Пень — Широкоплечий великан в просторном жилете; носит на шее деревянный свисток размером с сапог. Age 91.\n6. Вета Точный Счёт — Зелёная шляпа, чернильные пальцы и деревянная коробка с цветными билетами. Age 38.\n7. Зоя Растрёпа — Яркая повязка на волосах, походные сапоги и несколько рисунков пейзажей в прозрачном чехле. Age 22.\n8. Рен Ровный Шаг — Аккуратно уложенные волосы, одинаково затянутые ремни и заметно новый дорожный плащ. Age 29.\n9. Улта Долгий Спуск — Плотная накидка, короткая седая чёлка и лёгкая трость, исчерченная зарубками пройденных расстояний. Age 56.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 3,
+      "width": 1254,
+      "height": 1254
+    }
+  ],
+  "cards": [
+    {
+      "id": "yara-knots",
+      "file": "cards/yara-knots.webp",
+      "title": "Яра Узелкова",
+      "subjects": [
+        "yara-knots"
+      ],
+      "sheet": "heroes",
+      "cell": 1,
+      "crop": {
+        "left": 10,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "cc52fe32d4dfdd015b3a9e88103cd8de6a20649914c0bcb2d51a51713b8ad6f9"
+    },
+    {
+      "id": "nik-sidepath",
+      "file": "cards/nik-sidepath.webp",
+      "title": "Ник Боковой Шаг",
+      "subjects": [
+        "nik-sidepath"
+      ],
+      "sheet": "heroes",
+      "cell": 2,
+      "crop": {
+        "left": 428,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "8e486aa4525c90d6e1fd51dec9965b56a038b4ad1aa91145d329051acc3c07c8"
+    },
+    {
+      "id": "eda-openhand",
+      "file": "cards/eda-openhand.webp",
+      "title": "Эда Открытая Ладонь",
+      "subjects": [
+        "eda-openhand"
+      ],
+      "sheet": "heroes",
+      "cell": 3,
+      "crop": {
+        "left": 846,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "3b920ae962727170998cef16a242d90b035e6d3d660f75748541ad270a24ba77"
+    },
+    {
+      "id": "polin-margins",
+      "file": "cards/polin-margins.webp",
+      "title": "Полин На Полях",
+      "subjects": [
+        "polin-margins"
+      ],
+      "sheet": "heroes",
+      "cell": 4,
+      "crop": {
+        "left": 10,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "df9bfbe0cd4c5910396e56b89e2f019648f4cb95f6259a9c457b04ec1c9d550a"
+    },
+    {
+      "id": "tam-secondstep",
+      "file": "cards/tam-secondstep.webp",
+      "title": "Там Второй Шаг",
+      "subjects": [
+        "tam-secondstep"
+      ],
+      "sheet": "heroes",
+      "cell": 5,
+      "crop": {
+        "left": 428,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "120c943c016eb43829d10451ad104bec7ebc1d17ea724ea41a9f4226f9affc38"
+    },
+    {
+      "id": "mira-ownvoice",
+      "file": "cards/mira-ownvoice.webp",
+      "title": "Мира Свой Голос",
+      "subjects": [
+        "mira-ownvoice"
+      ],
+      "sheet": "heroes",
+      "cell": 6,
+      "crop": {
+        "left": 846,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "ae401c3698b1f0b31a593dcb109616adf8afadfd0cf1582309cf22f874e664dd"
+    },
+    {
+      "id": "sava-evening",
+      "file": "cards/sava-evening.webp",
+      "title": "Сава После Заката",
+      "subjects": [
+        "sava-evening"
+      ],
+      "sheet": "heroes",
+      "cell": 7,
+      "crop": {
+        "left": 10,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "38925e003c8cc4dc42f72e12aba71614eecaa3b5fd82766d6868991efe758127"
+    },
+    {
+      "id": "es-clearline",
+      "file": "cards/es-clearline.webp",
+      "title": "Эс Чёткая Черта",
+      "subjects": [
+        "es-clearline"
+      ],
+      "sheet": "heroes",
+      "cell": 8,
+      "crop": {
+        "left": 428,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "4f207777dd28eff2c5068f30a8c69c9ee7ef8a7b4e785a94ef9740a1fdd09e7b"
+    },
+    {
+      "id": "travel-kit",
+      "file": "cards/travel-kit.webp",
+      "title": "Дорожный набор",
+      "subjects": [
+        "eda-openhand-travel-kit",
+        "es-clearline-travel-kit",
+        "mira-ownvoice-travel-kit",
+        "nik-sidepath-travel-kit",
+        "polin-margins-travel-kit",
+        "sava-evening-travel-kit",
+        "tam-secondstep-travel-kit",
+        "yara-knots-travel-kit"
+      ],
+      "sheet": "heroes",
+      "cell": 9,
+      "crop": {
+        "left": 846,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "9dba789a295507f881354ce893649b3a7eeab72dd7b12f505128f03738dcfb3d"
+    },
+    {
+      "id": "rukhmir",
+      "file": "cards/rukhmir.webp",
+      "title": "Рухомир Медный",
+      "subjects": [
+        "rukhmir"
+      ],
+      "sheet": "npcs",
+      "cell": 1,
+      "crop": {
+        "left": 10,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "95d4ceb4bdd15af679f82237aa5ef28dc276b2c8bf98404b0154f329ede01263"
+    },
+    {
+      "id": "denvar",
+      "file": "cards/denvar.webp",
+      "title": "Денвар Громкая Пауза",
+      "subjects": [
+        "denvar"
+      ],
+      "sheet": "npcs",
+      "cell": 2,
+      "crop": {
+        "left": 428,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "f210ab993c4f0a4193b1022093b8b5f326988ef5e00d882b876c9a4ff69a23c4"
+    },
+    {
+      "id": "lissa",
+      "file": "cards/lissa.webp",
+      "title": "Лисса Верный Возврат",
+      "subjects": [
+        "lissa"
+      ],
+      "sheet": "npcs",
+      "cell": 3,
+      "crop": {
+        "left": 846,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "3e4d8f09ea5137259391ac80453a768b6cd901058af3ffe4621fb70c96800e77"
+    },
+    {
+      "id": "orel",
+      "file": "cards/orel.webp",
+      "title": "Орель Медленный Карандаш",
+      "subjects": [
+        "orel"
+      ],
+      "sheet": "npcs",
+      "cell": 4,
+      "crop": {
+        "left": 10,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "d0544d749adef26cc2f49009a6a8063e72998e686a26c33f3767fb234173e6f3"
+    },
+    {
+      "id": "burdash",
+      "file": "cards/burdash.webp",
+      "title": "Бурдаш Большой Пень",
+      "subjects": [
+        "burdash"
+      ],
+      "sheet": "npcs",
+      "cell": 5,
+      "crop": {
+        "left": 428,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "d1ac3ab6c0eef88ebfc849db87755d8cab20181f2d54b29a6eac95565947d2c1"
+    },
+    {
+      "id": "veta",
+      "file": "cards/veta.webp",
+      "title": "Вета Точный Счёт",
+      "subjects": [
+        "veta"
+      ],
+      "sheet": "npcs",
+      "cell": 6,
+      "crop": {
+        "left": 846,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "931216338bbebb4e2955cfc2f23f2db6f72109fa181c399fcaa32d3cc0ddfa96"
+    },
+    {
+      "id": "zoya",
+      "file": "cards/zoya.webp",
+      "title": "Зоя Растрёпа",
+      "subjects": [
+        "zoya"
+      ],
+      "sheet": "npcs",
+      "cell": 7,
+      "crop": {
+        "left": 10,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "03bed6fca27280cd77d814ee173fd6c18835c0aa4f845d0ca3a3eb41e0811c7c"
+    },
+    {
+      "id": "ren",
+      "file": "cards/ren.webp",
+      "title": "Рен Ровный Шаг",
+      "subjects": [
+        "ren"
+      ],
+      "sheet": "npcs",
+      "cell": 8,
+      "crop": {
+        "left": 428,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "651bd4c69d164d98e6f29de20c9deb3e25b1fcea26bca85883fd2167d5a94424"
+    },
+    {
+      "id": "ulta",
+      "file": "cards/ulta.webp",
+      "title": "Улта Долгий Спуск",
+      "subjects": [
+        "ulta"
+      ],
+      "sheet": "npcs",
+      "cell": 9,
+      "crop": {
+        "left": 846,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "2c9c3d6823100897c437795421376434f6d23128813fe829416f3ea4f7a9f591"
+    }
+  ]
+}

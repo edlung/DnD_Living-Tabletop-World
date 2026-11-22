@@ -1,0 +1,35 @@
+{
+  "about": "Иллюстрация закрытого личного набора персонажа.",
+  "generated": "2026-11-22",
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "kit",
+      "originalFile": "exec-8d70b6ec-a0a4-4e48-91cc-96adeab8043f.png",
+      "originalSha256": "052bde4aac2ace7d9c69e6d07c100f4089c9d0965d84715aaed0a8f4b1ae8b1a",
+      "prompt": "One original illustrated tabletop item card illustration of a closed opaque everyday carry case or satchel for the fictional world Дождь по страховому случаю. Art direction: match the following very specific material as a very subtle detail on the case: Rain sheeting across tram-window glass, punched ticket perforations and midnight nickel. Show only one complete bag against a quiet neutral backdrop, atmospheric, painterly naturalism, carefully crafted, three quarters view, soft even light, square framing. Never show contents, evidence, people, text, maps, interfaces, lettering or a frame.",
+      "conversion": "cwebp -resize 256 256 -q 83"
+    }
+  ],
+  "cards": [
+    {
+      "id": "travel-kit",
+      "file": "cards/travel-kit.webp",
+      "title": "Рабочий набор",
+      "subjects": [
+        "gleb-shor-travel-kit",
+        "lada-osher-travel-kit",
+        "mark-sel-travel-kit",
+        "marta-bess-travel-kit",
+        "roman-ivren-travel-kit",
+        "stasya-gran-travel-kit",
+        "timon-kroy-travel-kit",
+        "yana-renk-travel-kit"
+      ],
+      "sheet": "kit",
+      "width": 256,
+      "height": 256,
+      "sha256": "7ad4dbf3de10a441abac546a0472eb4ac298108a78dffdf5e1d800cbea800150"
+    }
+  ]
+}

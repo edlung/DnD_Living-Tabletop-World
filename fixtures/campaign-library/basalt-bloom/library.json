@@ -1,0 +1,1909 @@
+{
+ "id": "basalt-bloom",
+ "title": "Цветение базальта",
+ "genre": "Фэнтези полевой экспедиции и волшебной геологии",
+ "audience": "12+",
+ "pitch": "В Чёрной складке камень готовится раскрыть полупрозрачные лепестки. Несколько дней за человеческую жизнь внутри горы возникают проходы, которых прежде не было. Вы — небольшая экспедиция: проложите путь, проверьте спорные наблюдения и решите, какую картину цветения сумеете унести наверх.",
+ "tone": "Чувство открытия, тёмный камень и янтарный свет; честный спор исследователей, осторожная смелость и радость неполной карты.",
+ "duration": "8 сессий; 3 часа: вступление или повторение 15 минут, три сцены по 45 минут, перерыв 10 минут, завершение 20 минут.",
+ "cover": "campaigns/fantasy-2026/basalt-bloom/illustrations/opening.webp",
+ "defaultVariant": "4-players",
+ "variants": [
+  {
+   "id": "3-players",
+   "players": 3,
+   "label": "3 игрока",
+   "file": "packages/3-players.json",
+   "digest": "1b4641f8ad312b7f3e199e3a5b58fa788debc2b44fccc48779e4adf8be1ffe80"
+  },
+  {
+   "id": "4-players",
+   "players": 4,
+   "label": "4 игрока",
+   "file": "packages/4-players.json",
+   "digest": "676ca1a38a4f15a1f52c8b6252467c79314c4838be2a41de71cf4f440565d64c"
+  },
+  {
+   "id": "5-players",
+   "players": 5,
+   "label": "5 игроков",
+   "file": "packages/5-players.json",
+   "digest": "843d9438c7d460a092eb59cc6b895ed7a0dd6a773afdf5d8f9fd5bc2ad451389"
+  },
+  {
+   "id": "6-players",
+   "players": 6,
+   "label": "6 игроков",
+   "file": "packages/6-players.json",
+   "digest": "994a5f4e585bad58da17484404418400754394e5ca46c75cee521a5dfc5eeb30"
+  },
+  {
+   "id": "7-players",
+   "players": 7,
+   "label": "7 игроков",
+   "file": "packages/7-players.json",
+   "digest": "8444dd6d09f774baa03b83aa7f67498c03ab5cc7a9dafe81f38c34712b423003"
+  },
+  {
+   "id": "8-players",
+   "players": 8,
+   "label": "8 игроков",
+   "file": "packages/8-players.json",
+   "digest": "aaac4e93780245862b965b1eb2ff2bfef55af7ece34212272acbd6ae37cfe762"
+  }
+ ],
+ "generator": "codex-cli imagegen",
+ "pictures": [
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/illustrations/cards/taya-step.webp",
+   "sha256": "6202aca6cf1490db27330902568ede2a1ca66e5aa4817099819342d0694bb015",
+   "originalSha256": "83d1f6f8c78eba17d29841729accdf24a0717a6bbe47967df5d298cf03d69d6a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тая Рябина",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "taya-step"
+    ],
+    "4-players": [
+     "taya-step"
+    ],
+    "5-players": [
+     "taya-step"
+    ],
+    "6-players": [
+     "taya-step"
+    ],
+    "7-players": [
+     "taya-step"
+    ],
+    "8-players": [
+     "taya-step"
+    ]
+   },
+   "file": "taya-step.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/illustrations/cards/ner-knot.webp",
+   "sha256": "90ee02dc83e4836fed66c9e5b6bcbbaa4192a1934c24e4b2fa61057099ee556d",
+   "originalSha256": "83d1f6f8c78eba17d29841729accdf24a0717a6bbe47967df5d298cf03d69d6a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нер Узель",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ner-knot"
+    ],
+    "4-players": [
+     "ner-knot"
+    ],
+    "5-players": [
+     "ner-knot"
+    ],
+    "6-players": [
+     "ner-knot"
+    ],
+    "7-players": [
+     "ner-knot"
+    ],
+    "8-players": [
+     "ner-knot"
+    ]
+   },
+   "file": "ner-knot.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/illustrations/cards/vela-lamp.webp",
+   "sha256": "0f44d14061b375b4786b04cd3b48da019b2285ceb18d889a76caece5b85b4e67",
+   "originalSha256": "83d1f6f8c78eba17d29841729accdf24a0717a6bbe47967df5d298cf03d69d6a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Вела Огонёк",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "vela-lamp"
+    ],
+    "4-players": [
+     "vela-lamp"
+    ],
+    "5-players": [
+     "vela-lamp"
+    ],
+    "6-players": [
+     "vela-lamp"
+    ],
+    "7-players": [
+     "vela-lamp"
+    ],
+    "8-players": [
+     "vela-lamp"
+    ]
+   },
+   "file": "vela-lamp.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/illustrations/cards/run-cup.webp",
+   "sha256": "a487e962889788cbd31338e11f10354d9b42fd4fd8d5f6ecc51d34748ea221a8",
+   "originalSha256": "83d1f6f8c78eba17d29841729accdf24a0717a6bbe47967df5d298cf03d69d6a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рун Тёплая Чаша",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "run-cup"
+    ],
+    "5-players": [
+     "run-cup"
+    ],
+    "6-players": [
+     "run-cup"
+    ],
+    "7-players": [
+     "run-cup"
+    ],
+    "8-players": [
+     "run-cup"
+    ]
+   },
+   "file": "run-cup.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/illustrations/cards/eyra-paper.webp",
+   "sha256": "58e23b6f1a7313d12f9b6b079f87c7a74506d8009a9e2b57b08526abfbdba7b7",
+   "originalSha256": "83d1f6f8c78eba17d29841729accdf24a0717a6bbe47967df5d298cf03d69d6a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эйра Лист",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "eyra-paper"
+    ],
+    "6-players": [
+     "eyra-paper"
+    ],
+    "7-players": [
+     "eyra-paper"
+    ],
+    "8-players": [
+     "eyra-paper"
+    ]
+   },
+   "file": "eyra-paper.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/illustrations/cards/domar-pack.webp",
+   "sha256": "d076a872e7b6d7b499617464dfe7360fb52f384a90f41af5b4739fbb1eb7f693",
+   "originalSha256": "83d1f6f8c78eba17d29841729accdf24a0717a6bbe47967df5d298cf03d69d6a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Домар Плечо",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "domar-pack"
+    ],
+    "7-players": [
+     "domar-pack"
+    ],
+    "8-players": [
+     "domar-pack"
+    ]
+   },
+   "file": "domar-pack.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/illustrations/cards/shel-scale.webp",
+   "sha256": "1cc1843a10897765cb216cdc1ec90b9ec528be6f4c81dce510129baf6bb68490",
+   "originalSha256": "83d1f6f8c78eba17d29841729accdf24a0717a6bbe47967df5d298cf03d69d6a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Шель Мера",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "shel-scale"
+    ],
+    "8-players": [
+     "shel-scale"
+    ]
+   },
+   "file": "shel-scale.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/illustrations/cards/zin-echo.webp",
+   "sha256": "242cd5c9aa7793abf8234e4fe97ea28a360c8d0b7c425de728637d9ab93741af",
+   "originalSha256": "83d1f6f8c78eba17d29841729accdf24a0717a6bbe47967df5d298cf03d69d6a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Зин Отзвук",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [],
+    "8-players": [
+     "zin-echo"
+    ]
+   },
+   "file": "zin-echo.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/illustrations/cards/travel-kit.webp",
+   "sha256": "9cb7fedbeb9b91cbd056937067b179d0de66fd80bdd836108e19f51894775ec7",
+   "originalSha256": "83d1f6f8c78eba17d29841729accdf24a0717a6bbe47967df5d298cf03d69d6a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дорожный набор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ner-knot-travel-kit",
+     "taya-step-travel-kit",
+     "vela-lamp-travel-kit"
+    ],
+    "4-players": [
+     "ner-knot-travel-kit",
+     "run-cup-travel-kit",
+     "taya-step-travel-kit",
+     "vela-lamp-travel-kit"
+    ],
+    "5-players": [
+     "eyra-paper-travel-kit",
+     "ner-knot-travel-kit",
+     "run-cup-travel-kit",
+     "taya-step-travel-kit",
+     "vela-lamp-travel-kit"
+    ],
+    "6-players": [
+     "domar-pack-travel-kit",
+     "eyra-paper-travel-kit",
+     "ner-knot-travel-kit",
+     "run-cup-travel-kit",
+     "taya-step-travel-kit",
+     "vela-lamp-travel-kit"
+    ],
+    "7-players": [
+     "domar-pack-travel-kit",
+     "eyra-paper-travel-kit",
+     "ner-knot-travel-kit",
+     "run-cup-travel-kit",
+     "shel-scale-travel-kit",
+     "taya-step-travel-kit",
+     "vela-lamp-travel-kit"
+    ],
+    "8-players": [
+     "domar-pack-travel-kit",
+     "eyra-paper-travel-kit",
+     "ner-knot-travel-kit",
+     "run-cup-travel-kit",
+     "shel-scale-travel-kit",
+     "taya-step-travel-kit",
+     "vela-lamp-travel-kit",
+     "zin-echo-travel-kit"
+    ]
+   },
+   "file": "travel-kit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/illustrations/cards/sava-house.webp",
+   "sha256": "b6c2a121cfa8799192508f206c83e54e498c457a81562301ef34337cbf5e2a29",
+   "originalSha256": "c95ca506d34ab507ef583c94e04b5548069ea7fdd8970acd8982f41b439e75c1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сава Линов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "sava-house"
+    ],
+    "4-players": [
+     "sava-house"
+    ],
+    "5-players": [
+     "sava-house"
+    ],
+    "6-players": [
+     "sava-house"
+    ],
+    "7-players": [
+     "sava-house"
+    ],
+    "8-players": [
+     "sava-house"
+    ]
+   },
+   "file": "sava-house.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/illustrations/cards/laria-sketch.webp",
+   "sha256": "03b456a8dbbd489ce94bb5143843abb48a7747ee325fc1835dbc2b0e4f7b5c19",
+   "originalSha256": "c95ca506d34ab507ef583c94e04b5548069ea7fdd8970acd8982f41b439e75c1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лария Векова",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "laria-sketch"
+    ],
+    "4-players": [
+     "laria-sketch"
+    ],
+    "5-players": [
+     "laria-sketch"
+    ],
+    "6-players": [
+     "laria-sketch"
+    ],
+    "7-players": [
+     "laria-sketch"
+    ],
+    "8-players": [
+     "laria-sketch"
+    ]
+   },
+   "file": "laria-sketch.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/illustrations/cards/marev-gauge.webp",
+   "sha256": "d525891531453964e0b7a46e9e819ba8cdb7a506cfaed4ac3355482b6643b779",
+   "originalSha256": "c95ca506d34ab507ef583c94e04b5548069ea7fdd8970acd8982f41b439e75c1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Марев Тир",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "marev-gauge"
+    ],
+    "4-players": [
+     "marev-gauge"
+    ],
+    "5-players": [
+     "marev-gauge"
+    ],
+    "6-players": [
+     "marev-gauge"
+    ],
+    "7-players": [
+     "marev-gauge"
+    ],
+    "8-players": [
+     "marev-gauge"
+    ]
+   },
+   "file": "marev-gauge.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/illustrations/cards/tima-float.webp",
+   "sha256": "5dcb0e086de1fefd05e32bd2abe16376bc3d3d241a26bb607d91116f45616822",
+   "originalSha256": "c95ca506d34ab507ef583c94e04b5548069ea7fdd8970acd8982f41b439e75c1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тима Веден",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tima-float"
+    ],
+    "4-players": [
+     "tima-float"
+    ],
+    "5-players": [
+     "tima-float"
+    ],
+    "6-players": [
+     "tima-float"
+    ],
+    "7-players": [
+     "tima-float"
+    ],
+    "8-players": [
+     "tima-float"
+    ]
+   },
+   "file": "tima-float.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/illustrations/cards/olin-thread.webp",
+   "sha256": "a08a539df52742d9c0c7ce63cafd1bd128020d054c91e6abede5b0fdb075f1e5",
+   "originalSha256": "c95ca506d34ab507ef583c94e04b5548069ea7fdd8970acd8982f41b439e75c1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Олин Шелест",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "olin-thread"
+    ],
+    "4-players": [
+     "olin-thread"
+    ],
+    "5-players": [
+     "olin-thread"
+    ],
+    "6-players": [
+     "olin-thread"
+    ],
+    "7-players": [
+     "olin-thread"
+    ],
+    "8-players": [
+     "olin-thread"
+    ]
+   },
+   "file": "olin-thread.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/illustrations/cards/berta-clay.webp",
+   "sha256": "d5dff00fe15bb1a12f81a43c8ada811b35060b7ab2de073479e4ee55833d95f5",
+   "originalSha256": "c95ca506d34ab507ef583c94e04b5548069ea7fdd8970acd8982f41b439e75c1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Берта Ровная",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "berta-clay"
+    ],
+    "4-players": [
+     "berta-clay"
+    ],
+    "5-players": [
+     "berta-clay"
+    ],
+    "6-players": [
+     "berta-clay"
+    ],
+    "7-players": [
+     "berta-clay"
+    ],
+    "8-players": [
+     "berta-clay"
+    ]
+   },
+   "file": "berta-clay.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/illustrations/cards/yust-porter.webp",
+   "sha256": "957281fa4405360b2955b433051ec2f3be77c28833a66d152e6be1c8a1c8ac4e",
+   "originalSha256": "c95ca506d34ab507ef583c94e04b5548069ea7fdd8970acd8982f41b439e75c1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Юст Бакл",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "yust-porter"
+    ],
+    "4-players": [
+     "yust-porter"
+    ],
+    "5-players": [
+     "yust-porter"
+    ],
+    "6-players": [
+     "yust-porter"
+    ],
+    "7-players": [
+     "yust-porter"
+    ],
+    "8-players": [
+     "yust-porter"
+    ]
+   },
+   "file": "yust-porter.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/illustrations/cards/dana-witness.webp",
+   "sha256": "945eeb9e8b98d9425209bff791874b7924aa94d18d41cb68cec98a37eb37a0ed",
+   "originalSha256": "c95ca506d34ab507ef583c94e04b5548069ea7fdd8970acd8982f41b439e75c1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дана Край",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "dana-witness"
+    ],
+    "4-players": [
+     "dana-witness"
+    ],
+    "5-players": [
+     "dana-witness"
+    ],
+    "6-players": [
+     "dana-witness"
+    ],
+    "7-players": [
+     "dana-witness"
+    ],
+    "8-players": [
+     "dana-witness"
+    ]
+   },
+   "file": "dana-witness.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/assets/table/heroes-taya-step.webp",
+   "sha256": "6581a1ae8a85cbaf40d411daaad8941c6641448918f79d08025e4036148c82aa",
+   "originalSha256": "a9a029e0d800832ed47edafebfb722d33f91a09d6a960ad6c2da64d8d3620388",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тая Рябина",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "taya-step"
+    ],
+    "4-players": [
+     "taya-step"
+    ],
+    "5-players": [
+     "taya-step"
+    ],
+    "6-players": [
+     "taya-step"
+    ],
+    "7-players": [
+     "taya-step"
+    ],
+    "8-players": [
+     "taya-step"
+    ]
+   },
+   "file": "taya-step--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "taya-step.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/assets/table/heroes-ner-knot.webp",
+   "sha256": "92668fffbadc1bc4075e6495e7f89663d62d03ab5cf8223a31889a222a5b0cd5",
+   "originalSha256": "a9a029e0d800832ed47edafebfb722d33f91a09d6a960ad6c2da64d8d3620388",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нер Узель",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ner-knot"
+    ],
+    "4-players": [
+     "ner-knot"
+    ],
+    "5-players": [
+     "ner-knot"
+    ],
+    "6-players": [
+     "ner-knot"
+    ],
+    "7-players": [
+     "ner-knot"
+    ],
+    "8-players": [
+     "ner-knot"
+    ]
+   },
+   "file": "ner-knot--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ner-knot.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/assets/table/heroes-vela-lamp.webp",
+   "sha256": "ab0a9cc9becadc3ee25d3d5c2c4d52cbdbf4c0a3dba87e17cfd40b5d9b70593d",
+   "originalSha256": "a9a029e0d800832ed47edafebfb722d33f91a09d6a960ad6c2da64d8d3620388",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Вела Огонёк",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "vela-lamp"
+    ],
+    "4-players": [
+     "vela-lamp"
+    ],
+    "5-players": [
+     "vela-lamp"
+    ],
+    "6-players": [
+     "vela-lamp"
+    ],
+    "7-players": [
+     "vela-lamp"
+    ],
+    "8-players": [
+     "vela-lamp"
+    ]
+   },
+   "file": "vela-lamp--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "vela-lamp.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/assets/table/heroes-run-cup.webp",
+   "sha256": "def510f41fa0e1358592f1ac823b60442a4ee835fc9ec5aad65117a511d23591",
+   "originalSha256": "a9a029e0d800832ed47edafebfb722d33f91a09d6a960ad6c2da64d8d3620388",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рун Тёплая Чаша",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "run-cup"
+    ],
+    "5-players": [
+     "run-cup"
+    ],
+    "6-players": [
+     "run-cup"
+    ],
+    "7-players": [
+     "run-cup"
+    ],
+    "8-players": [
+     "run-cup"
+    ]
+   },
+   "file": "run-cup--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "run-cup.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/assets/table/heroes-eyra-paper.webp",
+   "sha256": "6f19019c7814e2f1f9d4e06c0b86097e0782a959197d85fc81668b10509dd18a",
+   "originalSha256": "a9a029e0d800832ed47edafebfb722d33f91a09d6a960ad6c2da64d8d3620388",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эйра Лист",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "eyra-paper"
+    ],
+    "6-players": [
+     "eyra-paper"
+    ],
+    "7-players": [
+     "eyra-paper"
+    ],
+    "8-players": [
+     "eyra-paper"
+    ]
+   },
+   "file": "eyra-paper--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "eyra-paper.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/assets/table/heroes-domar-pack.webp",
+   "sha256": "25c5694c6742f6f860f9752d2802792cd8ca7f5016988eab38ec20f760dd0e37",
+   "originalSha256": "a9a029e0d800832ed47edafebfb722d33f91a09d6a960ad6c2da64d8d3620388",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Домар Плечо",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "domar-pack"
+    ],
+    "7-players": [
+     "domar-pack"
+    ],
+    "8-players": [
+     "domar-pack"
+    ]
+   },
+   "file": "domar-pack--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "domar-pack.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/assets/table/heroes-shel-scale.webp",
+   "sha256": "80691eec0d73ad0fbb078ace4e2811643bd8f67f3fcd2c54ab4c4fcca405651b",
+   "originalSha256": "a9a029e0d800832ed47edafebfb722d33f91a09d6a960ad6c2da64d8d3620388",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Шель Мера",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "shel-scale"
+    ],
+    "8-players": [
+     "shel-scale"
+    ]
+   },
+   "file": "shel-scale--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "shel-scale.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/assets/table/heroes-zin-echo.webp",
+   "sha256": "cee5d0fffa2a4aa91ba6b6d954d64d85aaa9512255651267b6f6b351d17dd160",
+   "originalSha256": "a9a029e0d800832ed47edafebfb722d33f91a09d6a960ad6c2da64d8d3620388",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Зин Отзвук",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [],
+    "8-players": [
+     "zin-echo"
+    ]
+   },
+   "file": "zin-echo--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "zin-echo.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/assets/table/places-shale-house.webp",
+   "sha256": "a27b1d8fd516e5b4d1ee04f2b6a9d9a5e5d9f090eca9f652bf0efea19bd542e4",
+   "originalSha256": "3d9ab74677a1f7ea0a9c5bdfba44739571e2bd1827ab0a72d0d7187bb60d87e1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дом над трещиной",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "shale-house"
+    ],
+    "4-players": [
+     "shale-house"
+    ],
+    "5-players": [
+     "shale-house"
+    ],
+    "6-players": [
+     "shale-house"
+    ],
+    "7-players": [
+     "shale-house"
+    ],
+    "8-players": [
+     "shale-house"
+    ]
+   },
+   "file": "shale-house.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/assets/table/places-crack-yard.webp",
+   "sha256": "1deb5b50ef3e45c723d9279b1987aa8d3c7f65e76f5ddaa20c6be50bcb911a70",
+   "originalSha256": "3d9ab74677a1f7ea0a9c5bdfba44739571e2bd1827ab0a72d0d7187bb60d87e1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Двор первой щели",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "crack-yard"
+    ],
+    "4-players": [
+     "crack-yard"
+    ],
+    "5-players": [
+     "crack-yard"
+    ],
+    "6-players": [
+     "crack-yard"
+    ],
+    "7-players": [
+     "crack-yard"
+    ],
+    "8-players": [
+     "crack-yard"
+    ]
+   },
+   "file": "crack-yard.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/assets/table/places-black-stairs.webp",
+   "sha256": "dc144a84fecac5fb05647371daa8a87c35c19608cb1281d466b7b8a3023481d2",
+   "originalSha256": "3d9ab74677a1f7ea0a9c5bdfba44739571e2bd1827ab0a72d0d7187bb60d87e1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Чёрные ступени",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "black-stairs"
+    ],
+    "4-players": [
+     "black-stairs"
+    ],
+    "5-players": [
+     "black-stairs"
+    ],
+    "6-players": [
+     "black-stairs"
+    ],
+    "7-players": [
+     "black-stairs"
+    ],
+    "8-players": [
+     "black-stairs"
+    ]
+   },
+   "file": "black-stairs.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/assets/table/places-glass-stream.webp",
+   "sha256": "2b13c92f743a4b6fa47a1dcc114b42a09a0e5ffbbb57d5bfa93ba723cf9c4b1b",
+   "originalSha256": "3d9ab74677a1f7ea0a9c5bdfba44739571e2bd1827ab0a72d0d7187bb60d87e1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Стеклянная речка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "glass-stream"
+    ],
+    "4-players": [
+     "glass-stream"
+    ],
+    "5-players": [
+     "glass-stream"
+    ],
+    "6-players": [
+     "glass-stream"
+    ],
+    "7-players": [
+     "glass-stream"
+    ],
+    "8-players": [
+     "glass-stream"
+    ]
+   },
+   "file": "glass-stream.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/assets/table/places-listening-ledge.webp",
+   "sha256": "d92512c151d495b9811243bc4547ee34127381cade346607eb07eb1013111afd",
+   "originalSha256": "3d9ab74677a1f7ea0a9c5bdfba44739571e2bd1827ab0a72d0d7187bb60d87e1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Слуховой уступ",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "listening-ledge"
+    ],
+    "4-players": [
+     "listening-ledge"
+    ],
+    "5-players": [
+     "listening-ledge"
+    ],
+    "6-players": [
+     "listening-ledge"
+    ],
+    "7-players": [
+     "listening-ledge"
+    ],
+    "8-players": [
+     "listening-ledge"
+    ]
+   },
+   "file": "listening-ledge.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/assets/table/places-imprint-hall.webp",
+   "sha256": "9ad6644e8463cd11e4ae52be9496b9a358b152818a985e3b535cc945dfdfed80",
+   "originalSha256": "3d9ab74677a1f7ea0a9c5bdfba44739571e2bd1827ab0a72d0d7187bb60d87e1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Зал оттисков",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "imprint-hall"
+    ],
+    "4-players": [
+     "imprint-hall"
+    ],
+    "5-players": [
+     "imprint-hall"
+    ],
+    "6-players": [
+     "imprint-hall"
+    ],
+    "7-players": [
+     "imprint-hall"
+    ],
+    "8-players": [
+     "imprint-hall"
+    ]
+   },
+   "file": "imprint-hall.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/assets/table/places-dry-neck.webp",
+   "sha256": "9147e624adf59283feed2dea7c1c69ccbd9db1ab9b6ddecf1ec4120acd64fb9b",
+   "originalSha256": "3d9ab74677a1f7ea0a9c5bdfba44739571e2bd1827ab0a72d0d7187bb60d87e1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сухая горловина",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "dry-neck"
+    ],
+    "4-players": [
+     "dry-neck"
+    ],
+    "5-players": [
+     "dry-neck"
+    ],
+    "6-players": [
+     "dry-neck"
+    ],
+    "7-players": [
+     "dry-neck"
+    ],
+    "8-players": [
+     "dry-neck"
+    ]
+   },
+   "file": "dry-neck.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/assets/table/places-steady-islands.webp",
+   "sha256": "9229a90df2b019220d7fa2ec4f2f4035c1c54315dc833311307af0c68002e7f9",
+   "originalSha256": "3d9ab74677a1f7ea0a9c5bdfba44739571e2bd1827ab0a72d0d7187bb60d87e1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Островки покоя",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "steady-islands"
+    ],
+    "4-players": [
+     "steady-islands"
+    ],
+    "5-players": [
+     "steady-islands"
+    ],
+    "6-players": [
+     "steady-islands"
+    ],
+    "7-players": [
+     "steady-islands"
+    ],
+    "8-players": [
+     "steady-islands"
+    ]
+   },
+   "file": "steady-islands.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/assets/table/places-hollow-crown.webp",
+   "sha256": "c365dc508e6bcf6dd6edb10cf0bceea2e258ba67e007059ae8a4dd6323568aa6",
+   "originalSha256": "3d9ab74677a1f7ea0a9c5bdfba44739571e2bd1827ab0a72d0d7187bb60d87e1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Полый венец",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "hollow-crown"
+    ],
+    "4-players": [
+     "hollow-crown"
+    ],
+    "5-players": [
+     "hollow-crown"
+    ],
+    "6-players": [
+     "hollow-crown"
+    ],
+    "7-players": [
+     "hollow-crown"
+    ],
+    "8-players": [
+     "hollow-crown"
+    ]
+   },
+   "file": "hollow-crown.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/assets/table/places-return-balcony.webp",
+   "sha256": "868bc25487b44b89bd5ea67bd8084fe1d1d1b7afc2aab3f22085b62e604af1f8",
+   "originalSha256": "3d9ab74677a1f7ea0a9c5bdfba44739571e2bd1827ab0a72d0d7187bb60d87e1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Возвратный балкон",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "return-balcony"
+    ],
+    "4-players": [
+     "return-balcony"
+    ],
+    "5-players": [
+     "return-balcony"
+    ],
+    "6-players": [
+     "return-balcony"
+    ],
+    "7-players": [
+     "return-balcony"
+    ],
+    "8-players": [
+     "return-balcony"
+    ]
+   },
+   "file": "return-balcony.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/assets/table/foes-foe-72e1cd3fe7.webp",
+   "sha256": "ae65cc0b179afd2b2aee5cfb42285b7afa643c841fe05ee0ffae15364a1fd21e",
+   "originalSha256": "68aadaff13091f4bd7e399b29bd19e8f8d860ef914110eec9838af5895bda4e1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сланцевый прыгун",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "bank-skippers-foe-1",
+     "bank-skippers-foe-2"
+    ],
+    "4-players": [
+     "bank-skippers-foe-1",
+     "bank-skippers-foe-2",
+     "bank-skippers-foe-3"
+    ],
+    "5-players": [
+     "bank-skippers-foe-1",
+     "bank-skippers-foe-2",
+     "bank-skippers-foe-3"
+    ],
+    "6-players": [
+     "bank-skippers-foe-1",
+     "bank-skippers-foe-2",
+     "bank-skippers-foe-3",
+     "bank-skippers-foe-4"
+    ],
+    "7-players": [
+     "bank-skippers-foe-1",
+     "bank-skippers-foe-2",
+     "bank-skippers-foe-3",
+     "bank-skippers-foe-4",
+     "bank-skippers-foe-5"
+    ],
+    "8-players": [
+     "bank-skippers-foe-1",
+     "bank-skippers-foe-2",
+     "bank-skippers-foe-3",
+     "bank-skippers-foe-4",
+     "bank-skippers-foe-5",
+     "bank-skippers-foe-6"
+    ]
+   },
+   "file": "foe-72e1cd3fe7.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/assets/table/foes-foe-72e1cd3fe7.webp",
+   "sha256": "ae65cc0b179afd2b2aee5cfb42285b7afa643c841fe05ee0ffae15364a1fd21e",
+   "originalSha256": "68aadaff13091f4bd7e399b29bd19e8f8d860ef914110eec9838af5895bda4e1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сланцевый прыгун",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "bank-skippers-foe-1",
+     "bank-skippers-foe-2"
+    ],
+    "4-players": [
+     "bank-skippers-foe-1",
+     "bank-skippers-foe-2",
+     "bank-skippers-foe-3"
+    ],
+    "5-players": [
+     "bank-skippers-foe-1",
+     "bank-skippers-foe-2",
+     "bank-skippers-foe-3"
+    ],
+    "6-players": [
+     "bank-skippers-foe-1",
+     "bank-skippers-foe-2",
+     "bank-skippers-foe-3",
+     "bank-skippers-foe-4"
+    ],
+    "7-players": [
+     "bank-skippers-foe-1",
+     "bank-skippers-foe-2",
+     "bank-skippers-foe-3",
+     "bank-skippers-foe-4",
+     "bank-skippers-foe-5"
+    ],
+    "8-players": [
+     "bank-skippers-foe-1",
+     "bank-skippers-foe-2",
+     "bank-skippers-foe-3",
+     "bank-skippers-foe-4",
+     "bank-skippers-foe-5",
+     "bank-skippers-foe-6"
+    ]
+   },
+   "file": "foe-72e1cd3fe7--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-72e1cd3fe7.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/assets/table/foes-foe-d124542837.webp",
+   "sha256": "0f0f1369bbedbe9092430e725bd74f8b43bd039725d04f244d0abbf042a01751",
+   "originalSha256": "68aadaff13091f4bd7e399b29bd19e8f8d860ef914110eec9838af5895bda4e1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Войлочный мотылёк",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "draft-moths-foe-1",
+     "draft-moths-foe-2"
+    ],
+    "4-players": [
+     "draft-moths-foe-1",
+     "draft-moths-foe-2",
+     "draft-moths-foe-3"
+    ],
+    "5-players": [
+     "draft-moths-foe-1",
+     "draft-moths-foe-2",
+     "draft-moths-foe-3"
+    ],
+    "6-players": [
+     "draft-moths-foe-1",
+     "draft-moths-foe-2",
+     "draft-moths-foe-3",
+     "draft-moths-foe-4"
+    ],
+    "7-players": [
+     "draft-moths-foe-1",
+     "draft-moths-foe-2",
+     "draft-moths-foe-3",
+     "draft-moths-foe-4",
+     "draft-moths-foe-5"
+    ],
+    "8-players": [
+     "draft-moths-foe-1",
+     "draft-moths-foe-2",
+     "draft-moths-foe-3",
+     "draft-moths-foe-4",
+     "draft-moths-foe-5",
+     "draft-moths-foe-6"
+    ]
+   },
+   "file": "foe-d124542837.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/assets/table/foes-foe-d124542837.webp",
+   "sha256": "0f0f1369bbedbe9092430e725bd74f8b43bd039725d04f244d0abbf042a01751",
+   "originalSha256": "68aadaff13091f4bd7e399b29bd19e8f8d860ef914110eec9838af5895bda4e1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Войлочный мотылёк",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "draft-moths-foe-1",
+     "draft-moths-foe-2"
+    ],
+    "4-players": [
+     "draft-moths-foe-1",
+     "draft-moths-foe-2",
+     "draft-moths-foe-3"
+    ],
+    "5-players": [
+     "draft-moths-foe-1",
+     "draft-moths-foe-2",
+     "draft-moths-foe-3"
+    ],
+    "6-players": [
+     "draft-moths-foe-1",
+     "draft-moths-foe-2",
+     "draft-moths-foe-3",
+     "draft-moths-foe-4"
+    ],
+    "7-players": [
+     "draft-moths-foe-1",
+     "draft-moths-foe-2",
+     "draft-moths-foe-3",
+     "draft-moths-foe-4",
+     "draft-moths-foe-5"
+    ],
+    "8-players": [
+     "draft-moths-foe-1",
+     "draft-moths-foe-2",
+     "draft-moths-foe-3",
+     "draft-moths-foe-4",
+     "draft-moths-foe-5",
+     "draft-moths-foe-6"
+    ]
+   },
+   "file": "foe-d124542837--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-d124542837.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/assets/table/foes-foe-ef326d302f.webp",
+   "sha256": "b585e6b00ba34bfb2ce199a33e6a0152243647a0ddc1826112a9d064dd14e5ab",
+   "originalSha256": "68aadaff13091f4bd7e399b29bd19e8f8d860ef914110eec9838af5895bda4e1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Слюдяной клубок",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mica-springers-foe-1",
+     "mica-springers-foe-2"
+    ],
+    "4-players": [
+     "mica-springers-foe-1",
+     "mica-springers-foe-2",
+     "mica-springers-foe-3"
+    ],
+    "5-players": [
+     "mica-springers-foe-1",
+     "mica-springers-foe-2",
+     "mica-springers-foe-3"
+    ],
+    "6-players": [
+     "mica-springers-foe-1",
+     "mica-springers-foe-2",
+     "mica-springers-foe-3",
+     "mica-springers-foe-4"
+    ],
+    "7-players": [
+     "mica-springers-foe-1",
+     "mica-springers-foe-2",
+     "mica-springers-foe-3",
+     "mica-springers-foe-4",
+     "mica-springers-foe-5"
+    ],
+    "8-players": [
+     "mica-springers-foe-1",
+     "mica-springers-foe-2",
+     "mica-springers-foe-3",
+     "mica-springers-foe-4",
+     "mica-springers-foe-5",
+     "mica-springers-foe-6"
+    ]
+   },
+   "file": "foe-ef326d302f.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/assets/table/foes-foe-ef326d302f.webp",
+   "sha256": "b585e6b00ba34bfb2ce199a33e6a0152243647a0ddc1826112a9d064dd14e5ab",
+   "originalSha256": "68aadaff13091f4bd7e399b29bd19e8f8d860ef914110eec9838af5895bda4e1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Слюдяной клубок",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mica-springers-foe-1",
+     "mica-springers-foe-2"
+    ],
+    "4-players": [
+     "mica-springers-foe-1",
+     "mica-springers-foe-2",
+     "mica-springers-foe-3"
+    ],
+    "5-players": [
+     "mica-springers-foe-1",
+     "mica-springers-foe-2",
+     "mica-springers-foe-3"
+    ],
+    "6-players": [
+     "mica-springers-foe-1",
+     "mica-springers-foe-2",
+     "mica-springers-foe-3",
+     "mica-springers-foe-4"
+    ],
+    "7-players": [
+     "mica-springers-foe-1",
+     "mica-springers-foe-2",
+     "mica-springers-foe-3",
+     "mica-springers-foe-4",
+     "mica-springers-foe-5"
+    ],
+    "8-players": [
+     "mica-springers-foe-1",
+     "mica-springers-foe-2",
+     "mica-springers-foe-3",
+     "mica-springers-foe-4",
+     "mica-springers-foe-5",
+     "mica-springers-foe-6"
+    ]
+   },
+   "file": "foe-ef326d302f--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-ef326d302f.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/assets/table/npcs-sava-house.webp",
+   "sha256": "5448e9aba01b5eb5dd077fb81b4deedc48805d02ec4ebe02bc94bcd8ffe22d1b",
+   "originalSha256": "66ec35de1b2905faecad8720e82b9e893c7c6dcd5d7963f966edf7f7949e5a3b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сава Линов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "sava-house"
+    ],
+    "4-players": [
+     "sava-house"
+    ],
+    "5-players": [
+     "sava-house"
+    ],
+    "6-players": [
+     "sava-house"
+    ],
+    "7-players": [
+     "sava-house"
+    ],
+    "8-players": [
+     "sava-house"
+    ]
+   },
+   "file": "sava-house--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "sava-house.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/assets/table/npcs-laria-sketch.webp",
+   "sha256": "142e91f10bb16c9f4bc40da184f82ae3863df1d846730129312977d38f27a050",
+   "originalSha256": "66ec35de1b2905faecad8720e82b9e893c7c6dcd5d7963f966edf7f7949e5a3b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лария Векова",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "laria-sketch"
+    ],
+    "4-players": [
+     "laria-sketch"
+    ],
+    "5-players": [
+     "laria-sketch"
+    ],
+    "6-players": [
+     "laria-sketch"
+    ],
+    "7-players": [
+     "laria-sketch"
+    ],
+    "8-players": [
+     "laria-sketch"
+    ]
+   },
+   "file": "laria-sketch--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "laria-sketch.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/assets/table/npcs-marev-gauge.webp",
+   "sha256": "aef40fb33598cd140ae12b2b884ee6ea5e60afff540f63adb6fbb8aea289c546",
+   "originalSha256": "66ec35de1b2905faecad8720e82b9e893c7c6dcd5d7963f966edf7f7949e5a3b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Марев Тир",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "marev-gauge"
+    ],
+    "4-players": [
+     "marev-gauge"
+    ],
+    "5-players": [
+     "marev-gauge"
+    ],
+    "6-players": [
+     "marev-gauge"
+    ],
+    "7-players": [
+     "marev-gauge"
+    ],
+    "8-players": [
+     "marev-gauge"
+    ]
+   },
+   "file": "marev-gauge--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "marev-gauge.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/assets/table/npcs-tima-float.webp",
+   "sha256": "8596baedaa569a639bb9947f76209d1cb55c0f1d8ef37e83738699b6cc67d65e",
+   "originalSha256": "66ec35de1b2905faecad8720e82b9e893c7c6dcd5d7963f966edf7f7949e5a3b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тима Веден",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tima-float"
+    ],
+    "4-players": [
+     "tima-float"
+    ],
+    "5-players": [
+     "tima-float"
+    ],
+    "6-players": [
+     "tima-float"
+    ],
+    "7-players": [
+     "tima-float"
+    ],
+    "8-players": [
+     "tima-float"
+    ]
+   },
+   "file": "tima-float--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "tima-float.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/assets/table/npcs-olin-thread.webp",
+   "sha256": "b22161fd685d2455f5e895ec5bdb08bd355be41fd98e14849c7e763d21be9a2e",
+   "originalSha256": "66ec35de1b2905faecad8720e82b9e893c7c6dcd5d7963f966edf7f7949e5a3b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Олин Шелест",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "olin-thread"
+    ],
+    "4-players": [
+     "olin-thread"
+    ],
+    "5-players": [
+     "olin-thread"
+    ],
+    "6-players": [
+     "olin-thread"
+    ],
+    "7-players": [
+     "olin-thread"
+    ],
+    "8-players": [
+     "olin-thread"
+    ]
+   },
+   "file": "olin-thread--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "olin-thread.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/assets/table/npcs-berta-clay.webp",
+   "sha256": "658062d6d1093764f612e0ddeb3d7b316160ac28775fbb0a8ca481bfd599af19",
+   "originalSha256": "66ec35de1b2905faecad8720e82b9e893c7c6dcd5d7963f966edf7f7949e5a3b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Берта Ровная",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "berta-clay"
+    ],
+    "4-players": [
+     "berta-clay"
+    ],
+    "5-players": [
+     "berta-clay"
+    ],
+    "6-players": [
+     "berta-clay"
+    ],
+    "7-players": [
+     "berta-clay"
+    ],
+    "8-players": [
+     "berta-clay"
+    ]
+   },
+   "file": "berta-clay--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "berta-clay.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/assets/table/npcs-yust-porter.webp",
+   "sha256": "8c3e0dc6275609a1158054a83082ae9d223007809f4e412fe9175fcef9960725",
+   "originalSha256": "66ec35de1b2905faecad8720e82b9e893c7c6dcd5d7963f966edf7f7949e5a3b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Юст Бакл",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "yust-porter"
+    ],
+    "4-players": [
+     "yust-porter"
+    ],
+    "5-players": [
+     "yust-porter"
+    ],
+    "6-players": [
+     "yust-porter"
+    ],
+    "7-players": [
+     "yust-porter"
+    ],
+    "8-players": [
+     "yust-porter"
+    ]
+   },
+   "file": "yust-porter--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "yust-porter.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/assets/table/npcs-dana-witness.webp",
+   "sha256": "dd489e9a265e4e7ee374f6866a512b0dfd598579a745f673b0d42c7688b873aa",
+   "originalSha256": "66ec35de1b2905faecad8720e82b9e893c7c6dcd5d7963f966edf7f7949e5a3b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дана Край",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "dana-witness"
+    ],
+    "4-players": [
+     "dana-witness"
+    ],
+    "5-players": [
+     "dana-witness"
+    ],
+    "6-players": [
+     "dana-witness"
+    ],
+    "7-players": [
+     "dana-witness"
+    ],
+    "8-players": [
+     "dana-witness"
+    ]
+   },
+   "file": "dana-witness--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "dana-witness.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/basalt-bloom/illustrations/opening.webp",
+   "sha256": "c9d5e36f195928bfcd261bafb639896dc185091029c1d40f4248074fe2a6c23c",
+   "originalSha256": "45b9f7ce87b14e189a2637f4a7e7792d5be749f3d7dad3d1473142837df884dc",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дом над трещиной — Цветение базальта",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "basalt-fold"
+    ],
+    "4-players": [
+     "basalt-fold"
+    ],
+    "5-players": [
+     "basalt-fold"
+    ],
+    "6-players": [
+     "basalt-fold"
+    ],
+    "7-players": [
+     "basalt-fold"
+    ],
+    "8-players": [
+     "basalt-fold"
+    ]
+   },
+   "file": "cover.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "file": "glass-stream--map.webp",
+   "source": "campaigns/fantasy-2026/basalt-bloom/assets/battle-maps/glass-stream.webp",
+   "sha256": "06beed3df59af0bb6b23c45735feb9cb2c87374e5e02afc741fe1ae8b281571f",
+   "originalSha256": "03e9f750626c2cac26619041bc4051fb10f9c7efd7ee84810c5371d1375eff13",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Стеклянная речка. Visible scenery: Ручей лежит прозрачной полосой среди чёрных плит. Плоские берега отражают свет фонарей длинными прямоугольниками.. World style: Чёрная складка · Black basalt hexagons opening into translucent amber mineral petals. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "glass-stream.webp",
+   "subjects": {
+    "3-players": [
+     "glass-stream"
+    ],
+    "4-players": [
+     "glass-stream"
+    ],
+    "5-players": [
+     "glass-stream"
+    ],
+    "6-players": [
+     "glass-stream"
+    ],
+    "7-players": [
+     "glass-stream"
+    ],
+    "8-players": [
+     "glass-stream"
+    ]
+   }
+  },
+  {
+   "file": "dry-neck--map.webp",
+   "source": "campaigns/fantasy-2026/basalt-bloom/assets/battle-maps/dry-neck.webp",
+   "sha256": "c4ee1a73e81a7bf1a1a3ce5bbfe131357b29efcc12cf1161cb3366f27be3430c",
+   "originalSha256": "7ba51f6e5d20dfba0994baf4eff00a57194d26b92ddf0c2509a67e7f96ea5a5f",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Сухая горловина. Visible scenery: Сквозняк шевелит воротники в узком проходе. Рядом идёт широкий внешний обход с обычным каменным полом.. World style: Чёрная складка · Black basalt hexagons opening into translucent amber mineral petals. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "dry-neck.webp",
+   "subjects": {
+    "3-players": [
+     "dry-neck"
+    ],
+    "4-players": [
+     "dry-neck"
+    ],
+    "5-players": [
+     "dry-neck"
+    ],
+    "6-players": [
+     "dry-neck"
+    ],
+    "7-players": [
+     "dry-neck"
+    ],
+    "8-players": [
+     "dry-neck"
+    ]
+   }
+  },
+  {
+   "file": "steady-islands--map.webp",
+   "source": "campaigns/fantasy-2026/basalt-bloom/assets/battle-maps/steady-islands.webp",
+   "sha256": "2d662caeb0e473b33441a627299a26f4b04136f66ae51562bed3464c5c1d2bea",
+   "originalSha256": "8200d446920244b3c6c02a25fbf9d8d7a46a30b23d5bb08fd0b31eeed7130fcb",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Островки покоя. Visible scenery: Массивные базальтовые площадки поднимаются из складчатого пола. Между ними поблёскивают тонкие кромки, над ними достаточно места для навеса.. World style: Чёрная складка · Black basalt hexagons opening into translucent amber mineral petals. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "steady-islands.webp",
+   "subjects": {
+    "3-players": [
+     "steady-islands"
+    ],
+    "4-players": [
+     "steady-islands"
+    ],
+    "5-players": [
+     "steady-islands"
+    ],
+    "6-players": [
+     "steady-islands"
+    ],
+    "7-players": [
+     "steady-islands"
+    ],
+    "8-players": [
+     "steady-islands"
+    ]
+   }
+  },
+  {
+   "file": "world-map.webp",
+   "source": "campaigns/fantasy-2026/basalt-bloom/assets/world-map/world-map.webp",
+   "sha256": "aecd4f77712a50b617163773be844352a41d191b3604132eb7b48c147102e3ef",
+   "originalSha256": "58117b255107a59977dd73870df3823ad1a63f733d20d5ffaaf7b186e0cd597a",
+   "generated": "2026-11-22",
+   "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Чёрная складка. Style Чёрная складка · Black basalt hexagons opening into translucent amber mineral petals. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Дом над трещиной; 0.367,0.177 Двор первой щели; 0.623,0.15 Чёрные ступени; 0.88,0.177 Стеклянная речка; 0.905,0.517 Слуховой уступ; 0.648,0.49 Зал оттисков; 0.392,0.517 Сухая горловина; 0.135,0.49 Островки покоя; 0.11,0.83 Полый венец; 0.367,0.857 Возвратный балкон. Show public exteriors / unlabeled contours only.",
+   "references": [],
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null,
+   "subjects": {
+    "3-players": [
+     "world-map"
+    ],
+    "4-players": [
+     "world-map"
+    ],
+    "5-players": [
+     "world-map"
+    ],
+    "6-players": [
+     "world-map"
+    ],
+    "7-players": [
+     "world-map"
+    ],
+    "8-players": [
+     "world-map"
+    ]
+   }
+  }
+ ]
+}

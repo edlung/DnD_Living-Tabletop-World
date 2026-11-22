@@ -1,0 +1,35 @@
+{
+  "about": "Иллюстрация закрытого личного набора персонажа.",
+  "generated": "2026-11-22",
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "kit",
+      "originalFile": "exec-cc295f60-9307-428e-9a65-da12d3318beb.png",
+      "originalSha256": "d9918d362e773e49b05ab503a5575fb00997beffedc544ae8d8c9edcd586fc8f",
+      "prompt": "One original illustrated tabletop item card illustration of a closed opaque everyday carry case or satchel for the fictional world Хор Пустых Комнат. Art direction: match the following very specific material as a very subtle detail on the case: Faded damask, repeating empty arched doorways and fine ivory clock divisions. Show only one complete bag against a quiet neutral backdrop, atmospheric, painterly naturalism, carefully crafted, three quarters view, soft even light, square framing. Never show contents, evidence, people, text, maps, interfaces, lettering or a frame.",
+      "conversion": "cwebp -resize 256 256 -q 83"
+    }
+  ],
+  "cards": [
+    {
+      "id": "travel-kit",
+      "file": "cards/travel-kit.webp",
+      "title": "Дорожный набор",
+      "subjects": [
+        "anton-grey-travel-kit",
+        "david-ash-travel-kit",
+        "ilya-fenn-travel-kit",
+        "mara-elm-travel-kit",
+        "nina-slate-travel-kit",
+        "roza-flint-travel-kit",
+        "sofia-mere-travel-kit",
+        "vera-reed-travel-kit"
+      ],
+      "sheet": "kit",
+      "width": 256,
+      "height": 256,
+      "sha256": "9a7f245eb00f1afc74089e5e0b9e7707d0f29c9687025cc86e92c2a6f9f97aa2"
+    }
+  ]
+}

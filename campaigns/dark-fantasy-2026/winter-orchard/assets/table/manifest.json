@@ -1,0 +1,656 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "winter-orchard-places-0",
+      "originalFile": "exec-0d0a2fa3-d36c-40d9-bbbf-ddacd6db9364.png",
+      "originalSha256": "27db5a95853ce10097062ba14c7a03d325e1f21a39cec48c6c6175f0e0970240",
+      "columns": 3,
+      "rows": 4,
+      "prompt": "A registered game art atlas of location illustrations, one clearly distinct unpopulated environment per cell, distinct scene lighting and structures. Fill each cell edge to edge. Atmospheric painted landscape or architectural interiors at human eye level. No plot events, clues, icons or writing. EXACT regular grid, 3 equal columns by 4 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Тихая Чаша · Winter pear cross sections and frost-veined leaves on blue-green glazed ceramic. Cell 1. Дом Фонарей. Светлая приёмная с отдельными стульями, открытым выходом и лампами разных оттенков.\nCell 2. Крапивный Рынок. Посёлок вокруг крытого рынка; на пустых фруктовых прилавках теперь лежат записки соседям.\nCell 3. Зимний сад. Низкие груши стоят под снегом; некоторые плоды отбрасывают несоразмерно большие тени.\nCell 4. Домик прививок. Тёплый садовый дом с горшками, срезанными лентами и полками подписанных веточек.\nCell 5. Зеркальный разрез. Овраг, где плоские камни отражают свет без солнца, а отражения иногда запаздывают на один жест.\nCell 6. Моховой колодец. Широкая сухая цистерна с лестницей, светящимся мхом и подвешенными фонарями.\nCell 7. Шёлковый чердак. Ткацкая мастерская над пустым зернохранилищем; белые нити колеблются, даже когда окна закрыты.\nCell 8. Пустая мельница. Бывшая мельница служит складом помощи; лопасти давно сняты, столы покрыты чистой тканью.\nCell 9. Тихие ступени. Каменные уступы под длинным навесом; здесь слышно, как снег соскальзывает с крыши.\nCell 10. Белая палата. Гостевой дом с просторной общей комнатой и личными занавесями; каждая дверь открывается изнутри.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "winter-orchard-heroes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-51e026c9-6a19-4239-9cb3-4d4512af16fb.png",
+      "originalSha256": "c6c39b0c8d0ddf32228aa6eba8cda1dd63d0a60d3f4f3385623bb38f021219db",
+      "columns": 4,
+      "rows": 2,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 4 equal columns by 2 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Тихая Чаша · Winter pear cross sections and frost-veined leaves on blue-green glazed ceramic. Cell 1. Мира Тёплая Чаша. Шерстяная накидка, плоская медная чаша и привычка ставить свой стул на уровне собеседника.\nCell 2. Лев Косая Мера. Пальцы в чернилах, складная линейка и множество маленьких пустых коробочек.\nCell 3. Тарен Узельщик. Короткий плащ с многочисленными петлями и потрёпанный щит, на котором нарисована открытая дверь.\nCell 4. Хава Полутень. Очки с разными стёклами и тетрадь, в которой неудачные предположения не зачёркнуты.\nCell 5. Демар Семь Колёс. Седая коса, широкие рукавицы и ремень с деревянными клиньями.\nCell 6. Сея Тихая Нить. Простой дорожный костюм, связка цветных нитей на запястье и спокойный, хорошо слышный голос.\nCell 7. Вар Снежная Кромка. Сумка с углём, мягкие сапоги и карта, на которой отмечены места отдыха.. Leave final unused cells empty.",
+      "references": [
+        "campaigns/dark-fantasy-2026/winter-orchard/illustrations/cards/mira-bowl.webp",
+        "campaigns/dark-fantasy-2026/winter-orchard/illustrations/cards/lev-measure.webp",
+        "campaigns/dark-fantasy-2026/winter-orchard/illustrations/cards/taren-rope.webp",
+        "campaigns/dark-fantasy-2026/winter-orchard/illustrations/cards/hava-shade.webp",
+        "campaigns/dark-fantasy-2026/winter-orchard/illustrations/cards/demar-cart.webp",
+        "campaigns/dark-fantasy-2026/winter-orchard/illustrations/cards/seya-thread.webp",
+        "campaigns/dark-fantasy-2026/winter-orchard/illustrations/cards/var-snow.webp"
+      ]
+    },
+    {
+      "id": "winter-orchard-foes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-82f63948-6aaa-469c-8582-ea7842904510.png",
+      "originalSha256": "f8f0fde8c53f5a0403a9d6b2dd1f8cee96d626653a7284ba777f544859ddb31c",
+      "columns": 3,
+      "rows": 1,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 3 equal columns by 1 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Тихая Чаша · Winter pear cross sections and frost-veined leaves on blue-green glazed ceramic. Cell 1. Холодный отблеск. Пустой серебряный силуэт без человеческого лица; трещины в нём выглядят как узоры инея, без натуралистических повреждений.\nCell 2. Плетёный сторож. Пустая корзина с ножками из старых ивовых ручек; внутри только рассеянный зелёный свет.\nCell 3. Пустой распорядитель. Одушевлённый белый плащ на деревянной стойке, без человека внутри и без скрытой человеческой жертвы.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "winter-orchard-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-2e62fed3-c432-482f-94ff-9be458c65918.png",
+      "originalSha256": "34767f9b976f47bf15d6eabfee3ec268e300d8fafff05a92d22daedeef113e19",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "Create a clean production sprite sheet of 9 distinct hand-painted tabletop miniature figurines for the world of Сад украденной зимы. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 3 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Дара Медный Ключ. Женщина с короткими седыми волосами и связкой маленьких ключей на поясе.\nCell 2. Ивар Веточник. Высокий садовник в потёртом фартуке; на карманах мелом подписаны названия рядов.\nCell 3. Нема Круглый Хлеб. Пекарь с зелёной прядью у виска и сухим мучным следом на рукаве.\nCell 4. Орел Ровный Поднос. Строго одетый распорядитель с чистым деревянным подносом и усталым взглядом.\nCell 5. Веска Без Рамы. Невысокая мастерица в тёмных очках с серебряной застёжкой на вороте.\nCell 6. Бохан Моховой Свет. Фонарщик с крошечными листьями на бровях и тщательно начищенной лампой.\nCell 7. Сута Белый Уток. Ткачиха с несколькими белыми нитями, завязанными поверх тёмной косы.\nCell 8. Элла Дождевой Шаг. Картограф с прозрачными ногтями, которые тихо звенят при прикосновении к бумаге.\nCell 9. Фер Дальний Порог. Дорожный носильщик с мягким древесным узором на ладонях и аккуратно собранной сумкой.",
+      "references": [
+        "campaigns/dark-fantasy-2026/winter-orchard/illustrations/cards/dara-keeper.webp",
+        "campaigns/dark-fantasy-2026/winter-orchard/illustrations/cards/ivar-grafter.webp",
+        "campaigns/dark-fantasy-2026/winter-orchard/illustrations/cards/nema-baker.webp",
+        "campaigns/dark-fantasy-2026/winter-orchard/illustrations/cards/orel-purveyor.webp",
+        "campaigns/dark-fantasy-2026/winter-orchard/illustrations/cards/veska-reflector.webp",
+        "campaigns/dark-fantasy-2026/winter-orchard/illustrations/cards/bohan-lamplighter.webp",
+        "campaigns/dark-fantasy-2026/winter-orchard/illustrations/cards/suta-weaver.webp",
+        "campaigns/dark-fantasy-2026/winter-orchard/illustrations/cards/ella-surveyor.webp",
+        "campaigns/dark-fantasy-2026/winter-orchard/illustrations/cards/fer-porter.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "lantern-house",
+      "title": "Дом Фонарей",
+      "kind": "place",
+      "subjects": [
+        "lantern-house"
+      ],
+      "file": "places-lantern-house.webp",
+      "sha256": "887ac8a0cf1b5e888dadda1182052a8f2fcd2dbee736b3cf2b31f9b082ef3c80",
+      "originalSha256": "27db5a95853ce10097062ba14c7a03d325e1f21a39cec48c6c6175f0e0970240",
+      "generated": "2026-11-22",
+      "sheet": "winter-orchard-places-0",
+      "cell": 1,
+      "crop": {
+        "left": 1,
+        "top": 1,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "brindle-market",
+      "title": "Крапивный Рынок",
+      "kind": "place",
+      "subjects": [
+        "brindle-market"
+      ],
+      "file": "places-brindle-market.webp",
+      "sha256": "9b6ab45c50d5f2dc0663cffad0a4244d0ebee4e94b6127fd6d5491c97e76d172",
+      "originalSha256": "27db5a95853ce10097062ba14c7a03d325e1f21a39cec48c6c6175f0e0970240",
+      "generated": "2026-11-22",
+      "sheet": "winter-orchard-places-0",
+      "cell": 2,
+      "crop": {
+        "left": 363,
+        "top": 1,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "winter-garden",
+      "title": "Зимний сад",
+      "kind": "place",
+      "subjects": [
+        "winter-garden"
+      ],
+      "file": "places-winter-garden.webp",
+      "sha256": "1c7aa4da66abd92235e90ada05fdbc472fd8320e85c35d96fd918650274ab19d",
+      "originalSha256": "27db5a95853ce10097062ba14c7a03d325e1f21a39cec48c6c6175f0e0970240",
+      "generated": "2026-11-22",
+      "sheet": "winter-orchard-places-0",
+      "cell": 3,
+      "crop": {
+        "left": 725,
+        "top": 1,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "graft-shed",
+      "title": "Домик прививок",
+      "kind": "place",
+      "subjects": [
+        "graft-shed"
+      ],
+      "file": "places-graft-shed.webp",
+      "sha256": "4d9df182479651387ef70242dc3c774b94fb4275f0173d2c40a09ab4a18f0e55",
+      "originalSha256": "27db5a95853ce10097062ba14c7a03d325e1f21a39cec48c6c6175f0e0970240",
+      "generated": "2026-11-22",
+      "sheet": "winter-orchard-places-0",
+      "cell": 4,
+      "crop": {
+        "left": 1,
+        "top": 363,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "mirror-cut",
+      "title": "Зеркальный разрез",
+      "kind": "place",
+      "subjects": [
+        "mirror-cut"
+      ],
+      "file": "places-mirror-cut.webp",
+      "sha256": "f807de2ec74f9620734684ebb7849da50c9cae8be7fd9c625cdceab765ce7bed",
+      "originalSha256": "27db5a95853ce10097062ba14c7a03d325e1f21a39cec48c6c6175f0e0970240",
+      "generated": "2026-11-22",
+      "sheet": "winter-orchard-places-0",
+      "cell": 5,
+      "crop": {
+        "left": 363,
+        "top": 363,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "moss-well",
+      "title": "Моховой колодец",
+      "kind": "place",
+      "subjects": [
+        "moss-well"
+      ],
+      "file": "places-moss-well.webp",
+      "sha256": "f0f74e643bce9a6ef0f3d0e06d970a6d0f68ccaeae4d28305b5b261511c3d194",
+      "originalSha256": "27db5a95853ce10097062ba14c7a03d325e1f21a39cec48c6c6175f0e0970240",
+      "generated": "2026-11-22",
+      "sheet": "winter-orchard-places-0",
+      "cell": 6,
+      "crop": {
+        "left": 725,
+        "top": 363,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "silk-attic",
+      "title": "Шёлковый чердак",
+      "kind": "place",
+      "subjects": [
+        "silk-attic"
+      ],
+      "file": "places-silk-attic.webp",
+      "sha256": "296dddd48cd9303cf743a96640f726922a695d00f0e3a53d34cc1e3e6ac43a5d",
+      "originalSha256": "27db5a95853ce10097062ba14c7a03d325e1f21a39cec48c6c6175f0e0970240",
+      "generated": "2026-11-22",
+      "sheet": "winter-orchard-places-0",
+      "cell": 7,
+      "crop": {
+        "left": 1,
+        "top": 725,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "empty-mill",
+      "title": "Пустая мельница",
+      "kind": "place",
+      "subjects": [
+        "empty-mill"
+      ],
+      "file": "places-empty-mill.webp",
+      "sha256": "c00e4a5833cc53364530fc43e70b5150a7474e35144ac64501b457041ba7ab15",
+      "originalSha256": "27db5a95853ce10097062ba14c7a03d325e1f21a39cec48c6c6175f0e0970240",
+      "generated": "2026-11-22",
+      "sheet": "winter-orchard-places-0",
+      "cell": 8,
+      "crop": {
+        "left": 363,
+        "top": 725,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "sheltered-steps",
+      "title": "Тихие ступени",
+      "kind": "place",
+      "subjects": [
+        "sheltered-steps"
+      ],
+      "file": "places-sheltered-steps.webp",
+      "sha256": "049ae8ab13f90023543cc59fbc835e785236a69851b15d4e163323e001029b7e",
+      "originalSha256": "27db5a95853ce10097062ba14c7a03d325e1f21a39cec48c6c6175f0e0970240",
+      "generated": "2026-11-22",
+      "sheet": "winter-orchard-places-0",
+      "cell": 9,
+      "crop": {
+        "left": 725,
+        "top": 725,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "white-ward",
+      "title": "Белая палата",
+      "kind": "place",
+      "subjects": [
+        "white-ward"
+      ],
+      "file": "places-white-ward.webp",
+      "sha256": "38d8600ed95e2390ab99d31f7e701645114bec40d810f7e80a9d4c23f7554e38",
+      "originalSha256": "27db5a95853ce10097062ba14c7a03d325e1f21a39cec48c6c6175f0e0970240",
+      "generated": "2026-11-22",
+      "sheet": "winter-orchard-places-0",
+      "cell": 10,
+      "crop": {
+        "left": 1,
+        "top": 1087,
+        "width": 360,
+        "height": 360
+      }
+    },
+    {
+      "key": "mira-bowl",
+      "title": "Мира Тёплая Чаша",
+      "kind": "hero",
+      "subjects": [
+        "mira-bowl"
+      ],
+      "file": "heroes-mira-bowl.webp",
+      "sha256": "e809f2b8425537acc80a1c9d5b1c870ea3e4ecdcdbabd3146ef68724ab38aee0",
+      "originalSha256": "c6c39b0c8d0ddf32228aa6eba8cda1dd63d0a60d3f4f3385623bb38f021219db",
+      "generated": "2026-11-22",
+      "sheet": "winter-orchard-heroes-0",
+      "cell": 1,
+      "crop": {
+        "left": 82,
+        "top": 17,
+        "width": 297,
+        "height": 402
+      }
+    },
+    {
+      "key": "lev-measure",
+      "title": "Лев Косая Мера",
+      "kind": "hero",
+      "subjects": [
+        "lev-measure"
+      ],
+      "file": "heroes-lev-measure.webp",
+      "sha256": "77463e96a6647ec8eb7ef0afe5b74a52ae2fd52ac8cbf796f3f3ad5b28afe65f",
+      "originalSha256": "c6c39b0c8d0ddf32228aa6eba8cda1dd63d0a60d3f4f3385623bb38f021219db",
+      "generated": "2026-11-22",
+      "sheet": "winter-orchard-heroes-0",
+      "cell": 2,
+      "crop": {
+        "left": 503,
+        "top": 14,
+        "width": 328,
+        "height": 405
+      }
+    },
+    {
+      "key": "taren-rope",
+      "title": "Тарен Узельщик",
+      "kind": "hero",
+      "subjects": [
+        "taren-rope"
+      ],
+      "file": "heroes-taren-rope.webp",
+      "sha256": "c14f356e47dfe9d4a1bbbd295dfcd9e47282babad473a97036da7227d2d0982d",
+      "originalSha256": "c6c39b0c8d0ddf32228aa6eba8cda1dd63d0a60d3f4f3385623bb38f021219db",
+      "generated": "2026-11-22",
+      "sheet": "winter-orchard-heroes-0",
+      "cell": 3,
+      "crop": {
+        "left": 939,
+        "top": 14,
+        "width": 333,
+        "height": 404
+      }
+    },
+    {
+      "key": "hava-shade",
+      "title": "Хава Полутень",
+      "kind": "hero",
+      "subjects": [
+        "hava-shade"
+      ],
+      "file": "heroes-hava-shade.webp",
+      "sha256": "868ce6c2358d35a3dda9868536549b6865d666800ec00dda156ebc93bbf56e36",
+      "originalSha256": "c6c39b0c8d0ddf32228aa6eba8cda1dd63d0a60d3f4f3385623bb38f021219db",
+      "generated": "2026-11-22",
+      "sheet": "winter-orchard-heroes-0",
+      "cell": 4,
+      "crop": {
+        "left": 1394,
+        "top": 22,
+        "width": 312,
+        "height": 399
+      }
+    },
+    {
+      "key": "demar-cart",
+      "title": "Демар Семь Колёс",
+      "kind": "hero",
+      "subjects": [
+        "demar-cart"
+      ],
+      "file": "heroes-demar-cart.webp",
+      "sha256": "d26bcc2b5c30ea6c2179bda105888a6c46fc7376fd40a1946215ab6696e57225",
+      "originalSha256": "c6c39b0c8d0ddf32228aa6eba8cda1dd63d0a60d3f4f3385623bb38f021219db",
+      "generated": "2026-11-22",
+      "sheet": "winter-orchard-heroes-0",
+      "cell": 5,
+      "crop": {
+        "left": 88,
+        "top": 451,
+        "width": 281,
+        "height": 415
+      }
+    },
+    {
+      "key": "seya-thread",
+      "title": "Сея Тихая Нить",
+      "kind": "hero",
+      "subjects": [
+        "seya-thread"
+      ],
+      "file": "heroes-seya-thread.webp",
+      "sha256": "5c97e320ae6ab3b401af8effa7d7037c7d49e9ba7dab530c952990b483905ca9",
+      "originalSha256": "c6c39b0c8d0ddf32228aa6eba8cda1dd63d0a60d3f4f3385623bb38f021219db",
+      "generated": "2026-11-22",
+      "sheet": "winter-orchard-heroes-0",
+      "cell": 6,
+      "crop": {
+        "left": 512,
+        "top": 453,
+        "width": 304,
+        "height": 411
+      }
+    },
+    {
+      "key": "var-snow",
+      "title": "Вар Снежная Кромка",
+      "kind": "hero",
+      "subjects": [
+        "var-snow"
+      ],
+      "file": "heroes-var-snow.webp",
+      "sha256": "3c82b4e74cd6fff9d0c521994c38f9b0ba9d35a729826b00a55be32eb3dc41bf",
+      "originalSha256": "c6c39b0c8d0ddf32228aa6eba8cda1dd63d0a60d3f4f3385623bb38f021219db",
+      "generated": "2026-11-22",
+      "sheet": "winter-orchard-heroes-0",
+      "cell": 7,
+      "crop": {
+        "left": 934,
+        "top": 446,
+        "width": 326,
+        "height": 419
+      }
+    },
+    {
+      "key": "foe-8ed209b87f",
+      "title": "Холодный отблеск",
+      "kind": "foe",
+      "subjects": [
+        "mirror-echoes-foe-1",
+        "mirror-echoes-foe-2",
+        "mirror-echoes-foe-3",
+        "mirror-echoes-foe-4",
+        "mirror-echoes-foe-5"
+      ],
+      "file": "foes-foe-8ed209b87f.webp",
+      "sha256": "728bcdafc09c281fffc96ac7d06bce455fac32264bfdfc5be67c6600959b8eb8",
+      "originalSha256": "f8f0fde8c53f5a0403a9d6b2dd1f8cee96d626653a7284ba777f544859ddb31c",
+      "generated": "2026-11-22",
+      "sheet": "winter-orchard-foes-0",
+      "cell": 1,
+      "crop": {
+        "left": 130,
+        "top": 15,
+        "width": 424,
+        "height": 690
+      }
+    },
+    {
+      "key": "foe-a8d0908a8a",
+      "title": "Плетёный сторож",
+      "kind": "foe",
+      "subjects": [
+        "lamp-wickers-foe-1",
+        "lamp-wickers-foe-2",
+        "lamp-wickers-foe-3",
+        "lamp-wickers-foe-4",
+        "lamp-wickers-foe-5"
+      ],
+      "file": "foes-foe-a8d0908a8a.webp",
+      "sha256": "a5d172c4d57dc4ebcd8928d523a5078b15d67c68884d263bcdaeb372083a66b4",
+      "originalSha256": "f8f0fde8c53f5a0403a9d6b2dd1f8cee96d626653a7284ba777f544859ddb31c",
+      "generated": "2026-11-22",
+      "sheet": "winter-orchard-foes-0",
+      "cell": 2,
+      "crop": {
+        "left": 836,
+        "top": 21,
+        "width": 459,
+        "height": 680
+      }
+    },
+    {
+      "key": "foe-9caccf6d2b",
+      "title": "Пустой распорядитель",
+      "kind": "foe",
+      "subjects": [
+        "white-ushers-foe-1",
+        "white-ushers-foe-2",
+        "white-ushers-foe-3",
+        "white-ushers-foe-4",
+        "white-ushers-foe-5"
+      ],
+      "file": "foes-foe-9caccf6d2b.webp",
+      "sha256": "290854126db5dac99ab407f7fb4cacf9ba8eb8cc5ff15c101d8e356cca09734e",
+      "originalSha256": "f8f0fde8c53f5a0403a9d6b2dd1f8cee96d626653a7284ba777f544859ddb31c",
+      "generated": "2026-11-22",
+      "sheet": "winter-orchard-foes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1528,
+        "top": 17,
+        "width": 534,
+        "height": 687
+      }
+    },
+    {
+      "key": "dara-keeper",
+      "title": "Дара Медный Ключ",
+      "kind": "npc",
+      "subjects": [
+        "dara-keeper"
+      ],
+      "file": "npcs-dara-keeper.webp",
+      "sha256": "ddb513730861e6bfe9b2e66610b9fd2adb91bcfa9aee2f57b0680efa4a05b71c",
+      "originalSha256": "34767f9b976f47bf15d6eabfee3ec268e300d8fafff05a92d22daedeef113e19",
+      "generated": "2026-11-22",
+      "sheet": "winter-orchard-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 104,
+        "top": 11,
+        "width": 210,
+        "height": 415
+      }
+    },
+    {
+      "key": "ivar-grafter",
+      "title": "Ивар Веточник",
+      "kind": "npc",
+      "subjects": [
+        "ivar-grafter"
+      ],
+      "file": "npcs-ivar-grafter.webp",
+      "sha256": "d232dc67729d7b887af742c36fd43ccbf821c0033bd7b31552a6730a449e91c6",
+      "originalSha256": "34767f9b976f47bf15d6eabfee3ec268e300d8fafff05a92d22daedeef113e19",
+      "generated": "2026-11-22",
+      "sheet": "winter-orchard-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 474,
+        "top": 11,
+        "width": 227,
+        "height": 415
+      }
+    },
+    {
+      "key": "nema-baker",
+      "title": "Нема Круглый Хлеб",
+      "kind": "npc",
+      "subjects": [
+        "nema-baker"
+      ],
+      "file": "npcs-nema-baker.webp",
+      "sha256": "b0e413a607f47880120d42493a97d6a5ba4639d2ea2da324f58b6e6a0abdd19c",
+      "originalSha256": "34767f9b976f47bf15d6eabfee3ec268e300d8fafff05a92d22daedeef113e19",
+      "generated": "2026-11-22",
+      "sheet": "winter-orchard-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 862,
+        "top": 11,
+        "width": 228,
+        "height": 415
+      }
+    },
+    {
+      "key": "orel-purveyor",
+      "title": "Орел Ровный Поднос",
+      "kind": "npc",
+      "subjects": [
+        "orel-purveyor"
+      ],
+      "file": "npcs-orel-purveyor.webp",
+      "sha256": "e108ce010e93b7b99a32cbb59b213166a2b9016432f1cb63452e83705945c1b4",
+      "originalSha256": "34767f9b976f47bf15d6eabfee3ec268e300d8fafff05a92d22daedeef113e19",
+      "generated": "2026-11-22",
+      "sheet": "winter-orchard-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 98,
+        "top": 445,
+        "width": 234,
+        "height": 415
+      }
+    },
+    {
+      "key": "veska-reflector",
+      "title": "Веска Без Рамы",
+      "kind": "npc",
+      "subjects": [
+        "veska-reflector"
+      ],
+      "file": "npcs-veska-reflector.webp",
+      "sha256": "7d664eaa3941c54909769e71f254e681a27e925b5931690db3ae830ca354acef",
+      "originalSha256": "34767f9b976f47bf15d6eabfee3ec268e300d8fafff05a92d22daedeef113e19",
+      "generated": "2026-11-22",
+      "sheet": "winter-orchard-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 472,
+        "top": 451,
+        "width": 240,
+        "height": 409
+      }
+    },
+    {
+      "key": "bohan-lamplighter",
+      "title": "Бохан Моховой Свет",
+      "kind": "npc",
+      "subjects": [
+        "bohan-lamplighter"
+      ],
+      "file": "npcs-bohan-lamplighter.webp",
+      "sha256": "a944dc0567cd7ca8eef5ac50cab0215eb4a97ecb0933932fa707277bab535ac9",
+      "originalSha256": "34767f9b976f47bf15d6eabfee3ec268e300d8fafff05a92d22daedeef113e19",
+      "generated": "2026-11-22",
+      "sheet": "winter-orchard-npcs-0",
+      "cell": 6,
+      "crop": {
+        "left": 867,
+        "top": 444,
+        "width": 235,
+        "height": 417
+      }
+    },
+    {
+      "key": "suta-weaver",
+      "title": "Сута Белый Уток",
+      "kind": "npc",
+      "subjects": [
+        "suta-weaver"
+      ],
+      "file": "npcs-suta-weaver.webp",
+      "sha256": "dbf5729e594629594fa82daa3b10420a6e6ec14198b6abbba48694c7ae90488d",
+      "originalSha256": "34767f9b976f47bf15d6eabfee3ec268e300d8fafff05a92d22daedeef113e19",
+      "generated": "2026-11-22",
+      "sheet": "winter-orchard-npcs-0",
+      "cell": 7,
+      "crop": {
+        "left": 79,
+        "top": 876,
+        "width": 252,
+        "height": 428
+      }
+    },
+    {
+      "key": "ella-surveyor",
+      "title": "Элла Дождевой Шаг",
+      "kind": "npc",
+      "subjects": [
+        "ella-surveyor"
+      ],
+      "file": "npcs-ella-surveyor.webp",
+      "sha256": "54f1e53f384ae106fbfd4aa672d517921b428532df73da46afb3673539cb2898",
+      "originalSha256": "34767f9b976f47bf15d6eabfee3ec268e300d8fafff05a92d22daedeef113e19",
+      "generated": "2026-11-22",
+      "sheet": "winter-orchard-npcs-0",
+      "cell": 8,
+      "crop": {
+        "left": 450,
+        "top": 880,
+        "width": 280,
+        "height": 423
+      }
+    },
+    {
+      "key": "fer-porter",
+      "title": "Фер Дальний Порог",
+      "kind": "npc",
+      "subjects": [
+        "fer-porter"
+      ],
+      "file": "npcs-fer-porter.webp",
+      "sha256": "deffc5742d3a69b7b78406b2da011fd2d2e18e0b51985e8c125111b99e5cf1c3",
+      "originalSha256": "34767f9b976f47bf15d6eabfee3ec268e300d8fafff05a92d22daedeef113e19",
+      "generated": "2026-11-22",
+      "sheet": "winter-orchard-npcs-0",
+      "cell": 9,
+      "crop": {
+        "left": 854,
+        "top": 879,
+        "width": 251,
+        "height": 425
+      }
+    }
+  ]
+}

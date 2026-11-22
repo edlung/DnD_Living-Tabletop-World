@@ -1,0 +1,672 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "small-banner-heroes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-7cfd8b97-1674-4951-81a2-171189264653.png",
+      "originalSha256": "e0a933a1947d733deb30114d46c9137295562d436ae6c1e2d32adfcf5e0e4aaf",
+      "columns": 4,
+      "rows": 2,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 4 equal columns by 2 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Дом Медный Напёрсток · Tiny stitch samplers, thimble dimples and braided edges in turquoise patchwork. Cell 1. Яра Корин. Короткие медные волосы, стёганый жилет, рабочие перчатки с разноцветными заплатами; щит теперь похож на большую пуговицу.\nCell 2. Лис Овст. Тёмные кудри под плоской шапкой, карманный блокнот, на рукаве следы угля; мягкие сапоги почти не слышны на ткани.\nCell 3. Неда Рыжий Шов. Серебристая прядь в рыжей косе, зелёный платок и оловянная чашка на поясе; на перчатке вышита открытая ладонь.\nCell 4. Эм Раст. Прямые чёрные волосы, широкая куртка, мелки в петлях пояса; очки перевязаны тонкой тесьмой.\nCell 5. Тавр Липовый. Крупные ладони, седая борода, жёлтый шарф; привычная трость уменьшилась до гибкого прутика.\nCell 6. Сея Складка. Один рукав в клетку, другой полосатый, лёгкая сумка и булавки с тупыми головками; улыбается перед трудным вопросом.\nCell 7. Вен Ясень. Смуглое лицо, короткая светлая стрижка, плащ с карманами для семян; деревянный знак ростка висит на шнурке.\nCell 8. Дорна Янтарная. Длинные седые волосы в узле, фиолетовый фартук и прозрачные образцы в коробочке; на пальце простое деревянное кольцо.. Leave final unused cells empty.",
+      "references": [
+        "campaigns/fantasy-2026/small-banner/illustrations/cards/yara-corin.webp",
+        "campaigns/fantasy-2026/small-banner/illustrations/cards/lis-ovst.webp",
+        "campaigns/fantasy-2026/small-banner/illustrations/cards/neda-seam.webp",
+        "campaigns/fantasy-2026/small-banner/illustrations/cards/em-rast.webp",
+        "campaigns/fantasy-2026/small-banner/illustrations/cards/tavr-linden.webp",
+        "campaigns/fantasy-2026/small-banner/illustrations/cards/seya-fold.webp",
+        "campaigns/fantasy-2026/small-banner/illustrations/cards/ven-ash.webp",
+        "campaigns/fantasy-2026/small-banner/illustrations/cards/dorna-amber.webp"
+      ]
+    },
+    {
+      "id": "small-banner-places-0",
+      "originalFile": "exec-9dc29db9-d859-4837-9e3b-3d9cfbbe15b0.png",
+      "originalSha256": "b7e4cd1e4d05f606411fd3738fdb4917c6dd68a92d6ea0d2fa8d7b450f19e578",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "A registered game art atlas of location illustrations, one clearly distinct unpopulated environment per cell, distinct scene lighting and structures. Fill each cell edge to edge. Atmospheric painted landscape or architectural interiors at human eye level. No plot events, clues, icons or writing. EXACT regular grid, 3 equal columns by 3 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Дом Медный Напёрсток · Tiny stitch samplers, thimble dimples and braided edges in turquoise patchwork. Cell 1. Кромка гостевой скатерти. Широкая тканая полоса над краем чайного стола, с вышитыми дверями и лестницами из бахромы; здесь ладонные гости знакомятся с домом.\nCell 2. Катушечные террасы. Улицы между катушками, балконы из напёрстков и сушильни на натянутых лентах. Артель чинит большие ткани и получает за работу свои материалы.\nCell 3. Буфетная площадь. Три полки с глиняными домиками, стражей у ложечного мостика и огородами в блюдцах; резная дверца отбрасывает прохладную решётчатую тень.\nCell 4. Мотыльковый карниз. За подхватом шторы висят лёгкие посадочные гамаки. По вечерам здесь тренируют крупных мотыльков и сушат пахучие кормовые лепестки.\nCell 5. Берег умывального таза. Эмалированный берег, острова губок и причал из мыльницы; вода отражает потолок, а хлопчатые канаты ведут к полотенцам.\nCell 6. Упаковочный стол. Огромная столешница с бумагой, бечёвкой, открытыми коробками и крупными ярлыками. Здесь человеческий рост и ладонный масштаб встречаются особенно наглядно.\nCell 7. Садовый ящик. Глубокий ящик под навесом, переоборудованный Обой в чистую техническую площадку: низкие опоры, место для карточек и широкий подход для приёмки хрупких работ.\nCell 8. Двор у порога. Каменный порог выходит в двор, где складывают подписанные грузы. Для маленького путника щель между плитами становится долиной, а край простыни — дорогой.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "small-banner-foes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-4630c2d9-5797-4e3a-82fb-8879630c9d78.png",
+      "originalSha256": "51372d83123b87148148d1fc9efff8714aa6582d905a2f4557ab630d2b842248",
+      "columns": 3,
+      "rows": 1,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 3 equal columns by 1 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Дом Медный Напёрсток · Tiny stitch samplers, thimble dimples and braided edges in turquoise patchwork. Cell 1. Ленточный сторож. Маленькое зачарованное пугало артели из мягких лоскутов; сторожа охраняют неясно отмеченный склад и не понимают человеческих намёков.\nCell 2. Тележечный спорщик. Ладонный сборщик материалов с крышкой вместо щита и тупой деревянной рейкой; считает, что защищает разрешённую работу, и готов выслушать владельца.\nCell 3. Бумажный щипач. Зачарованный уборщик из сложенной бумаги, похожий на смешного краба с тупыми краями; собирает свободные обрезки и принимает неподписанную карточку за мусор.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "small-banner-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-b2f536f4-76fb-45d6-862d-bf6be4f8f59b.png",
+      "originalSha256": "e35f08d1434c554effd3b3b538e73ef8ec1339d6355a14b848e4f052f803d8cc",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 5 distinct hand-painted tabletop miniature figurines for the world of Знамя размером с ладонь. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Арда Стежинка. Ладонница в фартуке с медной застёжкой; носит катушку как переносной рабочий стол.\nCell 2. Брун Ложечный. Ладонник с плетёным нагрудником и крышечкой вместо щита; на поясе ключ от кладовой.\nCell 3. Сила Пыльцевей. Ладонница в мягкой куртке, на плечах защитные тканевые лепестки; руки пахнут сушёной мелиссой.\nCell 4. Мур Чашечник. Ладонник в водостойком переднике, с крошечными керамическими флягами на деревянной раме.\nCell 5. Рем Мерочник. Ладонник в дорожной накидке с пришитой мерной полосой, носит большой лист как складную ширму.",
+      "references": [
+        "campaigns/fantasy-2026/small-banner/illustrations/cards/arda-spool.webp",
+        "campaigns/fantasy-2026/small-banner/illustrations/cards/brun-ladle.webp",
+        "campaigns/fantasy-2026/small-banner/illustrations/cards/sila-pollen.webp",
+        "campaigns/fantasy-2026/small-banner/illustrations/cards/mur-vessels.webp",
+        "campaigns/fantasy-2026/small-banner/illustrations/cards/rem-measure.webp"
+      ]
+    },
+    {
+      "id": "small-banner-npcs-1",
+      "cutoutRevision": 4,
+      "originalFile": "exec-2ea8af9d-2d04-42c9-8024-a461d26e5173.png",
+      "originalSha256": "45a2ddcc143dc54bfa9833009ed284656d94d2d01f0db0c370c1f643393d4dfd",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 5 distinct hand-painted tabletop miniature figurines for the world of Знамя размером с ладонь. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Вельда Тихорукая. Великанша в выцветшем синем платье, с толстыми очками и аккуратными переплётными мозолями; рядом складная опора для отдыха.\nCell 2. Кем Верёвочный. Молодой великан с засученными рукавами, поясом для бечёвки и шляпой, измятой о дверной косяк.\nCell 3. Оба Крепица. Великанша с широким поясом, на котором закреплены образцы тканей; носит круглые деревянные серьги.\nCell 4. Песка Листовая. Ладонница в соломенной шляпе, с сумкой черепков, на которых выцарапаны наблюдения за растениями.\nCell 5. Тен Пряжка. Ладонник в жилете из лоскутов, с широкой пряжкой на плече и тележкой для добровольно отданных вещей.",
+      "references": [
+        "campaigns/fantasy-2026/small-banner/illustrations/cards/velda-home.webp",
+        "campaigns/fantasy-2026/small-banner/illustrations/cards/kem-cord.webp",
+        "campaigns/fantasy-2026/small-banner/illustrations/cards/oba-linen.webp",
+        "campaigns/fantasy-2026/small-banner/illustrations/cards/peska-leaf.webp",
+        "campaigns/fantasy-2026/small-banner/illustrations/cards/ten-buckle.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "yara-corin",
+      "title": "Яра Корин",
+      "kind": "hero",
+      "subjects": [
+        "yara-corin"
+      ],
+      "file": "heroes-yara-corin.webp",
+      "sha256": "006f7663dd8d60aa5018ef551a3a2e49530a7dcb6c77c0014656146eec209be5",
+      "originalSha256": "e0a933a1947d733deb30114d46c9137295562d436ae6c1e2d32adfcf5e0e4aaf",
+      "generated": "2026-11-22",
+      "sheet": "small-banner-heroes-0",
+      "cell": 1,
+      "crop": {
+        "left": 105,
+        "top": 10,
+        "width": 239,
+        "height": 422
+      }
+    },
+    {
+      "key": "lis-ovst",
+      "title": "Лис Овст",
+      "kind": "hero",
+      "subjects": [
+        "lis-ovst"
+      ],
+      "file": "heroes-lis-ovst.webp",
+      "sha256": "ab391627bad86bf6c18d41dba5c83291854f1d7f1722405c6a1ef82e92b5cea4",
+      "originalSha256": "e0a933a1947d733deb30114d46c9137295562d436ae6c1e2d32adfcf5e0e4aaf",
+      "generated": "2026-11-22",
+      "sheet": "small-banner-heroes-0",
+      "cell": 2,
+      "crop": {
+        "left": 547,
+        "top": 10,
+        "width": 236,
+        "height": 422
+      }
+    },
+    {
+      "key": "neda-seam",
+      "title": "Неда Рыжий Шов",
+      "kind": "hero",
+      "subjects": [
+        "neda-seam"
+      ],
+      "file": "heroes-neda-seam.webp",
+      "sha256": "d11d92ed0a20698c5b4eec921808d2db41dda08c2adbfe06b5996321b0680212",
+      "originalSha256": "e0a933a1947d733deb30114d46c9137295562d436ae6c1e2d32adfcf5e0e4aaf",
+      "generated": "2026-11-22",
+      "sheet": "small-banner-heroes-0",
+      "cell": 3,
+      "crop": {
+        "left": 992,
+        "top": 16,
+        "width": 237,
+        "height": 416
+      }
+    },
+    {
+      "key": "em-rast",
+      "title": "Эм Раст",
+      "kind": "hero",
+      "subjects": [
+        "em-rast"
+      ],
+      "file": "heroes-em-rast.webp",
+      "sha256": "6a44ca9327d29f3382f511e5fe1f34663e5c91bfc21c212db259a312cb4ddac7",
+      "originalSha256": "e0a933a1947d733deb30114d46c9137295562d436ae6c1e2d32adfcf5e0e4aaf",
+      "generated": "2026-11-22",
+      "sheet": "small-banner-heroes-0",
+      "cell": 4,
+      "crop": {
+        "left": 1430,
+        "top": 10,
+        "width": 240,
+        "height": 422
+      }
+    },
+    {
+      "key": "tavr-linden",
+      "title": "Тавр Липовый",
+      "kind": "hero",
+      "subjects": [
+        "tavr-linden"
+      ],
+      "file": "heroes-tavr-linden.webp",
+      "sha256": "33f95abff853d1818bc7d09e407ceb2fb3b3e8c9e7a346dcfab1d2d7fd3c9c2a",
+      "originalSha256": "e0a933a1947d733deb30114d46c9137295562d436ae6c1e2d32adfcf5e0e4aaf",
+      "generated": "2026-11-22",
+      "sheet": "small-banner-heroes-0",
+      "cell": 5,
+      "crop": {
+        "left": 103,
+        "top": 447,
+        "width": 246,
+        "height": 428
+      }
+    },
+    {
+      "key": "seya-fold",
+      "title": "Сея Складка",
+      "kind": "hero",
+      "subjects": [
+        "seya-fold"
+      ],
+      "file": "heroes-seya-fold.webp",
+      "sha256": "fed3026c063e19e97a65e85a8e544e1773347413d7854f7ada094c09ec690c6e",
+      "originalSha256": "e0a933a1947d733deb30114d46c9137295562d436ae6c1e2d32adfcf5e0e4aaf",
+      "generated": "2026-11-22",
+      "sheet": "small-banner-heroes-0",
+      "cell": 6,
+      "crop": {
+        "left": 548,
+        "top": 452,
+        "width": 236,
+        "height": 423
+      }
+    },
+    {
+      "key": "ven-ash",
+      "title": "Вен Ясень",
+      "kind": "hero",
+      "subjects": [
+        "ven-ash"
+      ],
+      "file": "heroes-ven-ash.webp",
+      "sha256": "bc7f5c9cce965e4b4a01f356a8ffe324b960113c4731ee6eda66ca3cdfa52212",
+      "originalSha256": "e0a933a1947d733deb30114d46c9137295562d436ae6c1e2d32adfcf5e0e4aaf",
+      "generated": "2026-11-22",
+      "sheet": "small-banner-heroes-0",
+      "cell": 7,
+      "crop": {
+        "left": 970,
+        "top": 447,
+        "width": 256,
+        "height": 428
+      }
+    },
+    {
+      "key": "dorna-amber",
+      "title": "Дорна Янтарная",
+      "kind": "hero",
+      "subjects": [
+        "dorna-amber"
+      ],
+      "file": "heroes-dorna-amber.webp",
+      "sha256": "02bcf878cfddf9f28fc018fa09a3498c3c97b2d1fbd83abd48a59220514ef9f1",
+      "originalSha256": "e0a933a1947d733deb30114d46c9137295562d436ae6c1e2d32adfcf5e0e4aaf",
+      "generated": "2026-11-22",
+      "sheet": "small-banner-heroes-0",
+      "cell": 8,
+      "crop": {
+        "left": 1437,
+        "top": 454,
+        "width": 231,
+        "height": 421
+      }
+    },
+    {
+      "key": "guest-hem",
+      "title": "Кромка гостевой скатерти",
+      "kind": "place",
+      "subjects": [
+        "guest-hem"
+      ],
+      "file": "places-guest-hem.webp",
+      "sha256": "2c9a26250bde93d01c1599ad2c48f8211f29259d7bca6c3a2877f980c648c35f",
+      "originalSha256": "b7e4cd1e4d05f606411fd3738fdb4917c6dd68a92d6ea0d2fa8d7b450f19e578",
+      "generated": "2026-11-22",
+      "sheet": "small-banner-places-0",
+      "cell": 1,
+      "crop": {
+        "left": 1,
+        "top": 1,
+        "width": 510,
+        "height": 339
+      }
+    },
+    {
+      "key": "sewing-terrace",
+      "title": "Катушечные террасы",
+      "kind": "place",
+      "subjects": [
+        "sewing-terrace"
+      ],
+      "file": "places-sewing-terrace.webp",
+      "sha256": "6a908758dbd233f9dd4a1aad6cb5c5ebece0705c1fbdbed86fc6c15c2af736e2",
+      "originalSha256": "b7e4cd1e4d05f606411fd3738fdb4917c6dd68a92d6ea0d2fa8d7b450f19e578",
+      "generated": "2026-11-22",
+      "sheet": "small-banner-places-0",
+      "cell": 2,
+      "crop": {
+        "left": 513,
+        "top": 1,
+        "width": 510,
+        "height": 339
+      }
+    },
+    {
+      "key": "cupboard-common",
+      "title": "Буфетная площадь",
+      "kind": "place",
+      "subjects": [
+        "cupboard-common"
+      ],
+      "file": "places-cupboard-common.webp",
+      "sha256": "de000df9a963a3e91637a5fe291b1204f50542f072911d25c1f0fffe09d1063b",
+      "originalSha256": "b7e4cd1e4d05f606411fd3738fdb4917c6dd68a92d6ea0d2fa8d7b450f19e578",
+      "generated": "2026-11-22",
+      "sheet": "small-banner-places-0",
+      "cell": 3,
+      "crop": {
+        "left": 1025,
+        "top": 1,
+        "width": 510,
+        "height": 339
+      }
+    },
+    {
+      "key": "curtain-loft",
+      "title": "Мотыльковый карниз",
+      "kind": "place",
+      "subjects": [
+        "curtain-loft"
+      ],
+      "file": "places-curtain-loft.webp",
+      "sha256": "171f65df69cb61267d6030744d94c22ab2a6b6f02e8051ec9596febce6015b87",
+      "originalSha256": "b7e4cd1e4d05f606411fd3738fdb4917c6dd68a92d6ea0d2fa8d7b450f19e578",
+      "generated": "2026-11-22",
+      "sheet": "small-banner-places-0",
+      "cell": 4,
+      "crop": {
+        "left": 1,
+        "top": 342,
+        "width": 510,
+        "height": 340
+      }
+    },
+    {
+      "key": "washbasin-shore",
+      "title": "Берег умывального таза",
+      "kind": "place",
+      "subjects": [
+        "washbasin-shore"
+      ],
+      "file": "places-washbasin-shore.webp",
+      "sha256": "011aed8a1d9d334dd1d8921dcc19268624401d61e1da96710abb035d15a16bde",
+      "originalSha256": "b7e4cd1e4d05f606411fd3738fdb4917c6dd68a92d6ea0d2fa8d7b450f19e578",
+      "generated": "2026-11-22",
+      "sheet": "small-banner-places-0",
+      "cell": 5,
+      "crop": {
+        "left": 513,
+        "top": 342,
+        "width": 510,
+        "height": 340
+      }
+    },
+    {
+      "key": "packing-table",
+      "title": "Упаковочный стол",
+      "kind": "place",
+      "subjects": [
+        "packing-table"
+      ],
+      "file": "places-packing-table.webp",
+      "sha256": "481d818e1083d7c6ca7996803c0c8d741624289f4b9163349a95ea9db8a0b0cf",
+      "originalSha256": "b7e4cd1e4d05f606411fd3738fdb4917c6dd68a92d6ea0d2fa8d7b450f19e578",
+      "generated": "2026-11-22",
+      "sheet": "small-banner-places-0",
+      "cell": 6,
+      "crop": {
+        "left": 1025,
+        "top": 342,
+        "width": 510,
+        "height": 340
+      }
+    },
+    {
+      "key": "garden-drawer",
+      "title": "Садовый ящик",
+      "kind": "place",
+      "subjects": [
+        "garden-drawer"
+      ],
+      "file": "places-garden-drawer.webp",
+      "sha256": "3137c8f48585a744b3b9644d6eca252bb90bb9c7725a6896fb3f5fd8f770d864",
+      "originalSha256": "b7e4cd1e4d05f606411fd3738fdb4917c6dd68a92d6ea0d2fa8d7b450f19e578",
+      "generated": "2026-11-22",
+      "sheet": "small-banner-places-0",
+      "cell": 7,
+      "crop": {
+        "left": 1,
+        "top": 684,
+        "width": 510,
+        "height": 339
+      }
+    },
+    {
+      "key": "threshold-yard",
+      "title": "Двор у порога",
+      "kind": "place",
+      "subjects": [
+        "threshold-yard"
+      ],
+      "file": "places-threshold-yard.webp",
+      "sha256": "2263ee2b62886b8f4ed6f4f33f800736437acbe03a18a21a3b94dcc131df1ab2",
+      "originalSha256": "b7e4cd1e4d05f606411fd3738fdb4917c6dd68a92d6ea0d2fa8d7b450f19e578",
+      "generated": "2026-11-22",
+      "sheet": "small-banner-places-0",
+      "cell": 8,
+      "crop": {
+        "left": 513,
+        "top": 684,
+        "width": 510,
+        "height": 339
+      }
+    },
+    {
+      "key": "foe-1db18a0b74",
+      "title": "Ленточный сторож",
+      "kind": "foe",
+      "subjects": [
+        "ribbon-holders-foe-1",
+        "ribbon-holders-foe-2",
+        "ribbon-holders-foe-3",
+        "ribbon-holders-foe-4",
+        "ribbon-holders-foe-5",
+        "ribbon-holders-foe-6"
+      ],
+      "file": "foes-foe-1db18a0b74.webp",
+      "sha256": "fc4959202a7ecf49210ccb3a9070e8ced4338864ef0f879ff1bfa88224e5b611",
+      "originalSha256": "51372d83123b87148148d1fc9efff8714aa6582d905a2f4557ab630d2b842248",
+      "generated": "2026-11-22",
+      "sheet": "small-banner-foes-0",
+      "cell": 1,
+      "crop": {
+        "left": 51,
+        "top": 17,
+        "width": 608,
+        "height": 674
+      }
+    },
+    {
+      "key": "foe-ffb6c053fc",
+      "title": "Тележечный спорщик",
+      "kind": "foe",
+      "subjects": [
+        "lid-dispute-foe-1",
+        "lid-dispute-foe-2",
+        "lid-dispute-foe-3",
+        "lid-dispute-foe-4",
+        "lid-dispute-foe-5",
+        "lid-dispute-foe-6"
+      ],
+      "file": "foes-foe-ffb6c053fc.webp",
+      "sha256": "7597bdd56bf4ad377a4c3e7262517c48dbdca50a190b9430e990c71a0f8bbf58",
+      "originalSha256": "51372d83123b87148148d1fc9efff8714aa6582d905a2f4557ab630d2b842248",
+      "generated": "2026-11-22",
+      "sheet": "small-banner-foes-0",
+      "cell": 2,
+      "crop": {
+        "left": 739,
+        "top": 54,
+        "width": 644,
+        "height": 638
+      }
+    },
+    {
+      "key": "foe-69fb7800f2",
+      "title": "Бумажный щипач",
+      "kind": "foe",
+      "subjects": [
+        "paper-crabs-foe-1",
+        "paper-crabs-foe-2",
+        "paper-crabs-foe-3",
+        "paper-crabs-foe-4",
+        "paper-crabs-foe-5",
+        "paper-crabs-foe-6"
+      ],
+      "file": "foes-foe-69fb7800f2.webp",
+      "sha256": "ce95e2f185d700455fcb369250c0aa08fa8f4855c9b27ce5589a1133f46c584a",
+      "originalSha256": "51372d83123b87148148d1fc9efff8714aa6582d905a2f4557ab630d2b842248",
+      "generated": "2026-11-22",
+      "sheet": "small-banner-foes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1513,
+        "top": 124,
+        "width": 586,
+        "height": 564
+      }
+    },
+    {
+      "key": "arda-spool",
+      "title": "Арда Стежинка",
+      "kind": "npc",
+      "subjects": [
+        "arda-spool"
+      ],
+      "file": "npcs-arda-spool.webp",
+      "sha256": "4b6e383d5fdd34337ef3d716a0d0eebcf8b2a2f911b651b230cad88d9c86f3a5",
+      "originalSha256": "e35f08d1434c554effd3b3b538e73ef8ec1339d6355a14b848e4f052f803d8cc",
+      "generated": "2026-11-22",
+      "sheet": "small-banner-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 119,
+        "top": 25,
+        "width": 297,
+        "height": 464
+      }
+    },
+    {
+      "key": "brun-ladle",
+      "title": "Брун Ложечный",
+      "kind": "npc",
+      "subjects": [
+        "brun-ladle"
+      ],
+      "file": "npcs-brun-ladle.webp",
+      "sha256": "49e7b48a51a1f7b48a380a4ea5424b6ea5049da1e0f5935bdd5f8882892b6a2b",
+      "originalSha256": "e35f08d1434c554effd3b3b538e73ef8ec1339d6355a14b848e4f052f803d8cc",
+      "generated": "2026-11-22",
+      "sheet": "small-banner-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 621,
+        "top": 23,
+        "width": 296,
+        "height": 465
+      }
+    },
+    {
+      "key": "sila-pollen",
+      "title": "Сила Пыльцевей",
+      "kind": "npc",
+      "subjects": [
+        "sila-pollen"
+      ],
+      "file": "npcs-sila-pollen.webp",
+      "sha256": "538a123cf8b62b71e5f1d909cc9ba730e439154984ef1657fdc4475a8c72c39a",
+      "originalSha256": "e35f08d1434c554effd3b3b538e73ef8ec1339d6355a14b848e4f052f803d8cc",
+      "generated": "2026-11-22",
+      "sheet": "small-banner-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 1136,
+        "top": 22,
+        "width": 284,
+        "height": 467
+      }
+    },
+    {
+      "key": "mur-vessels",
+      "title": "Мур Чашечник",
+      "kind": "npc",
+      "subjects": [
+        "mur-vessels"
+      ],
+      "file": "npcs-mur-vessels.webp",
+      "sha256": "c0911c45cac9a1614ad94d4910f73bd5c078cbc09b50b74b9ca4009803f5ab0b",
+      "originalSha256": "e35f08d1434c554effd3b3b538e73ef8ec1339d6355a14b848e4f052f803d8cc",
+      "generated": "2026-11-22",
+      "sheet": "small-banner-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 103,
+        "top": 528,
+        "width": 337,
+        "height": 471
+      }
+    },
+    {
+      "key": "rem-measure",
+      "title": "Рем Мерочник",
+      "kind": "npc",
+      "subjects": [
+        "rem-measure"
+      ],
+      "file": "npcs-rem-measure.webp",
+      "sha256": "3bc28bb541755fb29725de941bdd727526c88a7dd2cd7b79b6ccbffe012fce8c",
+      "originalSha256": "e35f08d1434c554effd3b3b538e73ef8ec1339d6355a14b848e4f052f803d8cc",
+      "generated": "2026-11-22",
+      "sheet": "small-banner-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 615,
+        "top": 526,
+        "width": 304,
+        "height": 475
+      }
+    },
+    {
+      "key": "velda-home",
+      "title": "Вельда Тихорукая",
+      "kind": "npc",
+      "subjects": [
+        "velda-home"
+      ],
+      "file": "npcs-velda-home.webp",
+      "sha256": "52340441649388b0ee0edf0f287eeafdda00b6420689b36df9f561debfb2ad6f",
+      "originalSha256": "45a2ddcc143dc54bfa9833009ed284656d94d2d01f0db0c370c1f643393d4dfd",
+      "generated": "2026-11-22",
+      "sheet": "small-banner-npcs-1",
+      "cell": 1,
+      "crop": {
+        "left": 52,
+        "top": 35,
+        "width": 423,
+        "height": 462
+      }
+    },
+    {
+      "key": "kem-cord",
+      "title": "Кем Верёвочный",
+      "kind": "npc",
+      "subjects": [
+        "kem-cord"
+      ],
+      "file": "npcs-kem-cord.webp",
+      "sha256": "cc3b631810b90618ae8fb96b1a754b7ed32c40614f9adcd1179eb66322c0c82e",
+      "originalSha256": "45a2ddcc143dc54bfa9833009ed284656d94d2d01f0db0c370c1f643393d4dfd",
+      "generated": "2026-11-22",
+      "sheet": "small-banner-npcs-1",
+      "cell": 2,
+      "crop": {
+        "left": 603,
+        "top": 19,
+        "width": 330,
+        "height": 478
+      }
+    },
+    {
+      "key": "oba-linen",
+      "title": "Оба Крепица",
+      "kind": "npc",
+      "subjects": [
+        "oba-linen"
+      ],
+      "file": "npcs-oba-linen.webp",
+      "sha256": "4d1a2150c68913d7369e8bbd5b91017124dc5ca0c8c8ecc45b27eda9693c8398",
+      "originalSha256": "45a2ddcc143dc54bfa9833009ed284656d94d2d01f0db0c370c1f643393d4dfd",
+      "generated": "2026-11-22",
+      "sheet": "small-banner-npcs-1",
+      "cell": 3,
+      "crop": {
+        "left": 1117,
+        "top": 23,
+        "width": 355,
+        "height": 474
+      }
+    },
+    {
+      "key": "peska-leaf",
+      "title": "Песка Листовая",
+      "kind": "npc",
+      "subjects": [
+        "peska-leaf"
+      ],
+      "file": "npcs-peska-leaf.webp",
+      "sha256": "32197ef6ca1b4438c6eb1e199cd27e6a689b00536b87c9af9503acfdf01988bd",
+      "originalSha256": "45a2ddcc143dc54bfa9833009ed284656d94d2d01f0db0c370c1f643393d4dfd",
+      "generated": "2026-11-22",
+      "sheet": "small-banner-npcs-1",
+      "cell": 4,
+      "crop": {
+        "left": 93,
+        "top": 531,
+        "width": 336,
+        "height": 473
+      }
+    },
+    {
+      "key": "ten-buckle",
+      "title": "Тен Пряжка",
+      "kind": "npc",
+      "subjects": [
+        "ten-buckle"
+      ],
+      "file": "npcs-ten-buckle.webp",
+      "sha256": "93e2bdc827f8639b6487cfe2ca9403dad63a5204345f655816307725d9f9742b",
+      "originalSha256": "45a2ddcc143dc54bfa9833009ed284656d94d2d01f0db0c370c1f643393d4dfd",
+      "generated": "2026-11-22",
+      "sheet": "small-banner-npcs-1",
+      "cell": 5,
+      "crop": {
+        "left": 578,
+        "top": 529,
+        "width": 402,
+        "height": 475
+      }
+    }
+  ]
+}

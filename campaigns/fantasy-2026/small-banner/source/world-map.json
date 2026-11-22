@@ -1,0 +1,49 @@
+{
+  "region": "copper-thimble",
+  "name": "Карта · Дом Медный Напёрсток",
+  "description": "План местности «Дом Медный Напёрсток». На карте отмечаются места, известные группе.",
+  "pins": [
+    {
+      "place": "guest-hem",
+      "x": 0.11,
+      "y": 0.15
+    },
+    {
+      "place": "sewing-terrace",
+      "x": 0.367,
+      "y": 0.177
+    },
+    {
+      "place": "cupboard-common",
+      "x": 0.623,
+      "y": 0.15
+    },
+    {
+      "place": "curtain-loft",
+      "x": 0.88,
+      "y": 0.177
+    },
+    {
+      "place": "washbasin-shore",
+      "x": 0.905,
+      "y": 0.857
+    },
+    {
+      "place": "packing-table",
+      "x": 0.648,
+      "y": 0.83
+    },
+    {
+      "place": "garden-drawer",
+      "x": 0.392,
+      "y": 0.857
+    },
+    {
+      "place": "threshold-yard",
+      "x": 0.135,
+      "y": 0.83
+    }
+  ],
+  "routes": [],
+  "scale": "schematic"
+}

@@ -1,0 +1,358 @@
+{
+  "about": "Портреты для карточек и изображение закрытого набора. Сначала сверяйте личность и доступность персонажа за столом.",
+  "generated": "2026-11-22",
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "heroes",
+      "originalFile": "exec-ba5fc179-ba8f-43ea-b129-5d331bc05deb.png",
+      "originalSha256": "cd58cd04eba9ef4c350b70510d339a8099077cf84509eb0d38c84dd54a200e73",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 3 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:3. Dark folklore portraits in tempera, rich earth pigments, expressive features, soft daylight. World: Аш-Кер над пределом Ирд. Characters, in strict cell order:\n1. Рада Тес — Коротко стриженные волосы, потёртый плащ и щит с незакрашенной трещиной. Age 34.\n2. Левен Кер — Латунная бусина в ухе, серые перчатки, складная линейка на ремне. Age 29.\n3. Мара Иль — Белая нить вокруг запястья, тёмная дорожная одежда, маленький дорожный алтарь. Age 41.\n4. Эннор Сай — Очки с разными стёклами и дорожная книга, прошитая чёрной бечевой. Age 52.\n5. Тава Орн — Рукава с цветными заплатами, широкий пояс и два простых походных молотка. Age 26.\n6. Дарель Вей — Застёгнутый высокий ворот, мягкая походная обувь, немятая лента на рюкзаке. Age 37.\n7. Сера Нем — Фонарь на коротком шесте, спокойный голос и шрам на деревянной накладке щита. Age 45.\n8. Дорожный / рабочий набор — Still life of one opaque closed everyday satchel, appropriate to this world and era. No person and nothing spilling out.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 3,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "npcs",
+      "originalFile": "exec-626f6667-16ca-440b-8719-9b66a8ecd44b.png",
+      "originalSha256": "ae0f01ba464e33f33a144187ea3b002f2e5cc7d80380457fb605a643a45356ca",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 3 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:3. Dark folklore portraits in tempera, rich earth pigments, expressive features, soft daylight. World: Аш-Кер над пределом Ирд. Characters, in strict cell order:\n1. Вейра Даль — Высокая женщина в гладком фартуке, с чёрными кольцами на рукояти молота. Age 46.\n2. Соррен Вит — Медный знак экспедиции, седая прядь и тщательно починенный походный плащ. Age 38.\n3. Отта Рем — Седая женщина с рабочими очками; тень её левой перчатки короче правой. Age 58.\n4. Неда Цар — Пыльная куртка, связка глиняных колец и тряпица на ремне. Age 31.\n5. Авар Лен — Худой человек с измерительной тростью и медленной осторожной походкой. Age 65.\n6. Тейр Уст — Короткая копейная рукоять, тусклый нагрудник и белая лента на локте. Age 27.\n7. Сива Кор — Зелёный шарф поверх дорожной брони, две белые отметки на фонаре. Age 44.\n8. Рунн Дей — Широкоплечий смотритель с резным посохом и глиняной пылью в волосах. Age 51.\n9. Ивен Мор — Изношенная дорожная рубаха, обмотанная тканью ладонь, прямая осанка. Age 22.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 3,
+      "width": 1254,
+      "height": 1254
+    }
+  ],
+  "cards": [
+    {
+      "id": "rada-tes",
+      "file": "cards/rada-tes.webp",
+      "title": "Рада Тес",
+      "subjects": [
+        "rada-tes"
+      ],
+      "sheet": "heroes",
+      "cell": 1,
+      "crop": {
+        "left": 10,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "d84643795114336c18c11d6502777cd625d8a69a49093c9de1a219b078f58643"
+    },
+    {
+      "id": "leven-ker",
+      "file": "cards/leven-ker.webp",
+      "title": "Левен Кер",
+      "subjects": [
+        "leven-ker"
+      ],
+      "sheet": "heroes",
+      "cell": 2,
+      "crop": {
+        "left": 428,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "323454ed6b1d4709dd56e2103d2dedcc1afe3cabf61ba587b1874afb4923b5a6"
+    },
+    {
+      "id": "mara-il",
+      "file": "cards/mara-il.webp",
+      "title": "Мара Иль",
+      "subjects": [
+        "mara-il"
+      ],
+      "sheet": "heroes",
+      "cell": 3,
+      "crop": {
+        "left": 846,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "64b3458d959d38b54b8df6d2965ef45933512bd27da153659afed76863085c54"
+    },
+    {
+      "id": "ennor-sai",
+      "file": "cards/ennor-sai.webp",
+      "title": "Эннор Сай",
+      "subjects": [
+        "ennor-sai"
+      ],
+      "sheet": "heroes",
+      "cell": 4,
+      "crop": {
+        "left": 10,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "a7d23e9ded8c30b9f22b9e275d2e754c641f6d13fa78934b088d80b00df18ab5"
+    },
+    {
+      "id": "tava-orn",
+      "file": "cards/tava-orn.webp",
+      "title": "Тава Орн",
+      "subjects": [
+        "tava-orn"
+      ],
+      "sheet": "heroes",
+      "cell": 5,
+      "crop": {
+        "left": 428,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "2e64bc885231b26d24708ac9ad68d13283c0c4d8558fbf55353357d5d95f2c6d"
+    },
+    {
+      "id": "darel-vey",
+      "file": "cards/darel-vey.webp",
+      "title": "Дарель Вей",
+      "subjects": [
+        "darel-vey"
+      ],
+      "sheet": "heroes",
+      "cell": 6,
+      "crop": {
+        "left": 846,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "e2fb243a57c3757b83a6d68af2cc3a9eff7c3f10f5f82a5bc8a09ccd3730b093"
+    },
+    {
+      "id": "sera-nem",
+      "file": "cards/sera-nem.webp",
+      "title": "Сера Нем",
+      "subjects": [
+        "sera-nem"
+      ],
+      "sheet": "heroes",
+      "cell": 7,
+      "crop": {
+        "left": 10,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "625ba8db0dd786dbe7281f1788bad5d92ded51dcd75f3638fbe5d0a5bd5a7c52"
+    },
+    {
+      "id": "travel-kit",
+      "file": "cards/travel-kit.webp",
+      "title": "Дорожный набор",
+      "subjects": [
+        "darel-vey-travel-kit",
+        "ennor-sai-travel-kit",
+        "leven-ker-travel-kit",
+        "mara-il-travel-kit",
+        "rada-tes-travel-kit",
+        "sera-nem-travel-kit",
+        "tava-orn-travel-kit"
+      ],
+      "sheet": "heroes",
+      "cell": 8,
+      "crop": {
+        "left": 428,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "453d65c7e1c7c2bd336a25e2566d86848801facbb26c05e4cec5e72d4e5daa38"
+    },
+    {
+      "id": "veyra-dal",
+      "file": "cards/veyra-dal.webp",
+      "title": "Вейра Даль",
+      "subjects": [
+        "veyra-dal"
+      ],
+      "sheet": "npcs",
+      "cell": 1,
+      "crop": {
+        "left": 10,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "20419ff85369d9b4c8783d3e8123733fa51014999a5a09d4749af1144094de07"
+    },
+    {
+      "id": "sorren-vit",
+      "file": "cards/sorren-vit.webp",
+      "title": "Соррен Вит",
+      "subjects": [
+        "sorren-vit"
+      ],
+      "sheet": "npcs",
+      "cell": 2,
+      "crop": {
+        "left": 428,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "b5c2d3b4388c4f8234bf2e87d897cdf4b60fa4db669c52200583e088ac650c4a"
+    },
+    {
+      "id": "otta-rem",
+      "file": "cards/otta-rem.webp",
+      "title": "Отта Рем",
+      "subjects": [
+        "otta-rem"
+      ],
+      "sheet": "npcs",
+      "cell": 3,
+      "crop": {
+        "left": 846,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "e9b30d50c2d3fa05aac46cb6d75dc92c035a107d5c02899e2a419b71b6b419f2"
+    },
+    {
+      "id": "neda-tsar",
+      "file": "cards/neda-tsar.webp",
+      "title": "Неда Цар",
+      "subjects": [
+        "neda-tsar"
+      ],
+      "sheet": "npcs",
+      "cell": 4,
+      "crop": {
+        "left": 10,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "8aaec95bc77aec19b70e3f920a5303adfb7acee6249afcebd008734eae465d91"
+    },
+    {
+      "id": "avar-len",
+      "file": "cards/avar-len.webp",
+      "title": "Авар Лен",
+      "subjects": [
+        "avar-len"
+      ],
+      "sheet": "npcs",
+      "cell": 5,
+      "crop": {
+        "left": 428,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "fb464445800b2ce27e5f1012e91e16728b6fdf43cd37689ba620bbe4ae24fb11"
+    },
+    {
+      "id": "teyr-ust",
+      "file": "cards/teyr-ust.webp",
+      "title": "Тейр Уст",
+      "subjects": [
+        "teyr-ust"
+      ],
+      "sheet": "npcs",
+      "cell": 6,
+      "crop": {
+        "left": 846,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "fbbcd1f2032fad08e0049690587a4f7117a14a9204559e70ee218da8463eca45"
+    },
+    {
+      "id": "siva-kor",
+      "file": "cards/siva-kor.webp",
+      "title": "Сива Кор",
+      "subjects": [
+        "siva-kor"
+      ],
+      "sheet": "npcs",
+      "cell": 7,
+      "crop": {
+        "left": 10,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "da67d8e8d9f6196f511e1cc73ae0cb6ca8fcd147c22ac9d3c877543daf15cffc"
+    },
+    {
+      "id": "runn-dey",
+      "file": "cards/runn-dey.webp",
+      "title": "Рунн Дей",
+      "subjects": [
+        "runn-dey"
+      ],
+      "sheet": "npcs",
+      "cell": 8,
+      "crop": {
+        "left": 428,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "22fb2dbcb0e15fb07a1ef46ee6f84920171efaccae1f606545bff2aace5367b1"
+    },
+    {
+      "id": "iven-mor",
+      "file": "cards/iven-mor.webp",
+      "title": "Ивен Мор",
+      "subjects": [
+        "iven-mor"
+      ],
+      "sheet": "npcs",
+      "cell": 9,
+      "crop": {
+        "left": 846,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "c1ef4afb469b918e8ba5c949bb5b8d8dcce1d12e86e923654d291a1bd8d998b1"
+    }
+  ]
+}

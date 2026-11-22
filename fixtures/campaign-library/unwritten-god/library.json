@@ -1,0 +1,1942 @@
+{
+ "id": "unwritten-god",
+ "title": "Бог с чистой страницы",
+ "genre": "Мифическое фэнтези: причинность чудес и полёт каменного кита",
+ "audience": "14+",
+ "pitch": "При обвале в Белокамье кто-то попросил новое божество оживить высеченного в скале кита и вынести людей. Кит поднялся в воздух. Спасённые машут с его спины, а по площади уже ползёт вмятина в форме огромного плавника. Предстоит понять, куда уходит тяжесть чуда, забраться на летающего великана и выбрать следующую просьбу, которую вы готовы осуществить своими руками.",
+ "tone": "Большое чудо на расстоянии вытянутой руки, риск без жестокости, деятельное сочувствие, юмор камнерезов и серьёзные материальные последствия.",
+ "duration": "8 сессий; 180 минут: 15 минут на открытие и пересказ, три сцены по 45 минут, 10 минут перерыва, 20 минут на последствия и закрытие. Внутри истории восемь встреч занимают три дня; переходы времени объявляет DM.",
+ "cover": "campaigns/fantasy-2026/unwritten-god/illustrations/opening.webp",
+ "defaultVariant": "4-players",
+ "variants": [
+  {
+   "id": "3-players",
+   "players": 3,
+   "label": "3 игрока",
+   "file": "packages/3-players.json",
+   "digest": "2ae5e74df3a4b33c0813823d6a76417da1281cbbb7965dadbb29e1cc9fe70c58"
+  },
+  {
+   "id": "4-players",
+   "players": 4,
+   "label": "4 игрока",
+   "file": "packages/4-players.json",
+   "digest": "b16a4a90661b418e574a5b89210119ff4cfbdb5b2bc86d227cb49a18a07c3762"
+  },
+  {
+   "id": "5-players",
+   "players": 5,
+   "label": "5 игроков",
+   "file": "packages/5-players.json",
+   "digest": "144f82ebfb6cd7f3149b053315204196b5ab5de0a2eef7545e7b4ad33c4547c2"
+  },
+  {
+   "id": "6-players",
+   "players": 6,
+   "label": "6 игроков",
+   "file": "packages/6-players.json",
+   "digest": "1ed0714ce662be4a50907d8ae0cb2886097983229140c6dd14d5a5d1673e1b43"
+  },
+  {
+   "id": "7-players",
+   "players": 7,
+   "label": "7 игроков",
+   "file": "packages/7-players.json",
+   "digest": "f93af353def0ee01141be9cc8bb5b4bf1d2b656de9a865240f0dd68fbff314a0"
+  },
+  {
+   "id": "8-players",
+   "players": 8,
+   "label": "8 игроков",
+   "file": "packages/8-players.json",
+   "digest": "984bf4d0e242d91277426c79a6d1a9bf693b54aa2949e74639c2c3cd527928c8"
+  }
+ ],
+ "generator": "codex-cli imagegen",
+ "pictures": [
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/illustrations/cards/lada-kray.webp",
+   "sha256": "61a6b927c8421450c083c51b4c1103ab7ef6b745a333db30c6f67ef3d7128f01",
+   "originalSha256": "6d25a43b01330b8788e394957f7cd0fd3bcf41381e6253ac620e142a2f8d258a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лада Край",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lada-kray"
+    ],
+    "4-players": [
+     "lada-kray"
+    ],
+    "5-players": [
+     "lada-kray"
+    ],
+    "6-players": [
+     "lada-kray"
+    ],
+    "7-players": [
+     "lada-kray"
+    ],
+    "8-players": [
+     "lada-kray"
+    ]
+   },
+   "file": "lada-kray.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/illustrations/cards/tim-ren.webp",
+   "sha256": "7638a75b82b7afbdba1cbd276264d7e3cd4d5d09236d5bb272e40f95be04ed61",
+   "originalSha256": "6d25a43b01330b8788e394957f7cd0fd3bcf41381e6253ac620e142a2f8d258a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тим Рен",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tim-ren"
+    ],
+    "4-players": [
+     "tim-ren"
+    ],
+    "5-players": [
+     "tim-ren"
+    ],
+    "6-players": [
+     "tim-ren"
+    ],
+    "7-players": [
+     "tim-ren"
+    ],
+    "8-players": [
+     "tim-ren"
+    ]
+   },
+   "file": "tim-ren.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/illustrations/cards/sana-sling.webp",
+   "sha256": "a3a09e520513b7ab9e2743238b6f24d48ba554947e98bab9d3fee5a320e860d2",
+   "originalSha256": "6d25a43b01330b8788e394957f7cd0fd3bcf41381e6253ac620e142a2f8d258a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сана Стропа",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "sana-sling"
+    ],
+    "4-players": [
+     "sana-sling"
+    ],
+    "5-players": [
+     "sana-sling"
+    ],
+    "6-players": [
+     "sana-sling"
+    ],
+    "7-players": [
+     "sana-sling"
+    ],
+    "8-players": [
+     "sana-sling"
+    ]
+   },
+   "file": "sana-sling.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/illustrations/cards/ilia-ton.webp",
+   "sha256": "328873e50fe8a618403d04f931c2cc58545e43c4837bd9b01bb53f9444683f51",
+   "originalSha256": "6d25a43b01330b8788e394957f7cd0fd3bcf41381e6253ac620e142a2f8d258a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Илия Тон",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "ilia-ton"
+    ],
+    "5-players": [
+     "ilia-ton"
+    ],
+    "6-players": [
+     "ilia-ton"
+    ],
+    "7-players": [
+     "ilia-ton"
+    ],
+    "8-players": [
+     "ilia-ton"
+    ]
+   },
+   "file": "ilia-ton.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/illustrations/cards/bor-sail.webp",
+   "sha256": "288205ef7b81406fa973a0e5cbfc637fbfcb00d2423f5bdd82ebdf24fc160e1f",
+   "originalSha256": "6d25a43b01330b8788e394957f7cd0fd3bcf41381e6253ac620e142a2f8d258a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Бор Парус",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "bor-sail"
+    ],
+    "6-players": [
+     "bor-sail"
+    ],
+    "7-players": [
+     "bor-sail"
+    ],
+    "8-players": [
+     "bor-sail"
+    ]
+   },
+   "file": "bor-sail.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/illustrations/cards/mira-ash.webp",
+   "sha256": "e62528541cd0990608023f32602dd21bc3680f4c27082f504be9c4c87f77e9fd",
+   "originalSha256": "6d25a43b01330b8788e394957f7cd0fd3bcf41381e6253ac620e142a2f8d258a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мира Ясенка",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "mira-ash"
+    ],
+    "7-players": [
+     "mira-ash"
+    ],
+    "8-players": [
+     "mira-ash"
+    ]
+   },
+   "file": "mira-ash.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/illustrations/cards/ost-lumen.webp",
+   "sha256": "4e4ab35c3449c8e1fbc099d7ceab80ba264dd0f99d798e42268e7aaf56225fbb",
+   "originalSha256": "6d25a43b01330b8788e394957f7cd0fd3bcf41381e6253ac620e142a2f8d258a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ост Люмен",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "ost-lumen"
+    ],
+    "8-players": [
+     "ost-lumen"
+    ]
+   },
+   "file": "ost-lumen.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/illustrations/cards/vera-cup.webp",
+   "sha256": "a3a6862fb95b4d6d152fad9849443e4ba7bbc65bf88df8352e3922c5b9e959bc",
+   "originalSha256": "6d25a43b01330b8788e394957f7cd0fd3bcf41381e6253ac620e142a2f8d258a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Вера Чаша",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [],
+    "8-players": [
+     "vera-cup"
+    ]
+   },
+   "file": "vera-cup.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/illustrations/cards/travel-kit.webp",
+   "sha256": "c47d881efe11966f32a3f7ed299ec3ac5ab7fdf3b8de7c0a92c860f4b4da8e1c",
+   "originalSha256": "6d25a43b01330b8788e394957f7cd0fd3bcf41381e6253ac620e142a2f8d258a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дорожный набор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lada-kray-travel-kit",
+     "sana-sling-travel-kit",
+     "tim-ren-travel-kit"
+    ],
+    "4-players": [
+     "ilia-ton-travel-kit",
+     "lada-kray-travel-kit",
+     "sana-sling-travel-kit",
+     "tim-ren-travel-kit"
+    ],
+    "5-players": [
+     "bor-sail-travel-kit",
+     "ilia-ton-travel-kit",
+     "lada-kray-travel-kit",
+     "sana-sling-travel-kit",
+     "tim-ren-travel-kit"
+    ],
+    "6-players": [
+     "bor-sail-travel-kit",
+     "ilia-ton-travel-kit",
+     "lada-kray-travel-kit",
+     "mira-ash-travel-kit",
+     "sana-sling-travel-kit",
+     "tim-ren-travel-kit"
+    ],
+    "7-players": [
+     "bor-sail-travel-kit",
+     "ilia-ton-travel-kit",
+     "lada-kray-travel-kit",
+     "mira-ash-travel-kit",
+     "ost-lumen-travel-kit",
+     "sana-sling-travel-kit",
+     "tim-ren-travel-kit"
+    ],
+    "8-players": [
+     "bor-sail-travel-kit",
+     "ilia-ton-travel-kit",
+     "lada-kray-travel-kit",
+     "mira-ash-travel-kit",
+     "ost-lumen-travel-kit",
+     "sana-sling-travel-kit",
+     "tim-ren-travel-kit",
+     "vera-cup-travel-kit"
+    ]
+   },
+   "file": "travel-kit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/illustrations/cards/nev.webp",
+   "sha256": "8ed059ecb1d1e9b15e287a1ed9d033e3e5f3a57d5797f5ece056ad435b5e1c6f",
+   "originalSha256": "15bf16320ea6a607ac703619d6ea4b1d4507dbf856caaa38d72de5cb3921479a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нев",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nev"
+    ],
+    "4-players": [
+     "nev"
+    ],
+    "5-players": [
+     "nev"
+    ],
+    "6-players": [
+     "nev"
+    ],
+    "7-players": [
+     "nev"
+    ],
+    "8-players": [
+     "nev"
+    ]
+   },
+   "file": "nev.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/illustrations/cards/runa-skol.webp",
+   "sha256": "d7bd1abb2e9e41675eab67d50ec386e18eb2180fec9697ef1a93f9f2ead31336",
+   "originalSha256": "15bf16320ea6a607ac703619d6ea4b1d4507dbf856caaa38d72de5cb3921479a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Руна Скол",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "runa-skol"
+    ],
+    "4-players": [
+     "runa-skol"
+    ],
+    "5-players": [
+     "runa-skol"
+    ],
+    "6-players": [
+     "runa-skol"
+    ],
+    "7-players": [
+     "runa-skol"
+    ],
+    "8-players": [
+     "runa-skol"
+    ]
+   },
+   "file": "runa-skol.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/illustrations/cards/orsat.webp",
+   "sha256": "4f1d93538786533b316fd213374c5978c6c3e46984ce0526b79ab1e7a7a9bd0d",
+   "originalSha256": "15bf16320ea6a607ac703619d6ea4b1d4507dbf856caaa38d72de5cb3921479a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Орсат",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "orsat"
+    ],
+    "4-players": [
+     "orsat"
+    ],
+    "5-players": [
+     "orsat"
+    ],
+    "6-players": [
+     "orsat"
+    ],
+    "7-players": [
+     "orsat"
+    ],
+    "8-players": [
+     "orsat"
+    ]
+   },
+   "file": "orsat.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/illustrations/cards/hela-glint.webp",
+   "sha256": "23ea1cd54033822a29d00264788d6544d6433a8ede75487e55ca626618ddb253",
+   "originalSha256": "15bf16320ea6a607ac703619d6ea4b1d4507dbf856caaa38d72de5cb3921479a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Хела Блик",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "hela-glint"
+    ],
+    "4-players": [
+     "hela-glint"
+    ],
+    "5-players": [
+     "hela-glint"
+    ],
+    "6-players": [
+     "hela-glint"
+    ],
+    "7-players": [
+     "hela-glint"
+    ],
+    "8-players": [
+     "hela-glint"
+    ]
+   },
+   "file": "hela-glint.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/illustrations/cards/maren-eye.webp",
+   "sha256": "3964d47db8e3ed67b11cc7d13afda54b34951a1f103e604e528e24ab7d2874d7",
+   "originalSha256": "15bf16320ea6a607ac703619d6ea4b1d4507dbf856caaa38d72de5cb3921479a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Марен Косой Луч",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "maren-eye"
+    ],
+    "4-players": [
+     "maren-eye"
+    ],
+    "5-players": [
+     "maren-eye"
+    ],
+    "6-players": [
+     "maren-eye"
+    ],
+    "7-players": [
+     "maren-eye"
+    ],
+    "8-players": [
+     "maren-eye"
+    ]
+   },
+   "file": "maren-eye.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/illustrations/cards/kelya-low.webp",
+   "sha256": "6ea73b09ab691b3f81202dd6794a7cf5f1f9b7ad2ff5d870a04b2fc7877ac380",
+   "originalSha256": "15bf16320ea6a607ac703619d6ea4b1d4507dbf856caaa38d72de5cb3921479a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Келя Низкий Голос",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "kelya-low"
+    ],
+    "4-players": [
+     "kelya-low"
+    ],
+    "5-players": [
+     "kelya-low"
+    ],
+    "6-players": [
+     "kelya-low"
+    ],
+    "7-players": [
+     "kelya-low"
+    ],
+    "8-players": [
+     "kelya-low"
+    ]
+   },
+   "file": "kelya-low.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/illustrations/cards/sevr-dye.webp",
+   "sha256": "339f16134183cb5eeac27892b37f1924b48accc3016a657bdb4a171e64b4db33",
+   "originalSha256": "15bf16320ea6a607ac703619d6ea4b1d4507dbf856caaa38d72de5cb3921479a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Севр Синелист",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "sevr-dye"
+    ],
+    "4-players": [
+     "sevr-dye"
+    ],
+    "5-players": [
+     "sevr-dye"
+    ],
+    "6-players": [
+     "sevr-dye"
+    ],
+    "7-players": [
+     "sevr-dye"
+    ],
+    "8-players": [
+     "sevr-dye"
+    ]
+   },
+   "file": "sevr-dye.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/illustrations/cards/tura-deep.webp",
+   "sha256": "e09b154d72491943a791227400c8c88c7b020ef14a4cedb9f1cd45541737fd9d",
+   "originalSha256": "15bf16320ea6a607ac703619d6ea4b1d4507dbf856caaa38d72de5cb3921479a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тура Глубина",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tura-deep"
+    ],
+    "4-players": [
+     "tura-deep"
+    ],
+    "5-players": [
+     "tura-deep"
+    ],
+    "6-players": [
+     "tura-deep"
+    ],
+    "7-players": [
+     "tura-deep"
+    ],
+    "8-players": [
+     "tura-deep"
+    ]
+   },
+   "file": "tura-deep.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/illustrations/cards/alum-whale.webp",
+   "sha256": "e72c73042c9952c0898f29ab21c5007875fc0b429e454b01abe6207c682386b2",
+   "originalSha256": "15bf16320ea6a607ac703619d6ea4b1d4507dbf856caaa38d72de5cb3921479a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Алум, Белый Кит",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "alum-whale"
+    ],
+    "4-players": [
+     "alum-whale"
+    ],
+    "5-players": [
+     "alum-whale"
+    ],
+    "6-players": [
+     "alum-whale"
+    ],
+    "7-players": [
+     "alum-whale"
+    ],
+    "8-players": [
+     "alum-whale"
+    ]
+   },
+   "file": "alum-whale.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/assets/table/heroes-lada-kray.webp",
+   "sha256": "5bddc4eb258366a86811b70e0c3902fddbe1c196769dbb5f5b30850cf093c4f4",
+   "originalSha256": "6d5070d44073d63d716754681f5b7e23c07a576e7cf37d40011fbbfc125256be",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лада Край",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lada-kray"
+    ],
+    "4-players": [
+     "lada-kray"
+    ],
+    "5-players": [
+     "lada-kray"
+    ],
+    "6-players": [
+     "lada-kray"
+    ],
+    "7-players": [
+     "lada-kray"
+    ],
+    "8-players": [
+     "lada-kray"
+    ]
+   },
+   "file": "lada-kray--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "lada-kray.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/assets/table/heroes-tim-ren.webp",
+   "sha256": "054f5e554a2ea259d17bdf426ef8f328e02ca18588e0ab9e2a49bd573e930575",
+   "originalSha256": "6d5070d44073d63d716754681f5b7e23c07a576e7cf37d40011fbbfc125256be",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тим Рен",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tim-ren"
+    ],
+    "4-players": [
+     "tim-ren"
+    ],
+    "5-players": [
+     "tim-ren"
+    ],
+    "6-players": [
+     "tim-ren"
+    ],
+    "7-players": [
+     "tim-ren"
+    ],
+    "8-players": [
+     "tim-ren"
+    ]
+   },
+   "file": "tim-ren--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "tim-ren.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/assets/table/heroes-sana-sling.webp",
+   "sha256": "9e22f0e3b7951e56c541a3717667c536b032aaa3d694ba78a463605e28ba4238",
+   "originalSha256": "6d5070d44073d63d716754681f5b7e23c07a576e7cf37d40011fbbfc125256be",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сана Стропа",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "sana-sling"
+    ],
+    "4-players": [
+     "sana-sling"
+    ],
+    "5-players": [
+     "sana-sling"
+    ],
+    "6-players": [
+     "sana-sling"
+    ],
+    "7-players": [
+     "sana-sling"
+    ],
+    "8-players": [
+     "sana-sling"
+    ]
+   },
+   "file": "sana-sling--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "sana-sling.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/assets/table/heroes-ilia-ton.webp",
+   "sha256": "f830e1689dac09232d92054509f3bc17b9e55139813680c5e471a32135e92dff",
+   "originalSha256": "6d5070d44073d63d716754681f5b7e23c07a576e7cf37d40011fbbfc125256be",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Илия Тон",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "ilia-ton"
+    ],
+    "5-players": [
+     "ilia-ton"
+    ],
+    "6-players": [
+     "ilia-ton"
+    ],
+    "7-players": [
+     "ilia-ton"
+    ],
+    "8-players": [
+     "ilia-ton"
+    ]
+   },
+   "file": "ilia-ton--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ilia-ton.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/assets/table/heroes-bor-sail.webp",
+   "sha256": "111d425fddaab23b533f35446baafbbb225acf59cd0b1db6f0526ceab5926531",
+   "originalSha256": "6d5070d44073d63d716754681f5b7e23c07a576e7cf37d40011fbbfc125256be",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Бор Парус",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "bor-sail"
+    ],
+    "6-players": [
+     "bor-sail"
+    ],
+    "7-players": [
+     "bor-sail"
+    ],
+    "8-players": [
+     "bor-sail"
+    ]
+   },
+   "file": "bor-sail--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "bor-sail.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/assets/table/heroes-mira-ash.webp",
+   "sha256": "435db7c0767aefa111b51eefd9e9ec3b27b9d1c607bcc12a7782745bca478d78",
+   "originalSha256": "6d5070d44073d63d716754681f5b7e23c07a576e7cf37d40011fbbfc125256be",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мира Ясенка",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "mira-ash"
+    ],
+    "7-players": [
+     "mira-ash"
+    ],
+    "8-players": [
+     "mira-ash"
+    ]
+   },
+   "file": "mira-ash--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "mira-ash.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/assets/table/heroes-ost-lumen.webp",
+   "sha256": "e361134f3645c5ac22d53bef368a996cceb9998fbad79b864032ffa0a63571bd",
+   "originalSha256": "6d5070d44073d63d716754681f5b7e23c07a576e7cf37d40011fbbfc125256be",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ост Люмен",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "ost-lumen"
+    ],
+    "8-players": [
+     "ost-lumen"
+    ]
+   },
+   "file": "ost-lumen--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ost-lumen.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/assets/table/heroes-vera-cup.webp",
+   "sha256": "8da2318444d66c7e34b6c290316f7681c28c3bfee00cc60aff0fa901327c24fa",
+   "originalSha256": "6d5070d44073d63d716754681f5b7e23c07a576e7cf37d40011fbbfc125256be",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Вера Чаша",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [],
+    "8-players": [
+     "vera-cup"
+    ]
+   },
+   "file": "vera-cup--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "vera-cup.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/assets/table/places-white-square.webp",
+   "sha256": "eba4b0e6ac831946d1317d6f2e0c215264c89f498f19842da6e4caadaa760a77",
+   "originalSha256": "d024359d34e2e7a8f49237a6c2f35b2199b6474358ab4d32703ddb603aac7898",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Площадь Белого Полотна",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "white-square"
+    ],
+    "4-players": [
+     "white-square"
+    ],
+    "5-players": [
+     "white-square"
+    ],
+    "6-players": [
+     "white-square"
+    ],
+    "7-players": [
+     "white-square"
+    ],
+    "8-players": [
+     "white-square"
+    ]
+   },
+   "file": "white-square.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/assets/table/places-broken-gallery.webp",
+   "sha256": "45e3f460429221e74140cc7ffa13066d508b7971dac4a052f478ca833aa206fb",
+   "originalSha256": "d024359d34e2e7a8f49237a6c2f35b2199b6474358ab4d32703ddb603aac7898",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Галерея Уходящего Кита",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "broken-gallery"
+    ],
+    "4-players": [
+     "broken-gallery"
+    ],
+    "5-players": [
+     "broken-gallery"
+    ],
+    "6-players": [
+     "broken-gallery"
+    ],
+    "7-players": [
+     "broken-gallery"
+    ],
+    "8-players": [
+     "broken-gallery"
+    ]
+   },
+   "file": "broken-gallery.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/assets/table/places-whale-back.webp",
+   "sha256": "90eae52452886d66c26720aa8749a1c1b9b8b32f091fb31265af591731d63041",
+   "originalSha256": "d024359d34e2e7a8f49237a6c2f35b2199b6474358ab4d32703ddb603aac7898",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Спина Белого Кита",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "whale-back"
+    ],
+    "4-players": [
+     "whale-back"
+    ],
+    "5-players": [
+     "whale-back"
+    ],
+    "6-players": [
+     "whale-back"
+    ],
+    "7-players": [
+     "whale-back"
+    ],
+    "8-players": [
+     "whale-back"
+    ]
+   },
+   "file": "whale-back.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/assets/table/places-lamp-yard.webp",
+   "sha256": "114abadad2a9895d957c0514ffa64c58343c49c7f5913249b770b4c3e1deaf7d",
+   "originalSha256": "d024359d34e2e7a8f49237a6c2f35b2199b6474358ab4d32703ddb603aac7898",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Двор ста ламп",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lamp-yard"
+    ],
+    "4-players": [
+     "lamp-yard"
+    ],
+    "5-players": [
+     "lamp-yard"
+    ],
+    "6-players": [
+     "lamp-yard"
+    ],
+    "7-players": [
+     "lamp-yard"
+    ],
+    "8-players": [
+     "lamp-yard"
+    ]
+   },
+   "file": "lamp-yard.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/assets/table/places-stone-eye.webp",
+   "sha256": "b5c1e3ae9a025e5d713a912438206bce7b46048fbef511f4b101165142af30c4",
+   "originalSha256": "d024359d34e2e7a8f49237a6c2f35b2199b6474358ab4d32703ddb603aac7898",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Каменный Глаз",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "stone-eye"
+    ],
+    "4-players": [
+     "stone-eye"
+    ],
+    "5-players": [
+     "stone-eye"
+    ],
+    "6-players": [
+     "stone-eye"
+    ],
+    "7-players": [
+     "stone-eye"
+    ],
+    "8-players": [
+     "stone-eye"
+    ]
+   },
+   "file": "stone-eye.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/assets/table/places-bell-slope.webp",
+   "sha256": "6d71809bd658d84c2f8eecb1f17ba28cfb9af9e296f8a0521afbb34ce4a3543f",
+   "originalSha256": "d024359d34e2e7a8f49237a6c2f35b2199b6474358ab4d32703ddb603aac7898",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Склон гудящих чаш",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "bell-slope"
+    ],
+    "4-players": [
+     "bell-slope"
+    ],
+    "5-players": [
+     "bell-slope"
+    ],
+    "6-players": [
+     "bell-slope"
+    ],
+    "7-players": [
+     "bell-slope"
+    ],
+    "8-players": [
+     "bell-slope"
+    ]
+   },
+   "file": "bell-slope.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/assets/table/places-blue-grove.webp",
+   "sha256": "0d099f6c382f346a1f5dca2321b43e1df9447ec9ca272f35c9ffbc061601fa63",
+   "originalSha256": "d024359d34e2e7a8f49237a6c2f35b2199b6474358ab4d32703ddb603aac7898",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Синий сад",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "blue-grove"
+    ],
+    "4-players": [
+     "blue-grove"
+    ],
+    "5-players": [
+     "blue-grove"
+    ],
+    "6-players": [
+     "blue-grove"
+    ],
+    "7-players": [
+     "blue-grove"
+    ],
+    "8-players": [
+     "blue-grove"
+    ]
+   },
+   "file": "blue-grove.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/assets/table/places-empty-quarry.webp",
+   "sha256": "9199b73c48153ff9934fc71228616839405f8908b2c24df1949da5b24ce81c0e",
+   "originalSha256": "d024359d34e2e7a8f49237a6c2f35b2199b6474358ab4d32703ddb603aac7898",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Чаша открытого карьера",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "empty-quarry"
+    ],
+    "4-players": [
+     "empty-quarry"
+    ],
+    "5-players": [
+     "empty-quarry"
+    ],
+    "6-players": [
+     "empty-quarry"
+    ],
+    "7-players": [
+     "empty-quarry"
+    ],
+    "8-players": [
+     "empty-quarry"
+    ]
+   },
+   "file": "empty-quarry.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/assets/table/places-quiet-maw.webp",
+   "sha256": "7dee39b61654e8e04eb6dd366bf9d2198cf4fed80e84aeaf88232b1b4b3ae617",
+   "originalSha256": "d024359d34e2e7a8f49237a6c2f35b2199b6474358ab4d32703ddb603aac7898",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тихий Зев",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "quiet-maw"
+    ],
+    "4-players": [
+     "quiet-maw"
+    ],
+    "5-players": [
+     "quiet-maw"
+    ],
+    "6-players": [
+     "quiet-maw"
+    ],
+    "7-players": [
+     "quiet-maw"
+    ],
+    "8-players": [
+     "quiet-maw"
+    ]
+   },
+   "file": "quiet-maw.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/assets/table/foes-foe-9ace8d31ff.webp",
+   "sha256": "ab8d4433d839231f8cec9620a78e9e33e5f58f0903b7ccf239ead74e00f60ab5",
+   "originalSha256": "49d9c153ed90bb323db1cd5c141b195cf72ca290d433c64c6be5c9ec3b43cc82",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Каменная ласта",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ledge-swallows-foe-1",
+     "ledge-swallows-foe-2"
+    ],
+    "4-players": [
+     "ledge-swallows-foe-1",
+     "ledge-swallows-foe-2",
+     "ledge-swallows-foe-3"
+    ],
+    "5-players": [
+     "ledge-swallows-foe-1",
+     "ledge-swallows-foe-2",
+     "ledge-swallows-foe-3"
+    ],
+    "6-players": [
+     "ledge-swallows-foe-1",
+     "ledge-swallows-foe-2",
+     "ledge-swallows-foe-3",
+     "ledge-swallows-foe-4"
+    ],
+    "7-players": [
+     "ledge-swallows-foe-1",
+     "ledge-swallows-foe-2",
+     "ledge-swallows-foe-3",
+     "ledge-swallows-foe-4",
+     "ledge-swallows-foe-5"
+    ],
+    "8-players": [
+     "ledge-swallows-foe-1",
+     "ledge-swallows-foe-2",
+     "ledge-swallows-foe-3",
+     "ledge-swallows-foe-4",
+     "ledge-swallows-foe-5",
+     "ledge-swallows-foe-6"
+    ]
+   },
+   "file": "foe-9ace8d31ff.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/assets/table/foes-foe-9ace8d31ff.webp",
+   "sha256": "ab8d4433d839231f8cec9620a78e9e33e5f58f0903b7ccf239ead74e00f60ab5",
+   "originalSha256": "49d9c153ed90bb323db1cd5c141b195cf72ca290d433c64c6be5c9ec3b43cc82",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Каменная ласта",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ledge-swallows-foe-1",
+     "ledge-swallows-foe-2"
+    ],
+    "4-players": [
+     "ledge-swallows-foe-1",
+     "ledge-swallows-foe-2",
+     "ledge-swallows-foe-3"
+    ],
+    "5-players": [
+     "ledge-swallows-foe-1",
+     "ledge-swallows-foe-2",
+     "ledge-swallows-foe-3"
+    ],
+    "6-players": [
+     "ledge-swallows-foe-1",
+     "ledge-swallows-foe-2",
+     "ledge-swallows-foe-3",
+     "ledge-swallows-foe-4"
+    ],
+    "7-players": [
+     "ledge-swallows-foe-1",
+     "ledge-swallows-foe-2",
+     "ledge-swallows-foe-3",
+     "ledge-swallows-foe-4",
+     "ledge-swallows-foe-5"
+    ],
+    "8-players": [
+     "ledge-swallows-foe-1",
+     "ledge-swallows-foe-2",
+     "ledge-swallows-foe-3",
+     "ledge-swallows-foe-4",
+     "ledge-swallows-foe-5",
+     "ledge-swallows-foe-6"
+    ]
+   },
+   "file": "foe-9ace8d31ff--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-9ace8d31ff.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/assets/table/foes-foe-4ab8fd951c.webp",
+   "sha256": "00d0e79b683eaea7feb3870d561ca4eeebb54c8f8a005fc2baadbcbd57e50d2a",
+   "originalSha256": "49d9c153ed90bb323db1cd5c141b195cf72ca290d433c64c6be5c9ec3b43cc82",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Карьерный сторож",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "quarry-watch-foe-1",
+     "quarry-watch-foe-2"
+    ],
+    "4-players": [
+     "quarry-watch-foe-1",
+     "quarry-watch-foe-2",
+     "quarry-watch-foe-3"
+    ],
+    "5-players": [
+     "quarry-watch-foe-1",
+     "quarry-watch-foe-2",
+     "quarry-watch-foe-3"
+    ],
+    "6-players": [
+     "quarry-watch-foe-1",
+     "quarry-watch-foe-2",
+     "quarry-watch-foe-3",
+     "quarry-watch-foe-4"
+    ],
+    "7-players": [
+     "quarry-watch-foe-1",
+     "quarry-watch-foe-2",
+     "quarry-watch-foe-3",
+     "quarry-watch-foe-4",
+     "quarry-watch-foe-5"
+    ],
+    "8-players": [
+     "quarry-watch-foe-1",
+     "quarry-watch-foe-2",
+     "quarry-watch-foe-3",
+     "quarry-watch-foe-4",
+     "quarry-watch-foe-5",
+     "quarry-watch-foe-6"
+    ]
+   },
+   "file": "foe-4ab8fd951c.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/assets/table/foes-foe-4ab8fd951c.webp",
+   "sha256": "00d0e79b683eaea7feb3870d561ca4eeebb54c8f8a005fc2baadbcbd57e50d2a",
+   "originalSha256": "49d9c153ed90bb323db1cd5c141b195cf72ca290d433c64c6be5c9ec3b43cc82",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Карьерный сторож",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "quarry-watch-foe-1",
+     "quarry-watch-foe-2"
+    ],
+    "4-players": [
+     "quarry-watch-foe-1",
+     "quarry-watch-foe-2",
+     "quarry-watch-foe-3"
+    ],
+    "5-players": [
+     "quarry-watch-foe-1",
+     "quarry-watch-foe-2",
+     "quarry-watch-foe-3"
+    ],
+    "6-players": [
+     "quarry-watch-foe-1",
+     "quarry-watch-foe-2",
+     "quarry-watch-foe-3",
+     "quarry-watch-foe-4"
+    ],
+    "7-players": [
+     "quarry-watch-foe-1",
+     "quarry-watch-foe-2",
+     "quarry-watch-foe-3",
+     "quarry-watch-foe-4",
+     "quarry-watch-foe-5"
+    ],
+    "8-players": [
+     "quarry-watch-foe-1",
+     "quarry-watch-foe-2",
+     "quarry-watch-foe-3",
+     "quarry-watch-foe-4",
+     "quarry-watch-foe-5",
+     "quarry-watch-foe-6"
+    ]
+   },
+   "file": "foe-4ab8fd951c--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-4ab8fd951c.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/assets/table/foes-foe-9269213901.webp",
+   "sha256": "748fe8ab994c04fde4f483983f70b55e462776a3561d2ed48afdcdf95d019305",
+   "originalSha256": "49d9c153ed90bb323db1cd5c141b195cf72ca290d433c64c6be5c9ec3b43cc82",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Каменный клешневик",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "reef-claws-foe-1",
+     "reef-claws-foe-2"
+    ],
+    "4-players": [
+     "reef-claws-foe-1",
+     "reef-claws-foe-2",
+     "reef-claws-foe-3"
+    ],
+    "5-players": [
+     "reef-claws-foe-1",
+     "reef-claws-foe-2",
+     "reef-claws-foe-3"
+    ],
+    "6-players": [
+     "reef-claws-foe-1",
+     "reef-claws-foe-2",
+     "reef-claws-foe-3",
+     "reef-claws-foe-4"
+    ],
+    "7-players": [
+     "reef-claws-foe-1",
+     "reef-claws-foe-2",
+     "reef-claws-foe-3",
+     "reef-claws-foe-4",
+     "reef-claws-foe-5"
+    ],
+    "8-players": [
+     "reef-claws-foe-1",
+     "reef-claws-foe-2",
+     "reef-claws-foe-3",
+     "reef-claws-foe-4",
+     "reef-claws-foe-5",
+     "reef-claws-foe-6"
+    ]
+   },
+   "file": "foe-9269213901.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/assets/table/foes-foe-9269213901.webp",
+   "sha256": "748fe8ab994c04fde4f483983f70b55e462776a3561d2ed48afdcdf95d019305",
+   "originalSha256": "49d9c153ed90bb323db1cd5c141b195cf72ca290d433c64c6be5c9ec3b43cc82",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Каменный клешневик",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "reef-claws-foe-1",
+     "reef-claws-foe-2"
+    ],
+    "4-players": [
+     "reef-claws-foe-1",
+     "reef-claws-foe-2",
+     "reef-claws-foe-3"
+    ],
+    "5-players": [
+     "reef-claws-foe-1",
+     "reef-claws-foe-2",
+     "reef-claws-foe-3"
+    ],
+    "6-players": [
+     "reef-claws-foe-1",
+     "reef-claws-foe-2",
+     "reef-claws-foe-3",
+     "reef-claws-foe-4"
+    ],
+    "7-players": [
+     "reef-claws-foe-1",
+     "reef-claws-foe-2",
+     "reef-claws-foe-3",
+     "reef-claws-foe-4",
+     "reef-claws-foe-5"
+    ],
+    "8-players": [
+     "reef-claws-foe-1",
+     "reef-claws-foe-2",
+     "reef-claws-foe-3",
+     "reef-claws-foe-4",
+     "reef-claws-foe-5",
+     "reef-claws-foe-6"
+    ]
+   },
+   "file": "foe-9269213901--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-9269213901.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/assets/table/npcs-nev.webp",
+   "sha256": "8919c28242ec041588812841200ee272121054c2724b97236dfa5ed666ee1a80",
+   "originalSha256": "2456b9bc02f41e97eaf377f1ab69666d072de2608f794670b5b9cc36a9b5fdf4",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нев",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nev"
+    ],
+    "4-players": [
+     "nev"
+    ],
+    "5-players": [
+     "nev"
+    ],
+    "6-players": [
+     "nev"
+    ],
+    "7-players": [
+     "nev"
+    ],
+    "8-players": [
+     "nev"
+    ]
+   },
+   "file": "nev--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "nev.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/assets/table/npcs-runa-skol.webp",
+   "sha256": "9be91099625afa7bb5ec543f6d900edb5d8a9779a78ef73835284fab8ae44ec4",
+   "originalSha256": "2456b9bc02f41e97eaf377f1ab69666d072de2608f794670b5b9cc36a9b5fdf4",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Руна Скол",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "runa-skol"
+    ],
+    "4-players": [
+     "runa-skol"
+    ],
+    "5-players": [
+     "runa-skol"
+    ],
+    "6-players": [
+     "runa-skol"
+    ],
+    "7-players": [
+     "runa-skol"
+    ],
+    "8-players": [
+     "runa-skol"
+    ]
+   },
+   "file": "runa-skol--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "runa-skol.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/assets/table/npcs-orsat.webp",
+   "sha256": "1c838de9b8040a45c02e44d08c4d66d3162a6b5b79e0a6648b92b292ae286e76",
+   "originalSha256": "2456b9bc02f41e97eaf377f1ab69666d072de2608f794670b5b9cc36a9b5fdf4",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Орсат",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "orsat"
+    ],
+    "4-players": [
+     "orsat"
+    ],
+    "5-players": [
+     "orsat"
+    ],
+    "6-players": [
+     "orsat"
+    ],
+    "7-players": [
+     "orsat"
+    ],
+    "8-players": [
+     "orsat"
+    ]
+   },
+   "file": "orsat--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "orsat.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/assets/table/npcs-hela-glint.webp",
+   "sha256": "bce711a0b04f9e839c3154ed7d5c815fd412b293325a2b025aa07fa2c31171fd",
+   "originalSha256": "2456b9bc02f41e97eaf377f1ab69666d072de2608f794670b5b9cc36a9b5fdf4",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Хела Блик",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "hela-glint"
+    ],
+    "4-players": [
+     "hela-glint"
+    ],
+    "5-players": [
+     "hela-glint"
+    ],
+    "6-players": [
+     "hela-glint"
+    ],
+    "7-players": [
+     "hela-glint"
+    ],
+    "8-players": [
+     "hela-glint"
+    ]
+   },
+   "file": "hela-glint--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "hela-glint.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/assets/table/npcs-maren-eye.webp",
+   "sha256": "3efe792ddb84638812a1feca5f789caa519daac92e3db87349f1682d783336ef",
+   "originalSha256": "2456b9bc02f41e97eaf377f1ab69666d072de2608f794670b5b9cc36a9b5fdf4",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Марен Косой Луч",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "maren-eye"
+    ],
+    "4-players": [
+     "maren-eye"
+    ],
+    "5-players": [
+     "maren-eye"
+    ],
+    "6-players": [
+     "maren-eye"
+    ],
+    "7-players": [
+     "maren-eye"
+    ],
+    "8-players": [
+     "maren-eye"
+    ]
+   },
+   "file": "maren-eye--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "maren-eye.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/assets/table/npcs-kelya-low.webp",
+   "sha256": "746e74454cd51d92e9836ea3c8bfccba5cad16b93d090b50471c5b4133b7a5f3",
+   "originalSha256": "2456b9bc02f41e97eaf377f1ab69666d072de2608f794670b5b9cc36a9b5fdf4",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Келя Низкий Голос",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "kelya-low"
+    ],
+    "4-players": [
+     "kelya-low"
+    ],
+    "5-players": [
+     "kelya-low"
+    ],
+    "6-players": [
+     "kelya-low"
+    ],
+    "7-players": [
+     "kelya-low"
+    ],
+    "8-players": [
+     "kelya-low"
+    ]
+   },
+   "file": "kelya-low--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "kelya-low.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/assets/table/npcs-sevr-dye.webp",
+   "sha256": "ba1ea5890e822e2aec5797a26c5feac5fe57c1eb527d87010f4ebbd6a1947376",
+   "originalSha256": "2456b9bc02f41e97eaf377f1ab69666d072de2608f794670b5b9cc36a9b5fdf4",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Севр Синелист",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "sevr-dye"
+    ],
+    "4-players": [
+     "sevr-dye"
+    ],
+    "5-players": [
+     "sevr-dye"
+    ],
+    "6-players": [
+     "sevr-dye"
+    ],
+    "7-players": [
+     "sevr-dye"
+    ],
+    "8-players": [
+     "sevr-dye"
+    ]
+   },
+   "file": "sevr-dye--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "sevr-dye.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/assets/table/npcs-tura-deep.webp",
+   "sha256": "29a769a6f06fc0ed0e510a04e1bbadb4e5cb73393e31752500106cdb02847c09",
+   "originalSha256": "2456b9bc02f41e97eaf377f1ab69666d072de2608f794670b5b9cc36a9b5fdf4",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тура Глубина",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tura-deep"
+    ],
+    "4-players": [
+     "tura-deep"
+    ],
+    "5-players": [
+     "tura-deep"
+    ],
+    "6-players": [
+     "tura-deep"
+    ],
+    "7-players": [
+     "tura-deep"
+    ],
+    "8-players": [
+     "tura-deep"
+    ]
+   },
+   "file": "tura-deep--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "tura-deep.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/assets/table/npcs-alum-whale.webp",
+   "sha256": "654491a62fbf9abe2cddd9d9cf340b89bc3eb1233d29372a147fd0a64290b583",
+   "originalSha256": "2456b9bc02f41e97eaf377f1ab69666d072de2608f794670b5b9cc36a9b5fdf4",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Алум, Белый Кит",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "alum-whale"
+    ],
+    "4-players": [
+     "alum-whale"
+    ],
+    "5-players": [
+     "alum-whale"
+    ],
+    "6-players": [
+     "alum-whale"
+    ],
+    "7-players": [
+     "alum-whale"
+    ],
+    "8-players": [
+     "alum-whale"
+    ]
+   },
+   "file": "alum-whale--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "alum-whale.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/unwritten-god/illustrations/opening.webp",
+   "sha256": "66ef656ff2f2ba0db5de8db1811e43708a19fad08ce7c9c6e772930671f24511",
+   "originalSha256": "221c530303257ca73bc0879772b9a6daafd647216694467ee9164722908f26b4",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Площадь Белого Полотна — Бог с чистой страницы",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "white-basin"
+    ],
+    "4-players": [
+     "white-basin"
+    ],
+    "5-players": [
+     "white-basin"
+    ],
+    "6-players": [
+     "white-basin"
+    ],
+    "7-players": [
+     "white-basin"
+    ],
+    "8-players": [
+     "white-basin"
+    ]
+   },
+   "file": "cover.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "file": "broken-gallery--map.webp",
+   "source": "campaigns/fantasy-2026/unwritten-god/assets/battle-maps/broken-gallery.webp",
+   "sha256": "93de6ac5005eabe604d52d0835fc267e6c9e48f12aca5278bb90d23f87c278ee",
+   "originalSha256": "01306b5f09ea1415a74c5207f9d82917bae0cda9fa672bb2ac876f5f3872ac6f",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Галерея Уходящего Кита. Visible scenery: Над карьером висит остаток рабочего настила. В скале зияет огромная выемка, вокруг лежат свежие белые обломки и верёвочные лестницы.. World style: Белокамье и Тихий Зев · Whale-tail curves and sunbeams incised in smoky blue stone. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "broken-gallery.webp",
+   "subjects": {
+    "3-players": [
+     "broken-gallery"
+    ],
+    "4-players": [
+     "broken-gallery"
+    ],
+    "5-players": [
+     "broken-gallery"
+    ],
+    "6-players": [
+     "broken-gallery"
+    ],
+    "7-players": [
+     "broken-gallery"
+    ],
+    "8-players": [
+     "broken-gallery"
+    ]
+   }
+  },
+  {
+   "file": "empty-quarry--map.webp",
+   "source": "campaigns/fantasy-2026/unwritten-god/assets/battle-maps/empty-quarry.webp",
+   "sha256": "dc94ab2b04b8e92a610edd9e3f5c92829319377f1bf9d62da38243cb1dc58713",
+   "originalSha256": "4afa6603b738f6daecfdc4f64450f2d73e9e9ea4974eedef1bb4edce9faaafcf",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Чаша открытого карьера. Visible scenery: Широкое дно выработки окружено уступами. Здесь лежат груды негодного камня, рамы грузовых подъёмников и свёрнутые штормовые паруса.. World style: Белокамье и Тихий Зев · Whale-tail curves and sunbeams incised in smoky blue stone. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "empty-quarry.webp",
+   "subjects": {
+    "3-players": [
+     "empty-quarry"
+    ],
+    "4-players": [
+     "empty-quarry"
+    ],
+    "5-players": [
+     "empty-quarry"
+    ],
+    "6-players": [
+     "empty-quarry"
+    ],
+    "7-players": [
+     "empty-quarry"
+    ],
+    "8-players": [
+     "empty-quarry"
+    ]
+   }
+  },
+  {
+   "file": "quiet-maw--map.webp",
+   "source": "campaigns/fantasy-2026/unwritten-god/assets/battle-maps/quiet-maw.webp",
+   "sha256": "ec7f28f67f5fb4eca613e77a20429de4579d2b9932e47238f1fe5e806455968d",
+   "originalSha256": "b3c6c3589a6e712c0b202a16d1a178ccd438a777cb22f0f6c8702bfbc26e4a06",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Тихий Зев. Visible scenery: Узкий морской залив с прочным каменным дном, старым погрузочным бассейном и низкими деревянными пристанями. Во время отлива видны гряды моллюсков.. World style: Белокамье и Тихий Зев · Whale-tail curves and sunbeams incised in smoky blue stone. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "quiet-maw.webp",
+   "subjects": {
+    "3-players": [
+     "quiet-maw"
+    ],
+    "4-players": [
+     "quiet-maw"
+    ],
+    "5-players": [
+     "quiet-maw"
+    ],
+    "6-players": [
+     "quiet-maw"
+    ],
+    "7-players": [
+     "quiet-maw"
+    ],
+    "8-players": [
+     "quiet-maw"
+    ]
+   }
+  },
+  {
+   "file": "world-map.webp",
+   "source": "campaigns/fantasy-2026/unwritten-god/assets/world-map/world-map.webp",
+   "sha256": "219cf756af1f9a3ea901a475394c916482c6f85e21d228935d7b2f1fa139490e",
+   "originalSha256": "b90604c47bcd5bfc32fd11f963246d7694d09e8c8d4b0a49f1b7b97ad453c532",
+   "generated": "2026-11-22",
+   "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Белокамье и Тихий Зев. Style Белокамье и Тихий Зев · Whale-tail curves and sunbeams incised in smoky blue stone. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Площадь Белого Полотна; 0.367,0.177 Галерея Уходящего Кита; 0.623,0.15 Спина Белого Кита; 0.88,0.177 Двор ста ламп; 0.905,0.517 Каменный Глаз; 0.648,0.49 Склон гудящих чаш; 0.392,0.517 Синий сад; 0.135,0.49 Чаша открытого карьера; 0.11,0.83 Тихий Зев. Show public exteriors / unlabeled contours only.",
+   "references": [],
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null,
+   "subjects": {
+    "3-players": [
+     "world-map"
+    ],
+    "4-players": [
+     "world-map"
+    ],
+    "5-players": [
+     "world-map"
+    ],
+    "6-players": [
+     "world-map"
+    ],
+    "7-players": [
+     "world-map"
+    ],
+    "8-players": [
+     "world-map"
+    ]
+   }
+  }
+ ]
+}

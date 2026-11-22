@@ -1,0 +1,49 @@
+{
+  "maps": [
+    {
+      "file": "broad-stair.webp",
+      "sha256": "e7060e5d0b619b8f7275d85f8bb2bb1b0152b1c10b871491d0debc8be9f5f84d",
+      "originalSha256": "7878d03cfe7bb89959811b3ccbc1c6957411e4a2051f3a1dc4576e698bc44172",
+      "originalFile": "exec-d3baa868-9173-490b-8ec8-3977955ad578.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Широкая прогулочная лестница. Visible scenery: Низкие ступени и длинный пологий обход ведут к близкой смотровой площадке. По краям стоят смешные указатели туристических рекордов.. World style: Медный Каньон · Copper luggage corners and concentric baggage-carousel rings in teal leather. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "broad-stair",
+      "encounter": "plush-summit",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "velvet-parlor.webp",
+      "sha256": "29a3f1a74c640e075e063f6b8f8d12e53a9c8dd8740521e7c12022095df2c751",
+      "originalSha256": "97996ef30dd3fbc1dde6377e26a53d3a531d61183df3957d2fbdae0bf93d791a",
+      "originalFile": "exec-7a9f32b9-0605-481b-b920-00fc394c746a.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Бархатная гостиная. Visible scenery: Комната с низкой сценической площадкой, мягкими ширмами и коробкой крупного реквизита; над диваном висит ложная корона размером с обруч.. World style: Медный Каньон · Copper luggage corners and concentric baggage-carousel rings in teal leather. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "velvet-parlor",
+      "encounter": "ring-bearer-dance",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "goose-court.webp",
+      "sha256": "cd0746d946d55bef2492edb43c452e6af839a95755edfb709472f6efcdf279f6",
+      "originalSha256": "6296bca4a5edce1cf2e5d1689f06acd2aaea913584777483c371ea56b676b0e4",
+      "originalFile": "exec-4632371f-7aaa-4d50-a14c-813ec8537d44.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Двор плюшевых гусей. Visible scenery: Ровная площадка для шуточных эстафет; мягкие гуси в жилетах дремлют на подставках, рядом есть стол и свободный обход.. World style: Медный Каньон · Copper luggage corners and concentric baggage-carousel rings in teal leather. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "goose-court",
+      "encounter": "goose-guard",
+      "grid": [
+        14,
+        12
+      ]
+    }
+  ]
+}

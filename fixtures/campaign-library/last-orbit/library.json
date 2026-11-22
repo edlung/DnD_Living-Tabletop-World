@@ -14,28 +14,28 @@
    "players": 5,
    "label": "5 игроков",
    "file": "packages/5-players.json",
-   "digest": "235224f6a6c7b63e3025540263cba31bac23aa8a2bc37ed6ab3f4271970b653e"
+   "digest": "8a01e1bdb0a8cebbad289ffd42d79a14a43c883ee6099782a935c2f993ee3758"
   },
   {
    "id": "6-players",
    "players": 6,
    "label": "6 игроков",
    "file": "packages/6-players.json",
-   "digest": "b7df5cc4083da2a7f8b81b24279484b0bf80c5575bbf2c439f1da54830f81a70"
+   "digest": "352f60065c365a781f9738cdf9ed94852be7a63f6ea80be9921f87d5794a37e9"
   },
   {
    "id": "7-players",
    "players": 7,
    "label": "7 игроков",
    "file": "packages/7-players.json",
-   "digest": "413eb65c1740c4c4f4f296506a2687fe344d43c11aadab8c452ca3ab3c5ac304"
+   "digest": "f89d6a41235e2a793d2c03675ba74bc1fff0b75ca8732e7e969cbd706e6ffc96"
   },
   {
    "id": "8-players",
    "players": 8,
    "label": "8 игроков",
    "file": "packages/8-players.json",
-   "digest": "5134711263a0bfa7bc429c82537092c556795e0209a78b767bcb1f628ed6aebe"
+   "digest": "e9a5695ec637764c514a7a10fdb02f409ed7df5c8f968266336934ab45b682fb"
   }
  ],
  "generator": "codex-cli imagegen",
@@ -1604,6 +1604,583 @@
    "label": "figure",
    "purpose": "figure",
    "derivedFrom": "token-captain.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/illustrations/cards/travel-kit.webp",
+   "sha256": "2b26878f2f9fc6d3d869c730d406420ad91369da7713cef6efc02dc7c7eb527e",
+   "originalSha256": "bffa6b735af3b5e57af686115434ada0089a7456b946d652d10cf3c8a80719ec",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дорожный набор",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "bor-kamen-travel-kit",
+     "ilay-rosh-travel-kit",
+     "mir-avel-travel-kit",
+     "nara-vel-travel-kit",
+     "sevra-dan-travel-kit"
+    ],
+    "6-players": [
+     "bor-kamen-travel-kit",
+     "ilay-rosh-travel-kit",
+     "mir-avel-travel-kit",
+     "nara-vel-travel-kit",
+     "sevra-dan-travel-kit",
+     "tessa-lun-travel-kit"
+    ],
+    "7-players": [
+     "bor-kamen-travel-kit",
+     "ilay-rosh-travel-kit",
+     "mir-avel-travel-kit",
+     "nara-vel-travel-kit",
+     "sevra-dan-travel-kit",
+     "tessa-lun-travel-kit",
+     "yuna-is-travel-kit"
+    ],
+    "8-players": [
+     "bor-kamen-travel-kit",
+     "damir-oll-travel-kit",
+     "ilay-rosh-travel-kit",
+     "mir-avel-travel-kit",
+     "nara-vel-travel-kit",
+     "sevra-dan-travel-kit",
+     "tessa-lun-travel-kit",
+     "yuna-is-travel-kit"
+    ]
+   },
+   "file": "travel-kit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/table/heroes-sevra-dan.webp",
+   "sha256": "6238ce213c974458bb0dc9c0c869147d4652755a5f510fcd99732df22d8ae71e",
+   "originalSha256": "756713aaf114b9a5baa82e6da3a8b34d372a1e1a800fe0be18a8ca36f32c6094",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Севра Дан",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "sevra-dan"
+    ],
+    "6-players": [
+     "sevra-dan"
+    ],
+    "7-players": [
+     "sevra-dan"
+    ],
+    "8-players": [
+     "sevra-dan"
+    ]
+   },
+   "file": "sevra-dan--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "sevra-dan.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/table/heroes-mir-avel.webp",
+   "sha256": "c199a9442a8814f07dd0de1a84fa95948852c5f5fae48e92849dd610b34c483c",
+   "originalSha256": "756713aaf114b9a5baa82e6da3a8b34d372a1e1a800fe0be18a8ca36f32c6094",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мир Авель",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "mir-avel"
+    ],
+    "6-players": [
+     "mir-avel"
+    ],
+    "7-players": [
+     "mir-avel"
+    ],
+    "8-players": [
+     "mir-avel"
+    ]
+   },
+   "file": "mir-avel--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "mir-avel.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/table/heroes-nara-vel.webp",
+   "sha256": "c66e403638996b680b146c022810f8e03b12fda82bee26e5f54704be9084925c",
+   "originalSha256": "756713aaf114b9a5baa82e6da3a8b34d372a1e1a800fe0be18a8ca36f32c6094",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нара Вель",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "nara-vel"
+    ],
+    "6-players": [
+     "nara-vel"
+    ],
+    "7-players": [
+     "nara-vel"
+    ],
+    "8-players": [
+     "nara-vel"
+    ]
+   },
+   "file": "nara-vel--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "nara-vel.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/table/heroes-ilay-rosh.webp",
+   "sha256": "99cfa9da5c3470896bd2dc09f1a0c26d89da9c4ae9107bdd40f1789dff76df89",
+   "originalSha256": "756713aaf114b9a5baa82e6da3a8b34d372a1e1a800fe0be18a8ca36f32c6094",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Илай Рош",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "ilay-rosh"
+    ],
+    "6-players": [
+     "ilay-rosh"
+    ],
+    "7-players": [
+     "ilay-rosh"
+    ],
+    "8-players": [
+     "ilay-rosh"
+    ]
+   },
+   "file": "ilay-rosh--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ilay-rosh.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/table/heroes-bor-kamen.webp",
+   "sha256": "34c17c315520be43168f326484d1fc400003002bcb7f0f0e186490d6c29dbd45",
+   "originalSha256": "756713aaf114b9a5baa82e6da3a8b34d372a1e1a800fe0be18a8ca36f32c6094",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Бор Камен",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "bor-kamen"
+    ],
+    "6-players": [
+     "bor-kamen"
+    ],
+    "7-players": [
+     "bor-kamen"
+    ],
+    "8-players": [
+     "bor-kamen"
+    ]
+   },
+   "file": "bor-kamen--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "bor-kamen.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/table/heroes-tessa-lun.webp",
+   "sha256": "8380ae6c5b21ac357e2b62b28ce52ab5ef1be8f71f26a969921ea4005482b755",
+   "originalSha256": "756713aaf114b9a5baa82e6da3a8b34d372a1e1a800fe0be18a8ca36f32c6094",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Агата Лун",
+   "references": [],
+   "subjects": {
+    "5-players": [],
+    "6-players": [
+     "tessa-lun"
+    ],
+    "7-players": [
+     "tessa-lun"
+    ],
+    "8-players": [
+     "tessa-lun"
+    ]
+   },
+   "file": "tessa-lun--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "tessa-lun.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/table/heroes-yuna-is.webp",
+   "sha256": "c02e523d85c3857139a4cdcc010f48b8b7621e91d68f1331a132813a846d2299",
+   "originalSha256": "756713aaf114b9a5baa82e6da3a8b34d372a1e1a800fe0be18a8ca36f32c6094",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Юна Ис",
+   "references": [],
+   "subjects": {
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "yuna-is"
+    ],
+    "8-players": [
+     "yuna-is"
+    ]
+   },
+   "file": "yuna-is--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "yuna-is.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/table/heroes-damir-oll.webp",
+   "sha256": "71235f3815b7dbc4adc855905abee37cefcbdc6f35de7580e06ada85aa275a1d",
+   "originalSha256": "756713aaf114b9a5baa82e6da3a8b34d372a1e1a800fe0be18a8ca36f32c6094",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дамир Олль",
+   "references": [],
+   "subjects": {
+    "5-players": [],
+    "6-players": [],
+    "7-players": [],
+    "8-players": [
+     "damir-oll"
+    ]
+   },
+   "file": "damir-oll--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "damir-oll.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/table/npcs-oryn-vey.webp",
+   "sha256": "6a5686a44f8d4281d70134dbdbe1b88ad8e6f14796d69ab8e3c86db0884ce084",
+   "originalSha256": "ec56a26e973b44228282990797759ec817e77486f74647eab40c53d218090c4e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ансель Брам",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "oryn-vey"
+    ],
+    "6-players": [
+     "oryn-vey"
+    ],
+    "7-players": [
+     "oryn-vey"
+    ],
+    "8-players": [
+     "oryn-vey"
+    ]
+   },
+   "file": "oryn-vey--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "oryn-vey.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/table/npcs-vesta-rin.webp",
+   "sha256": "b516cfdc9c9e81458c919682ff77611d1a29be34c7be1580150d3c9da5bff146",
+   "originalSha256": "ec56a26e973b44228282990797759ec817e77486f74647eab40c53d218090c4e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Кая Штерн",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "vesta-rin"
+    ],
+    "6-players": [
+     "vesta-rin"
+    ],
+    "7-players": [
+     "vesta-rin"
+    ],
+    "8-players": [
+     "vesta-rin"
+    ]
+   },
+   "file": "vesta-rin--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "vesta-rin.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/table/npcs-mira-ker.webp",
+   "sha256": "331ef9e22d61d559791d978d3fca74cddd779047de4df0c42211e1f829ab5bbe",
+   "originalSha256": "ec56a26e973b44228282990797759ec817e77486f74647eab40c53d218090c4e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Адель Мерц",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "mira-ker"
+    ],
+    "6-players": [
+     "mira-ker"
+    ],
+    "7-players": [
+     "mira-ker"
+    ],
+    "8-players": [
+     "mira-ker"
+    ]
+   },
+   "file": "mira-ker--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "mira-ker.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/table/npcs-sor-dar.webp",
+   "sha256": "288ba10f45bdf77f273673efc47d4062d97ff945f7fd3d5d06321eb03118de3d",
+   "originalSha256": "ec56a26e973b44228282990797759ec817e77486f74647eab40c53d218090c4e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сор Дар",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "sor-dar"
+    ],
+    "6-players": [
+     "sor-dar"
+    ],
+    "7-players": [
+     "sor-dar"
+    ],
+    "8-players": [
+     "sor-dar"
+    ]
+   },
+   "file": "sor-dar--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "sor-dar.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/table/npcs-lida-senn.webp",
+   "sha256": "efdb89e752e0970e7e9d92624baf6145f89f3c08825bc82da6f11a1cf6c0149c",
+   "originalSha256": "ec56a26e973b44228282990797759ec817e77486f74647eab40c53d218090c4e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Хана Ферст",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "lida-senn"
+    ],
+    "6-players": [
+     "lida-senn"
+    ],
+    "7-players": [
+     "lida-senn"
+    ],
+    "8-players": [
+     "lida-senn"
+    ]
+   },
+   "file": "lida-senn--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "lida-senn.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/table/npcs-aron-tey.webp",
+   "sha256": "0d7c820d08fce6979b1b5af211b66eb06cda5646bf64b6a5f7f835fe8091ce98",
+   "originalSha256": "ec56a26e973b44228282990797759ec817e77486f74647eab40c53d218090c4e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Арон Тей",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "aron-tey"
+    ],
+    "6-players": [
+     "aron-tey"
+    ],
+    "7-players": [
+     "aron-tey"
+    ],
+    "8-players": [
+     "aron-tey"
+    ]
+   },
+   "file": "aron-tey--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "aron-tey.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/table/npcs-nika-sol.webp",
+   "sha256": "d5b895f93d73cd6c892425f2c3fdbc27198370ad87794f6c706d9fa79fc5ee1a",
+   "originalSha256": "d55426fb9e8e11a365ddca12d5d2094c3621978c7a3d6158b0473777744b8aee",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Илона Марч",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "nika-sol"
+    ],
+    "6-players": [
+     "nika-sol"
+    ],
+    "7-players": [
+     "nika-sol"
+    ],
+    "8-players": [
+     "nika-sol"
+    ]
+   },
+   "file": "nika-sol--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "nika-sol.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/table/npcs-esh-lar.webp",
+   "sha256": "a16508fad17354ecbd303b7cb093dd126a16c5dad0ba473b48cb5fd16c594eaa",
+   "originalSha256": "d55426fb9e8e11a365ddca12d5d2094c3621978c7a3d6158b0473777744b8aee",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эш Лар",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "esh-lar"
+    ],
+    "6-players": [
+     "esh-lar"
+    ],
+    "7-players": [
+     "esh-lar"
+    ],
+    "8-players": [
+     "esh-lar"
+    ]
+   },
+   "file": "esh-lar--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "esh-lar.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/table/npcs-oskar-veld.webp",
+   "sha256": "87b7cb0b4b910d311515f037c123adfcbafdf63f6f5cf6744fabc86769f62ff3",
+   "originalSha256": "d55426fb9e8e11a365ddca12d5d2094c3621978c7a3d6158b0473777744b8aee",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Оскар Вельд",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "oskar-veld"
+    ],
+    "6-players": [
+     "oskar-veld"
+    ],
+    "7-players": [
+     "oskar-veld"
+    ],
+    "8-players": [
+     "oskar-veld"
+    ]
+   },
+   "file": "oskar-veld--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "oskar-veld.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/table/npcs-petra-lous.webp",
+   "sha256": "d7d311dd74dcba50d3612608b692553c59a31fb4bf8548efae39b9bd5b0fe05b",
+   "originalSha256": "d55426fb9e8e11a365ddca12d5d2094c3621978c7a3d6158b0473777744b8aee",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Петра Лоус",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "petra-lous"
+    ],
+    "6-players": [
+     "petra-lous"
+    ],
+    "7-players": [
+     "petra-lous"
+    ],
+    "8-players": [
+     "petra-lous"
+    ]
+   },
+   "file": "petra-lous--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "petra-lous.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/table/npcs-yakov-strel.webp",
+   "sha256": "48a4622fa2ffd1b4a0ac9682e2e28afab099eda76d48b676d4f1c9f3f2abfb2a",
+   "originalSha256": "d55426fb9e8e11a365ddca12d5d2094c3621978c7a3d6158b0473777744b8aee",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Яков Стрель",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "yakov-strel"
+    ],
+    "6-players": [
+     "yakov-strel"
+    ],
+    "7-players": [
+     "yakov-strel"
+    ],
+    "8-players": [
+     "yakov-strel"
+    ]
+   },
+   "file": "yakov-strel--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "yakov-strel.webp"
+  },
+  {
+   "source": "campaigns/collection-2026/last-orbit/assets/table/npcs-roza-mint.webp",
+   "sha256": "07a47c858873faa59bf92aedf665926ad1755056a3031d671f54262eeabf9fd1",
+   "originalSha256": "d55426fb9e8e11a365ddca12d5d2094c3621978c7a3d6158b0473777744b8aee",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Роза Минт",
+   "references": [],
+   "subjects": {
+    "5-players": [
+     "roza-mint"
+    ],
+    "6-players": [
+     "roza-mint"
+    ],
+    "7-players": [
+     "roza-mint"
+    ],
+    "8-players": [
+     "roza-mint"
+    ]
+   },
+   "file": "roza-mint--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "roza-mint.webp"
   },
   {
    "file": "block-b--map.webp",

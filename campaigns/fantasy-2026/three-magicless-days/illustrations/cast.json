@@ -1,0 +1,397 @@
+{
+  "about": "Портреты для карточек и изображение закрытого набора. Сначала сверяйте личность и доступность персонажа за столом.",
+  "generated": "2026-11-22",
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "heroes",
+      "originalFile": "exec-e914993d-6615-4501-8444-0aa7f4a421a3.png",
+      "originalSha256": "6a66e8c866564e9411ea74cb21ab9d512076ecd54f7438be6e8726bb96d8c797",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 3 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:3. Luminous fantasy gouache, varied colors, naturalistic stylized faces. World: Дзеньгород. Characters, in strict cell order:\n1. Марта Широкий Шаг — Короткая куртка, красные шнурки, деревянная пуговица размером с сливу. Age 19.\n2. Сава Петелькин — Жилет с множеством видимых карманов, тонкий шнурок с номерком, мягкая шляпа. Age 27.\n3. Ольна Светлая Ладонь — Простой дорожный плащ, медный знак раскрытой ладони, термос обычного чая. Age 41.\n4. Вет Фонарный — Синий шарф с нарисованными звёздами, аккуратный футляр для мела, круглые очки. Age 17.\n5. Рема Три Хлопка — Зелёный пояс, рукава до локтя, маленькая деревянная хлопушка для репетиций. Age 34.\n6. Дин Красный Бант — Белая жилетка, потёртая сумка, красный бант на рукояти обычной трости. Age 62.\n7. Илва Медная Пуговица — Жёлтая накидка, блокнот на верёвочке, разные по цвету перчатки. Age 24.\n8. Тео Косой Полдень — Широкополая шляпа, песочного цвета плащ и обычная складная линейка. Age 46.\n9. Дорожный / рабочий набор — Still life of one opaque closed everyday satchel, appropriate to this world and era. No person and nothing spilling out.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 3,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "npcs",
+      "originalFile": "exec-e142e072-01df-4d31-b6d8-f4bf808bf77b.png",
+      "originalSha256": "3a1e308f41bdb93d2c3b1239711706ddec49f151cacc2ac34bc5c50554e456cd",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 4 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:4. Luminous fantasy gouache, varied colors, naturalistic stylized faces. World: Дзеньгород. Characters, in strict cell order:\n1. Рада Два Мелка — Рукава в белой пыли, косичка с двумя мелками, широкий непарадный фартук. Age 39.\n2. Тилло Круглый Номерок — Полосатый жилет, связанные попарно карандаши, очки на длинной цепочке. Age 53.\n3. Нерпа Сухой Рукав — Короткие сапоги, зелёная косынка, прищепки на поясе вместо украшений. Age 31.\n4. Вея Книжный Угол — Серебряные волосы, широкие очки, раскрытая тетрадь на деревянной подставке. Age 68.\n5. Фенк Семь Приветствий — Высокая шапка, ленточка с нарисованной ладонью, разные носки. Age 22.\n6. Бума Поставьте Локти — Широкий соломенный козырёк, простая кружка и рукава, закатанные на разную высоту. Age 29.\n7. Порог Первый После Вас — Невысокая золотистая фигура в панаме, опирающаяся на медную дверную ручку как на трость. Age 84.\n8. Отжим Брызга — Светящийся бирюзовый завиток с совершенно сухим полотенцем и смешными солнечными очками. Age 57.\n9. Сима Три Остановки — Сиреневый дорожный платок, невысокая трость и свёрток с обычной настольной игрой. Age 45.\n10. Колет Капитан Шум — Пиджак с тремя пустыми карманами, мягкая треуголка и свисток, которым он пользуется только с разрешения. Age 36.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 4,
+      "width": 1086,
+      "height": 1448
+    }
+  ],
+  "cards": [
+    {
+      "id": "hero-marta",
+      "file": "cards/hero-marta.webp",
+      "title": "Марта Широкий Шаг",
+      "subjects": [
+        "hero-marta"
+      ],
+      "sheet": "heroes",
+      "cell": 1,
+      "crop": {
+        "left": 10,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "1dc4713142db260bd3884392beddb8002140454f7a66d7a48609acd69fe8742e"
+    },
+    {
+      "id": "hero-sava",
+      "file": "cards/hero-sava.webp",
+      "title": "Сава Петелькин",
+      "subjects": [
+        "hero-sava"
+      ],
+      "sheet": "heroes",
+      "cell": 2,
+      "crop": {
+        "left": 428,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "44358b3ca6232c10f9e69ddf1d45fcd4cbeb7e742931d22d438fc61f5c578d1c"
+    },
+    {
+      "id": "hero-olna",
+      "file": "cards/hero-olna.webp",
+      "title": "Ольна Светлая Ладонь",
+      "subjects": [
+        "hero-olna"
+      ],
+      "sheet": "heroes",
+      "cell": 3,
+      "crop": {
+        "left": 846,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "64fffbb7801e771d58d133b413c0e4039e12e5c4672bb836e8cb2a09321e2a58"
+    },
+    {
+      "id": "hero-vet",
+      "file": "cards/hero-vet.webp",
+      "title": "Вет Фонарный",
+      "subjects": [
+        "hero-vet"
+      ],
+      "sheet": "heroes",
+      "cell": 4,
+      "crop": {
+        "left": 10,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "1d4da7429ee0a13a53f0bf036e48974668509cd7dc96562daea80e82ee5fa27b"
+    },
+    {
+      "id": "hero-rema",
+      "file": "cards/hero-rema.webp",
+      "title": "Рема Три Хлопка",
+      "subjects": [
+        "hero-rema"
+      ],
+      "sheet": "heroes",
+      "cell": 5,
+      "crop": {
+        "left": 428,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "c20b23c1e50fbac9173a5bd6ecbeb6912f472a428f9ab9cad2d208cc72c22b6a"
+    },
+    {
+      "id": "hero-din",
+      "file": "cards/hero-din.webp",
+      "title": "Дин Красный Бант",
+      "subjects": [
+        "hero-din"
+      ],
+      "sheet": "heroes",
+      "cell": 6,
+      "crop": {
+        "left": 846,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "73da3f3ae41b69dc093eff92cc2d15d67032a2c22ea6bae01495f7b759adcf07"
+    },
+    {
+      "id": "hero-ilva",
+      "file": "cards/hero-ilva.webp",
+      "title": "Илва Медная Пуговица",
+      "subjects": [
+        "hero-ilva"
+      ],
+      "sheet": "heroes",
+      "cell": 7,
+      "crop": {
+        "left": 10,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "3478eb0d04f0c8ef2013f731220f6b23f8f4a073f8ed61c40029b76841935efe"
+    },
+    {
+      "id": "hero-teo",
+      "file": "cards/hero-teo.webp",
+      "title": "Тео Косой Полдень",
+      "subjects": [
+        "hero-teo"
+      ],
+      "sheet": "heroes",
+      "cell": 8,
+      "crop": {
+        "left": 428,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "c3a046d2d08119776f20cb7548bf43b24179d34010b8b0d7b7a4f419f615f15b"
+    },
+    {
+      "id": "travel-kit",
+      "file": "cards/travel-kit.webp",
+      "title": "Дорожный набор",
+      "subjects": [
+        "hero-din-travel-kit",
+        "hero-ilva-travel-kit",
+        "hero-marta-travel-kit",
+        "hero-olna-travel-kit",
+        "hero-rema-travel-kit",
+        "hero-sava-travel-kit",
+        "hero-teo-travel-kit",
+        "hero-vet-travel-kit"
+      ],
+      "sheet": "heroes",
+      "cell": 9,
+      "crop": {
+        "left": 846,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "1caf5a73a75b4680740729dfb8a33f8c2770311b5c74236177a525995ff9c307"
+    },
+    {
+      "id": "rada",
+      "file": "cards/rada.webp",
+      "title": "Рада Два Мелка",
+      "subjects": [
+        "rada"
+      ],
+      "sheet": "npcs",
+      "cell": 1,
+      "crop": {
+        "left": 9,
+        "top": 9,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "6dfc1ec52afcd3f0b195fdb4196d761d3c218c533fe8b011ef2e1058b8ea941a"
+    },
+    {
+      "id": "tillo",
+      "file": "cards/tillo.webp",
+      "title": "Тилло Круглый Номерок",
+      "subjects": [
+        "tillo"
+      ],
+      "sheet": "npcs",
+      "cell": 2,
+      "crop": {
+        "left": 371,
+        "top": 9,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "d54706cad5ea7b4872d8866a8c49946ddb8958f2a5411e770292b8a38a437bf5"
+    },
+    {
+      "id": "nerpa",
+      "file": "cards/nerpa.webp",
+      "title": "Нерпа Сухой Рукав",
+      "subjects": [
+        "nerpa"
+      ],
+      "sheet": "npcs",
+      "cell": 3,
+      "crop": {
+        "left": 733,
+        "top": 9,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "c19da5fe4c584cef0021d3c31258ad26619acc8f5afce2fdd236d98caad05a79"
+    },
+    {
+      "id": "veya",
+      "file": "cards/veya.webp",
+      "title": "Вея Книжный Угол",
+      "subjects": [
+        "veya"
+      ],
+      "sheet": "npcs",
+      "cell": 4,
+      "crop": {
+        "left": 9,
+        "top": 371,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "23d465d27fbc57699730a652f79a8798fc9198ba5ace7629035a536eb597e036"
+    },
+    {
+      "id": "fenk",
+      "file": "cards/fenk.webp",
+      "title": "Фенк Семь Приветствий",
+      "subjects": [
+        "fenk"
+      ],
+      "sheet": "npcs",
+      "cell": 5,
+      "crop": {
+        "left": 371,
+        "top": 371,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "8edd8d8ee20c0f5a101ab7bb5b1cae556a3b2147b52e5a76a1dfc4c7253fb6cd"
+    },
+    {
+      "id": "buma",
+      "file": "cards/buma.webp",
+      "title": "Бума Поставьте Локти",
+      "subjects": [
+        "buma"
+      ],
+      "sheet": "npcs",
+      "cell": 6,
+      "crop": {
+        "left": 733,
+        "top": 371,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "818fdecdaa3f2cf2087902dc86bdaf6ddca17ddeff74256aba00f4855e0de858"
+    },
+    {
+      "id": "porog",
+      "file": "cards/porog.webp",
+      "title": "Порог Первый После Вас",
+      "subjects": [
+        "porog"
+      ],
+      "sheet": "npcs",
+      "cell": 7,
+      "crop": {
+        "left": 9,
+        "top": 733,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "e391e16d9580b1f9e97bf59e2bb172ed5baf9d45c0ee3914586591aba10ff2dc"
+    },
+    {
+      "id": "otzhim",
+      "file": "cards/otzhim.webp",
+      "title": "Отжим Брызга",
+      "subjects": [
+        "otzhim"
+      ],
+      "sheet": "npcs",
+      "cell": 8,
+      "crop": {
+        "left": 371,
+        "top": 733,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "82de332ccd0011885932c22a6d4e9a3f0e31c58f5c18cea1587766fb2de68913"
+    },
+    {
+      "id": "sima",
+      "file": "cards/sima.webp",
+      "title": "Сима Три Остановки",
+      "subjects": [
+        "sima"
+      ],
+      "sheet": "npcs",
+      "cell": 9,
+      "crop": {
+        "left": 733,
+        "top": 733,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "8ca956e86bb4156265fd2d0c1634f2151990a21f08ee82232bf2430e39d9c8be"
+    },
+    {
+      "id": "kolet",
+      "file": "cards/kolet.webp",
+      "title": "Колет Капитан Шум",
+      "subjects": [
+        "kolet"
+      ],
+      "sheet": "npcs",
+      "cell": 10,
+      "crop": {
+        "left": 9,
+        "top": 1095,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "b670d8c64cafd3e56e8cb4631fea33480ef3d76afa543aba50991ef82abcd27a"
+    }
+  ]
+}

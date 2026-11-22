@@ -1,0 +1,34 @@
+{
+  "maps": [
+    {
+      "file": "linen-yard.webp",
+      "sha256": "40c78f98a993c957f897eb3f89f46962a807e311bc86452c62c060629b396d3f",
+      "originalSha256": "258b7bd9a6953c2d1b1c40afe9a4cca0dac0f853a940595111299aa82970445e",
+      "originalFile": "exec-559228ed-71d0-42b0-af69-ffacd119b5af.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Двор длинных простыней. Visible scenery: Между низкими домами висят верёвки для белья. Под ними сохнут разноцветные дорожки и блестят лужицы.. World style: Дзеньгород · Coloured felt chair silhouettes and hand-sewn pennant loops on plain linen. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "linen-yard",
+      "encounter": "ribbon-goats",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "open-court.webp",
+      "sha256": "eb8ba1d32ed95092a89df57f7e5ef44eb02a23c35439d62701cf192bc16b5d89",
+      "originalSha256": "8efa965052b746e609c726affdd7ee18418ed4bf909e26c319452002a8816e4b",
+      "originalFile": "exec-2cdb1bc3-7cd0-48c0-b039-f1c8bc4144f2.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Двор первого поклона. Visible scenery: Просторный двор с низкими ступенями, широкими воротами и небольшим помостом для приветствий и любительских представлений.. World style: Дзеньгород · Coloured felt chair silhouettes and hand-sewn pennant loops on plain linen. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "open-court",
+      "encounter": "ribbon-whirlers",
+      "grid": [
+        14,
+        12
+      ]
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "about": "Иллюстрация закрытого личного набора персонажа.",
+  "generated": "2026-11-22",
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "kit",
+      "originalFile": "exec-22649631-53a8-4130-8f89-e51a307e4a08.png",
+      "originalSha256": "e563f5a860b841d640401ca18b5958822ba45ff89f2f23223766824271a51d19",
+      "prompt": "One original illustrated tabletop item card illustration of a closed opaque everyday carry case or satchel for the fictional world Карнавал Заводных Масок. Art direction: match the following very specific material as a very subtle detail on the case: Interlocking fan-shaped brass escapements and harlequin diamonds in wine-red enamel. Show only one complete bag against a quiet neutral backdrop, atmospheric, painterly naturalism, carefully crafted, three quarters view, soft even light, square framing. Never show contents, evidence, people, text, maps, interfaces, lettering or a frame.",
+      "conversion": "cwebp -resize 256 256 -q 83"
+    }
+  ],
+  "cards": [
+    {
+      "id": "travel-kit",
+      "file": "cards/travel-kit.webp",
+      "title": "Дорожный набор",
+      "subjects": [
+        "boris-fold-travel-kit",
+        "elda-bell-travel-kit",
+        "gleb-pocket-travel-kit",
+        "miro-fanfare-travel-kit",
+        "polina-step-travel-kit",
+        "tim-lace-travel-kit",
+        "vera-buckles-travel-kit",
+        "yasna-thimble-travel-kit"
+      ],
+      "sheet": "kit",
+      "width": 256,
+      "height": 256,
+      "sha256": "23c126a245ea52fd4290c50e79fc4396141402c708683403a82999284d6c7dc7"
+    }
+  ]
+}

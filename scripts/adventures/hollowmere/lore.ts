@@ -1,6 +1,6 @@
 import { BELL_KEEPERS } from './foes.ts';
 import { STARTS_AT, t, type Text } from './text.ts';
-import { ASHEN_CIRCLE, CRYPT, LANTERN_MAN, REED_CLOAKS } from './world.ts';
+import { ASHEN_CIRCLE, BELL_CHAMBER, CRYPT, LANTERN_MAN, REED_CLOAKS } from './world.ts';
 
 /**
  * What the world of The Bells of Hollowmere knows (ADR 0010's scopes): the rumours everyone hears,
@@ -30,6 +30,17 @@ const npc = (npcId: string): Scope => ({ kind: 'NPC', npcId });
 export const KNIGHT = BELL_KEEPERS[0]?.id ?? 'creature-unknown';
 
 export const KNOWLEDGE: readonly Knowledge[] = [
+  {
+    id: 'public-road-map',
+    scope: { kind: 'PUBLIC' },
+    type: 'FACT',
+    statement: t(
+      'At the North Gate of Ravenford, a noticeboard shows the Northern Fens and the Mill Road to Hollowmere. A traveller can copy the map before setting out.',
+      'У Северных ворот Равенфорда висит карта Северных топей с Мельничной дорогой до Холлоумира. Путник может срисовать её перед отъездом.',
+    ),
+    subjects: ['fenlands', 'ravenford', 'north-gate', 'hollowmere'],
+    knownSince: null,
+  },
   {
     id: 'pub-hollowmere',
     scope: { kind: 'PUBLIC' },
@@ -79,8 +90,8 @@ export const KNOWLEDGE: readonly Knowledge[] = [
     scope: { kind: 'PARTY' },
     type: 'FACT',
     statement: t(
-      'Agna Brisk hired us to take her wagon of lamp-oil and salt to Hollowmere, and to learn why its reeve has stopped writing.',
-      'Агна Бриск наняла нас отвезти её повозку с лампадным маслом и солью в Холлоумир и узнать, почему тамошний староста перестал писать.',
+      'Agna Brisk asked whether we would take her wagon of lamp-oil and salt to Hollowmere and find out why its reeve has stopped writing.',
+      'Агна Бриск предложила нам отвезти её повозку с лампадным маслом и солью в Холлоумир и узнать, почему тамошний староста перестал писать.',
     ),
     subjects: ['brisk-cargo', 'agna-brisk', 'hollowmere', 'hobb-fenwick'],
     knownSince: STARTS_AT,
@@ -270,10 +281,87 @@ export const KNOWLEDGE: readonly Knowledge[] = [
     scope: { kind: 'DM' },
     type: 'SECRET',
     statement: t(
-      'Milestones: level 2 when the wagon reaches Hollowmere and the cellar is cleared; level 3 after the Drowned Chapel; level 4 after the Sunken Mill; level 5 when the sunken bell is silenced.',
-      'Вехи: 2-й уровень, когда повозка дошла до Холлоумира и погреб очищен; 3-й — после Затонувшей часовни; 4-й — после Затопленной мельницы; 5-й — когда утонувший колокол умолк.',
+      'Milestones: level 2 when the wagon reaches Hollowmere and the cellar breach is cleared or sealed; level 3 after the Drowned Chapel; level 4 after the Sunken Mill; level 5 when the sunken bell is silenced.',
+      'Вехи: 2-й уровень, когда повозка дошла до Холлоумира и лаз в погребе очищен или заделан; 3-й — после Затонувшей часовни; 4-й — после Затопленной мельницы; 5-й — когда утонувший колокол умолк.',
     ),
     subjects: ['hollowmere'],
+    knownSince: null,
+  },
+  {
+    id: 'dm-route-willow-ford-ambush',
+    scope: { kind: 'DM' },
+    type: 'SECRET',
+    statement: t(
+      'The raiders want oil. They flee when half of them fall. At the end of round three they leave with a crate unless already driven off. The party can yield the crate earlier and cover its wounded. The wagon covers the remaining sixteen miles. Hobb bars the cellar for the night and offers beds before it is opened in the morning.',
+      'Налётчикам нужно масло. Когда падает половина из них, остальные бегут. В конце третьего раунда они уходят с ящиком, если их ещё не прогнали. Можно отдать ящик раньше и прикрыть раненых. До деревни шестнадцать миль на повозке. Хобб на ночь запирает погреб и предлагает постели. Крышку приподнимут утром.',
+    ),
+    subjects: ['willow-ford'],
+    knownSince: null,
+  },
+  {
+    id: 'dm-route-cellar-rats',
+    scope: { kind: 'DM' },
+    type: 'SECRET',
+    statement: t(
+      'The loose salt cask at G4 can plug the breach. It takes two actions by adjacent heroes, together or on successive turns. If the party pulls back, Hobb lowers the cellar door. They can help him seal it from upstairs, losing the remaining salt. Either way resolves the cellar milestone. Once the cask plugs the breach the swarm scatters. If the last hero falls, Hobb works the hoist from the hatch. Resolve death saves for the dying. When a survivor wakes, offer the loss of the salt and the road to the chapel. If nobody survives, Hobb boards up the cellar and asks the village to ration salt.',
+      'В G4 покачивается бочка с солью. Чтобы заткнуть ею лаз, нужны два действия рядом с бочкой, в один ход на двоих или за несколько ходов. Если отряд отступит, Хобб захлопнет крышку. Герои могут помочь ему заделать лаз сверху ценой оставшейся соли. В обоих случаях веха погреба достигнута. Когда бочка закрывает лаз, рой разбегается. Если упал последний герой, Хобб вытаскивает раненых воротом у люка. Разыграйте спасброски умирающих. Когда выживший очнётся, предложите пожертвовать солью и идти к часовне. Если погибли все, Хобб заколачивает погреб и просит деревню делить соль по горсти.',
+    ),
+    subjects: ['reeves-cellar'],
+    knownSince: null,
+  },
+  {
+    id: 'dm-route-drowned-chapel',
+    scope: { kind: 'DM' },
+    type: 'SECRET',
+    statement: t(
+      'The inscription on the porch marks the way below. Heroes who pull their wounded back to the boat can copy it from the landing and earn the chapel milestone. The dead stay in the nave. The dry porch or the boat in the reeds gives the party an hour before it enters the marsh. If everyone falls, resolve death saves. At low water Ilse takes a boat to the west landing. A survivor can give her the inscription and decide whether to enter the marsh or go home with the warning. If nobody lives, she ties the empty boat across the causeway and closes the crossing.',
+      'Надпись на паперти указывает путь вниз. Если герои отступят с ранеными к лодке, надпись можно срисовать с мостков и получить веху часовни. Мертвецы останутся в нефе. На сухой паперти или в лодке за камышом есть час до выхода в топь. Если упали все, разыграйте спасброски от смерти. В малую воду Ильзе приходит на лодке к западным мосткам. Очнувшийся может передать ей надпись и решить, входить ли в топь или вернуться с предупреждением. Если погибли все, Ильзе перегораживает гать пустой лодкой и закрывает переправу.',
+    ),
+    subjects: ['drowned-chapel'],
+    knownSince: null,
+  },
+  {
+    id: 'dm-route-marsh-lights',
+    scope: { kind: 'DM' },
+    type: 'SECRET',
+    statement: t(
+      'The frogs stay in the reeds. The party can retreat along its pole marks as soon as it has enough hands to pull the wounded aboard. It loses daylight and returns by the long channel. If all fall in the reeds, resolve death saves. At dawn Ilse follows the pole marks. She brings back survivors by the long channel; let them choose a later approach or close the crossing. If nobody lives, she marks the last pole with a black strip. That night the village still hears the bell.',
+      'Лягушки держатся камыша. Герои могут погрузить раненых в лодку и отступить по зарубкам от шеста. Длинный обратный проток стоит им остатка светлого дня. Если упали все, разыграйте спасброски от смерти. На рассвете Ильзе идёт по зарубкам. Живых она увозит длинным протоком. Они могут вернуться к мельнице позже или закрыть переправу. Если погибли все, Ильзе повязывает на последний шест чёрную ленту. Ночью в деревне снова слышат звон.',
+    ),
+    subjects: ['fogmarsh'],
+    knownSince: null,
+  },
+  {
+    id: 'dm-route-sunken-mill',
+    scope: { kind: 'DM' },
+    type: 'SECRET',
+    statement: t(
+      'Below half her hit points Kerra offers the way down and one of her two healing potions for safe passage for her crew. If the party withdraws first, the ledger can still be read from the loading hatch when the boats leave. Following this route earns the mill milestone. The loading hatch opens to the west quay. If everyone falls, resolve death saves. Kerra leaves the living tied at the hatch and takes her boats away. A survivor can rub a binding on an iron hinge, read the ledger and choose the stair or take the names to Ilse. If nobody survives, the boats take the cargo and the village gets no ledger.',
+      'Когда у Керры остаётся меньше половины хитов, она предлагает путь вниз и одно из двух своих зелий лечения за свободный выход для команды. При более раннем отходе книгу можно прочесть через погрузочный люк, когда лодки уйдут. Разведанный спуск даёт веху мельницы. Погрузочный люк выходит на западную пристань. Если упали все, разыграйте спасброски от смерти. Керра оставляет живых связанными у люка и уводит лодки. Очнувшийся может перетереть путы о петлю, прочесть книгу и выбрать лестницу или отнести имена Ильзе. Если погибли все, лодки увозят груз, а в деревне так и не узнают имён из книги.',
+    ),
+    subjects: ['sunken-mill'],
+    knownSince: null,
+  },
+  {
+    id: 'dm-route-flooded-stair',
+    scope: { kind: 'DM' },
+    type: 'SECRET',
+    statement: t(
+      'Two adjacent actions at the E5 sluice release the old grate between the party and the ghouls. The party can also withdraw through the side sacristy. Its bar holds for an hour; staying costs the last smuggling boat, which the lantern-bearer cuts loose. Afterward a service door opens into the bell chamber. The sacristy is on the west side. If everyone falls before the grate drops, resolve death saves. The ghouls slip under the water at dawn. Anyone who wakes can leave through the sacristy or take the service door without the boat. If nobody comes back, Ilse locks the chapel after the next midnight bell.',
+      'Два действия рядом с затвором в E5 опускают старую решётку между героями и упырями. Отступить можно через боковую ризницу. Её засов держит час. За это время Фонарщик отвязывает последнюю лодку контрабандистов. Служебная дверь из ризницы ведёт в зал колокола. Ризница с западной стороны. Если все упали до того, как опустилась решётка, разыграйте спасброски от смерти. На рассвете упыри уходят под воду. Очнувшиеся могут выйти через ризницу или пройти служебной дверью без лодки. Если никто не вернулся, после следующего полуночного звона Ильзе запирает часовню.',
+    ),
+    subjects: [CRYPT],
+    knownSince: null,
+  },
+  {
+    id: 'dm-route-sunken-bell',
+    scope: { kind: 'DM' },
+    type: 'SECRET',
+    statement: t(
+      'To silence the bell under guard, spend one adjacent action at the rope cleat G5 and another at the clapper I6. A lone survivor can do both. With the rope slack and the clapper bound, the knight sinks and the jailers run. The party can instead take the prisoners out or fight the guard. Record separately who escaped and whether the bell still rings. An action beside D3 opens the prisoners’ bolt from this side of the crypt. Escort them to A3 and out through the sacristy. Include Matthis only if he is still held. If the last hero falls, resolve death saves. The jailers keep the living. At midnight Ilse hears the bell and marks the missing names on the chapel door. End there, or let any captives offer the jailers a bargain next session.',
+      'Чтобы заглушить колокол под охраной, потратьте действие у крепления каната G5 и ещё одно у языка I6. Оба может выполнить один выживший. Когда канат ослаблен, а язык связан, рыцарь погружается в воду и тюремщики бегут. Можно вывести пленников или принять бой со стражей. Запишите отдельно, кто вышел и звонит ли колокол. Действие рядом с D3 открывает засов двери пленников со стороны склепа. Доведите их до A3 и через ризницу наружу. Маттис среди них, только если он всё ещё в плену. Если упал последний герой, разыграйте спасброски от смерти. Тюремщики оставляют живых у себя. В полночь Ильзе слышит звон и мелом пишет на двери часовни имена пропавших. Здесь можно закончить или в следующую встречу дать пленным предложить тюремщикам сделку.',
+    ),
+    subjects: [BELL_CHAMBER],
     knownSince: null,
   },
   {

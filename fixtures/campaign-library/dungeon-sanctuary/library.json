@@ -1,0 +1,2041 @@
+{
+ "id": "dungeon-sanctuary",
+ "title": "Подземелье для тех, кто устал быть чудовищем",
+ "genre": "Созидательное фэнтези о совместной жизни и праве на собственный порог",
+ "audience": "12+",
+ "pitch": "Тролль, гарпия, горгулья и другие разумные обитатели подземелий хотят жить без обязательной роли противника. Они пригласили вас устроить вместе с ними Широкий Порог: дом с влажными комнатами, солнечными террасами, местом для громких песен и правом закрыть дверь. Скоро в удачный дом попросятся новые соседи, а гильдия искателей приключений захочет проверить, умеют ли жители безопасно встречать гостей.",
+ "tone": "Тактильное чудо, бытовая изобретательность, добродушный юмор без насмешки над телом; реальные неудобства и переговоры без скрытого злодея.",
+ "duration": "8 сессий; 150 минут: 10 минут начала и повтора, сцены 35 + 40 + 40 минут, перерыв 10 минут, завершение 15 минут.",
+ "cover": "campaigns/fantasy-2026/dungeon-sanctuary/illustrations/opening.webp",
+ "defaultVariant": "4-players",
+ "variants": [
+  {
+   "id": "3-players",
+   "players": 3,
+   "label": "3 игрока",
+   "file": "packages/3-players.json",
+   "digest": "481aad446c74008b83c56f30531ae98c8dbc1c5f619080569bb76d562500225c"
+  },
+  {
+   "id": "4-players",
+   "players": 4,
+   "label": "4 игрока",
+   "file": "packages/4-players.json",
+   "digest": "6e111b074cbb680acd10d0adc8f4ad4f0037ae8685793cbd0f8002dfd1074908"
+  },
+  {
+   "id": "5-players",
+   "players": 5,
+   "label": "5 игроков",
+   "file": "packages/5-players.json",
+   "digest": "161eb6230d31a145edabc5741ac9d9aacc5c1f2e63ebe86379e735cee02b7829"
+  },
+  {
+   "id": "6-players",
+   "players": 6,
+   "label": "6 игроков",
+   "file": "packages/6-players.json",
+   "digest": "c2aea1249baca84bb6ad8a932876b65b7ec6c68b999218261e6f940d428b45ad"
+  },
+  {
+   "id": "7-players",
+   "players": 7,
+   "label": "7 игроков",
+   "file": "packages/7-players.json",
+   "digest": "37baab85c75b748a4d877439087cb5d6c275e63da6e14027e63fa16b2816268c"
+  },
+  {
+   "id": "8-players",
+   "players": 8,
+   "label": "8 игроков",
+   "file": "packages/8-players.json",
+   "digest": "a510c62fa9e25cae62cebeb2c230409f33eef054b80c2e81a32ecdfd7e15327b"
+  }
+ ],
+ "generator": "codex-cli imagegen",
+ "pictures": [
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/illustrations/cards/hero-dara.webp",
+   "sha256": "f7e3f039306ff003f3869f9161b6b6748da00137cee2dd2de06e7fec40601116",
+   "originalSha256": "e13124f88e33ea37d40b696efac3868f89e4520233aa7d5fe21b78f04bd8fd1e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дара Каменная Лента",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "hero-dara"
+    ],
+    "4-players": [
+     "hero-dara"
+    ],
+    "5-players": [
+     "hero-dara"
+    ],
+    "6-players": [
+     "hero-dara"
+    ],
+    "7-players": [
+     "hero-dara"
+    ],
+    "8-players": [
+     "hero-dara"
+    ]
+   },
+   "file": "hero-dara.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/illustrations/cards/hero-ilmar.webp",
+   "sha256": "91c54af66e39f1b04fbf26388f0f326026f23e5e92ee18346c85c3cd2beac970",
+   "originalSha256": "e13124f88e33ea37d40b696efac3868f89e4520233aa7d5fe21b78f04bd8fd1e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ильмар Тихий Шаг",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "hero-ilmar"
+    ],
+    "4-players": [
+     "hero-ilmar"
+    ],
+    "5-players": [
+     "hero-ilmar"
+    ],
+    "6-players": [
+     "hero-ilmar"
+    ],
+    "7-players": [
+     "hero-ilmar"
+    ],
+    "8-players": [
+     "hero-ilmar"
+    ]
+   },
+   "file": "hero-ilmar.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/illustrations/cards/hero-sana.webp",
+   "sha256": "a8e93e35766f3995b7c31d75eb3a4c823f74276c908c35d7730ca8915023cae5",
+   "originalSha256": "e13124f88e33ea37d40b696efac3868f89e4520233aa7d5fe21b78f04bd8fd1e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сана Медная Кружка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "hero-sana"
+    ],
+    "4-players": [
+     "hero-sana"
+    ],
+    "5-players": [
+     "hero-sana"
+    ],
+    "6-players": [
+     "hero-sana"
+    ],
+    "7-players": [
+     "hero-sana"
+    ],
+    "8-players": [
+     "hero-sana"
+    ]
+   },
+   "file": "hero-sana.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/illustrations/cards/hero-esta.webp",
+   "sha256": "ea10c27e07a622f4ccdd24ae94823a6eba45d020e2679ed9b71009c74cf50325",
+   "originalSha256": "e13124f88e33ea37d40b696efac3868f89e4520233aa7d5fe21b78f04bd8fd1e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эста Листок",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "hero-esta"
+    ],
+    "5-players": [
+     "hero-esta"
+    ],
+    "6-players": [
+     "hero-esta"
+    ],
+    "7-players": [
+     "hero-esta"
+    ],
+    "8-players": [
+     "hero-esta"
+    ]
+   },
+   "file": "hero-esta.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/illustrations/cards/hero-orren.webp",
+   "sha256": "e8de8fbde292579f77c22c742912ffd55266bc8c0c3d794efe7e31a663679c82",
+   "originalSha256": "e13124f88e33ea37d40b696efac3868f89e4520233aa7d5fe21b78f04bd8fd1e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Оррен Пятнистый Фартук",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "hero-orren"
+    ],
+    "6-players": [
+     "hero-orren"
+    ],
+    "7-players": [
+     "hero-orren"
+    ],
+    "8-players": [
+     "hero-orren"
+    ]
+   },
+   "file": "hero-orren.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/illustrations/cards/hero-tiva.webp",
+   "sha256": "35f5ba8899eb064f87584034c4b7e35666203eb64b5c1046ba1ee63bc38697ce",
+   "originalSha256": "e13124f88e33ea37d40b696efac3868f89e4520233aa7d5fe21b78f04bd8fd1e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тива Неровный Такт",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "hero-tiva"
+    ],
+    "7-players": [
+     "hero-tiva"
+    ],
+    "8-players": [
+     "hero-tiva"
+    ]
+   },
+   "file": "hero-tiva.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/illustrations/cards/hero-ren.webp",
+   "sha256": "929e79710598fe1e7e1c157d3c9cc36890882ca7df36bb67d780014c7c4144ec",
+   "originalSha256": "e13124f88e33ea37d40b696efac3868f89e4520233aa7d5fe21b78f04bd8fd1e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рен Четыре Кармана",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "hero-ren"
+    ],
+    "8-players": [
+     "hero-ren"
+    ]
+   },
+   "file": "hero-ren.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/illustrations/cards/hero-fenna.webp",
+   "sha256": "be23e929ae9f3cf92b0bfb90a9fe66a9093bad8526b4215817f98d4d4d23a57f",
+   "originalSha256": "e13124f88e33ea37d40b696efac3868f89e4520233aa7d5fe21b78f04bd8fd1e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Фенна Дальний Стул",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [],
+    "8-players": [
+     "hero-fenna"
+    ]
+   },
+   "file": "hero-fenna.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/illustrations/cards/travel-kit.webp",
+   "sha256": "14fc4fbc121816f076bec9109fd304c4c6ad154924f30d13ccdc279cf0c39ad9",
+   "originalSha256": "e13124f88e33ea37d40b696efac3868f89e4520233aa7d5fe21b78f04bd8fd1e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дорожный набор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "hero-dara-travel-kit",
+     "hero-ilmar-travel-kit",
+     "hero-sana-travel-kit"
+    ],
+    "4-players": [
+     "hero-dara-travel-kit",
+     "hero-esta-travel-kit",
+     "hero-ilmar-travel-kit",
+     "hero-sana-travel-kit"
+    ],
+    "5-players": [
+     "hero-dara-travel-kit",
+     "hero-esta-travel-kit",
+     "hero-ilmar-travel-kit",
+     "hero-orren-travel-kit",
+     "hero-sana-travel-kit"
+    ],
+    "6-players": [
+     "hero-dara-travel-kit",
+     "hero-esta-travel-kit",
+     "hero-ilmar-travel-kit",
+     "hero-orren-travel-kit",
+     "hero-sana-travel-kit",
+     "hero-tiva-travel-kit"
+    ],
+    "7-players": [
+     "hero-dara-travel-kit",
+     "hero-esta-travel-kit",
+     "hero-ilmar-travel-kit",
+     "hero-orren-travel-kit",
+     "hero-ren-travel-kit",
+     "hero-sana-travel-kit",
+     "hero-tiva-travel-kit"
+    ],
+    "8-players": [
+     "hero-dara-travel-kit",
+     "hero-esta-travel-kit",
+     "hero-fenna-travel-kit",
+     "hero-ilmar-travel-kit",
+     "hero-orren-travel-kit",
+     "hero-ren-travel-kit",
+     "hero-sana-travel-kit",
+     "hero-tiva-travel-kit"
+    ]
+   },
+   "file": "travel-kit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/illustrations/cards/ruta-troll.webp",
+   "sha256": "0733e754836816bf8e937052a6791e46e8b665578d8a2c3afeb9cf59468268d1",
+   "originalSha256": "961652f677530b8e7c87157b8b9b2fd3ab3ab5249a4a50490d3c1b02880b1574",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рута Папоротник",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ruta-troll"
+    ],
+    "4-players": [
+     "ruta-troll"
+    ],
+    "5-players": [
+     "ruta-troll"
+    ],
+    "6-players": [
+     "ruta-troll"
+    ],
+    "7-players": [
+     "ruta-troll"
+    ],
+    "8-players": [
+     "ruta-troll"
+    ]
+   },
+   "file": "ruta-troll.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/illustrations/cards/vek-minotaur.webp",
+   "sha256": "672c3092a24b7e93862cd72a891e417fd6318ea0cc74d5a2979c4373c3f0ae70",
+   "originalSha256": "961652f677530b8e7c87157b8b9b2fd3ab3ab5249a4a50490d3c1b02880b1574",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Век Прямая Черта",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "vek-minotaur"
+    ],
+    "4-players": [
+     "vek-minotaur"
+    ],
+    "5-players": [
+     "vek-minotaur"
+    ],
+    "6-players": [
+     "vek-minotaur"
+    ],
+    "7-players": [
+     "vek-minotaur"
+    ],
+    "8-players": [
+     "vek-minotaur"
+    ]
+   },
+   "file": "vek-minotaur.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/illustrations/cards/gleya-ooze.webp",
+   "sha256": "2208f99beac0fe2cdc02b9873c19bb8ea2ea4b78f27bb7359446d79b194dd529",
+   "originalSha256": "961652f677530b8e7c87157b8b9b2fd3ab3ab5249a4a50490d3c1b02880b1574",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Глея Прозрачная",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "gleya-ooze"
+    ],
+    "4-players": [
+     "gleya-ooze"
+    ],
+    "5-players": [
+     "gleya-ooze"
+    ],
+    "6-players": [
+     "gleya-ooze"
+    ],
+    "7-players": [
+     "gleya-ooze"
+    ],
+    "8-players": [
+     "gleya-ooze"
+    ]
+   },
+   "file": "gleya-ooze.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/illustrations/cards/liska-harpy.webp",
+   "sha256": "02f38c483b974c6d63364f075e62fcd11ceb5af75329b7c42022987c3191915c",
+   "originalSha256": "961652f677530b8e7c87157b8b9b2fd3ab3ab5249a4a50490d3c1b02880b1574",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лиска Первая Нота",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "liska-harpy"
+    ],
+    "4-players": [
+     "liska-harpy"
+    ],
+    "5-players": [
+     "liska-harpy"
+    ],
+    "6-players": [
+     "liska-harpy"
+    ],
+    "7-players": [
+     "liska-harpy"
+    ],
+    "8-players": [
+     "liska-harpy"
+    ]
+   },
+   "file": "liska-harpy.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/illustrations/cards/tal-spider.webp",
+   "sha256": "62b85f1fb55d16b4b7df45c8f67d5bb826d46aebd9b6e98e4eacac65a7bea40a",
+   "originalSha256": "961652f677530b8e7c87157b8b9b2fd3ab3ab5249a4a50490d3c1b02880b1574",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Таль Восьмая Петля",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tal-spider"
+    ],
+    "4-players": [
+     "tal-spider"
+    ],
+    "5-players": [
+     "tal-spider"
+    ],
+    "6-players": [
+     "tal-spider"
+    ],
+    "7-players": [
+     "tal-spider"
+    ],
+    "8-players": [
+     "tal-spider"
+    ]
+   },
+   "file": "tal-spider.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/illustrations/cards/ark-gargoyle.webp",
+   "sha256": "423751e4441dd0ce69f802bae390c14e1f2d658266d0225776c2d496b436dabf",
+   "originalSha256": "961652f677530b8e7c87157b8b9b2fd3ab3ab5249a4a50490d3c1b02880b1574",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Арк Тёплый Камень",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ark-gargoyle"
+    ],
+    "4-players": [
+     "ark-gargoyle"
+    ],
+    "5-players": [
+     "ark-gargoyle"
+    ],
+    "6-players": [
+     "ark-gargoyle"
+    ],
+    "7-players": [
+     "ark-gargoyle"
+    ],
+    "8-players": [
+     "ark-gargoyle"
+    ]
+   },
+   "file": "ark-gargoyle.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/illustrations/cards/ked-mason.webp",
+   "sha256": "a4efb95b490ec33ada0e7475e283484415039fbc65622e2d69608425a91c5beb",
+   "originalSha256": "961652f677530b8e7c87157b8b9b2fd3ab3ab5249a4a50490d3c1b02880b1574",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Кед Короткая Смена",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ked-mason"
+    ],
+    "4-players": [
+     "ked-mason"
+    ],
+    "5-players": [
+     "ked-mason"
+    ],
+    "6-players": [
+     "ked-mason"
+    ],
+    "7-players": [
+     "ked-mason"
+    ],
+    "8-players": [
+     "ked-mason"
+    ]
+   },
+   "file": "ked-mason.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/illustrations/cards/vesta-inspector.webp",
+   "sha256": "c0fb8686c18a88e924d4a1000219e86ee03da2904cd73b61ed1a443e825ecdbb",
+   "originalSha256": "961652f677530b8e7c87157b8b9b2fd3ab3ab5249a4a50490d3c1b02880b1574",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Веста Медный Знак",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "vesta-inspector"
+    ],
+    "4-players": [
+     "vesta-inspector"
+    ],
+    "5-players": [
+     "vesta-inspector"
+    ],
+    "6-players": [
+     "vesta-inspector"
+    ],
+    "7-players": [
+     "vesta-inspector"
+    ],
+    "8-players": [
+     "vesta-inspector"
+    ]
+   },
+   "file": "vesta-inspector.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/illustrations/cards/langa-weaver.webp",
+   "sha256": "7cdf9f742ee6caae94590ad59d22f672e557f3e23d3ee4ff458d00c32bd3dbf7",
+   "originalSha256": "961652f677530b8e7c87157b8b9b2fd3ab3ab5249a4a50490d3c1b02880b1574",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ланга Длинная Нить",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "langa-weaver"
+    ],
+    "4-players": [
+     "langa-weaver"
+    ],
+    "5-players": [
+     "langa-weaver"
+    ],
+    "6-players": [
+     "langa-weaver"
+    ],
+    "7-players": [
+     "langa-weaver"
+    ],
+    "8-players": [
+     "langa-weaver"
+    ]
+   },
+   "file": "langa-weaver.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/illustrations/cards/minn-guide.webp",
+   "sha256": "5fadab9cd31d4f7aa889c2e90c713469efb5d1d5479e6e1f261ae7c57bd20ff8",
+   "originalSha256": "961652f677530b8e7c87157b8b9b2fd3ab3ab5249a4a50490d3c1b02880b1574",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Минн Две Стрелки",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "minn-guide"
+    ],
+    "4-players": [
+     "minn-guide"
+    ],
+    "5-players": [
+     "minn-guide"
+    ],
+    "6-players": [
+     "minn-guide"
+    ],
+    "7-players": [
+     "minn-guide"
+    ],
+    "8-players": [
+     "minn-guide"
+    ]
+   },
+   "file": "minn-guide.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/assets/table/heroes-hero-dara.webp",
+   "sha256": "a47cef1ee4bff3f79d9393c2fd976a34377fb0fa460be5c366913c1ed4654ca1",
+   "originalSha256": "e8a4bb8599e3fabf08d2461d4f60bc1517bbafa38914f0726514caa1cfa80022",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дара Каменная Лента",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "hero-dara"
+    ],
+    "4-players": [
+     "hero-dara"
+    ],
+    "5-players": [
+     "hero-dara"
+    ],
+    "6-players": [
+     "hero-dara"
+    ],
+    "7-players": [
+     "hero-dara"
+    ],
+    "8-players": [
+     "hero-dara"
+    ]
+   },
+   "file": "hero-dara--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "hero-dara.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/assets/table/heroes-hero-ilmar.webp",
+   "sha256": "88777d5e2e5db5f76816460e908a1b74a96d238a8f1fd57dd44a54a3193318f8",
+   "originalSha256": "e8a4bb8599e3fabf08d2461d4f60bc1517bbafa38914f0726514caa1cfa80022",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ильмар Тихий Шаг",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "hero-ilmar"
+    ],
+    "4-players": [
+     "hero-ilmar"
+    ],
+    "5-players": [
+     "hero-ilmar"
+    ],
+    "6-players": [
+     "hero-ilmar"
+    ],
+    "7-players": [
+     "hero-ilmar"
+    ],
+    "8-players": [
+     "hero-ilmar"
+    ]
+   },
+   "file": "hero-ilmar--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "hero-ilmar.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/assets/table/heroes-hero-sana.webp",
+   "sha256": "ac929fb0a9034555578f6c4fbc029cb979f7c9592211d04c0b168fac7ea2ee30",
+   "originalSha256": "e8a4bb8599e3fabf08d2461d4f60bc1517bbafa38914f0726514caa1cfa80022",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сана Медная Кружка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "hero-sana"
+    ],
+    "4-players": [
+     "hero-sana"
+    ],
+    "5-players": [
+     "hero-sana"
+    ],
+    "6-players": [
+     "hero-sana"
+    ],
+    "7-players": [
+     "hero-sana"
+    ],
+    "8-players": [
+     "hero-sana"
+    ]
+   },
+   "file": "hero-sana--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "hero-sana.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/assets/table/heroes-hero-esta.webp",
+   "sha256": "d94413ee679d384df26d14e295ab51f6ae6792b24dd7052335d772e3b0d61f9f",
+   "originalSha256": "e8a4bb8599e3fabf08d2461d4f60bc1517bbafa38914f0726514caa1cfa80022",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эста Листок",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "hero-esta"
+    ],
+    "5-players": [
+     "hero-esta"
+    ],
+    "6-players": [
+     "hero-esta"
+    ],
+    "7-players": [
+     "hero-esta"
+    ],
+    "8-players": [
+     "hero-esta"
+    ]
+   },
+   "file": "hero-esta--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "hero-esta.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/assets/table/heroes-hero-orren.webp",
+   "sha256": "62e6fe019fb531edf1ffabc7f30e5c62e221ec5dfda30bc8c4cc683543516a87",
+   "originalSha256": "e8a4bb8599e3fabf08d2461d4f60bc1517bbafa38914f0726514caa1cfa80022",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Оррен Пятнистый Фартук",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "hero-orren"
+    ],
+    "6-players": [
+     "hero-orren"
+    ],
+    "7-players": [
+     "hero-orren"
+    ],
+    "8-players": [
+     "hero-orren"
+    ]
+   },
+   "file": "hero-orren--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "hero-orren.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/assets/table/heroes-hero-tiva.webp",
+   "sha256": "ac8761ce47dd109185decebcec755da2f26dc126f88eb654199d2948847a5159",
+   "originalSha256": "e8a4bb8599e3fabf08d2461d4f60bc1517bbafa38914f0726514caa1cfa80022",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тива Неровный Такт",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "hero-tiva"
+    ],
+    "7-players": [
+     "hero-tiva"
+    ],
+    "8-players": [
+     "hero-tiva"
+    ]
+   },
+   "file": "hero-tiva--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "hero-tiva.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/assets/table/heroes-hero-ren.webp",
+   "sha256": "6bd3c26a394428a101f48238a94c581fb0e23f3cd5b809ef20a1c327b56f498b",
+   "originalSha256": "e8a4bb8599e3fabf08d2461d4f60bc1517bbafa38914f0726514caa1cfa80022",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рен Четыре Кармана",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "hero-ren"
+    ],
+    "8-players": [
+     "hero-ren"
+    ]
+   },
+   "file": "hero-ren--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "hero-ren.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/assets/table/heroes-hero-fenna.webp",
+   "sha256": "27df0ab14a9d3620014ef415434dddde0c9903db968101f02eacff1b3bef7f42",
+   "originalSha256": "e8a4bb8599e3fabf08d2461d4f60bc1517bbafa38914f0726514caa1cfa80022",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Фенна Дальний Стул",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [],
+    "8-players": [
+     "hero-fenna"
+    ]
+   },
+   "file": "hero-fenna--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "hero-fenna.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/assets/table/places-broad-threshold.webp",
+   "sha256": "4ec17363218ed7e65ba066aad1ae2ac84b0f374c2464d6ff0286cf0b73f55ad0",
+   "originalSha256": "90fa2a8c46a1df0ea41918e15f3f02640c55124bb0f6d2960f696707305b6925",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Широкий Порог",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "broad-threshold"
+    ],
+    "4-players": [
+     "broad-threshold"
+    ],
+    "5-players": [
+     "broad-threshold"
+    ],
+    "6-players": [
+     "broad-threshold"
+    ],
+    "7-players": [
+     "broad-threshold"
+    ],
+    "8-players": [
+     "broad-threshold"
+    ]
+   },
+   "file": "broad-threshold.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/assets/table/places-dry-gallery.webp",
+   "sha256": "20b0a9d5af06ac9c9a0eea450f6d9a4de05e3201e3f7c37021eaf621afdc8810",
+   "originalSha256": "90fa2a8c46a1df0ea41918e15f3f02640c55124bb0f6d2960f696707305b6925",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тихая галерея",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "dry-gallery"
+    ],
+    "4-players": [
+     "dry-gallery"
+    ],
+    "5-players": [
+     "dry-gallery"
+    ],
+    "6-players": [
+     "dry-gallery"
+    ],
+    "7-players": [
+     "dry-gallery"
+    ],
+    "8-players": [
+     "dry-gallery"
+    ]
+   },
+   "file": "dry-gallery.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/assets/table/places-wet-gallery.webp",
+   "sha256": "b8849e9ff3453153c9d4fabc4e69b4881febbd811f077f8b218fb668987226c1",
+   "originalSha256": "90fa2a8c46a1df0ea41918e15f3f02640c55124bb0f6d2960f696707305b6925",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Папоротниковая комната",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "wet-gallery"
+    ],
+    "4-players": [
+     "wet-gallery"
+    ],
+    "5-players": [
+     "wet-gallery"
+    ],
+    "6-players": [
+     "wet-gallery"
+    ],
+    "7-players": [
+     "wet-gallery"
+    ],
+    "8-players": [
+     "wet-gallery"
+    ]
+   },
+   "file": "wet-gallery.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/assets/table/places-sun-shelf.webp",
+   "sha256": "e497df35cb8e0b782caf731950573a463a985883bac7e901b71738b59ea7c26e",
+   "originalSha256": "90fa2a8c46a1df0ea41918e15f3f02640c55124bb0f6d2960f696707305b6925",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Солнечная полка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "sun-shelf"
+    ],
+    "4-players": [
+     "sun-shelf"
+    ],
+    "5-players": [
+     "sun-shelf"
+    ],
+    "6-players": [
+     "sun-shelf"
+    ],
+    "7-players": [
+     "sun-shelf"
+    ],
+    "8-players": [
+     "sun-shelf"
+    ]
+   },
+   "file": "sun-shelf.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/assets/table/places-hanging-walk.webp",
+   "sha256": "35545e67805d7ffc269615a342ec117aace8278f6b67fc9b1a52c4c973992c52",
+   "originalSha256": "90fa2a8c46a1df0ea41918e15f3f02640c55124bb0f6d2960f696707305b6925",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Верхний ход",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "hanging-walk"
+    ],
+    "4-players": [
+     "hanging-walk"
+    ],
+    "5-players": [
+     "hanging-walk"
+    ],
+    "6-players": [
+     "hanging-walk"
+    ],
+    "7-players": [
+     "hanging-walk"
+    ],
+    "8-players": [
+     "hanging-walk"
+    ]
+   },
+   "file": "hanging-walk.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/assets/table/places-tool-room.webp",
+   "sha256": "4dfa361fe9007d04e2b908ec965caac42b5448c3ca7e50af66a2a723e4326f27",
+   "originalSha256": "90fa2a8c46a1df0ea41918e15f3f02640c55124bb0f6d2960f696707305b6925",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мастерская короткой смены",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tool-room"
+    ],
+    "4-players": [
+     "tool-room"
+    ],
+    "5-players": [
+     "tool-room"
+    ],
+    "6-players": [
+     "tool-room"
+    ],
+    "7-players": [
+     "tool-room"
+    ],
+    "8-players": [
+     "tool-room"
+    ]
+   },
+   "file": "tool-room.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/assets/table/places-guest-porch.webp",
+   "sha256": "32adc5a37d3f426b65151c91c40be71fcf774a8af46e72b7fc12a81ee1f13449",
+   "originalSha256": "90fa2a8c46a1df0ea41918e15f3f02640c55124bb0f6d2960f696707305b6925",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Гостевое крыльцо",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "guest-porch"
+    ],
+    "4-players": [
+     "guest-porch"
+    ],
+    "5-players": [
+     "guest-porch"
+    ],
+    "6-players": [
+     "guest-porch"
+    ],
+    "7-players": [
+     "guest-porch"
+    ],
+    "8-players": [
+     "guest-porch"
+    ]
+   },
+   "file": "guest-porch.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/assets/table/places-ramp-yard.webp",
+   "sha256": "70bca51f1bb39b405d70fe490c577576dcf2d08d5e10183f83b2d67725874c86",
+   "originalSha256": "90fa2a8c46a1df0ea41918e15f3f02640c55124bb0f6d2960f696707305b6925",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Двор пологого склона",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ramp-yard"
+    ],
+    "4-players": [
+     "ramp-yard"
+    ],
+    "5-players": [
+     "ramp-yard"
+    ],
+    "6-players": [
+     "ramp-yard"
+    ],
+    "7-players": [
+     "ramp-yard"
+    ],
+    "8-players": [
+     "ramp-yard"
+    ]
+   },
+   "file": "ramp-yard.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/assets/table/places-common-basin.webp",
+   "sha256": "c980ef7226138fba3607e3772dad349e11889710cf45de86d20064919af09674",
+   "originalSha256": "90fa2a8c46a1df0ea41918e15f3f02640c55124bb0f6d2960f696707305b6925",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Двор чаш",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "common-basin"
+    ],
+    "4-players": [
+     "common-basin"
+    ],
+    "5-players": [
+     "common-basin"
+    ],
+    "6-players": [
+     "common-basin"
+    ],
+    "7-players": [
+     "common-basin"
+    ],
+    "8-players": [
+     "common-basin"
+    ]
+   },
+   "file": "common-basin.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/assets/table/places-side-terrace.webp",
+   "sha256": "d468b871ffea463c30ff8c66f2b7fe4669965d8f477ef1251ee8597029f97160",
+   "originalSha256": "90fa2a8c46a1df0ea41918e15f3f02640c55124bb0f6d2960f696707305b6925",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Боковая площадка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "side-terrace"
+    ],
+    "4-players": [
+     "side-terrace"
+    ],
+    "5-players": [
+     "side-terrace"
+    ],
+    "6-players": [
+     "side-terrace"
+    ],
+    "7-players": [
+     "side-terrace"
+    ],
+    "8-players": [
+     "side-terrace"
+    ]
+   },
+   "file": "side-terrace.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/assets/table/foes-foe-7171879953.webp",
+   "sha256": "d4983b6b600d7e65da862c91cda64fd0eec8d0b18458194b6557c1e9a687207f",
+   "originalSha256": "2ff2a376b831cdbfbbcaeb6257bd775a4eb28a79a8d7236178be131a74bc7ea8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Меловая коза",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "chalk-goats-foe-1",
+     "chalk-goats-foe-2"
+    ],
+    "4-players": [
+     "chalk-goats-foe-1",
+     "chalk-goats-foe-2",
+     "chalk-goats-foe-3"
+    ],
+    "5-players": [
+     "chalk-goats-foe-1",
+     "chalk-goats-foe-2",
+     "chalk-goats-foe-3"
+    ],
+    "6-players": [
+     "chalk-goats-foe-1",
+     "chalk-goats-foe-2",
+     "chalk-goats-foe-3",
+     "chalk-goats-foe-4"
+    ],
+    "7-players": [
+     "chalk-goats-foe-1",
+     "chalk-goats-foe-2",
+     "chalk-goats-foe-3",
+     "chalk-goats-foe-4",
+     "chalk-goats-foe-5"
+    ],
+    "8-players": [
+     "chalk-goats-foe-1",
+     "chalk-goats-foe-2",
+     "chalk-goats-foe-3",
+     "chalk-goats-foe-4",
+     "chalk-goats-foe-5",
+     "chalk-goats-foe-6"
+    ]
+   },
+   "file": "foe-7171879953.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/assets/table/foes-foe-7171879953.webp",
+   "sha256": "d4983b6b600d7e65da862c91cda64fd0eec8d0b18458194b6557c1e9a687207f",
+   "originalSha256": "2ff2a376b831cdbfbbcaeb6257bd775a4eb28a79a8d7236178be131a74bc7ea8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Меловая коза",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "chalk-goats-foe-1",
+     "chalk-goats-foe-2"
+    ],
+    "4-players": [
+     "chalk-goats-foe-1",
+     "chalk-goats-foe-2",
+     "chalk-goats-foe-3"
+    ],
+    "5-players": [
+     "chalk-goats-foe-1",
+     "chalk-goats-foe-2",
+     "chalk-goats-foe-3"
+    ],
+    "6-players": [
+     "chalk-goats-foe-1",
+     "chalk-goats-foe-2",
+     "chalk-goats-foe-3",
+     "chalk-goats-foe-4"
+    ],
+    "7-players": [
+     "chalk-goats-foe-1",
+     "chalk-goats-foe-2",
+     "chalk-goats-foe-3",
+     "chalk-goats-foe-4",
+     "chalk-goats-foe-5"
+    ],
+    "8-players": [
+     "chalk-goats-foe-1",
+     "chalk-goats-foe-2",
+     "chalk-goats-foe-3",
+     "chalk-goats-foe-4",
+     "chalk-goats-foe-5",
+     "chalk-goats-foe-6"
+    ]
+   },
+   "file": "foe-7171879953--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-7171879953.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/assets/table/foes-foe-1d827f2298.webp",
+   "sha256": "f7a768e37435d52441910b2c9f494dde0db81e04e6feee3d6835c0b630a07767",
+   "originalSha256": "2ff2a376b831cdbfbbcaeb6257bd775a4eb28a79a8d7236178be131a74bc7ea8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Камышовый гусь",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "reed-geese-foe-1",
+     "reed-geese-foe-2"
+    ],
+    "4-players": [
+     "reed-geese-foe-1",
+     "reed-geese-foe-2",
+     "reed-geese-foe-3"
+    ],
+    "5-players": [
+     "reed-geese-foe-1",
+     "reed-geese-foe-2",
+     "reed-geese-foe-3"
+    ],
+    "6-players": [
+     "reed-geese-foe-1",
+     "reed-geese-foe-2",
+     "reed-geese-foe-3",
+     "reed-geese-foe-4"
+    ],
+    "7-players": [
+     "reed-geese-foe-1",
+     "reed-geese-foe-2",
+     "reed-geese-foe-3",
+     "reed-geese-foe-4",
+     "reed-geese-foe-5"
+    ],
+    "8-players": [
+     "reed-geese-foe-1",
+     "reed-geese-foe-2",
+     "reed-geese-foe-3",
+     "reed-geese-foe-4",
+     "reed-geese-foe-5",
+     "reed-geese-foe-6"
+    ]
+   },
+   "file": "foe-1d827f2298.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/assets/table/foes-foe-1d827f2298.webp",
+   "sha256": "f7a768e37435d52441910b2c9f494dde0db81e04e6feee3d6835c0b630a07767",
+   "originalSha256": "2ff2a376b831cdbfbbcaeb6257bd775a4eb28a79a8d7236178be131a74bc7ea8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Камышовый гусь",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "reed-geese-foe-1",
+     "reed-geese-foe-2"
+    ],
+    "4-players": [
+     "reed-geese-foe-1",
+     "reed-geese-foe-2",
+     "reed-geese-foe-3"
+    ],
+    "5-players": [
+     "reed-geese-foe-1",
+     "reed-geese-foe-2",
+     "reed-geese-foe-3"
+    ],
+    "6-players": [
+     "reed-geese-foe-1",
+     "reed-geese-foe-2",
+     "reed-geese-foe-3",
+     "reed-geese-foe-4"
+    ],
+    "7-players": [
+     "reed-geese-foe-1",
+     "reed-geese-foe-2",
+     "reed-geese-foe-3",
+     "reed-geese-foe-4",
+     "reed-geese-foe-5"
+    ],
+    "8-players": [
+     "reed-geese-foe-1",
+     "reed-geese-foe-2",
+     "reed-geese-foe-3",
+     "reed-geese-foe-4",
+     "reed-geese-foe-5",
+     "reed-geese-foe-6"
+    ]
+   },
+   "file": "foe-1d827f2298--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-1d827f2298.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/assets/table/foes-foe-27d205550b.webp",
+   "sha256": "63ab7b708ce5b7e2180623716420abf4cc2a6584458dff88431a69d115d0e982",
+   "originalSha256": "2ff2a376b831cdbfbbcaeb6257bd775a4eb28a79a8d7236178be131a74bc7ea8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Доброволец с мягким щитом",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "courtesy-drill-foe-1",
+     "courtesy-drill-foe-2"
+    ],
+    "4-players": [
+     "courtesy-drill-foe-1",
+     "courtesy-drill-foe-2",
+     "courtesy-drill-foe-3"
+    ],
+    "5-players": [
+     "courtesy-drill-foe-1",
+     "courtesy-drill-foe-2",
+     "courtesy-drill-foe-3"
+    ],
+    "6-players": [
+     "courtesy-drill-foe-1",
+     "courtesy-drill-foe-2",
+     "courtesy-drill-foe-3",
+     "courtesy-drill-foe-4"
+    ],
+    "7-players": [
+     "courtesy-drill-foe-1",
+     "courtesy-drill-foe-2",
+     "courtesy-drill-foe-3",
+     "courtesy-drill-foe-4",
+     "courtesy-drill-foe-5"
+    ],
+    "8-players": [
+     "courtesy-drill-foe-1",
+     "courtesy-drill-foe-2",
+     "courtesy-drill-foe-3",
+     "courtesy-drill-foe-4",
+     "courtesy-drill-foe-5",
+     "courtesy-drill-foe-6"
+    ]
+   },
+   "file": "foe-27d205550b.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/assets/table/foes-foe-27d205550b.webp",
+   "sha256": "63ab7b708ce5b7e2180623716420abf4cc2a6584458dff88431a69d115d0e982",
+   "originalSha256": "2ff2a376b831cdbfbbcaeb6257bd775a4eb28a79a8d7236178be131a74bc7ea8",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Доброволец с мягким щитом",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "courtesy-drill-foe-1",
+     "courtesy-drill-foe-2"
+    ],
+    "4-players": [
+     "courtesy-drill-foe-1",
+     "courtesy-drill-foe-2",
+     "courtesy-drill-foe-3"
+    ],
+    "5-players": [
+     "courtesy-drill-foe-1",
+     "courtesy-drill-foe-2",
+     "courtesy-drill-foe-3"
+    ],
+    "6-players": [
+     "courtesy-drill-foe-1",
+     "courtesy-drill-foe-2",
+     "courtesy-drill-foe-3",
+     "courtesy-drill-foe-4"
+    ],
+    "7-players": [
+     "courtesy-drill-foe-1",
+     "courtesy-drill-foe-2",
+     "courtesy-drill-foe-3",
+     "courtesy-drill-foe-4",
+     "courtesy-drill-foe-5"
+    ],
+    "8-players": [
+     "courtesy-drill-foe-1",
+     "courtesy-drill-foe-2",
+     "courtesy-drill-foe-3",
+     "courtesy-drill-foe-4",
+     "courtesy-drill-foe-5",
+     "courtesy-drill-foe-6"
+    ]
+   },
+   "file": "foe-27d205550b--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-27d205550b.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/assets/table/npcs-ruta-troll.webp",
+   "sha256": "e91d4a067860b7a8e5aa606933944944934c681cc2893e76326812f14177bcf2",
+   "originalSha256": "4915f4c84ddb0ef98e04ffe0e63d79c6e06eaf3d5eed18832d7fdbc419b7d74e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рута Папоротник",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ruta-troll"
+    ],
+    "4-players": [
+     "ruta-troll"
+    ],
+    "5-players": [
+     "ruta-troll"
+    ],
+    "6-players": [
+     "ruta-troll"
+    ],
+    "7-players": [
+     "ruta-troll"
+    ],
+    "8-players": [
+     "ruta-troll"
+    ]
+   },
+   "file": "ruta-troll--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ruta-troll.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/assets/table/npcs-vek-minotaur.webp",
+   "sha256": "18779231c7da55f59004c02aa283f60281dfc1fd12d4fbe7b24212d7db39bb5e",
+   "originalSha256": "4915f4c84ddb0ef98e04ffe0e63d79c6e06eaf3d5eed18832d7fdbc419b7d74e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Век Прямая Черта",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "vek-minotaur"
+    ],
+    "4-players": [
+     "vek-minotaur"
+    ],
+    "5-players": [
+     "vek-minotaur"
+    ],
+    "6-players": [
+     "vek-minotaur"
+    ],
+    "7-players": [
+     "vek-minotaur"
+    ],
+    "8-players": [
+     "vek-minotaur"
+    ]
+   },
+   "file": "vek-minotaur--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "vek-minotaur.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/assets/table/npcs-gleya-ooze.webp",
+   "sha256": "fe990addf012650bbb789429ea3411399ec954ca2416c3ff533d1da5f04c2c57",
+   "originalSha256": "4915f4c84ddb0ef98e04ffe0e63d79c6e06eaf3d5eed18832d7fdbc419b7d74e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Глея Прозрачная",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "gleya-ooze"
+    ],
+    "4-players": [
+     "gleya-ooze"
+    ],
+    "5-players": [
+     "gleya-ooze"
+    ],
+    "6-players": [
+     "gleya-ooze"
+    ],
+    "7-players": [
+     "gleya-ooze"
+    ],
+    "8-players": [
+     "gleya-ooze"
+    ]
+   },
+   "file": "gleya-ooze--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "gleya-ooze.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/assets/table/npcs-liska-harpy.webp",
+   "sha256": "6524bddbf6cc99555ea3badb3224ce060dce7a6dc1ea82c9f33d96f61875ab15",
+   "originalSha256": "4915f4c84ddb0ef98e04ffe0e63d79c6e06eaf3d5eed18832d7fdbc419b7d74e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лиска Первая Нота",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "liska-harpy"
+    ],
+    "4-players": [
+     "liska-harpy"
+    ],
+    "5-players": [
+     "liska-harpy"
+    ],
+    "6-players": [
+     "liska-harpy"
+    ],
+    "7-players": [
+     "liska-harpy"
+    ],
+    "8-players": [
+     "liska-harpy"
+    ]
+   },
+   "file": "liska-harpy--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "liska-harpy.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/assets/table/npcs-tal-spider.webp",
+   "sha256": "124f9437de3d9938df622fc69561f83a31aca8ac0c0615b7dfc75837d87899df",
+   "originalSha256": "4915f4c84ddb0ef98e04ffe0e63d79c6e06eaf3d5eed18832d7fdbc419b7d74e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Таль Восьмая Петля",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tal-spider"
+    ],
+    "4-players": [
+     "tal-spider"
+    ],
+    "5-players": [
+     "tal-spider"
+    ],
+    "6-players": [
+     "tal-spider"
+    ],
+    "7-players": [
+     "tal-spider"
+    ],
+    "8-players": [
+     "tal-spider"
+    ]
+   },
+   "file": "tal-spider--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "tal-spider.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/assets/table/npcs-ark-gargoyle.webp",
+   "sha256": "c50df05088ea04c3b586f97adc6ee5efd1441f0f787ac03566f86fe4477e0bf2",
+   "originalSha256": "0ab15637bd9ede699be34321c790bef88f1eda2cf88ee8d3f08e444190c4165b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Арк Тёплый Камень",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ark-gargoyle"
+    ],
+    "4-players": [
+     "ark-gargoyle"
+    ],
+    "5-players": [
+     "ark-gargoyle"
+    ],
+    "6-players": [
+     "ark-gargoyle"
+    ],
+    "7-players": [
+     "ark-gargoyle"
+    ],
+    "8-players": [
+     "ark-gargoyle"
+    ]
+   },
+   "file": "ark-gargoyle--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ark-gargoyle.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/assets/table/npcs-ked-mason.webp",
+   "sha256": "31322c5d6379590ebcb983799f07ebb12deb6bbd350b8f25c7c3f46e06c02b16",
+   "originalSha256": "0ab15637bd9ede699be34321c790bef88f1eda2cf88ee8d3f08e444190c4165b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Кед Короткая Смена",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ked-mason"
+    ],
+    "4-players": [
+     "ked-mason"
+    ],
+    "5-players": [
+     "ked-mason"
+    ],
+    "6-players": [
+     "ked-mason"
+    ],
+    "7-players": [
+     "ked-mason"
+    ],
+    "8-players": [
+     "ked-mason"
+    ]
+   },
+   "file": "ked-mason--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ked-mason.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/assets/table/npcs-vesta-inspector.webp",
+   "sha256": "d164d44cf3a518aafa73831e1a0a240280ebb88cdbd58184acbc2760f3632ca8",
+   "originalSha256": "0ab15637bd9ede699be34321c790bef88f1eda2cf88ee8d3f08e444190c4165b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Веста Медный Знак",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "vesta-inspector"
+    ],
+    "4-players": [
+     "vesta-inspector"
+    ],
+    "5-players": [
+     "vesta-inspector"
+    ],
+    "6-players": [
+     "vesta-inspector"
+    ],
+    "7-players": [
+     "vesta-inspector"
+    ],
+    "8-players": [
+     "vesta-inspector"
+    ]
+   },
+   "file": "vesta-inspector--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "vesta-inspector.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/assets/table/npcs-langa-weaver.webp",
+   "sha256": "4e13e7648f29cd71946f4f85e593bcfc52591ad0bc239e5907e7dfe6ecff080f",
+   "originalSha256": "0ab15637bd9ede699be34321c790bef88f1eda2cf88ee8d3f08e444190c4165b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ланга Длинная Нить",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "langa-weaver"
+    ],
+    "4-players": [
+     "langa-weaver"
+    ],
+    "5-players": [
+     "langa-weaver"
+    ],
+    "6-players": [
+     "langa-weaver"
+    ],
+    "7-players": [
+     "langa-weaver"
+    ],
+    "8-players": [
+     "langa-weaver"
+    ]
+   },
+   "file": "langa-weaver--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "langa-weaver.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/assets/table/npcs-minn-guide.webp",
+   "sha256": "b0145ae5a6d63458ce2552a5d0cbd8c86aab07d2776e551f2af0b26227528d4e",
+   "originalSha256": "0ab15637bd9ede699be34321c790bef88f1eda2cf88ee8d3f08e444190c4165b",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Минн Две Стрелки",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "minn-guide"
+    ],
+    "4-players": [
+     "minn-guide"
+    ],
+    "5-players": [
+     "minn-guide"
+    ],
+    "6-players": [
+     "minn-guide"
+    ],
+    "7-players": [
+     "minn-guide"
+    ],
+    "8-players": [
+     "minn-guide"
+    ]
+   },
+   "file": "minn-guide--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "minn-guide.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/illustrations/opening.webp",
+   "sha256": "fc887fd6c8748be20dd8444430dd2372407a219098e0affb4e1fb3f1ee74c5d3",
+   "originalSha256": "e9781071fe65d0d0c40d1ccbf28f1376f2aa5af1a61a386510db4a550ce60b52",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Широкий Порог — Подземелье для тех, кто устал быть чудовищем",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "chalk-ridge"
+    ],
+    "4-players": [
+     "chalk-ridge"
+    ],
+    "5-players": [
+     "chalk-ridge"
+    ],
+    "6-players": [
+     "chalk-ridge"
+    ],
+    "7-players": [
+     "chalk-ridge"
+    ],
+    "8-players": [
+     "chalk-ridge"
+    ]
+   },
+   "file": "cover.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "file": "sun-shelf--map.webp",
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/assets/battle-maps/sun-shelf.webp",
+   "sha256": "8d297954da78ca1f861af3d6cb5b18be64da962a8a8017af83b47fe4a129b67d",
+   "originalSha256": "5b13baea64daa767fda117993b7e5edbdba937ecc2c9134a588e8290c918b724",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Солнечная полка. Visible scenery: Широкий уступ над входом. Полдня солнце лежит на плоских плитах; рядом можно поставить навес, не закрывая обзор долины.. World style: Меловая гряда · Ivory chalk archways and mismatched welcome-door shapes in soft teal jacquard. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "sun-shelf.webp",
+   "subjects": {
+    "3-players": [
+     "sun-shelf"
+    ],
+    "4-players": [
+     "sun-shelf"
+    ],
+    "5-players": [
+     "sun-shelf"
+    ],
+    "6-players": [
+     "sun-shelf"
+    ],
+    "7-players": [
+     "sun-shelf"
+    ],
+    "8-players": [
+     "sun-shelf"
+    ]
+   }
+  },
+  {
+   "file": "common-basin--map.webp",
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/assets/battle-maps/common-basin.webp",
+   "sha256": "583675bb8add11c655a2caac4e5648005c950ced6cf13174497d779734aedf11",
+   "originalSha256": "bb73d2bc0ff091555e8092cd17f9376fa70e691c8430f0124628ec41e85da794",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Двор чаш. Visible scenery: Открытый дворик с низким водосборником и переносными чашами. Вода поступает обычным самотёком из ключа; краны и пробки видны с дорожки.. World style: Меловая гряда · Ivory chalk archways and mismatched welcome-door shapes in soft teal jacquard. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "common-basin.webp",
+   "subjects": {
+    "3-players": [
+     "common-basin"
+    ],
+    "4-players": [
+     "common-basin"
+    ],
+    "5-players": [
+     "common-basin"
+    ],
+    "6-players": [
+     "common-basin"
+    ],
+    "7-players": [
+     "common-basin"
+    ],
+    "8-players": [
+     "common-basin"
+    ]
+   }
+  },
+  {
+   "file": "ramp-yard--map.webp",
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/assets/battle-maps/ramp-yard.webp",
+   "sha256": "904618dcbc752eba4afad69cb069da89b8e311a1181c840a93f85b88c9882e65",
+   "originalSha256": "1df413aba5bb629bf132cd5acae6e695a0c625a91ce166faf950ed6dc0570fbf",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Двор пологого склона. Visible scenery: Пологий путь от луга к входу. У стены сложены деревянные щиты; повозка и пешеход пока с трудом расходятся на одном повороте.. World style: Меловая гряда · Ivory chalk archways and mismatched welcome-door shapes in soft teal jacquard. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "ramp-yard.webp",
+   "subjects": {
+    "3-players": [
+     "ramp-yard"
+    ],
+    "4-players": [
+     "ramp-yard"
+    ],
+    "5-players": [
+     "ramp-yard"
+    ],
+    "6-players": [
+     "ramp-yard"
+    ],
+    "7-players": [
+     "ramp-yard"
+    ],
+    "8-players": [
+     "ramp-yard"
+    ]
+   }
+  },
+  {
+   "file": "world-map.webp",
+   "source": "campaigns/fantasy-2026/dungeon-sanctuary/assets/world-map/world-map.webp",
+   "sha256": "624a02a09261adbf4ccc48ea7afd7573201a144da0c4b7a9abd57bda09a5d2c2",
+   "originalSha256": "24bec2ebae8146d3305b14203e62ac29b9847cfa7309d11c8bf4053dcea69611",
+   "generated": "2026-11-22",
+   "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Меловая гряда. Style Меловая гряда · Ivory chalk archways and mismatched welcome-door shapes in soft teal jacquard. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Широкий Порог; 0.367,0.177 Тихая галерея; 0.623,0.15 Папоротниковая комната; 0.88,0.177 Солнечная полка; 0.905,0.517 Верхний ход; 0.648,0.49 Мастерская короткой смены; 0.392,0.517 Гостевое крыльцо; 0.135,0.49 Двор пологого склона; 0.11,0.83 Двор чаш; 0.367,0.857 Боковая площадка. Show public exteriors / unlabeled contours only.",
+   "references": [],
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null,
+   "subjects": {
+    "3-players": [
+     "world-map"
+    ],
+    "4-players": [
+     "world-map"
+    ],
+    "5-players": [
+     "world-map"
+    ],
+    "6-players": [
+     "world-map"
+    ],
+    "7-players": [
+     "world-map"
+    ],
+    "8-players": [
+     "world-map"
+    ]
+   }
+  }
+ ]
+}

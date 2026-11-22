@@ -1,0 +1,416 @@
+{
+  "about": "Портреты для карточек и изображение закрытого набора. Сначала сверяйте личность и доступность персонажа за столом.",
+  "generated": "2026-11-22",
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "heroes",
+      "originalFile": "exec-f5b91854-3646-445b-b0f6-a1b15ef3962d.png",
+      "originalSha256": "341753c12ed4f70a5c3db188d4504b8239fc110ed1c26593a78a3d39a474b9ec",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 3 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:3. Luminous fantasy gouache, varied colors, naturalistic stylized faces. World: Косая долина. Characters, in strict cell order:\n1. Нерин Сосновый Шаг — Короткий плащ, потёртые перчатки и аккуратно подписанные верёвочные мешки. Age 18.\n2. Тася Угольная Лента — Высокие сапоги, угольные карандаши за ремешком и свободные карманы для собственных записок. Age 16.\n3. Омел Тёплый Камень — Медный знак очага на шнурке, дорожная сумка и закатанные до локтя рукава. Age 32.\n4. Элша Семь Полей — Широкий капюшон, разные застёжки на рукавах и тетрадь с полями шире самого текста. Age 24.\n5. Велт Крапчатый Щит — Седая прядь, короткий дорожный щит и учебный значок, приколотый вверх ногами по рассеянности. Age 46.\n6. Кора Кривой Штрих — Клетчатый платок и колпачки на карандашах, привязанные к сумке толстой ниткой. Age 21.\n7. Рин Янтарная Пуговица — Яркий жилет, мягкие сапоги и старая деревянная линейка вместо торжественного указательного жезла. Age 17.\n8. Яна Неровная Ступень — Посох удобной высоты, красные тесёмки на сумках и лёгкие наколенники поверх дорожной одежды. Age 61.\n9. Дорожный / рабочий набор — Still life of one opaque closed everyday satchel, appropriate to this world and era. No person and nothing spilling out.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 3,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "npcs",
+      "originalFile": "exec-e3092790-3763-448e-a0e3-ae84de3c471d.png",
+      "originalSha256": "bdc13881e2cb063398b08d7fc10b41445bf4f1d756769d8a21fb9dc78d789648",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 4 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:4. Luminous fantasy gouache, varied colors, naturalistic stylized faces. World: Косая долина. Characters, in strict cell order:\n1. Мара Вишневая Ветка — Преподавательница с широким поясом, короткими волосами и следами мела на локте. Age 46.\n2. Крен — Крупный серый заяц с четырьмя ушами, жилетом без застёжек и маленькой полевой сумкой. Age 27.\n3. Руба — Саламандра длиной с предплечье, с янтарным пузом и плетёными накладками на лапах. Age 34.\n4. Лоск — Пёс размером с лису, с широкими мягкими крыльями и кожаным футляром для собственных мелочей. Age 9.\n5. Ивен Низкий Карниз — Ученик с коротким дорожным копьём, флягой в сетке и ровно зашитыми заплатами. Age 19.\n6. Брус — Разумный ёж с широкими мягкими иглами, похожими на плоские щепки, и сумкой рисунков. Age 18.\n7. Шелла — Маленькая лисица с восемью тонкими лапами и серебристым узором вдоль спины. Age 23.\n8. Нема — Чёрная ворона с белым ободком вокруг клюва и очками на шёлковой тесьме. Age 52.\n9. Ода Луговая Кромка — Смотрительница полевого лагеря в широких брюках, с деревянным браслетом и связкой обычных колышков. Age 62.\n10. Мила Короткий Рукав — Ученица в длинном жилете, с короткими волосами и матерчатым пеналом на ремне. Age 15.\n11. Круча — Разумный каменный краб величиной с большой рюкзак, с плоскими клешнями и красной лентой на панцире. Age 31.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 4,
+      "width": 1086,
+      "height": 1448
+    }
+  ],
+  "cards": [
+    {
+      "id": "nerin",
+      "file": "cards/nerin.webp",
+      "title": "Нерин Сосновый Шаг",
+      "subjects": [
+        "nerin"
+      ],
+      "sheet": "heroes",
+      "cell": 1,
+      "crop": {
+        "left": 10,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "90bdc4faaf2ef78ad99c7987cd558d231e68d0276b0f1c5bef574a0eb9d05aec"
+    },
+    {
+      "id": "tasya",
+      "file": "cards/tasya.webp",
+      "title": "Тася Угольная Лента",
+      "subjects": [
+        "tasya"
+      ],
+      "sheet": "heroes",
+      "cell": 2,
+      "crop": {
+        "left": 428,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "bd04eaab2103a7d300996f9f67b2cf606d164bfffa530f9ec82d6a356a16fee3"
+    },
+    {
+      "id": "omel",
+      "file": "cards/omel.webp",
+      "title": "Омел Тёплый Камень",
+      "subjects": [
+        "omel"
+      ],
+      "sheet": "heroes",
+      "cell": 3,
+      "crop": {
+        "left": 846,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "47e5fba923a64bb4e8d61ccbfb7566f8581b8c7cdbfb4d288a4a146085c0fcd7"
+    },
+    {
+      "id": "elsha",
+      "file": "cards/elsha.webp",
+      "title": "Элша Семь Полей",
+      "subjects": [
+        "elsha"
+      ],
+      "sheet": "heroes",
+      "cell": 4,
+      "crop": {
+        "left": 10,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "f5d267966eb91d70c712d4ccc0c3fa9a00d54d5705b2ef4fa33b269ca5cdbffb"
+    },
+    {
+      "id": "velt",
+      "file": "cards/velt.webp",
+      "title": "Велт Крапчатый Щит",
+      "subjects": [
+        "velt"
+      ],
+      "sheet": "heroes",
+      "cell": 5,
+      "crop": {
+        "left": 428,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "ac01acc8e90c3a21e5971c04df1a9e5c96f08fbef8d75cd123067595fc36d55e"
+    },
+    {
+      "id": "kora",
+      "file": "cards/kora.webp",
+      "title": "Кора Кривой Штрих",
+      "subjects": [
+        "kora"
+      ],
+      "sheet": "heroes",
+      "cell": 6,
+      "crop": {
+        "left": 846,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "35f1c55a5cd5c671582e8f7331e5a9d18b3dd17fe41135f6c39053b2bc784838"
+    },
+    {
+      "id": "rin",
+      "file": "cards/rin.webp",
+      "title": "Рин Янтарная Пуговица",
+      "subjects": [
+        "rin"
+      ],
+      "sheet": "heroes",
+      "cell": 7,
+      "crop": {
+        "left": 10,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "b015f731141f146929d580a9bceece0172c00f5029868d2bfe7ff9e45d26ebca"
+    },
+    {
+      "id": "yana",
+      "file": "cards/yana.webp",
+      "title": "Яна Неровная Ступень",
+      "subjects": [
+        "yana"
+      ],
+      "sheet": "heroes",
+      "cell": 8,
+      "crop": {
+        "left": 428,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "f43952a2e1bcc15f80256cfe3ee2231da9c3e281545414896dbff49cf0bfd409"
+    },
+    {
+      "id": "travel-kit",
+      "file": "cards/travel-kit.webp",
+      "title": "Дорожный набор",
+      "subjects": [
+        "elsha-travel-kit",
+        "kora-travel-kit",
+        "nerin-travel-kit",
+        "omel-travel-kit",
+        "rin-travel-kit",
+        "tasya-travel-kit",
+        "velt-travel-kit",
+        "yana-travel-kit"
+      ],
+      "sheet": "heroes",
+      "cell": 9,
+      "crop": {
+        "left": 846,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "b7d2c6ad52bb2a9b355ccfddea432d3f3272639bfd9ebf5975ae9dfafee4ed39"
+    },
+    {
+      "id": "mara",
+      "file": "cards/mara.webp",
+      "title": "Мара Вишневая Ветка",
+      "subjects": [
+        "mara"
+      ],
+      "sheet": "npcs",
+      "cell": 1,
+      "crop": {
+        "left": 9,
+        "top": 9,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "17058b74468b8fa7a03e2db907a6c50483559b24a0aba0cd4227c88d12ec6094"
+    },
+    {
+      "id": "kren",
+      "file": "cards/kren.webp",
+      "title": "Крен",
+      "subjects": [
+        "kren"
+      ],
+      "sheet": "npcs",
+      "cell": 2,
+      "crop": {
+        "left": 371,
+        "top": 9,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "8478f0e450991974224767541792fb227dd9b4ffa32ecae6aeeae9368492e09e"
+    },
+    {
+      "id": "ruba",
+      "file": "cards/ruba.webp",
+      "title": "Руба",
+      "subjects": [
+        "ruba"
+      ],
+      "sheet": "npcs",
+      "cell": 3,
+      "crop": {
+        "left": 733,
+        "top": 9,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "d0a29a70601a78fc5fbb184e1a99ed8ce73fc6fd38a1c1f46476b01eb7b9881b"
+    },
+    {
+      "id": "losk",
+      "file": "cards/losk.webp",
+      "title": "Лоск",
+      "subjects": [
+        "losk"
+      ],
+      "sheet": "npcs",
+      "cell": 4,
+      "crop": {
+        "left": 9,
+        "top": 371,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "15931ab82f7cc95e4bb600e7e676480e53cda573f54e3cdf93a8072683f623e1"
+    },
+    {
+      "id": "iven",
+      "file": "cards/iven.webp",
+      "title": "Ивен Низкий Карниз",
+      "subjects": [
+        "iven"
+      ],
+      "sheet": "npcs",
+      "cell": 5,
+      "crop": {
+        "left": 371,
+        "top": 371,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "75d8ee407cd5da03528018147b38dde1e97e259f599a5e6d4e2803d966f62c0c"
+    },
+    {
+      "id": "brus",
+      "file": "cards/brus.webp",
+      "title": "Брус",
+      "subjects": [
+        "brus"
+      ],
+      "sheet": "npcs",
+      "cell": 6,
+      "crop": {
+        "left": 733,
+        "top": 371,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "b12419094ee89b70654df1d7d7269a8c3ec0923fe1b9d3827896228adedcace7"
+    },
+    {
+      "id": "shella",
+      "file": "cards/shella.webp",
+      "title": "Шелла",
+      "subjects": [
+        "shella"
+      ],
+      "sheet": "npcs",
+      "cell": 7,
+      "crop": {
+        "left": 9,
+        "top": 733,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "deb22f0ab4c569aa6b6e9a21563eaa035572ba5c735520cf9032d496e6e4b02f"
+    },
+    {
+      "id": "nema",
+      "file": "cards/nema.webp",
+      "title": "Нема",
+      "subjects": [
+        "nema"
+      ],
+      "sheet": "npcs",
+      "cell": 8,
+      "crop": {
+        "left": 371,
+        "top": 733,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "4913535603f815aaf78d445e9d345e45e335cde4113e128acc454266199a4695"
+    },
+    {
+      "id": "oda",
+      "file": "cards/oda.webp",
+      "title": "Ода Луговая Кромка",
+      "subjects": [
+        "oda"
+      ],
+      "sheet": "npcs",
+      "cell": 9,
+      "crop": {
+        "left": 733,
+        "top": 733,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "c4d22d420eafa7a25826228f3b2eb6bb27ab2b04a9b090ab610c0e8faa0455fe"
+    },
+    {
+      "id": "mila",
+      "file": "cards/mila.webp",
+      "title": "Мила Короткий Рукав",
+      "subjects": [
+        "mila"
+      ],
+      "sheet": "npcs",
+      "cell": 10,
+      "crop": {
+        "left": 9,
+        "top": 1095,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "2b27a9abcc7039afcc3456e19512a963c096b27d40f11d382085482a4dcf8237"
+    },
+    {
+      "id": "krucha",
+      "file": "cards/krucha.webp",
+      "title": "Круча",
+      "subjects": [
+        "krucha"
+      ],
+      "sheet": "npcs",
+      "cell": 11,
+      "crop": {
+        "left": 371,
+        "top": 1095,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "1bc333c567b0616e23685b85df70c00c12f0d76129c9fc2e5aa69630bb3f1c5a"
+    }
+  ]
+}

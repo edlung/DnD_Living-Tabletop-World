@@ -1,0 +1,12 @@
+{
+  "about": "Original unlabelled world map. Pin positions in source/world-map.json.",
+  "map": {
+    "file": "world-map.webp",
+    "sha256": "30c5f6e5ffa35e2128ca044db1d843adb767828fb2d5bb1989aefdcf0099e89c",
+    "originalSha256": "6b0b0474ac3c57afef433dcaaa946ba84aba184048db0385c9c69ef4bb9bf496",
+    "originalFile": "exec-38a13615-d578-4ce6-978a-c6dbe09653e9.png",
+    "generated": "2026-11-22",
+    "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Лоскутные кряжи. Style Лоскутные кряжи · Warm copper dragon scales alternating with quietly etched checkerboard tiles. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Полуденный двор; 0.367,0.177 Нижний зубец; 0.623,0.15 Белая осыпь; 0.88,0.177 Вересковый спуск; 0.905,0.517 Голая Игла; 0.648,0.49 Дом аплодисментов; 0.392,0.517 Слепой уступ; 0.135,0.49 Раздвоенная седловина; 0.11,0.83 Рваный Венец. Show public exteriors / unlabeled contours only.",
+    "references": []
+  }
+}

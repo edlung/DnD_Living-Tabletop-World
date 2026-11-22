@@ -7,6 +7,7 @@ import type { CampaignRevision } from '../../packages/contracts/src/index.ts';
 import { campaignCanonicalJson } from '../../apps/server/src/workshop/packages/content.ts';
 import { loadCuratedSet } from '../../apps/server/src/images/curated-set.ts';
 import { artOf, tokenSubjects, type ArtSource } from './campaign-art.ts';
+import { castManifest } from './cast-cards.ts';
 
 /** One authored series: where its campaigns live, how a source loads and how a package builds. */
 export interface ArtSeries<S extends ArtSource = ArtSource> {
@@ -38,7 +39,8 @@ export async function curatedArt<S extends ArtSource>(
       `This campaign does not match the authored ${slug} package. Review edits before mapping art.`,
     );
   const art = artOf(dir);
-  if (art.size === 0) throw new Error(`${slug} has no pictures`);
+  const cast = castManifest(dir);
+  if (art.size === 0 && cast.cards.length === 0) throw new Error(`${slug} has no pictures`);
   const directory = await mkdtemp(join(tmpdir(), `ltw-${slug}-art-`));
   try {
     const assets = [];
@@ -69,6 +71,32 @@ export async function curatedArt<S extends ArtSource>(
         generated: asset.generated,
         references: [],
         prompt: asset.prompt,
+      });
+    }
+    for (const card of cast.cards) {
+      if (!/^[a-z0-9-]+$/.test(card.id) || card.file !== `cards/${card.id}.webp`)
+        throw new Error('Invalid card path');
+      const entityIds = card.subjects.flatMap((key) => revision.identities.entities[key] ?? []);
+      if (!entityIds.length) continue;
+      const sheet = cast.sheets.find((entry) => entry.id === card.sheet);
+      if (!sheet) throw new Error('Missing source sheet');
+      const file = `${card.id}.webp`;
+      await copyFile(new URL(`illustrations/${card.file}`, dir), join(directory, file));
+      assets.push({
+        file,
+        entityIds,
+        variant: 'reference',
+        label: null,
+        purpose: 'image',
+        derivedFrom: null,
+        mediaType: 'image/webp',
+        sha256: card.sha256,
+        originalSha256: sheet.originalSha256,
+        generated: '2026-11-22',
+        references: [],
+        // Only this card's public description travels with its runtime reference. The full
+        // contact-sheet prompt in the DM pack describes characters the party may never meet.
+        prompt: `Illustrated campaign reference: ${card.title}.`,
       });
     }
     await writeFile(

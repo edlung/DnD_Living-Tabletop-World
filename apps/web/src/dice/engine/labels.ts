@@ -27,12 +27,20 @@ export interface FaceArt {
   readonly surface: HTMLImageElement | null;
   /** Gold numerals on the players' obsidian, dark ink on the DM's ivory. */
   readonly ink: 'gold' | 'dark';
+  /** A decorative impression under the numbers, never a face label. */
+  readonly ornament?: HTMLImageElement | null;
 }
 
 function ground(context: CanvasRenderingContext2D, art: FaceArt): void {
   context.fillStyle = art.ink === 'gold' ? '#0b1118' : '#e8dcc3';
   context.fillRect(0, 0, SIZE, SIZE);
   if (art.surface) context.drawImage(art.surface, 0, 0, SIZE, SIZE);
+  if (art.ornament) {
+    context.save();
+    context.globalAlpha = art.ink === 'gold' ? 0.23 : 0.16;
+    context.drawImage(art.ornament, 0, 0, SIZE, SIZE);
+    context.restore();
+  }
   const shade = context.createRadialGradient(
     SIZE / 2,
     SIZE / 2,

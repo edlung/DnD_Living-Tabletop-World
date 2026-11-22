@@ -1,0 +1,221 @@
+/* Public ornaments of the campaign books. The cascade fetches only a material in use. */
+[data-campaign-theme='acorn-express'] {
+  --table-accent: #e6b67c;
+  --table-material: url('/table-materials/acorn-express.webp');
+}
+[data-campaign-theme='lighthouse'] {
+  --table-accent: #e8ca89;
+  --table-material: url('/table-materials/lighthouse.webp');
+}
+[data-campaign-theme='moon-pearl'] {
+  --table-accent: #95ddd8;
+  --table-material: url('/table-materials/moon-pearl.webp');
+}
+[data-campaign-theme='ash-testament'] {
+  --table-accent: #dfbb96;
+  --table-material: url('/table-materials/ash-testament.webp');
+}
+[data-campaign-theme='clockwork-carnival'] {
+  --table-accent: #f0c578;
+  --table-material: url('/table-materials/clockwork-carnival.webp');
+}
+[data-campaign-theme='ember-crown'] {
+  --table-accent: #f2af7e;
+  --table-material: url('/table-materials/ember-crown.webp');
+}
+[data-campaign-theme='glass-republic'] {
+  --table-accent: #a9d9bf;
+  --table-material: url('/table-materials/glass-republic.webp');
+}
+[data-campaign-theme='hollow-choir'] {
+  --table-accent: #d9c3a6;
+  --table-material: url('/table-materials/hollow-choir.webp');
+}
+[data-campaign-theme='last-orbit'] {
+  --table-accent: #a9d7e8;
+  --table-material: url('/table-materials/last-orbit.webp');
+}
+[data-campaign-theme='salt-meridian'] {
+  --table-accent: #b2ddd8;
+  --table-material: url('/table-materials/salt-meridian.webp');
+}
+[data-campaign-theme='sky-archipelago'] {
+  --table-accent: #abd8f4;
+  --table-material: url('/table-materials/sky-archipelago.webp');
+}
+[data-campaign-theme='velvet-ledger'] {
+  --table-accent: #edbaab;
+  --table-material: url('/table-materials/velvet-ledger.webp');
+}
+[data-campaign-theme='winter-caravan'] {
+  --table-accent: #bbdaeb;
+  --table-material: url('/table-materials/winter-caravan.webp');
+}
+[data-campaign-theme='ash-tithe'] {
+  --table-accent: #efb487;
+  --table-material: url('/table-materials/ash-tithe.webp');
+}
+[data-campaign-theme='bellwether-hollow'] {
+  --table-accent: #9fdecc;
+  --table-material: url('/table-materials/bellwether-hollow.webp');
+}
+[data-campaign-theme='black-sun-forge'] {
+  --table-accent: #eab278;
+  --table-material: url('/table-materials/black-sun-forge.webp');
+}
+[data-campaign-theme='lantern-mere'] {
+  --table-accent: #edca8f;
+  --table-material: url('/table-materials/lantern-mere.webp');
+}
+[data-campaign-theme='last-ferryman'] {
+  --table-accent: #b0d4d6;
+  --table-material: url('/table-materials/last-ferryman.webp');
+}
+[data-campaign-theme='marrow-crown'] {
+  --table-accent: #dfc5aa;
+  --table-material: url('/table-materials/marrow-crown.webp');
+}
+[data-campaign-theme='moth-court'] {
+  --table-accent: #e3badc;
+  --table-material: url('/table-materials/moth-court.webp');
+}
+[data-campaign-theme='salt-widows'] {
+  --table-accent: #afd9cd;
+  --table-material: url('/table-materials/salt-widows.webp');
+}
+[data-campaign-theme='thorn-abbey'] {
+  --table-accent: #c1d39d;
+  --table-material: url('/table-materials/thorn-abbey.webp');
+}
+[data-campaign-theme='winter-orchard'] {
+  --table-accent: #c3dcad;
+  --table-material: url('/table-materials/winter-orchard.webp');
+}
+[data-campaign-theme='basalt-bloom'] {
+  --table-accent: #efc276;
+  --table-material: url('/table-materials/basalt-bloom.webp');
+}
+[data-campaign-theme='dragon-retirement'] {
+  --table-accent: #f0b994;
+  --table-material: url('/table-materials/dragon-retirement.webp');
+}
+[data-campaign-theme='dungeon-sanctuary'] {
+  --table-accent: #aadcc9;
+  --table-material: url('/table-materials/dungeon-sanctuary.webp');
+}
+[data-campaign-theme='familiar-school'] {
+  --table-accent: #cfbef4;
+  --table-material: url('/table-materials/familiar-school.webp');
+}
+[data-campaign-theme='impossible-fair'] {
+  --table-accent: #edc789;
+  --table-material: url('/table-materials/impossible-fair.webp');
+}
+[data-campaign-theme='mountain-wedding'] {
+  --table-accent: #f0c9a5;
+  --table-material: url('/table-materials/mountain-wedding.webp');
+}
+[data-campaign-theme='small-banner'] {
+  --table-accent: #9fdedb;
+  --table-material: url('/table-materials/small-banner.webp');
+}
+[data-campaign-theme='storm-kitchen'] {
+  --table-accent: #d6bfef;
+  --table-material: url('/table-materials/storm-kitchen.webp');
+}
+[data-campaign-theme='three-magicless-days'] {
+  --table-accent: #e6c88f;
+  --table-material: url('/table-materials/three-magicless-days.webp');
+}
+[data-campaign-theme='unwritten-god'] {
+  --table-accent: #abd6e6;
+  --table-material: url('/table-materials/unwritten-god.webp');
+}
+[data-campaign-theme='cedar-tournament'] {
+  --table-accent: #c6db9b;
+  --table-material: url('/table-materials/cedar-tournament.webp');
+}
+[data-campaign-theme='copper-canyon'] {
+  --table-accent: #efb496;
+  --table-material: url('/table-materials/copper-canyon.webp');
+}
+[data-campaign-theme='dream-orchestra'] {
+  --table-accent: #e8c5ed;
+  --table-material: url('/table-materials/dream-orchestra.webp');
+}
+[data-campaign-theme='lantern-court'] {
+  --table-accent: #f0c6a1;
+  --table-material: url('/table-materials/lantern-court.webp');
+}
+[data-campaign-theme='museum-midnight'] {
+  --table-accent: #b9d2eb;
+  --table-material: url('/table-materials/museum-midnight.webp');
+}
+[data-campaign-theme='paper-sea'] {
+  --table-accent: #b6dae6;
+  --table-material: url('/table-materials/paper-sea.webp');
+}
+[data-campaign-theme='rain-bureau'] {
+  --table-accent: #a7d9cf;
+  --table-material: url('/table-materials/rain-bureau.webp');
+}
+[data-campaign-theme='red-dune-post'] {
+  --table-accent: #f1ba93;
+  --table-material: url('/table-materials/red-dune-post.webp');
+}
+[data-campaign-theme='root-city'] {
+  --table-accent: #b4d6a1;
+  --table-material: url('/table-materials/root-city.webp');
+}
+[data-campaign-theme='silent-frequency'] {
+  --table-accent: #f1ce86;
+  --table-material: url('/table-materials/silent-frequency.webp');
+}
+[data-campaign-theme='absent-voters'] {
+  --table-accent: #c3d6e9;
+  --table-material: url('/table-materials/absent-voters.webp');
+}
+[data-campaign-theme='counterfeit-spring'] {
+  --table-accent: #ebd288;
+  --table-material: url('/table-materials/counterfeit-spring.webp');
+}
+[data-campaign-theme='false-verdict'] {
+  --table-accent: #b6c9e8;
+  --table-material: url('/table-materials/false-verdict.webp');
+}
+[data-campaign-theme='last-round'] {
+  --table-accent: #e5b1a1;
+  --table-material: url('/table-materials/last-round.webp');
+}
+[data-campaign-theme='quiet-exchange'] {
+  --table-accent: #d9c39b;
+  --table-material: url('/table-materials/quiet-exchange.webp');
+}
+[data-campaign-theme='rain-check'] {
+  --table-accent: #b3d6e8;
+  --table-material: url('/table-materials/rain-check.webp');
+}
+[data-campaign-theme='room-608'] {
+  --table-accent: #dac4a4;
+  --table-material: url('/table-materials/room-608.webp');
+}
+[data-campaign-theme='seventh-negative'] {
+  --table-accent: #ced7e0;
+  --table-material: url('/table-materials/seventh-negative.webp');
+}
+[data-campaign-theme='strike-fund'] {
+  --table-accent: #e5c3a1;
+  --table-material: url('/table-materials/strike-fund.webp');
+}
+[data-campaign-theme='white-ash'] {
+  --table-accent: #e4bfb6;
+  --table-material: url('/table-materials/white-ash.webp');
+}
+[data-campaign-theme='ravenford'] {
+  --table-accent: #e6c784;
+  --table-material: url('/table-materials/ravenford.webp');
+}
+[data-campaign-theme='hollowmere'] {
+  --table-accent: #b7cfad;
+  --table-material: url('/table-materials/hollowmere.webp');
+}

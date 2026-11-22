@@ -1,0 +1,1975 @@
+{
+ "id": "impossible-fair",
+ "title": "Ярмарка невозможных ремёсел",
+ "genre": "Сказочное ремесленное приключение о полезных изобретениях",
+ "audience": "12+",
+ "pitch": "На ярмарке между волшебными пределами вам достался пустой прилавок и горшочек поворотной охры. Напечатайте узор, придумайте для него полезную вещь и выясните, кому она нужна. Соседняя мастерица уже продаёт великолепные бегущие рисунки. Ваш собственный рисунок однажды поведёт себя совершенно неправильно — и окажется нужнее, чем вы предполагали.",
+ "tone": "Живое любопытство, предметный юмор, соперничество достойных мастеров и радость вещи, которая кому-то подошла; ошибки могут стоить материала, заказа или времени, но не достоинства человека.",
+ "duration": "8 сессий; 180 минут: 10 минут открытия и итогов прошлого вечера, три сцены по 45 минут, перерыв 15 минут после второй сцены, 20 минут завершения. Дополнительная необязательная схватка заменяет часть своей сцены, а не удлиняет вечер.",
+ "cover": "campaigns/fantasy-2026/impossible-fair/illustrations/opening.webp",
+ "defaultVariant": "4-players",
+ "variants": [
+  {
+   "id": "3-players",
+   "players": 3,
+   "label": "3 игрока",
+   "file": "packages/3-players.json",
+   "digest": "1aaf99f872d61427314bf18b56348efce8b3bda519977db12c1df23ca72b5129"
+  },
+  {
+   "id": "4-players",
+   "players": 4,
+   "label": "4 игрока",
+   "file": "packages/4-players.json",
+   "digest": "e2e4699dce9670a8424b3b0c9ce14599fb64603a0fef0ec64526d98ba96fed9c"
+  },
+  {
+   "id": "5-players",
+   "players": 5,
+   "label": "5 игроков",
+   "file": "packages/5-players.json",
+   "digest": "10fcc9096a8a8172b9dde524e56f78d06d58790cbf3fbe82cf9a0926a51b674b"
+  },
+  {
+   "id": "6-players",
+   "players": 6,
+   "label": "6 игроков",
+   "file": "packages/6-players.json",
+   "digest": "7a3ea304f659f4f6b04e3781bf1bef3e059b7d56d309a29b1498207f47f20b6b"
+  },
+  {
+   "id": "7-players",
+   "players": 7,
+   "label": "7 игроков",
+   "file": "packages/7-players.json",
+   "digest": "031803eb4444fd60c5a2412cf4d3970aa6ef1645bedc70d64c466e2ae1f0eb1a"
+  },
+  {
+   "id": "8-players",
+   "players": 8,
+   "label": "8 игроков",
+   "file": "packages/8-players.json",
+   "digest": "327a2f67ed616d7cca9c92790a8da1a9dcde6b2ceeb459750e3f929156650299"
+  }
+ ],
+ "generator": "codex-cli imagegen",
+ "pictures": [
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/illustrations/cards/vesta-rivet.webp",
+   "sha256": "66dc0d12de9b2ccd96373db321104b0b50a77a2a0c3431ff950158a00b65a112",
+   "originalSha256": "b8b05492e5c50053a8e3525fd6b83c345901cab02678ad8d10f349e85fde609f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Веста Клёпка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "vesta-rivet"
+    ],
+    "4-players": [
+     "vesta-rivet"
+    ],
+    "5-players": [
+     "vesta-rivet"
+    ],
+    "6-players": [
+     "vesta-rivet"
+    ],
+    "7-players": [
+     "vesta-rivet"
+    ],
+    "8-players": [
+     "vesta-rivet"
+    ]
+   },
+   "file": "vesta-rivet.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/illustrations/cards/myrt-fitting.webp",
+   "sha256": "0d9b9b616938708c6010f53dd69f6d0619efc4ab97b7be8e8c3d7823cfaeab52",
+   "originalSha256": "b8b05492e5c50053a8e3525fd6b83c345901cab02678ad8d10f349e85fde609f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мирт Примерка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "myrt-fitting"
+    ],
+    "4-players": [
+     "myrt-fitting"
+    ],
+    "5-players": [
+     "myrt-fitting"
+    ],
+    "6-players": [
+     "myrt-fitting"
+    ],
+    "7-players": [
+     "myrt-fitting"
+    ],
+    "8-players": [
+     "myrt-fitting"
+    ]
+   },
+   "file": "myrt-fitting.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/illustrations/cards/runa-warmchalk.webp",
+   "sha256": "f68ca2912dde4a2aede09e1327d6ad10d0b96cff5becbcac4010d50ac70cab04",
+   "originalSha256": "b8b05492e5c50053a8e3525fd6b83c345901cab02678ad8d10f349e85fde609f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Руна Тёплый Мел",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "runa-warmchalk"
+    ],
+    "4-players": [
+     "runa-warmchalk"
+    ],
+    "5-players": [
+     "runa-warmchalk"
+    ],
+    "6-players": [
+     "runa-warmchalk"
+    ],
+    "7-players": [
+     "runa-warmchalk"
+    ],
+    "8-players": [
+     "runa-warmchalk"
+    ]
+   },
+   "file": "runa-warmchalk.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/illustrations/cards/elli-fold.webp",
+   "sha256": "3368a5e9cf8c61b3bf7bf8e1d72fe38fdba380c67b4ffca58936683af3cfefe0",
+   "originalSha256": "b8b05492e5c50053a8e3525fd6b83c345901cab02678ad8d10f349e85fde609f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Элли Складка",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "elli-fold"
+    ],
+    "5-players": [
+     "elli-fold"
+    ],
+    "6-players": [
+     "elli-fold"
+    ],
+    "7-players": [
+     "elli-fold"
+    ],
+    "8-players": [
+     "elli-fold"
+    ]
+   },
+   "file": "elli-fold.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/illustrations/cards/bora-grip.webp",
+   "sha256": "f6d86fd5787e9176af2b29606f972d8c960606dc2f6b28e45b443ec266a050f1",
+   "originalSha256": "b8b05492e5c50053a8e3525fd6b83c345901cab02678ad8d10f349e85fde609f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Бора Широкий Стежок",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "bora-grip"
+    ],
+    "6-players": [
+     "bora-grip"
+    ],
+    "7-players": [
+     "bora-grip"
+    ],
+    "8-players": [
+     "bora-grip"
+    ]
+   },
+   "file": "bora-grip.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/illustrations/cards/tavi-countstep.webp",
+   "sha256": "2bed2512049e322b74d637852ef9ff037d47c9dc76f05c1e06e84573718ac838",
+   "originalSha256": "b8b05492e5c50053a8e3525fd6b83c345901cab02678ad8d10f349e85fde609f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тави Ровный Шаг",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "tavi-countstep"
+    ],
+    "7-players": [
+     "tavi-countstep"
+    ],
+    "8-players": [
+     "tavi-countstep"
+    ]
+   },
+   "file": "tavi-countstep.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/illustrations/cards/senna-repair.webp",
+   "sha256": "fdaad89991a65cc01d2355aedb27e58da0cf85042dff66c00d3f76ac877073ff",
+   "originalSha256": "b8b05492e5c50053a8e3525fd6b83c345901cab02678ad8d10f349e85fde609f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сенна Латка",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "senna-repair"
+    ],
+    "8-players": [
+     "senna-repair"
+    ]
+   },
+   "file": "senna-repair.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/illustrations/cards/yaro-caption.webp",
+   "sha256": "8a5c2ef0c9405d48efe16fe481a7d1967114e0cd72b83ff6dc37391ff8df1b91",
+   "originalSha256": "b8b05492e5c50053a8e3525fd6b83c345901cab02678ad8d10f349e85fde609f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Яро Короткая Надпись",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [],
+    "8-players": [
+     "yaro-caption"
+    ]
+   },
+   "file": "yaro-caption.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/illustrations/cards/travel-kit.webp",
+   "sha256": "ec09ad5a83f3270539aa22b002bc8a040ba338e8268d26e56518d171c14166a5",
+   "originalSha256": "b8b05492e5c50053a8e3525fd6b83c345901cab02678ad8d10f349e85fde609f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дорожный набор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "myrt-fitting-travel-kit",
+     "runa-warmchalk-travel-kit",
+     "vesta-rivet-travel-kit"
+    ],
+    "4-players": [
+     "elli-fold-travel-kit",
+     "myrt-fitting-travel-kit",
+     "runa-warmchalk-travel-kit",
+     "vesta-rivet-travel-kit"
+    ],
+    "5-players": [
+     "bora-grip-travel-kit",
+     "elli-fold-travel-kit",
+     "myrt-fitting-travel-kit",
+     "runa-warmchalk-travel-kit",
+     "vesta-rivet-travel-kit"
+    ],
+    "6-players": [
+     "bora-grip-travel-kit",
+     "elli-fold-travel-kit",
+     "myrt-fitting-travel-kit",
+     "runa-warmchalk-travel-kit",
+     "tavi-countstep-travel-kit",
+     "vesta-rivet-travel-kit"
+    ],
+    "7-players": [
+     "bora-grip-travel-kit",
+     "elli-fold-travel-kit",
+     "myrt-fitting-travel-kit",
+     "runa-warmchalk-travel-kit",
+     "senna-repair-travel-kit",
+     "tavi-countstep-travel-kit",
+     "vesta-rivet-travel-kit"
+    ],
+    "8-players": [
+     "bora-grip-travel-kit",
+     "elli-fold-travel-kit",
+     "myrt-fitting-travel-kit",
+     "runa-warmchalk-travel-kit",
+     "senna-repair-travel-kit",
+     "tavi-countstep-travel-kit",
+     "vesta-rivet-travel-kit",
+     "yaro-caption-travel-kit"
+    ]
+   },
+   "file": "travel-kit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/illustrations/cards/tovin-tailor.webp",
+   "sha256": "d7631d097cb52df8f7f3c6d34a7b2b9c5fc1c2102432f9df3d97e3dd1db8a15d",
+   "originalSha256": "c096a25b7e72729cccc73ef497f88b92b857d6171ef200a12cb3a2a337f2ade1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Товин Подкладка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tovin-tailor"
+    ],
+    "4-players": [
+     "tovin-tailor"
+    ],
+    "5-players": [
+     "tovin-tailor"
+    ],
+    "6-players": [
+     "tovin-tailor"
+    ],
+    "7-players": [
+     "tovin-tailor"
+    ],
+    "8-players": [
+     "tovin-tailor"
+    ]
+   },
+   "file": "tovin-tailor.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/illustrations/cards/sevra-quarter.webp",
+   "sha256": "3c92e0847251f418b168cf97d292442dd055416b4d9ca06d250263460414dd6a",
+   "originalSha256": "c096a25b7e72729cccc73ef497f88b92b857d6171ef200a12cb3a2a337f2ade1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Севра Четверть",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "sevra-quarter"
+    ],
+    "4-players": [
+     "sevra-quarter"
+    ],
+    "5-players": [
+     "sevra-quarter"
+    ],
+    "6-players": [
+     "sevra-quarter"
+    ],
+    "7-players": [
+     "sevra-quarter"
+    ],
+    "8-players": [
+     "sevra-quarter"
+    ]
+   },
+   "file": "sevra-quarter.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/illustrations/cards/listva-bagmaker.webp",
+   "sha256": "2e49eb03d607b52a3ad1b4760a0efdda35e12a599637cc3f0ba8600e082ca57d",
+   "originalSha256": "c096a25b7e72729cccc73ef497f88b92b857d6171ef200a12cb3a2a337f2ade1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Листва Внутренний Карман",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "listva-bagmaker"
+    ],
+    "4-players": [
+     "listva-bagmaker"
+    ],
+    "5-players": [
+     "listva-bagmaker"
+    ],
+    "6-players": [
+     "listva-bagmaker"
+    ],
+    "7-players": [
+     "listva-bagmaker"
+    ],
+    "8-players": [
+     "listva-bagmaker"
+    ]
+   },
+   "file": "listva-bagmaker.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/illustrations/cards/orsa-ember.webp",
+   "sha256": "a36307446f0473fd483afa9d52f265ea6048a26ba6a5b906c5465f6d27ae820b",
+   "originalSha256": "c096a25b7e72729cccc73ef497f88b92b857d6171ef200a12cb3a2a337f2ade1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Орса Угольная Черта",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "orsa-ember"
+    ],
+    "4-players": [
+     "orsa-ember"
+    ],
+    "5-players": [
+     "orsa-ember"
+    ],
+    "6-players": [
+     "orsa-ember"
+    ],
+    "7-players": [
+     "orsa-ember"
+    ],
+    "8-players": [
+     "orsa-ember"
+    ]
+   },
+   "file": "orsa-ember.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/illustrations/cards/iney-shell.webp",
+   "sha256": "cbcc9a25f139a21c331493483c4d45e098563bc4af9bebf184d764e41694847c",
+   "originalSha256": "c096a25b7e72729cccc73ef497f88b92b857d6171ef200a12cb3a2a337f2ade1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Иней Ракушечный",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "iney-shell"
+    ],
+    "4-players": [
+     "iney-shell"
+    ],
+    "5-players": [
+     "iney-shell"
+    ],
+    "6-players": [
+     "iney-shell"
+    ],
+    "7-players": [
+     "iney-shell"
+    ],
+    "8-players": [
+     "iney-shell"
+    ]
+   },
+   "file": "iney-shell.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/illustrations/cards/pukh-offcut.webp",
+   "sha256": "2a28dca9fc4f3ad67383dadce3f0415fad6792b1d470cb352923aa2861de8ecf",
+   "originalSha256": "c096a25b7e72729cccc73ef497f88b92b857d6171ef200a12cb3a2a337f2ade1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Пух Запасной Кусочек",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "pukh-offcut"
+    ],
+    "4-players": [
+     "pukh-offcut"
+    ],
+    "5-players": [
+     "pukh-offcut"
+    ],
+    "6-players": [
+     "pukh-offcut"
+    ],
+    "7-players": [
+     "pukh-offcut"
+    ],
+    "8-players": [
+     "pukh-offcut"
+    ]
+   },
+   "file": "pukh-offcut.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/illustrations/cards/dara-bench.webp",
+   "sha256": "85350d63abb23afba91c86786dcc28314b30cbbc98acc7a4ed01d933bc73e8a7",
+   "originalSha256": "c096a25b7e72729cccc73ef497f88b92b857d6171ef200a12cb3a2a337f2ade1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дара Меловая Черта",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "dara-bench"
+    ],
+    "4-players": [
+     "dara-bench"
+    ],
+    "5-players": [
+     "dara-bench"
+    ],
+    "6-players": [
+     "dara-bench"
+    ],
+    "7-players": [
+     "dara-bench"
+    ],
+    "8-players": [
+     "dara-bench"
+    ]
+   },
+   "file": "dara-bench.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/illustrations/cards/bryl-pocket.webp",
+   "sha256": "8b238dedaf48b54b7cdf9e53a6b50dccbcf7a0d66dd64e543669a170495f989d",
+   "originalSha256": "c096a25b7e72729cccc73ef497f88b92b857d6171ef200a12cb3a2a337f2ade1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Брыль Семь Карманов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "bryl-pocket"
+    ],
+    "4-players": [
+     "bryl-pocket"
+    ],
+    "5-players": [
+     "bryl-pocket"
+    ],
+    "6-players": [
+     "bryl-pocket"
+    ],
+    "7-players": [
+     "bryl-pocket"
+    ],
+    "8-players": [
+     "bryl-pocket"
+    ]
+   },
+   "file": "bryl-pocket.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/illustrations/cards/krug-weathervane.webp",
+   "sha256": "13af316285b5a648885af4043bb8017011f9028b94a56acf01be3e228f1b19af",
+   "originalSha256": "c096a25b7e72729cccc73ef497f88b92b857d6171ef200a12cb3a2a337f2ade1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Круг Флюгеров",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "krug-weathervane"
+    ],
+    "4-players": [
+     "krug-weathervane"
+    ],
+    "5-players": [
+     "krug-weathervane"
+    ],
+    "6-players": [
+     "krug-weathervane"
+    ],
+    "7-players": [
+     "krug-weathervane"
+    ],
+    "8-players": [
+     "krug-weathervane"
+    ]
+   },
+   "file": "krug-weathervane.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/assets/table/heroes-vesta-rivet.webp",
+   "sha256": "e9c13c70e2e9b910b5d0f8aaf85e4d4a139197a2982e2bdb6674277124fe6876",
+   "originalSha256": "6e77160a81e7af995bf0f48d3798859cde650b43a92de89192c185b462a0623e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Веста Клёпка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "vesta-rivet"
+    ],
+    "4-players": [
+     "vesta-rivet"
+    ],
+    "5-players": [
+     "vesta-rivet"
+    ],
+    "6-players": [
+     "vesta-rivet"
+    ],
+    "7-players": [
+     "vesta-rivet"
+    ],
+    "8-players": [
+     "vesta-rivet"
+    ]
+   },
+   "file": "vesta-rivet--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "vesta-rivet.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/assets/table/heroes-myrt-fitting.webp",
+   "sha256": "ee5b3bdcc00d0d944f09bddfd24b08af767b4efbeb436cd77b20b5ba0d204186",
+   "originalSha256": "6e77160a81e7af995bf0f48d3798859cde650b43a92de89192c185b462a0623e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мирт Примерка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "myrt-fitting"
+    ],
+    "4-players": [
+     "myrt-fitting"
+    ],
+    "5-players": [
+     "myrt-fitting"
+    ],
+    "6-players": [
+     "myrt-fitting"
+    ],
+    "7-players": [
+     "myrt-fitting"
+    ],
+    "8-players": [
+     "myrt-fitting"
+    ]
+   },
+   "file": "myrt-fitting--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "myrt-fitting.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/assets/table/heroes-runa-warmchalk.webp",
+   "sha256": "0245fe98b670a9c25005d1219dd06fbadbb1859d7816a2d283e0c9093e5d3ce2",
+   "originalSha256": "6e77160a81e7af995bf0f48d3798859cde650b43a92de89192c185b462a0623e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Руна Тёплый Мел",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "runa-warmchalk"
+    ],
+    "4-players": [
+     "runa-warmchalk"
+    ],
+    "5-players": [
+     "runa-warmchalk"
+    ],
+    "6-players": [
+     "runa-warmchalk"
+    ],
+    "7-players": [
+     "runa-warmchalk"
+    ],
+    "8-players": [
+     "runa-warmchalk"
+    ]
+   },
+   "file": "runa-warmchalk--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "runa-warmchalk.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/assets/table/heroes-elli-fold.webp",
+   "sha256": "697c2e279caad34d249242f3373b7543fc843afe5dbdc76998d8fbda91a705c6",
+   "originalSha256": "6e77160a81e7af995bf0f48d3798859cde650b43a92de89192c185b462a0623e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Элли Складка",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "elli-fold"
+    ],
+    "5-players": [
+     "elli-fold"
+    ],
+    "6-players": [
+     "elli-fold"
+    ],
+    "7-players": [
+     "elli-fold"
+    ],
+    "8-players": [
+     "elli-fold"
+    ]
+   },
+   "file": "elli-fold--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "elli-fold.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/assets/table/heroes-bora-grip.webp",
+   "sha256": "da45a2295239c10e996874fb2dd25da489d8b3df1713709fa869434b11f3d60b",
+   "originalSha256": "6e77160a81e7af995bf0f48d3798859cde650b43a92de89192c185b462a0623e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Бора Широкий Стежок",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "bora-grip"
+    ],
+    "6-players": [
+     "bora-grip"
+    ],
+    "7-players": [
+     "bora-grip"
+    ],
+    "8-players": [
+     "bora-grip"
+    ]
+   },
+   "file": "bora-grip--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "bora-grip.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/assets/table/heroes-tavi-countstep.webp",
+   "sha256": "8043b904d00ac6e96bea28ddf15b84ceb4e7aa0e25680d90c7706e85cd234687",
+   "originalSha256": "6e77160a81e7af995bf0f48d3798859cde650b43a92de89192c185b462a0623e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тави Ровный Шаг",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "tavi-countstep"
+    ],
+    "7-players": [
+     "tavi-countstep"
+    ],
+    "8-players": [
+     "tavi-countstep"
+    ]
+   },
+   "file": "tavi-countstep--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "tavi-countstep.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/assets/table/heroes-senna-repair.webp",
+   "sha256": "a416fe68647d3c1548d5e95a2dfaacb1f0cd0ec030fa6a01c9929224aa6086ac",
+   "originalSha256": "6e77160a81e7af995bf0f48d3798859cde650b43a92de89192c185b462a0623e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сенна Латка",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "senna-repair"
+    ],
+    "8-players": [
+     "senna-repair"
+    ]
+   },
+   "file": "senna-repair--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "senna-repair.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/assets/table/heroes-yaro-caption.webp",
+   "sha256": "40a0ed99bc2c609e3b3bcb01bfd5791b31d4efeda55128dc1249c71346f6cf69",
+   "originalSha256": "6e77160a81e7af995bf0f48d3798859cde650b43a92de89192c185b462a0623e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Яро Короткая Надпись",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [],
+    "8-players": [
+     "yaro-caption"
+    ]
+   },
+   "file": "yaro-caption--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "yaro-caption.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/assets/table/places-bare-stall.webp",
+   "sha256": "7dbe634a4ac2071bd06805f43c3ebce5187f56d0befc501f3c8fd74021bfbaeb",
+   "originalSha256": "9d30f61059ad6b7a6bf0cf0fda364547780835044fa19e185d63d333fd985922",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Прилавок с пустой вывеской",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "bare-stall"
+    ],
+    "4-players": [
+     "bare-stall"
+    ],
+    "5-players": [
+     "bare-stall"
+    ],
+    "6-players": [
+     "bare-stall"
+    ],
+    "7-players": [
+     "bare-stall"
+    ],
+    "8-players": [
+     "bare-stall"
+    ]
+   },
+   "file": "bare-stall.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/assets/table/places-turning-tailor.webp",
+   "sha256": "7b510d59bb49539305143f20fc76ee4c04c9dc2d160ea22e73b228049b36958c",
+   "originalSha256": "9d30f61059ad6b7a6bf0cf0fda364547780835044fa19e185d63d333fd985922",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лавка внутренних сторон",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "turning-tailor"
+    ],
+    "4-players": [
+     "turning-tailor"
+    ],
+    "5-players": [
+     "turning-tailor"
+    ],
+    "6-players": [
+     "turning-tailor"
+    ],
+    "7-players": [
+     "turning-tailor"
+    ],
+    "8-players": [
+     "turning-tailor"
+    ]
+   },
+   "file": "turning-tailor.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/assets/table/places-fitting-lane.webp",
+   "sha256": "e7b5ef99814cdb64c639c219b9d6f9899173310d83aeaa248509dd10df3b2f48",
+   "originalSha256": "9d30f61059ad6b7a6bf0cf0fda364547780835044fa19e185d63d333fd985922",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Переулок примерок",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "fitting-lane"
+    ],
+    "4-players": [
+     "fitting-lane"
+    ],
+    "5-players": [
+     "fitting-lane"
+    ],
+    "6-players": [
+     "fitting-lane"
+    ],
+    "7-players": [
+     "fitting-lane"
+    ],
+    "8-players": [
+     "fitting-lane"
+    ]
+   },
+   "file": "fitting-lane.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/assets/table/places-quarter-shop.webp",
+   "sha256": "12b782e44805fcf6c0cb24e5925fc0b49cd4b8c6ea584da77fdddb3d9be2212f",
+   "originalSha256": "9d30f61059ad6b7a6bf0cf0fda364547780835044fa19e185d63d333fd985922",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мастерская Севры Четверть",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "quarter-shop"
+    ],
+    "4-players": [
+     "quarter-shop"
+    ],
+    "5-players": [
+     "quarter-shop"
+    ],
+    "6-players": [
+     "quarter-shop"
+    ],
+    "7-players": [
+     "quarter-shop"
+    ],
+    "8-players": [
+     "quarter-shop"
+    ]
+   },
+   "file": "quarter-shop.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/assets/table/places-open-bench.webp",
+   "sha256": "c9909f9ae52494fb47782589ba6a0c285c7e27f7fa8a713b25ab9729187aa908",
+   "originalSha256": "9d30f61059ad6b7a6bf0cf0fda364547780835044fa19e185d63d333fd985922",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Открытый верстак",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "open-bench"
+    ],
+    "4-players": [
+     "open-bench"
+    ],
+    "5-players": [
+     "open-bench"
+    ],
+    "6-players": [
+     "open-bench"
+    ],
+    "7-players": [
+     "open-bench"
+    ],
+    "8-players": [
+     "open-bench"
+    ]
+   },
+   "file": "open-bench.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/assets/table/places-ribbon-yard.webp",
+   "sha256": "15dbf8abce2c70c3c3fb4e893fddef931e0b8f6375f1ab6916b6a850646bcf51",
+   "originalSha256": "9d30f61059ad6b7a6bf0cf0fda364547780835044fa19e185d63d333fd985922",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Двор обрезков",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ribbon-yard"
+    ],
+    "4-players": [
+     "ribbon-yard"
+    ],
+    "5-players": [
+     "ribbon-yard"
+    ],
+    "6-players": [
+     "ribbon-yard"
+    ],
+    "7-players": [
+     "ribbon-yard"
+    ],
+    "8-players": [
+     "ribbon-yard"
+    ]
+   },
+   "file": "ribbon-yard.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/assets/table/places-folding-bags.webp",
+   "sha256": "65f3d654f67dd8f8ab8d80ed517d8bfb75eedc957087f48b405c6c61d8113cd7",
+   "originalSha256": "9d30f61059ad6b7a6bf0cf0fda364547780835044fa19e185d63d333fd985922",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лавка выворачиваемых сумок",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "folding-bags"
+    ],
+    "4-players": [
+     "folding-bags"
+    ],
+    "5-players": [
+     "folding-bags"
+    ],
+    "6-players": [
+     "folding-bags"
+    ],
+    "7-players": [
+     "folding-bags"
+    ],
+    "8-players": [
+     "folding-bags"
+    ]
+   },
+   "file": "folding-bags.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/assets/table/places-double-pattern.webp",
+   "sha256": "9516458ace38fca36c9f7df3db0af6ecf1423a2ef5602d9cd3b6adae8fc3c8d3",
+   "originalSha256": "9d30f61059ad6b7a6bf0cf0fda364547780835044fa19e185d63d333fd985922",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мастерская двух узоров",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "double-pattern"
+    ],
+    "4-players": [
+     "double-pattern"
+    ],
+    "5-players": [
+     "double-pattern"
+    ],
+    "6-players": [
+     "double-pattern"
+    ],
+    "7-players": [
+     "double-pattern"
+    ],
+    "8-players": [
+     "double-pattern"
+    ]
+   },
+   "file": "double-pattern.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/assets/table/places-gust-terrace.webp",
+   "sha256": "dbd2c7016ffb86f3e563dedb8fd4f086397fdfcc3b3a8b09d2f03c702a9c64a6",
+   "originalSha256": "9d30f61059ad6b7a6bf0cf0fda364547780835044fa19e185d63d333fd985922",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Терраса косых порывов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "gust-terrace"
+    ],
+    "4-players": [
+     "gust-terrace"
+    ],
+    "5-players": [
+     "gust-terrace"
+    ],
+    "6-players": [
+     "gust-terrace"
+    ],
+    "7-players": [
+     "gust-terrace"
+    ],
+    "8-players": [
+     "gust-terrace"
+    ]
+   },
+   "file": "gust-terrace.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/assets/table/places-delivery-bench.webp",
+   "sha256": "a6b8d7485c73b1dfd4dca5563c6c6c7b8aded6a819c47eca5ccf0a9ef84e1b1a",
+   "originalSha256": "9d30f61059ad6b7a6bf0cf0fda364547780835044fa19e185d63d333fd985922",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Стол первой работы",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "delivery-bench"
+    ],
+    "4-players": [
+     "delivery-bench"
+    ],
+    "5-players": [
+     "delivery-bench"
+    ],
+    "6-players": [
+     "delivery-bench"
+    ],
+    "7-players": [
+     "delivery-bench"
+    ],
+    "8-players": [
+     "delivery-bench"
+    ]
+   },
+   "file": "delivery-bench.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/assets/table/foes-foe-1fe3438d9b.webp",
+   "sha256": "20da1acadf9b9b6b721fddfb4a6bd39dbe8bf294443bc62044c3edc5feaaa7c7",
+   "originalSha256": "9f8f8f2fd60b0fc31f2bb559db2fd41299491b8919d4c2d389c904c6b3efba65",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ожившая учебная кисть",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "unasked-brushes-foe-1",
+     "unasked-brushes-foe-2"
+    ],
+    "4-players": [
+     "unasked-brushes-foe-1",
+     "unasked-brushes-foe-2",
+     "unasked-brushes-foe-3"
+    ],
+    "5-players": [
+     "unasked-brushes-foe-1",
+     "unasked-brushes-foe-2",
+     "unasked-brushes-foe-3"
+    ],
+    "6-players": [
+     "unasked-brushes-foe-1",
+     "unasked-brushes-foe-2",
+     "unasked-brushes-foe-3",
+     "unasked-brushes-foe-4"
+    ],
+    "7-players": [
+     "unasked-brushes-foe-1",
+     "unasked-brushes-foe-2",
+     "unasked-brushes-foe-3",
+     "unasked-brushes-foe-4",
+     "unasked-brushes-foe-5"
+    ],
+    "8-players": [
+     "unasked-brushes-foe-1",
+     "unasked-brushes-foe-2",
+     "unasked-brushes-foe-3",
+     "unasked-brushes-foe-4",
+     "unasked-brushes-foe-5",
+     "unasked-brushes-foe-6"
+    ]
+   },
+   "file": "foe-1fe3438d9b.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/assets/table/foes-foe-1fe3438d9b.webp",
+   "sha256": "20da1acadf9b9b6b721fddfb4a6bd39dbe8bf294443bc62044c3edc5feaaa7c7",
+   "originalSha256": "9f8f8f2fd60b0fc31f2bb559db2fd41299491b8919d4c2d389c904c6b3efba65",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ожившая учебная кисть",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "unasked-brushes-foe-1",
+     "unasked-brushes-foe-2"
+    ],
+    "4-players": [
+     "unasked-brushes-foe-1",
+     "unasked-brushes-foe-2",
+     "unasked-brushes-foe-3"
+    ],
+    "5-players": [
+     "unasked-brushes-foe-1",
+     "unasked-brushes-foe-2",
+     "unasked-brushes-foe-3"
+    ],
+    "6-players": [
+     "unasked-brushes-foe-1",
+     "unasked-brushes-foe-2",
+     "unasked-brushes-foe-3",
+     "unasked-brushes-foe-4"
+    ],
+    "7-players": [
+     "unasked-brushes-foe-1",
+     "unasked-brushes-foe-2",
+     "unasked-brushes-foe-3",
+     "unasked-brushes-foe-4",
+     "unasked-brushes-foe-5"
+    ],
+    "8-players": [
+     "unasked-brushes-foe-1",
+     "unasked-brushes-foe-2",
+     "unasked-brushes-foe-3",
+     "unasked-brushes-foe-4",
+     "unasked-brushes-foe-5",
+     "unasked-brushes-foe-6"
+    ]
+   },
+   "file": "foe-1fe3438d9b--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-1fe3438d9b.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/assets/table/foes-foe-050a3d7d9b.webp",
+   "sha256": "4244b60f2e594abe05cd7efc0c25cae9acb5a5894c82aea589050d691248f3a0",
+   "originalSha256": "9f8f8f2fd60b0fc31f2bb559db2fd41299491b8919d4c2d389c904c6b3efba65",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Бумажный щёголь",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "paper-dandies-foe-1",
+     "paper-dandies-foe-2"
+    ],
+    "4-players": [
+     "paper-dandies-foe-1",
+     "paper-dandies-foe-2",
+     "paper-dandies-foe-3"
+    ],
+    "5-players": [
+     "paper-dandies-foe-1",
+     "paper-dandies-foe-2",
+     "paper-dandies-foe-3"
+    ],
+    "6-players": [
+     "paper-dandies-foe-1",
+     "paper-dandies-foe-2",
+     "paper-dandies-foe-3",
+     "paper-dandies-foe-4"
+    ],
+    "7-players": [
+     "paper-dandies-foe-1",
+     "paper-dandies-foe-2",
+     "paper-dandies-foe-3",
+     "paper-dandies-foe-4",
+     "paper-dandies-foe-5"
+    ],
+    "8-players": [
+     "paper-dandies-foe-1",
+     "paper-dandies-foe-2",
+     "paper-dandies-foe-3",
+     "paper-dandies-foe-4",
+     "paper-dandies-foe-5",
+     "paper-dandies-foe-6"
+    ]
+   },
+   "file": "foe-050a3d7d9b.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/assets/table/foes-foe-050a3d7d9b.webp",
+   "sha256": "4244b60f2e594abe05cd7efc0c25cae9acb5a5894c82aea589050d691248f3a0",
+   "originalSha256": "9f8f8f2fd60b0fc31f2bb559db2fd41299491b8919d4c2d389c904c6b3efba65",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Бумажный щёголь",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "paper-dandies-foe-1",
+     "paper-dandies-foe-2"
+    ],
+    "4-players": [
+     "paper-dandies-foe-1",
+     "paper-dandies-foe-2",
+     "paper-dandies-foe-3"
+    ],
+    "5-players": [
+     "paper-dandies-foe-1",
+     "paper-dandies-foe-2",
+     "paper-dandies-foe-3"
+    ],
+    "6-players": [
+     "paper-dandies-foe-1",
+     "paper-dandies-foe-2",
+     "paper-dandies-foe-3",
+     "paper-dandies-foe-4"
+    ],
+    "7-players": [
+     "paper-dandies-foe-1",
+     "paper-dandies-foe-2",
+     "paper-dandies-foe-3",
+     "paper-dandies-foe-4",
+     "paper-dandies-foe-5"
+    ],
+    "8-players": [
+     "paper-dandies-foe-1",
+     "paper-dandies-foe-2",
+     "paper-dandies-foe-3",
+     "paper-dandies-foe-4",
+     "paper-dandies-foe-5",
+     "paper-dandies-foe-6"
+    ]
+   },
+   "file": "foe-050a3d7d9b--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-050a3d7d9b.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/assets/table/foes-foe-682b78505e.webp",
+   "sha256": "fde61a46de259e81e0260474d3b530db6074c74ac098698dd5a83ae072a979a5",
+   "originalSha256": "9f8f8f2fd60b0fc31f2bb559db2fd41299491b8919d4c2d389c904c6b3efba65",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Оживший бумажный завиток",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "crosswind-curls-foe-1",
+     "crosswind-curls-foe-2"
+    ],
+    "4-players": [
+     "crosswind-curls-foe-1",
+     "crosswind-curls-foe-2",
+     "crosswind-curls-foe-3"
+    ],
+    "5-players": [
+     "crosswind-curls-foe-1",
+     "crosswind-curls-foe-2",
+     "crosswind-curls-foe-3"
+    ],
+    "6-players": [
+     "crosswind-curls-foe-1",
+     "crosswind-curls-foe-2",
+     "crosswind-curls-foe-3",
+     "crosswind-curls-foe-4"
+    ],
+    "7-players": [
+     "crosswind-curls-foe-1",
+     "crosswind-curls-foe-2",
+     "crosswind-curls-foe-3",
+     "crosswind-curls-foe-4",
+     "crosswind-curls-foe-5"
+    ],
+    "8-players": [
+     "crosswind-curls-foe-1",
+     "crosswind-curls-foe-2",
+     "crosswind-curls-foe-3",
+     "crosswind-curls-foe-4",
+     "crosswind-curls-foe-5",
+     "crosswind-curls-foe-6"
+    ]
+   },
+   "file": "foe-682b78505e.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/assets/table/foes-foe-682b78505e.webp",
+   "sha256": "fde61a46de259e81e0260474d3b530db6074c74ac098698dd5a83ae072a979a5",
+   "originalSha256": "9f8f8f2fd60b0fc31f2bb559db2fd41299491b8919d4c2d389c904c6b3efba65",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Оживший бумажный завиток",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "crosswind-curls-foe-1",
+     "crosswind-curls-foe-2"
+    ],
+    "4-players": [
+     "crosswind-curls-foe-1",
+     "crosswind-curls-foe-2",
+     "crosswind-curls-foe-3"
+    ],
+    "5-players": [
+     "crosswind-curls-foe-1",
+     "crosswind-curls-foe-2",
+     "crosswind-curls-foe-3"
+    ],
+    "6-players": [
+     "crosswind-curls-foe-1",
+     "crosswind-curls-foe-2",
+     "crosswind-curls-foe-3",
+     "crosswind-curls-foe-4"
+    ],
+    "7-players": [
+     "crosswind-curls-foe-1",
+     "crosswind-curls-foe-2",
+     "crosswind-curls-foe-3",
+     "crosswind-curls-foe-4",
+     "crosswind-curls-foe-5"
+    ],
+    "8-players": [
+     "crosswind-curls-foe-1",
+     "crosswind-curls-foe-2",
+     "crosswind-curls-foe-3",
+     "crosswind-curls-foe-4",
+     "crosswind-curls-foe-5",
+     "crosswind-curls-foe-6"
+    ]
+   },
+   "file": "foe-682b78505e--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-682b78505e.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/assets/table/npcs-tovin-tailor.webp",
+   "sha256": "56751789a2855231d072dbf539d1911cf148c03176923b0a6c5839d6787886e9",
+   "originalSha256": "7e2f3cc06d6673e22f9796225dd7e89756ba07ac3fec4c4c9c9951924a1b726c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Товин Подкладка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "tovin-tailor"
+    ],
+    "4-players": [
+     "tovin-tailor"
+    ],
+    "5-players": [
+     "tovin-tailor"
+    ],
+    "6-players": [
+     "tovin-tailor"
+    ],
+    "7-players": [
+     "tovin-tailor"
+    ],
+    "8-players": [
+     "tovin-tailor"
+    ]
+   },
+   "file": "tovin-tailor--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "tovin-tailor.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/assets/table/npcs-sevra-quarter.webp",
+   "sha256": "ba40bf97bb4d7aecca5fc69b2e5eca60be58a435531a9fac3733a7a67647e918",
+   "originalSha256": "7e2f3cc06d6673e22f9796225dd7e89756ba07ac3fec4c4c9c9951924a1b726c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Севра Четверть",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "sevra-quarter"
+    ],
+    "4-players": [
+     "sevra-quarter"
+    ],
+    "5-players": [
+     "sevra-quarter"
+    ],
+    "6-players": [
+     "sevra-quarter"
+    ],
+    "7-players": [
+     "sevra-quarter"
+    ],
+    "8-players": [
+     "sevra-quarter"
+    ]
+   },
+   "file": "sevra-quarter--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "sevra-quarter.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/assets/table/npcs-listva-bagmaker.webp",
+   "sha256": "3de447650e1f3395f62315cba09fb72e12f7c7d9721965875cf22d1e4f1fcd74",
+   "originalSha256": "7e2f3cc06d6673e22f9796225dd7e89756ba07ac3fec4c4c9c9951924a1b726c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Листва Внутренний Карман",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "listva-bagmaker"
+    ],
+    "4-players": [
+     "listva-bagmaker"
+    ],
+    "5-players": [
+     "listva-bagmaker"
+    ],
+    "6-players": [
+     "listva-bagmaker"
+    ],
+    "7-players": [
+     "listva-bagmaker"
+    ],
+    "8-players": [
+     "listva-bagmaker"
+    ]
+   },
+   "file": "listva-bagmaker--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "listva-bagmaker.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/assets/table/npcs-orsa-ember.webp",
+   "sha256": "6effdcf1cfd7707d1f9fef3d611644bbbee4bb2a12e4f4df8fbd4a11acc2bb9e",
+   "originalSha256": "7e2f3cc06d6673e22f9796225dd7e89756ba07ac3fec4c4c9c9951924a1b726c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Орса Угольная Черта",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "orsa-ember"
+    ],
+    "4-players": [
+     "orsa-ember"
+    ],
+    "5-players": [
+     "orsa-ember"
+    ],
+    "6-players": [
+     "orsa-ember"
+    ],
+    "7-players": [
+     "orsa-ember"
+    ],
+    "8-players": [
+     "orsa-ember"
+    ]
+   },
+   "file": "orsa-ember--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "orsa-ember.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/assets/table/npcs-iney-shell.webp",
+   "sha256": "ac36183bd5fbc78682721c01af9ffe6092c3ec938507e0117d2cbc2151cf7b6e",
+   "originalSha256": "7e2f3cc06d6673e22f9796225dd7e89756ba07ac3fec4c4c9c9951924a1b726c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Иней Ракушечный",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "iney-shell"
+    ],
+    "4-players": [
+     "iney-shell"
+    ],
+    "5-players": [
+     "iney-shell"
+    ],
+    "6-players": [
+     "iney-shell"
+    ],
+    "7-players": [
+     "iney-shell"
+    ],
+    "8-players": [
+     "iney-shell"
+    ]
+   },
+   "file": "iney-shell--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "iney-shell.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/assets/table/npcs-pukh-offcut.webp",
+   "sha256": "626254092126a8cb5e9390d50ee9fb9612cff11e994904e37e42c4b45120c653",
+   "originalSha256": "7e2f3cc06d6673e22f9796225dd7e89756ba07ac3fec4c4c9c9951924a1b726c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Пух Запасной Кусочек",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "pukh-offcut"
+    ],
+    "4-players": [
+     "pukh-offcut"
+    ],
+    "5-players": [
+     "pukh-offcut"
+    ],
+    "6-players": [
+     "pukh-offcut"
+    ],
+    "7-players": [
+     "pukh-offcut"
+    ],
+    "8-players": [
+     "pukh-offcut"
+    ]
+   },
+   "file": "pukh-offcut--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "pukh-offcut.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/assets/table/npcs-dara-bench.webp",
+   "sha256": "9f8ec9ba48e12690abde6fa34ed9c445f6a70b06e58ef54d53719975c50a3842",
+   "originalSha256": "7e2f3cc06d6673e22f9796225dd7e89756ba07ac3fec4c4c9c9951924a1b726c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дара Меловая Черта",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "dara-bench"
+    ],
+    "4-players": [
+     "dara-bench"
+    ],
+    "5-players": [
+     "dara-bench"
+    ],
+    "6-players": [
+     "dara-bench"
+    ],
+    "7-players": [
+     "dara-bench"
+    ],
+    "8-players": [
+     "dara-bench"
+    ]
+   },
+   "file": "dara-bench--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "dara-bench.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/assets/table/npcs-bryl-pocket.webp",
+   "sha256": "c8042c755e6ca1b992bacde57875e90084ec90ab556ec22b5b2a7ee3ebcfee6f",
+   "originalSha256": "7e2f3cc06d6673e22f9796225dd7e89756ba07ac3fec4c4c9c9951924a1b726c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Брыль Семь Карманов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "bryl-pocket"
+    ],
+    "4-players": [
+     "bryl-pocket"
+    ],
+    "5-players": [
+     "bryl-pocket"
+    ],
+    "6-players": [
+     "bryl-pocket"
+    ],
+    "7-players": [
+     "bryl-pocket"
+    ],
+    "8-players": [
+     "bryl-pocket"
+    ]
+   },
+   "file": "bryl-pocket--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "bryl-pocket.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/assets/table/npcs-krug-weathervane.webp",
+   "sha256": "7a14b89fdc03c544fa12c196c4293482c6e72f201daacbafed77a5eb33137fa7",
+   "originalSha256": "7e2f3cc06d6673e22f9796225dd7e89756ba07ac3fec4c4c9c9951924a1b726c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Круг Флюгеров",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "krug-weathervane"
+    ],
+    "4-players": [
+     "krug-weathervane"
+    ],
+    "5-players": [
+     "krug-weathervane"
+    ],
+    "6-players": [
+     "krug-weathervane"
+    ],
+    "7-players": [
+     "krug-weathervane"
+    ],
+    "8-players": [
+     "krug-weathervane"
+    ]
+   },
+   "file": "krug-weathervane--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "krug-weathervane.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/impossible-fair/illustrations/opening.webp",
+   "sha256": "cd3d20e600efeb8a1445c8554e7d046edaf9ce4e8cd54c508339c8c2bafffdce",
+   "originalSha256": "090d5df3f23bfefc5d07a0005abba47ef9cdd3ec59214063a3f083998c1961ed",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Прилавок с пустой вывеской — Ярмарка невозможных ремёсел",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "fold-fair"
+    ],
+    "4-players": [
+     "fold-fair"
+    ],
+    "5-players": [
+     "fold-fair"
+    ],
+    "6-players": [
+     "fold-fair"
+    ],
+    "7-players": [
+     "fold-fair"
+    ],
+    "8-players": [
+     "fold-fair"
+    ]
+   },
+   "file": "cover.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "file": "ribbon-yard--map.webp",
+   "source": "campaigns/fantasy-2026/impossible-fair/assets/battle-maps/ribbon-yard.webp",
+   "sha256": "1377191118b38f93e0db0eba0245c8306752a3849b295ef22f0e298093e73b65",
+   "originalSha256": "1c2da75ed16e02a964a7b884e00e5e342c295918eb65f3e3d51fa0eea190cc4a",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Двор обрезков. Visible scenery: Корзины разноцветных тканей и пустых деревянных рам стоят под сетчатым навесом. На каждой корзине крупно нарисовано назначение материала.. World style: Ярмарка Складок · Ochre block-print stamps, lively carved rollers and offset textile rosettes. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "ribbon-yard.webp",
+   "subjects": {
+    "3-players": [
+     "ribbon-yard"
+    ],
+    "4-players": [
+     "ribbon-yard"
+    ],
+    "5-players": [
+     "ribbon-yard"
+    ],
+    "6-players": [
+     "ribbon-yard"
+    ],
+    "7-players": [
+     "ribbon-yard"
+    ],
+    "8-players": [
+     "ribbon-yard"
+    ]
+   }
+  },
+  {
+   "file": "quarter-shop--map.webp",
+   "source": "campaigns/fantasy-2026/impossible-fair/assets/battle-maps/quarter-shop.webp",
+   "sha256": "ba0b74943e7c21fbb7b1c9c0262b8b3f42f49d810b4d94165942023aea43a278",
+   "originalSha256": "42d6149642395cb280b07bee874ad5edfd028f7a85756fabf6d0ac170017ea1a",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Мастерская Севры Четверть. Visible scenery: По белым шарфам бегут нарисованные рыбы, звери и буквы. Над прилавком висит честная надпись: «Сегодня танцует, завтра чисто». Рядом можно испытать пробный узор.. World style: Ярмарка Складок · Ochre block-print stamps, lively carved rollers and offset textile rosettes. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "quarter-shop.webp",
+   "subjects": {
+    "3-players": [
+     "quarter-shop"
+    ],
+    "4-players": [
+     "quarter-shop"
+    ],
+    "5-players": [
+     "quarter-shop"
+    ],
+    "6-players": [
+     "quarter-shop"
+    ],
+    "7-players": [
+     "quarter-shop"
+    ],
+    "8-players": [
+     "quarter-shop"
+    ]
+   }
+  },
+  {
+   "file": "gust-terrace--map.webp",
+   "source": "campaigns/fantasy-2026/impossible-fair/assets/battle-maps/gust-terrace.webp",
+   "sha256": "79383a307cdaa38b8c89d9ec7ac7b89abfb8cac973419910db0982e649f8886d",
+   "originalSha256": "7d52b7996e8182045ed9acdc895c7e99c149c09f64524140caca650825f03fe2",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Терраса косых порывов. Visible scenery: На открытом помосте висят широкие полоски ткани. Двери в волшебные земли иногда выпускают короткий ветер; за защитными ширмами можно сушить отпечатки.. World style: Ярмарка Складок · Ochre block-print stamps, lively carved rollers and offset textile rosettes. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "gust-terrace.webp",
+   "subjects": {
+    "3-players": [
+     "gust-terrace"
+    ],
+    "4-players": [
+     "gust-terrace"
+    ],
+    "5-players": [
+     "gust-terrace"
+    ],
+    "6-players": [
+     "gust-terrace"
+    ],
+    "7-players": [
+     "gust-terrace"
+    ],
+    "8-players": [
+     "gust-terrace"
+    ]
+   }
+  },
+  {
+   "file": "world-map.webp",
+   "source": "campaigns/fantasy-2026/impossible-fair/assets/world-map/world-map.webp",
+   "sha256": "495624c812b742dbc201de68c98be9d7ea9da61cc9f5ba53ab78193d333402e0",
+   "originalSha256": "c0ba4d87b8e0f7a748edcbf46b9352ab8b0e9e45280dd6422c1fac7144f07780",
+   "generated": "2026-11-22",
+   "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Ярмарка Складок. Style Ярмарка Складок · Ochre block-print stamps, lively carved rollers and offset textile rosettes. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Прилавок с пустой вывеской; 0.367,0.177 Лавка внутренних сторон; 0.623,0.15 Переулок примерок; 0.88,0.177 Мастерская Севры Четверть; 0.905,0.517 Открытый верстак; 0.648,0.49 Двор обрезков; 0.392,0.517 Лавка выворачиваемых сумок; 0.135,0.49 Мастерская двух узоров; 0.11,0.83 Терраса косых порывов; 0.367,0.857 Стол первой работы. Show public exteriors / unlabeled contours only.",
+   "references": [],
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null,
+   "subjects": {
+    "3-players": [
+     "world-map"
+    ],
+    "4-players": [
+     "world-map"
+    ],
+    "5-players": [
+     "world-map"
+    ],
+    "6-players": [
+     "world-map"
+    ],
+    "7-players": [
+     "world-map"
+    ],
+    "8-players": [
+     "world-map"
+    ]
+   }
+  }
+ ]
+}

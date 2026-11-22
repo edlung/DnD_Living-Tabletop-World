@@ -1,0 +1,49 @@
+{
+  "maps": [
+    {
+      "file": "glass-stream.webp",
+      "sha256": "06beed3df59af0bb6b23c45735feb9cb2c87374e5e02afc741fe1ae8b281571f",
+      "originalSha256": "03e9f750626c2cac26619041bc4051fb10f9c7efd7ee84810c5371d1375eff13",
+      "originalFile": "exec-b90c70af-46e4-44cb-884f-f0a3a22bf30a.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Стеклянная речка. Visible scenery: Ручей лежит прозрачной полосой среди чёрных плит. Плоские берега отражают свет фонарей длинными прямоугольниками.. World style: Чёрная складка · Black basalt hexagons opening into translucent amber mineral petals. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "glass-stream",
+      "encounter": "bank-skippers",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "dry-neck.webp",
+      "sha256": "c4ee1a73e81a7bf1a1a3ce5bbfe131357b29efcc12cf1161cb3366f27be3430c",
+      "originalSha256": "7ba51f6e5d20dfba0994baf4eff00a57194d26b92ddf0c2509a67e7f96ea5a5f",
+      "originalFile": "exec-fd8a528e-c7ae-40b1-b248-ec4f9b59655a.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Сухая горловина. Visible scenery: Сквозняк шевелит воротники в узком проходе. Рядом идёт широкий внешний обход с обычным каменным полом.. World style: Чёрная складка · Black basalt hexagons opening into translucent amber mineral petals. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "dry-neck",
+      "encounter": "draft-moths",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "steady-islands.webp",
+      "sha256": "2d662caeb0e473b33441a627299a26f4b04136f66ae51562bed3464c5c1d2bea",
+      "originalSha256": "8200d446920244b3c6c02a25fbf9d8d7a46a30b23d5bb08fd0b31eeed7130fcb",
+      "originalFile": "exec-9c4e4910-422d-41a2-b0c7-6760a0589f54.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Островки покоя. Visible scenery: Массивные базальтовые площадки поднимаются из складчатого пола. Между ними поблёскивают тонкие кромки, над ними достаточно места для навеса.. World style: Чёрная складка · Black basalt hexagons opening into translucent amber mineral petals. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "steady-islands",
+      "encounter": "mica-springers",
+      "grid": [
+        14,
+        12
+      ]
+    }
+  ]
+}

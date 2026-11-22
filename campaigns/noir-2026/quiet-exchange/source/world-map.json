@@ -1,0 +1,49 @@
+{
+  "region": "ravel-district",
+  "name": "Карта · Равель, Оловянный склон",
+  "description": "План местности «Равель, Оловянный склон». На карте отмечаются места, известные группе.",
+  "pins": [
+    {
+      "place": "night-cafe",
+      "x": 0.11,
+      "y": 0.15
+    },
+    {
+      "place": "exchange-hall",
+      "x": 0.367,
+      "y": 0.177
+    },
+    {
+      "place": "binding-shop",
+      "x": 0.623,
+      "y": 0.15
+    },
+    {
+      "place": "washhouse",
+      "x": 0.88,
+      "y": 0.177
+    },
+    {
+      "place": "tram-shelter",
+      "x": 0.905,
+      "y": 0.857
+    },
+    {
+      "place": "parcel-counter",
+      "x": 0.648,
+      "y": 0.83
+    },
+    {
+      "place": "ticket-office",
+      "x": 0.392,
+      "y": 0.857
+    },
+    {
+      "place": "roof-garden",
+      "x": 0.135,
+      "y": 0.83
+    }
+  ],
+  "routes": [],
+  "scale": "schematic"
+}

@@ -1,0 +1,12 @@
+{
+  "about": "Original unlabelled world map. Pin positions in source/world-map.json.",
+  "map": {
+    "file": "world-map.webp",
+    "sha256": "617f3aea6173bd3b9a5f280f05c8c02925c116667ae021ee8702ed872536e026",
+    "originalSha256": "aa1018a8d34e647ecdff4e0fa9d06bd6bf236ed5f8380a0b5ec50194cf150783",
+    "originalFile": "exec-51d3d762-2315-44d6-bdac-84639f565759.png",
+    "generated": "2026-11-22",
+    "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Гальмер. Style Гальмер · Pearl-grey factory ledger linen with ash flecks and small vermilion seal rings. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Комната взаимопомощи; 0.367,0.177 Участок П-17 завода «Белая линия»; 0.623,0.15 Опечатанная лаборатория; 0.88,0.177 Амбулатория на Кленовой; 0.905,0.517 Дом сменных собраний; 0.648,0.49 Контора регистрации отправлений; 0.392,0.517 Независимая пробная палата; 0.135,0.49 Дирекция «Белой линии»; 0.11,0.83 Зал городской трудовой комиссии. Show public exteriors / unlabeled contours only.",
+    "references": []
+  }
+}

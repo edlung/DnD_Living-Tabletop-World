@@ -1,0 +1,124 @@
+{
+  "region": "white-basin",
+  "name": "Карта · Белокамье и Тихий Зев",
+  "description": "План местности «Белокамье и Тихий Зев». На карте отмечаются места, известные группе.",
+  "pins": [
+    {
+      "place": "white-square",
+      "x": 0.11,
+      "y": 0.15
+    },
+    {
+      "place": "broken-gallery",
+      "x": 0.367,
+      "y": 0.177
+    },
+    {
+      "place": "whale-back",
+      "x": 0.623,
+      "y": 0.15
+    },
+    {
+      "place": "lamp-yard",
+      "x": 0.88,
+      "y": 0.177
+    },
+    {
+      "place": "stone-eye",
+      "x": 0.905,
+      "y": 0.517
+    },
+    {
+      "place": "bell-slope",
+      "x": 0.648,
+      "y": 0.49
+    },
+    {
+      "place": "blue-grove",
+      "x": 0.392,
+      "y": 0.517
+    },
+    {
+      "place": "empty-quarry",
+      "x": 0.135,
+      "y": 0.49
+    },
+    {
+      "place": "quiet-maw",
+      "x": 0.11,
+      "y": 0.83
+    }
+  ],
+  "routes": [
+    {
+      "from": "white-square",
+      "to": "broken-gallery",
+      "miles": 2,
+      "terrain": "hill",
+      "road": false
+    },
+    {
+      "from": "broken-gallery",
+      "to": "whale-back",
+      "miles": 3,
+      "terrain": "hill",
+      "road": false
+    },
+    {
+      "from": "whale-back",
+      "to": "stone-eye",
+      "miles": 2,
+      "terrain": "hill",
+      "road": false
+    },
+    {
+      "from": "stone-eye",
+      "to": "blue-grove",
+      "miles": 2,
+      "terrain": "hill",
+      "road": false
+    },
+    {
+      "from": "blue-grove",
+      "to": "quiet-maw",
+      "miles": 3,
+      "terrain": "hill",
+      "road": false
+    },
+    {
+      "from": "white-square",
+      "to": "lamp-yard",
+      "miles": 1,
+      "terrain": "hill",
+      "road": false
+    },
+    {
+      "from": "lamp-yard",
+      "to": "bell-slope",
+      "miles": 2,
+      "terrain": "hill",
+      "road": false
+    },
+    {
+      "from": "bell-slope",
+      "to": "empty-quarry",
+      "miles": 2,
+      "terrain": "hill",
+      "road": false
+    },
+    {
+      "from": "empty-quarry",
+      "to": "quiet-maw",
+      "miles": 2,
+      "terrain": "hill",
+      "road": false
+    },
+    {
+      "from": "bell-slope",
+      "to": "stone-eye",
+      "miles": 2,
+      "terrain": "hill",
+      "road": false
+    }
+  ]
+}

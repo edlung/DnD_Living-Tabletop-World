@@ -1,4 +1,6 @@
-import { readFileSync } from 'node:fs';
+import { statBlockFor } from './foe-blocks.ts';
+export { srdEntry } from './foe-blocks.ts';
+import { placeFormation, type Formation } from './formation.ts';
 
 import type {
   CampaignEntity,
@@ -38,7 +40,11 @@ export interface KitFoe {
   description: string;
   count: number;
 }
-export type KitBoss = Omit<KitFoe, 'count'>;
+export type KitBoss = Omit<KitFoe, 'count'> & {
+  size?: StatBlock['size'];
+  attackIds?: readonly string[];
+  attacksPerAction?: number;
+};
 export interface KitEncounter {
   key: string;
   title: string;
@@ -48,112 +54,10 @@ export interface KitEncounter {
   tactics: string;
   peaceful?: string;
   layout?: string;
+  formation?: Formation;
   foes?: KitFoe[];
   boss?: KitBoss;
 }
-
-const SRD = JSON.parse(
-  readFileSync(new URL('./srd-blocks.json', import.meta.url), 'utf8'),
-) as Record<string, { cr: number; xp: number; block: StatBlock }>;
-
-const ATTACK_RU: Record<string, string> = {
-  'Abyssal Glaive': 'Глефа бездны',
-  Battleaxe: 'Боевой топор',
-  Beak: 'Клюв',
-  Beaks: 'Клювы',
-  Beard: 'Борода',
-  Bite: 'Укус',
-  Bites: 'Укусы',
-  'Bone Bow': 'Костяной лук',
-  'Bone Cudgel': 'Костяная дубина',
-  Burn: 'Ожог',
-  'Burning Hammer': 'Пылающий молот',
-  'Charged Tendril': 'Заряженный усик',
-  Claw: 'Коготь',
-  Claws: 'Когти',
-  Club: 'Дубинка',
-  Crush: 'Сокрушение',
-  Dagger: 'Кинжал',
-  'Dissolving Pseudopod': 'Растворяющая ложноножка',
-  'Draining Swipe': 'Иссушающий взмах',
-  'Enchanting Bow': 'Чарующий лук',
-  'Fiendish Touch': 'Касание исчадия',
-  Fist: 'Кулак',
-  'Flame Spear': 'Пламенное копьё',
-  Gore: 'Бодание',
-  Gouge: 'Рваный удар',
-  Grab: 'Захват',
-  Greataxe: 'Секира',
-  Greatclub: 'Палица',
-  Greatsword: 'Двуручный меч',
-  'Hand Crossbow': 'Ручной арбалет',
-  Handaxe: 'Топорик',
-  Harpoon: 'Гарпун',
-  'Heavy Crossbow': 'Тяжёлый арбалет',
-  Hooves: 'Копыта',
-  'Hurl Flame': 'Бросок пламени',
-  'Infernal Glaive': 'Адская глефа',
-  Javelin: 'Метательное копьё',
-  'Life Drain': 'Вытягивание жизни',
-  'Light Crossbow': 'Лёгкий арбалет',
-  'Light Hammer': 'Лёгкий молот',
-  Longbow: 'Длинный лук',
-  Longsword: 'Длинный меч',
-  Mace: 'Булава',
-  Morningstar: 'Моргенштерн',
-  'Necrotic Bow': 'Некротический лук',
-  'Necrotic Sword': 'Некротический меч',
-  'Needle Sword': 'Игольчатый меч',
-  'Ocean Spear': 'Морское копьё',
-  'Pact Blade': 'Клинок договора',
-  'Petrifying Bite': 'Каменящий укус',
-  Pike: 'Пика',
-  Pincer: 'Клешня',
-  Pistol: 'Пистолет',
-  Proboscis: 'Хоботок',
-  Pseudopod: 'Ложноножка',
-  'Radiant Flame': 'Сияющее пламя',
-  'Radiant Horn': 'Сияющий рог',
-  Rake: 'Удар когтями',
-  Ram: 'Таран',
-  Rapier: 'Рапира',
-  Rend: 'Разрывание',
-  'Restless Touch': 'Беспокойное касание',
-  'Ritual Sickle': 'Обрядовый серп',
-  Rock: 'Камень',
-  'Rock Launch': 'Метание камня',
-  'Rotting Fist': 'Гниющий кулак',
-  'Rotting Touch': 'Гниющее касание',
-  Scimitar: 'Скимитар',
-  Scratch: 'Царапина',
-  Shock: 'Разряд',
-  Shortbow: 'Короткий лук',
-  Shortsword: 'Короткий меч',
-  Slam: 'Удар',
-  Slash: 'Рубящий удар',
-  Smother: 'Удушение',
-  Spear: 'Копьё',
-  Sting: 'Жало',
-  'Swarm of Grasping Hands': 'Рой хватающих рук',
-  Tail: 'Хвост',
-  'Tail Spike': 'Шип на хвосте',
-  Talons: 'Когти',
-  Tentacle: 'Щупальце',
-  Tentacles: 'Щупальца',
-  'Thorn Burst': 'Взрыв шипов',
-  'Thunderous Slam': 'Громовой удар',
-  Touch: 'Касание',
-  'Trash Lob': 'Бросок мусора',
-  'Tree Club': 'Древесная дубина',
-  Tusk: 'Клык',
-  'Umbral Dagger': 'Теневой кинжал',
-  'Verdant Wisp': 'Зелёный огонёк',
-  'Vile Slime': 'Мерзкая слизь',
-  'Vine Lash': 'Удар лозой',
-  'Vine Staff': 'Посох из лозы',
-  Warhammer: 'Боевой молот',
-  'Withering Touch': 'Иссушающее касание',
-};
 
 /** terrain key: [family, width, height, party side, foe side] */
 const TERRAIN: Record<string, [Family, number, number, Side, Side]> = {
@@ -247,20 +151,6 @@ export const LAYOUT_KEYS = Object.keys(TERRAIN);
 
 export function isKit(e: { foes?: unknown }): boolean {
   return Array.isArray(e.foes);
-}
-
-export function srdEntry(srd: string): { cr: number; xp: number; block: StatBlock } {
-  const entry = SRD[srd];
-  if (!entry) throw new Error(`Unknown or too strong SRD monster: ${srd}`);
-  return entry;
-}
-
-function statBlockFor(srd: string): StatBlock {
-  const block = JSON.parse(JSON.stringify(srdEntry(srd).block)) as StatBlock;
-  return {
-    ...block,
-    attacks: block.attacks.map((a) => ({ ...a, name: ATTACK_RU[a.name] ?? a.name })),
-  };
 }
 
 function random(seed: string): () => number {
@@ -436,31 +326,6 @@ export function layoutFor(terrain: string, seedKey: string): Layout {
 }
 
 /** Squares nearest an edge, starting from the middle of it. */
-function spawn(layout: Layout, side: Side, count: number, taken: Set<string>): Square[] {
-  const { width, height } = layout;
-  const blocked = new Set([...layout.difficult, ...layout.cover].map((c) => `${c.x},${c.y}`));
-  const horizontal = side === 'W' || side === 'E';
-  const across = horizontal ? height : width;
-  const span = horizontal ? width : height;
-  const order = Array.from({ length: across }, (_, i) => i).sort(
-    (a, b) => Math.abs(a - (across - 1) / 2) - Math.abs(b - (across - 1) / 2),
-  );
-  const found: Square[] = [];
-  for (let depth = 0; depth < span && found.length < count; depth++) {
-    const along = side === 'W' || side === 'N' ? depth : span - 1 - depth;
-    for (const s of order) {
-      if (found.length === count) break;
-      const square = horizontal ? { x: along, y: s } : { x: s, y: along };
-      const key = `${square.x},${square.y}`;
-      if (blocked.has(key) || taken.has(key)) continue;
-      taken.add(key);
-      found.push(square);
-    }
-  }
-  if (found.length < count) throw new Error('Battlefield too small for its combatants');
-  return found;
-}
-
 interface RosterEntry {
   key: string;
   name: string;
@@ -507,16 +372,20 @@ export function kitFoes(e: KitEncounter, size: number): CampaignEntity[] {
     status: 'active',
     existsSince: null,
     placement: { location: e.location, since: null },
-    statBlock: statBlockFor(foe.srd),
+    statBlock: statBlockFor(foe.srd, foe.key === e.key + '-boss' ? e.boss : undefined),
   }));
 }
 
 export function kitEncounter(e: KitEncounter, party: readonly string[]): Built {
   const layout = layoutFor(e.layout ?? 'forest-clearing', e.key);
   const roster = foeRoster(e, party.length);
-  const taken = new Set<string>();
-  const heroes = spawn(layout, layout.partySide, party.length, taken);
-  const foes = spawn(layout, layout.foeSide, roster.length, taken);
+  const { heroes, foes } = placeFormation(
+    layout,
+    party.length,
+    roster.length,
+    e.formation,
+    e.boss?.size,
+  );
   return {
     key: e.key,
     title: e.title,

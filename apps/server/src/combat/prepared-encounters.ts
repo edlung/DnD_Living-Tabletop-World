@@ -106,6 +106,11 @@ export function partyAt(state: WorldState, locationId: string, room: number) {
     .slice(0, room);
 }
 
+/** Before the party arrives, the DM sees the full prepared roster. */
+export function foesForParty(encounter: PreparedEncounter, partySize: number) {
+  return encounter.foes.filter((foe) => partySize === 0 || (foe.minPartySize ?? 1) <= partySize);
+}
+
 /** The DM's view of one encounter; null when this campaign does not hold its place or foes. */
 export function preparedView(
   state: WorldState,
@@ -114,10 +119,12 @@ export function preparedView(
   const location = state.entities.get(encounter.locationId);
   if (location?.kind !== 'location') return null;
   if (!encounter.foes.some((foe) => state.entities.has(foe.entityId))) return null;
-  const foes = encounter.foes.filter((foe) => canFight(state, foe.entityId)).length;
   const party = partyAt(state, encounter.locationId, encounter.partyStart.length).map(
     ({ entityId, kind, name }) => ({ entityId, kind, name }),
   );
+  const foes = foesForParty(encounter, party.length).filter((foe) =>
+    canFight(state, foe.entityId),
+  ).length;
   return {
     encounterId: encounter.encounterId,
     title: encounter.title,
@@ -206,7 +213,9 @@ export function registerPreparedEncounterRoutes(
         }
         return reply.code(409).send({ ...errorBody('CONFLICT', request.id), reason: view.blocked });
       }
-      const foes = encounter.foes.filter((foe) => canFight(dm.state, foe.entityId));
+      const foes = foesForParty(encounter, view.party.length).filter((foe) =>
+        canFight(dm.state, foe.entityId),
+      );
       for (const [index, foe] of foes.entries()) {
         if (dm.state.entities.get(foe.entityId)?.placement?.locationId === encounter.locationId) {
           continue;

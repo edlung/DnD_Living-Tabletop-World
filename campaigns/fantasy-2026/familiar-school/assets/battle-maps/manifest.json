@@ -1,0 +1,49 @@
+{
+  "maps": [
+    {
+      "file": "second-wing-yard.webp",
+      "sha256": "f139dda21ad1ebb0e6257f84ca77f8d0d8478b31ac8dbc568431f7f3b7595d66",
+      "originalSha256": "2837bef85404f1863475e111aa0dece0e8113efd6bf1c5420ed9c7bb6265a1f7",
+      "originalFile": "exec-a2a130dc-1a40-4e0d-aa91-e664d9675364.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Двор Второго Крыла. Visible scenery: Низкие учебные корпуса окружают двор с лестницами, верёвками и скамьями разной высоты. У ворот висит доска для добровольных полевых пар.. World style: Косая долина · Twin wing shapes and crossing animal paw tracks impressed in cobalt bookcloth. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "second-wing-yard",
+      "encounter": "yard-wardens",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "shed-gallery.webp",
+      "sha256": "636409522a8274f8a3e0ac371c5fc52374a9ef97ced601c06ae4762be6e0f07a",
+      "originalSha256": "d230dbde2e16039119a51c8549d8a792e6c7e37cc7c23504c0f286bea01af0a5",
+      "originalFile": "exec-1ed67a54-e2b6-48cb-b71f-70d46d53d44d.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Полотняная галерея. Visible scenery: На узкой просеке между деревьями натянуты учебные тенты и сухие верёвочные сети. Между полотнами оставлены боковые лазки, а на дальней стороне видны низкие колышки.. World style: Косая долина · Twin wing shapes and crossing animal paw tracks impressed in cobalt bookcloth. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "shed-gallery",
+      "encounter": "canvas-wardens",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "split-rock.webp",
+      "sha256": "ddf92366ad3f57ef601bc6079f57780962632711765e9fea1074692b28984ca2",
+      "originalSha256": "4bb1c5d973995941ee9cbe949941a3c791ffcce90165168ef019ba799d1701cf",
+      "originalFile": "exec-691f1402-d2cd-4c3c-b573-709d3e52ec31.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Раздвоенная скала. Visible scenery: Два скальных зубца оставляют короткий проход к школе. Сбоку тянется пологий обход с неудобным поворотом для больших вещей; на верхней террасе может собраться вся группа.. World style: Косая долина · Twin wing shapes and crossing animal paw tracks impressed in cobalt bookcloth. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "split-rock",
+      "encounter": "gate-wardens",
+      "grid": [
+        14,
+        12
+      ]
+    }
+  ]
+}

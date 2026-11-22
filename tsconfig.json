@@ -19,6 +19,7 @@
     "scripts/**/*.ts",
     "vitest.config.ts",
     "playwright.config.ts",
+    "playwright.campaign-readiness.config.ts",
     "playwright.evidence.config.ts",
     "playwright.deploy.config.ts"
   ],

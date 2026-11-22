@@ -1,3 +1,4 @@
+import { campaignAppearance } from '../visual/campaign-themes/index.ts';
 import type { SessionResponse } from '@ltw/contracts';
 import { LanguageProvider, StatusPanel, useLanguage, useT, type Language } from '@ltw/ui';
 import {
@@ -393,7 +394,7 @@ function SessionShell({
       ? standIn
       : null;
   return (
-    <div className="session-shell">
+    <div className="session-shell" {...campaignAppearance(identity.campaign.name)}>
       <a className="skip-link" href="#world-main">
         {t('Skip to world')}
       </a>

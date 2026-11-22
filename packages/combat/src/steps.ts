@@ -26,6 +26,8 @@ import { speedsOf, type Vitals, type Way } from './vitals.ts';
 export interface StepCost {
   readonly way: Way;
   readonly feet: number;
+  readonly squeezed: boolean;
+  readonly altitudeFt: number;
 }
 
 export interface PathPlan {
@@ -145,9 +147,9 @@ export function pathPlan(
         (crawling && !climbing ? 5 : 0);
       onFootFt = way === 'walk' ? onFootFt + 5 : 0;
     }
-    steps.push({ way, feet });
     squeezed = fit.squeezed;
     altitude = step.jump === true || step.drop === true ? 0 : next;
+    steps.push({ way, feet, squeezed, altitudeFt: altitude });
     from = step;
   }
   return { steps, squeezed, altitudeFt: altitude, fallFt, landings };

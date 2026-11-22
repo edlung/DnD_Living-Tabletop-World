@@ -1,0 +1,668 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "paper-sea-heroes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-cee270c9-829e-4136-bed9-07eacce07df7.png",
+      "originalSha256": "ea44ece38018596e270d359813f978f5af2fb9a3a5bef07a8c5573b5e6becce0",
+      "columns": 4,
+      "rows": 2,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 4 equal columns by 2 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Море незаконченных продолжений · Overlapping folded paper waves and small origami islands in indigo and cream. Cell 1. Тая Скат. Короткая куртка с множеством карманов, спокойный взгляд и блокнот с двумя колонками: «вижу» и «думаю».\nCell 2. Миро Лин. Потёртая накидка, крепкие ладони и аккуратно сложенная верёвка. Говорит после короткой паузы и любит проверять, удобно ли идти всем.\nCell 3. Эна Тон. Медный круг на шнурке, светлые рукава и несколько карточек для тех, кому легче написать, чем сказать.\nCell 4. Лисса Ёр. Синяя шляпа с мягкими полями, флакон обычных чернил и пачка неиспользованных закладок.\nCell 5. Руэн Пик. Красный шарф, большие удобные ботинки и значок в виде пустого щита, на котором ещё ничего не нарисовано.\nCell 6. Орей Клей. Серебристые волосы, жилет с простыми пуговицами и футляр для карандаша, который он часто открывает и снова закрывает.\nCell 7. Ними Рей. Зелёная сумка, дорожная чашка и вышитое на манжете маленькое открытое окно.. Leave final unused cells empty.",
+      "references": [
+        "campaigns/mixed-ages-2026/paper-sea/illustrations/cards/taya-skat.webp",
+        "campaigns/mixed-ages-2026/paper-sea/illustrations/cards/miro-lin.webp",
+        "campaigns/mixed-ages-2026/paper-sea/illustrations/cards/ena-ton.webp",
+        "campaigns/mixed-ages-2026/paper-sea/illustrations/cards/lissa-yor.webp",
+        "campaigns/mixed-ages-2026/paper-sea/illustrations/cards/ruen-pik.webp",
+        "campaigns/mixed-ages-2026/paper-sea/illustrations/cards/orey-kley.webp",
+        "campaigns/mixed-ages-2026/paper-sea/illustrations/cards/nimi-rey.webp"
+      ]
+    },
+    {
+      "id": "paper-sea-foes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-8f927f3c-efe4-4745-9041-46688d3c196c.png",
+      "originalSha256": "f6d3760541d9b57d1e2115966259fa3d0d1eed35ea9b29ad3d436ac9d3856e8f",
+      "columns": 3,
+      "rows": 1,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 3 equal columns by 1 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Море незаконченных продолжений · Overlapping folded paper waves and small origami islands in indigo and cream. Cell 1. Бумажный великан. Сложенная фигура с широкими тупыми ладонями и нарисованным торжественным подбородком. Это объявленный учебный предмет, а не пленённый человек.\nCell 2. Надутое сравнение. Бумажная фигура с надписью «огромный, как всё» и смешными короткими ногами. Её нелепость относится к фразе, а не к телу или голосу игрока.\nCell 3. Упрямая скобка. Плотно сложенная бумажная скобка с двумя короткими ножками; на боку написано слово «всегда». Это реквизит предложения Касса, а не власть над будущим.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "paper-sea-places-0",
+      "originalFile": "exec-26aee427-b4a8-448b-bcc6-cb8d9d816376.png",
+      "originalSha256": "842247000b40bf44423845f1fc442156b3d22ac07ddc1473d3c7486e850da2ab",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "A registered game art atlas of location illustrations, one clearly distinct unpopulated environment per cell, distinct scene lighting and structures. Fill each cell edge to edge. Atmospheric painted landscape or architectural interiors at human eye level. No plot events, clues, icons or writing. EXACT regular grid, 3 equal columns by 3 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Море незаконченных продолжений · Overlapping folded paper waves and small origami islands in indigo and cream. Cell 1. Пристань Запятой. Белая площадка с чашками на перилах и скамьёй для незаконченных разговоров. На одном конце видны жанровые острова, на другом — обычное крыльцо читателя.\nCell 2. Улица Семи Зонтов. Дождливый городок камерных детективов. Под семью цветными зонтами стоят столики для вопросов, а на окнах мелом пишут время встреч.\nCell 3. Плато Долгого Шага. Остров героических баллад с высоким, но широким уступом и удобной нижней тропой. На камнях вырезаны имена путников, а ветер относит песни к далёким домам.\nCell 4. Парк Преувеличений. Остров комических рассказов: зонтики похожи на грибы, скамейки подписаны громкими сравнениями. Между весёлыми столами есть тихая дорожка без обязательных шуток.\nCell 5. Дом Тихого Вторника. Небольшой дом повседневной прозы с часами, свободным столом и тремя креслами у окна. Здесь можно погостить, договориться о следующем визите или просто помолчать.\nCell 6. Салон Незакрытых Скобок. Комната, где будущие книги получают пробные названия. На подставках лежат предложения издателя; рядом достаточно чистой бумаги для своего варианта. Двери не запираются.\nCell 7. Тихое Поле. Широкая белая полоса между историями с солнечными часами и несколькими отдельными столами. У каждого стола есть право на тишину и дорожка к общей скамье.\nCell 8. Мост Последней Фразы. Низкий мост ведёт к дальней двери из романа Руты. Над перилами висит одно недописанное предложение; возле него можно остановиться, повернуть обратно или продолжить шаг.\nCell 9. Читательское крыльцо. Открытый порог между бумажным морем и привычным миром посетителей. На лавочке удобно ждать друзей; ничьё имя, память или вещи не остаются платой за выход.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "paper-sea-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-0cf6c2a1-659c-43a9-b859-0a94f84dec53.png",
+      "originalSha256": "35cde650647fea2ce7053a7aaf033060e6cf3e57c50bdba2d027b53c266fe8d6",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 5 distinct hand-painted tabletop miniature figurines for the world of Море бумажных островов. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Рута Вей. Зелёное пальто, неровно подстриженные волосы и чашка с отколотой, но гладкой ручкой.\nCell 2. Тавин Ров. Длинный плащ, жёлтый зонт и мел на пальцах. Любит расставлять чашки по времени прихода гостей.\nCell 3. Мэйна Кер. Светлая жилетка, полосатый зонт и жестяная коробка с цветными мелками.\nCell 4. Сая Тарн. Походная одежда без знаков победителя, палка с гладкой рукоятью и седая прядь у виска.\nCell 5. Дал Орн. Бордовый плащ, трёхструнная дорожная лира и лист с перечёркнутыми окончаниями строк.",
+      "references": [
+        "campaigns/mixed-ages-2026/paper-sea/illustrations/cards/ruta-vey.webp",
+        "campaigns/mixed-ages-2026/paper-sea/illustrations/cards/tavin-rov.webp",
+        "campaigns/mixed-ages-2026/paper-sea/illustrations/cards/mayna-ker.webp",
+        "campaigns/mixed-ages-2026/paper-sea/illustrations/cards/saya-tarn.webp",
+        "campaigns/mixed-ages-2026/paper-sea/illustrations/cards/dal-orn.webp"
+      ]
+    },
+    {
+      "id": "paper-sea-npcs-1",
+      "cutoutRevision": 4,
+      "originalFile": "exec-30ef2af2-43af-471d-81b7-3c88f712ec5b.png",
+      "originalSha256": "6829f7cbe05a03ca114d0a1cdd828e1077acb1d396f7da0c18be5d306c53c552",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 5 distinct hand-painted tabletop miniature figurines for the world of Море бумажных островов. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Бель Атр. Лимонный жилет, непарные перчатки и аккуратная карточка «Можно без шутки» на груди.\nCell 2. Нора Шов. Тёмное платье с широкими карманами, очки на цепочке и мягкие тапочки у своего кресла.\nCell 3. Сэм Тир. Рубашка с закатанными рукавами, деревянный брелок в форме окна и привычка оставлять соседний стул свободным.\nCell 4. Касс Рем. Бежевый костюм, чернильная точка на манжете и три хорошо оформленные папки с предложениями.\nCell 5. Веля Рук. Фиолетовый платок, плоская папка с образцами шрифта и короткий карандаш за ухом.",
+      "references": [
+        "campaigns/mixed-ages-2026/paper-sea/illustrations/cards/bel-atr.webp",
+        "campaigns/mixed-ages-2026/paper-sea/illustrations/cards/nora-shov.webp",
+        "campaigns/mixed-ages-2026/paper-sea/illustrations/cards/sam-tir.webp",
+        "campaigns/mixed-ages-2026/paper-sea/illustrations/cards/kass-rem.webp",
+        "campaigns/mixed-ages-2026/paper-sea/illustrations/cards/velya-ruk.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "taya-skat",
+      "title": "Тая Скат",
+      "kind": "hero",
+      "subjects": [
+        "taya-skat"
+      ],
+      "file": "heroes-taya-skat.webp",
+      "sha256": "fe372ecea685a9e4f99f0236c00f14c6db7e8ff6d0789bf4069ecc6142ff605c",
+      "originalSha256": "ea44ece38018596e270d359813f978f5af2fb9a3a5bef07a8c5573b5e6becce0",
+      "generated": "2026-11-22",
+      "sheet": "paper-sea-heroes-0",
+      "cell": 1,
+      "crop": {
+        "left": 83,
+        "top": 13,
+        "width": 271,
+        "height": 418
+      }
+    },
+    {
+      "key": "miro-lin",
+      "title": "Миро Лин",
+      "kind": "hero",
+      "subjects": [
+        "miro-lin"
+      ],
+      "file": "heroes-miro-lin.webp",
+      "sha256": "d7e80c022e2f9709c9381763cc3a76bb2f9cd48e6d751915d4e7741bfa90dfcf",
+      "originalSha256": "ea44ece38018596e270d359813f978f5af2fb9a3a5bef07a8c5573b5e6becce0",
+      "generated": "2026-11-22",
+      "sheet": "paper-sea-heroes-0",
+      "cell": 2,
+      "crop": {
+        "left": 526,
+        "top": 9,
+        "width": 271,
+        "height": 422
+      }
+    },
+    {
+      "key": "ena-ton",
+      "title": "Эна Тон",
+      "kind": "hero",
+      "subjects": [
+        "ena-ton"
+      ],
+      "file": "heroes-ena-ton.webp",
+      "sha256": "97823b45e7407b2b840bcae6355b2ea5601df3e33f11aedf1c20a71376fd2e55",
+      "originalSha256": "ea44ece38018596e270d359813f978f5af2fb9a3a5bef07a8c5573b5e6becce0",
+      "generated": "2026-11-22",
+      "sheet": "paper-sea-heroes-0",
+      "cell": 3,
+      "crop": {
+        "left": 976,
+        "top": 12,
+        "width": 268,
+        "height": 419
+      }
+    },
+    {
+      "key": "lissa-yor",
+      "title": "Лисса Ёр",
+      "kind": "hero",
+      "subjects": [
+        "lissa-yor"
+      ],
+      "file": "heroes-lissa-yor.webp",
+      "sha256": "dffac6a883c382deec4cc20f4c3524465630bdb3fe12f153b2ebe1528b7fdd58",
+      "originalSha256": "ea44ece38018596e270d359813f978f5af2fb9a3a5bef07a8c5573b5e6becce0",
+      "generated": "2026-11-22",
+      "sheet": "paper-sea-heroes-0",
+      "cell": 4,
+      "crop": {
+        "left": 1421,
+        "top": 10,
+        "width": 270,
+        "height": 421
+      }
+    },
+    {
+      "key": "ruen-pik",
+      "title": "Руэн Пик",
+      "kind": "hero",
+      "subjects": [
+        "ruen-pik"
+      ],
+      "file": "heroes-ruen-pik.webp",
+      "sha256": "858833dae1b5afbd5f2aa062d4cba457a70d29a73c932c313ef6121a30fbce43",
+      "originalSha256": "ea44ece38018596e270d359813f978f5af2fb9a3a5bef07a8c5573b5e6becce0",
+      "generated": "2026-11-22",
+      "sheet": "paper-sea-heroes-0",
+      "cell": 5,
+      "crop": {
+        "left": 90,
+        "top": 451,
+        "width": 262,
+        "height": 424
+      }
+    },
+    {
+      "key": "orey-kley",
+      "title": "Орей Клей",
+      "kind": "hero",
+      "subjects": [
+        "orey-kley"
+      ],
+      "file": "heroes-orey-kley.webp",
+      "sha256": "49bb0236bca57434500165f090a5084e5688418dd58c17ce8892ef84b91deef5",
+      "originalSha256": "ea44ece38018596e270d359813f978f5af2fb9a3a5bef07a8c5573b5e6becce0",
+      "generated": "2026-11-22",
+      "sheet": "paper-sea-heroes-0",
+      "cell": 6,
+      "crop": {
+        "left": 532,
+        "top": 454,
+        "width": 262,
+        "height": 421
+      }
+    },
+    {
+      "key": "nimi-rey",
+      "title": "Ними Рей",
+      "kind": "hero",
+      "subjects": [
+        "nimi-rey"
+      ],
+      "file": "heroes-nimi-rey.webp",
+      "sha256": "f572bd877c717a1fcca5309fe9b4d4de0fcedff7a3a66d93f80bdd20afcbbb09",
+      "originalSha256": "ea44ece38018596e270d359813f978f5af2fb9a3a5bef07a8c5573b5e6becce0",
+      "generated": "2026-11-22",
+      "sheet": "paper-sea-heroes-0",
+      "cell": 7,
+      "crop": {
+        "left": 977,
+        "top": 455,
+        "width": 264,
+        "height": 420
+      }
+    },
+    {
+      "key": "foe-d40201b3e8",
+      "title": "Бумажный великан",
+      "kind": "foe",
+      "subjects": [
+        "epic-folds-foe-1",
+        "epic-folds-foe-2",
+        "epic-folds-foe-3",
+        "epic-folds-foe-4",
+        "epic-folds-foe-5"
+      ],
+      "file": "foes-foe-d40201b3e8.webp",
+      "sha256": "fa2892281eb2d240f8e4cc111d4ae0205d56d49b87ee7a3987b21d885ed3bf92",
+      "originalSha256": "f6d3760541d9b57d1e2115966259fa3d0d1eed35ea9b29ad3d436ac9d3856e8f",
+      "generated": "2026-11-22",
+      "sheet": "paper-sea-foes-0",
+      "cell": 1,
+      "crop": {
+        "left": 45,
+        "top": 35,
+        "width": 653,
+        "height": 657
+      }
+    },
+    {
+      "key": "foe-28bbdf5a26",
+      "title": "Надутое сравнение",
+      "kind": "foe",
+      "subjects": [
+        "comic-folds-foe-1",
+        "comic-folds-foe-2",
+        "comic-folds-foe-3",
+        "comic-folds-foe-4",
+        "comic-folds-foe-5"
+      ],
+      "file": "foes-foe-28bbdf5a26.webp",
+      "sha256": "2d54dd9b324314f0b693c0d78a73ea1e583e2e994de42b82cf197e70477f3261",
+      "originalSha256": "f6d3760541d9b57d1e2115966259fa3d0d1eed35ea9b29ad3d436ac9d3856e8f",
+      "generated": "2026-11-22",
+      "sheet": "paper-sea-foes-0",
+      "cell": 2,
+      "crop": {
+        "left": 808,
+        "top": 56,
+        "width": 560,
+        "height": 636
+      }
+    },
+    {
+      "key": "foe-562e7e04f1",
+      "title": "Упрямая скобка",
+      "kind": "foe",
+      "subjects": [
+        "final-folds-foe-1",
+        "final-folds-foe-2",
+        "final-folds-foe-3",
+        "final-folds-foe-4",
+        "final-folds-foe-5"
+      ],
+      "file": "foes-foe-562e7e04f1.webp",
+      "sha256": "b17c1ba6551ad457ae42d49dc67547ab7b81160759881d454fc502b345e4b6f3",
+      "originalSha256": "f6d3760541d9b57d1e2115966259fa3d0d1eed35ea9b29ad3d436ac9d3856e8f",
+      "generated": "2026-11-22",
+      "sheet": "paper-sea-foes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1577,
+        "top": 41,
+        "width": 471,
+        "height": 651
+      }
+    },
+    {
+      "key": "comma-quay",
+      "title": "Пристань Запятой",
+      "kind": "place",
+      "subjects": [
+        "comma-quay"
+      ],
+      "file": "places-comma-quay.webp",
+      "sha256": "a627a7930add53df15abd7ad25daed6fe6f049c250a08e52b9b9a554c9a706d6",
+      "originalSha256": "842247000b40bf44423845f1fc442156b3d22ac07ddc1473d3c7486e850da2ab",
+      "generated": "2026-11-22",
+      "sheet": "paper-sea-places-0",
+      "cell": 1,
+      "crop": {
+        "left": 1,
+        "top": 1,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "umbrella-street",
+      "title": "Улица Семи Зонтов",
+      "kind": "place",
+      "subjects": [
+        "umbrella-street"
+      ],
+      "file": "places-umbrella-street.webp",
+      "sha256": "6db92086bf956aebda6d2fd3c2153ca4bfe4f4e7c5eaf22f314770ae11b49c0e",
+      "originalSha256": "842247000b40bf44423845f1fc442156b3d22ac07ddc1473d3c7486e850da2ab",
+      "generated": "2026-11-22",
+      "sheet": "paper-sea-places-0",
+      "cell": 2,
+      "crop": {
+        "left": 484,
+        "top": 1,
+        "width": 480,
+        "height": 360
+      }
+    },
+    {
+      "key": "long-step",
+      "title": "Плато Долгого Шага",
+      "kind": "place",
+      "subjects": [
+        "long-step"
+      ],
+      "file": "places-long-step.webp",
+      "sha256": "3a020a2fb70c55a4ccb2d92e30b6efa9cf94488b0047552d7129a1f09f16f7a1",
+      "originalSha256": "842247000b40bf44423845f1fc442156b3d22ac07ddc1473d3c7486e850da2ab",
+      "generated": "2026-11-22",
+      "sheet": "paper-sea-places-0",
+      "cell": 3,
+      "crop": {
+        "left": 966,
+        "top": 1,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "loud-garden",
+      "title": "Парк Преувеличений",
+      "kind": "place",
+      "subjects": [
+        "loud-garden"
+      ],
+      "file": "places-loud-garden.webp",
+      "sha256": "e4c8654ee562dd77120a5273a4f9060f4f532497514f208b71c772051ae246ea",
+      "originalSha256": "842247000b40bf44423845f1fc442156b3d22ac07ddc1473d3c7486e850da2ab",
+      "generated": "2026-11-22",
+      "sheet": "paper-sea-places-0",
+      "cell": 4,
+      "crop": {
+        "left": 1,
+        "top": 363,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "tuesday-house",
+      "title": "Дом Тихого Вторника",
+      "kind": "place",
+      "subjects": [
+        "tuesday-house"
+      ],
+      "file": "places-tuesday-house.webp",
+      "sha256": "cbf18bff3781c4d81941da5a090d8f46ab8e795d941f53643ae578497b283e22",
+      "originalSha256": "842247000b40bf44423845f1fc442156b3d22ac07ddc1473d3c7486e850da2ab",
+      "generated": "2026-11-22",
+      "sheet": "paper-sea-places-0",
+      "cell": 5,
+      "crop": {
+        "left": 484,
+        "top": 363,
+        "width": 480,
+        "height": 360
+      }
+    },
+    {
+      "key": "bracket-salon",
+      "title": "Салон Незакрытых Скобок",
+      "kind": "place",
+      "subjects": [
+        "bracket-salon"
+      ],
+      "file": "places-bracket-salon.webp",
+      "sha256": "fbeef85ba44441b381e19b6aeff87b8aecb4cc7487e365856332c28bab42556e",
+      "originalSha256": "842247000b40bf44423845f1fc442156b3d22ac07ddc1473d3c7486e850da2ab",
+      "generated": "2026-11-22",
+      "sheet": "paper-sea-places-0",
+      "cell": 6,
+      "crop": {
+        "left": 966,
+        "top": 363,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "quiet-margin",
+      "title": "Тихое Поле",
+      "kind": "place",
+      "subjects": [
+        "quiet-margin"
+      ],
+      "file": "places-quiet-margin.webp",
+      "sha256": "e4c63ffa1ca3089cb874df217367f35119666810a13f57849336b3c2e18378d2",
+      "originalSha256": "842247000b40bf44423845f1fc442156b3d22ac07ddc1473d3c7486e850da2ab",
+      "generated": "2026-11-22",
+      "sheet": "paper-sea-places-0",
+      "cell": 7,
+      "crop": {
+        "left": 1,
+        "top": 725,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "last-bridge",
+      "title": "Мост Последней Фразы",
+      "kind": "place",
+      "subjects": [
+        "last-bridge"
+      ],
+      "file": "places-last-bridge.webp",
+      "sha256": "2d8f6272496230116a69cba675a906b4fc19f6c49274c7dbc697175cfcb56371",
+      "originalSha256": "842247000b40bf44423845f1fc442156b3d22ac07ddc1473d3c7486e850da2ab",
+      "generated": "2026-11-22",
+      "sheet": "paper-sea-places-0",
+      "cell": 8,
+      "crop": {
+        "left": 484,
+        "top": 725,
+        "width": 480,
+        "height": 360
+      }
+    },
+    {
+      "key": "reader-porch",
+      "title": "Читательское крыльцо",
+      "kind": "place",
+      "subjects": [
+        "reader-porch"
+      ],
+      "file": "places-reader-porch.webp",
+      "sha256": "3545fb2ad8bf4d73f852f6cbdab447d288336c81951946ba2a5849fce1f2e7e6",
+      "originalSha256": "842247000b40bf44423845f1fc442156b3d22ac07ddc1473d3c7486e850da2ab",
+      "generated": "2026-11-22",
+      "sheet": "paper-sea-places-0",
+      "cell": 9,
+      "crop": {
+        "left": 966,
+        "top": 725,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "ruta-vey",
+      "title": "Рута Вей",
+      "kind": "npc",
+      "subjects": [
+        "ruta-vey"
+      ],
+      "file": "npcs-ruta-vey.webp",
+      "sha256": "9487925152c655fd288a5158c21bb9add3085d9336259aea884ae63d0ac55d7f",
+      "originalSha256": "35cde650647fea2ce7053a7aaf033060e6cf3e57c50bdba2d027b53c266fe8d6",
+      "generated": "2026-11-22",
+      "sheet": "paper-sea-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 123,
+        "top": 19,
+        "width": 270,
+        "height": 481
+      }
+    },
+    {
+      "key": "tavin-rov",
+      "title": "Тавин Ров",
+      "kind": "npc",
+      "subjects": [
+        "tavin-rov"
+      ],
+      "file": "npcs-tavin-rov.webp",
+      "sha256": "66c226649151d26f04c12e8028ea102781720106c03e0113c6663d66d2396fcb",
+      "originalSha256": "35cde650647fea2ce7053a7aaf033060e6cf3e57c50bdba2d027b53c266fe8d6",
+      "generated": "2026-11-22",
+      "sheet": "paper-sea-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 598,
+        "top": 10,
+        "width": 307,
+        "height": 489
+      }
+    },
+    {
+      "key": "mayna-ker",
+      "title": "Мэйна Кер",
+      "kind": "npc",
+      "subjects": [
+        "mayna-ker"
+      ],
+      "file": "npcs-mayna-ker.webp",
+      "sha256": "054ffd67c7875a0ec58bbbfefac69c072447679656665e09478c5b2a7a8381ca",
+      "originalSha256": "35cde650647fea2ce7053a7aaf033060e6cf3e57c50bdba2d027b53c266fe8d6",
+      "generated": "2026-11-22",
+      "sheet": "paper-sea-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 1135,
+        "top": 8,
+        "width": 272,
+        "height": 490
+      }
+    },
+    {
+      "key": "saya-tarn",
+      "title": "Сая Тарн",
+      "kind": "npc",
+      "subjects": [
+        "saya-tarn"
+      ],
+      "file": "npcs-saya-tarn.webp",
+      "sha256": "9f052d449e4f16b5b67bb8d6d82278196cb036861179e2ea39fa2d89d090b8f8",
+      "originalSha256": "35cde650647fea2ce7053a7aaf033060e6cf3e57c50bdba2d027b53c266fe8d6",
+      "generated": "2026-11-22",
+      "sheet": "paper-sea-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 127,
+        "top": 521,
+        "width": 262,
+        "height": 491
+      }
+    },
+    {
+      "key": "dal-orn",
+      "title": "Дал Орн",
+      "kind": "npc",
+      "subjects": [
+        "dal-orn"
+      ],
+      "file": "npcs-dal-orn.webp",
+      "sha256": "eafcaf73bceb5ed268491c592dcac1d6a2fd8306c4f7afabc09420f0bbf0fe43",
+      "originalSha256": "35cde650647fea2ce7053a7aaf033060e6cf3e57c50bdba2d027b53c266fe8d6",
+      "generated": "2026-11-22",
+      "sheet": "paper-sea-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 613,
+        "top": 522,
+        "width": 300,
+        "height": 491
+      }
+    },
+    {
+      "key": "bel-atr",
+      "title": "Бель Атр",
+      "kind": "npc",
+      "subjects": [
+        "bel-atr"
+      ],
+      "file": "npcs-bel-atr.webp",
+      "sha256": "cafe4565f2aa2db249f386b0c528db042ebb9a5796503189b8590813a91c4807",
+      "originalSha256": "6829f7cbe05a03ca114d0a1cdd828e1077acb1d396f7da0c18be5d306c53c552",
+      "generated": "2026-11-22",
+      "sheet": "paper-sea-npcs-1",
+      "cell": 1,
+      "crop": {
+        "left": 87,
+        "top": 11,
+        "width": 333,
+        "height": 479
+      }
+    },
+    {
+      "key": "nora-shov",
+      "title": "Нора Шов",
+      "kind": "npc",
+      "subjects": [
+        "nora-shov"
+      ],
+      "file": "npcs-nora-shov.webp",
+      "sha256": "a20ceb54b3e68d8dc6155e79aedebea926611f642de7fa9ba1b57905df7d2780",
+      "originalSha256": "6829f7cbe05a03ca114d0a1cdd828e1077acb1d396f7da0c18be5d306c53c552",
+      "generated": "2026-11-22",
+      "sheet": "paper-sea-npcs-1",
+      "cell": 2,
+      "crop": {
+        "left": 568,
+        "top": 16,
+        "width": 404,
+        "height": 467
+      }
+    },
+    {
+      "key": "sam-tir",
+      "title": "Сэм Тир",
+      "kind": "npc",
+      "subjects": [
+        "sam-tir"
+      ],
+      "file": "npcs-sam-tir.webp",
+      "sha256": "3213a67f486ff98201bbfd2d30d0f63dfca59dd8292e5c8b58ea2b4ba2b2a60b",
+      "originalSha256": "6829f7cbe05a03ca114d0a1cdd828e1077acb1d396f7da0c18be5d306c53c552",
+      "generated": "2026-11-22",
+      "sheet": "paper-sea-npcs-1",
+      "cell": 3,
+      "crop": {
+        "left": 1082,
+        "top": 15,
+        "width": 406,
+        "height": 474
+      }
+    },
+    {
+      "key": "kass-rem",
+      "title": "Касс Рем",
+      "kind": "npc",
+      "subjects": [
+        "kass-rem"
+      ],
+      "file": "npcs-kass-rem.webp",
+      "sha256": "00087ee03d36113ef955adc982d2287589bf22a8b21424916c671fa8e27b935b",
+      "originalSha256": "6829f7cbe05a03ca114d0a1cdd828e1077acb1d396f7da0c18be5d306c53c552",
+      "generated": "2026-11-22",
+      "sheet": "paper-sea-npcs-1",
+      "cell": 4,
+      "crop": {
+        "left": 69,
+        "top": 518,
+        "width": 371,
+        "height": 491
+      }
+    },
+    {
+      "key": "velya-ruk",
+      "title": "Веля Рук",
+      "kind": "npc",
+      "subjects": [
+        "velya-ruk"
+      ],
+      "file": "npcs-velya-ruk.webp",
+      "sha256": "0f4392a9a08be160c37b694590574f4f8cb8f9c5a8263f6b2b9e9b48c34b71ea",
+      "originalSha256": "6829f7cbe05a03ca114d0a1cdd828e1077acb1d396f7da0c18be5d306c53c552",
+      "generated": "2026-11-22",
+      "sheet": "paper-sea-npcs-1",
+      "cell": 5,
+      "crop": {
+        "left": 572,
+        "top": 520,
+        "width": 388,
+        "height": 488
+      }
+    }
+  ]
+}

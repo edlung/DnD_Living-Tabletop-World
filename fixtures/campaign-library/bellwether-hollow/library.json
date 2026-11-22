@@ -1,0 +1,1693 @@
+{
+ "id": "bellwether-hollow",
+ "title": "Долина без последнего звона",
+ "genre": "Сельское тёмное фэнтези",
+ "audience": "14+",
+ "pitch": "В Лощине Тихой Меди колокола не дают именам пропасть из чужой памяти. После глухой грозы под вечерним звоном поселилась чужая тень: она зовёт знакомыми голосами и меняет повадки, когда ей отвечают. Жителям и гостям долины предстоит выследить её, защитить соседей и решить, можно ли жить рядом с тем, кто научился голодать по человеческим именам.",
+ "tone": "Народный ужас, преследование среди знакомых мест, странные голоса и товарищеская смелость. Никакой охоты на детей: тревога направлена на тайну и выбор, а тепло возникает из поступков людей, помогающих друг другу без владения чужим именем.",
+ "duration": "8 сессий; 150 минут: 15 минут на согласование границ и вступление/повтор, сцены 35 + 40 + 35 минут, перерыв 10 минут, завершение 15 минут. Необязательное столкновение заменяет препятствие средней сцены.",
+ "cover": "campaigns/dark-fantasy-2026/bellwether-hollow/illustrations/opening.webp",
+ "defaultVariant": "4-players",
+ "variants": [
+  {
+   "id": "3-players",
+   "players": 3,
+   "label": "3 игрока",
+   "file": "packages/3-players.json",
+   "digest": "16de919929367502aa4bfe439196e5b61bd004def0c5d9252ca24a4e155fb8ff"
+  },
+  {
+   "id": "4-players",
+   "players": 4,
+   "label": "4 игрока",
+   "file": "packages/4-players.json",
+   "digest": "0d14daa03b69d6093f34cbcffd802f117006f5e2d1802d867d284352fef08430"
+  },
+  {
+   "id": "5-players",
+   "players": 5,
+   "label": "5 игроков",
+   "file": "packages/5-players.json",
+   "digest": "91b12c8c9804295f6cc9ef0f0e5633681ede20402057d1873ba664990cc020f4"
+  },
+  {
+   "id": "6-players",
+   "players": 6,
+   "label": "6 игроков",
+   "file": "packages/6-players.json",
+   "digest": "2a67695c3a0c94be03890d76b52aa2932d43b1d3a704ba7dc6c0a9f21c199b47"
+  },
+  {
+   "id": "7-players",
+   "players": 7,
+   "label": "7 игроков",
+   "file": "packages/7-players.json",
+   "digest": "16aaf7dabfb34015e4fd9fd3f8ae174ac300a264eb0c580f7d592c5dc56d9fe4"
+  }
+ ],
+ "generator": "codex-cli imagegen",
+ "pictures": [
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/illustrations/cards/milena-bridge.webp",
+   "sha256": "1a08f770212fde8afb483944b6d10dc7c954a377bda3a3c868f479e447a17e5f",
+   "originalSha256": "155da4f1b53efe122966fd6deab1e035c4a2ce12217503ca2de36db86454f194",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Милена Мостовая",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "milena-bridge"
+    ],
+    "4-players": [
+     "milena-bridge"
+    ],
+    "5-players": [
+     "milena-bridge"
+    ],
+    "6-players": [
+     "milena-bridge"
+    ],
+    "7-players": [
+     "milena-bridge"
+    ]
+   },
+   "file": "milena-bridge.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/illustrations/cards/ilar-thread.webp",
+   "sha256": "ccb8f40e1ed792cb3cae29475f5165fdc0ee3091c1a3b29ddf05b3876a1e667c",
+   "originalSha256": "155da4f1b53efe122966fd6deab1e035c4a2ce12217503ca2de36db86454f194",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Илар Нитник",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ilar-thread"
+    ],
+    "4-players": [
+     "ilar-thread"
+    ],
+    "5-players": [
+     "ilar-thread"
+    ],
+    "6-players": [
+     "ilar-thread"
+    ],
+    "7-players": [
+     "ilar-thread"
+    ]
+   },
+   "file": "ilar-thread.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/illustrations/cards/rina-candle.webp",
+   "sha256": "3c672ed094c587707c0f5c4b6c6d0518f47a95c79eed276ae071c460fb2fd970",
+   "originalSha256": "155da4f1b53efe122966fd6deab1e035c4a2ce12217503ca2de36db86454f194",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рина Свечная",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "rina-candle"
+    ],
+    "4-players": [
+     "rina-candle"
+    ],
+    "5-players": [
+     "rina-candle"
+    ],
+    "6-players": [
+     "rina-candle"
+    ],
+    "7-players": [
+     "rina-candle"
+    ]
+   },
+   "file": "rina-candle.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/illustrations/cards/mirta-rain.webp",
+   "sha256": "df34e3d03e2783056dbe6c94835810491622b4bf2f3afb0292a30dc050552595",
+   "originalSha256": "155da4f1b53efe122966fd6deab1e035c4a2ce12217503ca2de36db86454f194",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мирта Дождевая",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "mirta-rain"
+    ],
+    "5-players": [
+     "mirta-rain"
+    ],
+    "6-players": [
+     "mirta-rain"
+    ],
+    "7-players": [
+     "mirta-rain"
+    ]
+   },
+   "file": "mirta-rain.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/illustrations/cards/dan-lark.webp",
+   "sha256": "5b010489477c385810514a24b1a1f4e94af8edf76c9bb6347aa7ae4692c21ca3",
+   "originalSha256": "155da4f1b53efe122966fd6deab1e035c4a2ce12217503ca2de36db86454f194",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дан Жаворонок",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "dan-lark"
+    ],
+    "6-players": [
+     "dan-lark"
+    ],
+    "7-players": [
+     "dan-lark"
+    ]
+   },
+   "file": "dan-lark.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/illustrations/cards/zoya-reel.webp",
+   "sha256": "cff2932ca7ef08343f630c8f8d4dce6d5ad28bf34a90560eac50bcdd94b60b25",
+   "originalSha256": "155da4f1b53efe122966fd6deab1e035c4a2ce12217503ca2de36db86454f194",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Зоя Катушка",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "zoya-reel"
+    ],
+    "7-players": [
+     "zoya-reel"
+    ]
+   },
+   "file": "zoya-reel.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/illustrations/cards/berya-song.webp",
+   "sha256": "c0f96e9207d684d84a2f13731f7075921b827b886e1570315c77f1563e2931f1",
+   "originalSha256": "155da4f1b53efe122966fd6deab1e035c4a2ce12217503ca2de36db86454f194",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Беря Тихопев",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "berya-song"
+    ]
+   },
+   "file": "berya-song.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/illustrations/cards/travel-kit.webp",
+   "sha256": "668e4b46885d9acadbdae93989a604889aad8431b640cab1645d18e67ba00443",
+   "originalSha256": "155da4f1b53efe122966fd6deab1e035c4a2ce12217503ca2de36db86454f194",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дорожный набор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ilar-thread-travel-kit",
+     "milena-bridge-travel-kit",
+     "rina-candle-travel-kit"
+    ],
+    "4-players": [
+     "ilar-thread-travel-kit",
+     "milena-bridge-travel-kit",
+     "mirta-rain-travel-kit",
+     "rina-candle-travel-kit"
+    ],
+    "5-players": [
+     "dan-lark-travel-kit",
+     "ilar-thread-travel-kit",
+     "milena-bridge-travel-kit",
+     "mirta-rain-travel-kit",
+     "rina-candle-travel-kit"
+    ],
+    "6-players": [
+     "dan-lark-travel-kit",
+     "ilar-thread-travel-kit",
+     "milena-bridge-travel-kit",
+     "mirta-rain-travel-kit",
+     "rina-candle-travel-kit",
+     "zoya-reel-travel-kit"
+    ],
+    "7-players": [
+     "berya-song-travel-kit",
+     "dan-lark-travel-kit",
+     "ilar-thread-travel-kit",
+     "milena-bridge-travel-kit",
+     "mirta-rain-travel-kit",
+     "rina-candle-travel-kit",
+     "zoya-reel-travel-kit"
+    ]
+   },
+   "file": "travel-kit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/illustrations/cards/darya-reed.webp",
+   "sha256": "70c39bef46749993f0c662232abda89d2a9516cde7ee53d8701306de2890690f",
+   "originalSha256": "2d6296d7019d07e27e2330c5a74f86673f84c72eb8225969d8d604ab8c6a155a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дарья Стрежа",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "darya-reed"
+    ],
+    "4-players": [
+     "darya-reed"
+    ],
+    "5-players": [
+     "darya-reed"
+    ],
+    "6-players": [
+     "darya-reed"
+    ],
+    "7-players": [
+     "darya-reed"
+    ]
+   },
+   "file": "darya-reed.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/illustrations/cards/lavr-watchman.webp",
+   "sha256": "387bf953b5c8005c45bdfb03986f8dce352d11f3d2663633b5a350ffe7e2a6a2",
+   "originalSha256": "2d6296d7019d07e27e2330c5a74f86673f84c72eb8225969d8d604ab8c6a155a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лавр Рябой",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lavr-watchman"
+    ],
+    "4-players": [
+     "lavr-watchman"
+    ],
+    "5-players": [
+     "lavr-watchman"
+    ],
+    "6-players": [
+     "lavr-watchman"
+    ],
+    "7-players": [
+     "lavr-watchman"
+    ]
+   },
+   "file": "lavr-watchman.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/illustrations/cards/vesna-potter.webp",
+   "sha256": "8c890deb07e824fdd5b6cd91c7300aae9be6d2992c1f5431de1ffce44e2c6fe9",
+   "originalSha256": "2d6296d7019d07e27e2330c5a74f86673f84c72eb8225969d8d604ab8c6a155a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Весна Ольховая",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "vesna-potter"
+    ],
+    "4-players": [
+     "vesna-potter"
+    ],
+    "5-players": [
+     "vesna-potter"
+    ],
+    "6-players": [
+     "vesna-potter"
+    ],
+    "7-players": [
+     "vesna-potter"
+    ]
+   },
+   "file": "vesna-potter.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/illustrations/cards/borun-reeve.webp",
+   "sha256": "a131da4042305f5a3f3c27cd142516733771286051c136e28eed2b4873db84af",
+   "originalSha256": "2d6296d7019d07e27e2330c5a74f86673f84c72eb8225969d8d604ab8c6a155a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Борун Вяз",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "borun-reeve"
+    ],
+    "4-players": [
+     "borun-reeve"
+    ],
+    "5-players": [
+     "borun-reeve"
+    ],
+    "6-players": [
+     "borun-reeve"
+    ],
+    "7-players": [
+     "borun-reeve"
+    ]
+   },
+   "file": "borun-reeve.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/illustrations/cards/orsa-shepherd.webp",
+   "sha256": "46c3bfdac4ead9330783597ed2439e986bc7971982e2c9ba73f579de931e58b1",
+   "originalSha256": "2d6296d7019d07e27e2330c5a74f86673f84c72eb8225969d8d604ab8c6a155a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Орса Пестрая",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "orsa-shepherd"
+    ],
+    "4-players": [
+     "orsa-shepherd"
+    ],
+    "5-players": [
+     "orsa-shepherd"
+    ],
+    "6-players": [
+     "orsa-shepherd"
+    ],
+    "7-players": [
+     "orsa-shepherd"
+    ]
+   },
+   "file": "orsa-shepherd.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/illustrations/cards/teyka-apprentice.webp",
+   "sha256": "3e998aa943dee1dffd005d9875caf7d2ac8fd75cf1eb1007787482a0c60b6e8b",
+   "originalSha256": "2d6296d7019d07e27e2330c5a74f86673f84c72eb8225969d8d604ab8c6a155a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тейка Луговая",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "teyka-apprentice"
+    ],
+    "4-players": [
+     "teyka-apprentice"
+    ],
+    "5-players": [
+     "teyka-apprentice"
+    ],
+    "6-players": [
+     "teyka-apprentice"
+    ],
+    "7-players": [
+     "teyka-apprentice"
+    ]
+   },
+   "file": "teyka-apprentice.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/illustrations/cards/sevir-smith.webp",
+   "sha256": "9a25b172c89f602823e74207aeb6cad42afe2a09dc6dd5d7f7a63ed49452b151",
+   "originalSha256": "2d6296d7019d07e27e2330c5a74f86673f84c72eb8225969d8d604ab8c6a155a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Севир Закал",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "sevir-smith"
+    ],
+    "4-players": [
+     "sevir-smith"
+    ],
+    "5-players": [
+     "sevir-smith"
+    ],
+    "6-players": [
+     "sevir-smith"
+    ],
+    "7-players": [
+     "sevir-smith"
+    ]
+   },
+   "file": "sevir-smith.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/illustrations/cards/ada-ferrier.webp",
+   "sha256": "cce78c98b77e0f65f94f67e234be5db26b450b6190bbf85ab37e0654ea4c291f",
+   "originalSha256": "2d6296d7019d07e27e2330c5a74f86673f84c72eb8225969d8d604ab8c6a155a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ада Низовая",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ada-ferrier"
+    ],
+    "4-players": [
+     "ada-ferrier"
+    ],
+    "5-players": [
+     "ada-ferrier"
+    ],
+    "6-players": [
+     "ada-ferrier"
+    ],
+    "7-players": [
+     "ada-ferrier"
+    ]
+   },
+   "file": "ada-ferrier.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/illustrations/cards/echo-keeper.webp",
+   "sha256": "6606cd1239fab8f65a8dda6ef5db7f695fd9f40cbf84f4d099119dba2a7a329e",
+   "originalSha256": "2d6296d7019d07e27e2330c5a74f86673f84c72eb8225969d8d604ab8c6a155a",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Незваный Гость",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "echo-keeper"
+    ],
+    "4-players": [
+     "echo-keeper"
+    ],
+    "5-players": [
+     "echo-keeper"
+    ],
+    "6-players": [
+     "echo-keeper"
+    ],
+    "7-players": [
+     "echo-keeper"
+    ]
+   },
+   "file": "echo-keeper.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/assets/table/places-village-square.webp",
+   "sha256": "b9d2a4ae128868d32e90b711d79d23eeb2044c6898ef081f100802ce979920bd",
+   "originalSha256": "a1176ca3ff632aba0e914b0ea68dd2ba2116cdec254a7544ecc377eea5f6842e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Площадь Вересова Колодца",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "village-square"
+    ],
+    "4-players": [
+     "village-square"
+    ],
+    "5-players": [
+     "village-square"
+    ],
+    "6-players": [
+     "village-square"
+    ],
+    "7-players": [
+     "village-square"
+    ]
+   },
+   "file": "village-square.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/assets/table/places-bell-house.webp",
+   "sha256": "9fb8457c137e194ea961120b55cb704c6da992544f606ce5b71c1039916c6363",
+   "originalSha256": "a1176ca3ff632aba0e914b0ea68dd2ba2116cdec254a7544ecc377eea5f6842e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дом шести ударов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "bell-house"
+    ],
+    "4-players": [
+     "bell-house"
+    ],
+    "5-players": [
+     "bell-house"
+    ],
+    "6-players": [
+     "bell-house"
+    ],
+    "7-players": [
+     "bell-house"
+    ]
+   },
+   "file": "bell-house.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/assets/table/places-flooded-mill.webp",
+   "sha256": "d74c9b27a5d91bc21e3de87aeb8e4b74a33cabb775ca740cf213e79dfc6efb39",
+   "originalSha256": "a1176ca3ff632aba0e914b0ea68dd2ba2116cdec254a7544ecc377eea5f6842e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мельница Стоячей Воды",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "flooded-mill"
+    ],
+    "4-players": [
+     "flooded-mill"
+    ],
+    "5-players": [
+     "flooded-mill"
+    ],
+    "6-players": [
+     "flooded-mill"
+    ],
+    "7-players": [
+     "flooded-mill"
+    ]
+   },
+   "file": "flooded-mill.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/assets/table/places-orchard-path.webp",
+   "sha256": "3558485158422987efb00df726119aa0dd6b8ea529d50863d07422026d259f1d",
+   "originalSha256": "a1176ca3ff632aba0e914b0ea68dd2ba2116cdec254a7544ecc377eea5f6842e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сад перевязанных ветвей",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "orchard-path"
+    ],
+    "4-players": [
+     "orchard-path"
+    ],
+    "5-players": [
+     "orchard-path"
+    ],
+    "6-players": [
+     "orchard-path"
+    ],
+    "7-players": [
+     "orchard-path"
+    ]
+   },
+   "file": "orchard-path.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/assets/table/places-shepherd-shelter.webp",
+   "sha256": "059821df7bad937582cd1891588d94f9893269c669dcc9bf54acd4bdea3fff13",
+   "originalSha256": "a1176ca3ff632aba0e914b0ea68dd2ba2116cdec254a7544ecc377eea5f6842e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Пастуший навес",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "shepherd-shelter"
+    ],
+    "4-players": [
+     "shepherd-shelter"
+    ],
+    "5-players": [
+     "shepherd-shelter"
+    ],
+    "6-players": [
+     "shepherd-shelter"
+    ],
+    "7-players": [
+     "shepherd-shelter"
+    ]
+   },
+   "file": "shepherd-shelter.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/assets/table/places-mirror-ford.webp",
+   "sha256": "dea6a6e0b681e5bc44fbf83d8166b45d2d1ec6104e6ecae5212e487fc3d1c552",
+   "originalSha256": "a1176ca3ff632aba0e914b0ea68dd2ba2116cdec254a7544ecc377eea5f6842e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Брод Зеркальной Гальки",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mirror-ford"
+    ],
+    "4-players": [
+     "mirror-ford"
+    ],
+    "5-players": [
+     "mirror-ford"
+    ],
+    "6-players": [
+     "mirror-ford"
+    ],
+    "7-players": [
+     "mirror-ford"
+    ]
+   },
+   "file": "mirror-ford.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/assets/table/places-copper-quarry.webp",
+   "sha256": "ca3ec77630414341c0a58dc47eb334f6d2f992a4a3bdaa579a1ac83b5283edb5",
+   "originalSha256": "a1176ca3ff632aba0e914b0ea68dd2ba2116cdec254a7544ecc377eea5f6842e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тёплый медный выработок",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "copper-quarry"
+    ],
+    "4-players": [
+     "copper-quarry"
+    ],
+    "5-players": [
+     "copper-quarry"
+    ],
+    "6-players": [
+     "copper-quarry"
+    ],
+    "7-players": [
+     "copper-quarry"
+    ]
+   },
+   "file": "copper-quarry.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/assets/table/places-last-belfry.webp",
+   "sha256": "f9b9bf89c0b391b931d22db030bfcf2810de7c883e0d44413375dc44cb1e280a",
+   "originalSha256": "a1176ca3ff632aba0e914b0ea68dd2ba2116cdec254a7544ecc377eea5f6842e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Звонница Последнего Воздуха",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "last-belfry"
+    ],
+    "4-players": [
+     "last-belfry"
+    ],
+    "5-players": [
+     "last-belfry"
+    ],
+    "6-players": [
+     "last-belfry"
+    ],
+    "7-players": [
+     "last-belfry"
+    ]
+   },
+   "file": "last-belfry.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/assets/table/places-stone-throat.webp",
+   "sha256": "cb2ced9da063ff692d28c33ed9303748fa0bada2400a5df311a995130148a453",
+   "originalSha256": "a1176ca3ff632aba0e914b0ea68dd2ba2116cdec254a7544ecc377eea5f6842e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Каменная Глотка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "stone-throat"
+    ],
+    "4-players": [
+     "stone-throat"
+    ],
+    "5-players": [
+     "stone-throat"
+    ],
+    "6-players": [
+     "stone-throat"
+    ],
+    "7-players": [
+     "stone-throat"
+    ]
+   },
+   "file": "stone-throat.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/assets/table/foes-foe-5cfb95ba9d.webp",
+   "sha256": "cd9121debc9c5b439d5553f02b95b573ef8f780db4c5b14e1b176f93f4cc6521",
+   "originalSha256": "a5fefef2db679a28fda7224dd6e6f8ccd0b9d3b1644deffb81b5d3a125b55625",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Садовая складка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "orchard-folds-foe-1",
+     "orchard-folds-foe-2"
+    ],
+    "4-players": [
+     "orchard-folds-foe-1",
+     "orchard-folds-foe-2",
+     "orchard-folds-foe-3"
+    ],
+    "5-players": [
+     "orchard-folds-foe-1",
+     "orchard-folds-foe-2",
+     "orchard-folds-foe-3"
+    ],
+    "6-players": [
+     "orchard-folds-foe-1",
+     "orchard-folds-foe-2",
+     "orchard-folds-foe-3",
+     "orchard-folds-foe-4"
+    ],
+    "7-players": [
+     "orchard-folds-foe-1",
+     "orchard-folds-foe-2",
+     "orchard-folds-foe-3",
+     "orchard-folds-foe-4",
+     "orchard-folds-foe-5"
+    ]
+   },
+   "file": "foe-5cfb95ba9d.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/assets/table/foes-foe-5cfb95ba9d.webp",
+   "sha256": "cd9121debc9c5b439d5553f02b95b573ef8f780db4c5b14e1b176f93f4cc6521",
+   "originalSha256": "a5fefef2db679a28fda7224dd6e6f8ccd0b9d3b1644deffb81b5d3a125b55625",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Садовая складка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "orchard-folds-foe-1",
+     "orchard-folds-foe-2"
+    ],
+    "4-players": [
+     "orchard-folds-foe-1",
+     "orchard-folds-foe-2",
+     "orchard-folds-foe-3"
+    ],
+    "5-players": [
+     "orchard-folds-foe-1",
+     "orchard-folds-foe-2",
+     "orchard-folds-foe-3"
+    ],
+    "6-players": [
+     "orchard-folds-foe-1",
+     "orchard-folds-foe-2",
+     "orchard-folds-foe-3",
+     "orchard-folds-foe-4"
+    ],
+    "7-players": [
+     "orchard-folds-foe-1",
+     "orchard-folds-foe-2",
+     "orchard-folds-foe-3",
+     "orchard-folds-foe-4",
+     "orchard-folds-foe-5"
+    ]
+   },
+   "file": "foe-5cfb95ba9d--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-5cfb95ba9d.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/assets/table/foes-foe-05c932be83.webp",
+   "sha256": "a9d8a4c1e162a2bbb0947be9858c7aba356cbf17f6afad38e535a032f0d6d117",
+   "originalSha256": "a5fefef2db679a28fda7224dd6e6f8ccd0b9d3b1644deffb81b5d3a125b55625",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мельничная складка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mill-hushers-foe-1",
+     "mill-hushers-foe-2"
+    ],
+    "4-players": [
+     "mill-hushers-foe-1",
+     "mill-hushers-foe-2",
+     "mill-hushers-foe-3"
+    ],
+    "5-players": [
+     "mill-hushers-foe-1",
+     "mill-hushers-foe-2",
+     "mill-hushers-foe-3"
+    ],
+    "6-players": [
+     "mill-hushers-foe-1",
+     "mill-hushers-foe-2",
+     "mill-hushers-foe-3",
+     "mill-hushers-foe-4"
+    ],
+    "7-players": [
+     "mill-hushers-foe-1",
+     "mill-hushers-foe-2",
+     "mill-hushers-foe-3",
+     "mill-hushers-foe-4",
+     "mill-hushers-foe-5"
+    ]
+   },
+   "file": "foe-05c932be83.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/assets/table/foes-foe-05c932be83.webp",
+   "sha256": "a9d8a4c1e162a2bbb0947be9858c7aba356cbf17f6afad38e535a032f0d6d117",
+   "originalSha256": "a5fefef2db679a28fda7224dd6e6f8ccd0b9d3b1644deffb81b5d3a125b55625",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мельничная складка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mill-hushers-foe-1",
+     "mill-hushers-foe-2"
+    ],
+    "4-players": [
+     "mill-hushers-foe-1",
+     "mill-hushers-foe-2",
+     "mill-hushers-foe-3"
+    ],
+    "5-players": [
+     "mill-hushers-foe-1",
+     "mill-hushers-foe-2",
+     "mill-hushers-foe-3"
+    ],
+    "6-players": [
+     "mill-hushers-foe-1",
+     "mill-hushers-foe-2",
+     "mill-hushers-foe-3",
+     "mill-hushers-foe-4"
+    ],
+    "7-players": [
+     "mill-hushers-foe-1",
+     "mill-hushers-foe-2",
+     "mill-hushers-foe-3",
+     "mill-hushers-foe-4",
+     "mill-hushers-foe-5"
+    ]
+   },
+   "file": "foe-05c932be83--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-05c932be83.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/assets/table/foes-foe-f82b47ccb2.webp",
+   "sha256": "66c47107b3fdd9d998927c6b6f51a1a5e027bb63afbd809addf3d3b13bb06e87",
+   "originalSha256": "a5fefef2db679a28fda7224dd6e6f8ccd0b9d3b1644deffb81b5d3a125b55625",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Башенная складка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "belfry-shards-foe-1",
+     "belfry-shards-foe-2"
+    ],
+    "4-players": [
+     "belfry-shards-foe-1",
+     "belfry-shards-foe-2",
+     "belfry-shards-foe-3"
+    ],
+    "5-players": [
+     "belfry-shards-foe-1",
+     "belfry-shards-foe-2",
+     "belfry-shards-foe-3"
+    ],
+    "6-players": [
+     "belfry-shards-foe-1",
+     "belfry-shards-foe-2",
+     "belfry-shards-foe-3",
+     "belfry-shards-foe-4"
+    ],
+    "7-players": [
+     "belfry-shards-foe-1",
+     "belfry-shards-foe-2",
+     "belfry-shards-foe-3",
+     "belfry-shards-foe-4",
+     "belfry-shards-foe-5"
+    ]
+   },
+   "file": "foe-f82b47ccb2.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/assets/table/foes-foe-f82b47ccb2.webp",
+   "sha256": "66c47107b3fdd9d998927c6b6f51a1a5e027bb63afbd809addf3d3b13bb06e87",
+   "originalSha256": "a5fefef2db679a28fda7224dd6e6f8ccd0b9d3b1644deffb81b5d3a125b55625",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Башенная складка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "belfry-shards-foe-1",
+     "belfry-shards-foe-2"
+    ],
+    "4-players": [
+     "belfry-shards-foe-1",
+     "belfry-shards-foe-2",
+     "belfry-shards-foe-3"
+    ],
+    "5-players": [
+     "belfry-shards-foe-1",
+     "belfry-shards-foe-2",
+     "belfry-shards-foe-3"
+    ],
+    "6-players": [
+     "belfry-shards-foe-1",
+     "belfry-shards-foe-2",
+     "belfry-shards-foe-3",
+     "belfry-shards-foe-4"
+    ],
+    "7-players": [
+     "belfry-shards-foe-1",
+     "belfry-shards-foe-2",
+     "belfry-shards-foe-3",
+     "belfry-shards-foe-4",
+     "belfry-shards-foe-5"
+    ]
+   },
+   "file": "foe-f82b47ccb2--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-f82b47ccb2.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/assets/table/heroes-milena-bridge.webp",
+   "sha256": "ba110dbb364445eb55d1cacd91f5e25c35b34382d4b877864ad2faff1361b8f9",
+   "originalSha256": "0d4160995814e3ccaeda4b12162f27ef963ebb1c2f6458467741ce08a2351935",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Милена Мостовая",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "milena-bridge"
+    ],
+    "4-players": [
+     "milena-bridge"
+    ],
+    "5-players": [
+     "milena-bridge"
+    ],
+    "6-players": [
+     "milena-bridge"
+    ],
+    "7-players": [
+     "milena-bridge"
+    ]
+   },
+   "file": "milena-bridge--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "milena-bridge.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/assets/table/heroes-ilar-thread.webp",
+   "sha256": "9d6635b5119f05a56f17a61f694b7aff97b91f9b8c1ea2b6b64ce1b3b2e1624d",
+   "originalSha256": "0d4160995814e3ccaeda4b12162f27ef963ebb1c2f6458467741ce08a2351935",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Илар Нитник",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ilar-thread"
+    ],
+    "4-players": [
+     "ilar-thread"
+    ],
+    "5-players": [
+     "ilar-thread"
+    ],
+    "6-players": [
+     "ilar-thread"
+    ],
+    "7-players": [
+     "ilar-thread"
+    ]
+   },
+   "file": "ilar-thread--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ilar-thread.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/assets/table/heroes-rina-candle.webp",
+   "sha256": "0c8bc3970056d8624d94e5b4a54000751bc8e1f48904fd43f9b48830b8119661",
+   "originalSha256": "0d4160995814e3ccaeda4b12162f27ef963ebb1c2f6458467741ce08a2351935",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рина Свечная",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "rina-candle"
+    ],
+    "4-players": [
+     "rina-candle"
+    ],
+    "5-players": [
+     "rina-candle"
+    ],
+    "6-players": [
+     "rina-candle"
+    ],
+    "7-players": [
+     "rina-candle"
+    ]
+   },
+   "file": "rina-candle--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "rina-candle.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/assets/table/heroes-mirta-rain.webp",
+   "sha256": "e9cc95f13869f90fca6dd042299a87011fa86bcf1c9c486e23bda4207ae03c64",
+   "originalSha256": "0d4160995814e3ccaeda4b12162f27ef963ebb1c2f6458467741ce08a2351935",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мирта Дождевая",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "mirta-rain"
+    ],
+    "5-players": [
+     "mirta-rain"
+    ],
+    "6-players": [
+     "mirta-rain"
+    ],
+    "7-players": [
+     "mirta-rain"
+    ]
+   },
+   "file": "mirta-rain--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "mirta-rain.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/assets/table/heroes-dan-lark.webp",
+   "sha256": "a3626eec7cb2acf3b4b88348bc1a4c0dff5e961ad09d51900abde38fc9ee1356",
+   "originalSha256": "0d4160995814e3ccaeda4b12162f27ef963ebb1c2f6458467741ce08a2351935",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дан Жаворонок",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "dan-lark"
+    ],
+    "6-players": [
+     "dan-lark"
+    ],
+    "7-players": [
+     "dan-lark"
+    ]
+   },
+   "file": "dan-lark--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "dan-lark.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/assets/table/heroes-zoya-reel.webp",
+   "sha256": "00cc4b86415fae3e367ef3636ade12f4e186a60269c58cf74abe31932b302569",
+   "originalSha256": "0d4160995814e3ccaeda4b12162f27ef963ebb1c2f6458467741ce08a2351935",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Зоя Катушка",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "zoya-reel"
+    ],
+    "7-players": [
+     "zoya-reel"
+    ]
+   },
+   "file": "zoya-reel--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "zoya-reel.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/assets/table/heroes-berya-song.webp",
+   "sha256": "680c102d1541e4dccde228a5af2023948fbad593dc8ca0deb704a69d0d2dd064",
+   "originalSha256": "0d4160995814e3ccaeda4b12162f27ef963ebb1c2f6458467741ce08a2351935",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Беря Тихопев",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "berya-song"
+    ]
+   },
+   "file": "berya-song--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "berya-song.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/assets/table/npcs-darya-reed.webp",
+   "sha256": "a5cc337252a8c298773a8ff9e566f335cbef4f74d1e65c8442e77145e34b105c",
+   "originalSha256": "882daea148b6c4419923daaee258980769ba221465457c3929bfbeddb3912ff9",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дарья Стрежа",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "darya-reed"
+    ],
+    "4-players": [
+     "darya-reed"
+    ],
+    "5-players": [
+     "darya-reed"
+    ],
+    "6-players": [
+     "darya-reed"
+    ],
+    "7-players": [
+     "darya-reed"
+    ]
+   },
+   "file": "darya-reed--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "darya-reed.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/assets/table/npcs-lavr-watchman.webp",
+   "sha256": "060db2d44dee5a5c88fec6d3e8549291cc0c9922b590c02f978b4a933c663f10",
+   "originalSha256": "882daea148b6c4419923daaee258980769ba221465457c3929bfbeddb3912ff9",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лавр Рябой",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lavr-watchman"
+    ],
+    "4-players": [
+     "lavr-watchman"
+    ],
+    "5-players": [
+     "lavr-watchman"
+    ],
+    "6-players": [
+     "lavr-watchman"
+    ],
+    "7-players": [
+     "lavr-watchman"
+    ]
+   },
+   "file": "lavr-watchman--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "lavr-watchman.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/assets/table/npcs-vesna-potter.webp",
+   "sha256": "e568e899a28aa1be1ea418a228efbd771923554f75ab0dc487b244ef1d579e51",
+   "originalSha256": "882daea148b6c4419923daaee258980769ba221465457c3929bfbeddb3912ff9",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Весна Ольховая",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "vesna-potter"
+    ],
+    "4-players": [
+     "vesna-potter"
+    ],
+    "5-players": [
+     "vesna-potter"
+    ],
+    "6-players": [
+     "vesna-potter"
+    ],
+    "7-players": [
+     "vesna-potter"
+    ]
+   },
+   "file": "vesna-potter--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "vesna-potter.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/assets/table/npcs-borun-reeve.webp",
+   "sha256": "09886c02624e00aa70980f53ed41a3d2a55c0019919c60323245ce1f6a2e965c",
+   "originalSha256": "882daea148b6c4419923daaee258980769ba221465457c3929bfbeddb3912ff9",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Борун Вяз",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "borun-reeve"
+    ],
+    "4-players": [
+     "borun-reeve"
+    ],
+    "5-players": [
+     "borun-reeve"
+    ],
+    "6-players": [
+     "borun-reeve"
+    ],
+    "7-players": [
+     "borun-reeve"
+    ]
+   },
+   "file": "borun-reeve--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "borun-reeve.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/assets/table/npcs-orsa-shepherd.webp",
+   "sha256": "af7499570596cef23f205a4f299712581fef37e6c33fce6527d39ea9ad6d74b0",
+   "originalSha256": "882daea148b6c4419923daaee258980769ba221465457c3929bfbeddb3912ff9",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Орса Пестрая",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "orsa-shepherd"
+    ],
+    "4-players": [
+     "orsa-shepherd"
+    ],
+    "5-players": [
+     "orsa-shepherd"
+    ],
+    "6-players": [
+     "orsa-shepherd"
+    ],
+    "7-players": [
+     "orsa-shepherd"
+    ]
+   },
+   "file": "orsa-shepherd--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "orsa-shepherd.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/assets/table/npcs-teyka-apprentice.webp",
+   "sha256": "7a2f943287fb0b034e041ff0fbe7771fecaed4b18613a816deb31ae8002b3dcc",
+   "originalSha256": "882daea148b6c4419923daaee258980769ba221465457c3929bfbeddb3912ff9",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тейка Луговая",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "teyka-apprentice"
+    ],
+    "4-players": [
+     "teyka-apprentice"
+    ],
+    "5-players": [
+     "teyka-apprentice"
+    ],
+    "6-players": [
+     "teyka-apprentice"
+    ],
+    "7-players": [
+     "teyka-apprentice"
+    ]
+   },
+   "file": "teyka-apprentice--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "teyka-apprentice.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/assets/table/npcs-sevir-smith.webp",
+   "sha256": "70168dda2125d7c3cb1701abc2c31865fd940c07a9e86fe8f1ea5a7906551de6",
+   "originalSha256": "882daea148b6c4419923daaee258980769ba221465457c3929bfbeddb3912ff9",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Севир Закал",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "sevir-smith"
+    ],
+    "4-players": [
+     "sevir-smith"
+    ],
+    "5-players": [
+     "sevir-smith"
+    ],
+    "6-players": [
+     "sevir-smith"
+    ],
+    "7-players": [
+     "sevir-smith"
+    ]
+   },
+   "file": "sevir-smith--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "sevir-smith.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/assets/table/npcs-ada-ferrier.webp",
+   "sha256": "311e7fadcdc55fedb313977d9e6847c30a3741681eac244e215e47be4862a427",
+   "originalSha256": "882daea148b6c4419923daaee258980769ba221465457c3929bfbeddb3912ff9",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ада Низовая",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ada-ferrier"
+    ],
+    "4-players": [
+     "ada-ferrier"
+    ],
+    "5-players": [
+     "ada-ferrier"
+    ],
+    "6-players": [
+     "ada-ferrier"
+    ],
+    "7-players": [
+     "ada-ferrier"
+    ]
+   },
+   "file": "ada-ferrier--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ada-ferrier.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/assets/table/npcs-echo-keeper.webp",
+   "sha256": "4ac82462fbb6c7d1f58073c5d3223c249cf8a1771840596c6691a61b6990bef9",
+   "originalSha256": "882daea148b6c4419923daaee258980769ba221465457c3929bfbeddb3912ff9",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Незваный Гость",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "echo-keeper"
+    ],
+    "4-players": [
+     "echo-keeper"
+    ],
+    "5-players": [
+     "echo-keeper"
+    ],
+    "6-players": [
+     "echo-keeper"
+    ],
+    "7-players": [
+     "echo-keeper"
+    ]
+   },
+   "file": "echo-keeper--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "echo-keeper.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/illustrations/opening.webp",
+   "sha256": "c7831e655b6c401ceac86eecb8542860ae986ced7fd87a580052cc81ddb45e23",
+   "originalSha256": "582092241d032fe523ebdc9352bfb6e1e744eb8a9e361b9b1cd8f316fdf44a1f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Площадь Вересова Колодца — Долина без последнего звона",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "quiet-copper-hollow"
+    ],
+    "4-players": [
+     "quiet-copper-hollow"
+    ],
+    "5-players": [
+     "quiet-copper-hollow"
+    ],
+    "6-players": [
+     "quiet-copper-hollow"
+    ],
+    "7-players": [
+     "quiet-copper-hollow"
+    ]
+   },
+   "file": "cover.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "file": "orchard-path--map.webp",
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/assets/battle-maps/orchard-path.webp",
+   "sha256": "587d6c0197e4b3100271e88630bb36abad696e4777bc79cbcbc5f31fa4b7d3d2",
+   "originalSha256": "72f2371439299e4ca8bee502f7a2aa5daee2e3aad4513d55a251085baaebf902",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Сад перевязанных ветвей. Visible scenery: Ветви старых груш поддерживают тканевые ленты. Между деревьями достаточно места для небольшого собрания.. World style: Лощина Тихой Меди · Weathered copper patina with interlocking fine bell silhouettes and echo ripples. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "orchard-path.webp",
+   "subjects": {
+    "3-players": [
+     "orchard-path"
+    ],
+    "4-players": [
+     "orchard-path"
+    ],
+    "5-players": [
+     "orchard-path"
+    ],
+    "6-players": [
+     "orchard-path"
+    ],
+    "7-players": [
+     "orchard-path"
+    ]
+   }
+  },
+  {
+   "file": "flooded-mill--map.webp",
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/assets/battle-maps/flooded-mill.webp",
+   "sha256": "153bd7d149093ebbcf2f1513640795821a3e2e480c74ffdf41a439ac6d320375",
+   "originalSha256": "d130d807ec1086d986dfa7c5fa717b7c8af5ba439a882be721cfb4d07941b7e6",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Мельница Стоячей Воды. Visible scenery: Неподвижное колесо погружено в чёрный пруд. К сухому верхнему настилу ведут широкие мостки с верёвочными перилами.. World style: Лощина Тихой Меди · Weathered copper patina with interlocking fine bell silhouettes and echo ripples. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "flooded-mill.webp",
+   "subjects": {
+    "3-players": [
+     "flooded-mill"
+    ],
+    "4-players": [
+     "flooded-mill"
+    ],
+    "5-players": [
+     "flooded-mill"
+    ],
+    "6-players": [
+     "flooded-mill"
+    ],
+    "7-players": [
+     "flooded-mill"
+    ]
+   }
+  },
+  {
+   "file": "last-belfry--map.webp",
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/assets/battle-maps/last-belfry.webp",
+   "sha256": "c3e04a6cbf4745f94b28b07c723ce91432345efc60b9a1e66ad12b12824e2f48",
+   "originalSha256": "e78ecc3eb9122695c79417e2aeb1d5f9f2a0cef20ed17e887987a0c6c27376c9",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Звонница Последнего Воздуха. Visible scenery: Открытая башня на невысоком гребне. Под её крышей висит неподвижный колокол, а на площадке видны гнёзда для дорожных фонарей.. World style: Лощина Тихой Меди · Weathered copper patina with interlocking fine bell silhouettes and echo ripples. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "last-belfry.webp",
+   "subjects": {
+    "3-players": [
+     "last-belfry"
+    ],
+    "4-players": [
+     "last-belfry"
+    ],
+    "5-players": [
+     "last-belfry"
+    ],
+    "6-players": [
+     "last-belfry"
+    ],
+    "7-players": [
+     "last-belfry"
+    ]
+   }
+  },
+  {
+   "file": "world-map.webp",
+   "source": "campaigns/dark-fantasy-2026/bellwether-hollow/assets/world-map/world-map.webp",
+   "sha256": "2d70524b14df406ba6c448ad8e193a81796866d2443ca8c151fc79bd263159e4",
+   "originalSha256": "794d8fc0d7fb19399a6dedba00c2bfc22d2de16287f245fc5da7024f5bc1d4bc",
+   "generated": "2026-11-22",
+   "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Лощина Тихой Меди. Style Лощина Тихой Меди · Weathered copper patina with interlocking fine bell silhouettes and echo ripples. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Площадь Вересова Колодца; 0.367,0.177 Дом шести ударов; 0.623,0.15 Мельница Стоячей Воды; 0.88,0.177 Сад перевязанных ветвей; 0.905,0.517 Пастуший навес; 0.648,0.49 Брод Зеркальной Гальки; 0.392,0.517 Тёплый медный выработок; 0.135,0.49 Звонница Последнего Воздуха; 0.11,0.83 Каменная Глотка. Show public exteriors / unlabeled contours only.",
+   "references": [],
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null,
+   "subjects": {
+    "3-players": [
+     "world-map"
+    ],
+    "4-players": [
+     "world-map"
+    ],
+    "5-players": [
+     "world-map"
+    ],
+    "6-players": [
+     "world-map"
+    ],
+    "7-players": [
+     "world-map"
+    ]
+   }
+  }
+ ]
+}

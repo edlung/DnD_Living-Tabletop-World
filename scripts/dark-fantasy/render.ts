@@ -1,3 +1,4 @@
+import { withBookTableLinks } from '../campaign-shared/book-table-links.ts';
 import { copyFile, mkdir, readFile, readdir, unlink, writeFile } from 'node:fs/promises';
 import { COLLECTION_ROOT, SLUGS, loadSource } from './source.ts';
 import { verifySource } from './editorial.ts';
@@ -5,6 +6,7 @@ import { buildEncounters } from './encounters.ts';
 import { renderBook, renderCatalog, renderPlayers } from './render-book.ts';
 import { renderSession } from './render-session.ts';
 import { renderMaps, tacticalMap } from './render-maps.ts';
+import { tacticalSvg } from '../campaign-shared/maps.ts';
 import { esc, page } from './render-common.ts';
 
 /** Remove only recognizable outputs from this renderer, preserving unknown user files. */
@@ -52,7 +54,8 @@ for (const slug of selected.length ? selected : SLUGS) {
     '.svg',
     '<title>Тактическая сетка 14 на 12 клеток</title>',
   );
-  const write = (path: string, text: string) => writeFile(new URL(path, root), text);
+  const write = (path: string, text: string) =>
+    writeFile(new URL(path, root), withBookTableLinks(root, path, text));
   await write('index.html', renderBook(s));
   await write('players.html', standalone(renderPlayers(s)));
   await write('maps.html', renderMaps(s));
@@ -74,8 +77,13 @@ for (const slug of selected.length ? selected : SLUGS) {
     );
   for (let size = s.world.minPlayers; size <= s.world.maxPlayers; size++) {
     const party = s.cast.heroes.slice(0, size).map((h) => h.key);
-    for (const e of buildEncounters(s, party))
-      await write(`maps/${e.key}-${size}.svg`, tacticalMap(e));
+    for (const e of buildEncounters(s, party)) {
+      const bossSize = s.encounters.find((card) => card.key === e.key)?.boss?.size;
+      await write(
+        `maps/${e.key}-${size}.svg`,
+        bossSize ? tacticalSvg(e, bossSize) : tacticalMap(e),
+      );
+    }
   }
   process.stdout.write(`${slug}: DM/player books, sessions, handouts and maps rendered\n`);
 }

@@ -1,0 +1,1975 @@
+{
+ "id": "small-banner",
+ "title": "Знамя размером с ладонь",
+ "genre": "Камерное приключенческое фэнтези о маленьких сообществах в огромном доме",
+ "audience": "12+",
+ "pitch": "Вы согласились побыть ладонными гостями в доме великанши Вельды. Теперь пуговица служит щитом, столовая ложка — мостом, а обычный переезд становится приключением среди падающих складок и огромных коробок. Маленькие мастера уже решили ехать с хозяйкой и поручают вам перевезти их общее творение — ажурную витрину «Дом на раскрытой ладони». Сборщик Тен настаивает на плотной стандартной укладке. Заработайте помощь артели, буфетной стражи и мотыльковых всадников, испытайте свой способ и проведите хрупкую работу через гигантский день погрузки.",
+ "tone": "Тёплое удивление, азарт изобретательной погрузки, спор мастеров и юмор масштаба; ошибки дают видимые швы и новые решения без унижения",
+ "duration": "8 сессий; 150 минут: вступление и напоминание 15, три сцены по 35, перерыв 10 после второй сцены, закрытие и личный итог 20",
+ "cover": "campaigns/fantasy-2026/small-banner/illustrations/opening.webp",
+ "defaultVariant": "4-players",
+ "variants": [
+  {
+   "id": "3-players",
+   "players": 3,
+   "label": "3 игрока",
+   "file": "packages/3-players.json",
+   "digest": "e14d80d961e216e256301f4408ff9471741a932cea9b865835c60f0ef38758f2"
+  },
+  {
+   "id": "4-players",
+   "players": 4,
+   "label": "4 игрока",
+   "file": "packages/4-players.json",
+   "digest": "2de0ef2b6eb892f40b0992cc28b94d022b8667464ec27369b6e7733c5c48ee18"
+  },
+  {
+   "id": "5-players",
+   "players": 5,
+   "label": "5 игроков",
+   "file": "packages/5-players.json",
+   "digest": "049848f76f14da22f2f8bed679dc128fa2cb635c01f16aeee980fb96c48e92da"
+  },
+  {
+   "id": "6-players",
+   "players": 6,
+   "label": "6 игроков",
+   "file": "packages/6-players.json",
+   "digest": "1de4f34565207d88c55c9873c6bb73b3d4fc0b2ec14ddbad12db2cc7519ec1f9"
+  },
+  {
+   "id": "7-players",
+   "players": 7,
+   "label": "7 игроков",
+   "file": "packages/7-players.json",
+   "digest": "9ee4a13c498e2c09f164573c6e05cc86677fd6d327a450aabde4ec4e811cf71e"
+  },
+  {
+   "id": "8-players",
+   "players": 8,
+   "label": "8 игроков",
+   "file": "packages/8-players.json",
+   "digest": "3a580546718d83dee32b7ed8fffaa77ff47eec5faf1e6f9de87c8ab5d288adbb"
+  }
+ ],
+ "generator": "codex-cli imagegen",
+ "pictures": [
+  {
+   "source": "campaigns/fantasy-2026/small-banner/illustrations/cards/yara-corin.webp",
+   "sha256": "91132f0d6699da1ac583adc5b2322c41fae79308ba910cd010be5610fb3e83b3",
+   "originalSha256": "1a610c013d170ebc869f58d0f5015deb99b60b106f12a76a1d73893b5c6ad9df",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Яра Корин",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "yara-corin"
+    ],
+    "4-players": [
+     "yara-corin"
+    ],
+    "5-players": [
+     "yara-corin"
+    ],
+    "6-players": [
+     "yara-corin"
+    ],
+    "7-players": [
+     "yara-corin"
+    ],
+    "8-players": [
+     "yara-corin"
+    ]
+   },
+   "file": "yara-corin.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/illustrations/cards/lis-ovst.webp",
+   "sha256": "9b61037ce4ac1db3d0b777d7af3b26acc3a6ee31b1b87ce5e45168ee7cea7122",
+   "originalSha256": "1a610c013d170ebc869f58d0f5015deb99b60b106f12a76a1d73893b5c6ad9df",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лис Овст",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lis-ovst"
+    ],
+    "4-players": [
+     "lis-ovst"
+    ],
+    "5-players": [
+     "lis-ovst"
+    ],
+    "6-players": [
+     "lis-ovst"
+    ],
+    "7-players": [
+     "lis-ovst"
+    ],
+    "8-players": [
+     "lis-ovst"
+    ]
+   },
+   "file": "lis-ovst.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/illustrations/cards/neda-seam.webp",
+   "sha256": "130af5a7e01134015517151785d747fbcd4516379538c314d63b42135d675444",
+   "originalSha256": "1a610c013d170ebc869f58d0f5015deb99b60b106f12a76a1d73893b5c6ad9df",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Неда Рыжий Шов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "neda-seam"
+    ],
+    "4-players": [
+     "neda-seam"
+    ],
+    "5-players": [
+     "neda-seam"
+    ],
+    "6-players": [
+     "neda-seam"
+    ],
+    "7-players": [
+     "neda-seam"
+    ],
+    "8-players": [
+     "neda-seam"
+    ]
+   },
+   "file": "neda-seam.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/illustrations/cards/em-rast.webp",
+   "sha256": "c0e3bbc727f7ae21ac274c5f70f022e5985da1ac9ac2cf086f75450d589d5c26",
+   "originalSha256": "1a610c013d170ebc869f58d0f5015deb99b60b106f12a76a1d73893b5c6ad9df",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эм Раст",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "em-rast"
+    ],
+    "5-players": [
+     "em-rast"
+    ],
+    "6-players": [
+     "em-rast"
+    ],
+    "7-players": [
+     "em-rast"
+    ],
+    "8-players": [
+     "em-rast"
+    ]
+   },
+   "file": "em-rast.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/illustrations/cards/tavr-linden.webp",
+   "sha256": "bc26e7df0e551abd5c3b97ef6811c96f81c49cada77886a0f54ed2efe3884abf",
+   "originalSha256": "1a610c013d170ebc869f58d0f5015deb99b60b106f12a76a1d73893b5c6ad9df",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тавр Липовый",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "tavr-linden"
+    ],
+    "6-players": [
+     "tavr-linden"
+    ],
+    "7-players": [
+     "tavr-linden"
+    ],
+    "8-players": [
+     "tavr-linden"
+    ]
+   },
+   "file": "tavr-linden.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/illustrations/cards/seya-fold.webp",
+   "sha256": "c4d0e78a0c9f750e3ddb28632cef163acff31cc6509cb998b32321aea7041b1d",
+   "originalSha256": "1a610c013d170ebc869f58d0f5015deb99b60b106f12a76a1d73893b5c6ad9df",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сея Складка",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "seya-fold"
+    ],
+    "7-players": [
+     "seya-fold"
+    ],
+    "8-players": [
+     "seya-fold"
+    ]
+   },
+   "file": "seya-fold.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/illustrations/cards/ven-ash.webp",
+   "sha256": "262acdfc54f252ee60344c265aed9020be726446f07e1e02e9697058d85305a7",
+   "originalSha256": "1a610c013d170ebc869f58d0f5015deb99b60b106f12a76a1d73893b5c6ad9df",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Вен Ясень",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "ven-ash"
+    ],
+    "8-players": [
+     "ven-ash"
+    ]
+   },
+   "file": "ven-ash.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/illustrations/cards/dorna-amber.webp",
+   "sha256": "2a57f038a811925bb99f233083cbe44d5d3c188718b573783dc126662df9e996",
+   "originalSha256": "1a610c013d170ebc869f58d0f5015deb99b60b106f12a76a1d73893b5c6ad9df",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дорна Янтарная",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [],
+    "8-players": [
+     "dorna-amber"
+    ]
+   },
+   "file": "dorna-amber.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/illustrations/cards/travel-kit.webp",
+   "sha256": "011f4f66ad9bfbf7b83e97b65a24df5bcfdc9fd9d43e591e609ed918a8d7f763",
+   "originalSha256": "1a610c013d170ebc869f58d0f5015deb99b60b106f12a76a1d73893b5c6ad9df",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дорожный набор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lis-ovst-travel-kit",
+     "neda-seam-travel-kit",
+     "yara-corin-travel-kit"
+    ],
+    "4-players": [
+     "em-rast-travel-kit",
+     "lis-ovst-travel-kit",
+     "neda-seam-travel-kit",
+     "yara-corin-travel-kit"
+    ],
+    "5-players": [
+     "em-rast-travel-kit",
+     "lis-ovst-travel-kit",
+     "neda-seam-travel-kit",
+     "tavr-linden-travel-kit",
+     "yara-corin-travel-kit"
+    ],
+    "6-players": [
+     "em-rast-travel-kit",
+     "lis-ovst-travel-kit",
+     "neda-seam-travel-kit",
+     "seya-fold-travel-kit",
+     "tavr-linden-travel-kit",
+     "yara-corin-travel-kit"
+    ],
+    "7-players": [
+     "em-rast-travel-kit",
+     "lis-ovst-travel-kit",
+     "neda-seam-travel-kit",
+     "seya-fold-travel-kit",
+     "tavr-linden-travel-kit",
+     "ven-ash-travel-kit",
+     "yara-corin-travel-kit"
+    ],
+    "8-players": [
+     "dorna-amber-travel-kit",
+     "em-rast-travel-kit",
+     "lis-ovst-travel-kit",
+     "neda-seam-travel-kit",
+     "seya-fold-travel-kit",
+     "tavr-linden-travel-kit",
+     "ven-ash-travel-kit",
+     "yara-corin-travel-kit"
+    ]
+   },
+   "file": "travel-kit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/illustrations/cards/arda-spool.webp",
+   "sha256": "fa78b7081cb0dc50bde666c6151e9111512a624ddb671fc1ca64622d0f66ffb7",
+   "originalSha256": "0acccc95bb96a2b65351ab105e02be19b13b87a9c74053d6649b57e6d3705794",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Арда Стежинка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "arda-spool"
+    ],
+    "4-players": [
+     "arda-spool"
+    ],
+    "5-players": [
+     "arda-spool"
+    ],
+    "6-players": [
+     "arda-spool"
+    ],
+    "7-players": [
+     "arda-spool"
+    ],
+    "8-players": [
+     "arda-spool"
+    ]
+   },
+   "file": "arda-spool.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/illustrations/cards/brun-ladle.webp",
+   "sha256": "dffe92d99bba491d76e6e4da5fc4a2b895ab41da0f4a2879a1058ef1d48f383b",
+   "originalSha256": "0acccc95bb96a2b65351ab105e02be19b13b87a9c74053d6649b57e6d3705794",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Брун Ложечный",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "brun-ladle"
+    ],
+    "4-players": [
+     "brun-ladle"
+    ],
+    "5-players": [
+     "brun-ladle"
+    ],
+    "6-players": [
+     "brun-ladle"
+    ],
+    "7-players": [
+     "brun-ladle"
+    ],
+    "8-players": [
+     "brun-ladle"
+    ]
+   },
+   "file": "brun-ladle.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/illustrations/cards/sila-pollen.webp",
+   "sha256": "6666eeab3a9a28054a822b80dd3ad7976cb1009e9a475b0a05eaf968a94f71ae",
+   "originalSha256": "0acccc95bb96a2b65351ab105e02be19b13b87a9c74053d6649b57e6d3705794",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сила Пыльцевей",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "sila-pollen"
+    ],
+    "4-players": [
+     "sila-pollen"
+    ],
+    "5-players": [
+     "sila-pollen"
+    ],
+    "6-players": [
+     "sila-pollen"
+    ],
+    "7-players": [
+     "sila-pollen"
+    ],
+    "8-players": [
+     "sila-pollen"
+    ]
+   },
+   "file": "sila-pollen.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/illustrations/cards/mur-vessels.webp",
+   "sha256": "59027ee30324720a8f6197bbae6d5c7590c2bc3dfdf387393c8102fc2fc96449",
+   "originalSha256": "0acccc95bb96a2b65351ab105e02be19b13b87a9c74053d6649b57e6d3705794",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мур Чашечник",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mur-vessels"
+    ],
+    "4-players": [
+     "mur-vessels"
+    ],
+    "5-players": [
+     "mur-vessels"
+    ],
+    "6-players": [
+     "mur-vessels"
+    ],
+    "7-players": [
+     "mur-vessels"
+    ],
+    "8-players": [
+     "mur-vessels"
+    ]
+   },
+   "file": "mur-vessels.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/illustrations/cards/rem-measure.webp",
+   "sha256": "5723d93af4761f28d192a566e4580ff980f1247bff816f64db7fbe9ddab7dc58",
+   "originalSha256": "0acccc95bb96a2b65351ab105e02be19b13b87a9c74053d6649b57e6d3705794",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рем Мерочник",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "rem-measure"
+    ],
+    "4-players": [
+     "rem-measure"
+    ],
+    "5-players": [
+     "rem-measure"
+    ],
+    "6-players": [
+     "rem-measure"
+    ],
+    "7-players": [
+     "rem-measure"
+    ],
+    "8-players": [
+     "rem-measure"
+    ]
+   },
+   "file": "rem-measure.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/illustrations/cards/velda-home.webp",
+   "sha256": "dca566fdab50de5cc1b44f1657716558a8db2694ac34b2c9157f6da0d797ac58",
+   "originalSha256": "0acccc95bb96a2b65351ab105e02be19b13b87a9c74053d6649b57e6d3705794",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Вельда Тихорукая",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "velda-home"
+    ],
+    "4-players": [
+     "velda-home"
+    ],
+    "5-players": [
+     "velda-home"
+    ],
+    "6-players": [
+     "velda-home"
+    ],
+    "7-players": [
+     "velda-home"
+    ],
+    "8-players": [
+     "velda-home"
+    ]
+   },
+   "file": "velda-home.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/illustrations/cards/kem-cord.webp",
+   "sha256": "c03171cf8641f6e1a139300bff08c9b93e41394702bbf94dd5a65a750c105775",
+   "originalSha256": "0acccc95bb96a2b65351ab105e02be19b13b87a9c74053d6649b57e6d3705794",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Кем Верёвочный",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "kem-cord"
+    ],
+    "4-players": [
+     "kem-cord"
+    ],
+    "5-players": [
+     "kem-cord"
+    ],
+    "6-players": [
+     "kem-cord"
+    ],
+    "7-players": [
+     "kem-cord"
+    ],
+    "8-players": [
+     "kem-cord"
+    ]
+   },
+   "file": "kem-cord.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/illustrations/cards/oba-linen.webp",
+   "sha256": "d814cd3b3097baca334d3f9b8dc9e85684279e556235c65e9ceca36a01f95ddc",
+   "originalSha256": "0acccc95bb96a2b65351ab105e02be19b13b87a9c74053d6649b57e6d3705794",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Оба Крепица",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "oba-linen"
+    ],
+    "4-players": [
+     "oba-linen"
+    ],
+    "5-players": [
+     "oba-linen"
+    ],
+    "6-players": [
+     "oba-linen"
+    ],
+    "7-players": [
+     "oba-linen"
+    ],
+    "8-players": [
+     "oba-linen"
+    ]
+   },
+   "file": "oba-linen.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/illustrations/cards/peska-leaf.webp",
+   "sha256": "853dc854f865bcd08c9a3552be2b795bf22e200bfe3b19ff06d28cc347e7ae16",
+   "originalSha256": "0acccc95bb96a2b65351ab105e02be19b13b87a9c74053d6649b57e6d3705794",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Песка Листовая",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "peska-leaf"
+    ],
+    "4-players": [
+     "peska-leaf"
+    ],
+    "5-players": [
+     "peska-leaf"
+    ],
+    "6-players": [
+     "peska-leaf"
+    ],
+    "7-players": [
+     "peska-leaf"
+    ],
+    "8-players": [
+     "peska-leaf"
+    ]
+   },
+   "file": "peska-leaf.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/illustrations/cards/ten-buckle.webp",
+   "sha256": "585d68a8878796e5933081f1a09b0df76a39d78dff4ef0032a47fca8cbcb1a07",
+   "originalSha256": "0acccc95bb96a2b65351ab105e02be19b13b87a9c74053d6649b57e6d3705794",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тен Пряжка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ten-buckle"
+    ],
+    "4-players": [
+     "ten-buckle"
+    ],
+    "5-players": [
+     "ten-buckle"
+    ],
+    "6-players": [
+     "ten-buckle"
+    ],
+    "7-players": [
+     "ten-buckle"
+    ],
+    "8-players": [
+     "ten-buckle"
+    ]
+   },
+   "file": "ten-buckle.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/assets/table/heroes-yara-corin.webp",
+   "sha256": "006f7663dd8d60aa5018ef551a3a2e49530a7dcb6c77c0014656146eec209be5",
+   "originalSha256": "e0a933a1947d733deb30114d46c9137295562d436ae6c1e2d32adfcf5e0e4aaf",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Яра Корин",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "yara-corin"
+    ],
+    "4-players": [
+     "yara-corin"
+    ],
+    "5-players": [
+     "yara-corin"
+    ],
+    "6-players": [
+     "yara-corin"
+    ],
+    "7-players": [
+     "yara-corin"
+    ],
+    "8-players": [
+     "yara-corin"
+    ]
+   },
+   "file": "yara-corin--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "yara-corin.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/assets/table/heroes-lis-ovst.webp",
+   "sha256": "ab391627bad86bf6c18d41dba5c83291854f1d7f1722405c6a1ef82e92b5cea4",
+   "originalSha256": "e0a933a1947d733deb30114d46c9137295562d436ae6c1e2d32adfcf5e0e4aaf",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лис Овст",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lis-ovst"
+    ],
+    "4-players": [
+     "lis-ovst"
+    ],
+    "5-players": [
+     "lis-ovst"
+    ],
+    "6-players": [
+     "lis-ovst"
+    ],
+    "7-players": [
+     "lis-ovst"
+    ],
+    "8-players": [
+     "lis-ovst"
+    ]
+   },
+   "file": "lis-ovst--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "lis-ovst.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/assets/table/heroes-neda-seam.webp",
+   "sha256": "d11d92ed0a20698c5b4eec921808d2db41dda08c2adbfe06b5996321b0680212",
+   "originalSha256": "e0a933a1947d733deb30114d46c9137295562d436ae6c1e2d32adfcf5e0e4aaf",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Неда Рыжий Шов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "neda-seam"
+    ],
+    "4-players": [
+     "neda-seam"
+    ],
+    "5-players": [
+     "neda-seam"
+    ],
+    "6-players": [
+     "neda-seam"
+    ],
+    "7-players": [
+     "neda-seam"
+    ],
+    "8-players": [
+     "neda-seam"
+    ]
+   },
+   "file": "neda-seam--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "neda-seam.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/assets/table/heroes-em-rast.webp",
+   "sha256": "6a44ca9327d29f3382f511e5fe1f34663e5c91bfc21c212db259a312cb4ddac7",
+   "originalSha256": "e0a933a1947d733deb30114d46c9137295562d436ae6c1e2d32adfcf5e0e4aaf",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эм Раст",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "em-rast"
+    ],
+    "5-players": [
+     "em-rast"
+    ],
+    "6-players": [
+     "em-rast"
+    ],
+    "7-players": [
+     "em-rast"
+    ],
+    "8-players": [
+     "em-rast"
+    ]
+   },
+   "file": "em-rast--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "em-rast.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/assets/table/heroes-tavr-linden.webp",
+   "sha256": "33f95abff853d1818bc7d09e407ceb2fb3b3e8c9e7a346dcfab1d2d7fd3c9c2a",
+   "originalSha256": "e0a933a1947d733deb30114d46c9137295562d436ae6c1e2d32adfcf5e0e4aaf",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тавр Липовый",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "tavr-linden"
+    ],
+    "6-players": [
+     "tavr-linden"
+    ],
+    "7-players": [
+     "tavr-linden"
+    ],
+    "8-players": [
+     "tavr-linden"
+    ]
+   },
+   "file": "tavr-linden--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "tavr-linden.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/assets/table/heroes-seya-fold.webp",
+   "sha256": "fed3026c063e19e97a65e85a8e544e1773347413d7854f7ada094c09ec690c6e",
+   "originalSha256": "e0a933a1947d733deb30114d46c9137295562d436ae6c1e2d32adfcf5e0e4aaf",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сея Складка",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "seya-fold"
+    ],
+    "7-players": [
+     "seya-fold"
+    ],
+    "8-players": [
+     "seya-fold"
+    ]
+   },
+   "file": "seya-fold--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "seya-fold.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/assets/table/heroes-ven-ash.webp",
+   "sha256": "bc7f5c9cce965e4b4a01f356a8ffe324b960113c4731ee6eda66ca3cdfa52212",
+   "originalSha256": "e0a933a1947d733deb30114d46c9137295562d436ae6c1e2d32adfcf5e0e4aaf",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Вен Ясень",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "ven-ash"
+    ],
+    "8-players": [
+     "ven-ash"
+    ]
+   },
+   "file": "ven-ash--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ven-ash.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/assets/table/heroes-dorna-amber.webp",
+   "sha256": "02bcf878cfddf9f28fc018fa09a3498c3c97b2d1fbd83abd48a59220514ef9f1",
+   "originalSha256": "e0a933a1947d733deb30114d46c9137295562d436ae6c1e2d32adfcf5e0e4aaf",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дорна Янтарная",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [],
+    "8-players": [
+     "dorna-amber"
+    ]
+   },
+   "file": "dorna-amber--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "dorna-amber.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/assets/table/places-guest-hem.webp",
+   "sha256": "2c9a26250bde93d01c1599ad2c48f8211f29259d7bca6c3a2877f980c648c35f",
+   "originalSha256": "b7e4cd1e4d05f606411fd3738fdb4917c6dd68a92d6ea0d2fa8d7b450f19e578",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Кромка гостевой скатерти",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "guest-hem"
+    ],
+    "4-players": [
+     "guest-hem"
+    ],
+    "5-players": [
+     "guest-hem"
+    ],
+    "6-players": [
+     "guest-hem"
+    ],
+    "7-players": [
+     "guest-hem"
+    ],
+    "8-players": [
+     "guest-hem"
+    ]
+   },
+   "file": "guest-hem.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/assets/table/places-sewing-terrace.webp",
+   "sha256": "6a908758dbd233f9dd4a1aad6cb5c5ebece0705c1fbdbed86fc6c15c2af736e2",
+   "originalSha256": "b7e4cd1e4d05f606411fd3738fdb4917c6dd68a92d6ea0d2fa8d7b450f19e578",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Катушечные террасы",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "sewing-terrace"
+    ],
+    "4-players": [
+     "sewing-terrace"
+    ],
+    "5-players": [
+     "sewing-terrace"
+    ],
+    "6-players": [
+     "sewing-terrace"
+    ],
+    "7-players": [
+     "sewing-terrace"
+    ],
+    "8-players": [
+     "sewing-terrace"
+    ]
+   },
+   "file": "sewing-terrace.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/assets/table/places-cupboard-common.webp",
+   "sha256": "de000df9a963a3e91637a5fe291b1204f50542f072911d25c1f0fffe09d1063b",
+   "originalSha256": "b7e4cd1e4d05f606411fd3738fdb4917c6dd68a92d6ea0d2fa8d7b450f19e578",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Буфетная площадь",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "cupboard-common"
+    ],
+    "4-players": [
+     "cupboard-common"
+    ],
+    "5-players": [
+     "cupboard-common"
+    ],
+    "6-players": [
+     "cupboard-common"
+    ],
+    "7-players": [
+     "cupboard-common"
+    ],
+    "8-players": [
+     "cupboard-common"
+    ]
+   },
+   "file": "cupboard-common.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/assets/table/places-curtain-loft.webp",
+   "sha256": "171f65df69cb61267d6030744d94c22ab2a6b6f02e8051ec9596febce6015b87",
+   "originalSha256": "b7e4cd1e4d05f606411fd3738fdb4917c6dd68a92d6ea0d2fa8d7b450f19e578",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мотыльковый карниз",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "curtain-loft"
+    ],
+    "4-players": [
+     "curtain-loft"
+    ],
+    "5-players": [
+     "curtain-loft"
+    ],
+    "6-players": [
+     "curtain-loft"
+    ],
+    "7-players": [
+     "curtain-loft"
+    ],
+    "8-players": [
+     "curtain-loft"
+    ]
+   },
+   "file": "curtain-loft.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/assets/table/places-washbasin-shore.webp",
+   "sha256": "011aed8a1d9d334dd1d8921dcc19268624401d61e1da96710abb035d15a16bde",
+   "originalSha256": "b7e4cd1e4d05f606411fd3738fdb4917c6dd68a92d6ea0d2fa8d7b450f19e578",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Берег умывального таза",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "washbasin-shore"
+    ],
+    "4-players": [
+     "washbasin-shore"
+    ],
+    "5-players": [
+     "washbasin-shore"
+    ],
+    "6-players": [
+     "washbasin-shore"
+    ],
+    "7-players": [
+     "washbasin-shore"
+    ],
+    "8-players": [
+     "washbasin-shore"
+    ]
+   },
+   "file": "washbasin-shore.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/assets/table/places-packing-table.webp",
+   "sha256": "481d818e1083d7c6ca7996803c0c8d741624289f4b9163349a95ea9db8a0b0cf",
+   "originalSha256": "b7e4cd1e4d05f606411fd3738fdb4917c6dd68a92d6ea0d2fa8d7b450f19e578",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Упаковочный стол",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "packing-table"
+    ],
+    "4-players": [
+     "packing-table"
+    ],
+    "5-players": [
+     "packing-table"
+    ],
+    "6-players": [
+     "packing-table"
+    ],
+    "7-players": [
+     "packing-table"
+    ],
+    "8-players": [
+     "packing-table"
+    ]
+   },
+   "file": "packing-table.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/assets/table/places-garden-drawer.webp",
+   "sha256": "3137c8f48585a744b3b9644d6eca252bb90bb9c7725a6896fb3f5fd8f770d864",
+   "originalSha256": "b7e4cd1e4d05f606411fd3738fdb4917c6dd68a92d6ea0d2fa8d7b450f19e578",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Садовый ящик",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "garden-drawer"
+    ],
+    "4-players": [
+     "garden-drawer"
+    ],
+    "5-players": [
+     "garden-drawer"
+    ],
+    "6-players": [
+     "garden-drawer"
+    ],
+    "7-players": [
+     "garden-drawer"
+    ],
+    "8-players": [
+     "garden-drawer"
+    ]
+   },
+   "file": "garden-drawer.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/assets/table/places-threshold-yard.webp",
+   "sha256": "2263ee2b62886b8f4ed6f4f33f800736437acbe03a18a21a3b94dcc131df1ab2",
+   "originalSha256": "b7e4cd1e4d05f606411fd3738fdb4917c6dd68a92d6ea0d2fa8d7b450f19e578",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Двор у порога",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "threshold-yard"
+    ],
+    "4-players": [
+     "threshold-yard"
+    ],
+    "5-players": [
+     "threshold-yard"
+    ],
+    "6-players": [
+     "threshold-yard"
+    ],
+    "7-players": [
+     "threshold-yard"
+    ],
+    "8-players": [
+     "threshold-yard"
+    ]
+   },
+   "file": "threshold-yard.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/assets/table/foes-foe-1db18a0b74.webp",
+   "sha256": "fc4959202a7ecf49210ccb3a9070e8ced4338864ef0f879ff1bfa88224e5b611",
+   "originalSha256": "51372d83123b87148148d1fc9efff8714aa6582d905a2f4557ab630d2b842248",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ленточный сторож",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ribbon-holders-foe-1",
+     "ribbon-holders-foe-2"
+    ],
+    "4-players": [
+     "ribbon-holders-foe-1",
+     "ribbon-holders-foe-2",
+     "ribbon-holders-foe-3"
+    ],
+    "5-players": [
+     "ribbon-holders-foe-1",
+     "ribbon-holders-foe-2",
+     "ribbon-holders-foe-3"
+    ],
+    "6-players": [
+     "ribbon-holders-foe-1",
+     "ribbon-holders-foe-2",
+     "ribbon-holders-foe-3",
+     "ribbon-holders-foe-4"
+    ],
+    "7-players": [
+     "ribbon-holders-foe-1",
+     "ribbon-holders-foe-2",
+     "ribbon-holders-foe-3",
+     "ribbon-holders-foe-4",
+     "ribbon-holders-foe-5"
+    ],
+    "8-players": [
+     "ribbon-holders-foe-1",
+     "ribbon-holders-foe-2",
+     "ribbon-holders-foe-3",
+     "ribbon-holders-foe-4",
+     "ribbon-holders-foe-5",
+     "ribbon-holders-foe-6"
+    ]
+   },
+   "file": "foe-1db18a0b74.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/assets/table/foes-foe-1db18a0b74.webp",
+   "sha256": "fc4959202a7ecf49210ccb3a9070e8ced4338864ef0f879ff1bfa88224e5b611",
+   "originalSha256": "51372d83123b87148148d1fc9efff8714aa6582d905a2f4557ab630d2b842248",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ленточный сторож",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ribbon-holders-foe-1",
+     "ribbon-holders-foe-2"
+    ],
+    "4-players": [
+     "ribbon-holders-foe-1",
+     "ribbon-holders-foe-2",
+     "ribbon-holders-foe-3"
+    ],
+    "5-players": [
+     "ribbon-holders-foe-1",
+     "ribbon-holders-foe-2",
+     "ribbon-holders-foe-3"
+    ],
+    "6-players": [
+     "ribbon-holders-foe-1",
+     "ribbon-holders-foe-2",
+     "ribbon-holders-foe-3",
+     "ribbon-holders-foe-4"
+    ],
+    "7-players": [
+     "ribbon-holders-foe-1",
+     "ribbon-holders-foe-2",
+     "ribbon-holders-foe-3",
+     "ribbon-holders-foe-4",
+     "ribbon-holders-foe-5"
+    ],
+    "8-players": [
+     "ribbon-holders-foe-1",
+     "ribbon-holders-foe-2",
+     "ribbon-holders-foe-3",
+     "ribbon-holders-foe-4",
+     "ribbon-holders-foe-5",
+     "ribbon-holders-foe-6"
+    ]
+   },
+   "file": "foe-1db18a0b74--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-1db18a0b74.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/assets/table/foes-foe-ffb6c053fc.webp",
+   "sha256": "7597bdd56bf4ad377a4c3e7262517c48dbdca50a190b9430e990c71a0f8bbf58",
+   "originalSha256": "51372d83123b87148148d1fc9efff8714aa6582d905a2f4557ab630d2b842248",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тележечный спорщик",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lid-dispute-foe-1",
+     "lid-dispute-foe-2"
+    ],
+    "4-players": [
+     "lid-dispute-foe-1",
+     "lid-dispute-foe-2",
+     "lid-dispute-foe-3"
+    ],
+    "5-players": [
+     "lid-dispute-foe-1",
+     "lid-dispute-foe-2",
+     "lid-dispute-foe-3"
+    ],
+    "6-players": [
+     "lid-dispute-foe-1",
+     "lid-dispute-foe-2",
+     "lid-dispute-foe-3",
+     "lid-dispute-foe-4"
+    ],
+    "7-players": [
+     "lid-dispute-foe-1",
+     "lid-dispute-foe-2",
+     "lid-dispute-foe-3",
+     "lid-dispute-foe-4",
+     "lid-dispute-foe-5"
+    ],
+    "8-players": [
+     "lid-dispute-foe-1",
+     "lid-dispute-foe-2",
+     "lid-dispute-foe-3",
+     "lid-dispute-foe-4",
+     "lid-dispute-foe-5",
+     "lid-dispute-foe-6"
+    ]
+   },
+   "file": "foe-ffb6c053fc.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/assets/table/foes-foe-ffb6c053fc.webp",
+   "sha256": "7597bdd56bf4ad377a4c3e7262517c48dbdca50a190b9430e990c71a0f8bbf58",
+   "originalSha256": "51372d83123b87148148d1fc9efff8714aa6582d905a2f4557ab630d2b842248",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тележечный спорщик",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lid-dispute-foe-1",
+     "lid-dispute-foe-2"
+    ],
+    "4-players": [
+     "lid-dispute-foe-1",
+     "lid-dispute-foe-2",
+     "lid-dispute-foe-3"
+    ],
+    "5-players": [
+     "lid-dispute-foe-1",
+     "lid-dispute-foe-2",
+     "lid-dispute-foe-3"
+    ],
+    "6-players": [
+     "lid-dispute-foe-1",
+     "lid-dispute-foe-2",
+     "lid-dispute-foe-3",
+     "lid-dispute-foe-4"
+    ],
+    "7-players": [
+     "lid-dispute-foe-1",
+     "lid-dispute-foe-2",
+     "lid-dispute-foe-3",
+     "lid-dispute-foe-4",
+     "lid-dispute-foe-5"
+    ],
+    "8-players": [
+     "lid-dispute-foe-1",
+     "lid-dispute-foe-2",
+     "lid-dispute-foe-3",
+     "lid-dispute-foe-4",
+     "lid-dispute-foe-5",
+     "lid-dispute-foe-6"
+    ]
+   },
+   "file": "foe-ffb6c053fc--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-ffb6c053fc.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/assets/table/foes-foe-69fb7800f2.webp",
+   "sha256": "ce95e2f185d700455fcb369250c0aa08fa8f4855c9b27ce5589a1133f46c584a",
+   "originalSha256": "51372d83123b87148148d1fc9efff8714aa6582d905a2f4557ab630d2b842248",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Бумажный щипач",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "paper-crabs-foe-1",
+     "paper-crabs-foe-2"
+    ],
+    "4-players": [
+     "paper-crabs-foe-1",
+     "paper-crabs-foe-2",
+     "paper-crabs-foe-3"
+    ],
+    "5-players": [
+     "paper-crabs-foe-1",
+     "paper-crabs-foe-2",
+     "paper-crabs-foe-3"
+    ],
+    "6-players": [
+     "paper-crabs-foe-1",
+     "paper-crabs-foe-2",
+     "paper-crabs-foe-3",
+     "paper-crabs-foe-4"
+    ],
+    "7-players": [
+     "paper-crabs-foe-1",
+     "paper-crabs-foe-2",
+     "paper-crabs-foe-3",
+     "paper-crabs-foe-4",
+     "paper-crabs-foe-5"
+    ],
+    "8-players": [
+     "paper-crabs-foe-1",
+     "paper-crabs-foe-2",
+     "paper-crabs-foe-3",
+     "paper-crabs-foe-4",
+     "paper-crabs-foe-5",
+     "paper-crabs-foe-6"
+    ]
+   },
+   "file": "foe-69fb7800f2.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/assets/table/foes-foe-69fb7800f2.webp",
+   "sha256": "ce95e2f185d700455fcb369250c0aa08fa8f4855c9b27ce5589a1133f46c584a",
+   "originalSha256": "51372d83123b87148148d1fc9efff8714aa6582d905a2f4557ab630d2b842248",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Бумажный щипач",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "paper-crabs-foe-1",
+     "paper-crabs-foe-2"
+    ],
+    "4-players": [
+     "paper-crabs-foe-1",
+     "paper-crabs-foe-2",
+     "paper-crabs-foe-3"
+    ],
+    "5-players": [
+     "paper-crabs-foe-1",
+     "paper-crabs-foe-2",
+     "paper-crabs-foe-3"
+    ],
+    "6-players": [
+     "paper-crabs-foe-1",
+     "paper-crabs-foe-2",
+     "paper-crabs-foe-3",
+     "paper-crabs-foe-4"
+    ],
+    "7-players": [
+     "paper-crabs-foe-1",
+     "paper-crabs-foe-2",
+     "paper-crabs-foe-3",
+     "paper-crabs-foe-4",
+     "paper-crabs-foe-5"
+    ],
+    "8-players": [
+     "paper-crabs-foe-1",
+     "paper-crabs-foe-2",
+     "paper-crabs-foe-3",
+     "paper-crabs-foe-4",
+     "paper-crabs-foe-5",
+     "paper-crabs-foe-6"
+    ]
+   },
+   "file": "foe-69fb7800f2--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-69fb7800f2.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/assets/table/npcs-arda-spool.webp",
+   "sha256": "4b6e383d5fdd34337ef3d716a0d0eebcf8b2a2f911b651b230cad88d9c86f3a5",
+   "originalSha256": "e35f08d1434c554effd3b3b538e73ef8ec1339d6355a14b848e4f052f803d8cc",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Арда Стежинка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "arda-spool"
+    ],
+    "4-players": [
+     "arda-spool"
+    ],
+    "5-players": [
+     "arda-spool"
+    ],
+    "6-players": [
+     "arda-spool"
+    ],
+    "7-players": [
+     "arda-spool"
+    ],
+    "8-players": [
+     "arda-spool"
+    ]
+   },
+   "file": "arda-spool--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "arda-spool.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/assets/table/npcs-brun-ladle.webp",
+   "sha256": "49e7b48a51a1f7b48a380a4ea5424b6ea5049da1e0f5935bdd5f8882892b6a2b",
+   "originalSha256": "e35f08d1434c554effd3b3b538e73ef8ec1339d6355a14b848e4f052f803d8cc",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Брун Ложечный",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "brun-ladle"
+    ],
+    "4-players": [
+     "brun-ladle"
+    ],
+    "5-players": [
+     "brun-ladle"
+    ],
+    "6-players": [
+     "brun-ladle"
+    ],
+    "7-players": [
+     "brun-ladle"
+    ],
+    "8-players": [
+     "brun-ladle"
+    ]
+   },
+   "file": "brun-ladle--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "brun-ladle.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/assets/table/npcs-sila-pollen.webp",
+   "sha256": "538a123cf8b62b71e5f1d909cc9ba730e439154984ef1657fdc4475a8c72c39a",
+   "originalSha256": "e35f08d1434c554effd3b3b538e73ef8ec1339d6355a14b848e4f052f803d8cc",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сила Пыльцевей",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "sila-pollen"
+    ],
+    "4-players": [
+     "sila-pollen"
+    ],
+    "5-players": [
+     "sila-pollen"
+    ],
+    "6-players": [
+     "sila-pollen"
+    ],
+    "7-players": [
+     "sila-pollen"
+    ],
+    "8-players": [
+     "sila-pollen"
+    ]
+   },
+   "file": "sila-pollen--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "sila-pollen.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/assets/table/npcs-mur-vessels.webp",
+   "sha256": "c0911c45cac9a1614ad94d4910f73bd5c078cbc09b50b74b9ca4009803f5ab0b",
+   "originalSha256": "e35f08d1434c554effd3b3b538e73ef8ec1339d6355a14b848e4f052f803d8cc",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мур Чашечник",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mur-vessels"
+    ],
+    "4-players": [
+     "mur-vessels"
+    ],
+    "5-players": [
+     "mur-vessels"
+    ],
+    "6-players": [
+     "mur-vessels"
+    ],
+    "7-players": [
+     "mur-vessels"
+    ],
+    "8-players": [
+     "mur-vessels"
+    ]
+   },
+   "file": "mur-vessels--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "mur-vessels.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/assets/table/npcs-rem-measure.webp",
+   "sha256": "3bc28bb541755fb29725de941bdd727526c88a7dd2cd7b79b6ccbffe012fce8c",
+   "originalSha256": "e35f08d1434c554effd3b3b538e73ef8ec1339d6355a14b848e4f052f803d8cc",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рем Мерочник",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "rem-measure"
+    ],
+    "4-players": [
+     "rem-measure"
+    ],
+    "5-players": [
+     "rem-measure"
+    ],
+    "6-players": [
+     "rem-measure"
+    ],
+    "7-players": [
+     "rem-measure"
+    ],
+    "8-players": [
+     "rem-measure"
+    ]
+   },
+   "file": "rem-measure--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "rem-measure.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/assets/table/npcs-velda-home.webp",
+   "sha256": "52340441649388b0ee0edf0f287eeafdda00b6420689b36df9f561debfb2ad6f",
+   "originalSha256": "45a2ddcc143dc54bfa9833009ed284656d94d2d01f0db0c370c1f643393d4dfd",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Вельда Тихорукая",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "velda-home"
+    ],
+    "4-players": [
+     "velda-home"
+    ],
+    "5-players": [
+     "velda-home"
+    ],
+    "6-players": [
+     "velda-home"
+    ],
+    "7-players": [
+     "velda-home"
+    ],
+    "8-players": [
+     "velda-home"
+    ]
+   },
+   "file": "velda-home--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "velda-home.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/assets/table/npcs-kem-cord.webp",
+   "sha256": "cc3b631810b90618ae8fb96b1a754b7ed32c40614f9adcd1179eb66322c0c82e",
+   "originalSha256": "45a2ddcc143dc54bfa9833009ed284656d94d2d01f0db0c370c1f643393d4dfd",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Кем Верёвочный",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "kem-cord"
+    ],
+    "4-players": [
+     "kem-cord"
+    ],
+    "5-players": [
+     "kem-cord"
+    ],
+    "6-players": [
+     "kem-cord"
+    ],
+    "7-players": [
+     "kem-cord"
+    ],
+    "8-players": [
+     "kem-cord"
+    ]
+   },
+   "file": "kem-cord--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "kem-cord.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/assets/table/npcs-oba-linen.webp",
+   "sha256": "4d1a2150c68913d7369e8bbd5b91017124dc5ca0c8c8ecc45b27eda9693c8398",
+   "originalSha256": "45a2ddcc143dc54bfa9833009ed284656d94d2d01f0db0c370c1f643393d4dfd",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Оба Крепица",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "oba-linen"
+    ],
+    "4-players": [
+     "oba-linen"
+    ],
+    "5-players": [
+     "oba-linen"
+    ],
+    "6-players": [
+     "oba-linen"
+    ],
+    "7-players": [
+     "oba-linen"
+    ],
+    "8-players": [
+     "oba-linen"
+    ]
+   },
+   "file": "oba-linen--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "oba-linen.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/assets/table/npcs-peska-leaf.webp",
+   "sha256": "32197ef6ca1b4438c6eb1e199cd27e6a689b00536b87c9af9503acfdf01988bd",
+   "originalSha256": "45a2ddcc143dc54bfa9833009ed284656d94d2d01f0db0c370c1f643393d4dfd",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Песка Листовая",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "peska-leaf"
+    ],
+    "4-players": [
+     "peska-leaf"
+    ],
+    "5-players": [
+     "peska-leaf"
+    ],
+    "6-players": [
+     "peska-leaf"
+    ],
+    "7-players": [
+     "peska-leaf"
+    ],
+    "8-players": [
+     "peska-leaf"
+    ]
+   },
+   "file": "peska-leaf--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "peska-leaf.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/assets/table/npcs-ten-buckle.webp",
+   "sha256": "93e2bdc827f8639b6487cfe2ca9403dad63a5204345f655816307725d9f9742b",
+   "originalSha256": "45a2ddcc143dc54bfa9833009ed284656d94d2d01f0db0c370c1f643393d4dfd",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тен Пряжка",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ten-buckle"
+    ],
+    "4-players": [
+     "ten-buckle"
+    ],
+    "5-players": [
+     "ten-buckle"
+    ],
+    "6-players": [
+     "ten-buckle"
+    ],
+    "7-players": [
+     "ten-buckle"
+    ],
+    "8-players": [
+     "ten-buckle"
+    ]
+   },
+   "file": "ten-buckle--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ten-buckle.webp"
+  },
+  {
+   "source": "campaigns/fantasy-2026/small-banner/illustrations/opening.webp",
+   "sha256": "7168b197513d0a3d03547b9d46652b51ead29bec70cced1accc07e8348bbdc53",
+   "originalSha256": "aa6792f03ed45da3a59c50892c9896f96325ba5823982253f21eab6827a06ed9",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Кромка гостевой скатерти — Знамя размером с ладонь",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "copper-thimble"
+    ],
+    "4-players": [
+     "copper-thimble"
+    ],
+    "5-players": [
+     "copper-thimble"
+    ],
+    "6-players": [
+     "copper-thimble"
+    ],
+    "7-players": [
+     "copper-thimble"
+    ],
+    "8-players": [
+     "copper-thimble"
+    ]
+   },
+   "file": "cover.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "file": "sewing-terrace--map.webp",
+   "source": "campaigns/fantasy-2026/small-banner/assets/battle-maps/sewing-terrace.webp",
+   "sha256": "ab6c98c6cf7c2b1c3ad287af7949cf7806229b032b9aa2f06267ab36a402176f",
+   "originalSha256": "e0747b2c1d71cc0d59932399655001b73536ac9e61c49fa10dbf5fc99c2285ad",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Катушечные террасы. Visible scenery: Улицы между катушками, балконы из напёрстков и сушильни на натянутых лентах. Артель чинит большие ткани и получает за работу свои материалы.. World style: Дом Медный Напёрсток · Tiny stitch samplers, thimble dimples and braided edges in turquoise patchwork. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "sewing-terrace.webp",
+   "subjects": {
+    "3-players": [
+     "sewing-terrace"
+    ],
+    "4-players": [
+     "sewing-terrace"
+    ],
+    "5-players": [
+     "sewing-terrace"
+    ],
+    "6-players": [
+     "sewing-terrace"
+    ],
+    "7-players": [
+     "sewing-terrace"
+    ],
+    "8-players": [
+     "sewing-terrace"
+    ]
+   }
+  },
+  {
+   "file": "cupboard-common--map.webp",
+   "source": "campaigns/fantasy-2026/small-banner/assets/battle-maps/cupboard-common.webp",
+   "sha256": "44887ea04a8ca99e62e0e9977307c6ff7d94d246465d2f6cda397d330fb127b4",
+   "originalSha256": "c9dfba3501038e1bbfe6102223712a5de0c748e9468317ef8be414abc3029536",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Буфетная площадь. Visible scenery: Три полки с глиняными домиками, стражей у ложечного мостика и огородами в блюдцах; резная дверца отбрасывает прохладную решётчатую тень.. World style: Дом Медный Напёрсток · Tiny stitch samplers, thimble dimples and braided edges in turquoise patchwork. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "cupboard-common.webp",
+   "subjects": {
+    "3-players": [
+     "cupboard-common"
+    ],
+    "4-players": [
+     "cupboard-common"
+    ],
+    "5-players": [
+     "cupboard-common"
+    ],
+    "6-players": [
+     "cupboard-common"
+    ],
+    "7-players": [
+     "cupboard-common"
+    ],
+    "8-players": [
+     "cupboard-common"
+    ]
+   }
+  },
+  {
+   "file": "packing-table--map.webp",
+   "source": "campaigns/fantasy-2026/small-banner/assets/battle-maps/packing-table.webp",
+   "sha256": "89d557fb7280a8be480253527f2390e80411152a8df35280a507c1b292b0c038",
+   "originalSha256": "e5a0d7181812e4c819968d9a2de198517ee7e5077fffb337b3c95c4136d39368",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Упаковочный стол. Visible scenery: Огромная столешница с бумагой, бечёвкой, открытыми коробками и крупными ярлыками. Здесь человеческий рост и ладонный масштаб встречаются особенно наглядно.. World style: Дом Медный Напёрсток · Tiny stitch samplers, thimble dimples and braided edges in turquoise patchwork. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "packing-table.webp",
+   "subjects": {
+    "3-players": [
+     "packing-table"
+    ],
+    "4-players": [
+     "packing-table"
+    ],
+    "5-players": [
+     "packing-table"
+    ],
+    "6-players": [
+     "packing-table"
+    ],
+    "7-players": [
+     "packing-table"
+    ],
+    "8-players": [
+     "packing-table"
+    ]
+   }
+  },
+  {
+   "file": "world-map.webp",
+   "source": "campaigns/fantasy-2026/small-banner/assets/world-map/world-map.webp",
+   "sha256": "f85452665c499851f1e87dc029177e2c6edcf6db88a50a908361493f9af9022a",
+   "originalSha256": "b466e3a4774faf3fb2f441840eb3a67fb2a6ab186528f03690f786dbd7345b04",
+   "generated": "2026-11-22",
+   "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Дом Медный Напёрсток. Style Дом Медный Напёрсток · Tiny stitch samplers, thimble dimples and braided edges in turquoise patchwork. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Кромка гостевой скатерти; 0.367,0.177 Катушечные террасы; 0.623,0.15 Буфетная площадь; 0.88,0.177 Мотыльковый карниз; 0.905,0.857 Берег умывального таза; 0.648,0.83 Упаковочный стол; 0.392,0.857 Садовый ящик; 0.135,0.83 Двор у порога. Show public exteriors / unlabeled contours only.",
+   "references": [],
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null,
+   "subjects": {
+    "3-players": [
+     "world-map"
+    ],
+    "4-players": [
+     "world-map"
+    ],
+    "5-players": [
+     "world-map"
+    ],
+    "6-players": [
+     "world-map"
+    ],
+    "7-players": [
+     "world-map"
+    ],
+    "8-players": [
+     "world-map"
+    ]
+   }
+  }
+ ]
+}

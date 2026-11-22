@@ -1,0 +1,49 @@
+{
+  "maps": [
+    {
+      "file": "glass-switch.webp",
+      "sha256": "d56235a2a7de9a6eb178fa2ff9234c84d4a392f018c630d7bb6912733f427b3f",
+      "originalSha256": "0855f2f0da48c0cb47f4ba89b1cb5714cfcd08c93db6b7c06345200db13c79e1",
+      "originalFile": "exec-2b0ec931-e048-4e25-8cc4-18febbe34fd8.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Стеклянная Развилка. Visible scenery: Крытый почтовый узел над развилкой дорог. За прозрачными стенками лежат старые таблички адресов и аккуратно припаркованные тележки.. World style: Марс, котловина Красной Дюны · Martian red sandstone swirls and embossed blank postage perforations. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "glass-switch",
+      "encounter": "parcel-parade",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "fourth-dawn.webp",
+      "sha256": "2ab2850447be0387cdf8397f57c991f0fca5ae36e18662f8024c4bcd3ae024c8",
+      "originalSha256": "b147c7c24f34cbeb826b460aab29ef630320175065f92b612f78ed39ba242042",
+      "originalFile": "exec-ae6ed980-f575-4a17-94c6-392d29dab007.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Оранжерея Четвёртый Рассвет. Visible scenery: Закрытая оранжерея с четырьмя серебряными лепестками крыши. Сквозь матовое стекло видны столы и мягкое голубое свечение.. World style: Марс, котловина Красной Дюны · Martian red sandstone swirls and embossed blank postage perforations. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "fourth-dawn",
+      "encounter": "petal-ushers",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "hanging-road.webp",
+      "sha256": "1efa39b5a59d8c89fbf790ea6f42fb773bafb3f365d19af3a16d948e8d1510ef",
+      "originalSha256": "202473969a4cbb54846624d75935a3c61f7b90efd6f0fa09150976425c7cb9c6",
+      "originalFile": "exec-fae2c94e-44d0-402a-a481-eaa832f74bb1.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Подвесной тракт. Visible scenery: Защищённый переход через неглубокий разлом. Под прозрачным настилом медленно движутся ленты красной пыли.. World style: Марс, котловина Красной Дюны · Martian red sandstone swirls and embossed blank postage perforations. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "hanging-road",
+      "encounter": "banner-runners",
+      "grid": [
+        14,
+        12
+      ]
+    }
+  ]
+}

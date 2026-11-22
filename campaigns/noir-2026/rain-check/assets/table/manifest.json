@@ -1,0 +1,481 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "rain-check-heroes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-e964edd6-cb2c-4872-a71f-a2db334370e1.png",
+      "originalSha256": "e30fcf190625c631434b4b8f50c7fe1cfef68f617ecb7386642ba976c346ebe7",
+      "columns": 4,
+      "rows": 2,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 4 equal columns by 2 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Латрен · Rain sheeting across tram-window glass, punched ticket perforations and midnight nickel. Cell 1. Ванда Гесс. Старый офицерский плащ, зонт-трость и блокнот с заказами, края которого волнисты от дождя.\nCell 2. Конрад Вилк. Складной фотоаппарат под клеёнкой, жестянка с мокрыми плёнками и привычка спрашивать разрешения перед снимком.\nCell 3. Роман Иврен. Серый жилет, потрёпанная книжка расписаний всех линий с карандашными поправками, очки в простой оправе.\nCell 4. Регина Хольт. Тёмный шарф, сухой платок для чужих слёз и нотная тетрадь в клеёнчатой обложке.\nCell 5. Зоя Тарх. Кондукторская сумка без компостера, ботинки на толстой подошве и руки, всегда оставленные на виду.\nCell 6. Казимир Лотт. Чернила на манжете, лупа на шнурке и аккуратная бечёвка для папок.\nCell 7. Яна Ренк. Короткий плащ, непромокаемая сумка и жетон Трамвайного парка на запястье.\nCell 8. Тимон Крой. Плоская шляпа, мягкий голос и листки с некрологом в кармане, размякшие от дождя.. Leave final unused cells empty.",
+      "references": [
+        "campaigns/noir-2026/rain-check/assets/runtime/lada-osher.webp",
+        "campaigns/noir-2026/rain-check/assets/runtime/gleb-shor.webp",
+        "campaigns/noir-2026/rain-check/assets/runtime/roman-ivren.webp",
+        "campaigns/noir-2026/rain-check/assets/runtime/marta-bess.webp",
+        "campaigns/noir-2026/rain-check/assets/runtime/stasya-gran.webp",
+        "campaigns/noir-2026/rain-check/assets/runtime/mark-sel.webp",
+        "campaigns/noir-2026/rain-check/assets/runtime/yana-renk.webp",
+        "campaigns/noir-2026/rain-check/assets/runtime/timon-kroy.webp"
+      ]
+    },
+    {
+      "id": "rain-check-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-6f2af630-c9a4-45f6-9c1b-1dfdb7408f3b.png",
+      "originalSha256": "66225e88833d9a2b40e1f033ac1d7afef6441d16706d58ede9d16a8ecad2e716",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "Create a clean production sprite sheet of 7 distinct hand-painted tabletop miniature figurines for the world of Дождь по страховому случаю. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 3 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Клара Рун. Чёрное пальто по фигуре, вуаль поднята, новый чёрный зонт с картонной биркой магазина ещё на ручке; перчатки сухие даже под дождём.\nCell 2. Савелий Рун. Высокий, сутулится, без зонта; с вечера 3 в чужом коротком дождевике, рукава до косточек; руки кассира, пальцы в чернилах компостера.\nCell 3. Хельга Меллер. Серый плащ, жетон с циферблатом на лацкане, сухой карандаш за ухом и папка в клеёнке.\nCell 4. Матвей Корд. Широкий, в брезентовой куртке, без шапки; на ремне крюк грузчика; у ворот артели — объявление с лицом брата.\nCell 5. Юлиан Корд. По объявлению: усики, родинка у брови, тёмное пальто.\nCell 6. Григорий Стель. Ночной сторож причала: клеёнчатая накидка, очки на шнурке, журнал под мышкой, ключ от шкафа находок.\nCell 7. Тереза Окс. Портниха Крытого рынка: сантиметр на шее, мел в кармане фартука, булавки во рту.",
+      "references": [
+        "campaigns/noir-2026/rain-check/assets/runtime/nina-run.webp",
+        "campaigns/noir-2026/rain-check/assets/runtime/saveliy-run.webp",
+        "campaigns/noir-2026/rain-check/assets/runtime/vera-meller.webp",
+        "campaigns/noir-2026/rain-check/assets/runtime/matvey-kord.webp",
+        "campaigns/noir-2026/rain-check/assets/runtime/yulian-kord.webp",
+        "campaigns/noir-2026/rain-check/assets/runtime/grigory-stehl.webp",
+        "campaigns/noir-2026/rain-check/assets/runtime/tereza-kel.webp"
+      ]
+    },
+    {
+      "id": "rain-check-npcs-1",
+      "cutoutRevision": 4,
+      "originalFile": "exec-bd5889ac-3e3d-44c7-b2c2-27c23c6913da.png",
+      "originalSha256": "01d24cdc594fdb53e4258c46b66dd35a4c8000e55cbf9bff3647d060d6303908",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 6 distinct hand-painted tabletop miniature figurines for the world of Дождь по страховому случаю. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Трофим Шпак. Носильщик рыбных рядов, на голову ниже Савелия, в чужом сером клетчатом пальто с дважды подвёрнутыми рукавами.\nCell 2. Милена Восс. Управляющая ночлежки: связка ключей на поясе, сухие руки, мокрый подол.\nCell 3. Густав Нелль. Смотритель шлюза: клеёночный фартук, багор, стеклянные трубки дождемеров в нагрудном кармане.\nCell 4. Степан Фальк. Инспектор участка на Шлюзовой: мокрая шляпа, протокол в клеёнке, вечная простуда.\nCell 5. Аглая Мейр. Суфлёр театра «Фонарь»: тёмная шаль, карандаш в волосах, суфлёрская книга в клеёнке.\nCell 6. Захар Венц. Старший ночной кондуктор и вагоновожатый служебного трамвая: сумка с компостером, медный свисток на цепочке.",
+      "references": [
+        "campaigns/noir-2026/rain-check/assets/runtime/trofim-shpak.webp",
+        "campaigns/noir-2026/rain-check/assets/runtime/milena-voss.webp",
+        "campaigns/noir-2026/rain-check/assets/runtime/fedor-nell.webp",
+        "campaigns/noir-2026/rain-check/assets/runtime/stepan-falk.webp",
+        "campaigns/noir-2026/rain-check/assets/runtime/aglaya-meyr.webp",
+        "campaigns/noir-2026/rain-check/assets/runtime/zakhar-vents.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "lada-osher",
+      "title": "Ванда Гесс",
+      "kind": "hero",
+      "subjects": [
+        "lada-osher"
+      ],
+      "file": "heroes-lada-osher.webp",
+      "sha256": "94795f8883c942fac901003fb4687aef914fd65372b78ec3f9e2882ba593b68f",
+      "originalSha256": "e30fcf190625c631434b4b8f50c7fe1cfef68f617ecb7386642ba976c346ebe7",
+      "generated": "2026-11-22",
+      "sheet": "rain-check-heroes-0",
+      "cell": 1,
+      "crop": {
+        "left": 125,
+        "top": 12,
+        "width": 200,
+        "height": 421
+      }
+    },
+    {
+      "key": "gleb-shor",
+      "title": "Конрад Вилк",
+      "kind": "hero",
+      "subjects": [
+        "gleb-shor"
+      ],
+      "file": "heroes-gleb-shor.webp",
+      "sha256": "505b3a432ea562d03025f3987edceaec19738621f17bbfd1e5777ecedd68c398",
+      "originalSha256": "e30fcf190625c631434b4b8f50c7fe1cfef68f617ecb7386642ba976c346ebe7",
+      "generated": "2026-11-22",
+      "sheet": "rain-check-heroes-0",
+      "cell": 2,
+      "crop": {
+        "left": 564,
+        "top": 12,
+        "width": 204,
+        "height": 420
+      }
+    },
+    {
+      "key": "roman-ivren",
+      "title": "Роман Иврен",
+      "kind": "hero",
+      "subjects": [
+        "roman-ivren"
+      ],
+      "file": "heroes-roman-ivren.webp",
+      "sha256": "2e9f14c981dafaed3210aaf9b4f45ede36a4d4c592237f60d97212eb5a831262",
+      "originalSha256": "e30fcf190625c631434b4b8f50c7fe1cfef68f617ecb7386642ba976c346ebe7",
+      "generated": "2026-11-22",
+      "sheet": "rain-check-heroes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1007,
+        "top": 12,
+        "width": 206,
+        "height": 420
+      }
+    },
+    {
+      "key": "marta-bess",
+      "title": "Регина Хольт",
+      "kind": "hero",
+      "subjects": [
+        "marta-bess"
+      ],
+      "file": "heroes-marta-bess.webp",
+      "sha256": "fce9b7c50e67d143dce3b48e64c3295e8d1a6574d1dee20d7c7ee5269c38b668",
+      "originalSha256": "e30fcf190625c631434b4b8f50c7fe1cfef68f617ecb7386642ba976c346ebe7",
+      "generated": "2026-11-22",
+      "sheet": "rain-check-heroes-0",
+      "cell": 4,
+      "crop": {
+        "left": 1450,
+        "top": 13,
+        "width": 204,
+        "height": 419
+      }
+    },
+    {
+      "key": "stasya-gran",
+      "title": "Зоя Тарх",
+      "kind": "hero",
+      "subjects": [
+        "stasya-gran"
+      ],
+      "file": "heroes-stasya-gran.webp",
+      "sha256": "f6b42260fad6ebf6e2ce970c148f4ebb6cbc013fdc42351c4349373965fcca30",
+      "originalSha256": "e30fcf190625c631434b4b8f50c7fe1cfef68f617ecb7386642ba976c346ebe7",
+      "generated": "2026-11-22",
+      "sheet": "rain-check-heroes-0",
+      "cell": 5,
+      "crop": {
+        "left": 125,
+        "top": 454,
+        "width": 196,
+        "height": 423
+      }
+    },
+    {
+      "key": "mark-sel",
+      "title": "Казимир Лотт",
+      "kind": "hero",
+      "subjects": [
+        "mark-sel"
+      ],
+      "file": "heroes-mark-sel.webp",
+      "sha256": "a6b330ac501843e03a6489b7ea6d0b23b2c2d9f917afe4f905ff4509f33f5c6a",
+      "originalSha256": "e30fcf190625c631434b4b8f50c7fe1cfef68f617ecb7386642ba976c346ebe7",
+      "generated": "2026-11-22",
+      "sheet": "rain-check-heroes-0",
+      "cell": 6,
+      "crop": {
+        "left": 562,
+        "top": 447,
+        "width": 203,
+        "height": 430
+      }
+    },
+    {
+      "key": "yana-renk",
+      "title": "Яна Ренк",
+      "kind": "hero",
+      "subjects": [
+        "yana-renk"
+      ],
+      "file": "heroes-yana-renk.webp",
+      "sha256": "853db923780647454a12daa865180f940aa0d59c8503f2a86158bcece1f3d033",
+      "originalSha256": "e30fcf190625c631434b4b8f50c7fe1cfef68f617ecb7386642ba976c346ebe7",
+      "generated": "2026-11-22",
+      "sheet": "rain-check-heroes-0",
+      "cell": 7,
+      "crop": {
+        "left": 1013,
+        "top": 453,
+        "width": 193,
+        "height": 424
+      }
+    },
+    {
+      "key": "timon-kroy",
+      "title": "Тимон Крой",
+      "kind": "hero",
+      "subjects": [
+        "timon-kroy"
+      ],
+      "file": "heroes-timon-kroy.webp",
+      "sha256": "ca07d6ac02ab051e113887679f4e111d9c39d824adffa87826fd1803713611fd",
+      "originalSha256": "e30fcf190625c631434b4b8f50c7fe1cfef68f617ecb7386642ba976c346ebe7",
+      "generated": "2026-11-22",
+      "sheet": "rain-check-heroes-0",
+      "cell": 8,
+      "crop": {
+        "left": 1458,
+        "top": 453,
+        "width": 194,
+        "height": 424
+      }
+    },
+    {
+      "key": "nina-run",
+      "title": "Клара Рун",
+      "kind": "npc",
+      "subjects": [
+        "nina-run"
+      ],
+      "file": "npcs-nina-run.webp",
+      "sha256": "8dc917299075a3773ce8a6234e3939d2f3ece57bfea21d6daac0e5f15c0054d2",
+      "originalSha256": "66225e88833d9a2b40e1f033ac1d7afef6441d16706d58ede9d16a8ecad2e716",
+      "generated": "2026-11-22",
+      "sheet": "rain-check-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 119,
+        "top": 8,
+        "width": 185,
+        "height": 420
+      }
+    },
+    {
+      "key": "saveliy-run",
+      "title": "Савелий Рун",
+      "kind": "npc",
+      "subjects": [
+        "saveliy-run"
+      ],
+      "file": "npcs-saveliy-run.webp",
+      "sha256": "17cc5023b0aec214333a333884bc4f855a7a5e89a62966ab7afe80eb1e5f288b",
+      "originalSha256": "66225e88833d9a2b40e1f033ac1d7afef6441d16706d58ede9d16a8ecad2e716",
+      "generated": "2026-11-22",
+      "sheet": "rain-check-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 502,
+        "top": 34,
+        "width": 182,
+        "height": 394
+      }
+    },
+    {
+      "key": "vera-meller",
+      "title": "Хельга Меллер",
+      "kind": "npc",
+      "subjects": [
+        "vera-meller"
+      ],
+      "file": "npcs-vera-meller.webp",
+      "sha256": "5b19b302b5971c4bd8be89fbddfa8d65ea7608d4b730767d317ef4e69a13ee54",
+      "originalSha256": "66225e88833d9a2b40e1f033ac1d7afef6441d16706d58ede9d16a8ecad2e716",
+      "generated": "2026-11-22",
+      "sheet": "rain-check-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 884,
+        "top": 32,
+        "width": 203,
+        "height": 396
+      }
+    },
+    {
+      "key": "matvey-kord",
+      "title": "Матвей Корд",
+      "kind": "npc",
+      "subjects": [
+        "matvey-kord"
+      ],
+      "file": "npcs-matvey-kord.webp",
+      "sha256": "b5bf215abc4c7162dfe005d28094f78ca2457b96d1585562e8ee78d7884fb30c",
+      "originalSha256": "66225e88833d9a2b40e1f033ac1d7afef6441d16706d58ede9d16a8ecad2e716",
+      "generated": "2026-11-22",
+      "sheet": "rain-check-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 102,
+        "top": 448,
+        "width": 254,
+        "height": 417
+      }
+    },
+    {
+      "key": "yulian-kord",
+      "title": "Юлиан Корд",
+      "kind": "npc",
+      "subjects": [
+        "yulian-kord"
+      ],
+      "file": "npcs-yulian-kord.webp",
+      "sha256": "5adbf2289dd389b00d6e206db180c07c5a765d8a52a94ab678c51054d4045a4f",
+      "originalSha256": "66225e88833d9a2b40e1f033ac1d7afef6441d16706d58ede9d16a8ecad2e716",
+      "generated": "2026-11-22",
+      "sheet": "rain-check-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 509,
+        "top": 451,
+        "width": 181,
+        "height": 415
+      }
+    },
+    {
+      "key": "grigory-stehl",
+      "title": "Григорий Стель",
+      "kind": "npc",
+      "subjects": [
+        "grigory-stehl"
+      ],
+      "file": "npcs-grigory-stehl.webp",
+      "sha256": "2035713037c204d9a4727c641122446a81e944ddcd58a980f3213ec6944f722f",
+      "originalSha256": "66225e88833d9a2b40e1f033ac1d7afef6441d16706d58ede9d16a8ecad2e716",
+      "generated": "2026-11-22",
+      "sheet": "rain-check-npcs-0",
+      "cell": 6,
+      "crop": {
+        "left": 875,
+        "top": 452,
+        "width": 213,
+        "height": 415
+      }
+    },
+    {
+      "key": "tereza-kel",
+      "title": "Тереза Окс",
+      "kind": "npc",
+      "subjects": [
+        "tereza-kel"
+      ],
+      "file": "npcs-tereza-kel.webp",
+      "sha256": "cbc929d8aa17f2d4cbee3661f823a48bf6d74743142067f9061e6a9c232954eb",
+      "originalSha256": "66225e88833d9a2b40e1f033ac1d7afef6441d16706d58ede9d16a8ecad2e716",
+      "generated": "2026-11-22",
+      "sheet": "rain-check-npcs-0",
+      "cell": 7,
+      "crop": {
+        "left": 112,
+        "top": 886,
+        "width": 192,
+        "height": 414
+      }
+    },
+    {
+      "key": "trofim-shpak",
+      "title": "Трофим Шпак",
+      "kind": "npc",
+      "subjects": [
+        "trofim-shpak"
+      ],
+      "file": "npcs-trofim-shpak.webp",
+      "sha256": "84d7e45aad682ef31c49e916f0d0c4e263d2d49d9026ca036009b7cb4a9ace92",
+      "originalSha256": "01d24cdc594fdb53e4258c46b66dd35a4c8000e55cbf9bff3647d060d6303908",
+      "generated": "2026-11-22",
+      "sheet": "rain-check-npcs-1",
+      "cell": 1,
+      "crop": {
+        "left": 134,
+        "top": 24,
+        "width": 258,
+        "height": 471
+      }
+    },
+    {
+      "key": "milena-voss",
+      "title": "Милена Восс",
+      "kind": "npc",
+      "subjects": [
+        "milena-voss"
+      ],
+      "file": "npcs-milena-voss.webp",
+      "sha256": "adae1b47e36bee256d37c2c7266d6d3234861873118303241a9410fa908fffaa",
+      "originalSha256": "01d24cdc594fdb53e4258c46b66dd35a4c8000e55cbf9bff3647d060d6303908",
+      "generated": "2026-11-22",
+      "sheet": "rain-check-npcs-1",
+      "cell": 2,
+      "crop": {
+        "left": 632,
+        "top": 16,
+        "width": 278,
+        "height": 479
+      }
+    },
+    {
+      "key": "fedor-nell",
+      "title": "Густав Нелль",
+      "kind": "npc",
+      "subjects": [
+        "fedor-nell"
+      ],
+      "file": "npcs-fedor-nell.webp",
+      "sha256": "52e281f6b06645c6b35047fbf35349671b886c63c976c3f739cf283b2b5f17dc",
+      "originalSha256": "01d24cdc594fdb53e4258c46b66dd35a4c8000e55cbf9bff3647d060d6303908",
+      "generated": "2026-11-22",
+      "sheet": "rain-check-npcs-1",
+      "cell": 3,
+      "crop": {
+        "left": 1137,
+        "top": 17,
+        "width": 293,
+        "height": 477
+      }
+    },
+    {
+      "key": "stepan-falk",
+      "title": "Степан Фальк",
+      "kind": "npc",
+      "subjects": [
+        "stepan-falk"
+      ],
+      "file": "npcs-stepan-falk.webp",
+      "sha256": "2050359549d501b5006d3c8e6c6f3fe5dfea4b31fd65c1a09cc8d9b0567189a8",
+      "originalSha256": "01d24cdc594fdb53e4258c46b66dd35a4c8000e55cbf9bff3647d060d6303908",
+      "generated": "2026-11-22",
+      "sheet": "rain-check-npcs-1",
+      "cell": 4,
+      "crop": {
+        "left": 120,
+        "top": 523,
+        "width": 290,
+        "height": 488
+      }
+    },
+    {
+      "key": "aglaya-meyr",
+      "title": "Аглая Мейр",
+      "kind": "npc",
+      "subjects": [
+        "aglaya-meyr"
+      ],
+      "file": "npcs-aglaya-meyr.webp",
+      "sha256": "88415e0624f080da64d1ff5b810f1d7be77d67473506b168d50d6153ee036902",
+      "originalSha256": "01d24cdc594fdb53e4258c46b66dd35a4c8000e55cbf9bff3647d060d6303908",
+      "generated": "2026-11-22",
+      "sheet": "rain-check-npcs-1",
+      "cell": 5,
+      "crop": {
+        "left": 630,
+        "top": 530,
+        "width": 289,
+        "height": 482
+      }
+    },
+    {
+      "key": "zakhar-vents",
+      "title": "Захар Венц",
+      "kind": "npc",
+      "subjects": [
+        "zakhar-vents"
+      ],
+      "file": "npcs-zakhar-vents.webp",
+      "sha256": "19ed22ffcf208c9240ae4ec9e90aa4c9184877a49d2150eda38f88052466b017",
+      "originalSha256": "01d24cdc594fdb53e4258c46b66dd35a4c8000e55cbf9bff3647d060d6303908",
+      "generated": "2026-11-22",
+      "sheet": "rain-check-npcs-1",
+      "cell": 6,
+      "crop": {
+        "left": 1139,
+        "top": 515,
+        "width": 298,
+        "height": 497
+      }
+    }
+  ]
+}

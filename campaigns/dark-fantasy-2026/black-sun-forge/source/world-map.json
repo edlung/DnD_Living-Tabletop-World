@@ -1,0 +1,59 @@
+{
+  "region": "hollow-orbit",
+  "name": "Карта · Аш-Кер над пределом Ирд",
+  "description": "План местности «Аш-Кер над пределом Ирд». На карте отмечаются места, известные группе.",
+  "pins": [
+    {
+      "place": "tether-camp",
+      "x": 0.11,
+      "y": 0.15
+    },
+    {
+      "place": "clinker-span",
+      "x": 0.367,
+      "y": 0.177
+    },
+    {
+      "place": "blind-jaw",
+      "x": 0.623,
+      "y": 0.15
+    },
+    {
+      "place": "witness-cistern",
+      "x": 0.88,
+      "y": 0.177
+    },
+    {
+      "place": "return-gallery",
+      "x": 0.905,
+      "y": 0.517
+    },
+    {
+      "place": "seal-yard",
+      "x": 0.648,
+      "y": 0.49
+    },
+    {
+      "place": "dead-angle",
+      "x": 0.392,
+      "y": 0.517
+    },
+    {
+      "place": "black-anvil",
+      "x": 0.135,
+      "y": 0.49
+    },
+    {
+      "place": "unlit-throat",
+      "x": 0.11,
+      "y": 0.83
+    },
+    {
+      "place": "threshold-hall",
+      "x": 0.367,
+      "y": 0.857
+    }
+  ],
+  "routes": [],
+  "scale": "schematic"
+}

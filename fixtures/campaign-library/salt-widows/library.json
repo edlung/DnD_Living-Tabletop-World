@@ -14,35 +14,35 @@
    "players": 3,
    "label": "3 игрока",
    "file": "packages/3-players.json",
-   "digest": "6cfc38c43814fc108b724dfbcc6014694af3b1d8a16f76ad5b61a640bec1d24a"
+   "digest": "bd0d9320a0d6f19aa0e6480c0506640707d1b57fb3705e224801b3c0228fd46e"
   },
   {
    "id": "4-players",
    "players": 4,
    "label": "4 игрока",
    "file": "packages/4-players.json",
-   "digest": "fad8611366e2ce3701972b89e86dc3e72c06c518a9cb912f5f6108e42c2d3923"
+   "digest": "d134ce49eb9559abc15ff97002600dd41d02476703890244bb8ad19f6794dbe5"
   },
   {
    "id": "5-players",
    "players": 5,
    "label": "5 игроков",
    "file": "packages/5-players.json",
-   "digest": "aa8868328e3accfb4b59800202dbae20a4b77e05262965dee99d64d29cddbe09"
+   "digest": "1fe608a64a4fc817f95baa5a02f427a14c3579741180ae6dddd006b1e690a621"
   },
   {
    "id": "6-players",
    "players": 6,
    "label": "6 игроков",
    "file": "packages/6-players.json",
-   "digest": "ba2137c96ed82b99a90373ae98a820549c91d4774db8f8b4eec6e4a0c8619116"
+   "digest": "54def495544bc0b720d570bff597f098393a7e8e02282ae7088c98cbe452c624"
   },
   {
    "id": "7-players",
    "players": 7,
    "label": "7 игроков",
    "file": "packages/7-players.json",
-   "digest": "201c550b06d3b4577eaf6dff24ad068ae6dd4df5b24c60c312c95649b126ff2e"
+   "digest": "8ac32290f79403d4a3fed7cbe549dfd54f3d667ac3aa6098f2293da1586c2d5c"
   }
  ],
  "generator": "codex-cli imagegen",
@@ -1709,6 +1709,516 @@
    "label": "figure",
    "purpose": "figure",
    "derivedFrom": "token-leviathan.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/illustrations/cards/travel-kit.webp",
+   "sha256": "bfe55de3f7ef17c977331e214aea3cb22b85abca57945a6fea8357fbb033aa50",
+   "originalSha256": "9379b032f18624f9c0da0f3513b6d2bb182387bf503e38d2fd95628e2bf99f0c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дорожный набор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "derva-klin-travel-kit",
+     "selma-rov-travel-kit",
+     "taron-vekha-travel-kit"
+    ],
+    "4-players": [
+     "derva-klin-travel-kit",
+     "eyran-list-travel-kit",
+     "selma-rov-travel-kit",
+     "taron-vekha-travel-kit"
+    ],
+    "5-players": [
+     "derva-klin-travel-kit",
+     "eyran-list-travel-kit",
+     "nata-ugol-travel-kit",
+     "selma-rov-travel-kit",
+     "taron-vekha-travel-kit"
+    ],
+    "6-players": [
+     "derva-klin-travel-kit",
+     "eyran-list-travel-kit",
+     "nata-ugol-travel-kit",
+     "selma-rov-travel-kit",
+     "taron-vekha-travel-kit",
+     "vosk-rez-travel-kit"
+    ],
+    "7-players": [
+     "derva-klin-travel-kit",
+     "eyran-list-travel-kit",
+     "nata-ugol-travel-kit",
+     "riva-noch-travel-kit",
+     "selma-rov-travel-kit",
+     "taron-vekha-travel-kit",
+     "vosk-rez-travel-kit"
+    ]
+   },
+   "file": "travel-kit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/table/heroes-derva-klin.webp",
+   "sha256": "e35bd1bb434e46661be233acbf465d05d6ec4b68e2d34d2a21cba0b20d0296c2",
+   "originalSha256": "e74c42c0f49e32c715f0f4e3c9e3b867eaee5af8167cbc0b27ccde0826c84d61",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дерва Клин",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "derva-klin"
+    ],
+    "4-players": [
+     "derva-klin"
+    ],
+    "5-players": [
+     "derva-klin"
+    ],
+    "6-players": [
+     "derva-klin"
+    ],
+    "7-players": [
+     "derva-klin"
+    ]
+   },
+   "file": "derva-klin--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "derva-klin.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/table/heroes-taron-vekha.webp",
+   "sha256": "a1610cdf5ea9221edfbb43631440f72455f53e011965f6ca45d947afe5190645",
+   "originalSha256": "e74c42c0f49e32c715f0f4e3c9e3b867eaee5af8167cbc0b27ccde0826c84d61",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тарон Веха",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "taron-vekha"
+    ],
+    "4-players": [
+     "taron-vekha"
+    ],
+    "5-players": [
+     "taron-vekha"
+    ],
+    "6-players": [
+     "taron-vekha"
+    ],
+    "7-players": [
+     "taron-vekha"
+    ]
+   },
+   "file": "taron-vekha--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "taron-vekha.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/table/heroes-selma-rov.webp",
+   "sha256": "1166ec4baff1171cbb1ac4b698339d60607563661184d59a3fa8a91c1c709248",
+   "originalSha256": "e74c42c0f49e32c715f0f4e3c9e3b867eaee5af8167cbc0b27ccde0826c84d61",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сельма Ров",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "selma-rov"
+    ],
+    "4-players": [
+     "selma-rov"
+    ],
+    "5-players": [
+     "selma-rov"
+    ],
+    "6-players": [
+     "selma-rov"
+    ],
+    "7-players": [
+     "selma-rov"
+    ]
+   },
+   "file": "selma-rov--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "selma-rov.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/table/heroes-eyran-list.webp",
+   "sha256": "093de2431809b1b622fd9a77c33d0af3f5d0521996290457e79bf8a46432b64e",
+   "originalSha256": "e74c42c0f49e32c715f0f4e3c9e3b867eaee5af8167cbc0b27ccde0826c84d61",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эйран Лист",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "eyran-list"
+    ],
+    "5-players": [
+     "eyran-list"
+    ],
+    "6-players": [
+     "eyran-list"
+    ],
+    "7-players": [
+     "eyran-list"
+    ]
+   },
+   "file": "eyran-list--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "eyran-list.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/table/heroes-nata-ugol.webp",
+   "sha256": "17b6bcd785d2547d5de0ec1a386ac044569b02d9eca1be137d662dd0bbd27f25",
+   "originalSha256": "e74c42c0f49e32c715f0f4e3c9e3b867eaee5af8167cbc0b27ccde0826c84d61",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ната Уголь",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "nata-ugol"
+    ],
+    "6-players": [
+     "nata-ugol"
+    ],
+    "7-players": [
+     "nata-ugol"
+    ]
+   },
+   "file": "nata-ugol--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "nata-ugol.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/table/heroes-vosk-rez.webp",
+   "sha256": "d3d7b097dfe12eb4ca4b34b5fab09c53917b5adf662f3a281704d22cd5894d69",
+   "originalSha256": "e74c42c0f49e32c715f0f4e3c9e3b867eaee5af8167cbc0b27ccde0826c84d61",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Воск Рез",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "vosk-rez"
+    ],
+    "7-players": [
+     "vosk-rez"
+    ]
+   },
+   "file": "vosk-rez--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "vosk-rez.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/table/heroes-riva-noch.webp",
+   "sha256": "a61417f5e246385e6ad627cc607b3263b7876f0d709174b97e06352b3d43c7b8",
+   "originalSha256": "e74c42c0f49e32c715f0f4e3c9e3b867eaee5af8167cbc0b27ccde0826c84d61",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рива Ночь",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "riva-noch"
+    ]
+   },
+   "file": "riva-noch--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "riva-noch.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/table/npcs-mara-ivna.webp",
+   "sha256": "f657daec7dd3f024ba48d2de63f2c451c9a3ed882fb784ec889b6358da671a32",
+   "originalSha256": "b0cb0db377fc0a5100b0f73293ac54502045b5f05fa95ed59e3d45d6cf47df4d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Оксинья Брусова",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mara-ivna"
+    ],
+    "4-players": [
+     "mara-ivna"
+    ],
+    "5-players": [
+     "mara-ivna"
+    ],
+    "6-players": [
+     "mara-ivna"
+    ],
+    "7-players": [
+     "mara-ivna"
+    ]
+   },
+   "file": "mara-ivna--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "mara-ivna.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/table/npcs-yasna-var.webp",
+   "sha256": "af846b0215ff8085dcba53c6aff3cdad68e3b409f9532dc0eea19f7146e4dfad",
+   "originalSha256": "b0cb0db377fc0a5100b0f73293ac54502045b5f05fa95ed59e3d45d6cf47df4d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Гордея Вар",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "yasna-var"
+    ],
+    "4-players": [
+     "yasna-var"
+    ],
+    "5-players": [
+     "yasna-var"
+    ],
+    "6-players": [
+     "yasna-var"
+    ],
+    "7-players": [
+     "yasna-var"
+    ]
+   },
+   "file": "yasna-var--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "yasna-var.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/table/npcs-radan-kosoi.webp",
+   "sha256": "eccac7b781967cbcbd64c4978d0229d8fb304bc8f7d707eba88314599d6781ff",
+   "originalSha256": "b0cb0db377fc0a5100b0f73293ac54502045b5f05fa95ed59e3d45d6cf47df4d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Радан Косой",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "radan-kosoi"
+    ],
+    "4-players": [
+     "radan-kosoi"
+    ],
+    "5-players": [
+     "radan-kosoi"
+    ],
+    "6-players": [
+     "radan-kosoi"
+    ],
+    "7-players": [
+     "radan-kosoi"
+    ]
+   },
+   "file": "radan-kosoi--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "radan-kosoi.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/table/npcs-luta-senn.webp",
+   "sha256": "1a703175a4196812f21eead373bfec9355c9ad6e59af379390382d76bf3b5c0b",
+   "originalSha256": "b0cb0db377fc0a5100b0f73293ac54502045b5f05fa95ed59e3d45d6cf47df4d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Лута Сенн",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "luta-senn"
+    ],
+    "4-players": [
+     "luta-senn"
+    ],
+    "5-players": [
+     "luta-senn"
+    ],
+    "6-players": [
+     "luta-senn"
+    ],
+    "7-players": [
+     "luta-senn"
+    ]
+   },
+   "file": "luta-senn--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "luta-senn.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/table/npcs-iva-bessonnaya.webp",
+   "sha256": "7d91ed8f6f263d87ae1718d42588f71a1ecf5c719e670137ab4edec1fd337d0a",
+   "originalSha256": "b0cb0db377fc0a5100b0f73293ac54502045b5f05fa95ed59e3d45d6cf47df4d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ива Бессонная",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "iva-bessonnaya"
+    ],
+    "4-players": [
+     "iva-bessonnaya"
+    ],
+    "5-players": [
+     "iva-bessonnaya"
+    ],
+    "6-players": [
+     "iva-bessonnaya"
+    ],
+    "7-players": [
+     "iva-bessonnaya"
+    ]
+   },
+   "file": "iva-bessonnaya--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "iva-bessonnaya.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/table/npcs-demid-krai.webp",
+   "sha256": "6e6519addd1c241bd315310676fef4221d46182bf79e9a8c738ff493ef8f8857",
+   "originalSha256": "b0cb0db377fc0a5100b0f73293ac54502045b5f05fa95ed59e3d45d6cf47df4d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Демид Край",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "demid-krai"
+    ],
+    "4-players": [
+     "demid-krai"
+    ],
+    "5-players": [
+     "demid-krai"
+    ],
+    "6-players": [
+     "demid-krai"
+    ],
+    "7-players": [
+     "demid-krai"
+    ]
+   },
+   "file": "demid-krai--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "demid-krai.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/table/npcs-nena-sol.webp",
+   "sha256": "fef62ca221f32bad9593707e58b4b9f62de65c0e8e09ae640210fff55a939694",
+   "originalSha256": "b0cb0db377fc0a5100b0f73293ac54502045b5f05fa95ed59e3d45d6cf47df4d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нена Соль",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nena-sol"
+    ],
+    "4-players": [
+     "nena-sol"
+    ],
+    "5-players": [
+     "nena-sol"
+    ],
+    "6-players": [
+     "nena-sol"
+    ],
+    "7-players": [
+     "nena-sol"
+    ]
+   },
+   "file": "nena-sol--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "nena-sol.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/table/npcs-ostrem-kart.webp",
+   "sha256": "7f864f651ad52a7b20fce5518c127ea25239b24f5eed1f99d92f6bcfdf676348",
+   "originalSha256": "b0cb0db377fc0a5100b0f73293ac54502045b5f05fa95ed59e3d45d6cf47df4d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Острем Карт",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "ostrem-kart"
+    ],
+    "4-players": [
+     "ostrem-kart"
+    ],
+    "5-players": [
+     "ostrem-kart"
+    ],
+    "6-players": [
+     "ostrem-kart"
+    ],
+    "7-players": [
+     "ostrem-kart"
+    ]
+   },
+   "file": "ostrem-kart--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "ostrem-kart.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/salt-widows/assets/table/npcs-verek-tikhiy.webp",
+   "sha256": "f8b26a7f561b418b36c9b048bccdec4a4d6526d7b713ce72acd506465aed100f",
+   "originalSha256": "b0cb0db377fc0a5100b0f73293ac54502045b5f05fa95ed59e3d45d6cf47df4d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Верек Тихий",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "verek-tikhiy"
+    ],
+    "4-players": [
+     "verek-tikhiy"
+    ],
+    "5-players": [
+     "verek-tikhiy"
+    ],
+    "6-players": [
+     "verek-tikhiy"
+    ],
+    "7-players": [
+     "verek-tikhiy"
+    ]
+   },
+   "file": "verek-tikhiy--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "verek-tikhiy.webp"
   },
   {
    "file": "bell-salt--map.webp",

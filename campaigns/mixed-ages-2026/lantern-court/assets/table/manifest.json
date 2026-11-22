@@ -1,0 +1,688 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "lantern-court-heroes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-b0e53717-1737-45e3-bb1b-76f4ad6c6bb9.png",
+      "originalSha256": "6d2fed83beacab27c6f41b14e55c4480d71456f3087f25f621da7e8b53f505e7",
+      "columns": 4,
+      "rows": 2,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 4 equal columns by 2 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Фонарный Предел · Two heraldic seal impressions and lantern tracery in dark claret bookbinding. Cell 1. Тара Шаг. Короткий плащ, медный карандаш и круглый щит с чистой внутренней стороной.\nCell 2. Мирон Вязь. Жилет с карманами для карточек и круглая лупа на зелёной ленте.\nCell 3. Сольви Роса. Белые перчатки с чернильными кончиками и деревянная брошь в форме раскрытой ладони.\nCell 4. Ника Плёт. Пальцы в цветном меле, тёмный берет и складная дощечка.\nCell 5. Дем Рун. Дорожная куртка, мягкие сапоги и коробочка с обычными пуговицами для примеров.\nCell 6. Ива Ласт. Каштановый шарф и блокнот с двумя колонками: «слышала» и «решила».\nCell 7. Ари Рябь. Серебристая коса, дорожная трость и длинный футляр для линейки.. Leave final unused cells empty.",
+      "references": [
+        "campaigns/mixed-ages-2026/lantern-court/illustrations/cards/tara.webp",
+        "campaigns/mixed-ages-2026/lantern-court/illustrations/cards/miron.webp",
+        "campaigns/mixed-ages-2026/lantern-court/illustrations/cards/solvi.webp",
+        "campaigns/mixed-ages-2026/lantern-court/illustrations/cards/nika.webp",
+        "campaigns/mixed-ages-2026/lantern-court/illustrations/cards/dem.webp",
+        "campaigns/mixed-ages-2026/lantern-court/illustrations/cards/iva.webp",
+        "campaigns/mixed-ages-2026/lantern-court/illustrations/cards/ari.webp"
+      ]
+    },
+    {
+      "id": "lantern-court-places-0",
+      "originalFile": "exec-8e5acf3e-3de4-4752-a492-e31857256b60.png",
+      "originalSha256": "8c9efaa5f7f44de8b59947a2d0aaf4458fe98e37395b1a683c7fb632abf2c550",
+      "columns": 3,
+      "rows": 4,
+      "prompt": "A registered game art atlas of location illustrations, one clearly distinct unpopulated environment per cell, distinct scene lighting and structures. Fill each cell edge to edge. Atmospheric painted landscape or architectural interiors at human eye level. No plot events, clues, icons or writing. EXACT regular grid, 3 equal columns by 4 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Фонарный Предел · Two heraldic seal impressions and lantern tracery in dark claret bookbinding. Cell 1. Крыльцо прошений. Широкие ступени, скамьи разной высоты и стол с чистыми карточками для устных или письменных просьб.\nCell 2. Зал раскрытых фонарей. Круглый зал с местами для скамьи вопросителей, двух сторон и свидетеля. Ни один стул не стоит выше остальных.\nCell 3. Круг тихого поединка. Песчаная площадка между гладкими столбиками; старые следы выступлений отмечены цветной галькой.\nCell 4. Каменное гнездовье. Дом грифонов с широкими балконами, пустой подставкой для знамени и удобным входом без полёта.\nCell 5. Дом остывшей искры. Саламандровый дом с красной керамикой, негорючими сиденьями и выставленными образцами гербовой ткани.\nCell 6. Комната нитей. Мастерская с лупами, пинцетами и множеством разрешённых пробных лоскутов.\nCell 7. Тростниковый балкон. Тихая беседка у пруда, где можно разговаривать, раскладывать схемы или передавать записки.\nCell 8. Галерея двух печатей. Светлая комната для добровольно переданных спорных вещей; доступ записывают на видимой доске.\nCell 9. Восковый двор. Учебная площадка с подвижными восковыми фигурами и стендом добровольных упражнений.\nCell 10. Ступени решения. Крытая площадка для чтения распоряжений, передачи предметов и спокойных прощаний.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "lantern-court-foes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-6e8cede9-7b17-4302-9150-cb25929142fc.png",
+      "originalSha256": "8a56203989752397a10c9547fbb639942c60e412491c9d1fd7ee53a7d1c5e1c8",
+      "columns": 3,
+      "rows": 1,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 3 equal columns by 1 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Фонарный Предел · Two heraldic seal impressions and lantern tracery in dark claret bookbinding. Cell 1. Угольный задира. Небольшая ожившая угольная фигурка с неровной улыбкой; не представляет весь дом саламандр.\nCell 2. Свечной мотылёк. Сказочный мотылёк размером с варежку, чьи крылья похожи на мягкие свечные лепестки.\nCell 3. Восковой спорщик. Подвижная учебная фигурка с мягким фартуком и нарисованными вопросительными бровями.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "lantern-court-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-7e7a4249-c615-4903-8a25-1be892e4eeb3.png",
+      "originalSha256": "c5c6a35a44985cad208e97bd8df27537acabf65e68be29b2f17850b5cef46202",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 5 distinct hand-painted tabletop miniature figurines for the world of Суд Фонарей. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Эйра, цапля-председательница. Высокая цапля с очками на тонкой цепочке и двумя одинаковыми свечами.\nCell 2. Кард Серый Утёс. Каменный грифон с отполированным клювом и красной лентой на лапе.\nCell 3. Веш Тихая Искра. Огненная саламандра в синей керамической накидке, с холодной жаровней в руках.\nCell 4. Пика Белая Кромка. Невысокая каменная грифоница с меловым пятном на крыле.\nCell 5. Реми Угольный Нос. Саламандра с неровно завязанным шарфом и маленькими керамическими бусами.",
+      "references": [
+        "campaigns/mixed-ages-2026/lantern-court/illustrations/cards/eira.webp",
+        "campaigns/mixed-ages-2026/lantern-court/illustrations/cards/kard.webp",
+        "campaigns/mixed-ages-2026/lantern-court/illustrations/cards/vesh.webp",
+        "campaigns/mixed-ages-2026/lantern-court/illustrations/cards/pika.webp",
+        "campaigns/mixed-ages-2026/lantern-court/illustrations/cards/remi.webp"
+      ]
+    },
+    {
+      "id": "lantern-court-npcs-1",
+      "cutoutRevision": 4,
+      "originalFile": "exec-d2b3a1d0-8866-476f-ae94-bba4fdb4aeb2.png",
+      "originalSha256": "30056b372ddedc61a51715d633c3794ed9e7857d5d4e114d78f3825d010244c8",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 5 distinct hand-painted tabletop miniature figurines for the world of Суд Фонарей. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Уля Восемь Петель. Паучиха в рабочем фартуке с восемью маленькими карманами.\nCell 2. Норс, речной уж-писец. Уж с чернильной подушечкой на хвосте и очками в кожаном чехле.\nCell 3. Мора Круглый Панцирь. Черепаха с дорожной сумкой и ярким платком, защищающим от ветра.\nCell 4. Бела Прямая Линия. Куница в сером переднике, с футляром для ножниц и опечатанной сумкой.\nCell 5. Аска Бронзовое Перо. Козодой с маленькой бронзовой серьгой в бархатной коробке.",
+      "references": [
+        "campaigns/mixed-ages-2026/lantern-court/illustrations/cards/ulya.webp",
+        "campaigns/mixed-ages-2026/lantern-court/illustrations/cards/nors.webp",
+        "campaigns/mixed-ages-2026/lantern-court/illustrations/cards/mora.webp",
+        "campaigns/mixed-ages-2026/lantern-court/illustrations/cards/bela.webp",
+        "campaigns/mixed-ages-2026/lantern-court/illustrations/cards/aska.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "tara",
+      "title": "Тара Шаг",
+      "kind": "hero",
+      "subjects": [
+        "tara"
+      ],
+      "file": "heroes-tara.webp",
+      "sha256": "c5626c1b202b52f9b9e2a25da5986bb78dcd3b36724fbcd227ed564b51c01416",
+      "originalSha256": "6d2fed83beacab27c6f41b14e55c4480d71456f3087f25f621da7e8b53f505e7",
+      "generated": "2026-11-22",
+      "sheet": "lantern-court-heroes-0",
+      "cell": 1,
+      "crop": {
+        "left": 88,
+        "top": 11,
+        "width": 261,
+        "height": 414
+      }
+    },
+    {
+      "key": "miron",
+      "title": "Мирон Вязь",
+      "kind": "hero",
+      "subjects": [
+        "miron"
+      ],
+      "file": "heroes-miron.webp",
+      "sha256": "9a2b25f81e3358c9c0e8f244a2fd5c6fb133b28627ef3fadcfd39b8d2ea56424",
+      "originalSha256": "6d2fed83beacab27c6f41b14e55c4480d71456f3087f25f621da7e8b53f505e7",
+      "generated": "2026-11-22",
+      "sheet": "lantern-court-heroes-0",
+      "cell": 2,
+      "crop": {
+        "left": 546,
+        "top": 8,
+        "width": 242,
+        "height": 417
+      }
+    },
+    {
+      "key": "solvi",
+      "title": "Сольви Роса",
+      "kind": "hero",
+      "subjects": [
+        "solvi"
+      ],
+      "file": "heroes-solvi.webp",
+      "sha256": "03cdc32776e57205ae0e10814932b8eb0dc852a1b142c14b723161013871e00e",
+      "originalSha256": "6d2fed83beacab27c6f41b14e55c4480d71456f3087f25f621da7e8b53f505e7",
+      "generated": "2026-11-22",
+      "sheet": "lantern-court-heroes-0",
+      "cell": 3,
+      "crop": {
+        "left": 989,
+        "top": 16,
+        "width": 243,
+        "height": 410
+      }
+    },
+    {
+      "key": "nika",
+      "title": "Ника Плёт",
+      "kind": "hero",
+      "subjects": [
+        "nika"
+      ],
+      "file": "heroes-nika.webp",
+      "sha256": "9aac1d6638b64d827f14ea8d85610f36b9af81f8a226cabc2e58bdf518075bfa",
+      "originalSha256": "6d2fed83beacab27c6f41b14e55c4480d71456f3087f25f621da7e8b53f505e7",
+      "generated": "2026-11-22",
+      "sheet": "lantern-court-heroes-0",
+      "cell": 4,
+      "crop": {
+        "left": 1432,
+        "top": 10,
+        "width": 243,
+        "height": 416
+      }
+    },
+    {
+      "key": "dem",
+      "title": "Дем Рун",
+      "kind": "hero",
+      "subjects": [
+        "dem"
+      ],
+      "file": "heroes-dem.webp",
+      "sha256": "f5679f04b2e63cb63670abde2fb2a524d70314e41be70e446c3ffefcfab4aba7",
+      "originalSha256": "6d2fed83beacab27c6f41b14e55c4480d71456f3087f25f621da7e8b53f505e7",
+      "generated": "2026-11-22",
+      "sheet": "lantern-court-heroes-0",
+      "cell": 5,
+      "crop": {
+        "left": 103,
+        "top": 447,
+        "width": 243,
+        "height": 423
+      }
+    },
+    {
+      "key": "iva",
+      "title": "Ива Ласт",
+      "kind": "hero",
+      "subjects": [
+        "iva"
+      ],
+      "file": "heroes-iva.webp",
+      "sha256": "d1f958f0a87a51f2549fe55c22c5eca24d99aec3e9e56ed63e5d918afe561eb0",
+      "originalSha256": "6d2fed83beacab27c6f41b14e55c4480d71456f3087f25f621da7e8b53f505e7",
+      "generated": "2026-11-22",
+      "sheet": "lantern-court-heroes-0",
+      "cell": 6,
+      "crop": {
+        "left": 546,
+        "top": 449,
+        "width": 242,
+        "height": 421
+      }
+    },
+    {
+      "key": "ari",
+      "title": "Ари Рябь",
+      "kind": "hero",
+      "subjects": [
+        "ari"
+      ],
+      "file": "heroes-ari.webp",
+      "sha256": "d629c06ae87565974fbaa0ae182e4039a5088937761b08396317499bc28ee977",
+      "originalSha256": "6d2fed83beacab27c6f41b14e55c4480d71456f3087f25f621da7e8b53f505e7",
+      "generated": "2026-11-22",
+      "sheet": "lantern-court-heroes-0",
+      "cell": 7,
+      "crop": {
+        "left": 989,
+        "top": 449,
+        "width": 243,
+        "height": 421
+      }
+    },
+    {
+      "key": "petition-porch",
+      "title": "Крыльцо прошений",
+      "kind": "place",
+      "subjects": [
+        "petition-porch"
+      ],
+      "file": "places-petition-porch.webp",
+      "sha256": "e26e0b3f2bab1cab62e848ed678f3c2feb703037f3026aa0724fb83bfbac5857",
+      "originalSha256": "8c9efaa5f7f44de8b59947a2d0aaf4458fe98e37395b1a683c7fb632abf2c550",
+      "generated": "2026-11-22",
+      "sheet": "lantern-court-places-0",
+      "cell": 1,
+      "crop": {
+        "left": 1,
+        "top": 1,
+        "width": 481,
+        "height": 270
+      }
+    },
+    {
+      "key": "lantern-hall",
+      "title": "Зал раскрытых фонарей",
+      "kind": "place",
+      "subjects": [
+        "lantern-hall"
+      ],
+      "file": "places-lantern-hall.webp",
+      "sha256": "a482c456ad7a7202f9fc2430732b21eb02612f5ee4372b44e97037b922b913ff",
+      "originalSha256": "8c9efaa5f7f44de8b59947a2d0aaf4458fe98e37395b1a683c7fb632abf2c550",
+      "generated": "2026-11-22",
+      "sheet": "lantern-court-places-0",
+      "cell": 2,
+      "crop": {
+        "left": 484,
+        "top": 1,
+        "width": 480,
+        "height": 270
+      }
+    },
+    {
+      "key": "silent-ring",
+      "title": "Круг тихого поединка",
+      "kind": "place",
+      "subjects": [
+        "silent-ring"
+      ],
+      "file": "places-silent-ring.webp",
+      "sha256": "dd79e5cae7b1bbf6a7be4f09e106e7124e8cb7198ac394e49a8a100a4c59cdcf",
+      "originalSha256": "8c9efaa5f7f44de8b59947a2d0aaf4458fe98e37395b1a683c7fb632abf2c550",
+      "generated": "2026-11-22",
+      "sheet": "lantern-court-places-0",
+      "cell": 3,
+      "crop": {
+        "left": 966,
+        "top": 1,
+        "width": 481,
+        "height": 270
+      }
+    },
+    {
+      "key": "stone-roost",
+      "title": "Каменное гнездовье",
+      "kind": "place",
+      "subjects": [
+        "stone-roost"
+      ],
+      "file": "places-stone-roost.webp",
+      "sha256": "b4ada9eb331fa12baa668c2524ca0aba71898dd0d8d02b8dd038f33ec38e792a",
+      "originalSha256": "8c9efaa5f7f44de8b59947a2d0aaf4458fe98e37395b1a683c7fb632abf2c550",
+      "generated": "2026-11-22",
+      "sheet": "lantern-court-places-0",
+      "cell": 4,
+      "crop": {
+        "left": 1,
+        "top": 273,
+        "width": 481,
+        "height": 269
+      }
+    },
+    {
+      "key": "ember-lodge",
+      "title": "Дом остывшей искры",
+      "kind": "place",
+      "subjects": [
+        "ember-lodge"
+      ],
+      "file": "places-ember-lodge.webp",
+      "sha256": "e8006f62709d6f27634793ee47a1149172a36e65eebc930c4d066d9c6623f93c",
+      "originalSha256": "8c9efaa5f7f44de8b59947a2d0aaf4458fe98e37395b1a683c7fb632abf2c550",
+      "generated": "2026-11-22",
+      "sheet": "lantern-court-places-0",
+      "cell": 5,
+      "crop": {
+        "left": 484,
+        "top": 273,
+        "width": 480,
+        "height": 269
+      }
+    },
+    {
+      "key": "thread-room",
+      "title": "Комната нитей",
+      "kind": "place",
+      "subjects": [
+        "thread-room"
+      ],
+      "file": "places-thread-room.webp",
+      "sha256": "1cc660d3f1693c8a39b5cb47f3043e90586725dfdf1dfc8c5558ba051a4194de",
+      "originalSha256": "8c9efaa5f7f44de8b59947a2d0aaf4458fe98e37395b1a683c7fb632abf2c550",
+      "generated": "2026-11-22",
+      "sheet": "lantern-court-places-0",
+      "cell": 6,
+      "crop": {
+        "left": 966,
+        "top": 273,
+        "width": 481,
+        "height": 269
+      }
+    },
+    {
+      "key": "reed-balcony",
+      "title": "Тростниковый балкон",
+      "kind": "place",
+      "subjects": [
+        "reed-balcony"
+      ],
+      "file": "places-reed-balcony.webp",
+      "sha256": "7816805623446554920ecf15284e5419005e37af58fd78eb2277275ad08bed09",
+      "originalSha256": "8c9efaa5f7f44de8b59947a2d0aaf4458fe98e37395b1a683c7fb632abf2c550",
+      "generated": "2026-11-22",
+      "sheet": "lantern-court-places-0",
+      "cell": 7,
+      "crop": {
+        "left": 1,
+        "top": 544,
+        "width": 481,
+        "height": 270
+      }
+    },
+    {
+      "key": "sealed-gallery",
+      "title": "Галерея двух печатей",
+      "kind": "place",
+      "subjects": [
+        "sealed-gallery"
+      ],
+      "file": "places-sealed-gallery.webp",
+      "sha256": "de2ec1c54cc056ce30fe2bc1632802072e10e7151fd2c42c397352ee2bdf1324",
+      "originalSha256": "8c9efaa5f7f44de8b59947a2d0aaf4458fe98e37395b1a683c7fb632abf2c550",
+      "generated": "2026-11-22",
+      "sheet": "lantern-court-places-0",
+      "cell": 8,
+      "crop": {
+        "left": 484,
+        "top": 544,
+        "width": 480,
+        "height": 270
+      }
+    },
+    {
+      "key": "wax-yard",
+      "title": "Восковый двор",
+      "kind": "place",
+      "subjects": [
+        "wax-yard"
+      ],
+      "file": "places-wax-yard.webp",
+      "sha256": "decc0a04daa417ea5e7ba118270eebe025f23e0bca2a13732e08dfe3b1e28575",
+      "originalSha256": "8c9efaa5f7f44de8b59947a2d0aaf4458fe98e37395b1a683c7fb632abf2c550",
+      "generated": "2026-11-22",
+      "sheet": "lantern-court-places-0",
+      "cell": 9,
+      "crop": {
+        "left": 966,
+        "top": 544,
+        "width": 481,
+        "height": 270
+      }
+    },
+    {
+      "key": "verdict-steps",
+      "title": "Ступени решения",
+      "kind": "place",
+      "subjects": [
+        "verdict-steps"
+      ],
+      "file": "places-verdict-steps.webp",
+      "sha256": "e86adab604d699aac92c066cd44a0e1d6938000d1d9d709536c1030b6642a67e",
+      "originalSha256": "8c9efaa5f7f44de8b59947a2d0aaf4458fe98e37395b1a683c7fb632abf2c550",
+      "generated": "2026-11-22",
+      "sheet": "lantern-court-places-0",
+      "cell": 10,
+      "crop": {
+        "left": 1,
+        "top": 816,
+        "width": 481,
+        "height": 269
+      }
+    },
+    {
+      "key": "foe-22a62ae5c5",
+      "title": "Угольный задира",
+      "kind": "foe",
+      "subjects": [
+        "coal-pickets-foe-1",
+        "coal-pickets-foe-2",
+        "coal-pickets-foe-3",
+        "coal-pickets-foe-4",
+        "coal-pickets-foe-5"
+      ],
+      "file": "foes-foe-22a62ae5c5.webp",
+      "sha256": "1aa0fd91bc863b50e8023427b07b66f6c025527ef475f6bc1a6913674b784bff",
+      "originalSha256": "8a56203989752397a10c9547fbb639942c60e412491c9d1fd7ee53a7d1c5e1c8",
+      "generated": "2026-11-22",
+      "sheet": "lantern-court-foes-0",
+      "cell": 1,
+      "crop": {
+        "left": 126,
+        "top": 25,
+        "width": 451,
+        "height": 678
+      }
+    },
+    {
+      "key": "foe-01f06f1739",
+      "title": "Свечной мотылёк",
+      "kind": "foe",
+      "subjects": [
+        "glass-moths-foe-1",
+        "glass-moths-foe-2",
+        "glass-moths-foe-3",
+        "glass-moths-foe-4",
+        "glass-moths-foe-5"
+      ],
+      "file": "foes-foe-01f06f1739.webp",
+      "sha256": "9594572d1da2fdd396de3ae84a70c2d705a9c751aa6e224e99f7e3344ce238e3",
+      "originalSha256": "8a56203989752397a10c9547fbb639942c60e412491c9d1fd7ee53a7d1c5e1c8",
+      "generated": "2026-11-22",
+      "sheet": "lantern-court-foes-0",
+      "cell": 2,
+      "crop": {
+        "left": 762,
+        "top": 27,
+        "width": 630,
+        "height": 677
+      }
+    },
+    {
+      "key": "foe-6012381db5",
+      "title": "Восковой спорщик",
+      "kind": "foe",
+      "subjects": [
+        "wax-arguments-foe-1",
+        "wax-arguments-foe-2",
+        "wax-arguments-foe-3",
+        "wax-arguments-foe-4",
+        "wax-arguments-foe-5"
+      ],
+      "file": "foes-foe-6012381db5.webp",
+      "sha256": "36f3fb3d60f43002c98d8017dcde1df967333373bd002dea0b0102236feb2d4f",
+      "originalSha256": "8a56203989752397a10c9547fbb639942c60e412491c9d1fd7ee53a7d1c5e1c8",
+      "generated": "2026-11-22",
+      "sheet": "lantern-court-foes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1603,
+        "top": 16,
+        "width": 422,
+        "height": 689
+      }
+    },
+    {
+      "key": "eira",
+      "title": "Эйра, цапля-председательница",
+      "kind": "npc",
+      "subjects": [
+        "eira"
+      ],
+      "file": "npcs-eira.webp",
+      "sha256": "0dfae6bccd8e6df88014250789f0976366d7eeecd566d5a74466b50dbdc6b62f",
+      "originalSha256": "c5c6a35a44985cad208e97bd8df27537acabf65e68be29b2f17850b5cef46202",
+      "generated": "2026-11-22",
+      "sheet": "lantern-court-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 99,
+        "top": 23,
+        "width": 308,
+        "height": 473
+      }
+    },
+    {
+      "key": "kard",
+      "title": "Кард Серый Утёс",
+      "kind": "npc",
+      "subjects": [
+        "kard"
+      ],
+      "file": "npcs-kard.webp",
+      "sha256": "0ec95e04e685ecf8a029b3b0ab072cf247288fc8e41e93948c72201100a5f459",
+      "originalSha256": "c5c6a35a44985cad208e97bd8df27537acabf65e68be29b2f17850b5cef46202",
+      "generated": "2026-11-22",
+      "sheet": "lantern-court-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 573,
+        "top": 31,
+        "width": 386,
+        "height": 462
+      }
+    },
+    {
+      "key": "vesh",
+      "title": "Веш Тихая Искра",
+      "kind": "npc",
+      "subjects": [
+        "vesh"
+      ],
+      "file": "npcs-vesh.webp",
+      "sha256": "b3e58f442d1fbe35592f1c8c2570650a6829a74c335a821632f38e057253e8b8",
+      "originalSha256": "c5c6a35a44985cad208e97bd8df27537acabf65e68be29b2f17850b5cef46202",
+      "generated": "2026-11-22",
+      "sheet": "lantern-court-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 1120,
+        "top": 25,
+        "width": 317,
+        "height": 487
+      }
+    },
+    {
+      "key": "pika",
+      "title": "Пика Белая Кромка",
+      "kind": "npc",
+      "subjects": [
+        "pika"
+      ],
+      "file": "npcs-pika.webp",
+      "sha256": "afbfb231e64e58d4e5eb2a96dd88ad685296339b4a29d131a534ec0db31bb8a7",
+      "originalSha256": "c5c6a35a44985cad208e97bd8df27537acabf65e68be29b2f17850b5cef46202",
+      "generated": "2026-11-22",
+      "sheet": "lantern-court-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 77,
+        "top": 546,
+        "width": 356,
+        "height": 450
+      }
+    },
+    {
+      "key": "remi",
+      "title": "Реми Угольный Нос",
+      "kind": "npc",
+      "subjects": [
+        "remi"
+      ],
+      "file": "npcs-remi.webp",
+      "sha256": "6a41b5173ed6461cc7731189fcf2b0f163d30a10cfb8b14de3e2434a4882577c",
+      "originalSha256": "c5c6a35a44985cad208e97bd8df27537acabf65e68be29b2f17850b5cef46202",
+      "generated": "2026-11-22",
+      "sheet": "lantern-court-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 576,
+        "top": 553,
+        "width": 370,
+        "height": 437
+      }
+    },
+    {
+      "key": "ulya",
+      "title": "Уля Восемь Петель",
+      "kind": "npc",
+      "subjects": [
+        "ulya"
+      ],
+      "file": "npcs-ulya.webp",
+      "sha256": "19258edc6c0b869c9526f13f3494044e6198c1781ff35c30f03c6b0034679240",
+      "originalSha256": "30056b372ddedc61a51715d633c3794ed9e7857d5d4e114d78f3825d010244c8",
+      "generated": "2026-11-22",
+      "sheet": "lantern-court-npcs-1",
+      "cell": 1,
+      "crop": {
+        "left": 57,
+        "top": 72,
+        "width": 403,
+        "height": 400
+      }
+    },
+    {
+      "key": "nors",
+      "title": "Норс, речной уж-писец",
+      "kind": "npc",
+      "subjects": [
+        "nors"
+      ],
+      "file": "npcs-nors.webp",
+      "sha256": "191dcb887e14bddac4ef23918166ff70e63720b11766fe0ff614f7858a44f87f",
+      "originalSha256": "30056b372ddedc61a51715d633c3794ed9e7857d5d4e114d78f3825d010244c8",
+      "generated": "2026-11-22",
+      "sheet": "lantern-court-npcs-1",
+      "cell": 2,
+      "crop": {
+        "left": 567,
+        "top": 52,
+        "width": 396,
+        "height": 426
+      }
+    },
+    {
+      "key": "mora",
+      "title": "Мора Круглый Панцирь",
+      "kind": "npc",
+      "subjects": [
+        "mora"
+      ],
+      "file": "npcs-mora.webp",
+      "sha256": "64c9a9a53f84b486b8f2a3a44cb11c616207c0054dfce97d070829d9c9065f33",
+      "originalSha256": "30056b372ddedc61a51715d633c3794ed9e7857d5d4e114d78f3825d010244c8",
+      "generated": "2026-11-22",
+      "sheet": "lantern-court-npcs-1",
+      "cell": 3,
+      "crop": {
+        "left": 1074,
+        "top": 58,
+        "width": 462,
+        "height": 419
+      }
+    },
+    {
+      "key": "bela",
+      "title": "Бела Прямая Линия",
+      "kind": "npc",
+      "subjects": [
+        "bela"
+      ],
+      "file": "npcs-bela.webp",
+      "sha256": "5690ab17917cd71dc1748078bba8dc77d16f98030b1eb3fa381555da025f3ced",
+      "originalSha256": "30056b372ddedc61a51715d633c3794ed9e7857d5d4e114d78f3825d010244c8",
+      "generated": "2026-11-22",
+      "sheet": "lantern-court-npcs-1",
+      "cell": 4,
+      "crop": {
+        "left": 83,
+        "top": 537,
+        "width": 344,
+        "height": 456
+      }
+    },
+    {
+      "key": "aska",
+      "title": "Аска Бронзовое Перо",
+      "kind": "npc",
+      "subjects": [
+        "aska"
+      ],
+      "file": "npcs-aska.webp",
+      "sha256": "2c18804f054cdbc3cfa0bdb831dd704d303bb9113cf31f1d8ed12b62d3e84890",
+      "originalSha256": "30056b372ddedc61a51715d633c3794ed9e7857d5d4e114d78f3825d010244c8",
+      "generated": "2026-11-22",
+      "sheet": "lantern-court-npcs-1",
+      "cell": 5,
+      "crop": {
+        "left": 577,
+        "top": 561,
+        "width": 379,
+        "height": 432
+      }
+    }
+  ]
+}

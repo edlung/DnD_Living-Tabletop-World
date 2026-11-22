@@ -1,0 +1,54 @@
+{
+  "region": "vyazovsk",
+  "name": "Карта · Вязовск",
+  "description": "План местности «Вязовск». На карте отмечаются места, известные группе.",
+  "pins": [
+    {
+      "place": "glass-waiting-room",
+      "x": 0.11,
+      "y": 0.15
+    },
+    {
+      "place": "winter-salon",
+      "x": 0.367,
+      "y": 0.177
+    },
+    {
+      "place": "sitnik-studio",
+      "x": 0.623,
+      "y": 0.15
+    },
+    {
+      "place": "ryabtseva-studio",
+      "x": 0.88,
+      "y": 0.177
+    },
+    {
+      "place": "frame-workshop",
+      "x": 0.905,
+      "y": 0.517
+    },
+    {
+      "place": "birk-drawing-room",
+      "x": 0.648,
+      "y": 0.49
+    },
+    {
+      "place": "krupina-fitting-room",
+      "x": 0.392,
+      "y": 0.517
+    },
+    {
+      "place": "parcel-counter",
+      "x": 0.135,
+      "y": 0.49
+    },
+    {
+      "place": "comparison-room",
+      "x": 0.11,
+      "y": 0.83
+    }
+  ],
+  "routes": [],
+  "scale": "schematic"
+}

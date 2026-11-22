@@ -1,9 +1,9 @@
+import type { WorldApi } from '../../api/client.ts';
+import { ItemPicture } from './item-picture.tsx';
 import type { InventoryItem, ItemCategory } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
 import { useState } from 'react';
 
-import { Glyph } from '../../visual/glyph.tsx';
-import { itemPictureUrl } from '../../visual/ui-kit.ts';
 import { categoryName, roundWeight } from '../item-text.ts';
 import { DRAG_TYPE, draggedItem } from './drag.ts';
 
@@ -23,6 +23,7 @@ const ORDER: readonly ItemCategory[] = [
  * here is taken off.
  */
 export function Bag({
+  api,
   carried,
   worn,
   selectedId,
@@ -30,6 +31,7 @@ export function Bag({
   onSelect,
   onUnequip,
 }: {
+  readonly api: WorldApi;
   readonly carried: readonly InventoryItem[];
   readonly worn: readonly InventoryItem[];
   readonly selectedId: string | null;
@@ -88,7 +90,6 @@ export function Bag({
       ) : (
         <ul className="bag-grid">
           {shown.map((item) => {
-            const art = item.catalog ? itemPictureUrl(item.catalog) : null;
             const weight = item.catalog ? item.catalog.weightLb * item.quantity : null;
             return (
               <li key={item.itemId}>
@@ -111,7 +112,7 @@ export function Bag({
                   }}
                 >
                   <span className="bag-art" aria-hidden="true">
-                    {art ? <img src={art} alt="" draggable={false} /> : <Glyph name="use-item" />}
+                    <ItemPicture api={api} item={item} />
                     {item.quantity > 1 && <span className="bag-count">{item.quantity}</span>}
                   </span>
                   <span className="bag-name" aria-hidden="true">

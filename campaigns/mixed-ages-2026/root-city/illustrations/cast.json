@@ -1,0 +1,358 @@
+{
+  "about": "Портреты для карточек и изображение закрытого набора. Сначала сверяйте личность и доступность персонажа за столом.",
+  "generated": "2026-11-22",
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "heroes",
+      "originalFile": "exec-e7ebdf1b-dbc1-4fe0-b25e-05e94ace5152.png",
+      "originalSha256": "bf2d33d89e8cafbcf354710003cee6a6b8bf6476b20c4b0adc33f122b3db8156",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 3 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:3. Warm illustrated adventure book, colourful gouache. World: Долина длинного света. Characters, in strict cell order:\n1. Ная Век — Короткая куртка с тканевыми заплатами, складной метр на поясе и мягкие подошвы. Age 16.\n2. Марк Ру — Пятнистый шарф, гладкие деревянные фигурки в карманах, руки в следах цветного мела. Age 43.\n3. Эли Ден — Солнечные линзы на шнурке, зелёная рабочая накидка и тетрадь, в которой оставлены пустые страницы. Age 25.\n4. Сана Лис — Сумка с многоразовыми лентами, широкополая шапка, нашивка в форме пустого горшка. Age 14.\n5. Вец Ом — Светлый плащ, удобная трость и нашитые на рукав знаки мест, где тебя принимали гостем. Age 62.\n6. Ора Таль — Длинный жилет с карманами для карточек; на пальцах смываемая синяя краска. Age 32.\n7. Геро Ис — Полотняная безрукавка, маленький бесшумный метроном и набор простых колокольчиков. Age 18.\n8. Дорожный / рабочий набор — Still life of one opaque closed everyday satchel, appropriate to this world and era. No person and nothing spilling out.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 3,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "npcs",
+      "originalFile": "exec-1beadb5d-c2e8-459f-b732-a6b0768d6d75.png",
+      "originalSha256": "0e12a106ce1927d6eb9ca5cf7d0df57d557efedfca53b8c4f5e40e9c21553293",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 3 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:3. Warm illustrated adventure book, colourful gouache. World: Долина длинного света. Characters, in strict cell order:\n1. Ира Фен — Пёстрый рабочий передник и полоса белой краски на щеке. Age 15.\n2. Дина Ро — Жёлтые очки на лбу, короткая коса, доска объявлений под мышкой. Age 48.\n3. Тим Ош — Светлая рубаха, ладони в пыльце, блокнот с рисунками листьев. Age 29.\n4. Леон Ки — Белый плащ, мягкие перчатки и деревянная рамка вместо театральной маски. Age 65.\n5. Рин Ва — Большая кепка, бумажные карточки на кольце и мел, завёрнутый в ткань. Age 13.\n6. Склад — Три широких стебля соприкасаются ребром и держат горизонтальную ветвь с серебристой нижней стороной. Age 32.\n7. Кромка — Тонкая ветвь с листьями, у которых светлая полоса проходит только по одному краю. Age 8.\n8. Бок — Низкая ветвь с тёмной гладкой корой, одним крупным листом и несколькими короткими побегами. Age 55.\n9. Бегущий Стебель — Гибкий низкий побег с парными круглыми листьями, способный перемещать опору небольшими шагами. Age 6.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 3,
+      "width": 1254,
+      "height": 1254
+    }
+  ],
+  "cards": [
+    {
+      "id": "naya-vek",
+      "file": "cards/naya-vek.webp",
+      "title": "Ная Век",
+      "subjects": [
+        "naya-vek"
+      ],
+      "sheet": "heroes",
+      "cell": 1,
+      "crop": {
+        "left": 10,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "72a06be1b37de21585aa9fa46326762b20adccbfbb911007ebc42761e3c906c9"
+    },
+    {
+      "id": "mark-ru",
+      "file": "cards/mark-ru.webp",
+      "title": "Марк Ру",
+      "subjects": [
+        "mark-ru"
+      ],
+      "sheet": "heroes",
+      "cell": 2,
+      "crop": {
+        "left": 428,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "b6cf2bc5d550ac4faa43a22b35725f8161c6cf216979ee6e7c424cfb94fc6bb8"
+    },
+    {
+      "id": "eli-den",
+      "file": "cards/eli-den.webp",
+      "title": "Эли Ден",
+      "subjects": [
+        "eli-den"
+      ],
+      "sheet": "heroes",
+      "cell": 3,
+      "crop": {
+        "left": 846,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "1abcec7a8cd8ff3cac4dc9509e209a7d4b265903c2b2494600ea5c4e0c15fc74"
+    },
+    {
+      "id": "sana-lis",
+      "file": "cards/sana-lis.webp",
+      "title": "Сана Лис",
+      "subjects": [
+        "sana-lis"
+      ],
+      "sheet": "heroes",
+      "cell": 4,
+      "crop": {
+        "left": 10,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "3945c71755ffab071f0a46bf279d848c32c1467fc8579e063ce13c4e6150c1fd"
+    },
+    {
+      "id": "vets-om",
+      "file": "cards/vets-om.webp",
+      "title": "Вец Ом",
+      "subjects": [
+        "vets-om"
+      ],
+      "sheet": "heroes",
+      "cell": 5,
+      "crop": {
+        "left": 428,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "1b970f63bbd90d09198dece102fc0560f16c6566b7b708d9e0eb413af243e3eb"
+    },
+    {
+      "id": "ora-tal",
+      "file": "cards/ora-tal.webp",
+      "title": "Ора Таль",
+      "subjects": [
+        "ora-tal"
+      ],
+      "sheet": "heroes",
+      "cell": 6,
+      "crop": {
+        "left": 846,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "e2c792c9bee79f35bbb30fc3cdaa0979872bfae9f2fc34ece07420216b14ab31"
+    },
+    {
+      "id": "gero-is",
+      "file": "cards/gero-is.webp",
+      "title": "Геро Ис",
+      "subjects": [
+        "gero-is"
+      ],
+      "sheet": "heroes",
+      "cell": 7,
+      "crop": {
+        "left": 10,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "8b7739b95de90eeae61ecd75b33d47f805c4a3c8e3400954cd73fcbc2a14d930"
+    },
+    {
+      "id": "travel-kit",
+      "file": "cards/travel-kit.webp",
+      "title": "Дорожный набор",
+      "subjects": [
+        "eli-den-travel-kit",
+        "gero-is-travel-kit",
+        "mark-ru-travel-kit",
+        "naya-vek-travel-kit",
+        "ora-tal-travel-kit",
+        "sana-lis-travel-kit",
+        "vets-om-travel-kit"
+      ],
+      "sheet": "heroes",
+      "cell": 8,
+      "crop": {
+        "left": 428,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "b41df1f6c5d06cdaf2fde9b194a8b37bfd7a425ea8ca166d90cc7bdb790cf932"
+    },
+    {
+      "id": "ira-fen",
+      "file": "cards/ira-fen.webp",
+      "title": "Ира Фен",
+      "subjects": [
+        "ira-fen"
+      ],
+      "sheet": "npcs",
+      "cell": 1,
+      "crop": {
+        "left": 10,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "b5fdadf97307616a9ca4f3b1d3fe30801626dd9c88f2c5b54ce710dc2353e4b2"
+    },
+    {
+      "id": "dina-ro",
+      "file": "cards/dina-ro.webp",
+      "title": "Дина Ро",
+      "subjects": [
+        "dina-ro"
+      ],
+      "sheet": "npcs",
+      "cell": 2,
+      "crop": {
+        "left": 428,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "d957a8a524161586a08bb2be2f4cae50a2bfdd22de9fa1e16717d952fa856f1c"
+    },
+    {
+      "id": "tim-osh",
+      "file": "cards/tim-osh.webp",
+      "title": "Тим Ош",
+      "subjects": [
+        "tim-osh"
+      ],
+      "sheet": "npcs",
+      "cell": 3,
+      "crop": {
+        "left": 846,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "ec2ef4ea97e8700cfff86b5b14c254e697c444d3f0d82c38ea612b9ae33e7f28"
+    },
+    {
+      "id": "leon-ki",
+      "file": "cards/leon-ki.webp",
+      "title": "Леон Ки",
+      "subjects": [
+        "leon-ki"
+      ],
+      "sheet": "npcs",
+      "cell": 4,
+      "crop": {
+        "left": 10,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "e9bee33e97855492375ba06688d26d35916b5abe9050206943b23a3bea8f0216"
+    },
+    {
+      "id": "rin-va",
+      "file": "cards/rin-va.webp",
+      "title": "Рин Ва",
+      "subjects": [
+        "rin-va"
+      ],
+      "sheet": "npcs",
+      "cell": 5,
+      "crop": {
+        "left": 428,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "efb76c72d5cc5cdca9eb9eadb103967b946545c8c1520862264c1909bab773f8"
+    },
+    {
+      "id": "fold",
+      "file": "cards/fold.webp",
+      "title": "Склад",
+      "subjects": [
+        "fold"
+      ],
+      "sheet": "npcs",
+      "cell": 6,
+      "crop": {
+        "left": 846,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "e45492df7c89e9f2600c156106372188f8a894a06aeef821d3a06071226cf2f3"
+    },
+    {
+      "id": "edge",
+      "file": "cards/edge.webp",
+      "title": "Кромка",
+      "subjects": [
+        "edge"
+      ],
+      "sheet": "npcs",
+      "cell": 7,
+      "crop": {
+        "left": 10,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "7bc0a2460a58e43b713b5a2cfe756c07358a9e72ebea28877848959ed75c37d1"
+    },
+    {
+      "id": "side",
+      "file": "cards/side.webp",
+      "title": "Бок",
+      "subjects": [
+        "side"
+      ],
+      "sheet": "npcs",
+      "cell": 8,
+      "crop": {
+        "left": 428,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "fe7930449c37e30c89b328ef8fa91b7eadb48480ebb4884f306f62565957d3ac"
+    },
+    {
+      "id": "runner",
+      "file": "cards/runner.webp",
+      "title": "Бегущий Стебель",
+      "subjects": [
+        "runner"
+      ],
+      "sheet": "npcs",
+      "cell": 9,
+      "crop": {
+        "left": 846,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "de42968d79397b287f80a9bff6b05a0e0b51421282f128ec69800b02c8c8b05e"
+    }
+  ]
+}

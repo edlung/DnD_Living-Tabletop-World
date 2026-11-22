@@ -94,3 +94,5 @@
 `campaigns/distinctness/` (задание `ember-crown-brief.md`, скелет `ember-crown-skeleton.md`).
 Растровых иллюстраций пока нет, они будут позже; схемы боёв векторные. Живая игра с людьми не
 проводилась.
+
+[Карточки и оформление стола для ведущего](../../interface/ember-crown.html).

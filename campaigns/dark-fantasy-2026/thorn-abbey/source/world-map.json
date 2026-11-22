@@ -1,0 +1,54 @@
+{
+  "region": "thorn-valley",
+  "name": "Карта · Вересковый Порог",
+  "description": "План местности «Вересковый Порог». На карте отмечаются места, известные группе.",
+  "pins": [
+    {
+      "place": "pilgrim-yard",
+      "x": 0.11,
+      "y": 0.15
+    },
+    {
+      "place": "lower-village",
+      "x": 0.367,
+      "y": 0.177
+    },
+    {
+      "place": "mill-cistern",
+      "x": 0.623,
+      "y": 0.15
+    },
+    {
+      "place": "cloister",
+      "x": 0.88,
+      "y": 0.177
+    },
+    {
+      "place": "scriptorium",
+      "x": 0.905,
+      "y": 0.517
+    },
+    {
+      "place": "guest-house",
+      "x": 0.648,
+      "y": 0.49
+    },
+    {
+      "place": "briar-garden",
+      "x": 0.392,
+      "y": 0.517
+    },
+    {
+      "place": "watch-gallery",
+      "x": 0.135,
+      "y": 0.49
+    },
+    {
+      "place": "root-crypt",
+      "x": 0.11,
+      "y": 0.83
+    }
+  ],
+  "routes": [],
+  "scale": "schematic"
+}

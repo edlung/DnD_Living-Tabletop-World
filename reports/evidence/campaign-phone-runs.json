@@ -1,0 +1,355 @@
+{
+  "date": "2026-11-22",
+  "flow": [
+    "invite",
+    "campaign skin",
+    "character sheet and portrait",
+    "skills",
+    "inventory, figure and item art",
+    "world map",
+    "d20 and roll log",
+    "prepared encounter and illustrated battlefield"
+  ],
+  "engines": {
+    "chromium": {
+      "version": "159.0.8154.6",
+      "revision": "1255"
+    },
+    "webkit": {
+      "version": "27.2",
+      "revision": "2388"
+    }
+  },
+  "campaigns": [
+    {
+      "id": "acorn-express",
+      "title": "Экспресс «Тысяча Желудей»",
+      "chromiumWidth": 320,
+      "webkitWidth": 320
+    },
+    {
+      "id": "lighthouse",
+      "title": "Маяк Между Ветрами",
+      "chromiumWidth": 390,
+      "webkitWidth": 390
+    },
+    {
+      "id": "moon-pearl",
+      "title": "Тайна Лунной Жемчужины",
+      "chromiumWidth": 390,
+      "webkitWidth": 390
+    },
+    {
+      "id": "ash-testament",
+      "title": "Завещание Пепла",
+      "chromiumWidth": 320,
+      "webkitWidth": 320
+    },
+    {
+      "id": "clockwork-carnival",
+      "title": "Карнавал Заводных Масок",
+      "chromiumWidth": 390,
+      "webkitWidth": 390
+    },
+    {
+      "id": "ember-crown",
+      "title": "Корона Последнего Угля",
+      "chromiumWidth": 390,
+      "webkitWidth": 390
+    },
+    {
+      "id": "glass-republic",
+      "title": "Стеклянная Республика",
+      "chromiumWidth": 320,
+      "webkitWidth": 320
+    },
+    {
+      "id": "hollow-choir",
+      "title": "Хор Пустых Комнат",
+      "chromiumWidth": 390,
+      "webkitWidth": 390
+    },
+    {
+      "id": "last-orbit",
+      "title": "Последняя Орбита",
+      "chromiumWidth": 390,
+      "webkitWidth": 390
+    },
+    {
+      "id": "salt-meridian",
+      "title": "Соляной Меридиан",
+      "chromiumWidth": 320,
+      "webkitWidth": 320
+    },
+    {
+      "id": "sky-archipelago",
+      "title": "Атлас Небесных Островов",
+      "chromiumWidth": 390,
+      "webkitWidth": 390
+    },
+    {
+      "id": "velvet-ledger",
+      "title": "Бархатный Реестр",
+      "chromiumWidth": 390,
+      "webkitWidth": 390
+    },
+    {
+      "id": "winter-caravan",
+      "title": "Караван Белой Ночи",
+      "chromiumWidth": 320,
+      "webkitWidth": 320
+    },
+    {
+      "id": "ash-tithe",
+      "title": "Десятина пепельных рыцарей",
+      "chromiumWidth": 390,
+      "webkitWidth": 390
+    },
+    {
+      "id": "bellwether-hollow",
+      "title": "Долина без последнего звона",
+      "chromiumWidth": 390,
+      "webkitWidth": 390
+    },
+    {
+      "id": "black-sun-forge",
+      "title": "Кузница чёрного солнца",
+      "chromiumWidth": 320,
+      "webkitWidth": 320
+    },
+    {
+      "id": "lantern-mere",
+      "title": "Фонари утонувшего города",
+      "chromiumWidth": 390,
+      "webkitWidth": 390
+    },
+    {
+      "id": "last-ferryman",
+      "title": "Последний перевозчик",
+      "chromiumWidth": 390,
+      "webkitWidth": 390
+    },
+    {
+      "id": "marrow-crown",
+      "title": "Корона из чужих костей",
+      "chromiumWidth": 320,
+      "webkitWidth": 320
+    },
+    {
+      "id": "moth-court",
+      "title": "Двор мотыльковых масок",
+      "chromiumWidth": 390,
+      "webkitWidth": 390
+    },
+    {
+      "id": "salt-widows",
+      "title": "Вдовы соляного моря",
+      "chromiumWidth": 390,
+      "webkitWidth": 390
+    },
+    {
+      "id": "thorn-abbey",
+      "title": "Аббатство спящих шипов",
+      "chromiumWidth": 320,
+      "webkitWidth": 320
+    },
+    {
+      "id": "winter-orchard",
+      "title": "Сад украденной зимы",
+      "chromiumWidth": 390,
+      "webkitWidth": 390
+    },
+    {
+      "id": "basalt-bloom",
+      "title": "Цветение базальта",
+      "chromiumWidth": 390,
+      "webkitWidth": 390
+    },
+    {
+      "id": "dragon-retirement",
+      "title": "Дракон уходит на покой",
+      "chromiumWidth": 320,
+      "webkitWidth": 320
+    },
+    {
+      "id": "dungeon-sanctuary",
+      "title": "Подземелье для тех, кто устал быть чудовищем",
+      "chromiumWidth": 390,
+      "webkitWidth": 390
+    },
+    {
+      "id": "familiar-school",
+      "title": "Школа перепутанных фамильяров",
+      "chromiumWidth": 390,
+      "webkitWidth": 390
+    },
+    {
+      "id": "impossible-fair",
+      "title": "Ярмарка невозможных ремёсел",
+      "chromiumWidth": 320,
+      "webkitWidth": 320
+    },
+    {
+      "id": "mountain-wedding",
+      "title": "Свадьба двух гор",
+      "chromiumWidth": 390,
+      "webkitWidth": 390
+    },
+    {
+      "id": "small-banner",
+      "title": "Знамя размером с ладонь",
+      "chromiumWidth": 390,
+      "webkitWidth": 390
+    },
+    {
+      "id": "storm-kitchen",
+      "title": "Кухня на краю грозы",
+      "chromiumWidth": 320,
+      "webkitWidth": 320
+    },
+    {
+      "id": "three-magicless-days",
+      "title": "Выходные у заклинаний",
+      "chromiumWidth": 390,
+      "webkitWidth": 390
+    },
+    {
+      "id": "unwritten-god",
+      "title": "Бог с чистой страницы",
+      "chromiumWidth": 390,
+      "webkitWidth": 390
+    },
+    {
+      "id": "cedar-tournament",
+      "title": "Турнир под Кедровой Луной",
+      "chromiumWidth": 320,
+      "webkitWidth": 320
+    },
+    {
+      "id": "copper-canyon",
+      "title": "Пансион Медного Каньона",
+      "chromiumWidth": 390,
+      "webkitWidth": 390
+    },
+    {
+      "id": "dream-orchestra",
+      "title": "Оркестр невозможного сна",
+      "chromiumWidth": 390,
+      "webkitWidth": 390
+    },
+    {
+      "id": "lantern-court",
+      "title": "Суд Фонарей",
+      "chromiumWidth": 320,
+      "webkitWidth": 320
+    },
+    {
+      "id": "museum-midnight",
+      "title": "Музей ненаступившего завтра",
+      "chromiumWidth": 390,
+      "webkitWidth": 390
+    },
+    {
+      "id": "paper-sea",
+      "title": "Море бумажных островов",
+      "chromiumWidth": 390,
+      "webkitWidth": 390
+    },
+    {
+      "id": "rain-bureau",
+      "title": "Бюро украденного дождя",
+      "chromiumWidth": 320,
+      "webkitWidth": 320
+    },
+    {
+      "id": "red-dune-post",
+      "title": "Почта Красной Дюны",
+      "chromiumWidth": 390,
+      "webkitWidth": 390
+    },
+    {
+      "id": "root-city",
+      "title": "Город на спине Сада",
+      "chromiumWidth": 390,
+      "webkitWidth": 390
+    },
+    {
+      "id": "silent-frequency",
+      "title": "Нулевая частота",
+      "chromiumWidth": 320,
+      "webkitWidth": 320
+    },
+    {
+      "id": "absent-voters",
+      "title": "Голоса отсутствующих",
+      "chromiumWidth": 390,
+      "webkitWidth": 390
+    },
+    {
+      "id": "counterfeit-spring",
+      "title": "Поддельная весна",
+      "chromiumWidth": 390,
+      "webkitWidth": 390
+    },
+    {
+      "id": "false-verdict",
+      "title": "Приговор под копирку",
+      "chromiumWidth": 320,
+      "webkitWidth": 320
+    },
+    {
+      "id": "last-round",
+      "title": "После последнего раунда",
+      "chromiumWidth": 390,
+      "webkitWidth": 390
+    },
+    {
+      "id": "quiet-exchange",
+      "title": "Тихая коммутаторная",
+      "chromiumWidth": 390,
+      "webkitWidth": 390
+    },
+    {
+      "id": "rain-check",
+      "title": "Дождь по страховому случаю",
+      "chromiumWidth": 320,
+      "webkitWidth": 320
+    },
+    {
+      "id": "room-608",
+      "title": "Шестьсот восьмая комната",
+      "chromiumWidth": 390,
+      "webkitWidth": 390
+    },
+    {
+      "id": "seventh-negative",
+      "title": "Седьмой негатив",
+      "chromiumWidth": 390,
+      "webkitWidth": 390
+    },
+    {
+      "id": "strike-fund",
+      "title": "Касса забастовки",
+      "chromiumWidth": 320,
+      "webkitWidth": 320
+    },
+    {
+      "id": "white-ash",
+      "title": "Белый пепел на манжетах",
+      "chromiumWidth": 390,
+      "webkitWidth": 390
+    },
+    {
+      "id": "ravenford",
+      "title": "Пропавший караван",
+      "chromiumWidth": 390,
+      "webkitWidth": 390
+    },
+    {
+      "id": "hollowmere",
+      "title": "Холлоумир: колокола в тумане",
+      "chromiumWidth": 390,
+      "webkitWidth": 390
+    }
+  ]
+}

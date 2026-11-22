@@ -1,0 +1,12 @@
+{
+  "about": "Original unlabelled world map. Pin positions in source/world-map.json.",
+  "map": {
+    "file": "world-map.webp",
+    "sha256": "c9e0bb09f87b4a0bca07667f4f7bcfd8a02affbb5658c882f35a1db6d9c51c04",
+    "originalSha256": "cda14407865fa713cbf4caeb3c69edeee5ffeae133eb14f9cc326e48f34066d1",
+    "originalFile": "exec-67180328-7e6e-409b-ab4f-7ee8ee3bff81.png",
+    "generated": "2026-11-22",
+    "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Излучина звучащих форм. Style Излучина звучащих форм · Moire blue theatre ribbon, gold reverse folds and little stage-light rays. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Пустой просцениум; 0.367,0.177 Мост повторённых шагов; 0.623,0.15 Карьер звучащих граней; 0.88,0.177 Море, вставшее на ребро; 0.905,0.517 Чердак вырезанной тишины; 0.648,0.49 Двор выпуклого эха; 0.392,0.517 Балкон косого взгляда; 0.135,0.49 Мастерская больших швов; 0.11,0.83 Берег премьеры. Show public exteriors / unlabeled contours only.",
+    "references": []
+  }
+}

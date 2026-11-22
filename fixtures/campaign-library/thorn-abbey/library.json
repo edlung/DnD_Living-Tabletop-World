@@ -1,0 +1,1633 @@
+{
+ "id": "thorn-abbey",
+ "title": "Аббатство спящих шипов",
+ "genre": "Готическое тёмное фэнтези",
+ "audience": "14+",
+ "pitch": "Заброшенное аббатство укрылось шипами, которые помнят каждое нарушенное обещание. Когда серый ветер возвращается в долину, старый сад начинает охоту на уходящих, а проклятая рыцарь не может помочь им, не нарушив одну из своих клятв. Пройдите живой лабиринт, испытайте доверие делом и решите, что значит остаться верным человеку, когда невозможно остаться верным каждому слову.",
+ "tone": "Мокрый камень, серебряные колючки, тепло чужой кружки и шаги невидимого преследователя. Страх атмосферный; надежда возникает, когда люди позволяют себе помощь и принимают цену честного выбора.",
+ "duration": "8 сессий; 140 минут: 10 минут открытия или повтора, три сцены по 35 минут, перерыв 10 минут после второй сцены и завершение 15 минут.",
+ "cover": "campaigns/dark-fantasy-2026/thorn-abbey/illustrations/opening.webp",
+ "defaultVariant": "4-players",
+ "variants": [
+  {
+   "id": "3-players",
+   "players": 3,
+   "label": "3 игрока",
+   "file": "packages/3-players.json",
+   "digest": "f2b32643935fe0718537fd3e5730fe4df36777dd8bf73842a4be6ebb4c86b32d"
+  },
+  {
+   "id": "4-players",
+   "players": 4,
+   "label": "4 игрока",
+   "file": "packages/4-players.json",
+   "digest": "c4eb859ad1a57e579f8f211f84b80e809c4363bab047f79366501e899e8ffa7a"
+  },
+  {
+   "id": "5-players",
+   "players": 5,
+   "label": "5 игроков",
+   "file": "packages/5-players.json",
+   "digest": "185669c39f52ec1fb9bad528e47999fc67cdf27932b0a0e3a409210bfca3c84a"
+  },
+  {
+   "id": "6-players",
+   "players": 6,
+   "label": "6 игроков",
+   "file": "packages/6-players.json",
+   "digest": "f3d8acf940ebf66ee7cc1482f3d3b59e7aa28762d9b63d5404d8f15781a325b8"
+  },
+  {
+   "id": "7-players",
+   "players": 7,
+   "label": "7 игроков",
+   "file": "packages/7-players.json",
+   "digest": "1cc64e21059fa6e3dff85f1d000c3a79b474c9e8d91b9130eb591be2d8456c27"
+  }
+ ],
+ "generator": "codex-cli imagegen",
+ "pictures": [
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/illustrations/cards/arina-klen.webp",
+   "sha256": "3fb3074156c5a7140854093d8963fb28717579feb524fbae85b572a959fca2bb",
+   "originalSha256": "de443504ab7384e6165cff53e288e832917d3a18eb5e656714a2ad516830f29e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Арина Клен",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "arina-klen"
+    ],
+    "4-players": [
+     "arina-klen"
+    ],
+    "5-players": [
+     "arina-klen"
+    ],
+    "6-players": [
+     "arina-klen"
+    ],
+    "7-players": [
+     "arina-klen"
+    ]
+   },
+   "file": "arina-klen.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/illustrations/cards/yar-glen.webp",
+   "sha256": "81de4c27a743d7ea56289f6936165036a1e4249ea3ff61aa28af4b5fe6e398ab",
+   "originalSha256": "de443504ab7384e6165cff53e288e832917d3a18eb5e656714a2ad516830f29e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Яр Глен",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "yar-glen"
+    ],
+    "4-players": [
+     "yar-glen"
+    ],
+    "5-players": [
+     "yar-glen"
+    ],
+    "6-players": [
+     "yar-glen"
+    ],
+    "7-players": [
+     "yar-glen"
+    ]
+   },
+   "file": "yar-glen.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/illustrations/cards/mira-siv.webp",
+   "sha256": "7d77d1c748669383849fb0d4935495ca693eb8629468762be13f6f20f31b1bdc",
+   "originalSha256": "de443504ab7384e6165cff53e288e832917d3a18eb5e656714a2ad516830f29e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мира Сив",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mira-siv"
+    ],
+    "4-players": [
+     "mira-siv"
+    ],
+    "5-players": [
+     "mira-siv"
+    ],
+    "6-players": [
+     "mira-siv"
+    ],
+    "7-players": [
+     "mira-siv"
+    ]
+   },
+   "file": "mira-siv.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/illustrations/cards/olta-renn.webp",
+   "sha256": "7ed1fd560a085660d0d4c812b627f4250973554aadb0677c171b7d1edf98ad2e",
+   "originalSha256": "de443504ab7384e6165cff53e288e832917d3a18eb5e656714a2ad516830f29e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ольта Ренн",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "olta-renn"
+    ],
+    "5-players": [
+     "olta-renn"
+    ],
+    "6-players": [
+     "olta-renn"
+    ],
+    "7-players": [
+     "olta-renn"
+    ]
+   },
+   "file": "olta-renn.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/illustrations/cards/sava-tes.webp",
+   "sha256": "459b16b8627f11b54ea1ac15e7bd3431832b023ec0e02cb75fd93d4325942607",
+   "originalSha256": "de443504ab7384e6165cff53e288e832917d3a18eb5e656714a2ad516830f29e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сава Тес",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "sava-tes"
+    ],
+    "6-players": [
+     "sava-tes"
+    ],
+    "7-players": [
+     "sava-tes"
+    ]
+   },
+   "file": "sava-tes.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/illustrations/cards/nika-ors.webp",
+   "sha256": "b0cc5e57a8d4c3158140242cde39e96207d96c04533e2d7ab31263aaee8da757",
+   "originalSha256": "de443504ab7384e6165cff53e288e832917d3a18eb5e656714a2ad516830f29e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ника Орс",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "nika-ors"
+    ],
+    "7-players": [
+     "nika-ors"
+    ]
+   },
+   "file": "nika-ors.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/illustrations/cards/teren-yasen.webp",
+   "sha256": "94c01b623e53f15185fbe4b614fdf3cbebd823c49e9582a7e683f40828ca097c",
+   "originalSha256": "de443504ab7384e6165cff53e288e832917d3a18eb5e656714a2ad516830f29e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Терен Ясен",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "teren-yasen"
+    ]
+   },
+   "file": "teren-yasen.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/illustrations/cards/travel-kit.webp",
+   "sha256": "6cce237d0d5bc7b0e0f88dcc0f94c09945b6031cedcba92f8e9e3fba0a31a5a5",
+   "originalSha256": "de443504ab7384e6165cff53e288e832917d3a18eb5e656714a2ad516830f29e",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дорожный набор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "arina-klen-travel-kit",
+     "mira-siv-travel-kit",
+     "yar-glen-travel-kit"
+    ],
+    "4-players": [
+     "arina-klen-travel-kit",
+     "mira-siv-travel-kit",
+     "olta-renn-travel-kit",
+     "yar-glen-travel-kit"
+    ],
+    "5-players": [
+     "arina-klen-travel-kit",
+     "mira-siv-travel-kit",
+     "olta-renn-travel-kit",
+     "sava-tes-travel-kit",
+     "yar-glen-travel-kit"
+    ],
+    "6-players": [
+     "arina-klen-travel-kit",
+     "mira-siv-travel-kit",
+     "nika-ors-travel-kit",
+     "olta-renn-travel-kit",
+     "sava-tes-travel-kit",
+     "yar-glen-travel-kit"
+    ],
+    "7-players": [
+     "arina-klen-travel-kit",
+     "mira-siv-travel-kit",
+     "nika-ors-travel-kit",
+     "olta-renn-travel-kit",
+     "sava-tes-travel-kit",
+     "teren-yasen-travel-kit",
+     "yar-glen-travel-kit"
+    ]
+   },
+   "file": "travel-kit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/illustrations/cards/rada-lis.webp",
+   "sha256": "b9a2d803c8d013f29afa1fd3f2643e24eeacf2833df623d2aa154283362df908",
+   "originalSha256": "296f2ce412700ee18264ee946d4d15d54399bc389be24f97a5c1fb0c798b8b82",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рада Лис",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "rada-lis"
+    ],
+    "4-players": [
+     "rada-lis"
+    ],
+    "5-players": [
+     "rada-lis"
+    ],
+    "6-players": [
+     "rada-lis"
+    ],
+    "7-players": [
+     "rada-lis"
+    ]
+   },
+   "file": "rada-lis.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/illustrations/cards/nerin-sor.webp",
+   "sha256": "0244bba79612b505dec8416da6d50c2873110f8e6579ce22dbaf2e5987cde725",
+   "originalSha256": "296f2ce412700ee18264ee946d4d15d54399bc389be24f97a5c1fb0c798b8b82",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нерин Сор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nerin-sor"
+    ],
+    "4-players": [
+     "nerin-sor"
+    ],
+    "5-players": [
+     "nerin-sor"
+    ],
+    "6-players": [
+     "nerin-sor"
+    ],
+    "7-players": [
+     "nerin-sor"
+    ]
+   },
+   "file": "nerin-sor.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/illustrations/cards/siv-orven.webp",
+   "sha256": "bd114340ca61b1e0af7438925022626cdb6603b5a355ccfe5d51b8eb6ac2c0ad",
+   "originalSha256": "296f2ce412700ee18264ee946d4d15d54399bc389be24f97a5c1fb0c798b8b82",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сив Орвен",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "siv-orven"
+    ],
+    "4-players": [
+     "siv-orven"
+    ],
+    "5-players": [
+     "siv-orven"
+    ],
+    "6-players": [
+     "siv-orven"
+    ],
+    "7-players": [
+     "siv-orven"
+    ]
+   },
+   "file": "siv-orven.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/illustrations/cards/illa-dalm.webp",
+   "sha256": "2a790cfcd182fa32941c2e2ef4d6e40f13a8230712055e45bd289bd0103ede31",
+   "originalSha256": "296f2ce412700ee18264ee946d4d15d54399bc389be24f97a5c1fb0c798b8b82",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Илла Дальм",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "illa-dalm"
+    ],
+    "4-players": [
+     "illa-dalm"
+    ],
+    "5-players": [
+     "illa-dalm"
+    ],
+    "6-players": [
+     "illa-dalm"
+    ],
+    "7-players": [
+     "illa-dalm"
+    ]
+   },
+   "file": "illa-dalm.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/illustrations/cards/torv-esna.webp",
+   "sha256": "76a9c85313bae7c3deec7b0f476d721649793042ccc771a851cbf0dc1119c2fe",
+   "originalSha256": "296f2ce412700ee18264ee946d4d15d54399bc389be24f97a5c1fb0c798b8b82",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Торв Эсна",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "torv-esna"
+    ],
+    "4-players": [
+     "torv-esna"
+    ],
+    "5-players": [
+     "torv-esna"
+    ],
+    "6-players": [
+     "torv-esna"
+    ],
+    "7-players": [
+     "torv-esna"
+    ]
+   },
+   "file": "torv-esna.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/illustrations/cards/deya-veres.webp",
+   "sha256": "ba038445f97f7de6a7d88758ee0af52997a3692d7df39b7e3c453f7a99b13d25",
+   "originalSha256": "296f2ce412700ee18264ee946d4d15d54399bc389be24f97a5c1fb0c798b8b82",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дея Верес",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "deya-veres"
+    ],
+    "4-players": [
+     "deya-veres"
+    ],
+    "5-players": [
+     "deya-veres"
+    ],
+    "6-players": [
+     "deya-veres"
+    ],
+    "7-players": [
+     "deya-veres"
+    ]
+   },
+   "file": "deya-veres.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/illustrations/cards/elsen-vey.webp",
+   "sha256": "8150eb0c8d9d1cf71f5c536ba43365f31362a991c0112033a8151a65986a9cd0",
+   "originalSha256": "296f2ce412700ee18264ee946d4d15d54399bc389be24f97a5c1fb0c798b8b82",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эльсена Вей",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "elsen-vey"
+    ],
+    "4-players": [
+     "elsen-vey"
+    ],
+    "5-players": [
+     "elsen-vey"
+    ],
+    "6-players": [
+     "elsen-vey"
+    ],
+    "7-players": [
+     "elsen-vey"
+    ]
+   },
+   "file": "elsen-vey.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/illustrations/cards/quiet-gardener.webp",
+   "sha256": "29e6c55e57db2c7e33f5545b368fc5fd053abeab1ab4cd86287a397873d7a26b",
+   "originalSha256": "296f2ce412700ee18264ee946d4d15d54399bc389be24f97a5c1fb0c798b8b82",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тихий Садовник",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "quiet-gardener"
+    ],
+    "4-players": [
+     "quiet-gardener"
+    ],
+    "5-players": [
+     "quiet-gardener"
+    ],
+    "6-players": [
+     "quiet-gardener"
+    ],
+    "7-players": [
+     "quiet-gardener"
+    ]
+   },
+   "file": "quiet-gardener.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/assets/table/places-pilgrim-yard.webp",
+   "sha256": "35f85ca3d0def4ec5621fdf5c4254bc2aa231f8d5b45238d78ee1c2fe2460a08",
+   "originalSha256": "b7e8cc5237f9e5f3b7baf13253a01a2e4ad0bc93766db1ce21029ca8f4977aea",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Двор паломников",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "pilgrim-yard"
+    ],
+    "4-players": [
+     "pilgrim-yard"
+    ],
+    "5-players": [
+     "pilgrim-yard"
+    ],
+    "6-players": [
+     "pilgrim-yard"
+    ],
+    "7-players": [
+     "pilgrim-yard"
+    ]
+   },
+   "file": "pilgrim-yard.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/assets/table/places-lower-village.webp",
+   "sha256": "268778af15a8673a6d6915de2699ace8329648d7fd5c56c6efc03f6a95d6571e",
+   "originalSha256": "b7e8cc5237f9e5f3b7baf13253a01a2e4ad0bc93766db1ce21029ca8f4977aea",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нижние Ступени",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "lower-village"
+    ],
+    "4-players": [
+     "lower-village"
+    ],
+    "5-players": [
+     "lower-village"
+    ],
+    "6-players": [
+     "lower-village"
+    ],
+    "7-players": [
+     "lower-village"
+    ]
+   },
+   "file": "lower-village.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/assets/table/places-mill-cistern.webp",
+   "sha256": "a30d8d0bfa9fd5b64ce49b4632f50eacb1ef2ac9d4cf57868bd2044f531a85c6",
+   "originalSha256": "b7e8cc5237f9e5f3b7baf13253a01a2e4ad0bc93766db1ce21029ca8f4977aea",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Подвесная водосборня",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mill-cistern"
+    ],
+    "4-players": [
+     "mill-cistern"
+    ],
+    "5-players": [
+     "mill-cistern"
+    ],
+    "6-players": [
+     "mill-cistern"
+    ],
+    "7-players": [
+     "mill-cistern"
+    ]
+   },
+   "file": "mill-cistern.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/assets/table/places-cloister.webp",
+   "sha256": "e1f6771d2310f568c9100c2f2ed7cb9f8be4e0b698ee37d57a92b92a12cc7511",
+   "originalSha256": "b7e8cc5237f9e5f3b7baf13253a01a2e4ad0bc93766db1ce21029ca8f4977aea",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Поворачивающийся клуатр",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "cloister"
+    ],
+    "4-players": [
+     "cloister"
+    ],
+    "5-players": [
+     "cloister"
+    ],
+    "6-players": [
+     "cloister"
+    ],
+    "7-players": [
+     "cloister"
+    ]
+   },
+   "file": "cloister.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/assets/table/places-scriptorium.webp",
+   "sha256": "79a0a7d69176e537fbaf48a157c2607100909b927c56b0c74919e96f4e7797ff",
+   "originalSha256": "b7e8cc5237f9e5f3b7baf13253a01a2e4ad0bc93766db1ce21029ca8f4977aea",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Скрипторий дождевых страниц",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "scriptorium"
+    ],
+    "4-players": [
+     "scriptorium"
+    ],
+    "5-players": [
+     "scriptorium"
+    ],
+    "6-players": [
+     "scriptorium"
+    ],
+    "7-players": [
+     "scriptorium"
+    ]
+   },
+   "file": "scriptorium.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/assets/table/places-guest-house.webp",
+   "sha256": "f19b6ea2bfaa154677e10bce05c24a4e211f803adb0eb150d259f5683822ace1",
+   "originalSha256": "b7e8cc5237f9e5f3b7baf13253a01a2e4ad0bc93766db1ce21029ca8f4977aea",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дом чужой весны",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "guest-house"
+    ],
+    "4-players": [
+     "guest-house"
+    ],
+    "5-players": [
+     "guest-house"
+    ],
+    "6-players": [
+     "guest-house"
+    ],
+    "7-players": [
+     "guest-house"
+    ]
+   },
+   "file": "guest-house.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/assets/table/places-briar-garden.webp",
+   "sha256": "b737e0e8ce07de84c5c4d4d8144cebe4f9b02ec0bea8631d5431152234104729",
+   "originalSha256": "b7e8cc5237f9e5f3b7baf13253a01a2e4ad0bc93766db1ce21029ca8f4977aea",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сад непринятых даров",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "briar-garden"
+    ],
+    "4-players": [
+     "briar-garden"
+    ],
+    "5-players": [
+     "briar-garden"
+    ],
+    "6-players": [
+     "briar-garden"
+    ],
+    "7-players": [
+     "briar-garden"
+    ]
+   },
+   "file": "briar-garden.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/assets/table/places-watch-gallery.webp",
+   "sha256": "561f37e33b8c0a1714f0847ac0a38792bc53ffc24464961590def753e489f29f",
+   "originalSha256": "b7e8cc5237f9e5f3b7baf13253a01a2e4ad0bc93766db1ce21029ca8f4977aea",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Галерея последней стражи",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "watch-gallery"
+    ],
+    "4-players": [
+     "watch-gallery"
+    ],
+    "5-players": [
+     "watch-gallery"
+    ],
+    "6-players": [
+     "watch-gallery"
+    ],
+    "7-players": [
+     "watch-gallery"
+    ]
+   },
+   "file": "watch-gallery.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/assets/table/places-root-crypt.webp",
+   "sha256": "30f11c0da11c4c2a06b9d8aedee7b420449b8899700fbc7a3d61d8b9238ec588",
+   "originalSha256": "b7e8cc5237f9e5f3b7baf13253a01a2e4ad0bc93766db1ce21029ca8f4977aea",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Корневая часовня",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "root-crypt"
+    ],
+    "4-players": [
+     "root-crypt"
+    ],
+    "5-players": [
+     "root-crypt"
+    ],
+    "6-players": [
+     "root-crypt"
+    ],
+    "7-players": [
+     "root-crypt"
+    ]
+   },
+   "file": "root-crypt.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/assets/table/heroes-arina-klen.webp",
+   "sha256": "b4a3c34d93b1db52ba3b5c0840187511475676ae77634afb87aff9fc2b85e615",
+   "originalSha256": "d360f6fdec401075d0a649a4e552669489ed220de3e81b1b0d5aa4b290708132",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Арина Клен",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "arina-klen"
+    ],
+    "4-players": [
+     "arina-klen"
+    ],
+    "5-players": [
+     "arina-klen"
+    ],
+    "6-players": [
+     "arina-klen"
+    ],
+    "7-players": [
+     "arina-klen"
+    ]
+   },
+   "file": "arina-klen--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "arina-klen.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/assets/table/heroes-yar-glen.webp",
+   "sha256": "e995cd1d9e1974d772d21a97557a1631809b883665e22d7b00509497d889ba4a",
+   "originalSha256": "d360f6fdec401075d0a649a4e552669489ed220de3e81b1b0d5aa4b290708132",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Яр Глен",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "yar-glen"
+    ],
+    "4-players": [
+     "yar-glen"
+    ],
+    "5-players": [
+     "yar-glen"
+    ],
+    "6-players": [
+     "yar-glen"
+    ],
+    "7-players": [
+     "yar-glen"
+    ]
+   },
+   "file": "yar-glen--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "yar-glen.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/assets/table/heroes-mira-siv.webp",
+   "sha256": "7d3c3c2af52e1fc116c595ea7acc84b1c5d4b15da6b861242ba2240cb1f02117",
+   "originalSha256": "d360f6fdec401075d0a649a4e552669489ed220de3e81b1b0d5aa4b290708132",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мира Сив",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mira-siv"
+    ],
+    "4-players": [
+     "mira-siv"
+    ],
+    "5-players": [
+     "mira-siv"
+    ],
+    "6-players": [
+     "mira-siv"
+    ],
+    "7-players": [
+     "mira-siv"
+    ]
+   },
+   "file": "mira-siv--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "mira-siv.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/assets/table/heroes-olta-renn.webp",
+   "sha256": "e491b6d2517fb0675f87e193305e981a9d8c4c8755ce8bf99d8249a1a8387f8e",
+   "originalSha256": "d360f6fdec401075d0a649a4e552669489ed220de3e81b1b0d5aa4b290708132",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ольта Ренн",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "olta-renn"
+    ],
+    "5-players": [
+     "olta-renn"
+    ],
+    "6-players": [
+     "olta-renn"
+    ],
+    "7-players": [
+     "olta-renn"
+    ]
+   },
+   "file": "olta-renn--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "olta-renn.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/assets/table/heroes-sava-tes.webp",
+   "sha256": "8cf404673ceacf3a6c76632f99ff7ce57c910d9af2979f56d08da8c9b5abab5f",
+   "originalSha256": "d360f6fdec401075d0a649a4e552669489ed220de3e81b1b0d5aa4b290708132",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сава Тес",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "sava-tes"
+    ],
+    "6-players": [
+     "sava-tes"
+    ],
+    "7-players": [
+     "sava-tes"
+    ]
+   },
+   "file": "sava-tes--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "sava-tes.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/assets/table/heroes-nika-ors.webp",
+   "sha256": "26bb83beca425bf7e945880e9cf000893eb82c4bcfc4d96bc62ba355d69c24e6",
+   "originalSha256": "d360f6fdec401075d0a649a4e552669489ed220de3e81b1b0d5aa4b290708132",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Ника Орс",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "nika-ors"
+    ],
+    "7-players": [
+     "nika-ors"
+    ]
+   },
+   "file": "nika-ors--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "nika-ors.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/assets/table/heroes-teren-yasen.webp",
+   "sha256": "f4dd1e06cbad0b1166aac40635417e2a3943645660c99b1a3b6cbb1c9873c16d",
+   "originalSha256": "d360f6fdec401075d0a649a4e552669489ed220de3e81b1b0d5aa4b290708132",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Терен Ясен",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "teren-yasen"
+    ]
+   },
+   "file": "teren-yasen--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "teren-yasen.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/assets/table/foes-foe-9e7bd4c840.webp",
+   "sha256": "79128894216908eef8613a100bcf9e72a3449b4e5170e268a5671080972238e8",
+   "originalSha256": "dd010ff685108f627ef72a75247f109ecb092448e68dd8264328fac742cb3c1f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Плетёный водонос",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "root-waterbearers-foe-1",
+     "root-waterbearers-foe-2"
+    ],
+    "4-players": [
+     "root-waterbearers-foe-1",
+     "root-waterbearers-foe-2",
+     "root-waterbearers-foe-3"
+    ],
+    "5-players": [
+     "root-waterbearers-foe-1",
+     "root-waterbearers-foe-2",
+     "root-waterbearers-foe-3"
+    ],
+    "6-players": [
+     "root-waterbearers-foe-1",
+     "root-waterbearers-foe-2",
+     "root-waterbearers-foe-3",
+     "root-waterbearers-foe-4"
+    ],
+    "7-players": [
+     "root-waterbearers-foe-1",
+     "root-waterbearers-foe-2",
+     "root-waterbearers-foe-3",
+     "root-waterbearers-foe-4",
+     "root-waterbearers-foe-5"
+    ]
+   },
+   "file": "foe-9e7bd4c840.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/assets/table/foes-foe-9e7bd4c840.webp",
+   "sha256": "79128894216908eef8613a100bcf9e72a3449b4e5170e268a5671080972238e8",
+   "originalSha256": "dd010ff685108f627ef72a75247f109ecb092448e68dd8264328fac742cb3c1f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Плетёный водонос",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "root-waterbearers-foe-1",
+     "root-waterbearers-foe-2"
+    ],
+    "4-players": [
+     "root-waterbearers-foe-1",
+     "root-waterbearers-foe-2",
+     "root-waterbearers-foe-3"
+    ],
+    "5-players": [
+     "root-waterbearers-foe-1",
+     "root-waterbearers-foe-2",
+     "root-waterbearers-foe-3"
+    ],
+    "6-players": [
+     "root-waterbearers-foe-1",
+     "root-waterbearers-foe-2",
+     "root-waterbearers-foe-3",
+     "root-waterbearers-foe-4"
+    ],
+    "7-players": [
+     "root-waterbearers-foe-1",
+     "root-waterbearers-foe-2",
+     "root-waterbearers-foe-3",
+     "root-waterbearers-foe-4",
+     "root-waterbearers-foe-5"
+    ]
+   },
+   "file": "foe-9e7bd4c840--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-9e7bd4c840.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/assets/table/foes-foe-dc61f733cb.webp",
+   "sha256": "34f763495274999ab9086956769b0b49acec8fd9cfcdc183a495855e515e26f6",
+   "originalSha256": "dd010ff685108f627ef72a75247f109ecb092448e68dd8264328fac742cb3c1f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Пустой дорожный плащ",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "empty-cloaks-foe-1",
+     "empty-cloaks-foe-2"
+    ],
+    "4-players": [
+     "empty-cloaks-foe-1",
+     "empty-cloaks-foe-2",
+     "empty-cloaks-foe-3"
+    ],
+    "5-players": [
+     "empty-cloaks-foe-1",
+     "empty-cloaks-foe-2",
+     "empty-cloaks-foe-3"
+    ],
+    "6-players": [
+     "empty-cloaks-foe-1",
+     "empty-cloaks-foe-2",
+     "empty-cloaks-foe-3",
+     "empty-cloaks-foe-4"
+    ],
+    "7-players": [
+     "empty-cloaks-foe-1",
+     "empty-cloaks-foe-2",
+     "empty-cloaks-foe-3",
+     "empty-cloaks-foe-4",
+     "empty-cloaks-foe-5"
+    ]
+   },
+   "file": "foe-dc61f733cb.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/assets/table/foes-foe-dc61f733cb.webp",
+   "sha256": "34f763495274999ab9086956769b0b49acec8fd9cfcdc183a495855e515e26f6",
+   "originalSha256": "dd010ff685108f627ef72a75247f109ecb092448e68dd8264328fac742cb3c1f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Пустой дорожный плащ",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "empty-cloaks-foe-1",
+     "empty-cloaks-foe-2"
+    ],
+    "4-players": [
+     "empty-cloaks-foe-1",
+     "empty-cloaks-foe-2",
+     "empty-cloaks-foe-3"
+    ],
+    "5-players": [
+     "empty-cloaks-foe-1",
+     "empty-cloaks-foe-2",
+     "empty-cloaks-foe-3"
+    ],
+    "6-players": [
+     "empty-cloaks-foe-1",
+     "empty-cloaks-foe-2",
+     "empty-cloaks-foe-3",
+     "empty-cloaks-foe-4"
+    ],
+    "7-players": [
+     "empty-cloaks-foe-1",
+     "empty-cloaks-foe-2",
+     "empty-cloaks-foe-3",
+     "empty-cloaks-foe-4",
+     "empty-cloaks-foe-5"
+    ]
+   },
+   "file": "foe-dc61f733cb--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-dc61f733cb.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/assets/table/foes-foe-73dd84cc7c.webp",
+   "sha256": "d3120d8ca3cee5e5e3f30a6ba6971d3c8daa9fb6a14bb0606549dca7b035334d",
+   "originalSha256": "dd010ff685108f627ef72a75247f109ecb092448e68dd8264328fac742cb3c1f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Терновый щитоносец",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "briar-shields-foe-1",
+     "briar-shields-foe-2"
+    ],
+    "4-players": [
+     "briar-shields-foe-1",
+     "briar-shields-foe-2",
+     "briar-shields-foe-3"
+    ],
+    "5-players": [
+     "briar-shields-foe-1",
+     "briar-shields-foe-2",
+     "briar-shields-foe-3"
+    ],
+    "6-players": [
+     "briar-shields-foe-1",
+     "briar-shields-foe-2",
+     "briar-shields-foe-3",
+     "briar-shields-foe-4"
+    ],
+    "7-players": [
+     "briar-shields-foe-1",
+     "briar-shields-foe-2",
+     "briar-shields-foe-3",
+     "briar-shields-foe-4",
+     "briar-shields-foe-5"
+    ]
+   },
+   "file": "foe-73dd84cc7c.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/assets/table/foes-foe-73dd84cc7c.webp",
+   "sha256": "d3120d8ca3cee5e5e3f30a6ba6971d3c8daa9fb6a14bb0606549dca7b035334d",
+   "originalSha256": "dd010ff685108f627ef72a75247f109ecb092448e68dd8264328fac742cb3c1f",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Терновый щитоносец",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "briar-shields-foe-1",
+     "briar-shields-foe-2"
+    ],
+    "4-players": [
+     "briar-shields-foe-1",
+     "briar-shields-foe-2",
+     "briar-shields-foe-3"
+    ],
+    "5-players": [
+     "briar-shields-foe-1",
+     "briar-shields-foe-2",
+     "briar-shields-foe-3"
+    ],
+    "6-players": [
+     "briar-shields-foe-1",
+     "briar-shields-foe-2",
+     "briar-shields-foe-3",
+     "briar-shields-foe-4"
+    ],
+    "7-players": [
+     "briar-shields-foe-1",
+     "briar-shields-foe-2",
+     "briar-shields-foe-3",
+     "briar-shields-foe-4",
+     "briar-shields-foe-5"
+    ]
+   },
+   "file": "foe-73dd84cc7c--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-73dd84cc7c.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/assets/table/npcs-rada-lis.webp",
+   "sha256": "650e85fc270109a7460117d49b263a47ca70a21327bbead2a7cd3bfbada7b0dd",
+   "originalSha256": "f6c41a792eeaa890be5a031ad2b1128f442144ecad1ddb2dbfd1208d1fbb4162",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рада Лис",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "rada-lis"
+    ],
+    "4-players": [
+     "rada-lis"
+    ],
+    "5-players": [
+     "rada-lis"
+    ],
+    "6-players": [
+     "rada-lis"
+    ],
+    "7-players": [
+     "rada-lis"
+    ]
+   },
+   "file": "rada-lis--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "rada-lis.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/assets/table/npcs-nerin-sor.webp",
+   "sha256": "7564a2c41dccaeb75be29f0b58bc9aaaa224aed24aaa8d1272c8d2db9a5dcaa6",
+   "originalSha256": "f6c41a792eeaa890be5a031ad2b1128f442144ecad1ddb2dbfd1208d1fbb4162",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нерин Сор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nerin-sor"
+    ],
+    "4-players": [
+     "nerin-sor"
+    ],
+    "5-players": [
+     "nerin-sor"
+    ],
+    "6-players": [
+     "nerin-sor"
+    ],
+    "7-players": [
+     "nerin-sor"
+    ]
+   },
+   "file": "nerin-sor--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "nerin-sor.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/assets/table/npcs-siv-orven.webp",
+   "sha256": "58af5c39767ce70016161f133fcfe343257f124254d7655a264557cda34ad747",
+   "originalSha256": "f6c41a792eeaa890be5a031ad2b1128f442144ecad1ddb2dbfd1208d1fbb4162",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сив Орвен",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "siv-orven"
+    ],
+    "4-players": [
+     "siv-orven"
+    ],
+    "5-players": [
+     "siv-orven"
+    ],
+    "6-players": [
+     "siv-orven"
+    ],
+    "7-players": [
+     "siv-orven"
+    ]
+   },
+   "file": "siv-orven--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "siv-orven.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/assets/table/npcs-illa-dalm.webp",
+   "sha256": "5d5407e0dd8d16622193d517662f270484f3ca7c9ce5ab5859fb6c0d518f84d0",
+   "originalSha256": "f6c41a792eeaa890be5a031ad2b1128f442144ecad1ddb2dbfd1208d1fbb4162",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Илла Дальм",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "illa-dalm"
+    ],
+    "4-players": [
+     "illa-dalm"
+    ],
+    "5-players": [
+     "illa-dalm"
+    ],
+    "6-players": [
+     "illa-dalm"
+    ],
+    "7-players": [
+     "illa-dalm"
+    ]
+   },
+   "file": "illa-dalm--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "illa-dalm.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/assets/table/npcs-torv-esna.webp",
+   "sha256": "95964578763fb9157168ef9387bc7eb5f65ee32fe36a9fce5024635dcaea732c",
+   "originalSha256": "f6c41a792eeaa890be5a031ad2b1128f442144ecad1ddb2dbfd1208d1fbb4162",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Торв Эсна",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "torv-esna"
+    ],
+    "4-players": [
+     "torv-esna"
+    ],
+    "5-players": [
+     "torv-esna"
+    ],
+    "6-players": [
+     "torv-esna"
+    ],
+    "7-players": [
+     "torv-esna"
+    ]
+   },
+   "file": "torv-esna--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "torv-esna.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/assets/table/npcs-deya-veres.webp",
+   "sha256": "374defeee5dae0cc8f4785089b9423a6451c7067d2b30478ed87514fa32afb5a",
+   "originalSha256": "f6c41a792eeaa890be5a031ad2b1128f442144ecad1ddb2dbfd1208d1fbb4162",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дея Верес",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "deya-veres"
+    ],
+    "4-players": [
+     "deya-veres"
+    ],
+    "5-players": [
+     "deya-veres"
+    ],
+    "6-players": [
+     "deya-veres"
+    ],
+    "7-players": [
+     "deya-veres"
+    ]
+   },
+   "file": "deya-veres--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "deya-veres.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/assets/table/npcs-elsen-vey.webp",
+   "sha256": "70bc47f0bc5e91999f3ef75c69fdba7dcb557fea82bfc1e28b21c6ceda15ae56",
+   "originalSha256": "f6c41a792eeaa890be5a031ad2b1128f442144ecad1ddb2dbfd1208d1fbb4162",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Эльсена Вей",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "elsen-vey"
+    ],
+    "4-players": [
+     "elsen-vey"
+    ],
+    "5-players": [
+     "elsen-vey"
+    ],
+    "6-players": [
+     "elsen-vey"
+    ],
+    "7-players": [
+     "elsen-vey"
+    ]
+   },
+   "file": "elsen-vey--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "elsen-vey.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/assets/table/npcs-quiet-gardener.webp",
+   "sha256": "9f6cee706cb5238c6799989cefc7276a5b05a4e62ee8bc8d9bc88c258b0ffed2",
+   "originalSha256": "f6c41a792eeaa890be5a031ad2b1128f442144ecad1ddb2dbfd1208d1fbb4162",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тихий Садовник",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "quiet-gardener"
+    ],
+    "4-players": [
+     "quiet-gardener"
+    ],
+    "5-players": [
+     "quiet-gardener"
+    ],
+    "6-players": [
+     "quiet-gardener"
+    ],
+    "7-players": [
+     "quiet-gardener"
+    ]
+   },
+   "file": "quiet-gardener--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "quiet-gardener.webp"
+  },
+  {
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/illustrations/opening.webp",
+   "sha256": "b9b2a44e61a6431e6defb8073af5d1eacd0f3cb4c4fa75761c9c99aa6f487a50",
+   "originalSha256": "5d864024511ba7106df5eeef396a9ffa6a46e44489f5dd38cbf46e9f809a7f91",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Двор паломников — Аббатство спящих шипов",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "thorn-valley"
+    ],
+    "4-players": [
+     "thorn-valley"
+    ],
+    "5-players": [
+     "thorn-valley"
+    ],
+    "6-players": [
+     "thorn-valley"
+    ],
+    "7-players": [
+     "thorn-valley"
+    ]
+   },
+   "file": "cover.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "file": "mill-cistern--map.webp",
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/assets/battle-maps/mill-cistern.webp",
+   "sha256": "660c36f267c6245dff75aa7fd7e77c23c7d3010b4b25f9894e2f70a64d91a3ea",
+   "originalSha256": "b03c937c4d71918f93571e9c0f1f8a423c97da3b5358324f84e59be9e40968a4",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Подвесная водосборня. Visible scenery: Зал старой мельницы, где влажные корни держат чаши над головой. Под ними проходит низкая каменная галерея с боковыми нишами.. World style: Вересковый Порог · Dark stone quatrefoils interlaced with fine green briars in weathered cloister carving. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "mill-cistern.webp",
+   "subjects": {
+    "3-players": [
+     "mill-cistern"
+    ],
+    "4-players": [
+     "mill-cistern"
+    ],
+    "5-players": [
+     "mill-cistern"
+    ],
+    "6-players": [
+     "mill-cistern"
+    ],
+    "7-players": [
+     "mill-cistern"
+    ]
+   }
+  },
+  {
+   "file": "cloister--map.webp",
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/assets/battle-maps/cloister.webp",
+   "sha256": "cb176834f6240f931ec3bb486443466705471ec6775c7fb6aac43a77dd4d075d",
+   "originalSha256": "3571c856d526227a4db3aac64344df9af3a3cdb95967dc614e9a2fea51632215",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Поворачивающийся клуатр. Visible scenery: Крытые дорожки огибают газон с мраморными стульями. У одинаковых арок разные сколы; на ветру шуршат подвешенные деревянные ложки.. World style: Вересковый Порог · Dark stone quatrefoils interlaced with fine green briars in weathered cloister carving. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "cloister.webp",
+   "subjects": {
+    "3-players": [
+     "cloister"
+    ],
+    "4-players": [
+     "cloister"
+    ],
+    "5-players": [
+     "cloister"
+    ],
+    "6-players": [
+     "cloister"
+    ],
+    "7-players": [
+     "cloister"
+    ]
+   }
+  },
+  {
+   "file": "watch-gallery--map.webp",
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/assets/battle-maps/watch-gallery.webp",
+   "sha256": "050d5c3c164e5d83954c0873cb17fcd67e812859824f23bed65b54acc229fd43",
+   "originalSha256": "aeffd8fb0902f95e29901275c59dfd04e7baecff9c8283924a2f3831503160ba",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Галерея последней стражи. Visible scenery: Длинный переход под открытым небом, с каменными щитами от ветра. Отсюда видны источник, внешняя тропа и скальный навес.. World style: Вересковый Порог · Dark stone quatrefoils interlaced with fine green briars in weathered cloister carving. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "watch-gallery.webp",
+   "subjects": {
+    "3-players": [
+     "watch-gallery"
+    ],
+    "4-players": [
+     "watch-gallery"
+    ],
+    "5-players": [
+     "watch-gallery"
+    ],
+    "6-players": [
+     "watch-gallery"
+    ],
+    "7-players": [
+     "watch-gallery"
+    ]
+   }
+  },
+  {
+   "file": "world-map.webp",
+   "source": "campaigns/dark-fantasy-2026/thorn-abbey/assets/world-map/world-map.webp",
+   "sha256": "d5b1f1abb53f1ab3ed314dc425806a3b35b58db168ab0d1a6cb1ec4f9c3eb7d9",
+   "originalSha256": "8cf5a9f0dbb01aeba60b1b3eeac3ea8a28a837a42bdd8c240fdf48978ce54095",
+   "generated": "2026-11-22",
+   "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Вересковый Порог. Style Вересковый Порог · Dark stone quatrefoils interlaced with fine green briars in weathered cloister carving. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Двор паломников; 0.367,0.177 Нижние Ступени; 0.623,0.15 Подвесная водосборня; 0.88,0.177 Поворачивающийся клуатр; 0.905,0.517 Скрипторий дождевых страниц; 0.648,0.49 Дом чужой весны; 0.392,0.517 Сад непринятых даров; 0.135,0.49 Галерея последней стражи; 0.11,0.83 Корневая часовня. Show public exteriors / unlabeled contours only.",
+   "references": [],
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null,
+   "subjects": {
+    "3-players": [
+     "world-map"
+    ],
+    "4-players": [
+     "world-map"
+    ],
+    "5-players": [
+     "world-map"
+    ],
+    "6-players": [
+     "world-map"
+    ],
+    "7-players": [
+     "world-map"
+    ]
+   }
+  }
+ ]
+}

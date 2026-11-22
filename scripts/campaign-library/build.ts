@@ -1,4 +1,4 @@
-import { mkdir, rm, writeFile } from 'node:fs/promises';
+import { mkdir, writeFile } from 'node:fs/promises';
 
 import { LIBRARY, libraryCampaign, type LibraryCampaign } from './catalog.ts';
 
@@ -21,7 +21,9 @@ export function libraryJson(c: LibraryCampaign) {
     pitch: main.content.brief.intent,
     tone: main.content.brief.tone,
     duration: main.content.brief.duration,
-    cover: `${c.root.href.slice(new URL('../../', import.meta.url).href.length)}assets/runtime/cover.webp`,
+    cover:
+      c.pictures.find((p) => p.file === 'cover.webp')?.source ??
+      `${c.root.href.slice(new URL('../../', import.meta.url).href.length)}assets/runtime/cover.webp`,
     defaultVariant: c.defaultVariant,
     variants: c.variants.map((v) => ({
       id: v.id,
@@ -38,15 +40,19 @@ export function libraryJson(c: LibraryCampaign) {
 }
 
 export async function buildLibrary(): Promise<string[]> {
-  await rm(LIBRARY_ROOT, { recursive: true, force: true });
   await mkdir(LIBRARY_ROOT, { recursive: true });
   const ids: string[] = [];
   for (const source of LIBRARY) {
     const c = await libraryCampaign(source);
     const dir = new URL(`${source.id}/`, LIBRARY_ROOT);
     await mkdir(new URL('packages/', dir), { recursive: true });
-    for (const v of c.variants)
-      await writeFile(new URL(`packages/${v.id}.json`, dir), JSON.stringify(v.content));
+    const offlineEditions = new URL('assets/table-editions/', c.root);
+    await mkdir(offlineEditions, { recursive: true });
+    for (const v of c.variants) {
+      const bytes = JSON.stringify(v.content);
+      await writeFile(new URL(`packages/${v.id}.json`, dir), bytes);
+      await writeFile(new URL(v.id + '.json', offlineEditions), bytes);
+    }
     await writeFile(new URL('library.json', dir), `${JSON.stringify(libraryJson(c), null, 1)}\n`);
     ids.push(source.id);
   }

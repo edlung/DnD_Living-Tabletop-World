@@ -1,3 +1,5 @@
+import { tableRoutes } from '../campaign-shared/table-routes.ts';
+import { withStartingGear } from './starting-gear.ts';
 import { createHash } from 'node:crypto';
 import { existsSync, readFileSync } from 'node:fs';
 import { readFile } from 'node:fs/promises';
@@ -10,7 +12,7 @@ import {
   type ArtAsset,
   type ArtSource,
 } from '../campaign-shared/campaign-art.ts';
-import { campaignOf } from '../campaign-shared/series.ts';
+import { artworkCampaignOf } from '../campaign-shared/series.ts';
 import {
   WORLD_MAP_KEY,
   withWorldMap,
@@ -18,12 +20,14 @@ import {
   type WorldMap,
 } from '../campaign-shared/world-map.ts';
 
+import { otherBooks } from './other-books.ts';
+import { individualCastReferences, tablePictures } from './table-pictures.ts';
+
 /**
- * The campaign library (work-orders/CAMPAIGN_LIBRARY_RELEASE_2026-11-14.md): the reworked campaigns
- * a DM picks in the workshop, each with its packages and its pictures bound by package key. Only
- * campaigns rewritten to the owner's standard (GPT art, Sonnet text, critics) belong here.
+ * The campaign library (work-orders/CAMPAIGN_LIBRARY_RELEASE_2026-11-14.md): the authored campaigns
+ * a DM picks in the workshop or the account hub, each with editions and subject-bound pictures.
  */
-export const LIBRARY: readonly LibrarySource[] = [
+const originalShelf: readonly LibrarySource[] = [
   { id: 'rain-check', series: 'noir-2026', genre: 'Детективный нуар', audience: '21+' },
   { id: 'last-orbit', series: 'collection-2026', genre: 'Научная фантастика', audience: '16+' },
   { id: 'marrow-crown', series: 'dark-fantasy-2026', genre: 'Тёмное фэнтези', audience: '18+' },
@@ -71,6 +75,8 @@ export const LIBRARY: readonly LibrarySource[] = [
     audience: '21+',
   },
 ];
+
+export const LIBRARY: readonly LibrarySource[] = [...originalShelf, ...otherBooks(originalShelf)];
 
 export interface LibrarySource {
   readonly id: string;
@@ -123,13 +129,21 @@ const sha = (bytes: Uint8Array | string) => createHash('sha256').update(bytes).d
 const playersLabel = (n: number) =>
   `${String(n)} ${n === 1 ? 'игрок' : n >= 2 && n <= 4 ? 'игрока' : 'игроков'}`;
 
+const outlineForTable = (root: URL) =>
+  tableRoutes(root).map((route) => route.name + '. ' + route.steps.join(' '));
+
 function variantOf(
   id: string,
   label: string,
   content: unknown,
   map: WorldMap | null,
+  alternatives: string[],
 ): LibraryVariant {
-  const authored = campaignPackageSchema.parse(content);
+  const prepared = campaignPackageSchema.parse(content);
+  const authored = withStartingGear({
+    ...prepared,
+    laterOutline: [...prepared.laterOutline, ...alternatives],
+  });
   // The world map joins the package only with its picture (ADR 0057 §10): pins need the map.
   const parsed = map?.picture ? campaignPackageSchema.parse(withWorldMap(authored, map)) : authored;
   return {
@@ -165,7 +179,7 @@ async function picturesOf(
   subjectsFor: (asset: ArtAsset) => Record<string, readonly string[]>,
   variants: readonly LibraryVariant[],
 ): Promise<LibraryPicture[]> {
-  const pictures: LibraryPicture[] = [];
+  let pictures: LibraryPicture[] = [];
   const known = (variant: LibraryVariant) =>
     new Set(variant.content.entities.map((entity) => entity.key));
   const restrict = (byVariant: Record<string, readonly string[]>) =>
@@ -242,6 +256,33 @@ async function picturesOf(
       });
     }
   }
+  const table = await tablePictures(root, variants);
+  pictures = individualCastReferences(pictures, table, variants);
+  // Some family portraits have a different file name from their subject's package key.
+  const references = [...pictures, ...table].filter((p) => p.variant === 'reference');
+  for (const piece of table) {
+    if (piece.purpose !== 'figure') {
+      pictures.push(piece);
+      continue;
+    }
+    const [edition, subjects] =
+      Object.entries(piece.subjects).find(([, keys]) => keys.length > 0) ?? [];
+    const subject = subjects?.[0];
+    if (!edition || !subject) continue;
+    const candidates = references.filter((p) => p.subjects[edition]?.includes(subject));
+    const parent = candidates.find((p) => p.file === piece.derivedFrom) ?? candidates[0];
+    if (!parent) throw new Error('No portrait for figure ' + subject);
+    pictures.push({ ...piece, derivedFrom: parent.file });
+  }
+  const places = new Set(
+    variants[0]?.content.entities.filter((e) => e.kind === 'location').map((e) => e.key),
+  );
+  for (const image of table) {
+    if (image.variant !== 'reference') continue;
+    for (const group of Object.values(image.subjects)) {
+      for (const key of group) if (places.has(key)) locationFile.set(key, image.file);
+    }
+  }
   for (const map of battleMaps(root)) {
     const reference = locationFile.get(map.location);
     if (!reference) throw new Error(`${map.location}: a battle map needs the place's picture`);
@@ -304,17 +345,24 @@ async function worldMapPicture(
 
 /** One library campaign: its packages (built from source now) and its bound pictures. */
 export async function libraryCampaign(source: LibrarySource): Promise<LibraryCampaign> {
-  if (source.series === null) return moonPearl(source);
-  const { series, slug } = campaignOf(`${source.series}/${source.id}`);
+  if (source.series === null) return familyBook(source);
+  const { series, slug } = artworkCampaignOf(`${source.series}/${source.id}`);
   const s = (await series.loadSource(slug)) as ArtSource & {
     world: ArtSource['world'] & { minPlayers: number; maxPlayers: number };
   };
   const root = new URL(`${slug}/`, series.root);
   const map = worldMapOf(root);
+  const alternatives = outlineForTable(root);
   const variants: LibraryVariant[] = [];
   for (let size = s.world.minPlayers; size <= s.world.maxPlayers; size++)
     variants.push(
-      variantOf(`${String(size)}-players`, playersLabel(size), series.buildPackage(s, size), map),
+      variantOf(
+        `${String(size)}-players`,
+        playersLabel(size),
+        series.buildPackage(s, size),
+        map,
+        alternatives,
+      ),
     );
   const art = [...artOf(root).values()];
   const pictures = await picturesOf(
@@ -338,40 +386,52 @@ export async function libraryCampaign(source: LibrarySource): Promise<LibraryCam
   };
 }
 
-/** Moon Pearl keeps its own tools: its built variants are four parties of three or four heroes. */
-async function moonPearl(source: LibrarySource): Promise<LibraryCampaign> {
-  const root = new URL('moon-pearl/', CAMPAIGNS);
+/** Family books publish an original trio, a quartet and alternative trios. */
+async function familyBook(source: LibrarySource): Promise<LibraryCampaign> {
+  const root = new URL(source.id + '/', CAMPAIGNS);
   const read = (file: string): unknown =>
     JSON.parse(readFileSync(new URL(`variants/${file}.json`, root), 'utf8'));
   const named = (keys: readonly string[], content: unknown) => {
     const pkg = campaignPackageSchema.parse(content);
     return keys.map((key) => pkg.entities.find((e) => e.key === key)?.name ?? key);
   };
-  const full = read('four-players');
+  const full = campaignPackageSchema.parse(read('four-players'));
   const map = worldMapOf(root);
-  const heroes = campaignPackageSchema.parse(full).party;
-  const variants = [variantOf('four-players', playersLabel(4), full, map)];
+  const alternatives = outlineForTable(root);
+  const heroes = full.party;
+  const variants = [variantOf('four-players', playersLabel(4), full, map, alternatives)];
+  const core = JSON.parse(readFileSync(new URL('package.json', root), 'utf8')) as unknown;
+  variants.push(variantOf('original-party', '3 игрока · основной состав', core, map, alternatives));
   for (const hero of heroes) {
     const file = `without-${hero}`;
     if (!existsSync(new URL(`variants/${file}.json`, root))) continue;
     variants.push(
-      variantOf(file, `3 игрока, без героя «${named([hero], full)[0] ?? hero}»`, read(file), map),
+      variantOf(
+        file,
+        `3 игрока, без героя «${named([hero], full)[0] ?? hero}»`,
+        read(file),
+        map,
+        alternatives,
+      ),
     );
   }
   const manifest = JSON.parse(readFileSync(new URL('assets/manifest.json', root), 'utf8')) as {
-    assets: (ArtAsset & { purpose?: string })[];
+    assets: (Omit<ArtAsset, 'references'> & {
+      references?: ArtAsset['references'];
+      purpose?: string;
+    })[];
   };
   const assets = manifest.assets.map((a) => ({
     ...a,
+    references: a.references ?? [],
     // Its manifest names no kinds: a place shows a location key, a cut-out is a figure.
-    kind: a.alpha ? ('token' as const) : ('location' as const),
+    kind:
+      a.alpha &&
+      a.subjects.some((key) => full.entities.some((e) => e.key === key && e.kind === 'creature'))
+        ? ('token' as const)
+        : ('location' as const),
   }));
-  const locations = new Set(
-    campaignPackageSchema
-      .parse(full)
-      .entities.filter((e) => e.kind === 'location')
-      .map((e) => e.key),
-  );
+  const locations = new Set(full.entities.filter((e) => e.kind === 'location').map((e) => e.key));
   const pictures = await picturesOf(
     root,
     assets.map((a) =>
@@ -384,7 +444,7 @@ async function moonPearl(source: LibrarySource): Promise<LibraryCampaign> {
     source,
     root,
     variants,
-    defaultVariant: 'four-players',
+    defaultVariant: source.id === 'moon-pearl' ? 'four-players' : 'original-party',
     pictures: [...pictures, ...(await worldMapPicture(root, map, variants))],
   };
 }

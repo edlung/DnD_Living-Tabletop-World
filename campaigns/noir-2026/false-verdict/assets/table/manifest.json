@@ -1,0 +1,672 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "false-verdict-heroes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-31d83ca1-cd03-40e1-83b7-002aaaec4ad6.png",
+      "originalSha256": "423d072ba9dd839ebd164dee721eaec583fbeec914b2a5b387d5d81112ed5513",
+      "columns": 4,
+      "rows": 2,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 4 equal columns by 2 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Ровель · Layered indigo carbon paper, blind-stamped bookbinder folds and offset ruled lines. Cell 1. Вера Илина. Короткое пальто, мягкий карандаш, привычка оставлять собеседнику свободное место за столом.\nCell 2. Глеб Тен. Потёртый футляр с линейкой, клетчатый шарф и залатанные локти.\nCell 3. Ася Бель. Тёмный жилет, аккуратные копии писем и небольшая трость.\nCell 4. Роман Век. Широкие плечи, рабочие перчатки в кармане и спокойный, тихий голос.\nCell 5. Нина Вельд. Чернила на манжете и очки в плоском кожаном чехле.\nCell 6. Оскар Лин. Пальто со старым бархатным воротником и бумажные закладки вместо украшений.\nCell 7. Майя Руд. Стоптанные туфли, яркий штопаный платок и терпеливый взгляд.\nCell 8. Денис Бром. Застёгнутый до горла плащ, бечёвка для бирок и неизменно чистые ладони.. Leave final unused cells empty.",
+      "references": [
+        "campaigns/noir-2026/false-verdict/illustrations/cards/vera-ilina.webp",
+        "campaigns/noir-2026/false-verdict/illustrations/cards/gleb-ten.webp",
+        "campaigns/noir-2026/false-verdict/illustrations/cards/asya-bel.webp",
+        "campaigns/noir-2026/false-verdict/illustrations/cards/roman-vek.webp",
+        "campaigns/noir-2026/false-verdict/illustrations/cards/nina-veld.webp",
+        "campaigns/noir-2026/false-verdict/illustrations/cards/oskar-lin.webp",
+        "campaigns/noir-2026/false-verdict/illustrations/cards/maya-rud.webp",
+        "campaigns/noir-2026/false-verdict/illustrations/cards/denis-brom.webp"
+      ]
+    },
+    {
+      "id": "false-verdict-foes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-921b4515-3d35-453f-9b8f-43f64bcc8099.png",
+      "originalSha256": "5903122c45c56d8035a8536d1c664c782988eecf370fa7d86f60dead490e9cc2",
+      "columns": 3,
+      "rows": 1,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 3 equal columns by 1 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Ровель · Layered indigo carbon paper, blind-stamped bookbinder folds and offset ruled lines. Cell 1. Сторож товарного двора. Наёмные сторожа, каждый взрослый не моложе 30 лет. Рабочие куртки и короткие палки; знают лишь распоряжение не пускать посетителей без согласования, не тайну пожара.\nCell 2. Архивный дежурный. Дежурные архива, каждый не моложе 30 лет, с простыми тростями. Их задача — сохранность имущества; они знают только опись и правила выдачи, а не виновницу поджога.\nCell 3. Упрямый посетитель. Посетители не моложе 30 лет, в мокрых пальто, с обычными прогулочными тростями. Верят прочитанному старому решению; не знают закрытых приложений и не являются тайными людьми Зои.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "false-verdict-places-0",
+      "originalFile": "exec-a94cfc55-5e1d-45b5-a5b9-460765e0e7c3.png",
+      "originalSha256": "56cf095be5d6dca201af0095feb7b4101c20738a5306a97b893d57a6cff779c1",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "A registered game art atlas of location illustrations, one clearly distinct unpopulated environment per cell, distinct scene lighting and structures. Fill each cell edge to edge. Atmospheric painted landscape or architectural interiors at human eye level. No plot events, clues, icons or writing. EXACT regular grid, 3 equal columns by 3 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Ровель · Layered indigo carbon paper, blind-stamped bookbinder folds and offset ruled lines. Cell 1. Приёмная артели прошений. Длинный стол, сушилка для пальто и отдельный кабинет для разговоров без посторонних.\nCell 2. Архив окружного разбора. Стеллажи копий, стол выдачи и шкаф опечатанных вещественных приложений.\nCell 3. Двор Седьмой линии. Бывший товарный склад: уцелевшая северная стена, восточная арка и закрытая задняя пристройка.\nCell 4. Чертёжная палата. Образцы кирпича стоят рядом с рулонами планов; на каждом столе линейка и журнал выдачи.\nCell 5. Кафе «Льняная чашка». Две изолированные кабинки и окна на трамвайную остановку; хозяева берегут тихие разговоры.\nCell 6. Дом взаимной помощи. Общая столовая, объявления о пособиях и кабинет попечительского собрания.\nCell 7. Фотографическая мастерская «Матовая грань». Витрина городских фасадов, стол просмотра негативов и шкаф заказных отпечатков.\nCell 8. Зал предметного разбора. Небольшой зал с местом для одного макета, стола источников и скамей для заинтересованных сторон.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "false-verdict-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-94b379de-3371-4738-8578-288ae4e1e4b7.png",
+      "originalSha256": "7b8d84ff67df353eda607bbaa15c6a2cece8f8754694eb761b74be57761d7bda",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 5 distinct hand-painted tabletop miniature figurines for the world of Приговор под копирку. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Софья Ветлина. Седая прядь, безупречно выглаженный воротник и истёртый портфель.\nCell 2. Марек Грон. Пальцы переплётчика, слишком большое казённое пальто и ровная речь.\nCell 3. Зоя Невер. Серый рабочий костюм, тяжёлая связка бирок и усталое внимание к чужим сумкам.\nCell 4. Дина Ливен. Штопальный напёрсток на цепочке и аккуратно сложенная шаль.\nCell 5. Савел Ортин. Трамвайная куртка без знаков службы и монета, которую он перекладывает между пальцами.",
+      "references": [
+        "campaigns/noir-2026/false-verdict/illustrations/cards/sofia-vetlina.webp",
+        "campaigns/noir-2026/false-verdict/illustrations/cards/marek-gron.webp",
+        "campaigns/noir-2026/false-verdict/illustrations/cards/zoya-never.webp",
+        "campaigns/noir-2026/false-verdict/illustrations/cards/dina-liven.webp",
+        "campaigns/noir-2026/false-verdict/illustrations/cards/savel-ortin.webp"
+      ]
+    },
+    {
+      "id": "false-verdict-npcs-1",
+      "cutoutRevision": 4,
+      "originalFile": "exec-7cfff6a9-47cb-4460-9745-deca6cced450.png",
+      "originalSha256": "b2c235ec71bb885f503e31e97505c1268764b9bb70eff6b89c839e17c6994252",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 5 distinct hand-painted tabletop miniature figurines for the world of Приговор под копирку. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Антон Руско. Белые брови, старый жилет и привычка подписывать даже черновые размеры.\nCell 2. Мила Фарс. Защитный фартук, сухие ладони и небольшая бирка с часами выдачи.\nCell 3. Эмиль Крест. Дорогие, давно нечищенные ботинки и потёртый значок попечителя.\nCell 4. Тамара Лей. Матовый фартук, нитка на рукаве и внимательный взгляд поверх очков.\nCell 5. Лидия Ост. Тёмное платье, простые часы и карандаш, который она кладёт перед ответом.",
+      "references": [
+        "campaigns/noir-2026/false-verdict/illustrations/cards/anton-rusko.webp",
+        "campaigns/noir-2026/false-verdict/illustrations/cards/mila-fars.webp",
+        "campaigns/noir-2026/false-verdict/illustrations/cards/emil-krest.webp",
+        "campaigns/noir-2026/false-verdict/illustrations/cards/tamara-ley.webp",
+        "campaigns/noir-2026/false-verdict/illustrations/cards/lidia-ost.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "vera-ilina",
+      "title": "Вера Илина",
+      "kind": "hero",
+      "subjects": [
+        "vera-ilina"
+      ],
+      "file": "heroes-vera-ilina.webp",
+      "sha256": "45704c0e4b227ed06782b18767500458aeb78e1084f4069d85884d92273ba315",
+      "originalSha256": "423d072ba9dd839ebd164dee721eaec583fbeec914b2a5b387d5d81112ed5513",
+      "generated": "2026-11-22",
+      "sheet": "false-verdict-heroes-0",
+      "cell": 1,
+      "crop": {
+        "left": 148,
+        "top": 13,
+        "width": 183,
+        "height": 418
+      }
+    },
+    {
+      "key": "gleb-ten",
+      "title": "Глеб Тен",
+      "kind": "hero",
+      "subjects": [
+        "gleb-ten"
+      ],
+      "file": "heroes-gleb-ten.webp",
+      "sha256": "09ef50f99922ca78153478dabb73d23a555f7e2183c7a09012fb17551bb65aa2",
+      "originalSha256": "423d072ba9dd839ebd164dee721eaec583fbeec914b2a5b387d5d81112ed5513",
+      "generated": "2026-11-22",
+      "sheet": "false-verdict-heroes-0",
+      "cell": 2,
+      "crop": {
+        "left": 576,
+        "top": 12,
+        "width": 184,
+        "height": 419
+      }
+    },
+    {
+      "key": "asya-bel",
+      "title": "Ася Бель",
+      "kind": "hero",
+      "subjects": [
+        "asya-bel"
+      ],
+      "file": "heroes-asya-bel.webp",
+      "sha256": "e5e096525850da812cac48b9834f1c538cd4ba36f6c60c4bae908e8e166b04e3",
+      "originalSha256": "423d072ba9dd839ebd164dee721eaec583fbeec914b2a5b387d5d81112ed5513",
+      "generated": "2026-11-22",
+      "sheet": "false-verdict-heroes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1014,
+        "top": 15,
+        "width": 185,
+        "height": 417
+      }
+    },
+    {
+      "key": "roman-vek",
+      "title": "Роман Век",
+      "kind": "hero",
+      "subjects": [
+        "roman-vek"
+      ],
+      "file": "heroes-roman-vek.webp",
+      "sha256": "20e73bcc37165ddaebccaa84eef021ddb2958cbecc4681266bb892f784e8cc2b",
+      "originalSha256": "423d072ba9dd839ebd164dee721eaec583fbeec914b2a5b387d5d81112ed5513",
+      "generated": "2026-11-22",
+      "sheet": "false-verdict-heroes-0",
+      "cell": 4,
+      "crop": {
+        "left": 1451,
+        "top": 10,
+        "width": 205,
+        "height": 421
+      }
+    },
+    {
+      "key": "nina-veld",
+      "title": "Нина Вельд",
+      "kind": "hero",
+      "subjects": [
+        "nina-veld"
+      ],
+      "file": "heroes-nina-veld.webp",
+      "sha256": "f39e9855dbf155d3080400e854c1b21c854465ab664f6194205f9e6745c643bf",
+      "originalSha256": "423d072ba9dd839ebd164dee721eaec583fbeec914b2a5b387d5d81112ed5513",
+      "generated": "2026-11-22",
+      "sheet": "false-verdict-heroes-0",
+      "cell": 5,
+      "crop": {
+        "left": 148,
+        "top": 450,
+        "width": 184,
+        "height": 427
+      }
+    },
+    {
+      "key": "oskar-lin",
+      "title": "Оскар Лин",
+      "kind": "hero",
+      "subjects": [
+        "oskar-lin"
+      ],
+      "file": "heroes-oskar-lin.webp",
+      "sha256": "035e067e88b6920178e391ef633bb3af2f8948a28272fc2b9d4ca599eea14622",
+      "originalSha256": "423d072ba9dd839ebd164dee721eaec583fbeec914b2a5b387d5d81112ed5513",
+      "generated": "2026-11-22",
+      "sheet": "false-verdict-heroes-0",
+      "cell": 6,
+      "crop": {
+        "left": 565,
+        "top": 449,
+        "width": 207,
+        "height": 428
+      }
+    },
+    {
+      "key": "maya-rud",
+      "title": "Майя Руд",
+      "kind": "hero",
+      "subjects": [
+        "maya-rud"
+      ],
+      "file": "heroes-maya-rud.webp",
+      "sha256": "2ad051f2dcad69e561efc03095071f5591394e281d2e2a7684a656ce451767b4",
+      "originalSha256": "423d072ba9dd839ebd164dee721eaec583fbeec914b2a5b387d5d81112ed5513",
+      "generated": "2026-11-22",
+      "sheet": "false-verdict-heroes-0",
+      "cell": 7,
+      "crop": {
+        "left": 1015,
+        "top": 451,
+        "width": 186,
+        "height": 426
+      }
+    },
+    {
+      "key": "denis-brom",
+      "title": "Денис Бром",
+      "kind": "hero",
+      "subjects": [
+        "denis-brom"
+      ],
+      "file": "heroes-denis-brom.webp",
+      "sha256": "91960901c19db2052d59a2c1db1abb9063753ea060c7a651804f61570aef3b90",
+      "originalSha256": "423d072ba9dd839ebd164dee721eaec583fbeec914b2a5b387d5d81112ed5513",
+      "generated": "2026-11-22",
+      "sheet": "false-verdict-heroes-0",
+      "cell": 8,
+      "crop": {
+        "left": 1447,
+        "top": 448,
+        "width": 212,
+        "height": 429
+      }
+    },
+    {
+      "key": "foe-1686f60e19",
+      "title": "Сторож товарного двора",
+      "kind": "foe",
+      "subjects": [
+        "yard-passage-foe-1",
+        "yard-passage-foe-2",
+        "yard-passage-foe-3",
+        "yard-passage-foe-4",
+        "yard-passage-foe-5",
+        "yard-passage-foe-6"
+      ],
+      "file": "foes-foe-1686f60e19.webp",
+      "sha256": "a2b99653aeaa74918f52040a17435d2ddfa1cb061bd72050fe9a0008b882dfde",
+      "originalSha256": "5903122c45c56d8035a8536d1c664c782988eecf370fa7d86f60dead490e9cc2",
+      "generated": "2026-11-22",
+      "sheet": "false-verdict-foes-0",
+      "cell": 1,
+      "crop": {
+        "left": 183,
+        "top": 9,
+        "width": 351,
+        "height": 706
+      }
+    },
+    {
+      "key": "foe-8bf532f132",
+      "title": "Архивный дежурный",
+      "kind": "foe",
+      "subjects": [
+        "archive-frame-foe-1",
+        "archive-frame-foe-2",
+        "archive-frame-foe-3",
+        "archive-frame-foe-4",
+        "archive-frame-foe-5",
+        "archive-frame-foe-6"
+      ],
+      "file": "foes-foe-8bf532f132.webp",
+      "sha256": "4fe88e3146a4aaab3cb0e02c33f2cbe150c9093ffff96bb545c4222e25e11072",
+      "originalSha256": "5903122c45c56d8035a8536d1c664c782988eecf370fa7d86f60dead490e9cc2",
+      "generated": "2026-11-22",
+      "sheet": "false-verdict-foes-0",
+      "cell": 2,
+      "crop": {
+        "left": 906,
+        "top": 10,
+        "width": 352,
+        "height": 705
+      }
+    },
+    {
+      "key": "foe-0c04e35ffc",
+      "title": "Упрямый посетитель",
+      "kind": "foe",
+      "subjects": [
+        "hall-door-foe-1",
+        "hall-door-foe-2",
+        "hall-door-foe-3",
+        "hall-door-foe-4",
+        "hall-door-foe-5",
+        "hall-door-foe-6"
+      ],
+      "file": "foes-foe-0c04e35ffc.webp",
+      "sha256": "5f73658b9612d459234b18d4c749303b26f2244a2d69daa7915df88dcdb11542",
+      "originalSha256": "5903122c45c56d8035a8536d1c664c782988eecf370fa7d86f60dead490e9cc2",
+      "generated": "2026-11-22",
+      "sheet": "false-verdict-foes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1604,
+        "top": 6,
+        "width": 389,
+        "height": 709
+      }
+    },
+    {
+      "key": "claims-office",
+      "title": "Приёмная артели прошений",
+      "kind": "place",
+      "subjects": [
+        "claims-office"
+      ],
+      "file": "places-claims-office.webp",
+      "sha256": "5511b1b170c8fd1006889d58f2d4fb13d3d241e58f1e38966f42495b19416186",
+      "originalSha256": "56cf095be5d6dca201af0095feb7b4101c20738a5306a97b893d57a6cff779c1",
+      "generated": "2026-11-22",
+      "sheet": "false-verdict-places-0",
+      "cell": 1,
+      "crop": {
+        "left": 1,
+        "top": 1,
+        "width": 510,
+        "height": 339
+      }
+    },
+    {
+      "key": "court-archive",
+      "title": "Архив окружного разбора",
+      "kind": "place",
+      "subjects": [
+        "court-archive"
+      ],
+      "file": "places-court-archive.webp",
+      "sha256": "54f117cbc7136841ae9d29917ab121ad3e047e42de5b6421738a0ac48cf082d4",
+      "originalSha256": "56cf095be5d6dca201af0095feb7b4101c20738a5306a97b893d57a6cff779c1",
+      "generated": "2026-11-22",
+      "sheet": "false-verdict-places-0",
+      "cell": 2,
+      "crop": {
+        "left": 513,
+        "top": 1,
+        "width": 510,
+        "height": 339
+      }
+    },
+    {
+      "key": "seventh-yard",
+      "title": "Двор Седьмой линии",
+      "kind": "place",
+      "subjects": [
+        "seventh-yard"
+      ],
+      "file": "places-seventh-yard.webp",
+      "sha256": "966f9f3f889b6691dc4a4641160c71485dc8ea664718c7185d5100dbefae64c6",
+      "originalSha256": "56cf095be5d6dca201af0095feb7b4101c20738a5306a97b893d57a6cff779c1",
+      "generated": "2026-11-22",
+      "sheet": "false-verdict-places-0",
+      "cell": 3,
+      "crop": {
+        "left": 1025,
+        "top": 1,
+        "width": 510,
+        "height": 339
+      }
+    },
+    {
+      "key": "survey-room",
+      "title": "Чертёжная палата",
+      "kind": "place",
+      "subjects": [
+        "survey-room"
+      ],
+      "file": "places-survey-room.webp",
+      "sha256": "8aa5a20f67a45e63b6c2e8b96424bdf445f0f49dbe322c446cac6a7ad0c17a54",
+      "originalSha256": "56cf095be5d6dca201af0095feb7b4101c20738a5306a97b893d57a6cff779c1",
+      "generated": "2026-11-22",
+      "sheet": "false-verdict-places-0",
+      "cell": 4,
+      "crop": {
+        "left": 1,
+        "top": 342,
+        "width": 510,
+        "height": 340
+      }
+    },
+    {
+      "key": "linen-cafe",
+      "title": "Кафе «Льняная чашка»",
+      "kind": "place",
+      "subjects": [
+        "linen-cafe"
+      ],
+      "file": "places-linen-cafe.webp",
+      "sha256": "554cc079cc35e7785048081bb07997c6b62bf59735546f818fbe2826bc132580",
+      "originalSha256": "56cf095be5d6dca201af0095feb7b4101c20738a5306a97b893d57a6cff779c1",
+      "generated": "2026-11-22",
+      "sheet": "false-verdict-places-0",
+      "cell": 5,
+      "crop": {
+        "left": 513,
+        "top": 342,
+        "width": 510,
+        "height": 340
+      }
+    },
+    {
+      "key": "mutual-house",
+      "title": "Дом взаимной помощи",
+      "kind": "place",
+      "subjects": [
+        "mutual-house"
+      ],
+      "file": "places-mutual-house.webp",
+      "sha256": "9373c10c56e0ca35b23bc8f89023491ccd5f432dd3b7afa9349076f1dc79ee86",
+      "originalSha256": "56cf095be5d6dca201af0095feb7b4101c20738a5306a97b893d57a6cff779c1",
+      "generated": "2026-11-22",
+      "sheet": "false-verdict-places-0",
+      "cell": 6,
+      "crop": {
+        "left": 1025,
+        "top": 342,
+        "width": 510,
+        "height": 340
+      }
+    },
+    {
+      "key": "photo-workshop",
+      "title": "Фотографическая мастерская «Матовая грань»",
+      "kind": "place",
+      "subjects": [
+        "photo-workshop"
+      ],
+      "file": "places-photo-workshop.webp",
+      "sha256": "470dac7eccc68fe4af8bf1b2a11dfe5ce016d1b902e92afd6e759a0a1a21f346",
+      "originalSha256": "56cf095be5d6dca201af0095feb7b4101c20738a5306a97b893d57a6cff779c1",
+      "generated": "2026-11-22",
+      "sheet": "false-verdict-places-0",
+      "cell": 7,
+      "crop": {
+        "left": 1,
+        "top": 684,
+        "width": 510,
+        "height": 339
+      }
+    },
+    {
+      "key": "hearing-hall",
+      "title": "Зал предметного разбора",
+      "kind": "place",
+      "subjects": [
+        "hearing-hall"
+      ],
+      "file": "places-hearing-hall.webp",
+      "sha256": "857033bc7f758379f453d565e7a4bf63ecdba24a8dbe0b32fff17ad7afcf915d",
+      "originalSha256": "56cf095be5d6dca201af0095feb7b4101c20738a5306a97b893d57a6cff779c1",
+      "generated": "2026-11-22",
+      "sheet": "false-verdict-places-0",
+      "cell": 8,
+      "crop": {
+        "left": 513,
+        "top": 684,
+        "width": 510,
+        "height": 339
+      }
+    },
+    {
+      "key": "sofia-vetlina",
+      "title": "Софья Ветлина",
+      "kind": "npc",
+      "subjects": [
+        "sofia-vetlina"
+      ],
+      "file": "npcs-sofia-vetlina.webp",
+      "sha256": "497bc9b7c6664dd75d379e2bee60203e606a126426608680aa1942901c7b9ae6",
+      "originalSha256": "7b8d84ff67df353eda607bbaa15c6a2cece8f8754694eb761b74be57761d7bda",
+      "generated": "2026-11-22",
+      "sheet": "false-verdict-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 130,
+        "top": 18,
+        "width": 264,
+        "height": 479
+      }
+    },
+    {
+      "key": "marek-gron",
+      "title": "Марек Грон",
+      "kind": "npc",
+      "subjects": [
+        "marek-gron"
+      ],
+      "file": "npcs-marek-gron.webp",
+      "sha256": "383aca0e2a1db9b0623c3ea559a9c2503f83fad16201a874a513fe626ef55951",
+      "originalSha256": "7b8d84ff67df353eda607bbaa15c6a2cece8f8754694eb761b74be57761d7bda",
+      "generated": "2026-11-22",
+      "sheet": "false-verdict-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 611,
+        "top": 16,
+        "width": 296,
+        "height": 481
+      }
+    },
+    {
+      "key": "zoya-never",
+      "title": "Зоя Невер",
+      "kind": "npc",
+      "subjects": [
+        "zoya-never"
+      ],
+      "file": "npcs-zoya-never.webp",
+      "sha256": "c1194bc70eb1934af722703c17b0102378b367c2a4fca8fc1a06737977b4c7fd",
+      "originalSha256": "7b8d84ff67df353eda607bbaa15c6a2cece8f8754694eb761b74be57761d7bda",
+      "generated": "2026-11-22",
+      "sheet": "false-verdict-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 1130,
+        "top": 19,
+        "width": 287,
+        "height": 478
+      }
+    },
+    {
+      "key": "dina-liven",
+      "title": "Дина Ливен",
+      "kind": "npc",
+      "subjects": [
+        "dina-liven"
+      ],
+      "file": "npcs-dina-liven.webp",
+      "sha256": "7546d7de51519175690b36321dbe7b4fe6f943876f179b9f27fdad98d11df73e",
+      "originalSha256": "7b8d84ff67df353eda607bbaa15c6a2cece8f8754694eb761b74be57761d7bda",
+      "generated": "2026-11-22",
+      "sheet": "false-verdict-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 130,
+        "top": 526,
+        "width": 266,
+        "height": 483
+      }
+    },
+    {
+      "key": "savel-ortin",
+      "title": "Савел Ортин",
+      "kind": "npc",
+      "subjects": [
+        "savel-ortin"
+      ],
+      "file": "npcs-savel-ortin.webp",
+      "sha256": "e3619497c27110ceb60f0d2bd7171416c1511aff62b58b52530a9d61022bbb3d",
+      "originalSha256": "7b8d84ff67df353eda607bbaa15c6a2cece8f8754694eb761b74be57761d7bda",
+      "generated": "2026-11-22",
+      "sheet": "false-verdict-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 623,
+        "top": 528,
+        "width": 285,
+        "height": 481
+      }
+    },
+    {
+      "key": "anton-rusko",
+      "title": "Антон Руско",
+      "kind": "npc",
+      "subjects": [
+        "anton-rusko"
+      ],
+      "file": "npcs-anton-rusko.webp",
+      "sha256": "faecf4114da713bef0501c1cebca500a629a974c69f9358c39c043e68c723f5f",
+      "originalSha256": "b2c235ec71bb885f503e31e97505c1268764b9bb70eff6b89c839e17c6994252",
+      "generated": "2026-11-22",
+      "sheet": "false-verdict-npcs-1",
+      "cell": 1,
+      "crop": {
+        "left": 112,
+        "top": 17,
+        "width": 287,
+        "height": 485
+      }
+    },
+    {
+      "key": "mila-fars",
+      "title": "Мила Фарс",
+      "kind": "npc",
+      "subjects": [
+        "mila-fars"
+      ],
+      "file": "npcs-mila-fars.webp",
+      "sha256": "1d43121d959129e4101260be743c4b9b49af1ac90e4dba46c5f73e0cc22d0f6a",
+      "originalSha256": "b2c235ec71bb885f503e31e97505c1268764b9bb70eff6b89c839e17c6994252",
+      "generated": "2026-11-22",
+      "sheet": "false-verdict-npcs-1",
+      "cell": 2,
+      "crop": {
+        "left": 627,
+        "top": 19,
+        "width": 265,
+        "height": 483
+      }
+    },
+    {
+      "key": "emil-krest",
+      "title": "Эмиль Крест",
+      "kind": "npc",
+      "subjects": [
+        "emil-krest"
+      ],
+      "file": "npcs-emil-krest.webp",
+      "sha256": "1edeb31abe51e13d65e2443520984c25698da901c895fb15fdb2e0a9666a8dc5",
+      "originalSha256": "b2c235ec71bb885f503e31e97505c1268764b9bb70eff6b89c839e17c6994252",
+      "generated": "2026-11-22",
+      "sheet": "false-verdict-npcs-1",
+      "cell": 3,
+      "crop": {
+        "left": 1129,
+        "top": 16,
+        "width": 297,
+        "height": 486
+      }
+    },
+    {
+      "key": "tamara-ley",
+      "title": "Тамара Лей",
+      "kind": "npc",
+      "subjects": [
+        "tamara-ley"
+      ],
+      "file": "npcs-tamara-ley.webp",
+      "sha256": "4dd9d581dd1b3fe68a797ff09496774d5a799a26245fec69511543793529d208",
+      "originalSha256": "b2c235ec71bb885f503e31e97505c1268764b9bb70eff6b89c839e17c6994252",
+      "generated": "2026-11-22",
+      "sheet": "false-verdict-npcs-1",
+      "cell": 4,
+      "crop": {
+        "left": 107,
+        "top": 528,
+        "width": 290,
+        "height": 486
+      }
+    },
+    {
+      "key": "lidia-ost",
+      "title": "Лидия Ост",
+      "kind": "npc",
+      "subjects": [
+        "lidia-ost"
+      ],
+      "file": "npcs-lidia-ost.webp",
+      "sha256": "6f72a1bac33fdb31064f547b8780282479404f164a1d34bfbf86e5dda19a8df6",
+      "originalSha256": "b2c235ec71bb885f503e31e97505c1268764b9bb70eff6b89c839e17c6994252",
+      "generated": "2026-11-22",
+      "sheet": "false-verdict-npcs-1",
+      "cell": 5,
+      "crop": {
+        "left": 593,
+        "top": 528,
+        "width": 303,
+        "height": 486
+      }
+    }
+  ]
+}

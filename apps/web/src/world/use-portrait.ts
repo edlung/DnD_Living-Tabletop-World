@@ -10,7 +10,11 @@ import { withPictureTimes } from '../visual/approved-images.ts';
  * or null — while it loads, when there is none, or when the view is refused — so the caller
  * shows the neutral silhouette or mist. Never anything in an image's place.
  */
-export function usePortrait(api: WorldApi, entityId: string): PlayerAssetView | null {
+export function usePortrait(
+  api: WorldApi,
+  entityId: string,
+  purpose: 'image' | 'figure' = 'image',
+): PlayerAssetView | null {
   const load = useCallback(
     (signal: AbortSignal) =>
       api
@@ -23,5 +27,5 @@ export function usePortrait(api: WorldApi, entityId: string): PlayerAssetView | 
     [api, entityId],
   );
   const { resource } = useResource(`portrait:${entityId}`, load);
-  return resource.status === 'ready' ? resource.value.presentation.image : null;
+  return resource.status === 'ready' ? resource.value.presentation[purpose] : null;
 }

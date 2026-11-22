@@ -1,0 +1,358 @@
+{
+  "about": "Портреты для карточек и изображение закрытого набора. Сначала сверяйте личность и доступность персонажа за столом.",
+  "generated": "2026-11-22",
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "heroes",
+      "originalFile": "exec-2460c7da-edf4-45bf-bb91-0d221e78efd5.png",
+      "originalSha256": "155da4f1b53efe122966fd6deab1e035c4a2ce12217503ca2de36db86454f194",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 3 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:3. Dark folklore portraits in tempera, rich earth pigments, expressive features, soft daylight. World: Лощина Тихой Меди. Characters, in strict cell order:\n1. Милена Мостовая — Плащ с медными застёжками, крепкие рукавицы и складная мерная рейка. Age 32.\n2. Илар Нитник — Жёлтая нить на воротнике, мягкие сапоги, сумка с отдельными карманами для чужих писем. Age 16.\n3. Рина Свечная — Серый передник поверх дорожной одежды, фонарь с бумажной заслонкой и открытая тетрадь. Age 28.\n4. Мирта Дождевая — Короткий шерстяной плащ, стеклянные бусины на шнуре и исписанные деревянные линейки. Age 61.\n5. Дан Жаворонок — Зелёная куртка с заплатой на локте, мягкий шейный платок и плетёный щит. Age 17.\n6. Зоя Катушка — Длинная жилетка с карманами для лоскутов, серебряный напёрсток и дорожный посох. Age 45.\n7. Беря Тихопев — Тёмно-синий шарф, дощечка для записей и небольшой бубен с мягким краем. Age 22.\n8. Дорожный / рабочий набор — Still life of one opaque closed everyday satchel, appropriate to this world and era. No person and nothing spilling out.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 3,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "npcs",
+      "originalFile": "exec-4049fabb-92c5-4329-b963-d8ab31afea27.png",
+      "originalSha256": "2d6296d7019d07e27e2330c5a74f86673f84c72eb8225969d8d604ab8c6a155a",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 3 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:3. Dark folklore portraits in tempera, rich earth pigments, expressive features, soft daylight. World: Лощина Тихой Меди. Characters, in strict cell order:\n1. Дарья Стрежа — Высокая женщина с медной заколкой и поясом звонарных инструментов. Age 52.\n2. Лавр Рябой — Плащ с белой штопкой, трость с неглубокими зарубками и два фонарных крючка на поясе. Age 68.\n3. Весна Ольховая — Короткая накидка в пятнах глины, тяжёлые сапоги и пояс с деревянными мерками. Age 31.\n4. Борун Вяз — Шерстяной жилет, хозяйственная доска и слишком короткий карандаш за ухом. Age 47.\n5. Орса Пестрая — Плащ с узором из тёмных ромбов, резной знак ветви и плоская фляга на ремне. Age 24.\n6. Тейка Луговая — Садовые рукавицы, серый капюшон и лента с нарисованными листьями вместо делений. Age 17.\n7. Севир Закал — Кожаный фартук, повязка на волосах и круглая медная пуговица вместо застёжки. Age 41.\n8. Ада Низовая — Светлый плащ с широкими рукавами, узловой счётчик воды и оббитый медью шест. Age 59.\n9. Незваный Гость — Издалека под пустой звонницей различима вытянутая фигура; край её плаща движется отдельно от ветра. Age 360.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 3,
+      "width": 1254,
+      "height": 1254
+    }
+  ],
+  "cards": [
+    {
+      "id": "milena-bridge",
+      "file": "cards/milena-bridge.webp",
+      "title": "Милена Мостовая",
+      "subjects": [
+        "milena-bridge"
+      ],
+      "sheet": "heroes",
+      "cell": 1,
+      "crop": {
+        "left": 10,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "1a08f770212fde8afb483944b6d10dc7c954a377bda3a3c868f479e447a17e5f"
+    },
+    {
+      "id": "ilar-thread",
+      "file": "cards/ilar-thread.webp",
+      "title": "Илар Нитник",
+      "subjects": [
+        "ilar-thread"
+      ],
+      "sheet": "heroes",
+      "cell": 2,
+      "crop": {
+        "left": 428,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "ccb8f40e1ed792cb3cae29475f5165fdc0ee3091c1a3b29ddf05b3876a1e667c"
+    },
+    {
+      "id": "rina-candle",
+      "file": "cards/rina-candle.webp",
+      "title": "Рина Свечная",
+      "subjects": [
+        "rina-candle"
+      ],
+      "sheet": "heroes",
+      "cell": 3,
+      "crop": {
+        "left": 846,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "3c672ed094c587707c0f5c4b6c6d0518f47a95c79eed276ae071c460fb2fd970"
+    },
+    {
+      "id": "mirta-rain",
+      "file": "cards/mirta-rain.webp",
+      "title": "Мирта Дождевая",
+      "subjects": [
+        "mirta-rain"
+      ],
+      "sheet": "heroes",
+      "cell": 4,
+      "crop": {
+        "left": 10,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "df34e3d03e2783056dbe6c94835810491622b4bf2f3afb0292a30dc050552595"
+    },
+    {
+      "id": "dan-lark",
+      "file": "cards/dan-lark.webp",
+      "title": "Дан Жаворонок",
+      "subjects": [
+        "dan-lark"
+      ],
+      "sheet": "heroes",
+      "cell": 5,
+      "crop": {
+        "left": 428,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "5b010489477c385810514a24b1a1f4e94af8edf76c9bb6347aa7ae4692c21ca3"
+    },
+    {
+      "id": "zoya-reel",
+      "file": "cards/zoya-reel.webp",
+      "title": "Зоя Катушка",
+      "subjects": [
+        "zoya-reel"
+      ],
+      "sheet": "heroes",
+      "cell": 6,
+      "crop": {
+        "left": 846,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "cff2932ca7ef08343f630c8f8d4dce6d5ad28bf34a90560eac50bcdd94b60b25"
+    },
+    {
+      "id": "berya-song",
+      "file": "cards/berya-song.webp",
+      "title": "Беря Тихопев",
+      "subjects": [
+        "berya-song"
+      ],
+      "sheet": "heroes",
+      "cell": 7,
+      "crop": {
+        "left": 10,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "c0f96e9207d684d84a2f13731f7075921b827b886e1570315c77f1563e2931f1"
+    },
+    {
+      "id": "travel-kit",
+      "file": "cards/travel-kit.webp",
+      "title": "Дорожный набор",
+      "subjects": [
+        "berya-song-travel-kit",
+        "dan-lark-travel-kit",
+        "ilar-thread-travel-kit",
+        "milena-bridge-travel-kit",
+        "mirta-rain-travel-kit",
+        "rina-candle-travel-kit",
+        "zoya-reel-travel-kit"
+      ],
+      "sheet": "heroes",
+      "cell": 8,
+      "crop": {
+        "left": 428,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "668e4b46885d9acadbdae93989a604889aad8431b640cab1645d18e67ba00443"
+    },
+    {
+      "id": "darya-reed",
+      "file": "cards/darya-reed.webp",
+      "title": "Дарья Стрежа",
+      "subjects": [
+        "darya-reed"
+      ],
+      "sheet": "npcs",
+      "cell": 1,
+      "crop": {
+        "left": 10,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "70c39bef46749993f0c662232abda89d2a9516cde7ee53d8701306de2890690f"
+    },
+    {
+      "id": "lavr-watchman",
+      "file": "cards/lavr-watchman.webp",
+      "title": "Лавр Рябой",
+      "subjects": [
+        "lavr-watchman"
+      ],
+      "sheet": "npcs",
+      "cell": 2,
+      "crop": {
+        "left": 428,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "387bf953b5c8005c45bdfb03986f8dce352d11f3d2663633b5a350ffe7e2a6a2"
+    },
+    {
+      "id": "vesna-potter",
+      "file": "cards/vesna-potter.webp",
+      "title": "Весна Ольховая",
+      "subjects": [
+        "vesna-potter"
+      ],
+      "sheet": "npcs",
+      "cell": 3,
+      "crop": {
+        "left": 846,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "8c890deb07e824fdd5b6cd91c7300aae9be6d2992c1f5431de1ffce44e2c6fe9"
+    },
+    {
+      "id": "borun-reeve",
+      "file": "cards/borun-reeve.webp",
+      "title": "Борун Вяз",
+      "subjects": [
+        "borun-reeve"
+      ],
+      "sheet": "npcs",
+      "cell": 4,
+      "crop": {
+        "left": 10,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "a131da4042305f5a3f3c27cd142516733771286051c136e28eed2b4873db84af"
+    },
+    {
+      "id": "orsa-shepherd",
+      "file": "cards/orsa-shepherd.webp",
+      "title": "Орса Пестрая",
+      "subjects": [
+        "orsa-shepherd"
+      ],
+      "sheet": "npcs",
+      "cell": 5,
+      "crop": {
+        "left": 428,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "46c3bfdac4ead9330783597ed2439e986bc7971982e2c9ba73f579de931e58b1"
+    },
+    {
+      "id": "teyka-apprentice",
+      "file": "cards/teyka-apprentice.webp",
+      "title": "Тейка Луговая",
+      "subjects": [
+        "teyka-apprentice"
+      ],
+      "sheet": "npcs",
+      "cell": 6,
+      "crop": {
+        "left": 846,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "3e998aa943dee1dffd005d9875caf7d2ac8fd75cf1eb1007787482a0c60b6e8b"
+    },
+    {
+      "id": "sevir-smith",
+      "file": "cards/sevir-smith.webp",
+      "title": "Севир Закал",
+      "subjects": [
+        "sevir-smith"
+      ],
+      "sheet": "npcs",
+      "cell": 7,
+      "crop": {
+        "left": 10,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "9a25b172c89f602823e74207aeb6cad42afe2a09dc6dd5d7f7a63ed49452b151"
+    },
+    {
+      "id": "ada-ferrier",
+      "file": "cards/ada-ferrier.webp",
+      "title": "Ада Низовая",
+      "subjects": [
+        "ada-ferrier"
+      ],
+      "sheet": "npcs",
+      "cell": 8,
+      "crop": {
+        "left": 428,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "cce78c98b77e0f65f94f67e234be5db26b450b6190bbf85ab37e0654ea4c291f"
+    },
+    {
+      "id": "echo-keeper",
+      "file": "cards/echo-keeper.webp",
+      "title": "Незваный Гость",
+      "subjects": [
+        "echo-keeper"
+      ],
+      "sheet": "npcs",
+      "cell": 9,
+      "crop": {
+        "left": 846,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "6606cd1239fab8f65a8dda6ef5db7f695fd9f40cbf84f4d099119dba2a7a329e"
+    }
+  ]
+}

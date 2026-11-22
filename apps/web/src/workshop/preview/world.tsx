@@ -1,3 +1,4 @@
+import { campaignAppearance } from '../../visual/campaign-themes/index.ts';
 import type {
   CampaignPreviewCatalog,
   CampaignPreviewView,
@@ -165,7 +166,11 @@ function PreviewContent({
     : new Map<string, string>();
   const visible = (id: string) => scene?.present.find((entity) => entity.entityId === id);
   return (
-    <section className="workshop-preview" aria-label={t('World preview')}>
+    <section
+      className="workshop-preview"
+      {...campaignAppearance(view.campaignName)}
+      aria-label={t('World preview')}
+    >
       {onLeave && <button onClick={onLeave}>{t('Return to owner preview')}</button>}
       <header className="workshop-preview-heading">
         {view.perspective.kind === 'CHARACTER' ? (

@@ -1,0 +1,49 @@
+{
+  "maps": [
+    {
+      "file": "ringing-quarry.webp",
+      "sha256": "2fa8576d36c97877022aead581926c54b674fbff60523f2b3f211f09b55bfdf4",
+      "originalSha256": "a12feae6b3c97294daee2de945a8e7db7e8a3f1204449b592a0356d67988bc4c",
+      "originalFile": "exec-1a360ac2-9259-42c2-bffc-755d1dad3da0.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Карьер звучащих граней. Visible scenery: Высокие пластины похожи одновременно на лёд и медь. Внутри каждой видны широкие полые проходы и цветные канаты.. World style: Излучина звучащих форм · Moire blue theatre ribbon, gold reverse folds and little stage-light rays. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "ringing-quarry",
+      "encounter": "quarry-echoes",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "upright-sea.webp",
+      "sha256": "bbfdeec469a1d28d620292b59611b496c612e79c86f5cfc588574ee904023925",
+      "originalSha256": "1d8588f08481fa908b4000359b59c944861387c8e31d735295064fd0dac0fd96",
+      "originalFile": "exec-49f2892b-4fdf-4b85-b116-9cfba0c8a77a.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Море, вставшее на ребро. Visible scenery: Вертикальная плоскость воды стоит над ровной белой площадкой. Лодки скользят по её поверхности, а брызги выглядят бумажными запятыми.. World style: Излучина звучащих форм · Moire blue theatre ribbon, gold reverse folds and little stage-light rays. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "upright-sea",
+      "encounter": "tide-splashes",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "echo-yard.webp",
+      "sha256": "9c6fd6dd84b2a0729fc41c930c1355a57683c0ce1ec9e644ba86df224cca177c",
+      "originalSha256": "94ae02a5cb7d1a0e5010ae527c009ebcb10d64ed987fc3872e4dba6f5c85a520",
+      "originalFile": "exec-52a35bc1-53c7-47bc-bfb1-4b813a37baf3.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Двор выпуклого эха. Visible scenery: Круглый двор с цветными желобами. Над ними перекатываются блестящие дуги, оставляя в воздухе следы как от кисти.. World style: Излучина звучащих форм · Moire blue theatre ribbon, gold reverse folds and little stage-light rays. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "echo-yard",
+      "encounter": "reprise-arcs",
+      "grid": [
+        14,
+        12
+      ]
+    }
+  ]
+}

@@ -1,0 +1,659 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "basalt-bloom-heroes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-a91591ce-6c6f-475e-be0d-a2a345f1df1d.png",
+      "originalSha256": "a9a029e0d800832ed47edafebfb722d33f91a09d6a960ad6c2da64d8d3620388",
+      "columns": 4,
+      "rows": 2,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 4 equal columns by 2 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Чёрная складка · Black basalt hexagons opening into translucent amber mineral petals. Cell 1. Тая Рябина. Короткая коса, охряной платок, на сапогах нашиты разноцветные лоскуты для различения следов.\nCell 2. Нер Узель. Потёртый зелёный жилет, деревянные пуговицы разных размеров, за ухом всегда короткий карандаш.\nCell 3. Вела Огонёк. Синяя накидка с карманами для листов, медная заколка в форме запятой, пальцы в графитовых пятнах.\nCell 4. Рун Тёплая Чаша. Серебристая борода, короткий дорожный плащ, деревянная чашка с вырезанными волнами.\nCell 5. Эйра Лист. Пышные тёмные волосы под красной лентой, планшет с обрезанными углами, мешочек мягкого угля.\nCell 6. Домар Плечо. Широкие рукавицы, латаный походный мешок, тщательно вымытый котелок на ремне.\nCell 7. Шель Мера. Белые волосы, застёгнутые костяной шпилькой, очки на шнурке, тетрадь с широкими полями.\nCell 8. Зин Отзвук. Жёлтая безрукавка, маленький колокольчик без языка, узкие ленты с записанными чужими именами.. Leave final unused cells empty.",
+      "references": [
+        "campaigns/fantasy-2026/basalt-bloom/illustrations/cards/taya-step.webp",
+        "campaigns/fantasy-2026/basalt-bloom/illustrations/cards/ner-knot.webp",
+        "campaigns/fantasy-2026/basalt-bloom/illustrations/cards/vela-lamp.webp",
+        "campaigns/fantasy-2026/basalt-bloom/illustrations/cards/run-cup.webp",
+        "campaigns/fantasy-2026/basalt-bloom/illustrations/cards/eyra-paper.webp",
+        "campaigns/fantasy-2026/basalt-bloom/illustrations/cards/domar-pack.webp",
+        "campaigns/fantasy-2026/basalt-bloom/illustrations/cards/shel-scale.webp",
+        "campaigns/fantasy-2026/basalt-bloom/illustrations/cards/zin-echo.webp"
+      ]
+    },
+    {
+      "id": "basalt-bloom-places-0",
+      "originalFile": "exec-dc336a35-fc07-4f58-8d52-feb931f611b9.png",
+      "originalSha256": "3d9ab74677a1f7ea0a9c5bdfba44739571e2bd1827ab0a72d0d7187bb60d87e1",
+      "columns": 3,
+      "rows": 4,
+      "prompt": "A registered game art atlas of location illustrations, one clearly distinct unpopulated environment per cell, distinct scene lighting and structures. Fill each cell edge to edge. Atmospheric painted landscape or architectural interiors at human eye level. No plot events, clues, icons or writing. EXACT regular grid, 3 equal columns by 4 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Чёрная складка · Black basalt hexagons opening into translucent amber mineral petals. Cell 1. Дом над трещиной. Общий дом экспедиций: длинный стол, сушильные полки, разноцветные чашки и окна на каменное плато.\nCell 2. Двор первой щели. У входа в гору стоят каменные столбики. Между ними пролегает неглубокая щель со светлой каймой.\nCell 3. Чёрные ступени. Широкие естественные уступы спускаются к трём проходам. Здесь можно разместить весь отряд, карты и сухие мешки.\nCell 4. Стеклянная речка. Ручей лежит прозрачной полосой среди чёрных плит. Плоские берега отражают свет фонарей длинными прямоугольниками.\nCell 5. Слуховой уступ. В сухой высокой полости нити старых путевых отметок дрожат над каменными чашами. На каждом уровне иначе слышны шаги.\nCell 6. Зал оттисков. Низкие стены покрыты слоистыми дугами. На полу видны парные углубления и рассыпавшиеся деревянные клинья.\nCell 7. Сухая горловина. Сквозняк шевелит воротники в узком проходе. Рядом идёт широкий внешний обход с обычным каменным полом.\nCell 8. Островки покоя. Массивные базальтовые площадки поднимаются из складчатого пола. Между ними поблёскивают тонкие кромки, над ними достаточно места для навеса.\nCell 9. Полый венец. Круглая полость с тремя массивными островками и слоистыми стенами. Высоко над ней изгибается край внешнего обхода.\nCell 10. Возвратный балкон. Широкий сухой уступ смотрит на Полый венец сбоку. Отсюда наружная тропа без тесных щелей уходит к Чёрным ступеням.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "basalt-bloom-foes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-bbb49f9b-0030-4881-871c-9d0a2ff340bf.png",
+      "originalSha256": "68aadaff13091f4bd7e399b29bd19e8f8d860ef914110eec9838af5895bda4e1",
+      "columns": 3,
+      "rows": 1,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 3 equal columns by 1 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Чёрная складка · Black basalt hexagons opening into translucent amber mineral petals. Cell 1. Сланцевый прыгун. Небольшое четвероногое пещерное существо с пластинчатой спиной и кисточками на ушах. Оно защищает гнездо, а не охраняет тайное знание.\nCell 2. Войлочный мотылёк. Пещерное создание величиной с дорожную сумку, с мягкими серыми крыльями и короткими цепкими лапами. В игровой встрече передвигается по земле и камням обычным движением; полёт не даёт отдельной механики.\nCell 3. Слюдяной клубок. Маленькое природное волшебное существо из сухих прозрачных пластинок. Оно сворачивается вокруг тёплой плоской поверхности; речи, тайного плана и связи с разумом горы у него нет.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "basalt-bloom-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-b306a4c4-42e9-4b08-bf7c-95f8b0295732.png",
+      "originalSha256": "66ec35de1b2905faecad8720e82b9e893c7c6dcd5d7963f966edf7f7949e5a3b",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "Create a clean production sprite sheet of 8 distinct hand-painted tabletop miniature figurines for the world of Цветение базальта. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 3 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Сава Линов. Невысокий человек в тёмном переднике; на его чашке нарисован дом с очень кривой крышей.\nCell 2. Лария Векова. Седая прядь над ухом, большие карманы, короткие угольные карандаши в жестяной коробке.\nCell 3. Марев Тир. Аккуратный медный зажим на воротнике, жёлтые перчатки и деревянный футляр с мерными планками.\nCell 4. Тима Веден. Закатанные рукава, деревянные кораблики на поясе, рыжие веснушки и серьёзная складка между бровями.\nCell 5. Олин Шелест. Длинный полосатый шарф, несколько тонких катушек, дощечка для коротких записок на ремне.\nCell 6. Берта Ровная. Широкополая соломенная шляпа поверх шерстяного капюшона, кожаная сумка и плоские глиняные таблички.\nCell 7. Юст Бакл. Круглое лицо, холщовая куртка с нашитым квадратом и мягкие ремни для переноски ящиков.\nCell 8. Дана Край. Синий вязаный берет, широкая бумажная лента на планшете, карманные песочные часы с треснутым чехлом.",
+      "references": [
+        "campaigns/fantasy-2026/basalt-bloom/illustrations/cards/sava-house.webp",
+        "campaigns/fantasy-2026/basalt-bloom/illustrations/cards/laria-sketch.webp",
+        "campaigns/fantasy-2026/basalt-bloom/illustrations/cards/marev-gauge.webp",
+        "campaigns/fantasy-2026/basalt-bloom/illustrations/cards/tima-float.webp",
+        "campaigns/fantasy-2026/basalt-bloom/illustrations/cards/olin-thread.webp",
+        "campaigns/fantasy-2026/basalt-bloom/illustrations/cards/berta-clay.webp",
+        "campaigns/fantasy-2026/basalt-bloom/illustrations/cards/yust-porter.webp",
+        "campaigns/fantasy-2026/basalt-bloom/illustrations/cards/dana-witness.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "taya-step",
+      "title": "Тая Рябина",
+      "kind": "hero",
+      "subjects": [
+        "taya-step"
+      ],
+      "file": "heroes-taya-step.webp",
+      "sha256": "6581a1ae8a85cbaf40d411daaad8941c6641448918f79d08025e4036148c82aa",
+      "originalSha256": "a9a029e0d800832ed47edafebfb722d33f91a09d6a960ad6c2da64d8d3620388",
+      "generated": "2026-11-22",
+      "sheet": "basalt-bloom-heroes-0",
+      "cell": 1,
+      "crop": {
+        "left": 103,
+        "top": 13,
+        "width": 238,
+        "height": 419
+      }
+    },
+    {
+      "key": "ner-knot",
+      "title": "Нер Узель",
+      "kind": "hero",
+      "subjects": [
+        "ner-knot"
+      ],
+      "file": "heroes-ner-knot.webp",
+      "sha256": "92668fffbadc1bc4075e6495e7f89663d62d03ab5cf8223a31889a222a5b0cd5",
+      "originalSha256": "a9a029e0d800832ed47edafebfb722d33f91a09d6a960ad6c2da64d8d3620388",
+      "generated": "2026-11-22",
+      "sheet": "basalt-bloom-heroes-0",
+      "cell": 2,
+      "crop": {
+        "left": 544,
+        "top": 11,
+        "width": 244,
+        "height": 419
+      }
+    },
+    {
+      "key": "vela-lamp",
+      "title": "Вела Огонёк",
+      "kind": "hero",
+      "subjects": [
+        "vela-lamp"
+      ],
+      "file": "heroes-vela-lamp.webp",
+      "sha256": "ab0a9cc9becadc3ee25d3d5c2c4d52cbdbf4c0a3dba87e17cfd40b5d9b70593d",
+      "originalSha256": "a9a029e0d800832ed47edafebfb722d33f91a09d6a960ad6c2da64d8d3620388",
+      "generated": "2026-11-22",
+      "sheet": "basalt-bloom-heroes-0",
+      "cell": 3,
+      "crop": {
+        "left": 979,
+        "top": 14,
+        "width": 253,
+        "height": 417
+      }
+    },
+    {
+      "key": "run-cup",
+      "title": "Рун Тёплая Чаша",
+      "kind": "hero",
+      "subjects": [
+        "run-cup"
+      ],
+      "file": "heroes-run-cup.webp",
+      "sha256": "def510f41fa0e1358592f1ac823b60442a4ee835fc9ec5aad65117a511d23591",
+      "originalSha256": "a9a029e0d800832ed47edafebfb722d33f91a09d6a960ad6c2da64d8d3620388",
+      "generated": "2026-11-22",
+      "sheet": "basalt-bloom-heroes-0",
+      "cell": 4,
+      "crop": {
+        "left": 1414,
+        "top": 8,
+        "width": 261,
+        "height": 421
+      }
+    },
+    {
+      "key": "eyra-paper",
+      "title": "Эйра Лист",
+      "kind": "hero",
+      "subjects": [
+        "eyra-paper"
+      ],
+      "file": "heroes-eyra-paper.webp",
+      "sha256": "6f19019c7814e2f1f9d4e06c0b86097e0782a959197d85fc81668b10509dd18a",
+      "originalSha256": "a9a029e0d800832ed47edafebfb722d33f91a09d6a960ad6c2da64d8d3620388",
+      "generated": "2026-11-22",
+      "sheet": "basalt-bloom-heroes-0",
+      "cell": 5,
+      "crop": {
+        "left": 101,
+        "top": 454,
+        "width": 244,
+        "height": 421
+      }
+    },
+    {
+      "key": "domar-pack",
+      "title": "Домар Плечо",
+      "kind": "hero",
+      "subjects": [
+        "domar-pack"
+      ],
+      "file": "heroes-domar-pack.webp",
+      "sha256": "25c5694c6742f6f860f9752d2802792cd8ca7f5016988eab38ec20f760dd0e37",
+      "originalSha256": "a9a029e0d800832ed47edafebfb722d33f91a09d6a960ad6c2da64d8d3620388",
+      "generated": "2026-11-22",
+      "sheet": "basalt-bloom-heroes-0",
+      "cell": 6,
+      "crop": {
+        "left": 514,
+        "top": 447,
+        "width": 272,
+        "height": 428
+      }
+    },
+    {
+      "key": "shel-scale",
+      "title": "Шель Мера",
+      "kind": "hero",
+      "subjects": [
+        "shel-scale"
+      ],
+      "file": "heroes-shel-scale.webp",
+      "sha256": "80691eec0d73ad0fbb078ace4e2811643bd8f67f3fcd2c54ab4c4fcca405651b",
+      "originalSha256": "a9a029e0d800832ed47edafebfb722d33f91a09d6a960ad6c2da64d8d3620388",
+      "generated": "2026-11-22",
+      "sheet": "basalt-bloom-heroes-0",
+      "cell": 7,
+      "crop": {
+        "left": 979,
+        "top": 450,
+        "width": 253,
+        "height": 425
+      }
+    },
+    {
+      "key": "zin-echo",
+      "title": "Зин Отзвук",
+      "kind": "hero",
+      "subjects": [
+        "zin-echo"
+      ],
+      "file": "heroes-zin-echo.webp",
+      "sha256": "cee5d0fffa2a4aa91ba6b6d954d64d85aaa9512255651267b6f6b351d17dd160",
+      "originalSha256": "a9a029e0d800832ed47edafebfb722d33f91a09d6a960ad6c2da64d8d3620388",
+      "generated": "2026-11-22",
+      "sheet": "basalt-bloom-heroes-0",
+      "cell": 8,
+      "crop": {
+        "left": 1424,
+        "top": 448,
+        "width": 249,
+        "height": 427
+      }
+    },
+    {
+      "key": "shale-house",
+      "title": "Дом над трещиной",
+      "kind": "place",
+      "subjects": [
+        "shale-house"
+      ],
+      "file": "places-shale-house.webp",
+      "sha256": "a27b1d8fd516e5b4d1ee04f2b6a9d9a5e5d9f090eca9f652bf0efea19bd542e4",
+      "originalSha256": "3d9ab74677a1f7ea0a9c5bdfba44739571e2bd1827ab0a72d0d7187bb60d87e1",
+      "generated": "2026-11-22",
+      "sheet": "basalt-bloom-places-0",
+      "cell": 1,
+      "crop": {
+        "left": 1,
+        "top": 1,
+        "width": 481,
+        "height": 270
+      }
+    },
+    {
+      "key": "crack-yard",
+      "title": "Двор первой щели",
+      "kind": "place",
+      "subjects": [
+        "crack-yard"
+      ],
+      "file": "places-crack-yard.webp",
+      "sha256": "1deb5b50ef3e45c723d9279b1987aa8d3c7f65e76f5ddaa20c6be50bcb911a70",
+      "originalSha256": "3d9ab74677a1f7ea0a9c5bdfba44739571e2bd1827ab0a72d0d7187bb60d87e1",
+      "generated": "2026-11-22",
+      "sheet": "basalt-bloom-places-0",
+      "cell": 2,
+      "crop": {
+        "left": 484,
+        "top": 1,
+        "width": 480,
+        "height": 270
+      }
+    },
+    {
+      "key": "black-stairs",
+      "title": "Чёрные ступени",
+      "kind": "place",
+      "subjects": [
+        "black-stairs"
+      ],
+      "file": "places-black-stairs.webp",
+      "sha256": "dc144a84fecac5fb05647371daa8a87c35c19608cb1281d466b7b8a3023481d2",
+      "originalSha256": "3d9ab74677a1f7ea0a9c5bdfba44739571e2bd1827ab0a72d0d7187bb60d87e1",
+      "generated": "2026-11-22",
+      "sheet": "basalt-bloom-places-0",
+      "cell": 3,
+      "crop": {
+        "left": 966,
+        "top": 1,
+        "width": 481,
+        "height": 270
+      }
+    },
+    {
+      "key": "glass-stream",
+      "title": "Стеклянная речка",
+      "kind": "place",
+      "subjects": [
+        "glass-stream"
+      ],
+      "file": "places-glass-stream.webp",
+      "sha256": "2b13c92f743a4b6fa47a1dcc114b42a09a0e5ffbbb57d5bfa93ba723cf9c4b1b",
+      "originalSha256": "3d9ab74677a1f7ea0a9c5bdfba44739571e2bd1827ab0a72d0d7187bb60d87e1",
+      "generated": "2026-11-22",
+      "sheet": "basalt-bloom-places-0",
+      "cell": 4,
+      "crop": {
+        "left": 1,
+        "top": 273,
+        "width": 481,
+        "height": 269
+      }
+    },
+    {
+      "key": "listening-ledge",
+      "title": "Слуховой уступ",
+      "kind": "place",
+      "subjects": [
+        "listening-ledge"
+      ],
+      "file": "places-listening-ledge.webp",
+      "sha256": "d92512c151d495b9811243bc4547ee34127381cade346607eb07eb1013111afd",
+      "originalSha256": "3d9ab74677a1f7ea0a9c5bdfba44739571e2bd1827ab0a72d0d7187bb60d87e1",
+      "generated": "2026-11-22",
+      "sheet": "basalt-bloom-places-0",
+      "cell": 5,
+      "crop": {
+        "left": 484,
+        "top": 273,
+        "width": 480,
+        "height": 269
+      }
+    },
+    {
+      "key": "imprint-hall",
+      "title": "Зал оттисков",
+      "kind": "place",
+      "subjects": [
+        "imprint-hall"
+      ],
+      "file": "places-imprint-hall.webp",
+      "sha256": "9ad6644e8463cd11e4ae52be9496b9a358b152818a985e3b535cc945dfdfed80",
+      "originalSha256": "3d9ab74677a1f7ea0a9c5bdfba44739571e2bd1827ab0a72d0d7187bb60d87e1",
+      "generated": "2026-11-22",
+      "sheet": "basalt-bloom-places-0",
+      "cell": 6,
+      "crop": {
+        "left": 966,
+        "top": 273,
+        "width": 481,
+        "height": 269
+      }
+    },
+    {
+      "key": "dry-neck",
+      "title": "Сухая горловина",
+      "kind": "place",
+      "subjects": [
+        "dry-neck"
+      ],
+      "file": "places-dry-neck.webp",
+      "sha256": "9147e624adf59283feed2dea7c1c69ccbd9db1ab9b6ddecf1ec4120acd64fb9b",
+      "originalSha256": "3d9ab74677a1f7ea0a9c5bdfba44739571e2bd1827ab0a72d0d7187bb60d87e1",
+      "generated": "2026-11-22",
+      "sheet": "basalt-bloom-places-0",
+      "cell": 7,
+      "crop": {
+        "left": 1,
+        "top": 544,
+        "width": 481,
+        "height": 270
+      }
+    },
+    {
+      "key": "steady-islands",
+      "title": "Островки покоя",
+      "kind": "place",
+      "subjects": [
+        "steady-islands"
+      ],
+      "file": "places-steady-islands.webp",
+      "sha256": "9229a90df2b019220d7fa2ec4f2f4035c1c54315dc833311307af0c68002e7f9",
+      "originalSha256": "3d9ab74677a1f7ea0a9c5bdfba44739571e2bd1827ab0a72d0d7187bb60d87e1",
+      "generated": "2026-11-22",
+      "sheet": "basalt-bloom-places-0",
+      "cell": 8,
+      "crop": {
+        "left": 484,
+        "top": 544,
+        "width": 480,
+        "height": 270
+      }
+    },
+    {
+      "key": "hollow-crown",
+      "title": "Полый венец",
+      "kind": "place",
+      "subjects": [
+        "hollow-crown"
+      ],
+      "file": "places-hollow-crown.webp",
+      "sha256": "c365dc508e6bcf6dd6edb10cf0bceea2e258ba67e007059ae8a4dd6323568aa6",
+      "originalSha256": "3d9ab74677a1f7ea0a9c5bdfba44739571e2bd1827ab0a72d0d7187bb60d87e1",
+      "generated": "2026-11-22",
+      "sheet": "basalt-bloom-places-0",
+      "cell": 9,
+      "crop": {
+        "left": 966,
+        "top": 544,
+        "width": 481,
+        "height": 270
+      }
+    },
+    {
+      "key": "return-balcony",
+      "title": "Возвратный балкон",
+      "kind": "place",
+      "subjects": [
+        "return-balcony"
+      ],
+      "file": "places-return-balcony.webp",
+      "sha256": "868bc25487b44b89bd5ea67bd8084fe1d1d1b7afc2aab3f22085b62e604af1f8",
+      "originalSha256": "3d9ab74677a1f7ea0a9c5bdfba44739571e2bd1827ab0a72d0d7187bb60d87e1",
+      "generated": "2026-11-22",
+      "sheet": "basalt-bloom-places-0",
+      "cell": 10,
+      "crop": {
+        "left": 1,
+        "top": 816,
+        "width": 481,
+        "height": 269
+      }
+    },
+    {
+      "key": "foe-72e1cd3fe7",
+      "title": "Сланцевый прыгун",
+      "kind": "foe",
+      "subjects": [
+        "bank-skippers-foe-1",
+        "bank-skippers-foe-2",
+        "bank-skippers-foe-3",
+        "bank-skippers-foe-4",
+        "bank-skippers-foe-5",
+        "bank-skippers-foe-6"
+      ],
+      "file": "foes-foe-72e1cd3fe7.webp",
+      "sha256": "ae65cc0b179afd2b2aee5cfb42285b7afa643c841fe05ee0ffae15364a1fd21e",
+      "originalSha256": "68aadaff13091f4bd7e399b29bd19e8f8d860ef914110eec9838af5895bda4e1",
+      "generated": "2026-11-22",
+      "sheet": "basalt-bloom-foes-0",
+      "cell": 1,
+      "crop": {
+        "left": 75,
+        "top": 87,
+        "width": 593,
+        "height": 552
+      }
+    },
+    {
+      "key": "foe-d124542837",
+      "title": "Войлочный мотылёк",
+      "kind": "foe",
+      "subjects": [
+        "draft-moths-foe-1",
+        "draft-moths-foe-2",
+        "draft-moths-foe-3",
+        "draft-moths-foe-4",
+        "draft-moths-foe-5",
+        "draft-moths-foe-6"
+      ],
+      "file": "foes-foe-d124542837.webp",
+      "sha256": "0f0f1369bbedbe9092430e725bd74f8b43bd039725d04f244d0abbf042a01751",
+      "originalSha256": "68aadaff13091f4bd7e399b29bd19e8f8d860ef914110eec9838af5895bda4e1",
+      "generated": "2026-11-22",
+      "sheet": "basalt-bloom-foes-0",
+      "cell": 2,
+      "crop": {
+        "left": 746,
+        "top": 121,
+        "width": 660,
+        "height": 520
+      }
+    },
+    {
+      "key": "foe-ef326d302f",
+      "title": "Слюдяной клубок",
+      "kind": "foe",
+      "subjects": [
+        "mica-springers-foe-1",
+        "mica-springers-foe-2",
+        "mica-springers-foe-3",
+        "mica-springers-foe-4",
+        "mica-springers-foe-5",
+        "mica-springers-foe-6"
+      ],
+      "file": "foes-foe-ef326d302f.webp",
+      "sha256": "b585e6b00ba34bfb2ce199a33e6a0152243647a0ddc1826112a9d064dd14e5ab",
+      "originalSha256": "68aadaff13091f4bd7e399b29bd19e8f8d860ef914110eec9838af5895bda4e1",
+      "generated": "2026-11-22",
+      "sheet": "basalt-bloom-foes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1505,
+        "top": 150,
+        "width": 609,
+        "height": 493
+      }
+    },
+    {
+      "key": "sava-house",
+      "title": "Сава Линов",
+      "kind": "npc",
+      "subjects": [
+        "sava-house"
+      ],
+      "file": "npcs-sava-house.webp",
+      "sha256": "5448e9aba01b5eb5dd077fb81b4deedc48805d02ec4ebe02bc94bcd8ffe22d1b",
+      "originalSha256": "66ec35de1b2905faecad8720e82b9e893c7c6dcd5d7963f966edf7f7949e5a3b",
+      "generated": "2026-11-22",
+      "sheet": "basalt-bloom-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 86,
+        "top": 21,
+        "width": 248,
+        "height": 400
+      }
+    },
+    {
+      "key": "laria-sketch",
+      "title": "Лария Векова",
+      "kind": "npc",
+      "subjects": [
+        "laria-sketch"
+      ],
+      "file": "npcs-laria-sketch.webp",
+      "sha256": "142e91f10bb16c9f4bc40da184f82ae3863df1d846730129312977d38f27a050",
+      "originalSha256": "66ec35de1b2905faecad8720e82b9e893c7c6dcd5d7963f966edf7f7949e5a3b",
+      "generated": "2026-11-22",
+      "sheet": "basalt-bloom-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 471,
+        "top": 26,
+        "width": 245,
+        "height": 396
+      }
+    },
+    {
+      "key": "marev-gauge",
+      "title": "Марев Тир",
+      "kind": "npc",
+      "subjects": [
+        "marev-gauge"
+      ],
+      "file": "npcs-marev-gauge.webp",
+      "sha256": "aef40fb33598cd140ae12b2b884ee6ea5e60afff540f63adb6fbb8aea289c546",
+      "originalSha256": "66ec35de1b2905faecad8720e82b9e893c7c6dcd5d7963f966edf7f7949e5a3b",
+      "generated": "2026-11-22",
+      "sheet": "basalt-bloom-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 855,
+        "top": 17,
+        "width": 248,
+        "height": 405
+      }
+    },
+    {
+      "key": "tima-float",
+      "title": "Тима Веден",
+      "kind": "npc",
+      "subjects": [
+        "tima-float"
+      ],
+      "file": "npcs-tima-float.webp",
+      "sha256": "8596baedaa569a639bb9947f76209d1cb55c0f1d8ef37e83738699b6cc67d65e",
+      "originalSha256": "66ec35de1b2905faecad8720e82b9e893c7c6dcd5d7963f966edf7f7949e5a3b",
+      "generated": "2026-11-22",
+      "sheet": "basalt-bloom-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 89,
+        "top": 451,
+        "width": 242,
+        "height": 404
+      }
+    },
+    {
+      "key": "olin-thread",
+      "title": "Олин Шелест",
+      "kind": "npc",
+      "subjects": [
+        "olin-thread"
+      ],
+      "file": "npcs-olin-thread.webp",
+      "sha256": "b22161fd685d2455f5e895ec5bdb08bd355be41fd98e14849c7e763d21be9a2e",
+      "originalSha256": "66ec35de1b2905faecad8720e82b9e893c7c6dcd5d7963f966edf7f7949e5a3b",
+      "generated": "2026-11-22",
+      "sheet": "basalt-bloom-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 456,
+        "top": 447,
+        "width": 262,
+        "height": 409
+      }
+    },
+    {
+      "key": "berta-clay",
+      "title": "Берта Ровная",
+      "kind": "npc",
+      "subjects": [
+        "berta-clay"
+      ],
+      "file": "npcs-berta-clay.webp",
+      "sha256": "658062d6d1093764f612e0ddeb3d7b316160ac28775fbb0a8ca481bfd599af19",
+      "originalSha256": "66ec35de1b2905faecad8720e82b9e893c7c6dcd5d7963f966edf7f7949e5a3b",
+      "generated": "2026-11-22",
+      "sheet": "basalt-bloom-npcs-0",
+      "cell": 6,
+      "crop": {
+        "left": 854,
+        "top": 446,
+        "width": 256,
+        "height": 410
+      }
+    },
+    {
+      "key": "yust-porter",
+      "title": "Юст Бакл",
+      "kind": "npc",
+      "subjects": [
+        "yust-porter"
+      ],
+      "file": "npcs-yust-porter.webp",
+      "sha256": "8c3e0dc6275609a1158054a83082ae9d223007809f4e412fe9175fcef9960725",
+      "originalSha256": "66ec35de1b2905faecad8720e82b9e893c7c6dcd5d7963f966edf7f7949e5a3b",
+      "generated": "2026-11-22",
+      "sheet": "basalt-bloom-npcs-0",
+      "cell": 7,
+      "crop": {
+        "left": 81,
+        "top": 886,
+        "width": 261,
+        "height": 410
+      }
+    },
+    {
+      "key": "dana-witness",
+      "title": "Дана Край",
+      "kind": "npc",
+      "subjects": [
+        "dana-witness"
+      ],
+      "file": "npcs-dana-witness.webp",
+      "sha256": "dd489e9a265e4e7ee374f6866a512b0dfd598579a745f673b0d42c7688b873aa",
+      "originalSha256": "66ec35de1b2905faecad8720e82b9e893c7c6dcd5d7963f966edf7f7949e5a3b",
+      "generated": "2026-11-22",
+      "sheet": "basalt-bloom-npcs-0",
+      "cell": 8,
+      "crop": {
+        "left": 465,
+        "top": 886,
+        "width": 255,
+        "height": 409
+      }
+    }
+  ]
+}

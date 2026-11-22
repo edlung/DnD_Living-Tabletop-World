@@ -15,6 +15,10 @@
 !fixtures/campaign-library
 !campaigns/**/assets/runtime/*.webp
 !campaigns/**/assets/battle-maps/*.webp
+!campaigns/**/assets/world-map/*.webp
+!campaigns/**/assets/table/*.webp
+!campaigns/**/illustrations/opening.webp
+!campaigns/**/illustrations/cards/*.webp
 !deploy/server/start.sh
 !deploy/proxy/Caddyfile
 !deploy/proxy/trust

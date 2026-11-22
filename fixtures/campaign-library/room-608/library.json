@@ -1,0 +1,2008 @@
+{
+ "id": "room-608",
+ "title": "Шестьсот восьмая комната",
+ "genre": "Детективный нуар; пространственная реконструкция убийства",
+ "audience": "18+",
+ "pitch": "В отеле «Контур» находят убитого писателя. Парадную дверь его номера непрерывно видели из галереи; окна закрыты. Постояльцы уверены: никто не входил. Чтобы восстановить случившееся, придётся увидеть тот же этаж глазами людей, которые приносят чашки, чинят краны и остаются незаметными. Разгадать доступ легче, чем доказать убийство и не превратить работников в удобных виновных.",
+ "tone": "Вежливые фразы, тяжёлые ковры, усталый труд и цена доверия; взрослый детектив без натуралистических подробностей.",
+ "duration": "8 сессий; 180 минут: вводная и повтор 15, три сцены по 45, перерыв 15, завершение 15.",
+ "cover": "campaigns/noir-2026/room-608/illustrations/opening.webp",
+ "defaultVariant": "4-players",
+ "variants": [
+  {
+   "id": "3-players",
+   "players": 3,
+   "label": "3 игрока",
+   "file": "packages/3-players.json",
+   "digest": "65a750175cbf8d226196a01c249bbf00d3c8f0ee9aa3080efa762eec649ec53f"
+  },
+  {
+   "id": "4-players",
+   "players": 4,
+   "label": "4 игрока",
+   "file": "packages/4-players.json",
+   "digest": "7f0e3b203abec235396b4c08e52c8786df28dfcb1541adbe2164787aad56ab18"
+  },
+  {
+   "id": "5-players",
+   "players": 5,
+   "label": "5 игроков",
+   "file": "packages/5-players.json",
+   "digest": "e4e60265ba89b6b63f5ebacb73474e305a384ba4e51fc3d8caa5ee48862d5233"
+  },
+  {
+   "id": "6-players",
+   "players": 6,
+   "label": "6 игроков",
+   "file": "packages/6-players.json",
+   "digest": "ebe6ba48d1bf688aec934a1337663c983c8af9d1beabb2c88f32c56dc4b57098"
+  },
+  {
+   "id": "7-players",
+   "players": 7,
+   "label": "7 игроков",
+   "file": "packages/7-players.json",
+   "digest": "5ddafa40f22e196422197a13f1961451ee51f5088a011f0567eb1cc151b4026f"
+  },
+  {
+   "id": "8-players",
+   "players": 8,
+   "label": "8 игроков",
+   "file": "packages/8-players.json",
+   "digest": "9499d87f3e6cd4b3fee12e8b6b14859ed1b8a1e402f0825dfbad66134deef67e"
+  }
+ ],
+ "generator": "codex-cli imagegen",
+ "pictures": [
+  {
+   "source": "campaigns/noir-2026/room-608/illustrations/cards/kirill-savin.webp",
+   "sha256": "691728e813ed23bc851c7086015a3dffb465bdd23eb966a1aa3632a78ada32e4",
+   "originalSha256": "9b92488988066d4a07a38ad166058caa11d917eb97bdd43180a9ba39b42ff5c1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Кирилл Савин",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "kirill-savin"
+    ],
+    "4-players": [
+     "kirill-savin"
+    ],
+    "5-players": [
+     "kirill-savin"
+    ],
+    "6-players": [
+     "kirill-savin"
+    ],
+    "7-players": [
+     "kirill-savin"
+    ],
+    "8-players": [
+     "kirill-savin"
+    ]
+   },
+   "file": "kirill-savin.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/illustrations/cards/galina-trush.webp",
+   "sha256": "a590cf31fe0f33fdcde18b81b98f4a2705b3fa989bd40ce405a2ccd060e4f952",
+   "originalSha256": "9b92488988066d4a07a38ad166058caa11d917eb97bdd43180a9ba39b42ff5c1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Галина Труш",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "galina-trush"
+    ],
+    "4-players": [
+     "galina-trush"
+    ],
+    "5-players": [
+     "galina-trush"
+    ],
+    "6-players": [
+     "galina-trush"
+    ],
+    "7-players": [
+     "galina-trush"
+    ],
+    "8-players": [
+     "galina-trush"
+    ]
+   },
+   "file": "galina-trush.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/illustrations/cards/matvey-osokin.webp",
+   "sha256": "184b209fa7ce30542a5e44c02d31b21bcb5c827fc6f6a0347b5a8f49514b588d",
+   "originalSha256": "9b92488988066d4a07a38ad166058caa11d917eb97bdd43180a9ba39b42ff5c1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Матвей Осокин",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "matvey-osokin"
+    ],
+    "4-players": [
+     "matvey-osokin"
+    ],
+    "5-players": [
+     "matvey-osokin"
+    ],
+    "6-players": [
+     "matvey-osokin"
+    ],
+    "7-players": [
+     "matvey-osokin"
+    ],
+    "8-players": [
+     "matvey-osokin"
+    ]
+   },
+   "file": "matvey-osokin.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/illustrations/cards/raya-belik.webp",
+   "sha256": "031302fe787b1a36883b8f75e181033cd8c39958254e272fe92457191c00321a",
+   "originalSha256": "9b92488988066d4a07a38ad166058caa11d917eb97bdd43180a9ba39b42ff5c1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рая Белик",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "raya-belik"
+    ],
+    "5-players": [
+     "raya-belik"
+    ],
+    "6-players": [
+     "raya-belik"
+    ],
+    "7-players": [
+     "raya-belik"
+    ],
+    "8-players": [
+     "raya-belik"
+    ]
+   },
+   "file": "raya-belik.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/illustrations/cards/nikita-orelin.webp",
+   "sha256": "d2781fec5f15839f4955a0dece58357f6f142e2b8ef2451da7b8fe0e81088566",
+   "originalSha256": "9b92488988066d4a07a38ad166058caa11d917eb97bdd43180a9ba39b42ff5c1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Никита Орелин",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "nikita-orelin"
+    ],
+    "6-players": [
+     "nikita-orelin"
+    ],
+    "7-players": [
+     "nikita-orelin"
+    ],
+    "8-players": [
+     "nikita-orelin"
+    ]
+   },
+   "file": "nikita-orelin.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/illustrations/cards/dina-shestak.webp",
+   "sha256": "31499444bb572ecf9312cd1c02fd9eb5ac9cec2c8e74b78c20b2ca10fb3f3b1d",
+   "originalSha256": "9b92488988066d4a07a38ad166058caa11d917eb97bdd43180a9ba39b42ff5c1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дина Шестак",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "dina-shestak"
+    ],
+    "7-players": [
+     "dina-shestak"
+    ],
+    "8-players": [
+     "dina-shestak"
+    ]
+   },
+   "file": "dina-shestak.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/illustrations/cards/arsen-kholm.webp",
+   "sha256": "3194d2c5f660528af78b4c9fa2a601efd627bdd53eae342e846115bd07cee06c",
+   "originalSha256": "9b92488988066d4a07a38ad166058caa11d917eb97bdd43180a9ba39b42ff5c1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Арсен Холм",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "arsen-kholm"
+    ],
+    "8-players": [
+     "arsen-kholm"
+    ]
+   },
+   "file": "arsen-kholm.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/illustrations/cards/polina-rud.webp",
+   "sha256": "d92f0e49f65df5277ad3c76420de2856d5cbf29f51e601826e975791e07ba24b",
+   "originalSha256": "9b92488988066d4a07a38ad166058caa11d917eb97bdd43180a9ba39b42ff5c1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Полина Рудь",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [],
+    "8-players": [
+     "polina-rud"
+    ]
+   },
+   "file": "polina-rud.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/illustrations/cards/travel-kit.webp",
+   "sha256": "1798c2937d692095b39ccd5d2fcf18905b77630baf3837c2ec70819c458780c3",
+   "originalSha256": "9b92488988066d4a07a38ad166058caa11d917eb97bdd43180a9ba39b42ff5c1",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рабочий набор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "galina-trush-travel-kit",
+     "kirill-savin-travel-kit",
+     "matvey-osokin-travel-kit"
+    ],
+    "4-players": [
+     "galina-trush-travel-kit",
+     "kirill-savin-travel-kit",
+     "matvey-osokin-travel-kit",
+     "raya-belik-travel-kit"
+    ],
+    "5-players": [
+     "galina-trush-travel-kit",
+     "kirill-savin-travel-kit",
+     "matvey-osokin-travel-kit",
+     "nikita-orelin-travel-kit",
+     "raya-belik-travel-kit"
+    ],
+    "6-players": [
+     "dina-shestak-travel-kit",
+     "galina-trush-travel-kit",
+     "kirill-savin-travel-kit",
+     "matvey-osokin-travel-kit",
+     "nikita-orelin-travel-kit",
+     "raya-belik-travel-kit"
+    ],
+    "7-players": [
+     "arsen-kholm-travel-kit",
+     "dina-shestak-travel-kit",
+     "galina-trush-travel-kit",
+     "kirill-savin-travel-kit",
+     "matvey-osokin-travel-kit",
+     "nikita-orelin-travel-kit",
+     "raya-belik-travel-kit"
+    ],
+    "8-players": [
+     "arsen-kholm-travel-kit",
+     "dina-shestak-travel-kit",
+     "galina-trush-travel-kit",
+     "kirill-savin-travel-kit",
+     "matvey-osokin-travel-kit",
+     "nikita-orelin-travel-kit",
+     "polina-rud-travel-kit",
+     "raya-belik-travel-kit"
+    ]
+   },
+   "file": "travel-kit.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/illustrations/cards/zinaida-tal.webp",
+   "sha256": "a32a0ea705b781b5d0f3ccc27632991ba9fba30a1a4737931a4140fb9e0b4af2",
+   "originalSha256": "12cc1b62544eed90cb8b2f90a8f376a0effff49fb7fdff6cbc23c567918489d5",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Зинаида Таль",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "zinaida-tal"
+    ],
+    "4-players": [
+     "zinaida-tal"
+    ],
+    "5-players": [
+     "zinaida-tal"
+    ],
+    "6-players": [
+     "zinaida-tal"
+    ],
+    "7-players": [
+     "zinaida-tal"
+    ],
+    "8-players": [
+     "zinaida-tal"
+    ]
+   },
+   "file": "zinaida-tal.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/illustrations/cards/grigory-rakitin.webp",
+   "sha256": "dc00624422c652eb3d66c7997707a24aab13ae0e96869dcad149697e09300660",
+   "originalSha256": "12cc1b62544eed90cb8b2f90a8f376a0effff49fb7fdff6cbc23c567918489d5",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Григорий Ракитин",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "grigory-rakitin"
+    ],
+    "4-players": [
+     "grigory-rakitin"
+    ],
+    "5-players": [
+     "grigory-rakitin"
+    ],
+    "6-players": [
+     "grigory-rakitin"
+    ],
+    "7-players": [
+     "grigory-rakitin"
+    ],
+    "8-players": [
+     "grigory-rakitin"
+    ]
+   },
+   "file": "grigory-rakitin.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/illustrations/cards/sofia-drozd.webp",
+   "sha256": "652343259c0c846c0a6a770d355a782754a3cfb4d5b986c40b137b951c21f0a0",
+   "originalSha256": "12cc1b62544eed90cb8b2f90a8f376a0effff49fb7fdff6cbc23c567918489d5",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Софья Дрозд",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "sofia-drozd"
+    ],
+    "4-players": [
+     "sofia-drozd"
+    ],
+    "5-players": [
+     "sofia-drozd"
+    ],
+    "6-players": [
+     "sofia-drozd"
+    ],
+    "7-players": [
+     "sofia-drozd"
+    ],
+    "8-players": [
+     "sofia-drozd"
+    ]
+   },
+   "file": "sofia-drozd.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/illustrations/cards/timur-ulan.webp",
+   "sha256": "be1f4ad9ca2b1cb4e404771c59848f87919cb1b6f7ffb3f6d39b64cef71c6565",
+   "originalSha256": "12cc1b62544eed90cb8b2f90a8f376a0effff49fb7fdff6cbc23c567918489d5",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тимур Улан",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "timur-ulan"
+    ],
+    "4-players": [
+     "timur-ulan"
+    ],
+    "5-players": [
+     "timur-ulan"
+    ],
+    "6-players": [
+     "timur-ulan"
+    ],
+    "7-players": [
+     "timur-ulan"
+    ],
+    "8-players": [
+     "timur-ulan"
+    ]
+   },
+   "file": "timur-ulan.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/illustrations/cards/pavel-reznik.webp",
+   "sha256": "31347b795ac30d4a55d5b0d233cb37a6c3906ab3ec6956b30e70dc02d895f6a1",
+   "originalSha256": "12cc1b62544eed90cb8b2f90a8f376a0effff49fb7fdff6cbc23c567918489d5",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Павел Резник",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "pavel-reznik"
+    ],
+    "4-players": [
+     "pavel-reznik"
+    ],
+    "5-players": [
+     "pavel-reznik"
+    ],
+    "6-players": [
+     "pavel-reznik"
+    ],
+    "7-players": [
+     "pavel-reznik"
+    ],
+    "8-players": [
+     "pavel-reznik"
+    ]
+   },
+   "file": "pavel-reznik.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/illustrations/cards/egor-yashin.webp",
+   "sha256": "1c1a42a33860da87d6aa7f5cd1178d1525ab3dc15f0a3aa8e5f5c2893fb9f4d5",
+   "originalSha256": "12cc1b62544eed90cb8b2f90a8f376a0effff49fb7fdff6cbc23c567918489d5",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Егор Яшин",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "egor-yashin"
+    ],
+    "4-players": [
+     "egor-yashin"
+    ],
+    "5-players": [
+     "egor-yashin"
+    ],
+    "6-players": [
+     "egor-yashin"
+    ],
+    "7-players": [
+     "egor-yashin"
+    ],
+    "8-players": [
+     "egor-yashin"
+    ]
+   },
+   "file": "egor-yashin.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/illustrations/cards/inna-rost.webp",
+   "sha256": "21ac075dde9dc2e8a155b26797ad78a8d1a536f6b8e2d1f517d930feecb2cf15",
+   "originalSha256": "12cc1b62544eed90cb8b2f90a8f376a0effff49fb7fdff6cbc23c567918489d5",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Инна Рост",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "inna-rost"
+    ],
+    "4-players": [
+     "inna-rost"
+    ],
+    "5-players": [
+     "inna-rost"
+    ],
+    "6-players": [
+     "inna-rost"
+    ],
+    "7-players": [
+     "inna-rost"
+    ],
+    "8-players": [
+     "inna-rost"
+    ]
+   },
+   "file": "inna-rost.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/illustrations/cards/mila-sudak.webp",
+   "sha256": "cf03bb997997002a84463679701ae6fcd3685f84812e22d37a18d83609f99022",
+   "originalSha256": "12cc1b62544eed90cb8b2f90a8f376a0effff49fb7fdff6cbc23c567918489d5",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мила Судак",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mila-sudak"
+    ],
+    "4-players": [
+     "mila-sudak"
+    ],
+    "5-players": [
+     "mila-sudak"
+    ],
+    "6-players": [
+     "mila-sudak"
+    ],
+    "7-players": [
+     "mila-sudak"
+    ],
+    "8-players": [
+     "mila-sudak"
+    ]
+   },
+   "file": "mila-sudak.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/illustrations/cards/anton-rakitin.webp",
+   "sha256": "d570b6053c38b369c494926c6ed2ab1787ac001d85515f380da62e61db01e78d",
+   "originalSha256": "12cc1b62544eed90cb8b2f90a8f376a0effff49fb7fdff6cbc23c567918489d5",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Антон Ракитин",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "anton-rakitin"
+    ],
+    "4-players": [
+     "anton-rakitin"
+    ],
+    "5-players": [
+     "anton-rakitin"
+    ],
+    "6-players": [
+     "anton-rakitin"
+    ],
+    "7-players": [
+     "anton-rakitin"
+    ],
+    "8-players": [
+     "anton-rakitin"
+    ]
+   },
+   "file": "anton-rakitin.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/illustrations/cards/nina-leht.webp",
+   "sha256": "7cf714049ce7f8eaea19e1d483a3f4406b7dd89b5d48004b2ddb783e219c323c",
+   "originalSha256": "12cc1b62544eed90cb8b2f90a8f376a0effff49fb7fdff6cbc23c567918489d5",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нина Лехт",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nina-leht"
+    ],
+    "4-players": [
+     "nina-leht"
+    ],
+    "5-players": [
+     "nina-leht"
+    ],
+    "6-players": [
+     "nina-leht"
+    ],
+    "7-players": [
+     "nina-leht"
+    ],
+    "8-players": [
+     "nina-leht"
+    ]
+   },
+   "file": "nina-leht.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/assets/table/heroes-kirill-savin.webp",
+   "sha256": "2a1ba8c95a9845ff8d07d6cd104fb89c3cbd56fd9ab1cdf3f1606592e054c9be",
+   "originalSha256": "4c3373d2961cb4e4a2690aaa123b344b7d87c65a54647ded56bc074cf285233c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Кирилл Савин",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "kirill-savin"
+    ],
+    "4-players": [
+     "kirill-savin"
+    ],
+    "5-players": [
+     "kirill-savin"
+    ],
+    "6-players": [
+     "kirill-savin"
+    ],
+    "7-players": [
+     "kirill-savin"
+    ],
+    "8-players": [
+     "kirill-savin"
+    ]
+   },
+   "file": "kirill-savin--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "kirill-savin.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/assets/table/heroes-galina-trush.webp",
+   "sha256": "d4d35586c004d1d2f10166047731779030ed45b7fe035b70dd2a65672150890d",
+   "originalSha256": "4c3373d2961cb4e4a2690aaa123b344b7d87c65a54647ded56bc074cf285233c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Галина Труш",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "galina-trush"
+    ],
+    "4-players": [
+     "galina-trush"
+    ],
+    "5-players": [
+     "galina-trush"
+    ],
+    "6-players": [
+     "galina-trush"
+    ],
+    "7-players": [
+     "galina-trush"
+    ],
+    "8-players": [
+     "galina-trush"
+    ]
+   },
+   "file": "galina-trush--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "galina-trush.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/assets/table/heroes-matvey-osokin.webp",
+   "sha256": "89c2b6584ca9d688c3331efcc1afddfd459a12a95a8e41a9a81afa9bb0a3ccbf",
+   "originalSha256": "4c3373d2961cb4e4a2690aaa123b344b7d87c65a54647ded56bc074cf285233c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Матвей Осокин",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "matvey-osokin"
+    ],
+    "4-players": [
+     "matvey-osokin"
+    ],
+    "5-players": [
+     "matvey-osokin"
+    ],
+    "6-players": [
+     "matvey-osokin"
+    ],
+    "7-players": [
+     "matvey-osokin"
+    ],
+    "8-players": [
+     "matvey-osokin"
+    ]
+   },
+   "file": "matvey-osokin--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "matvey-osokin.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/assets/table/heroes-raya-belik.webp",
+   "sha256": "689c3038be36aab64b9a9176f132f5ec75584b3edc16336c31a9a23f028ba459",
+   "originalSha256": "4c3373d2961cb4e4a2690aaa123b344b7d87c65a54647ded56bc074cf285233c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Рая Белик",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [
+     "raya-belik"
+    ],
+    "5-players": [
+     "raya-belik"
+    ],
+    "6-players": [
+     "raya-belik"
+    ],
+    "7-players": [
+     "raya-belik"
+    ],
+    "8-players": [
+     "raya-belik"
+    ]
+   },
+   "file": "raya-belik--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "raya-belik.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/assets/table/heroes-nikita-orelin.webp",
+   "sha256": "972890215e12228be9b5baacfc67c8e181bf3559b0e721009b268dd001cbde6a",
+   "originalSha256": "4c3373d2961cb4e4a2690aaa123b344b7d87c65a54647ded56bc074cf285233c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Никита Орелин",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [
+     "nikita-orelin"
+    ],
+    "6-players": [
+     "nikita-orelin"
+    ],
+    "7-players": [
+     "nikita-orelin"
+    ],
+    "8-players": [
+     "nikita-orelin"
+    ]
+   },
+   "file": "nikita-orelin--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "nikita-orelin.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/assets/table/heroes-dina-shestak.webp",
+   "sha256": "eb669df2415794e81b524478dbcf018f580026c0aacd19d68d6fa303d08b4928",
+   "originalSha256": "4c3373d2961cb4e4a2690aaa123b344b7d87c65a54647ded56bc074cf285233c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Дина Шестак",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [
+     "dina-shestak"
+    ],
+    "7-players": [
+     "dina-shestak"
+    ],
+    "8-players": [
+     "dina-shestak"
+    ]
+   },
+   "file": "dina-shestak--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "dina-shestak.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/assets/table/heroes-arsen-kholm.webp",
+   "sha256": "bc946f6aaf694aa257c51840e484425b64a7c05db4a912e0fe89e48e3453589f",
+   "originalSha256": "4c3373d2961cb4e4a2690aaa123b344b7d87c65a54647ded56bc074cf285233c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Арсен Холм",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [
+     "arsen-kholm"
+    ],
+    "8-players": [
+     "arsen-kholm"
+    ]
+   },
+   "file": "arsen-kholm--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "arsen-kholm.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/assets/table/heroes-polina-rud.webp",
+   "sha256": "20aabb8c7ccbb26ffda6c6e6af3ee5d23e5fc0a5df2868111e0c7315ee9695bc",
+   "originalSha256": "4c3373d2961cb4e4a2690aaa123b344b7d87c65a54647ded56bc074cf285233c",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Полина Рудь",
+   "references": [],
+   "subjects": {
+    "3-players": [],
+    "4-players": [],
+    "5-players": [],
+    "6-players": [],
+    "7-players": [],
+    "8-players": [
+     "polina-rud"
+    ]
+   },
+   "file": "polina-rud--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "polina-rud.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/assets/table/places-contour-lobby.webp",
+   "sha256": "361c230d592a9fd8d41fcfb1370b0a07db6091e2284c939080012994d7d7c28a",
+   "originalSha256": "ddae5710caa259bb03518b78107c91c2800140bcbbab8269aad0536df0ee9898",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Вестибюль «Контура»",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "contour-lobby"
+    ],
+    "4-players": [
+     "contour-lobby"
+    ],
+    "5-players": [
+     "contour-lobby"
+    ],
+    "6-players": [
+     "contour-lobby"
+    ],
+    "7-players": [
+     "contour-lobby"
+    ],
+    "8-players": [
+     "contour-lobby"
+    ]
+   },
+   "file": "contour-lobby.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/assets/table/places-guest-gallery.webp",
+   "sha256": "d41946ad7893416b836112b07c4ad757aa9815cebc5d5459f7e1993750d45623",
+   "originalSha256": "ddae5710caa259bb03518b78107c91c2800140bcbbab8269aad0536df0ee9898",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Гостевая галерея шестого этажа",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "guest-gallery"
+    ],
+    "4-players": [
+     "guest-gallery"
+    ],
+    "5-players": [
+     "guest-gallery"
+    ],
+    "6-players": [
+     "guest-gallery"
+    ],
+    "7-players": [
+     "guest-gallery"
+    ],
+    "8-players": [
+     "guest-gallery"
+    ]
+   },
+   "file": "guest-gallery.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/assets/table/places-suite-608.webp",
+   "sha256": "2ca3f6a7db6194ed823faf15f62b86f007f33d36d93defb2ef6f873013bb62a8",
+   "originalSha256": "ddae5710caa259bb03518b78107c91c2800140bcbbab8269aad0536df0ee9898",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Номер 608",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "suite-608"
+    ],
+    "4-players": [
+     "suite-608"
+    ],
+    "5-players": [
+     "suite-608"
+    ],
+    "6-players": [
+     "suite-608"
+    ],
+    "7-players": [
+     "suite-608"
+    ],
+    "8-players": [
+     "suite-608"
+    ]
+   },
+   "file": "suite-608.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/assets/table/places-service-pantry.webp",
+   "sha256": "cd59476272ced6141638fe199aa307f53ded0113a8c91139b734f1959c289dd2",
+   "originalSha256": "ddae5710caa259bb03518b78107c91c2800140bcbbab8269aad0536df0ee9898",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Сервизная 608-го",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "service-pantry"
+    ],
+    "4-players": [
+     "service-pantry"
+    ],
+    "5-players": [
+     "service-pantry"
+    ],
+    "6-players": [
+     "service-pantry"
+    ],
+    "7-players": [
+     "service-pantry"
+    ],
+    "8-players": [
+     "service-pantry"
+    ]
+   },
+   "file": "service-pantry.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/assets/table/places-service-corridor.webp",
+   "sha256": "a9fd4a154fb2cbaa80d66b8f81062e07eea94b42d435990c07789e5747c0ce2f",
+   "originalSha256": "ddae5710caa259bb03518b78107c91c2800140bcbbab8269aad0536df0ee9898",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Восточный служебный коридор",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "service-corridor"
+    ],
+    "4-players": [
+     "service-corridor"
+    ],
+    "5-players": [
+     "service-corridor"
+    ],
+    "6-players": [
+     "service-corridor"
+    ],
+    "7-players": [
+     "service-corridor"
+    ],
+    "8-players": [
+     "service-corridor"
+    ]
+   },
+   "file": "service-corridor.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/assets/table/places-linen-room.webp",
+   "sha256": "3d2d8b3a1ead86ba9c65608580bf89d9410e5504dc1fe2ac96d5d99e320f5b71",
+   "originalSha256": "ddae5710caa259bb03518b78107c91c2800140bcbbab8269aad0536df0ee9898",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Бельевая и площадка лестницы",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "linen-room"
+    ],
+    "4-players": [
+     "linen-room"
+    ],
+    "5-players": [
+     "linen-room"
+    ],
+    "6-players": [
+     "linen-room"
+    ],
+    "7-players": [
+     "linen-room"
+    ],
+    "8-players": [
+     "linen-room"
+    ]
+   },
+   "file": "linen-room.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/assets/table/places-manager-office.webp",
+   "sha256": "5ff15df9d661fb9c53ced3981b9e7bde2d39e5e47f52f17bdffc10764b4478ba",
+   "originalSha256": "ddae5710caa259bb03518b78107c91c2800140bcbbab8269aad0536df0ee9898",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Кабинет управляющей",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "manager-office"
+    ],
+    "4-players": [
+     "manager-office"
+    ],
+    "5-players": [
+     "manager-office"
+    ],
+    "6-players": [
+     "manager-office"
+    ],
+    "7-players": [
+     "manager-office"
+    ],
+    "8-players": [
+     "manager-office"
+    ]
+   },
+   "file": "manager-office.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/assets/table/places-program-room.webp",
+   "sha256": "523822ddaa495f4264a599738fe1390ac90ebc7ce1b9794162fcfd17ce595435",
+   "originalSha256": "ddae5710caa259bb03518b78107c91c2800140bcbbab8269aad0536df0ee9898",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Редакционная комната юбилейного вечера",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "program-room"
+    ],
+    "4-players": [
+     "program-room"
+    ],
+    "5-players": [
+     "program-room"
+    ],
+    "6-players": [
+     "program-room"
+    ],
+    "7-players": [
+     "program-room"
+    ],
+    "8-players": [
+     "program-room"
+    ]
+   },
+   "file": "program-room.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/assets/table/places-assembly-room.webp",
+   "sha256": "6b31a8a15a281fd0a7143df2914024504f7fef984b24f509dd567b24ab89127a",
+   "originalSha256": "ddae5710caa259bb03518b78107c91c2800140bcbbab8269aad0536df0ee9898",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Малый зал отеля",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "assembly-room"
+    ],
+    "4-players": [
+     "assembly-room"
+    ],
+    "5-players": [
+     "assembly-room"
+    ],
+    "6-players": [
+     "assembly-room"
+    ],
+    "7-players": [
+     "assembly-room"
+    ],
+    "8-players": [
+     "assembly-room"
+    ]
+   },
+   "file": "assembly-room.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/assets/table/foes-foe-5578771f57.webp",
+   "sha256": "7f4cc31766f7674b030e1022c966b1b5aa1983498fb9349af3a05f26c88eb245",
+   "originalSha256": "0b982775c9bfc723f94ec11744933728df28e05e91aa4f222ad5553bf558139d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Испуганный взрослый работник",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "linen-dispute-foe-1",
+     "linen-dispute-foe-2"
+    ],
+    "4-players": [
+     "linen-dispute-foe-1",
+     "linen-dispute-foe-2",
+     "linen-dispute-foe-3"
+    ],
+    "5-players": [
+     "linen-dispute-foe-1",
+     "linen-dispute-foe-2",
+     "linen-dispute-foe-3"
+    ],
+    "6-players": [
+     "linen-dispute-foe-1",
+     "linen-dispute-foe-2",
+     "linen-dispute-foe-3",
+     "linen-dispute-foe-4"
+    ],
+    "7-players": [
+     "linen-dispute-foe-1",
+     "linen-dispute-foe-2",
+     "linen-dispute-foe-3",
+     "linen-dispute-foe-4",
+     "linen-dispute-foe-5"
+    ],
+    "8-players": [
+     "linen-dispute-foe-1",
+     "linen-dispute-foe-2",
+     "linen-dispute-foe-3",
+     "linen-dispute-foe-4",
+     "linen-dispute-foe-5",
+     "linen-dispute-foe-6"
+    ]
+   },
+   "file": "foe-5578771f57.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/assets/table/foes-foe-5578771f57.webp",
+   "sha256": "7f4cc31766f7674b030e1022c966b1b5aa1983498fb9349af3a05f26c88eb245",
+   "originalSha256": "0b982775c9bfc723f94ec11744933728df28e05e91aa4f222ad5553bf558139d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Испуганный взрослый работник",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "linen-dispute-foe-1",
+     "linen-dispute-foe-2"
+    ],
+    "4-players": [
+     "linen-dispute-foe-1",
+     "linen-dispute-foe-2",
+     "linen-dispute-foe-3"
+    ],
+    "5-players": [
+     "linen-dispute-foe-1",
+     "linen-dispute-foe-2",
+     "linen-dispute-foe-3"
+    ],
+    "6-players": [
+     "linen-dispute-foe-1",
+     "linen-dispute-foe-2",
+     "linen-dispute-foe-3",
+     "linen-dispute-foe-4"
+    ],
+    "7-players": [
+     "linen-dispute-foe-1",
+     "linen-dispute-foe-2",
+     "linen-dispute-foe-3",
+     "linen-dispute-foe-4",
+     "linen-dispute-foe-5"
+    ],
+    "8-players": [
+     "linen-dispute-foe-1",
+     "linen-dispute-foe-2",
+     "linen-dispute-foe-3",
+     "linen-dispute-foe-4",
+     "linen-dispute-foe-5",
+     "linen-dispute-foe-6"
+    ]
+   },
+   "file": "foe-5578771f57--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-5578771f57.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/assets/table/foes-foe-403dcc39be.webp",
+   "sha256": "0f58df475f2fea0da8b0ebcf2b525578c5c03e53dd681cca44d68e057c749be0",
+   "originalSha256": "0b982775c9bfc723f94ec11744933728df28e05e91aa4f222ad5553bf558139d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Гостиничный охранник",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "cabinet-pressure-foe-1",
+     "cabinet-pressure-foe-2"
+    ],
+    "4-players": [
+     "cabinet-pressure-foe-1",
+     "cabinet-pressure-foe-2",
+     "cabinet-pressure-foe-3"
+    ],
+    "5-players": [
+     "cabinet-pressure-foe-1",
+     "cabinet-pressure-foe-2",
+     "cabinet-pressure-foe-3"
+    ],
+    "6-players": [
+     "cabinet-pressure-foe-1",
+     "cabinet-pressure-foe-2",
+     "cabinet-pressure-foe-3",
+     "cabinet-pressure-foe-4"
+    ],
+    "7-players": [
+     "cabinet-pressure-foe-1",
+     "cabinet-pressure-foe-2",
+     "cabinet-pressure-foe-3",
+     "cabinet-pressure-foe-4",
+     "cabinet-pressure-foe-5"
+    ],
+    "8-players": [
+     "cabinet-pressure-foe-1",
+     "cabinet-pressure-foe-2",
+     "cabinet-pressure-foe-3",
+     "cabinet-pressure-foe-4",
+     "cabinet-pressure-foe-5",
+     "cabinet-pressure-foe-6"
+    ]
+   },
+   "file": "foe-403dcc39be.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/assets/table/foes-foe-403dcc39be.webp",
+   "sha256": "0f58df475f2fea0da8b0ebcf2b525578c5c03e53dd681cca44d68e057c749be0",
+   "originalSha256": "0b982775c9bfc723f94ec11744933728df28e05e91aa4f222ad5553bf558139d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Гостиничный охранник",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "cabinet-pressure-foe-1",
+     "cabinet-pressure-foe-2"
+    ],
+    "4-players": [
+     "cabinet-pressure-foe-1",
+     "cabinet-pressure-foe-2",
+     "cabinet-pressure-foe-3"
+    ],
+    "5-players": [
+     "cabinet-pressure-foe-1",
+     "cabinet-pressure-foe-2",
+     "cabinet-pressure-foe-3"
+    ],
+    "6-players": [
+     "cabinet-pressure-foe-1",
+     "cabinet-pressure-foe-2",
+     "cabinet-pressure-foe-3",
+     "cabinet-pressure-foe-4"
+    ],
+    "7-players": [
+     "cabinet-pressure-foe-1",
+     "cabinet-pressure-foe-2",
+     "cabinet-pressure-foe-3",
+     "cabinet-pressure-foe-4",
+     "cabinet-pressure-foe-5"
+    ],
+    "8-players": [
+     "cabinet-pressure-foe-1",
+     "cabinet-pressure-foe-2",
+     "cabinet-pressure-foe-3",
+     "cabinet-pressure-foe-4",
+     "cabinet-pressure-foe-5",
+     "cabinet-pressure-foe-6"
+    ]
+   },
+   "file": "foe-403dcc39be--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-403dcc39be.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/assets/table/foes-foe-4705deb096.webp",
+   "sha256": "1f8339080a3e378f6c50f5066b01f6de96c328ac22d6427edb5aad7676eb7d48",
+   "originalSha256": "0b982775c9bfc723f94ec11744933728df28e05e91aa4f222ad5553bf558139d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Возбуждённый взрослый слушатель",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "audience-exit-foe-1",
+     "audience-exit-foe-2"
+    ],
+    "4-players": [
+     "audience-exit-foe-1",
+     "audience-exit-foe-2",
+     "audience-exit-foe-3"
+    ],
+    "5-players": [
+     "audience-exit-foe-1",
+     "audience-exit-foe-2",
+     "audience-exit-foe-3"
+    ],
+    "6-players": [
+     "audience-exit-foe-1",
+     "audience-exit-foe-2",
+     "audience-exit-foe-3",
+     "audience-exit-foe-4"
+    ],
+    "7-players": [
+     "audience-exit-foe-1",
+     "audience-exit-foe-2",
+     "audience-exit-foe-3",
+     "audience-exit-foe-4",
+     "audience-exit-foe-5"
+    ],
+    "8-players": [
+     "audience-exit-foe-1",
+     "audience-exit-foe-2",
+     "audience-exit-foe-3",
+     "audience-exit-foe-4",
+     "audience-exit-foe-5",
+     "audience-exit-foe-6"
+    ]
+   },
+   "file": "foe-4705deb096.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/assets/table/foes-foe-4705deb096.webp",
+   "sha256": "1f8339080a3e378f6c50f5066b01f6de96c328ac22d6427edb5aad7676eb7d48",
+   "originalSha256": "0b982775c9bfc723f94ec11744933728df28e05e91aa4f222ad5553bf558139d",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Возбуждённый взрослый слушатель",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "audience-exit-foe-1",
+     "audience-exit-foe-2"
+    ],
+    "4-players": [
+     "audience-exit-foe-1",
+     "audience-exit-foe-2",
+     "audience-exit-foe-3"
+    ],
+    "5-players": [
+     "audience-exit-foe-1",
+     "audience-exit-foe-2",
+     "audience-exit-foe-3"
+    ],
+    "6-players": [
+     "audience-exit-foe-1",
+     "audience-exit-foe-2",
+     "audience-exit-foe-3",
+     "audience-exit-foe-4"
+    ],
+    "7-players": [
+     "audience-exit-foe-1",
+     "audience-exit-foe-2",
+     "audience-exit-foe-3",
+     "audience-exit-foe-4",
+     "audience-exit-foe-5"
+    ],
+    "8-players": [
+     "audience-exit-foe-1",
+     "audience-exit-foe-2",
+     "audience-exit-foe-3",
+     "audience-exit-foe-4",
+     "audience-exit-foe-5",
+     "audience-exit-foe-6"
+    ]
+   },
+   "file": "foe-4705deb096--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "foe-4705deb096.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/assets/table/npcs-zinaida-tal.webp",
+   "sha256": "93e4707496267a8504b8e227b26ff0fcd4bf6f2687a951d0265140aea70de1d2",
+   "originalSha256": "d304441f9055a63bb00ee5ca39cd9a1956c91a54cf179d7251ed9bb737814218",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Зинаида Таль",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "zinaida-tal"
+    ],
+    "4-players": [
+     "zinaida-tal"
+    ],
+    "5-players": [
+     "zinaida-tal"
+    ],
+    "6-players": [
+     "zinaida-tal"
+    ],
+    "7-players": [
+     "zinaida-tal"
+    ],
+    "8-players": [
+     "zinaida-tal"
+    ]
+   },
+   "file": "zinaida-tal--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "zinaida-tal.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/assets/table/npcs-grigory-rakitin.webp",
+   "sha256": "f4298475b7e3e530992da7ab3c8942aa9ad6df3701598fa31259b0543ea03607",
+   "originalSha256": "d304441f9055a63bb00ee5ca39cd9a1956c91a54cf179d7251ed9bb737814218",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Григорий Ракитин",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "grigory-rakitin"
+    ],
+    "4-players": [
+     "grigory-rakitin"
+    ],
+    "5-players": [
+     "grigory-rakitin"
+    ],
+    "6-players": [
+     "grigory-rakitin"
+    ],
+    "7-players": [
+     "grigory-rakitin"
+    ],
+    "8-players": [
+     "grigory-rakitin"
+    ]
+   },
+   "file": "grigory-rakitin--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "grigory-rakitin.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/assets/table/npcs-sofia-drozd.webp",
+   "sha256": "e56399003fb50c6253deb224a1911eeeb9bd4fc74b5921a8bcda593d33e5d309",
+   "originalSha256": "d304441f9055a63bb00ee5ca39cd9a1956c91a54cf179d7251ed9bb737814218",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Софья Дрозд",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "sofia-drozd"
+    ],
+    "4-players": [
+     "sofia-drozd"
+    ],
+    "5-players": [
+     "sofia-drozd"
+    ],
+    "6-players": [
+     "sofia-drozd"
+    ],
+    "7-players": [
+     "sofia-drozd"
+    ],
+    "8-players": [
+     "sofia-drozd"
+    ]
+   },
+   "file": "sofia-drozd--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "sofia-drozd.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/assets/table/npcs-timur-ulan.webp",
+   "sha256": "094342dcf846086b9e7c86fae53fc6ddd084214f316f73a3c597a66cb934959c",
+   "originalSha256": "d304441f9055a63bb00ee5ca39cd9a1956c91a54cf179d7251ed9bb737814218",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Тимур Улан",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "timur-ulan"
+    ],
+    "4-players": [
+     "timur-ulan"
+    ],
+    "5-players": [
+     "timur-ulan"
+    ],
+    "6-players": [
+     "timur-ulan"
+    ],
+    "7-players": [
+     "timur-ulan"
+    ],
+    "8-players": [
+     "timur-ulan"
+    ]
+   },
+   "file": "timur-ulan--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "timur-ulan.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/assets/table/npcs-pavel-reznik.webp",
+   "sha256": "63d9ed0c7e4ae817199ba8bd0bc3d39acf6fe2c5c665c20b6d096832bd222956",
+   "originalSha256": "d304441f9055a63bb00ee5ca39cd9a1956c91a54cf179d7251ed9bb737814218",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Павел Резник",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "pavel-reznik"
+    ],
+    "4-players": [
+     "pavel-reznik"
+    ],
+    "5-players": [
+     "pavel-reznik"
+    ],
+    "6-players": [
+     "pavel-reznik"
+    ],
+    "7-players": [
+     "pavel-reznik"
+    ],
+    "8-players": [
+     "pavel-reznik"
+    ]
+   },
+   "file": "pavel-reznik--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "pavel-reznik.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/assets/table/npcs-egor-yashin.webp",
+   "sha256": "84cabb377239a8bef60fcab2b4933fe0cd7130a7cbcdb0c280fd5569a3af031b",
+   "originalSha256": "79ee067b83cb6385a0b1ad3f16d8cf91cb9f64cd9c1ab083e392ddd44086dd17",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Егор Яшин",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "egor-yashin"
+    ],
+    "4-players": [
+     "egor-yashin"
+    ],
+    "5-players": [
+     "egor-yashin"
+    ],
+    "6-players": [
+     "egor-yashin"
+    ],
+    "7-players": [
+     "egor-yashin"
+    ],
+    "8-players": [
+     "egor-yashin"
+    ]
+   },
+   "file": "egor-yashin--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "egor-yashin.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/assets/table/npcs-inna-rost.webp",
+   "sha256": "f58a0054f8659e985d68f95c664a3987583885e2bd18114a97fcf4d8fdd37d0e",
+   "originalSha256": "79ee067b83cb6385a0b1ad3f16d8cf91cb9f64cd9c1ab083e392ddd44086dd17",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Инна Рост",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "inna-rost"
+    ],
+    "4-players": [
+     "inna-rost"
+    ],
+    "5-players": [
+     "inna-rost"
+    ],
+    "6-players": [
+     "inna-rost"
+    ],
+    "7-players": [
+     "inna-rost"
+    ],
+    "8-players": [
+     "inna-rost"
+    ]
+   },
+   "file": "inna-rost--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "inna-rost.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/assets/table/npcs-mila-sudak.webp",
+   "sha256": "074c591b6f679088700a8c739f8588dd10680b92c7a444200657fa9880b55ae9",
+   "originalSha256": "79ee067b83cb6385a0b1ad3f16d8cf91cb9f64cd9c1ab083e392ddd44086dd17",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Мила Судак",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "mila-sudak"
+    ],
+    "4-players": [
+     "mila-sudak"
+    ],
+    "5-players": [
+     "mila-sudak"
+    ],
+    "6-players": [
+     "mila-sudak"
+    ],
+    "7-players": [
+     "mila-sudak"
+    ],
+    "8-players": [
+     "mila-sudak"
+    ]
+   },
+   "file": "mila-sudak--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "mila-sudak.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/assets/table/npcs-anton-rakitin.webp",
+   "sha256": "a8408d2754cf90d73d9ee509252d0e10274e294197e9b3bec7be6d12923b11d4",
+   "originalSha256": "79ee067b83cb6385a0b1ad3f16d8cf91cb9f64cd9c1ab083e392ddd44086dd17",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Антон Ракитин",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "anton-rakitin"
+    ],
+    "4-players": [
+     "anton-rakitin"
+    ],
+    "5-players": [
+     "anton-rakitin"
+    ],
+    "6-players": [
+     "anton-rakitin"
+    ],
+    "7-players": [
+     "anton-rakitin"
+    ],
+    "8-players": [
+     "anton-rakitin"
+    ]
+   },
+   "file": "anton-rakitin--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "anton-rakitin.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/assets/table/npcs-nina-leht.webp",
+   "sha256": "795effe9a98439b34e25b9fd43e78947e0beb4b4a24af1c5bc70fcb9d2ad7b85",
+   "originalSha256": "79ee067b83cb6385a0b1ad3f16d8cf91cb9f64cd9c1ab083e392ddd44086dd17",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Нина Лехт",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "nina-leht"
+    ],
+    "4-players": [
+     "nina-leht"
+    ],
+    "5-players": [
+     "nina-leht"
+    ],
+    "6-players": [
+     "nina-leht"
+    ],
+    "7-players": [
+     "nina-leht"
+    ],
+    "8-players": [
+     "nina-leht"
+    ]
+   },
+   "file": "nina-leht--figure.webp",
+   "variant": "derived",
+   "label": "figure",
+   "purpose": "figure",
+   "derivedFrom": "nina-leht.webp"
+  },
+  {
+   "source": "campaigns/noir-2026/room-608/illustrations/opening.webp",
+   "sha256": "7db3096ff3d58e75dc9b1cefd6891a998da9b61e505f0638445fe47547a2fc6e",
+   "originalSha256": "bb547c2cfe488227cb72144da3c1dc18f64ed1ba9427e7b3a79332f1a8225512",
+   "generated": "2026-11-22",
+   "prompt": "Campaign illustration: Вестибюль «Контура» — Шестьсот восьмая комната",
+   "references": [],
+   "subjects": {
+    "3-players": [
+     "narechensk"
+    ],
+    "4-players": [
+     "narechensk"
+    ],
+    "5-players": [
+     "narechensk"
+    ],
+    "6-players": [
+     "narechensk"
+    ],
+    "7-players": [
+     "narechensk"
+    ],
+    "8-players": [
+     "narechensk"
+    ]
+   },
+   "file": "cover.webp",
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null
+  },
+  {
+   "file": "linen-room--map.webp",
+   "source": "campaigns/noir-2026/room-608/assets/battle-maps/linen-room.webp",
+   "sha256": "9b7d9094be5305b6c65c21f38f2e7675128ff95727992254242253af7496fba3",
+   "originalSha256": "33f17f19663e2466f652b3cff01c3b92a9ccc17c0c1d481f291467d988f59636",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Бельевая и площадка лестницы. Visible scenery: Сортировочный стол, пустые тележки, шкафы сменной одежды. Сюда выходит служебная лестница; закрытые шкафы принадлежат работникам.. World style: Нареченск: отель «Контур» · Oxidized brass hotel key escutcheons pressed into dark plum corridor damask. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "linen-room.webp",
+   "subjects": {
+    "3-players": [
+     "linen-room"
+    ],
+    "4-players": [
+     "linen-room"
+    ],
+    "5-players": [
+     "linen-room"
+    ],
+    "6-players": [
+     "linen-room"
+    ],
+    "7-players": [
+     "linen-room"
+    ],
+    "8-players": [
+     "linen-room"
+    ]
+   }
+  },
+  {
+   "file": "manager-office--map.webp",
+   "source": "campaigns/noir-2026/room-608/assets/battle-maps/manager-office.webp",
+   "sha256": "b42c6892ec168341251e1ecf16b175418265c246783a6e5f07414cc32535ca68",
+   "originalSha256": "67be621b9ae7ecf282edad024fda508545498b542e66f7bca35545fa86d70984",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Кабинет управляющей. Visible scenery: Кабинет на пятом этаже рядом с бельевой: стол с книгой ключей, опечатанная рабочая сумка управляющей и два стула для посетителей.. World style: Нареченск: отель «Контур» · Oxidized brass hotel key escutcheons pressed into dark plum corridor damask. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "manager-office.webp",
+   "subjects": {
+    "3-players": [
+     "manager-office"
+    ],
+    "4-players": [
+     "manager-office"
+    ],
+    "5-players": [
+     "manager-office"
+    ],
+    "6-players": [
+     "manager-office"
+    ],
+    "7-players": [
+     "manager-office"
+    ],
+    "8-players": [
+     "manager-office"
+    ]
+   }
+  },
+  {
+   "file": "assembly-room--map.webp",
+   "source": "campaigns/noir-2026/room-608/assets/battle-maps/assembly-room.webp",
+   "sha256": "2978ea19642688ef74a6c098d29b7f77ad84189b0403ec019a7210cf37743964",
+   "originalSha256": "56d7956bcddf2a426bd7430baad61130c7eb5ef6338f9ed11d4413c091ddccb7",
+   "generated": "2026-11-22",
+   "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Малый зал отеля. Visible scenery: Зал с переносной ширмой и стульями. Здесь можно провести ограниченный показ наблюдений или встречу с работниками.. World style: Нареченск: отель «Контур» · Oxidized brass hotel key escutcheons pressed into dark plum corridor damask. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+   "references": [],
+   "variant": "derived",
+   "label": "map",
+   "purpose": "battle-map",
+   "derivedFrom": "assembly-room.webp",
+   "subjects": {
+    "3-players": [
+     "assembly-room"
+    ],
+    "4-players": [
+     "assembly-room"
+    ],
+    "5-players": [
+     "assembly-room"
+    ],
+    "6-players": [
+     "assembly-room"
+    ],
+    "7-players": [
+     "assembly-room"
+    ],
+    "8-players": [
+     "assembly-room"
+    ]
+   }
+  },
+  {
+   "file": "world-map.webp",
+   "source": "campaigns/noir-2026/room-608/assets/world-map/world-map.webp",
+   "sha256": "4c602b83f3f7999cee78f266843d8a825729b2724f0d60268d4f1f9c5da20740",
+   "originalSha256": "7c39fd549e061aa3d1b9311f46700442250368731b7737e85ed6498e3f40a9bf",
+   "generated": "2026-11-22",
+   "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Нареченск: отель «Контур». Style Нареченск: отель «Контур» · Oxidized brass hotel key escutcheons pressed into dark plum corridor damask. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Вестибюль «Контура»; 0.367,0.177 Гостевая галерея шестого этажа; 0.623,0.15 Номер 608; 0.88,0.177 Сервизная 608-го; 0.905,0.517 Восточный служебный коридор; 0.648,0.49 Бельевая и площадка лестницы; 0.392,0.517 Кабинет управляющей; 0.135,0.49 Редакционная комната юбилейного вечера; 0.11,0.83 Малый зал отеля. Show public exteriors / unlabeled contours only.",
+   "references": [],
+   "variant": "reference",
+   "label": null,
+   "purpose": "image",
+   "derivedFrom": null,
+   "subjects": {
+    "3-players": [
+     "world-map"
+    ],
+    "4-players": [
+     "world-map"
+    ],
+    "5-players": [
+     "world-map"
+    ],
+    "6-players": [
+     "world-map"
+    ],
+    "7-players": [
+     "world-map"
+    ],
+    "8-players": [
+     "world-map"
+    ]
+   }
+  }
+ ]
+}

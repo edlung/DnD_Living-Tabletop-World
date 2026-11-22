@@ -1,0 +1,378 @@
+{
+  "about": "Портреты для карточек и изображение закрытого набора. Сначала сверяйте личность и доступность персонажа за столом.",
+  "generated": "2026-11-22",
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "heroes",
+      "originalFile": "exec-ae941a64-74a2-48f0-a516-c5838d6bd4ab.png",
+      "originalSha256": "b8b05492e5c50053a8e3525fd6b83c345901cab02678ad8d10f349e85fde609f",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 3 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:3. Luminous fantasy gouache, varied colors, naturalistic stylized faces. World: Ярмарка Складок. Characters, in strict cell order:\n1. Веста Клёпка — Короткая коса, фартук с нашитыми образцами ткани и деревянный валик с расписной ручкой. Age 29.\n2. Мирт Примерка — Жилет с петлями вместо карманов, шарф с мерными узлами и веснушки, похожие на запятые. Age 17.\n3. Руна Тёплый Мел — Синий плащ, меловая дощечка на ремне и знак маленького очага на застёжке. Age 44.\n4. Элли Складка — Полосатые рукава, сумка с подписанными образцами охры и ткани, круглая линза на шнурке. Age 23.\n5. Бора Широкий Стежок — Высокий воротник, напёрсток на шнурке и пояс с образцами тканей. Age 36.\n6. Тави Ровный Шаг — Бумажные ярлыки на рукавах, зелёная шапка и деревянные счётные палочки в плоской коробке. Age 16.\n7. Сенна Латка — Пёстрый платок, аккуратные заплатки на локтях и медная коробочка с пуговицами. Age 61.\n8. Яро Короткая Надпись — Кисточка за ухом, широкий пояс с мелками и плащ, расчерченный маленькими квадратами. Age 32.\n9. Дорожный / рабочий набор — Still life of one opaque closed everyday satchel, appropriate to this world and era. No person and nothing spilling out.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 3,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "npcs",
+      "originalFile": "exec-d3397449-aa58-46b2-a2db-6d4f8c3cb784.png",
+      "originalSha256": "c096a25b7e72729cccc73ef497f88b92b857d6171ef200a12cb3a2a337f2ade1",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 3 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:3. Luminous fantasy gouache, varied colors, naturalistic stylized faces. World: Ярмарка Складок. Characters, in strict cell order:\n1. Товин Подкладка — Портной в куртке с тремя подкладками; из кармана торчит полосатый пробный шарф. Age 56.\n2. Севра Четверть — Гномка с прямой чёлкой и бело-зелёным фартуком; нарисованная рыба проплывает по его нижнему краю. Age 41.\n3. Листва Внутренний Карман — Мастерица с листьями вместо волос и сумкой, у которой карманы находятся сразу на двух сторонах. Age 32.\n4. Орса Угольная Черта — Саламандра с матовой оранжевой кожей и кисточками в широком тканевом поясе. Age 38.\n5. Иней Ракушечный — Мастер из снежного предела с прозрачными ногтями и белой кистью за ухом. Age 52.\n6. Пух Запасной Кусочек — Невысокий моховой человек с круглыми очками и тремя матерчатыми карманами на животе. Age 71.\n7. Дара Меловая Черта — Человек с короткими серебристыми волосами; рукава покрыты белыми следами мела. Age 26.\n8. Брыль Семь Карманов — Купец с пушистым плоским хвостом, семью карманами на жилете и квадратной шляпой. Age 19.\n9. Круг Флюгеров — Крепкий мастер в жилете с тканевыми лентами; на широком ремешке его шляпы нарисован флюгер. Age 64.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 3,
+      "width": 1254,
+      "height": 1254
+    }
+  ],
+  "cards": [
+    {
+      "id": "vesta-rivet",
+      "file": "cards/vesta-rivet.webp",
+      "title": "Веста Клёпка",
+      "subjects": [
+        "vesta-rivet"
+      ],
+      "sheet": "heroes",
+      "cell": 1,
+      "crop": {
+        "left": 10,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "66dc0d12de9b2ccd96373db321104b0b50a77a2a0c3431ff950158a00b65a112"
+    },
+    {
+      "id": "myrt-fitting",
+      "file": "cards/myrt-fitting.webp",
+      "title": "Мирт Примерка",
+      "subjects": [
+        "myrt-fitting"
+      ],
+      "sheet": "heroes",
+      "cell": 2,
+      "crop": {
+        "left": 428,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "0d9b9b616938708c6010f53dd69f6d0619efc4ab97b7be8e8c3d7823cfaeab52"
+    },
+    {
+      "id": "runa-warmchalk",
+      "file": "cards/runa-warmchalk.webp",
+      "title": "Руна Тёплый Мел",
+      "subjects": [
+        "runa-warmchalk"
+      ],
+      "sheet": "heroes",
+      "cell": 3,
+      "crop": {
+        "left": 846,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "f68ca2912dde4a2aede09e1327d6ad10d0b96cff5becbcac4010d50ac70cab04"
+    },
+    {
+      "id": "elli-fold",
+      "file": "cards/elli-fold.webp",
+      "title": "Элли Складка",
+      "subjects": [
+        "elli-fold"
+      ],
+      "sheet": "heroes",
+      "cell": 4,
+      "crop": {
+        "left": 10,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "3368a5e9cf8c61b3bf7bf8e1d72fe38fdba380c67b4ffca58936683af3cfefe0"
+    },
+    {
+      "id": "bora-grip",
+      "file": "cards/bora-grip.webp",
+      "title": "Бора Широкий Стежок",
+      "subjects": [
+        "bora-grip"
+      ],
+      "sheet": "heroes",
+      "cell": 5,
+      "crop": {
+        "left": 428,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "f6d86fd5787e9176af2b29606f972d8c960606dc2f6b28e45b443ec266a050f1"
+    },
+    {
+      "id": "tavi-countstep",
+      "file": "cards/tavi-countstep.webp",
+      "title": "Тави Ровный Шаг",
+      "subjects": [
+        "tavi-countstep"
+      ],
+      "sheet": "heroes",
+      "cell": 6,
+      "crop": {
+        "left": 846,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "2bed2512049e322b74d637852ef9ff037d47c9dc76f05c1e06e84573718ac838"
+    },
+    {
+      "id": "senna-repair",
+      "file": "cards/senna-repair.webp",
+      "title": "Сенна Латка",
+      "subjects": [
+        "senna-repair"
+      ],
+      "sheet": "heroes",
+      "cell": 7,
+      "crop": {
+        "left": 10,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "fdaad89991a65cc01d2355aedb27e58da0cf85042dff66c00d3f76ac877073ff"
+    },
+    {
+      "id": "yaro-caption",
+      "file": "cards/yaro-caption.webp",
+      "title": "Яро Короткая Надпись",
+      "subjects": [
+        "yaro-caption"
+      ],
+      "sheet": "heroes",
+      "cell": 8,
+      "crop": {
+        "left": 428,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "8a5c2ef0c9405d48efe16fe481a7d1967114e0cd72b83ff6dc37391ff8df1b91"
+    },
+    {
+      "id": "travel-kit",
+      "file": "cards/travel-kit.webp",
+      "title": "Дорожный набор",
+      "subjects": [
+        "bora-grip-travel-kit",
+        "elli-fold-travel-kit",
+        "myrt-fitting-travel-kit",
+        "runa-warmchalk-travel-kit",
+        "senna-repair-travel-kit",
+        "tavi-countstep-travel-kit",
+        "vesta-rivet-travel-kit",
+        "yaro-caption-travel-kit"
+      ],
+      "sheet": "heroes",
+      "cell": 9,
+      "crop": {
+        "left": 846,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "ec09ad5a83f3270539aa22b002bc8a040ba338e8268d26e56518d171c14166a5"
+    },
+    {
+      "id": "tovin-tailor",
+      "file": "cards/tovin-tailor.webp",
+      "title": "Товин Подкладка",
+      "subjects": [
+        "tovin-tailor"
+      ],
+      "sheet": "npcs",
+      "cell": 1,
+      "crop": {
+        "left": 10,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "d7631d097cb52df8f7f3c6d34a7b2b9c5fc1c2102432f9df3d97e3dd1db8a15d"
+    },
+    {
+      "id": "sevra-quarter",
+      "file": "cards/sevra-quarter.webp",
+      "title": "Севра Четверть",
+      "subjects": [
+        "sevra-quarter"
+      ],
+      "sheet": "npcs",
+      "cell": 2,
+      "crop": {
+        "left": 428,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "3c92e0847251f418b168cf97d292442dd055416b4d9ca06d250263460414dd6a"
+    },
+    {
+      "id": "listva-bagmaker",
+      "file": "cards/listva-bagmaker.webp",
+      "title": "Листва Внутренний Карман",
+      "subjects": [
+        "listva-bagmaker"
+      ],
+      "sheet": "npcs",
+      "cell": 3,
+      "crop": {
+        "left": 846,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "2e49eb03d607b52a3ad1b4760a0efdda35e12a599637cc3f0ba8600e082ca57d"
+    },
+    {
+      "id": "orsa-ember",
+      "file": "cards/orsa-ember.webp",
+      "title": "Орса Угольная Черта",
+      "subjects": [
+        "orsa-ember"
+      ],
+      "sheet": "npcs",
+      "cell": 4,
+      "crop": {
+        "left": 10,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "a36307446f0473fd483afa9d52f265ea6048a26ba6a5b906c5465f6d27ae820b"
+    },
+    {
+      "id": "iney-shell",
+      "file": "cards/iney-shell.webp",
+      "title": "Иней Ракушечный",
+      "subjects": [
+        "iney-shell"
+      ],
+      "sheet": "npcs",
+      "cell": 5,
+      "crop": {
+        "left": 428,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "cbcc9a25f139a21c331493483c4d45e098563bc4af9bebf184d764e41694847c"
+    },
+    {
+      "id": "pukh-offcut",
+      "file": "cards/pukh-offcut.webp",
+      "title": "Пух Запасной Кусочек",
+      "subjects": [
+        "pukh-offcut"
+      ],
+      "sheet": "npcs",
+      "cell": 6,
+      "crop": {
+        "left": 846,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "2a28dca9fc4f3ad67383dadce3f0415fad6792b1d470cb352923aa2861de8ecf"
+    },
+    {
+      "id": "dara-bench",
+      "file": "cards/dara-bench.webp",
+      "title": "Дара Меловая Черта",
+      "subjects": [
+        "dara-bench"
+      ],
+      "sheet": "npcs",
+      "cell": 7,
+      "crop": {
+        "left": 10,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "85350d63abb23afba91c86786dcc28314b30cbbc98acc7a4ed01d933bc73e8a7"
+    },
+    {
+      "id": "bryl-pocket",
+      "file": "cards/bryl-pocket.webp",
+      "title": "Брыль Семь Карманов",
+      "subjects": [
+        "bryl-pocket"
+      ],
+      "sheet": "npcs",
+      "cell": 8,
+      "crop": {
+        "left": 428,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "8b238dedaf48b54b7cdf9e53a6b50dccbcf7a0d66dd64e543669a170495f989d"
+    },
+    {
+      "id": "krug-weathervane",
+      "file": "cards/krug-weathervane.webp",
+      "title": "Круг Флюгеров",
+      "subjects": [
+        "krug-weathervane"
+      ],
+      "sheet": "npcs",
+      "cell": 9,
+      "crop": {
+        "left": 846,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "13af316285b5a648885af4043bb8017011f9028b94a56acf01be3e228f1b19af"
+    }
+  ]
+}

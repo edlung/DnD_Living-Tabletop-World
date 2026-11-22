@@ -1,3 +1,5 @@
+import type { WorldApi } from '../../api/client.ts';
+import { ItemPicture } from './item-picture.tsx';
 import {
   PARTY_STASH,
   type EquipSlot,
@@ -8,8 +10,6 @@ import { readableLabel, useT, type Language } from '@ltw/ui';
 import { useId, useState } from 'react';
 
 import { diceWords, signed } from '../../character/words.ts';
-import { Glyph } from '../../visual/glyph.tsx';
-import { itemPictureUrl } from '../../visual/ui-kit.ts';
 import type { ItemCommandBody } from '../item-command.ts';
 import type { Recipient } from '../inventory-panel.tsx';
 import {
@@ -28,6 +28,7 @@ import { worthWords } from './purse.tsx';
  * the weapon's attack with this character's bonuses), and the actions the World Engine allows.
  */
 export function ItemCard({
+  api,
   item,
   worn,
   weapon,
@@ -41,6 +42,7 @@ export function ItemCard({
   onIdentify,
   canTaste,
 }: {
+  readonly api: WorldApi;
   readonly item: InventoryItem;
   /** What is worn now: a slot already taken is said, with a way to free it. */
   readonly worn: readonly InventoryItem[];
@@ -71,7 +73,6 @@ export function ItemCard({
   const howMany = Math.min(amount ?? item.quantity, item.quantity);
   const part = howMany < item.quantity ? { quantity: howMany } : {};
   const catalog = item.catalog;
-  const art = catalog ? itemPictureUrl(catalog) : null;
   const kind = kindName(item, language);
   // The SRD's words still in English in a Russian campaign (Stage 650e translates them).
   const english = language === 'ru' && catalog?.untranslated === true;
@@ -94,7 +95,7 @@ export function ItemCard({
   return (
     <article className="item-card" aria-labelledby={`${id}-name`}>
       <div className="item-card-art">
-        {art ? <img src={art} alt="" /> : <Glyph name="use-item" />}
+        <ItemPicture api={api} item={item} />
       </div>
       <div className="item-card-body">
         <h3 id={`${id}-name`}>

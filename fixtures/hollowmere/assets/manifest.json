@@ -1512,6 +1512,62 @@
       "generated": "2026-11-15",
       "references": ["fixtures/hollowmere/assets/sunken-mill.webp"],
       "prompt": "Create exactly one new image with your image generation tool, using the attached reference image as the input image. Do not write any code or other files except saving the result.\n\nSTYLE: match the attached reference art — premium cinematic dark-fantasy digital painting like AAA fantasy RPG key art: rich painterly detail, believable materials, warm amber lantern and candle light against cool blue shadows, burnished gold accents, gentle atmospheric haze. Use the references for style (and for the look of a character or place only where the task says so); never copy their interface panels, labels or text. Absolutely no text, letters, numbers, runes that read as letters, logos, interface, borders or watermarks.\n\nThe attached image is the approved canonical reference. Draw the same place in warm daylight: soft golden late-morning sun breaking through thin haze, clear shadows and deep rich tones; never flat, grey or overcast. Keep the same place's architecture, landmarks and composition exactly; change only what this variant requires.\nFRAMING: wide 3:2 landscape establishing view at eye level; keep the lower third calm and uncluttered (open ground or cobblestones) so interface elements can sit there; no identifiable people — at most a few tiny distant anonymous silhouettes far in the background.\n\nThen copy the generated PNG into the current working directory as sunken-mill--day.png and reply only with that file name."
+    },
+    {
+      "file": "agna-brisk--figure.webp",
+      "entityIds": ["agna-brisk"],
+      "variant": "derived",
+      "label": "figure",
+      "purpose": "figure",
+      "derivedFrom": "agna-brisk.webp",
+      "mediaType": "image/webp",
+      "sha256": "7e9b37c32bf506b0d5a35cb178222ec8fa4a69df209c7a76255976f0b1948bda",
+      "originalSha256": "a196bea7c4371d4a71b2d26138b55d73f70319e27bdd604b17b22e42c0439218",
+      "generated": "2026-11-22",
+      "references": ["agna-brisk.webp"],
+      "prompt": "Painted tabletop figure of Агна Бриск. Reference sheet hollowmere-npcs-0. Cell 1."
+    },
+    {
+      "file": "hobb-fenwick--figure.webp",
+      "entityIds": ["hobb-fenwick"],
+      "variant": "derived",
+      "label": "figure",
+      "purpose": "figure",
+      "derivedFrom": "hobb-fenwick.webp",
+      "mediaType": "image/webp",
+      "sha256": "1537a4cdb7f5465d973fa286a6bb8bcdbc78dd3b611419feacd5479a0362869b",
+      "originalSha256": "a196bea7c4371d4a71b2d26138b55d73f70319e27bdd604b17b22e42c0439218",
+      "generated": "2026-11-22",
+      "references": ["hobb-fenwick.webp"],
+      "prompt": "Painted tabletop figure of Хобб Фенвик. Reference sheet hollowmere-npcs-0. Cell 2."
+    },
+    {
+      "file": "sister-ilse--figure.webp",
+      "entityIds": ["sister-ilse"],
+      "variant": "derived",
+      "label": "figure",
+      "purpose": "figure",
+      "derivedFrom": "sister-ilse.webp",
+      "mediaType": "image/webp",
+      "sha256": "4ddaeb77de891d0e49954f6d2b51209af4e7fd5e4ffaae4f96344850fe357b3f",
+      "originalSha256": "a196bea7c4371d4a71b2d26138b55d73f70319e27bdd604b17b22e42c0439218",
+      "generated": "2026-11-22",
+      "references": ["sister-ilse.webp"],
+      "prompt": "Painted tabletop figure of Сестра Ильзе. Reference sheet hollowmere-npcs-0. Cell 3."
+    },
+    {
+      "file": "old-matthis--figure.webp",
+      "entityIds": ["old-matthis"],
+      "variant": "derived",
+      "label": "figure",
+      "purpose": "figure",
+      "derivedFrom": "old-matthis.webp",
+      "mediaType": "image/webp",
+      "sha256": "7620460578a9f9af747db5b99b35733b14c2dae003e0cfdacab203aadfe77b31",
+      "originalSha256": "a196bea7c4371d4a71b2d26138b55d73f70319e27bdd604b17b22e42c0439218",
+      "generated": "2026-11-22",
+      "references": ["old-matthis.webp"],
+      "prompt": "Painted tabletop figure of Старый Маттис. Reference sheet hollowmere-npcs-0. Cell 4."
     }
   ]
 }

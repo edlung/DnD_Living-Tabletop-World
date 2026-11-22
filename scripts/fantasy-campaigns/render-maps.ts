@@ -99,5 +99,5 @@ export function battleMapFor(s: Source, encounter: Encounter): string {
   );
   const b = built.find((x) => x.key === encounter.key);
   if (!b) throw new Error(`Missing built encounter ${encounter.key}`);
-  return tacticalSvg(b);
+  return tacticalSvg(b, encounter.boss?.size);
 }

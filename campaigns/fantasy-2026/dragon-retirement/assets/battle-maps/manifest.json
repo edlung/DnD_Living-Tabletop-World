@@ -1,0 +1,49 @@
+{
+  "maps": [
+    {
+      "file": "white-scree.webp",
+      "sha256": "9815f51dd535c7bca79041080570472ae0e6fc71883ea40e078eaeb0badb9201",
+      "originalSha256": "a32e3150cdebd2938e194878c7d3c9bb42f30da5d48d5fc5de17208b369e4cfd",
+      "originalFile": "exec-81caa094-fde2-4d82-bb55-1b4128a6c89f.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Белая осыпь. Visible scenery: Полоса светлого щебня между округлыми валунами. Узкие проходы режут склон, а широкая тропа огибает его снизу.. World style: Лоскутные кряжи · Warm copper dragon scales alternating with quietly etched checkerboard tiles. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "white-scree",
+      "encounter": "scree-grabbers",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "heather-descent.webp",
+      "sha256": "76b0e3766e578d97dd57fe1196341ecac9628c71bc8ce6637c593eb82c49c226",
+      "originalSha256": "f1b65debf9478d75e91c4dd5cd4b26b9edfc293dcbbb6a125da2eadebe458c72",
+      "originalFile": "exec-847a8db4-2163-49d9-b58e-756ac4c8b5b6.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Вересковый спуск. Visible scenery: Пологая дорога с огромным пнём у поворота. Здесь одинаково заметны следы сапог и великанов.. World style: Лоскутные кряжи · Warm copper dragon scales alternating with quietly etched checkerboard tiles. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "heather-descent",
+      "encounter": "yellow-cloak-toll",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "split-saddle.webp",
+      "sha256": "e38ca18201ea4f8015fb7a29f93cce43cce1a47835e3e1342b3d63dbce653aec",
+      "originalSha256": "2f73572ebef9c703c2a8490252d9c4b0722e9047b7d5851c676fe67c0953f38e",
+      "originalFile": "exec-8eefb0d9-36d3-4b35-98e5-e43e3fbb8da1.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Раздвоенная седловина. Visible scenery: Широкий каменный седловой проход; одна дорожка ведёт под навес, другая огибает вершину по длинной полке.. World style: Лоскутные кряжи · Warm copper dragon scales alternating with quietly etched checkerboard tiles. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "split-saddle",
+      "encounter": "applause-stewards",
+      "grid": [
+        14,
+        12
+      ]
+    }
+  ]
+}

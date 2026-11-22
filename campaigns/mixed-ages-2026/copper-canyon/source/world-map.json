@@ -1,0 +1,54 @@
+{
+  "region": "copper-region",
+  "name": "Карта · Медный Каньон",
+  "description": "План местности «Медный Каньон». На карте отмечаются места, известные группе.",
+  "pins": [
+    {
+      "place": "copper-vestibule",
+      "x": 0.11,
+      "y": 0.15
+    },
+    {
+      "place": "sun-gallery",
+      "x": 0.367,
+      "y": 0.177
+    },
+    {
+      "place": "broad-stair",
+      "x": 0.623,
+      "y": 0.15
+    },
+    {
+      "place": "double-balcony",
+      "x": 0.88,
+      "y": 0.177
+    },
+    {
+      "place": "velvet-parlor",
+      "x": 0.905,
+      "y": 0.517
+    },
+    {
+      "place": "costume-attic",
+      "x": 0.648,
+      "y": 0.49
+    },
+    {
+      "place": "model-room",
+      "x": 0.392,
+      "y": 0.517
+    },
+    {
+      "place": "goose-court",
+      "x": 0.135,
+      "y": 0.49
+    },
+    {
+      "place": "funicular-porch",
+      "x": 0.11,
+      "y": 0.83
+    }
+  ],
+  "routes": [],
+  "scale": "schematic"
+}

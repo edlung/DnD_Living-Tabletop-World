@@ -1,0 +1,39 @@
+{
+  "hollowmere": {
+    "chapters": {
+      "willow-ford-ambush": 1,
+      "cellar-rats": 1,
+      "drowned-chapel": 2,
+      "marsh-lights": 2,
+      "sunken-mill": 3,
+      "flooded-stair": 4,
+      "sunken-bell": 4
+    },
+    "rests": [
+      {
+        "after": 1,
+        "kind": "long",
+        "reason": "Отряд возвращается к старосте в Холлоумир после погреба и вылазки на болото. Оба раза остаётся в деревне на ночь."
+      },
+      {
+        "after": 2,
+        "kind": "long",
+        "reason": "Отряд возвращается к старосте в Холлоумир после погреба и вылазки на болото. Оба раза остаётся в деревне на ночь."
+      },
+      {
+        "after": 3,
+        "kind": "long",
+        "reason": "После мельницы отряд возвращается на три мили в деревню перед спуском в склеп. На лестнице у колокола ночлега нет."
+      }
+    ]
+  },
+  "sky-archipelago": {
+    "chapters": {
+      "eagle-aerie": 2,
+      "white-gyrfalcon-boarding": 4,
+      "barge-boarding": 6
+    },
+    "rests": [],
+    "priorFormation": "barge-boarding"
+  }
+}

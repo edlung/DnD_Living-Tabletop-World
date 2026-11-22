@@ -1,0 +1,49 @@
+{
+  "maps": [
+    {
+      "file": "ember-lodge.webp",
+      "sha256": "71cd371cdde4142e191f9f44986d515e0fb4cc7df8a46341ca37f5e85d81f026",
+      "originalSha256": "81bbbf923d934889f614f6d8f34e7780bdcc9e16fb5a5de70cf38524105ac0b7",
+      "originalFile": "exec-1a246bf4-80c8-4651-bf41-e8527af16f63.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Дом остывшей искры. Visible scenery: Саламандровый дом с красной керамикой, негорючими сиденьями и выставленными образцами гербовой ткани.. World style: Фонарный Предел · Two heraldic seal impressions and lantern tracery in dark claret bookbinding. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "ember-lodge",
+      "encounter": "coal-pickets",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "sealed-gallery.webp",
+      "sha256": "7cfeea4fbdf88970b0fe1ebcc050c836f4c583390af9cec709e1d37238d87245",
+      "originalSha256": "5cee22f68bfa513eeaa04509a290ed1bdf04079535f3fe5c0b4993e75c4f4a49",
+      "originalFile": "exec-7433d432-45cd-4d7c-8f5e-65f0c9078a04.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Галерея двух печатей. Visible scenery: Светлая комната для добровольно переданных спорных вещей; доступ записывают на видимой доске.. World style: Фонарный Предел · Two heraldic seal impressions and lantern tracery in dark claret bookbinding. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "sealed-gallery",
+      "encounter": "glass-moths",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "wax-yard.webp",
+      "sha256": "78fdbe89a4755fa567d406c6eec0c044a3c1c0e87233765979a5127de0318019",
+      "originalSha256": "73cf1255df4f31819b4263df0e6350e57a1383230a52a3b8cfd3c2c2fef6dabd",
+      "originalFile": "exec-43cf03ae-947c-463a-91be-9ac35c9bf993.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Восковый двор. Visible scenery: Учебная площадка с подвижными восковыми фигурами и стендом добровольных упражнений.. World style: Фонарный Предел · Two heraldic seal impressions and lantern tracery in dark claret bookbinding. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "wax-yard",
+      "encounter": "wax-arguments",
+      "grid": [
+        14,
+        12
+      ]
+    }
+  ]
+}

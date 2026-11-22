@@ -1,0 +1,660 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "dragon-retirement-heroes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-82cf9877-5512-4020-a7b4-0b98fd335c61.png",
+      "originalSha256": "0b20328679b6883f66d7ede219bab1154ee9e0518b270f62a671c3c92fab9b5c",
+      "columns": 4,
+      "rows": 2,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 4 equal columns by 2 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Лоскутные кряжи · Warm copper dragon scales alternating with quietly etched checkerboard tiles. Cell 1. Яра Узелкова. Короткие тёмные волосы, куртка с разными заплатами, обычный дорожный канат через плечо.\nCell 2. Ник Боковой Шаг. Веснушки, широкие рукава, карандаш за ухом и сапоги с неожиданно чистыми подошвами.\nCell 3. Эда Открытая Ладонь. Светлый плащ, связка деревянных дорожных жетонов и тяжёлые перчатки с вышитыми ладонями.\nCell 4. Полин На Полях. Седая коса, закопчённые очки и тетрадь, в которой замечания занимают больше места, чем основной текст.\nCell 5. Там Второй Шаг. Высокий воротник, широкая улыбка и круглый щит с ещё не выбранной эмблемой.\nCell 6. Мира Свой Голос. Серебряные серьги, потёртый жилет и складная табличка, на которой удобно писать крупными буквами.\nCell 7. Сава После Заката. Каштановые кудри, мягкие сапоги и мешочек с разномастными шашечными камнями.\nCell 8. Эс Чёткая Черта. Вьющиеся волосы, лиловый шарф и дощечка, на которой всегда остаётся место для поправок.. Leave final unused cells empty.",
+      "references": [
+        "campaigns/fantasy-2026/dragon-retirement/illustrations/cards/yara-knots.webp",
+        "campaigns/fantasy-2026/dragon-retirement/illustrations/cards/nik-sidepath.webp",
+        "campaigns/fantasy-2026/dragon-retirement/illustrations/cards/eda-openhand.webp",
+        "campaigns/fantasy-2026/dragon-retirement/illustrations/cards/polin-margins.webp",
+        "campaigns/fantasy-2026/dragon-retirement/illustrations/cards/tam-secondstep.webp",
+        "campaigns/fantasy-2026/dragon-retirement/illustrations/cards/mira-ownvoice.webp",
+        "campaigns/fantasy-2026/dragon-retirement/illustrations/cards/sava-evening.webp",
+        "campaigns/fantasy-2026/dragon-retirement/illustrations/cards/es-clearline.webp"
+      ]
+    },
+    {
+      "id": "dragon-retirement-places-0",
+      "originalFile": "exec-68399775-1001-4b7f-bdac-1fc725668eb3.png",
+      "originalSha256": "fc3cff4e5df33caf726165c4c66556f23318d4b50196fd38f5e408e7794afbad",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "A registered game art atlas of location illustrations, one clearly distinct unpopulated environment per cell, distinct scene lighting and structures. Fill each cell edge to edge. Atmospheric painted landscape or architectural interiors at human eye level. No plot events, clues, icons or writing. EXACT regular grid, 3 equal columns by 3 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Лоскутные кряжи · Warm copper dragon scales alternating with quietly etched checkerboard tiles. Cell 1. Полуденный двор. Посёлок вокруг широкого двора, где дракон может присесть, не задев крыш. На стенах висят рисунки прежних спасений.\nCell 2. Нижний зубец. Короткий каменный выступ над поросшим кустарником склоном; здесь любят смотреть закаты со старой подвесной скамьи.\nCell 3. Белая осыпь. Полоса светлого щебня между округлыми валунами. Узкие проходы режут склон, а широкая тропа огибает его снизу.\nCell 4. Вересковый спуск. Пологая дорога с огромным пнём у поворота. Здесь одинаково заметны следы сапог и великанов.\nCell 5. Голая Игла. Тонкий гребень с нижней площадкой и открытым верхним балконом. Ветер поворачивает здесь внезапно и звучно.\nCell 6. Дом аплодисментов. Небольшой дом с открытой верандой и рядами старых стульев. На верёвках сушатся расписанные афиши прогулок.\nCell 7. Слепой уступ. Перегиб пути, за которым не видно следующего шага, пока не приблизишься. Рядом есть спокойная площадка для привала.\nCell 8. Раздвоенная седловина. Широкий каменный седловой проход; одна дорожка ведёт под навес, другая огибает вершину по длинной полке.\nCell 9. Рваный Венец. Расщеплённая вершина с тесной поперечной щелью, узким внутренним карманом и просторным внешним уступом.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "dragon-retirement-foes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-91d19eb5-abe0-4081-b763-a4fd8be593ed.png",
+      "originalSha256": "04c1779960935df5a48707ca71a31ea0f561c2554ab25669afb086890b823084",
+      "columns": 3,
+      "rows": 1,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 3 equal columns by 1 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Лоскутные кряжи · Warm copper dragon scales alternating with quietly etched checkerboard tiles. Cell 1. Репейный воришка. Небольшой ловкий искатель чужих вещей в плаще, усеянном сухими репьями; предпочитает хватать оставленное и убегать, а не причинять вред.\nCell 2. Самозваный охранник в жёлтом плаще. Наёмный любитель лёгкой платы с деревянной дубинкой и слишком торжественным выражением лица; за спиной нет никакого драконьего разрешения.\nCell 3. Распорядитель с расписным жезлом. Помощник Денвара с яркой лентой и обычным деревянным жезлом; считает, что охраняет зрительский проход, пока не узнает иные факты.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "dragon-retirement-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-f72cca5e-5c68-430c-ac44-8fc24f5f3ad1.png",
+      "originalSha256": "beac7d5fe24a1b65cd01dac2d8c9c8b9dec8e4053c27eed6b54a17852e07b70d",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "Create a clean production sprite sheet of 9 distinct hand-painted tabletop miniature figurines for the world of Дракон уходит на покой. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 3 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Рухомир Медный. Огромный медный дракон с потёртым дорожным мешком и крошечными очками для чтения; очки постоянно сползают.\nCell 2. Денвар Громкая Пауза. Щегольской короткий плащ, начищенные сапоги и ладони, которыми он словно постоянно просит публику подождать.\nCell 3. Лисса Верный Возврат. Куртка цвета песка, короткая стрижка и обувь, тщательно обвязанная выше щиколоток.\nCell 4. Орель Медленный Карандаш. Лицо в солнечных морщинках, широкий берет и складная доска для зарисовок, слишком большая для его рюкзака.\nCell 5. Бурдаш Большой Пень. Широкоплечий великан в просторном жилете; носит на шее деревянный свисток размером с сапог.\nCell 6. Вета Точный Счёт. Зелёная шляпа, чернильные пальцы и деревянная коробка с цветными билетами.\nCell 7. Зоя Растрёпа. Яркая повязка на волосах, походные сапоги и несколько рисунков пейзажей в прозрачном чехле.\nCell 8. Рен Ровный Шаг. Аккуратно уложенные волосы, одинаково затянутые ремни и заметно новый дорожный плащ.\nCell 9. Улта Долгий Спуск. Плотная накидка, короткая седая чёлка и лёгкая трость, исчерченная зарубками пройденных расстояний.",
+      "references": [
+        "campaigns/fantasy-2026/dragon-retirement/illustrations/cards/rukhmir.webp",
+        "campaigns/fantasy-2026/dragon-retirement/illustrations/cards/denvar.webp",
+        "campaigns/fantasy-2026/dragon-retirement/illustrations/cards/lissa.webp",
+        "campaigns/fantasy-2026/dragon-retirement/illustrations/cards/orel.webp",
+        "campaigns/fantasy-2026/dragon-retirement/illustrations/cards/burdash.webp",
+        "campaigns/fantasy-2026/dragon-retirement/illustrations/cards/veta.webp",
+        "campaigns/fantasy-2026/dragon-retirement/illustrations/cards/zoya.webp",
+        "campaigns/fantasy-2026/dragon-retirement/illustrations/cards/ren.webp",
+        "campaigns/fantasy-2026/dragon-retirement/illustrations/cards/ulta.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "yara-knots",
+      "title": "Яра Узелкова",
+      "kind": "hero",
+      "subjects": [
+        "yara-knots"
+      ],
+      "file": "heroes-yara-knots.webp",
+      "sha256": "e58a6532ec5f3a25bd37f43685b719de351cf634e8aba27981271cd17a0c1ceb",
+      "originalSha256": "0b20328679b6883f66d7ede219bab1154ee9e0518b270f62a671c3c92fab9b5c",
+      "generated": "2026-11-22",
+      "sheet": "dragon-retirement-heroes-0",
+      "cell": 1,
+      "crop": {
+        "left": 121,
+        "top": 12,
+        "width": 202,
+        "height": 416
+      }
+    },
+    {
+      "key": "nik-sidepath",
+      "title": "Ник Боковой Шаг",
+      "kind": "hero",
+      "subjects": [
+        "nik-sidepath"
+      ],
+      "file": "heroes-nik-sidepath.webp",
+      "sha256": "44b73fe8c28d02cf194753191f7e4c51ba217356045b8cc628c0007da9688359",
+      "originalSha256": "0b20328679b6883f66d7ede219bab1154ee9e0518b270f62a671c3c92fab9b5c",
+      "generated": "2026-11-22",
+      "sheet": "dragon-retirement-heroes-0",
+      "cell": 2,
+      "crop": {
+        "left": 564,
+        "top": 12,
+        "width": 202,
+        "height": 416
+      }
+    },
+    {
+      "key": "eda-openhand",
+      "title": "Эда Открытая Ладонь",
+      "kind": "hero",
+      "subjects": [
+        "eda-openhand"
+      ],
+      "file": "heroes-eda-openhand.webp",
+      "sha256": "1befa23a5820256e99ec558224efe548f91b7b43f37bfeca68c39076cee1298c",
+      "originalSha256": "0b20328679b6883f66d7ede219bab1154ee9e0518b270f62a671c3c92fab9b5c",
+      "generated": "2026-11-22",
+      "sheet": "dragon-retirement-heroes-0",
+      "cell": 3,
+      "crop": {
+        "left": 992,
+        "top": 13,
+        "width": 220,
+        "height": 415
+      }
+    },
+    {
+      "key": "polin-margins",
+      "title": "Полин На Полях",
+      "kind": "hero",
+      "subjects": [
+        "polin-margins"
+      ],
+      "file": "heroes-polin-margins.webp",
+      "sha256": "5180e898b027860d78fe3e0f9d21d9f5d59bb34d9181c94f93097397cdc88bc8",
+      "originalSha256": "0b20328679b6883f66d7ede219bab1154ee9e0518b270f62a671c3c92fab9b5c",
+      "generated": "2026-11-22",
+      "sheet": "dragon-retirement-heroes-0",
+      "cell": 4,
+      "crop": {
+        "left": 1451,
+        "top": 12,
+        "width": 218,
+        "height": 415
+      }
+    },
+    {
+      "key": "tam-secondstep",
+      "title": "Там Второй Шаг",
+      "kind": "hero",
+      "subjects": [
+        "tam-secondstep"
+      ],
+      "file": "heroes-tam-secondstep.webp",
+      "sha256": "5b0d44ae84300db5eb03d21e62d62d68a724570909c1011f5484d52617f890a3",
+      "originalSha256": "0b20328679b6883f66d7ede219bab1154ee9e0518b270f62a671c3c92fab9b5c",
+      "generated": "2026-11-22",
+      "sheet": "dragon-retirement-heroes-0",
+      "cell": 5,
+      "crop": {
+        "left": 121,
+        "top": 456,
+        "width": 208,
+        "height": 415
+      }
+    },
+    {
+      "key": "mira-ownvoice",
+      "title": "Мира Свой Голос",
+      "kind": "hero",
+      "subjects": [
+        "mira-ownvoice"
+      ],
+      "file": "heroes-mira-ownvoice.webp",
+      "sha256": "b39d5c4413c0a503f7ca99fd89fceea449202f7d98c417b0441795298abae472",
+      "originalSha256": "0b20328679b6883f66d7ede219bab1154ee9e0518b270f62a671c3c92fab9b5c",
+      "generated": "2026-11-22",
+      "sheet": "dragon-retirement-heroes-0",
+      "cell": 6,
+      "crop": {
+        "left": 564,
+        "top": 454,
+        "width": 218,
+        "height": 417
+      }
+    },
+    {
+      "key": "sava-evening",
+      "title": "Сава После Заката",
+      "kind": "hero",
+      "subjects": [
+        "sava-evening"
+      ],
+      "file": "heroes-sava-evening.webp",
+      "sha256": "1aa3deb644216bd24e9d3e377f543121640574ba618f3af2442dbc7282669479",
+      "originalSha256": "0b20328679b6883f66d7ede219bab1154ee9e0518b270f62a671c3c92fab9b5c",
+      "generated": "2026-11-22",
+      "sheet": "dragon-retirement-heroes-0",
+      "cell": 7,
+      "crop": {
+        "left": 1008,
+        "top": 454,
+        "width": 201,
+        "height": 417
+      }
+    },
+    {
+      "key": "es-clearline",
+      "title": "Эс Чёткая Черта",
+      "kind": "hero",
+      "subjects": [
+        "es-clearline"
+      ],
+      "file": "heroes-es-clearline.webp",
+      "sha256": "8ad1086296d7656d09ecfea4d8b81cca7e4c18bf635081a6c03c22a24916a499",
+      "originalSha256": "0b20328679b6883f66d7ede219bab1154ee9e0518b270f62a671c3c92fab9b5c",
+      "generated": "2026-11-22",
+      "sheet": "dragon-retirement-heroes-0",
+      "cell": 8,
+      "crop": {
+        "left": 1432,
+        "top": 455,
+        "width": 221,
+        "height": 416
+      }
+    },
+    {
+      "key": "noonday-yard",
+      "title": "Полуденный двор",
+      "kind": "place",
+      "subjects": [
+        "noonday-yard"
+      ],
+      "file": "places-noonday-yard.webp",
+      "sha256": "5778da2abfe011e7f24ff9345a9997f71046ba070f9d4965302892e1e93e7208",
+      "originalSha256": "fc3cff4e5df33caf726165c4c66556f23318d4b50196fd38f5e408e7794afbad",
+      "generated": "2026-11-22",
+      "sheet": "dragon-retirement-places-0",
+      "cell": 1,
+      "crop": {
+        "left": 1,
+        "top": 1,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "lower-tooth",
+      "title": "Нижний зубец",
+      "kind": "place",
+      "subjects": [
+        "lower-tooth"
+      ],
+      "file": "places-lower-tooth.webp",
+      "sha256": "29133feabef7138ffd3a0dcfcd2f22b52892fdb0c3ac2ec6b5abf913119e51a9",
+      "originalSha256": "fc3cff4e5df33caf726165c4c66556f23318d4b50196fd38f5e408e7794afbad",
+      "generated": "2026-11-22",
+      "sheet": "dragon-retirement-places-0",
+      "cell": 2,
+      "crop": {
+        "left": 484,
+        "top": 1,
+        "width": 480,
+        "height": 360
+      }
+    },
+    {
+      "key": "white-scree",
+      "title": "Белая осыпь",
+      "kind": "place",
+      "subjects": [
+        "white-scree"
+      ],
+      "file": "places-white-scree.webp",
+      "sha256": "9243ed66d9ffed9c1e176b5627b547adb86bedf2d841a86c12d1b1a53d121a16",
+      "originalSha256": "fc3cff4e5df33caf726165c4c66556f23318d4b50196fd38f5e408e7794afbad",
+      "generated": "2026-11-22",
+      "sheet": "dragon-retirement-places-0",
+      "cell": 3,
+      "crop": {
+        "left": 966,
+        "top": 1,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "heather-descent",
+      "title": "Вересковый спуск",
+      "kind": "place",
+      "subjects": [
+        "heather-descent"
+      ],
+      "file": "places-heather-descent.webp",
+      "sha256": "8a7d5cb98e4866c16e2f9de7853cc313eec46c618c23b71c29078303691da4c0",
+      "originalSha256": "fc3cff4e5df33caf726165c4c66556f23318d4b50196fd38f5e408e7794afbad",
+      "generated": "2026-11-22",
+      "sheet": "dragon-retirement-places-0",
+      "cell": 4,
+      "crop": {
+        "left": 1,
+        "top": 363,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "bare-needle",
+      "title": "Голая Игла",
+      "kind": "place",
+      "subjects": [
+        "bare-needle"
+      ],
+      "file": "places-bare-needle.webp",
+      "sha256": "646a7e622244400ba215f5ef1887918115f10e2d56d309b8aff2917b482eeb41",
+      "originalSha256": "fc3cff4e5df33caf726165c4c66556f23318d4b50196fd38f5e408e7794afbad",
+      "generated": "2026-11-22",
+      "sheet": "dragon-retirement-places-0",
+      "cell": 5,
+      "crop": {
+        "left": 484,
+        "top": 363,
+        "width": 480,
+        "height": 360
+      }
+    },
+    {
+      "key": "applause-house",
+      "title": "Дом аплодисментов",
+      "kind": "place",
+      "subjects": [
+        "applause-house"
+      ],
+      "file": "places-applause-house.webp",
+      "sha256": "5fd9f6cfa473ba70f9e926ed08c35578f84ac3ca7c7be50a2ad0203db9d7526e",
+      "originalSha256": "fc3cff4e5df33caf726165c4c66556f23318d4b50196fd38f5e408e7794afbad",
+      "generated": "2026-11-22",
+      "sheet": "dragon-retirement-places-0",
+      "cell": 6,
+      "crop": {
+        "left": 966,
+        "top": 363,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "blind-ledge",
+      "title": "Слепой уступ",
+      "kind": "place",
+      "subjects": [
+        "blind-ledge"
+      ],
+      "file": "places-blind-ledge.webp",
+      "sha256": "e15966eb73daf17f3612353b4b74981de45ef92c856d7d00eb6539d4d18d1160",
+      "originalSha256": "fc3cff4e5df33caf726165c4c66556f23318d4b50196fd38f5e408e7794afbad",
+      "generated": "2026-11-22",
+      "sheet": "dragon-retirement-places-0",
+      "cell": 7,
+      "crop": {
+        "left": 1,
+        "top": 725,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "split-saddle",
+      "title": "Раздвоенная седловина",
+      "kind": "place",
+      "subjects": [
+        "split-saddle"
+      ],
+      "file": "places-split-saddle.webp",
+      "sha256": "e6f1292bccf8371f6d60689201abc308700f33ab07ba73d450f9c74fa96f64a2",
+      "originalSha256": "fc3cff4e5df33caf726165c4c66556f23318d4b50196fd38f5e408e7794afbad",
+      "generated": "2026-11-22",
+      "sheet": "dragon-retirement-places-0",
+      "cell": 8,
+      "crop": {
+        "left": 484,
+        "top": 725,
+        "width": 480,
+        "height": 360
+      }
+    },
+    {
+      "key": "ragged-crown",
+      "title": "Рваный Венец",
+      "kind": "place",
+      "subjects": [
+        "ragged-crown"
+      ],
+      "file": "places-ragged-crown.webp",
+      "sha256": "ccb95199150b8a776f606be2b0e16b27193e3c5632ba0b64e9486b7954531275",
+      "originalSha256": "fc3cff4e5df33caf726165c4c66556f23318d4b50196fd38f5e408e7794afbad",
+      "generated": "2026-11-22",
+      "sheet": "dragon-retirement-places-0",
+      "cell": 9,
+      "crop": {
+        "left": 966,
+        "top": 725,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "foe-a86cf7229b",
+      "title": "Репейный воришка",
+      "kind": "foe",
+      "subjects": [
+        "scree-grabbers-foe-1",
+        "scree-grabbers-foe-2",
+        "scree-grabbers-foe-3",
+        "scree-grabbers-foe-4",
+        "scree-grabbers-foe-5",
+        "scree-grabbers-foe-6"
+      ],
+      "file": "foes-foe-a86cf7229b.webp",
+      "sha256": "70b0e5ee2617079ff0a55ed8ee888c5ec2af2ab405d4483ca92346e521c8c5a4",
+      "originalSha256": "04c1779960935df5a48707ca71a31ea0f561c2554ab25669afb086890b823084",
+      "generated": "2026-11-22",
+      "sheet": "dragon-retirement-foes-0",
+      "cell": 1,
+      "crop": {
+        "left": 92,
+        "top": 59,
+        "width": 496,
+        "height": 636
+      }
+    },
+    {
+      "key": "foe-82117f7918",
+      "title": "Самозваный охранник в жёлтом плаще",
+      "kind": "foe",
+      "subjects": [
+        "yellow-cloak-toll-foe-1",
+        "yellow-cloak-toll-foe-2",
+        "yellow-cloak-toll-foe-3",
+        "yellow-cloak-toll-foe-4",
+        "yellow-cloak-toll-foe-5",
+        "yellow-cloak-toll-foe-6"
+      ],
+      "file": "foes-foe-82117f7918.webp",
+      "sha256": "177d9f3a7de33582265832351bb75826da91cc3d8ed924240e2fbf55f82a22eb",
+      "originalSha256": "04c1779960935df5a48707ca71a31ea0f561c2554ab25669afb086890b823084",
+      "generated": "2026-11-22",
+      "sheet": "dragon-retirement-foes-0",
+      "cell": 2,
+      "crop": {
+        "left": 812,
+        "top": 24,
+        "width": 508,
+        "height": 673
+      }
+    },
+    {
+      "key": "foe-f22d488dd8",
+      "title": "Распорядитель с расписным жезлом",
+      "kind": "foe",
+      "subjects": [
+        "applause-stewards-foe-1",
+        "applause-stewards-foe-2",
+        "applause-stewards-foe-3",
+        "applause-stewards-foe-4",
+        "applause-stewards-foe-5",
+        "applause-stewards-foe-6"
+      ],
+      "file": "foes-foe-f22d488dd8.webp",
+      "sha256": "fb789bbbbe9f874699da55d328cd672ad6c9f29b3b74661fa8bdcc0d4ea42bef",
+      "originalSha256": "04c1779960935df5a48707ca71a31ea0f561c2554ab25669afb086890b823084",
+      "generated": "2026-11-22",
+      "sheet": "dragon-retirement-foes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1605,
+        "top": 20,
+        "width": 476,
+        "height": 677
+      }
+    },
+    {
+      "key": "rukhmir",
+      "title": "Рухомир Медный",
+      "kind": "npc",
+      "subjects": [
+        "rukhmir"
+      ],
+      "file": "npcs-rukhmir.webp",
+      "sha256": "b41722ec08a43c14a7a1d32225febbf17a9e82045c272f7e047c69190eee3283",
+      "originalSha256": "beac7d5fe24a1b65cd01dac2d8c9c8b9dec8e4053c27eed6b54a17852e07b70d",
+      "generated": "2026-11-22",
+      "sheet": "dragon-retirement-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 16,
+        "top": 8,
+        "width": 363,
+        "height": 385
+      }
+    },
+    {
+      "key": "denvar",
+      "title": "Денвар Громкая Пауза",
+      "kind": "npc",
+      "subjects": [
+        "denvar"
+      ],
+      "file": "npcs-denvar.webp",
+      "sha256": "68ff696d68f2655204d59393500a240f848ecd589e0e1c2d1365228bb815e267",
+      "originalSha256": "beac7d5fe24a1b65cd01dac2d8c9c8b9dec8e4053c27eed6b54a17852e07b70d",
+      "generated": "2026-11-22",
+      "sheet": "dragon-retirement-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 472,
+        "top": 9,
+        "width": 253,
+        "height": 384
+      }
+    },
+    {
+      "key": "lissa",
+      "title": "Лисса Верный Возврат",
+      "kind": "npc",
+      "subjects": [
+        "lissa"
+      ],
+      "file": "npcs-lissa.webp",
+      "sha256": "d1cac8867f1de18c087688f6e2a7fdaeee6033f1ee1da37c1e2ea6cb3c55163a",
+      "originalSha256": "beac7d5fe24a1b65cd01dac2d8c9c8b9dec8e4053c27eed6b54a17852e07b70d",
+      "generated": "2026-11-22",
+      "sheet": "dragon-retirement-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 873,
+        "top": 11,
+        "width": 242,
+        "height": 381
+      }
+    },
+    {
+      "key": "orel",
+      "title": "Орель Медленный Карандаш",
+      "kind": "npc",
+      "subjects": [
+        "orel"
+      ],
+      "file": "npcs-orel.webp",
+      "sha256": "df4555e7556d3210de3683374b689065bfef41e81ba69f027c6a3d274f0fd869",
+      "originalSha256": "beac7d5fe24a1b65cd01dac2d8c9c8b9dec8e4053c27eed6b54a17852e07b70d",
+      "generated": "2026-11-22",
+      "sheet": "dragon-retirement-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 65,
+        "top": 410,
+        "width": 295,
+        "height": 412
+      }
+    },
+    {
+      "key": "burdash",
+      "title": "Бурдаш Большой Пень",
+      "kind": "npc",
+      "subjects": [
+        "burdash"
+      ],
+      "file": "npcs-burdash.webp",
+      "sha256": "292044f084727329a7a82868f994a861bff0ec5be5ed94063682716ff962c7c1",
+      "originalSha256": "beac7d5fe24a1b65cd01dac2d8c9c8b9dec8e4053c27eed6b54a17852e07b70d",
+      "generated": "2026-11-22",
+      "sheet": "dragon-retirement-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 442,
+        "top": 406,
+        "width": 307,
+        "height": 416
+      }
+    },
+    {
+      "key": "veta",
+      "title": "Вета Точный Счёт",
+      "kind": "npc",
+      "subjects": [
+        "veta"
+      ],
+      "file": "npcs-veta.webp",
+      "sha256": "61045d345e1b527d3d400497ab1ca20b3929d61e46f6d43b4e263b4abe009209",
+      "originalSha256": "beac7d5fe24a1b65cd01dac2d8c9c8b9dec8e4053c27eed6b54a17852e07b70d",
+      "generated": "2026-11-22",
+      "sheet": "dragon-retirement-npcs-0",
+      "cell": 6,
+      "crop": {
+        "left": 865,
+        "top": 405,
+        "width": 270,
+        "height": 418
+      }
+    },
+    {
+      "key": "zoya",
+      "title": "Зоя Растрёпа",
+      "kind": "npc",
+      "subjects": [
+        "zoya"
+      ],
+      "file": "npcs-zoya.webp",
+      "sha256": "ded461925c40d32d68c2385f667096030c51ab2b53fb3c5746a9fc3b05014713",
+      "originalSha256": "beac7d5fe24a1b65cd01dac2d8c9c8b9dec8e4053c27eed6b54a17852e07b70d",
+      "generated": "2026-11-22",
+      "sheet": "dragon-retirement-npcs-0",
+      "cell": 7,
+      "crop": {
+        "left": 74,
+        "top": 839,
+        "width": 265,
+        "height": 455
+      }
+    },
+    {
+      "key": "ren",
+      "title": "Рен Ровный Шаг",
+      "kind": "npc",
+      "subjects": [
+        "ren"
+      ],
+      "file": "npcs-ren.webp",
+      "sha256": "72f63155e2768638c67e973c9ed8047cf647e19c75258a59d1e59cbfd3267b73",
+      "originalSha256": "beac7d5fe24a1b65cd01dac2d8c9c8b9dec8e4053c27eed6b54a17852e07b70d",
+      "generated": "2026-11-22",
+      "sheet": "dragon-retirement-npcs-0",
+      "cell": 8,
+      "crop": {
+        "left": 446,
+        "top": 832,
+        "width": 288,
+        "height": 460
+      }
+    },
+    {
+      "key": "ulta",
+      "title": "Улта Долгий Спуск",
+      "kind": "npc",
+      "subjects": [
+        "ulta"
+      ],
+      "file": "npcs-ulta.webp",
+      "sha256": "fa424e5378640f52070fc4219c00425281fe220ea34314d5aba1ef7a8ed27329",
+      "originalSha256": "beac7d5fe24a1b65cd01dac2d8c9c8b9dec8e4053c27eed6b54a17852e07b70d",
+      "generated": "2026-11-22",
+      "sheet": "dragon-retirement-npcs-0",
+      "cell": 9,
+      "crop": {
+        "left": 863,
+        "top": 839,
+        "width": 255,
+        "height": 454
+      }
+    }
+  ]
+}

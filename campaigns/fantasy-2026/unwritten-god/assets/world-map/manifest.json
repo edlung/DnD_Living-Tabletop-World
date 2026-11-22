@@ -1,0 +1,12 @@
+{
+  "about": "Original unlabelled world map. Pin positions in source/world-map.json.",
+  "map": {
+    "file": "world-map.webp",
+    "sha256": "219cf756af1f9a3ea901a475394c916482c6f85e21d228935d7b2f1fa139490e",
+    "originalSha256": "b90604c47bcd5bfc32fd11f963246d7694d09e8c8d4b0a49f1b7b97ad453c532",
+    "originalFile": "exec-68906fc2-6a1b-49d6-9cbd-1db5d0133d57.png",
+    "generated": "2026-11-22",
+    "prompt": "One beautifully illustrated coherent bird's-eye orientation map, landscape 4:3. Entire world: Белокамье и Тихий Зев. Style Белокамье и Тихий Зев · Whale-tail curves and sunbeams incised in smoky blue stone. Map or architectural floor plan appropriate to this setting, connected space with continuous ink-and-wash terrain, subtle calligraphic silhouettes, unique landmarks, readable open negative space for interactive pins, generous edge space. Purely visible ordinary scenery, no hidden entrances, secrets, danger symbols, writing, labels, numbers, legends, grids, borders, or tokens. Use these exact normalized positions for the centre of visible generic landmarks, x from left and y from top: 0.11,0.15 Площадь Белого Полотна; 0.367,0.177 Галерея Уходящего Кита; 0.623,0.15 Спина Белого Кита; 0.88,0.177 Двор ста ламп; 0.905,0.517 Каменный Глаз; 0.648,0.49 Склон гудящих чаш; 0.392,0.517 Синий сад; 0.135,0.49 Чаша открытого карьера; 0.11,0.83 Тихий Зев. Show public exteriors / unlabeled contours only.",
+    "references": []
+  }
+}

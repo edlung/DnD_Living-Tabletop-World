@@ -1,0 +1,49 @@
+{
+  "maps": [
+    {
+      "file": "linen-room.webp",
+      "sha256": "9b7d9094be5305b6c65c21f38f2e7675128ff95727992254242253af7496fba3",
+      "originalSha256": "33f17f19663e2466f652b3cff01c3b92a9ccc17c0c1d481f291467d988f59636",
+      "originalFile": "exec-e3063c34-399f-4082-9502-ceeba87fa325.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Бельевая и площадка лестницы. Visible scenery: Сортировочный стол, пустые тележки, шкафы сменной одежды. Сюда выходит служебная лестница; закрытые шкафы принадлежат работникам.. World style: Нареченск: отель «Контур» · Oxidized brass hotel key escutcheons pressed into dark plum corridor damask. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "linen-room",
+      "encounter": "linen-dispute",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "manager-office.webp",
+      "sha256": "b42c6892ec168341251e1ecf16b175418265c246783a6e5f07414cc32535ca68",
+      "originalSha256": "67be621b9ae7ecf282edad024fda508545498b542e66f7bca35545fa86d70984",
+      "originalFile": "exec-3c8edc70-3499-4716-a50b-c0177b4585b1.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Кабинет управляющей. Visible scenery: Кабинет на пятом этаже рядом с бельевой: стол с книгой ключей, опечатанная рабочая сумка управляющей и два стула для посетителей.. World style: Нареченск: отель «Контур» · Oxidized brass hotel key escutcheons pressed into dark plum corridor damask. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "manager-office",
+      "encounter": "cabinet-pressure",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "assembly-room.webp",
+      "sha256": "2978ea19642688ef74a6c098d29b7f77ad84189b0403ec019a7210cf37743964",
+      "originalSha256": "56d7956bcddf2a426bd7430baad61130c7eb5ef6338f9ed11d4413c091ddccb7",
+      "originalFile": "exec-eb6a69fa-f782-458b-a25d-9534c38c5d42.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Малый зал отеля. Visible scenery: Зал с переносной ширмой и стульями. Здесь можно провести ограниченный показ наблюдений или встречу с работниками.. World style: Нареченск: отель «Контур» · Oxidized brass hotel key escutcheons pressed into dark plum corridor damask. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "assembly-room",
+      "encounter": "audience-exit",
+      "grid": [
+        14,
+        12
+      ]
+    }
+  ]
+}

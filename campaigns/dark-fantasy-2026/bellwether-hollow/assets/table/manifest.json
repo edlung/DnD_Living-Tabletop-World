@@ -1,0 +1,636 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "bellwether-hollow-places-0",
+      "originalFile": "exec-dc501312-b08f-4459-b874-865bef9d9cfe.png",
+      "originalSha256": "a1176ca3ff632aba0e914b0ea68dd2ba2116cdec254a7544ecc377eea5f6842e",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "A registered game art atlas of location illustrations, one clearly distinct unpopulated environment per cell, distinct scene lighting and structures. Fill each cell edge to edge. Atmospheric painted landscape or architectural interiors at human eye level. No plot events, clues, icons or writing. EXACT regular grid, 3 equal columns by 3 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Лощина Тихой Меди · Weathered copper patina with interlocking fine bell silhouettes and echo ripples. Cell 1. Площадь Вересова Колодца. Колодец, общий хлебный стол и доска очередей стоят под навесом из тёмной дранки. На столе разложены деревянные знаки жителей.\nCell 2. Дом шести ударов. Низкая звонница с просторным крыльцом. На каждой верёвке свои узлы, различимые ладонью даже в темноте.\nCell 3. Мельница Стоячей Воды. Неподвижное колесо погружено в чёрный пруд. К сухому верхнему настилу ведут широкие мостки с верёвочными перилами.\nCell 4. Сад перевязанных ветвей. Ветви старых груш поддерживают тканевые ленты. Между деревьями достаточно места для небольшого собрания.\nCell 5. Пастуший навес. Каменный очаг, сухие полки и крючья для плащей. Путники оставляют здесь по полену и собственный знак на дощечке.\nCell 6. Брод Зеркальной Гальки. Плоские камни отражают небо. Выше брода натянут поручень, рядом привязана широкая грузовая лодка.\nCell 7. Тёплый медный выработок. Неглубокая выработка с кузнечным навесом и рядами негодных колокольцев. По краям тропы стоят заметные ограждения.\nCell 8. Звонница Последнего Воздуха. Открытая башня на невысоком гребне. Под её крышей висит неподвижный колокол, а на площадке видны гнёзда для дорожных фонарей.\nCell 9. Каменная Глотка. Необитаемая теснина за пастбищем. Речка огибает каменный карман, где шаги долго отдаются эхом; на верхнем берегу проходит ограждённая тропа.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "bellwether-hollow-foes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-0ad87380-5d9b-4254-915f-73df0e610215.png",
+      "originalSha256": "a5fefef2db679a28fda7224dd6e6f8ccd0b9d3b1644deffb81b5d3a125b55625",
+      "columns": 3,
+      "rows": 1,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 3 equal columns by 1 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Лощина Тихой Меди · Weathered copper patina with interlocking fine bell silhouettes and echo ripples. Cell 1. Садовая складка. Пустая тёмная ткань, сложенная в неровную фигуру; удар выглядит как холодный рывок и усталость, без ран и натурализма.\nCell 2. Мельничная складка. Слипшиеся полосы пустой ткани, отражающиеся в воде; касание отнимает силы, не описывается как телесное увечье.\nCell 3. Башенная складка. Угловатая тень медного плаща; её края гнутся, не режут, а атака обозначает холод и утомление.. Leave final unused cells empty.",
+      "references": []
+    },
+    {
+      "id": "bellwether-hollow-heroes-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-b814a22c-fcad-4f0c-aaa1-275beaf1533d.png",
+      "originalSha256": "0d4160995814e3ccaeda4b12162f27ef963ebb1c2f6458467741ce08a2351935",
+      "columns": 4,
+      "rows": 2,
+      "prompt": "A professional sprite plate of hand-painted tabletop MINIATURE STATUETTES, tiny full bodies sculpted in resin with painted fabric, on separate low elliptical bases. Three-quarter front view gently facing RIGHT. EVERY head, feet, base and equipment contained with 12 percent negative space on all sides of each cell. An isolated figure per cell, empty transparent space between, no ground plane or cast shadows. Match appearance, age, species, clothing and signature colors of the supplied corresponding reference cells when present; extra reference subjects are never to be introduced. True transparent background. Finely painted collectible pieces, readable at 48px. EXACT regular grid, 4 equal columns by 2 equal rows. Cells read left to right, then top to bottom. Rectangular canvas matching this grid. No frames, gutters, captions, labels, borders or numbers. All cells equal size. World art direction: Лощина Тихой Меди · Weathered copper patina with interlocking fine bell silhouettes and echo ripples. Cell 1. Милена Мостовая. Плащ с медными застёжками, крепкие рукавицы и складная мерная рейка.\nCell 2. Илар Нитник. Жёлтая нить на воротнике, мягкие сапоги, сумка с отдельными карманами для чужих писем.\nCell 3. Рина Свечная. Серый передник поверх дорожной одежды, фонарь с бумажной заслонкой и открытая тетрадь.\nCell 4. Мирта Дождевая. Короткий шерстяной плащ, стеклянные бусины на шнуре и исписанные деревянные линейки.\nCell 5. Дан Жаворонок. Зелёная куртка с заплатой на локте, мягкий шейный платок и плетёный щит.\nCell 6. Зоя Катушка. Длинная жилетка с карманами для лоскутов, серебряный напёрсток и дорожный посох.\nCell 7. Беря Тихопев. Тёмно-синий шарф, дощечка для записей и небольшой бубен с мягким краем.. Leave final unused cells empty.",
+      "references": [
+        "campaigns/dark-fantasy-2026/bellwether-hollow/illustrations/cards/milena-bridge.webp",
+        "campaigns/dark-fantasy-2026/bellwether-hollow/illustrations/cards/ilar-thread.webp",
+        "campaigns/dark-fantasy-2026/bellwether-hollow/illustrations/cards/rina-candle.webp",
+        "campaigns/dark-fantasy-2026/bellwether-hollow/illustrations/cards/mirta-rain.webp",
+        "campaigns/dark-fantasy-2026/bellwether-hollow/illustrations/cards/dan-lark.webp",
+        "campaigns/dark-fantasy-2026/bellwether-hollow/illustrations/cards/zoya-reel.webp",
+        "campaigns/dark-fantasy-2026/bellwether-hollow/illustrations/cards/berya-song.webp"
+      ]
+    },
+    {
+      "id": "bellwether-hollow-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-d2c2da6d-7d6d-45a8-a8aa-451cca77710f.png",
+      "originalSha256": "882daea148b6c4419923daaee258980769ba221465457c3929bfbeddb3912ff9",
+      "columns": 3,
+      "rows": 3,
+      "prompt": "Create a clean production sprite sheet of 9 distinct hand-painted tabletop miniature figurines for the world of Долина без последнего звона. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 3 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Дарья Стрежа. Высокая женщина с медной заколкой и поясом звонарных инструментов.\nCell 2. Лавр Рябой. Плащ с белой штопкой, трость с неглубокими зарубками и два фонарных крючка на поясе.\nCell 3. Весна Ольховая. Короткая накидка в пятнах глины, тяжёлые сапоги и пояс с деревянными мерками.\nCell 4. Борун Вяз. Шерстяной жилет, хозяйственная доска и слишком короткий карандаш за ухом.\nCell 5. Орса Пестрая. Плащ с узором из тёмных ромбов, резной знак ветви и плоская фляга на ремне.\nCell 6. Тейка Луговая. Садовые рукавицы, серый капюшон и лента с нарисованными листьями вместо делений.\nCell 7. Севир Закал. Кожаный фартук, повязка на волосах и круглая медная пуговица вместо застёжки.\nCell 8. Ада Низовая. Светлый плащ с широкими рукавами, узловой счётчик воды и оббитый медью шест.\nCell 9. Незваный Гость. Издалека под пустой звонницей различима вытянутая фигура; край её плаща движется отдельно от ветра.",
+      "references": [
+        "campaigns/dark-fantasy-2026/bellwether-hollow/illustrations/cards/darya-reed.webp",
+        "campaigns/dark-fantasy-2026/bellwether-hollow/illustrations/cards/lavr-watchman.webp",
+        "campaigns/dark-fantasy-2026/bellwether-hollow/illustrations/cards/vesna-potter.webp",
+        "campaigns/dark-fantasy-2026/bellwether-hollow/illustrations/cards/borun-reeve.webp",
+        "campaigns/dark-fantasy-2026/bellwether-hollow/illustrations/cards/orsa-shepherd.webp",
+        "campaigns/dark-fantasy-2026/bellwether-hollow/illustrations/cards/teyka-apprentice.webp",
+        "campaigns/dark-fantasy-2026/bellwether-hollow/illustrations/cards/sevir-smith.webp",
+        "campaigns/dark-fantasy-2026/bellwether-hollow/illustrations/cards/ada-ferrier.webp",
+        "campaigns/dark-fantasy-2026/bellwether-hollow/illustrations/cards/echo-keeper.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "village-square",
+      "title": "Площадь Вересова Колодца",
+      "kind": "place",
+      "subjects": [
+        "village-square"
+      ],
+      "file": "places-village-square.webp",
+      "sha256": "b9d2a4ae128868d32e90b711d79d23eeb2044c6898ef081f100802ce979920bd",
+      "originalSha256": "a1176ca3ff632aba0e914b0ea68dd2ba2116cdec254a7544ecc377eea5f6842e",
+      "generated": "2026-11-22",
+      "sheet": "bellwether-hollow-places-0",
+      "cell": 1,
+      "crop": {
+        "left": 1,
+        "top": 1,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "bell-house",
+      "title": "Дом шести ударов",
+      "kind": "place",
+      "subjects": [
+        "bell-house"
+      ],
+      "file": "places-bell-house.webp",
+      "sha256": "9fb8457c137e194ea961120b55cb704c6da992544f606ce5b71c1039916c6363",
+      "originalSha256": "a1176ca3ff632aba0e914b0ea68dd2ba2116cdec254a7544ecc377eea5f6842e",
+      "generated": "2026-11-22",
+      "sheet": "bellwether-hollow-places-0",
+      "cell": 2,
+      "crop": {
+        "left": 484,
+        "top": 1,
+        "width": 480,
+        "height": 360
+      }
+    },
+    {
+      "key": "flooded-mill",
+      "title": "Мельница Стоячей Воды",
+      "kind": "place",
+      "subjects": [
+        "flooded-mill"
+      ],
+      "file": "places-flooded-mill.webp",
+      "sha256": "d74c9b27a5d91bc21e3de87aeb8e4b74a33cabb775ca740cf213e79dfc6efb39",
+      "originalSha256": "a1176ca3ff632aba0e914b0ea68dd2ba2116cdec254a7544ecc377eea5f6842e",
+      "generated": "2026-11-22",
+      "sheet": "bellwether-hollow-places-0",
+      "cell": 3,
+      "crop": {
+        "left": 966,
+        "top": 1,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "orchard-path",
+      "title": "Сад перевязанных ветвей",
+      "kind": "place",
+      "subjects": [
+        "orchard-path"
+      ],
+      "file": "places-orchard-path.webp",
+      "sha256": "3558485158422987efb00df726119aa0dd6b8ea529d50863d07422026d259f1d",
+      "originalSha256": "a1176ca3ff632aba0e914b0ea68dd2ba2116cdec254a7544ecc377eea5f6842e",
+      "generated": "2026-11-22",
+      "sheet": "bellwether-hollow-places-0",
+      "cell": 4,
+      "crop": {
+        "left": 1,
+        "top": 363,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "shepherd-shelter",
+      "title": "Пастуший навес",
+      "kind": "place",
+      "subjects": [
+        "shepherd-shelter"
+      ],
+      "file": "places-shepherd-shelter.webp",
+      "sha256": "059821df7bad937582cd1891588d94f9893269c669dcc9bf54acd4bdea3fff13",
+      "originalSha256": "a1176ca3ff632aba0e914b0ea68dd2ba2116cdec254a7544ecc377eea5f6842e",
+      "generated": "2026-11-22",
+      "sheet": "bellwether-hollow-places-0",
+      "cell": 5,
+      "crop": {
+        "left": 484,
+        "top": 363,
+        "width": 480,
+        "height": 360
+      }
+    },
+    {
+      "key": "mirror-ford",
+      "title": "Брод Зеркальной Гальки",
+      "kind": "place",
+      "subjects": [
+        "mirror-ford"
+      ],
+      "file": "places-mirror-ford.webp",
+      "sha256": "dea6a6e0b681e5bc44fbf83d8166b45d2d1ec6104e6ecae5212e487fc3d1c552",
+      "originalSha256": "a1176ca3ff632aba0e914b0ea68dd2ba2116cdec254a7544ecc377eea5f6842e",
+      "generated": "2026-11-22",
+      "sheet": "bellwether-hollow-places-0",
+      "cell": 6,
+      "crop": {
+        "left": 966,
+        "top": 363,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "copper-quarry",
+      "title": "Тёплый медный выработок",
+      "kind": "place",
+      "subjects": [
+        "copper-quarry"
+      ],
+      "file": "places-copper-quarry.webp",
+      "sha256": "ca3ec77630414341c0a58dc47eb334f6d2f992a4a3bdaa579a1ac83b5283edb5",
+      "originalSha256": "a1176ca3ff632aba0e914b0ea68dd2ba2116cdec254a7544ecc377eea5f6842e",
+      "generated": "2026-11-22",
+      "sheet": "bellwether-hollow-places-0",
+      "cell": 7,
+      "crop": {
+        "left": 1,
+        "top": 725,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "last-belfry",
+      "title": "Звонница Последнего Воздуха",
+      "kind": "place",
+      "subjects": [
+        "last-belfry"
+      ],
+      "file": "places-last-belfry.webp",
+      "sha256": "f9b9bf89c0b391b931d22db030bfcf2810de7c883e0d44413375dc44cb1e280a",
+      "originalSha256": "a1176ca3ff632aba0e914b0ea68dd2ba2116cdec254a7544ecc377eea5f6842e",
+      "generated": "2026-11-22",
+      "sheet": "bellwether-hollow-places-0",
+      "cell": 8,
+      "crop": {
+        "left": 484,
+        "top": 725,
+        "width": 480,
+        "height": 360
+      }
+    },
+    {
+      "key": "stone-throat",
+      "title": "Каменная Глотка",
+      "kind": "place",
+      "subjects": [
+        "stone-throat"
+      ],
+      "file": "places-stone-throat.webp",
+      "sha256": "cb2ced9da063ff692d28c33ed9303748fa0bada2400a5df311a995130148a453",
+      "originalSha256": "a1176ca3ff632aba0e914b0ea68dd2ba2116cdec254a7544ecc377eea5f6842e",
+      "generated": "2026-11-22",
+      "sheet": "bellwether-hollow-places-0",
+      "cell": 9,
+      "crop": {
+        "left": 966,
+        "top": 725,
+        "width": 481,
+        "height": 360
+      }
+    },
+    {
+      "key": "foe-5cfb95ba9d",
+      "title": "Садовая складка",
+      "kind": "foe",
+      "subjects": [
+        "orchard-folds-foe-1",
+        "orchard-folds-foe-2",
+        "orchard-folds-foe-3",
+        "orchard-folds-foe-4",
+        "orchard-folds-foe-5"
+      ],
+      "file": "foes-foe-5cfb95ba9d.webp",
+      "sha256": "cd9121debc9c5b439d5553f02b95b573ef8f780db4c5b14e1b176f93f4cc6521",
+      "originalSha256": "a5fefef2db679a28fda7224dd6e6f8ccd0b9d3b1644deffb81b5d3a125b55625",
+      "generated": "2026-11-22",
+      "sheet": "bellwether-hollow-foes-0",
+      "cell": 1,
+      "crop": {
+        "left": 43,
+        "top": 61,
+        "width": 610,
+        "height": 616
+      }
+    },
+    {
+      "key": "foe-05c932be83",
+      "title": "Мельничная складка",
+      "kind": "foe",
+      "subjects": [
+        "mill-hushers-foe-1",
+        "mill-hushers-foe-2",
+        "mill-hushers-foe-3",
+        "mill-hushers-foe-4",
+        "mill-hushers-foe-5"
+      ],
+      "file": "foes-foe-05c932be83.webp",
+      "sha256": "a9d8a4c1e162a2bbb0947be9858c7aba356cbf17f6afad38e535a032f0d6d117",
+      "originalSha256": "a5fefef2db679a28fda7224dd6e6f8ccd0b9d3b1644deffb81b5d3a125b55625",
+      "generated": "2026-11-22",
+      "sheet": "bellwether-hollow-foes-0",
+      "cell": 2,
+      "crop": {
+        "left": 802,
+        "top": 54,
+        "width": 579,
+        "height": 629
+      }
+    },
+    {
+      "key": "foe-f82b47ccb2",
+      "title": "Башенная складка",
+      "kind": "foe",
+      "subjects": [
+        "belfry-shards-foe-1",
+        "belfry-shards-foe-2",
+        "belfry-shards-foe-3",
+        "belfry-shards-foe-4",
+        "belfry-shards-foe-5"
+      ],
+      "file": "foes-foe-f82b47ccb2.webp",
+      "sha256": "66c47107b3fdd9d998927c6b6f51a1a5e027bb63afbd809addf3d3b13bb06e87",
+      "originalSha256": "a5fefef2db679a28fda7224dd6e6f8ccd0b9d3b1644deffb81b5d3a125b55625",
+      "generated": "2026-11-22",
+      "sheet": "bellwether-hollow-foes-0",
+      "cell": 3,
+      "crop": {
+        "left": 1538,
+        "top": 37,
+        "width": 584,
+        "height": 643
+      }
+    },
+    {
+      "key": "milena-bridge",
+      "title": "Милена Мостовая",
+      "kind": "hero",
+      "subjects": [
+        "milena-bridge"
+      ],
+      "file": "heroes-milena-bridge.webp",
+      "sha256": "ba110dbb364445eb55d1cacd91f5e25c35b34382d4b877864ad2faff1361b8f9",
+      "originalSha256": "0d4160995814e3ccaeda4b12162f27ef963ebb1c2f6458467741ce08a2351935",
+      "generated": "2026-11-22",
+      "sheet": "bellwether-hollow-heroes-0",
+      "cell": 1,
+      "crop": {
+        "left": 101,
+        "top": 11,
+        "width": 235,
+        "height": 417
+      }
+    },
+    {
+      "key": "ilar-thread",
+      "title": "Илар Нитник",
+      "kind": "hero",
+      "subjects": [
+        "ilar-thread"
+      ],
+      "file": "heroes-ilar-thread.webp",
+      "sha256": "9d6635b5119f05a56f17a61f694b7aff97b91f9b8c1ea2b6b64ce1b3b2e1624d",
+      "originalSha256": "0d4160995814e3ccaeda4b12162f27ef963ebb1c2f6458467741ce08a2351935",
+      "generated": "2026-11-22",
+      "sheet": "bellwether-hollow-heroes-0",
+      "cell": 2,
+      "crop": {
+        "left": 553,
+        "top": 11,
+        "width": 227,
+        "height": 417
+      }
+    },
+    {
+      "key": "rina-candle",
+      "title": "Рина Свечная",
+      "kind": "hero",
+      "subjects": [
+        "rina-candle"
+      ],
+      "file": "heroes-rina-candle.webp",
+      "sha256": "0c8bc3970056d8624d94e5b4a54000751bc8e1f48904fd43f9b48830b8119661",
+      "originalSha256": "0d4160995814e3ccaeda4b12162f27ef963ebb1c2f6458467741ce08a2351935",
+      "generated": "2026-11-22",
+      "sheet": "bellwether-hollow-heroes-0",
+      "cell": 3,
+      "crop": {
+        "left": 996,
+        "top": 12,
+        "width": 227,
+        "height": 416
+      }
+    },
+    {
+      "key": "mirta-rain",
+      "title": "Мирта Дождевая",
+      "kind": "hero",
+      "subjects": [
+        "mirta-rain"
+      ],
+      "file": "heroes-mirta-rain.webp",
+      "sha256": "e9cc95f13869f90fca6dd042299a87011fa86bcf1c9c486e23bda4207ae03c64",
+      "originalSha256": "0d4160995814e3ccaeda4b12162f27ef963ebb1c2f6458467741ce08a2351935",
+      "generated": "2026-11-22",
+      "sheet": "bellwether-hollow-heroes-0",
+      "cell": 4,
+      "crop": {
+        "left": 1438,
+        "top": 12,
+        "width": 228,
+        "height": 416
+      }
+    },
+    {
+      "key": "dan-lark",
+      "title": "Дан Жаворонок",
+      "kind": "hero",
+      "subjects": [
+        "dan-lark"
+      ],
+      "file": "heroes-dan-lark.webp",
+      "sha256": "a3626eec7cb2acf3b4b88348bc1a4c0dff5e961ad09d51900abde38fc9ee1356",
+      "originalSha256": "0d4160995814e3ccaeda4b12162f27ef963ebb1c2f6458467741ce08a2351935",
+      "generated": "2026-11-22",
+      "sheet": "bellwether-hollow-heroes-0",
+      "cell": 5,
+      "crop": {
+        "left": 110,
+        "top": 452,
+        "width": 226,
+        "height": 419
+      }
+    },
+    {
+      "key": "zoya-reel",
+      "title": "Зоя Катушка",
+      "kind": "hero",
+      "subjects": [
+        "zoya-reel"
+      ],
+      "file": "heroes-zoya-reel.webp",
+      "sha256": "00cc4b86415fae3e367ef3636ade12f4e186a60269c58cf74abe31932b302569",
+      "originalSha256": "0d4160995814e3ccaeda4b12162f27ef963ebb1c2f6458467741ce08a2351935",
+      "generated": "2026-11-22",
+      "sheet": "bellwether-hollow-heroes-0",
+      "cell": 6,
+      "crop": {
+        "left": 553,
+        "top": 454,
+        "width": 226,
+        "height": 417
+      }
+    },
+    {
+      "key": "berya-song",
+      "title": "Беря Тихопев",
+      "kind": "hero",
+      "subjects": [
+        "berya-song"
+      ],
+      "file": "heroes-berya-song.webp",
+      "sha256": "680c102d1541e4dccde228a5af2023948fbad593dc8ca0deb704a69d0d2dd064",
+      "originalSha256": "0d4160995814e3ccaeda4b12162f27ef963ebb1c2f6458467741ce08a2351935",
+      "generated": "2026-11-22",
+      "sheet": "bellwether-hollow-heroes-0",
+      "cell": 7,
+      "crop": {
+        "left": 972,
+        "top": 451,
+        "width": 251,
+        "height": 420
+      }
+    },
+    {
+      "key": "darya-reed",
+      "title": "Дарья Стрежа",
+      "kind": "npc",
+      "subjects": [
+        "darya-reed"
+      ],
+      "file": "npcs-darya-reed.webp",
+      "sha256": "a5cc337252a8c298773a8ff9e566f335cbef4f74d1e65c8442e77145e34b105c",
+      "originalSha256": "882daea148b6c4419923daaee258980769ba221465457c3929bfbeddb3912ff9",
+      "generated": "2026-11-22",
+      "sheet": "bellwether-hollow-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 110,
+        "top": 11,
+        "width": 228,
+        "height": 376
+      }
+    },
+    {
+      "key": "lavr-watchman",
+      "title": "Лавр Рябой",
+      "kind": "npc",
+      "subjects": [
+        "lavr-watchman"
+      ],
+      "file": "npcs-lavr-watchman.webp",
+      "sha256": "060db2d44dee5a5c88fec6d3e8549291cc0c9922b590c02f978b4a933c663f10",
+      "originalSha256": "882daea148b6c4419923daaee258980769ba221465457c3929bfbeddb3912ff9",
+      "generated": "2026-11-22",
+      "sheet": "bellwether-hollow-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 525,
+        "top": 13,
+        "width": 236,
+        "height": 374
+      }
+    },
+    {
+      "key": "vesna-potter",
+      "title": "Весна Ольховая",
+      "kind": "npc",
+      "subjects": [
+        "vesna-potter"
+      ],
+      "file": "npcs-vesna-potter.webp",
+      "sha256": "e568e899a28aa1be1ea418a228efbd771923554f75ab0dc487b244ef1d579e51",
+      "originalSha256": "882daea148b6c4419923daaee258980769ba221465457c3929bfbeddb3912ff9",
+      "generated": "2026-11-22",
+      "sheet": "bellwether-hollow-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 971,
+        "top": 11,
+        "width": 228,
+        "height": 376
+      }
+    },
+    {
+      "key": "borun-reeve",
+      "title": "Борун Вяз",
+      "kind": "npc",
+      "subjects": [
+        "borun-reeve"
+      ],
+      "file": "npcs-borun-reeve.webp",
+      "sha256": "09886c02624e00aa70980f53ed41a3d2a55c0019919c60323245ce1f6a2e965c",
+      "originalSha256": "882daea148b6c4419923daaee258980769ba221465457c3929bfbeddb3912ff9",
+      "generated": "2026-11-22",
+      "sheet": "bellwether-hollow-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 112,
+        "top": 403,
+        "width": 224,
+        "height": 367
+      }
+    },
+    {
+      "key": "orsa-shepherd",
+      "title": "Орса Пестрая",
+      "kind": "npc",
+      "subjects": [
+        "orsa-shepherd"
+      ],
+      "file": "npcs-orsa-shepherd.webp",
+      "sha256": "af7499570596cef23f205a4f299712581fef37e6c33fce6527d39ea9ad6d74b0",
+      "originalSha256": "882daea148b6c4419923daaee258980769ba221465457c3929bfbeddb3912ff9",
+      "generated": "2026-11-22",
+      "sheet": "bellwether-hollow-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 533,
+        "top": 405,
+        "width": 244,
+        "height": 367
+      }
+    },
+    {
+      "key": "teyka-apprentice",
+      "title": "Тейка Луговая",
+      "kind": "npc",
+      "subjects": [
+        "teyka-apprentice"
+      ],
+      "file": "npcs-teyka-apprentice.webp",
+      "sha256": "7a2f943287fb0b034e041ff0fbe7771fecaed4b18613a816deb31ae8002b3dcc",
+      "originalSha256": "882daea148b6c4419923daaee258980769ba221465457c3929bfbeddb3912ff9",
+      "generated": "2026-11-22",
+      "sheet": "bellwether-hollow-npcs-0",
+      "cell": 6,
+      "crop": {
+        "left": 972,
+        "top": 402,
+        "width": 226,
+        "height": 368
+      }
+    },
+    {
+      "key": "sevir-smith",
+      "title": "Севир Закал",
+      "kind": "npc",
+      "subjects": [
+        "sevir-smith"
+      ],
+      "file": "npcs-sevir-smith.webp",
+      "sha256": "70168dda2125d7c3cb1701abc2c31865fd940c07a9e86fe8f1ea5a7906551de6",
+      "originalSha256": "882daea148b6c4419923daaee258980769ba221465457c3929bfbeddb3912ff9",
+      "generated": "2026-11-22",
+      "sheet": "bellwether-hollow-npcs-0",
+      "cell": 7,
+      "crop": {
+        "left": 112,
+        "top": 783,
+        "width": 234,
+        "height": 379
+      }
+    },
+    {
+      "key": "ada-ferrier",
+      "title": "Ада Низовая",
+      "kind": "npc",
+      "subjects": [
+        "ada-ferrier"
+      ],
+      "file": "npcs-ada-ferrier.webp",
+      "sha256": "311e7fadcdc55fedb313977d9e6847c30a3741681eac244e215e47be4862a427",
+      "originalSha256": "882daea148b6c4419923daaee258980769ba221465457c3929bfbeddb3912ff9",
+      "generated": "2026-11-22",
+      "sheet": "bellwether-hollow-npcs-0",
+      "cell": 8,
+      "crop": {
+        "left": 524,
+        "top": 786,
+        "width": 251,
+        "height": 376
+      }
+    },
+    {
+      "key": "echo-keeper",
+      "title": "Незваный Гость",
+      "kind": "npc",
+      "subjects": [
+        "echo-keeper"
+      ],
+      "file": "npcs-echo-keeper.webp",
+      "sha256": "4ac82462fbb6c7d1f58073c5d3223c249cf8a1771840596c6691a61b6990bef9",
+      "originalSha256": "882daea148b6c4419923daaee258980769ba221465457c3929bfbeddb3912ff9",
+      "generated": "2026-11-22",
+      "sheet": "bellwether-hollow-npcs-0",
+      "cell": 9,
+      "crop": {
+        "left": 916,
+        "top": 795,
+        "width": 343,
+        "height": 362
+      }
+    }
+  ]
+}

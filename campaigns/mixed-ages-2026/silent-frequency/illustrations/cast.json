@@ -1,0 +1,377 @@
+{
+  "about": "Портреты для карточек и изображение закрытого набора. Сначала сверяйте личность и доступность персонажа за столом.",
+  "generated": "2026-11-22",
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "heroes",
+      "originalFile": "exec-876911b3-c362-4dc7-b6af-2b59da933bf0.png",
+      "originalSha256": "0546ae249f7d3d7aa1037d29d9a384c227f60c88703a30f8b2d9338b06e3cdb8",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 3 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:3. Warm illustrated adventure book, colourful gouache. World: Леставель во время Оловянного шторма. Characters, in strict cell order:\n1. Вера Немова — Короткая стрижка, полосатый шарф и простая тетрадь с крупными полями. Age 29.\n2. Данил Корин — Куртка с нашивками старых фестивалей, крепкие ботинки и складной стул через плечо. Age 24.\n3. Ася Мель — Очки в красной оправе, несколько цветных карандашей и рукав с пятном синей краски. Age 27.\n4. Тимур Рай — Седые кудри, вельветовый жилет и коробочка разноцветных карточек. Age 58.\n5. Нина Лиск — Зелёное пальто, широкие браслеты и папка с застёжкой в форме рыбы. Age 67.\n6. Илья Теш — Светлая рубашка под дождевиком, блокнот без обложки и вечная закладка из билета. Age 34.\n7. Майя Фень — Жёлтая шапка, тканевый ремень для камеры и карманы с подписанными конвертами. Age 21.\n8. Дорожный / рабочий набор — Still life of one opaque closed everyday satchel, appropriate to this world and era. No person and nothing spilling out.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 3,
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "id": "npcs",
+      "originalFile": "exec-f10001fa-d3cb-4b5d-b306-0d8071050729.png",
+      "originalSha256": "75544c11ede2ef341020438f39801e6a7515fb5bdaf3c54b192cb218d17643ad",
+      "prompt": "Create one professional casting contact sheet as a tightly registered sprite atlas. EXACTLY 3 equal columns and 4 equal rows, ordered left-to-right then top-to-bottom. Full bleed, each cell is one independent centered shoulder-up character portrait against its own simple backdrop, comfortable head room and wide margins within every cell, boundaries invisible, no captions or letters or numbers, no collage or text. Every cell the same square size. Rectangular canvas aspect 3:4. Warm illustrated adventure book, colourful gouache. World: Леставель во время Оловянного шторма. Characters, in strict cell order:\n1. Марк Ровен — Тёмный плащ, сухой бумажный планшет и часы на слишком свободном ремешке. Age 45.\n2. Лида Горина — Клетчатая рубашка, собранные в узел волосы и чашка с нарисованной лестницей. Age 39.\n3. Сев Лунин — Вязаная синяя шапка, холщовый рюкзак и карандаш, привязанный к блокноту. Age 23.\n4. Эльза Пах — На вывешенной в студии фотографии — женщина с круглой оправой очков и узкой белой прядью. Age 55.\n5. Роза Пахт — Фиолетовый жилет, широкий карандаш за ухом и мягкие перчатки без пальцев. Age 62.\n6. Нора Винтер — Красный кардиган, короткие рукава и страницы с заметными правками зелёным карандашом. Age 33.\n7. Юрий Тамень — Оранжевый вязаный жилет и круглая связка крупных декоративных ключей. Age 50.\n8. Тим Серев — Клетчатая кепка, рукава с нашивками и небольшой блокнот с театральными репликами. Age 22.\n9. Ада Орм — Серый плащ, белая прядь у виска и папка с прозрачными уголками. Age 46.\n10. Олег Брин — Серый жилет с широкими карманами, жёлтый дождевик на спинке стула и папка на шнурке. Age 31.\nLeave any unassigned final cell plain. Do not merge cells. No text.",
+      "columns": 3,
+      "rows": 4,
+      "width": 1086,
+      "height": 1448
+    }
+  ],
+  "cards": [
+    {
+      "id": "vera-nemova",
+      "file": "cards/vera-nemova.webp",
+      "title": "Вера Немова",
+      "subjects": [
+        "vera-nemova"
+      ],
+      "sheet": "heroes",
+      "cell": 1,
+      "crop": {
+        "left": 10,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "6eba4d70a2a54fc37364d3a1b21fa1ccf82cfc85bfea007ff233df8e8b872602"
+    },
+    {
+      "id": "danil-korin",
+      "file": "cards/danil-korin.webp",
+      "title": "Данил Корин",
+      "subjects": [
+        "danil-korin"
+      ],
+      "sheet": "heroes",
+      "cell": 2,
+      "crop": {
+        "left": 428,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "b36d9137bb913611eb2406e2bb536e0c1deaae9c0bccaf28c8b995afdfabab62"
+    },
+    {
+      "id": "asya-mel",
+      "file": "cards/asya-mel.webp",
+      "title": "Ася Мель",
+      "subjects": [
+        "asya-mel"
+      ],
+      "sheet": "heroes",
+      "cell": 3,
+      "crop": {
+        "left": 846,
+        "top": 10,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "59ccfce84b6dc7282d71bc7fb3039ae24faf0853b5c5ec9c421f13177f86c410"
+    },
+    {
+      "id": "timur-ray",
+      "file": "cards/timur-ray.webp",
+      "title": "Тимур Рай",
+      "subjects": [
+        "timur-ray"
+      ],
+      "sheet": "heroes",
+      "cell": 4,
+      "crop": {
+        "left": 10,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "230bdc0129033a171a667724177d32a0d2ef1d9e032ed7a26bf95fdf92052d1c"
+    },
+    {
+      "id": "nina-lisk",
+      "file": "cards/nina-lisk.webp",
+      "title": "Нина Лиск",
+      "subjects": [
+        "nina-lisk"
+      ],
+      "sheet": "heroes",
+      "cell": 5,
+      "crop": {
+        "left": 428,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "4cdeb4281a8fbd9c5d2458bd641e9f9bbdc0ae4ddcb4cfb661e10f1d2dfc7c23"
+    },
+    {
+      "id": "ilya-tesh",
+      "file": "cards/ilya-tesh.webp",
+      "title": "Илья Теш",
+      "subjects": [
+        "ilya-tesh"
+      ],
+      "sheet": "heroes",
+      "cell": 6,
+      "crop": {
+        "left": 846,
+        "top": 428,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "3e90f82be5f9196101637a5040739b13ec4a24038720dc81afa13abd4ec908e8"
+    },
+    {
+      "id": "maya-fen",
+      "file": "cards/maya-fen.webp",
+      "title": "Майя Фень",
+      "subjects": [
+        "maya-fen"
+      ],
+      "sheet": "heroes",
+      "cell": 7,
+      "crop": {
+        "left": 10,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "4f8776c6c4e415b640ab27e9ac468bd1de8e89497ddb9c9408b8bdfe188e2d03"
+    },
+    {
+      "id": "travel-kit",
+      "file": "cards/travel-kit.webp",
+      "title": "Дорожный набор",
+      "subjects": [
+        "asya-mel-travel-kit",
+        "danil-korin-travel-kit",
+        "ilya-tesh-travel-kit",
+        "maya-fen-travel-kit",
+        "nina-lisk-travel-kit",
+        "timur-ray-travel-kit",
+        "vera-nemova-travel-kit"
+      ],
+      "sheet": "heroes",
+      "cell": 8,
+      "crop": {
+        "left": 428,
+        "top": 846,
+        "width": 398,
+        "height": 398
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "e0e28b4b1ffde1f4e113c859df461e90f1df5e5520559d2ea83c434454c4bd64"
+    },
+    {
+      "id": "mark-roven",
+      "file": "cards/mark-roven.webp",
+      "title": "Марк Ровен",
+      "subjects": [
+        "mark-roven"
+      ],
+      "sheet": "npcs",
+      "cell": 1,
+      "crop": {
+        "left": 9,
+        "top": 9,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "54e6b7c136b0f67ea3ae1de3a75cfb73babbca49705f70d68c85b7f717a97e6d"
+    },
+    {
+      "id": "lida-gorina",
+      "file": "cards/lida-gorina.webp",
+      "title": "Лида Горина",
+      "subjects": [
+        "lida-gorina"
+      ],
+      "sheet": "npcs",
+      "cell": 2,
+      "crop": {
+        "left": 371,
+        "top": 9,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "8b48f17dbf3a29b19d7de2c60326dcc21decc8634d40ad799e450feae9adcd1d"
+    },
+    {
+      "id": "sev-lunin",
+      "file": "cards/sev-lunin.webp",
+      "title": "Сев Лунин",
+      "subjects": [
+        "sev-lunin"
+      ],
+      "sheet": "npcs",
+      "cell": 3,
+      "crop": {
+        "left": 733,
+        "top": 9,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "dbddd324b398ff5e2a4394671a8a861588df62c49d0c1038a1fc8262e3333364"
+    },
+    {
+      "id": "elza-pakh",
+      "file": "cards/elza-pakh.webp",
+      "title": "Эльза Пах",
+      "subjects": [
+        "elza-pakh"
+      ],
+      "sheet": "npcs",
+      "cell": 4,
+      "crop": {
+        "left": 9,
+        "top": 371,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "03ab50df88a87fbe7d67fc0d10908a6ebc07af7fb8123a9d0ab64187fd6c49c9"
+    },
+    {
+      "id": "roza-pakht",
+      "file": "cards/roza-pakht.webp",
+      "title": "Роза Пахт",
+      "subjects": [
+        "roza-pakht"
+      ],
+      "sheet": "npcs",
+      "cell": 5,
+      "crop": {
+        "left": 371,
+        "top": 371,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "cd265e5d4d4f5b395a7f1abb193b8d14be3a4b808f4f0043abc1cf41578156b3"
+    },
+    {
+      "id": "nora-vinter",
+      "file": "cards/nora-vinter.webp",
+      "title": "Нора Винтер",
+      "subjects": [
+        "nora-vinter"
+      ],
+      "sheet": "npcs",
+      "cell": 6,
+      "crop": {
+        "left": 733,
+        "top": 371,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "b66c42159ff7d8aad32784c3b23fae933271a34e3b5fe47801b66d23366916bc"
+    },
+    {
+      "id": "yuri-tamen",
+      "file": "cards/yuri-tamen.webp",
+      "title": "Юрий Тамень",
+      "subjects": [
+        "yuri-tamen"
+      ],
+      "sheet": "npcs",
+      "cell": 7,
+      "crop": {
+        "left": 9,
+        "top": 733,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "394f441a5211c710e1e9e6314745ca875ba1328b5b0dc06295dcd072a08ec08a"
+    },
+    {
+      "id": "tim-serev",
+      "file": "cards/tim-serev.webp",
+      "title": "Тим Серев",
+      "subjects": [
+        "tim-serev"
+      ],
+      "sheet": "npcs",
+      "cell": 8,
+      "crop": {
+        "left": 371,
+        "top": 733,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "4e8d16c459c22d73eee24b981ed7fe30d88395395128ef1031f63fe21f463043"
+    },
+    {
+      "id": "ada-orm",
+      "file": "cards/ada-orm.webp",
+      "title": "Ада Орм",
+      "subjects": [
+        "ada-orm"
+      ],
+      "sheet": "npcs",
+      "cell": 9,
+      "crop": {
+        "left": 733,
+        "top": 733,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "f13b4f2e5ee03707ed3a1472d546860791be916f965395d0c8e639ce8277e4bd"
+    },
+    {
+      "id": "oleg-brin",
+      "file": "cards/oleg-brin.webp",
+      "title": "Олег Брин",
+      "subjects": [
+        "oleg-brin"
+      ],
+      "sheet": "npcs",
+      "cell": 10,
+      "crop": {
+        "left": 9,
+        "top": 1095,
+        "width": 344,
+        "height": 344
+      },
+      "width": 256,
+      "height": 256,
+      "sha256": "2ef26aa34a96d930e17b61a2463ebfaf087a8475f691ee367644b544c5d4af29"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "maps": [
+    {
+      "file": "fox-ford.webp",
+      "sha256": "ff11c2da7da73428fc92c37ebd8da08843fd13598a02feaa654a2873228dbe89",
+      "originalSha256": "9e753785edaa8eaf4b5c7e2dab42617238cc14af3a06a57ec41fb9d0b59aa4a5",
+      "originalFile": "exec-d73a965c-674e-4aa6-ab77-f3913bd3a4d2.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Лисий Брод. Visible scenery: Низкие дома окружают общий хлебный двор. На мостках у каждой двери лежит горсть остывшего пепла.. World style: Низина трёх меж · Grey hearthstones with terracotta thumbprint whorls and warm burnt-sienna flecks. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "fox-ford",
+      "encounter": "tithe-collectors",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "charred-crossing.webp",
+      "sha256": "c9f7ba96d655c067dd6c5864aed667f3c3cde70ac7bf00c10f959d1695da6b53",
+      "originalSha256": "96e8bdc1cccbfea80218f91268f96f9529343f503efc3bb552988ae86291d3a1",
+      "originalFile": "exec-0e687484-c180-40e6-a52b-0feda90dfa55.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Обугленный перелаз. Visible scenery: Старый перелаз пересекает ложбину. По одну сторону тянется терновник, по другую стоят пустые известковые тележки.. World style: Низина трёх меж · Grey hearthstones with terracotta thumbprint whorls and warm burnt-sienna flecks. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "charred-crossing",
+      "encounter": "cinder-hunt",
+      "grid": [
+        14,
+        12
+      ]
+    },
+    {
+      "file": "long-field.webp",
+      "sha256": "727c049e128daf75742cd1e2527d9bde9d1056a27b8168f0ab898f7c3fb4f7ca",
+      "originalSha256": "2bb2aafe6e6079c848ca2ec891d3a9b68d89bd947b0a3f4a2cd2d00f5969e752",
+      "originalFile": "exec-c3f86724-e946-4caf-86cb-b01fff25671f.png",
+      "generated": "2026-11-22",
+      "prompt": "Single detailed overhead battle map painting for a fictional tabletop RPG environment: Чёрная борозда. Visible scenery: На длинном поле стоят три круглые жаровни и деревянные рабочие помосты. Земля между ними всегда тёплая.. World style: Низина трёх меж · Grey hearthstones with terracotta thumbprint whorls and warm burnt-sienna flecks. Orthographic from directly above, no perspective tilt, no characters, props with writing, letters, clues, grid, numbers, labels, icons or border. Landscape aspect 14:12; textured continuous playable ground to every edge. Keep most of the centre and the approaches traversable and distinguishable at phone scale. Table draws the exact grid, terrain and cover overlays separately.",
+      "references": [],
+      "location": "long-field",
+      "encounter": "brazier-wardens",
+      "grid": [
+        14,
+        12
+      ]
+    }
+  ]
+}

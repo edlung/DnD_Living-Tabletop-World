@@ -1,0 +1,260 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "glass-republic-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-ab2a7ddb-3d4c-455c-81ad-a5d0e2efb1de.png",
+      "originalSha256": "8dfac8c0623a1ceb1847dc4eaf643e538fc59ab125c4578b6f363211b7611d25",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 6 distinct hand-painted tabletop miniature figurines for the world of Стеклянная Республика. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Кассия Аммер. Светло-серый костюм, янтарный кулон на тонкой цепочке, на пальцах чернила трёх цветов; прежде чем заговорить, кладёт перчатки на стол.\nCell 2. Ростислав Пелль. Вытертый дорожный плащ, пустой футляр связного, привычка трогать подкладку и смотреть на выход.\nCell 3. Орен Вальт. Генеральский мундир без наград, седые виски, учтивая негромкая речь; перчатки держит в левой руке.\nCell 4. Северина Линт. Строгая кофта под цепью канцлера, очки на шнурке, пометки на полях речи.\nCell 5. Иветта Сомм. Банный халат поверх дорожного платья, волосы под косынкой; на столе перед ней — синее стекло.\nCell 6. Энна Рей. Полевая куртка, мел на рукаве, прямой взгляд; вопрос задаёт один раз.",
+      "references": [
+        "campaigns/collection-2026/glass-republic/assets/runtime/n-vera.webp",
+        "campaigns/collection-2026/glass-republic/assets/runtime/n-lev.webp",
+        "campaigns/collection-2026/glass-republic/assets/runtime/n-oren.webp",
+        "campaigns/collection-2026/glass-republic/assets/runtime/n-ada.webp",
+        "campaigns/collection-2026/glass-republic/assets/runtime/n-mirel.webp",
+        "campaigns/collection-2026/glass-republic/assets/runtime/n-enna.webp"
+      ]
+    },
+    {
+      "id": "glass-republic-npcs-1",
+      "cutoutRevision": 4,
+      "originalFile": "exec-444892af-d99b-46d4-a30f-f36aa89be0b1.png",
+      "originalSha256": "7113f4e71d2b13aa7f4e3984b6fe3b08e7ecf91d469e7f382d505802eb281a11",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 5 distinct hand-painted tabletop miniature figurines for the world of Стеклянная Республика. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Фабиан Рушт. Чернила на манжетах, журнал выдачи под локтем, карандаш за ухом.\nCell 2. Гелена Шир. Рабочая жилетка поверх праздничной рубашки, медное стекло на шнурке; слушает до конца.\nCell 3. Богдан Ольшев. Капитанская лента на рукаве, сапоги вычищены до блеска, голос сорван на репетициях.\nCell 4. Юла Нер. Широкий шарф, стопка повесток, усталый цепкий взгляд.\nCell 5. Зенон Карх. Парадный плащ знаменной стражи, седая щетина, парадная секира на плече.",
+      "references": [
+        "campaigns/collection-2026/glass-republic/assets/runtime/n-doran.webp",
+        "campaigns/collection-2026/glass-republic/assets/runtime/n-rada.webp",
+        "campaigns/collection-2026/glass-republic/assets/runtime/n-senn.webp",
+        "campaigns/collection-2026/glass-republic/assets/runtime/n-yula.webp",
+        "campaigns/collection-2026/glass-republic/assets/runtime/n-zenon.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "n-vera",
+      "title": "Кассия Аммер",
+      "kind": "npc",
+      "subjects": [
+        "n-vera"
+      ],
+      "file": "npcs-n-vera.webp",
+      "sha256": "551c0f18e4c8df4ac679a1eb99a8e3b7df016438724e16daa7c8478992a6d2b2",
+      "originalSha256": "8dfac8c0623a1ceb1847dc4eaf643e538fc59ab125c4578b6f363211b7611d25",
+      "generated": "2026-11-22",
+      "sheet": "glass-republic-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 119,
+        "top": 20,
+        "width": 291,
+        "height": 477
+      }
+    },
+    {
+      "key": "n-lev",
+      "title": "Ростислав Пелль",
+      "kind": "npc",
+      "subjects": [
+        "n-lev"
+      ],
+      "file": "npcs-n-lev.webp",
+      "sha256": "15b2a94e2518ddfca09226444a3a7efae483148a092dbf0479ecb4eb88966a92",
+      "originalSha256": "8dfac8c0623a1ceb1847dc4eaf643e538fc59ab125c4578b6f363211b7611d25",
+      "generated": "2026-11-22",
+      "sheet": "glass-republic-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 622,
+        "top": 12,
+        "width": 274,
+        "height": 492
+      }
+    },
+    {
+      "key": "n-oren",
+      "title": "Орен Вальт",
+      "kind": "npc",
+      "subjects": [
+        "n-oren"
+      ],
+      "file": "npcs-n-oren.webp",
+      "sha256": "2be484e087ac37cb42a9b82ecc9f717fc204911251446ecff2f7cd230d985796",
+      "originalSha256": "8dfac8c0623a1ceb1847dc4eaf643e538fc59ab125c4578b6f363211b7611d25",
+      "generated": "2026-11-22",
+      "sheet": "glass-republic-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 1144,
+        "top": 10,
+        "width": 272,
+        "height": 489
+      }
+    },
+    {
+      "key": "n-ada",
+      "title": "Северина Линт",
+      "kind": "npc",
+      "subjects": [
+        "n-ada"
+      ],
+      "file": "npcs-n-ada.webp",
+      "sha256": "7a764739f1de029785f8800d9c45fde6dd55860b3c5e4dbe60bcea7e36e025b8",
+      "originalSha256": "8dfac8c0623a1ceb1847dc4eaf643e538fc59ab125c4578b6f363211b7611d25",
+      "generated": "2026-11-22",
+      "sheet": "glass-republic-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 154,
+        "top": 525,
+        "width": 245,
+        "height": 490
+      }
+    },
+    {
+      "key": "n-mirel",
+      "title": "Иветта Сомм",
+      "kind": "npc",
+      "subjects": [
+        "n-mirel"
+      ],
+      "file": "npcs-n-mirel.webp",
+      "sha256": "1f24e6aaa270be8bd00fd393182379629b737a729674c941e943313163e2108b",
+      "originalSha256": "8dfac8c0623a1ceb1847dc4eaf643e538fc59ab125c4578b6f363211b7611d25",
+      "generated": "2026-11-22",
+      "sheet": "glass-republic-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 585,
+        "top": 529,
+        "width": 358,
+        "height": 482
+      }
+    },
+    {
+      "key": "n-enna",
+      "title": "Энна Рей",
+      "kind": "npc",
+      "subjects": [
+        "n-enna"
+      ],
+      "file": "npcs-n-enna.webp",
+      "sha256": "a109fa1b7effec8803fa808ae0aee3eb134390b31e46de62926c20bdc4d6698b",
+      "originalSha256": "8dfac8c0623a1ceb1847dc4eaf643e538fc59ab125c4578b6f363211b7611d25",
+      "generated": "2026-11-22",
+      "sheet": "glass-republic-npcs-0",
+      "cell": 6,
+      "crop": {
+        "left": 1163,
+        "top": 523,
+        "width": 260,
+        "height": 492
+      }
+    },
+    {
+      "key": "n-doran",
+      "title": "Фабиан Рушт",
+      "kind": "npc",
+      "subjects": [
+        "n-doran"
+      ],
+      "file": "npcs-n-doran.webp",
+      "sha256": "891a21718fec9e4027281d5afa98de9724ec6e314767d238cdf30790532d5fb2",
+      "originalSha256": "7113f4e71d2b13aa7f4e3984b6fe3b08e7ecf91d469e7f382d505802eb281a11",
+      "generated": "2026-11-22",
+      "sheet": "glass-republic-npcs-1",
+      "cell": 1,
+      "crop": {
+        "left": 130,
+        "top": 22,
+        "width": 243,
+        "height": 473
+      }
+    },
+    {
+      "key": "n-rada",
+      "title": "Гелена Шир",
+      "kind": "npc",
+      "subjects": [
+        "n-rada"
+      ],
+      "file": "npcs-n-rada.webp",
+      "sha256": "680b78757667bd820ea671d630ce7dd9a9b2d42a3636eca50d9b04f7378e5a4d",
+      "originalSha256": "7113f4e71d2b13aa7f4e3984b6fe3b08e7ecf91d469e7f382d505802eb281a11",
+      "generated": "2026-11-22",
+      "sheet": "glass-republic-npcs-1",
+      "cell": 2,
+      "crop": {
+        "left": 649,
+        "top": 22,
+        "width": 236,
+        "height": 471
+      }
+    },
+    {
+      "key": "n-senn",
+      "title": "Богдан Ольшев",
+      "kind": "npc",
+      "subjects": [
+        "n-senn"
+      ],
+      "file": "npcs-n-senn.webp",
+      "sha256": "f39229750067e40cd7bd49759f6d11b31932f164a517fa2ba62ff83dc9090b44",
+      "originalSha256": "7113f4e71d2b13aa7f4e3984b6fe3b08e7ecf91d469e7f382d505802eb281a11",
+      "generated": "2026-11-22",
+      "sheet": "glass-republic-npcs-1",
+      "cell": 3,
+      "crop": {
+        "left": 1152,
+        "top": 20,
+        "width": 248,
+        "height": 474
+      }
+    },
+    {
+      "key": "n-yula",
+      "title": "Юла Нер",
+      "kind": "npc",
+      "subjects": [
+        "n-yula"
+      ],
+      "file": "npcs-n-yula.webp",
+      "sha256": "81aab11c1def3c46f63cc757f16eb5c2a415e207ed4f1b60c0c60c43ad4802d3",
+      "originalSha256": "7113f4e71d2b13aa7f4e3984b6fe3b08e7ecf91d469e7f382d505802eb281a11",
+      "generated": "2026-11-22",
+      "sheet": "glass-republic-npcs-1",
+      "cell": 4,
+      "crop": {
+        "left": 131,
+        "top": 535,
+        "width": 278,
+        "height": 471
+      }
+    },
+    {
+      "key": "n-zenon",
+      "title": "Зенон Карх",
+      "kind": "npc",
+      "subjects": [
+        "n-zenon"
+      ],
+      "file": "npcs-n-zenon.webp",
+      "sha256": "ab41a4bec66bb4b1163a64bdfd320aae316348daedc0ef17c4db3183905500ed",
+      "originalSha256": "7113f4e71d2b13aa7f4e3984b6fe3b08e7ecf91d469e7f382d505802eb281a11",
+      "generated": "2026-11-22",
+      "sheet": "glass-republic-npcs-1",
+      "cell": 5,
+      "crop": {
+        "left": 613,
+        "top": 532,
+        "width": 312,
+        "height": 472
+      }
+    }
+  ]
+}

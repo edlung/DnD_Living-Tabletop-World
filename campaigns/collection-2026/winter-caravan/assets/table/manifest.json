@@ -1,0 +1,239 @@
+{
+  "source": "Built-in ImageGen",
+  "sheets": [
+    {
+      "id": "winter-caravan-npcs-0",
+      "cutoutRevision": 4,
+      "originalFile": "exec-db57a6a9-7451-485f-ac47-a8d4f8eb3182.png",
+      "originalSha256": "c58cb07ab70f1ced153e2bac1ff7212b762cc686bd5af64a65b65a90cb46a3d6",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 5 distinct hand-painted tabletop miniature figurines for the world of Караван Белой Ночи. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Бреша Кальт. Крупная женщина с белой полосой на рукаве и мелом, которым она подписывает каждый ящик.\nCell 2. Тарма Вязь. Седые виски, кожаный передник поверх полушубка и смех, похожий на короткий кашель.\nCell 3. Сельда Нест. Рыжий платок, закопчённый котелок у пояса и несколько деревянных ложек разной длины.\nCell 4. Херет Валл. Высокий человек с короткой бородой и красным суконным чехлом на дорожном шесте.\nCell 5. Ошвен Иль. Круглое лицо, чёрная меховая шапка и берестяная книга за пазухой.",
+      "references": [
+        "campaigns/collection-2026/winter-caravan/assets/runtime/bresha-kalt.webp",
+        "campaigns/collection-2026/winter-caravan/assets/runtime/tarma-bor.webp",
+        "campaigns/collection-2026/winter-caravan/assets/runtime/selda-nest.webp",
+        "campaigns/collection-2026/winter-caravan/assets/runtime/kheret-vall.webp",
+        "campaigns/collection-2026/winter-caravan/assets/runtime/oshven-il.webp"
+      ]
+    },
+    {
+      "id": "winter-caravan-npcs-1",
+      "cutoutRevision": 4,
+      "originalFile": "exec-90813650-f9a8-498e-907b-a613419eea11.png",
+      "originalSha256": "2d88ff7d361ea0f4dbb31f0f8d1deafad90a4a63a023516fe9220e3b2d689f6c",
+      "columns": 3,
+      "rows": 2,
+      "prompt": "Create a clean production sprite sheet of 5 distinct hand-painted tabletop miniature figurines for the world of Караван Белой Ночи. Match the attached labeled-by-position portrait grid in the SAME reading order. EXACT GRID 3 columns by 2 rows, each cell same size. Each cell holds ONE separate complete figure on a small shallow elliptical scenic base, gently facing right, lit like a fine collectible sculpture. Fidelity to its reference subject, age, facial features, clothing and signature colors. For a nonhuman or sentient vehicle/building, sculpt its actual form. Neutral conversational poses. Leave 15% transparent padding per cell, including above heads and below feet. True transparent alpha background. No shared scene, no floating shadows, no surrounding glow, no text, numerals, labels, logos or panels. Empty remaining cells transparent.\nCell 1. Малкен Руск. Узкое лицо, длинные ресницы в инее, шерстяной пояс, завязанный на боку, и лямки лёгкой нарты через плечо.\nCell 2. Явра Кест. Широкие плечи, серебряные брови и фартук с карманом для берестяных записей.\nCell 3. Алда Шорн. Тёмный войлочный жилет, красные от ветра щёки и связка обычных амбарных ключей.\nCell 4. Вавила Ухаб. Плотный возчик в тулупе, подпоясанном старыми вожжами; усы в инее, на шее платок.\nCell 5. Глафира Лямка. Худая, в длинном войлочном плаще; на рукавице колокольчик, который звенит при каждом шаге Дымки.",
+      "references": [
+        "campaigns/collection-2026/winter-caravan/assets/runtime/malken-rusk.webp",
+        "campaigns/collection-2026/winter-caravan/assets/runtime/yavra-kest.webp",
+        "campaigns/collection-2026/winter-caravan/assets/runtime/alda-shorn.webp",
+        "campaigns/collection-2026/winter-caravan/assets/runtime/vavila-ukhab.webp",
+        "campaigns/collection-2026/winter-caravan/assets/runtime/glafira-lyamka.webp"
+      ]
+    }
+  ],
+  "pictures": [
+    {
+      "key": "bresha-kalt",
+      "title": "Бреша Кальт",
+      "kind": "npc",
+      "subjects": [
+        "bresha-kalt"
+      ],
+      "file": "npcs-bresha-kalt.webp",
+      "sha256": "d140e9a108711a48d37b8d90436b9c1b2556f28dbba22606ec395b23f01d8831",
+      "originalSha256": "c58cb07ab70f1ced153e2bac1ff7212b762cc686bd5af64a65b65a90cb46a3d6",
+      "generated": "2026-11-22",
+      "sheet": "winter-caravan-npcs-0",
+      "cell": 1,
+      "crop": {
+        "left": 113,
+        "top": 19,
+        "width": 289,
+        "height": 467
+      }
+    },
+    {
+      "key": "tarma-bor",
+      "title": "Тарма Вязь",
+      "kind": "npc",
+      "subjects": [
+        "tarma-bor"
+      ],
+      "file": "npcs-tarma-bor.webp",
+      "sha256": "196837aaca4a041f26368cac889992f4c5cb4170a404b764c743e30e8248567a",
+      "originalSha256": "c58cb07ab70f1ced153e2bac1ff7212b762cc686bd5af64a65b65a90cb46a3d6",
+      "generated": "2026-11-22",
+      "sheet": "winter-caravan-npcs-0",
+      "cell": 2,
+      "crop": {
+        "left": 625,
+        "top": 19,
+        "width": 279,
+        "height": 467
+      }
+    },
+    {
+      "key": "selda-nest",
+      "title": "Сельда Нест",
+      "kind": "npc",
+      "subjects": [
+        "selda-nest"
+      ],
+      "file": "npcs-selda-nest.webp",
+      "sha256": "bd1d50db32820e151c7fe1a0ebc6d5d0c7427894b5a5adbf840e379fb7794ea8",
+      "originalSha256": "c58cb07ab70f1ced153e2bac1ff7212b762cc686bd5af64a65b65a90cb46a3d6",
+      "generated": "2026-11-22",
+      "sheet": "winter-caravan-npcs-0",
+      "cell": 3,
+      "crop": {
+        "left": 1135,
+        "top": 19,
+        "width": 281,
+        "height": 467
+      }
+    },
+    {
+      "key": "kheret-vall",
+      "title": "Херет Валл",
+      "kind": "npc",
+      "subjects": [
+        "kheret-vall"
+      ],
+      "file": "npcs-kheret-vall.webp",
+      "sha256": "40e85d03b2324b7cb7883dfa669e181736d0608ddda1bb4c9289d83d696fd692",
+      "originalSha256": "c58cb07ab70f1ced153e2bac1ff7212b762cc686bd5af64a65b65a90cb46a3d6",
+      "generated": "2026-11-22",
+      "sheet": "winter-caravan-npcs-0",
+      "cell": 4,
+      "crop": {
+        "left": 115,
+        "top": 523,
+        "width": 277,
+        "height": 482
+      }
+    },
+    {
+      "key": "oshven-il",
+      "title": "Ошвен Иль",
+      "kind": "npc",
+      "subjects": [
+        "oshven-il"
+      ],
+      "file": "npcs-oshven-il.webp",
+      "sha256": "279839c0d876ce7e2d98fb7d67ea413d2906b4af7d81eb019835239bc41e90f7",
+      "originalSha256": "c58cb07ab70f1ced153e2bac1ff7212b762cc686bd5af64a65b65a90cb46a3d6",
+      "generated": "2026-11-22",
+      "sheet": "winter-caravan-npcs-0",
+      "cell": 5,
+      "crop": {
+        "left": 629,
+        "top": 523,
+        "width": 273,
+        "height": 482
+      }
+    },
+    {
+      "key": "malken-rusk",
+      "title": "Малкен Руск",
+      "kind": "npc",
+      "subjects": [
+        "malken-rusk"
+      ],
+      "file": "npcs-malken-rusk.webp",
+      "sha256": "4b5cc859efdb37581feab59a7e1643c33d623ef064ebc8fda636b0b4237df2fa",
+      "originalSha256": "2d88ff7d361ea0f4dbb31f0f8d1deafad90a4a63a023516fe9220e3b2d689f6c",
+      "generated": "2026-11-22",
+      "sheet": "winter-caravan-npcs-1",
+      "cell": 1,
+      "crop": {
+        "left": 127,
+        "top": 23,
+        "width": 258,
+        "height": 474
+      }
+    },
+    {
+      "key": "yavra-kest",
+      "title": "Явра Кест",
+      "kind": "npc",
+      "subjects": [
+        "yavra-kest"
+      ],
+      "file": "npcs-yavra-kest.webp",
+      "sha256": "36a2aa1dce520ff2ead57e5d2a1b1833aa1900a2f7c85a5dfac294c0b25ddb9b",
+      "originalSha256": "2d88ff7d361ea0f4dbb31f0f8d1deafad90a4a63a023516fe9220e3b2d689f6c",
+      "generated": "2026-11-22",
+      "sheet": "winter-caravan-npcs-1",
+      "cell": 2,
+      "crop": {
+        "left": 638,
+        "top": 21,
+        "width": 259,
+        "height": 476
+      }
+    },
+    {
+      "key": "alda-shorn",
+      "title": "Алда Шорн",
+      "kind": "npc",
+      "subjects": [
+        "alda-shorn"
+      ],
+      "file": "npcs-alda-shorn.webp",
+      "sha256": "5686b2a586bb8e5442e7429308678e63a485d41eed27f8a7e6da86f5a024f08b",
+      "originalSha256": "2d88ff7d361ea0f4dbb31f0f8d1deafad90a4a63a023516fe9220e3b2d689f6c",
+      "generated": "2026-11-22",
+      "sheet": "winter-caravan-npcs-1",
+      "cell": 3,
+      "crop": {
+        "left": 1151,
+        "top": 24,
+        "width": 258,
+        "height": 473
+      }
+    },
+    {
+      "key": "vavila-ukhab",
+      "title": "Вавила Ухаб",
+      "kind": "npc",
+      "subjects": [
+        "vavila-ukhab"
+      ],
+      "file": "npcs-vavila-ukhab.webp",
+      "sha256": "25b6e7a4a70fa26486794b792800da197cda7ff943df42b97d54c6afc4637650",
+      "originalSha256": "2d88ff7d361ea0f4dbb31f0f8d1deafad90a4a63a023516fe9220e3b2d689f6c",
+      "generated": "2026-11-22",
+      "sheet": "winter-caravan-npcs-1",
+      "cell": 4,
+      "crop": {
+        "left": 120,
+        "top": 525,
+        "width": 271,
+        "height": 483
+      }
+    },
+    {
+      "key": "glafira-lyamka",
+      "title": "Глафира Лямка",
+      "kind": "npc",
+      "subjects": [
+        "glafira-lyamka"
+      ],
+      "file": "npcs-glafira-lyamka.webp",
+      "sha256": "525d2a822dc0a27d4af72cf057eb2ab751df11fd4290fc70601fb1f93e4684b1",
+      "originalSha256": "2d88ff7d361ea0f4dbb31f0f8d1deafad90a4a63a023516fe9220e3b2d689f6c",
+      "generated": "2026-11-22",
+      "sheet": "winter-caravan-npcs-1",
+      "cell": 5,
+      "crop": {
+        "left": 626,
+        "top": 528,
+        "width": 296,
+        "height": 480
+      }
+    }
+  ]
+}
