@@ -114,21 +114,12 @@
   }
 }
 /*
- * The Chat sheet: its log scrolls and the compose box stays at its foot. On a tablet or a laptop
- * it is a column over the stage's right side, so the scene stays in view while the table talks;
- * on a phone it takes the screen like every sheet.
+ * The Chat sheet: its log scrolls and the compose box stays at its foot. Like every section it
+ * takes the stage; its column keeps a width that reads.
  */
 .sheet--chat .sheet-body {
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
   overflow: hidden;
-}
-@media (min-width: 768px) and (min-height: 501px), (min-width: 1200px) {
-  .sheet--chat {
-    left: auto;
-    width: min(34rem, calc(100% - 24px));
-    height: min(70vh, calc(100% - var(--dock-h) - 40px));
-    max-height: none;
-  }
 }

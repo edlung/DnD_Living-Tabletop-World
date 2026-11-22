@@ -4,7 +4,7 @@ import { expectAccessible, WIDTHS } from './support/axe.ts';
 import { test } from './support/journey.ts';
 import { takeWizardLevel } from './support/levels.ts';
 import { enterWorld, TOKENS } from './support/session.ts';
-import { openCharacter, openSheet } from './support/shell.ts';
+import { closeSheet, openCharacter, openSheet } from './support/shell.ts';
 
 /** Several browsers wait on each other's changes: a hosted runner is about four times slower. */
 const expect = baseExpect.configure({ timeout: 15_000 });
@@ -92,6 +92,8 @@ test('a long rest restores Elowen, and the DM takes a level for her by the rules
   await callRest(page, 'Long rest (8 hours)');
   await expect(page.getByText('The party rests eight hours', { exact: false })).toBeVisible();
   await expect(page.locator('#sheet-time')).toContainText('Day 1 · 18:00');
+  // The section covers the stage: the party's rail is under it until it closes.
+  await closeSheet(page, 'Time and weather');
   const card = page.locator('.rail-member').filter({ hasText: 'Elowen Starwhisper' });
   await card.click();
   await page.getByRole('button', { name: 'Full character sheet' }).click();

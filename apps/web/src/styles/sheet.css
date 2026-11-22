@@ -1,0 +1,107 @@
+/*
+ * Sheets: each of the dock's sections takes the whole stage (the owner's word of 2026-11-21), from
+ * under the top bar down to the dock, which stays in reach as the way between sections. A section
+ * closes by its Close button, by Escape, or by its own dock button.
+ */
+.sheet {
+  position: absolute;
+  inset: 0;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  /* The dock floats over the section's foot: the section's content ends above it. */
+  padding-bottom: calc(var(--dock-h) + 20px);
+  background:
+    linear-gradient(
+      color-mix(in srgb, var(--ink-900) 94%, transparent),
+      color-mix(in srgb, var(--ink-950) 97%, transparent)
+    ),
+    url('../assets/ui-kit/textures/app-backdrop.webp') center / cover;
+  animation: sheet-rise var(--t-panel) var(--ease);
+}
+.sheet:focus {
+  outline: none;
+}
+@keyframes sheet-rise {
+  from {
+    opacity: 0;
+    translate: 0 12px;
+  }
+}
+.sheet-header {
+  position: relative;
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem var(--gutter) 0.5rem calc(var(--gutter) + 4px);
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in srgb, var(--ink-900) 70%, transparent);
+}
+.sheet-header::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  width: min(260px, 40%);
+  height: 10px;
+  background: url('../assets/ui-kit/ornaments/divider.webp') center / contain no-repeat;
+  translate: -50% 0;
+  pointer-events: none;
+}
+.sheet-header h2 {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  font-size: 1.35rem;
+}
+.sheet-glyph {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  color: var(--gold);
+}
+/* Close: a word and a cross at the section's top right, the same place in every section. */
+.sheet-close {
+  flex: none;
+  gap: 0.5rem;
+  min-height: 40px;
+  padding: 0.35rem 0.7rem 0.35rem 0.9rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-control);
+  background: color-mix(in srgb, var(--ink-900) 60%, transparent);
+  color: var(--text);
+}
+.sheet-close:hover {
+  border-color: var(--gold);
+  color: var(--gold-bright);
+}
+.sheet-close > .glyph {
+  width: 18px;
+  height: 18px;
+}
+.sheet-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  /* Below the header's divider ornament, which hangs 5 px over this edge (Stage 360). */
+  margin-top: 5px;
+  overflow-y: auto;
+  padding: 1rem var(--gutter) 1rem calc(var(--gutter) + 4px);
+}
+.sheet-section + .sheet-section {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+.sheet-section > h3 {
+  color: var(--gold-bright);
+  font-size: 1.1rem;
+  letter-spacing: 0.02em;
+}
+/*
+ * A section over the stage: the player's quiet row (the hint, the way to a pause) waits under it;
+ * what the table asks, and the word that a pause was asked for, stay in view over it.
+ */
+.world-main:has(.sheet:not([hidden])) .quiet-row > :not(.pause-asked) {
+  display: none;
+}

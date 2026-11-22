@@ -1,7 +1,7 @@
 import { expect, type Locator, type Page } from '@playwright/test';
 
 /**
- * The shell (docs/STAGE_320_DESIGN.md §5.1): the dock opens one sheet at a time over the lower
+ * The shell (docs/STAGE_320_DESIGN.md §5.1): the dock opens one sheet at a time over the whole
  * stage, and a closed sheet stays mounted but hidden, so a journey opens the sheet that holds a
  * control before it uses that control. Names are the dock's words in the campaign's language.
  * Where the dock does not fit its screen, its last items wait under More
@@ -52,7 +52,7 @@ export async function openSheet(page: Page, name: string): Promise<void> {
   await expect(page.locator(`#${id ?? ''}`)).toBeVisible();
 }
 
-/** Closes a dock sheet if it is open, uncovering the lower stage. */
+/** Closes a dock sheet if it is open, uncovering the stage. */
 export async function closeSheet(page: Page, name: string): Promise<void> {
   const button = dockButton(page, name);
   if ((await button.getAttribute('aria-expanded')) === 'true') {

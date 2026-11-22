@@ -144,10 +144,11 @@ export function DicePanel({
                 {table.error}
               </p>
             )}
-            <DiceSettingsForm />
           </div>
           <div className="dice-panel-log">
             <RollLog />
+            {/* Last, beside the rolls: this screen's own sound, motion and text size. */}
+            <DiceSettingsForm />
           </div>
         </div>
       </Sheet>

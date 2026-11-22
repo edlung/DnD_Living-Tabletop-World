@@ -274,17 +274,10 @@
     scroll-padding-bottom: calc(var(--outcome-h, 34vh) + 24px);
   }
 }
-/* While a sheet is open the result sits just above it, clear of the sheet's own controls. */
-.sheet {
-  anchor-name: --open-sheet;
-}
-@media (min-width: 768px) and (min-height: 501px), (min-width: 1200px) {
-  @supports (bottom: anchor(top)) {
-    .world-main:has(.sheet:not([hidden])) .outcome {
-      position-anchor: --open-sheet;
-      bottom: calc(anchor(top) + 10px);
-    }
-  }
+/* A result over an open section, which takes the stage: its content scrolls clear of it. */
+.world-main:has(.outcome) .sheet-body {
+  padding-bottom: calc(var(--outcome-h, 34vh) + 24px);
+  scroll-padding-bottom: calc(var(--outcome-h, 34vh) + 24px);
 }
 .action-notice {
   padding: 0.75rem 2.6rem 0.8rem 1rem;

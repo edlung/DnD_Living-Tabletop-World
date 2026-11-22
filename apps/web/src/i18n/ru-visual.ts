@@ -20,6 +20,9 @@ registerRussian({
   Time: 'Время',
   History: 'История',
   'Close {name}': 'Закрыть: {name}',
+  'Find among the known': 'Найти среди известного',
+  'Shown: {count}': 'Показано: {count}',
+  'Nothing known matches.': 'Ничего из известного не подходит.',
   'Close the Chronicle': 'Закрыть хронику',
   'Dismiss the result': 'Скрыть результат',
 

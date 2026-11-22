@@ -102,8 +102,8 @@ It changes no world state; keep its window listener, since `pageerror` misses th
   control first (`support/shell.ts`: `openSheet`, `closeSheet`, `chooseLocation` for the Places
   sheet's location choice, `openChronicle` for the Chronicle dialog; dock words in the campaign's
   language). Role queries skip hidden sheets, label and text queries do not: a hidden draft keeps
-  its value, but assert visibility only on an open sheet. An open sheet covers the lower stage, so
-  close it before clicking a medallion. Keep journeys' assertions when a control moves.
+  its value, but assert visibility only on an open sheet. An open sheet covers the whole stage
+  (2026-11-21), so close it before clicking anything on the scene. Keep journeys' assertions when a control moves.
   Where the dock does not fit its screen its last items wait under More (ADR 0043 §3):
   `dockButton` finds an item on the dock or under More (hidden ones too), `revealDockButton`
   opens More when the item waits there, and `openSheet`, `closeSheet`, `openChronicle` and

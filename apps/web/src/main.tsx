@@ -68,6 +68,7 @@ import './styles/tokens.css';
 import './styles/fonts.css';
 import './styles/base.css';
 import './styles/shell.css';
+import './styles/sheet.css';
 import './styles/scene.css';
 import './styles/stage.css';
 import './styles/details.css';
@@ -130,6 +131,7 @@ import './styles/pause.css';
 import './styles/known.css';
 import './styles/story.css';
 import './styles/story-cast.css';
+import './styles/sheet-layouts.css';
 import './styles/print.css';
 import './styles/print-book.css';
 
