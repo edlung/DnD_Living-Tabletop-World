@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#20241f" />
+    <title>Колокола Холлоумира · Книга Мастера</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="../../../campaigns/interface/fonts/fonts.css" />
+    <link rel="stylesheet" href="binding.css" />
+    <link rel="stylesheet" href="pages.css" />
+    <link rel="stylesheet" href="reference.css" />
+    <link rel="stylesheet" href="narrow.css" />
+    <script src="library.js" defer></script>
+    <script src="story.js" defer></script>
+    <script src="elements.js" defer></script>
+    <script src="reference.js" defer></script>
+    <script src="reader.js" defer></script>
+  </head>
+  <body data-ink="gold">
+    <a class="skip" href="#scene-title">К тексту истории</a>
+    <header class="masthead">
+      <div class="mast-inner">
+        <div class="brand">
+          <svg class="brand-seal" viewBox="0 0 48 48" aria-hidden="true">
+            <path
+              d="M24 2 42 12v21L24 45 6 33V12Z M24 6l14.5 8v17L24 41l-14.5-10V14Z"
+              fill="none"
+              stroke="currentColor"
+            />
+            <path
+              d="M13 20q6-1 11 3 5-4 11-3v12q-6-1-11 3-5-4-11-3Zm11 3v12M18 13l2 4m10-4-2 4m-4-7v6"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <span>Книга Мастера</span>
+        </div>
+        <div class="top-tools">
+          <button
+            class="tool"
+            id="contents-button"
+            type="button"
+            aria-label="Оглавление"
+            title="Оглавление"
+            aria-haspopup="dialog"
+          >
+            <span data-icon="list"></span><span>Оглавление</span>
+          </button>
+          <span class="tool-divider" aria-hidden="true"></span>
+          <button
+            class="size-tool"
+            id="size-button"
+            type="button"
+            aria-label="Крупный текст"
+            title="Крупный текст"
+            aria-pressed="false"
+          >
+            Аа
+          </button>
+        </div>
+      </div>
+    </header>
+    <main class="desk" aria-label="Книга приключения">
+      <div class="desk-line">
+        <div class="volume"><span data-icon="bell"></span>Колокола Холлоумира</div>
+        <div id="tab-dock">
+          <nav class="ribbons" id="ribbons" aria-label="Закладки книги">
+            <button type="button" data-tab="scene" aria-pressed="true">
+              <span data-icon="book"></span>Сцена
+            </button>
+            <button type="button" data-tab="people" aria-pressed="false">
+              <span data-icon="people"></span>Персонажи
+            </button>
+            <button type="button" data-tab="atlas" aria-pressed="false">
+              <span data-icon="compass"></span>Атлас
+            </button>
+            <button type="button" data-tab="notes" aria-pressed="false">
+              <span data-icon="quill"></span>Заметки
+            </button>
+          </nav>
+        </div>
+      </div>
+      <div class="binding">
+        <div class="spread">
+          <article class="leaf left-leaf" aria-labelledby="scene-title">
+            <div class="running">
+              <span data-icon="book"></span>Повествование<span class="hairline"></span>
+            </div>
+            <button
+              class="page-marker"
+              id="mark-page"
+              type="button"
+              aria-label="Заложить разворот"
+              title="Заложить разворот"
+              aria-pressed="false"
+            >
+              <span data-icon="bookmark"></span>
+            </button>
+            <header class="chapter-heading">
+              <div class="rubric"><span id="chapter-number"></span><i aria-hidden="true"></i></div>
+              <h1 id="scene-title" tabindex="-1"></h1>
+              <div class="location"><span data-icon="pin"></span><span id="location"></span></div>
+            </header>
+            <div class="mobile-plate">
+              <img id="mobile-art" alt="" /><button
+                type="button"
+                class="mobile-open"
+                id="mobile-plate"
+                aria-label="Открыть иллюстрацию и подсказку сцены"
+              >
+                <span data-icon="expand"></span>К сцене
+              </button>
+            </div>
+            <div class="manuscript" id="manuscript"></div>
+            <aside class="table-question">
+              <span class="question-glyph" data-icon="quill"></span>
+              <div>
+                <h2>Спросите игроков</h2>
+                <p id="question"></p>
+              </div>
+            </aside>
+            <div class="folio" aria-hidden="true"><span id="left-folio"></span></div>
+          </article>
+          <aside class="leaf right-leaf" aria-label="Правая страница">
+            <div class="running">
+              <span data-icon="compass"></span>На полях Мастера<span class="hairline"></span>
+            </div>
+            <div id="panel-slot">
+              <section id="reference-panel" aria-label="Материалы сцены"></section>
+            </div>
+            <div class="folio" aria-hidden="true"><span id="right-folio"></span></div>
+          </aside>
+        </div>
+      </div>
+      <nav class="turns" aria-label="Листать книгу">
+        <button type="button" id="prev"><span data-icon="arrowLeft"></span>Назад</button>
+        <span class="progress"
+          ><span class="diamonds" id="diamonds" aria-hidden="true"></span><span id="progress"></span
+        ></span>
+        <button type="button" id="next">
+          <span id="next-label">Дальше</span><span data-icon="arrowRight"></span>
+        </button>
+      </nav>
+    </main>
+    <div class="sr-only" role="status" id="announcement"></div>
+    <dialog class="paper-dialog contents-dialog" id="contents" aria-labelledby="contents-title">
+      <div class="dialog-heading">
+        <div>
+          <span class="section-kicker">Колокола Холлоумира</span>
+          <h2 id="contents-title">Оглавление</h2>
+        </div>
+        <button type="button" class="round" data-close="contents" aria-label="Закрыть оглавление">
+          <span data-icon="close"></span>
+        </button>
+      </div>
+      <div id="contents-list"></div>
+    </dialog>
+    <dialog class="paper-dialog mobile-dialog" id="mobile-reference" aria-labelledby="mobile-title">
+      <div class="mobile-bar">
+        <span class="section-kicker" id="mobile-title">На полях Мастера</span
+        ><button type="button" class="paper-action" data-close="mobile-reference">
+          <span data-icon="arrowLeft"></span>К тексту
+        </button>
+      </div>
+      <div id="mobile-tabs"></div>
+      <div id="mobile-panel-slot"></div>
+    </dialog>
+    <dialog class="art-dialog" id="lightbox" aria-labelledby="lightbox-caption">
+      <div class="lightbox-bar">
+        <h2 id="lightbox-caption"></h2>
+        <button type="button" class="round" data-close="lightbox" aria-label="Закрыть иллюстрацию">
+          <span data-icon="close"></span>
+        </button>
+      </div>
+      <img id="lightbox-art" alt="" />
+    </dialog>
+    <noscript
+      >Чтобы открыть игровые подсказки и листать эту книгу, включите JavaScript в
+      браузере.</noscript
+    >
+  </body>
+</html>

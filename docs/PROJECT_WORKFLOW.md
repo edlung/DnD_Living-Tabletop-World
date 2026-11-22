@@ -2,6 +2,23 @@
 
 Updated 2026-10-15. The owner's current AGENTS instructions take precedence over older process banners.
 
+## Current request — the DM's book, 2026-11-22
+
+- Owner, in one working session: the brief of a book as the DM's screen; «Да, развиваем» to the
+  demo; «мне для всех компаний книжный формат нужен … 55 кампаний» to a plan that began with one
+  campaign; «Да, открываем» to Stages 900–930 for all 55; four choices in a question card
+  (`reviews/OWNER_DM_BOOK_2026-11-22.json`). Program `docs/DM_BOOK_PLAN.md` (Stages 900–950, ADR
+  0074, one section a stage).
+- Authorized: Stages 900–930, without stops between them, each on its own branch and pull request
+  stacked on the one before, the usual checks and a report a stage, a report to the owner at the
+  end of 930. Not authorized: Stage 940 (a trial at a real table) and Stage 950 (enrichment: paid
+  text, generated pictures, the owner's reading). Merging and deployment stay the owner's.
+- Before the program, at the owner's choice: the editorial work of 2026-11-22 that another
+  session left uncommitted is on `claude/campaign-editorial-2026-11-22`, pull request 72, as it
+  was, with the checks run on it (one unit test times out under full-suite load; named there).
+- Stage 900 (documents only) is implemented: `work-orders/STAGE_900.md`,
+  `reports/STAGE_900_COMPLETION.md`. Stages 910, 920 and 930 have their work orders.
+
 ## Request — full-screen sections, 2026-11-21
 
 - Owner: «нажатие на панели, где сцена, места, журнал и так далее, все эти разделы должны быть
