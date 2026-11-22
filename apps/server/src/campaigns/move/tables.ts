@@ -236,6 +236,16 @@ export const MOVED_TABLES: readonly MovedTable[] = [
     owner: byCampaign,
   },
   {
+    // The DM's place in the campaign's book (ADR 0074 §3.4): it goes with the campaign.
+    name: 'ltw_dm_book_places',
+    kind: 'state',
+    where: campaign,
+    key: ['campaign_id'],
+    order: 'campaign_id',
+    batch: 1,
+    owner: byCampaign,
+  },
+  {
     // Who comes to the next game (ADR 0073 §10): the answers go with the date they answer.
     name: 'ltw_next_game_answers',
     kind: 'state',

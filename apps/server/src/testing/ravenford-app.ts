@@ -1,3 +1,4 @@
+import { loadBuiltInBooks } from '../book/book-source.ts';
 import {
   CapabilityRouter,
   InMemoryAiTraceStore,
@@ -179,6 +180,8 @@ export function testAuthoring(): AuthoringDependencies & {
 }
 
 /** The DM's table tools (ADR 0033 §6–7) with in-memory substitution reasons. */
+const BUILT_IN_BOOKS = await loadBuiltInBooks();
+
 export function testDm(): DmDependencies & { readonly substitutions: InMemorySubstitutionStore } {
   const clock = new SteppingClock();
   return {
@@ -187,6 +190,8 @@ export function testDm(): DmDependencies & { readonly substitutions: InMemorySub
     encounters: new InMemorySavedEncounterStore(),
     library: new InMemoryLibraryStore(),
     clock: { now: () => clock.now() },
+    // The built-in adventures' books are shown here although they wait for the owner's reading.
+    book: { builtIn: BUILT_IN_BOOKS, showAwaiting: true },
   };
 }
 

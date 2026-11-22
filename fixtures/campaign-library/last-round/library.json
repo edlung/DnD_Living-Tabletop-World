@@ -54,7 +54,7 @@
  ],
  "book": {
   "file": "book.json",
-  "sha256": "04a610ea0a228ac0a054f6caa53ef0e6497d2d951c6b571fb8ee78d956c48957"
+  "sha256": "5abc942dacb687d25e6e7facf183763ff4bb90ffeb477a59192c917e48a33f9c"
  },
  "generator": "codex-cli imagegen",
  "pictures": [

@@ -165,6 +165,8 @@ export const campaignBookClueSchema = z
     place: campaignKeySchema.exactOptional(),
     appearance: text,
     statement: text,
+    /** What the clue is about: people and places of the package. A place here is where it leads. */
+    subjects: z.array(campaignKeySchema).max(16),
     /** How it is found, and the way to it that needs no luck. */
     discovery: text,
     fallback: text.exactOptional(),
@@ -243,7 +245,8 @@ export interface BookReferenceProblem {
 
 /**
  * Every key a book names against what exists: `places`, `people`, `clues` and `encounters` are the
- * keys of the package (or the seed) the book belongs to. People, clues and handouts a chapter or a
+ * keys of the package (or the seed) the book belongs to (`people` holds every entity: a clue's
+ * subject may be a place or a thing). People, clues and handouts a chapter or a
  * page names must also have their entry in the book itself.
  */
 export function bookReferenceProblems(
@@ -273,6 +276,7 @@ export function bookReferenceProblems(
   for (const clue of book.clues) {
     need(world.clues, clue.key, `clues.${clue.key}`);
     need(world.places, clue.place, `clues.${clue.key}.place`);
+    for (const key of clue.subjects) need(world.people, key, `clues.${clue.key}.subjects`);
   }
   for (const key of book.looseEncounters) need(world.encounters, key, 'looseEncounters');
   if (book.routes) {

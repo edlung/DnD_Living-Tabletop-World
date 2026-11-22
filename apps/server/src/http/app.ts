@@ -416,7 +416,10 @@ export function buildApp(input: AppDependencies): FastifyInstance {
   registerMarkRoutes(app, { ...deps, marks: deps.marks ?? memoryMarks() });
   registerHandoutRoutes(app, { ...deps, handouts });
   registerEnvelopeRoutes(app, { ...deps, envelopes, handouts, library: deps.dm.library });
-  registerDmRoutes(app, deps);
+  registerDmRoutes(app, deps, {
+    ...(deps.workshop?.library ? { library: deps.workshop.library } : {}),
+    ...(deps.workshop?.activation ? { published: deps.workshop.activation.repository } : {}),
+  });
   registerUndoneRoutes(app, deps);
   // The roll and rest routes read the campaign's dice from the same table state (ADR 0044 §4).
   const table: TableDependencies = {

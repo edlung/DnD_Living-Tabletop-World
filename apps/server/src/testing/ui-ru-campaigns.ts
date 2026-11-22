@@ -9,6 +9,8 @@ export const UI_RU_CAMPAIGNS = {
   dm: 'ui-ru-dm',
   chronicle: 'ui-ru-chronicle',
   time: 'ui-ru-time',
+  // The DM's book of the built-in adventure (tests/e2e/dm-book.spec.ts).
+  book: 'ui-ru-book',
 } as const;
 
 /** The Russian campaign that waits at an open Counterspell window. */

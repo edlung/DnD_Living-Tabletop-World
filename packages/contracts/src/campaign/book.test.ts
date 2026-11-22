@@ -60,6 +60,7 @@ const book = (change: (draft: Draft) => void = () => undefined) => {
         name: 'Билет',
         appearance: '',
         statement: 'Билет на сегодня.',
+        subjects: ['pier'],
         discovery: '',
       },
     ],
@@ -71,7 +72,7 @@ const book = (change: (draft: Draft) => void = () => undefined) => {
 };
 const world = {
   places: new Set(['pier']),
-  people: new Set(['marfa']),
+  people: new Set(['marfa', 'pier']),
   clues: new Set(['ticket']),
   encounters: new Set(['keepers']),
 };
@@ -133,6 +134,7 @@ describe('the DM book of a campaign', () => {
     expect(bookReferenceProblems(parsed(), empty).map((p) => `${p.path} → ${p.key}`)).toEqual([
       'people.marfa → marfa',
       'clues.ticket → ticket',
+      'clues.ticket.subjects → pier',
       'chapters.dock.place → pier',
       'chapters.dock.people → marfa',
       'chapters.dock.encounters → keepers',

@@ -1,3 +1,5 @@
+import { loadBuiltInBooks } from './book/book-source.ts';
+import { PostgresBookPlaceStore } from './book/postgres-book-place-store.ts';
 import { join } from 'node:path';
 
 import type pg from 'pg';
@@ -228,6 +230,9 @@ async function main(): Promise<void> {
       encounters: new PostgresSavedEncounterStore(pool),
       library: new PostgresLibraryStore(pool),
       clock: systemClock,
+      // The DM's book (ADR 0074 §3; migration 0049): the built-in adventures' books stay closed
+      // while they wait for the owner's reading.
+      book: { builtIn: await loadBuiltInBooks(), places: new PostgresBookPlaceStore(pool) },
     },
     // The table's rolls, the DM's check requests and short rests (Stages 510, 530; 0025, 0026).
     chat: { store: new PostgresChatStore(pool), now: () => new Date().toISOString() },

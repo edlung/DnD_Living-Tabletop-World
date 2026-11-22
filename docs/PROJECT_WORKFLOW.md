@@ -22,7 +22,11 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   `reports/STAGE_910_COMPLETION.md`, ADR 0074 §2. Every one of the 53 has
   `fixtures/campaign-library/<id>/book.json`, a document beside its packages (the package
   contract is untouched); the two built-in adventures have theirs, closed until the owner has read
-  them. Stages 920 and 930 have their work orders.
+  them.
+- Stage 920 (the book to read) is implemented: `work-orders/STAGE_920.md`,
+  `reports/STAGE_920_COMPLETION.md`, ADR 0074 §3. The DM opens the campaign's book from the dock:
+  the spread, cards, bookmarks, the path, the ribbon kept by the server (migration 0049). It reads
+  only. Stage 930 has its work order.
 
 ## Request — full-screen sections, 2026-11-21
 
