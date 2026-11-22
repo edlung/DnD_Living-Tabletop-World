@@ -38,6 +38,10 @@
    "digest": "5a06666ae336988edcd0840252251500833a46e547db2d023fbe9d0764129f38"
   }
  ],
+ "book": {
+  "file": "book.json",
+  "sha256": "1717d40e3bed86c64d54a5eb1a404a19cddbe76d8e9efd7f9694878aa820a6dd"
+ },
  "generator": "codex-cli imagegen",
  "pictures": [
   {

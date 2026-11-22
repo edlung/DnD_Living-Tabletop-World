@@ -68,6 +68,10 @@ describe('the campaign library', () => {
       picture.sha256 = '0'.repeat(64);
       await writeFile(index, JSON.stringify(stored));
       await expect(loadCampaignLibrary(copy)).rejects.toThrow('does not match its SHA-256');
+      await cp(CAMPAIGN_LIBRARY_DIR, copy, { recursive: true, force: true });
+      const book = join(copy, first.id, 'book.json');
+      await writeFile(book, (await readFile(book, 'utf8')).replace('"layer":1', '"layer":2'));
+      await expect(loadCampaignLibrary(copy)).rejects.toThrow('book.json changed');
     } finally {
       await rm(copy, { recursive: true, force: true });
     }

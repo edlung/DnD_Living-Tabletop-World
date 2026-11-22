@@ -24,6 +24,28 @@ export {
   type CampaignAssessment,
 } from './package.ts';
 export {
+  CAMPAIGN_BOOK_VERSION,
+  BOOK_VOICES,
+  BOOK_ROLLS,
+  BOOK_CUE_KINDS,
+  campaignBookSchema,
+  campaignBookChapterSchema,
+  campaignBookPageSchema,
+  campaignBookCheckSchema,
+  campaignBookCueSchema,
+  campaignBookPersonSchema,
+  campaignBookClueSchema,
+  campaignBookHandoutSchema,
+  campaignBookRoutesSchema,
+  bookReferenceProblems,
+  type BookVoice,
+  type BookReferenceProblem,
+  type CampaignBook,
+  type CampaignBookChapter,
+  type CampaignBookPage,
+  type CampaignBookCheck,
+} from './book.ts';
+export {
   campaignKeySchema,
   campaignClueSchema,
   campaignConflictSchema,

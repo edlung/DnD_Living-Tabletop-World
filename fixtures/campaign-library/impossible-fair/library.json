@@ -52,6 +52,10 @@
    "digest": "327a2f67ed616d7cca9c92790a8da1a9dcde6b2ceeb459750e3f929156650299"
   }
  ],
+ "book": {
+  "file": "book.json",
+  "sha256": "f4e525163396cac1a4cc7b89586a95397da053c5c5bb23b9d57a50551e4d24b0"
+ },
  "generator": "codex-cli imagegen",
  "pictures": [
   {

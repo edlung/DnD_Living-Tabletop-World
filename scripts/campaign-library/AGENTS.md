@@ -9,6 +9,11 @@ Scope: `work-orders/CAMPAIGN_EDITORIAL_2026-11-22.md` and the original library r
 - `build.ts` writes `fixtures/campaign-library/` (`library.json`, `packages/`); the server reads the
   pictures from the campaigns' own `assets/` and checks their SHA-256. Rebuild after any change to a
   library campaign; `library.test.ts` fails when the fixture is stale.
+- `book/` builds each campaign's DM book (ADR 0074 §2) from its `source/`: `book.ts` assembles it,
+  `check-line.ts` reads a check line as fields, `people.ts` finds the cast named in a page,
+  `voice.ts` says whom a text speaks to, `encounters.ts` ties a fight to a chapter. `build.ts`
+  writes it as `book.json` beside the packages. A first-layer page is the source's scene word for
+  word: add fields read from the text, never text.
 - `battle-maps.ts` cuts the GPT battle maps of an art workspace (each drawn over its fight's grid)
   into each campaign's `assets/battle-maps/` with a manifest. Originals stay outside the repository.
 - `world-maps.ts` turns the GPT world maps of an art workspace (`maps.json`, `out/<id>.png`,

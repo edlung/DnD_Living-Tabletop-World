@@ -13,8 +13,8 @@ plan so that the whole road is visible; neither is authorized. Merging, deployme
 playtest and real devices stay the owner's. ADR 0074 holds the contracts, one section a stage, each
 added by its stage.
 
-Status: **Stage 900 is implemented** (`work-orders/STAGE_900.md`,
-`reports/STAGE_900_COMPLETION.md`, ADR 0074 §1). Stages 910, 920 and 930 have their work orders and
+Status: **Stages 900 and 910 are implemented** (`reports/STAGE_900_COMPLETION.md`,
+`reports/STAGE_910_COMPLETION.md`, ADR 0074 §1–§2). Stages 920 and 930 have their work orders and
 are not started.
 
 The sample for the screen is the demo of this session: `docs/design/dm-book-sample/` and the
@@ -59,19 +59,19 @@ Stage 900.
 
 ## Where it stands (read in code and data, 2026-11-22)
 
-| Area                  | There today                                                                                                                                                                                                                           | Missing for the book                                                          |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| Campaign text         | `source/act-N.json` or `sessions-N.json` hold every chapter and scene; the package keeps goal + read-aloud as a situation's description, choices as approaches, the first chapter as `firstSession` (`scripts/lighthouse/package.ts`) | Scene text, the check line, puzzles and handouts never reach the package      |
-| The DM's screen       | The dock (`apps/web/src/shell/dock.tsx`): nine sheets for everyone, ten for the DM; none shows campaign text                                                                                                                          | A screen that shows the story                                                 |
-| Rolls                 | `POST …/check-requests`, a hidden DC, group checks (`packages/contracts/src/dice/rolls.ts`)                                                                                                                                           | A prepared check tied to a scene                                              |
-| Fights                | Prepared encounters start in one step through the World Engine (`apps/server/src/combat/prepared-encounters.ts`); the battle map is cast to the table's screen                                                                        | Starting one from the page; the turn shown on the page                        |
-| Clues                 | `AddClue`, `SetDisclosure`; "What we know" in the Chronicle                                                                                                                                                                           | The link from the text to those commands                                      |
-| Handouts              | The DM's kept handouts and giving (`apps/server/src/handouts/`, `library/`)                                                                                                                                                           | A campaign's handouts are not imported; the display has no handout cast       |
-| The table's screen    | Casts: scene, battlefield, picture, story, title and others (`packages/contracts/src/display/display.ts`)                                                                                                                             | "The screen follows the ribbon, not the reading"                              |
-| A meeting             | Start with "Previously…", pause, end, the break timer, the next game, the table's agreement (Stages 710–799)                                                                                                                          | Nothing new: the book calls what exists                                       |
-| The order of chapters | World maps and routes; notes "if the party changed the plan" (`source/table-guide.json`, `table-routes.json`)                                                                                                                         | What a chapter needs to be entered is one sentence in `world.order`, not data |
-| The look              | A catalogue of 55 campaign materials: texture, accent, lettering (`apps/web/src/visual/campaign-themes/`)                                                                                                                             | The book's own materials and the icons of link kinds (Layer 2)                |
-| Pictures              | Places, portraits, items, battle maps                                                                                                                                                                                                 | Pictures of scenes and events (Layer 2)                                       |
+| Area                  | There today                                                                                                                                                                                                                           | Missing for the book                                                                                                  |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| Campaign text         | `source/act-N.json` or `sessions-N.json` hold every chapter and scene; the package keeps goal + read-aloud as a situation's description, choices as approaches, the first chapter as `firstSession` (`scripts/lighthouse/package.ts`) | Scene text reaches the package only in the collections (as situations); the check line, puzzles and handouts never do |
+| The DM's screen       | The dock (`apps/web/src/shell/dock.tsx`): nine sheets for everyone, ten for the DM; none shows campaign text                                                                                                                          | A screen that shows the story                                                                                         |
+| Rolls                 | `POST …/check-requests`, a hidden DC, group checks (`packages/contracts/src/dice/rolls.ts`)                                                                                                                                           | A prepared check tied to a scene                                                                                      |
+| Fights                | Prepared encounters start in one step through the World Engine (`apps/server/src/combat/prepared-encounters.ts`); the battle map is cast to the table's screen                                                                        | Starting one from the page; the turn shown on the page                                                                |
+| Clues                 | `AddClue`, `SetDisclosure`; "What we know" in the Chronicle                                                                                                                                                                           | The link from the text to those commands                                                                              |
+| Handouts              | The DM's kept handouts and giving (`apps/server/src/handouts/`, `library/`)                                                                                                                                                           | A campaign's handouts are not imported; the display has no handout cast                                               |
+| The table's screen    | Casts: scene, battlefield, picture, story, title and others (`packages/contracts/src/display/display.ts`)                                                                                                                             | "The screen follows the ribbon, not the reading"                                                                      |
+| A meeting             | Start with "Previously…", pause, end, the break timer, the next game, the table's agreement (Stages 710–799)                                                                                                                          | Nothing new: the book calls what exists                                                                               |
+| The order of chapters | World maps and routes; notes "if the party changed the plan" (`source/table-guide.json`, `table-routes.json`)                                                                                                                         | What a chapter needs to be entered is one sentence in `world.order`, not data                                         |
+| The look              | A catalogue of 55 campaign materials: texture, accent, lettering (`apps/web/src/visual/campaign-themes/`)                                                                                                                             | The book's own materials and the icons of link kinds (Layer 2)                                                        |
+| Pictures              | Places, portraits, items, battle maps                                                                                                                                                                                                 | Pictures of scenes and events (Layer 2)                                                                               |
 
 The two built-in adventures keep their worlds as seeds in `fixtures/` and their DM text in
 `docs/BUILTIN_ADVENTURES_DM_RU.md`; they have no scene text as data.
@@ -95,13 +95,20 @@ a page with its moments, three bindings.
 
 ### 910 — The book's data
 
-The package gains an optional `book` (ADR 0074 §2): chapters, their pages from the scenes as
-written, the check line also as fields where it can be read with certainty, puzzles, handouts, the
-order of chapters, and links to people found by their names in the text. The builds of all 53
-authored campaigns write it; the library fixture is rebuilt. The two built-in adventures get
-pages: Hollowmere's from the other concept, Ravenford's written by the session and switched off
-until the owner has read them. A check that every link points at something that exists and that
-no secret field is in a page's text.
+Every campaign gets its book as a document beside its packages (ADR 0074 §2):
+`fixtures/campaign-library/<id>/book.json`, built by the library's build from the campaign's
+`source/` — chapters, their pages from the scenes as written, the check line also as fields where
+it can be read with certainty, puzzles, handouts, the cast and the clues as the DM reads them, the
+campaign's notes on a changed plan, links to people found by their names in the text, the
+encounters tied to a chapter. The two built-in adventures get books under the same contract:
+Hollowmere's from the other concept, Ravenford's written by the session; both stay closed until
+the owner has read them. Tests compare every page with its source and every key with every
+variant's package.
+
+Changed while the stage was done: the plan first said "the package gains an optional `book`". A
+package may be 512 KB at most and the largest is 453 KB; a book is up to 252 KB and would repeat in
+each of a campaign's four to seven packages. The book is its own document; packages, their digests
+and the series' builds are untouched.
 
 ### 920 — The book to read
 
@@ -155,6 +162,8 @@ Estimated for all 53: about 13,900 fragments, about 85 hours of the owner's read
     without a list) is shown to the DM as a gap, not filled.
 14. (S) The ribbon, the open bookmark and the DM's notes on a page are the DM's own state beside
     the world, not world state; the journal of the book is read from the campaign's history.
+15. (S, Stage 910) A campaign's book is a document beside its packages, not a field of the
+    package (ADR 0074 §2.1); both built-in books, Hollowmere's too, wait for the owner's reading.
 
 ## Boundaries
 
@@ -162,5 +171,5 @@ The World Engine alone changes the world. Prepared situations, encounters, check
 plans, never player decisions (`packages/contracts/src/campaign/AGENTS.md`). The book's text is
 the DM's; a player and the table's screen receive only what the DM sends, and a roll a player sees
 carries no DC. No AI is called from the book. No paid provider call and no generated picture in
-Stages 900–930. A package is generated from its source, never edited by hand. Nothing is merged or
-deployed by the session.
+Stages 900–930. A package and a book are generated from their source, never edited by hand. Nothing
+is merged or deployed by the session.

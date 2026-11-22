@@ -17,7 +17,12 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   session left uncommitted is on `claude/campaign-editorial-2026-11-22`, pull request 72, as it
   was, with the checks run on it (one unit test times out under full-suite load; named there).
 - Stage 900 (documents only) is implemented: `work-orders/STAGE_900.md`,
-  `reports/STAGE_900_COMPLETION.md`. Stages 910, 920 and 930 have their work orders.
+  `reports/STAGE_900_COMPLETION.md`, pull request 73.
+- Stage 910 (the book's data) is implemented: `work-orders/STAGE_910.md`,
+  `reports/STAGE_910_COMPLETION.md`, ADR 0074 §2. Every one of the 53 has
+  `fixtures/campaign-library/<id>/book.json`, a document beside its packages (the package
+  contract is untouched); the two built-in adventures have theirs, closed until the owner has read
+  them. Stages 920 and 930 have their work orders.
 
 ## Request — full-screen sections, 2026-11-21
 
