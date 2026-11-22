@@ -9,7 +9,7 @@ import { SIGN_IN_CAMPAIGNS, SIGN_IN_ORIGIN, WORDS, joinAsDm } from './support/si
  * The dock fits every screen (docs/adr/0043-dm-screen.md §3): full words where they fit, short
  * words where they do not, and the last items under More where those do not fit either. It never
  * scrolls sideways, nothing covers it, and every tool stays in reach — the DM's sixteen with
- * invitations and the table's chat, in English and in Russian, from a wide laptop down to the
+ * invitations (seventeen where the campaign has a book) and the table's chat, in English and in Russian, from a wide laptop down to the
  * narrowest phone.
  */
 const expect = baseExpect.configure({ timeout: 15_000 });
@@ -21,7 +21,19 @@ const DM_EN = [
   'Players',
 ] as const;
 const DM_RU = [
-  ...['Сцена', 'Места', 'Журнал', 'Кубики', 'Чат', 'Хроника', 'Отряд', 'Схватка', 'Сессия'],
+  // The Russian Ravenford has a book (docs/adr/0074-dm-book.md §3.8): the DM's dock holds it.
+  ...[
+    'Сцена',
+    'Места',
+    'Журнал',
+    'Кубики',
+    'Чат',
+    'Хроника',
+    'Книга',
+    'Отряд',
+    'Схватка',
+    'Сессия',
+  ],
   ...['Экран стола', 'Заметки', 'Время и погода', 'Добавить в мир', 'Изображения', 'История'],
   'Игроки',
 ] as const;

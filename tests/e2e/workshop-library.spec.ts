@@ -80,7 +80,9 @@ test('a DM picks a library campaign, starts it and gets its pictures, figures an
   const campaignId = owned.campaigns[0]?.campaignId;
   if (!campaignId) throw new Error('no started campaign');
   await enterActivatedGame(page);
-  await expect(dockButton(page, 'Игроки')).toBeVisible();
+  // In the game as its DM. A library campaign has a book, so the dock holds one tool more and
+  // its last, Players, may wait under More.
+  await expect(dockButton(page, 'Игроки')).toBeAttached();
   const presentation = async (key: string) => {
     const entityId = identities[key];
     if (!entityId) throw new Error(`no entity ${key}`);
