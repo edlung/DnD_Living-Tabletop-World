@@ -84,7 +84,7 @@ test('logins hold seats: join, sign out and in elsewhere, the hub, a new campaig
   const dm = await freshPage(browser);
   await dm.goto(joinPath(dmToken(campaign)));
   await takeSeatWithNewLogin(dm, { name: 'Ada', login: 'ada-dm', password: PASSWORD });
-  await expect(dockButton(dm, words.players)).toBeVisible(LIVE);
+  await expect(dockButton(dm, words.players)).toBeAttached(LIVE);
   await expect(dm.getByRole('button', { name: 'My campaigns', exact: true })).toBeVisible();
 
   // The invitation is shown once, with its QR code for a phone at the table.
@@ -151,7 +151,7 @@ test('logins hold seats: join, sign out and in elsewhere, the hub, a new campaig
   await hub(tablet)
     .getByRole('button', { name: 'In English: The Missing Caravan', exact: true })
     .click();
-  await expect(dockButton(tablet, words.players)).toBeVisible(LIVE);
+  await expect(dockButton(tablet, words.players)).toBeAttached(LIVE);
   await tablet.getByRole('button', { name: 'My campaigns', exact: true }).click();
   await expect(campaigns(tablet)).toHaveCount(2);
   await expect(hub(tablet)).toContainText('You are the DM');

@@ -51,13 +51,13 @@ async function table(browser: Browser, index: number, prefix: string) {
   const dm = await freshPage(browser);
   await dm.goto(`/join#${dmToken(campaign, index)}`);
   await takeSeatWithNewLogin(dm, 'Ada', `${prefix}-dm`);
-  await expect(dockButton(dm, words.players)).toBeVisible();
+  await expect(dockButton(dm, words.players)).toBeAttached();
   await dm.getByRole('button', { name: 'My campaigns', exact: true }).click();
   await dm
     .getByRole('region', { name: 'Your campaigns', exact: true })
     .getByRole('button', { name: 'In English: The Bells of Hollowmere', exact: true })
     .click();
-  await expect(dockButton(dm, words.players)).toBeVisible();
+  await expect(dockButton(dm, words.players)).toBeAttached();
   const players: Page[] = [];
   for (const [seat, character] of PARTY.entries()) {
     const link = await invite(dm, character);

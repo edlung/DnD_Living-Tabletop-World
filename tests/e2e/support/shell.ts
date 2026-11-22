@@ -6,7 +6,10 @@ import { expect, type Locator, type Page } from '@playwright/test';
  * control before it uses that control. Names are the dock's words in the campaign's language.
  * Where the dock does not fit its screen, its last items wait under More
  * (docs/adr/0043-dm-screen.md §3): `dockButton` finds an item on the dock or under More, and
- * `revealDockButton` opens More when the item waits there.
+ * `revealDockButton` opens More when the item waits there. A journey that only needs to know the
+ * DM's tools are there expects "Players" attached, not visible: where the campaign has a book the
+ * dock holds one tool more (docs/adr/0074-dm-book.md §3.8), and its last may wait under More on a
+ * laptop too.
  */
 export const dockButton = (page: Page, name: string): Locator =>
   page.locator('nav.dock').getByRole('button', { name, exact: true, includeHidden: true });

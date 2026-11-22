@@ -66,7 +66,7 @@ test('a campaign played elsewhere is looked at here, not played', async ({ page,
   const campaign = SIGN_IN_CAMPAIGNS.moved;
   await page.goto(joinPath(dmToken(campaign)));
   await joinWithNewLogin(page, 'ada-moved');
-  await expect(dockButton(page, WORDS.en.players)).toBeVisible(LIVE);
+  await expect(dockButton(page, WORDS.en.players)).toBeAttached(LIVE);
   await sendAway(page, campaign);
   const notice = page.locator('.lobby-banner.is-away');
   await expect(notice).toContainText('This campaign is played on MacBook Pro since', LIVE);
@@ -93,7 +93,7 @@ test('the same in Russian', async ({ browser }) => {
   const campaign = SIGN_IN_CAMPAIGNS.movedRu;
   await page.goto(joinPath(dmToken(campaign)));
   await joinWithNewLogin(page, 'ada-moved-ru', WORDS.ru);
-  await expect(dockButton(page, WORDS.ru.players)).toBeVisible(LIVE);
+  await expect(dockButton(page, WORDS.ru.players)).toBeAttached(LIVE);
   await sendAway(page, campaign);
   await expect(page.locator('.lobby-banner.is-away')).toContainText(
     'Эта кампания идёт на MacBook Pro с',

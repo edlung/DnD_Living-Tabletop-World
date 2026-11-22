@@ -49,6 +49,10 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
   the owner's three campaigns there are built-in adventures, whose books are closed until he has
   read them, so no Book button shows in them — as built. A library campaign's book was not
   opened on the live site: that needs a campaign started there, which is the owner's to do.
+- After the merge, CI on the record's own pull request (77) found one more of the same kind: a
+  journey waited for "Players" on the dock itself, where — with the Book — it may wait under
+  More. Seventeen such lines in nine journeys now look for it among the dock's tools
+  (`tests/e2e/support/shell.ts` says why). Tests only; nothing to deploy.
 - Still the owner's: reading the two built-in books (Ravenford's pages are in
   `reports/STAGE_910_COMPLETION.md`); Stages 940 and 950.
 

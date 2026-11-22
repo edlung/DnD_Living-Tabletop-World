@@ -176,7 +176,7 @@ test('old game logout and delayed refusals preserve the new cookie; history snap
     expect(await lateProbe).toBe(401);
     await expect(accessState(delayed, words.signedOut)).toBeVisible();
     expect(await probe(newest)).toEqual({ status: 200, campaignId: newCampaign });
-    await expect(dockButton(newest, words.players)).toBeVisible();
+    await expect(dockButton(newest, words.players)).toBeAttached();
   } finally {
     release.release();
     await delayedContext.close();
