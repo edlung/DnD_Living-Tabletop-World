@@ -1,20 +1,34 @@
-import type { CampaignBook, CampaignBookCheck, PreparedEncounterView } from '@ltw/contracts';
+import type {
+  CampaignBook,
+  CampaignBookCheck,
+  EntityRef,
+  PreparedEncounterView,
+} from '@ltw/contracts';
 import { useT } from '@ltw/ui';
 import type { ReactNode } from 'react';
 
+import type { WorldApi } from '../api/client.ts';
+import { AskRoll, GiveHandout, StartFight } from './actions.tsx';
 import { MOMENT_KINDS, optionWords, type Moment } from './moments.ts';
 
 /**
- * A moment's card on the right page (docs/adr/0074-dm-book.md §3.2): what the campaign prepared
- * for it, to read. Read-only: nothing here asks the world for anything. Where the campaign's data
+ * A moment's card on the right page (docs/adr/0074-dm-book.md §3.2, §4): what the campaign
+ * prepared for it, and — where the product has a way to play it — the button that calls that way. Where the campaign's data
  * has nothing for a line, the card says so and invents nothing (§1.6).
  */
-export function CheckLines({ check }: { readonly check: CampaignBookCheck }) {
+export function CheckLines({
+  check,
+  chips = true,
+}: {
+  readonly check: CampaignBookCheck;
+  /** False where the options are listed just below with their "ask" buttons. */
+  readonly chips?: boolean;
+}) {
   const t = useT();
   if (check.line === '') return null;
   return (
     <>
-      {check.options.length > 0 && (
+      {chips && check.options.length > 0 && (
         <ul className="dmb-chips" aria-label={t('The roll')}>
           {check.options.map((option) => {
             const words = optionWords(option);
@@ -66,6 +80,11 @@ export function useCard(
   moment: Moment | null,
   chapterKey: string,
   encounters: (key: string) => PreparedEncounterView | null,
+  play: {
+    readonly api: WorldApi;
+    readonly heroes: readonly EntityRef[];
+    readonly onFightStarted: () => void;
+  },
 ): CardContent | null {
   const t = useT();
   if (moment === null) return null;
@@ -164,6 +183,7 @@ export function useCard(
           {handout.text === ''
             ? gap(t('The campaign has no text for this handout.'))
             : handout.text.split(/\n+/u).map((line) => <p key={line}>{line}</p>)}
+          <GiveHandout title={handout.title} text={handout.text} />
         </>
       ),
     };
@@ -183,7 +203,7 @@ export function useCard(
             ]}
           />
           <p>{found.summary}</p>
-          <p className="dmb-status">{t('A prepared fight starts from the Encounter section.')}</p>
+          <StartFight api={play.api} encounter={found} onStarted={play.onFightStarted} />
         </>
       ) : (
         gap(t('This fight is not among the campaign’s prepared ones now.'))
@@ -227,14 +247,18 @@ export function useCard(
     body: (
       <>
         <p>{cue.brief}</p>
-        {cue.check && <CheckLines check={cue.check} />}
+        {cue.check && <CheckLines check={cue.check} chips={play.heroes.length === 0} />}
+        {cue.check && <AskRoll check={cue.check} heroes={play.heroes} />}
         {fight && (
-          <Facts
-            rows={[
-              [t('Where'), fight.location.name],
-              [t('Foes who can fight'), String(fight.foes)],
-            ]}
-          />
+          <>
+            <Facts
+              rows={[
+                [t('Where'), fight.location.name],
+                [t('Foes who can fight'), String(fight.foes)],
+              ]}
+            />
+            <StartFight api={play.api} encounter={fight} onStarted={play.onFightStarted} />
+          </>
         )}
         {cue.details.map((detail) => (
           <div key={detail.label}>

@@ -98,8 +98,6 @@ registerRussian({
   'The campaign has no text for this handout.': 'У этого материала нет текста.',
   Where: 'Где',
   'Foes who can fight': 'Противников в строю',
-  'A prepared fight starts from the Encounter section.':
-    'Подготовленный бой начинается из раздела «Схватка».',
   'This fight is not among the campaign’s prepared ones now.':
     'Сейчас этого боя нет среди подготовленных.',
   'Hint {number}': 'Подсказка {number}',
@@ -127,4 +125,27 @@ registerRussian({
   'Part {number} of {parts}': 'Часть {number} из {parts}',
   Contents: 'Оглавление',
   Aa: 'Аа',
+  // Playing a moment from the book (ADR 0074 §4)
+  'Ask for the roll': 'Попросить бросок',
+  'Whom to ask': 'Кого спросить',
+  'Whom to ask: {check}': 'Кого спросить: {check}',
+  'The whole party': 'Весь отряд',
+  'Answers to this roll': 'Ответы на этот бросок',
+  '{name}: asked, waiting for the roll': '{name}: ждём бросок',
+  '{name}: {total} — success': '{name}: {total} — успех',
+  '{name}: {total} — failure': '{name}: {total} — неудача',
+  '{name}: {total}': '{name}: {total}',
+  'The roll could not be asked. Try again.': 'Не удалось попросить бросок. Попробуйте ещё раз.',
+  'Start this fight': 'Начать этот бой',
+  'In the fight: {names}': 'В бою: {names}',
+  'The fight did not start. Try again.': 'Бой не начался. Попробуйте ещё раз.',
+  'Give it to the party': 'Выдать отряду',
+  'Give it again': 'Выдать ещё раз',
+  'Given: every player can read it now.': 'Выдано: каждый игрок может прочитать.',
+  'It was not given. Try again.': 'Не выдалось. Попробуйте ещё раз.',
+  'This handout is longer than a handout the table can be given: read it aloud or show it.':
+    'Этот материал длиннее, чем можно выдать: прочитайте его вслух или покажите.',
+  'Show on the table’s screen': 'Показать на экране стола',
+  'With the words read aloud': 'Со словами вслух',
+  'The table’s screen shows it.': 'Экран стола показывает это.',
 });

@@ -13,9 +13,9 @@ plan so that the whole road is visible; neither is authorized. Merging, deployme
 playtest and real devices stay the owner's. ADR 0074 holds the contracts, one section a stage, each
 added by its stage.
 
-Status: **Stages 900, 910 and 920 are implemented** (`reports/STAGE_900_COMPLETION.md`,
-`reports/STAGE_910_COMPLETION.md`, `reports/STAGE_920_COMPLETION.md`, ADR 0074 §1–§3). Stage 930
-has its work order and is not started.
+Status: **Stages 900–930 are implemented** and wait for the owner (`reports/STAGE_900_COMPLETION.md`
+… `reports/STAGE_930_COMPLETION.md`, ADR 0074 §1–§4); the report to him is the last of them. Five
+stacked pull requests, none merged. Stages 940 and 950 are not authorized.
 
 The sample for the screen is the demo of this session: `docs/design/dm-book-sample/` and the
 owner's private page named in the record. A second concept, made the same day in another session on
@@ -164,6 +164,9 @@ Estimated for all 53: about 13,900 fragments, about 85 hours of the owner's read
     the world, not world state; the journal of the book is read from the campaign's history.
 15. (S, Stage 910) A campaign's book is a document beside its packages, not a field of the
     package (ADR 0074 §2.1); both built-in books, Hollowmere's too, wait for the owner's reading.
+16. (S, Stage 930) The table's screen is cast only on the DM's press, never by a turned page; a
+    clue is not handed to the party from the book and a fork is not marked, because the product
+    has no command for either and none is added (ADR 0074 §4.5, §4.7).
 
 ## Boundaries
 

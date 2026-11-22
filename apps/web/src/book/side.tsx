@@ -1,8 +1,9 @@
-import type { CampaignBook } from '@ltw/contracts';
+import type { CampaignBook, EntityRef } from '@ltw/contracts';
 import { useT } from '@ltw/ui';
 import { useId } from 'react';
 
 import { Glyph } from '../visual/glyph.tsx';
+import { AskRoll } from './actions.tsx';
 import { CheckLines, kindWord, type CardContent } from './cards.tsx';
 import { minutesOf, type Leaf } from './model.ts';
 import { MOMENT_KINDS, momentId, type Moment, type MomentLine } from './moments.ts';
@@ -79,6 +80,7 @@ export function Brief({
   book,
   leaf,
   lines,
+  heroes,
   note,
   onNote,
   onOpen,
@@ -86,6 +88,8 @@ export function Brief({
   readonly book: CampaignBook;
   readonly leaf: Leaf;
   readonly lines: readonly MomentLine[];
+  /** The party's heroes: a roll of the page is asked of one of them, or of all. */
+  readonly heroes: readonly EntityRef[];
   readonly note: string;
   readonly onNote: (note: string) => void;
   readonly onOpen: (moment: Moment, opener: HTMLElement) => void;
@@ -167,7 +171,8 @@ export function Brief({
             {page.check.line !== '' && (
               <>
                 <h4>{t('The roll')}</h4>
-                <CheckLines check={page.check} />
+                <CheckLines check={page.check} chips={heroes.length === 0} />
+                <AskRoll check={page.check} heroes={heroes} />
               </>
             )}
             {page.failForward !== '' && (

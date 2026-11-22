@@ -7,6 +7,14 @@ stage: its report is the report to the owner.
 
 A meeting can be run without leaving the book. Every action is a command the product already has.
 
+**Changed while the stage was done (2026-11-22).** Done: items 1, 2, 4, 5 (the fight starts from
+its card and is then run on the product's own battlefield, not on the page) and the buttons of
+item 6. Not done, each for a reason written in ADR 0074 §4: the screen does not follow the ribbon
+(item 6 — a cast is the DM's press); a clue is not handed to the party (item 3) and a fork is not
+marked (item 8) — the product has no command for either, and this order adds none; a campaign's
+handouts are not imported into the DM's kept handouts, they are given straight from the card; the
+meeting (item 7) and the journal (item 9) are the product's own sections behind a bookmark.
+
 ## Deliver
 
 1. **A check from its card**: choose the hero (or the group), and the product's own check request

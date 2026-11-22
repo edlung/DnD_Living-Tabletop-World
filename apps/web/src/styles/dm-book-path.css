@@ -102,6 +102,56 @@
   margin-top: 0.3rem;
 }
 
+/* Playing a moment from the book (ADR 0074 §4): asking a roll, starting a fight, giving, casting. */
+.dmb-asks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin: 0 0 0.7em;
+  padding: 0;
+  list-style: none;
+}
+.dmb-ask {
+  /* Holds the select's hidden label inside the page's scroll. */
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+}
+.dmb-select {
+  min-block-size: 44px;
+  max-inline-size: 100%;
+  padding: 0 0.6rem;
+  border: 1px solid color-mix(in srgb, var(--page-ink) 68%, transparent);
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--page) 70%, white);
+  color: var(--page-ink);
+  font: inherit;
+}
+.dmb .dmb-result {
+  flex: 1 1 100%;
+  margin: 0;
+  padding: 0;
+  color: var(--page-ink);
+  font-weight: 600;
+  list-style: none;
+}
+.dmb-act,
+.dmb-cast {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.6rem;
+  margin: 0.4rem 0 0.6rem;
+}
+.dmb-cast {
+  margin: 0.35rem 0 0;
+}
+.dmb-plate[data-open='true'] .dmb-cast {
+  display: none;
+}
+
 /* The picture enlarged: a dialog over the book. */
 .dmb-zoom {
   max-inline-size: min(96vw, 1400px);

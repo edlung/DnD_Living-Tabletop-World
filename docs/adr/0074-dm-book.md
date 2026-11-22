@@ -1,11 +1,9 @@
 # 0074. The DM's book: a campaign's text as a book beside its packages, and a book as the DM's screen
 
-- Status: Accepted for §1–§3 (the owner's words of 2026-11-22, `reviews/OWNER_DM_BOOK_2026-11-22.json`:
+- Status: Accepted for §1–§4 (the owner's words of 2026-11-22, `reviews/OWNER_DM_BOOK_2026-11-22.json`:
   the brief, «Да, развиваем», «мне для всех компаний книжный формат нужен … 55 кампаний», «Да,
-  открываем» and four choices in a question card). Points marked (S), and every point of §2 and §3, are
-  the session's and stay the owner's to overrule (`docs/DM_BOOK_PLAN.md`, decisions 9–15). Later
-  sections are added by their stages and are not in force until then: §4 play from the book
-  (Stage 930).
+  открываем» and four choices in a question card). Points marked (S), and every point of §2–§4, are
+  the session's and stay the owner's to overrule (`docs/DM_BOOK_PLAN.md`, decisions 9–15).
 - Context: A campaign's story is written scene by scene in its source, and a DM reads it today in
   an HTML book outside the game. Inside the game the DM has a dock of nineteen sheets and none of
   them holds the story. On 2026-11-19 the owner said the product "looks like an Excel table"; on
@@ -155,6 +153,34 @@
 10. **The look** is the campaign's own material and accent around parchment pages
     (`campaign-themes`); the book's own generated materials and the icons of its moments wait for
     the second layer.
+
+### 4. Play from the book (Stage 930)
+
+1. **Every button is a way the product already has.** No command, no route and no rule was added
+   for the book. The book shows what the server answered and computes nothing itself.
+2. **A roll.** Where a page's or a moment's check was read as fields (§2.3), each option has "ask
+   for the roll": the DM picks a hero or the whole party and the table's own check request goes
+   out with that check and that difficulty. The difficulty stays the DM's; the answer comes back
+   to the card ("waiting", then the total and success or failure as the server says). A line that
+   was not read as fields is asked by hand from the Dice section, which is one bookmark away — as
+   is any roll the text did not foresee.
+3. **A fight.** The card of a prepared encounter starts it through the prepared encounters' own
+   start (one request, never twice), or says why it cannot start now in the product's own words.
+   Once it starts, the book steps aside for the battlefield: the fight is run on the product's
+   own screen, and the Book button brings the page back.
+4. **A handout.** A campaign's handout is given to the party from its card as any handout is
+   given; the players read it at once. One longer than a handout may be is not cut: the card says
+   so.
+5. **The table's screen.** Under the picture: "show on the table's screen", and for a chapter's
+   opening "with the words read aloud" when they fit the story cast. Only on the DM's press:
+   neither reading nor turning a page casts anything. (The plan had the screen follow the ribbon;
+   a turn of a page is too quiet an act to change what the whole table sees.)
+6. **A meeting** is started, paused and ended in the Session section, a bookmark away; the book
+   adds no second set of those controls. The journal is the History and Journal sections.
+7. **Not in this stage.** A clue is not handed to the party from its card: the product has no
+   command by which the DM gives the party a clue, and none is added here (§4.1) — a clue is
+   found as it is found today, and the contents show it when it is. A fork is not marked: the
+   DM's note on the page holds what the table chose. Each waits for the owner's word.
 
 ## Consequences
 
