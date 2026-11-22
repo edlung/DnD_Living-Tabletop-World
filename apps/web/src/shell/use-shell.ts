@@ -8,6 +8,7 @@ import { reportPart } from '../report/reporter.ts';
  * (docs/adr/0036-production-sign-in.md §4).
  */
 export type SheetId =
+  | 'book'
   | 'places'
   | 'journal'
   | 'dice'
@@ -26,6 +27,7 @@ export type SheetId =
   | 'rules';
 
 const SHEETS: readonly SheetId[] = [
+  'book',
   'places',
   'journal',
   'dice',
@@ -107,6 +109,8 @@ export function useShell(rememberAs?: string) {
   const [hero, setHero] = useState<string | null>(null);
   const [heroTab, setHeroTab] = useState<HeroTab>('overview');
   const last = useRef<'sheet' | 'details'>('sheet');
+  // A section opened from the DM's book (ADR 0074 §3.7): closing it comes back to the book.
+  const fromBook = useRef(false);
   // What is open, for a report of what broke (docs/adr/0073-table-ideas.md §1): a name only.
   reportPart(chronicle ? 'chronicle' : hero !== null ? 'hero' : (sheet ?? 'none'));
   return {
@@ -128,17 +132,31 @@ export function useShell(rememberAs?: string) {
     showHeroTab: setHeroTab,
     /** The dock: opens a sheet, or closes it when it is already open. */
     toggleSheet: (id: SheetId) => {
+      // A section opened over the open book comes back to it, as from a bookmark.
+      fromBook.current = sheet === 'book' && id !== 'book';
       setSheet(sheet === id ? null : id);
       last.current = 'sheet';
     },
     /** Opens a sheet from elsewhere (an NPC card's edit opens its proposal under Add). */
     openSheet: (id: SheetId) => {
+      fromBook.current = false;
+      setSheet(id);
+      last.current = 'sheet';
+    },
+    /** Opens a section from a bookmark of the DM's book: its Close returns to the book's page. */
+    openSheetFromBook: (id: SheetId) => {
+      fromBook.current = true;
       setSheet(id);
       last.current = 'sheet';
     },
     /** Closes the open sheet and returns focus to its dock button, or to More that holds it. */
     closeSheet: () => {
       if (sheet === null) return;
+      if (fromBook.current && sheet !== 'book') {
+        fromBook.current = false;
+        setSheet('book');
+        return;
+      }
       if (!focusOn(document.getElementById(dockButtonId(sheet)))) {
         focusOn(document.getElementById(DOCK_MORE_ID));
       }
@@ -146,6 +164,7 @@ export function useShell(rememberAs?: string) {
     },
     /** Closes the open sheet without moving focus (what was picked in it took focus). */
     dismissSheet: () => {
+      fromBook.current = false;
       setSheet(null);
     },
     /** Opens the book, at a chapter when one is named (each asking is a new one). */

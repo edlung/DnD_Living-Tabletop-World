@@ -1,6 +1,7 @@
 import { useT } from '@ltw/ui';
 import { useRef, useState } from 'react';
 
+import { useBookPresent } from '../book/presence.ts';
 import { useDiceTable } from '../dice/table.tsx';
 import { useSignInKind } from '../session/sign-in-kind.ts';
 import { Glyph } from '../visual/glyph.tsx';
@@ -125,6 +126,7 @@ export function Dock({
 }) {
   const t = useT();
   const invitations = useSignInKind() === 'session';
+  const hasBook = useBookPresent();
   // Table talk (ADR 0044 §1): marked while others' messages wait to be read; Dice while a check
   // the DM asked of this player waits (§3).
   const table = useDiceTable();
@@ -179,6 +181,12 @@ export function Dock({
   // first to wait under More.
   const dm: readonly Item[] = isDm
     ? [
+        // The campaign's story (docs/adr/0074-dm-book.md §3.8): first, where it has a book.
+        ...(hasBook
+          ? ([
+              { id: 'book', label: t('Book'), short: t('Book'), glyph: 'perform', dm: true },
+            ] as const)
+          : []),
         { id: 'party', label: t('Party'), short: t('Party'), glyph: 'party', dm: true },
         {
           id: 'encounter',

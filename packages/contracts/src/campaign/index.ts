@@ -46,6 +46,20 @@ export {
   type CampaignBookCheck,
 } from './book.ts';
 export {
+  BOOK_NOTE_CHARS,
+  MAX_BOOK_NOTES,
+  EMPTY_BOOK_PLACE,
+  bookPlaceSchema,
+  bookIdsSchema,
+  campaignBookResponseSchema,
+  openedBookSchema,
+  saveBookPlaceSchema,
+  type BookPlace,
+  type BookIds,
+  type CampaignBookResponse,
+  type OpenedBook,
+} from './book-view.ts';
+export {
   campaignKeySchema,
   campaignClueSchema,
   campaignConflictSchema,

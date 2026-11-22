@@ -1,3 +1,4 @@
+import type { CampaignBook } from '@ltw/contracts';
 import {
   campaignIdSchema,
   parsePerspective,
@@ -18,6 +19,10 @@ import { sendError } from '../http/errors.ts';
 import { authenticate, parseInput, type RouteDependencies } from '../http/request-context.ts';
 import { httpCommandId } from '../http/routes/command-routes.ts';
 import { dmHistoryPage } from './history.ts';
+import { InMemoryBookPlaceStore, type BookPlaceStore } from '../book/book-place-store.ts';
+import { registerBookRoutes } from '../book/book-routes.ts';
+import { createBookSource, type PublishedRevisions } from '../book/book-source.ts';
+import type { CampaignLibrary } from '../campaigns/library.ts';
 import { registerDmNoteRoutes } from './note-routes.ts';
 import type { SavedEncounterStore } from '../combat/saved-encounter-store.ts';
 import type { LibraryStore } from '../library/library-store.ts';
@@ -44,6 +49,16 @@ export interface DmDependencies {
   /** The DM's library: kept handouts and random tables (docs/adr/0058-campaign-content.md §3–4). */
   readonly library: LibraryStore;
   readonly clock: WallClock;
+  /**
+   * The DM's book (docs/adr/0074-dm-book.md §3): the built-in adventures' books and where the
+   * DM's place is kept (in memory when not given). Absent: no campaign has a book.
+   */
+  readonly book?: {
+    readonly builtIn: Readonly<Record<string, CampaignBook>>;
+    readonly places?: BookPlaceStore;
+    /** Also serve a book that waits for the owner's reading (the journeys' servers). */
+    readonly showAwaiting?: boolean;
+  };
 }
 
 export interface DmRouteDependencies extends RouteDependencies {
@@ -58,7 +73,12 @@ const historyQuery = z
   })
   .strict();
 
-export function registerDmRoutes(app: FastifyInstance, deps: DmRouteDependencies): void {
+export function registerDmRoutes(
+  app: FastifyInstance,
+  deps: DmRouteDependencies,
+  /** Where a published campaign's book is found: the library and the record of its publishing. */
+  books: { readonly library?: CampaignLibrary; readonly published?: PublishedRevisions } = {},
+): void {
   /** The DM's own campaign, or null after sending 401/400/404. */
   const asDm = async <B>(
     request: FastifyRequest,
@@ -160,4 +180,18 @@ export function registerDmRoutes(app: FastifyInstance, deps: DmRouteDependencies
   });
 
   registerDmNoteRoutes(app, deps, asDm);
+  if (deps.dm.book)
+    registerBookRoutes(
+      app,
+      {
+        source: createBookSource({
+          ...books,
+          builtIn: deps.dm.book.builtIn,
+          ...(deps.dm.book.showAwaiting === true ? { showAwaiting: true } : {}),
+        }),
+        places: deps.dm.book.places ?? new InMemoryBookPlaceStore(),
+      },
+      deps.dm.clock,
+      asDm,
+    );
 }

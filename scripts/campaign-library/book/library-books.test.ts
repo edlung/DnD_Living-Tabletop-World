@@ -105,12 +105,14 @@ describe('the books of the campaign library', () => {
       expect(
         bookReferenceProblems(book, {
           places: new Set(pkg.entities.filter((e) => e.kind === 'location').map((e) => e.key)),
-          people: new Set(pkg.entities.filter((e) => e.kind === 'npc').map((e) => e.key)),
+          people: new Set(pkg.entities.map((e) => e.key)),
           clues: new Set(pkg.clues.map((c) => c.key)),
           encounters: new Set(pkg.encounters.map((e) => e.key)),
         }),
         `${id}/${file}`,
       ).toEqual([]);
+      const npcs = new Set(pkg.entities.filter((e) => e.kind === 'npc').map((e) => e.key));
+      for (const person of book.people) expect(npcs.has(person.key), person.key).toBe(true);
       const heroes = new Set(pkg.party);
       for (const chapter of book.chapters)
         for (const page of chapter.pages)

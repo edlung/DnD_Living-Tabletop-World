@@ -72,6 +72,7 @@ interface SourceClue {
   location?: string;
   appearance: string;
   statement: string;
+  subjects?: string[];
   discovery?: string;
   method?: string;
   fallback?: string;
@@ -223,6 +224,7 @@ export function bookOf(root: URL, pkg: CampaignPackage): CampaignBook {
             clue.location !== undefined && places.has(clue.location) ? clue.location : undefined,
           appearance: clue.appearance,
           statement: clue.statement,
+          subjects: (clue.subjects ?? []).filter((key) => known.has(key)),
           discovery: clue.discovery ?? clue.method ?? '',
           fallback: clue.fallback,
         }),

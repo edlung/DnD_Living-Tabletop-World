@@ -328,7 +328,8 @@
   width: max-content;
   min-width: 14rem;
   max-width: min(20rem, calc(100vw - 24px));
-  max-height: min(70vh, calc(100vh - var(--dock-h) - 6rem));
+  /* Room for the DM's seventeen tools on a narrow, tall screen (the Book is one of them). */
+  max-height: min(78vh, calc(100vh - var(--dock-h) - 6rem));
   margin: 0;
   padding: 0.35rem;
   overflow-y: auto;

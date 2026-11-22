@@ -16,6 +16,7 @@ interface SeedCommand {
   method?: string;
   dc?: number;
   statement?: string;
+  subjects?: string[];
   knowledgeId?: string;
   scope?: { kind: string; npcId?: string };
 }
@@ -75,6 +76,7 @@ export function readSeed(directory: URL): AdventureSeed {
         name: sentence(c.statement ?? ''),
         appearance: '',
         statement: c.statement ?? '',
+        subjects: (c.subjects ?? []).filter((key) => created.some((e) => e.entityId === key)),
         discovery:
           c.dc === undefined
             ? (METHOD[c.method ?? ''] ?? '')

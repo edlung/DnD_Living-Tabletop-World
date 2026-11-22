@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 import {
   ASSET_PURPOSES,
   ASSET_VARIANTS,
+  bookReferenceProblems,
   campaignBookSchema,
   campaignPackageSchema,
   type CampaignBook,
@@ -111,9 +112,10 @@ export interface CampaignLibrary {
     revision: CampaignRevision,
   ): { readonly title: string; readonly set: CuratedSet } | null;
   /**
-   * The DM's book of the campaign a revision is (ADR 0074 §2), recognised as its pictures are;
-   * null when the revision is not one of the library's packages or its campaign has no book.
-   * The book's keys are the package's local keys: the revision's identities resolve them.
+   * The DM's book of the campaign a revision is (ADR 0074 §2.7, §3.1): recognised as its pictures
+   * are, or — for a package the library no longer ships as it is — by the campaign's name when
+   * every key the book names exists in the revision. Null otherwise. The book's keys are the
+   * package's local keys: the revision's identities resolve them.
    */
   bookFor(
     revision: CampaignRevision,
@@ -199,7 +201,23 @@ export async function loadCampaignLibrary(
     bookFor: (revision) => {
       const found = byDigest.get(hash(campaignCanonicalJson(revision.content)));
       const book = found ? campaigns.get(found.campaign)?.book() : undefined;
-      return found && book ? { campaign: found.campaign, book } : null;
+      if (found && book) return { campaign: found.campaign, book };
+      // Not one of today's packages (an earlier build of the library, a package edited before it
+      // was published): the book of the campaign with this name, if everything it names is there.
+      const { content } = revision;
+      const world = {
+        places: new Set(content.entities.filter((e) => e.kind === 'location').map((e) => e.key)),
+        people: new Set(content.entities.map((e) => e.key)),
+        clues: new Set(content.clues.map((c) => c.key)),
+        encounters: new Set(content.encounters.map((e) => e.key)),
+      };
+      for (const [campaign, loaded] of campaigns) {
+        // The name first: only that campaign's book is read into its shape.
+        const named = loaded.file.title === content.world.name ? loaded.book() : null;
+        if (named && bookReferenceProblems(named, world).length === 0)
+          return { campaign, book: named };
+      }
+      return null;
     },
     picturesFor: (revision) => {
       const found = byDigest.get(hash(campaignCanonicalJson(revision.content)));

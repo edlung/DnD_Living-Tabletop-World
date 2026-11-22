@@ -24,6 +24,7 @@ import '../i18n/ru-privacy.ts';
 import '../i18n/ru-rules.ts';
 import '../i18n/ru-dice.ts';
 import '../i18n/ru-report.ts';
+import '../i18n/ru-book.ts';
 import type { SheetId } from '../shell/use-shell.ts';
 import { browserWords, kindWords, placeWords, whereWords, whoseWords } from './trouble-words.ts';
 

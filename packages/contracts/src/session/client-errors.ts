@@ -76,6 +76,8 @@ export const CLIENT_PARTS = [
   'rules',
   'chronicle',
   'hero',
+  // The DM's book (docs/adr/0074-dm-book.md §3).
+  'book',
 ] as const;
 export type ClientPart = (typeof CLIENT_PARTS)[number];
 

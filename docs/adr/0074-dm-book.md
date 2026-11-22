@@ -1,11 +1,11 @@
 # 0074. The DM's book: a campaign's text as a book beside its packages, and a book as the DM's screen
 
-- Status: Accepted for §1–§2 (the owner's words of 2026-11-22, `reviews/OWNER_DM_BOOK_2026-11-22.json`:
+- Status: Accepted for §1–§3 (the owner's words of 2026-11-22, `reviews/OWNER_DM_BOOK_2026-11-22.json`:
   the brief, «Да, развиваем», «мне для всех компаний книжный формат нужен … 55 кампаний», «Да,
-  открываем» and four choices in a question card). Points marked (S), and every point of §2, are
+  открываем» and four choices in a question card). Points marked (S), and every point of §2 and §3, are
   the session's and stay the owner's to overrule (`docs/DM_BOOK_PLAN.md`, decisions 9–15). Later
-  sections are added by their stages and are not in force until then: §3 the book to read (Stage
-  920), §4 play from the book (Stage 930).
+  sections are added by their stages and are not in force until then: §4 play from the book
+  (Stage 930).
 - Context: A campaign's story is written scene by scene in its source, and a DM reads it today in
   an HTML book outside the game. Inside the game the DM has a dock of nineteen sheets and none of
   them holds the story. On 2026-11-19 the owner said the product "looks like an Excel table"; on
@@ -108,6 +108,54 @@
 9. **Nothing is written by a model in the 53.** A first-layer page is the source's scene, word for
    word; the build adds only fields read from it. A test compares every page with its source.
 
+### 3. The book to read (Stage 920)
+
+1. **Which campaign has a book.** A campaign published from a package has the library's book of
+   that package (`BookSource`, `apps/server/src/book/`): the record of its publishing gives the
+   revision, the library gives the book — by the package's digest, or, for a package the library
+   no longer ships as it is (an earlier build, a package edited before publishing), by the
+   campaign's name when every key the book names exists in the revision. A campaign of a built-in
+   adventure has that adventure's book, in Russian. Any other campaign has none. A book that waits
+   for the owner's reading is closed (§2.8).
+2. **Two routes, the DM's alone.** `GET …/dm/book` gives the book, what its keys are in this world
+   (only the keys the book names), the DM's place and the book's clues the table has found;
+   `{ "book": null }` when the campaign has none. `POST …/dm/book/place` keeps the place. Anyone
+   who is not this campaign's DM gets the DM routes' 404 — a player, the table's screen, another
+   table's DM learn nothing, not even whether a book exists. Neither route sends a command: the
+   book changes nothing in the world in this stage.
+3. **The spread** (`apps/web/src/book/`, the `book` sheet). Left: where we are, the title, whom
+   the text speaks to, the text, the ribbon, the way on. Right: the picture and, under it, the
+   brief of the spread — for a chapter's opening what it is for, how long it plays, the campaign's
+   notes; for a page its check, what follows a failure, what the players may choose — then its
+   moments and the DM's own note. A moment opens as a card in the brief's place; "Back to the
+   page" returns focus to the words it was opened from.
+4. **The DM's place** is one document a campaign beside the world (`ltw_dm_book_places`,
+   migration 0049; it moves with the campaign): the ribbon, the chapters played, a note a page.
+   The ribbon follows only the turn to the next page from where it lies; reading ahead, turning
+   back and opening a chapter from the path leave it; "lay the ribbon here" moves it by hand.
+   Leaving a chapter by that turn marks it played; the DM may mark and unmark any. The last write
+   is kept; keys a book no longer has are dropped when the place is read or written.
+5. **The path** lists every chapter with a hint: the party is here; played; next by the book (the
+   first unplayed chapter after the ribbon); open (a clue the table found in another chapter is
+   about this chapter's place — the clue is named); later. A hint is never a lock: every chapter
+   opens, and the campaign's own sentence about its order is shown above the list. The map is the
+   Places section, one press away; a map drawn inside the book is not in this stage.
+6. **Pages that turn.** On a screen where the spread has a height, the left page's text is cut
+   into sentences and shown in as many screens as it needs; "Read on" shows the next screen, then
+   the next page. The right page scrolls under the picture. On a narrow screen the two pages
+   stack and the sheet scrolls.
+7. **Bookmarks** open the dock's sections — heroes, places, journal, encounter, session, rules,
+   history — and "What we know". A section opened from a bookmark returns to the book, at the
+   same page, when it is closed.
+8. **The way in** is a Book button, first among the DM's tools in the dock, shown only where the
+   campaign has a book. The dock and every section stay as they were (§1.7).
+9. **The picture** is the most exact one the DM may see: the open card's own subject, else the
+   page's own place, else the chapter's; the caption says which; a press enlarges it. No picture:
+   the page says so.
+10. **The look** is the campaign's own material and accent around parchment pages
+    (`campaign-themes`); the book's own generated materials and the icons of its moments wait for
+    the second layer.
+
 ## Consequences
 
 - The campaign package contract does not change (§2.1). The library gains one `book.json` a
@@ -116,4 +164,6 @@
 - The series' package builds do not change: the book is built by the library's build from each
   campaign's `source/`.
 - The DM gets a second main screen; journeys for it are added beside the dock's, not instead.
+- Migration 0049 adds one table, additive: an older build leaves it alone. `ClientPart` gains
+  `book`, so a report of a broken screen can name it.
 - Layer 2 is a later program with its own spending and reading; nothing in §1–§4 needs it.

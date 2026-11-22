@@ -8,6 +8,13 @@ stage. Branch `claude/stage-920-book-to-read`, stacked on Stage 910's. Sample:
 The DM opens any campaign that has a book and reads it: the story on the left, the picture and
 "how we play this" on the right. The stage changes nothing in the world.
 
+**Changed while the stage was done (2026-11-22).** A check and a fork are sections of the page's
+brief, always in view, not cards to open (item 3). The map is the Places section, one press from
+the path; a map drawn inside the book is left for later (item 6). There is no bookmark "people":
+the product has no such section, and a person opens from the text or from the page's moments
+(item 5). The book is found for a campaign through the record of its publishing, and — for a
+package the library no longer ships as it is — by the campaign's name (ADR 0074 §3.1).
+
 ## Deliver
 
 1. **One read for the DM**: the active campaign's book, under the DM's perspective only. A player,

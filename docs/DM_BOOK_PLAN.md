@@ -13,9 +13,9 @@ plan so that the whole road is visible; neither is authorized. Merging, deployme
 playtest and real devices stay the owner's. ADR 0074 holds the contracts, one section a stage, each
 added by its stage.
 
-Status: **Stages 900 and 910 are implemented** (`reports/STAGE_900_COMPLETION.md`,
-`reports/STAGE_910_COMPLETION.md`, ADR 0074 §1–§2). Stages 920 and 930 have their work orders and
-are not started.
+Status: **Stages 900, 910 and 920 are implemented** (`reports/STAGE_900_COMPLETION.md`,
+`reports/STAGE_910_COMPLETION.md`, `reports/STAGE_920_COMPLETION.md`, ADR 0074 §1–§3). Stage 930
+has its work order and is not started.
 
 The sample for the screen is the demo of this session: `docs/design/dm-book-sample/` and the
 owner's private page named in the record. A second concept, made the same day in another session on

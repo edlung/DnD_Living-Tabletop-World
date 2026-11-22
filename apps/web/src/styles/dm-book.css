@@ -1,0 +1,483 @@
+/*
+ * The DM's book (docs/adr/0074-dm-book.md §3): a spread inside its sheet — the story on the left
+ * page, the picture and "how we play this" on the right. The pages are the Chronicle's parchment;
+ * the binding around them is the campaign's material and accent. Classes are `dmb-…`.
+ */
+.sheet--book > .sheet-body {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding-block: 0.6rem 0.4rem;
+}
+.dmb {
+  --dmb-ink: var(--page-ink);
+  --dmb-muted: var(--page-ink-muted);
+  --dmb-rule: color-mix(in srgb, var(--page-ink) 22%, transparent);
+  --dmb-link: #0c5263;
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+.dmb[data-size='large'] {
+  font-size: 1.14em;
+}
+
+/* Bookmarks: what the dock holds, one press away, and the book's own path. */
+.dmb-marks {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+}
+.dmb-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 44px;
+  padding: 0 0.7rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 6px 6px 0 0;
+  background: var(--glass-raised);
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+}
+.dmb-mark[aria-pressed='true'] {
+  border-color: var(--gold);
+  background: color-mix(in srgb, var(--gold) 22%, var(--ink-900));
+  color: var(--gold-bright);
+}
+.dmb-mark > .glyph {
+  inline-size: 18px;
+  block-size: 18px;
+}
+.dmb-marks-gap {
+  flex: 1 1 0;
+}
+
+/* The spread: two pages bound by the campaign's material. */
+.dmb-spread {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0;
+  padding: 10px;
+  border: 1px solid var(--table-edge, var(--gold-deep));
+  border-radius: 10px;
+  background-color: var(--ink-900);
+  background-image:
+    linear-gradient(105deg, var(--table-wash, rgb(5 9 14 / 0.86)), rgb(5 9 14 / 0.8)),
+    var(--table-material, none);
+  background-size: auto, 192px;
+}
+.dmb-page {
+  min-height: 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.1rem 1.4rem 0.9rem;
+  background: var(--page);
+  color: var(--dmb-ink);
+}
+.dmb-left {
+  border-radius: 6px 0 0 6px;
+  /* The spine's shade is painted on the page: the two pages are one book, not two cards. */
+  background: linear-gradient(to left, rgb(43 32 21 / 0.2), transparent 20px), var(--page);
+}
+.dmb-right {
+  border-radius: 0 6px 6px 0;
+  background: linear-gradient(to right, rgb(43 32 21 / 0.2), transparent 20px), var(--page);
+}
+/* The shell's headings are light for the dark glass: on the parchment they take the page's ink. */
+.dmb-page :where(h3, h4, p, li, dt, dd, summary, label),
+.dmb-path :where(h3, h4, p, li) {
+  color: inherit;
+}
+.dmb-page :focus-visible {
+  outline: 3px solid var(--dmb-link);
+  outline-offset: 2px;
+}
+
+/* The left page: where we are, the story, the way on. */
+.dmb .dmb-eyebrow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.7rem;
+  margin: 0;
+  color: var(--dmb-muted);
+  font-size: 0.86em;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.dmb .dmb-title {
+  margin: 0;
+  color: var(--rubric);
+  font-family: var(--font-display);
+  font-size: 1.55em;
+  line-height: 1.15;
+}
+.dmb .dmb-voice {
+  margin: 0;
+  color: var(--dmb-muted);
+  font-size: 0.86em;
+  font-style: italic;
+}
+.dmb-text {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+  font-size: 1.08em;
+  line-height: 1.55;
+}
+.dmb-text > p {
+  margin: 0 0 0.7em;
+}
+.dmb-text > blockquote {
+  margin: 0 0 0.8em;
+  padding: 0.1em 0 0.1em 0.9em;
+  border-left: 3px solid var(--rubric);
+  font-family: var(--font-display);
+  font-size: 1.1em;
+}
+.dmb-text > blockquote > p {
+  margin: 0 0 0.6em;
+}
+/* The hidden copy the text is measured in: same width and type, no height. */
+.dmb-measure {
+  position: absolute;
+  visibility: hidden;
+  pointer-events: none;
+  inset-inline: 0;
+  top: 0;
+}
+.dmb-text-frame {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+.dmb-link {
+  display: inline;
+  min-block-size: 0;
+  padding: 0 0.1em;
+  line-height: inherit;
+  vertical-align: baseline;
+  border: 0;
+  border-bottom: 2px solid color-mix(in srgb, var(--dmb-link) 60%, transparent);
+  background: none;
+  color: var(--dmb-link);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.dmb-turn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--dmb-rule);
+}
+.dmb .dmb-turn-count {
+  flex: 1 1 auto;
+  margin: 0;
+  color: var(--dmb-muted);
+  font-size: 0.9em;
+  text-align: center;
+}
+.dmb-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0 0.9rem;
+  border: 1px solid color-mix(in srgb, var(--page-ink) 45%, transparent);
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--page) 70%, white);
+  color: var(--dmb-ink);
+  font: inherit;
+  cursor: pointer;
+}
+.dmb-button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.dmb-button--main {
+  border-color: var(--rubric);
+  background: var(--rubric);
+  color: #fff7ea;
+}
+.dmb-button > .glyph {
+  inline-size: 18px;
+  block-size: 18px;
+}
+.dmb .dmb-ribbon {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  color: var(--dmb-muted);
+  font-size: 0.9em;
+}
+.dmb-ribbon-here {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  background: var(--rubric);
+  color: #fff7ea;
+  font-weight: 600;
+}
+
+/* The right page: the picture, then the brief of the page or one moment's card. */
+.dmb-plate {
+  flex: 0 0 auto;
+  margin: 0;
+}
+.dmb-plate-frame {
+  display: block;
+  inline-size: 100%;
+  block-size: clamp(110px, 24vh, 300px);
+  padding: 0;
+  border: 1px solid var(--dmb-rule);
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--page-ink) 12%, var(--page));
+  overflow: hidden;
+  cursor: zoom-in;
+}
+.dmb-plate-frame > img {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+.dmb-plate[data-open='true'] .dmb-plate-frame {
+  block-size: clamp(96px, 16vh, 180px);
+}
+.dmb .dmb-plate-none {
+  display: grid;
+  place-items: center;
+  block-size: 72px;
+  border: 1px dashed var(--dmb-rule);
+  border-radius: 4px;
+  color: var(--dmb-muted);
+  font-size: 0.9em;
+}
+.dmb .dmb-plate > figcaption {
+  margin-top: 0.3rem;
+  color: var(--dmb-muted);
+  font-size: 0.84em;
+}
+.dmb-side {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.dmb-side-head {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.dmb-side-head > h3 {
+  flex: 1 1 auto;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.2em;
+}
+.dmb .dmb-kind {
+  color: var(--rubric);
+  font-size: 0.8em;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.dmb-side-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 0 0.3rem 1.6rem 0;
+  /* What is under the edge is said by a fade, not by a cut line. */
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 1.6rem), transparent);
+}
+.dmb-side-body > :first-child {
+  margin-top: 0;
+}
+.dmb-side-body p {
+  margin: 0 0 0.6em;
+}
+.dmb .dmb-side-body h4 {
+  margin: 0.9em 0 0.3em;
+  color: var(--dmb-muted);
+  font-size: 0.84em;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.dmb-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.dmb-moment {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  inline-size: 100%;
+  min-height: 44px;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--dmb-rule);
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--page) 78%, white);
+  color: var(--dmb-ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.dmb-moment > .glyph {
+  flex: 0 0 auto;
+  inline-size: 20px;
+  block-size: 20px;
+  color: var(--rubric);
+}
+.dmb-moment-name {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.dmb-moment-kind {
+  flex: 0 0 auto;
+  color: var(--dmb-muted);
+  font-size: 0.84em;
+}
+.dmb-facts {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 0.3rem 0.9rem;
+  margin: 0 0 0.6em;
+}
+.dmb .dmb-facts > dt {
+  color: var(--dmb-muted);
+}
+.dmb-facts > dd {
+  margin: 0;
+}
+.dmb-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0 0 0.6em;
+  padding: 0;
+  list-style: none;
+}
+.dmb-chip {
+  padding: 0.2rem 0.65rem;
+  border: 1px solid var(--dmb-rule);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--page) 78%, white);
+  font-weight: 600;
+}
+.dmb-secret {
+  margin: 0.4em 0 0.6em;
+  border: 1px solid color-mix(in srgb, var(--rubric) 45%, transparent);
+  border-radius: 6px;
+}
+.dmb .dmb-secret > summary {
+  min-height: 44px;
+  padding: 0.6rem 0.8rem;
+  color: var(--rubric);
+  font-weight: 600;
+  cursor: pointer;
+}
+.dmb-secret > :not(summary) {
+  margin: 0;
+  padding: 0 0.8rem 0.7rem;
+}
+.dmb .dmb-gap {
+  color: var(--dmb-muted);
+  font-style: italic;
+}
+.dmb-note {
+  display: block;
+  inline-size: 100%;
+  min-block-size: 4.2em;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid color-mix(in srgb, var(--page-ink) 68%, transparent);
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--page) 70%, white);
+  color: var(--dmb-ink);
+  font: inherit;
+  resize: vertical;
+}
+.dmb .dmb-status {
+  margin: 0;
+  color: var(--dmb-muted);
+  font-size: 0.86em;
+}
+
+/*
+ * The shell's buttons light up for the dark glass (base.css); on the parchment, and for the
+ * bookmarks, the book says its own hover and open states.
+ */
+.dmb .dmb-mark:hover:enabled {
+  border-color: var(--gold);
+  background: var(--glass-raised);
+}
+.dmb .dmb-button:hover:enabled,
+.dmb .dmb-moment:hover:enabled {
+  border-color: var(--rubric);
+  background: color-mix(in srgb, var(--page) 55%, white);
+}
+.dmb .dmb-button--main:hover:enabled {
+  border-color: var(--rubric);
+  background: color-mix(in srgb, var(--rubric) 84%, black);
+}
+.dmb .dmb-link:hover:enabled,
+.dmb .dmb-link[aria-expanded='true'] {
+  border-color: transparent transparent var(--dmb-link);
+  background: color-mix(in srgb, var(--dmb-link) 14%, transparent);
+}
+.dmb .dmb-plate-frame:hover:enabled {
+  border-color: var(--rubric);
+  background: color-mix(in srgb, var(--page-ink) 12%, var(--page));
+}
+/* A portrait in the wide frame keeps its face. */
+.dmb-plate[data-exactness='moment'] .dmb-plate-frame > img {
+  object-position: 50% 18%;
+}
+.dmb-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+}
+.dmb-head > .dmb-title {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.dmb-size {
+  flex: 0 0 auto;
+}
+.dmb .dmb-button[aria-pressed='true'] {
+  border-color: var(--rubric);
+  background: color-mix(in srgb, var(--rubric) 16%, var(--page));
+}
+/* The notice that the place is not saved sits on the dark sheet, not on a page. */
+.dmb > .dmb-unsaved {
+  margin: 0;
+  color: var(--text);
+}
+.dmb .dmb-size {
+  font-family: var(--font-display);
+  font-weight: 700;
+}

@@ -1,0 +1,221 @@
+/*
+ * The DM's book, second sheet of styles (docs/adr/0074-dm-book.md §3): the path through the
+ * chapters, the enlarged picture, and the book on a narrow or a low screen.
+ */
+.dmb-path {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.1rem 1.4rem 0.9rem;
+  border: 1px solid var(--table-edge, var(--gold-deep));
+  border-radius: 10px;
+  background: var(--page);
+  color: var(--page-ink);
+}
+.dmb-path-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.3rem 1rem;
+}
+.dmb-path .dmb-path-head > h3 {
+  margin: 0;
+  color: var(--rubric);
+  font-family: var(--font-display);
+  font-size: 1.5em;
+}
+.dmb-path .dmb-path-order {
+  margin: 0;
+  color: var(--page-ink-muted);
+}
+.dmb-path-list {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+  align-content: start;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0 0.3rem 1.8rem 0;
+  overflow-y: auto;
+  list-style: none;
+  /* More chapters wait under the edge: the list fades into it. */
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 1.8rem), transparent);
+}
+.dmb-stop {
+  /* Holds its words for a screen reader inside the list's scroll. */
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-content: start;
+  gap: 0.2rem 0.7rem;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--dmb-rule);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--page) 78%, white);
+}
+.dmb-stop[data-state='here'] {
+  border-color: var(--rubric);
+  box-shadow: inset 4px 0 0 var(--rubric);
+}
+.dmb-stop[data-state='played'] {
+  background: color-mix(in srgb, var(--page) 92%, var(--page-ink));
+}
+.dmb-stop-number {
+  grid-row: span 2;
+  display: grid;
+  place-items: center;
+  inline-size: 2.3rem;
+  block-size: 2.3rem;
+  border: 1px solid var(--dmb-rule);
+  border-radius: 50%;
+  font-family: var(--font-display);
+  font-size: 1.15em;
+}
+.dmb-stop-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.12em;
+  line-height: 1.2;
+}
+.dmb-path .dmb-stop-where {
+  margin: 0;
+  color: var(--page-ink-muted);
+  font-size: 0.9em;
+}
+.dmb-stop-state {
+  grid-column: 1 / -1;
+  margin: 0.2rem 0 0;
+  font-size: 0.92em;
+}
+.dmb-stop-state > strong {
+  color: var(--rubric);
+}
+.dmb-stop-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.4rem;
+  margin-top: 0.3rem;
+}
+
+/* The picture enlarged: a dialog over the book. */
+.dmb-zoom {
+  max-inline-size: min(96vw, 1400px);
+  max-block-size: 92vh;
+  padding: 0.6rem;
+  border: 1px solid var(--gold-deep);
+  border-radius: 8px;
+  background: var(--ink-900);
+  color: var(--text);
+}
+.dmb-zoom::backdrop {
+  background: rgb(5 9 14 / 0.82);
+}
+.dmb-zoom img {
+  display: block;
+  max-inline-size: 100%;
+  max-block-size: calc(92vh - 5.5rem);
+  margin: 0 auto;
+  object-fit: contain;
+}
+.dmb-zoom-foot {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 0.5rem;
+}
+.dmb-zoom-foot > p {
+  flex: 1 1 auto;
+  margin: 0;
+  color: var(--text-muted);
+}
+
+/* A tablet on its side keeps the bookmarks' words, set tighter; a touch screen shows no tooltip. */
+@media (max-width: 1339px) {
+  .dmb-mark {
+    gap: 0.3rem;
+    padding: 0 0.5rem;
+    font-size: 0.9em;
+  }
+}
+/* Narrower, the bookmarks to the dock's sections keep their glyphs and give up words. */
+@media (max-width: 1100px) {
+  .dmb-mark {
+    padding: 0 0.65rem;
+  }
+  .dmb-mark:not([aria-pressed]) > .dmb-mark-word {
+    display: none;
+  }
+}
+
+/* A narrow screen: one page at a time, the story first; the right page follows under it. */
+@media (max-width: 900px) {
+  .sheet--book > .sheet-body {
+    overflow-y: auto;
+  }
+  .dmb {
+    flex: 0 0 auto;
+  }
+  .dmb-spread {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 6px;
+  }
+  .dmb-spread {
+    gap: 8px;
+  }
+  .dmb-left,
+  .dmb-right {
+    border-radius: 6px;
+    background: var(--page);
+  }
+  .dmb-page {
+    padding: 0.9rem 0.9rem 0.8rem;
+  }
+  .dmb-text {
+    overflow: visible;
+  }
+  .dmb-side-body,
+  .dmb-path-list {
+    overflow: visible;
+    padding-bottom: 0;
+    mask-image: none;
+  }
+  .dmb-path {
+    padding: 0.9rem;
+  }
+  .dmb-turn {
+    flex-wrap: wrap;
+  }
+}
+
+/* A low screen (a tablet on its side with the keyboard, a small laptop): a shorter picture. */
+@media (max-height: 900px) and (min-width: 901px) {
+  .dmb-plate-frame {
+    block-size: clamp(96px, 20vh, 200px);
+  }
+  .dmb-plate[data-open='true'] .dmb-plate-frame {
+    block-size: 84px;
+  }
+  .dmb-page {
+    padding-block: 0.8rem 0.6rem;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .dmb-page {
+    animation: dmb-turn-in 160ms var(--ease);
+  }
+}
+@keyframes dmb-turn-in {
+  from {
+    opacity: 0.6;
+  }
+}
+.dmb-path :focus-visible {
+  outline: 3px solid #0c5263;
+  outline-offset: 2px;
+}
