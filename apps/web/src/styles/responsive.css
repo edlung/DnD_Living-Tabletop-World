@@ -338,8 +338,12 @@
     border: 0;
     border-radius: 0;
   }
+  /* The tab bar is not over the section here: it ends above the bar. */
   .sheet {
-    z-index: 40;
+    padding-bottom: 0;
+  }
+  .sheet-body {
+    padding: 0.85rem var(--gutter) 1.25rem;
   }
   .detail-panel {
     z-index: 41;

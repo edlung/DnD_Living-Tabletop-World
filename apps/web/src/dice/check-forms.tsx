@@ -178,23 +178,30 @@ export function AskForCheck({ characters }: { readonly characters: readonly Enti
   return (
     <section className="sheet-section dice-check" aria-labelledby={`${ids}-title`}>
       <h3 id={`${ids}-title`}>{t('Ask for a check')}</h3>
-      <label htmlFor={`${ids}-who`}>{t('Character')}</label>
-      <select
-        id={`${ids}-who`}
-        value={chosen}
-        onChange={(event) => {
-          setCharacterId(event.target.value);
-        }}
-      >
-        {group && <option value={EVERYONE}>{t('Everyone at the table')}</option>}
-        {characters.map((entry) => (
-          <option key={entry.entityId} value={entry.entityId}>
-            {entry.name}
-          </option>
-        ))}
-      </select>
-      <label htmlFor={`${ids}-check`}>{t('Check')}</label>
-      <CheckSelect id={`${ids}-check`} value={value} onChange={setValue} />
+      {/* Who and what, side by side where the card is wide enough. */}
+      <div className="dice-check-pair">
+        <div>
+          <label htmlFor={`${ids}-who`}>{t('Character')}</label>
+          <select
+            id={`${ids}-who`}
+            value={chosen}
+            onChange={(event) => {
+              setCharacterId(event.target.value);
+            }}
+          >
+            {group && <option value={EVERYONE}>{t('Everyone at the table')}</option>}
+            {characters.map((entry) => (
+              <option key={entry.entityId} value={entry.entityId}>
+                {entry.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label htmlFor={`${ids}-check`}>{t('Check')}</label>
+          <CheckSelect id={`${ids}-check`} value={value} onChange={setValue} />
+        </div>
+      </div>
       <ModeChoice name={`${ids}-mode`} mode={mode} onChange={setMode} />
       <label htmlFor={`${ids}-dc`}>{t('Difficulty (DC), seen only by you')}</label>
       <input

@@ -2,6 +2,28 @@
 
 Updated 2026-10-15. The owner's current AGENTS instructions take precedence over older process banners.
 
+## Request — full-screen sections, 2026-11-21
+
+- Owner: «нажатие на панели, где сцена, места, журнал и так далее, все эти разделы должны быть
+  полноэкранными с возможностью закрытия. Размести на каждом экране все внутренние элементы так,
+  чтобы все было под рукой, на виду, функционально, интуитивно понятно и минимум скроллинга.»
+- Scope and limits: `work-orders/FULLSCREEN_SECTIONS_2026-11-21.md`. Client only: the sheet's
+  frame (`styles/sheet.css`), each section's layout (`styles/sheet-layouts.css`), the Journal's
+  panes and its find-and-kind filter, a journey of its own (`tests/e2e/section-screens.spec.ts`).
+- Status: on branch `claude/fullscreen-sections`; the owner asked on 2026-11-22 to commit and
+  deploy it («Да зафиксируй все и выкати»). Checked locally on 2026-11-22: format, lint,
+  typecheck, context budget, unit 4864; the Chromium journeys 379 of 380 (the one red, `party-known.spec.ts:48`, runs its worker out of memory on
+  `main` too, with none of these changes); every section looked at and measured at 1920, 1440,
+  1280, 1024, 768, 390 and 320 px and at 844×390, and through the layout audit. Not run: the
+  iPad and WebKit journeys (WebKit is not installed on this machine), integration and the
+  deployment's journeys (nothing they cover changed).
+- Remaining scroll of a section's body at 1440×900 / 1024×768, DM: Party 723 / 1525 px, Session
+  527 / 890 px, Dice 0 / 210 px, Time 0 / 39 px; every other section 0 (Places and the Journal
+  scroll inside their panes). Before, at 1440×900: Party 3118, Session 2115, Journal 2167, Dice
+  914, Places 709 px in a 347 px window.
+- The owner decided, 2026-11-22: Party and Session stay as laid out (one tool open at a time, the
+  only way to one screen there, was offered and declined).
+
 ## Request — the library's fifteen campaigns, their figures and world maps, 2026-11-17
 
 - Owner: «давай запустим генерацию картинок для компаний, которые в этом нуждаются», then «нужны

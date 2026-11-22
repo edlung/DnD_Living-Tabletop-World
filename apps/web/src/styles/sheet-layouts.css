@@ -1,0 +1,392 @@
+/*
+ * What each section does with the whole stage (the owner's word of 2026-11-21: everything at
+ * hand and in view, as little scrolling as the content allows). A phone and a narrow tablet keep
+ * one column that scrolls; from a wide tablet up a section is laid out across the width — panes
+ * that scroll on their own where a list is long, cards in columns where there are many tools.
+ */
+
+/* The Journal's panes: stacked on a narrow screen, side by side on a wide one. */
+.journal {
+  display: grid;
+  gap: 1.25rem;
+}
+.journal-pane {
+  min-width: 0;
+}
+.journal-pane + .journal-pane {
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+.journal-pane > .sheet-section:first-child,
+.journal-pane > .recent-events {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+/* A quest's step in a pane: the day keeps a narrow column, the words the rest. */
+.journal-pane .quest-step {
+  grid-template-columns: minmax(0, 6.5rem) minmax(0, 1fr);
+}
+.journal-find {
+  /* Holds its words for screen readers inside the pane that scrolls. */
+  position: relative;
+  display: grid;
+  gap: 0.6rem;
+  margin: 0.6rem 0 0.75rem;
+}
+.journal-find input {
+  width: 100%;
+}
+.journal-count {
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.rules-tags button[aria-pressed='true'] .journal-count {
+  color: var(--text);
+}
+
+.journal-find .rules-tags button {
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/*
+ * Choices side by side instead of one a line: how a check is rolled, whom a tool concerns. A
+ * form is as tall as what it asks, so more tools fit one screen.
+ */
+.dice-modes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1.25rem;
+}
+/* A tool's field never grows to its longest option: it keeps to its cell. */
+.toolbox-field {
+  grid-template-columns: minmax(0, 1fr);
+}
+/* Whom a tool concerns: two names a row where the card is narrow, more where it is wide. */
+.toolbox-who {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 6.75rem), 1fr));
+  gap: 0 0.75rem;
+}
+.toolbox-who > legend {
+  grid-column: 1 / -1;
+}
+.dice-check-pair {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr));
+  gap: 0 0.75rem;
+}
+.dice-check-pair select {
+  width: 100%;
+}
+.dice-panel-log > .dice-settings {
+  margin-top: 1.25rem;
+}
+/* A character's card in the Party: its four actions in two rows. */
+.party-card-actions {
+  gap: 0.35rem;
+}
+.party-card-actions button {
+  min-height: 36px;
+  padding: 0 0.5rem;
+  gap: 0.3rem;
+  font-size: 0.9rem;
+}
+.party-card-actions button .glyph {
+  width: 16px;
+  height: 16px;
+}
+
+/* The Chat keeps a width that reads, in the middle of the stage. */
+.chat {
+  width: min(100%, 52rem);
+  margin-inline: auto;
+}
+
+@media (min-width: 1000px) and (min-height: 600px) {
+  /* A section of panes: the body stays still and each pane scrolls on its own. */
+  .sheet--places .sheet-body:has(.map-canvas),
+  .sheet--journal .sheet-body {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* Places: the map takes the left, the choice of place and every destination the right. */
+  .places:has(.map-canvas) {
+    /* The map is as large as the stage's height lets it be with its routes still in view. */
+    --map-w: max(24rem, calc((100dvh - var(--topbar-h) - var(--dock-h) - 270px) * 1.5));
+    display: grid;
+    flex: 1 1 auto;
+    grid-template-rows: auto minmax(0, 1fr);
+    grid-template-columns: minmax(0, min(var(--map-w), 62%)) minmax(18rem, 1fr);
+    gap: 1rem 1.5rem;
+    min-height: 0;
+  }
+  .places:has(.map-canvas) > .world-map {
+    grid-row: 1 / -1;
+    grid-column: 1;
+    /* Each row keeps its content's height when the pane is shorter than the map and its editor:
+       the pane scrolls, and the map never lies over the routes under it. */
+    grid-auto-rows: max-content;
+    align-content: start;
+    min-height: 0;
+    margin: 0;
+    padding: 0 0.5rem 0 0;
+    overflow-y: auto;
+    border: 0;
+  }
+  .places:has(.map-canvas) > .field {
+    grid-row: 1;
+    grid-column: 2;
+    margin: 0;
+  }
+  .places:has(.map-canvas) > .sheet-section:last-child {
+    grid-row: 2;
+    grid-column: 2;
+    min-height: 0;
+    margin: 0;
+    padding: 0.85rem 0.5rem 0 0;
+    overflow-y: auto;
+  }
+  .places:has(.map-canvas) .place-list {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 13rem), 1fr));
+  }
+  .places:has(.map-canvas) .map-canvas {
+    max-width: none;
+  }
+
+  .journal {
+    flex: 1 1 auto;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.15fr);
+    gap: 0;
+    min-height: 0;
+  }
+  .journal-pane {
+    min-height: 0;
+    padding: 0 1.1rem 0.5rem;
+    overflow-y: auto;
+  }
+  .journal-pane:first-child {
+    padding-left: 0;
+  }
+  .journal-pane:last-child {
+    padding-right: 0.5rem;
+  }
+  .journal-pane + .journal-pane {
+    padding-top: 0;
+    border-top: 0;
+    border-left: 1px solid var(--line);
+  }
+  .journal-pane--known .directory-list {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 13rem), 1fr));
+  }
+
+  /* Add to the world: the words for the AI beside the editors by hand. */
+  .sheet--add .sheet-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-content: start;
+    align-items: start;
+    gap: 1.5rem;
+  }
+  .sheet--add .make-by-hand {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  /* The Encounter: the fights ready to start on the left, a fight with who is here on the right. */
+  .dm-combat:has(> .encounter-start) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: start;
+    gap: 0 1.5rem;
+  }
+  .dm-combat:has(> .encounter-start) > h3 {
+    grid-column: 1 / -1;
+  }
+  .dm-combat:has(> .encounter-start) > * {
+    grid-column: 1;
+  }
+  .dm-combat:has(> .encounter-start) > .encounter-start {
+    grid-row: 2 / span 6;
+    grid-column: 2;
+  }
+}
+
+/*
+ * A fight that runs: the turn order with the bestiary beside it on the left, the fight's light,
+ * its end and acting for a player on the right.
+ */
+@media (min-width: 1000px) {
+  .dm-combat:has(> .encounter-tools) {
+    display: grid;
+    grid-template-columns: minmax(0, 2.2fr) minmax(0, 1fr);
+    align-items: start;
+    gap: 0 1.25rem;
+  }
+  .dm-combat:has(> .encounter-tools) > h3 {
+    grid-column: 1 / -1;
+  }
+  .dm-combat > .encounter-tools {
+    display: contents;
+  }
+  .dm-combat .turn-order-tools {
+    display: grid;
+    grid-row: 2 / span 5;
+    grid-column: 1;
+    grid-template-columns: minmax(0, 1fr) minmax(15rem, 20rem);
+    align-items: start;
+  }
+  .dm-combat .turn-order-tools > h4 {
+    grid-column: 1 / -1;
+  }
+  .dm-combat .turn-order-tools > .turn-order {
+    grid-column: 1;
+    margin: 0;
+  }
+  .dm-combat .turn-order-tools > :not(h4, .turn-order) {
+    grid-column: 2;
+  }
+  .dm-combat > .encounter-tools > :not(.turn-order-tools),
+  .dm-combat:has(> .encounter-tools) > .stand-in {
+    grid-column: 2;
+    margin-bottom: 0.6rem;
+  }
+}
+
+/*
+ * Cards in columns from a tablet up: the Dice's tools, the Party's tools, the Session's blocks.
+ * The browser balances the columns, so a section is as short as its tallest card allows.
+ */
+@media (min-width: 700px) {
+  .dice-panel-main,
+  .party-tools,
+  .session-sheet {
+    display: block;
+    column-gap: 1rem;
+  }
+  .dice-panel-main > *,
+  .party-tools > *,
+  .session-sheet .tool-group {
+    break-inside: avoid;
+    margin: 0 0 1rem;
+  }
+  .dice-panel-main > .sheet-section,
+  .party-tools > .sheet-section {
+    padding: 0.75rem 0.9rem 0.9rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-panel);
+    background: color-mix(in srgb, var(--ink-950) 40%, transparent);
+  }
+  .dice-panel-main {
+    columns: 2 17rem;
+  }
+  /* Seven dice in two rows, so the roll's own controls stay in view under them. */
+  .dice-panel .dice-picker {
+    grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+  }
+  .dice-panel .dice-pick-add {
+    min-height: 68px;
+  }
+  /* The Party: every character over the DM's tools. The section's title names it. */
+  .party-sheet {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .party-cards > h3 {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .party-list {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14.5rem), 1fr));
+    gap: 0.75rem;
+  }
+  .party-tools {
+    columns: 16rem;
+  }
+  .session-sheet {
+    columns: 19rem;
+  }
+  .session-main {
+    display: contents;
+  }
+}
+@media (min-width: 1000px) {
+  .dice-panel {
+    grid-template-columns: minmax(0, 2.1fr) minmax(17rem, 1fr);
+  }
+  /* Every character in one row. */
+  .party-list {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 11.5rem), 1fr));
+  }
+}
+
+/* A tablet held upright: the Journal's story and events share the left, the known the right. */
+@media (min-width: 700px) and (max-width: 999px) and (min-height: 600px) {
+  .sheet--journal .sheet-body {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .journal {
+    flex: 1 1 auto;
+    grid-template-rows: minmax(0, auto) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 0 1.1rem;
+    min-height: 0;
+  }
+  .journal-pane {
+    min-height: 0;
+    overflow-y: auto;
+    padding-right: 0.4rem;
+  }
+  .journal-pane--story {
+    max-height: 38dvh;
+  }
+  .journal-pane--events {
+    grid-row: 2;
+    grid-column: 1;
+  }
+  .journal-pane--known {
+    grid-row: 1 / -1;
+    grid-column: 2;
+    padding-top: 0;
+    padding-left: 1.1rem;
+    border-top: 0;
+    border-left: 1px solid var(--line);
+  }
+}
+
+/*
+ * What the table asks, over a section that takes the stage (not on a phone, where the column
+ * gives way): the column stands under the section's header, in the middle of the section, and
+ * the section's content starts under it (`--asks-h`, alerts/slot-room.ts), so a card of the
+ * table's never lies over the section's Close or its controls.
+ */
+@media (min-width: 768px) and (min-height: 501px), (min-width: 1200px) {
+  .world-main:has(.sheet:not([hidden])) .rest-banner-slot {
+    top: calc(var(--topbar-real-h, var(--topbar-h)) + 66px);
+    left: 50%;
+    max-width: min(640px, calc(100vw - 32px));
+    max-height: calc(100dvh - var(--topbar-real-h, var(--topbar-h)) - var(--dock-h) - 12rem);
+    overflow-y: auto;
+    translate: -50% 0;
+  }
+  .world-main:has(.sheet:not([hidden])) .sheet-body {
+    padding-top: calc(1rem + var(--asks-h, 0px));
+  }
+}
+@media (min-width: 1200px) {
+  /* Beside the selection's column the section is narrower: the column keeps to its middle. */
+  .world-main.has-details:has(.sheet:not([hidden])) .rest-banner-slot {
+    left: calc((100vw - var(--panel-w)) / 2);
+    max-width: min(640px, calc(100vw - var(--panel-w) - 32px));
+  }
+}

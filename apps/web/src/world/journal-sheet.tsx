@@ -6,10 +6,8 @@ import { HandoutsSection } from '../handouts/handouts.tsx';
 import { SealedEnvelopes } from '../handouts/sealed-envelopes.tsx';
 import { Sheet } from '../shell/sheet.tsx';
 import type { Shell } from '../shell/use-shell.ts';
-import { Glyph } from '../visual/glyph.tsx';
-import { kindGlyph } from '../visual/glyph-map.ts';
 import { KnowledgeCards } from '../visual/knowledge-cards.tsx';
-import { distinctNames } from './entity-words.ts';
+import { JournalKnown } from './journal-known.tsx';
 import { JournalQuests } from './journal-quests.tsx';
 import { RecentEvents } from './recent-events.tsx';
 
@@ -20,10 +18,11 @@ export interface JournalData {
 }
 
 /**
- * The Journal sheet (docs/STAGE_320_DESIGN.md §5.4): the party's quests (Stage 530), who and what
- * this perspective knows, its hypotheses, and the events it remembers, each reachable in full (invariant 19). Presence is
- * the scene's to show. The encounter's summary, in words, is here too: whether one runs, its
- * turn order and an open reaction window, as this perspective may see them.
+ * The Journal sheet (docs/STAGE_320_DESIGN.md §5.4), three panes side by side on a wide screen:
+ * the party's quests (Stage 530), what waits for it and its hypotheses; the events it remembers;
+ * who and what this perspective knows — each reachable in full (invariant 19). Presence is the
+ * scene's to show. The encounter's summary, in words, is here too: whether one runs, its turn
+ * order and an open reaction window, as this perspective may see them.
  */
 export function JournalSheet({
   api,
@@ -42,7 +41,6 @@ export function JournalSheet({
   readonly onSelect: (entityId: string, kind: EntityKind) => void;
 }) {
   const t = useT();
-  const names = distinctNames(t, journal?.directory ?? [], { kindShown: true });
   const hypotheses =
     journal?.knowledge.filter((record) => record.knowledgeType === 'HYPOTHESIS') ?? [];
   return (
@@ -55,47 +53,32 @@ export function JournalSheet({
     >
       {journal && (
         <div className="journal">
-          <JournalQuests api={api} revision={revision} />
-          {/* What waits for the party, sealed (docs/adr/0073-table-ideas.md §9). */}
-          <SealedEnvelopes api={api} />
-          <HandoutsSection api={api} />
-          <section className="sheet-section" aria-labelledby="journal-known">
-            <h3 id="journal-known">{t('Known people & places')}</h3>
-            <p className="muted">
-              {t('What this perspective knows. Presence is shown separately in the scene.')}
-            </p>
-            <ul className="directory-list">
-              {journal.directory.map((entity) => (
-                <li key={entity.entityId}>
-                  <button
-                    type="button"
-                    className="list-button"
-                    aria-pressed={selectedId === entity.entityId}
-                    onClick={() => {
-                      onSelect(entity.entityId, entity.kind);
-                    }}
-                  >
-                    <Glyph name={kindGlyph(entity.kind)} />
-                    <span className="directory-name">
-                      {names.get(entity.entityId) ?? entity.name}
-                    </span>
-                    <span className="directory-kind">{t(entity.kind)}</span>
-                  </button>
-                </li>
-              ))}
-            </ul>
-            {journal.directory.length === 0 && <p>{t('No entities are known yet.')}</p>}
-          </section>
-          <section className="sheet-section" aria-labelledby="journal-hypotheses">
-            <h3 id="journal-hypotheses">{t('Hypotheses')}</h3>
-            {hypotheses.length > 0 ? (
-              <KnowledgeCards knowledge={hypotheses} />
-            ) : (
-              <p className="muted">{t('No hypothesis is recorded in this perspective yet.')}</p>
-            )}
-          </section>
-          <RecentEvents key={revision} api={api} />
-          <EncounterSummary encounter={journal.encounter} />
+          {/* What the party is about: its quests, what waits for it, what it supposes. */}
+          <div className="journal-pane journal-pane--story">
+            <JournalQuests api={api} revision={revision} />
+            {/* What waits for the party, sealed (docs/adr/0073-table-ideas.md §9). */}
+            <SealedEnvelopes api={api} />
+            <HandoutsSection api={api} />
+            <section className="sheet-section" aria-labelledby="journal-hypotheses">
+              <h3 id="journal-hypotheses">{t('Hypotheses')}</h3>
+              {hypotheses.length > 0 ? (
+                <KnowledgeCards knowledge={hypotheses} />
+              ) : (
+                <p className="muted">{t('No hypothesis is recorded in this perspective yet.')}</p>
+              )}
+            </section>
+            <EncounterSummary encounter={journal.encounter} />
+          </div>
+          <div className="journal-pane journal-pane--events">
+            <RecentEvents key={revision} api={api} />
+          </div>
+          <div className="journal-pane journal-pane--known">
+            <JournalKnown
+              directory={journal.directory}
+              selectedId={selectedId}
+              onSelect={onSelect}
+            />
+          </div>
         </div>
       )}
     </Sheet>

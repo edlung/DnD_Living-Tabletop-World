@@ -128,8 +128,11 @@ accessible name and a visible tooltip.
 - **Stage:** everything below the top bar. Its background is the current place's approved image
   (variant by phase and weather, as today) under a vignette, or the neutral mist.
 - **Dock** (bottom, 64 px): Scene, Places, Journal, Chronicle; DM adds "Add to the world",
-  "Encounter", "Time and weather", "History". Dock items open **sheets** that rise over the lower
-  stage (≤ 46% of the viewport height) and leave the scene visible above; the Chronicle opens as a
+  "Encounter", "Time and weather", "History". Dock items open **sheets**; since the owner's word
+  of 2026-11-21 a sheet takes the whole stage (it first rose over the lower stage, ≤ 46% of the
+  viewport height), the dock stays in reach under it, and it closes by its Close button, Escape or
+  its dock button, with its content laid out across the width
+  (`apps/web/src/styles/sheet.css`, `sheet-layouts.css`); the Chronicle opens as a
   full-screen book (a modal dialog, Escape closes, focus returns).
 - **Right panel** (400 px): the selection's details and actions; opens on selection, closes with
   its button or Escape. Sheets sit to its left, so a DM can read a selection and use a tool at

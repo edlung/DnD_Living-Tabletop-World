@@ -9,12 +9,6 @@
   flex-direction: column;
   overflow: hidden;
 }
-@media (min-width: 768px) and (min-height: 501px), (min-width: 1200px) {
-  .sheet--rules {
-    height: min(70vh, calc(100% - var(--dock-h) - 40px));
-    max-height: none;
-  }
-}
 .rules-reference {
   display: flex;
   flex: 1 1 auto;

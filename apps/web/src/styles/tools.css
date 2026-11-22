@@ -45,7 +45,7 @@
   text-transform: uppercase;
 }
 .journal .encounter-summary,
-.journal > .status-panel {
+.journal-pane > .status-panel {
   margin-top: 1rem;
 }
 

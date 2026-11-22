@@ -10,14 +10,14 @@
   background: var(--ink-950);
   container-type: inline-size;
 }
-/* Within the sheet's own height (46vh above the dock; the whole screen on a phone): no scroll. */
+/* Within the section's own height (the stage between the top bar and the dock): no scroll. */
 .shared-screen .display-scene,
 .shared-screen .display-title,
 .shared-screen .display-dice,
 .shared-screen .display-chronicle,
 .shared-screen .display-picture,
 .shared-screen .display-blank {
-  min-height: min(32vh, 22rem);
+  min-height: max(14rem, calc(100dvh - var(--topbar-h) - var(--dock-h) - 11rem));
 }
 @media (max-width: 767px), (max-width: 1199px) and (max-height: 500px) {
   .shared-screen .display-scene,

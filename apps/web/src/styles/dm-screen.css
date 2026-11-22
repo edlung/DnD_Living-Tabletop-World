@@ -147,12 +147,6 @@
 .party-tools textarea {
   max-width: 40rem;
 }
-/* A control sheet: on a laptop or an iPad the party takes most of the screen's height. */
-@media (min-width: 768px) and (min-height: 501px), (min-width: 1200px) {
-  .sheet--party {
-    max-height: min(78vh, calc(100% - var(--dock-h) - 40px));
-  }
-}
 
 /* The DM's hand: a short form inside its card or panel */
 .hand-form {
