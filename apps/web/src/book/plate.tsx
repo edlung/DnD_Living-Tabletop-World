@@ -21,10 +21,12 @@ function Tried({
   api,
   candidates,
   open,
+  under,
 }: {
   readonly api: WorldApi;
   readonly candidates: readonly Candidate[];
   readonly open: boolean;
+  readonly under: ((entityId: string) => ReactNode) | undefined;
 }): ReactNode {
   const t = useT();
   const dialog = useRef<HTMLDialogElement>(null);
@@ -34,7 +36,8 @@ function Tried({
   if (!first) return null;
   if (held.url === null) {
     // Known to be missing: the next, less exact picture is tried.
-    if (!held.held && rest.length > 0) return <Tried api={api} candidates={rest} open={open} />;
+    if (!held.held && rest.length > 0)
+      return <Tried api={api} candidates={rest} open={open} under={under} />;
     return (
       <div className="dmb-plate" data-open={open}>
         <p className="dmb-plate-none">
@@ -60,6 +63,7 @@ function Tried({
         <img src={held.url} alt="" />
       </button>
       <figcaption>{caption}</figcaption>
+      {under?.(first.entityId)}
       <dialog ref={dialog} className="dmb-zoom" aria-label={first.name}>
         <img src={held.url} alt={first.name} />
         <div className="dmb-zoom-foot">
@@ -79,6 +83,7 @@ export function PlateFigure({
   entityOf,
   nameOf,
   open,
+  under,
 }: {
   readonly api: WorldApi;
   readonly plates: readonly Plate[];
@@ -87,6 +92,8 @@ export function PlateFigure({
   readonly nameOf: (key: string) => string;
   /** A card is open under the picture: the picture gives it room. */
   readonly open: boolean;
+  /** Drawn under the caption for the entity whose picture is shown (the cast to the screen). */
+  readonly under?: (entityId: string) => ReactNode;
 }) {
   const t = useT();
   const candidates = plates.flatMap((plate) => {
@@ -108,6 +115,7 @@ export function PlateFigure({
       api={api}
       candidates={candidates}
       open={open}
+      under={under}
     />
   );
 }

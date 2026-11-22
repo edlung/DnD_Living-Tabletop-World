@@ -10,11 +10,12 @@ import { TOKENS, enterWorld } from './support/session.ts';
  * is while reading ahead, goes to a section by a bookmark and comes back to the same page; a
  * player has no book and cannot read it. The book changes nothing in the world.
  */
-const CAMPAIGN = 'ui-ru-book';
+// Each project reads its own campaign: the DM's place in the book is kept by the server.
+const campaign = () => (test.info().project.name === 'ipad' ? 'ui-ru-book-ipad' : 'ui-ru-book');
 const LIVE = { timeout: 20_000 };
 
 async function openBook(page: Page) {
-  await enterWorld(page, TOKENS.dm, CAMPAIGN);
+  await enterWorld(page, TOKENS.dm, campaign());
   const dock = page.locator('nav.dock');
   await expect(dock).toBeVisible(LIVE);
   const book = page.getByRole('region', { name: 'Пропавший караван', exact: true });
@@ -82,6 +83,32 @@ test('the DM reads the book, opens its moments and keeps the party’s place', a
   await expect(story(page)).toContainText('Отряд здесь');
   await openFromText(page, 'странный знак');
   await expect(side(page)).toContainText('Анализ, Сл 14');
+
+  // The roll is asked from the card through the table's own request: the hero's player is asked,
+  // the difficulty stays the DM's.
+  const who = side(page).getByLabel('Кого спросить: Анализ, Сл 14');
+  const hero = await who.locator('option').nth(2).getAttribute('value');
+  await who.selectOption(hero ?? '');
+  await side(page).getByRole('button', { name: 'Попросить бросок' }).click();
+  await expect(side(page).getByRole('list', { name: 'Ответы на этот бросок' })).toContainText(
+    'ждём бросок',
+  );
+  const asked = async (token: string, perspective: string) => {
+    const response = await page.request.get(
+      `/api/campaigns/${campaign()}/check-requests?perspective=${perspective}`,
+      { headers: { authorization: `Bearer ${token}` } },
+    );
+    return ((await response.json()) as { requests: Record<string, unknown>[] }).requests;
+  };
+  const forDm = await asked(TOKENS.dm, 'DM');
+  expect(forDm).toHaveLength(1);
+  expect(forDm[0]).toMatchObject({
+    check: { kind: 'skill', skill: 'investigation' },
+    dc: 14,
+    status: 'open',
+  });
+  for (const request of await asked(TOKENS.player, 'PLAYER'))
+    expect(request).not.toHaveProperty('dc');
   await side(page).getByRole('button', { name: 'Закрыть карточку' }).click();
 
   // Reading back and ahead again leaves the ribbon on the page the party reached.
@@ -104,6 +131,15 @@ test('the DM reads the book, opens its moments and keeps the party’s place', a
   await expectAccessible(page, 'the path through the chapters');
   await book.getByRole('button', { name: 'Страницы', exact: true }).click();
 
+  // A roll the text did not foresee: the table's dice, one bookmark away, and back to the page.
+  await book.getByRole('button', { name: 'Кубики', exact: true }).click();
+  await expect(page.locator('#sheet-dice')).toBeVisible();
+  await page
+    .locator('#sheet-dice')
+    .getByRole('button', { name: /^Закрыть/ })
+    .click();
+  await expect(heading(page)).toHaveText('Заброшенная стоянка');
+
   // A bookmark opens a section of the dock; closing it comes back to the same page.
   await book.getByRole('button', { name: 'Отряд', exact: true }).click();
   const party = page.locator('#sheet-party');
@@ -114,7 +150,7 @@ test('the DM reads the book, opens its moments and keeps the party’s place', a
   // The place is kept for the DM: entering again, the book opens where the ribbon lies.
   await expect
     .poll(async () => {
-      const response = await page.request.get(`/api/campaigns/${CAMPAIGN}/dm/book`, {
+      const response = await page.request.get(`/api/campaigns/${campaign()}/dm/book`, {
         headers: { authorization: `Bearer ${TOKENS.dm}` },
       });
       return ((await response.json()) as { book: { place: { ribbon: string } } }).book.place.ribbon;
@@ -122,19 +158,24 @@ test('the DM reads the book, opens its moments and keeps the party’s place', a
     .toBe('ravenford-site');
   await openBook(page);
   await expect(heading(page)).toHaveText('Заброшенная стоянка', LIVE);
+
+  // The fight's card asks the product's own prepared encounters: here nobody is at the road yet.
+  await turnTo(page, 'Засада на тракте');
+  await openFromText(page, 'низкие фигуры');
+  await expect(side(page)).toContainText('здесь пока нет никого из отряда');
 });
 
 test('a player has no book and cannot read the DM’s', async ({ page }) => {
-  await enterWorld(page, TOKENS.player, CAMPAIGN);
+  await enterWorld(page, TOKENS.player, campaign());
   const dock = page.locator('nav.dock');
   await expect(dock).toBeVisible(LIVE);
   await expect(dock.getByRole('button', { name: 'Книга', exact: true })).toHaveCount(0);
   for (const token of [TOKENS.player, TOKENS.outsider]) {
-    const read = await page.request.get(`/api/campaigns/${CAMPAIGN}/dm/book`, {
+    const read = await page.request.get(`/api/campaigns/${campaign()}/dm/book`, {
       headers: { authorization: `Bearer ${token}` },
     });
     expect(read.status()).toBe(404);
     expect(await read.text()).not.toContain('Мира');
   }
-  expect((await page.request.get(`/api/campaigns/${CAMPAIGN}/dm/book`)).status()).toBe(401);
+  expect((await page.request.get(`/api/campaigns/${campaign()}/dm/book`)).status()).toBe(401);
 });

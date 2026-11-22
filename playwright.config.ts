@@ -30,6 +30,7 @@ export default defineConfig({
     // The DM's screen on an iPad in Safari's engine (docs/adr/0043-dm-screen.md §4, Stage 620),
     // and an evening closed and opened there (docs/adr/0071-memory-and-ritual.md §1, Stage 710);
     // the journeys of the later ritual and keepsake stages run there too, each named below.
+    // The DM's book (docs/adr/0074-dm-book.md §3–4, Stages 920–930) is read on an iPad first.
     // One WebKit journey at a time. These are the suite's heaviest — a DM, players and a TV,
     // three to five pages each. Side by side on a hosted runner, across four runs of 2026-11-16,
     // a different one each time waited fifteen or twenty seconds for a screen that had not caught
@@ -44,7 +45,7 @@ export default defineConfig({
       workers: 1,
       use: { ...devices['iPad Pro 11 landscape'] },
       testMatch:
-        /(dm-screen|evening-ritual|stars-and-wishes|next-game|agreement|ritual-checkpoint|campaign-book|campaign-end|comforts|keepsakes-checkpoint|client-errors|pause|turn-hint|party-known|hero-story|envelopes|coming)\.spec\.ts$/,
+        /(dm-screen|evening-ritual|stars-and-wishes|next-game|agreement|ritual-checkpoint|campaign-book|campaign-end|comforts|keepsakes-checkpoint|client-errors|pause|turn-hint|party-known|hero-story|envelopes|coming|dm-book)\.spec\.ts$/,
     },
     // Release 1.0's journeys in Safari's engine too (work-orders/STAGE_699.md, 699b).
     {

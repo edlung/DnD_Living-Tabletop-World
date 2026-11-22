@@ -10,9 +10,9 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import type { WorldApi } from '../api/client.ts';
 import { useResource } from '../api/resource.ts';
 import { Sheet } from '../shell/sheet.tsx';
-import type { SheetId, Shell } from '../shell/use-shell.ts';
+import type { Shell } from '../shell/use-shell.ts';
 import { Glyph } from '../visual/glyph.tsx';
-import type { GlyphName } from '../visual/ui-kit-names.ts';
+import { BookMarks } from './bookmarks.tsx';
 import { useCard } from './cards.tsx';
 import {
   leafAt,
@@ -26,6 +26,7 @@ import {
 } from './model.ts';
 import { encounterOf, momentId, momentsOf, type Moment } from './moments.ts';
 import { PageText, type Passage } from './page-text.tsx';
+import { CastToScreen } from './actions.tsx';
 import { ChapterPath } from './path.tsx';
 import { PlateFigure } from './plate.tsx';
 import { Brief, MomentCard } from './side.tsx';
@@ -37,19 +38,6 @@ import type { DmBook } from './use-book.ts';
  * dock holds and the path through the chapters. It reads; it changes nothing in the world. The
  * DM's place in it (the ribbon, played chapters, notes) is the DM's own, kept beside the world.
  */
-const MARKS: readonly {
-  readonly sheet: SheetId;
-  readonly label: string;
-  readonly glyph: GlyphName;
-}[] = [
-  { sheet: 'party', label: 'Heroes', glyph: 'party' },
-  { sheet: 'places', label: 'Places', glyph: 'place' },
-  { sheet: 'journal', label: 'Journal', glyph: 'journal' },
-  { sheet: 'encounter', label: 'Encounter', glyph: 'encounter' },
-  { sheet: 'session', label: 'Session', glyph: 'chapter' },
-  { sheet: 'rules', label: 'Rules', glyph: 'study' },
-  { sheet: 'history', label: 'History', glyph: 'history' },
-];
 const SIZE_KEY = 'ltw.book-size';
 const rememberedSize = (): 'normal' | 'large' => {
   try {
@@ -141,7 +129,13 @@ function OpenBook({
   const leaves = leavesOf(content);
   const leaf = leafAt(leaves, reading ?? place.ribbon);
   const encounterBy = (key: string) => encounterOf(encounters, opened.ids.encounters[key]);
-  const card = useCard(content, moment, leaf?.chapter.key ?? '', encounterBy);
+  const heroes = directory.filter((entity) => entity.kind === 'character');
+  const card = useCard(content, moment, leaf?.chapter.key ?? '', encounterBy, {
+    api,
+    heroes,
+    // The fight is the product's own screen: the book steps aside for the battlefield.
+    onFightStarted: shell.dismissSheet,
+  });
   const wasCard = useRef(false);
   useEffect(() => {
     const heading = side.current?.querySelector<HTMLElement>('h3');
@@ -219,62 +213,14 @@ function OpenBook({
   return (
     <Sheet id="book" title={content.title} glyph="perform" open={open} onClose={shell.closeSheet}>
       <div className="dmb" data-size={size} data-view={view}>
-        <nav className="dmb-marks" aria-label={t('Bookmarks')}>
-          <button
-            type="button"
-            className="dmb-mark"
-            aria-pressed={view === 'spread'}
-            aria-label={t('Pages')}
-            title={t('Pages')}
-            onClick={() => {
-              setView('spread');
-            }}
-          >
-            <Glyph name="perform" />
-            <span className="dmb-mark-word">{t('Pages')}</span>
-          </button>
-          <button
-            type="button"
-            className="dmb-mark"
-            aria-pressed={view === 'path'}
-            aria-label={t('The path')}
-            title={t('The path')}
-            onClick={() => {
-              setView('path');
-              setMoment(null);
-            }}
-          >
-            <Glyph name="travel" />
-            <span className="dmb-mark-word">{t('The path')}</span>
-          </button>
-          {MARKS.map((mark) => (
-            <button
-              key={mark.sheet}
-              type="button"
-              className="dmb-mark"
-              aria-label={t(mark.label)}
-              title={t(mark.label)}
-              onClick={() => {
-                shell.openSheetFromBook(mark.sheet);
-              }}
-            >
-              <Glyph name={mark.glyph} />
-              <span className="dmb-mark-word">{t(mark.label)}</span>
-            </button>
-          ))}
-          <button
-            type="button"
-            className="dmb-mark"
-            aria-label={t('Chronicle')}
-            title={t('Chronicle')}
-            onClick={() => {
-              shell.openChronicle();
-            }}
-          >
-            <Glyph name="chronicle" />
-            <span className="dmb-mark-word">{t('Chronicle')}</span>
-          </button>
-        </nav>
+        <BookMarks
+          view={view}
+          shell={shell}
+          onView={(to) => {
+            setView(to);
+            if (to === 'path') setMoment(null);
+          }}
+        />
         <p className="visually-hidden" role="status">
           {said}
         </p>
@@ -458,6 +404,13 @@ function OpenBook({
                 entityOf={(key) => opened.ids.entities[key]}
                 nameOf={nameOf}
                 open={card !== null}
+                under={(entityId) => (
+                  <CastToScreen
+                    api={api}
+                    entityId={entityId}
+                    words={leaf.page === null && card === null ? leaf.chapter.readAloud : null}
+                  />
+                )}
               />
               {card ? (
                 <MomentCard
@@ -470,6 +423,7 @@ function OpenBook({
                   book={content}
                   leaf={leaf}
                   lines={lines}
+                  heroes={heroes}
                   note={place.notes[leaf.key] ?? ''}
                   onNote={(note) => {
                     setPlace((current) => placeWithNote(current, leaf.key, note));

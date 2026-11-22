@@ -26,7 +26,12 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
 - Stage 920 (the book to read) is implemented: `work-orders/STAGE_920.md`,
   `reports/STAGE_920_COMPLETION.md`, ADR 0074 §3. The DM opens the campaign's book from the dock:
   the spread, cards, bookmarks, the path, the ribbon kept by the server (migration 0049). It reads
-  only. Stage 930 has its work order.
+  only.
+- Stage 930 (play from the book) is implemented: `work-orders/STAGE_930.md`,
+  `reports/STAGE_930_COMPLETION.md`, ADR 0074 §4. A roll is asked from its card, a prepared fight
+  started, a handout given, the picture cast to the table's screen — each through what the
+  product already had. **The program waits for the owner**: pull requests 72–76, stacked, none
+  merged; both built-in books wait for his reading; Stages 940 and 950 are his to open.
 
 ## Request — full-screen sections, 2026-11-21
 

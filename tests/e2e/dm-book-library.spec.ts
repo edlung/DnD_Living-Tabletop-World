@@ -85,6 +85,18 @@ test('a family campaign and a collection campaign of the library open as books',
   await expect(story).toContainText('Прочитайте вслух');
   await expect(side).toContainText('Зачем эта глава');
   await expectAccessible(dm, 'a library campaign’s book at its first chapter');
+  // A campaign's handout is given from its card as any handout is: the players can read it.
+  await side
+    .getByRole('button', { name: /Материал$/ })
+    .first()
+    .click();
+  await side.getByRole('button', { name: 'Выдать отряду' }).click();
+  await expect(side).toContainText('Выдано: каждый игрок может прочитать.');
+  await side.getByRole('button', { name: 'Закрыть карточку' }).click();
+  // The chapter's picture goes to the table's screen on the DM's press, with the words read
+  // aloud when they fit; the screens' own route takes it.
+  await side.getByRole('button', { name: 'Показать на экране стола' }).click();
+  await expect(side).toContainText('Экран стола показывает это.');
   await lighthouse.getByRole('button', { name: 'Оглавление', exact: true }).click();
   const path = dm.getByRole('region', { name: 'Оглавление', exact: true });
   await expect(path.getByRole('listitem')).toHaveCount(12);
