@@ -44,7 +44,7 @@ test('a DM picks a library campaign, starts it and gets its pictures, figures an
   await page.getByRole('tab', { name: /^(Scenario|Сценарий)$/ }).click();
 
   const library = page.getByRole('region', { name: /^(Ready campaigns|Готовые кампании)$/ });
-  await expect(library.getByRole('listitem')).toHaveCount(15);
+  await expect(library.getByRole('listitem')).toHaveCount(53);
   for (const width of [1440, 768, 390]) {
     await page.setViewportSize({ width, height: 900 });
     await expectAccessible(page, `campaign library ${String(width)}`);
