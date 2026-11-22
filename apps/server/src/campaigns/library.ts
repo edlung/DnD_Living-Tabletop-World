@@ -89,7 +89,11 @@ interface LoadedCampaign {
   readonly packages: ReadonlyMap<string, string>;
   readonly cover: Uint8Array;
   readonly bytes: ReadonlyMap<string, Uint8Array>;
-  readonly book: CampaignBook | null;
+  /**
+   * The campaign's book, read into its shape when first asked for: its bytes are checked at start
+   * with everything else, but fifty-three books are not parsed for a server that opens none.
+   */
+  readonly book: () => CampaignBook | null;
 }
 
 export interface CampaignLibrary {
@@ -158,12 +162,17 @@ export async function loadCampaignLibrary(
     for (const picture of file.pictures)
       bytes.set(picture.file, await readChecked(root, picture.source, picture.sha256));
     const coverBytes = await readFile(join(root, file.cover));
-    let book: CampaignBook | null = null;
+    let bookText: string | null = null;
     if (file.book) {
-      const text = await readFile(join(directory, campaignId, file.book.file), 'utf8');
-      if (hash(text) !== file.book.sha256) throw new Error(`${campaignId}: book.json changed`);
-      book = campaignBookSchema.parse(JSON.parse(text));
+      bookText = await readFile(join(directory, campaignId, file.book.file), 'utf8');
+      if (hash(bookText) !== file.book.sha256) throw new Error(`${campaignId}: book.json changed`);
     }
+    let parsed: CampaignBook | null = null;
+    const book = () => {
+      if (bookText === null) return null;
+      parsed ??= campaignBookSchema.parse(JSON.parse(bookText));
+      return parsed;
+    };
     campaigns.set(campaignId, { file, packages, cover: new Uint8Array(coverBytes), bytes, book });
   }
   const entries: CampaignLibraryEntry[] = [...campaigns.values()].map(({ file }) => ({
@@ -189,7 +198,7 @@ export async function loadCampaignLibrary(
       campaigns.get(campaignId)?.packages.get(variantId) ?? null,
     bookFor: (revision) => {
       const found = byDigest.get(hash(campaignCanonicalJson(revision.content)));
-      const book = found ? campaigns.get(found.campaign)?.book : undefined;
+      const book = found ? campaigns.get(found.campaign)?.book() : undefined;
       return found && book ? { campaign: found.campaign, book } : null;
     },
     picturesFor: (revision) => {
