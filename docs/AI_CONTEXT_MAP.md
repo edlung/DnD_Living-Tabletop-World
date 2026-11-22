@@ -8,11 +8,12 @@ Noir collection (3–8 adults): `campaigns/noir-2026/AGENTS.md`, `campaigns/noir
 
 ## Process and product
 
-Interactive DM book concept (2026-11-22) — [open the offline Hollowmere spread](design/dm-book/index.html), [scope](../work-orders/DM_BOOK_CONCEPT_2026-11-22.md).
+The DM's book (Stages 900–930, 2026-11-22): the accepted sample in `design/dm-book-sample/` (README, archive of sources, four states); the second concept of the same day — [the offline Hollowmere spread](design/dm-book/index.html), [its scope](../work-orders/DM_BOOK_CONCEPT_2026-11-22.md).
 
 | Task | Smallest starting set |
 |---|---|
 | Start or authorize a stage | `QUICKSTART.md`, `EFFORT_MATRIX.md`, `AGENT_WORKFLOW.md`, the one authorized file in `work-orders/` |
+| The DM's book (Stages 900–950; 900–930 authorized): a campaign's story as a book on the DM's screen for all 55 campaigns — the story on the left, the picture and "how we play this" on the right, bookmarks, the path through the chapters | `docs/DM_BOOK_PLAN.md`, ADR 0074 (§1 what the book is; §2–§4 by their stages), `reviews/OWNER_DM_BOOK_2026-11-22.json`, `work-orders/STAGE_900.md`–`STAGE_930.md`, `reports/STAGE_900_COMPLETION.md`; sample `docs/design/dm-book-sample/README.md`; where a campaign's text lives today: `campaigns/<name>/source/`, `scripts/lighthouse/package.ts`, `packages/contracts/src/campaign/package.ts` |
 | Current delivery assignments, review requirements, and checkpoint status | `docs/PROJECT_WORKFLOW.md` (current owner policy supersedes older model/effort banners) |
 | Memory and ritual (Stages 710–799, plan only): "Previously…", stars and wishes, the next game, the table's agreement, the DM's guide, the book, the home between worlds | `docs/MEMORY_RITUAL_PLAN.md`, owner's answers `reviews/OWNER_MEMORY_RITUAL_2026-11-15.json`, `work-orders/STAGE_710.md` (Stage 710 authorized 2026-11-15 and implemented; later stages not authorized) |
 | Full-screen sections (2026-11-21): each dock sheet takes the whole stage with a Close button, its content in columns and panes | `work-orders/FULLSCREEN_SECTIONS_2026-11-21.md`; client `apps/web/src/shell/sheet.tsx`, `styles/sheet.css`, `styles/sheet-layouts.css`, `world/journal-known.tsx`; journey `tests/e2e/section-screens.spec.ts` |

@@ -8,6 +8,11 @@ The model selected in the session does the work. `EFFORT_MATRIX.md` and work-ord
 
 # Living Tabletop World Agent Instructions
 
+Owner request 2026-11-22 (`reviews/OWNER_DM_BOOK_2026-11-22.json`): the DM's book — a campaign's
+story as a book on the DM's screen, for all 55 campaigns (Stages 900–930, `docs/DM_BOOK_PLAN.md`,
+ADR 0074), each stage in its own pull request, without stops between them, a report at the end of
+930; Stages 940 and 950 are not authorized; merges and deployment stay the owner's.
+
 Owner request 2026-11-16 (`reviews/OWNER_TABLE_IDEAS_2026-11-16.json`): ten ideas borrowed from
 other D&D tools (Stages 800–890, `docs/TABLE_IDEAS_PLAN.md`, ADR 0073), each stage in its own pull
 request; technical checkpoints pass with the usual checks and reports; merges and deployment stay

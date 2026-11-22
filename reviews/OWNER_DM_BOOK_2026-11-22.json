@@ -1,0 +1,73 @@
+{
+  "date": "2026-11-22",
+  "source": "The owner's words typed in one working session on 2026-11-22, in the desktop app, and his choices in that session's question cards. This record is written by the same session: it saw every word below typed or chosen.",
+  "ownerInstruction": "Да, открываем",
+  "ownerInstructionAnswers": "The session's question: «Открываем этапы 900–930 для всех 55 кампаний?»",
+  "theBrief": "Строим концепт - демо интерфейса. Нужно придумать концепт для книги DMa. DM читает историю из книги. В тексте в нужных местах ссылки на игровые моменты: диалог, бой, бросок и так далее. Нужно чтобы книга вела DMa через всю историю и чтобы это было удобно. Левая часть книги - текст повествования, правая отображает иллюстрацию текущей сцены или события и информацию, которая содержится в ссылке основного текста. Иллюстрация привязана к главе, месту и событию. Инфа из ссылки говорит DM как мы обыгрываем данную ситуацию. Другие категории у нас в закладках этой книги. Внешний вид книги-интерфейса зависит от стиля иллюстраций.",
+  "shownToTheOwner": {
+    "note": "A clickable demo, a private page of the owner's account, built and rebuilt in the same session; its sources are in docs/design/dm-book-sample/. Five versions, each after the owner's choice of what to work through next.",
+    "demo": "https://claude.ai/artifact/7KFsPxmd7rGB8AjP8XFqE6",
+    "versions": [
+      "1–2: the spread (story with links on the left, the picture and a card \"how to play it\" on the right), eight kinds of links, the bookmarks, three campaigns in three bindings; an independent walk through seven DM tasks and its fixes.",
+      "3, after «Свободный маршрут»: chapter 2 of the lighthouse, the path through the chapters with the world map, the ribbon that marks where the party is, a chapter put off or opened by hand.",
+      "4, after «Вечер от и до»: the closed book, the endpaper \"gathering at the table\", the meeting's clock and pace hint, a break, closing the book and coming back to the ribbon.",
+      "5, after «Бой целиком»: a fight on the right page from the hero's sheet (weapons, spells, slots), zero hit points by the campaign's rule, the turning point, the battle map for the table's screen."
+    ],
+    "plan": "https://claude.ai/artifact/387kGVqUzDhavefKZTSLPD — «Книга ведущего: план переноса в продукт», a document in Russian: what the product has, what the campaigns' data lacks, volumes, six stages, risks, decisions."
+  },
+  "ownerWordsAlongTheWay": [
+    { "asked": "«Берём книгу за основу экрана ведущего?»", "answered": "Да, развиваем" },
+    {
+      "asked": "The first plan said the stages start on one campaign («Открываем этапы 900–930 на „Маяке“?»).",
+      "answered": "в смысле на маяке. мне для всех компаний книжный формат нужен. можно сделать UI в виде книги или ты что-то другое шаманишь? 55 кампаний",
+      "consequence": "The plan was rewritten in two layers: the book for all 55 campaigns from the data they already have, then enrichment campaign by campaign."
+    }
+  ],
+  "answersInTheQuestionCards": [
+    {
+      "question": "The uncommitted editorial work of another session in the working tree (926 changed and 359 new files, last touched 16:54 on 2026-11-22), which the book's data builds on: what to do with it?",
+      "chosen": "Зафиксировать мне",
+      "meaning": "This session runs the project's checks and puts that work on its own branch and pull request, as it is. Merging stays the owner's. The book follows on top of it."
+    },
+    {
+      "question": "Two concepts of the DM's book exist: this session's demo and a local one in docs/design/dm-book/ made the same day in another session on «Колокола Холлоумира». Which is the sample for the screen?",
+      "chosen": "Демо из этой сессии",
+      "meaning": "The demo the owner accepted that day. Single finds are taken from the other concept after the two are compared."
+    },
+    {
+      "question": "The two built-in adventures, Ravenford and the Bells of Hollowmere, have no scene text in their data. A book for them in this program?",
+      "chosen": "Да, обе",
+      "meaning": "Hollowmere's pages come from the other concept, Ravenford's are written. The owner reads that new text before it is switched on. Then every one of the 55 has the book."
+    },
+    {
+      "question": "How to go through Stages 900–930?",
+      "chosen": "Без остановок, отчёт в конце",
+      "meaning": "As in the earlier programs: each stage on its own branch and pull request, with the checks and a report. Merging and deployment stay the owner's."
+    }
+  ],
+  "authorizedStages": [900, 910, 920, 930],
+  "notAuthorized": [
+    "Stage 940, the trial at a real table: it is the owner's own evening and his list of corrections.",
+    "Stage 950, enrichment: narration written to be read aloud, links inside the line, words for outcomes, pictures of events. It needs paid model calls, generated pictures and the owner's reading of every written phrase; none of that is asked for or allowed by this record."
+  ],
+  "authorization": "The owner's «Да, открываем» to Stages 900–930 for all 55 campaigns, and his four choices above.",
+  "howToProceed": "Stage after stage without asking to start each, each on its own branch and pull request stacked on the one before; the usual checks and a report a stage; a report to the owner at the end of Stage 930.",
+  "plan": "docs/DM_BOOK_PLAN.md",
+  "delegation": "Open product points inside Stages 900–930 are settled by the session, marked (S) in the plan and in ADR 0074, and stay the owner's to overrule. Two of them the owner saw in the plan document and did not answer, so they are the session's defaults: the book lives beside the dock until the trial at the table, and its look comes from the existing catalogue of campaign materials at first.",
+  "standingOwnerRulesThisProgramKeeps": [
+    "2026-11-20: «если честно, рельс не хочется. DnD — это про свободу выбора и действий.» The book asks what the players chose and never decides for them.",
+    "2026-11-20: the DM is a storyteller first; the story's text is first on his screen. The phone is an option; the TV carries the scene.",
+    "2026-11-21: «Читать всё самому» — every phrase a model wrote is read by the owner before it reaches a table. Stages 900–930 put no model-written campaign text into a package; Ravenford's pages, written by the session, wait for his reading behind a switch.",
+    "2026-11-21: interface assets match the campaign's visual code; pictures are made by Codex CLI, text by Sonnet 5.5 over the project's route. No picture or paid text is made in Stages 900–930.",
+    "2026-11-22: full-screen sections with the least scrolling."
+  ],
+  "askedAtTheTime": "Four questions in one card on 2026-11-22, each with a recommended first option; the owner chose the recommended option in all four.",
+  "unchangedBoundaries": [
+    "The World Engine alone changes the world; the book only calls commands that exist.",
+    "Prepared situations, encounters and choices are plans, never player decisions.",
+    "Knowledge isolation: the book's text is the DM's; players and the table's screen get only what the DM sends.",
+    "No AI at the table from the book; no paid provider call in this program's authorized stages.",
+    "A campaign package is generated from its source, never edited by hand; changing the package contract is ADR 0074's.",
+    "Nothing is deployed and nothing is merged by the session; the family playtest and real devices stay the owner's."
+  ]
+}
