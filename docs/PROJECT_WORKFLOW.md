@@ -30,8 +30,27 @@ Updated 2026-10-15. The owner's current AGENTS instructions take precedence over
 - Stage 930 (play from the book) is implemented: `work-orders/STAGE_930.md`,
   `reports/STAGE_930_COMPLETION.md`, ADR 0074 §4. A roll is asked from its card, a prepared fight
   started, a handout given, the picture cast to the table's screen — each through what the
-  product already had. **The program waits for the owner**: pull requests 72–76, stacked, none
-  merged; both built-in books wait for his reading; Stages 940 and 950 are his to open.
+  product already had.
+- Status: merged and deployed on 2026-11-22 on the owner's word («сливай, выкатывай»). Pull
+  requests 72–76 merged in order as `main` 850cfcd1, whose tree is the stack's tip 57716533 — the
+  commit CI passed in full (8 of 8). Pull request 73 (documents only) was merged while the
+  rerun of one journeys shard was still going: its two red runs were a WebKit journey on the
+  hosted runner and the shard's 25-minute limit with no journey failed. On the way CI found and
+  the session fixed: the library journey's count (15 → 53 campaigns, from the editorial work); a
+  fixture test's five-second limit; the More list of the dock, too short for the DM's
+  seventeenth tool; ESLint out of memory on the hosted runner — `pnpm run lint` now runs in five
+  parts (`scripts/lint-parts.ts`).
+- Deployed to the VPS on 2026-11-22: git bundle `28869cab..850cfcd1`, tag `850cfcd1b7d9`
+  (previous `28869cab3a7a`), protected dump `ltw-predeploy-20261122T223028Z.dump`, migration 0049
+  (`ltw_dm_book_places`, additive) applied at start; every service healthy, `readyz` 200, no
+  errors in the logs; the site serves the bundle of this commit (the book's code and words are in
+  it), `…/dm/book` answers 401 without a sign-in, the image holds the 53 books and both built-in
+  ones. Looked at signed in, in the owner's browser: the hub lists the library's 53 campaigns;
+  the owner's three campaigns there are built-in adventures, whose books are closed until he has
+  read them, so no Book button shows in them — as built. A library campaign's book was not
+  opened on the live site: that needs a campaign started there, which is the owner's to do.
+- Still the owner's: reading the two built-in books (Ravenford's pages are in
+  `reports/STAGE_910_COMPLETION.md`); Stages 940 and 950.
 
 ## Request — full-screen sections, 2026-11-21
 

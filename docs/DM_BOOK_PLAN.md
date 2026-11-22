@@ -13,9 +13,10 @@ plan so that the whole road is visible; neither is authorized. Merging, deployme
 playtest and real devices stay the owner's. ADR 0074 holds the contracts, one section a stage, each
 added by its stage.
 
-Status: **Stages 900–930 are implemented** and wait for the owner (`reports/STAGE_900_COMPLETION.md`
-… `reports/STAGE_930_COMPLETION.md`, ADR 0074 §1–§4); the report to him is the last of them. Five
-stacked pull requests, none merged. Stages 940 and 950 are not authorized.
+Status: **Stages 900–930 are implemented, merged (`main` 850cfcd1) and deployed on 2026-11-22**
+(tag `850cfcd1b7d9`; `reports/STAGE_900_COMPLETION.md` … `reports/STAGE_930_COMPLETION.md`, ADR
+0074 §1–§4; the record is in `docs/PROJECT_WORKFLOW.md`). The two built-in adventures' books stay
+closed until the owner has read them. Stages 940 and 950 are not authorized.
 
 The sample for the screen is the demo of this session: `docs/design/dm-book-sample/` and the
 owner's private page named in the record. A second concept, made the same day in another session on
