@@ -6,7 +6,9 @@ import { fileURLToPath } from 'node:url';
 import {
   ASSET_PURPOSES,
   ASSET_VARIANTS,
+  campaignBookSchema,
   campaignPackageSchema,
+  type CampaignBook,
   type CampaignLibraryEntry,
   type CampaignRevision,
 } from '@ltw/contracts';
@@ -71,6 +73,11 @@ const libraryFileSchema = z
           .strict(),
       )
       .min(1),
+    /** The DM's book (ADR 0074 §2); absent from a library built before Stage 910. */
+    book: z
+      .object({ file: z.literal('book.json'), sha256 })
+      .strict()
+      .exactOptional(),
     generator: z.string().min(1).max(100),
     pictures: z.array(pictureSchema),
   })
@@ -82,6 +89,11 @@ interface LoadedCampaign {
   readonly packages: ReadonlyMap<string, string>;
   readonly cover: Uint8Array;
   readonly bytes: ReadonlyMap<string, Uint8Array>;
+  /**
+   * The campaign's book, read into its shape when first asked for: its bytes are checked at start
+   * with everything else, but fifty-three books are not parsed for a server that opens none.
+   */
+  readonly book: () => CampaignBook | null;
 }
 
 export interface CampaignLibrary {
@@ -98,6 +110,14 @@ export interface CampaignLibrary {
   picturesFor(
     revision: CampaignRevision,
   ): { readonly title: string; readonly set: CuratedSet } | null;
+  /**
+   * The DM's book of the campaign a revision is (ADR 0074 §2), recognised as its pictures are;
+   * null when the revision is not one of the library's packages or its campaign has no book.
+   * The book's keys are the package's local keys: the revision's identities resolve them.
+   */
+  bookFor(
+    revision: CampaignRevision,
+  ): { readonly campaign: string; readonly book: CampaignBook } | null;
 }
 
 const hash = (bytes: Uint8Array | string) => createHash('sha256').update(bytes).digest('hex');
@@ -142,7 +162,18 @@ export async function loadCampaignLibrary(
     for (const picture of file.pictures)
       bytes.set(picture.file, await readChecked(root, picture.source, picture.sha256));
     const coverBytes = await readFile(join(root, file.cover));
-    campaigns.set(campaignId, { file, packages, cover: new Uint8Array(coverBytes), bytes });
+    let bookText: string | null = null;
+    if (file.book) {
+      bookText = await readFile(join(directory, campaignId, file.book.file), 'utf8');
+      if (hash(bookText) !== file.book.sha256) throw new Error(`${campaignId}: book.json changed`);
+    }
+    let parsed: CampaignBook | null = null;
+    const book = () => {
+      if (bookText === null) return null;
+      parsed ??= campaignBookSchema.parse(JSON.parse(bookText));
+      return parsed;
+    };
+    campaigns.set(campaignId, { file, packages, cover: new Uint8Array(coverBytes), bytes, book });
   }
   const entries: CampaignLibraryEntry[] = [...campaigns.values()].map(({ file }) => ({
     id: file.id,
@@ -165,6 +196,11 @@ export async function loadCampaignLibrary(
     cover: (campaignId) => campaigns.get(campaignId)?.cover.slice() ?? null,
     packageJson: (campaignId, variantId) =>
       campaigns.get(campaignId)?.packages.get(variantId) ?? null,
+    bookFor: (revision) => {
+      const found = byDigest.get(hash(campaignCanonicalJson(revision.content)));
+      const book = found ? campaigns.get(found.campaign)?.book() : undefined;
+      return found && book ? { campaign: found.campaign, book } : null;
+    },
     picturesFor: (revision) => {
       const found = byDigest.get(hash(campaignCanonicalJson(revision.content)));
       const campaign = found ? campaigns.get(found.campaign) : undefined;

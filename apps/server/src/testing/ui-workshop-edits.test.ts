@@ -225,5 +225,7 @@ describe('Stage430 browser edit fixture composition', () => {
       }),
     ).not.toBeNull();
     expect(workshop.cancelEdit).toBeTypeOf('function');
-  });
+    // The whole browser fixture, the campaign library with it: seconds alone, more on a busy
+    // runner, where five were not enough (CI, 2026-11-22).
+  }, 30_000);
 });

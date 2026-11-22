@@ -21,7 +21,7 @@ import {
 } from '../../apps/server/src/testing/activation-fixture.ts';
 import { loadCampaignActivationReview } from '../../apps/server/src/workshop/activation/review.ts';
 import { CampaignActivationWorker } from '../../apps/server/src/workshop/activation/worker.ts';
-import { LIBRARY_ROOT, libraryJson } from './build.ts';
+import { LIBRARY_ROOT, bookJson, libraryJson } from './build.ts';
 import { LIBRARY, libraryCampaign } from './catalog.ts';
 
 const library = await loadCampaignLibrary();
@@ -91,9 +91,14 @@ describe('campaign library', () => {
           await readFile(new URL(`${source.id}/packages/${variant.id}.json`, LIBRARY_ROOT), 'utf8'),
           `${source.id}/${variant.id}`,
         ).toBe(JSON.stringify(variant.content));
+      expect(
+        await readFile(new URL(`${source.id}/book.json`, LIBRARY_ROOT), 'utf8'),
+        `${source.id}/book`,
+      ).toBe(bookJson(c));
     }
     expect(library.entries.map((e) => e.id)).toEqual(LIBRARY.map((s) => s.id));
-  });
+    // Fifty-three campaigns, each built with every variant: seconds alone, more beside the suite.
+  }, 120_000);
 
   it.each(LIBRARY.map((s) => s.id))(
     '%s: a started campaign gets its pictures, figures, battle maps and world map once',

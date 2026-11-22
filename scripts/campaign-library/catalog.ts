@@ -4,7 +4,11 @@ import { createHash } from 'node:crypto';
 import { existsSync, readFileSync } from 'node:fs';
 import { readFile } from 'node:fs/promises';
 
-import { campaignPackageSchema, type CampaignPackage } from '../../packages/contracts/src/index.ts';
+import {
+  campaignPackageSchema,
+  type CampaignBook,
+  type CampaignPackage,
+} from '../../packages/contracts/src/index.ts';
 import { campaignCanonicalJson } from '../../apps/server/src/workshop/packages/content.ts';
 import {
   artOf,
@@ -20,6 +24,7 @@ import {
   type WorldMap,
 } from '../campaign-shared/world-map.ts';
 
+import { bookOf, requireBookFits } from './book/book.ts';
 import { otherBooks } from './other-books.ts';
 import { individualCastReferences, tablePictures } from './table-pictures.ts';
 
@@ -120,6 +125,21 @@ export interface LibraryCampaign {
   readonly variants: readonly LibraryVariant[];
   readonly defaultVariant: string;
   readonly pictures: readonly LibraryPicture[];
+  /** The DM's book (ADR 0074 §2): one for the campaign, fitting every variant. */
+  readonly book: CampaignBook;
+}
+
+/** The campaign's book from its source, checked against each of its variants. */
+function libraryBook(
+  root: URL,
+  variants: readonly LibraryVariant[],
+  defaultVariant: string,
+): CampaignBook {
+  const main = variants.find((v) => v.id === defaultVariant) ?? variants[0];
+  if (!main) throw new Error(`${root.href}: no variants`);
+  const book = bookOf(root, main.content);
+  for (const variant of variants) requireBookFits(book, variant.content);
+  return book;
 }
 
 const CAMPAIGNS = new URL('../../campaigns/', import.meta.url);
@@ -383,6 +403,7 @@ export async function libraryCampaign(source: LibrarySource): Promise<LibraryCam
     variants,
     defaultVariant: `${String(s.world.defaultPlayers)}-players`,
     pictures: [...pictures, ...(await worldMapPicture(root, map, variants))],
+    book: libraryBook(root, variants, `${String(s.world.defaultPlayers)}-players`),
   };
 }
 
@@ -446,5 +467,10 @@ async function familyBook(source: LibrarySource): Promise<LibraryCampaign> {
     variants,
     defaultVariant: source.id === 'moon-pearl' ? 'four-players' : 'original-party',
     pictures: [...pictures, ...(await worldMapPicture(root, map, variants))],
+    book: libraryBook(
+      root,
+      variants,
+      source.id === 'moon-pearl' ? 'four-players' : 'original-party',
+    ),
   };
 }

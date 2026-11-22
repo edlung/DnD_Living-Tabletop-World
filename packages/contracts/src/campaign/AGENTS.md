@@ -19,3 +19,7 @@ Read the accepted Stage 370 contract/ADR 0038 and current scoped work order.
 The feature public API lives in index.ts, re-exported by the contracts package;
 feature internals import their concrete files. Progress DTOs exclude scenario
 bodies and provider inputs. Full owner packages load only through explicit reads.
+
+`book.ts` (Stage 910, ADR 0074 §2) is the DM's book: a document beside a campaign's packages, not
+part of package content. Its keys are a package's local keys. It is the DM's text (people's
+`secret` included): never part of a player's or the table screen's projection.

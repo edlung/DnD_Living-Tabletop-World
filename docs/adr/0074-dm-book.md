@@ -1,11 +1,11 @@
-# 0074. The DM's book: a campaign's text in its package and a book as the DM's screen
+# 0074. The DM's book: a campaign's text as a book beside its packages, and a book as the DM's screen
 
-- Status: Accepted for §1 (the owner's words of 2026-11-22, `reviews/OWNER_DM_BOOK_2026-11-22.json`:
+- Status: Accepted for §1–§2 (the owner's words of 2026-11-22, `reviews/OWNER_DM_BOOK_2026-11-22.json`:
   the brief, «Да, развиваем», «мне для всех компаний книжный формат нужен … 55 кампаний», «Да,
-  открываем» and four choices in a question card). Points marked (S) are the session's and stay the
-  owner's to overrule (`docs/DM_BOOK_PLAN.md`, decisions 9–14). Later sections are added by their
-  stages and are not in force until then: §2 the book's data (Stage 910), §3 the book to read
-  (Stage 920), §4 play from the book (Stage 930).
+  открываем» and four choices in a question card). Points marked (S), and every point of §2, are
+  the session's and stay the owner's to overrule (`docs/DM_BOOK_PLAN.md`, decisions 9–15). Later
+  sections are added by their stages and are not in force until then: §3 the book to read (Stage
+  920), §4 play from the book (Stage 930).
 - Context: A campaign's story is written scene by scene in its source, and a DM reads it today in
   an HTML book outside the game. Inside the game the DM has a dock of nineteen sheets and none of
   them holds the story. On 2026-11-19 the owner said the product "looks like an Excel table"; on
@@ -51,11 +51,69 @@
     one campaign: every authored campaign's build writes its book, and the two built-in
     adventures get theirs.
 
+### 2. The book's data (Stage 910)
+
+1. **A document beside the packages, not inside one.** `campaignBookSchema`
+   (`packages/contracts/src/campaign/book.ts`) is a document of its own: one a campaign, whatever
+   the party's size. The plan first put it into the package; measured on 2026-11-22, a package may
+   be 512 KB at most (`MAX_CAMPAIGN_PACKAGE_BYTES`), the largest shipped one is 453 KB, a book is
+   175 KB on average and 252 KB at most, and a campaign ships four to seven packages that would
+   each repeat it. So the package contract does not change, no stored revision changes, no digest
+   moves, and the library gains `fixtures/campaign-library/<id>/book.json`, named with its SHA-256
+   in `library.json`. The book's keys are the package's local keys.
+2. **What it holds.** Chapters in the campaign's own order; for a chapter its place, goal, words to
+   read aloud, the DM's note, length and level where the source has them, the people, clues,
+   handouts and encounters it names, its puzzle, rewards, ending, consequences, rest, the
+   campaign's guide for that evening and its note on a changed plan; for a page (a scene) its
+   title, its text as written, its minutes, the choices, the check, what follows a failure, the
+   people named in it. Beside the chapters: the cast as the DM reads it (with `secret` and
+   `reveal`), the clues with how each is found, the handouts with their text, the campaign's notes
+   on a party that leaves the road, the encounters no chapter could be named for. A written page
+   (the second layer, the built-in adventures) may add its own place, a question for the table, a
+   note and cues — moments opened from words of its text.
+3. **The check as fields.** The line as written is always kept. An option is read only where a
+   difficulty («DC 12», «СЛ 12», «Сл 12») stands right after an ability, a skill, an ability with
+   its skill in brackets, a saving throw («спасбросок Ловкости»), or several of these joined by
+   «или» or «либо»; «группой» before the difficulty makes a group check. The names are the
+   product's own (`SKILLS`, `ABILITIES`); «Восприятие» and «Внимательность» are perception,
+   «Расследование» and «Анализ» investigation. A list where one word is unknown gives no option
+   at all. `roll` is `asked` with options, `none` where the line says there is no roll and names
+   no difficulty, `unread` otherwise. Read on 2026-11-22: 1,137 lines asked, 63 none, 123 unread.
+4. **People in a page.** A person of the cast (never a hero) is linked where the page's text names
+   them: each capitalised word of the name is matched by its stem with a Russian case ending. A
+   stem two people share makes no link, and neither does a word the campaign also writes in lower
+   case (a title, a trade). The link keeps the words as the text has them. 1,250 of 1,323 pages
+   have at least one.
+5. **An encounter's chapter**, by the first rule that names exactly one: the campaign's own note
+   on a lost fight; the evening its trigger names («Вечер 3», «в шестой встрече»); the only
+   chapter played at its place; the only chapter whose scenes name its title. 166 of 175 are
+   tied; the other nine are listed with the book as they are.
+6. **Whom a page speaks to.** `voice` is `dm` when the text, outside quotations, names the table
+   from outside (heroes, players, the DM, the party, a roll, a check, a scene) or tells the DM
+   what to do in the plural imperative; otherwise `players`. The rule leans to the DM on purpose.
+   1,284 pages are the DM's, 39 can be read aloud as they are. A chapter's `readAloud` is always
+   for the players.
+7. **Which campaign a book belongs to.** The library names it: a live campaign whose active
+   revision is, in canonical form, one of the library's packages has that campaign's book, as it
+   has its pictures (`CampaignLibrary.bookFor`). A package edited before it was activated, and a
+   campaign started from an earlier build of the library, are not recognised this way; Stage 920
+   decides what they get.
+8. **The built-in adventures** have no package. Their books are `fixtures/hollowmere-ru/book.json`
+   and `fixtures/ravenford-ru/book.json`, Russian only, under the same contract; the keys are the
+   seed's own IDs. Hollowmere's eight pages are the spreads of the second concept
+   (`docs/design/dm-book/story.js`) as written there, under the four chapters of
+   `docs/BUILTIN_ADVENTURES_DM_RU.md`. Ravenford's six pages were written by the session from the
+   seed's own statements. Both carry `awaitingReading`: text written for a book is not shown until
+   the owner has read it (decision 8 of the plan), and the server keeps such a book closed.
+9. **Nothing is written by a model in the 53.** A first-layer page is the source's scene, word for
+   word; the build adds only fields read from it. A test compares every page with its source.
+
 ## Consequences
 
-- The campaign package contract gains optional content (§2, Stage 910). Stored package revisions
-  stay readable: the addition is optional and absent from earlier revisions, as `possessions` and
-  `maps` are.
-- The builds of every campaign series change together, and the library fixture is rebuilt.
+- The campaign package contract does not change (§2.1). The library gains one `book.json` a
+  campaign (9.2 MB for the 53) and `library.json` names it; a library built before Stage 910
+  still loads.
+- The series' package builds do not change: the book is built by the library's build from each
+  campaign's `source/`.
 - The DM gets a second main screen; journeys for it are added beside the dock's, not instead.
 - Layer 2 is a later program with its own spending and reading; nothing in §1–§4 needs it.
