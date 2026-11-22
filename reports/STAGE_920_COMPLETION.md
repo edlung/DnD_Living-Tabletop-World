@@ -71,6 +71,15 @@ design point of this stage is the session's (ADR 0074 §3) and stays his to over
   was removed; the right page's picture was too tall for a tablet; the book's Russian used other
   words than the product's.
 
+- **By CI on the pull request** (2026-11-22, after the report was first written): with the Book
+  button the DM's dock holds seventeen tools where a campaign has a book. On a narrow, tall
+  screen the More list then scrolled and hid its last item — the list has more room now
+  (`styles/shell.css`); two library journeys looked for "Players" on the dock itself, where it
+  may now wait under More — they look for it in the dock's tools; the dock-fit journey names the
+  Book among the Russian DM's tools. Then every journey that uses a Russian or a library
+  campaign was run in Chromium: 82 pass. `party-known.spec.ts` floods the local server as it
+  does on `main` (its fix sits unmerged on `claude/known-read-storm`) and was left out.
+
 ## Verification
 
 | Check                                                                                                                               | Result                        |

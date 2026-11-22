@@ -79,7 +79,9 @@ test('a library campaign starts with its world map, and the DM leads the party a
   const campaignId = (await ownedCampaigns(page)).campaigns[0]?.campaignId;
   if (!campaignId) throw new Error('no started campaign');
   await enterActivatedGame(page);
-  await expect(dockButton(page, 'Игроки')).toBeVisible();
+  // In the game as its DM. A library campaign has a book, so the dock holds one tool more and
+  // its last, Players, may wait under More.
+  await expect(dockButton(page, 'Игроки')).toBeAttached();
   // The map's picture arrives right after the campaign is published, with the other pictures.
   await expect
     .poll(
